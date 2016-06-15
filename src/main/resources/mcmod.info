@@ -1,0 +1,16 @@
+[
+{
+  "modid": "nex",
+  "name": "NetherEx",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["LogicTechCorp, Eleazzaar and Demonly/X_angelz_X"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

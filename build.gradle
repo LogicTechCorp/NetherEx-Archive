@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = version_major + '.' + version_minor + '.' + version_patch
+group = "NetherEx"
+archivesBaseName = "NetherEx_" + mcversion
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    version = mcversion + "-" + forgeversion
+    runDir = "run"
+    replace '@VERSION@', project.version
+    mappings = "snapshot_20160519"
+}
+
+repositories {
+}
+
+dependencies {
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+tasks.build.dependsOn('sourceJar', 'deobfJar')
+
+artifacts {
+    archives sourceJar
+    archives deobfJar
+    archives jar
+}
+
+
