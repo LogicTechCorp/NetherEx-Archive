@@ -22,6 +22,8 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
+import nex.handler.ConfigurationHandler;
+import nex.world.gen.feature.WorldGenNetherDungeon;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -456,7 +458,18 @@ public class ChunkProviderNether implements IChunkGenerator
                 this.lavaTrapGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16), this.rand.nextInt(108) + 10, this.rand.nextInt(16)));
             }
         }
-        
+
+        if(ConfigurationHandler.Settings.generateNetherDungeons)
+        {
+            for(int j2 = 0; j2 < 75; ++j2)
+            {
+                int i3 = this.rand.nextInt(16) + 8;
+                int l3 = this.rand.nextInt(256);
+                int l1 = this.rand.nextInt(16) + 8;
+                (new WorldGenNetherDungeon()).generate(this.world, this.rand, blockpos.add(i3, l3, l1));
+            }
+        }
+
         biome.decorate(this.world, this.rand, blockpos);
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(this.world, this.rand, blockpos));
 

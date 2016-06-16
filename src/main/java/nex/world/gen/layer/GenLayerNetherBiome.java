@@ -1,6 +1,5 @@
 package nex.world.gen.layer;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
@@ -14,7 +13,6 @@ public class GenLayerNetherBiome extends GenLayerNether
     public GenLayerNetherBiome(long seed)
     {
         super(seed);
-        NetherExAPI.addNetherBiome(Biomes.HELL, 10);
     }
 
     @Override
@@ -27,7 +25,7 @@ public class GenLayerNetherBiome extends GenLayerNether
             for(int j = 0; j < areaWidth; ++j)
             {
                 this.initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                biomeGen[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeFromList(NetherExAPI.getNetherBiomes()).biome);
+                biomeGen[j + i * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeFromList(NetherExAPI.getBiomes()).biome);
             }
         }
         return biomeGen;

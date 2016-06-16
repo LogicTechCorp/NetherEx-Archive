@@ -1,0 +1,3 @@
+#Configuration (World Options)
+world.generateNetherDungeons.label=Generate Nether Dungeons
+world.generateNetherDungeons.comment=Whether or not to generate dungeons in the Nether.
