@@ -1,0 +1,16 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "texture": "blocks/fingers/fingers_w3",
+        "inside": "blocks/fingers/fingers2",
+        "particle": "blocks/fingers/fingers1"
+    },
+    "elements": [
+        {   "from": [ 4, 4, 4 ],
+            "to": [ 12, 12, 12 ],
+            "faces": {
+                "north": { "texture": "#inside" }
+            }
+        }
+    ]
+}

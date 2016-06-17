@@ -1,0 +1,40 @@
+{
+    "variants": {
+        "age=0": [
+        	{ "model": "plants/chorus_flower0" },
+        	{ "model": "plants/chorus_flower0", "y": 90 },
+        	{ "model": "plants/chorus_flower0", "y": 180 },
+        	{ "model": "plants/chorus_flower0", "y": 270 }
+        ],
+        "age=1": [
+        	{ "model": "plants/chorus_flower1" },
+        	{ "model": "plants/chorus_flower1", "y": 90 },
+        	{ "model": "plants/chorus_flower1", "y": 180 },
+        	{ "model": "plants/chorus_flower1", "y": 270 }
+        ],
+        "age=2": [
+        	{ "model": "plants/chorus_flower2" },
+        	{ "model": "plants/chorus_flower2", "y": 90 },
+        	{ "model": "plants/chorus_flower2", "y": 180 },
+        	{ "model": "plants/chorus_flower2", "y": 270 }
+        ],
+        "age=3": [
+        	{ "model": "plants/chorus_flower3" },
+        	{ "model": "plants/chorus_flower3", "y": 90 },
+        	{ "model": "plants/chorus_flower3", "y": 180 },
+        	{ "model": "plants/chorus_flower3", "y": 270 }
+        ],
+        "age=4": [
+        	{ "model": "plants/chorus_flower4" },
+        	{ "model": "plants/chorus_flower4", "y": 90 },
+        	{ "model": "plants/chorus_flower4", "y": 180 },
+        	{ "model": "plants/chorus_flower4", "y": 270 }
+        ],
+        "age=5": [
+        	{ "model": "plants/chorus_flower5" },
+        	{ "model": "plants/chorus_flower5", "y": 90 },
+        	{ "model": "plants/chorus_flower5", "y": 180 },
+        	{ "model": "plants/chorus_flower5", "y": 270 }
+        ]
+    }
+}
