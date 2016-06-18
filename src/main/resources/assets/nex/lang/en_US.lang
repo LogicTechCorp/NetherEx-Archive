@@ -1,3 +1,20 @@
+#Configuration (Biome Options)
+world.biome.gelid.gen.iceSpikeRarity.label=Ice Spike Rarity
+world.biome.gelid.gen.iceSpikeRarity.comment=How rare Ice Spikes are
+world.biome.gelid.gen.rimeOreRarity.label=Rime Ore Rarity
+world.biome.gelid.gen.rimeOreRarity.comment=How rare Rime Ore is
+world.biome.gelid.gen.rimeOreVeinSize.label=Rime Ore Vein Size
+world.biome.gelid.gen.rimeOreVeinSize.comment=How big the Rime Ore vein size is
+
 #Configuration (World Options)
-world.generateNetherDungeons.label=Generate Nether Dungeons
-world.generateNetherDungeons.comment=Whether or not to generate dungeons in the Nether.
+world.gen.generateNetherDungeons.label=Generate Nether Dungeons
+world.gen.generateNetherDungeons.comment=Whether or not to generate dungeons in the Nether.
+world.gen.netherDungeonRarity.label=Nether Dungeon Rarity
+world.gen.netherDungeonRarity.comment=How rare dungeons are in the Nether.
+
+#Creative Tab
+itemGroup.netherEx=NetherEx
+
+#Tiles (Blocks)
+tile.nex:netherrack.chilled.name=Chilled Netherrack
+tile.nex:ore.rime.name=Rime Ore

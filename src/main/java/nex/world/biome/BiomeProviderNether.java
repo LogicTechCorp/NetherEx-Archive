@@ -55,7 +55,7 @@ public class BiomeProviderNether extends BiomeProvider
     @Override
     public Biome getBiomeGenerator(BlockPos pos)
     {
-        return this.getBiomeGenerator(pos, (Biome)null);
+        return this.getBiomeGenerator(pos, (Biome) null);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class BiomeProviderNether extends BiomeProvider
     {
         IntCache.resetIntCache();
 
-        if (biomes == null || biomes.length < width * height)
+        if(biomes == null || biomes.length < width * height)
         {
             biomes = new Biome[width * height];
         }
@@ -84,14 +84,14 @@ public class BiomeProviderNether extends BiomeProvider
 
         try
         {
-            for (int i = 0; i < width * height; ++i)
+            for(int i = 0; i < width * height; ++i)
             {
                 biomes[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
             }
 
             return biomes;
         }
-        catch (Throwable throwable)
+        catch(Throwable throwable)
         {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("RawBiomeBlock");
@@ -115,12 +115,12 @@ public class BiomeProviderNether extends BiomeProvider
     {
         IntCache.resetIntCache();
 
-        if (listToReuse == null || listToReuse.length < width * length)
+        if(listToReuse == null || listToReuse.length < width * length)
         {
             listToReuse = new Biome[width * length];
         }
 
-        if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
+        if(cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
         {
             Biome[] abiome = this.biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiome, 0, listToReuse, 0, width * length);
@@ -130,7 +130,7 @@ public class BiomeProviderNether extends BiomeProvider
         {
             int[] aint = this.biomeIndex.getInts(x, z, width, length);
 
-            for (int i = 0; i < width * length; ++i)
+            for(int i = 0; i < width * length; ++i)
             {
                 listToReuse[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
             }
@@ -153,11 +153,11 @@ public class BiomeProviderNether extends BiomeProvider
 
         try
         {
-            for (int k1 = 0; k1 < i1 * j1; ++k1)
+            for(int k1 = 0; k1 < i1 * j1; ++k1)
             {
                 Biome biome = Biome.getBiome(aint[k1]);
 
-                if (!allowed.contains(biome))
+                if(!allowed.contains(biome))
                 {
                     return false;
                 }
@@ -165,7 +165,7 @@ public class BiomeProviderNether extends BiomeProvider
 
             return true;
         }
-        catch (Throwable throwable)
+        catch(Throwable throwable)
         {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Layer");
@@ -193,13 +193,13 @@ public class BiomeProviderNether extends BiomeProvider
         BlockPos blockpos = null;
         int k1 = 0;
 
-        for (int l1 = 0; l1 < i1 * j1; ++l1)
+        for(int l1 = 0; l1 < i1 * j1; ++l1)
         {
             int i2 = i + l1 % i1 << 2;
             int j2 = j + l1 / i1 << 2;
             Biome biome = Biome.getBiome(aint[l1]);
 
-            if (biomes.contains(biome) && (blockpos == null || random.nextInt(k1 + 1) == 0))
+            if(biomes.contains(biome) && (blockpos == null || random.nextInt(k1 + 1) == 0))
             {
                 blockpos = new BlockPos(i2, 0, j2);
                 ++k1;

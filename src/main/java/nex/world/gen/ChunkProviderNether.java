@@ -40,6 +40,21 @@ public class ChunkProviderNether implements IChunkGenerator
     private final World world;
     private final boolean generateStructures;
     private final Random rand;
+    private final WorldGenFire fireFeature = new WorldGenFire();
+    private final WorldGenGlowStone1 lightGemGen = new WorldGenGlowStone1();
+    private final WorldGenGlowStone2 hellPortalGen = new WorldGenGlowStone2();
+    private final WorldGenerator quartzGen = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.NETHERRACK));
+    private final WorldGenHellLava lavaTrapGen = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
+    private final WorldGenHellLava hellSpringGen = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
+    private final WorldGenBush brownMushroomFeature = new WorldGenBush(Blocks.BROWN_MUSHROOM);
+    private final WorldGenBush redMushroomFeature = new WorldGenBush(Blocks.RED_MUSHROOM);
+    public NoiseGeneratorOctaves scaleNoise;
+    public NoiseGeneratorOctaves depthNoise;
+    double[] pnr;
+    double[] ar;
+    double[] br;
+    double[] noiseData4;
+    double[] dr;
     private double[] slowsandNoise = new double[256];
     private double[] gravelNoise = new double[256];
     private double[] depthBuffer = new double[256];
@@ -49,24 +64,9 @@ public class ChunkProviderNether implements IChunkGenerator
     private NoiseGeneratorOctaves perlinNoise1;
     private NoiseGeneratorOctaves slowsandGravelNoiseGen;
     private NoiseGeneratorOctaves netherrackExculsivityNoiseGen;
-    public NoiseGeneratorOctaves scaleNoise;
-    public NoiseGeneratorOctaves depthNoise;
-    private final WorldGenFire fireFeature = new WorldGenFire();
-    private final WorldGenGlowStone1 lightGemGen = new WorldGenGlowStone1();
-    private final WorldGenGlowStone2 hellPortalGen = new WorldGenGlowStone2();
-    private final WorldGenerator quartzGen = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.NETHERRACK));
-    private final WorldGenHellLava lavaTrapGen = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
-    private final WorldGenHellLava hellSpringGen = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
-    private final WorldGenBush brownMushroomFeature = new WorldGenBush(Blocks.BROWN_MUSHROOM);
-    private final WorldGenBush redMushroomFeature = new WorldGenBush(Blocks.RED_MUSHROOM);
     private MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
     private MapGenBase genNetherCaves = new MapGenCavesHell();
     private Biome[] biomesForGen;
-    double[] pnr;
-    double[] ar;
-    double[] br;
-    double[] noiseData4;
-    double[] dr;
 
     public ChunkProviderNether(World worldIn)
     {
@@ -91,7 +91,7 @@ public class ChunkProviderNether implements IChunkGenerator
         this.netherrackExculsivityNoiseGen = ctx.getPerlin3();
         this.scaleNoise = ctx.getScale();
         this.depthNoise = ctx.getDepth();
-        this.genNetherBridge = (MapGenNetherBridge)TerrainGen.getModdedMapGen(genNetherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
+        this.genNetherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(genNetherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
         this.genNetherCaves = TerrainGen.getModdedMapGen(genNetherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
     }
 
@@ -104,11 +104,11 @@ public class ChunkProviderNether implements IChunkGenerator
         int i1 = i + 1;
         this.buffer = this.getHeights(this.buffer, p_185936_1_ * i, 0, p_185936_2_ * i, k, l, i1);
 
-        for (int j1 = 0; j1 < i; ++j1)
+        for(int j1 = 0; j1 < i; ++j1)
         {
-            for (int k1 = 0; k1 < i; ++k1)
+            for(int k1 = 0; k1 < i; ++k1)
             {
-                for (int l1 = 0; l1 < 16; ++l1)
+                for(int l1 = 0; l1 < 16; ++l1)
                 {
                     double d0 = 0.125D;
                     double d1 = this.buffer[((j1 + 0) * i1 + k1 + 0) * l + l1 + 0];
@@ -120,7 +120,7 @@ public class ChunkProviderNether implements IChunkGenerator
                     double d7 = (this.buffer[((j1 + 1) * i1 + k1 + 0) * l + l1 + 1] - d3) * d0;
                     double d8 = (this.buffer[((j1 + 1) * i1 + k1 + 1) * l + l1 + 1] - d4) * d0;
 
-                    for (int i2 = 0; i2 < 8; ++i2)
+                    for(int i2 = 0; i2 < 8; ++i2)
                     {
                         double d9 = 0.25D;
                         double d10 = d1;
@@ -128,22 +128,22 @@ public class ChunkProviderNether implements IChunkGenerator
                         double d12 = (d3 - d1) * d9;
                         double d13 = (d4 - d2) * d9;
 
-                        for (int j2 = 0; j2 < 4; ++j2)
+                        for(int j2 = 0; j2 < 4; ++j2)
                         {
                             double d14 = 0.25D;
                             double d15 = d10;
                             double d16 = (d11 - d10) * d14;
 
-                            for (int k2 = 0; k2 < 4; ++k2)
+                            for(int k2 = 0; k2 < 4; ++k2)
                             {
                                 IBlockState iblockstate = null;
 
-                                if (l1 * 8 + i2 < j)
+                                if(l1 * 8 + i2 < j)
                                 {
                                     iblockstate = LAVA;
                                 }
 
-                                if (d15 > 0.0D)
+                                if(d15 > 0.0D)
                                 {
                                     iblockstate = NETHERRACK;
                                 }
@@ -171,72 +171,72 @@ public class ChunkProviderNether implements IChunkGenerator
 
     public void buildSurfaces(int x, int z, ChunkPrimer primer, Biome[] biomes)
     {
-        if (!ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.world)) 
+        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.world))
         {
             return;
         }
-        
+
         int i = this.world.getSeaLevel() + 1;
         double d0 = 0.03125D;
         this.slowsandNoise = this.slowsandGravelNoiseGen.generateNoiseOctaves(this.slowsandNoise, x * 16, z * 16, 0, 16, 16, 1, d0, d0, 1.0D);
         this.gravelNoise = this.slowsandGravelNoiseGen.generateNoiseOctaves(this.gravelNoise, x * 16, 109, z * 16, 16, 1, 16, d0, 1.0D, d0);
         this.depthBuffer = this.netherrackExculsivityNoiseGen.generateNoiseOctaves(this.depthBuffer, x * 16, z * 16, 0, 16, 16, 1, d0 * 2.0D, d0 * 2.0D, d0 * 2.0D);
 
-        for (int j = 0; j < 16; ++j)
+        for(int j = 0; j < 16; ++j)
         {
-            for (int k = 0; k < 16; ++k)
+            for(int k = 0; k < 16; ++k)
             {
                 boolean flag = this.slowsandNoise[j + k * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
                 boolean flag1 = this.gravelNoise[j + k * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
-                int l = (int)(this.depthBuffer[j + k * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
+                int l = (int) (this.depthBuffer[j + k * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int i1 = -1;
                 Biome biome = biomes[j + k * 16];
                 IBlockState iblockstate = biome.topBlock;
                 IBlockState iblockstate1 = biome.fillerBlock;
 
-                for (int j1 = 127; j1 >= 0; --j1)
+                for(int j1 = 127; j1 >= 0; --j1)
                 {
-                    if (j1 < 127 - this.rand.nextInt(5) && j1 > this.rand.nextInt(5))
+                    if(j1 < 127 - this.rand.nextInt(5) && j1 > this.rand.nextInt(5))
                     {
                         IBlockState iblockstate2 = primer.getBlockState(k, j1, j);
 
-                        if (iblockstate2.getBlock() != null && iblockstate2.getMaterial() != Material.AIR)
+                        if(iblockstate2.getBlock() != null && iblockstate2.getMaterial() != Material.AIR)
                         {
-                            if (iblockstate2.getBlock() == Blocks.NETHERRACK)
+                            if(iblockstate2.getBlock() == Blocks.NETHERRACK)
                             {
-                                if (i1 == -1)
+                                if(i1 == -1)
                                 {
-                                    if (l <= 0)
+                                    if(l <= 0)
                                     {
                                         iblockstate = AIR;
                                         iblockstate1 = NETHERRACK;
                                     }
-                                    else if (j1 >= i - 4 && j1 <= i + 1)
+                                    else if(j1 >= i - 4 && j1 <= i + 1)
                                     {
                                         iblockstate = NETHERRACK;
                                         iblockstate1 = NETHERRACK;
 
-                                        if (flag1)
+                                        if(flag1)
                                         {
                                             iblockstate = GRAVEL;
                                             iblockstate1 = NETHERRACK;
                                         }
 
-                                        if (flag)
+                                        if(flag)
                                         {
                                             iblockstate = SOUL_SAND;
                                             iblockstate1 = SOUL_SAND;
                                         }
                                     }
 
-                                    if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
+                                    if(j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                                     {
                                         iblockstate = LAVA;
                                     }
 
                                     i1 = l;
 
-                                    if (j1 >= i - 1)
+                                    if(j1 >= i - 1)
                                     {
                                         primer.setBlockState(k, j1, j, iblockstate);
                                     }
@@ -245,7 +245,7 @@ public class ChunkProviderNether implements IChunkGenerator
                                         primer.setBlockState(k, j1, j, iblockstate1);
                                     }
                                 }
-                                else if (i1 > 0)
+                                else if(i1 > 0)
                                 {
                                     --i1;
                                     primer.setBlockState(k, j1, j, iblockstate1);
@@ -269,25 +269,25 @@ public class ChunkProviderNether implements IChunkGenerator
     @Override
     public Chunk provideChunk(int x, int z)
     {
-        this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
+        this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.prepareHeights(x, z, chunkprimer);
         this.biomesForGen = this.world.getBiomeProvider().loadBlockGeneratorData(this.biomesForGen, x * 16, z * 16, 16, 16);
         this.buildSurfaces(x, z, chunkprimer, this.biomesForGen);
         this.genNetherCaves.generate(this.world, x, z, chunkprimer);
 
-        if (this.generateStructures)
+        if(this.generateStructures)
         {
             this.genNetherBridge.generate(this.world, x, z, chunkprimer);
         }
 
         Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
-        Biome[] abiome = this.world.getBiomeProvider().loadBlockGeneratorData((Biome[])null, x * 16, z * 16, 16, 16);
+        Biome[] abiome = this.world.getBiomeProvider().loadBlockGeneratorData((Biome[]) null, x * 16, z * 16, 16, 16);
         byte[] abyte = chunk.getBiomeArray();
 
-        for (int i = 0; i < abyte.length; ++i)
+        for(int i = 0; i < abyte.length; ++i)
         {
-            abyte[i] = (byte)Biome.getIdForBiome(abiome[i]);
+            abyte[i] = (byte) Biome.getIdForBiome(abiome[i]);
         }
 
         chunk.resetRelightChecks();
@@ -296,7 +296,7 @@ public class ChunkProviderNether implements IChunkGenerator
 
     private double[] getHeights(double[] p_185938_1_, int p_185938_2_, int p_185938_3_, int p_185938_4_, int p_185938_5_, int p_185938_6_, int p_185938_7_)
     {
-        if (p_185938_1_ == null)
+        if(p_185938_1_ == null)
         {
             p_185938_1_ = new double[p_185938_5_ * p_185938_6_ * p_185938_7_];
         }
@@ -304,7 +304,7 @@ public class ChunkProviderNether implements IChunkGenerator
         ChunkGeneratorEvent.InitNoiseField event = new ChunkGeneratorEvent.InitNoiseField(this, p_185938_1_, p_185938_2_, p_185938_3_, p_185938_4_, p_185938_5_, p_185938_6_, p_185938_7_);
         MinecraftForge.EVENT_BUS.post(event);
 
-        if (event.getResult() == net.minecraftforge.fml.common.eventhandler.Event.Result.DENY)
+        if(event.getResult() == net.minecraftforge.fml.common.eventhandler.Event.Result.DENY)
         {
             return event.getNoisefield();
         }
@@ -319,30 +319,30 @@ public class ChunkProviderNether implements IChunkGenerator
         int i = 0;
         double[] adouble = new double[p_185938_6_];
 
-        for (int j = 0; j < p_185938_6_; ++j)
+        for(int j = 0; j < p_185938_6_; ++j)
         {
-            adouble[j] = Math.cos((double)j * Math.PI * 6.0D / (double)p_185938_6_) * 2.0D;
-            double d2 = (double)j;
+            adouble[j] = Math.cos((double) j * Math.PI * 6.0D / (double) p_185938_6_) * 2.0D;
+            double d2 = (double) j;
 
-            if (j > p_185938_6_ / 2)
+            if(j > p_185938_6_ / 2)
             {
-                d2 = (double)(p_185938_6_ - 1 - j);
+                d2 = (double) (p_185938_6_ - 1 - j);
             }
 
-            if (d2 < 4.0D)
+            if(d2 < 4.0D)
             {
                 d2 = 4.0D - d2;
                 adouble[j] -= d2 * d2 * d2 * 10.0D;
             }
         }
 
-        for (int l = 0; l < p_185938_5_; ++l)
+        for(int l = 0; l < p_185938_5_; ++l)
         {
-            for (int i1 = 0; i1 < p_185938_7_; ++i1)
+            for(int i1 = 0; i1 < p_185938_7_; ++i1)
             {
                 double d3 = 0.0D;
 
-                for (int k = 0; k < p_185938_6_; ++k)
+                for(int k = 0; k < p_185938_6_; ++k)
                 {
                     double d4 = 0.0D;
                     double d5 = adouble[k];
@@ -350,11 +350,11 @@ public class ChunkProviderNether implements IChunkGenerator
                     double d7 = this.br[i] / 512.0D;
                     double d8 = (this.pnr[i] / 10.0D + 1.0D) / 2.0D;
 
-                    if (d8 < 0.0D)
+                    if(d8 < 0.0D)
                     {
                         d4 = d6;
                     }
-                    else if (d8 > 1.0D)
+                    else if(d8 > 1.0D)
                     {
                         d4 = d7;
                     }
@@ -365,15 +365,15 @@ public class ChunkProviderNether implements IChunkGenerator
 
                     d4 = d4 - d5;
 
-                    if (k > p_185938_6_ - 4)
+                    if(k > p_185938_6_ - 4)
                     {
-                        double d9 = (double)((float)(k - (p_185938_6_ - 4)) / 3.0F);
+                        double d9 = (double) ((float) (k - (p_185938_6_ - 4)) / 3.0F);
                         d4 = d4 * (1.0D - d9) + -10.0D * d9;
                     }
 
-                    if ((double)k < d3)
+                    if((double) k < d3)
                     {
-                        double d10 = (d3 - (double)k) / 4.0D;
+                        double d10 = (d3 - (double) k) / 4.0D;
                         d10 = MathHelper.clamp_double(d10, 0.0D, 1.0D);
                         d4 = d4 * (1.0D - d10) + -10.0D * d10;
                     }
@@ -395,10 +395,10 @@ public class ChunkProviderNether implements IChunkGenerator
         BlockPos blockpos = new BlockPos(x * 16, 0, z * 16);
         ChunkPos chunkpos = new ChunkPos(x, z);
         Biome biome = this.world.getBiomeForCoordsBody(new BlockPos(blockpos.getX() + 16, 0, blockpos.getZ() + 16));
-        
+
         this.genNetherBridge.generateStructure(this.world, this.rand, chunkpos);
 
-        if (TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
+        if(TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
         {
             for(int i = 0; i < 8; ++i)
             {
@@ -406,7 +406,7 @@ public class ChunkProviderNether implements IChunkGenerator
             }
         }
 
-        if (TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.FIRE))
+        if(TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.FIRE))
         {
             for(int j = 0; j < this.rand.nextInt(this.rand.nextInt(10) + 1) + 1; ++j)
             {
@@ -414,14 +414,14 @@ public class ChunkProviderNether implements IChunkGenerator
             }
         }
 
-        if (TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.GLOWSTONE))
+        if(TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.GLOWSTONE))
         {
-            for (int k = 0; k < this.rand.nextInt(this.rand.nextInt(10) + 1); ++k)
+            for(int k = 0; k < this.rand.nextInt(this.rand.nextInt(10) + 1); ++k)
             {
                 this.lightGemGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, this.rand.nextInt(16) + 8));
             }
 
-            for (int l = 0; l < 10; ++l)
+            for(int l = 0; l < 10; ++l)
             {
                 this.hellPortalGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
             }
@@ -430,20 +430,20 @@ public class ChunkProviderNether implements IChunkGenerator
         ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, x, z, false);
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(this.world, this.rand, blockpos));
 
-        if (TerrainGen.decorate(this.world, this.rand, blockpos, DecorateBiomeEvent.Decorate.EventType.SHROOM))
+        if(TerrainGen.decorate(this.world, this.rand, blockpos, DecorateBiomeEvent.Decorate.EventType.SHROOM))
         {
-            if (this.rand.nextBoolean())
+            if(this.rand.nextBoolean())
             {
                 this.brownMushroomFeature.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
             }
 
-            if (this.rand.nextBoolean())
+            if(this.rand.nextBoolean())
             {
                 this.redMushroomFeature.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
             }
         }
 
-        if (TerrainGen.generateOre(this.world, this.rand, quartzGen, blockpos, OreGenEvent.GenerateMinable.EventType.QUARTZ))
+        if(TerrainGen.generateOre(this.world, this.rand, quartzGen, blockpos, OreGenEvent.GenerateMinable.EventType.QUARTZ))
         {
             for(int i1 = 0; i1 < 16; ++i1)
             {
@@ -451,7 +451,7 @@ public class ChunkProviderNether implements IChunkGenerator
             }
         }
 
-        if (TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
+        if(TerrainGen.populate(this, this.world, this.rand, x, z, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
         {
             for(int j1 = 0; j1 < 16; ++j1)
             {
@@ -461,7 +461,7 @@ public class ChunkProviderNether implements IChunkGenerator
 
         if(ConfigurationHandler.Settings.generateNetherDungeons)
         {
-            for(int j2 = 0; j2 < 75; ++j2)
+            for(int j2 = 0; j2 < ConfigurationHandler.Settings.gelidIceSpikeRarity; ++j2)
             {
                 int i3 = this.rand.nextInt(16) + 8;
                 int l3 = this.rand.nextInt(256);
@@ -485,14 +485,14 @@ public class ChunkProviderNether implements IChunkGenerator
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        if (creatureType == EnumCreatureType.MONSTER)
+        if(creatureType == EnumCreatureType.MONSTER)
         {
-            if (this.genNetherBridge.isInsideStructure(pos))
+            if(this.genNetherBridge.isInsideStructure(pos))
             {
                 return this.genNetherBridge.getSpawnList();
             }
 
-            if (this.genNetherBridge.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
+            if(this.genNetherBridge.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
             {
                 return this.genNetherBridge.getSpawnList();
             }
@@ -511,6 +511,6 @@ public class ChunkProviderNether implements IChunkGenerator
     @Override
     public void recreateStructures(Chunk chunkIn, int x, int z)
     {
-        this.genNetherBridge.generate(this.world, x, z, (ChunkPrimer)null);
+        this.genNetherBridge.generate(this.world, x, z, (ChunkPrimer) null);
     }
 }

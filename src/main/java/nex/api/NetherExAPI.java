@@ -7,7 +7,7 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DungeonHooks;
-import nex.api.dungeon.DungeonSet;
+import nex.api.dungeon.DungeonEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,12 +19,11 @@ public class NetherExAPI
 {
     public static Logger logger = LogManager.getLogger("NetherEx|API");
 
-    private static DungeonSet defaultSet = new DungeonSet("Skeleton", 10, Blocks.OBSIDIAN.getDefaultState(), Blocks.OBSIDIAN.getDefaultState(), new DungeonHooks.DungeonMob(10, "Skeleton"));
+    public static BiomeManager.BiomeEntry defaultBiomeEntry = new BiomeManager.BiomeEntry(Biomes.HELL, 10);
+    private static DungeonEntry defaultDungeonEntry = new DungeonEntry("Skeleton", 10, Blocks.OBSIDIAN.getDefaultState(), Blocks.OBSIDIAN.getDefaultState(), new DungeonHooks.DungeonMob(10, "Skeleton"));
 
-    private static List<BiomeManager.BiomeEntry> biomes = Lists.newArrayList();
-    private static List<DungeonSet> dungeonSets = Lists.newArrayList();
-
-    private NetherExAPI() {}
+    private static List<BiomeManager.BiomeEntry> biomeEntries = Lists.newArrayList();
+    private static List<DungeonEntry> dungeonEntries = Lists.newArrayList();
 
     static
     {
@@ -32,14 +31,18 @@ public class NetherExAPI
         Biomes.HELL.fillerBlock = Blocks.NETHERRACK.getDefaultState();
         NetherExAPI.addBiome(Biomes.HELL, 10);
 
-        NetherExAPI.addDungeonSet(defaultSet);
+        NetherExAPI.addDungeonEntry(defaultDungeonEntry);
+    }
+
+    private NetherExAPI()
+    {
     }
 
     public static void addBiome(Biome biome, int weight)
     {
         BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(biome, weight);
 
-        for(BiomeManager.BiomeEntry e : biomes)
+        for(BiomeManager.BiomeEntry e : biomeEntries)
         {
             if(e.biome == entry.biome)
             {
@@ -48,23 +51,18 @@ public class NetherExAPI
             }
         }
 
-        biomes.add(entry);
+        biomeEntries.add(entry);
     }
 
     public static void removeBiome(Biome biome)
     {
-        Iterator<BiomeManager.BiomeEntry> itr = biomes.iterator();
+        Iterator<BiomeManager.BiomeEntry> itr = biomeEntries.iterator();
 
         while(itr.hasNext())
         {
             BiomeManager.BiomeEntry entry = itr.next();
 
-            if(entry.biome == Biomes.HELL)
-            {
-                logger.info("You cannot remove the default Nether biome!");
-                return;
-            }
-            else if(entry.biome == biome)
+            if(entry.biome == biome)
             {
                 logger.info(String.format("Removed the %s biome from the Nether.", biome.getBiomeName()));
                 itr.remove();
@@ -75,66 +73,66 @@ public class NetherExAPI
         logger.info(String.format("Unable to remove the %s biome from the Nether. It has not yet been added!", biome.getBiomeName()));
     }
 
-    public static List<BiomeManager.BiomeEntry> getBiomes()
+    public static List<BiomeManager.BiomeEntry> getBiomeEntries()
     {
-        return biomes;
+        return biomeEntries;
     }
 
-    public static void addDungeonSet(DungeonSet set)
+    public static void addDungeonEntry(DungeonEntry entry)
     {
-        for(DungeonSet s : dungeonSets)
+        for(DungeonEntry e : dungeonEntries)
         {
-            if(s.equals(set))
+            if(e.equals(entry))
             {
-                logger.info(String.format("Unable to add the %s Dungeon Set to the Nether Dungeon Sets. It was already added!", set.getName()));
+                logger.info(String.format("Unable to add the %s Dungeon Entry to the Nether Dungeon Entries. It was already added!", entry.getName()));
                 return;
             }
         }
 
-        dungeonSets.add(set);
+        dungeonEntries.add(entry);
     }
 
-    public static void removeDungeonSet(String name)
+    public static void removeDungeonEntry(String name)
     {
-        Iterator<DungeonSet> itr = dungeonSets.iterator();
+        Iterator<DungeonEntry> itr = dungeonEntries.iterator();
 
         while(itr.hasNext())
         {
-            DungeonSet s = itr.next();
+            DungeonEntry e = itr.next();
 
-            if(s.getName().equals(name))
+            if(e.getName().equals(name))
             {
-                logger.info(String.format("Removed the %s Dungeon Set from the Nether Dungeon Sets.", name));
+                logger.info(String.format("Removed the %s Dungeon Entry from the Nether Dungeon Entries.", name));
                 itr.remove();
                 return;
             }
         }
 
-        logger.info(String.format("Unable to remove the %s Dungeon Set from the Nether Dungeon Sets. It has not yet been added!", name));
+        logger.info(String.format("Unable to remove the %s Dungeon Entry from the Nether Dungeon Entries. It has not yet been added!", name));
     }
 
-    public static List<DungeonSet> getDungeonSets()
+    public static List<DungeonEntry> getDungeonEntries()
     {
-        return dungeonSets;
+        return dungeonEntries;
     }
 
-    public static DungeonSet getRandomDungeonSet(Random rand)
+    public static DungeonEntry getRandomDungeonEntry(Random rand)
     {
-        if(dungeonSets == null)
+        if(dungeonEntries.size() == 0)
         {
-            return defaultSet;
+            dungeonEntries.add(defaultDungeonEntry);
         }
 
-        return WeightedRandom.getRandomItem(rand, dungeonSets);
+        return WeightedRandom.getRandomItem(rand, dungeonEntries);
     }
 
-    public static String getRandomDungeonSetMob(DungeonSet set, Random rand)
+    public static String getRandomDungeonEntryMob(DungeonEntry entry, Random rand)
     {
-        if(set.getDungeonMobs() == null)
+        if(entry.getDungeonMobs().size() == 0)
         {
-            return "";
+            entry.getDungeonMobs().add(new DungeonHooks.DungeonMob(10, "Skeleton"));
         }
 
-        return WeightedRandom.getRandomItem(rand, set.getDungeonMobs()).type;
+        return WeightedRandom.getRandomItem(rand, entry.getDungeonMobs()).type;
     }
 }

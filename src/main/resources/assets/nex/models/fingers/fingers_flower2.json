@@ -1,8 +1,0 @@
-{
-    "parent": "block/fingers/fingers_flower0",
-    "textures": {
-        "side": "blocks/fingers/fingers_f2",
-        "top-bottom": "blocks/fingers/fingers2",
-        "particle": "blocks/fingers/fingers1"
-    }
-}

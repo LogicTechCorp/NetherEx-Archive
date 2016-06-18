@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.storage.loot.LootTableList;
 import nex.NetherEx;
 import nex.api.NetherExAPI;
-import nex.api.dungeon.DungeonSet;
+import nex.api.dungeon.DungeonEntry;
 
 import java.util.Random;
 
@@ -29,29 +29,29 @@ public class WorldGenNetherDungeon extends WorldGenerator
         int i2 = k1 + 1;
         int j2 = 0;
 
-        DungeonSet set = this.getDungeonSet(rand);
+        DungeonEntry set = this.getDungeonSet(rand);
 
-        for (int k2 = k; k2 <= l; ++k2)
+        for(int k2 = k; k2 <= l; ++k2)
         {
-            for (int l2 = -1; l2 <= 4; ++l2)
+            for(int l2 = -1; l2 <= 4; ++l2)
             {
-                for (int i3 = l1; i3 <= i2; ++i3)
+                for(int i3 = l1; i3 <= i2; ++i3)
                 {
                     BlockPos blockpos = position.add(k2, l2, i3);
                     Material material = worldIn.getBlockState(blockpos).getMaterial();
                     boolean flag = material.isSolid();
 
-                    if (l2 == -1 && !flag)
+                    if(l2 == -1 && !flag)
                     {
                         return false;
                     }
 
-                    if (l2 == 4 && !flag)
+                    if(l2 == 4 && !flag)
                     {
                         return false;
                     }
 
-                    if ((k2 == k || k2 == l || i3 == l1 || i3 == i2) && l2 == 0 && worldIn.isAirBlock(blockpos) && worldIn.isAirBlock(blockpos.up()))
+                    if((k2 == k || k2 == l || i3 == l1 || i3 == i2) && l2 == 0 && worldIn.isAirBlock(blockpos) && worldIn.isAirBlock(blockpos.up()))
                     {
                         ++j2;
                     }
@@ -59,30 +59,30 @@ public class WorldGenNetherDungeon extends WorldGenerator
             }
         }
 
-        if (j2 >= 1 && j2 <= 5)
+        if(j2 >= 1 && j2 <= 5)
         {
-            for (int k3 = k; k3 <= l; ++k3)
+            for(int k3 = k; k3 <= l; ++k3)
             {
-                for (int i4 = 3; i4 >= -1; --i4)
+                for(int i4 = 3; i4 >= -1; --i4)
                 {
-                    for (int k4 = l1; k4 <= i2; ++k4)
+                    for(int k4 = l1; k4 <= i2; ++k4)
                     {
                         BlockPos blockpos1 = position.add(k3, i4, k4);
 
-                        if (k3 != k && i4 != -1 && k4 != l1 && k3 != l && i4 != 4 && k4 != i2)
+                        if(k3 != k && i4 != -1 && k4 != l1 && k3 != l && i4 != 4 && k4 != i2)
                         {
-                            if (worldIn.getBlockState(blockpos1).getBlock() != Blocks.CHEST)
+                            if(worldIn.getBlockState(blockpos1).getBlock() != Blocks.CHEST)
                             {
                                 worldIn.setBlockToAir(blockpos1);
                             }
                         }
-                        else if (blockpos1.getY() >= 0 && !worldIn.getBlockState(blockpos1.down()).getMaterial().isSolid())
+                        else if(blockpos1.getY() >= 0 && !worldIn.getBlockState(blockpos1.down()).getMaterial().isSolid())
                         {
                             worldIn.setBlockToAir(blockpos1);
                         }
-                        else if (worldIn.getBlockState(blockpos1).getMaterial().isSolid() && worldIn.getBlockState(blockpos1).getBlock() != Blocks.CHEST)
+                        else if(worldIn.getBlockState(blockpos1).getMaterial().isSolid() && worldIn.getBlockState(blockpos1).getBlock() != Blocks.CHEST)
                         {
-                            if (i4 == -1 && rand.nextInt(4) != 0)
+                            if(i4 == -1 && rand.nextInt(4) != 0)
                             {
                                 worldIn.setBlockState(blockpos1, set.getFloorBlockState(), 2);
                             }
@@ -95,35 +95,35 @@ public class WorldGenNetherDungeon extends WorldGenerator
                 }
             }
 
-            for (int l3 = 0; l3 < 2; ++l3)
+            for(int l3 = 0; l3 < 2; ++l3)
             {
-                for (int j4 = 0; j4 < 3; ++j4)
+                for(int j4 = 0; j4 < 3; ++j4)
                 {
                     int l4 = position.getX() + rand.nextInt(j * 2 + 1) - j;
                     int i5 = position.getY();
                     int j5 = position.getZ() + rand.nextInt(k1 * 2 + 1) - k1;
                     BlockPos blockpos2 = new BlockPos(l4, i5, j5);
 
-                    if (worldIn.isAirBlock(blockpos2))
+                    if(worldIn.isAirBlock(blockpos2))
                     {
                         int j3 = 0;
 
-                        for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+                        for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
                         {
-                            if (worldIn.getBlockState(blockpos2.offset(enumfacing)).getMaterial().isSolid())
+                            if(worldIn.getBlockState(blockpos2.offset(enumfacing)).getMaterial().isSolid())
                             {
                                 ++j3;
                             }
                         }
 
-                        if (j3 == 1)
+                        if(j3 == 1)
                         {
                             worldIn.setBlockState(blockpos2, Blocks.CHEST.correctFacing(worldIn, blockpos2, Blocks.CHEST.getDefaultState()), 2);
                             TileEntity tileentity1 = worldIn.getTileEntity(blockpos2);
 
-                            if (tileentity1 instanceof TileEntityChest)
+                            if(tileentity1 instanceof TileEntityChest)
                             {
-                                ((TileEntityChest)tileentity1).setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
+                                ((TileEntityChest) tileentity1).setLootTable(LootTableList.CHESTS_SIMPLE_DUNGEON, rand.nextLong());
                             }
 
                             break;
@@ -135,9 +135,9 @@ public class WorldGenNetherDungeon extends WorldGenerator
             worldIn.setBlockState(position, Blocks.MOB_SPAWNER.getDefaultState(), 2);
             TileEntity tileentity = worldIn.getTileEntity(position);
 
-            if (tileentity instanceof TileEntityMobSpawner)
+            if(tileentity instanceof TileEntityMobSpawner)
             {
-                ((TileEntityMobSpawner)tileentity).getSpawnerBaseLogic().setEntityName(this.pickMobSpawner(set, rand));
+                ((TileEntityMobSpawner) tileentity).getSpawnerBaseLogic().setEntityName(this.pickMobSpawner(set, rand));
             }
             else
             {
@@ -152,13 +152,13 @@ public class WorldGenNetherDungeon extends WorldGenerator
         }
     }
 
-    private DungeonSet getDungeonSet(Random rand)
+    private DungeonEntry getDungeonSet(Random rand)
     {
-        return NetherExAPI.getRandomDungeonSet(rand);
+        return NetherExAPI.getRandomDungeonEntry(rand);
     }
 
-    private String pickMobSpawner(DungeonSet set, Random rand)
+    private String pickMobSpawner(DungeonEntry set, Random rand)
     {
-        return NetherExAPI.getRandomDungeonSetMob(set, rand);
+        return NetherExAPI.getRandomDungeonEntryMob(set, rand);
     }
 }
