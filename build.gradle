@@ -24,7 +24,7 @@ minecraft {
     version = mcversion + "-" + forgeversion
     runDir = "run"
     replace '@VERSION@', project.version
-    mappings = "snapshot_20160519"
+    mappings = "snapshot_20160713"
 }
 
 repositories {

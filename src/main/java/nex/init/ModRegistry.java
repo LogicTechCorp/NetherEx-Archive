@@ -1,82 +1,26 @@
 package nex.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import nex.ModContent;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import nex.NetherEx;
 import nex.api.NetherExAPI;
-import nex.block.BlockModNetherrack;
-import nex.block.BlockModOre;
-import nex.item.ItemBlockMeta;
-import nex.world.biome.BiomeGelid;
-import nex.world.biome.BiomeSoulSandDesert;
+import nex.api.biome.NetherBiome;
+import nex.api.biome.NetherExBiomes;
+import nex.world.biome.BiomeHell;
 
 public class ModRegistry
 {
-    public static final ModRegistry INSTANCE = new ModRegistry();
-
-    private ModRegistry() {}
-
-    public void initBlocksAndItems()
+    public static void initBiomes()
     {
-        ModContent.Blocks.netherrack = registerBlock(new BlockModNetherrack(), BlockModNetherrack.EnumType.getNames());
-        ModContent.Blocks.ore = registerBlock(new BlockModOre(), BlockModOre.EnumType.getNames());
+        NetherExBiomes.hell = registerBiome(0, "hell", new BiomeHell(new Biome.BiomeProperties("Hell")), 10, Type.NETHER);
     }
 
-    public void initBiomes()
+    private static NetherBiome registerBiome(int id, String name, NetherBiome biome, int weight, BiomeDictionary.Type... types)
     {
-        ModContent.Biomes.gelid = registerBiome(48, "gelid", new BiomeGelid(new Biome.BiomeProperties("Gelid")), 10, BiomeDictionary.Type.NETHER, BiomeDictionary.Type.COLD);
-        ModContent.Biomes.soul_sand_desert = registerBiome(49, "soul_sand_desert", new BiomeSoulSandDesert(new Biome.BiomeProperties("Soul Sand Desert")), 10, BiomeDictionary.Type.NETHER, BiomeDictionary.Type.DRY);
-
-        for(BiomeManager.BiomeEntry entry : ModContent.biomes)
-        {
-            NetherExAPI.addBiome(entry.biome, entry.itemWeight);
-        }
-    }
-
-    private Block registerBlock(Block block)
-    {
-        GameRegistry.register(block);
-        GameRegistry.register(new ItemBlock(block), block.getRegistryName());
-        return block;
-    }
-
-    private Block registerBlock(Block block, String[] names)
-    {
-        GameRegistry.register(block);
-        GameRegistry.register(new ItemBlockMeta(block, names, true), block.getRegistryName());
-        return block;
-    }
-
-    private void registerTileEntity(Class<? extends TileEntity> tile, String name)
-    {
-        GameRegistry.registerTileEntity(tile, name);
-    }
-
-    private Fluid registerFluid(Fluid fluid)
-    {
-        FluidRegistry.registerFluid(fluid);
-        return fluid;
-    }
-
-    private Item registerItem(Item item)
-    {
-        GameRegistry.register(item);
-        return item;
-    }
-
-    private Biome registerBiome(int id, String name, Biome biome, int weight, BiomeDictionary.Type... types)
-    {
-        Biome.registerBiome(id, name, biome);
+        Biome.registerBiome(id, NetherEx.MOD_ID + ":" + name, biome);
         BiomeDictionary.registerBiomeType(biome, types);
-        ModContent.biomes.add(new BiomeManager.BiomeEntry(biome, weight));
+        NetherExAPI.addBiome(biome, weight);
         return biome;
     }
 }

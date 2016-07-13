@@ -10,15 +10,15 @@ public class WorldProviderNether extends WorldProviderHell
     @Override
     public void createBiomeProvider()
     {
-        this.biomeProvider = new BiomeProviderNether(this.worldObj);
-        this.isHellWorld = true;
-        this.hasNoSky = true;
-        this.setDimension(-1);
+        biomeProvider = new BiomeProviderNether(worldObj.getSeed());
+        isHellWorld = true;
+        hasNoSky = true;
+        setDimension(-1);
     }
 
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderNether(this.worldObj);
+        return new ChunkProviderNether(worldObj);
     }
 }

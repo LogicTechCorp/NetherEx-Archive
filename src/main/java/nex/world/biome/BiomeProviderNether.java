@@ -6,7 +6,6 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
@@ -20,54 +19,47 @@ import java.util.Random;
 
 public class BiomeProviderNether extends BiomeProvider
 {
+    private final BiomeCache biomeCache;
+    private final List<Biome> biomesToSpawnIn;
     private GenLayer genBiomes;
-    private GenLayer biomeIndex;
-
-    private BiomeCache biomeCache;
-
-    private List biomesToSpawnIn;
+    private GenLayer biomeIndexLayer;
 
     protected BiomeProviderNether()
     {
-        this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawnIn = Lists.<Biomes>newArrayList();
+        biomeCache = new BiomeCache(this);
+        biomesToSpawnIn = Lists.newArrayList();
     }
 
     public BiomeProviderNether(long seed)
     {
         this();
-        GenLayer[] layers = GenLayerNether.initBiomeGen(seed);
-        this.genBiomes = layers[0];
-        this.biomeIndex = layers[1];
-    }
-
-    public BiomeProviderNether(World world)
-    {
-        this(world.getSeed());
+        GenLayer[] genLayers = GenLayerNether.initializeAllBiomeGenerators(seed);
+        genBiomes = genLayers[0];
+        biomeIndexLayer = genLayers[1];
     }
 
     @Override
-    public List getBiomesToSpawnIn()
+    public List<Biome> getBiomesToSpawnIn()
     {
-        return this.biomesToSpawnIn;
+        return biomesToSpawnIn;
     }
 
     @Override
-    public Biome getBiomeGenerator(BlockPos pos)
+    public Biome getBiome(BlockPos pos)
     {
-        return this.getBiomeGenerator(pos, (Biome) null);
+        return getBiome(pos, null);
     }
 
     @Override
-    public Biome getBiomeGenerator(BlockPos pos, Biome biomeGenBaseIn)
+    public Biome getBiome(BlockPos pos, Biome biomeGenBaseIn)
     {
-        return this.biomeCache.getBiome(pos.getX(), pos.getZ(), biomeGenBaseIn);
+        return biomeCache.getBiome(pos.getX(), pos.getZ(), biomeGenBaseIn);
     }
 
     @Override
-    public float getTemperatureAtHeight(float p_76939_1_, int p_76939_2_)
+    public float getTemperatureAtHeight(float temperature, int y)
     {
-        return p_76939_1_;
+        return temperature;
     }
 
     @Override
@@ -80,7 +72,7 @@ public class BiomeProviderNether extends BiomeProvider
             biomes = new Biome[width * height];
         }
 
-        int[] aint = this.genBiomes.getInts(x, z, width, height);
+        int[] aint = genBiomes.getInts(x, z, width, height);
 
         try
         {
@@ -105,13 +97,13 @@ public class BiomeProviderNether extends BiomeProvider
     }
 
     @Override
-    public Biome[] loadBlockGeneratorData(@Nullable Biome[] oldBiomeList, int x, int z, int width, int depth)
+    public Biome[] getBiomes(@Nullable Biome[] oldBiomeList, int x, int z, int width, int depth)
     {
-        return this.getBiomeGenAt(oldBiomeList, x, z, width, depth, true);
+        return getBiomes(oldBiomeList, x, z, width, depth, true);
     }
 
     @Override
-    public Biome[] getBiomeGenAt(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
+    public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
     {
         IntCache.resetIntCache();
 
@@ -122,13 +114,13 @@ public class BiomeProviderNether extends BiomeProvider
 
         if(cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
         {
-            Biome[] abiome = this.biomeCache.getCachedBiomes(x, z);
+            Biome[] abiome = biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiome, 0, listToReuse, 0, width * length);
             return listToReuse;
         }
         else
         {
-            int[] aint = this.biomeIndex.getInts(x, z, width, length);
+            int[] aint = biomeIndexLayer.getInts(x, z, width, length);
 
             for(int i = 0; i < width * length; ++i)
             {
@@ -149,7 +141,7 @@ public class BiomeProviderNether extends BiomeProvider
         int l = z + radius >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
-        int[] aint = this.genBiomes.getInts(i, j, i1, j1);
+        int[] aint = genBiomes.getInts(i, j, i1, j1);
 
         try
         {
@@ -169,7 +161,7 @@ public class BiomeProviderNether extends BiomeProvider
         {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Layer");
-            crashreportcategory.addCrashSection("Layer", this.genBiomes.toString());
+            crashreportcategory.addCrashSection("Layer", genBiomes.toString());
             crashreportcategory.addCrashSection("x", Integer.valueOf(x));
             crashreportcategory.addCrashSection("z", Integer.valueOf(z));
             crashreportcategory.addCrashSection("radius", Integer.valueOf(radius));
@@ -178,7 +170,6 @@ public class BiomeProviderNether extends BiomeProvider
         }
     }
 
-    @Nullable
     @Override
     public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random)
     {
@@ -189,7 +180,7 @@ public class BiomeProviderNether extends BiomeProvider
         int l = z + range >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
-        int[] aint = this.genBiomes.getInts(i, j, i1, j1);
+        int[] aint = genBiomes.getInts(i, j, i1, j1);
         BlockPos blockpos = null;
         int k1 = 0;
 
@@ -212,6 +203,6 @@ public class BiomeProviderNether extends BiomeProvider
     @Override
     public void cleanupCache()
     {
-        this.biomeCache.cleanupCache();
+        biomeCache.cleanupCache();
     }
 }
