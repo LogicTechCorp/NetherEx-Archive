@@ -8,13 +8,12 @@ import nex.api.NetherExAPI;
 import nex.api.biome.NetherBiome;
 import nex.api.biome.NetherBiomeEntry;
 import nex.api.biome.NetherExBiomes;
-import nex.world.biome.BiomeHell;
 
 public class ModRegistry
 {
     public static void initBiomes()
     {
-       registerBiome(0, "hell", NetherExBiomes.HELL, 10, Type.NETHER);
+        registerBiome(0, "hell", NetherExBiomes.HELL, 10, Type.NETHER);
     }
 
     private static void registerBiome(int id, String name, NetherBiome biome, int weight, BiomeDictionary.Type... types)

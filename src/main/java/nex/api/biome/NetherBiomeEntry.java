@@ -5,33 +5,33 @@ import net.minecraft.util.WeightedRandom;
 public class NetherBiomeEntry extends WeightedRandom.Item
 {
     public final NetherBiome biome;
-    public final int weight;
 
     public NetherBiomeEntry(NetherBiome biomeIn, int weightIn)
     {
         super(weightIn);
 
         biome = biomeIn;
-        weight = weightIn;
     }
 
     @Override
-    public  boolean equals(Object obj)
+    public int hashCode()
     {
-        if(obj == null || !(obj instanceof NetherBiomeEntry))
+        int hash = biome.hashCode();
+
+        hash = 31 * hash + itemWeight;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null || obj.getClass() != getClass())
         {
             return false;
         }
-        else
-        {
-            NetherBiomeEntry entry = (NetherBiomeEntry) obj;
 
-            if(entry.biome.equals(biome) && entry.itemWeight == weight)
-            {
-                return true;
-            }
-        }
+        NetherBiomeEntry entry = (NetherBiomeEntry) obj;
 
-        return false;
+        return itemWeight == entry.itemWeight && (biome != null ? biome.equals(entry.biome) : entry.biome == null);
     }
 }

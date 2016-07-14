@@ -19,7 +19,17 @@ public class NetherExAPI
 
     public static void addBiome(NetherBiomeEntry entry)
     {
-        if(biomeEntries.contains(entry))
+        if(entry.biome == null)
+        {
+            logger.info("Unable to add NetherBiomeEntry. Its Biome was null!");
+            return;
+        }
+        else if(entry.itemWeight < 10)
+        {
+            logger.info(String.format("Unable to add the %s biome to the Nether. Its Weight must be greater than or equal 10!", entry.biome.getBiomeName()));
+            return;
+        }
+        else if(biomeEntries.contains(entry))
         {
             logger.info(String.format("Unable to add the %s biome to the Nether. It was already added!", entry.biome.getBiomeName()));
             return;
