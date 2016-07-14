@@ -165,7 +165,7 @@ public class ChunkProviderNether implements IChunkGenerator
                                         topState = Blocks.AIR.getDefaultState();
                                         fillerState = Blocks.NETHERRACK.getDefaultState();
                                     }
-                                    else if(y >= 32 - 4 && y <= 32 + 1)
+                                    else if(y >= 64 - 4 && y <= 64 + 1)
                                     {
                                         topState = Blocks.NETHERRACK.getDefaultState();
                                         fillerState = Blocks.NETHERRACK.getDefaultState();
@@ -183,14 +183,14 @@ public class ChunkProviderNether implements IChunkGenerator
                                         }
                                     }
 
-                                    if(y < 32 && (topState == null || topState.getMaterial() == Material.AIR))
+                                    if(y < 64 && (topState == null || topState.getMaterial() == Material.AIR))
                                     {
                                         topState = Blocks.LAVA.getDefaultState();
                                     }
 
                                     i1 = l;
 
-                                    if(y >= 32 - 1)
+                                    if(y >= 64 - 1)
                                     {
                                         primer.setBlockState(x, y, z, topState);
                                     }

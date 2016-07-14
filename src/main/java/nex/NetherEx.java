@@ -1,8 +1,5 @@
 package nex;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -30,15 +27,6 @@ public class NetherEx
 
     @SidedProxy(clientSide = CLIENT_ENV, serverSide = SERVER_ENV)
     public static IProxy proxy;
-
-    public static CreativeTabs creativeTab = new CreativeTabs("netherEx")
-    {
-        @Override
-        public Item getTabIconItem()
-        {
-            return Item.getItemFromBlock(Blocks.NETHERRACK);
-        }
-    };
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
