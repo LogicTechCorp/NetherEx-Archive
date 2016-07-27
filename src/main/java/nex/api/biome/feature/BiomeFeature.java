@@ -9,14 +9,12 @@ import java.util.Random;
 
 public abstract class BiomeFeature extends WorldGenerator implements IBiomeFeature
 {
-    private int amountPerChunk;
     private int genAttempts;
     private int minY;
     private int maxY;
 
-    public BiomeFeature(int amountPerChunkIn, int genAttemptsIn, int minYIn, int maxYIn)
+    public BiomeFeature(int genAttemptsIn, int minYIn, int maxYIn)
     {
-        amountPerChunk = amountPerChunkIn;
         genAttempts = genAttemptsIn;
         minY = minYIn;
         maxY = maxYIn;
@@ -25,29 +23,26 @@ public abstract class BiomeFeature extends WorldGenerator implements IBiomeFeatu
     @Override
     public void doGeneration(World world, Random rand, BlockPos pos, NetherBiome biome)
     {
-        if(minY < 0)
+        if(minY < 1)
         {
-            minY = 0;
+            minY = 1;
         }
         if(maxY > 128)
         {
             maxY = 128;
         }
 
-        for(int i = 0; i < genAttempts; i++)
+        for(int j = 0; j < genAttempts; j++)
         {
-            for(int j = 0; j < amountPerChunk; j++)
+            int x = pos.getX() + rand.nextInt(16) + 8;
+            int y = rand.ints(minY, (maxY + 1)).findFirst().getAsInt();
+            int z = pos.getZ() + rand.nextInt(16) + 8;
+
+            BlockPos newPos = new BlockPos(x, y, z);
+
+            if(world.getBiome(newPos) == biome)
             {
-                int x = pos.getX() + rand.nextInt(16) + 8;
-                int y = rand.ints(minY, (maxY + 1)).findFirst().getAsInt();
-                int z = pos.getZ() + rand.nextInt(16) + 8;
-
-                BlockPos newPos = new BlockPos(x, y, z);
-
-                if(world.getBiome(newPos) == biome)
-                {
-                    generate(world, rand, newPos);
-                }
+                generate(world, rand, newPos);
             }
         }
     }

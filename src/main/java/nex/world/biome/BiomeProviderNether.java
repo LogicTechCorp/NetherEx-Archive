@@ -11,6 +11,7 @@ import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+import nex.registry.ModBiomes;
 import nex.world.gen.layer.GenLayerNether;
 
 import javax.annotation.Nullable;
@@ -72,13 +73,13 @@ public class BiomeProviderNether extends BiomeProvider
             biomes = new Biome[width * height];
         }
 
-        int[] aint = genBiomes.getInts(x, z, width, height);
+        int[] biomeIDs = genBiomes.getInts(x, z, width, height);
 
         try
         {
             for(int i = 0; i < width * height; ++i)
             {
-                biomes[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
+                biomes[i] = Biome.getBiome(biomeIDs[i], Biomes.DEFAULT);
             }
 
             return biomes;
@@ -87,11 +88,11 @@ public class BiomeProviderNether extends BiomeProvider
         {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("RawBiomeBlock");
-            crashreportcategory.addCrashSection("biomes[] size", Integer.valueOf(biomes.length));
-            crashreportcategory.addCrashSection("x", Integer.valueOf(x));
-            crashreportcategory.addCrashSection("z", Integer.valueOf(z));
-            crashreportcategory.addCrashSection("w", Integer.valueOf(width));
-            crashreportcategory.addCrashSection("h", Integer.valueOf(height));
+            crashreportcategory.addCrashSection("biomes[] size", biomes.length);
+            crashreportcategory.addCrashSection("x", x);
+            crashreportcategory.addCrashSection("z", z);
+            crashreportcategory.addCrashSection("w", width);
+            crashreportcategory.addCrashSection("h", height);
             throw new ReportedException(crashreport);
         }
     }
@@ -114,17 +115,17 @@ public class BiomeProviderNether extends BiomeProvider
 
         if(cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
         {
-            Biome[] abiome = biomeCache.getCachedBiomes(x, z);
-            System.arraycopy(abiome, 0, listToReuse, 0, width * length);
+            Biome[] biomes = biomeCache.getCachedBiomes(x, z);
+            System.arraycopy(biomes, 0, listToReuse, 0, width * length);
             return listToReuse;
         }
         else
         {
-            int[] aint = biomeIndexLayer.getInts(x, z, width, length);
+            int[] biomeIDs = biomeIndexLayer.getInts(x, z, width, length);
 
             for(int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
+                listToReuse[i] = Biome.getBiome(biomeIDs[i], ModBiomes.HELL);
             }
 
             return listToReuse;
@@ -135,19 +136,20 @@ public class BiomeProviderNether extends BiomeProvider
     public boolean areBiomesViable(int x, int z, int radius, List<Biome> allowed)
     {
         IntCache.resetIntCache();
+
         int i = x - radius >> 2;
         int j = z - radius >> 2;
         int k = x + radius >> 2;
         int l = z + radius >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
-        int[] aint = genBiomes.getInts(i, j, i1, j1);
+        int[] biomeIDs = genBiomes.getInts(i, j, i1, j1);
 
         try
         {
             for(int k1 = 0; k1 < i1 * j1; ++k1)
             {
-                Biome biome = Biome.getBiome(aint[k1]);
+                Biome biome = Biome.getBiome(biomeIDs[k1]);
 
                 if(!allowed.contains(biome))
                 {
@@ -162,9 +164,9 @@ public class BiomeProviderNether extends BiomeProvider
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Layer");
             crashreportcategory.addCrashSection("Layer", genBiomes.toString());
-            crashreportcategory.addCrashSection("x", Integer.valueOf(x));
-            crashreportcategory.addCrashSection("z", Integer.valueOf(z));
-            crashreportcategory.addCrashSection("radius", Integer.valueOf(radius));
+            crashreportcategory.addCrashSection("x", x);
+            crashreportcategory.addCrashSection("z", z);
+            crashreportcategory.addCrashSection("radius", radius);
             crashreportcategory.addCrashSection("allowed", allowed);
             throw new ReportedException(crashreport);
         }
@@ -174,21 +176,23 @@ public class BiomeProviderNether extends BiomeProvider
     public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random)
     {
         IntCache.resetIntCache();
+
         int i = x - range >> 2;
         int j = z - range >> 2;
         int k = x + range >> 2;
         int l = z + range >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
-        int[] aint = genBiomes.getInts(i, j, i1, j1);
-        BlockPos blockpos = null;
+        int[] biomeIDs = genBiomes.getInts(i, j, i1, j1);
         int k1 = 0;
+
+        BlockPos blockpos = null;
 
         for(int l1 = 0; l1 < i1 * j1; ++l1)
         {
             int i2 = i + l1 % i1 << 2;
             int j2 = j + l1 / i1 << 2;
-            Biome biome = Biome.getBiome(aint[l1]);
+            Biome biome = Biome.getBiome(biomeIDs[l1]);
 
             if(biomes.contains(biome) && (blockpos == null || random.nextInt(k1 + 1) == 0))
             {

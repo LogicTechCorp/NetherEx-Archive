@@ -1,12 +1,20 @@
 package nex;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.world.DimensionType;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import nex.init.ModRegistry;
 import nex.proxy.IProxy;
+import nex.registry.ModBiomes;
+import nex.registry.ModBlocks;
+import nex.registry.ModItems;
+import nex.registry.ModOreDict;
+import nex.world.WorldProviderNether;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,8 +25,8 @@ public class NetherEx
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
     public static final String DEPEND = "required-after:Forge@[1.10.2-12.18.1.2011,);";
-    private static final String CLIENT_ENV = "nex.proxy.ClientProxy";
-    private static final String SERVER_ENV = "nex.proxy.ServerProxy";
+    private static final String CLIENT_ENV = "nex.proxy.CombinedClientProxy";
+    private static final String SERVER_ENV = "nex.proxy.DedicatedServerProxy";
 
     public static Logger logger = LogManager.getLogger("NetherEx");
 
@@ -28,16 +36,33 @@ public class NetherEx
     @SidedProxy(clientSide = CLIENT_ENV, serverSide = SERVER_ENV)
     public static IProxy proxy;
 
+    public static CreativeTabs creativeTab;
+
+    static
+    {
+        FluidRegistry.enableUniversalBucket();
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        ModRegistry.initBiomes();
+        creativeTab = new NetherExCreativeTab();
+
+        ModBlocks.register();
+        ModItems.register();
+        ModBiomes.register();
+
         proxy.preInit();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
+        ObfuscationReflectionHelper.setPrivateValue(DimensionType.class, DimensionType.NETHER, WorldProviderNether.class, "field_186077_g", "clazz");
+        NetherEx.logger.info("Replaced the default Nether World Provider with a custom one!");
+
+        ModOreDict.register();
+
         proxy.init();
     }
 

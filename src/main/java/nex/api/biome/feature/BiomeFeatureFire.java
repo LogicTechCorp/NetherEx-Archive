@@ -1,7 +1,9 @@
 package nex.api.biome.feature;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -9,9 +11,9 @@ import java.util.Random;
 
 public class BiomeFeatureFire extends BiomeFeature
 {
-    public BiomeFeatureFire(int amountPerChunk, int genAttempts, int minY, int maxY)
+    public BiomeFeatureFire(int genAttemptsIn, int minYIn, int maxYIn)
     {
-        super(amountPerChunk, genAttempts, minY, maxY);
+        super(genAttemptsIn, minYIn, maxYIn);
     }
 
     @Override
@@ -19,13 +21,14 @@ public class BiomeFeatureFire extends BiomeFeature
     {
         for(int i = 0; i < 64; ++i)
         {
-            BlockPos blockPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+            BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            Material material = world.getBlockState(blockPos.down()).getMaterial();
+            Block block = world.getBlockState(newPos.down()).getBlock();
+            Material material = block.getMaterial(null);
 
-            if(world.isAirBlock(blockPos) && material.isSolid() && material != Material.ICE && material != Material.PACKED_ICE)
+            if(world.isAirBlock(newPos) && block.isFlammable(world, newPos.down(), EnumFacing.UP) && material.isSolid() && material != Material.ICE && material != Material.PACKED_ICE)
             {
-                world.setBlockState(blockPos, Blocks.FIRE.getDefaultState(), 2);
+                world.setBlockState(newPos, Blocks.FIRE.getDefaultState(), 2);
             }
         }
 

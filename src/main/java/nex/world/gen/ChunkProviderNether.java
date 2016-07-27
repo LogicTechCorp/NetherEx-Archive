@@ -63,7 +63,7 @@ public class ChunkProviderNether implements IChunkGenerator
         noiseGenDepth = new NoiseGeneratorOctaves(rand, 16);
     }
 
-    private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer)
+    private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
         buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
@@ -98,9 +98,24 @@ public class ChunkProviderNether implements IChunkGenerator
                             {
                                 IBlockState state = null;
 
+                                int l2 = j2 + i * 4;
+                                int i3 = i2 + k * 8;
+                                int j3 = k2 + j * 4;
+
+                                Biome biome = biomes[l2 + j3 * 16];
+
                                 if(k * 8 + i2 < 32)
                                 {
-                                    state = Blocks.LAVA.getDefaultState();
+                                    IBlockState oceanBlock = ((NetherBiome) biome).oceanBlock;
+
+                                    if(oceanBlock.getMaterial() == Material.WATER)
+                                    {
+                                        state = Blocks.LAVA.getDefaultState();
+                                    }
+                                    else
+                                    {
+                                        state = oceanBlock;
+                                    }
                                 }
 
                                 if(d15 > 0.0D)
@@ -108,9 +123,6 @@ public class ChunkProviderNether implements IChunkGenerator
                                     state = Blocks.NETHERRACK.getDefaultState();
                                 }
 
-                                int l2 = j2 + i * 4;
-                                int i3 = i2 + k * 8;
-                                int j3 = k2 + j * 4;
                                 primer.setBlockState(l2, i3, j3, state);
                                 d15 += d16;
                             }
@@ -135,9 +147,9 @@ public class ChunkProviderNether implements IChunkGenerator
         gravelNoise = noiseGenSoulSandGravel.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
         depthBuffer = noiseGenNetherrack.generateNoiseOctaves(depthBuffer, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 
-        for(int x = 0; x < 16; x++)
+        for(int z = 0; z < 16; z++)
         {
-            for(int z = 0; z < 16; z++)
+            for(int x = 0; x < 16; x++)
             {
                 int l = (int) (depthBuffer[x + z * 16] / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
                 int i1 = -1;
@@ -185,18 +197,30 @@ public class ChunkProviderNether implements IChunkGenerator
 
                                     if(y < 64 && (topState == null || topState.getMaterial() == Material.AIR))
                                     {
-                                        topState = Blocks.LAVA.getDefaultState();
+                                        topState = ((NetherBiome) biome).oceanBlock;
+
+                                        if(topState.getBlock() == Blocks.WATER || topState.getBlock() == Blocks.FLOWING_WATER || topState.getBlock().getMaterial(topState) == Material.WATER)
+                                        {
+                                            topState = Blocks.LAVA.getDefaultState();
+                                        }
                                     }
 
                                     i1 = l;
 
-                                    if(y >= 64 - 1)
+                                    if(topState == biome.topBlock && fillerState == biome.fillerBlock)
                                     {
                                         primer.setBlockState(x, y, z, topState);
                                     }
                                     else
                                     {
-                                        primer.setBlockState(x, y, z, fillerState);
+                                        if(y >= 64 - 1)
+                                        {
+                                            primer.setBlockState(x, y, z, topState);
+                                        }
+                                        else
+                                        {
+                                            primer.setBlockState(x, y, z, fillerState);
+                                        }
                                     }
                                 }
                                 else if(i1 > 0)
@@ -307,7 +331,7 @@ public class ChunkProviderNether implements IChunkGenerator
         ChunkPrimer primer = new ChunkPrimer();
         rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
         biomesForGen = world.getBiomeProvider().getBiomes(biomesForGen, chunkX * 16, chunkZ * 16, 16, 16);
-        setBlocksInChunk(chunkX, chunkZ, primer);
+        setBlocksInChunk(chunkX, chunkZ, primer, biomesForGen);
         replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);

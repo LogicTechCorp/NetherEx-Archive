@@ -1,6 +1,6 @@
 package nex.api.biome.feature;
 
-import net.minecraft.block.BlockBush;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -8,12 +8,14 @@ import java.util.Random;
 
 public class BiomeFeatureBush extends BiomeFeature
 {
-    private BlockBush bushBlock;
+    private final IBlockState bushBlock;
+    private final IBlockState target;
 
-    public BiomeFeatureBush(BlockBush bushBlockIn, int amountPerChunk, int genAttempts, int minY, int maxY)
+    public BiomeFeatureBush(int genAttemptsIn, int minYIn, int maxYIn, IBlockState bushBlockIn, IBlockState targetIn)
     {
-        super(amountPerChunk, genAttempts, minY, maxY);
+        super(genAttemptsIn, minYIn, maxYIn);
         bushBlock = bushBlockIn;
+        target = targetIn;
     }
 
     @Override
@@ -21,11 +23,11 @@ public class BiomeFeatureBush extends BiomeFeature
     {
         for(int i = 0; i < 64; ++i)
         {
-            BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+            BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if(world.isAirBlock(blockpos) && (!world.provider.getHasNoSky() || blockpos.getY() < world.getHeight() - 1) && bushBlock.canBlockStay(world, blockpos, bushBlock.getDefaultState()))
+            if(world.isAirBlock(newPos) && (!world.provider.getHasNoSky() || newPos.getY() < world.getHeight() - 1) && world.getBlockState(newPos.down()) == target)
             {
-                world.setBlockState(blockpos, bushBlock.getDefaultState(), 2);
+                world.setBlockState(newPos, bushBlock, 2);
             }
         }
 

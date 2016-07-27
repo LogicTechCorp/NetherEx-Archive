@@ -10,9 +10,9 @@ import java.util.Random;
 
 public class BiomeFeatureGlowStone extends BiomeFeature
 {
-    public BiomeFeatureGlowStone(int amountPerChunk, int genAttempts, int minY, int maxY)
+    public BiomeFeatureGlowStone(int genAttemptsIn, int minYIn, int maxYIn)
     {
-        super(amountPerChunk, genAttempts, minY, maxY);
+        super(genAttemptsIn, minYIn, maxYIn);
     }
 
     @Override
@@ -34,15 +34,15 @@ public class BiomeFeatureGlowStone extends BiomeFeature
 
             for(int i = 0; i < 1500; ++i)
             {
-                BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
+                BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
 
-                if(world.isAirBlock(blockpos))
+                if(world.isAirBlock(newPos))
                 {
                     int j = 0;
 
                     for(EnumFacing enumfacing : EnumFacing.values())
                     {
-                        if(world.getBlockState(blockpos.offset(enumfacing)).getBlock() == Blocks.GLOWSTONE)
+                        if(world.getBlockState(newPos.offset(enumfacing)).getBlock() == Blocks.GLOWSTONE)
                         {
                             ++j;
                         }
@@ -55,7 +55,7 @@ public class BiomeFeatureGlowStone extends BiomeFeature
 
                     if(j == 1)
                     {
-                        world.setBlockState(blockpos, Blocks.GLOWSTONE.getDefaultState(), 2);
+                        world.setBlockState(newPos, Blocks.GLOWSTONE.getDefaultState(), 2);
                     }
                 }
             }

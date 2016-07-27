@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["LogicTechCorp and Eleazzaar"],
   "credits": "",
-  "logoFile": "",
+  "logoFile": "logo.png",
   "screenshots": [],
   "dependencies": []
 }

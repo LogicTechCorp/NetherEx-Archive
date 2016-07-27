@@ -2,8 +2,7 @@ package nex.api;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import nex.api.biome.NetherBiomeEntry;
-import nex.api.biome.NetherExBiomes;
+import net.minecraftforge.common.BiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,20 +12,13 @@ public class NetherExAPI
 {
     public static Logger logger = LogManager.getLogger("NetherEx|API");
 
-    public static NetherBiomeEntry defaultBiomeEntry = new NetherBiomeEntry(NetherExBiomes.HELL, 10);
+    private static List<BiomeManager.BiomeEntry> biomeEntries = Lists.newArrayList();
 
-    private static List<NetherBiomeEntry> biomeEntries = Lists.newArrayList();
-
-    public static void addBiome(NetherBiomeEntry entry)
+    public static void addBiome(BiomeManager.BiomeEntry entry)
     {
         if(entry.biome == null)
         {
-            logger.info("Unable to add NetherBiomeEntry. Its Biome was null!");
-            return;
-        }
-        else if(entry.itemWeight < 10)
-        {
-            logger.info(String.format("Unable to add the %s biome to the Nether. Its Weight must be greater than or equal 10!", entry.biome.getBiomeName()));
+            logger.info("Unable to add BiomeEntry. Its Biome was null!");
             return;
         }
         else if(biomeEntries.contains(entry))
@@ -38,9 +30,8 @@ public class NetherExAPI
         biomeEntries.add(entry);
     }
 
-    public static void removeBiome(NetherBiomeEntry entry)
+    public static void removeBiome(BiomeManager.BiomeEntry entry)
     {
-
         if(biomeEntries.contains(entry))
         {
             biomeEntries.remove(entry);
@@ -51,7 +42,7 @@ public class NetherExAPI
         logger.info(String.format("Unable to remove the %s biome from the Nether. It has not yet been added!", entry.biome.getBiomeName()));
     }
 
-    public static ImmutableList<NetherBiomeEntry> getBiomeEntries()
+    public static ImmutableList<BiomeManager.BiomeEntry> getBiomeEntries()
     {
         return ImmutableList.copyOf(biomeEntries);
     }

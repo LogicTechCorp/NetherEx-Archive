@@ -14,9 +14,9 @@ public class BiomeFeatureMinable extends BiomeFeature
     private final int numberOfBlocks;
     private final IBlockState targetBlock;
 
-    public BiomeFeatureMinable(IBlockState oreBlockIn, int veinSize, IBlockState targetBlockIn, int veinsPerChunk, int genAttempts, int minY, int maxY)
+    public BiomeFeatureMinable(int genAttemptsIn, int minYIn, int maxYIn, IBlockState oreBlockIn, int veinSize, IBlockState targetBlockIn)
     {
-        super(veinsPerChunk, genAttempts, minY, maxY);
+        super(genAttemptsIn, minYIn, maxYIn);
         oreBlock = oreBlockIn;
         numberOfBlocks = veinSize;
         targetBlock = targetBlockIn;
@@ -67,12 +67,12 @@ public class BiomeFeatureMinable extends BiomeFeature
 
                                 if(d12 * d12 + d13 * d13 + d14 * d14 < 1.0D)
                                 {
-                                    BlockPos blockpos = new BlockPos(l1, i2, j2);
+                                    BlockPos newPos = new BlockPos(l1, i2, j2);
 
-                                    IBlockState state = world.getBlockState(blockpos);
-                                    if(state.getBlock().isReplaceableOreGen(state, world, blockpos, BlockMatcher.forBlock(targetBlock.getBlock())) && state == targetBlock)
+                                    IBlockState state = world.getBlockState(newPos);
+                                    if(state.getBlock().isReplaceableOreGen(state, world, newPos, BlockMatcher.forBlock(targetBlock.getBlock())) && state == targetBlock)
                                     {
-                                        world.setBlockState(blockpos, oreBlock, 2);
+                                        world.setBlockState(newPos, oreBlock, 2);
                                     }
                                 }
                             }

@@ -1,0 +1,26 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "biotic": {
+        "textures": {
+          "all": "nex:blocks/decorative/netherrack_biotic"
+        }
+      },
+      "burnt": {
+        "textures": {
+          "all": "nex:blocks/decorative/netherrack_burnt"
+        }
+      },
+      "frozen": {
+        "textures": {
+          "all": "nex:blocks/decorative/netherrack_frozen"
+        }
+      }
+    }
+  }
+}

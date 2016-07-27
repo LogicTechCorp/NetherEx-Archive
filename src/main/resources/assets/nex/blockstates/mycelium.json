@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_bottom_top",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "normal": [{
+      "textures": {
+        "bottom": "nex:blocks/decorative/netherrack_biotic",
+        "top": "nex:blocks/decorative/netherrack_mycelium_top",
+        "side": "nex:blocks/decorative/netherrack_mycelium_side"
+        }
+    }]
+  }
+}

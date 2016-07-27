@@ -1,6 +1,5 @@
 package nex.api.biome.feature;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -10,24 +9,24 @@ import java.util.Random;
 
 public class BiomeFeatureLava extends BiomeFeature
 {
-    private final Block block;
+    private final IBlockState blockToPLaceOn;
     private final boolean insideRock;
 
-    public BiomeFeatureLava(Block blockToPLaceOn, boolean insideRockIn, int amountPerChunk, int genAttempts, int minY, int maxY)
+    public BiomeFeatureLava(int genAttemptsIn, int minYIn, int maxYIn, IBlockState blockToPLaceOnIn, boolean insideRockIn)
     {
-        super(amountPerChunk, genAttempts, minY, maxY);
-        block = blockToPLaceOn;
+        super(genAttemptsIn, minYIn, maxYIn);
+        blockToPLaceOn = blockToPLaceOnIn;
         insideRock = insideRockIn;
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.getBlockState(pos.up()).getBlock() != block)
+        if(world.getBlockState(pos.up()) != blockToPLaceOn)
         {
             return false;
         }
-        else if(!world.isAirBlock(pos) && world.getBlockState(pos).getBlock() != block)
+        else if(!world.isAirBlock(pos) && world.getBlockState(pos) != blockToPLaceOn)
         {
             return false;
         }
@@ -35,27 +34,27 @@ public class BiomeFeatureLava extends BiomeFeature
         {
             int i = 0;
 
-            if(world.getBlockState(pos.west()).getBlock() == block)
+            if(world.getBlockState(pos.west()) == blockToPLaceOn)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.east()).getBlock() == block)
+            if(world.getBlockState(pos.east()) == blockToPLaceOn)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.north()).getBlock() == block)
+            if(world.getBlockState(pos.north()) == blockToPLaceOn)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.south()).getBlock() == block)
+            if(world.getBlockState(pos.south()) == blockToPLaceOn)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.down()).getBlock() == block)
+            if(world.getBlockState(pos.down()) == blockToPLaceOn)
             {
                 ++i;
             }
