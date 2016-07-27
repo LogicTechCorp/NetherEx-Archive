@@ -18,4 +18,4 @@ Add the following to your build.gradle
         compile group: 'NetherEx', name: 'NetherEx', version: '<VERSION>-deobf', ext: 'jar'
     }
 
- `<VERSION>` can be found on Curseforge http://minecraft.curseforge.com/projects/netherex
+ `<VERSION>` can be found on Curseforge: http://minecraft.curseforge.com/projects/netherex
