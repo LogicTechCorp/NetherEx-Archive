@@ -2,7 +2,6 @@ package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.DimensionType;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -37,11 +36,6 @@ public class NetherEx
     public static IProxy proxy;
 
     public static CreativeTabs creativeTab;
-
-    static
-    {
-        FluidRegistry.enableUniversalBucket();
-    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)

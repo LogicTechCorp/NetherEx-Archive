@@ -1,0 +1,16 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "texture": "nex:blocks/plant/enoki_w3",
+        "inside": "nex:blocks/plant/enoki_stem2",
+        "particle": "nex:blocks/plant/enoki_stem1"
+    },
+    "elements": [
+        {   "from": [ 4, 4, 4 ],
+            "to": [ 12, 12, 12 ],
+            "faces": {
+                "north": { "texture": "#inside" }
+            }
+        }
+    ]
+}

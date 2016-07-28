@@ -15,6 +15,7 @@ public class BiomeFeatureLava extends BiomeFeature
     public BiomeFeatureLava(int genAttemptsIn, int minYIn, int maxYIn, IBlockState blockToPLaceOnIn, boolean insideRockIn)
     {
         super(genAttemptsIn, minYIn, maxYIn);
+
         blockToPLaceOn = blockToPLaceOnIn;
         insideRock = insideRockIn;
     }

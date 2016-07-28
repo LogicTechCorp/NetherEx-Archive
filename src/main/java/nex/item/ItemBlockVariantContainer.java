@@ -54,6 +54,11 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
+        if(getVariants().length == 1)
+        {
+            return "tile." + NetherEx.MOD_ID + ":" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().getResourcePath());
+        }
+
         return "tile." + NetherEx.MOD_ID + ":" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().getResourcePath()) + "." + getVariants()[stack.getItemDamage()];
     }
 

@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.block.IVariantContainer;
+import nex.registry.ModBlocks;
 import nex.registry.ModItems;
 
 @SideOnly(Side.CLIENT)
@@ -17,6 +18,9 @@ public class ModModels
 {
     public static void register()
     {
+        registerBlockItemModel(ModBlocks.ENOKI_STEM, new ModelResourceLocation(ModBlocks.ENOKI_STEM.getRegistryName(), "normal"));
+        registerBlockItemModel(ModBlocks.ENOKI_CAP, new ModelResourceLocation(ModBlocks.ENOKI_CAP.getRegistryName().toString()));
+
         ModItems.variantContainers.forEach(ModModels::registerEnumModels);
     }
 

@@ -1,0 +1,21 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "a": "nex:blocks/plant/enoki_w1",
+        "b": "nex:blocks/plant/enoki_w2",
+        "c": "nex:blocks/plant/enoki_w3",
+        "particle": "nex:blocks/plant/enoki_stem1"
+    },
+    "elements": [
+        {   "from": [ 4, 4, 0 ],
+            "to": [ 12, 12, 4 ],
+            "faces": {
+                "down":  { "texture": "#a" },
+                "up":    { "texture": "#c" },
+                "north": { "texture": "#b", "cullface":"north" },
+                "west":  { "texture": "#c" },
+                "east":  { "texture": "#a" }
+            }
+        }
+    ]
+}

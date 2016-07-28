@@ -14,9 +14,12 @@ import java.util.Random;
 
 public class BlockModMycelium extends BlockBase
 {
-    public BlockModMycelium(String name, Material material, String... variants)
+    public BlockModMycelium()
     {
-        super(name, material, variants);
+        super("mycelium", Material.ROCK);
+
+        setHardness(0.4F);
+        setTickRandomly(true);
     }
 
     @Override

@@ -19,10 +19,10 @@ import net.minecraft.world.World;
  */
 public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> extends BlockBase
 {
-    public static PropertyEnum tempProp;
+    private static PropertyEnum tempProp;
 
-    public final Class<T> CLS;
-    public final PropertyEnum<T> TYPE;
+    private final Class<T> CLS;
+    private final PropertyEnum<T> TYPE;
 
     public BlockVariantContainer(String name, Material material, Class<T> cls)
     {

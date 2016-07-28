@@ -14,6 +14,7 @@ public class BiomeFeatureBush extends BiomeFeature
     public BiomeFeatureBush(int genAttemptsIn, int minYIn, int maxYIn, IBlockState bushBlockIn, IBlockState targetIn)
     {
         super(genAttemptsIn, minYIn, maxYIn);
+
         bushBlock = bushBlockIn;
         target = targetIn;
     }
