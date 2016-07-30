@@ -27,22 +27,11 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
     public BlockVariantContainer(String name, Material material, Class<T> cls)
     {
         super(name, material, enumToArray(cls));
+
         CLS = cls;
         TYPE = tempProp;
-    }
 
-    private static String[] enumToArray(Class cls)
-    {
-        tempProp = PropertyEnum.create("type", cls);
-        Enum[] values = (Enum[]) cls.getEnumConstants();
-        String[] variants = new String[values.length];
-
-        for(int i = 0; i < values.length; i++)
-        {
-            variants[i] = values[i].name().toLowerCase();
-        }
-
-        return variants;
+        registerAndSetName(name);
     }
 
     @Override
@@ -79,5 +68,25 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
     public Class<T> getVariantEnum()
     {
         return CLS;
+    }
+
+    @Override
+    public boolean isBaseClass()
+    {
+        return false;
+    }
+
+    private static String[] enumToArray(Class cls)
+    {
+        tempProp = PropertyEnum.create("type", cls);
+        Enum[] values = (Enum[]) cls.getEnumConstants();
+        String[] variants = new String[values.length];
+
+        for(int i = 0; i < values.length; i++)
+        {
+            variants[i] = values[i].name().toLowerCase();
+        }
+
+        return variants;
     }
 }

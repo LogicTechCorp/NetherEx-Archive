@@ -28,7 +28,11 @@ public class BlockBase extends Block implements IVariantContainer
 
         VARIANTS = variants;
         setCreativeTab(NetherEx.creativeTab);
-        registerAndSetName(name);
+
+        if(isBaseClass())
+        {
+            registerAndSetName(name);
+        }
     }
 
     @Override
@@ -43,7 +47,12 @@ public class BlockBase extends Block implements IVariantContainer
         return null;
     }
 
-    private void registerAndSetName(String name)
+    public boolean isBaseClass()
+    {
+        return true;
+    }
+
+    public void registerAndSetName(String name)
     {
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));

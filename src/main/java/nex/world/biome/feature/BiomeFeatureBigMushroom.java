@@ -40,9 +40,9 @@ public class BiomeFeatureBigMushroom extends BiomeFeature
             i *= 2;
         }
 
-        boolean flag = true;
+        boolean hasSpace = true;
 
-        if(pos.getY() >= 1 && pos.getY() + i + 1 < 256)
+        if(pos.getY() >= 1 && pos.getY() + i + 1 < 128)
         {
             for(int j = pos.getY(); j <= pos.getY() + 1 + i; ++j)
             {
@@ -52,31 +52,31 @@ public class BiomeFeatureBigMushroom extends BiomeFeature
                 {
                     k = 0;
                 }
-
-                BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
-
-                for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l)
+                
+                for(int l = pos.getX() - k; l <= pos.getX() + k && hasSpace; ++l)
                 {
-                    for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1)
+                    for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && hasSpace; ++i1)
                     {
-                        if(j >= 0 && j < 256)
+                        BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
+
+                        if(j >= 0 && j < 128)
                         {
                             IBlockState state = world.getBlockState(mutablePos.setPos(l, j, i1));
 
                             if(!state.getBlock().isAir(state, world, mutablePos) && !state.getBlock().isLeaves(state, world, mutablePos))
                             {
-                                flag = false;
+                                hasSpace = false;
                             }
                         }
                         else
                         {
-                            flag = false;
+                            hasSpace = false;
                         }
                     }
                 }
             }
 
-            if(!flag)
+            if(!hasSpace)
             {
                 return false;
             }
