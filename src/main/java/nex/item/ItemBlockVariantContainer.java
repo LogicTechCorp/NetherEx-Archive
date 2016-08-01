@@ -67,10 +67,4 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
     {
         return container.getVariants();
     }
-
-    @Override
-    public Class getVariantEnum()
-    {
-        return container.getVariantEnum();
-    }
 }

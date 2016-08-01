@@ -1,7 +1,5 @@
 package nex.block;
 
-import net.minecraft.util.IStringSerializable;
-
 /**
  * An interface used to get Item/Block variants
  * <p>
@@ -9,9 +7,7 @@ import net.minecraft.util.IStringSerializable;
  * https://github.com/Vazkii/Psi/blob/master/src/main/java/vazkii/psi/common/item/base/IVariantHolder.java
  * https://github.com/Vazkii/Psi/blob/master/src/main/java/vazkii/psi/common/block/base/IVariantEnumHolder.java
  */
-public interface IVariantContainer<T extends Enum<T> & IStringSerializable>
+public interface IVariantContainer
 {
     String[] getVariants();
-
-    Class<T> getVariantEnum();
 }

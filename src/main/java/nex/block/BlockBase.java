@@ -41,12 +41,6 @@ public class BlockBase extends Block implements IVariantContainer
         return VARIANTS;
     }
 
-    @Override
-    public Class getVariantEnum()
-    {
-        return null;
-    }
-
     public boolean isBaseClass()
     {
         return true;

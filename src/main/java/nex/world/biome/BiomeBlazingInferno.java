@@ -8,6 +8,7 @@ import nex.api.biome.feature.BiomeFeatureGlowStone;
 import nex.api.biome.feature.BiomeFeatureLava;
 import nex.api.biome.feature.BiomeFeatureMinable;
 import nex.registry.ModBlocks;
+import nex.world.biome.feature.BiomeFeatureDungeon;
 import nex.world.biome.feature.BiomeFeaturePool;
 
 public class BiomeBlazingInferno extends NetherBiomeBase
@@ -27,6 +28,7 @@ public class BiomeBlazingInferno extends NetherBiomeBase
         biomeFeatures.add(new BiomeFeatureLava(8, 10, 108, Blocks.NETHERRACK.getDefaultState(), true));
         biomeFeatures.add(new BiomeFeatureMinable(16, 10, 108, ModBlocks.QUARTZ_ORE.getStateFromMeta(1), 14, ModBlocks.NETHERRACK.getStateFromMeta(1)));
         biomeFeatures.add(new BiomeFeaturePool(4, 32, 120, Blocks.LAVA, ModBlocks.NETHERRACK.getStateFromMeta(1)));
+        biomeFeatures.add(new BiomeFeatureDungeon(1, 28, 68, ModBlocks.NETHERRACK.getStateFromMeta(1)));
         biomeFeatures.add(new BiomeFeatureFire(4, 4, 120));
     }
 }

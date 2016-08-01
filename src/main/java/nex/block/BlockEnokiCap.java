@@ -35,77 +35,6 @@ public class BlockEnokiCap extends BlockBase
         setTickRandomly(true);
     }
 
-    private static boolean areAllNeighborsEmpty(World world, BlockPos pos, EnumFacing face)
-    {
-        for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
-        {
-            if(enumfacing != face && !world.isAirBlock(pos.offset(enumfacing)))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public static void generatePlant(World world, BlockPos pos, Random rand, int x)
-    {
-        world.setBlockState(pos.down(), ModBlocks.ENOKI_STEM.getDefaultState(), 2);
-        growTreeRecursive(world, pos.down(), rand, pos, x, 0);
-    }
-
-    private static void growTreeRecursive(World world, BlockPos pos, Random rand, BlockPos pos1, int x, int z)
-    {
-        int i = rand.nextInt(4) + 1;
-
-        if(z == 0)
-        {
-            ++i;
-        }
-
-        for(int j = 0; j < i; ++j)
-        {
-            BlockPos blockpos = pos.down(j + 1);
-
-            if(!areAllNeighborsEmpty(world, blockpos, null))
-            {
-                return;
-            }
-
-            world.setBlockState(blockpos, ModBlocks.ENOKI_STEM.getDefaultState(), 2);
-        }
-
-        boolean flag = false;
-
-        if(z < 4)
-        {
-            int l = rand.nextInt(4);
-
-            if(z == 0)
-            {
-                ++l;
-            }
-
-            for(int k = 0; k < l; ++k)
-            {
-                EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
-                BlockPos blockpos1 = pos.down(i).offset(enumfacing);
-
-                if(Math.abs(blockpos1.getX() - pos1.getX()) < x && Math.abs(blockpos1.getZ() - pos1.getZ()) < x && world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && areAllNeighborsEmpty(world, blockpos1, enumfacing.getOpposite()))
-                {
-                    flag = true;
-                    world.setBlockState(blockpos1, ModBlocks.ENOKI_STEM.getDefaultState(), 2);
-                    growTreeRecursive(world, blockpos1, rand, pos1, x, z + 1);
-                }
-            }
-        }
-
-        if(!flag)
-        {
-            world.setBlockState(pos.down(i), ModBlocks.ENOKI_CAP.getDefaultState().withProperty(AGE, 5), 2);
-        }
-    }
-
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
@@ -318,6 +247,77 @@ public class BlockEnokiCap extends BlockBase
         else
         {
             return true;
+        }
+    }
+
+    private static boolean areAllNeighborsEmpty(World world, BlockPos pos, EnumFacing face)
+    {
+        for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+        {
+            if(enumfacing != face && !world.isAirBlock(pos.offset(enumfacing)))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void generatePlant(World world, BlockPos pos, Random rand, int x)
+    {
+        world.setBlockState(pos.down(), ModBlocks.ENOKI_STEM.getDefaultState(), 2);
+        growTreeRecursive(world, pos.down(), rand, pos, x, 0);
+    }
+
+    private static void growTreeRecursive(World world, BlockPos pos, Random rand, BlockPos pos1, int x, int z)
+    {
+        int i = rand.nextInt(4) + 1;
+
+        if(z == 0)
+        {
+            ++i;
+        }
+
+        for(int j = 0; j < i; ++j)
+        {
+            BlockPos blockpos = pos.down(j + 1);
+
+            if(!areAllNeighborsEmpty(world, blockpos, null))
+            {
+                return;
+            }
+
+            world.setBlockState(blockpos, ModBlocks.ENOKI_STEM.getDefaultState(), 2);
+        }
+
+        boolean flag = false;
+
+        if(z < 4)
+        {
+            int l = rand.nextInt(4);
+
+            if(z == 0)
+            {
+                ++l;
+            }
+
+            for(int k = 0; k < l; ++k)
+            {
+                EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
+                BlockPos blockpos1 = pos.down(i).offset(enumfacing);
+
+                if(Math.abs(blockpos1.getX() - pos1.getX()) < x && Math.abs(blockpos1.getZ() - pos1.getZ()) < x && world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && areAllNeighborsEmpty(world, blockpos1, enumfacing.getOpposite()))
+                {
+                    flag = true;
+                    world.setBlockState(blockpos1, ModBlocks.ENOKI_STEM.getDefaultState(), 2);
+                    growTreeRecursive(world, blockpos1, rand, pos1, x, z + 1);
+                }
+            }
+        }
+
+        if(!flag)
+        {
+            world.setBlockState(pos.down(i), ModBlocks.ENOKI_CAP.getDefaultState().withProperty(AGE, 5), 2);
         }
     }
 

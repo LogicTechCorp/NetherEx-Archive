@@ -5,6 +5,7 @@ import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import nex.api.biome.feature.*;
+import nex.world.biome.feature.BiomeFeatureDungeon;
 
 public class BiomeHell extends NetherBiomeBase
 {
@@ -21,6 +22,7 @@ public class BiomeHell extends NetherBiomeBase
         biomeFeatures.add(new BiomeFeatureLava(8, 10, 108, Blocks.NETHERRACK.getDefaultState(), true));
         biomeFeatures.add(new BiomeFeatureMinable(16, 10, 108, Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState()));
         biomeFeatures.add(new BiomeFeatureMinable(4, 28, 36, Blocks.MAGMA.getDefaultState(), 33, Blocks.NETHERRACK.getDefaultState()));
+        biomeFeatures.add(new BiomeFeatureDungeon(1, 28, 68, Blocks.NETHERRACK.getDefaultState()));
         biomeFeatures.add(new BiomeFeatureBush(2, 32, 120, Blocks.RED_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState()));
         biomeFeatures.add(new BiomeFeatureBush(2, 32, 120, Blocks.BROWN_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState()));
         biomeFeatures.add(new BiomeFeatureFire(2, 32, 120));

@@ -61,12 +61,6 @@ public abstract class ItemBase extends Item implements IVariantContainer
         return VARIANTS;
     }
 
-    @Override
-    public Class getVariantEnum()
-    {
-        return null;
-    }
-
     private void registerAndSetName(String name)
     {
         setRegistryName(NetherEx.MOD_ID + ":" + name);

@@ -65,12 +65,6 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
     }
 
     @Override
-    public Class<T> getVariantEnum()
-    {
-        return CLS;
-    }
-
-    @Override
     public boolean isBaseClass()
     {
         return false;

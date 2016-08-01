@@ -52,7 +52,7 @@ public class BiomeFeatureBigMushroom extends BiomeFeature
                 {
                     k = 0;
                 }
-                
+
                 for(int l = pos.getX() - k; l <= pos.getX() + k && hasSpace; ++l)
                 {
                     for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && hasSpace; ++i1)

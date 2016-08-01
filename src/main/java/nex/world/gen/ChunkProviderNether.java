@@ -147,9 +147,9 @@ public class ChunkProviderNether implements IChunkGenerator
         gravelNoise = noiseGenSoulSandGravel.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
         depthBuffer = noiseGenNetherrack.generateNoiseOctaves(depthBuffer, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 
-        for(int z = 0; z < 16; z++)
+        for(int x = 0; x < 16; x++)
         {
-            for(int x = 0; x < 16; x++)
+            for(int z = 0; z < 16; z++)
             {
                 int l = (int) (depthBuffer[x + z * 16] / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
                 int i1 = -1;
@@ -162,7 +162,7 @@ public class ChunkProviderNether implements IChunkGenerator
 
                 for(int y = 127; y >= 0; y--)
                 {
-                    if(y < 127 - rand.nextInt(5) && y > rand.nextInt(5))
+                    if(y < 127 && y > 0)
                     {
                         IBlockState checkState = primer.getBlockState(x, y, z);
 
@@ -177,15 +177,14 @@ public class ChunkProviderNether implements IChunkGenerator
                                         topState = Blocks.AIR.getDefaultState();
                                         fillerState = Blocks.NETHERRACK.getDefaultState();
                                     }
-                                    else if(y >= 64 - 4 && y <= 64 + 1)
+                                    else if(y >= 62 && y <= 66)
                                     {
-                                        topState = Blocks.NETHERRACK.getDefaultState();
-                                        fillerState = Blocks.NETHERRACK.getDefaultState();
+                                        topState = biome.topBlock;
+                                        fillerState = biome.fillerBlock;
 
                                         if(genGravel)
                                         {
                                             topState = Blocks.GRAVEL.getDefaultState();
-                                            fillerState = Blocks.NETHERRACK.getDefaultState();
                                         }
 
                                         if(genSoulSand)
@@ -195,11 +194,11 @@ public class ChunkProviderNether implements IChunkGenerator
                                         }
                                     }
 
-                                    if(y < 64 && (topState == null || topState.getMaterial() == Material.AIR))
+                                    if(y <= 32 && (topState == null || topState.getMaterial() == Material.AIR))
                                     {
                                         topState = ((NetherBiome) biome).oceanBlock;
 
-                                        if(topState.getBlock() == Blocks.WATER || topState.getBlock() == Blocks.FLOWING_WATER || topState.getBlock().getMaterial(topState) == Material.WATER)
+                                        if(topState.getMaterial() == Material.WATER)
                                         {
                                             topState = Blocks.LAVA.getDefaultState();
                                         }
@@ -213,7 +212,7 @@ public class ChunkProviderNether implements IChunkGenerator
                                     }
                                     else
                                     {
-                                        if(y >= 64 - 1)
+                                        if(y > 64)
                                         {
                                             primer.setBlockState(x, y, z, topState);
                                         }

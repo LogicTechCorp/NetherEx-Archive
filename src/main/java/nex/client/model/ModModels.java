@@ -26,40 +26,38 @@ public class ModModels
 
     private static void registerEnumModels(IVariantContainer container)
     {
-        if(container != null && (container.getVariants().length > 1 && container.getVariantEnum() != null || container.getVariants().length == 1 && container.getVariantEnum() == null))
+        if(container != null && container.getVariants().length >= 1)
         {
             Item item = (Item) container;
-            Class cls = container.getVariantEnum();
+            String[] variants = container.getVariants();
 
             if(item instanceof ItemBlock && ((ItemBlock) item).getBlock() instanceof IVariantContainer)
             {
                 Block block = ((ItemBlock) item).getBlock();
 
-                if(container.getVariants().length == 1)
+                if(variants.length == 1)
                 {
                     registerBlockItemModel(block, new ModelResourceLocation(block.getRegistryName(), "normal"));
                 }
                 else
                 {
-                    for(Object type : cls.getEnumConstants())
+                    for(int i = 0; i < variants.length; i++)
                     {
-                        Enum e = (Enum) type;
-                        registerBlockItemModelForMeta(block, e.ordinal(), "type=" + e.toString().toLowerCase());
+                        registerBlockItemModelForMeta(block, i, "type=" + variants[i].toLowerCase());
                     }
                 }
             }
             else
             {
-                if(container.getVariants().length == 1)
+                if(variants.length == 1)
                 {
                     registerItemModel(item, new ModelResourceLocation(item.getRegistryName(), "normal"));
                 }
                 else
                 {
-                    for(Object type : cls.getEnumConstants())
+                    for(int i = 0; i < variants.length; i++)
                     {
-                        Enum e = (Enum) type;
-                        registerItemModelForMeta(item, e.ordinal(), "type=" + e.toString().toLowerCase());
+                        registerItemModelForMeta(item, i, "type=" + variants[i].toLowerCase());
                     }
                 }
             }

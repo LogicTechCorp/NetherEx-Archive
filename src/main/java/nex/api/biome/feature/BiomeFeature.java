@@ -27,9 +27,9 @@ public abstract class BiomeFeature extends WorldGenerator implements IBiomeFeatu
         {
             minY = 1;
         }
-        if(maxY > 128)
+        if(maxY > 127)
         {
-            maxY = 128;
+            maxY = 127;
         }
 
         for(int j = 0; j < genAttempts; j++)
