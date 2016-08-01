@@ -13,6 +13,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.ChunkProviderHell;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
@@ -22,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class ChunkProviderNether implements IChunkGenerator
+public class ChunkProviderNether extends ChunkProviderHell
 {
     private World world;
     private Random rand;
@@ -52,6 +53,7 @@ public class ChunkProviderNether implements IChunkGenerator
 
     public ChunkProviderNether(World worldIn)
     {
+        super(worldIn, false, worldIn.getSeed());
         world = worldIn;
         rand = new Random(world.getSeed());
         noiseGen1 = new NoiseGeneratorOctaves(rand, 16);
@@ -141,7 +143,7 @@ public class ChunkProviderNether implements IChunkGenerator
         }
     }
 
-    public void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
+    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
         soulSandNoise = noiseGenSoulSandGravel.generateNoiseOctaves(soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
         gravelNoise = noiseGenSoulSandGravel.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
