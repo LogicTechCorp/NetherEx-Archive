@@ -31,8 +31,6 @@ public class BiomeFeatureDungeon extends BiomeFeature
 
         if(world.getBlockState(pos) == target && i == 0)
         {
-            System.out.println(pos.toString());
-
             world.setBlockState(pos.add(0, -1, 0), Blocks.NETHER_BRICK.getDefaultState(), 2);
             world.setBlockState(pos.add(1, -1, 0), Blocks.NETHER_BRICK.getDefaultState(), 2);
             world.setBlockState(pos.add(2, -1, 0), Blocks.NETHER_BRICK.getDefaultState(), 2);
