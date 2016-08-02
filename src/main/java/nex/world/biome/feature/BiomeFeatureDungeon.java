@@ -27,7 +27,7 @@ public class BiomeFeatureDungeon extends BiomeFeature
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        int i = rand.nextInt(33);
+        int i = rand.nextInt(49);
 
         if(world.getBlockState(pos) == target && i == 0)
         {

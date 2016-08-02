@@ -33,9 +33,8 @@ public class BlockEnokiStem extends BlockBase
 
     public BlockEnokiStem()
     {
-        super("enoki_stem", Material.PLANTS);
+        super("enoki_stem", Material.PLANTS, SoundType.WOOD);
 
-        setSoundType(SoundType.WOOD);
         setHardness(0.4F);
     }
 

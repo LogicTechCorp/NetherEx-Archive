@@ -1,10 +1,10 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "a": "nex:blocks/plant/enoki_w1",
-        "b": "nex:blocks/plant/enoki_w2",
-        "c": "nex:blocks/plant/enoki_w3",
-        "particle": "nex:blocks/plant/enoki_stem1"
+        "a": "nex:blocks/enoki_w1",
+        "b": "nex:blocks/enoki_w2",
+        "c": "nex:blocks/enoki_w3",
+        "particle": "nex:blocks/enoki_stem1"
     },
     "elements": [
         {   "from": [ 4, 4, 0 ],

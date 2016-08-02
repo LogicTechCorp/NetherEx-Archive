@@ -8,17 +8,17 @@
     "type": {
       "biotic": {
         "textures": {
-          "all": "nex:blocks/ore/ore_quartz_biotic"
+          "all": "nex:blocks/ore_quartz_biotic"
         }
       },
       "burnt": {
         "textures": {
-          "all": "nex:blocks/ore/ore_quartz_burnt"
+          "all": "nex:blocks/ore_quartz_burnt"
         }
       },
       "frozen": {
         "textures": {
-          "all": "nex:blocks/ore/ore_quartz_frozen"
+          "all": "nex:blocks/ore_quartz_frozen"
         }
       }
     }

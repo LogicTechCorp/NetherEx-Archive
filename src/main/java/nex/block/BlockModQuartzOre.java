@@ -1,5 +1,6 @@
 package nex.block;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
@@ -15,7 +16,7 @@ public class BlockModQuartzOre extends BlockVariantContainer
 {
     public BlockModQuartzOre()
     {
-        super("quartz_ore", Material.ROCK, EnumNetherrackType.class);
+        super("quartz_ore", Material.ROCK, SoundType.GROUND, EnumNetherrackType.class);
 
         setHardness(3.0F);
         setResistance(5.0F);

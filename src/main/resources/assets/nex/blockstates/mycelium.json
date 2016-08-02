@@ -7,9 +7,9 @@
   "variants": {
     "normal": [{
       "textures": {
-        "bottom": "nex:blocks/decorative/netherrack_biotic",
-        "top": "nex:blocks/decorative/netherrack_mycelium_top",
-        "side": "nex:blocks/decorative/netherrack_mycelium_side"
+        "bottom": "nex:blocks/netherrack_biotic",
+        "top": "nex:blocks/netherrack_mycelium_top",
+        "side": "nex:blocks/netherrack_mycelium_side"
         }
     }]
   }

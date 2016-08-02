@@ -2,6 +2,7 @@ package nex.block;
 
 import com.google.common.base.CaseFormat;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
@@ -17,7 +18,7 @@ public class BlockBase extends Block implements IVariantContainer
 {
     private final String[] VARIANTS;
 
-    public BlockBase(String name, Material material, String... variants)
+    public BlockBase(String name, Material material, SoundType type, String... variants)
     {
         super(material);
 

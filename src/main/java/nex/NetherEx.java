@@ -41,7 +41,7 @@ public class NetherEx
     public void preInit(FMLPreInitializationEvent event)
     {
         creativeTab = new NetherExCreativeTab();
-
+        
         ModBlocks.register();
         ModItems.register();
         ModBiomes.register();

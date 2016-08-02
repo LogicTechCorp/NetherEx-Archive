@@ -2,9 +2,9 @@
     "parent": "block/block",
     "ambientocclusion": false,
     "textures": {
-        "side": "nex:blocks/plant/enoki_cap0",
-        "particle": "nex:blocks/plant/enoki_stem1",
-        "top-bottom": "nex:blocks/plant/enoki_w2"
+        "side": "nex:blocks/enoki_cap0",
+        "particle": "nex:blocks/enoki_stem1",
+        "top-bottom": "nex:blocks/enoki_w2"
     },
     "elements": [
         {

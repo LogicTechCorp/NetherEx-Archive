@@ -1,5 +1,6 @@
 package nex.block;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -24,9 +25,9 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
     private final Class<T> CLS;
     private final PropertyEnum<T> TYPE;
 
-    public BlockVariantContainer(String name, Material material, Class<T> cls)
+    public BlockVariantContainer(String name, Material material, SoundType type, Class<T> cls)
     {
-        super(name, material, enumToArray(cls));
+        super(name, material, type, enumToArray(cls));
 
         CLS = cls;
         TYPE = tempProp;

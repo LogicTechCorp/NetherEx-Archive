@@ -8,17 +8,17 @@
     "type": {
       "biotic": {
         "textures": {
-          "all": "nex:blocks/decorative/netherrack_biotic"
+          "all": "nex:blocks/netherrack_biotic"
         }
       },
       "burnt": {
         "textures": {
-          "all": "nex:blocks/decorative/netherrack_burnt"
+          "all": "nex:blocks/netherrack_burnt"
         }
       },
       "frozen": {
         "textures": {
-          "all": "nex:blocks/decorative/netherrack_frozen"
+          "all": "nex:blocks/netherrack_frozen"
         }
       }
     }

@@ -21,6 +21,6 @@ public class BiomeFreezingBlizzard extends NetherBiomeBase
 
         biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
         biomeFeatures.add(new BiomeFeatureMinable(16, 10, 108, ModBlocks.QUARTZ_ORE.getStateFromMeta(2), 14, ModBlocks.NETHERRACK.getStateFromMeta(2)));
-        biomeFeatures.add(new BiomeFeatureDungeon(1, 28, 68, ModBlocks.NETHERRACK.getStateFromMeta(2)));
+        biomeFeatures.add(new BiomeFeatureDungeon(1, 33, 60, ModBlocks.NETHERRACK.getStateFromMeta(2)));
     }
 }

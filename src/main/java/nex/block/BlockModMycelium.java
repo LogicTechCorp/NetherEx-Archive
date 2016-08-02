@@ -1,8 +1,10 @@
 package nex.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -16,7 +18,7 @@ public class BlockModMycelium extends BlockBase
 {
     public BlockModMycelium()
     {
-        super("mycelium", Material.ROCK);
+        super("mycelium", Material.ROCK, SoundType.GROUND);
 
         setHardness(0.4F);
         setTickRandomly(true);
@@ -27,17 +29,16 @@ public class BlockModMycelium extends BlockBase
     {
         if(!worldIn.isRemote)
         {
-            for(int i = 0; i < 4; ++i)
+            for(int i = 0; i < 1; ++i)
             {
                 BlockPos newPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(3) - 1, rand.nextInt(3) - 1);
                 Block block = worldIn.getBlockState(newPos).getBlock();
 
-                if(block == ModBlocks.NETHERRACK && worldIn.isAirBlock(newPos.up()) && worldIn.isAirBlock(newPos.up()))
+                if((block == Blocks.NETHERRACK || block == ModBlocks.NETHERRACK) && worldIn.isAirBlock(newPos.up()))
                 {
                     worldIn.setBlockState(newPos, getDefaultState());
                 }
             }
-
         }
     }
 

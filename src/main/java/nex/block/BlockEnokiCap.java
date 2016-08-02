@@ -28,9 +28,8 @@ public class BlockEnokiCap extends BlockBase
 
     public BlockEnokiCap()
     {
-        super("enoki_cap", Material.PLANTS);
+        super("enoki_cap", Material.PLANTS, SoundType.WOOD);
 
-        setSoundType(SoundType.WOOD);
         setHardness(0.4F);
         setTickRandomly(true);
     }

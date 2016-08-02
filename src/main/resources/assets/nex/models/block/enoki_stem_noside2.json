@@ -1,9 +1,9 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "texture": "nex:blocks/plant/enoki_w1",
-        "inside": "nex:blocks/plant/enoki_stem2",
-        "particle": "nex:blocks/plant/enoki_stem1"
+        "texture": "nex:blocks/enoki_w1",
+        "inside": "nex:blocks/enoki_stem2",
+        "particle": "nex:blocks/enoki_stem1"
     },
     "elements": [
         {   "from": [ 4, 4, 4 ],

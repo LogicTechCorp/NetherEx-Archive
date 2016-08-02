@@ -15,6 +15,6 @@ public class BiomeForgottenSands extends NetherBiomeBase
 
         biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
         biomeFeatures.add(new BiomeFeatureLava(4, 4, 120, Blocks.NETHERRACK.getDefaultState(), false));
-        biomeFeatures.add(new BiomeFeatureDungeon(1, 28, 68, Blocks.SOUL_SAND.getDefaultState()));
+        biomeFeatures.add(new BiomeFeatureDungeon(1, 33, 60, Blocks.SOUL_SAND.getDefaultState()));
     }
 }

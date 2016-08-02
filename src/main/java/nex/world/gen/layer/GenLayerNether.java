@@ -19,8 +19,10 @@ public abstract class GenLayerNether extends GenLayer
         genLayerNBiomes = new GenLayerZoom(1002L, genLayerNBiomes);
         genLayerNBiomes = new GenLayerZoom(1003L, genLayerNBiomes);
         GenLayer genLayerVZoom = new GenLayerVoronoiZoom(10L, genLayerNBiomes);
+
         genLayerNBiomes.initWorldGenSeed(seed);
         genLayerVZoom.initWorldGenSeed(seed);
+
         return new GenLayer[]{genLayerNBiomes, genLayerVZoom};
     }
 }
