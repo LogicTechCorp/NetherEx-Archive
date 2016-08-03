@@ -10,7 +10,6 @@ import java.util.List;
 
 public class GenLayerNetherBiome extends GenLayerNether
 {
-
     public GenLayerNetherBiome(long seed)
     {
         super(seed);

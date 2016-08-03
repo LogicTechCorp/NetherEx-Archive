@@ -121,7 +121,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                                 if(d15 > 0.0D)
                                 {
-                                    state = Blocks.NETHERRACK.getDefaultState();
+                                    state = biome.fillerBlock;
                                 }
 
                                 primer.setBlockState(l2, i3, j3, state);
@@ -169,7 +169,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                         if(checkState.getMaterial() != Material.AIR)
                         {
-                            if(checkState.getBlock() == Blocks.NETHERRACK)
+                            if(checkState == biome.fillerBlock)
                             {
                                 if(i1 == -1)
                                 {

@@ -13,16 +13,17 @@ public abstract class GenLayerNether extends GenLayer
 
     public static GenLayer[] initializeAllBiomeGenerators(long seed)
     {
-        GenLayer genLayerNBiomes = new GenLayerNetherBiome(1L);
-        genLayerNBiomes = new GenLayerZoom(1000L, genLayerNBiomes);
-        genLayerNBiomes = new GenLayerZoom(1001L, genLayerNBiomes);
-        genLayerNBiomes = new GenLayerZoom(1002L, genLayerNBiomes);
-        genLayerNBiomes = new GenLayerZoom(1003L, genLayerNBiomes);
-        GenLayer genLayerVZoom = new GenLayerVoronoiZoom(10L, genLayerNBiomes);
+        GenLayer genLayer = new GenLayerNetherBiome(1L);
+        genLayer = new GenLayerZoom(1000L, genLayer);
+        genLayer = new GenLayerZoom(1001L, genLayer);
+        genLayer = new GenLayerZoom(1002L, genLayer);
+        genLayer = new GenLayerZoom(1003L, genLayer);
+        GenLayer genLayerVZoom = new GenLayerVoronoiZoom(10L, genLayer);
 
-        genLayerNBiomes.initWorldGenSeed(seed);
+        genLayer.initWorldGenSeed(seed);
         genLayerVZoom.initWorldGenSeed(seed);
 
-        return new GenLayer[]{genLayerNBiomes, genLayerVZoom};
+        return new GenLayer[]{genLayer, genLayerVZoom};
+
     }
 }

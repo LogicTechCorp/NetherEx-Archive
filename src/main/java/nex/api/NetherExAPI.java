@@ -3,9 +3,9 @@ package nex.api;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DungeonHooks;
+import nex.api.biome.NetherBiome;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +19,7 @@ public class NetherExAPI
     private static List<BiomeManager.BiomeEntry> biomeEntries = Lists.newArrayList();
     private static List<DungeonHooks.DungeonMob> dungeonMobs = Lists.newArrayList();
 
-    public static void addBiome(Biome biome, int weight)
+    public static void addBiome(NetherBiome biome, int weight)
     {
         if(biome == null)
         {
@@ -44,8 +44,14 @@ public class NetherExAPI
         biomeEntries.add(new BiomeManager.BiomeEntry(biome, weight));
     }
 
-    public static void removeBiome(Biome biome)
+    public static void removeBiome(NetherBiome biome)
     {
+        if(biome == null)
+        {
+            logger.warn("Unable to remove Biome. It was null!");
+            return;
+        }
+
         biomeEntries.stream().filter(entry -> entry.biome.getRegistryName().equals(biome.getRegistryName())).forEach(entry ->
         {
             biomeEntries.remove(new BiomeManager.BiomeEntry(entry.biome, entry.itemWeight));
@@ -80,6 +86,12 @@ public class NetherExAPI
 
     public static void removeDungeonMob(String name)
     {
+        if(name == null || name.equals(""))
+        {
+            logger.warn("Unable to remove Mob. It was null!");
+            return;
+        }
+
         dungeonMobs.stream().filter(mob -> name.equals(mob.type)).forEach(mob ->
         {
             dungeonMobs.remove(mob);

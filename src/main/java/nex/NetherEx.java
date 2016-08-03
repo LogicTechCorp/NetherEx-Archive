@@ -2,8 +2,8 @@ package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.DimensionType;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -41,7 +41,7 @@ public class NetherEx
     public void preInit(FMLPreInitializationEvent event)
     {
         creativeTab = new NetherExCreativeTab();
-        
+
         ModBlocks.register();
         ModItems.register();
         ModBiomes.register();
@@ -52,8 +52,9 @@ public class NetherEx
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        ObfuscationReflectionHelper.setPrivateValue(DimensionType.class, DimensionType.NETHER, WorldProviderNether.class, "field_186077_g", "clazz");
-        NetherEx.logger.info("Replaced the default Nether World Provider with a custom one!");
+        DimensionManager.unregisterDimension(-1);
+        DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
+        DimensionManager.registerDimension(-1, nether);
 
         ModOreDict.register();
 
