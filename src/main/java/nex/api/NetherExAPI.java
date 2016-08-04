@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class NetherExAPI
 {
-    public static Logger logger = LogManager.getLogger("NetherEx|API");
+    public static  final Logger LOGGER = LogManager.getLogger("NetherEx|API");
 
     private static List<BiomeManager.BiomeEntry> biomeEntries = Lists.newArrayList();
     private static List<DungeonHooks.DungeonMob> dungeonMobs = Lists.newArrayList();
@@ -23,12 +23,12 @@ public class NetherExAPI
     {
         if(biome == null)
         {
-            logger.warn("Unable to add Biome. It was null!");
+            LOGGER.warn("Unable to add Biome. It was null!");
             return;
         }
         else if(weight <= 0)
         {
-            logger.warn(String.format("Unable to add %s to the Nether. Its Weight must be greater than zero!", biome.getBiomeName()));
+            LOGGER.warn(String.format("Unable to add %s to the Nether. Its Weight must be greater than zero!", biome.getBiomeName()));
             return;
         }
 
@@ -48,14 +48,14 @@ public class NetherExAPI
     {
         if(biome == null)
         {
-            logger.warn("Unable to remove Biome. It was null!");
+            LOGGER.warn("Unable to remove Biome. It was null!");
             return;
         }
 
         biomeEntries.stream().filter(entry -> entry.biome.getRegistryName().equals(biome.getRegistryName())).forEach(entry ->
         {
             biomeEntries.remove(new BiomeManager.BiomeEntry(entry.biome, entry.itemWeight));
-            logger.info(String.format("Removed %s from the Nether.", entry.biome.getBiomeName()));
+            LOGGER.info(String.format("Removed %s from the Nether.", entry.biome.getBiomeName()));
         });
     }
 
@@ -63,12 +63,12 @@ public class NetherExAPI
     {
         if(name == null || name.equals(""))
         {
-            logger.warn("Unable to add Mob. It was null!");
+            LOGGER.warn("Unable to add Mob. It was null!");
             return;
         }
         else if(weight <= 0)
         {
-            logger.warn(String.format("Unable to add %s to the Nether Dungeons. Its Weight must be greater than zero!", name));
+            LOGGER.warn(String.format("Unable to add %s to the Nether Dungeons. Its Weight must be greater than zero!", name));
             return;
         }
 
@@ -88,14 +88,14 @@ public class NetherExAPI
     {
         if(name == null || name.equals(""))
         {
-            logger.warn("Unable to remove Mob. It was null!");
+            LOGGER.warn("Unable to remove Mob. It was null!");
             return;
         }
 
         dungeonMobs.stream().filter(mob -> name.equals(mob.type)).forEach(mob ->
         {
             dungeonMobs.remove(mob);
-            logger.info(String.format("Removed %s from the Nether Dungeons.", name));
+            LOGGER.info(String.format("Removed %s from the Nether Dungeons.", name));
         });
     }
 

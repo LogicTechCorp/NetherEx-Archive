@@ -34,7 +34,8 @@ public abstract class ItemBase extends Item implements IVariantContainer
         }
 
         VARIANTS = variants;
-        setCreativeTab(NetherEx.creativeTab);
+
+        setCreativeTab(NetherEx.CREATIVE_TAB);
         registerAndSetName(name);
 
         ModItems.variantContainers.add(this);

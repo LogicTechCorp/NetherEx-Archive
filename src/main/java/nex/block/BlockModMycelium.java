@@ -18,7 +18,7 @@ public class BlockModMycelium extends BlockBase
 {
     public BlockModMycelium()
     {
-        super("mycelium", Material.ROCK, SoundType.GROUND);
+        super("mycelium", Material.ROCK, SoundType.STONE);
 
         setHardness(0.4F);
         setTickRandomly(true);

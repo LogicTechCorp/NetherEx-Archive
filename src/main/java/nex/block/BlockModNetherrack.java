@@ -11,7 +11,7 @@ public class BlockModNetherrack extends BlockVariantContainer
 {
     public BlockModNetherrack()
     {
-        super("netherrack", Material.ROCK, SoundType.GROUND, EnumNetherrackType.class);
+        super("netherrack", Material.ROCK, SoundType.STONE, EnumNetherrackType.class);
 
         setHardness(0.4F);
     }

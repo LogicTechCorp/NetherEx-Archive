@@ -24,24 +24,21 @@ public class NetherEx
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
     public static final String DEPEND = "required-after:Forge@[1.10.2-12.18.1.2011,);";
-    private static final String CLIENT_ENV = "nex.proxy.CombinedClientProxy";
-    private static final String SERVER_ENV = "nex.proxy.DedicatedServerProxy";
-
-    public static Logger logger = LogManager.getLogger("NetherEx");
+    private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
+    private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;
 
-    @SidedProxy(clientSide = CLIENT_ENV, serverSide = SERVER_ENV)
+    @SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
     public static IProxy proxy;
 
-    public static CreativeTabs creativeTab;
+    public static final Logger LOGGER = LogManager.getLogger("NetherEx");
+    public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        creativeTab = new NetherExCreativeTab();
-
         ModBlocks.register();
         ModItems.register();
         ModBiomes.register();
@@ -55,6 +52,7 @@ public class NetherEx
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
         DimensionManager.registerDimension(-1, nether);
+        LOGGER.warn("The Nether has been overridden.");
 
         ModOreDict.register();
 
