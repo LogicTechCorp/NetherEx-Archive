@@ -28,6 +28,8 @@ public class BlockBase extends Block implements IVariantContainer
         }
 
         VARIANTS = variants;
+
+        setSoundType(type);
         setCreativeTab(NetherEx.creativeTab);
 
         if(isBaseClass())
