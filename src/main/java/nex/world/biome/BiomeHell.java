@@ -1,9 +1,11 @@
 package nex.world.biome;
 
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.biome.Biome;
 import nex.api.biome.feature.*;
 import nex.world.biome.feature.BiomeFeatureDungeon;
 
@@ -15,7 +17,8 @@ public class BiomeHell extends NetherBiomeBase
 
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 1, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
 
         biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
         biomeFeatures.add(new BiomeFeatureLava(4, 32, 120, Blocks.NETHERRACK.getDefaultState(), false));

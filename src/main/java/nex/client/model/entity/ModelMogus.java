@@ -11,12 +11,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModelMogus extends ModelBase
 {
     private ModelRenderer cap;
-    private ModelRenderer top_cap;
+    private ModelRenderer topCap;
     private ModelRenderer body;
-    private ModelRenderer left_leg;
-    private ModelRenderer right_leg;
-    private ModelRenderer right_arm;
-    private ModelRenderer left_arm;
+    private ModelRenderer rightLeg;
+    private ModelRenderer leftLeg;
+    private ModelRenderer rightArm;
+    private ModelRenderer leftArm;
 
     public ModelMogus()
     {
@@ -29,54 +29,54 @@ public class ModelMogus extends ModelBase
         cap.setTextureSize(64, 32);
         cap.mirror = true;
         setRotation(cap, 0F, 0F, 0F);
-        top_cap = new ModelRenderer(this, 20, 0);
-        top_cap.addBox(-1F, -1F, -1F, 3, 1, 3);
-        top_cap.setRotationPoint(-1F, 18F, 0F);
-        top_cap.setTextureSize(64, 32);
-        top_cap.mirror = true;
-        setRotation(top_cap, 0F, 0F, 0F);
+        topCap = new ModelRenderer(this, 20, 0);
+        topCap.addBox(-1F, -1F, -1F, 3, 1, 3);
+        topCap.setRotationPoint(-1F, 18F, 0F);
+        topCap.setTextureSize(64, 32);
+        topCap.mirror = true;
+        setRotation(topCap, 0F, 0F, 0F);
         body = new ModelRenderer(this, 0, 6);
         body.addBox(-2F, 1F, -1F, 3, 4, 3);
         body.setRotationPoint(0F, 18F, 0F);
         body.setTextureSize(64, 32);
         body.mirror = true;
         setRotation(body, 0F, 0F, 0F);
-        left_leg = new ModelRenderer(this, 12, 11);
-        left_leg.addBox(0F, 0F, 0F, 1, 1, 1);
-        left_leg.setRotationPoint(0F, 23F, 0F);
-        left_leg.setTextureSize(64, 32);
-        left_leg.mirror = true;
-        setRotation(left_leg, 0F, 0F, 0F);
-        right_leg = new ModelRenderer(this, 12, 11);
-        right_leg.addBox(-1F, 0F, 0F, 1, 1, 1);
-        right_leg.setRotationPoint(-1F, 23F, 0F);
-        right_leg.setTextureSize(64, 32);
-        right_leg.mirror = true;
-        setRotation(right_leg, 0F, 0F, 0F);
-        right_arm = new ModelRenderer(this, 16, 10);
-        right_arm.addBox(-1F, 0F, 0F, 1, 2, 1);
-        right_arm.setRotationPoint(-2F, 20F, 0F);
-        right_arm.setTextureSize(64, 32);
-        right_arm.mirror = true;
-        setRotation(right_arm, 0F, 0F, 0F);
-        left_arm = new ModelRenderer(this, 16, 10);
-        left_arm.addBox(0F, 0F, 0F, 1, 2, 1);
-        left_arm.setRotationPoint(1F, 20F, 0F);
-        left_arm.setTextureSize(64, 32);
-        left_arm.mirror = true;
-        setRotation(left_arm, 0F, 0F, 0F);
+        rightLeg = new ModelRenderer(this, 12, 11);
+        rightLeg.addBox(-1F, 0F, 0F, 1, 1, 1);
+        rightLeg.setRotationPoint(-1F, 23F, 0F);
+        rightLeg.setTextureSize(64, 32);
+        rightLeg.mirror = true;
+        setRotation(rightLeg, 0F, 0F, 0F);
+        leftLeg = new ModelRenderer(this, 12, 11);
+        leftLeg.addBox(0F, 0F, 0F, 1, 1, 1);
+        leftLeg.setRotationPoint(0F, 23F, 0F);
+        leftLeg.setTextureSize(64, 32);
+        leftLeg.mirror = true;
+        setRotation(leftLeg, 0F, 0F, 0F);
+        rightArm = new ModelRenderer(this, 16, 10);
+        rightArm.addBox(-1F, 0F, 0F, 1, 2, 1);
+        rightArm.setRotationPoint(-2F, 20F, 0F);
+        rightArm.setTextureSize(64, 32);
+        rightArm.mirror = true;
+        setRotation(rightArm, 0F, 0F, 0F);
+        leftArm = new ModelRenderer(this, 16, 10);
+        leftArm.addBox(0F, 0F, 0F, 1, 2, 1);
+        leftArm.setRotationPoint(1F, 20F, 0F);
+        leftArm.setTextureSize(64, 32);
+        leftArm.mirror = true;
+        setRotation(leftArm, 0F, 0F, 0F);
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         setRotationAngles(f, f1, f2, f3, f4, f5);
         cap.render(f5);
-        top_cap.render(f5);
+        topCap.render(f5);
         body.render(f5);
-        left_leg.render(f5);
-        right_leg.render(f5);
-        right_arm.render(f5);
-        left_arm.render(f5);
+        leftLeg.render(f5);
+        rightLeg.render(f5);
+        rightArm.render(f5);
+        leftArm.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -86,11 +86,11 @@ public class ModelMogus extends ModelBase
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+    private void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
     {
-        right_leg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-        left_leg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
-        right_arm.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
-        left_arm.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        rightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        leftLeg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
+        rightArm.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
+        leftArm.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
 }

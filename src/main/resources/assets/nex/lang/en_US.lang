@@ -4,6 +4,7 @@ itemGroup.nex=NetherEx
 #Entities (Mobs)
 entity.nex.mogusRed.name=Red Mogus
 entity.nex.mogusBrown.name=Brown Mogus
+entity.nex.wight.name=Wight
 
 #Tiles (Blocks)
 tile.nex:netherrack.biotic.name=Biotic Netherrack
