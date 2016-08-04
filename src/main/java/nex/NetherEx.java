@@ -9,10 +9,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.proxy.IProxy;
-import nex.registry.ModBiomes;
-import nex.registry.ModBlocks;
-import nex.registry.ModItems;
-import nex.registry.ModOreDict;
+import nex.registry.*;
 import nex.world.WorldProviderNether;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,6 +39,7 @@ public class NetherEx
         ModBlocks.register();
         ModItems.register();
         ModBiomes.register();
+        ModEntities.register();
 
         proxy.preInit();
     }

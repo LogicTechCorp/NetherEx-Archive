@@ -13,7 +13,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkProviderHell;
-import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
@@ -77,7 +76,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         noiseGenNetherrack = ctx.getPerlin3();
         noiseGenScale = ctx.getScale();
         noiseGenDepth = ctx.getDepth();
-        
+
         netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
     }
@@ -166,7 +165,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         {
             return;
         }
-        
+
         soulSandNoise = noiseGenSoulSandGravel.generateNoiseOctaves(soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
         gravelNoise = noiseGenSoulSandGravel.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
         depthBuffer = noiseGenNetherrack.generateNoiseOctaves(depthBuffer, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
@@ -281,7 +280,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         {
             return event.getNoisefield();
         }
-        
+
         noiseData4 = noiseGenScale.generateNoiseOctaves(noiseData4, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
         noiseData5 = noiseGenDepth.generateNoiseOctaves(noiseData5, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
         noiseData1 = noiseGen3.generateNoiseOctaves(noiseData1, posX, posY, posZ, xSize, ySize, zSize, 8.555150000000001D, 34.2206D, 8.555150000000001D);
@@ -389,7 +388,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
         NetherBiome biome = (NetherBiome) world.getBiome(blockPos.add(16, 0, 16));
         BlockFalling.fallInstantly = true;
-        
+
         ForgeEventFactory.onChunkPopulate(true, this, world, rand, chunkX, chunkZ, false);
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
 
@@ -398,7 +397,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         ForgeEventFactory.onChunkPopulate(false, this, world, rand, chunkX, chunkZ, false);
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
-        
+
         BlockFalling.fallInstantly = false;
     }
 

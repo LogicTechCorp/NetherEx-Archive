@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class NetherExAPI
 {
-    public static  final Logger LOGGER = LogManager.getLogger("NetherEx|API");
+    public static final Logger LOGGER = LogManager.getLogger("NetherEx|API");
 
     private static List<BiomeManager.BiomeEntry> biomeEntries = Lists.newArrayList();
     private static List<DungeonHooks.DungeonMob> dungeonMobs = Lists.newArrayList();
