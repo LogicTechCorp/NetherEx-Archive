@@ -7,21 +7,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
+import nex.client.model.entity.ModelPordenfer;
 import nex.client.model.entity.ModelWight;
 
 @SideOnly(Side.CLIENT)
-public class RenderWight extends RenderLiving
+public class RenderPordenfer extends RenderLiving
 {
-    private static final ResourceLocation WIGHT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/wight.png");
+    private static final ResourceLocation PORDENFER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/pordenfer.png");
 
-    public RenderWight(RenderManager manager)
+    public RenderPordenfer(RenderManager manager)
     {
-        super(manager, new ModelWight(), 0.5F);
+        super(manager, new ModelPordenfer(), 1.0F);
     }
 
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {
-        return WIGHT_TEXTURE;
+        return PORDENFER_TEXTURE;
     }
 }

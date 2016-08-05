@@ -1,11 +1,13 @@
 package nex.client.model.entity;
 
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ModelWight extends ModelBase
 {
     private ModelRenderer head;
@@ -46,32 +48,33 @@ public class ModelWight extends ModelBase
         leftLeg.setRotationPoint(-1, 13, 0);
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    @Override
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
     {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5);
-        rightLeg.render(f5);
-        leftLeg.render(f5);
-        rightArm.render(f5);
-        leftArm.render(f5);
-        upperBody.render(f5);
-        lowerBody.render(f5);
-        head.render(f5);
-        hood.render(f5);
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+        head.render(scaleFactor);
+        hood.render(scaleFactor);
+        upperBody.render(scaleFactor);
+        lowerBody.render(scaleFactor);
+        rightArm.render(scaleFactor);
+        leftArm.render(scaleFactor);
+        rightLeg.render(scaleFactor);
+        leftLeg.render(scaleFactor);
     }
 
-    private void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity)
     {
-        head.rotateAngleY = f3 / 57.29578F;
-        head.rotateAngleX = f4 / 57.29578F;
-        hood.rotateAngleY = f3 / 57.29578F;
-        hood.rotateAngleX = f4 / 57.29578F;
-        rightArm.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 2.0F * f1 * 0.5F;
-        leftArm.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
+        head.rotateAngleY = netHeadYaw / 57.29578F;
+        head.rotateAngleX = headPitch / 57.29578F;
+        hood.rotateAngleY = netHeadYaw / 57.29578F;
+        hood.rotateAngleX = headPitch / 57.29578F;
+        rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 2.0F * limbSwingAmount * 0.5F;
+        leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
         rightArm.rotateAngleZ = 0F;
         leftArm.rotateAngleZ = 0F;
-        rightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-        leftLeg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
+        rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
         rightLeg.rotateAngleY = 0F;
         leftLeg.rotateAngleY = 0F;
     }

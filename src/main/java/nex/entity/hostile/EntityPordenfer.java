@@ -9,13 +9,13 @@ import net.minecraft.item.Item;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-public class EntityWight extends EntityMob
+public class EntityPordenfer extends EntityMob
 {
-    public EntityWight(World worldIn)
+    public EntityPordenfer(World worldIn)
     {
         super(worldIn);
 
-        setSize(0.55F, 1.5F);
+        setSize(0.75F, 0.55F);
         stepHeight = 0.5F;
         isImmuneToFire = true;
     }
@@ -35,10 +35,10 @@ public class EntityWight extends EntityMob
     {
         super.applyEntityAttributes();
 
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.5D);
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.45D);
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
     }
 
     @Override

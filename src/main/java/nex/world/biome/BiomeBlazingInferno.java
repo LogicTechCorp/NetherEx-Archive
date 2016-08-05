@@ -7,6 +7,7 @@ import nex.api.biome.feature.BiomeFeatureFire;
 import nex.api.biome.feature.BiomeFeatureGlowStone;
 import nex.api.biome.feature.BiomeFeatureLava;
 import nex.api.biome.feature.BiomeFeatureMinable;
+import nex.entity.passive.EntityTortoise;
 import nex.registry.ModBlocks;
 import nex.world.biome.feature.BiomeFeatureDungeon;
 import nex.world.biome.feature.BiomeFeaturePool;
@@ -20,8 +21,8 @@ public class BiomeBlazingInferno extends NetherBiomeBase
         topBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
         fillerBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
 
-        spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 50, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityTortoise.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 20, 4, 4));
 
         biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
         biomeFeatures.add(new BiomeFeatureLava(4, 32, 120, Blocks.NETHERRACK.getDefaultState(), false));

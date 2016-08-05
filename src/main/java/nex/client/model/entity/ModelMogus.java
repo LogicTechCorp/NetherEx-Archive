@@ -67,16 +67,26 @@ public class ModelMogus extends ModelBase
         setRotation(leftArm, 0F, 0F, 0F);
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    @Override
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
     {
-        setRotationAngles(f, f1, f2, f3, f4, f5);
-        cap.render(f5);
-        topCap.render(f5);
-        body.render(f5);
-        leftLeg.render(f5);
-        rightLeg.render(f5);
-        rightArm.render(f5);
-        leftArm.render(f5);
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+        cap.render(scaleFactor);
+        topCap.render(scaleFactor);
+        body.render(scaleFactor);
+        leftLeg.render(scaleFactor);
+        rightLeg.render(scaleFactor);
+        rightArm.render(scaleFactor);
+        leftArm.render(scaleFactor);
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity)
+    {
+        rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
+        rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
+        leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -84,13 +94,5 @@ public class ModelMogus extends ModelBase
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
-    }
-
-    private void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-    {
-        rightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-        leftLeg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
-        rightArm.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
-        leftArm.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
 }

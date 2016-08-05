@@ -4,6 +4,8 @@ itemGroup.nex=NetherEx
 #Entities (Mobs)
 entity.nex.mogus.name=Mogus
 entity.nex.wight.name=Wight
+entity.nex.pordenfer.name=Pordenfer
+entity.nex.tortoise.name=Lava Tortoise
 
 #Tiles (Blocks)
 tile.nex:netherrack.biotic.name=Biotic Netherrack
