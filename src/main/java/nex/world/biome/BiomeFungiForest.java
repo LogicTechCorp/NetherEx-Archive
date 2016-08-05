@@ -4,8 +4,7 @@ import net.minecraft.init.Blocks;
 import nex.api.biome.feature.BiomeFeatureBush;
 import nex.api.biome.feature.BiomeFeatureGlowStone;
 import nex.api.biome.feature.BiomeFeatureMinable;
-import nex.entity.neutral.EntityBrownMogus;
-import nex.entity.neutral.EntityRedMogus;
+import nex.entity.neutral.EntityMogus;
 import nex.registry.ModBlocks;
 import nex.world.biome.feature.BiomeFeatureBigMushroom;
 import nex.world.biome.feature.BiomeFeatureDungeon;
@@ -20,8 +19,8 @@ public class BiomeFungiForest extends NetherBiomeBase
         topBlock = ModBlocks.MYCELIUM.getDefaultState();
         fillerBlock = ModBlocks.NETHERRACK.getDefaultState();
 
-        spawnableMonsterList.add(new SpawnListEntry(EntityRedMogus.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityBrownMogus.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityMogus.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityMogus.class, 100, 4, 4));
 
         biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
         biomeFeatures.add(new BiomeFeatureEnoki(6, 64, 120));

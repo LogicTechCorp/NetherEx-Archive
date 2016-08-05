@@ -24,7 +24,8 @@ public class EntityWight extends EntityMob
     protected void initEntityAI()
     {
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIWander(this, 0.25D));
+        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
+        tasks.addTask(2, new EntityAIWander(this, 1.0D));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
@@ -37,6 +38,12 @@ public class EntityWight extends EntityMob
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.5D);
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
     }
 
     @Override
