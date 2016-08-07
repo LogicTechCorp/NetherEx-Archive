@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
-import nex.client.model.entity.ModelPordenfer;
 import nex.client.model.entity.ModelTortoise;
 
 @SideOnly(Side.CLIENT)

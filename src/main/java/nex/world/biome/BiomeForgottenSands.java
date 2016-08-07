@@ -4,7 +4,6 @@ import net.minecraft.init.Blocks;
 import nex.api.biome.feature.BiomeFeatureGlowStone;
 import nex.api.biome.feature.BiomeFeatureLava;
 import nex.entity.hostile.EntityPordenfer;
-import nex.world.biome.feature.BiomeFeatureDungeon;
 
 public class BiomeForgottenSands extends NetherBiomeBase
 {
@@ -18,6 +17,5 @@ public class BiomeForgottenSands extends NetherBiomeBase
 
         biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
         biomeFeatures.add(new BiomeFeatureLava(4, 4, 120, Blocks.NETHERRACK.getDefaultState(), false));
-        biomeFeatures.add(new BiomeFeatureDungeon(1, 33, 60, Blocks.SOUL_SAND.getDefaultState()));
     }
 }

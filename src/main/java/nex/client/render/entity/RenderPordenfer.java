@@ -8,7 +8,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelPordenfer;
-import nex.client.model.entity.ModelWight;
 
 @SideOnly(Side.CLIENT)
 public class RenderPordenfer extends RenderLiving

@@ -7,7 +7,6 @@ import nex.api.biome.feature.BiomeFeatureMinable;
 import nex.entity.neutral.EntityMogus;
 import nex.registry.ModBlocks;
 import nex.world.biome.feature.BiomeFeatureBigMushroom;
-import nex.world.biome.feature.BiomeFeatureDungeon;
 import nex.world.biome.feature.BiomeFeatureEnoki;
 
 public class BiomeFungiForest extends NetherBiomeBase
@@ -25,7 +24,6 @@ public class BiomeFungiForest extends NetherBiomeBase
         biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
         biomeFeatures.add(new BiomeFeatureEnoki(6, 64, 120));
         biomeFeatures.add(new BiomeFeatureMinable(16, 10, 108, ModBlocks.QUARTZ_ORE.getDefaultState(), 14, ModBlocks.NETHERRACK.getDefaultState()));
-        biomeFeatures.add(new BiomeFeatureDungeon(1, 33, 60, ModBlocks.NETHERRACK.getDefaultState()));
         biomeFeatures.add(new BiomeFeatureBigMushroom(256, 32, 120, Blocks.RED_MUSHROOM_BLOCK, ModBlocks.MYCELIUM.getDefaultState()));
         biomeFeatures.add(new BiomeFeatureBigMushroom(256, 32, 120, Blocks.BROWN_MUSHROOM_BLOCK, ModBlocks.MYCELIUM.getDefaultState()));
         biomeFeatures.add(new BiomeFeatureBush(8, 32, 120, Blocks.RED_MUSHROOM.getDefaultState(), ModBlocks.MYCELIUM.getDefaultState()));
