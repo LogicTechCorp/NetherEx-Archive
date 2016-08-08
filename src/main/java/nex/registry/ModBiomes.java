@@ -1,7 +1,6 @@
 package nex.registry;
 
 import net.minecraft.world.biome.Biome;
-import nex.api.NetherExAPI;
 import nex.api.biome.NetherBiome;
 import nex.world.biome.*;
 
@@ -20,9 +19,6 @@ public class ModBiomes
         FUNGI_FOREST = new BiomeFungiForest(42, "fungi_forest", 20, new Biome.BiomeProperties("Fungi Forest"));
         BLAZING_INFERNO = new BiomeBlazingInferno(43, "blazing_inferno", 20, new Biome.BiomeProperties("Blazing Inferno"));
         FREEZING_BLIZZARD = new BiomeFreezingBlizzard(44, "freezing_blizzard", 10, new Biome.BiomeProperties("Freezing Blizzard"));
-
-        NetherExAPI.addDungeonMob("Blaze", 100);
-        NetherExAPI.addDungeonMob("LavaSlime", 100);
     }
 
     public static void register()
