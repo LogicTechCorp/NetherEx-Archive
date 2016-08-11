@@ -4,7 +4,7 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
-import nex.api.NetherExAPI;
+import nex.registry.BiomeRegistry;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class GenLayerNetherBiome extends GenLayerNether
             for(int j = 0; j < areaWidth; ++j)
             {
                 initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                biomeIDs[j + i * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(NetherExAPI.getBiomeEntries()).biome);
+                biomeIDs[j + i * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(BiomeRegistry.getBiomes()).biome);
             }
         }
 

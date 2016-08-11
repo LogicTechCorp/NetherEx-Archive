@@ -11,7 +11,7 @@ import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import nex.registry.ModBiomes;
+import nex.api.biome.NEXBiomes;
 import nex.world.gen.layer.GenLayerNether;
 
 import javax.annotation.Nullable;
@@ -125,7 +125,7 @@ public class BiomeProviderNether extends BiomeProvider
 
             for(int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(biomeIDs[i], ModBiomes.HELL);
+                listToReuse[i] = Biome.getBiome(biomeIDs[i], NEXBiomes.hell.get());
             }
 
             return listToReuse;

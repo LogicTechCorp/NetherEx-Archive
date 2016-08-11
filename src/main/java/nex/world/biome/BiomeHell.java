@@ -1,31 +1,73 @@
 package nex.world.biome;
 
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
-import nex.api.biome.feature.*;
+import nex.NetherEx;
+import nex.Settings;
 
-public class BiomeHell extends NetherBiomeBase
+public class BiomeHell extends NEXBiome
 {
-    public BiomeHell(int id, String name, int weight, BiomeProperties properties)
+    public BiomeHell()
     {
-        super(id, name, weight, properties);
+        super(new BiomeProperties("Hell"));
+    }
 
-        spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
-        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
+    @Override
+    public int getId()
+    {
+        return Settings.hellBiomeId;
+    }
 
-        biomeFeatures.add(new BiomeFeatureGlowStone(10, 4, 120));
-        biomeFeatures.add(new BiomeFeatureLava(4, 32, 120, Blocks.NETHERRACK.getDefaultState(), false));
-        biomeFeatures.add(new BiomeFeatureLava(8, 10, 108, Blocks.NETHERRACK.getDefaultState(), true));
-        biomeFeatures.add(new BiomeFeatureMinable(16, 10, 108, Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState()));
-        biomeFeatures.add(new BiomeFeatureMinable(4, 28, 36, Blocks.MAGMA.getDefaultState(), 33, Blocks.NETHERRACK.getDefaultState()));
-        biomeFeatures.add(new BiomeFeatureBush(2, 32, 120, Blocks.RED_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState()));
-        biomeFeatures.add(new BiomeFeatureBush(2, 32, 120, Blocks.BROWN_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState()));
-        biomeFeatures.add(new BiomeFeatureFire(2, 32, 120));
+    @Override
+    public String getName()
+    {
+        return NetherEx.MOD_ID + ":hell";
+    }
+
+    @Override
+    public Biome getBiome()
+    {
+        return this;
+    }
+
+    @Override
+    public boolean generateFire()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean generateGlowStone()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean generateQuartz()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean generateMagma()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean generateLavaTrap()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean generateLavaSpring()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean generateMushrooms()
+    {
+        return true;
     }
 }
