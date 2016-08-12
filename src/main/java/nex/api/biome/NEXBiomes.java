@@ -1,11 +1,10 @@
 package nex.api.biome;
 
-import com.google.common.base.Optional;
 import net.minecraft.world.biome.Biome;
 
 public class NEXBiomes
 {
-    public static Optional<Biome> hell = Optional.absent();
+    public static Biome hell;
 
     public static final Registry REGISTRY = createRegistry();
 

@@ -125,7 +125,7 @@ public class BiomeProviderNether extends BiomeProvider
 
             for(int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(biomeIDs[i], NEXBiomes.hell.get());
+                listToReuse[i] = Biome.getBiome(biomeIDs[i], NEXBiomes.hell);
             }
 
             return listToReuse;

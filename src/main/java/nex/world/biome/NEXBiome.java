@@ -2,8 +2,10 @@ package nex.world.biome;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import nex.Settings;
 import nex.api.biome.INetherBiome;
+import nex.api.biome.NEXBiomes;
 
 public abstract class NEXBiome extends Biome implements INetherBiome
 {
@@ -23,6 +25,15 @@ public abstract class NEXBiome extends Biome implements INetherBiome
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
+
+        register();
+    }
+
+    private void register()
+    {
+        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
+        Biome.registerBiome(getId(), getName(), this);
+        NEXBiomes.REGISTRY.addBiome(this);
     }
 
     public abstract int getId();

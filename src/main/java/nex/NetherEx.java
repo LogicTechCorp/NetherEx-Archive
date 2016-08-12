@@ -1,5 +1,6 @@
 package nex;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -7,6 +8,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.proxy.IProxy;
 import nex.registry.BiomeRegistry;
+import nex.registry.BlockRegistry;
+import nex.registry.ItemRegistry;
+import nex.registry.ModEntityRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,11 +33,15 @@ public class NetherEx
     public static IProxy proxy;
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");
+    public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         Settings.init(new File(event.getModConfigurationDirectory(), "NetherEx.cfg"));
+        BlockRegistry.init();
+        ItemRegistry.init();
+        ModEntityRegistry.init();
         BiomeRegistry.init();
 
         if(Settings.assignedBiomeIds)
