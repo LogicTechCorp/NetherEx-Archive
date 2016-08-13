@@ -22,7 +22,6 @@ public class BiomeDecoratorHell extends BiomeDecorator
         }
         else
         {
-            chunkPos = pos;
             genDecorations(world, random, biome, pos);
             decorating = false;
         }
@@ -32,16 +31,16 @@ public class BiomeDecoratorHell extends BiomeDecorator
     {
         INetherBiome netherBiome = (INetherBiome) biome;
 
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
         generateOres(world, rand, netherBiome, pos);
         netherBiome.genDecorations(world, rand, pos);
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, pos));
     }
 
     private void generateOres(World world, Random rand, INetherBiome netherBiome, BlockPos pos)
     {
-        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, chunkPos));
+        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
         netherBiome.generateOres(world, rand, pos);
-        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, chunkPos));
+        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
     }
 }

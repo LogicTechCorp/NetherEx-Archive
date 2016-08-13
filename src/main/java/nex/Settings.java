@@ -9,7 +9,7 @@ import java.io.File;
 
 public class Settings
 {
-    public static Configuration config;
+    private static Configuration config;
     public static boolean assignedBiomeIds = false;
 
     public static void init(File file)
