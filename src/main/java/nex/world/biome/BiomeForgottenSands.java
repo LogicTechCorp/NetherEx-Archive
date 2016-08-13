@@ -21,18 +21,8 @@ public class BiomeForgottenSands extends NEXBiome
 
         spawnableMonsterList.add(new SpawnListEntry(EntityPordenfer.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 20, 4, 4));
-    }
 
-    @Override
-    public int getId()
-    {
-        return Settings.forgottenSandsBiomeId;
-    }
-
-    @Override
-    public String getName()
-    {
-        return NetherEx.MOD_ID + ":forgottenSands";
+        register(Settings.forgottenSandsBiomeId, NetherEx.MOD_ID + ":forgottenSands");
     }
 
     @Override
@@ -46,12 +36,12 @@ public class BiomeForgottenSands extends NEXBiome
     {
         for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1); i++)
         {
-            glowStone1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 10; i++)
         {
-            glowStone2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 16; i++)

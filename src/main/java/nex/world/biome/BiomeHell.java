@@ -22,19 +22,10 @@ public class BiomeHell extends NEXBiome
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
+
+        register(Settings.hellBiomeId, NetherEx.MOD_ID + ":hell");
     }
 
-    @Override
-    public int getId()
-    {
-        return Settings.hellBiomeId;
-    }
-
-    @Override
-    public String getName()
-    {
-        return NetherEx.MOD_ID + ":hell";
-    }
 
     @Override
     public Biome getBiome()
@@ -47,12 +38,12 @@ public class BiomeHell extends NEXBiome
     {
         for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1); i++)
         {
-            glowStone1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 10; i++)
         {
-            glowStone2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 8; i++)

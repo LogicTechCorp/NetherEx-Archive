@@ -1,4 +1,4 @@
-package nex.api.biome;
+package nex.api.world.biome;
 
 import net.minecraft.world.biome.Biome;
 
@@ -31,7 +31,5 @@ public class NEXBiomes
     public interface Registry
     {
         Biome addBiome(INetherBiome biome);
-
-        Biome addBiome(INetherBiome biome, int weight);
     }
 }

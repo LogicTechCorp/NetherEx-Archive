@@ -33,18 +33,8 @@ public class BiomeFungiForest extends NEXBiome
         fillerBlock = NEXBlocks.netherrack.getDefaultState();
 
         spawnableMonsterList.add(new SpawnListEntry(EntityMogus.class, 100, 8, 8));
-    }
 
-    @Override
-    public int getId()
-    {
-        return Settings.fungiForestBiomeId;
-    }
-
-    @Override
-    public String getName()
-    {
-        return NetherEx.MOD_ID + ":fungiForest";
+        register(Settings.fungiForestBiomeId, NetherEx.MOD_ID + ":fungiForest");
     }
 
     @Override
@@ -58,12 +48,12 @@ public class BiomeFungiForest extends NEXBiome
     {
         for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1); i++)
         {
-            glowStone1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 10; i++)
         {
-            glowStone2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 8; i++)

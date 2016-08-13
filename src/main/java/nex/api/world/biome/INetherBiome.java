@@ -1,4 +1,4 @@
-package nex.api.biome;
+package nex.api.world.biome;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

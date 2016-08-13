@@ -6,8 +6,8 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
-import nex.api.biome.INetherBiome;
-import nex.api.biome.NEXBiomes;
+import nex.api.world.biome.INetherBiome;
+import nex.api.world.biome.NEXBiomes;
 import nex.world.WorldProviderNether;
 import nex.world.biome.*;
 
@@ -33,12 +33,6 @@ public class BiomeRegistry implements NEXBiomes.Registry
     @Override
     public Biome addBiome(INetherBiome biome)
     {
-        return addBiome(biome, 10);
-    }
-
-    @Override
-    public Biome addBiome(INetherBiome biome, int weight)
-    {
         if(biome == null)
         {
             throw new IllegalArgumentException("Biome to be added must not be null");
@@ -46,7 +40,6 @@ public class BiomeRegistry implements NEXBiomes.Registry
 
         biomes.add(new BiomeManager.BiomeEntry(biome.getBiome(), 10));
         return biome.getBiome();
-
     }
 
     public static ImmutableList<BiomeManager.BiomeEntry> getBiomes()

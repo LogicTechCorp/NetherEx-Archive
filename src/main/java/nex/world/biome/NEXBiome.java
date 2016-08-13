@@ -7,16 +7,15 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import nex.Settings;
-import nex.api.biome.INetherBiome;
-import nex.api.biome.NEXBiomes;
+import nex.api.world.biome.INetherBiome;
+import nex.api.world.biome.NEXBiomes;
 import nex.api.world.gen.feature.*;
 
 import java.util.Random;
 
 public abstract class NEXBiome extends Biome implements INetherBiome
 {
-    public final WorldGenerator glowStone1 = new WorldGenGlowStone();
-    public final WorldGenerator glowStone2 = new WorldGenGlowStone();
+    public final WorldGenerator glowStone = new WorldGenGlowStone();
     public final WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
     public final WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
     public final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, Blocks.NETHERRACK.getDefaultState());
@@ -43,8 +42,6 @@ public abstract class NEXBiome extends Biome implements INetherBiome
         spawnableCaveCreatureList.clear();
 
         theBiomeDecorator = new BiomeDecoratorHell();
-
-        register();
     }
 
     @Override
@@ -53,16 +50,13 @@ public abstract class NEXBiome extends Biome implements INetherBiome
         super.decorate(world, rand, pos);
     }
 
-    private void register()
+    public void register(int id, String name)
     {
         BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
-        Biome.registerBiome(getId(), getName(), this);
+        Biome.registerBiome(id, name, this);
         NEXBiomes.REGISTRY.addBiome(this);
+
     }
-
-    public abstract int getId();
-
-    public abstract String getName();
 
     private static void assignBiomeIds()
     {

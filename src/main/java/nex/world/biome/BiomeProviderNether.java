@@ -11,10 +11,9 @@ import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import nex.api.biome.NEXBiomes;
+import nex.api.world.biome.NEXBiomes;
 import nex.world.gen.layer.GenLayerNether;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -98,13 +97,13 @@ public class BiomeProviderNether extends BiomeProvider
     }
 
     @Override
-    public Biome[] getBiomes(@Nullable Biome[] oldBiomeList, int x, int z, int width, int depth)
+    public Biome[] getBiomes(Biome[] oldBiomeList, int x, int z, int width, int depth)
     {
         return getBiomes(oldBiomeList, x, z, width, depth, true);
     }
 
     @Override
-    public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
+    public Biome[] getBiomes(Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
     {
         IntCache.resetIntCache();
 

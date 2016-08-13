@@ -18,11 +18,11 @@ import java.util.Random;
 
 public class BiomeBlazingInferno extends NEXBiome
 {
-    public final WorldGenerator lavaSpring = new WorldGenLava(NEXBlocks.netherrack.getStateFromMeta(1), false);
-    public final WorldGenerator lavaTrap = new WorldGenLava(NEXBlocks.netherrack.getStateFromMeta(1), true);
-    public final WorldGenerator lavaPool = new WorldGenPool(Blocks.LAVA, NEXBlocks.netherrack.getStateFromMeta(1));
-    public final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, NEXBlocks.netherrack.getStateFromMeta(1));
-    public final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, NEXBlocks.netherrack.getStateFromMeta(1));
+    private final WorldGenerator lavaSpring = new WorldGenLava(NEXBlocks.netherrack.getStateFromMeta(1), false);
+    private final WorldGenerator lavaTrap = new WorldGenLava(NEXBlocks.netherrack.getStateFromMeta(1), true);
+    private final WorldGenerator lavaPool = new WorldGenPool(Blocks.LAVA, NEXBlocks.netherrack.getStateFromMeta(1));
+    private final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, NEXBlocks.netherrack.getStateFromMeta(1));
+    private final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, NEXBlocks.netherrack.getStateFromMeta(1));
 
 
     public BiomeBlazingInferno()
@@ -35,18 +35,7 @@ public class BiomeBlazingInferno extends NEXBiome
         spawnableMonsterList.add(new SpawnListEntry(EntityTortoise.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 20, 4, 4));
 
-    }
-
-    @Override
-    public int getId()
-    {
-        return Settings.blazingInfernoBiomeId;
-    }
-
-    @Override
-    public String getName()
-    {
-        return NetherEx.MOD_ID + ":blazingInferno";
+        register(Settings.blazingInfernoBiomeId, NetherEx.MOD_ID + ":blazingInferno");
     }
 
     @Override
@@ -60,12 +49,12 @@ public class BiomeBlazingInferno extends NEXBiome
     {
         for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1); i++)
         {
-            glowStone1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 10; i++)
         {
-            glowStone2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 8; i++)

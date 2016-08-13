@@ -7,7 +7,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
-import nex.api.biome.INetherBiome;
+import nex.api.world.biome.INetherBiome;
 
 import java.util.Random;
 

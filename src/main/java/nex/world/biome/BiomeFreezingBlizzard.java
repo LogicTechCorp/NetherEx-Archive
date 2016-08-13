@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class BiomeFreezingBlizzard extends NEXBiome
 {
-    public final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, NEXBlocks.netherrack.getStateFromMeta(2));
+    private final WorldGenerator quartz = new WorldGenMinable(NEXBlocks.quartzOre.getStateFromMeta(2), 14, NEXBlocks.netherrack.getStateFromMeta(2));
 
     public BiomeFreezingBlizzard()
     {
@@ -27,18 +27,8 @@ public class BiomeFreezingBlizzard extends NEXBiome
 
         spawnableMonsterList.add(new SpawnListEntry(EntityWight.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 20, 4, 4));
-    }
 
-    @Override
-    public int getId()
-    {
-        return Settings.freezingBlizzardBiomeId;
-    }
-
-    @Override
-    public String getName()
-    {
-        return NetherEx.MOD_ID + ":freezingBlizzard";
+        register(Settings.freezingBlizzardBiomeId, NetherEx.MOD_ID + ":freezingBlizzard");
     }
 
     @Override
@@ -52,12 +42,12 @@ public class BiomeFreezingBlizzard extends NEXBiome
     {
         for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1); i++)
         {
-            glowStone1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
         }
 
         for(int i = 0; i < 10; i++)
         {
-            glowStone2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
         }
     }
 

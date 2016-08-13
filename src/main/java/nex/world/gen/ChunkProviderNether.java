@@ -20,7 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import nex.api.biome.INetherBiome;
+import nex.api.world.biome.INetherBiome;
 
 import javax.annotation.Nullable;
 import java.util.List;
