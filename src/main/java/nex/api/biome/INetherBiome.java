@@ -8,21 +8,11 @@ import java.util.Random;
 
 public interface INetherBiome
 {
-    void decorate(World world, Random rand, BlockPos pos);
-
     Biome getBiome();
 
-    boolean generateFire();
+    void decorate(World world, Random rand, BlockPos pos);
 
-    boolean generateGlowStone();
+    void genDecorations(World world, Random rand, BlockPos pos);
 
-    boolean generateQuartz();
-
-    boolean generateMagma();
-
-    boolean generateLavaTrap();
-
-    boolean generateLavaSpring();
-
-    boolean generateMushrooms();
+    void generateOres(World world, Random rand, BlockPos pos);
 }

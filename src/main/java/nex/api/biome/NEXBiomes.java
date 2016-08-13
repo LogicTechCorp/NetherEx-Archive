@@ -5,6 +5,10 @@ import net.minecraft.world.biome.Biome;
 public class NEXBiomes
 {
     public static Biome hell;
+    public static Biome forgottenSands;
+    public static Biome fungiForest;
+    public static Biome blazingInferno;
+    public static Biome freezingBlizzard;
 
     public static final Registry REGISTRY = createRegistry();
 

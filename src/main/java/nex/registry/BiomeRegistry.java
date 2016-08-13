@@ -9,7 +9,7 @@ import net.minecraftforge.common.DimensionManager;
 import nex.api.biome.INetherBiome;
 import nex.api.biome.NEXBiomes;
 import nex.world.WorldProviderNether;
-import nex.world.biome.BiomeHell;
+import nex.world.biome.*;
 
 import java.util.Set;
 
@@ -20,6 +20,10 @@ public class BiomeRegistry implements NEXBiomes.Registry
     public static void init()
     {
         NEXBiomes.hell = new BiomeHell();
+        NEXBiomes.forgottenSands = new BiomeForgottenSands();
+        NEXBiomes.fungiForest = new BiomeFungiForest();
+        NEXBiomes.blazingInferno = new BiomeBlazingInferno();
+        NEXBiomes.freezingBlizzard = new BiomeFreezingBlizzard();
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
