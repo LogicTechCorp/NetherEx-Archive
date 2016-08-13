@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "bottom": "nex:blocks/netherrack_biotic",
+    "top": "nex:blocks/netherrack_mycelium_top",
+    "side": "nex:blocks/netherrack_mycelium_side"
+  }
+}

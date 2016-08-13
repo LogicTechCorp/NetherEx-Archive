@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "nex:blocks/ore_quartz_biotic"
+  }
+}
