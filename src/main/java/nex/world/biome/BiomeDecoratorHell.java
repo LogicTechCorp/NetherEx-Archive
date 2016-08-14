@@ -30,15 +30,15 @@ public class BiomeDecoratorHell extends BiomeDecorator
     private void genDecorations(World world, Random rand, INetherBiome biome, BlockPos pos)
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
-        generateOres(world, rand, biome, pos);
+        generateOre(world, rand, biome, pos);
         biome.genDecorations(world, rand, pos);
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, pos));
     }
 
-    private void generateOres(World world, Random rand, INetherBiome biome, BlockPos pos)
+    private void generateOre(World world, Random rand, INetherBiome biome, BlockPos pos)
     {
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
-        biome.generateOres(world, rand, pos);
+        biome.generateOre(world, rand, pos);
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
     }
 }

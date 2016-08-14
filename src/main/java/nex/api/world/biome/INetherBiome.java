@@ -31,5 +31,5 @@ public interface INetherBiome
      * @param rand  The random number generator
      * @param pos   The block position in world
      */
-    void generateOres(World world, Random rand, BlockPos pos);
+    void generateOre(World world, Random rand, BlockPos pos);
 }
