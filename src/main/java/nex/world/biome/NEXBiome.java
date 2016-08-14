@@ -38,13 +38,10 @@ public abstract class NEXBiome extends Biome implements INetherBiome
     private static void assignBiomeIds()
     {
         int[] unusedBiomeIds = new int[256];
+
         checkBiomeIds(unusedBiomeIds);
 
         Settings.hellBiomeId = assignBiomeId(unusedBiomeIds, Settings.hellBiomeId);
-        Settings.forgottenSandsBiomeId = assignBiomeId(unusedBiomeIds, Settings.forgottenSandsBiomeId);
-        Settings.fungiForestBiomeId = assignBiomeId(unusedBiomeIds, Settings.fungiForestBiomeId);
-        Settings.blazingInfernoBiomeId = assignBiomeId(unusedBiomeIds, Settings.blazingInfernoBiomeId);
-        Settings.freezingBlizzardBiomeId = assignBiomeId(unusedBiomeIds, Settings.freezingBlizzardBiomeId);
     }
 
     private static int[] checkBiomeIds(int[] unusedBiomeIds)

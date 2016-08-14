@@ -20,10 +20,6 @@ public class BiomeRegistry implements NEXBiomes.Registry
     public static void init()
     {
         NEXBiomes.hell = new BiomeHell();
-        NEXBiomes.forgottenSands = new BiomeForgottenSands();
-        NEXBiomes.fungiForest = new BiomeFungiForest();
-        NEXBiomes.blazingInferno = new BiomeBlazingInferno();
-        NEXBiomes.freezingBlizzard = new BiomeFreezingBlizzard();
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);

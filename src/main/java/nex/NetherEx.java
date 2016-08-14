@@ -10,7 +10,6 @@ import nex.proxy.IProxy;
 import nex.registry.BiomeRegistry;
 import nex.registry.BlockRegistry;
 import nex.registry.ItemRegistry;
-import nex.registry.ModEntityRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,7 +40,6 @@ public class NetherEx
         Settings.init(new File(event.getModConfigurationDirectory(), "NetherEx.cfg"));
         BlockRegistry.init();
         ItemRegistry.init();
-        ModEntityRegistry.init();
         BiomeRegistry.init();
 
         if(Settings.assignedBiomeIds)

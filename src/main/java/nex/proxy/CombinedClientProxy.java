@@ -3,7 +3,6 @@ package nex.proxy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.model.ModelRegistry;
-import nex.client.render.RenderRegistry;
 
 @SideOnly(Side.CLIENT)
 public class CombinedClientProxy implements IProxy
@@ -12,7 +11,6 @@ public class CombinedClientProxy implements IProxy
     public void preInit()
     {
         ModelRegistry.init();
-        RenderRegistry.init();
     }
 
     @Override

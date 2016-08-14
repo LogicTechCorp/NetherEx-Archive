@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import nex.enums.EnumNetherrackType;
 
 import java.util.Random;
 
@@ -16,7 +15,7 @@ public class BlockModQuartzOre extends BlockVariantContainer
 {
     public BlockModQuartzOre()
     {
-        super("quartz_ore", Material.ROCK, SoundType.STONE, EnumNetherrackType.class);
+        super("quartz_ore", Material.ROCK, SoundType.STONE, BlockModNetherrack.EnumType.class);
 
         setHardness(3.0F);
         setResistance(5.0F);

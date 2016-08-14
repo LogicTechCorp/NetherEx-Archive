@@ -26,10 +26,6 @@ public class Settings
     private static void loadConfig()
     {
         hellBiomeId = config.get("biome.ids", "Hell", -1).getInt();
-        forgottenSandsBiomeId = config.get("biome.ids", "Forgotten Sands", -1).getInt();
-        fungiForestBiomeId = config.get("biome.ids", "Fungi Forest", -1).getInt();
-        blazingInfernoBiomeId = config.get("biome.ids", "Blazing Inferno", -1).getInt();
-        freezingBlizzardBiomeId = config.get("biome.ids", "Freezing Blizzard", -1).getInt();
 
         if(config.hasChanged())
         {
@@ -40,10 +36,6 @@ public class Settings
     public static void saveNewBiomeIds()
     {
         config.get("biome.ids", "Hell", -1).set(hellBiomeId);
-        config.get("biome.ids", "Forgotten Sands", -1).set(forgottenSandsBiomeId);
-        config.get("biome.ids", "Fungi Forest", -1).set(fungiForestBiomeId);
-        config.get("biome.ids", "Blazing Inferno", -1).set(blazingInfernoBiomeId);
-        config.get("biome.ids", "Freezing Blizzard", -1).set(freezingBlizzardBiomeId);
 
         config.save();
     }
@@ -58,8 +50,4 @@ public class Settings
     }
 
     public static int hellBiomeId;
-    public static int forgottenSandsBiomeId;
-    public static int fungiForestBiomeId;
-    public static int blazingInfernoBiomeId;
-    public static int freezingBlizzardBiomeId;
 }
