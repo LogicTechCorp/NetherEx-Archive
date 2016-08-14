@@ -24,7 +24,6 @@ public class BiomeBlazingInferno extends NEXBiome
     private final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, NEXBlocks.netherrack.getStateFromMeta(1));
     private final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, NEXBlocks.netherrack.getStateFromMeta(1));
 
-
     public BiomeBlazingInferno()
     {
         super(new BiomeProperties("Blazing Inferno"));

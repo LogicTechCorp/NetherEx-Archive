@@ -372,7 +372,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        INetherBiome biome = (INetherBiome) world.getBiome(blockPos.add(16, 0, 16));
+        Biome biome = world.getBiome(blockPos.add(16, 0, 16));
         BlockFalling.fallInstantly = true;
 
         netherBridge.generateStructure(world, rand, chunkPos);

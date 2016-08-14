@@ -44,12 +44,6 @@ public abstract class NEXBiome extends Biome implements INetherBiome
         theBiomeDecorator = new BiomeDecoratorHell();
     }
 
-    @Override
-    public void decorate(World world, Random rand, BlockPos pos)
-    {
-        super.decorate(world, rand, pos);
-    }
-
     public void register(int id, String name)
     {
         BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
