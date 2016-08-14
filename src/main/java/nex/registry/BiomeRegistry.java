@@ -9,7 +9,7 @@ import net.minecraftforge.common.DimensionManager;
 import nex.api.world.biome.INetherBiome;
 import nex.api.world.biome.NEXBiomes;
 import nex.world.WorldProviderNether;
-import nex.world.biome.*;
+import nex.world.biome.BiomeHell;
 
 import java.util.Set;
 

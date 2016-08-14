@@ -9,7 +9,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.api.block.NEXBlocks;
 import nex.block.IVariantContainer;
 import nex.registry.ItemRegistry;
 
@@ -18,9 +17,6 @@ public class ModelRegistry
 {
     public static void init()
     {
-        registerBlockItemModel(NEXBlocks.enokiStem, new ModelResourceLocation(NEXBlocks.enokiStem.getRegistryName(), "normal"));
-        registerBlockItemModel(NEXBlocks.enokiCap, new ModelResourceLocation(NEXBlocks.enokiCap.getRegistryName().toString()));
-
         ItemRegistry.variantContainers.forEach(ModelRegistry::registerEnumModels);
     }
 
