@@ -1,29 +1,14 @@
 package nex.world.biome;
 
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import nex.Settings;
 import nex.api.world.biome.INetherBiome;
 import nex.api.world.biome.NEXBiomes;
-import nex.api.world.gen.feature.*;
-
-import java.util.Random;
 
 public abstract class NEXBiome extends Biome implements INetherBiome
 {
-    public final WorldGenerator glowStone = new WorldGenGlowStone();
-    public final WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
-    public final WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
-    public final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, Blocks.NETHERRACK.getDefaultState());
-    public final WorldGenerator fire = new WorldGenFire();
-    public final WorldGenerator redMushroom = new WorldGenBush(Blocks.RED_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
-    public final WorldGenerator brownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
-    public final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
-
     static
     {
         assignBiomeIds();
@@ -40,8 +25,6 @@ public abstract class NEXBiome extends Biome implements INetherBiome
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
-
-        theBiomeDecorator = new BiomeDecoratorHell();
     }
 
     public void register(int id, String name)

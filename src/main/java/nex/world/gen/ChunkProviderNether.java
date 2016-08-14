@@ -20,7 +20,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import nex.api.world.biome.INetherBiome;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -373,13 +372,17 @@ public class ChunkProviderNether extends ChunkProviderHell
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
         Biome biome = world.getBiomeForCoordsBody(blockPos);
+
         BlockFalling.fallInstantly = true;
 
         ForgeEventFactory.onChunkPopulate(true, this, world, rand, chunkX, chunkZ, false);
         netherBridge.generateStructure(world, rand, chunkPos);
         ForgeEventFactory.onChunkPopulate(false, this, world, rand, chunkX, chunkZ, false);
 
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
         biome.decorate(world, rand, blockPos);
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
+
         BlockFalling.fallInstantly = false;
     }
 
