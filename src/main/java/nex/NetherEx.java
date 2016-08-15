@@ -10,8 +10,6 @@ import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPEND)
 public class NetherEx
 {
@@ -33,7 +31,6 @@ public class NetherEx
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        Configuration.init(new File(event.getModConfigurationDirectory(), "NetherEx.cfg"));
         ModBiomes.init();
         proxy.preInit();
     }
