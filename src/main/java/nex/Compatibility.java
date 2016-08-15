@@ -57,7 +57,7 @@ public class Compatibility
             if(biomeId != -1)
             {
                 compound = new NBTTagCompound();
-                compound.setInteger("biomeId", biomeId);
+                compound.setInteger("BiomeId", biomeId);
 
                 LOGGER.info(String.format("The attempt to get a biome id, for %s, was successful.", message.getSender()));
                 FMLInterModComms.sendMessage(message.getSender(), "biomeId", compound);
