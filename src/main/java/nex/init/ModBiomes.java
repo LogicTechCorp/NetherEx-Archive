@@ -58,6 +58,19 @@ public class ModBiomes
         return false;
     }
 
+    public static int getBiomeId(String name)
+    {
+        for(BiomeManager.BiomeEntry entry : biomeEntries)
+        {
+            if(entry.biome.getRegistryName().getResourcePath().equals(name))
+            {
+                return Biome.getIdForBiome(entry.biome);
+            }
+        }
+
+        return -1;
+    }
+
     public static ImmutableList<BiomeManager.BiomeEntry> getBiomeEntries()
     {
         return ImmutableList.copyOf(biomeEntries);

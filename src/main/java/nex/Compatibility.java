@@ -10,9 +10,20 @@ import org.apache.logging.log4j.Logger;
 
 public class Compatibility
 {
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx|Compatibility");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|Compatibility");
 
     public static void init()
+    {
+        for(FMLInterModComms.IMCMessage message : FMLInterModComms.fetchRuntimeMessages(NetherEx.instance))
+        {
+            if(message.key.equals("getBiomeId"))
+            {
+                getBiomeId(message);
+            }
+        }
+    }
+
+    public static void postInit()
     {
         for(FMLInterModComms.IMCMessage message : FMLInterModComms.fetchRuntimeMessages(NetherEx.instance))
         {
@@ -24,6 +35,41 @@ public class Compatibility
             {
                 removeBiome(message);
             }
+        }
+    }
+
+    private static void getBiomeId(FMLInterModComms.IMCMessage message)
+    {
+        if(!message.isNBTMessage())
+        {
+            return;
+        }
+
+        NBTTagCompound compound = message.getNBTValue();
+        String biomeName = compound.getString("BiomeName");
+
+        if(!biomeName.equals(""))
+        {
+            LOGGER.info(String.format("Attempting to get the a biome id for %s.", message.getSender()));
+
+            int biomeId = ModBiomes.getBiomeId(biomeName);
+
+            if(biomeId != -1)
+            {
+                compound = new NBTTagCompound();
+                compound.setInteger("biomeId", biomeId);
+
+                LOGGER.info(String.format("The attempt to get a biome id, for %s, was successful.", message.getSender()));
+                FMLInterModComms.sendMessage(message.getSender(), "biomeId", compound);
+            }
+            else
+            {
+                LOGGER.info(String.format("The attempt to get a biome id, for %s, was unsuccessful. It is not a nether biome.", message.getSender()));
+            }
+        }
+        else
+        {
+            LOGGER.warn(String.format("An attempt to get a biome id for, %s, was unsuccessful. The biome name was null.", message.getSender()));
         }
     }
 
