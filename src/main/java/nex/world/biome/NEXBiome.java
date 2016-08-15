@@ -1,18 +1,16 @@
 package nex.world.biome;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import nex.Settings;
-import nex.api.world.biome.INetherBiome;
-import nex.api.world.biome.NEXBiomes;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import nex.NetherEx;
+import nex.init.ModBiomes;
 
-public abstract class NEXBiome extends Biome implements INetherBiome
+public abstract class NEXBiome extends Biome
 {
-    static
-    {
-        assignBiomeIds();
-    }
 
     public NEXBiome(BiomeProperties properties)
     {
@@ -27,55 +25,10 @@ public abstract class NEXBiome extends Biome implements INetherBiome
         spawnableCaveCreatureList.clear();
     }
 
-    public void register(int id, String name)
+    public void register(String name, int weight)
     {
         BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
-        Biome.registerBiome(id, name, this);
-        NEXBiomes.REGISTRY.addBiome(this);
-
-    }
-
-    private static void assignBiomeIds()
-    {
-        int[] unusedBiomeIds = new int[256];
-
-        checkBiomeIds(unusedBiomeIds);
-
-        Settings.hellBiomeId = assignBiomeId(unusedBiomeIds, Settings.hellBiomeId);
-    }
-
-    private static int[] checkBiomeIds(int[] unusedBiomeIds)
-    {
-        for(int i = 0; i < 256; i++)
-        {
-            unusedBiomeIds[i] = Biome.getBiome(i) == null ? i : -1;
-        }
-
-        return unusedBiomeIds;
-    }
-
-    private static int assignBiomeId(int[] unusedBiomeIds, int biomeId)
-    {
-        if(biomeId == -1)
-        {
-            biomeId = findNextAvailableBiomeId(unusedBiomeIds);
-            Settings.assignedBiomeIds = true;
-        }
-
-        return biomeId;
-    }
-
-    private static int findNextAvailableBiomeId(int[] unusedBiomeIds)
-    {
-        for(int i = 0; i < 256; i++)
-        {
-            if(unusedBiomeIds[i] != -1)
-            {
-                unusedBiomeIds[i] = -1;
-                return i;
-            }
-        }
-
-        return -1;
+        GameRegistry.register(setRegistryName(new ResourceLocation(NetherEx.MOD_ID, name)));
+        ModBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
     }
 }

@@ -11,7 +11,7 @@ import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import nex.api.world.biome.NEXBiomes;
+import nex.init.ModBiomes;
 import nex.world.gen.layer.GenLayerNether;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class BiomeProviderNether extends BiomeProvider
     private GenLayer genBiomes;
     private GenLayer biomeIndexLayer;
 
-    protected BiomeProviderNether()
+    private BiomeProviderNether()
     {
         biomeCache = new BiomeCache(this);
         biomesToSpawnIn = Lists.newArrayList();
@@ -72,13 +72,13 @@ public class BiomeProviderNether extends BiomeProvider
             biomes = new Biome[width * height];
         }
 
-        int[] biomeIDs = genBiomes.getInts(x, z, width, height);
+        int[] biomeIds = genBiomes.getInts(x, z, width, height);
 
         try
         {
             for(int i = 0; i < width * height; ++i)
             {
-                biomes[i] = Biome.getBiome(biomeIDs[i], Biomes.DEFAULT);
+                biomes[i] = Biome.getBiome(biomeIds[i], Biomes.DEFAULT);
             }
 
             return biomes;
@@ -120,11 +120,11 @@ public class BiomeProviderNether extends BiomeProvider
         }
         else
         {
-            int[] biomeIDs = biomeIndexLayer.getInts(x, z, width, length);
+            int[] biomeIds = biomeIndexLayer.getInts(x, z, width, length);
 
             for(int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(biomeIDs[i], NEXBiomes.hell);
+                listToReuse[i] = Biome.getBiome(biomeIds[i], ModBiomes.HELL);
             }
 
             return listToReuse;
@@ -142,13 +142,13 @@ public class BiomeProviderNether extends BiomeProvider
         int l = z + radius >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
-        int[] biomeIDs = genBiomes.getInts(i, j, i1, j1);
+        int[] biomeIds = genBiomes.getInts(i, j, i1, j1);
 
         try
         {
             for(int k1 = 0; k1 < i1 * j1; ++k1)
             {
-                Biome biome = Biome.getBiome(biomeIDs[k1]);
+                Biome biome = Biome.getBiome(biomeIds[k1]);
 
                 if(!allowed.contains(biome))
                 {
@@ -182,25 +182,25 @@ public class BiomeProviderNether extends BiomeProvider
         int l = z + range >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
-        int[] biomeIDs = genBiomes.getInts(i, j, i1, j1);
+        int[] biomeIds = genBiomes.getInts(i, j, i1, j1);
         int k1 = 0;
 
-        BlockPos blockpos = null;
+        BlockPos blockPos = null;
 
         for(int l1 = 0; l1 < i1 * j1; ++l1)
         {
             int i2 = i + l1 % i1 << 2;
             int j2 = j + l1 / i1 << 2;
-            Biome biome = Biome.getBiome(biomeIDs[l1]);
+            Biome biome = Biome.getBiome(biomeIds[l1]);
 
-            if(biomes.contains(biome) && (blockpos == null || random.nextInt(k1 + 1) == 0))
+            if(biomes.contains(biome) && (blockPos == null || random.nextInt(k1 + 1) == 0))
             {
-                blockpos = new BlockPos(i2, 0, j2);
+                blockPos = new BlockPos(i2, 0, j2);
                 ++k1;
             }
         }
 
-        return blockpos;
+        return blockPos;
     }
 
     @Override
