@@ -3,6 +3,7 @@ package nex;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.init.ModBiomes;
@@ -38,14 +39,18 @@ public class NetherEx
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        Compatibility.init();
         proxy.init();
+    }
+
+    @Mod.EventHandler
+    public void handleIMC(FMLInterModComms.IMCEvent event)
+    {
+        IMCHandler.handleMessages(event);
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        Compatibility.postInit();
         proxy.postInit();
     }
 }

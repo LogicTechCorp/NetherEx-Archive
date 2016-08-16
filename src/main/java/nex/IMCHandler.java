@@ -8,32 +8,25 @@ import nex.init.ModBiomes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Compatibility
+public class IMCHandler
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|Compatibility");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|IMCHandler");
 
-    public static void init()
+    public static void handleMessages(FMLInterModComms.IMCEvent event)
     {
-        for(FMLInterModComms.IMCMessage message : FMLInterModComms.fetchRuntimeMessages(NetherEx.instance))
+        for(FMLInterModComms.IMCMessage message : event.getMessages())
         {
-            if(message.key.equals("getBiomeId"))
+            switch(message.key)
             {
-                getBiomeId(message);
-            }
-        }
-    }
-
-    public static void postInit()
-    {
-        for(FMLInterModComms.IMCMessage message : FMLInterModComms.fetchRuntimeMessages(NetherEx.instance))
-        {
-            if(message.key.equals("addBiome"))
-            {
-                addBiome(message);
-            }
-            else if(message.key.equals("removeBiome"))
-            {
-                removeBiome(message);
+                case "getBiomeId":
+                    getBiomeId(message);
+                    break;
+                case "addBiome":
+                    addBiome(message);
+                    break;
+                case "removeBiome":
+                    removeBiome(message);
+                    break;
             }
         }
     }
@@ -50,7 +43,7 @@ public class Compatibility
 
         if(!biomeName.equals(""))
         {
-            LOGGER.info(String.format("Attempting to get the a biome id for %s.", message.getSender()));
+            LOGGER.info(String.format("Attempting to get a biome id for %s.", message.getSender()));
 
             int biomeId = ModBiomes.getBiomeId(biomeName);
 
@@ -69,7 +62,7 @@ public class Compatibility
         }
         else
         {
-            LOGGER.warn(String.format("An attempt to get a biome id for, %s, was unsuccessful. The biome name was null.", message.getSender()));
+            LOGGER.info(String.format("An attempt to get a biome id for, %s, was unsuccessful. The biome name was null.", message.getSender()));
         }
     }
 
@@ -103,12 +96,12 @@ public class Compatibility
             }
             else
             {
-                LOGGER.warn(String.format("An attempt to add the %s biome, from %s, to the Nether was unsuccessful. The biome weight was less than or equal to zero.", biome.getBiomeName(), message.getSender()));
+                LOGGER.info(String.format("An attempt to add the %s biome, from %s, to the Nether was unsuccessful. The biome weight was less than or equal to zero.", biome.getBiomeName(), message.getSender()));
             }
         }
         else
         {
-            LOGGER.warn(String.format("An attempt to add a biome, from %s, to the Nether was unsuccessful. The biome was null.", message.getSender()));
+            LOGGER.info(String.format("An attempt to add a biome, from %s, to the Nether was unsuccessful. The biome was null.", message.getSender()));
         }
     }
 
@@ -138,7 +131,7 @@ public class Compatibility
         }
         else
         {
-            LOGGER.warn(String.format("An attempt to remove a biome, from %s, from the Nether was unsuccessful. The biome was null.", message.getSender()));
+            LOGGER.info(String.format("An attempt to remove a biome, from %s, from the Nether was unsuccessful. The biome was null.", message.getSender()));
         }
     }
 }
