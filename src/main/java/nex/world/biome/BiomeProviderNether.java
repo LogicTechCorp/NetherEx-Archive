@@ -3,7 +3,6 @@ package nex.world.biome;
 import com.google.common.collect.Lists;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.init.Biomes;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -63,7 +62,7 @@ public class BiomeProviderNether extends BiomeProvider
     }
 
     @Override
-    public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
+    public Biome[] getBiomesForGeneration(Biome[] biomes, int chunkX, int chunkZ, int width, int height)
     {
         IntCache.resetIntCache();
 
@@ -72,74 +71,74 @@ public class BiomeProviderNether extends BiomeProvider
             biomes = new Biome[width * height];
         }
 
-        int[] biomeIds = genBiomes.getInts(x, z, width, height);
+        int[] biomeIds = genBiomes.getInts(chunkX, chunkZ, width, height);
 
         try
         {
             for(int i = 0; i < width * height; ++i)
             {
-                biomes[i] = Biome.getBiome(biomeIds[i], Biomes.DEFAULT);
+                biomes[i] = Biome.getBiome(biomeIds[i], ModBiomes.HELL);
             }
 
             return biomes;
         }
         catch(Throwable throwable)
         {
-            CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
-            CrashReportCategory crashreportcategory = crashreport.makeCategory("RawBiomeBlock");
-            crashreportcategory.addCrashSection("biomes[] size", biomes.length);
-            crashreportcategory.addCrashSection("x", x);
-            crashreportcategory.addCrashSection("z", z);
-            crashreportcategory.addCrashSection("w", width);
-            crashreportcategory.addCrashSection("h", height);
-            throw new ReportedException(crashreport);
+            CrashReport crashReport = CrashReport.makeCrashReport(throwable, "Invalid biome id");
+            CrashReportCategory crashReportCategory = crashReport.makeCategory("RawBiomeBlock");
+            crashReportCategory.addCrashSection("biomes[] size", biomes.length);
+            crashReportCategory.addCrashSection("x", chunkX);
+            crashReportCategory.addCrashSection("z", chunkZ);
+            crashReportCategory.addCrashSection("w", width);
+            crashReportCategory.addCrashSection("h", height);
+            throw new ReportedException(crashReport);
         }
     }
 
     @Override
-    public Biome[] getBiomes(Biome[] oldBiomeList, int x, int z, int width, int depth)
+    public Biome[] getBiomes(Biome[] biomes, int chunkX, int chunkZ, int width, int depth)
     {
-        return getBiomes(oldBiomeList, x, z, width, depth, true);
+        return getBiomes(biomes, chunkX, chunkZ, width, depth, true);
     }
 
     @Override
-    public Biome[] getBiomes(Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
+    public Biome[] getBiomes(Biome[] biomes, int chunkX, int chunkZ, int width, int length, boolean cacheFlag)
     {
         IntCache.resetIntCache();
 
-        if(listToReuse == null || listToReuse.length < width * length)
+        if(biomes == null || biomes.length < width * length)
         {
-            listToReuse = new Biome[width * length];
+            biomes = new Biome[width * length];
         }
 
-        if(cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0)
+        if(cacheFlag && width == 16 && length == 16 && (chunkX & 15) == 0 && (chunkZ & 15) == 0)
         {
-            Biome[] biomes = biomeCache.getCachedBiomes(x, z);
-            System.arraycopy(biomes, 0, listToReuse, 0, width * length);
-            return listToReuse;
+            Biome[] cachedBiomes = biomeCache.getCachedBiomes(chunkX, chunkZ);
+            System.arraycopy(cachedBiomes, 0, biomes, 0, width * length);
+            return biomes;
         }
         else
         {
-            int[] biomeIds = biomeIndexLayer.getInts(x, z, width, length);
+            int[] biomeIds = biomeIndexLayer.getInts(chunkX, chunkZ, width, length);
 
             for(int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(biomeIds[i], ModBiomes.HELL);
+                biomes[i] = Biome.getBiome(biomeIds[i], ModBiomes.HELL);
             }
 
-            return listToReuse;
+            return biomes;
         }
     }
 
     @Override
-    public boolean areBiomesViable(int x, int z, int radius, List<Biome> allowed)
+    public boolean areBiomesViable(int chunkX, int chunkZ, int radius, List<Biome> allowed)
     {
         IntCache.resetIntCache();
 
-        int i = x - radius >> 2;
-        int j = z - radius >> 2;
-        int k = x + radius >> 2;
-        int l = z + radius >> 2;
+        int i = chunkX - radius >> 2;
+        int j = chunkZ - radius >> 2;
+        int k = chunkX + radius >> 2;
+        int l = chunkZ + radius >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
         int[] biomeIds = genBiomes.getInts(i, j, i1, j1);
@@ -160,26 +159,26 @@ public class BiomeProviderNether extends BiomeProvider
         }
         catch(Throwable throwable)
         {
-            CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
-            CrashReportCategory crashreportcategory = crashreport.makeCategory("Layer");
-            crashreportcategory.addCrashSection("Layer", genBiomes.toString());
-            crashreportcategory.addCrashSection("x", x);
-            crashreportcategory.addCrashSection("z", z);
-            crashreportcategory.addCrashSection("radius", radius);
-            crashreportcategory.addCrashSection("allowed", allowed);
-            throw new ReportedException(crashreport);
+            CrashReport crashReport = CrashReport.makeCrashReport(throwable, "Invalid biome id");
+            CrashReportCategory crashReportCategory = crashReport.makeCategory("Layer");
+            crashReportCategory.addCrashSection("Layer", genBiomes.toString());
+            crashReportCategory.addCrashSection("x", chunkX);
+            crashReportCategory.addCrashSection("z", chunkZ);
+            crashReportCategory.addCrashSection("radius", radius);
+            crashReportCategory.addCrashSection("allowed", allowed);
+            throw new ReportedException(crashReport);
         }
     }
 
     @Override
-    public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random)
+    public BlockPos findBiomePosition(int chunkX, int chunkZ, int range, List<Biome> biomes, Random random)
     {
         IntCache.resetIntCache();
 
-        int i = x - range >> 2;
-        int j = z - range >> 2;
-        int k = x + range >> 2;
-        int l = z + range >> 2;
+        int i = chunkX - range >> 2;
+        int j = chunkZ - range >> 2;
+        int k = chunkX + range >> 2;
+        int l = chunkZ + range >> 2;
         int i1 = k - i + 1;
         int j1 = l - j + 1;
         int[] biomeIds = genBiomes.getInts(i, j, i1, j1);

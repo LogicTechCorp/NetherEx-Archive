@@ -18,18 +18,18 @@ public class GenLayerNetherBiome extends GenLayerNether
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] biomeIDs = IntCache.getIntCache(areaWidth * areaHeight);
+        int[] biomeIds = IntCache.getIntCache(areaWidth * areaHeight);
 
         for(int i = 0; i < areaHeight; ++i)
         {
             for(int j = 0; j < areaWidth; ++j)
             {
                 initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                biomeIDs[j + i * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(ModBiomes.getBiomeEntries()).biome);
+                biomeIds[j + i * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(ModBiomes.getBiomeEntries()).biome);
             }
         }
 
-        return biomeIDs;
+        return biomeIds;
     }
 
     private BiomeManager.BiomeEntry getWeightedBiomeEntry(List<BiomeManager.BiomeEntry> biomeEntries)
