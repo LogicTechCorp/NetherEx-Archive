@@ -118,20 +118,20 @@ public class IMCHandler
 
         if(biome != null)
         {
-            LOGGER.info(String.format("Attempting to remove the %s biome, from %s, from the Nether.", biome.getBiomeName(), message.getSender()));
+            LOGGER.info(String.format("Attempting to remove the %s biome, for %s, from the Nether.", biome.getBiomeName(), message.getSender()));
 
             if(ModBiomes.removeBiome(biome))
             {
-                LOGGER.info(String.format("The attempt to remove the %s biome, from %s, from the Nether was successful.", biome.getBiomeName(), message.getSender()));
+                LOGGER.info(String.format("The attempt to remove the %s biome, for %s, from the Nether was successful.", biome.getBiomeName(), message.getSender()));
             }
             else
             {
-                LOGGER.info(String.format("The attempt to remove the %s biome, from %s, was unsuccessful. It is not a Nether biome.", biome.getBiomeName(), message.getSender()));
+                LOGGER.info(String.format("The attempt to remove the %s biome, for %s, was unsuccessful. It is not a Nether biome.", biome.getBiomeName(), message.getSender()));
             }
         }
         else
         {
-            LOGGER.info(String.format("An attempt to remove a biome, from %s, from the Nether was unsuccessful. The biome was null.", message.getSender()));
+            LOGGER.info(String.format("An attempt to remove a biome, for %s, from the Nether was unsuccessful. The biome was null.", message.getSender()));
         }
     }
 }
