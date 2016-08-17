@@ -76,6 +76,7 @@ public class IMCHandler
         NBTTagCompound compound = message.getNBTValue();
         int biomeId = compound.getInteger("BiomeId");
         int biomeWeight = compound.getInteger("BiomeWeight");
+
         Biome biome = Biome.getBiome(biomeId);
         BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(biome, biomeWeight);
 
@@ -114,6 +115,7 @@ public class IMCHandler
 
         NBTTagCompound compound = message.getNBTValue();
         int biomeId = compound.getInteger("BiomeId");
+
         Biome biome = Biome.getBiome(biomeId);
 
         if(biome != null)
