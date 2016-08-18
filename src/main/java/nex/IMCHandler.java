@@ -57,12 +57,12 @@ public class IMCHandler
             }
             else
             {
-                LOGGER.info(String.format("The attempt to get a biome id, for %s, was unsuccessful. It is not a nether biome.", message.getSender()));
+                LOGGER.info(String.format("The attempt to get a biome id, for %s, was unsuccessful. It is not a Nether biome.", message.getSender()));
             }
         }
         else
         {
-            LOGGER.info(String.format("An attempt to get a biome id for, %s, was unsuccessful. The biome name was null.", message.getSender()));
+            LOGGER.info(String.format("An attempt to get a biome id, for %s, was unsuccessful. The biome name was null.", message.getSender()));
         }
     }
 
@@ -84,25 +84,25 @@ public class IMCHandler
         {
             if(biomeWeight > 0)
             {
-                LOGGER.info(String.format("Attempting to add the %s biome, from %s, to the Nether.", biome.getBiomeName(), message.getSender()));
+                LOGGER.info(String.format("Attempting to add the %s biome, for %s, to the Nether.", biome.getBiomeName(), message.getSender()));
 
                 if(ModBiomes.addBiome(entry))
                 {
-                    LOGGER.info(String.format("The attempt to add the %s biome, from %s, to the Nether was successful.", biome.getBiomeName(), message.getSender()));
+                    LOGGER.info(String.format("The attempt to add the %s biome, for %s, to the Nether was successful.", biome.getBiomeName(), message.getSender()));
                 }
                 else
                 {
-                    LOGGER.info(String.format("The attempt to modify the %s biome weight was successful.", biome.getBiomeName()));
+                    LOGGER.info(String.format("The %s biome was already added to the Nether. Modified the biome's weight instead.", biome.getBiomeName()));
                 }
             }
             else
             {
-                LOGGER.info(String.format("An attempt to add the %s biome, from %s, to the Nether was unsuccessful. The biome weight was less than or equal to zero.", biome.getBiomeName(), message.getSender()));
+                LOGGER.info(String.format("An attempt to add the %s biome, for %s, to the Nether was unsuccessful. The biome weight was less than or equal to zero.", biome.getBiomeName(), message.getSender()));
             }
         }
         else
         {
-            LOGGER.info(String.format("An attempt to add a biome, from %s, to the Nether was unsuccessful. The biome was null.", message.getSender()));
+            LOGGER.info(String.format("An attempt to add a biome, for %s, to the Nether was unsuccessful. The biome was null.", message.getSender()));
         }
     }
 
@@ -128,7 +128,7 @@ public class IMCHandler
             }
             else
             {
-                LOGGER.info(String.format("The attempt to remove the %s biome, for %s, was unsuccessful. It is not a Nether biome.", biome.getBiomeName(), message.getSender()));
+                LOGGER.info(String.format("The attempt to remove the %s biome, for %s, from the Nether was unsuccessful. It is not a Nether biome.", biome.getBiomeName(), message.getSender()));
             }
         }
         else
