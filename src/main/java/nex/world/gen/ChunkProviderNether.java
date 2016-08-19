@@ -78,6 +78,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         noiseGenDepth = new NoiseGeneratorOctaves(rand, 16);
 
         InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, noiseGenSoulSandGravel, noiseGenNetherrack, noiseGenScale, noiseGenDepth);
+        ctx = TerrainGen.getModdedNoiseGenerators(world, rand, ctx);
 
         noiseGen1 = ctx.getLPerlin1();
         noiseGen2 = ctx.getLPerlin2();
