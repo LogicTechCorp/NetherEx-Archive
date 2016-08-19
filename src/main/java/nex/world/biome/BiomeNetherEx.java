@@ -9,10 +9,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.init.ModBiomes;
 
-public abstract class NEXBiome extends Biome
+public abstract class BiomeNetherEx extends Biome
 {
-
-    public NEXBiome(BiomeProperties properties)
+    public BiomeNetherEx(BiomeProperties properties)
     {
         super(properties);
 

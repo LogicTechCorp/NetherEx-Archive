@@ -6,7 +6,7 @@ import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.world.biome.Biome;
 
-public class BiomeHell extends NEXBiome
+public class BiomeHell extends BiomeNetherEx
 {
     public BiomeHell()
     {

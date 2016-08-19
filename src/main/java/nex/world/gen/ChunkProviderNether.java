@@ -389,78 +389,78 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         netherBridge.generateStructure(world, rand, chunkPos);
 
-        if(TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
         {
             for(int k = 0; k < 8; ++k)
             {
-                this.lavaSpring.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, this.rand.nextInt(16) + 8));
+                lavaSpring.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
             }
         }
 
-        if(TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.FIRE))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.FIRE))
         {
-            for(int i1 = 0; i1 < this.rand.nextInt(this.rand.nextInt(10) + 1) + 1; ++i1)
+            for(int i1 = 0; i1 < rand.nextInt(rand.nextInt(10) + 1) + 1; ++i1)
             {
-                this.fire.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, this.rand.nextInt(16) + 8));
+                fire.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
             }
         }
 
-        if(TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.GLOWSTONE))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.GLOWSTONE))
         {
-            for(int j1 = 0; j1 < this.rand.nextInt(this.rand.nextInt(10) + 1); ++j1)
+            for(int j1 = 0; j1 < rand.nextInt(rand.nextInt(10) + 1); ++j1)
             {
-                this.glowStone1.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, this.rand.nextInt(16) + 8));
+                glowStone1.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
             }
 
             for(int k1 = 0; k1 < 10; ++k1)
             {
-                this.glowStone2.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
+                glowStone2.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }
         }
 
-        ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, chunkX, chunkZ, false);
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(this.world, this.rand, blockPos));
+        ForgeEventFactory.onChunkPopulate(false, this, world, rand, chunkX, chunkZ, false);
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
 
-        if(TerrainGen.decorate(this.world, this.rand, blockPos, DecorateBiomeEvent.Decorate.EventType.SHROOM))
+        if(TerrainGen.decorate(world, rand, blockPos, DecorateBiomeEvent.Decorate.EventType.SHROOM))
         {
-            if(this.rand.nextBoolean())
+            if(rand.nextBoolean())
             {
-                this.brownMushroom.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
+                brownMushroom.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }
 
-            if(this.rand.nextBoolean())
+            if(rand.nextBoolean())
             {
-                this.redMushroom.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
+                redMushroom.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }
         }
 
-        if(TerrainGen.generateOre(this.world, this.rand, quartz, blockPos, OreGenEvent.GenerateMinable.EventType.QUARTZ))
+        if(TerrainGen.generateOre(world, rand, quartz, blockPos, OreGenEvent.GenerateMinable.EventType.QUARTZ))
         {
             for(int l1 = 0; l1 < 16; ++l1)
             {
-                this.quartz.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16), this.rand.nextInt(108) + 10, this.rand.nextInt(16)));
+                quartz.generate(world, rand, blockPos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
             }
         }
 
-        if(TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_MAGMA))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_MAGMA))
         {
             for(int l = 0; l < 4; ++l)
             {
-                this.magma.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16), this.rand.nextInt(9) + 28, this.rand.nextInt(16)));
+                magma.generate(world, rand, blockPos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
             }
         }
 
-        if(TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
         {
             for(int j2 = 0; j2 < 16; ++j2)
             {
-                this.lavaTrap.generate(this.world, this.rand, blockPos.add(this.rand.nextInt(16), this.rand.nextInt(108) + 10, this.rand.nextInt(16)));
+                lavaTrap.generate(world, rand, blockPos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
             }
         }
 
-        biome.decorate(this.world, this.rand, blockPos);
+        biome.decorate(world, rand, blockPos);
 
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(this.world, this.rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
         BlockFalling.fallInstantly = false;
     }
 
@@ -490,13 +490,13 @@ public class ChunkProviderNether extends ChunkProviderHell
     }
 
     @Override
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
+    public BlockPos getStrongholdGen(World world, String structureName, BlockPos pos)
     {
         return null;
     }
 
     @Override
-    public void recreateStructures(Chunk chunkIn, int chunkX, int chunkZ)
+    public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         netherBridge.generate(world, chunkX, chunkZ, null);
     }
