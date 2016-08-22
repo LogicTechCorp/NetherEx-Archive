@@ -22,6 +22,8 @@ public abstract class BiomeNetherEx extends Biome
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
+
+        theBiomeDecorator = new BiomeDecoratorNether();
     }
 
     public void register(String name, int weight)

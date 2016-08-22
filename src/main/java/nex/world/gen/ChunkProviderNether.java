@@ -22,6 +22,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import nex.api.IEnhancedNetherBiome;
 
 import java.util.List;
 import java.util.Random;
@@ -96,46 +97,55 @@ public class ChunkProviderNether extends ChunkProviderHell
     {
         buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
-        for(int i = 0; i < 4; i++)
+        for(int x = 0; x < 4; x++)
         {
-            for(int j = 0; j < 4; j++)
+            for(int z = 0; z < 4; z++)
             {
-                for(int k = 0; k < 16; k++)
+                for(int y = 0; y < 16; y++)
                 {
-                    double d1 = buffer[(i * 5 + j) * 17 + k];
-                    double d2 = buffer[(((i * 5) + j + 1) * 17) + k];
-                    double d3 = buffer[((((i + 1) * 5) + j) * 17) + k];
-                    double d4 = buffer[((i + 1) * 5 + j + 1) * 17 + k];
-                    double d5 = (buffer[(i * 5 + j) * 17 + k + 1] - d1) * 0.125D;
-                    double d6 = (buffer[(i * 5 + j + 1) * 17 + k + 1] - d2) * 0.125D;
-                    double d7 = (buffer[((i + 1) * 5 + j) * 17 + k + 1] - d3) * 0.125D;
-                    double d8 = (buffer[((i + 1) * 5 + j + 1) * 17 + k + 1] - d4) * 0.125D;
+                    double d1 = buffer[(x * 5 + z) * 17 + y];
+                    double d2 = buffer[(((x * 5) + z + 1) * 17) + y];
+                    double d3 = buffer[((((x + 1) * 5) + z) * 17) + y];
+                    double d4 = buffer[((x + 1) * 5 + z + 1) * 17 + y];
+                    double d5 = (buffer[(x * 5 + z) * 17 + y + 1] - d1) * 0.125D;
+                    double d6 = (buffer[(x * 5 + z + 1) * 17 + y + 1] - d2) * 0.125D;
+                    double d7 = (buffer[((x + 1) * 5 + z) * 17 + y + 1] - d3) * 0.125D;
+                    double d8 = (buffer[((x + 1) * 5 + z + 1) * 17 + y + 1] - d4) * 0.125D;
 
-                    for(int i2 = 0; i2 < 8; ++i2)
+                    for(int y2 = 0; y2 < 8; y2++)
                     {
                         double d10 = d1;
                         double d11 = d2;
                         double d12 = (d3 - d1) * 0.25D;
                         double d13 = (d4 - d2) * 0.25D;
 
-                        for(int j2 = 0; j2 < 4; ++j2)
+                        for(int x2 = 0; x2 < 4; x2++)
                         {
                             double d15 = d10;
                             double d16 = (d11 - d10) * 0.25D;
 
-                            for(int k2 = 0; k2 < 4; ++k2)
+                            for(int z2 = 0; z2 < 4; ++z2)
                             {
                                 IBlockState state = null;
+                                IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
-                                int l2 = j2 + i * 4;
-                                int i3 = i2 + k * 8;
-                                int j3 = k2 + j * 4;
+                                int posX = x + x2 * 4;
+                                int posY = y + y2 * 8;
+                                int posZ = z + z2 * 4;
 
-                                Biome biome = biomes[l2 + j3 * 16];
+                                Biome biome = biomes[posX + posZ * 16];
 
-                                if(k * 8 + i2 < 32)
+                                if(biome instanceof IEnhancedNetherBiome)
                                 {
-                                    state = Blocks.LAVA.getDefaultState();
+                                    if(((IEnhancedNetherBiome) biome).getOceanBlock().getMaterial() != Material.WATER)
+                                    {
+                                        oceanState = ((IEnhancedNetherBiome) biome).getOceanBlock();
+                                    }
+                                }
+
+                                if(y * 8 + y2 < 32)
+                                {
+                                    state = oceanState;
                                 }
 
                                 if(d15 > 0.0D)
@@ -143,7 +153,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                                     state = biome.fillerBlock;
                                 }
 
-                                primer.setBlockState(l2, i3, j3, state);
+                                primer.setBlockState(posX, posY, posZ, state);
                                 d15 += d16;
                             }
 
@@ -184,6 +194,15 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                 IBlockState topState = biome.topBlock;
                 IBlockState fillerState = biome.fillerBlock;
+                IBlockState oceanState = Blocks.LAVA.getDefaultState();
+
+                if(biome instanceof IEnhancedNetherBiome)
+                {
+                    if(((IEnhancedNetherBiome) biome).getOceanBlock().getMaterial() != Material.WATER)
+                    {
+                        oceanState = ((IEnhancedNetherBiome) biome).getOceanBlock();
+                    }
+                }
 
                 for(int y = 127; y >= 0; y--)
                 {
@@ -221,7 +240,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                                     if(y <= 32 && (topState == null || topState.getMaterial() == Material.AIR))
                                     {
-                                        topState = Blocks.LAVA.getDefaultState();
+                                        topState = oceanState;
                                     }
 
                                     i1 = l;
@@ -244,7 +263,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                                 }
                                 else if(i1 > 0)
                                 {
-                                    --i1;
+                                    i1--;
                                     primer.setBlockState(x, y, z, fillerState);
                                 }
                             }
@@ -392,7 +411,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
         {
-            for(int k = 0; k < 8; ++k)
+            for(int i = 0; i < 8; i++)
             {
                 lavaSpring.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
             }
@@ -400,7 +419,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.FIRE))
         {
-            for(int i1 = 0; i1 < rand.nextInt(rand.nextInt(10) + 1) + 1; ++i1)
+            for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1) + 1; i++)
             {
                 fire.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
             }
@@ -408,12 +427,12 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.GLOWSTONE))
         {
-            for(int j1 = 0; j1 < rand.nextInt(rand.nextInt(10) + 1); ++j1)
+            for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1); i++)
             {
                 glowStone1.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
             }
 
-            for(int k1 = 0; k1 < 10; ++k1)
+            for(int i = 0; i < 10; i++)
             {
                 glowStone2.generate(world, rand, blockPos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }
@@ -437,7 +456,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         if(TerrainGen.generateOre(world, rand, quartz, blockPos, OreGenEvent.GenerateMinable.EventType.QUARTZ))
         {
-            for(int l1 = 0; l1 < 16; ++l1)
+            for(int i = 0; i < 16; i++)
             {
                 quartz.generate(world, rand, blockPos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
             }
@@ -445,7 +464,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_MAGMA))
         {
-            for(int l = 0; l < 4; ++l)
+            for(int i = 0; i < 4; i++)
             {
                 magma.generate(world, rand, blockPos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
             }
@@ -453,7 +472,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
         {
-            for(int j2 = 0; j2 < 16; ++j2)
+            for(int i = 0; i < 16; i++)
             {
                 lavaTrap.generate(world, rand, blockPos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
             }
@@ -466,7 +485,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     }
 
     @Override
-    public boolean generateStructures(Chunk chunkIn, int x, int z)
+    public boolean generateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         return false;
     }
