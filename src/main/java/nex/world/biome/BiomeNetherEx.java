@@ -14,8 +14,7 @@ import nex.init.ModBiomes;
 public abstract class BiomeNetherEx extends Biome
 {
     public final WorldGenFire fire = new WorldGenFire();
-    public final WorldGenGlowStone1 glowStone1 = new WorldGenGlowStone1();
-    public final WorldGenGlowStone2 glowStone2 = new WorldGenGlowStone2();
+    public final WorldGenGlowStone1 glowStone = new WorldGenGlowStone1();
     public final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.NETHERRACK));
     public final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, BlockMatcher.forBlock(Blocks.NETHERRACK));
     public final WorldGenHellLava lavaTrap = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);

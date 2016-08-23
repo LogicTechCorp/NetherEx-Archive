@@ -35,11 +35,67 @@ public class ConfigurationHandler
 
         Property prop;
 
+        /* Client Settings */
         prop = config.get(Settings.CATEGORY_CLIENT, "renderNetherFog", true);
-        prop.setLanguageKey("configGuiSettings.nex:renderNetherFog");
+        prop.setLanguageKey("configGuiSettings.nex:client.renderNetherFog");
         properties.add(prop.getName());
 
         config.setCategoryPropertyOrder(Settings.CATEGORY_CLIENT, properties);
+
+        /* Hell Biome Settings */
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateLavaSprings", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateLavaSprings");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "lavaSpringsRarity", 8);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.lavaSpringsRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateFire", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateFire");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "fireRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.fireRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateGlowstone", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateGlowstone");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "glowstoneRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.glowstoneRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateMushrooms", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateMushrooms");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateQuartzOre", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateQuartzOre");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "quartzOreRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.quartzOreRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateMagma", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateMagma");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "magmaRarity", 4);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.magmaRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateLavaTraps", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateLavaTraps");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "lavaTrapsRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.lavaTrapsRarity");
+        properties.add(prop.getName());
+
+        config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_HELL, properties);
 
         if(config.hasChanged())
         {

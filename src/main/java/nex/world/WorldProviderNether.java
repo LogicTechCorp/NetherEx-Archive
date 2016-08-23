@@ -29,6 +29,6 @@ public class WorldProviderNether extends WorldProviderHell
     @SideOnly(Side.CLIENT)
     public boolean doesXZShowFog(int chunkX, int chunkZ)
     {
-        return Settings.renderNetherFog();
+        return Settings.RENDER_NETHER_FOG;
     }
 }

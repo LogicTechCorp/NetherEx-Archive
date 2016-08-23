@@ -1,12 +1,45 @@
 #Config Gui
 configGuiCategory.nex:client=Client Settings
 configGuiCategory.nex:client.tooltip=Settings that affect the client
+configGuiCategory.nex:biome=Biome Settings
+configGuiCategory.nex:biome.tooltip=Settings that affect the biomes
+configGuiCategory.nex:biomeHell=Hell Biome Settings
+configGuiCategory.nex:biomeHell.tooltip=Settings that affect the Hell biome
 
-configGuiSettings.nex:renderNetherFog=Render Nether Fog
-configGuiSettings.nex:renderNetherFog.tooltip=Does fog render in the Nether
+configGuiSettings.nex:client.renderNetherFog=Render Nether Fog
+configGuiSettings.nex:client.renderNetherFog.tooltip=Does fog render in the Nether
+
+configGuiSettings.nex:biomeHell.generateLavaSprings=Generate Lava Springs
+configGuiSettings.nex:biomeHell.generateLavaSprings.tooltip=Do lava springs generate in the Hell biome
+configGuiSettings.nex:biomeHell.lavaSpringsRarity=Lava Springs Rarity
+configGuiSettings.nex:biomeHell.lavaSpringsRarity.tooltip=How rare lava springs are in the Hell biome
+configGuiSettings.nex:biomeHell.generateFire=Generate Fire
+configGuiSettings.nex:biomeHell.generateFire.tooltip=Does fire generate in the Hell biome
+configGuiSettings.nex:biomeHell.fireRarity=Fire Rarity
+configGuiSettings.nex:biomeHell.fireRarity.tooltip=How fire is in the Hell biome
+configGuiSettings.nex:biomeHell.generateGlowstone=Generate Glowstone
+configGuiSettings.nex:biomeHell.generateGlowstone.tooltip=Does glowstone generate in the Hell biome
+configGuiSettings.nex:biomeHell.glowstoneRarity=Glowstone Rarity
+configGuiSettings.nex:biomeHell.glowstoneRarity.tooltip=How rare glowstone is in the Hell biome
+configGuiSettings.nex:biomeHell.generateMushrooms=Generate Mushrooms
+configGuiSettings.nex:biomeHell.generateMushrooms.tooltip=Do mushrooms generate in the Hell biome
+configGuiSettings.nex:biomeHell.generateQuartzOre=Generate Quartz Ore
+configGuiSettings.nex:biomeHell.generateQuartzOre.tooltip=Does quartz ore generate in the Hell biome
+configGuiSettings.nex:biomeHell.quartzOreRarity=Quartz Ore Rarity
+configGuiSettings.nex:biomeHell.quartzOreRarity.tooltip=How rare quartz ore is in the Hell biome
+configGuiSettings.nex:biomeHell.generateMagma=Generate Magma
+configGuiSettings.nex:biomeHell.generateMagma.tooltip=Does magma generate in the Hell biome
+configGuiSettings.nex:biomeHell.magmaRarity=Magma Rarity
+configGuiSettings.nex:biomeHell.magmaRarity.tooltip=How rare magma is in the Hell biome
+configGuiSettings.nex:biomeHell.generateLavaTraps=Generate Lava Traps
+configGuiSettings.nex:biomeHell.generateLavaTraps.tooltip=Do lava traps generate in the Hell biome
+configGuiSettings.nex:biomeHell.lavaTrapsRarity=Lava Traps Rarity
+configGuiSettings.nex:biomeHell.lavaTrapsRarity.tooltip=How rare lava traps are in the Hell biome
 
 configGuiTitle.nex:config=NetherEx Config
 configGuiTitle.nex:client=Client Settings
+configGuiTitle.nex:biome=Biome Settings
+configGuiTitle.nex:biomeHell=Hell Biome Settings
 
 #Creative Tab
 itemGroup.nex=NetherEx

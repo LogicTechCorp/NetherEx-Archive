@@ -7,6 +7,7 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import nex.Settings;
 
 import java.util.Random;
 
@@ -27,49 +28,70 @@ public class BiomeHell extends BiomeNetherEx
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
-        for(int i = 0; i < 8; i++)
+        if(Settings.GENERATE_LAVA_SPRINGS)
         {
-            lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            for(int i = 0; i < Settings.LAVA_SPRINGS_RARITY; i++)
+            {
+                lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            }
         }
 
-        for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1) + 1; i++)
+        if(Settings.GENERATE_FIRE)
         {
-            fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            for(int i = 0; i < rand.nextInt(Settings.FIRE_RARITY); i++)
+            {
+                fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            }
         }
 
-        for(int i = 0; i < rand.nextInt(rand.nextInt(10) + 1); i++)
+        if(Settings.GENERATE_GLOWSTONE)
         {
-            glowStone1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            for(int i = 0; i < rand.nextInt(Settings.GLOWSTONE_RARITY); i++)
+            {
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+            }
+
+            for(int i = 0; i < Settings.GLOWSTONE_RARITY; i++)
+            {
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            }
         }
 
-        for(int i = 0; i < 10; i++)
+        if(Settings.GENERATE_MUSHROOMS)
         {
-            glowStone2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            if(rand.nextBoolean())
+            {
+                brownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            }
+
+            if(rand.nextBoolean())
+            {
+                redMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            }
         }
 
-        if(rand.nextBoolean())
+        if(Settings.GENERATE_QUARTZ_ORE)
         {
-            brownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            for(int i = 0; i < Settings.QUARTZ_ORE_RARITY; i++)
+            {
+                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+            }
         }
 
-        if(rand.nextBoolean())
+        if(Settings.GENERATE_MAGMA)
         {
-            redMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+            for(int i = 0; i < Settings.MAGMA_RARITY; i++)
+            {
+                magma.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
+            }
         }
 
-        for(int i = 0; i < 16; i++)
+        if(Settings.GENERATE_LAVA_TRAPS)
         {
-            quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
-        }
-
-        for(int i = 0; i < 4; i++)
-        {
-            magma.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
-        }
-
-        for(int i = 0; i < 16; i++)
-        {
-            lavaTrap.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+            for(int i = 0; i < Settings.LAVA_TRAPS_RARITY; i++)
+            {
+                lavaTrap.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+            }
         }
     }
 }
