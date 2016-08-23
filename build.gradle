@@ -13,18 +13,19 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = version_major + '.' + version_minor + '.' + version_patch
+version = mod_version
 group = "NetherEx"
-archivesBaseName = "NetherEx_" + mcversion
+archivesBaseName = "NetherEx_" + minecraft_version
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    version = mcversion + "-" + forgeversion
+    version = minecraft_version + "-" + forge_version
+    mappings = mappings_version
     runDir = "run"
     replace '@VERSION@', project.version
-    mappings = "snapshot_20160713"
+    makeObfSourceJar = false
 }
 
 repositories {
@@ -47,18 +48,3 @@ processResources {
         exclude 'mcmod.info'
     }
 }
-
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    classifier = 'deobf'
-}
-
-tasks.build.dependsOn('sourceJar', 'deobfJar')
-
-artifacts {
-    archives sourceJar
-    archives deobfJar
-    archives jar
-}
-
-
