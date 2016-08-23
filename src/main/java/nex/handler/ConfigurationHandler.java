@@ -27,18 +27,18 @@ public class ConfigurationHandler
     private static void syncConfig(boolean load)
     {
         List<String> properties = Lists.newArrayList();
-        
+
         if(load)
         {
             config.load();
         }
-        
+
         Property prop;
-        
+
         prop = config.get(Settings.CATEGORY_CLIENT, "renderNetherFog", true);
         prop.setLanguageKey("configGuiSettings.nex:renderNetherFog");
         properties.add(prop.getName());
-        
+
         config.setCategoryPropertyOrder(Settings.CATEGORY_CLIENT, properties);
 
         if(config.hasChanged())
