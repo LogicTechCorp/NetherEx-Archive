@@ -1,2 +1,12 @@
+#Config Gui
+configGuiCategory.nex:client=Client Settings
+configGuiCategory.nex:client.tooltip=Settings that affect the client
+
+configGuiSettings.nex:renderNetherFog=Render Nether Fog
+configGuiSettings.nex:renderNetherFog.tooltip=Does fog render in the Nether
+
+configGuiTitle.nex:config=NetherEx Config
+configGuiTitle.nex:client=Client Settings
+
 #Creative Tab
 itemGroup.nex=NetherEx

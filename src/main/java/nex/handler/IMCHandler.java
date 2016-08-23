@@ -1,4 +1,4 @@
-package nex;
+package nex.handler;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.biome.Biome;
