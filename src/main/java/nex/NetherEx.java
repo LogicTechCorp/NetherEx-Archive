@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.ConfigurationHandler;
 import nex.handler.IMCHandler;
 import nex.init.ModBiomes;
+import nex.init.ModHandlers;
 import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +40,7 @@ public class NetherEx
     {
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "NetherEx.cfg"));
         ModBiomes.init();
+        ModHandlers.init();
         proxy.preInit();
     }
 
