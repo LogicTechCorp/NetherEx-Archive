@@ -8,6 +8,7 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import nex.world.WorldProviderNether;
 import nex.world.biome.BiomeHell;
+import nex.world.biome.BiomeRuthlessSands;
 
 import java.util.Set;
 
@@ -16,10 +17,12 @@ public class ModBiomes
     private static Set<BiomeManager.BiomeEntry> biomeEntries = Sets.newHashSet();
 
     public static final Biome HELL;
+    public static final Biome RUTHLESS_SANDS;
 
     static
     {
         HELL = new BiomeHell();
+        RUTHLESS_SANDS = new BiomeRuthlessSands();
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);

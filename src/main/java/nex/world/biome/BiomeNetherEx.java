@@ -13,14 +13,14 @@ import nex.init.ModBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
-    public final WorldGenFire fire = new WorldGenFire();
-    public final WorldGenGlowStone1 glowStone = new WorldGenGlowStone1();
+    public final WorldGenerator fire = new WorldGenFire();
+    public final WorldGenerator glowStone = new WorldGenGlowStone1();
     public final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.NETHERRACK));
     public final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, BlockMatcher.forBlock(Blocks.NETHERRACK));
-    public final WorldGenHellLava lavaTrap = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
-    public final WorldGenHellLava lavaSpring = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
-    public final WorldGenBush brownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM);
-    public final WorldGenBush redMushroom = new WorldGenBush(Blocks.RED_MUSHROOM);
+    public final WorldGenerator lavaTrap = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
+    public final WorldGenerator lavaSpring = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
+    public final WorldGenerator brownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM);
+    public final WorldGenerator redMushroom = new WorldGenBush(Blocks.RED_MUSHROOM);
 
     public BiomeNetherEx(BiomeProperties properties)
     {

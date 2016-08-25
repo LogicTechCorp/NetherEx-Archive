@@ -5,6 +5,8 @@ configGuiCategory.nex:biome=Biome Settings
 configGuiCategory.nex:biome.tooltip=Settings that affect the biomes
 configGuiCategory.nex:biomeHell=Hell Biome Settings
 configGuiCategory.nex:biomeHell.tooltip=Settings that affect the Hell biome
+configGuiCategory.nex:biomeRuthlessSands=Ruthless Sands Biome Settings
+configGuiCategory.nex:biomeRuthlessSands.tooltip=Settings that affect the Ruthless Sands biome
 
 configGuiSettings.nex:client.renderNetherFog=Render Nether Fog
 configGuiSettings.nex:client.renderNetherFog.tooltip=Does fog render in the Nether
@@ -36,10 +38,35 @@ configGuiSettings.nex:biomeHell.generateLavaTraps.tooltip=Do lava traps generate
 configGuiSettings.nex:biomeHell.lavaTrapsRarity=Lava Traps Rarity
 configGuiSettings.nex:biomeHell.lavaTrapsRarity.tooltip=How rare lava traps are in the Hell biome
 
+configGuiSettings.nex:biomeRuthlessSands.generateLavaSprings=Generate Lava Springs
+configGuiSettings.nex:biomeRuthlessSands.generateLavaSprings.tooltip=Do lava springs generate in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.lavaSpringsRarity=Lava Springs Rarity
+configGuiSettings.nex:biomeRuthlessSands.lavaSpringsRarity.tooltip=How rare lava springs are in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.generateGlowstone=Generate Glowstone
+configGuiSettings.nex:biomeRuthlessSands.generateGlowstone.tooltip=Does glowstone generate in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.glowstoneRarity=Glowstone Rarity
+configGuiSettings.nex:biomeRuthlessSands.glowstoneRarity.tooltip=How rare glowstone is in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.generateThornBushes=Generate Thorn Bushes
+configGuiSettings.nex:biomeRuthlessSands.generateThornBushes.tooltip=Do Thorn Bushes generate in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.thornBushesRarity=Thorn Bushes Rarity
+configGuiSettings.nex:biomeRuthlessSands.thornBushesRarity.tooltip=How rare Thorn Bushes are in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.generateQuartzOre=Generate Quartz Ore
+configGuiSettings.nex:biomeRuthlessSands.generateQuartzOre.tooltip=Does quartz ore generate in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.quartzOreRarity=Quartz Ore Rarity
+configGuiSettings.nex:biomeRuthlessSands.quartzOreRarity.tooltip=How rare quartz ore is in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.generateLavaTraps=Generate Lava Traps
+configGuiSettings.nex:biomeRuthlessSands.generateLavaTraps.tooltip=Do lava traps generate in the Ruthless Sands biome
+configGuiSettings.nex:biomeRuthlessSands.lavaTrapsRarity=Lava Traps Rarity
+configGuiSettings.nex:biomeRuthlessSands.lavaTrapsRarity.tooltip=How rare lava traps are in the Ruthless Sands biome
+
 configGuiTitle.nex:config=NetherEx Config
 configGuiTitle.nex:client=Client Settings
 configGuiTitle.nex:biome=Biome Settings
 configGuiTitle.nex:biomeHell=Hell Biome Settings
+configGuiTitle.nex:biomeRuthlessSands=Ruthless Sands Biome Settings
 
 #Creative Tab
 itemGroup.nex=NetherEx
+
+#Tiles
+tile.nex:thornBush.top.name=Thorn Bush

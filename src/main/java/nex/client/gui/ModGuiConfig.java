@@ -60,6 +60,7 @@ public class ModGuiConfig extends GuiConfig
             List<IConfigElement> elements = Lists.newArrayList();
 
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHell"), "configGuiCategory.nex:biomeHell", BiomeHellEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeRuthlessSands"), "configGuiCategory.nex:biomeRuthlessSands", BiomeRuthlessSandsEntry.class));
 
             return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME, false, false, I18n.format("configGuiTitle.nex:biome"));
         }
@@ -80,4 +81,18 @@ public class ModGuiConfig extends GuiConfig
         }
     }
 
+    public static class BiomeRuthlessSandsEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public BiomeRuthlessSandsEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_RUTHLESS_SANDS)).getChildElements();
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_RUTHLESS_SANDS, false, false, I18n.format("configGuiTitle.nex:biomeRuthlessSands"));
+        }
+    }
 }

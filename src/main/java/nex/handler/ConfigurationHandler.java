@@ -19,7 +19,7 @@ public class ConfigurationHandler
     {
         if(config == null)
         {
-            config = new Configuration(file);
+            config = new Configuration(file, true);
             syncConfig(true);
         }
     }
@@ -41,6 +41,7 @@ public class ConfigurationHandler
         properties.add(prop.getName());
 
         config.setCategoryPropertyOrder(Settings.CATEGORY_CLIENT, properties);
+        properties = Lists.newArrayList();
 
         /* Hell Biome Settings */
         prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateLavaSprings", true);
@@ -96,6 +97,51 @@ public class ConfigurationHandler
         properties.add(prop.getName());
 
         config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_HELL, properties);
+        properties = Lists.newArrayList();
+
+        /* Ruthless Sands Biome Settings */
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateLavaSprings", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateLavaSprings");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "lavaSpringsRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.lavaSpringsRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateThornBushes", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateThornBushes");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "thornBushesRarity", 32);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.thornBushesRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateGlowstone", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateGlowstone");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "glowstoneRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.glowstoneRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateQuartzOre", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateQuartzOre");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "quartzOreRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.quartzOreRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateLavaTraps", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateLavaTraps");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "lavaTrapsRarity", 32);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.lavaTrapsRarity");
+        properties.add(prop.getName());
+
+        config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, properties);
 
         if(config.hasChanged())
         {
