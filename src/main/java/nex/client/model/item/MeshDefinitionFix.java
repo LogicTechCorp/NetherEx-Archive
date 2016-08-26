@@ -1,4 +1,4 @@
-package nex.client.model;
+package nex.client.model.item;
 
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

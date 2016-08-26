@@ -1,4 +1,4 @@
-package nex.client.model;
+package nex.client.model.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;

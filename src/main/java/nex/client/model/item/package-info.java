@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package nex.client.model;
+package nex.client.model.item;
 
 import mcp.MethodsReturnNonnullByDefault;
 
