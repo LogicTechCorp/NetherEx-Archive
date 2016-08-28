@@ -394,7 +394,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        Biome biome = world.getBiomeForCoordsBody(blockPos.add(16, 0, 16));
+        Biome biome = world.getBiomeForCoordsBody(blockPos);
 
         BlockFalling.fallInstantly = true;
 

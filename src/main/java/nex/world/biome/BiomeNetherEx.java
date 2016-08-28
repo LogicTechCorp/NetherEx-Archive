@@ -1,10 +1,8 @@
 package nex.world.biome;
 
-import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -13,15 +11,6 @@ import nex.init.ModBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
-    public final WorldGenerator fire = new WorldGenFire();
-    public final WorldGenerator glowStone = new WorldGenGlowStone1();
-    public final WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.NETHERRACK));
-    public final WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, BlockMatcher.forBlock(Blocks.NETHERRACK));
-    public final WorldGenerator lavaTrap = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
-    public final WorldGenerator lavaSpring = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
-    public final WorldGenerator brownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM);
-    public final WorldGenerator redMushroom = new WorldGenBush(Blocks.RED_MUSHROOM);
-
     public BiomeNetherEx(BiomeProperties properties)
     {
         super(properties);

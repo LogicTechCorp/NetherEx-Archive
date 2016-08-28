@@ -24,6 +24,5 @@ public abstract class GenLayerNether extends GenLayer
         genLayerVZoom.initWorldGenSeed(seed);
 
         return new GenLayer[]{genLayer, genLayerVZoom};
-
     }
 }
