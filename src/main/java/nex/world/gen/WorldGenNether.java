@@ -28,21 +28,27 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import nex.Settings;
 import nex.init.ModBiomes;
-import nex.world.gen.feature.WorldGenThornBush;
+import nex.init.ModBlocks;
+import nex.world.gen.feature.WorldGenBigMushroom;
+import nex.world.gen.feature.*;
 
 import java.util.Random;
 
 public class WorldGenNether implements IWorldGenerator
 {
-    private WorldGenerator lavaSpring = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
+    private WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
     private WorldGenerator fire = new WorldGenFire();
     private WorldGenerator glowStone = new WorldGenGlowStone1();
-    private WorldGenerator brownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM);
-    private WorldGenerator redMushroom = new WorldGenBush(Blocks.RED_MUSHROOM);
+    private WorldGenerator bigBrownMushroom = new WorldGenBigMushroom(Blocks.BROWN_MUSHROOM_BLOCK, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator bigRedMushroom = new WorldGenBigMushroom(Blocks.RED_MUSHROOM_BLOCK, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM);
+    private WorldGenerator smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM);
     private WorldGenerator thornBush = new WorldGenThornBush();
+    private WorldGenerator fungalRoots = new WorldGenFungalRoots();
+    private WorldGenerator enoki = new WorldGenEnoki();
     private WorldGenerator quartz = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.NETHERRACK));
     private WorldGenerator magma = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, BlockMatcher.forBlock(Blocks.NETHERRACK));
-    private WorldGenerator lavaTrap = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
+    private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
 
     @Override
     public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
@@ -63,6 +69,10 @@ public class WorldGenNether implements IWorldGenerator
         {
             generateRuthlessSandsFeatures(world, rand, pos);
         }
+        else if(biome == ModBiomes.MUSHROOM_GROVE)
+        {
+            generateMushroomGroveFeatures(world, rand, pos);
+        }
     }
 
     private void generateHellFeatures(World world, Random rand, BlockPos pos)
@@ -71,7 +81,7 @@ public class WorldGenNether implements IWorldGenerator
         {
             for(int i = 0; i < Settings.BiomeHell.LAVA_SPRINGS_RARITY; i++)
             {
-                lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+                lavaSpring.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
             }
         }
 
@@ -79,7 +89,7 @@ public class WorldGenNether implements IWorldGenerator
         {
             for(int i = 0; i < rand.nextInt(Settings.BiomeHell.FIRE_RARITY); i++)
             {
-                fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+                fire.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
             }
         }
 
@@ -87,12 +97,12 @@ public class WorldGenNether implements IWorldGenerator
         {
             for(int i = 0; i < rand.nextInt(Settings.BiomeHell.GLOWSTONE_RARITY); i++)
             {
-                glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
             }
 
             for(int i = 0; i < Settings.BiomeHell.GLOWSTONE_RARITY; i++)
             {
-                glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
             }
         }
 
@@ -100,12 +110,12 @@ public class WorldGenNether implements IWorldGenerator
         {
             if(rand.nextBoolean())
             {
-                brownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+                smallBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
             }
 
             if(rand.nextBoolean())
             {
-                redMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+                smallRedMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
             }
         }
 
@@ -140,7 +150,7 @@ public class WorldGenNether implements IWorldGenerator
         {
             for(int i = 0; i < Settings.BiomeRuthlessSands.LAVA_SPRINGS_RARITY; i++)
             {
-                lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+                lavaSpring.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
             }
         }
 
@@ -148,12 +158,12 @@ public class WorldGenNether implements IWorldGenerator
         {
             for(int i = 0; i < rand.nextInt(Settings.BiomeRuthlessSands.GLOWSTONE_RARITY); i++)
             {
-                glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
             }
 
             for(int i = 0; i < Settings.BiomeRuthlessSands.GLOWSTONE_RARITY; i++)
             {
-                glowStone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
             }
         }
 
@@ -161,7 +171,7 @@ public class WorldGenNether implements IWorldGenerator
         {
             for(int i = 0; i < rand.nextInt(Settings.BiomeRuthlessSands.THORN_BUSHES_RARITY); i++)
             {
-                thornBush.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                thornBush.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(96) + 32, rand.nextInt(16)));
             }
         }
 
@@ -178,6 +188,77 @@ public class WorldGenNether implements IWorldGenerator
             for(int i = 0; i < Settings.BiomeRuthlessSands.LAVA_TRAPS_RARITY; i++)
             {
                 lavaTrap.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+            }
+        }
+    }
+
+    private void generateMushroomGroveFeatures(World world, Random rand, BlockPos pos)
+    {
+        if(Settings.BiomeMushroomGrove.GENERATE_GLOWSTONE)
+        {
+            for(int i = 0; i < Settings.BiomeMushroomGrove.GLOWSTONE_RARITY; i++)
+            {
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
+            }
+
+            for(int i = 0; i < Settings.BiomeMushroomGrove.GLOWSTONE_RARITY; i++)
+            {
+                glowStone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
+            }
+        }
+
+        if(Settings.BiomeMushroomGrove.GENERATE_FUNGAL_ROOTS)
+        {
+            for(int i = 0; i < Settings.BiomeMushroomGrove.FUNGAL_ROOTS_RARITY_RARITY; i++)
+            {
+                fungalRoots.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+            }
+        }
+
+        if(Settings.BiomeMushroomGrove.GENERATE_ENOKI)
+        {
+            for(int i = 0; i < Settings.BiomeMushroomGrove.ENOKI_RARITY; i++)
+            {
+                enoki.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+            }
+        }
+
+        if(Settings.BiomeMushroomGrove.GENERATE_BIG_MUSHROOMS)
+        {
+            bigBrownMushroom = new WorldGenBigMushroom(Blocks.BROWN_MUSHROOM_BLOCK, ModBlocks.MYCELIUM.getDefaultState());
+            bigRedMushroom = new WorldGenBigMushroom(Blocks.RED_MUSHROOM_BLOCK, ModBlocks.MYCELIUM.getDefaultState());
+
+            for(int i = 0; i < Settings.BiomeMushroomGrove.BIG_MUSHROOMS_RARITY; i++)
+            {
+                bigBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
+            }
+
+            for(int i = 0; i < Settings.BiomeMushroomGrove.BIG_MUSHROOMS_RARITY; i++)
+            {
+                bigRedMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
+            }
+        }
+
+        if(Settings.BiomeMushroomGrove.GENERATE_SMALL_MUSHROOMS)
+        {
+            if(rand.nextBoolean())
+            {
+                smallBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
+            }
+
+            if(rand.nextBoolean())
+            {
+                smallRedMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
+            }
+        }
+
+        if(Settings.BiomeMushroomGrove.GENERATE_QUARTZ_ORE)
+        {
+            quartz = new WorldGenMinableMeta(ModBlocks.QUARTZ_ORE.getDefaultState(), 14, ModBlocks.NETHERRACK.getDefaultState());
+
+            for(int i = 0; i < Settings.BiomeMushroomGrove.QUARTZ_ORE_RARITY; i++)
+            {
+                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
             }
         }
     }

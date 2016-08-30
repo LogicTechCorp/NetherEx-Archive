@@ -16,15 +16,28 @@
 
 package nex.init;
 
-import nex.block.BlockThorn;
+import net.minecraft.block.Block;
+import nex.block.*;
 
 public class ModBlocks
 {
-    public static final BlockThorn THORN;
+    public static final BlockThornBush THORN_BUSH;
+    public static final Block NETHERRACK;
+    public static final Block QUARTZ_ORE;
+    public static final Block MYCELIUM;
+    public static final BlockFungalRoots FUNGAL_ROOTS;
+    public static final BlockEnokiCap ENOKI_CAP;
+    public static final Block ENOKI_STEM;
 
     static
     {
-        THORN = new BlockThorn();
+        THORN_BUSH = new BlockThornBush();
+        NETHERRACK = new BlockNetherrack();
+        QUARTZ_ORE = new BlockQuartzOre();
+        MYCELIUM = new BlockMycelium();
+        FUNGAL_ROOTS = new BlockFungalRoots();
+        ENOKI_CAP = new BlockEnokiCap();
+        ENOKI_STEM = new BlockEnokiStem();
     }
 
     public static void init()

@@ -21,6 +21,7 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.world.biome.Biome;
+import nex.Settings;
 
 public class BiomeHell extends BiomeNetherEx
 {
@@ -33,6 +34,6 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
 
-        register("hell", 10);
+        register("hell", Settings.BiomeHell.BIOME_WEIGHT);
     }
 }

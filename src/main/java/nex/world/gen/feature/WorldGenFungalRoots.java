@@ -16,8 +16,6 @@
 
 package nex.world.gen.feature;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -25,18 +23,18 @@ import nex.init.ModBlocks;
 
 import java.util.Random;
 
-public class WorldGenThornBush extends WorldGenerator
+public class WorldGenFungalRoots extends WorldGenerator
 {
-    public boolean generate(World world, Random rand, BlockPos pos)
+    @Override
+    public boolean generate(World world, Random rand, BlockPos position)
     {
         for(int i = 0; i < 64; ++i)
         {
-            BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-            Block blockDown = world.getBlockState(newPos.down()).getBlock();
+            BlockPos newPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if((blockDown == Blocks.SAND || blockDown == Blocks.SOUL_SAND) && ModBlocks.THORN_BUSH.canPlaceBlockAt(world, newPos))
+            if(world.isAirBlock(newPos) && ModBlocks.FUNGAL_ROOTS.canPlaceBlockAt(world, newPos))
             {
-                ModBlocks.THORN_BUSH.generate(world, rand, newPos);
+                ModBlocks.FUNGAL_ROOTS.generate(world, newPos);
             }
         }
 

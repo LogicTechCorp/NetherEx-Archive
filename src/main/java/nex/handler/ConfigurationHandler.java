@@ -60,6 +60,10 @@ public class ConfigurationHandler
         properties = Lists.newArrayList();
 
         /* Hell Biome Settings */
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "biomeWeight", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.biomeWeight");
+        properties.add(prop.getName());
+
         prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateLavaSprings", true);
         prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateLavaSprings");
         properties.add(prop.getName());
@@ -116,6 +120,9 @@ public class ConfigurationHandler
         properties = Lists.newArrayList();
 
         /* Ruthless Sands Biome Settings */
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "biomeWeight", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.biomeWeight");
+        properties.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateLavaSprings", true);
         prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateLavaSprings");
@@ -125,20 +132,20 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.lavaSpringsRarity");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateThornBushes", true);
-        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateThornBushes");
-        properties.add(prop.getName());
-
-        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "thornBushesRarity", 32);
-        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.thornBushesRarity");
-        properties.add(prop.getName());
-
         prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateGlowstone", true);
         prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateGlowstone");
         properties.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "glowstoneRarity", 10);
         prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.glowstoneRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateThornBushes", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateThornBushes");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "thornBushesRarity", 32);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.thornBushesRarity");
         properties.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateQuartzOre", true);
@@ -158,6 +165,58 @@ public class ConfigurationHandler
         properties.add(prop.getName());
 
         config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, properties);
+        properties = Lists.newArrayList();
+
+        /* Mushroom Grove Biome Settings */
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "biomeWeight", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.biomeWeight");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateGlowstone", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateGlowstone");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "glowstoneRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.glowstoneRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateFungalRoots", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateFungalRoots");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootsRarity", 8);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.fungalRootsRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootsRarity", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateEnoki");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "enokiRarity", 8);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.enokiRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateBigMushrooms", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateBigMushrooms");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "bigMushroomsRarity", 256);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.bigMushroomsRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateSmallMushrooms", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateSmallMushrooms");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateQuartzOre", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateQuartzOre");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "quartzOreRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.quartzOreRarity");
+        properties.add(prop.getName());
+
+        config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, properties);
 
         if(config.hasChanged())
         {

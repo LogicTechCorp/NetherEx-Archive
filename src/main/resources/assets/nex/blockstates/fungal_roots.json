@@ -5,20 +5,15 @@
     "transform": "forge:default-item"
   },
   "variants": {
-    "piece": {
+    "half": {
       "top": {
         "textures": {
-          "cross": "nex:blocks/thorn_bush_top"
-        }
-      },
-      "middle": {
-        "textures": {
-          "cross": "nex:blocks/thorn_bush_middle"
+          "cross": "nex:blocks/fungal_roots_top"
         }
       },
       "bottom": {
         "textures": {
-          "cross": "nex:blocks/thorn_bush_bottom"
+          "cross": "nex:blocks/fungal_roots_bottom"
         }
       }
     }

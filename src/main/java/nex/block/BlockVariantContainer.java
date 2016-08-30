@@ -41,9 +41,9 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
     private final Class<T> CLS;
     private final PropertyEnum<T> PROPERTY;
 
-    public BlockVariantContainer(String name, boolean disableSubtypes, Material material, SoundType type, String propertyName, Class<T> cls)
+    public BlockVariantContainer(String name, boolean disableSubtypes, Material material, SoundType type, String propertyNameIn, Class<T> cls)
     {
-        super(name, disableSubtypes, material, type, propertyName, enumToArray(cls));
+        super(name, disableSubtypes, material, type, propertyNameIn, enumToArray(propertyNameIn, cls));
 
         CLS = cls;
         PROPERTY = temporaryProperty;
@@ -87,9 +87,9 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
         return false;
     }
 
-    private static String[] enumToArray(Class cls)
+    private static String[] enumToArray(String propertyName, Class cls)
     {
-        temporaryProperty = PropertyEnum.create("variant", cls);
+        temporaryProperty = PropertyEnum.create(propertyName, cls);
         Enum[] values = (Enum[]) cls.getEnumConstants();
         String[] variants = new String[values.length];
 

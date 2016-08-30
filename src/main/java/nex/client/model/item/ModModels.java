@@ -33,10 +33,10 @@ public class ModModels
 {
     public static void init()
     {
-        ModItems.variantContainers.forEach(ModModels::registerEnumModels);
+        ModItems.variantContainers.forEach(ModModels::registerModels);
     }
 
-    private static void registerEnumModels(IVariantContainer container)
+    private static void registerModels(IVariantContainer container)
     {
         Item item = (Item) container;
         String[] variants = container.getVariants();
@@ -45,7 +45,7 @@ public class ModModels
         {
             Block block = ((ItemBlock) item).getBlock();
 
-            if(variants.length == 1)
+            if(!item.getHasSubtypes())
             {
                 registerBlockItemModel(block, new ModelResourceLocation(block.getRegistryName(), "normal"));
             }
@@ -59,7 +59,7 @@ public class ModModels
         }
         else
         {
-            if(variants.length == 1)
+            if(!item.getHasSubtypes())
             {
                 registerItemModel(item, new ModelResourceLocation(item.getRegistryName(), "normal"));
             }

@@ -20,6 +20,7 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import nex.Settings;
 import nex.world.gen.feature.WorldGenThornBush;
 
 public class BiomeRuthlessSands extends BiomeNetherEx
@@ -35,6 +36,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 10, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
 
-        register("ruthlessSands", 10);
+        register("ruthlessSands", Settings.BiomeRuthlessSands.BIOME_WEIGHT);
     }
 }

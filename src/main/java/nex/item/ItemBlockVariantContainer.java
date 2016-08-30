@@ -48,7 +48,7 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
         propertyName = propertyNameIn;
         disableVariants = disableVariantsIn;
 
-        if(!disableVariantsIn && getVariants().length > 1)
+        if(!disableVariantsIn)
         {
             setHasSubtypes(true);
         }
@@ -81,7 +81,7 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        if(getVariants().length == 1)
+        if(disableVariants)
         {
             return "tile." + NetherEx.MOD_ID + ":" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().getResourcePath());
         }

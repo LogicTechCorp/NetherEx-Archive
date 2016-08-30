@@ -36,13 +36,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockThorn extends BlockNetherEx
+public class BlockThornBush extends BlockNetherEx
 {
-    public static final PropertyEnum<EnumBlockPart> PART = PropertyEnum.create("part", EnumBlockPart.class);
+    private static final PropertyEnum<EnumBlockPart> PART = PropertyEnum.create("piece", EnumBlockPart.class);
 
-    public BlockThorn()
+    public BlockThornBush()
     {
-        super("thorn_bush", true, Material.PLANTS, SoundType.PLANT, "part", "top", "middle", "bottom");
+        super("thorn_bush", false, Material.PLANTS, SoundType.PLANT, "piece", "top", "middle", "bottom");
+        setHardness(0.0F);
     }
 
     @Override

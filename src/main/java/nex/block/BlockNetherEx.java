@@ -28,7 +28,6 @@ public class BlockNetherEx extends Block implements IVariantContainer
 {
     private final String[] VARIANTS;
     private String propertyName;
-    private boolean disableVariants;
 
     public BlockNetherEx(String name, boolean disableVariantsIn, Material material, SoundType type, String propertyNameIn, String... variants)
     {
@@ -38,7 +37,6 @@ public class BlockNetherEx extends Block implements IVariantContainer
         setCreativeTab(NetherEx.CREATIVE_TAB);
 
         propertyName = propertyNameIn;
-        disableVariants = disableVariantsIn;
 
         if(variants.length == 0)
         {

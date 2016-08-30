@@ -27,6 +27,7 @@ public class Settings
     public static final String CATEGORY_BIOME = "biome";
     public static final String CATEGORY_BIOME_HELL = "biome.hell";
     public static final String CATEGORY_BIOME_RUTHLESS_SANDS = "biome.ruthlessSands";
+    public static final String CATEGORY_BIOME_MUSHROOM_GROVE = "biome.mushroomGrove";
 
     /**
      * Client Settings
@@ -41,6 +42,7 @@ public class Settings
      **/
     public static class BiomeHell
     {
+        public static final int BIOME_WEIGHT = getSetting(CATEGORY_BIOME_HELL, "biomeWeight", 10);
         public static final boolean GENERATE_LAVA_SPRINGS = getSetting(CATEGORY_BIOME_HELL, "generateLavaSprings", true);
         public static final int LAVA_SPRINGS_RARITY = getSetting(CATEGORY_BIOME_HELL, "generateLavaSprings", 8);
         public static final boolean GENERATE_FIRE = getSetting(CATEGORY_BIOME_HELL, "generateFire", true);
@@ -61,6 +63,7 @@ public class Settings
      **/
     public static class BiomeRuthlessSands
     {
+        public static final int BIOME_WEIGHT = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "biomeWeight", 10);
         public static final boolean GENERATE_LAVA_SPRINGS = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "generateLavaSprings", true);
         public static final int LAVA_SPRINGS_RARITY = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "generateLavaSprings", 16);
         public static final boolean GENERATE_GLOWSTONE = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "generateGlowstone", true);
@@ -71,6 +74,25 @@ public class Settings
         public static final int QUARTZ_ORE_RARITY = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "quartzOreRarity", 16);
         public static final boolean GENERATE_LAVA_TRAPS = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "generateLavaTraps", true);
         public static final int LAVA_TRAPS_RARITY = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "generateLavaTraps", 32);
+    }
+
+    /**
+     * Mushroom Grove Biome Settings
+     **/
+    public static class BiomeMushroomGrove
+    {
+        public static final int BIOME_WEIGHT = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "biomeWeight", 10);
+        public static final boolean GENERATE_GLOWSTONE = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateGlowstone", true);
+        public static final int GLOWSTONE_RARITY = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "glowstoneRarity", 10);
+        public static final boolean GENERATE_FUNGAL_ROOTS = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateFungalRoots", true);
+        public static final int FUNGAL_ROOTS_RARITY_RARITY = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootsRarity", 8);
+        public static final boolean GENERATE_ENOKI = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateEnoki", true);
+        public static final int ENOKI_RARITY = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "enokiRarity", 8);
+        public static final boolean GENERATE_BIG_MUSHROOMS = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateBigMushrooms", true);
+        public static final int BIG_MUSHROOMS_RARITY = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "bigMushroomsRarity", 256);
+        public static final boolean GENERATE_SMALL_MUSHROOMS = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateSmallMushrooms", true);
+        public static final boolean GENERATE_QUARTZ_ORE = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateQuartzOre", true);
+        public static final int QUARTZ_ORE_RARITY = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "quartzOreRarity", 16);
     }
 
     private static boolean getSetting(String category, String key, boolean defaultValue)
