@@ -42,8 +42,14 @@ public class BlockThornBush extends BlockNetherEx
 
     public BlockThornBush()
     {
-        super("thorn_bush", false, Material.PLANTS, SoundType.PLANT, "piece", "top", "middle", "bottom");
+        super("thorn_bush", Material.PLANTS, SoundType.PLANT, "piece", "top", "middle", "bottom");
         setHardness(0.0F);
+    }
+
+    @Override
+    public boolean shouldDisplayVariant(int meta)
+    {
+        return meta == 1;
     }
 
     @Override

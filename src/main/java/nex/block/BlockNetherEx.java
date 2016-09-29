@@ -24,12 +24,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.item.ItemBlockVariantContainer;
 
-public class BlockNetherEx extends Block implements IVariantContainer
+public class BlockNetherEx extends Block implements IModBlock
 {
     private final String[] VARIANTS;
     private String propertyName;
 
-    public BlockNetherEx(String name, boolean disableVariantsIn, Material material, SoundType type, String propertyNameIn, String... variants)
+    public BlockNetherEx(String name, Material material, SoundType type, String propertyNameIn, String... variants)
     {
         super(material);
 
@@ -47,7 +47,7 @@ public class BlockNetherEx extends Block implements IVariantContainer
 
         if(isBaseClass())
         {
-            registerAndSetName(name, disableVariantsIn);
+            registerAndSetName(name);
         }
     }
 
@@ -68,11 +68,11 @@ public class BlockNetherEx extends Block implements IVariantContainer
         return true;
     }
 
-    public void registerAndSetName(String name, boolean disableSubtypes)
+    public void registerAndSetName(String name)
     {
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
         GameRegistry.register(this);
-        GameRegistry.register(new ItemBlockVariantContainer(this, getPropertyName(), disableSubtypes), getRegistryName());
+        GameRegistry.register(new ItemBlockVariantContainer(this, getPropertyName()), getRegistryName());
     }
 }

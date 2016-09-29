@@ -37,7 +37,7 @@ public class BlockMycelium extends BlockNetherEx
 {
     public BlockMycelium()
     {
-        super("mycelium", true, Material.ROCK, SoundType.STONE, "");
+        super("mycelium", Material.ROCK, SoundType.STONE, "");
 
         setHardness(0.4F);
         setTickRandomly(true);

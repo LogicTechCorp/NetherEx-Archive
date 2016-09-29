@@ -41,14 +41,14 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
     private final Class<T> CLS;
     private final PropertyEnum<T> PROPERTY;
 
-    public BlockVariantContainer(String name, boolean disableSubtypes, Material material, SoundType type, String propertyNameIn, Class<T> cls)
+    public BlockVariantContainer(String name, Material material, SoundType type, String propertyNameIn, Class<T> cls)
     {
-        super(name, disableSubtypes, material, type, propertyNameIn, enumToArray(propertyNameIn, cls));
+        super(name, material, type, propertyNameIn, enumToArray(propertyNameIn, cls));
 
         CLS = cls;
         PROPERTY = temporaryProperty;
 
-        registerAndSetName(name, disableSubtypes);
+        registerAndSetName(name);
     }
 
     @Override

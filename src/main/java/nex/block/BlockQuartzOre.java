@@ -31,7 +31,7 @@ public class BlockQuartzOre extends BlockVariantContainer
 {
     public BlockQuartzOre()
     {
-        super("quartz_ore", false, Material.ROCK, SoundType.STONE, "type", BlockNetherrack.EnumType.class);
+        super("quartz_ore", Material.ROCK, SoundType.STONE, "type", BlockNetherrack.EnumType.class);
 
         setHardness(3.0F);
         setResistance(5.0F);

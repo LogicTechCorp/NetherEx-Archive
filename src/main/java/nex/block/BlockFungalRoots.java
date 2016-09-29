@@ -40,8 +40,14 @@ public class BlockFungalRoots extends BlockNetherEx
 
     public BlockFungalRoots()
     {
-        super("fungal_roots", false, Material.PLANTS, SoundType.PLANT, "half", "top", "bottom");
+        super("fungal_roots", Material.PLANTS, SoundType.PLANT, "half", "top", "bottom");
         setHardness(0.0F);
+    }
+
+    @Override
+    public boolean shouldDisplayVariant(int meta)
+    {
+        return meta == 1;
     }
 
     @Override

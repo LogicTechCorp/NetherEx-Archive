@@ -19,9 +19,13 @@ package nex.world.biome;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import nex.Settings;
 import nex.world.gen.feature.WorldGenThornBush;
+
+import java.util.Random;
 
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
@@ -36,6 +40,27 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 10, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
 
-        register("ruthlessSands", Settings.BiomeRuthlessSands.BIOME_WEIGHT);
+        lavaSpringTargetBlock = Blocks.NETHERRACK.getDefaultState();
+        quartzOreBlock = Blocks.QUARTZ_ORE.getDefaultState();
+        quartzTargetBlock = Blocks.NETHERRACK.getDefaultState();
+        lavaTrapTargetBlock = Blocks.NETHERRACK.getDefaultState();
+
+        settingCategory = Settings.CATEGORY_BIOME_RUTHLESS_SANDS;
+
+        register("ruthlessSands", Settings.biomeWeight(settingCategory));
+    }
+
+    @Override
+    public void decorate(World world, Random rand, BlockPos pos)
+    {
+        super.decorate(world, rand, pos);
+
+        if(Settings.generateThornBushes)
+        {
+            for(int i = 0; i < rand.nextInt(Settings.thornBushRarity); i++)
+            {
+                thornBush.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(96) + 32, rand.nextInt(16)));
+            }
+        }
     }
 }

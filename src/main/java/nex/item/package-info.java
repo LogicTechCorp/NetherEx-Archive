@@ -14,15 +14,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.init;
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+package nex.item;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import nex.world.gen.WorldGenNether;
+import mcp.MethodsReturnNonnullByDefault;
 
-public class ModWorldGenerators
-{
-    public static void init()
-    {
-        GameRegistry.registerWorldGenerator(new WorldGenNether(), 0);
-    }
-}
+import javax.annotation.ParametersAreNonnullByDefault;

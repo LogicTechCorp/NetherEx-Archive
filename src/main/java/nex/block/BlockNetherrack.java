@@ -27,7 +27,7 @@ public class BlockNetherrack extends BlockVariantContainer
 {
     public BlockNetherrack()
     {
-        super("netherrack", false, Material.ROCK, SoundType.STONE, "type", EnumType.class);
+        super("netherrack", Material.ROCK, SoundType.STONE, "type", EnumType.class);
 
         setHardness(0.4F);
     }

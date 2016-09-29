@@ -23,6 +23,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import nex.NetherEx;
+import nex.block.IModBlock;
 import nex.block.IVariantContainer;
 import nex.init.ModItems;
 
@@ -36,19 +37,17 @@ import java.util.List;
  */
 public class ItemBlockVariantContainer extends ItemBlock implements IVariantContainer
 {
-    private IVariantContainer container;
+    private IModBlock block;
     private String propertyName;
-    private boolean disableVariants;
 
-    public ItemBlockVariantContainer(Block block, String propertyNameIn, boolean disableVariantsIn)
+    public ItemBlockVariantContainer(Block blockIn, String propertyNameIn)
     {
-        super(block);
+        super(blockIn);
 
-        container = (IVariantContainer) block;
+        block = (IModBlock) blockIn;
         propertyName = propertyNameIn;
-        disableVariants = disableVariantsIn;
 
-        if(!disableVariantsIn)
+        if(getVariants().length > 1)
         {
             setHasSubtypes(true);
         }
@@ -59,16 +58,12 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> variants)
     {
-        if(!disableVariants)
+        for(int i = 0; i < getVariants().length; i++)
         {
-            for(int i = 0; i < getVariants().length; i++)
+            if(block.shouldDisplayVariant(i))
             {
                 variants.add(new ItemStack(item, 1, i));
             }
-        }
-        else
-        {
-            variants.add(new ItemStack(item));
         }
     }
 
@@ -81,7 +76,11 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        if(disableVariants)
+        if(stack.getItemDamage() > getVariants().length)
+        {
+            return "tile." + NetherEx.MOD_ID + ":" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().getResourcePath()) + ".null";
+        }
+        else if(getVariants().length  == 1)
         {
             return "tile." + NetherEx.MOD_ID + ":" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().getResourcePath());
         }
@@ -92,7 +91,7 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
     @Override
     public String[] getVariants()
     {
-        return container.getVariants();
+        return block.getVariants();
     }
 
     @Override

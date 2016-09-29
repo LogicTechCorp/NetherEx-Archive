@@ -48,7 +48,7 @@ public class BlockEnokiStem extends BlockNetherEx
 
     public BlockEnokiStem()
     {
-        super("enoki_stem", true, Material.PLANTS, SoundType.WOOD, "facing");
+        super("enoki_stem", Material.PLANTS, SoundType.WOOD, "facing");
 
         setHardness(0.4F);
     }

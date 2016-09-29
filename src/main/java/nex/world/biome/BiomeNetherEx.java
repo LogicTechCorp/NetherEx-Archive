@@ -16,6 +16,7 @@
 
 package nex.world.biome;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -23,10 +24,21 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
+import nex.Settings;
 import nex.init.ModBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
+    public IBlockState lavaSpringTargetBlock;
+    public IBlockState smallBrownMushroomTargetBlock;
+    public IBlockState smallRedMushroomTargetBlock;
+    public IBlockState quartzOreBlock;
+    public IBlockState quartzTargetBlock;
+    public IBlockState magmaTargetBlock;
+    public IBlockState lavaTrapTargetBlock;
+
+    public String settingCategory;
+
     public BiomeNetherEx(BiomeProperties properties)
     {
         super(properties);

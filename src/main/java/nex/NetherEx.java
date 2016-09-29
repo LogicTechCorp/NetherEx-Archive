@@ -25,10 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.ConfigurationHandler;
 import nex.handler.IMCHandler;
-import nex.init.ModBiomes;
-import nex.init.ModBlocks;
-import nex.init.ModHandlers;
-import nex.init.ModWorldGenerators;
+import nex.init.*;
 import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +35,7 @@ import java.io.File;
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPEND, guiFactory = NetherEx.GUI_FACTORY)
 public class NetherEx
 {
+    //TODO: Fix false defaults not generating
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
@@ -62,7 +60,7 @@ public class NetherEx
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "NetherEx.cfg"));
         ModBlocks.init();
         ModBiomes.init();
-        ModWorldGenerators.init();
+        ModOreDictionary.init();
         ModHandlers.init();
         proxy.preInit();
     }

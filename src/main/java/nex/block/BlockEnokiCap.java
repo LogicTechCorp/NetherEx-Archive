@@ -44,7 +44,7 @@ public class BlockEnokiCap extends BlockNetherEx
 
     public BlockEnokiCap()
     {
-        super("enoki_cap", true, Material.PLANTS, SoundType.WOOD, "age");
+        super("enoki_cap", Material.PLANTS, SoundType.WOOD, "age");
 
         setHardness(0.4F);
         setTickRandomly(true);

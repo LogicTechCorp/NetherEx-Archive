@@ -26,23 +26,23 @@ import java.util.Random;
 
 public class WorldGenLava extends WorldGenerator
 {
-    private final IBlockState blockToPLaceOn;
+    private final IBlockState targetBlock;
     private final boolean insideRock;
 
-    public WorldGenLava(IBlockState blockToPLaceOnIn, boolean insideRockIn)
+    public WorldGenLava(IBlockState targetBlockIn, boolean insideRockIn)
     {
-        blockToPLaceOn = blockToPLaceOnIn;
+        targetBlock = targetBlockIn;
         insideRock = insideRockIn;
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.getBlockState(pos.up()) != blockToPLaceOn)
+        if(world.getBlockState(pos.up()) != targetBlock)
         {
             return false;
         }
-        else if(!world.isAirBlock(pos) && world.getBlockState(pos) != blockToPLaceOn)
+        else if(!world.isAirBlock(pos) && world.getBlockState(pos) != targetBlock)
         {
             return false;
         }
@@ -50,27 +50,27 @@ public class WorldGenLava extends WorldGenerator
         {
             int i = 0;
 
-            if(world.getBlockState(pos.west()) == blockToPLaceOn)
+            if(world.getBlockState(pos.west()) == targetBlock)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.east()) == blockToPLaceOn)
+            if(world.getBlockState(pos.east()) == targetBlock)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.north()) == blockToPLaceOn)
+            if(world.getBlockState(pos.north()) == targetBlock)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.south()) == blockToPLaceOn)
+            if(world.getBlockState(pos.south()) == targetBlock)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.down()) == blockToPLaceOn)
+            if(world.getBlockState(pos.down()) == targetBlock)
             {
                 ++i;
             }
