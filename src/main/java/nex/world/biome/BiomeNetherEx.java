@@ -20,6 +20,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -29,15 +30,15 @@ import nex.init.ModBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
-    public IBlockState lavaSpringTargetBlock;
-    public IBlockState smallBrownMushroomTargetBlock;
-    public IBlockState smallRedMushroomTargetBlock;
-    public IBlockState quartzOreBlock;
-    public IBlockState quartzTargetBlock;
-    public IBlockState magmaTargetBlock;
-    public IBlockState lavaTrapTargetBlock;
+    public IBlockState lavaSpringTargetBlock = Blocks.NETHERRACK.getDefaultState();
+    public IBlockState smallBrownMushroomTargetBlock = Blocks.NETHERRACK.getDefaultState();
+    public IBlockState smallRedMushroomTargetBlock = Blocks.NETHERRACK.getDefaultState();
+    public IBlockState quartzOreBlock = Blocks.QUARTZ_ORE.getDefaultState();
+    public IBlockState quartzTargetBlock = Blocks.NETHERRACK.getDefaultState();
+    public IBlockState magmaTargetBlock = Blocks.NETHERRACK.getDefaultState();
+    public IBlockState lavaTrapTargetBlock = Blocks.NETHERRACK.getDefaultState();
 
-    public String settingCategory;
+    public String settingCategory = Settings.CATEGORY_BIOME;
 
     public BiomeNetherEx(BiomeProperties properties)
     {
@@ -50,8 +51,12 @@ public abstract class BiomeNetherEx extends Biome
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
+    }
 
-        theBiomeDecorator = new BiomeDecoratorNether();
+    @Override
+    public BiomeDecorator createBiomeDecorator()
+    {
+        return new BiomeDecoratorNether();
     }
 
     public void register(String name, int weight)

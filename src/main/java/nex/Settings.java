@@ -54,7 +54,7 @@ public class Settings
 
     public static boolean generateLavaSprings(String category)
     {
-        return getSetting(category, "generateLavaSprings", false);
+        return getSetting(category, "generateLavaSprings", true);
     }
 
     public static int lavaSpringRarity(String category)
@@ -64,7 +64,7 @@ public class Settings
 
     public static boolean generateFire(String category)
     {
-        return getSetting(category, "generateFire", false);
+        return getSetting(category, "generateFire", true);
     }
 
     public static int fireRarity(String category)
@@ -74,7 +74,7 @@ public class Settings
 
     public static boolean generateGlowstone(String category)
     {
-        return getSetting(category, "generateGlowstone", false);
+        return getSetting(category, "generateGlowstone", true);
     }
 
     public static int glowstoneRarity(String category)
@@ -84,12 +84,12 @@ public class Settings
 
     public static boolean generateMushrooms(String category)
     {
-        return getSetting(category, "generateMushrooms", false);
+        return getSetting(category, "generateMushrooms", true);
     }
 
     public static boolean generateQuartzOre(String category)
     {
-        return getSetting(category, "generateQuartzOre", false);
+        return getSetting(category, "generateQuartzOre", true);
     }
 
     public static int quartzOreRarity(String category)
@@ -99,7 +99,7 @@ public class Settings
 
     public static boolean generateMagma(String category)
     {
-        return getSetting(category, "generateMagma", false);
+        return getSetting(category, "generateMagma", true);
     }
 
     public static int magmaRarity(String category)
@@ -109,7 +109,7 @@ public class Settings
 
     public static boolean generateLavaTraps(String category)
     {
-        return getSetting(category, "generateLavaTraps", false);
+        return getSetting(category, "generateLavaTraps", true);
     }
 
     public static int lavaTrapRarity(String category)

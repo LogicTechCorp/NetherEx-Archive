@@ -35,14 +35,6 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
 
-        lavaSpringTargetBlock = Blocks.NETHERRACK.getDefaultState();
-        smallBrownMushroomTargetBlock = Blocks.NETHERRACK.getDefaultState();
-        smallRedMushroomTargetBlock = Blocks.NETHERRACK.getDefaultState();
-        quartzOreBlock = Blocks.QUARTZ_ORE.getDefaultState();
-        quartzTargetBlock = Blocks.NETHERRACK.getDefaultState();
-        magmaTargetBlock = Blocks.NETHERRACK.getDefaultState();
-        lavaTrapTargetBlock = Blocks.NETHERRACK.getDefaultState();
-
         settingCategory = Settings.CATEGORY_BIOME_HELL;
 
         register("hell", Settings.biomeWeight(settingCategory));

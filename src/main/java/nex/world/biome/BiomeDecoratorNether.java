@@ -23,6 +23,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenFire;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import nex.Settings;
 import nex.world.gen.feature.WorldGenBush;
 import nex.world.gen.feature.WorldGenGlowStone;
@@ -33,8 +35,6 @@ import java.util.Random;
 
 public class BiomeDecoratorNether extends BiomeDecorator
 {
-    public boolean hasDecorated = false;
-
     public WorldGenerator lavaSpring;
     public WorldGenerator fire;
     public WorldGenerator glowstone;
@@ -49,32 +49,41 @@ public class BiomeDecoratorNether extends BiomeDecorator
     {
         BiomeNetherEx biomeNetherEx = (BiomeNetherEx) biome;
 
-        if(!hasDecorated)
-        {
-            lavaSpring = new WorldGenLava(biomeNetherEx.lavaSpringTargetBlock, false);
-            fire = new WorldGenFire();
-            glowstone = new WorldGenGlowStone();
-            smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, biomeNetherEx.smallBrownMushroomTargetBlock);
-            smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, biomeNetherEx.smallRedMushroomTargetBlock);
-            quartz = new WorldGenMinableMeta(biomeNetherEx.quartzOreBlock, 14, biomeNetherEx.quartzTargetBlock);
-            magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, biomeNetherEx.magmaTargetBlock);
-            lavaTrap = new WorldGenLava(biomeNetherEx.lavaTrapTargetBlock, true);
+        lavaSpring = new WorldGenLava(biomeNetherEx.lavaSpringTargetBlock, false);
+        fire = new WorldGenFire();
+        glowstone = new WorldGenGlowStone();
+        smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, biomeNetherEx.smallBrownMushroomTargetBlock);
+        smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, biomeNetherEx.smallRedMushroomTargetBlock);
+        quartz = new WorldGenMinableMeta(biomeNetherEx.quartzOreBlock, 14, biomeNetherEx.quartzTargetBlock);
+        magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, biomeNetherEx.magmaTargetBlock);
+        lavaTrap = new WorldGenLava(biomeNetherEx.lavaTrapTargetBlock, true);
 
-            genDecorations(world, rand, biomeNetherEx, pos);
-            genOre(world, rand, biomeNetherEx, pos);
-
-            hasDecorated = true;
-        }
+        genDecorations(world, rand, biomeNetherEx, pos);
+        genOre(world, rand, biomeNetherEx, pos);
     }
-
 
     private void genDecorations(World world, Random rand, BiomeNetherEx biome, BlockPos pos)
     {
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
+
         if(Settings.generateLavaSprings(biome.settingCategory))
         {
             for(int i = 0; i < Settings.lavaSpringRarity(biome.settingCategory); i++)
             {
                 lavaSpring.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
+            }
+        }
+
+        if(Settings.generateGlowstone(biome.settingCategory))
+        {
+            for(int i = 0; i < rand.nextInt(Settings.glowstoneRarity(biome.settingCategory)); i++)
+            {
+                glowstone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
+            }
+
+            for(int i = 0; i < Settings.glowstoneRarity(biome.settingCategory); i++)
+            {
+                glowstone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
             }
         }
 
@@ -106,22 +115,13 @@ public class BiomeDecoratorNether extends BiomeDecorator
                 lavaTrap.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
             }
         }
+
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, pos));
     }
 
     private void genOre(World world, Random rand, BiomeNetherEx biome, BlockPos pos)
     {
-        if(Settings.generateGlowstone(biome.settingCategory))
-        {
-            for(int i = 0; i < rand.nextInt(Settings.glowstoneRarity(biome.settingCategory)); i++)
-            {
-                glowstone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 4, rand.nextInt(16)));
-            }
-
-            for(int i = 0; i < Settings.glowstoneRarity(biome.settingCategory); i++)
-            {
-                glowstone.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
-            }
-        }
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
         if(Settings.generateQuartzOre(biome.settingCategory))
         {
@@ -138,5 +138,7 @@ public class BiomeDecoratorNether extends BiomeDecorator
                 magma.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
             }
         }
+
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, pos));
     }
 }

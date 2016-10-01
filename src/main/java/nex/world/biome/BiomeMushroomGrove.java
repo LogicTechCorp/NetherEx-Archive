@@ -41,11 +41,14 @@ public class BiomeMushroomGrove extends BiomeNetherEx
 
         topBlock = ModBlocks.MYCELIUM.getDefaultState();
         fillerBlock = ModBlocks.NETHERRACK.getDefaultState();
-
+        
+        lavaSpringTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
         smallBrownMushroomTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
         smallRedMushroomTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
         quartzOreBlock = ModBlocks.QUARTZ_ORE.getDefaultState();
         quartzTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
+        magmaTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
+        lavaTrapTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
 
         settingCategory = Settings.CATEGORY_BIOME_MUSHROOM_GROVE;
 

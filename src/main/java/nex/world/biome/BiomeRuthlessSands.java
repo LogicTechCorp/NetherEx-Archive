@@ -40,11 +40,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 10, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
 
-        lavaSpringTargetBlock = Blocks.NETHERRACK.getDefaultState();
-        quartzOreBlock = Blocks.QUARTZ_ORE.getDefaultState();
-        quartzTargetBlock = Blocks.NETHERRACK.getDefaultState();
-        lavaTrapTargetBlock = Blocks.NETHERRACK.getDefaultState();
-
         settingCategory = Settings.CATEGORY_BIOME_RUTHLESS_SANDS;
 
         register("ruthlessSands", Settings.biomeWeight(settingCategory));
