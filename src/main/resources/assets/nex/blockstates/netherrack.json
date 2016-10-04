@@ -6,6 +6,9 @@
   "variants": {
     "type=biotic": {
       "model": "nex:netherrack_biotic"
+    },
+    "type=chilled": {
+      "model": "nex:netherrack_chilled"
     }
   }
 }

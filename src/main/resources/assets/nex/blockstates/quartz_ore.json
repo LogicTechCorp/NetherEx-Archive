@@ -6,6 +6,9 @@
   "variants": {
     "type=biotic": {
       "model": "nex:ore_quartz_biotic"
+    },
+    "type=chilled": {
+      "model": "nex:ore_quartz_chilled"
     }
   }
 }

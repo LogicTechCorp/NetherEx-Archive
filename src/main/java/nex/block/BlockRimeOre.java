@@ -19,20 +19,21 @@ package nex.block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import nex.init.ModItems;
 
 import java.util.Random;
 
-public class BlockQuartzOre extends BlockVariantContainer
+public class BlockRimeOre extends BlockNetherEx
 {
-    public BlockQuartzOre()
+    public BlockRimeOre()
     {
-        super("quartz_ore", Material.ROCK, SoundType.STONE, "type", BlockNetherrack.EnumType.class);
+        super("rime_ore", Material.ROCK, SoundType.STONE, "");
 
+        setLightLevel(0.875F);
         setHardness(3.0F);
         setResistance(5.0F);
     }
@@ -40,13 +41,7 @@ public class BlockQuartzOre extends BlockVariantContainer
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Items.QUARTZ;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return 0;
+        return ModItems.RIME;
     }
 
     @Override

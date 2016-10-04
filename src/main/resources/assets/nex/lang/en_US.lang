@@ -126,14 +126,27 @@ configGuiTitle.nex:biomeMushroomGrove=Mushroom Grove Biome Settings
 #Creative Tab
 itemGroup.nex=NetherEx
 
+#Items
+item.nex:rime.name=Rime Gem
+
 #Tiles
 tile.nex:thornBush.top.name=Thorn Bush Top
 tile.nex:thornBush.middle.name=Thorn Bush Middle
 tile.nex:thornBush.bottom.name=Thorn Bush Bottom
 tile.nex:netherrack.biotic.name=Biotic Netherrack
+tile.nex:netherrack.chilled.name=Chilled Netherrack
 tile.nex:quartzOre.biotic.name=Biotic Quartz Ore
+tile.nex:quartzOre.chilled.name=Chilled Quartz Ore
 tile.nex:mycelium.name=Mycelium
 tile.nex:fungalRoots.top.name=Fungal Roots Top
 tile.nex:fungalRoots.bottom.name=Fungal Roots Bottom
 tile.nex:enokiStem.name=Enoki Stem
 tile.nex:enokiCap.name=Enoki Cap
+tile.nex:rimeOre.name=Rime Ore
+tile.nex:rimeIce.name=Rime Ice
+tile.nex:frost.down.name=Frost
+tile.nex:frost.up.name=Frost
+tile.nex:frost.north.name=Frost
+tile.nex:frost.south.name=Frost
+tile.nex:frost.west.name=Frost
+tile.nex:frost.east.name=Frost

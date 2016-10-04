@@ -14,28 +14,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.init;
+package nex.item;
 
-import com.google.common.collect.Lists;
-import net.minecraft.item.Item;
-import nex.block.IVariantContainer;
-import nex.item.ItemRime;
-
-import java.util.List;
-
-public class ModItems
+public class ItemRime extends ItemNetherEx
 {
-    public static final Item RIME;
-
-    public static List<IVariantContainer> variantContainers = Lists.newArrayList();
-
-    static
+    public ItemRime()
     {
-        RIME = new ItemRime();
+        super("rime");
     }
 
-    public static void init()
+    @Override
+    public String getPropertyName()
     {
-
+        return "";
     }
 }

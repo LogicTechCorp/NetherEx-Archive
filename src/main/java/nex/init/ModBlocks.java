@@ -28,6 +28,9 @@ public class ModBlocks
     public static final BlockFungalRoots FUNGAL_ROOTS;
     public static final BlockEnokiCap ENOKI_CAP;
     public static final Block ENOKI_STEM;
+    public static final Block RIME_ORE;
+    public static final Block RIME_ICE;
+    public static final Block FROST;
 
     static
     {
@@ -38,6 +41,9 @@ public class ModBlocks
         FUNGAL_ROOTS = new BlockFungalRoots();
         ENOKI_CAP = new BlockEnokiCap();
         ENOKI_STEM = new BlockEnokiStem();
+        RIME_ORE = new BlockRimeOre();
+        RIME_ICE = new BlockRimeIce();
+        FROST = new BlockFrost();
     }
 
     public static void init()
