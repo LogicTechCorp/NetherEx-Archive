@@ -145,9 +145,11 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                                 if(biome instanceof IEnhancedNetherBiome)
                                 {
-                                    if(((IEnhancedNetherBiome) biome).getOceanBlock().getMaterial() != Material.WATER)
+                                    IEnhancedNetherBiome netherBiome = (IEnhancedNetherBiome) biome;
+
+                                    if(netherBiome.getOceanBlock() != null && netherBiome.getOceanBlock().getMaterial() != Material.WATER)
                                     {
-                                        oceanState = ((IEnhancedNetherBiome) biome).getOceanBlock();
+                                        oceanState = netherBiome.getOceanBlock();
                                     }
                                 }
 
@@ -206,9 +208,11 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                 if(biome instanceof IEnhancedNetherBiome)
                 {
-                    if(((IEnhancedNetherBiome) biome).getOceanBlock().getMaterial() != Material.WATER)
+                    IEnhancedNetherBiome netherBiome = (IEnhancedNetherBiome) biome;
+
+                    if(netherBiome.getOceanBlock() != null && netherBiome.getOceanBlock().getMaterial() != Material.WATER)
                     {
-                        oceanState = ((IEnhancedNetherBiome) biome).getOceanBlock();
+                        oceanState = netherBiome.getOceanBlock();
                     }
                 }
 
@@ -410,7 +414,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        Biome biome = world.getBiomeForCoordsBody(blockPos);
+        Biome biome = world.getBiomeForCoordsBody(blockPos.add(16, 0, 16));
 
         BlockFalling.fallInstantly = true;
 

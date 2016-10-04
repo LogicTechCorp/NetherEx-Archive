@@ -41,7 +41,7 @@ public class BiomeMushroomGrove extends BiomeNetherEx
 
         topBlock = ModBlocks.MYCELIUM.getDefaultState();
         fillerBlock = ModBlocks.NETHERRACK.getDefaultState();
-        
+
         lavaSpringTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
         smallBrownMushroomTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
         smallRedMushroomTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
@@ -64,7 +64,7 @@ public class BiomeMushroomGrove extends BiomeNetherEx
         {
             for(int i = 0; i < Settings.fungalRootRarity; i++)
             {
-                fungalRoots.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+                fungalRoots.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
             }
         }
 
@@ -72,7 +72,7 @@ public class BiomeMushroomGrove extends BiomeNetherEx
         {
             for(int i = 0; i < Settings.enokiRarity; i++)
             {
-                enoki.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(108) + 10, rand.nextInt(16)));
+                enoki.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
             }
         }
 
@@ -80,12 +80,12 @@ public class BiomeMushroomGrove extends BiomeNetherEx
         {
             for(int i = 0; i < Settings.bigMushroomRarity; i++)
             {
-                bigBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
+                bigBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }
 
             for(int i = 0; i < Settings.bigMushroomRarity; i++)
             {
-                bigRedMushroom.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(128), rand.nextInt(16)));
+                bigRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }
         }
     }

@@ -37,11 +37,11 @@ public class WorldGenBush extends WorldGenerator
 
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        for (int i = 0; i < 64; ++i)
+        for(int i = 0; i < 64; ++i)
         {
             BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(newPos) && (!world.provider.getHasNoSky() || newPos.getY() < world.getHeight() - 1) && block.canBlockStay(world, newPos, block.getDefaultState()) && world.getBlockState(newPos) == targetBlock)
+            if(world.isAirBlock(newPos) && (!world.provider.getHasNoSky() || newPos.getY() < world.getHeight() - 1) && block.canBlockStay(world, newPos, block.getDefaultState()) && world.getBlockState(newPos) == targetBlock)
             {
                 world.setBlockState(newPos, block.getDefaultState(), 2);
             }

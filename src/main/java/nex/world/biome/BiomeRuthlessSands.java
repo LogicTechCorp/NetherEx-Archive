@@ -54,7 +54,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         {
             for(int i = 0; i < rand.nextInt(Settings.thornBushRarity); i++)
             {
-                thornBush.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(96) + 32, rand.nextInt(16)));
+                thornBush.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
     }

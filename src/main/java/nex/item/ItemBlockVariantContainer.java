@@ -80,7 +80,7 @@ public class ItemBlockVariantContainer extends ItemBlock implements IVariantCont
         {
             return "tile." + NetherEx.MOD_ID + ":" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().getResourcePath()) + ".null";
         }
-        else if(getVariants().length  == 1)
+        else if(getVariants().length == 1)
         {
             return "tile." + NetherEx.MOD_ID + ":" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().getResourcePath());
         }
