@@ -78,6 +78,7 @@ public class ModGuiConfig extends GuiConfig
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHell"), "configGuiCategory.nex:biomeHell", BiomeHellEntry.class));
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeRuthlessSands"), "configGuiCategory.nex:biomeRuthlessSands", BiomeRuthlessSandsEntry.class));
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeMushroomGrove"), "configGuiCategory.nex:biomeMushroomGrove", BiomeMushroomGroveEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHoarFrost"), "configGuiCategory.nex:biomeHoarFrost", BiomeHoarFrostEntry.class));
 
             return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME, false, false, I18n.format("configGuiTitle.nex:biome"));
         }
@@ -125,6 +126,21 @@ public class ModGuiConfig extends GuiConfig
         {
             List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_MUSHROOM_GROVE)).getChildElements();
             return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_MUSHROOM_GROVE, false, false, I18n.format("configGuiTitle.nex:biomeMushroomGrove"));
+        }
+    }
+
+    public static class BiomeHoarFrostEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public BiomeHoarFrostEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_HOAR_FROST)).getChildElements();
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HOAR_FROST, false, false, I18n.format("configGuiTitle.nex:biomeHoarFrost"));
         }
     }
 }

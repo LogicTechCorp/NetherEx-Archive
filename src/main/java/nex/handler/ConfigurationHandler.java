@@ -92,6 +92,10 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateMushrooms");
         properties.add(prop.getName());
 
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "mushroomRarity", 1);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHell.mushroomRarity");
+        properties.add(prop.getName());
+
         prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateQuartzOre", true);
         prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateQuartzOre");
         properties.add(prop.getName());
@@ -149,7 +153,11 @@ public class ConfigurationHandler
         properties.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateMushrooms", false);
-        prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateMushrooms");
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateMushrooms");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "mushroomRarity", 1);
+        prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.mushroomRarity");
         properties.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "generateThornBushes", true);
@@ -220,7 +228,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateFungalRoots");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootRarity", 8);
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootRarity", 4);
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.fungalRootRarity");
         properties.add(prop.getName());
 
@@ -236,12 +244,16 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateBigMushrooms");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "bigMushroomRarity", 256);
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "bigMushroomRarity", 512);
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.bigMushroomRarity");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateSmallMushrooms", true);
-        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateSmallMushrooms");
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateMushrooms", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateMushrooms");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "mushroomRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.mushroomRarity");
         properties.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "generateQuartzOre", true);
@@ -269,6 +281,86 @@ public class ConfigurationHandler
         properties.add(prop.getName());
 
         config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, properties);
+        properties = Lists.newArrayList();
+
+        /* Hoar Frost Settings */
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "biomeWeight", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.biomeWeight");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateLavaSprings", false);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateLavaSprings");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "lavaSpringRarity", 8);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.lavaSpringRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateFire", false);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateFire");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "fireRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.fireRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateGlowstone", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateGlowstone");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "glowstoneRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.glowstoneRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateFrost", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateFrost");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "frostRarity", 32);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.frostRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateMushrooms", false);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateMushrooms");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "mushroomRarity", 1);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.mushroomRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateRimeOre", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateRimeOre");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.rimeOreRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateQuartzOre", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateQuartzOre");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "quartzOreRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.quartzOreRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateMagma", false);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateMagma");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "magmaRarity", 4);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.magmaRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "generateLavaTraps", false);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateLavaTraps");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "lavaTrapRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.lavaTrapRarity");
+        properties.add(prop.getName());
+
+        config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_HOAR_FROST, properties);
 
         if(config.hasChanged())
         {

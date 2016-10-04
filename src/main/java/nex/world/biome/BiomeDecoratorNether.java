@@ -97,12 +97,12 @@ public class BiomeDecoratorNether extends BiomeDecorator
 
         if(Settings.generateMushrooms(biome.settingCategory))
         {
-            if(rand.nextBoolean())
+            for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
             {
                 smallBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }
 
-            if(rand.nextBoolean())
+            for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
             {
                 smallRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
             }

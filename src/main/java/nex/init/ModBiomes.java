@@ -24,6 +24,7 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import nex.world.WorldProviderNether;
 import nex.world.biome.BiomeHell;
+import nex.world.biome.BiomeHoarFrost;
 import nex.world.biome.BiomeMushroomGrove;
 import nex.world.biome.BiomeRuthlessSands;
 
@@ -36,12 +37,14 @@ public class ModBiomes
     public static final Biome HELL;
     public static final Biome RUTHLESS_SANDS;
     public static final Biome MUSHROOM_GROVE;
+    public static final Biome HOAR_FROST;
 
     static
     {
         HELL = new BiomeHell();
         RUTHLESS_SANDS = new BiomeRuthlessSands();
         MUSHROOM_GROVE = new BiomeMushroomGrove();
+        HOAR_FROST = new BiomeHoarFrost();
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);

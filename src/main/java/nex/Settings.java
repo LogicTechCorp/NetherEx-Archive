@@ -28,6 +28,7 @@ public class Settings
     public static final String CATEGORY_BIOME_HELL = "biome.hell";
     public static final String CATEGORY_BIOME_RUTHLESS_SANDS = "biome.ruthlessSands";
     public static final String CATEGORY_BIOME_MUSHROOM_GROVE = "biome.mushroomGrove";
+    public static final String CATEGORY_BIOME_HOAR_FROST = "biome.hoarFrost";
 
     /**
      * Client Settings
@@ -46,6 +47,11 @@ public class Settings
     public static int enokiRarity = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "enokiRarity", 8);
     public static boolean generateBigMushrooms = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateBigMushrooms", true);
     public static int bigMushroomRarity = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "bigMushroomRarity", 256);
+
+    public static boolean generateFrost = getSetting(CATEGORY_BIOME_HOAR_FROST, "generateFrost", true);
+    public static int frostRarity = getSetting(CATEGORY_BIOME_HOAR_FROST, "frostRarity", 32);
+    public static boolean generateRimeOre = getSetting(CATEGORY_BIOME_HOAR_FROST, "generateRimeOre", true);
+    public static int rimeOreRarity = getSetting(CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 16);
 
     public static int biomeWeight(String category)
     {
@@ -85,6 +91,11 @@ public class Settings
     public static boolean generateMushrooms(String category)
     {
         return getSetting(category, "generateMushrooms", true);
+    }
+
+    public static int mushroomRarity(String category)
+    {
+        return getSetting(category, "mushroomRarity", 10);
     }
 
     public static boolean generateQuartzOre(String category)
