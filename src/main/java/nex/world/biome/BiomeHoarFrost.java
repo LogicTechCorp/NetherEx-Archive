@@ -32,7 +32,7 @@ import java.util.Random;
 public class BiomeHoarFrost extends BiomeNetherEx implements IEnhancedNetherBiome
 {
     private WorldGenerator frost = new WorldGenFrost();
-    private WorldGenerator rimeOre = new WorldGenMinableMeta(ModBlocks.RIME_ORE.getDefaultState(), 1, ModBlocks.NETHERRACK.getStateFromMeta(1));
+    private WorldGenerator rimeOre = new WorldGenMinableMeta(ModBlocks.RIME_ORE.getDefaultState(), 3, ModBlocks.NETHERRACK.getStateFromMeta(1));
 
     public BiomeHoarFrost()
     {
@@ -71,12 +71,7 @@ public class BiomeHoarFrost extends BiomeNetherEx implements IEnhancedNetherBiom
         {
             for(int i = 0; i < Settings.rimeOreRarity; i++)
             {
-                BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(100) + 28, rand.nextInt(16) + 8);
-
-                if(world.getBlockState(newPos.up()).getBlock() == ModBlocks.RIME_ICE)
-                {
-                    rimeOre.generate(world, rand, newPos);
-                }
+                rimeOre.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(88) + 28, rand.nextInt(16) + 8));
             }
         }
     }

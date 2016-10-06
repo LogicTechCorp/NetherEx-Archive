@@ -332,7 +332,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateRimeOre");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 16);
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 4);
         prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.rimeOreRarity");
         properties.add(prop.getName());
 

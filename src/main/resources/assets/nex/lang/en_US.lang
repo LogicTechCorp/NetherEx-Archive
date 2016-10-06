@@ -191,6 +191,7 @@ tile.nex:fungalRoots.bottom.name=Fungal Roots Bottom
 tile.nex:enokiStem.name=Enoki Stem
 tile.nex:enokiCap.name=Enoki Cap
 tile.nex:rimeOre.name=Rime Ore
+tile.nex:rimeBlock.name=Rime Block
 tile.nex:rimeIce.name=Rime Ice
 tile.nex:frost.down.name=Frost
 tile.nex:frost.up.name=Frost

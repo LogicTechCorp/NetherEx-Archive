@@ -29,6 +29,7 @@ public class ModBlocks
     public static final BlockEnokiCap ENOKI_CAP;
     public static final Block ENOKI_STEM;
     public static final Block RIME_ORE;
+    public static final Block RIME_BLOCK;
     public static final Block RIME_ICE;
     public static final Block FROST;
 
@@ -44,6 +45,7 @@ public class ModBlocks
         RIME_ORE = new BlockRimeOre();
         RIME_ICE = new BlockRimeIce();
         FROST = new BlockFrost();
+        RIME_BLOCK = new BlockRime();
     }
 
     public static void init()
