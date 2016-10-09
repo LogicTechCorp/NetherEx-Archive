@@ -47,8 +47,6 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
 
         CLS = cls;
         PROPERTY = temporaryProperty;
-
-        registerAndSetName(name);
     }
 
     @Override
@@ -79,12 +77,6 @@ public class BlockVariantContainer<T extends Enum<T> & IStringSerializable> exte
     public int getMetaFromState(IBlockState state)
     {
         return state.getValue(PROPERTY == null ? temporaryProperty : PROPERTY).ordinal();
-    }
-
-    @Override
-    public boolean isBaseClass()
-    {
-        return false;
     }
 
     private static String[] enumToArray(String propertyName, Class cls)

@@ -21,7 +21,10 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import nex.Settings;
+import nex.init.ModBiomes;
 
 public class BiomeHell extends BiomeNetherEx
 {
@@ -36,6 +39,6 @@ public class BiomeHell extends BiomeNetherEx
 
         settingCategory = Settings.CATEGORY_BIOME_HELL;
 
-        register("hell", Settings.biomeWeight(settingCategory));
+        ModBiomes.addBiome(new BiomeManager.BiomeEntry(this, Settings.biomeWeight(settingCategory)));
     }
 }

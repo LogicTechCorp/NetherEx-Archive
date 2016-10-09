@@ -1,26 +1,18 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minecraft:cross",
+    "model": "item/generated",
     "transform": "forge:default-item"
   },
   "variants": {
-    "piece": {
-      "top": {
-        "textures": {
-          "cross": "nex:blocks/thorn_bush_top"
-        }
-      },
-      "middle": {
-        "textures": {
-          "cross": "nex:blocks/thorn_bush_middle"
-        }
-      },
-      "bottom": {
-        "textures": {
-          "cross": "nex:blocks/thorn_bush_bottom"
-        }
-      }
+    "piece=top": {
+      "model": "nex:thorn_bush_top"
+    },
+    "piece=middle": {
+      "model": "nex:thorn_bush_middle"
+    },
+    "piece=bottom": {
+      "model": "nex:thorn_bush_bottom"
     }
   }
 }

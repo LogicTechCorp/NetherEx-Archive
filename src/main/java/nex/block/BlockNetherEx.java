@@ -45,10 +45,7 @@ public class BlockNetherEx extends Block implements IModBlock
 
         VARIANTS = variants;
 
-        if(isBaseClass())
-        {
-            registerAndSetName(name);
-        }
+        setName(name);
     }
 
     @Override
@@ -63,16 +60,9 @@ public class BlockNetherEx extends Block implements IModBlock
         return propertyName;
     }
 
-    public boolean isBaseClass()
-    {
-        return true;
-    }
-
-    public void registerAndSetName(String name)
+    private void setName(String name)
     {
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
-        GameRegistry.register(this);
-        GameRegistry.register(new ItemBlockVariantContainer(this, getPropertyName()), getRegistryName());
     }
 }

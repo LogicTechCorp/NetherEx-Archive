@@ -22,6 +22,12 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import nex.NetherEx;
 import nex.world.WorldProviderNether;
 import nex.world.biome.BiomeHell;
 import nex.world.biome.BiomeHoarFrost;
@@ -34,26 +40,31 @@ public class ModBiomes
 {
     private static Set<BiomeManager.BiomeEntry> biomeEntries = Sets.newHashSet();
 
-    public static final Biome HELL;
-    public static final Biome RUTHLESS_SANDS;
-    public static final Biome MUSHROOM_GROVE;
-    public static final Biome HOAR_FROST;
+    public static final BiomeHell HELL = new BiomeHell();
+    public static final BiomeRuthlessSands RUTHLESS_SANDS = new BiomeRuthlessSands();
+    public static final BiomeMushroomGrove MUSHROOM_GROVE = new BiomeMushroomGrove();
+    public static final BiomeHoarFrost HOAR_FROST = new BiomeHoarFrost();
 
-    static
+    @Mod.EventBusSubscriber
+    public static class EventHandler
     {
-        HELL = new BiomeHell();
-        RUTHLESS_SANDS = new BiomeRuthlessSands();
-        MUSHROOM_GROVE = new BiomeMushroomGrove();
-        HOAR_FROST = new BiomeHoarFrost();
+        @SubscribeEvent
+        public static void registerBiomes(RegistryEvent.Register<Biome> event)
+        {
+            event.getRegistry().registerAll(
+                    HELL.setRegistryName(NetherEx.MOD_ID + ":hell"),
+                    RUTHLESS_SANDS.setRegistryName(NetherEx.MOD_ID + ":ruthless_sands"),
+                    MUSHROOM_GROVE.setRegistryName(NetherEx.MOD_ID + ":mushroom_grove"),
+                    HOAR_FROST.setRegistryName(NetherEx.MOD_ID + ":hoar_frost")
+            );
+        }
+    }
 
+    public static void replaceNether()
+    {
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
         DimensionManager.registerDimension(-1, nether);
-    }
-
-    public static void init()
-    {
-
     }
 
     public static boolean addBiome(BiomeManager.BiomeEntry entry)

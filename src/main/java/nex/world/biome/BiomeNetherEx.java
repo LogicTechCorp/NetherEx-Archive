@@ -24,6 +24,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import nex.NetherEx;
 import nex.Settings;
 import nex.init.ModBiomes;
@@ -51,18 +52,13 @@ public abstract class BiomeNetherEx extends Biome
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
+
+        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
     }
 
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
         return new BiomeDecoratorNether();
-    }
-
-    public void register(String name, int weight)
-    {
-        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
-        GameRegistry.register(setRegistryName(new ResourceLocation(NetherEx.MOD_ID, name)));
-        ModBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
     }
 }

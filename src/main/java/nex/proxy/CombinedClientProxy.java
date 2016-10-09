@@ -26,7 +26,7 @@ public class CombinedClientProxy implements IProxy
     @Override
     public void preInit()
     {
-        ModModels.init();
+
     }
 
     @Override

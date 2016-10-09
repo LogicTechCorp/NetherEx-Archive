@@ -22,16 +22,20 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.block.IVariantContainer;
 import nex.init.ModItems;
 
-@SideOnly(Side.CLIENT)
+@Mod.EventBusSubscriber(Side.CLIENT)
 public class ModModels
 {
-    public static void init()
+    @SubscribeEvent
+    public static void registerAllModels(ModelRegistryEvent event)
     {
         ModItems.variantContainers.forEach(ModModels::registerModels);
     }

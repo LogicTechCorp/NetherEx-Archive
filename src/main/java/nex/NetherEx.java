@@ -17,6 +17,8 @@
 package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.world.DimensionType;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,6 +29,7 @@ import nex.handler.ConfigurationHandler;
 import nex.handler.IMCHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
+import nex.world.WorldProviderNether;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,7 +41,7 @@ public class NetherEx
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
-    public static final String DEPEND = "required-after:Forge@[1.10.2-12.18.1.2094,);";
+    public static final String DEPEND = "required-after:Forge@[1.10.2-12.18.2.2097,);";
     public static final String GUI_FACTORY = "nex.client.gui.GuiFactory";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
@@ -57,9 +60,7 @@ public class NetherEx
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "NetherEx.cfg"));
-        ModBlocks.init();
-        ModItems.init();
-        ModBiomes.init();
+        ModBiomes.replaceNether();
         ModOreDictionary.init();
         ModHandlers.init();
         proxy.preInit();

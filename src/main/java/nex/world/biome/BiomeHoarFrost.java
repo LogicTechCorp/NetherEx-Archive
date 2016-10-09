@@ -20,9 +20,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import nex.Settings;
 import nex.api.IEnhancedNetherBiome;
+import nex.init.ModBiomes;
 import nex.init.ModBlocks;
 import nex.world.gen.feature.WorldGenFrost;
 import nex.world.gen.feature.WorldGenMinableMeta;
@@ -51,7 +55,7 @@ public class BiomeHoarFrost extends BiomeNetherEx implements IEnhancedNetherBiom
 
         settingCategory = Settings.CATEGORY_BIOME_HOAR_FROST;
 
-        register("hoarFrost", Settings.biomeWeight(settingCategory));
+        ModBiomes.addBiome(new BiomeManager.BiomeEntry(this, Settings.biomeWeight(settingCategory)));
     }
 
     @Override

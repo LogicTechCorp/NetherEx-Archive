@@ -1,21 +1,15 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minecraft:cross",
+    "model": "item/generated",
     "transform": "forge:default-item"
   },
   "variants": {
-    "half": {
-      "top": {
-        "textures": {
-          "cross": "nex:blocks/fungal_roots_top"
-        }
-      },
-      "bottom": {
-        "textures": {
-          "cross": "nex:blocks/fungal_roots_bottom"
-        }
-      }
+    "half=top": {
+      "model": "nex:fungal_roots_top"
+    },
+    "half=bottom": {
+      "model": "nex:fungal_roots_bottom"
     }
   }
 }
