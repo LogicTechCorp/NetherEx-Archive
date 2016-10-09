@@ -20,7 +20,6 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.block.IVariantContainer;
 import nex.init.ModItems;

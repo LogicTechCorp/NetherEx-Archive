@@ -16,13 +16,15 @@
 
 package nex.init;
 
-import net.minecraftforge.common.MinecraftForge;
-import nex.handler.ConfigurationHandler;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ModHandlers
+public class ModRecipes
 {
     public static void init()
     {
-        MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.RIME_BLOCK), "rrr", "rrr", "rrr", 'r', ModItems.RIME);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.RIME, 9), ModBlocks.RIME_BLOCK);
     }
 }

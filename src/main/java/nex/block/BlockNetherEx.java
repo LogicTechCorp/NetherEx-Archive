@@ -20,9 +20,7 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.item.ItemBlockVariantContainer;
 
 public class BlockNetherEx extends Block implements IModBlock
 {

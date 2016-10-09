@@ -25,7 +25,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.block.*;
 import nex.item.ItemBlockVariantContainer;
-import nex.item.ItemRime;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class ModBlocks

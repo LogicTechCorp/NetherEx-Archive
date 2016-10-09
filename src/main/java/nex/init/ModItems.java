@@ -17,16 +17,13 @@
 package nex.init;
 
 import com.google.common.collect.Lists;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.block.*;
-import nex.item.ItemBlockVariantContainer;
-import nex.item.ItemNetherEx;
+import nex.block.IVariantContainer;
 import nex.item.ItemRime;
 
 import java.util.List;

@@ -20,6 +20,7 @@ import com.google.common.collect.Lists;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.NetherEx;
 import nex.Settings;
@@ -27,6 +28,7 @@ import nex.Settings;
 import java.io.File;
 import java.util.List;
 
+@Mod.EventBusSubscriber
 public class ConfigurationHandler
 {
     private static Configuration config;
@@ -369,7 +371,7 @@ public class ConfigurationHandler
     }
 
     @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent event)
+    public static void onConfigChanged(ConfigChangedEvent event)
     {
         if(event.getModID().equalsIgnoreCase(NetherEx.MOD_ID))
         {

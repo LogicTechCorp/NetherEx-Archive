@@ -25,9 +25,8 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import nex.NetherEx;
+import nex.Settings;
 import nex.world.WorldProviderNether;
 import nex.world.biome.BiomeHell;
 import nex.world.biome.BiomeHoarFrost;
@@ -60,8 +59,13 @@ public class ModBiomes
         }
     }
 
-    public static void replaceNether()
+    public static void init()
     {
+        addBiome(new BiomeManager.BiomeEntry(HELL, Settings.biomeWeight(HELL.settingCategory)));
+        addBiome(new BiomeManager.BiomeEntry(RUTHLESS_SANDS, Settings.biomeWeight(RUTHLESS_SANDS.settingCategory)));
+        addBiome(new BiomeManager.BiomeEntry(MUSHROOM_GROVE, Settings.biomeWeight(MUSHROOM_GROVE.settingCategory)));
+        addBiome(new BiomeManager.BiomeEntry(HOAR_FROST, Settings.biomeWeight(HOAR_FROST.settingCategory)));
+
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
         DimensionManager.registerDimension(-1, nether);

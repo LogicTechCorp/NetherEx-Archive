@@ -21,12 +21,8 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import nex.Settings;
-import nex.init.ModBiomes;
 import nex.world.gen.feature.WorldGenThornBush;
 
 import java.util.Random;
@@ -45,8 +41,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
 
         settingCategory = Settings.CATEGORY_BIOME_RUTHLESS_SANDS;
-
-        ModBiomes.addBiome(new BiomeManager.BiomeEntry(this, Settings.biomeWeight(settingCategory)));
     }
 
     @Override
