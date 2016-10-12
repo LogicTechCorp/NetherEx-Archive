@@ -51,7 +51,9 @@ public abstract class ItemNetherEx extends Item implements IVariantContainer
         VARIANTS = variants;
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
-        setName(name);
+
+        setRegistryName(NetherEx.MOD_ID + ":" + name);
+        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
 
         ModItems.variantContainers.add(this);
     }
@@ -80,11 +82,5 @@ public abstract class ItemNetherEx extends Item implements IVariantContainer
     public String[] getVariants()
     {
         return VARIANTS;
-    }
-
-    private void setName(String name)
-    {
-        setRegistryName(NetherEx.MOD_ID + ":" + name);
-        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 }

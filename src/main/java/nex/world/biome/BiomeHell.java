@@ -21,6 +21,8 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import nex.NetherEx;
 import nex.Settings;
 
 public class BiomeHell extends BiomeNetherEx
@@ -35,5 +37,7 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
 
         settingCategory = Settings.CATEGORY_BIOME_HELL;
+
+        setRegistryName(NetherEx.MOD_ID + ":hell");
     }
 }

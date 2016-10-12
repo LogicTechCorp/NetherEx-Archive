@@ -22,6 +22,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.BiomeDictionary;
+import nex.NetherEx;
 import nex.Settings;
 import nex.world.gen.feature.WorldGenThornBush;
 
@@ -41,6 +43,8 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
 
         settingCategory = Settings.CATEGORY_BIOME_RUTHLESS_SANDS;
+
+        setRegistryName(NetherEx.MOD_ID + ":ruthless_sands");
     }
 
     @Override

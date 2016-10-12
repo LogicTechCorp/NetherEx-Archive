@@ -43,7 +43,8 @@ public class BlockNetherEx extends Block implements IModBlock
 
         VARIANTS = variants;
 
-        setName(name);
+        setRegistryName(NetherEx.MOD_ID + ":" + name);
+        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 
     @Override
@@ -56,11 +57,5 @@ public class BlockNetherEx extends Block implements IModBlock
     public String getPropertyName()
     {
         return propertyName;
-    }
-
-    private void setName(String name)
-    {
-        setRegistryName(NetherEx.MOD_ID + ":" + name);
-        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 }

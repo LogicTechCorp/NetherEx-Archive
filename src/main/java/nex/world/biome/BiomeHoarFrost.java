@@ -21,6 +21,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.BiomeDictionary;
+import nex.NetherEx;
 import nex.Settings;
 import nex.api.IEnhancedNetherBiome;
 import nex.init.ModBlocks;
@@ -50,6 +52,8 @@ public class BiomeHoarFrost extends BiomeNetherEx implements IEnhancedNetherBiom
         lavaTrapTargetBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
 
         settingCategory = Settings.CATEGORY_BIOME_HOAR_FROST;
+
+        setRegistryName(NetherEx.MOD_ID + ":hoar_frost");
     }
 
     @Override

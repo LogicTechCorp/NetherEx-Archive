@@ -21,7 +21,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
+import nex.NetherEx;
 import nex.Settings;
+import nex.init.ModBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
@@ -46,8 +49,6 @@ public abstract class BiomeNetherEx extends Biome
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
-
-        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
     }
 
     @Override

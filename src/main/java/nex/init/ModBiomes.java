@@ -20,11 +20,13 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.Settings;
 import nex.world.WorldProviderNether;
@@ -35,14 +37,22 @@ import nex.world.biome.BiomeRuthlessSands;
 
 import java.util.Set;
 
+@GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class ModBiomes
 {
     private static Set<BiomeManager.BiomeEntry> biomeEntries = Sets.newHashSet();
 
-    public static final BiomeHell HELL = new BiomeHell();
-    public static final BiomeRuthlessSands RUTHLESS_SANDS = new BiomeRuthlessSands();
-    public static final BiomeMushroomGrove MUSHROOM_GROVE = new BiomeMushroomGrove();
-    public static final BiomeHoarFrost HOAR_FROST = new BiomeHoarFrost();
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hell")
+    public static final BiomeHell HELL = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ruthless_sands")
+    public static final BiomeRuthlessSands RUTHLESS_SANDS = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":mushroom_grove")
+    public static final BiomeMushroomGrove MUSHROOM_GROVE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hoar_frost")
+    public static final BiomeHoarFrost HOAR_FROST = null;
 
     @Mod.EventBusSubscriber
     public static class EventHandler
@@ -51,16 +61,21 @@ public class ModBiomes
         public static void registerBiomes(RegistryEvent.Register<Biome> event)
         {
             event.getRegistry().registerAll(
-                    HELL.setRegistryName(NetherEx.MOD_ID + ":hell"),
-                    RUTHLESS_SANDS.setRegistryName(NetherEx.MOD_ID + ":ruthless_sands"),
-                    MUSHROOM_GROVE.setRegistryName(NetherEx.MOD_ID + ":mushroom_grove"),
-                    HOAR_FROST.setRegistryName(NetherEx.MOD_ID + ":hoar_frost")
+                    new BiomeHell(),
+                    new BiomeRuthlessSands(),
+                    new BiomeMushroomGrove(),
+                    new BiomeHoarFrost()
             );
         }
     }
 
     public static void init()
     {
+        BiomeDictionary.registerBiomeType(HELL, BiomeDictionary.Type.NETHER);
+        BiomeDictionary.registerBiomeType(RUTHLESS_SANDS, BiomeDictionary.Type.NETHER);
+        BiomeDictionary.registerBiomeType(MUSHROOM_GROVE, BiomeDictionary.Type.NETHER);
+        BiomeDictionary.registerBiomeType(HOAR_FROST, BiomeDictionary.Type.NETHER);
+
         addBiome(new BiomeManager.BiomeEntry(HELL, Settings.biomeWeight(HELL.settingCategory)));
         addBiome(new BiomeManager.BiomeEntry(RUTHLESS_SANDS, Settings.biomeWeight(RUTHLESS_SANDS.settingCategory)));
         addBiome(new BiomeManager.BiomeEntry(MUSHROOM_GROVE, Settings.biomeWeight(MUSHROOM_GROVE.settingCategory)));

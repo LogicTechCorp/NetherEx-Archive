@@ -20,6 +20,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import nex.NetherEx;
 import nex.Settings;
 import nex.init.ModBlocks;
 import nex.world.gen.feature.WorldGenBigMushroom;
@@ -51,6 +52,8 @@ public class BiomeMushroomGrove extends BiomeNetherEx
         lavaTrapTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
 
         settingCategory = Settings.CATEGORY_BIOME_MUSHROOM_GROVE;
+
+        setRegistryName(NetherEx.MOD_ID + ":mushroom_grove");
     }
 
     @Override
