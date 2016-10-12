@@ -16,25 +16,35 @@
 
 package nex.world.gen.feature;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.block.BlockEnokiCap;
-import nex.init.ModBlocks;
 
 import java.util.Random;
 
-public class WorldGenEnoki extends WorldGenerator
+public class WorldGenFire extends WorldGenerator
 {
-    @Override
+    private final IBlockState targetBlock;
+
+    public WorldGenFire(IBlockState targetBlockIn)
+    {
+        targetBlock = targetBlockIn;
+    }
+
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.isAirBlock(pos.down()) && ModBlocks.ENOKI_CAP.canSurvive(world, pos))
+        for(int i = 0; i < 64; ++i)
         {
-            BlockEnokiCap.generatePlant(world, pos, rand, 8);
-            return true;
+            BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+
+            if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == targetBlock)
+            {
+                world.setBlockState(newPos, Blocks.FIRE.getDefaultState(), 2);
+            }
         }
 
-        return false;
+        return true;
     }
 }

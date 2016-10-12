@@ -79,6 +79,7 @@ public class ModGuiConfig extends GuiConfig
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeRuthlessSands"), "configGuiCategory.nex:biomeRuthlessSands", BiomeRuthlessSandsEntry.class));
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeMushroomGrove"), "configGuiCategory.nex:biomeMushroomGrove", BiomeMushroomGroveEntry.class));
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHoarFrost"), "configGuiCategory.nex:biomeHoarFrost", BiomeHoarFrostEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHotSprings"), "configGuiCategory.nex:biomeHotSprings", BiomeHotSpringsEntry.class));
 
             return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME, false, false, I18n.format("configGuiTitle.nex:biome"));
         }
@@ -141,6 +142,21 @@ public class ModGuiConfig extends GuiConfig
         {
             List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_HOAR_FROST)).getChildElements();
             return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HOAR_FROST, false, false, I18n.format("configGuiTitle.nex:biomeHoarFrost"));
+        }
+    }
+
+    public static class BiomeHotSpringsEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public BiomeHotSpringsEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_HOT_SPRINGS)).getChildElements();
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HOT_SPRINGS, false, false, I18n.format("configGuiTitle.nex:biomeHotSprings"));
         }
     }
 }

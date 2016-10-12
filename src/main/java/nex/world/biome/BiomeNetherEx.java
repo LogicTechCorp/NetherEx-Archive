@@ -20,21 +20,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
-import nex.NetherEx;
 import nex.Settings;
-import nex.init.ModBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
-    public IBlockState lavaSpringTargetBlock = Blocks.NETHERRACK.getDefaultState();
-    public IBlockState smallBrownMushroomTargetBlock = Blocks.NETHERRACK.getDefaultState();
-    public IBlockState smallRedMushroomTargetBlock = Blocks.NETHERRACK.getDefaultState();
     public IBlockState quartzOreBlock = Blocks.QUARTZ_ORE.getDefaultState();
-    public IBlockState quartzTargetBlock = Blocks.NETHERRACK.getDefaultState();
-    public IBlockState magmaTargetBlock = Blocks.NETHERRACK.getDefaultState();
-    public IBlockState lavaTrapTargetBlock = Blocks.NETHERRACK.getDefaultState();
 
     public String settingCategory = Settings.CATEGORY_BIOME;
 

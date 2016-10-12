@@ -30,10 +30,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.Settings;
 import nex.world.WorldProviderNether;
-import nex.world.biome.BiomeHell;
-import nex.world.biome.BiomeHoarFrost;
-import nex.world.biome.BiomeMushroomGrove;
-import nex.world.biome.BiomeRuthlessSands;
+import nex.world.biome.*;
 
 import java.util.Set;
 
@@ -54,17 +51,21 @@ public class ModBiomes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hoar_frost")
     public static final BiomeHoarFrost HOAR_FROST = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hot_springs")
+    public static final BiomeHotSprings HOT_SPRINGS = null;
+
     @Mod.EventBusSubscriber
     public static class EventHandler
     {
         @SubscribeEvent
-        public static void registerBiomes(RegistryEvent.Register<Biome> event)
+        public static void onRegisterBiomes(RegistryEvent.Register<Biome> event)
         {
             event.getRegistry().registerAll(
                     new BiomeHell(),
                     new BiomeRuthlessSands(),
                     new BiomeMushroomGrove(),
-                    new BiomeHoarFrost()
+                    new BiomeHoarFrost(),
+                    new BiomeHotSprings()
             );
         }
     }
@@ -75,11 +76,13 @@ public class ModBiomes
         BiomeDictionary.registerBiomeType(RUTHLESS_SANDS, BiomeDictionary.Type.NETHER);
         BiomeDictionary.registerBiomeType(MUSHROOM_GROVE, BiomeDictionary.Type.NETHER);
         BiomeDictionary.registerBiomeType(HOAR_FROST, BiomeDictionary.Type.NETHER);
+        BiomeDictionary.registerBiomeType(HOT_SPRINGS, BiomeDictionary.Type.NETHER);
 
         addBiome(new BiomeManager.BiomeEntry(HELL, Settings.biomeWeight(HELL.settingCategory)));
         addBiome(new BiomeManager.BiomeEntry(RUTHLESS_SANDS, Settings.biomeWeight(RUTHLESS_SANDS.settingCategory)));
         addBiome(new BiomeManager.BiomeEntry(MUSHROOM_GROVE, Settings.biomeWeight(MUSHROOM_GROVE.settingCategory)));
         addBiome(new BiomeManager.BiomeEntry(HOAR_FROST, Settings.biomeWeight(HOAR_FROST.settingCategory)));
+        addBiome(new BiomeManager.BiomeEntry(HOT_SPRINGS, Settings.biomeWeight(HOT_SPRINGS.settingCategory)));
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);

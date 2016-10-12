@@ -363,6 +363,78 @@ public class ConfigurationHandler
         properties.add(prop.getName());
 
         config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_HOAR_FROST, properties);
+        properties = Lists.newArrayList();
+
+        /* Hot Springs Biome Settings */
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "biomeWeight", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.biomeWeight");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateLavaSprings", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateLavaSprings");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "lavaSpringRarity", 64);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.lavaSpringRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateFire", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateFire");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "fireRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.fireRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateGlowstone", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateGlowstone");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "glowstoneRarity", 10);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.glowstoneRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateMushrooms", false);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateMushrooms");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "mushroomRarity", 1);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.mushroomRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateQuartzOre", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateQuartzOre");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "quartzOreRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.quartzOreRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateLavaPools", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateLavaPools");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "lavaPoolRarity", 16);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.lavaPoolRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateMagma", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateMagma");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "magmaRarity", 4);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.magmaRarity");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "generateLavaTraps", true);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateLavaTraps");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "lavaTrapRarity", 32);
+        prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.lavaTrapRarity");
+        properties.add(prop.getName());
+
+        config.setCategoryPropertyOrder(Settings.CATEGORY_BIOME_HOT_SPRINGS, properties);
 
         if(config.hasChanged())
         {

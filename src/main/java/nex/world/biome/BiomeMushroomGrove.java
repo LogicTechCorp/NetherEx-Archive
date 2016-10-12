@@ -16,9 +16,12 @@
 
 package nex.world.biome;
 
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import nex.NetherEx;
 import nex.Settings;
@@ -43,13 +46,10 @@ public class BiomeMushroomGrove extends BiomeNetherEx
         topBlock = ModBlocks.MYCELIUM.getDefaultState();
         fillerBlock = ModBlocks.NETHERRACK.getDefaultState();
 
-        lavaSpringTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
-        smallBrownMushroomTargetBlock = ModBlocks.MYCELIUM.getDefaultState();
-        smallRedMushroomTargetBlock = ModBlocks.MYCELIUM.getDefaultState();
+        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
+
         quartzOreBlock = ModBlocks.QUARTZ_ORE.getDefaultState();
-        quartzTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
-        magmaTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
-        lavaTrapTargetBlock = ModBlocks.NETHERRACK.getDefaultState();
 
         settingCategory = Settings.CATEGORY_BIOME_MUSHROOM_GROVE;
 

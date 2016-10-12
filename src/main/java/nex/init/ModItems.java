@@ -40,7 +40,7 @@ public class ModItems
     public static class EventHandler
     {
         @SubscribeEvent
-        public static void registerItems(RegistryEvent.Register<Item> event)
+        public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
             event.getRegistry().registerAll(
                     new ItemRime()

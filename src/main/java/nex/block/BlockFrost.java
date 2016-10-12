@@ -32,6 +32,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.init.ModBlocks;
 
 import java.util.Random;
 
@@ -144,6 +145,6 @@ public class BlockFrost extends BlockVariantContainer
 
     private boolean canFrostStay(IBlockState state)
     {
-        return state.isFullCube() && state.getMaterial().blocksMovement();
+        return state == ModBlocks.NETHERRACK.getStateFromMeta(1);
     }
 }

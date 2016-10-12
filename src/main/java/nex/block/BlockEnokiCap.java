@@ -228,41 +228,10 @@ public class BlockEnokiCap extends BlockNetherEx
         return state.getValue(AGE);
     }
 
-    private boolean canSurvive(World world, BlockPos pos)
+    public boolean canSurvive(World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos.up()).getBlock();
-
-        if(block != ModBlocks.ENOKI_STEM && (block != Blocks.NETHERRACK || block != ModBlocks.NETHERRACK))
-        {
-            if(block == Blocks.AIR)
-            {
-                int i = 0;
-
-                for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
-                {
-                    Block block1 = world.getBlockState(pos.offset(enumfacing)).getBlock();
-
-                    if(block1 == ModBlocks.ENOKI_STEM)
-                    {
-                        ++i;
-                    }
-                    else if(block1 != Blocks.AIR)
-                    {
-                        return false;
-                    }
-                }
-
-                return i == 1;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return true;
-        }
+        IBlockState stateUp = world.getBlockState(pos.up());
+        return stateUp.getBlock() == ModBlocks.ENOKI_STEM || stateUp == ModBlocks.NETHERRACK.getDefaultState();
     }
 
     private static boolean areAllNeighborsEmpty(World world, BlockPos pos, EnumFacing face)

@@ -9,6 +9,9 @@
     },
     "type=chilled": {
       "model": "nex:ore_quartz_chilled"
+    },
+    "type=heated": {
+      "model": "nex:ore_quartz_heated"
     }
   }
 }

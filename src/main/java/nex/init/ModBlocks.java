@@ -66,7 +66,7 @@ public class ModBlocks
     public static class EventHandler
     {
         @SubscribeEvent
-        public static void registerBlocks(RegistryEvent.Register<Block> event)
+        public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
             event.getRegistry().registerAll(
                     new BlockNetherrack(),
@@ -84,7 +84,7 @@ public class ModBlocks
         }
 
         @SubscribeEvent
-        public static void registerItems(RegistryEvent.Register<Item> event)
+        public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
             event.getRegistry().registerAll(
                     new ItemBlockVariantContainer(NETHERRACK, NETHERRACK.getPropertyName()).setRegistryName(NETHERRACK.getRegistryName()),

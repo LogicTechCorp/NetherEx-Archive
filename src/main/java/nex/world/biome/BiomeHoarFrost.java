@@ -17,11 +17,13 @@
 package nex.world.biome;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.BiomeDictionary;
 import nex.NetherEx;
 import nex.Settings;
 import nex.api.IEnhancedNetherBiome;
@@ -43,13 +45,10 @@ public class BiomeHoarFrost extends BiomeNetherEx implements IEnhancedNetherBiom
         topBlock = ModBlocks.RIME_ICE.getDefaultState();
         fillerBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
 
-        lavaSpringTargetBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
-        smallBrownMushroomTargetBlock = ModBlocks.RIME_ICE.getDefaultState();
-        smallRedMushroomTargetBlock = ModBlocks.RIME_ICE.getDefaultState();
+        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
+
         quartzOreBlock = ModBlocks.QUARTZ_ORE.getStateFromMeta(1);
-        quartzTargetBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
-        magmaTargetBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
-        lavaTrapTargetBlock = ModBlocks.NETHERRACK.getStateFromMeta(1);
 
         settingCategory = Settings.CATEGORY_BIOME_HOAR_FROST;
 

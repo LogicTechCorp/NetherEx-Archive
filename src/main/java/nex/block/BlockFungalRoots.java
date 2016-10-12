@@ -33,6 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.init.ModBlocks;
 
 public class BlockFungalRoots extends BlockNetherEx
 {
@@ -107,8 +108,7 @@ public class BlockFungalRoots extends BlockNetherEx
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        Block blockUp = world.getBlockState(pos.up()).getBlock();
-        return super.canPlaceBlockAt(world, pos) && blockUp != this && blockUp.isBlockSolid(world, pos.up(), null) && world.isAirBlock(pos.down());
+        return super.canPlaceBlockAt(world, pos) && world.getBlockState(pos.up()) == ModBlocks.NETHERRACK.getDefaultState() && world.isAirBlock(pos.down());
     }
 
     @Override

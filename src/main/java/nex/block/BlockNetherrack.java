@@ -41,7 +41,8 @@ public class BlockNetherrack extends BlockVariantContainer
     public enum EnumType implements IStringSerializable
     {
         BIOTIC,
-        CHILLED;
+        CHILLED,
+        HEATED;
 
         @Override
         public String getName()

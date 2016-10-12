@@ -29,6 +29,7 @@ public class Settings
     public static final String CATEGORY_BIOME_RUTHLESS_SANDS = "biome.ruthlessSands";
     public static final String CATEGORY_BIOME_MUSHROOM_GROVE = "biome.mushroomGrove";
     public static final String CATEGORY_BIOME_HOAR_FROST = "biome.hoarFrost";
+    public static final String CATEGORY_BIOME_HOT_SPRINGS = "biome.hotSprings";
 
     /**
      * Client Settings
@@ -52,6 +53,9 @@ public class Settings
     public static int frostRarity = getSetting(CATEGORY_BIOME_HOAR_FROST, "frostRarity", 32);
     public static boolean generateRimeOre = getSetting(CATEGORY_BIOME_HOAR_FROST, "generateRimeOre", true);
     public static int rimeOreRarity = getSetting(CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 16);
+
+    public static boolean generateLavaPools = getSetting(CATEGORY_BIOME_HOT_SPRINGS, "generateLavaPools", true);
+    public static int lavaPoolRarity = getSetting(CATEGORY_BIOME_HOT_SPRINGS, "lavaPoolRarity", 32);
 
     public static int biomeWeight(String category)
     {

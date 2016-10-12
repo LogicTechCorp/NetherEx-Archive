@@ -16,13 +16,14 @@
 
 package nex.world.biome;
 
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.BiomeDictionary;
 import nex.NetherEx;
 import nex.Settings;
 import nex.world.gen.feature.WorldGenThornBush;
@@ -39,8 +40,9 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         topBlock = Blocks.SOUL_SAND.getDefaultState();
 
-        spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 10, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
 
         settingCategory = Settings.CATEGORY_BIOME_RUTHLESS_SANDS;
 

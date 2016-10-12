@@ -21,16 +21,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.gen.feature.WorldGenFire;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.Settings;
-import nex.world.gen.feature.WorldGenBush;
-import nex.world.gen.feature.WorldGenGlowStone;
-import nex.world.gen.feature.WorldGenLava;
-import nex.world.gen.feature.WorldGenMinableMeta;
+import nex.world.gen.feature.*;
 
 import java.util.Random;
 
@@ -50,14 +46,14 @@ public class BiomeDecoratorNether extends BiomeDecorator
     {
         BiomeNetherEx biomeNetherEx = (BiomeNetherEx) biome;
 
-        lavaSpring = new WorldGenLava(biomeNetherEx.lavaSpringTargetBlock, false);
-        fire = new WorldGenFire();
+        lavaSpring = new WorldGenLava(biome.fillerBlock, false);
+        fire = new WorldGenFire(biome.topBlock);
         glowstone = new WorldGenGlowStone();
-        smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, biomeNetherEx.smallBrownMushroomTargetBlock);
-        smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, biomeNetherEx.smallRedMushroomTargetBlock);
-        quartz = new WorldGenMinableMeta(biomeNetherEx.quartzOreBlock, 14, biomeNetherEx.quartzTargetBlock);
-        magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, biomeNetherEx.magmaTargetBlock);
-        lavaTrap = new WorldGenLava(biomeNetherEx.lavaTrapTargetBlock, true);
+        smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, biome.topBlock);
+        smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, biome.topBlock);
+        quartz = new WorldGenMinableMeta(biomeNetherEx.quartzOreBlock, 14, biome.fillerBlock);
+        magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, biome.topBlock);
+        lavaTrap = new WorldGenLava(biome.fillerBlock, true);
 
         genFeatures(world, rand, biomeNetherEx, pos);
     }
