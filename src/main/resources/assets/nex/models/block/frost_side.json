@@ -1,6 +1,7 @@
 {
   "ambientocclusion": false,
   "textures": {
+    "particle": "nex:blocks/frost",
     "texture": "nex:blocks/frost"
   },
   "elements": [

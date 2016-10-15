@@ -126,7 +126,7 @@ public class ConfigurationHandler
         properties = Lists.newArrayList();
 
         /* Ruthless Sands Biome Settings */
-        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "biomeWeight", 10);
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "biomeWeight", 4);
         prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.biomeWeight");
         properties.add(prop.getName());
 
@@ -198,7 +198,7 @@ public class ConfigurationHandler
         properties = Lists.newArrayList();
 
         /* Mushroom Grove Biome Settings */
-        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "biomeWeight", 10);
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "biomeWeight", 5);
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.biomeWeight");
         properties.add(prop.getName());
 
@@ -286,7 +286,7 @@ public class ConfigurationHandler
         properties = Lists.newArrayList();
 
         /* Hoar Frost Settings */
-        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "biomeWeight", 10);
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "biomeWeight", 2);
         prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.biomeWeight");
         properties.add(prop.getName());
 
@@ -366,7 +366,7 @@ public class ConfigurationHandler
         properties = Lists.newArrayList();
 
         /* Hot Springs Biome Settings */
-        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "biomeWeight", 10);
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "biomeWeight", 7);
         prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.biomeWeight");
         properties.add(prop.getName());
 
