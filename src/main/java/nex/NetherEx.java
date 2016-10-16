@@ -23,7 +23,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import nex.handler.ConfigurationHandler;
 import nex.handler.IMCHandler;
 import nex.init.ModBiomes;
 import nex.init.ModOreDictionary;
@@ -31,8 +30,6 @@ import nex.init.ModRecipes;
 import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.File;
 
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPEND, guiFactory = NetherEx.GUI_FACTORY)
 public class NetherEx
@@ -58,8 +55,7 @@ public class NetherEx
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "NetherEx.cfg"));
-        ModBiomes.init();
+        ModBiomes.replaceNether();
         ModOreDictionary.init();
         ModRecipes.init();
         proxy.preInit();

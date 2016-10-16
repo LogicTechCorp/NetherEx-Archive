@@ -23,6 +23,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import nex.Settings;
 
 import java.util.Random;
 
@@ -30,6 +31,8 @@ public class WorldGenBigMushroom extends WorldGenerator
 {
     private final Block mushroomBlock;
     private final IBlockState blockToPlaceOn;
+
+    private int heightMultiplier = Settings.generateTallNether ? 2 : 1;
 
     public WorldGenBigMushroom(Block mushroomBlockIn, IBlockState blockToPlaceOnIn)
     {
@@ -56,7 +59,7 @@ public class WorldGenBigMushroom extends WorldGenerator
 
         boolean hasSpace = true;
 
-        if(pos.getY() >= 1 && pos.getY() + i + 1 < 128)
+        if(pos.getY() >= 1 && pos.getY() + i + 1 < 128 * heightMultiplier)
         {
             for(int j = pos.getY(); j <= pos.getY() + 1 + i; ++j)
             {
@@ -73,7 +76,7 @@ public class WorldGenBigMushroom extends WorldGenerator
                     {
                         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
-                        if(j >= 0 && j < 128)
+                        if(j >= 0 && j < 128 * heightMultiplier)
                         {
                             IBlockState state = world.getBlockState(mutablePos.setPos(l, j, i1));
 

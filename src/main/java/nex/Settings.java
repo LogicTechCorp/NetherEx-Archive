@@ -24,6 +24,9 @@ public class Settings
      * Setting Categories
      **/
     public static final String CATEGORY_CLIENT = "client";
+    public static final String CATEGORY_CLIENT_GRAPHICS = "client.graphics";
+    public static final String CATEGORY_NETHER = "nether";
+    public static final String CATEGORY_NETHER_DIMENSION = "nether.dimension";
     public static final String CATEGORY_BIOME = "biome";
     public static final String CATEGORY_BIOME_HELL = "biome.hell";
     public static final String CATEGORY_BIOME_RUTHLESS_SANDS = "biome.ruthlessSands";
@@ -34,20 +37,28 @@ public class Settings
     /**
      * Client Settings
      **/
-    public static boolean renderNetherFog = getSetting(CATEGORY_CLIENT, "renderNetherFog", true);
+    public static boolean renderNetherFog = getSetting(CATEGORY_CLIENT_GRAPHICS, "renderNetherFog", true);
+
+    /**
+     * Nether Settings
+     **/
+    public static boolean generateGravel = getSetting(CATEGORY_NETHER_DIMENSION, "generateGravel", false);
+    public static boolean generateSoulSand = getSetting(CATEGORY_NETHER_DIMENSION, "generateSoulSand", false);
+    public static boolean generateTallNether = getSetting(CATEGORY_NETHER_DIMENSION, "generateTallNether", false);
+
 
     /**
      * Biome Settings
      **/
     public static boolean generateThornBushes = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "generateThornBushes", true);
-    public static int thornBushRarity = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "thornBushRarity", 32);
+    public static int thornBushRarity = getSetting(CATEGORY_BIOME_RUTHLESS_SANDS, "thornBushRarity", 64);
 
     public static boolean generateFungalRoots = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateFungalRoots", true);
     public static int fungalRootRarity = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootRarity", 8);
     public static boolean generateEnoki = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateEnoki", true);
     public static int enokiRarity = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "enokiRarity", 8);
     public static boolean generateBigMushrooms = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "generateBigMushrooms", true);
-    public static int bigMushroomRarity = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "bigMushroomRarity", 256);
+    public static int bigMushroomRarity = getSetting(CATEGORY_BIOME_MUSHROOM_GROVE, "bigMushroomRarity", 512);
 
     public static boolean generateFrost = getSetting(CATEGORY_BIOME_HOAR_FROST, "generateFrost", true);
     public static int frostRarity = getSetting(CATEGORY_BIOME_HOAR_FROST, "frostRarity", 32);
@@ -55,7 +66,7 @@ public class Settings
     public static int rimeOreRarity = getSetting(CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 16);
 
     public static boolean generateLavaPools = getSetting(CATEGORY_BIOME_HOT_SPRINGS, "generateLavaPools", true);
-    public static int lavaPoolRarity = getSetting(CATEGORY_BIOME_HOT_SPRINGS, "lavaPoolRarity", 32);
+    public static int lavaPoolRarity = getSetting(CATEGORY_BIOME_HOT_SPRINGS, "lavaPoolRarity", 8);
 
     public static int biomeWeight(String category)
     {

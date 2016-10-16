@@ -24,7 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.NetherEx;
 import nex.Settings;
 import nex.world.gen.feature.WorldGenThornBush;
 
@@ -46,7 +45,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         settingCategory = Settings.CATEGORY_BIOME_RUTHLESS_SANDS;
 
-        setRegistryName(NetherEx.MOD_ID + ":ruthless_sands");
+        setNameAndRegister("ruthless_sands", Settings.biomeWeight(settingCategory));
     }
 
     @Override
@@ -56,9 +55,24 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         if(Settings.generateThornBushes)
         {
-            for(int i = 0; i < rand.nextInt(Settings.thornBushRarity); i++)
+            if(Settings.generateTallNether)
             {
-                thornBush.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                for(int i = 0; i < rand.nextInt(Settings.thornBushRarity); i++)
+                {
+                    thornBush.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < rand.nextInt(Settings.thornBushRarity); i++)
+                {
+                    thornBush.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < rand.nextInt(Settings.thornBushRarity); i++)
+                {
+                    thornBush.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
     }

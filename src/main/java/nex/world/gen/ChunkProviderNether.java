@@ -40,6 +40,7 @@ import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import nex.Settings;
 import nex.api.IEnhancedNetherBiome;
 
 import java.util.List;
@@ -73,6 +74,8 @@ public class ChunkProviderNether extends ChunkProviderHell
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
 
+    private int heightMultiplier = Settings.generateTallNether ? 2 : 1;
+
     public ChunkProviderNether(World worldIn)
     {
         super(worldIn, false, worldIn.getSeed());
@@ -103,22 +106,22 @@ public class ChunkProviderNether extends ChunkProviderHell
 
     private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
-        buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
+        buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, (16 * heightMultiplier) + 1, 5);
 
         for(int x = 0; x < 4; x++)
         {
             for(int z = 0; z < 4; z++)
             {
-                for(int y = 0; y < 16; y++)
+                for(int y = 0; y < 16 * heightMultiplier; y++)
                 {
-                    double d1 = buffer[(x * 5 + z) * 17 + y];
-                    double d2 = buffer[(((x * 5) + z + 1) * 17) + y];
-                    double d3 = buffer[((((x + 1) * 5) + z) * 17) + y];
-                    double d4 = buffer[((x + 1) * 5 + z + 1) * 17 + y];
-                    double d5 = (buffer[(x * 5 + z) * 17 + y + 1] - d1) * 0.125D;
-                    double d6 = (buffer[(x * 5 + z + 1) * 17 + y + 1] - d2) * 0.125D;
-                    double d7 = (buffer[((x + 1) * 5 + z) * 17 + y + 1] - d3) * 0.125D;
-                    double d8 = (buffer[((x + 1) * 5 + z + 1) * 17 + y + 1] - d4) * 0.125D;
+                    double d1 = buffer[(x * 5 + z) * ((16 * heightMultiplier) + 1) + y];
+                    double d2 = buffer[(((x * 5) + z + 1) * ((16 * heightMultiplier) + 1)) + y];
+                    double d3 = buffer[((((x + 1) * 5) + z) * ((16 * heightMultiplier) + 1)) + y];
+                    double d4 = buffer[((x + 1) * 5 + z + 1) * ((16 * heightMultiplier) + 1) + y];
+                    double d5 = (buffer[(x * 5 + z) * ((16 * heightMultiplier) + 1) + y + 1] - d1) * 0.125D;
+                    double d6 = (buffer[(x * 5 + z + 1) * ((16 * heightMultiplier) + 1) + y + 1] - d2) * 0.125D;
+                    double d7 = (buffer[((x + 1) * 5 + z) * ((16 * heightMultiplier) + 1) + y + 1] - d3) * 0.125D;
+                    double d8 = (buffer[((x + 1) * 5 + z + 1) * ((16 * heightMultiplier) + 1) + y + 1] - d4) * 0.125D;
 
                     for(int y2 = 0; y2 < 8; y2++)
                     {
@@ -137,9 +140,9 @@ public class ChunkProviderNether extends ChunkProviderHell
                                 IBlockState state = null;
                                 IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
-                                int posX = x2 + x * 4;
-                                int posY = y2 + y * 8;
-                                int posZ = z2 + z * 4;
+                                int posX = x * 4 + x2;
+                                int posY = y * 8 + y2;
+                                int posZ = z * 4 + z2;
 
                                 Biome biome = biomes[posX + posZ * 16];
 
@@ -153,7 +156,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                                     }
                                 }
 
-                                if(y * 8 + y2 < 32)
+                                if(posY < 32 * heightMultiplier)
                                 {
                                     state = oceanState;
                                 }
@@ -216,9 +219,9 @@ public class ChunkProviderNether extends ChunkProviderHell
                     }
                 }
 
-                for(int y = 127; y >= 0; y--)
+                for(int y = (128 * heightMultiplier) - 1; y >= 0; y--)
                 {
-                    if(y < 127 && y > 0)
+                    if(y < (128 * heightMultiplier) - 1 && y > 0)
                     {
                         IBlockState checkState = primer.getBlockState(x, y, z);
 
@@ -231,26 +234,26 @@ public class ChunkProviderNether extends ChunkProviderHell
                                     if(l <= 0)
                                     {
                                         topState = Blocks.AIR.getDefaultState();
-                                        fillerState = Blocks.NETHERRACK.getDefaultState();
+                                        fillerState = biome.topBlock;
                                     }
-                                    else if(y >= 62 && y <= 66)
+                                    else if(y >= 62 * heightMultiplier && y <= 66 * heightMultiplier)
                                     {
                                         topState = biome.topBlock;
                                         fillerState = biome.fillerBlock;
 
-                                        if(genGravel)
+                                        if(genGravel && Settings.generateGravel)
                                         {
                                             topState = Blocks.GRAVEL.getDefaultState();
                                         }
 
-                                        if(genSoulSand)
+                                        if(genSoulSand && Settings.generateSoulSand)
                                         {
                                             topState = Blocks.SOUL_SAND.getDefaultState();
                                             fillerState = Blocks.SOUL_SAND.getDefaultState();
                                         }
                                     }
 
-                                    if(y <= 32 && (topState == null || topState.getMaterial() == Material.AIR))
+                                    if(y <= 32 * heightMultiplier && (topState == null || topState.getMaterial() == Material.AIR))
                                     {
                                         topState = oceanState;
                                     }
@@ -263,7 +266,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                                     }
                                     else
                                     {
-                                        if(y > 64)
+                                        if(y > 64 * heightMultiplier)
                                         {
                                             primer.setBlockState(x, y, z, topState);
                                         }

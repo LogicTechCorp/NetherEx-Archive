@@ -54,12 +54,29 @@ public class ConfigurationHandler
         Property prop;
 
         /* Client Settings */
-        prop = config.get(Settings.CATEGORY_CLIENT, "renderNetherFog", true);
-        prop.setLanguageKey("configGuiSettings.nex:client.renderNetherFog");
+        prop = config.get(Settings.CATEGORY_CLIENT_GRAPHICS, "renderNetherFog", true);
+        prop.setLanguageKey("configGuiSettings.nex:clientGraphics.renderNetherFog");
         properties.add(prop.getName());
 
-        config.setCategoryPropertyOrder(Settings.CATEGORY_CLIENT, properties);
+        config.setCategoryPropertyOrder(Settings.CATEGORY_CLIENT_GRAPHICS, properties);
         properties = Lists.newArrayList();
+
+        /* Nether Settings */
+        prop = config.get(Settings.CATEGORY_NETHER_DIMENSION, "generateGravel", false);
+        prop.setLanguageKey("configGuiSettings.nex:netherDimension.generateGravel");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_NETHER_DIMENSION, "generateSoulSand", false);
+        prop.setLanguageKey("configGuiSettings.nex:netherDimension.generateSoulSand");
+        properties.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_NETHER_DIMENSION, "generateTallNether", false);
+        prop.setLanguageKey("configGuiSettings.nex:netherDimension.generateTallNether");
+        properties.add(prop.getName());
+
+        config.setCategoryPropertyOrder(Settings.CATEGORY_NETHER_DIMENSION, properties);
+        properties = Lists.newArrayList();
+
 
         /* Hell Biome Settings */
         prop = config.get(Settings.CATEGORY_BIOME_HELL, "biomeWeight", 10);
@@ -90,7 +107,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeHell.glowstoneRarity");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateMushrooms", true);
+        prop = config.get(Settings.CATEGORY_BIOME_HELL, "generateMushrooms", false);
         prop.setLanguageKey("configGuiSettings.nex:biomeHell.generateMushrooms");
         properties.add(prop.getName());
 
@@ -166,7 +183,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.generateThornBushes");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "thornBushRarity", 32);
+        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "thornBushRarity", 64);
         prop.setLanguageKey("configGuiSettings.nex:biomeRuthlessSands.thornBushRarity");
         properties.add(prop.getName());
 
@@ -230,7 +247,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateFungalRoots");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootRarity", 4);
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "fungalRootRarity", 8);
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.fungalRootRarity");
         properties.add(prop.getName());
 
@@ -254,7 +271,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.generateMushrooms");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_RUTHLESS_SANDS, "mushroomRarity", 16);
+        prop = config.get(Settings.CATEGORY_BIOME_MUSHROOM_GROVE, "mushroomRarity", 32);
         prop.setLanguageKey("configGuiSettings.nex:biomeMushroomGrove.mushroomRarity");
         properties.add(prop.getName());
 
@@ -334,7 +351,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.generateRimeOre");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 4);
+        prop = config.get(Settings.CATEGORY_BIOME_HOAR_FROST, "rimeOreRarity", 16);
         prop.setLanguageKey("configGuiSettings.nex:biomeHoarFrost.rimeOreRarity");
         properties.add(prop.getName());
 
@@ -382,7 +399,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateFire");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "fireRarity", 10);
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "fireRarity", 16);
         prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.fireRarity");
         properties.add(prop.getName());
 
@@ -414,7 +431,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateLavaPools");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "lavaPoolRarity", 16);
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "lavaPoolRarity", 8);
         prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.lavaPoolRarity");
         properties.add(prop.getName());
 
@@ -422,7 +439,7 @@ public class ConfigurationHandler
         prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.generateMagma");
         properties.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "magmaRarity", 4);
+        prop = config.get(Settings.CATEGORY_BIOME_HOT_SPRINGS, "magmaRarity", 8);
         prop.setLanguageKey("configGuiSettings.nex:biomeHotSprings.magmaRarity");
         properties.add(prop.getName());
 

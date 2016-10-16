@@ -44,6 +44,7 @@ public class ModGuiConfig extends GuiConfig
 
         elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:client"), "configGuiCategory.nex:client", ClientEntry.class));
         elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biome"), "configGuiCategory.nex:biome", BiomeEntry.class));
+        elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:nether"), "configGuiCategory.nex:nether", NetherEntry.class));
 
         return elements;
     }
@@ -58,8 +59,59 @@ public class ModGuiConfig extends GuiConfig
         @Override
         protected GuiScreen buildChildScreen()
         {
-            List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_CLIENT)).getChildElements();
+            List<IConfigElement> elements = Lists.newArrayList();
+
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:clientGraphics"), "configGuiCategory.nex:clientGraphics", ClientGraphicsEntry.class));
+
             return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_CLIENT, false, false, I18n.format("configGuiTitle.nex:client"));
+        }
+    }
+
+    public static class ClientGraphicsEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public ClientGraphicsEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_CLIENT_GRAPHICS)).getChildElements();
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_CLIENT_GRAPHICS, false, false, I18n.format("configGuiTitle.nex:clientGraphics"));
+        }
+    }
+
+    public static class NetherEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public NetherEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = Lists.newArrayList();
+
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherDimension"), "configGuiCategory.nex:netherDimension", NetherDimensionEntry.class));
+
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_NETHER, false, false, I18n.format("configGuiTitle.nex:nether"));
+        }
+    }
+
+    public static class NetherDimensionEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public NetherDimensionEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_NETHER_DIMENSION)).getChildElements();
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_NETHER_DIMENSION, false, false, I18n.format("configGuiTitle.nex:netherDimension"));
         }
     }
 

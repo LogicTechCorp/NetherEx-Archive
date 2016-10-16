@@ -18,9 +18,14 @@ package nex.world.biome;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
+import nex.NetherEx;
 import nex.Settings;
+import nex.init.ModBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
@@ -45,5 +50,12 @@ public abstract class BiomeNetherEx extends Biome
     public BiomeDecorator createBiomeDecorator()
     {
         return new BiomeDecoratorNether();
+    }
+
+    public void setNameAndRegister(String name, int weight)
+    {
+        setRegistryName(new ResourceLocation(NetherEx.MOD_ID, name));
+        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
+        ModBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
     }
 }

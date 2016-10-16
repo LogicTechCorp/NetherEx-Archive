@@ -17,14 +17,21 @@
 package nex.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
 import nex.block.*;
+import nex.handler.ConfigurationHandler;
 import nex.item.ItemBlockVariantContainer;
+
+import java.io.File;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class ModBlocks
@@ -65,9 +72,22 @@ public class ModBlocks
     @Mod.EventBusSubscriber
     public static class EventHandler
     {
+        private static File mcConfigDir = null;
+
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
+            if(FMLCommonHandler.instance().getMinecraftServerInstance() != null && FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer())
+            {
+                mcConfigDir = new File("./config");
+            }
+            else
+            {
+                mcConfigDir = new File(Minecraft.getMinecraft().mcDataDir, "config");
+            }
+
+            ConfigurationHandler.init(new File(mcConfigDir, "NetherEx.cfg"));
+
             event.getRegistry().registerAll(
                     new BlockNetherrack(),
                     new BlockQuartzOre(),

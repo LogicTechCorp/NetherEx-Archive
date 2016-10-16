@@ -22,7 +22,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.NetherEx;
 import nex.Settings;
 import nex.init.ModBlocks;
 import nex.world.gen.feature.WorldGenPool;
@@ -47,7 +46,7 @@ public class BiomeHotSprings extends BiomeNetherEx
 
         settingCategory = Settings.CATEGORY_BIOME_HELL;
 
-        setRegistryName(NetherEx.MOD_ID + ":hot_springs");
+        setNameAndRegister("hot_springs", Settings.biomeWeight(settingCategory));
     }
 
     @Override
@@ -57,9 +56,24 @@ public class BiomeHotSprings extends BiomeNetherEx
 
         if(Settings.generateLavaPools)
         {
-            for(int i = 0; i < Settings.lavaPoolRarity; i++)
+            if(Settings.generateTallNether)
             {
-                lavaPools.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.lavaPoolRarity; i++)
+                {
+                    lavaPools.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.lavaPoolRarity; i++)
+                {
+                    lavaPools.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.lavaPoolRarity; i++)
+                {
+                    lavaPools.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
     }

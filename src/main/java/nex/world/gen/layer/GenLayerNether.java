@@ -34,6 +34,8 @@ public abstract class GenLayerNether extends GenLayer
         genLayer = new GenLayerZoom(1001L, genLayer);
         genLayer = new GenLayerZoom(1002L, genLayer);
         genLayer = new GenLayerZoom(1003L, genLayer);
+        genLayer = new GenLayerZoom(1004L, genLayer);
+        genLayer = new GenLayerZoom(1005L, genLayer);
         GenLayer genLayerVZoom = new GenLayerVoronoiZoom(10L, genLayer);
 
         genLayer.initWorldGenSeed(seed);

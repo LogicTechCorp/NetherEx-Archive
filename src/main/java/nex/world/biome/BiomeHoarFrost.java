@@ -24,7 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.NetherEx;
 import nex.Settings;
 import nex.api.IEnhancedNetherBiome;
 import nex.init.ModBlocks;
@@ -52,7 +51,7 @@ public class BiomeHoarFrost extends BiomeNetherEx implements IEnhancedNetherBiom
 
         settingCategory = Settings.CATEGORY_BIOME_HOAR_FROST;
 
-        setRegistryName(NetherEx.MOD_ID + ":hoar_frost");
+        setNameAndRegister("hoar_frost", Settings.biomeWeight(settingCategory));
     }
 
     @Override
@@ -62,17 +61,47 @@ public class BiomeHoarFrost extends BiomeNetherEx implements IEnhancedNetherBiom
 
         if(Settings.generateFrost)
         {
-            for(int i = 0; i < Settings.frostRarity; i++)
+            if(Settings.generateTallNether)
             {
-                frost.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.frostRarity; i++)
+                {
+                    frost.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.frostRarity; i++)
+                {
+                    frost.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.frostRarity; i++)
+                {
+                    frost.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
         if(Settings.generateRimeOre)
         {
-            for(int i = 0; i < Settings.rimeOreRarity; i++)
+            if(Settings.generateTallNether)
             {
-                rimeOre.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(88) + 28, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.rimeOreRarity; i++)
+                {
+                    rimeOre.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.rimeOreRarity; i++)
+                {
+                    rimeOre.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.rimeOreRarity; i++)
+                {
+                    rimeOre.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
     }

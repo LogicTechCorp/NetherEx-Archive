@@ -70,20 +70,8 @@ public class ModBiomes
         }
     }
 
-    public static void init()
+    public static void replaceNether()
     {
-        BiomeDictionary.registerBiomeType(HELL, BiomeDictionary.Type.NETHER);
-        BiomeDictionary.registerBiomeType(RUTHLESS_SANDS, BiomeDictionary.Type.NETHER);
-        BiomeDictionary.registerBiomeType(MUSHROOM_GROVE, BiomeDictionary.Type.NETHER);
-        BiomeDictionary.registerBiomeType(HOAR_FROST, BiomeDictionary.Type.NETHER);
-        BiomeDictionary.registerBiomeType(HOT_SPRINGS, BiomeDictionary.Type.NETHER);
-
-        addBiome(new BiomeManager.BiomeEntry(HELL, Settings.biomeWeight(HELL.settingCategory)));
-        addBiome(new BiomeManager.BiomeEntry(RUTHLESS_SANDS, Settings.biomeWeight(RUTHLESS_SANDS.settingCategory)));
-        addBiome(new BiomeManager.BiomeEntry(MUSHROOM_GROVE, Settings.biomeWeight(MUSHROOM_GROVE.settingCategory)));
-        addBiome(new BiomeManager.BiomeEntry(HOAR_FROST, Settings.biomeWeight(HOAR_FROST.settingCategory)));
-        addBiome(new BiomeManager.BiomeEntry(HOT_SPRINGS, Settings.biomeWeight(HOT_SPRINGS.settingCategory)));
-
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
         DimensionManager.registerDimension(-1, nether);

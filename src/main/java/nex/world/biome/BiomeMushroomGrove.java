@@ -23,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.NetherEx;
 import nex.Settings;
 import nex.init.ModBlocks;
 import nex.world.gen.feature.WorldGenBigMushroom;
@@ -53,7 +52,7 @@ public class BiomeMushroomGrove extends BiomeNetherEx
 
         settingCategory = Settings.CATEGORY_BIOME_MUSHROOM_GROVE;
 
-        setRegistryName(NetherEx.MOD_ID + ":mushroom_grove");
+        setNameAndRegister("mushroom_grove", Settings.biomeWeight(settingCategory));
     }
 
     @Override
@@ -63,30 +62,85 @@ public class BiomeMushroomGrove extends BiomeNetherEx
 
         if(Settings.generateFungalRoots)
         {
-            for(int i = 0; i < Settings.fungalRootRarity; i++)
+            if(Settings.generateTallNether)
             {
-                fungalRoots.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.fungalRootRarity; i++)
+                {
+                    fungalRoots.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.fungalRootRarity; i++)
+                {
+                    fungalRoots.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.fungalRootRarity; i++)
+                {
+                    fungalRoots.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
         if(Settings.generateEnoki)
         {
-            for(int i = 0; i < Settings.enokiRarity; i++)
+            if(Settings.generateTallNether)
             {
-                enoki.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.enokiRarity; i++)
+                {
+                    enoki.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.enokiRarity; i++)
+                {
+                    enoki.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.enokiRarity; i++)
+                {
+                    enoki.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
         if(Settings.generateBigMushrooms)
         {
-            for(int i = 0; i < Settings.bigMushroomRarity; i++)
+            if(Settings.generateTallNether)
             {
-                bigBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
-            }
+                for(int i = 0; i < Settings.bigMushroomRarity; i++)
+                {
+                    bigBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
 
-            for(int i = 0; i < Settings.bigMushroomRarity; i++)
+                for(int i = 0; i < Settings.bigMushroomRarity; i++)
+                {
+                    bigRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.bigMushroomRarity; i++)
+                {
+                    bigBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.bigMushroomRarity; i++)
+                {
+                    bigRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
             {
-                bigRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.bigMushroomRarity; i++)
+                {
+                    bigBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.bigMushroomRarity; i++)
+                {
+                    bigRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
     }

@@ -64,43 +64,123 @@ public class BiomeDecoratorNether extends BiomeDecorator
 
         if(Settings.generateLavaSprings(biome.settingCategory))
         {
-            for(int i = 0; i < Settings.lavaSpringRarity(biome.settingCategory); i++)
+            if(Settings.generateTallNether)
             {
-                lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.lavaSpringRarity(biome.settingCategory); i++)
+                {
+                    lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.lavaSpringRarity(biome.settingCategory); i++)
+                {
+                    lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.lavaSpringRarity(biome.settingCategory); i++)
+                {
+                    lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
         if(Settings.generateFire(biome.settingCategory))
         {
-            for(int i = 0; i < rand.nextInt(Settings.fireRarity(biome.settingCategory)); i++)
+            if(Settings.generateTallNether)
             {
-                fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
+                for(int i = 0; i < rand.nextInt(Settings.fireRarity(biome.settingCategory)); i++)
+                {
+                    fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < rand.nextInt(Settings.fireRarity(biome.settingCategory)); i++)
+                {
+                    fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < rand.nextInt(Settings.fireRarity(biome.settingCategory)); i++)
+                {
+                    fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
         if(Settings.generateGlowstone(biome.settingCategory))
         {
-            for(int i = 0; i < rand.nextInt(Settings.glowstoneRarity(biome.settingCategory)); i++)
+            if(Settings.generateTallNether)
             {
-                glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 4, rand.nextInt(16) + 8));
-            }
+                for(int i = 0; i < rand.nextInt(Settings.glowstoneRarity(biome.settingCategory)); i++)
+                {
+                    glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
 
-            for(int i = 0; i < Settings.glowstoneRarity(biome.settingCategory); i++)
+                for(int i = 0; i < Settings.glowstoneRarity(biome.settingCategory); i++)
+                {
+                    glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < rand.nextInt(Settings.glowstoneRarity(biome.settingCategory)); i++)
+                {
+                    glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.glowstoneRarity(biome.settingCategory); i++)
+                {
+                    glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
             {
-                glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+                for(int i = 0; i < rand.nextInt(Settings.glowstoneRarity(biome.settingCategory)); i++)
+                {
+                    glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.glowstoneRarity(biome.settingCategory); i++)
+                {
+                    glowstone.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
         if(Settings.generateMushrooms(biome.settingCategory))
         {
-            for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+            if(Settings.generateTallNether)
             {
-                smallBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
-            }
+                for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+                {
+                    smallBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
 
-            for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+                for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+                {
+                    smallRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+                {
+                    smallBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+                {
+                    smallRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
             {
-                smallRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(128), rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+                {
+                    smallBrownMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.mushroomRarity(biome.settingCategory); i++)
+                {
+                    smallRedMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
@@ -108,9 +188,24 @@ public class BiomeDecoratorNether extends BiomeDecorator
 
         if(Settings.generateQuartzOre(biome.settingCategory))
         {
-            for(int i = 0; i < Settings.quartzOreRarity(biome.settingCategory); i++)
+            if(Settings.generateTallNether)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.quartzOreRarity(biome.settingCategory); i++)
+                {
+                    quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.quartzOreRarity(biome.settingCategory); i++)
+                {
+                    quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.quartzOreRarity(biome.settingCategory); i++)
+                {
+                    quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 
@@ -118,17 +213,42 @@ public class BiomeDecoratorNether extends BiomeDecorator
 
         if(Settings.generateMagma(biome.settingCategory))
         {
-            for(int i = 0; i < Settings.magmaRarity(biome.settingCategory); i++)
+            if(Settings.generateTallNether)
             {
-                magma.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(9) + 28, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.magmaRarity(biome.settingCategory); i++)
+                {
+                    magma.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(9) + 60, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.magmaRarity(biome.settingCategory); i++)
+                {
+                    magma.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(9) + 28, rand.nextInt(16) + 8));
+                }
             }
         }
 
         if(Settings.generateLavaTraps(biome.settingCategory))
         {
-            for(int i = 0; i < Settings.lavaTrapRarity(biome.settingCategory); i++)
+            if(Settings.generateTallNether)
             {
-                lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(108) + 10, rand.nextInt(16) + 8));
+                for(int i = 0; i < Settings.lavaTrapRarity(biome.settingCategory); i++)
+                {
+                    lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 64, rand.nextInt(16) + 8));
+                }
+
+                for(int i = 0; i < Settings.lavaTrapRarity(biome.settingCategory); i++)
+                {
+                    lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(84) + 148, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Settings.lavaTrapRarity(biome.settingCategory); i++)
+                {
+                    lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 

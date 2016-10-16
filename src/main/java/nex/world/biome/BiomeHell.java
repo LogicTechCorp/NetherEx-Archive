@@ -21,7 +21,6 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.world.biome.Biome;
-import nex.NetherEx;
 import nex.Settings;
 
 public class BiomeHell extends BiomeNetherEx
@@ -37,6 +36,6 @@ public class BiomeHell extends BiomeNetherEx
 
         settingCategory = Settings.CATEGORY_BIOME_HELL;
 
-        setRegistryName(NetherEx.MOD_ID + ":hell");
+        setNameAndRegister("hell", Settings.biomeWeight(settingCategory));
     }
 }
