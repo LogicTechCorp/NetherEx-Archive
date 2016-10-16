@@ -43,7 +43,7 @@ public class ModGuiConfig extends GuiConfig
         List<IConfigElement> elements = new ArrayList<>();
 
         elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:client"), "configGuiCategory.nex:client", ClientEntry.class));
-        elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biome"), "configGuiCategory.nex:biome", BiomeEntry.class));
+        elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:block"), "configGuiCategory.nex:block", BlockEntry.class));
         elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:nether"), "configGuiCategory.nex:nether", NetherEntry.class));
 
         return elements;
@@ -82,6 +82,39 @@ public class ModGuiConfig extends GuiConfig
         }
     }
 
+    public static class BlockEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public BlockEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = Lists.newArrayList();
+
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:blockProperties"), "configGuiCategory.nex:blockProperties", BlockPropertiesEntry.class));
+
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BLOCK, false, false, I18n.format("configGuiTitle.nex:block"));
+        }
+    }
+
+    public static class BlockPropertiesEntry extends GuiConfigEntries.CategoryEntry
+    {
+        public BlockPropertiesEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+        {
+            super(owningScreen, owningEntryList, prop);
+        }
+
+        @Override
+        protected GuiScreen buildChildScreen()
+        {
+            List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BLOCK_PROPERTIES)).getChildElements();
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BLOCK_PROPERTIES, false, false, I18n.format("configGuiTitle.nex:blockProperties"));
+        }
+    }
+
     public static class NetherEntry extends GuiConfigEntries.CategoryEntry
     {
         public NetherEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
@@ -95,6 +128,7 @@ public class ModGuiConfig extends GuiConfig
             List<IConfigElement> elements = Lists.newArrayList();
 
             elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherDimension"), "configGuiCategory.nex:netherDimension", NetherDimensionEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherBiome"), "configGuiCategory.nex:netherBiome", BiomeEntry.class));
 
             return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_NETHER, false, false, I18n.format("configGuiTitle.nex:nether"));
         }
@@ -127,13 +161,13 @@ public class ModGuiConfig extends GuiConfig
         {
             List<IConfigElement> elements = Lists.newArrayList();
 
-            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHell"), "configGuiCategory.nex:biomeHell", BiomeHellEntry.class));
-            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeRuthlessSands"), "configGuiCategory.nex:biomeRuthlessSands", BiomeRuthlessSandsEntry.class));
-            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeMushroomGrove"), "configGuiCategory.nex:biomeMushroomGrove", BiomeMushroomGroveEntry.class));
-            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHoarFrost"), "configGuiCategory.nex:biomeHoarFrost", BiomeHoarFrostEntry.class));
-            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:biomeHotSprings"), "configGuiCategory.nex:biomeHotSprings", BiomeHotSpringsEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherBiomeHell"), "configGuiCategory.nex:netherBiomeHell", BiomeHellEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherBiomeRuthlessSands"), "configGuiCategory.nex:netherBiomeRuthlessSands", BiomeRuthlessSandsEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherBiomeMushroomGrove"), "configGuiCategory.nex:netherBiomeMushroomGrove", BiomeMushroomGroveEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherBiomeHoarFrost"), "configGuiCategory.nex:netherBiomeHoarFrost", BiomeHoarFrostEntry.class));
+            elements.add(new DummyConfigElement.DummyCategoryElement(I18n.format("configGuiTitle.nex:netherBiomeHotSprings"), "configGuiCategory.nex:netherBiomeHotSprings", BiomeHotSpringsEntry.class));
 
-            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME, false, false, I18n.format("configGuiTitle.nex:biome"));
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME, false, false, I18n.format("configGuiTitle.nex:netherBiome"));
         }
     }
 
@@ -148,7 +182,7 @@ public class ModGuiConfig extends GuiConfig
         protected GuiScreen buildChildScreen()
         {
             List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_HELL)).getChildElements();
-            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HELL, false, false, I18n.format("configGuiTitle.nex:biomeHell"));
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HELL, false, false, I18n.format("configGuiTitle.nex:netherBiomeHell"));
         }
     }
 
@@ -163,7 +197,7 @@ public class ModGuiConfig extends GuiConfig
         protected GuiScreen buildChildScreen()
         {
             List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_RUTHLESS_SANDS)).getChildElements();
-            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_RUTHLESS_SANDS, false, false, I18n.format("configGuiTitle.nex:biomeRuthlessSands"));
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_RUTHLESS_SANDS, false, false, I18n.format("configGuiTitle.nex:netherBiomeRuthlessSands"));
         }
     }
 
@@ -178,7 +212,7 @@ public class ModGuiConfig extends GuiConfig
         protected GuiScreen buildChildScreen()
         {
             List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_MUSHROOM_GROVE)).getChildElements();
-            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_MUSHROOM_GROVE, false, false, I18n.format("configGuiTitle.nex:biomeMushroomGrove"));
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_MUSHROOM_GROVE, false, false, I18n.format("configGuiTitle.nex:netherBiomeMushroomGrove"));
         }
     }
 
@@ -193,7 +227,7 @@ public class ModGuiConfig extends GuiConfig
         protected GuiScreen buildChildScreen()
         {
             List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_HOAR_FROST)).getChildElements();
-            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HOAR_FROST, false, false, I18n.format("configGuiTitle.nex:biomeHoarFrost"));
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HOAR_FROST, false, false, I18n.format("configGuiTitle.nex:netherBiomeHoarFrost"));
         }
     }
 
@@ -208,7 +242,7 @@ public class ModGuiConfig extends GuiConfig
         protected GuiScreen buildChildScreen()
         {
             List<IConfigElement> elements = new ConfigElement(ConfigurationHandler.getConfig().getCategory(Settings.CATEGORY_BIOME_HOT_SPRINGS)).getChildElements();
-            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HOT_SPRINGS, false, false, I18n.format("configGuiTitle.nex:biomeHotSprings"));
+            return new GuiConfig(owningScreen, elements, NetherEx.MOD_ID, Settings.CATEGORY_BIOME_HOT_SPRINGS, false, false, I18n.format("configGuiTitle.nex:netherBiomeHotSprings"));
         }
     }
 }

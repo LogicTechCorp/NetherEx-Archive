@@ -22,6 +22,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nex.Settings;
 
 import java.util.Random;
 
@@ -33,7 +34,11 @@ public class BlockRime extends BlockNetherEx
 
         setHardness(5.0F);
         setResistance(10.0F);
-        setTickRandomly(true);
+
+        if(Settings.doesRimeFreezeWater || Settings.doesRimeFreezeLava)
+        {
+            setTickRandomly(true);
+        }
     }
 
     @Override
@@ -56,7 +61,7 @@ public class BlockRime extends BlockNetherEx
                         BlockPos newPos = pos.add(x, y, z);
                         IBlockState testState = world.getBlockState(newPos);
 
-                        if(testState == Blocks.WATER.getDefaultState() || testState == Blocks.LAVA.getDefaultState())
+                        if(testState == Blocks.WATER.getDefaultState() && Settings.doesRimeFreezeWater || testState == Blocks.LAVA.getDefaultState() && Settings.doesRimeFreezeLava)
                         {
                             freeze(world, newPos, testState);
                         }

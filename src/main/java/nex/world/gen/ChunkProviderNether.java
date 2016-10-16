@@ -32,7 +32,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkProviderHell;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
@@ -42,6 +41,7 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.Settings;
 import nex.api.IEnhancedNetherBiome;
+import nex.world.gen.structure.MapGenNetherBridge;
 
 import java.util.List;
 import java.util.Random;
@@ -71,10 +71,10 @@ public class ChunkProviderNether extends ChunkProviderHell
     private double[] noiseData4;
     private double[] noiseData5;
 
-    private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
-    private MapGenCavesHell netherCaves = new MapGenCavesHell();
-
     private int heightMultiplier = Settings.generateTallNether ? 2 : 1;
+
+    private MapGenNetherBridge netherBridge = new MapGenNetherBridge(heightMultiplier);
+    private MapGenCavesHell netherCaves = new MapGenCavesHell();
 
     public ChunkProviderNether(World worldIn)
     {

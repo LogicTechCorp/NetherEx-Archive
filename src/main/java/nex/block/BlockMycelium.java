@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.Settings;
 import nex.init.ModBlocks;
 
 import java.util.Random;
@@ -40,7 +41,11 @@ public class BlockMycelium extends BlockNetherEx
         super("mycelium", Material.ROCK, SoundType.STONE, "");
 
         setHardness(0.4F);
-        setTickRandomly(true);
+
+        if(Settings.doesMyceliumSpread)
+        {
+            setTickRandomly(true);
+        }
     }
 
     @Override

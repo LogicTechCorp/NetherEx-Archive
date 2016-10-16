@@ -25,19 +25,28 @@ public class Settings
      **/
     public static final String CATEGORY_CLIENT = "client";
     public static final String CATEGORY_CLIENT_GRAPHICS = "client.graphics";
+    public static final String CATEGORY_BLOCK = "block";
+    public static final String CATEGORY_BLOCK_PROPERTIES = "block.properties";
     public static final String CATEGORY_NETHER = "nether";
     public static final String CATEGORY_NETHER_DIMENSION = "nether.dimension";
-    public static final String CATEGORY_BIOME = "biome";
-    public static final String CATEGORY_BIOME_HELL = "biome.hell";
-    public static final String CATEGORY_BIOME_RUTHLESS_SANDS = "biome.ruthlessSands";
-    public static final String CATEGORY_BIOME_MUSHROOM_GROVE = "biome.mushroomGrove";
-    public static final String CATEGORY_BIOME_HOAR_FROST = "biome.hoarFrost";
-    public static final String CATEGORY_BIOME_HOT_SPRINGS = "biome.hotSprings";
+    public static final String CATEGORY_BIOME = "nether.biome";
+    public static final String CATEGORY_BIOME_HELL = "nether.biome.hell";
+    public static final String CATEGORY_BIOME_RUTHLESS_SANDS = "nether.biome.ruthlessSands";
+    public static final String CATEGORY_BIOME_MUSHROOM_GROVE = "nether.biome.mushroomGrove";
+    public static final String CATEGORY_BIOME_HOAR_FROST = "nether.biome.hoarFrost";
+    public static final String CATEGORY_BIOME_HOT_SPRINGS = "nether.biome.hotSprings";
 
     /**
      * Client Settings
      **/
     public static boolean renderNetherFog = getSetting(CATEGORY_CLIENT_GRAPHICS, "renderNetherFog", true);
+
+    /**
+     * Block Settings
+     **/
+    public static boolean doesMyceliumSpread = getSetting(CATEGORY_BLOCK_PROPERTIES, "doesMyceliumSpread", true);
+    public static boolean doesRimeFreezeWater = getSetting(CATEGORY_BLOCK_PROPERTIES, "doesRimeFreezeWater", true);
+    public static boolean doesRimeFreezeLava = getSetting(CATEGORY_BLOCK_PROPERTIES, "doesRimeFreezeLava", true);
 
     /**
      * Nether Settings
