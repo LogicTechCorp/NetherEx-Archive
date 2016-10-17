@@ -36,7 +36,6 @@ public class MapGenNetherBridge extends MapGenStructure
     private static int heightMultiplier;
     private final List<Biome.SpawnListEntry> spawnList = Lists.<Biome.SpawnListEntry>newArrayList();
 
-
     public MapGenNetherBridge(int heightMultiplierIn)
     {
         heightMultiplier = heightMultiplierIn;
@@ -47,6 +46,7 @@ public class MapGenNetherBridge extends MapGenStructure
         spawnList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 3, 4, 4));
     }
 
+    @Override
     public String getStructureName()
     {
         return "Nether Fortress";
@@ -57,6 +57,7 @@ public class MapGenNetherBridge extends MapGenStructure
         return spawnList;
     }
 
+    @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
     {
         int i = chunkX >> 4;
@@ -66,6 +67,7 @@ public class MapGenNetherBridge extends MapGenStructure
         return rand.nextInt(3) == 0 && (chunkX == (i << 4) + 4 + rand.nextInt(8) && chunkZ == (j << 4) + 4 + rand.nextInt(8));
     }
 
+    @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
         return new MapGenNetherBridge.Start(worldObj, rand, chunkX, chunkZ);

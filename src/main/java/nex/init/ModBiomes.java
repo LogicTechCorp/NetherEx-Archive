@@ -20,6 +20,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -29,6 +30,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.world.WorldProviderNether;
 import nex.world.biome.*;
+import nex.world.gen.structure.MapGenNetherBridge;
 
 import java.util.Set;
 
@@ -73,6 +75,8 @@ public class ModBiomes
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
         DimensionManager.registerDimension(-1, nether);
+
+        MapGenStructureIO.registerStructure(MapGenNetherBridge.Start.class, "Nether Fortress");
     }
 
     public static boolean addBiome(BiomeManager.BiomeEntry entry)
