@@ -22,40 +22,15 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import nex.NetherEx;
 
-public class BlockNetherEx extends Block implements IModBlock
+public class BlockNetherEx extends Block
 {
-    private final String[] VARIANTS;
-    private String propertyName;
-
-    public BlockNetherEx(String name, Material material, SoundType type, String propertyNameIn, String... variants)
+    public BlockNetherEx(String name, Material material)
     {
         super(material);
 
-        setSoundType(type);
         setCreativeTab(NetherEx.CREATIVE_TAB);
-
-        propertyName = propertyNameIn;
-
-        if(variants.length == 0)
-        {
-            variants = new String[]{name};
-        }
-
-        VARIANTS = variants;
-
+        setSoundType(SoundType.STONE);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
-    }
-
-    @Override
-    public String[] getVariants()
-    {
-        return VARIANTS;
-    }
-
-    @Override
-    public String getPropertyName()
-    {
-        return propertyName;
     }
 }

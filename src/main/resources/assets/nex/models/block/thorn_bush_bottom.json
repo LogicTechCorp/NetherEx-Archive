@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "nex:blocks/thorn_bush_bottom"
-  }
-}

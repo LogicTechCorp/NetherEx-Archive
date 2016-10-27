@@ -26,7 +26,7 @@ import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import nex.init.ModBiomes;
+import nex.init.NetherExBiomes;
 import nex.world.gen.layer.GenLayerNether;
 
 import java.util.List;
@@ -93,7 +93,7 @@ public class BiomeProviderNether extends BiomeProvider
         {
             for(int i = 0; i < width * height; ++i)
             {
-                biomes[i] = Biome.getBiome(biomeIds[i], ModBiomes.HELL);
+                biomes[i] = Biome.getBiome(biomeIds[i], NetherExBiomes.HELL);
             }
 
             return biomes;
@@ -139,7 +139,7 @@ public class BiomeProviderNether extends BiomeProvider
 
             for(int i = 0; i < width * length; ++i)
             {
-                biomes[i] = Biome.getBiome(biomeIds[i], ModBiomes.HELL);
+                biomes[i] = Biome.getBiome(biomeIds[i], NetherExBiomes.HELL);
             }
 
             return biomes;

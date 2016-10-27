@@ -14,19 +14,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.world.biome;
+package nex.item;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 
-import java.util.Random;
-
-public class BiomeDecoratorNether extends BiomeDecorator
+public class ItemBlockNetherEx extends ItemBlock
 {
-    @Override
-    public void decorate(World world, Random rand, Biome biome, BlockPos pos)
+    public ItemBlockNetherEx(Block block)
     {
+        super(block);
+
+        setRegistryName(block.getRegistryName());
     }
 }

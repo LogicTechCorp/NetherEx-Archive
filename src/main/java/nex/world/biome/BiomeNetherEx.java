@@ -16,7 +16,6 @@
 
 package nex.world.biome;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -24,15 +23,10 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import nex.NetherEx;
-import nex.Settings;
-import nex.init.ModBiomes;
+import nex.init.NetherExBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
-    public IBlockState quartzOreBlock = Blocks.QUARTZ_ORE.getDefaultState();
-
-    public String settingCategory = Settings.CATEGORY_BIOME;
-
     public BiomeNetherEx(BiomeProperties properties)
     {
         super(properties);
@@ -56,6 +50,6 @@ public abstract class BiomeNetherEx extends Biome
     {
         setRegistryName(new ResourceLocation(NetherEx.MOD_ID, name));
         BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
-        ModBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
+        NetherExBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
     }
 }

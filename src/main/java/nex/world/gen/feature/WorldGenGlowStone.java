@@ -21,7 +21,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.init.ModBlocks;
 
 import java.util.Random;
 
@@ -33,7 +32,7 @@ public class WorldGenGlowStone extends WorldGenerator
         {
             return false;
         }
-        else if(world.getBlockState(pos.up()).getBlock() != Blocks.NETHERRACK || world.getBlockState(pos.up()).getBlock() != ModBlocks.NETHERRACK)
+        else if(world.getBlockState(pos.up()).getBlock() != Blocks.NETHERRACK)
         {
             return false;
         }

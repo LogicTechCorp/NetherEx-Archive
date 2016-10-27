@@ -24,22 +24,21 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.IMCHandler;
-import nex.init.ModBiomes;
-import nex.init.ModOreDictionary;
-import nex.init.ModRecipes;
+import nex.init.NetherExBiomes;
+import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, updateJSON = NetherEx.UPDATE_JSON, dependencies = NetherEx.DEPEND, guiFactory = NetherEx.GUI_FACTORY)
+@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, guiFactory = NetherEx.GUI_FACTORY, updateJSON = NetherEx.UPDATE_JSON, dependencies = NetherEx.DEPEND)
 public class NetherEx
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
-    public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/b969f6e4ac68f0350d3af6dd4be54632";
-    public static final String DEPEND = "required-after:Forge@[1.10.2-12.18.2.2105,);";
     public static final String GUI_FACTORY = "nex.client.gui.GuiFactory";
+    public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/0274bc72f4359c497d490c29c1ced425";
+    public static final String DEPEND = "required-after:Forge@[1.10.2-12.18.2.2114,);";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
 
@@ -49,34 +48,49 @@ public class NetherEx
     @SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
     public static IProxy proxy;
 
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx");
-
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
+
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx");
 
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        ModBiomes.replaceNether();
-        ModOreDictionary.init();
-        ModRecipes.init();
+        LOGGER.info("PreInitialization started.");
+
+        NetherExBiomes.replaceNether();
         proxy.preInit();
+
+        LOGGER.info("PreInitialization ended.");
     }
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
+        LOGGER.info("Initialization started.");
+
+        NetherExRecipes.init();
         proxy.init();
+
+        LOGGER.info("Initialization ended.");
     }
 
     @Mod.EventHandler
     public void onInterModCommunication(FMLInterModComms.IMCEvent event)
     {
-        IMCHandler.handleMessages(event);
+        LOGGER.info("Inter Mod Compatibility started.");
+
+        IMCHandler.routeMessages(event);
+
+        LOGGER.info("Inter Mod Compatibility ended.");
     }
 
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
+        LOGGER.info("PostInitialization started.");
+
         proxy.postInit();
+
+        LOGGER.info("PostInitialization ended.");
     }
 }

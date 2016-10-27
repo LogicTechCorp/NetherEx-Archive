@@ -32,6 +32,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkProviderHell;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
@@ -39,9 +40,6 @@ import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import nex.Settings;
-import nex.api.IEnhancedNetherBiome;
-import nex.world.gen.structure.MapGenNetherBridge;
 
 import java.util.List;
 import java.util.Random;
@@ -71,9 +69,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     private double[] noiseData4;
     private double[] noiseData5;
 
-    private int heightMultiplier = Settings.generateTallNether ? 2 : 1;
-
-    private MapGenNetherBridge netherBridge = new MapGenNetherBridge(heightMultiplier);
+    private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
 
     public ChunkProviderNether(World worldIn)
@@ -104,24 +100,25 @@ public class ChunkProviderNether extends ChunkProviderHell
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
     }
 
-    private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
+    private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer)
     {
-        buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, (16 * heightMultiplier) + 1, 5);
+        biomesForGen = world.getBiomeProvider().getBiomesForGeneration(biomesForGen, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
+        buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
         for(int x = 0; x < 4; x++)
         {
             for(int z = 0; z < 4; z++)
             {
-                for(int y = 0; y < 16 * heightMultiplier; y++)
+                for(int y = 0; y < 16; y++)
                 {
-                    double d1 = buffer[(x * 5 + z) * ((16 * heightMultiplier) + 1) + y];
-                    double d2 = buffer[(((x * 5) + z + 1) * ((16 * heightMultiplier) + 1)) + y];
-                    double d3 = buffer[((((x + 1) * 5) + z) * ((16 * heightMultiplier) + 1)) + y];
-                    double d4 = buffer[((x + 1) * 5 + z + 1) * ((16 * heightMultiplier) + 1) + y];
-                    double d5 = (buffer[(x * 5 + z) * ((16 * heightMultiplier) + 1) + y + 1] - d1) * 0.125D;
-                    double d6 = (buffer[(x * 5 + z + 1) * ((16 * heightMultiplier) + 1) + y + 1] - d2) * 0.125D;
-                    double d7 = (buffer[((x + 1) * 5 + z) * ((16 * heightMultiplier) + 1) + y + 1] - d3) * 0.125D;
-                    double d8 = (buffer[((x + 1) * 5 + z + 1) * ((16 * heightMultiplier) + 1) + y + 1] - d4) * 0.125D;
+                    double d1 = buffer[(x * 5 + z) * 17 + y];
+                    double d2 = buffer[(((x * 5) + z + 1) * 17) + y];
+                    double d3 = buffer[((((x + 1) * 5) + z) * 17) + y];
+                    double d4 = buffer[((x + 1) * 5 + z + 1) * 17 + y];
+                    double d5 = (buffer[(x * 5 + z) * 17 + y + 1] - d1) * 0.125D;
+                    double d6 = (buffer[(x * 5 + z + 1) * 17 + y + 1] - d2) * 0.125D;
+                    double d7 = (buffer[((x + 1) * 5 + z) * 17 + y + 1] - d3) * 0.125D;
+                    double d8 = (buffer[((x + 1) * 5 + z + 1) * 17 + y + 1] - d4) * 0.125D;
 
                     for(int y2 = 0; y2 < 8; y2++)
                     {
@@ -140,23 +137,13 @@ public class ChunkProviderNether extends ChunkProviderHell
                                 IBlockState state = null;
                                 IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
-                                int posX = x * 4 + x2;
-                                int posY = y * 8 + y2;
-                                int posZ = z * 4 + z2;
+                                int posX = x2 + x * 4;
+                                int posY = y2 + y * 8;
+                                int posZ = z2 + z * 4;
 
-                                Biome biome = biomes[posX + posZ * 16];
+                                Biome biome = biomesForGen[posX + posZ * 16];
 
-                                if(biome instanceof IEnhancedNetherBiome)
-                                {
-                                    IEnhancedNetherBiome netherBiome = (IEnhancedNetherBiome) biome;
-
-                                    if(netherBiome.getOceanBlock() != null && netherBiome.getOceanBlock().getMaterial() != Material.WATER)
-                                    {
-                                        oceanState = netherBiome.getOceanBlock();
-                                    }
-                                }
-
-                                if(posY < 32 * heightMultiplier)
+                                if(y * 8 + y2 < 32)
                                 {
                                     state = oceanState;
                                 }
@@ -184,7 +171,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         }
     }
 
-    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
+    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer)
     {
         if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, world))
         {
@@ -203,25 +190,15 @@ public class ChunkProviderNether extends ChunkProviderHell
                 int i1 = -1;
                 boolean genSoulSand = soulSandNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
                 boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
-                Biome biome = biomes[x + z * 16];
+                Biome biome = biomesForGen[x + z * 16];
 
                 IBlockState topState = biome.topBlock;
                 IBlockState fillerState = biome.fillerBlock;
                 IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
-                if(biome instanceof IEnhancedNetherBiome)
+                for(int y = 127; y >= 0; y--)
                 {
-                    IEnhancedNetherBiome netherBiome = (IEnhancedNetherBiome) biome;
-
-                    if(netherBiome.getOceanBlock() != null && netherBiome.getOceanBlock().getMaterial() != Material.WATER)
-                    {
-                        oceanState = netherBiome.getOceanBlock();
-                    }
-                }
-
-                for(int y = (128 * heightMultiplier) - 1; y >= 0; y--)
-                {
-                    if(y < (128 * heightMultiplier) - 1 && y > 0)
+                    if(y < 127 && y > 0)
                     {
                         IBlockState checkState = primer.getBlockState(x, y, z);
 
@@ -236,24 +213,24 @@ public class ChunkProviderNether extends ChunkProviderHell
                                         topState = Blocks.AIR.getDefaultState();
                                         fillerState = biome.topBlock;
                                     }
-                                    else if(y >= 62 * heightMultiplier && y <= 66 * heightMultiplier)
+                                    else if(y >= 62 && y <= 66)
                                     {
                                         topState = biome.topBlock;
                                         fillerState = biome.fillerBlock;
 
-                                        if(genGravel && Settings.generateGravel)
+                                        if(genGravel)
                                         {
                                             topState = Blocks.GRAVEL.getDefaultState();
                                         }
 
-                                        if(genSoulSand && Settings.generateSoulSand)
+                                        if(genSoulSand)
                                         {
                                             topState = Blocks.SOUL_SAND.getDefaultState();
                                             fillerState = Blocks.SOUL_SAND.getDefaultState();
                                         }
                                     }
 
-                                    if(y <= 32 * heightMultiplier && (topState == null || topState.getMaterial() == Material.AIR))
+                                    if(y <= 32 && (topState == null || topState.getMaterial() == Material.AIR))
                                     {
                                         topState = oceanState;
                                     }
@@ -266,7 +243,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                                     }
                                     else
                                     {
-                                        if(y > 64 * heightMultiplier)
+                                        if(y > 64)
                                         {
                                             primer.setBlockState(x, y, z, topState);
                                         }
@@ -394,18 +371,17 @@ public class ChunkProviderNether extends ChunkProviderHell
         ChunkPrimer primer = new ChunkPrimer();
         rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
         biomesForGen = world.getBiomeProvider().getBiomes(biomesForGen, chunkX * 16, chunkZ * 16, 16, 16);
-        setBlocksInChunk(chunkX, chunkZ, primer, biomesForGen);
-        replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
+        setBlocksInChunk(chunkX, chunkZ, primer);
+        replaceBiomeBlocks(chunkX, chunkZ, primer);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);
 
         Chunk chunk = new Chunk(world, primer, chunkX, chunkZ);
-        Biome[] biomes = world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
         byte[] biomeArray = chunk.getBiomeArray();
 
         for(int i = 0; i < biomeArray.length; ++i)
         {
-            biomeArray[i] = (byte) Biome.getIdForBiome(biomes[i]);
+            biomeArray[i] = (byte) Biome.getIdForBiome(biomesForGen[i]);
         }
 
         chunk.resetRelightChecks();

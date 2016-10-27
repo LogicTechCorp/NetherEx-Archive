@@ -20,7 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
-import nex.init.ModBiomes;
+import nex.init.NetherExBiomes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,8 +28,10 @@ public class IMCHandler
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|IMCHandler");
 
-    public static void handleMessages(FMLInterModComms.IMCEvent event)
+    public static void routeMessages(FMLInterModComms.IMCEvent event)
     {
+        LOGGER.info("Routing messages.");
+
         for(FMLInterModComms.IMCMessage message : event.getMessages())
         {
             switch(message.key)
@@ -45,6 +47,8 @@ public class IMCHandler
                     break;
             }
         }
+
+        LOGGER.info("Message routing completed.");
     }
 
     private static void getBiomeId(FMLInterModComms.IMCMessage message)
@@ -61,7 +65,7 @@ public class IMCHandler
         {
             LOGGER.info(String.format("Attempting to get a biome id for %s.", message.getSender()));
 
-            int biomeId = ModBiomes.getBiomeId(biomeName);
+            int biomeId = NetherExBiomes.getBiomeId(biomeName);
 
             if(biomeId != -1)
             {
@@ -102,7 +106,7 @@ public class IMCHandler
             {
                 LOGGER.info(String.format("Attempting to add the %s biome, for %s, to the Nether.", biome.getBiomeName(), message.getSender()));
 
-                if(ModBiomes.addBiome(entry))
+                if(NetherExBiomes.addBiome(entry))
                 {
                     LOGGER.info(String.format("The attempt to add the %s biome, for %s, to the Nether was successful.", biome.getBiomeName(), message.getSender()));
                 }
@@ -138,7 +142,7 @@ public class IMCHandler
         {
             LOGGER.info(String.format("Attempting to remove the %s biome, for %s, from the Nether.", biome.getBiomeName(), message.getSender()));
 
-            if(ModBiomes.removeBiome(biome))
+            if(NetherExBiomes.removeBiome(biome))
             {
                 LOGGER.info(String.format("The attempt to remove the %s biome, for %s, from the Nether was successful.", biome.getBiomeName(), message.getSender()));
             }

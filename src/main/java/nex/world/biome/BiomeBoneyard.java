@@ -33,7 +33,7 @@ import nex.world.gen.feature.*;
 
 import java.util.Random;
 
-public class BiomeHell extends BiomeNetherEx
+public class BiomeBoneyard extends BiomeNetherEx
 {
     private WorldGenerator lavaSpring = new WorldGenLava(topBlock, false);
     private WorldGenerator fire = new WorldGenFire(topBlock);
@@ -44,17 +44,19 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator quartz = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, topBlock);
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, topBlock);
     private WorldGenerator lavaTrap = new WorldGenLava(topBlock, true);
+    private WorldGenerator boneSpireUp = new WorldGenBoneSpire(false);
+    private WorldGenerator boneSpireDown = new WorldGenBoneSpire(true);
 
-    public BiomeHell()
+    public BiomeBoneyard()
     {
-        super(new BiomeProperties("Hell"));
+        super(new BiomeProperties("Boneyard"));
 
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
 
-        setNameAndRegister("hell", ConfigurationHandler.BiomeHell.biomeRarity);
+        setNameAndRegister("boneyard", ConfigurationHandler.BiomeBoneyard.biomeRarity);
     }
 
     @Override
@@ -62,39 +64,39 @@ public class BiomeHell extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeHell.generateLavaSprings)
+        if(ConfigurationHandler.BiomeBoneyard.generateLavaSprings)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.lavaSpringRarity; i++)
+            for(int i = 0; i < ConfigurationHandler.BiomeBoneyard.lavaSpringRarity; i++)
             {
                 lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateFire)
+        if(ConfigurationHandler.BiomeBoneyard.generateFire)
         {
-            for(int i = 0; i < rand.nextInt(ConfigurationHandler.BiomeHell.fireRarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigurationHandler.BiomeBoneyard.fireRarity); i++)
             {
                 fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateGlowstonePass1)
+        if(ConfigurationHandler.BiomeBoneyard.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigurationHandler.BiomeHell.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigurationHandler.BiomeBoneyard.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateGlowstonePass2)
+        if(ConfigurationHandler.BiomeBoneyard.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigurationHandler.BiomeBoneyard.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateBrownMushrooms)
+        if(ConfigurationHandler.BiomeBoneyard.generateBrownMushrooms)
         {
             if(rand.nextBoolean())
             {
@@ -102,7 +104,7 @@ public class BiomeHell extends BiomeNetherEx
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateRedMushrooms)
+        if(ConfigurationHandler.BiomeBoneyard.generateRedMushrooms)
         {
             if(rand.nextBoolean())
             {
@@ -112,9 +114,9 @@ public class BiomeHell extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeHell.generateQuartzOre)
+        if(ConfigurationHandler.BiomeBoneyard.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigurationHandler.BiomeBoneyard.quartzOreRarity; i++)
             {
                 quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
             }
@@ -122,20 +124,36 @@ public class BiomeHell extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeHell.generateMagma)
+        if(ConfigurationHandler.BiomeBoneyard.generateMagma)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.magmaRarity; i++)
+            for(int i = 0; i < ConfigurationHandler.BiomeBoneyard.magmaRarity; i++)
             {
                 magma.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(9) + 28, rand.nextInt(16) + 8));
             }
 
         }
 
-        if(ConfigurationHandler.BiomeHell.generateLavaTraps)
+        if(ConfigurationHandler.BiomeBoneyard.generateLavaTraps)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.lavaTrapRarity; i++)
+            for(int i = 0; i < ConfigurationHandler.BiomeBoneyard.lavaTrapRarity; i++)
             {
                 lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeBoneyard.generateBoneSpiresUp)
+        {
+            for(int i = 0; i < ConfigurationHandler.BiomeBoneyard.boneSpireUpRarity; i++)
+            {
+                boneSpireUp.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 22, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeBoneyard.generateBoneSpiresDown)
+        {
+            for(int i = 0; i < ConfigurationHandler.BiomeBoneyard.boneSpireDownRarity; i++)
+            {
+                boneSpireDown.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 22, rand.nextInt(16) + 8));
             }
         }
 
