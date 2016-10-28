@@ -215,7 +215,6 @@ public class BlockSapling extends BlockNetherEx implements IGrowable, IPlantable
         }
 
         return state;
-
     }
 
     @Override

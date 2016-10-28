@@ -6,7 +6,7 @@
     "variants": {
         "type": {
             "corrupted": {
-                "model": "nex:sapling_corrupted"
+                "model": "nex:grass_tall_corrupted"
             }
         }
     }

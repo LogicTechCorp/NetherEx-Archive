@@ -24,29 +24,38 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockPlanks extends BlockNetherEx
+public class BlockNetherrack extends BlockNetherEx
 {
-    public static final PropertyEnum<BlockLog.EnumType> TYPE = PropertyEnum.create("type", BlockLog.EnumType.class);
+    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
-    public BlockPlanks()
+    public BlockNetherrack()
     {
-        super("planks", Material.WOOD);
+        super("netherrack", Material.ROCK);
 
-        setSoundType(SoundType.WOOD);
-        setHardness(2.0F);
-        setResistance(5.0F);
+        setSoundType(SoundType.STONE);
+        setHardness(0.4F);
     }
 
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockLog.EnumType type : BlockLog.EnumType.values())
+        for(EnumType type : EnumType.values())
         {
             list.add(new ItemStack(itemIn, 1, type.ordinal()));
         }
+    }
+
+    @Override
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
+    {
+        return side == EnumFacing.UP;
     }
 
     @Override
@@ -58,7 +67,7 @@ public class BlockPlanks extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockLog.EnumType.values()[meta]);
+        return getDefaultState().withProperty(TYPE, EnumType.values()[meta]);
     }
 
     @Override
@@ -71,5 +80,16 @@ public class BlockPlanks extends BlockNetherEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
+    }
+
+    public enum EnumType implements IStringSerializable
+    {
+        CORRUPTED;
+
+        @Override
+        public String getName()
+        {
+            return toString().toLowerCase();
+        }
     }
 }

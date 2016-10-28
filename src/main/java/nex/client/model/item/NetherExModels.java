@@ -17,18 +17,21 @@
 package nex.client.model.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import nex.block.BlockBone;
-import nex.block.BlockLog;
+import nex.NetherEx;
+import nex.block.*;
 import nex.init.NetherExBlocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,6 +44,8 @@ public class NetherExModels
     @SubscribeEvent
     public static void onRegisterModels(ModelRegistryEvent event)
     {
+        registerModel(NetherExBlocks.CORRUPTION);
+
         ModelLoader.setCustomStateMapper(NetherExBlocks.SAPLING, new StateMap.Builder().ignore(NetherExBlocks.SAPLING.STAGE).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.LEAVES, new StateMap.Builder().ignore(NetherExBlocks.LEAVES.DECAYABLE, NetherExBlocks.LEAVES.CHECK_DECAY).build());
 
@@ -53,12 +58,46 @@ public class NetherExModels
 
         }
 
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        {
+            registerModel(NetherExBlocks.NETHERRACK, type.ordinal(), NetherExBlocks.NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
+        for(BlockOvergrownNetherrack.EnumType type : BlockOvergrownNetherrack.EnumType.values())
+        {
+            registerModel(NetherExBlocks.OVERGROWN_NETHERRACK, type.ordinal(), NetherExBlocks.OVERGROWN_NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
+        for(BlockTallGrass.EnumType type : BlockTallGrass.EnumType.values())
+        {
+            registerModel(NetherExBlocks.TALL_GRASS, type.ordinal(), NetherExBlocks.TALL_GRASS.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
         for(BlockBone.EnumType type : BlockBone.EnumType.values())
         {
             registerModel(NetherExBlocks.BLOCK_BONE, type.ordinal(), NetherExBlocks.BLOCK_BONE.getRegistryName().toString(), String.format("axis=y,size=%s", type.getName()));
         }
 
         LOGGER.info("Model registration has been completed.");
+    }
+
+    private static void registerModel(IFluidBlock block)
+    {
+        Item item = Item.getItemFromBlock((Block) block);
+        ModelBakery.registerItemVariants(item);
+
+        ModelResourceLocation modelLocation = new ModelResourceLocation(NetherEx.MOD_ID + ":fluid", block.getFluid().getName());
+
+        ModelLoader.setCustomMeshDefinition(item, MeshDefinitionFix.create(stack -> modelLocation));
+
+        ModelLoader.setCustomStateMapper((Block) block, new StateMapperBase()
+        {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            {
+                return modelLocation;
+            }
+        });
     }
 
     private static void registerModel(Object object, String location)

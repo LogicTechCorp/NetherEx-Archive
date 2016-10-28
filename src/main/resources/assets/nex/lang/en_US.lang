@@ -93,7 +93,17 @@ tile.nex:sapling.name=Sapling
 tile.nex:sapling.corrupted.name=Corrupted Sapling
 tile.nex:leaves.name=Leaves
 tile.nex:leaves.corrupted.name=Corrupted Leaves
+tile.nex:netherrack.name=Netherrack
+tile.nex:netherrack.corrupted.name=Corrupted Netherrack
+tile.nex:netherrackOvergrown.name=Overgrown Netherrack
+tile.nex:netherrackOvergrown.corrupted.name=Corrupted Overgrown Netherrack
+tile.nex:grassTall.name=Tall Grass
+tile.nex:grassTall.corrupted.name=Corrupted Tall Grass
+tile.nex:fluidCorruption.name=Corruption
 tile.nex:blockBone.name=Block of Bone
 tile.nex:blockBone.large.name=Large Block of Bone
 tile.nex:blockBone.medium.name=Medium Block of Bone
 tile.nex:blockBone.small.name=Small Block of Bone
+
+#Fluid
+fluid.corruption=Corruption

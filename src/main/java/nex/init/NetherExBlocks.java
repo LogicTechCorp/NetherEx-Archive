@@ -43,6 +43,18 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":leaves")
     public static final BlockLeaves LEAVES = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":netherrack")
+    public static final BlockNetherrack NETHERRACK = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":netherrack_overgrown")
+    public static final BlockOvergrownNetherrack OVERGROWN_NETHERRACK = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":grass_tall")
+    public static final BlockTallGrass TALL_GRASS = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fluid_corruption")
+    public static final BlockCorruption CORRUPTION = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_bone")
     public static final BlockBone BLOCK_BONE = null;
 
@@ -54,11 +66,17 @@ public class NetherExBlocks
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
+            NetherExFluids.runStaticInit();
+
             event.getRegistry().registerAll(
                     new BlockLog(),
                     new BlockPlanks(),
                     new BlockSapling(),
                     new BlockLeaves(),
+                    new BlockNetherrack(),
+                    new BlockOvergrownNetherrack(),
+                    new BlockTallGrass(),
+                    new BlockCorruption(),
                     new BlockBone()
             );
 
@@ -73,6 +91,10 @@ public class NetherExBlocks
                     new ItemBlockPlanks(),
                     new ItemBlockSapling(),
                     new ItemBlockLeaves(),
+                    new ItemBlockNetherrack(),
+                    new ItemBlockOvergrownNetherrack(),
+                    new ItemBlockTallGrass(),
+                    new ItemBlockCorruption(),
                     new ItemBlockBone()
             );
 
