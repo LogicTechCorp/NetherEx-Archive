@@ -85,6 +85,14 @@ config.nex:biomeBoneyard.boneSpireDownRarity.tooltip=How rare Bone Spires Down a
 itemGroup.nex=NetherEx
 
 # Blocks
+tile.nex:log.name=Log
+tile.nex:log.corrupted.name=Corrupted Log
+tile.nex:planks.name=Planks
+tile.nex:planks.corrupted.name=Corrupted Planks
+tile.nex:sapling.name=Sapling
+tile.nex:sapling.corrupted.name=Corrupted Sapling
+tile.nex:leaves.name=Leaves
+tile.nex:leaves.corrupted.name=Corrupted Leaves
 tile.nex:blockBone.name=Block of Bone
 tile.nex:blockBone.large.name=Large Block of Bone
 tile.nex:blockBone.medium.name=Medium Block of Bone

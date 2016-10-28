@@ -20,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -27,6 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.block.BlockBone;
+import nex.block.BlockLog;
 import nex.init.NetherExBlocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +41,18 @@ public class NetherExModels
     @SubscribeEvent
     public static void onRegisterModels(ModelRegistryEvent event)
     {
+        ModelLoader.setCustomStateMapper(NetherExBlocks.SAPLING, new StateMap.Builder().ignore(NetherExBlocks.SAPLING.STAGE).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.LEAVES, new StateMap.Builder().ignore(NetherExBlocks.LEAVES.DECAYABLE, NetherExBlocks.LEAVES.CHECK_DECAY).build());
+
+        for(BlockLog.EnumType type : BlockLog.EnumType.values())
+        {
+            registerModel(NetherExBlocks.LOG, type.ordinal(), NetherExBlocks.LOG.getRegistryName().toString(), String.format("axis=y,type=%s", type.getName()));
+            registerModel(NetherExBlocks.PLANKS, type.ordinal(), NetherExBlocks.PLANKS.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.SAPLING, type.ordinal(), NetherExBlocks.SAPLING.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.LEAVES, type.ordinal(), NetherExBlocks.LEAVES.getRegistryName().toString(), String.format("type=%s", type.getName()));
+
+        }
+
         for(BlockBone.EnumType type : BlockBone.EnumType.values())
         {
             registerModel(NetherExBlocks.BLOCK_BONE, type.ordinal(), NetherExBlocks.BLOCK_BONE.getRegistryName().toString(), String.format("axis=y,size=%s", type.getName()));

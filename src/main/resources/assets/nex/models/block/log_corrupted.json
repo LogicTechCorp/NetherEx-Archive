@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "nex:blocks/log_corrupted_top",
+        "side": "nex:blocks/log_corrupted"
+    }
+}

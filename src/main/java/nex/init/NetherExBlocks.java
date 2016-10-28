@@ -23,14 +23,26 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.block.BlockBone;
-import nex.item.ItemBlockBone;
+import nex.block.*;
+import nex.item.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBlocks
 {
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":log")
+    public static final BlockLog LOG = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":planks")
+    public static final BlockPlanks PLANKS = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":sapling")
+    public static final BlockSapling SAPLING = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":leaves")
+    public static final BlockLeaves LEAVES = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_bone")
     public static final BlockBone BLOCK_BONE = null;
 
@@ -43,6 +55,10 @@ public class NetherExBlocks
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
             event.getRegistry().registerAll(
+                    new BlockLog(),
+                    new BlockPlanks(),
+                    new BlockSapling(),
+                    new BlockLeaves(),
                     new BlockBone()
             );
 
@@ -53,6 +69,10 @@ public class NetherExBlocks
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
             event.getRegistry().registerAll(
+                    new ItemBlockLog(),
+                    new ItemBlockPlanks(),
+                    new ItemBlockSapling(),
+                    new ItemBlockLeaves(),
                     new ItemBlockBone()
             );
 

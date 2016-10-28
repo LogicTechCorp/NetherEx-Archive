@@ -1,0 +1,24 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "axis": {
+            "x": {
+                "x": 90,
+                "y": 90
+            },
+            "y": {
+            },
+            "z": {
+                "x": 90
+            }
+        },
+        "type": {
+            "corrupted": {
+                "model": "nex:log_corrupted"
+            }
+        }
+    }
+}
