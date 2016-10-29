@@ -4,10 +4,10 @@
         "model": "forge:fluid"
     },
     "variants": {
-        "corruption": [
+        "taint": [
             {
                 "custom": {
-                    "fluid": "corruption"
+                    "fluid": "taint"
                 }
             }
         ]

@@ -16,7 +16,6 @@
 
 package nex.world.biome;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -30,9 +29,6 @@ public abstract class BiomeNetherEx extends Biome
     public BiomeNetherEx(BiomeProperties properties)
     {
         super(properties);
-
-        topBlock = Blocks.NETHERRACK.getDefaultState();
-        fillerBlock = Blocks.NETHERRACK.getDefaultState();
 
         spawnableMonsterList.clear();
         spawnableCreatureList.clear();

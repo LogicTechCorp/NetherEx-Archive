@@ -5,8 +5,8 @@
     },
     "variants": {
         "type": {
-            "corrupted": {
-                "model": "nex:leaves_corrupted"
+            "tainted": {
+                "model": "nex:leaves_tainted"
             }
         }
     }

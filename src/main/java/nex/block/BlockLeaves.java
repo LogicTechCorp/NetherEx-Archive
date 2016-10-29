@@ -30,6 +30,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -45,7 +46,7 @@ import java.util.Random;
 
 public class BlockLeaves extends BlockNetherEx implements IShearable
 {
-    public static final PropertyEnum<BlockLog.EnumType> TYPE = PropertyEnum.create("type", BlockLog.EnumType.class);
+    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
     public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
     public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
 
@@ -64,7 +65,7 @@ public class BlockLeaves extends BlockNetherEx implements IShearable
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockLog.EnumType type : BlockLog.EnumType.values())
+        for(EnumType type : EnumType.values())
         {
             list.add(new ItemStack(this, 1, type.ordinal()));
         }
@@ -323,9 +324,9 @@ public class BlockLeaves extends BlockNetherEx implements IShearable
         return i;
     }
 
-    public BlockLog.EnumType getWoodType(int meta)
+    public EnumType getWoodType(int meta)
     {
-        return BlockLog.EnumType.values()[((meta & 3) % 4)];
+        return EnumType.values()[((meta & 3) % 4)];
     }
 
     @Override
@@ -341,8 +342,19 @@ public class BlockLeaves extends BlockNetherEx implements IShearable
     }
 
     @Override
-    public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune)
+    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         return Arrays.asList(new ItemStack(this, 1, world.getBlockState(pos).getValue(TYPE).ordinal()));
+    }
+
+    public enum EnumType implements IStringSerializable
+    {
+        TAINTED;
+
+        @Override
+        public String getName()
+        {
+            return toString().toLowerCase();
+        }
     }
 }

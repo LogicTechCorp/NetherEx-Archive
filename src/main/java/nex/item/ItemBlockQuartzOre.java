@@ -21,22 +21,22 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import nex.NetherEx;
-import nex.block.BlockTallGrass;
+import nex.block.BlockNetherrack;
 import nex.init.NetherExBlocks;
 
 import java.util.List;
 
-public class ItemBlockTallGrass extends ItemBlockNetherEx
+public class ItemBlockQuartzOre extends ItemBlockNetherEx
 {
-    public ItemBlockTallGrass()
+    public ItemBlockQuartzOre()
     {
-        super(NetherExBlocks.TALL_GRASS);
+        super(NetherExBlocks.QUARTZ_ORE);
     }
 
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockTallGrass.EnumType type : BlockTallGrass.EnumType.values())
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             list.add(new ItemStack(this, 1, type.ordinal()));
         }

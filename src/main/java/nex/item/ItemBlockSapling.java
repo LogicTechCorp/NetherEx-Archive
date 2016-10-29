@@ -49,7 +49,7 @@ public class ItemBlockSapling extends ItemBlockNetherEx
         switch(stack.getItemDamage())
         {
             case 0:
-                return "tile." + NetherEx.MOD_ID + ":" + registryName + ".corrupted";
+                return "tile." + NetherEx.MOD_ID + ":" + registryName + ".tainted";
             default:
                 return "tile." + NetherEx.MOD_ID + ":" + registryName;
         }

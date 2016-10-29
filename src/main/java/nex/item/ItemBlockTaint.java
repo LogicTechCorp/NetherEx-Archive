@@ -21,11 +21,11 @@ import net.minecraft.item.ItemStack;
 import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
-public class ItemBlockCorruption extends ItemBlockNetherEx
+public class ItemBlockTaint extends ItemBlockNetherEx
 {
-    public ItemBlockCorruption()
+    public ItemBlockTaint()
     {
-        super(NetherExBlocks.CORRUPTION);
+        super(NetherExBlocks.TAINT);
     }
 
     @Override

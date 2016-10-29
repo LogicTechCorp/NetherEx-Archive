@@ -46,14 +46,17 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":netherrack")
     public static final BlockNetherrack NETHERRACK = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
+    public static final BlockQuartzOre QUARTZ_ORE = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":netherrack_overgrown")
     public static final BlockOvergrownNetherrack OVERGROWN_NETHERRACK = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":grass_tall")
     public static final BlockTallGrass TALL_GRASS = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fluid_corruption")
-    public static final BlockCorruption CORRUPTION = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fluid_taint")
+    public static final BlockTaint TAINT = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_bone")
     public static final BlockBone BLOCK_BONE = null;
@@ -74,9 +77,10 @@ public class NetherExBlocks
                     new BlockSapling(),
                     new BlockLeaves(),
                     new BlockNetherrack(),
+                    new BlockQuartzOre(),
                     new BlockOvergrownNetherrack(),
                     new BlockTallGrass(),
-                    new BlockCorruption(),
+                    new BlockTaint(),
                     new BlockBone()
             );
 
@@ -92,9 +96,10 @@ public class NetherExBlocks
                     new ItemBlockSapling(),
                     new ItemBlockLeaves(),
                     new ItemBlockNetherrack(),
+                    new ItemBlockQuartzOre(),
                     new ItemBlockOvergrownNetherrack(),
                     new ItemBlockTallGrass(),
-                    new ItemBlockCorruption(),
+                    new ItemBlockTaint(),
                     new ItemBlockBone()
             );
 

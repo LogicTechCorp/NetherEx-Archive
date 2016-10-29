@@ -28,6 +28,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -47,7 +48,7 @@ import java.util.Random;
 
 public class BlockSapling extends BlockNetherEx implements IGrowable, IPlantable
 {
-    public static final PropertyEnum<BlockLog.EnumType> TYPE = PropertyEnum.create("type", BlockLog.EnumType.class);
+    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
@@ -63,7 +64,7 @@ public class BlockSapling extends BlockNetherEx implements IGrowable, IPlantable
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockLog.EnumType type : BlockLog.EnumType.values())
+        for(EnumType type : EnumType.values())
         {
             list.add(new ItemStack(itemIn, 1, type.ordinal()));
         }
@@ -141,7 +142,7 @@ public class BlockSapling extends BlockNetherEx implements IGrowable, IPlantable
 
         switch(state.getValue(TYPE))
         {
-            case CORRUPTED:
+            case TAINTED:
         }
 
         IBlockState iBlockState = Blocks.AIR.getDefaultState();
@@ -220,7 +221,7 @@ public class BlockSapling extends BlockNetherEx implements IGrowable, IPlantable
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockLog.EnumType.values()[(meta & 7)]).withProperty(STAGE, (meta & 8) >> 3);
+        return getDefaultState().withProperty(TYPE, EnumType.values()[(meta & 7)]).withProperty(STAGE, (meta & 8) >> 3);
     }
 
     @Override
@@ -236,5 +237,16 @@ public class BlockSapling extends BlockNetherEx implements IGrowable, IPlantable
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE, STAGE);
+    }
+
+    public enum EnumType implements IStringSerializable
+    {
+        TAINTED;
+
+        @Override
+        public String getName()
+        {
+            return toString().toLowerCase();
+        }
     }
 }

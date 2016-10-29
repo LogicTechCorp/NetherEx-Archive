@@ -16,8 +16,8 @@
             }
         },
         "type": {
-            "corrupted": {
-                "model": "nex:log_corrupted"
+            "withered": {
+                "model": "nex:log_withered"
             }
         }
     }

@@ -20,7 +20,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import nex.NetherEx;
-import nex.block.BlockLog;
+import nex.block.BlockLeaves;
 import nex.init.NetherExBlocks;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class ItemBlockLeaves extends ItemBlockNetherEx
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockLog.EnumType type : BlockLog.EnumType.values())
+        for(BlockLeaves.EnumType type : BlockLeaves.EnumType.values())
         {
             list.add(new ItemStack(this, 1, type.ordinal()));
         }
@@ -49,7 +49,7 @@ public class ItemBlockLeaves extends ItemBlockNetherEx
         switch(stack.getItemDamage())
         {
             case 0:
-                return "tile." + NetherEx.MOD_ID + ":" + registryName + ".corrupted";
+                return "tile." + NetherEx.MOD_ID + ":" + registryName + ".tainted";
             default:
                 return "tile." + NetherEx.MOD_ID + ":" + registryName;
         }

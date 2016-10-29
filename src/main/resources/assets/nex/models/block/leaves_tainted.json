@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "nex:blocks/leaves_corrupted"
+        "all": "nex:blocks/leaves_tainted"
     }
 }

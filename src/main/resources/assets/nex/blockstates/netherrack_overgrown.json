@@ -5,8 +5,8 @@
     },
     "variants": {
         "type": {
-            "corrupted": {
-                "model": "nex:netherrack_overgrown_corrupted"
+            "tainted": {
+                "model": "nex:netherrack_overgrown_tainted"
             }
         }
     }

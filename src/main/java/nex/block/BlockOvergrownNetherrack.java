@@ -126,7 +126,7 @@ public class BlockOvergrownNetherrack extends BlockNetherEx implements IGrowable
                         }
                         else
                         {
-                            IBlockState blockState = NetherExBlocks.TALL_GRASS.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.CORRUPTED);
+                            IBlockState blockState = NetherExBlocks.TALL_GRASS.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.TAINTED);
 
                             if(NetherExBlocks.TALL_GRASS.canBlockStay(worldIn, newPos, blockState))
                             {
@@ -152,7 +152,7 @@ public class BlockOvergrownNetherrack extends BlockNetherEx implements IGrowable
 
     public enum EnumType implements IStringSerializable
     {
-        CORRUPTED;
+        TAINTED;
 
         @Override
         public String getName()

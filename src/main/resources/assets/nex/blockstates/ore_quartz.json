@@ -5,8 +5,8 @@
     },
     "variants": {
         "type": {
-            "withered": {
-                "model": "nex:planks_withered"
+            "tainted": {
+                "model": "nex:ore_quartz_tainted"
             }
         }
     }

@@ -5,8 +5,8 @@
     },
     "variants": {
         "type": {
-            "corrupted": {
-                "model": "nex:grass_tall_corrupted"
+            "tainted": {
+                "model": "nex:grass_tall_tainted"
             }
         }
     }

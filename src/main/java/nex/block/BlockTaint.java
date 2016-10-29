@@ -14,12 +14,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.fluid;
+package nex.block;
 
-public class FluidCorruption extends FluidNetherEx
+import net.minecraft.block.material.Material;
+import nex.init.NetherExFluids;
+
+public class BlockTaint extends BlockNetherExFluid
 {
-    public FluidCorruption()
+    public BlockTaint()
     {
-        super("corruption");
+        super("fluid_taint", NetherExFluids.TAINT, Material.LAVA);
     }
 }

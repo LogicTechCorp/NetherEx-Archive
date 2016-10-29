@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "side": "nex:blocks/netherrack_overgrown_corrupted_side",
-        "bottom": "nex:blocks/netherrack_corrupted",
-        "top": "nex:blocks/netherrack_overgrown_corrupted_top"
-    }
-}

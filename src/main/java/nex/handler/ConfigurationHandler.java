@@ -20,6 +20,7 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.NetherEx;
@@ -32,15 +33,23 @@ import java.lang.invoke.MethodHandles;
 import java.util.Map;
 import java.util.Optional;
 
+@Mod.EventBusSubscriber
 @Config(modid = NetherEx.MOD_ID, name = "NetherEx")
 public class ConfigurationHandler
 {
     private static Configuration configuration;
 
+    public static Client client = new Client();
     public static BiomeHell biome_hell = new BiomeHell();
     public static BiomeBoneyard biome_boneyard = new BiomeBoneyard();
+    public static BiomeRegrowthsEnd biome_regrowths_end = new BiomeRegrowthsEnd();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigurationHandler");
+
+    public static class Client
+    {
+        public static boolean disableNetherFog = false;
+    }
 
     public static class BiomeHell
     {
@@ -88,6 +97,24 @@ public class ConfigurationHandler
         public static int lavaTrapRarity = 16;
         public static int boneSpireUpRarity = 8;
         public static int boneSpireDownRarity = 8;
+    }
+
+    public static class BiomeRegrowthsEnd
+    {
+        public static boolean generateGlowstonePass1 = true;
+        public static boolean generateGlowstonePass2 = true;
+        public static boolean generateQuartzOre = true;
+        public static boolean generateTaintPools = true;
+        public static boolean generateWitheredTrees = true;
+        public static boolean generateTaintedTallGrass = true;
+
+        public static int biomeRarity = 2;
+        public static int glowstonePass1Rarity = 10;
+        public static int glowstonePass2Rarity = 10;
+        public static int quartzOreRarity = 16;
+        public static int taintPoolRarity = 1;
+        public static int witheredTreeRarity = 64;
+        public static int taintedTallGrassRarity = 8;
     }
 
     public static Configuration getConfiguration()

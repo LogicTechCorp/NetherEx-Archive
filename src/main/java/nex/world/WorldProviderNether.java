@@ -20,6 +20,7 @@ import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.handler.ConfigurationHandler;
 import nex.world.biome.BiomeProviderNether;
 import nex.world.gen.ChunkProviderNether;
 
@@ -44,6 +45,6 @@ public class WorldProviderNether extends WorldProviderHell
     @SideOnly(Side.CLIENT)
     public boolean doesXZShowFog(int chunkX, int chunkZ)
     {
-        return true;
+        return !ConfigurationHandler.Client.disableNetherFog;
     }
 }

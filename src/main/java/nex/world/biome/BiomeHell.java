@@ -35,19 +35,22 @@ import java.util.Random;
 
 public class BiomeHell extends BiomeNetherEx
 {
-    private WorldGenerator lavaSpring = new WorldGenLava(topBlock, false);
-    private WorldGenerator fire = new WorldGenFire(topBlock);
+    private WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
+    private WorldGenerator fire = new WorldGenFire(Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, topBlock);
-    private WorldGenerator smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, topBlock);
-    private WorldGenerator quartz = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, topBlock);
-    private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, topBlock);
-    private WorldGenerator lavaTrap = new WorldGenLava(topBlock, true);
+    private WorldGenerator smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator quartz = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
 
     public BiomeHell()
     {
         super(new BiomeProperties("Hell"));
+
+        topBlock = Blocks.NETHERRACK.getDefaultState();
+        fillerBlock = Blocks.NETHERRACK.getDefaultState();
 
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));

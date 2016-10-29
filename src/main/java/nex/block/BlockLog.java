@@ -194,7 +194,7 @@ public class BlockLog extends BlockNetherEx
 
     public enum EnumType implements IStringSerializable
     {
-        CORRUPTED;
+        WITHERED;
 
         @Override
         public String getName()

@@ -44,7 +44,7 @@ public class NetherExModels
     @SubscribeEvent
     public static void onRegisterModels(ModelRegistryEvent event)
     {
-        registerModel(NetherExBlocks.CORRUPTION);
+        registerModel(NetherExBlocks.TAINT);
 
         ModelLoader.setCustomStateMapper(NetherExBlocks.SAPLING, new StateMap.Builder().ignore(NetherExBlocks.SAPLING.STAGE).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.LEAVES, new StateMap.Builder().ignore(NetherExBlocks.LEAVES.DECAYABLE, NetherExBlocks.LEAVES.CHECK_DECAY).build());
@@ -53,14 +53,24 @@ public class NetherExModels
         {
             registerModel(NetherExBlocks.LOG, type.ordinal(), NetherExBlocks.LOG.getRegistryName().toString(), String.format("axis=y,type=%s", type.getName()));
             registerModel(NetherExBlocks.PLANKS, type.ordinal(), NetherExBlocks.PLANKS.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(NetherExBlocks.SAPLING, type.ordinal(), NetherExBlocks.SAPLING.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(NetherExBlocks.LEAVES, type.ordinal(), NetherExBlocks.LEAVES.getRegistryName().toString(), String.format("type=%s", type.getName()));
 
+        }
+
+        for(BlockSapling.EnumType type : BlockSapling.EnumType.values())
+        {
+            registerModel(NetherExBlocks.SAPLING, type.ordinal(), NetherExBlocks.SAPLING.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
+
+        for(BlockLeaves.EnumType type : BlockLeaves.EnumType.values())
+        {
+            registerModel(NetherExBlocks.LEAVES, type.ordinal(), NetherExBlocks.LEAVES.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             registerModel(NetherExBlocks.NETHERRACK, type.ordinal(), NetherExBlocks.NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.QUARTZ_ORE, type.ordinal(), NetherExBlocks.QUARTZ_ORE.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         for(BlockOvergrownNetherrack.EnumType type : BlockOvergrownNetherrack.EnumType.values())

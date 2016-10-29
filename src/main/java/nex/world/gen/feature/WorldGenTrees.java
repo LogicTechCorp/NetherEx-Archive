@@ -30,8 +30,8 @@ import java.util.Random;
 
 public class WorldGenTrees extends WorldGenAbstractTree
 {
-    private static final IBlockState DEFAULT_TRUNK = NetherExBlocks.LOG.getDefaultState().withProperty(BlockLog.TYPE, BlockLog.EnumType.CORRUPTED).withProperty(BlockLog.AXIS, BlockLog.EnumAxis.Y);
-    private static final IBlockState DEFAULT_LEAF = NetherExBlocks.LEAVES.getDefaultState().withProperty(BlockLeaves.TYPE, BlockLog.EnumType.CORRUPTED).withProperty(BlockLeaves.CHECK_DECAY, false);
+    private static final IBlockState DEFAULT_TRUNK = NetherExBlocks.LOG.getDefaultState().withProperty(BlockLog.TYPE, BlockLog.EnumType.WITHERED).withProperty(BlockLog.AXIS, BlockLog.EnumAxis.Y);
+    private static final IBlockState DEFAULT_LEAF = NetherExBlocks.LEAVES.getDefaultState().withProperty(BlockLeaves.TYPE, BlockLeaves.EnumType.TAINTED).withProperty(BlockLeaves.CHECK_DECAY, false);
 
     private final int minTreeHeight;
 

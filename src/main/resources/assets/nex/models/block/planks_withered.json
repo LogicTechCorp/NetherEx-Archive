@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "nex:blocks/netherrack_corrupted"
+        "all": "nex:blocks/planks_withered"
     }
 }

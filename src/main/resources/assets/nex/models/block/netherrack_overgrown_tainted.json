@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "side": "nex:blocks/netherrack_overgrown_tainted_side",
+        "bottom": "nex:blocks/netherrack_tainted",
+        "top": "nex:blocks/netherrack_overgrown_tainted_top"
+    }
+}

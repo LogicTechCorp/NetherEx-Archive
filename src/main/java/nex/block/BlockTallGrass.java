@@ -227,7 +227,7 @@ public class BlockTallGrass extends BlockNetherEx implements IGrowable, IShearab
 
     public enum EnumType implements IStringSerializable
     {
-        CORRUPTED;
+        TAINTED;
 
         @Override
         public String getName()
