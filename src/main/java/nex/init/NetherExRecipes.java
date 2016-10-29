@@ -16,13 +16,9 @@
 
 package nex.init;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,16 +30,6 @@ public class NetherExRecipes
 
     public static void init()
     {
-        removeRecipe(new ItemStack(Blocks.BONE_BLOCK));
-
-        GameRegistry.addShapedRecipe(new ItemStack(NetherExBlocks.BLOCK_BONE, 1, 0), "###", "###", "###", '#', new ItemStack(Items.DYE, 9, EnumDyeColor.WHITE.getDyeDamage()));
-        GameRegistry.addShapedRecipe(new ItemStack(NetherExBlocks.BLOCK_BONE, 1, 1), "##", "##", "##", '#', new ItemStack(Items.DYE, 6, EnumDyeColor.WHITE.getDyeDamage()));
-        GameRegistry.addShapedRecipe(new ItemStack(NetherExBlocks.BLOCK_BONE, 1, 2), "#", "#", "#", '#', new ItemStack(Items.DYE, 3, EnumDyeColor.WHITE.getDyeDamage()));
-
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 9, EnumDyeColor.WHITE.getDyeDamage()), new ItemStack(NetherExBlocks.BLOCK_BONE, 1, 0));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 6, EnumDyeColor.WHITE.getDyeDamage()), new ItemStack(NetherExBlocks.BLOCK_BONE, 1, 1));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 3, EnumDyeColor.WHITE.getDyeDamage()), new ItemStack(NetherExBlocks.BLOCK_BONE, 1, 2));
-
         LOGGER.info("Recipes have been initialized.");
     }
 

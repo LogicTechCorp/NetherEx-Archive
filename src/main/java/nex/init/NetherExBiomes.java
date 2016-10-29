@@ -28,9 +28,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.world.WorldProviderNether;
-import nex.world.biome.BiomeBoneyard;
 import nex.world.biome.BiomeHell;
-import nex.world.biome.BiomeRegrowthsEnd;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,12 +42,6 @@ public class NetherExBiomes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hell")
     public static final BiomeHell HELL = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":boneyard")
-    public static final BiomeBoneyard BONEYARD = null;
-
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":regrowths_end")
-    public static final BiomeRegrowthsEnd REGROWTHS_END = null;
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");
 
     @Mod.EventBusSubscriber
@@ -59,9 +51,7 @@ public class NetherExBiomes
         public static void onRegisterBiomes(RegistryEvent.Register<Biome> event)
         {
             event.getRegistry().registerAll(
-                    new BiomeHell(),
-                    new BiomeBoneyard(),
-                    new BiomeRegrowthsEnd()
+                    new BiomeHell()
             );
 
             LOGGER.info("Biome registration has been completed.");

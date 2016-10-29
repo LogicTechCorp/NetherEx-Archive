@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "nex:blocks/log_withered_top",
-        "side": "nex:blocks/log_withered"
-    }
-}

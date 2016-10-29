@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "nex:blocks/grass_tall_tainted"
-    }
-}

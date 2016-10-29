@@ -16,16 +16,12 @@
 
 package nex.init;
 
-import net.minecraftforge.fluids.Fluid;
-import nex.fluid.FluidTaint;
-
 public class NetherExFluids
 {
-    public static final Fluid TAINT;
 
     static
     {
-        TAINT = new FluidTaint();
+
     }
 
     public static void runStaticInit()

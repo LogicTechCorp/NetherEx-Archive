@@ -41,8 +41,6 @@ public class ConfigurationHandler
 
     public static Client client = new Client();
     public static BiomeHell biome_hell = new BiomeHell();
-    public static BiomeBoneyard biome_boneyard = new BiomeBoneyard();
-    public static BiomeRegrowthsEnd biome_regrowths_end = new BiomeRegrowthsEnd();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigurationHandler");
 
@@ -71,50 +69,6 @@ public class ConfigurationHandler
         public static int quartzOreRarity = 16;
         public static int magmaRarity = 4;
         public static int lavaTrapRarity = 16;
-    }
-
-    public static class BiomeBoneyard
-    {
-        public static boolean generateLavaSprings = true;
-        public static boolean generateFire = true;
-        public static boolean generateGlowstonePass1 = true;
-        public static boolean generateGlowstonePass2 = true;
-        public static boolean generateBrownMushrooms = true;
-        public static boolean generateRedMushrooms = true;
-        public static boolean generateQuartzOre = true;
-        public static boolean generateMagma = true;
-        public static boolean generateLavaTraps = true;
-        public static boolean generateBoneSpiresUp = true;
-        public static boolean generateBoneSpiresDown = true;
-
-        public static int biomeRarity = 5;
-        public static int lavaSpringRarity = 8;
-        public static int fireRarity = 10;
-        public static int glowstonePass1Rarity = 10;
-        public static int glowstonePass2Rarity = 10;
-        public static int quartzOreRarity = 16;
-        public static int magmaRarity = 4;
-        public static int lavaTrapRarity = 16;
-        public static int boneSpireUpRarity = 4;
-        public static int boneSpireDownRarity = 4;
-    }
-
-    public static class BiomeRegrowthsEnd
-    {
-        public static boolean generateGlowstonePass1 = true;
-        public static boolean generateGlowstonePass2 = true;
-        public static boolean generateQuartzOre = true;
-        public static boolean generateTaintPools = true;
-        public static boolean generateWitheredTrees = true;
-        public static boolean generateTaintedTallGrass = true;
-
-        public static int biomeRarity = 2;
-        public static int glowstonePass1Rarity = 10;
-        public static int glowstonePass2Rarity = 10;
-        public static int quartzOreRarity = 16;
-        public static int taintPoolRarity = 1;
-        public static int witheredTreeRarity = 128;
-        public static int taintedTallGrassRarity = 16;
     }
 
     public static Configuration getConfiguration()
