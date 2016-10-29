@@ -31,6 +31,6 @@ public class ItemBlockTaint extends ItemBlockNetherEx
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, NetherEx.MOD_ID + ":" + getRegistryName().getResourcePath());
+        return "tile." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, NetherEx.MOD_ID + ":" + getRegistryName().getResourcePath());
     }
 }

@@ -16,7 +16,10 @@
 
 package nex.world.gen.layer;
 
-import net.minecraft.world.gen.layer.*;
+import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraft.world.gen.layer.GenLayerFuzzyZoom;
+import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
+import net.minecraft.world.gen.layer.GenLayerZoom;
 
 public abstract class GenLayerNether extends GenLayer
 {
@@ -27,7 +30,7 @@ public abstract class GenLayerNether extends GenLayer
 
     public static GenLayer[] initializeAllBiomeGenerators(long seed)
     {
-        GenLayer genLayer = new GenLayerNetherBiome(1L);
+        GenLayer genLayer = new GenLayerAddBiomes(1L);
         genLayer = new GenLayerFuzzyZoom(2000L, genLayer);
         genLayer = new GenLayerZoom(2001L, genLayer);
         genLayer = new GenLayerZoom(2002L, genLayer);

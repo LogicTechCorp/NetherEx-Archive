@@ -24,9 +24,9 @@ import nex.init.NetherExBiomes;
 
 import java.util.List;
 
-public class GenLayerNetherBiome extends GenLayerNether
+public class GenLayerAddBiomes extends GenLayerNether
 {
-    public GenLayerNetherBiome(long seed)
+    public GenLayerAddBiomes(long seed)
     {
         super(seed);
     }

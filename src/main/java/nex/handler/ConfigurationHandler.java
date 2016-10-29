@@ -95,8 +95,8 @@ public class ConfigurationHandler
         public static int quartzOreRarity = 16;
         public static int magmaRarity = 4;
         public static int lavaTrapRarity = 16;
-        public static int boneSpireUpRarity = 8;
-        public static int boneSpireDownRarity = 8;
+        public static int boneSpireUpRarity = 4;
+        public static int boneSpireDownRarity = 4;
     }
 
     public static class BiomeRegrowthsEnd
@@ -113,8 +113,8 @@ public class ConfigurationHandler
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
         public static int taintPoolRarity = 1;
-        public static int witheredTreeRarity = 64;
-        public static int taintedTallGrassRarity = 8;
+        public static int witheredTreeRarity = 128;
+        public static int taintedTallGrassRarity = 16;
     }
 
     public static Configuration getConfiguration()

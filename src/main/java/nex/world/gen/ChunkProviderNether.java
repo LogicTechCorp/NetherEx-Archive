@@ -100,9 +100,8 @@ public class ChunkProviderNether extends ChunkProviderHell
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
     }
 
-    private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer)
+    private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
-        biomesForGen = world.getBiomeProvider().getBiomesForGeneration(biomesForGen, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
         buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
         for(int x = 0; x < 4; x++)
@@ -141,9 +140,9 @@ public class ChunkProviderNether extends ChunkProviderHell
                                 int posY = y2 + y * 8;
                                 int posZ = z2 + z * 4;
 
-                                Biome biome = biomesForGen[posX + posZ * 16];
+                                Biome biome = biomes[posX + posZ * 16];
 
-                                if(y * 8 + y2 < 32)
+                                if(posY < 32)
                                 {
                                     state = oceanState;
                                 }
@@ -171,7 +170,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         }
     }
 
-    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer)
+    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
         if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, world))
         {
@@ -190,7 +189,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                 int i1 = -1;
                 boolean genSoulSand = soulSandNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
                 boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
-                Biome biome = biomesForGen[x + z * 16];
+                Biome biome = biomes[x + z * 16];
 
                 IBlockState topState = biome.topBlock;
                 IBlockState fillerState = biome.fillerBlock;
@@ -371,17 +370,18 @@ public class ChunkProviderNether extends ChunkProviderHell
         ChunkPrimer primer = new ChunkPrimer();
         rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
         biomesForGen = world.getBiomeProvider().getBiomes(biomesForGen, chunkX * 16, chunkZ * 16, 16, 16);
-        setBlocksInChunk(chunkX, chunkZ, primer);
-        replaceBiomeBlocks(chunkX, chunkZ, primer);
+        setBlocksInChunk(chunkX, chunkZ, primer, biomesForGen);
+        replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);
 
         Chunk chunk = new Chunk(world, primer, chunkX, chunkZ);
+        Biome[] biomes = world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
         byte[] biomeArray = chunk.getBiomeArray();
 
         for(int i = 0; i < biomeArray.length; ++i)
         {
-            biomeArray[i] = (byte) Biome.getIdForBiome(biomesForGen[i]);
+            biomeArray[i] = (byte) Biome.getIdForBiome(biomes[i]);
         }
 
         chunk.resetRelightChecks();
