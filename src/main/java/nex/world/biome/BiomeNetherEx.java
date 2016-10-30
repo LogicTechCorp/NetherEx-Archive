@@ -42,10 +42,10 @@ public abstract class BiomeNetherEx extends Biome
         return new BiomeDecoratorNether();
     }
 
-    public void setNameAndRegister(String name, int weight)
+    public void setNameAndRegister(String name, int weight, BiomeDictionary.Type... types)
     {
         setRegistryName(new ResourceLocation(NetherEx.MOD_ID, name));
-        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.NETHER);
+        BiomeDictionary.registerBiomeType(this, types);
         NetherExBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
     }
 }

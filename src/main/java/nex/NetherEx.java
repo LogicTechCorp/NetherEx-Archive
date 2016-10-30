@@ -17,7 +17,6 @@
 package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -52,12 +51,7 @@ public class NetherEx
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx");
-
-    static
-    {
-        FluidRegistry.enableUniversalBucket();
-    }
-
+    
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
