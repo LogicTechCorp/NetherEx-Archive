@@ -51,7 +51,7 @@ public class NetherEx
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx");
-    
+
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {

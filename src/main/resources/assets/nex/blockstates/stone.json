@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "basalt": {
+                "model": "nex:stone_basalt"
+            },
+            "basalt_smooth": {
+                "model": "nex:stone_basalt_smooth"
+            },
+            "basalt_brick": {
+                "model": "nex:stone_basalt_brick"
+            }
+        }
+    }
+}

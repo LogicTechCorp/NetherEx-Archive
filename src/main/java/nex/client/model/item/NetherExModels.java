@@ -21,6 +21,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -30,6 +31,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
+import nex.block.BlockNetherExStone;
+import nex.init.NetherExBlocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,6 +44,16 @@ public class NetherExModels
     @SubscribeEvent
     public static void onRegisterModels(ModelRegistryEvent event)
     {
+        ModelLoader.setCustomStateMapper(NetherExBlocks.STONE_SLAB, new StateMap.Builder().ignore(NetherExBlocks.STONE_SLAB.HALF).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.STONE_SLAB_DOUBLE, new StateMap.Builder().ignore(NetherExBlocks.STONE_SLAB.HALF).build());
+
+        for(BlockNetherExStone.EnumType type : BlockNetherExStone.EnumType.values())
+        {
+            registerModel(NetherExBlocks.STONE, type.ordinal(), NetherExBlocks.STONE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.STONE_SLAB, type.ordinal(), NetherExBlocks.STONE_SLAB.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.STONE_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.STONE_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
         LOGGER.info("Model registration has been completed.");
     }
 

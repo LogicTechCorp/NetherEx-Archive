@@ -44,3 +44,14 @@ config.nex:biomeHell.lavaTrapRarity.tooltip=How rare Lava Traps are in the Hell 
 
 # Creative Tabs
 itemGroup.nex=NetherEx
+
+# Tiles (Blocks)
+tile.nex:stone.basalt.name=Basalt
+tile.nex:stone.basaltSmooth.name=Smooth Basalt
+tile.nex:stone.basaltBrick.name=Basalt Bricks
+tile.nex:stoneSlab.basalt.name=Basalt Slab (Single)
+tile.nex:stoneSlab.basaltSmooth.name=Smooth Basalt Slab (Single)
+tile.nex:stoneSlab.basaltBrick.name=Basalt Bricks Slab (Single)
+tile.nex:stoneSlabDouble.basalt.name=Basalt Slab (Double)
+tile.nex:stoneSlabDouble.basaltSmooth.name=Smooth Basalt Slab (Double)
+tile.nex:stoneSlabDouble.basaltBrick.name=Basalt Bricks Slab (Double)

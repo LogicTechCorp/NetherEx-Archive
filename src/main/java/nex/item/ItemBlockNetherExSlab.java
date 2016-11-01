@@ -16,21 +16,29 @@
 
 package nex.item;
 
-import com.google.common.base.CaseFormat;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.item.ItemSlab;
+import net.minecraft.item.ItemStack;
+import nex.block.BlockNetherExSlab;
 
-public abstract class ItemBlockNetherEx extends ItemBlock
+public class ItemBlockNetherExSlab extends ItemSlab
 {
-    public static String formattedRegName;
+    private final BlockNetherExSlab slab;
 
-    public ItemBlockNetherEx(Block block)
+    public ItemBlockNetherExSlab(Block block, BlockSlab singleSlab, BlockSlab doubleSlab)
     {
-        super(block);
+        super(block, singleSlab, doubleSlab);
 
-        formattedRegName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, block.getRegistryName().toString());
+        slab = (BlockNetherExSlab) block;
 
         setRegistryName(block.getRegistryName());
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        return slab.getUnlocalizedName(stack.getMetadata());
     }
 
     @Override

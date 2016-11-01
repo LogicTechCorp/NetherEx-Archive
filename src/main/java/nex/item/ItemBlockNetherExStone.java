@@ -17,25 +17,20 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import nex.block.BlockNetherExStone;
+import nex.init.NetherExBlocks;
 
-public abstract class ItemBlockNetherEx extends ItemBlock
+public class ItemBlockNetherExStone extends ItemBlockNetherEx
 {
-    public static String formattedRegName;
-
-    public ItemBlockNetherEx(Block block)
+    public ItemBlockNetherExStone()
     {
-        super(block);
-
-        formattedRegName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, block.getRegistryName().toString());
-
-        setRegistryName(block.getRegistryName());
+        super(NetherExBlocks.STONE);
     }
 
     @Override
-    public int getMetadata(int metadata)
+    public String getUnlocalizedName(ItemStack stack)
     {
-        return metadata;
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockNetherExStone.EnumType.values()[stack.getItemDamage()].getName());
     }
 }

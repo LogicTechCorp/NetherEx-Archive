@@ -16,26 +16,12 @@
 
 package nex.item;
 
-import com.google.common.base.CaseFormat;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
+import nex.init.NetherExBlocks;
 
-public abstract class ItemBlockNetherEx extends ItemBlock
+public class ItemBlockNetherExStoneSlab extends ItemBlockNetherExSlab
 {
-    public static String formattedRegName;
-
-    public ItemBlockNetherEx(Block block)
+    public ItemBlockNetherExStoneSlab(boolean isDouble)
     {
-        super(block);
-
-        formattedRegName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, block.getRegistryName().toString());
-
-        setRegistryName(block.getRegistryName());
-    }
-
-    @Override
-    public int getMetadata(int metadata)
-    {
-        return metadata;
+        super(!isDouble ? NetherExBlocks.STONE_SLAB : NetherExBlocks.STONE_SLAB_DOUBLE, NetherExBlocks.STONE_SLAB, NetherExBlocks.STONE_SLAB_DOUBLE);
     }
 }
