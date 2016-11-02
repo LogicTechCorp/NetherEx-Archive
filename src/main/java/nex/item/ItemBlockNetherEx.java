@@ -20,7 +20,7 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 
-public abstract class ItemBlockNetherEx extends ItemBlock
+public class ItemBlockNetherEx extends ItemBlock
 {
     public static String formattedRegName;
 

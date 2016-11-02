@@ -23,28 +23,27 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IStringSerializable;
 
 import java.util.List;
 
-public class BlockNetherExStone extends BlockNetherEx
+public class BlockNetherExStoneWall extends BlockNetherExWall
 {
-    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
+    public static final PropertyEnum<BlockNetherExStone.EnumType> TYPE = PropertyEnum.create("type", BlockNetherExStone.EnumType.class);
 
-    public BlockNetherExStone()
+    public BlockNetherExStoneWall()
     {
-        super("stone", Material.ROCK);
+        super("stone_wall", Material.ROCK);
 
         setHardness(1.5F);
         setResistance(10.0F);
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(EnumType type : EnumType.values())
+        for(BlockNetherExStone.EnumType type : BlockNetherExStone.EnumType.values())
         {
-            list.add(new ItemStack(item, 1, type.ordinal()));
+            list.add(new ItemStack(itemIn, 1, type.ordinal()));
         }
     }
 
@@ -57,7 +56,7 @@ public class BlockNetherExStone extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockNetherExStone.EnumType.values()[meta]);
     }
 
     @Override
@@ -69,19 +68,6 @@ public class BlockNetherExStone extends BlockNetherEx
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, TYPE);
-    }
-
-    public enum EnumType implements IStringSerializable
-    {
-        BASALT,
-        BASALT_SMOOTH,
-        BASALT_BRICK;
-
-        @Override
-        public String getName()
-        {
-            return toString().toLowerCase();
-        }
+        return new BlockStateContainer(this, UP, NORTH, EAST, SOUTH, WEST, TYPE);
     }
 }

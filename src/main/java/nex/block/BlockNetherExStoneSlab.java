@@ -17,19 +17,14 @@
 package nex.block;
 
 import com.google.common.base.CaseFormat;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
 import nex.init.NetherExBlocks;
 
 import java.util.List;
@@ -43,7 +38,6 @@ public class BlockNetherExStoneSlab extends BlockNetherExSlab
     {
         super("stone_slab", Material.ROCK, isDoubleIn);
 
-        setSoundType(SoundType.STONE);
         setHardness(2.0F);
         setResistance(10F);
     }
@@ -73,12 +67,6 @@ public class BlockNetherExStoneSlab extends BlockNetherExSlab
     public int damageDropped(IBlockState state)
     {
         return state.getValue(TYPE).ordinal();
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-    {
-        return new ItemStack(NetherExBlocks.STONE_SLAB, 1, getMetaFromState(state));
     }
 
     @Override

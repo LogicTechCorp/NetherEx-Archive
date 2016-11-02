@@ -52,7 +52,12 @@ public class NetherExModels
             registerModel(NetherExBlocks.STONE, type.ordinal(), NetherExBlocks.STONE.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(NetherExBlocks.STONE_SLAB, type.ordinal(), NetherExBlocks.STONE_SLAB.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(NetherExBlocks.STONE_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.STONE_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.STONE_WALL, type.ordinal(), NetherExBlocks.STONE_WALL.getRegistryName().toString(), String.format("east=false,north=true,south=true,type=%s,up=true,west=false", type.getName()));
         }
+
+        registerModel(NetherExBlocks.BASALT_STAIRS, "normal");
+        registerModel(NetherExBlocks.SMOOTH_BASALT_STAIRS, "normal");
+        registerModel(NetherExBlocks.BASALT_BRICK_STAIRS, "normal");
 
         LOGGER.info("Model registration has been completed.");
     }

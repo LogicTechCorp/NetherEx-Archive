@@ -21,11 +21,11 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockNetherExStone;
 import nex.init.NetherExBlocks;
 
-public class ItemBlockNetherExStone extends ItemBlockNetherEx
+public class ItemBlockNetherExStoneWall extends ItemBlockNetherEx
 {
-    public ItemBlockNetherExStone()
+    public ItemBlockNetherExStoneWall()
     {
-        super(NetherExBlocks.STONE);
+        super(NetherExBlocks.STONE_WALL);
 
         setHasSubtypes(true);
     }
