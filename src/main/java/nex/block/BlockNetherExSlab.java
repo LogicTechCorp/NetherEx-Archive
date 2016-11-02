@@ -24,11 +24,12 @@ import nex.NetherEx;
 
 public abstract class BlockNetherExSlab extends BlockSlab
 {
-    private static boolean isDouble;
+    public static boolean isDoubleStatic;
+    private boolean isDouble;
 
     public BlockNetherExSlab(String name, Material material, boolean isDoubleIn)
     {
-        super(setDouble(material, isDoubleIn));
+        super(singleClassHack(material, isDoubleIn));
 
         isDouble = isDoubleIn;
 
@@ -53,9 +54,9 @@ public abstract class BlockNetherExSlab extends BlockSlab
         return isDouble;
     }
 
-    private static Material setDouble(Material material, boolean isDoubleIn)
+    private static Material singleClassHack(Material material, boolean isDoubleIn)
     {
-        isDouble = isDoubleIn;
+        isDoubleStatic = isDoubleIn;
         return material;
     }
 }
