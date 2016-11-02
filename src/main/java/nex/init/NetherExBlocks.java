@@ -17,6 +17,7 @@
 package nex.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,14 +25,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.block.BlockNetherExStairs;
-import nex.block.BlockNetherExStone;
-import nex.block.BlockNetherExStoneSlab;
-import nex.block.BlockNetherExStoneWall;
-import nex.item.ItemBlockNetherEx;
-import nex.item.ItemBlockNetherExStone;
-import nex.item.ItemBlockNetherExStoneSlab;
-import nex.item.ItemBlockNetherExStoneWall;
+import nex.block.*;
+import nex.item.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -59,6 +54,19 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stone_wall")
     public static final BlockNetherExStoneWall STONE_WALL = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stone_fence")
+    public static final BlockNetherExStoneFence STONE_FENCE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stone_fence_gate_basalt")
+    public static final BlockNetherExFenceGate BASALT_FENCE_GATE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stone_fence_gate_basalt_smooth")
+    public static final BlockNetherExFenceGate SMOOTH_BASALT_FENCE_GATE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stone_fence_gate_basalt_brick")
+    public static final BlockNetherExFenceGate BASALT_BRICK_FENCE_GATE = null;
+
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
     @Mod.EventBusSubscriber
@@ -76,7 +84,11 @@ public class NetherExBlocks
                     new BlockNetherExStairs("stone_stairs_basalt", Blocks.STONE.getDefaultState()),
                     new BlockNetherExStairs("stone_stairs_basalt_smooth", Blocks.STONE.getDefaultState()),
                     new BlockNetherExStairs("stone_stairs_basalt_brick", Blocks.STONE.getDefaultState()),
-                    new BlockNetherExStoneWall()
+                    new BlockNetherExStoneWall(),
+                    new BlockNetherExStoneFence(),
+                    new BlockNetherExFenceGate("stone_fence_gate_basalt", Material.ROCK),
+                    new BlockNetherExFenceGate("stone_fence_gate_basalt_smooth", Material.ROCK),
+                    new BlockNetherExFenceGate("stone_fence_gate_basalt_brick", Material.ROCK)
             );
 
             LOGGER.info("Block registration has been completed.");
@@ -92,7 +104,11 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BASALT_STAIRS),
                     new ItemBlockNetherEx(SMOOTH_BASALT_STAIRS),
                     new ItemBlockNetherEx(BASALT_BRICK_STAIRS),
-                    new ItemBlockNetherExStoneWall()
+                    new ItemBlockNetherExStoneWall(),
+                    new ItemBlockNetherExStoneFence(),
+                    new ItemBlockNetherEx(BASALT_FENCE_GATE),
+                    new ItemBlockNetherEx(SMOOTH_BASALT_FENCE_GATE),
+                    new ItemBlockNetherEx(BASALT_BRICK_FENCE_GATE)
             );
 
             LOGGER.info("ItemBlock registration has been completed.");
