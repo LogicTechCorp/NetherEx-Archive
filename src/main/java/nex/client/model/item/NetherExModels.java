@@ -33,7 +33,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
 import nex.block.BlockNetherExStone;
 import nex.block.BlockVanillaStone;
-import nex.block.BlockVanillaStoneSlab;
 import nex.init.NetherExBlocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

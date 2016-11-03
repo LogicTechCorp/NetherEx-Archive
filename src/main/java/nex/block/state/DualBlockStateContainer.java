@@ -21,11 +21,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 
-public class FakeBlockStateContainer extends BlockStateContainer
+public class DualBlockStateContainer extends BlockStateContainer
 {
     private BlockStateContainer container;
 
-    public FakeBlockStateContainer(BlockStateContainer containerIn, Block block, IProperty... properties)
+    public DualBlockStateContainer(BlockStateContainer containerIn, Block block, IProperty... properties)
     {
         super(block, properties);
 
@@ -38,8 +38,8 @@ public class FakeBlockStateContainer extends BlockStateContainer
         return container == null ? getValidStates().get(0) : container.getValidStates().get(0);
     }
 
-    public void destroy()
-        {
-            container = null;
-        }
+    public void destroySuper()
+    {
+        container = null;
+    }
 }

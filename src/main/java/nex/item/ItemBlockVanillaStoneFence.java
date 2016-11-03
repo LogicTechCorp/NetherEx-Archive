@@ -18,7 +18,6 @@ package nex.item;
 
 import com.google.common.base.CaseFormat;
 import net.minecraft.item.ItemStack;
-import nex.block.BlockNetherExStone;
 import nex.block.BlockVanillaStone;
 import nex.init.NetherExBlocks;
 

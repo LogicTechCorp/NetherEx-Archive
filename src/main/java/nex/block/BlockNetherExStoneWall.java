@@ -23,6 +23,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import nex.block.state.DualBlockStateContainer;
 
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class BlockNetherExStoneWall extends BlockNetherExWall
     public BlockNetherExStoneWall()
     {
         super("stone_wall", Material.ROCK);
+
+        ((DualBlockStateContainer) blockState).destroySuper();
+        setDefaultState(blockState.getBaseState());
 
         setHardness(1.5F);
         setResistance(10.0F);
@@ -68,6 +72,6 @@ public class BlockNetherExStoneWall extends BlockNetherExWall
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, UP, NORTH, EAST, SOUTH, WEST, TYPE);
+        return new DualBlockStateContainer(super.createBlockState(), this, UP, NORTH, EAST, SOUTH, WEST, TYPE);
     }
 }
