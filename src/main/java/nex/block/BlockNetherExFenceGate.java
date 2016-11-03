@@ -203,10 +203,10 @@ public class BlockNetherExFenceGate extends Block
 
         if(facing == EnumFacing.Axis.Z && ((westBlock instanceof BlockWall || westBlock instanceof BlockNetherExWall) || (eastBlock instanceof BlockWall || eastBlock instanceof BlockNetherExWall)) || facing == EnumFacing.Axis.X && ((northBlock instanceof BlockWall || northBlock instanceof BlockNetherExWall) || (southBlock instanceof BlockWall || southBlock instanceof BlockNetherExWall)))
         {
-            state = state.withProperty(IN_WALL, true);
+            return state.withProperty(IN_WALL, true);
         }
 
-        return state;
+        return state.withProperty(IN_WALL, false);
     }
 
     @Override
