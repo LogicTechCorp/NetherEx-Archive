@@ -17,9 +17,12 @@
 package nex.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStoneSlab;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -33,6 +36,21 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBlocks
 {
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":vanilla_stone_slab")
+    public static final BlockVanillaStoneSlab VANILLA_STONE_SLAB = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":vanilla_stone_slab_double")
+    public static final BlockVanillaStoneSlab VANILLA_STONE_SLAB_DOUBLE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":vanilla_stone_stairs_nether_brick_red")
+    public static final BlockVanillaStairs VANILLA_NETHER_BRICK_RED_STAIRS = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":vanilla_stone_wall")
+    public static final BlockVanillaStoneWall VANILLA_STONE_WALL = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":vanilla_stone_fence")
+    public static final BlockVanillaStoneFence VANILLA_STONE_FENCE = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stone")
     public static final BlockNetherExStone STONE = null;
 
@@ -66,7 +84,6 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stone_fence_gate_basalt_brick")
     public static final BlockNetherExFenceGate BASALT_BRICK_FENCE_GATE = null;
 
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
     @Mod.EventBusSubscriber
@@ -78,6 +95,11 @@ public class NetherExBlocks
             NetherExFluids.runStaticInit();
 
             event.getRegistry().registerAll(
+                    new BlockVanillaStoneSlab(false),
+                    new BlockVanillaStoneSlab(true),
+                    new BlockVanillaStairs("vanilla_stone_stairs_nether_brick_red", Blocks.RED_NETHER_BRICK.getDefaultState()),
+                    new BlockVanillaStoneWall(),
+                    new BlockVanillaStoneFence(),
                     new BlockNetherExStone(),
                     new BlockNetherExStoneSlab(false),
                     new BlockNetherExStoneSlab(true),
@@ -98,6 +120,11 @@ public class NetherExBlocks
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
             event.getRegistry().registerAll(
+                    new ItemBlockVanillaStoneSlab(false),
+                    new ItemBlockVanillaStoneSlab(true),
+                    new ItemBlockNetherEx(VANILLA_NETHER_BRICK_RED_STAIRS),
+                    new ItemBlockVanillaStoneWall(),
+                    new ItemBlockVanillaStoneFence(),
                     new ItemBlockNetherExStone(),
                     new ItemBlockNetherExStoneSlab(false),
                     new ItemBlockNetherExStoneSlab(true),

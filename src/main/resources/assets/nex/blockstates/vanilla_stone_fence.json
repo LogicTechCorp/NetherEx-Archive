@@ -1,0 +1,51 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "fence_post",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "nether_brick_red": {
+                "textures": {
+                    "texture": "blocks/red_nether_brick"
+                }
+            }
+        },
+        "north": {
+            "true": {
+                "submodel": "fence_side",
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "east": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 90,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "south": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 180,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "west": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 270,
+                "uvlock": true
+            },
+            "false": {
+            }
+        }
+    }
+}

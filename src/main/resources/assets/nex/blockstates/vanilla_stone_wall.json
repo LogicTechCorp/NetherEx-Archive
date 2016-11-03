@@ -1,0 +1,62 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "wall_post",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "nether_brick": {
+                "textures": {
+                    "wall": "blocks/nether_brick"
+                }
+            },
+            "nether_brick_red": {
+                "textures": {
+                    "wall": "blocks/red_nether_brick"
+                }
+            }
+        },
+        "up": {
+            "true": {
+            },
+            "false": {
+            }
+        },
+        "north": {
+            "true": {
+                "submodel": "wall_side",
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "east": {
+            "true": {
+                "submodel": "wall_side",
+                "y": 90,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "south": {
+            "true": {
+                "submodel": "wall_side",
+                "y": 180,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "west": {
+            "true": {
+                "submodel": "wall_side",
+                "y": 270,
+                "uvlock": true
+            },
+            "false": {
+            }
+        }
+    }
+}

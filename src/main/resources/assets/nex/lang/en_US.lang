@@ -46,15 +46,21 @@ config.nex:biomeHell.lavaTrapRarity.tooltip=How rare Lava Traps are in the Hell 
 itemGroup.nex=NetherEx
 
 # Tiles (Blocks)
+tile.nex:vanillaStoneSlab.netherBrickRed.name=Red Nether Brick Slab
+tile.nex:vanillaStoneSlabDouble.netherBrickRed.name=Red Nether Brick Slabs
+tile.nex:vanillaStoneStairs.netherBrickRed.name=Red Nether Brick Stairs
+tile.nex:vanillaStoneWall.netherBrick.name=Nether Brick Wall
+tile.nex:vanillaStoneWall.netherBrickRed.name=Red Nether Brick Wall
+tile.nex:vanillaStoneFence.netherBrickRed.name=Red Nether Brick Fence
 tile.nex:stone.basalt.name=Basalt
 tile.nex:stone.basaltSmooth.name=Smooth Basalt
 tile.nex:stone.basaltBrick.name=Basalt Bricks
-tile.nex:stoneSlab.basalt.name=Basalt Slab (Single)
-tile.nex:stoneSlab.basaltSmooth.name=Smooth Basalt Slab (Single)
-tile.nex:stoneSlab.basaltBrick.name=Basalt Bricks Slab (Single)
-tile.nex:stoneSlabDouble.basalt.name=Basalt Slab (Double)
-tile.nex:stoneSlabDouble.basaltSmooth.name=Smooth Basalt Slab (Double)
-tile.nex:stoneSlabDouble.basaltBrick.name=Basalt Bricks Slab (Double)
+tile.nex:stoneSlab.basalt.name=Basalt Slab
+tile.nex:stoneSlab.basaltSmooth.name=Smooth Basalt Slab
+tile.nex:stoneSlab.basaltBrick.name=Basalt Bricks Slab
+tile.nex:stoneSlabDouble.basalt.name=Basalt Slabs
+tile.nex:stoneSlabDouble.basaltSmooth.name=Smooth Basalt Slabs
+tile.nex:stoneSlabDouble.basaltBrick.name=Basalt Bricks Slabs
 tile.nex:stoneStairs.basalt.name=Basalt Stairs
 tile.nex:stoneStairs.basaltSmooth.name=Smooth Basalt Stairs
 tile.nex:stoneStairs.basaltBrick.name=Basalt Brick Stairs

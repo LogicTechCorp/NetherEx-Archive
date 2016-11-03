@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.IMCHandler;
 import nex.init.NetherExBiomes;
+import nex.init.NetherExBlocks;
 import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;

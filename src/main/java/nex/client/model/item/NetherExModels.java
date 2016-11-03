@@ -32,6 +32,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
 import nex.block.BlockNetherExStone;
+import nex.block.BlockVanillaStone;
+import nex.block.BlockVanillaStoneSlab;
 import nex.init.NetherExBlocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,8 +46,27 @@ public class NetherExModels
     @SubscribeEvent
     public static void onRegisterModels(ModelRegistryEvent event)
     {
+        ModelLoader.setCustomStateMapper(NetherExBlocks.VANILLA_STONE_SLAB, new StateMap.Builder().ignore(NetherExBlocks.VANILLA_STONE_SLAB.HALF).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.VANILLA_STONE_SLAB_DOUBLE, new StateMap.Builder().ignore(NetherExBlocks.VANILLA_STONE_SLAB_DOUBLE.HALF).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.VANILLA_STONE_WALL, new StateMap.Builder().ignore(NetherExBlocks.VANILLA_STONE_WALL.VARIANT).build());
+
+        for(BlockVanillaStone.EnumTypeWithOut type : BlockVanillaStone.EnumTypeWithOut.values())
+        {
+            registerModel(NetherExBlocks.VANILLA_STONE_SLAB, type.ordinal(), NetherExBlocks.VANILLA_STONE_SLAB.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.VANILLA_STONE_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.VANILLA_STONE_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.VANILLA_STONE_FENCE, type.ordinal(), NetherExBlocks.VANILLA_STONE_FENCE.getRegistryName().toString(), String.format("east=false,north=true,south=true,type=%s,west=false", type.getName()));
+        }
+
+        for(BlockVanillaStone.EnumTypeWith type : BlockVanillaStone.EnumTypeWith.values())
+        {
+            registerModel(NetherExBlocks.VANILLA_STONE_WALL, type.ordinal(), NetherExBlocks.VANILLA_STONE_WALL.getRegistryName().toString(), String.format("east=false,north=true,south=true,type=%s,up=true,west=false", type.getName()));
+        }
+
+        registerModel(NetherExBlocks.VANILLA_NETHER_BRICK_RED_STAIRS, "normal");
+
         ModelLoader.setCustomStateMapper(NetherExBlocks.STONE_SLAB, new StateMap.Builder().ignore(NetherExBlocks.STONE_SLAB.HALF).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.STONE_SLAB_DOUBLE, new StateMap.Builder().ignore(NetherExBlocks.STONE_SLAB.HALF).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.STONE_WALL, new StateMap.Builder().ignore(NetherExBlocks.STONE_WALL.VARIANT).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_FENCE_GATE, new StateMap.Builder().ignore(NetherExBlocks.BASALT_FENCE_GATE.POWERED).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.SMOOTH_BASALT_FENCE_GATE, new StateMap.Builder().ignore(NetherExBlocks.SMOOTH_BASALT_FENCE_GATE.POWERED).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_BRICK_FENCE_GATE, new StateMap.Builder().ignore(NetherExBlocks.BASALT_BRICK_FENCE_GATE.POWERED).build());

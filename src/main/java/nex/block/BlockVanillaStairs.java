@@ -16,29 +16,32 @@
 
 package nex.block;
 
-import com.google.common.base.CaseFormat;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockWall;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraft.block.state.IBlockState;
 import nex.NetherEx;
+import org.apache.commons.lang3.StringUtils;
 
-public class BlockNetherExWall extends BlockWall
+public class BlockVanillaStairs extends BlockStairs
 {
-    public BlockNetherExWall(String name, Material material)
+    public BlockVanillaStairs(String name, IBlockState state)
     {
-        super(Blocks.PLANKS);
+        super(state);
 
-        ReflectionHelper.setPrivateValue(Block.class, this, material, "field_149764_J", "blockMaterial");
-        ReflectionHelper.setPrivateValue(Block.class, this, material.getMaterialMapColor(), "field_181083_K", "blockMapColor");
+        String[] nameParts = name.split("_");
+        String stairName = nameParts[0] + StringUtils.capitalize(nameParts[1]) + StringUtils.capitalize(nameParts[2]);
+        String stairType = nameParts[3];
+
+        for(int i = 4; i < nameParts.length; i++)
+        {
+            stairType += StringUtils.capitalize(nameParts[i]);
+        }
 
         useNeighborBrightness = true;
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
-        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
+        setUnlocalizedName(NetherEx.MOD_ID + ":" + stairName + "." + stairType);
     }
 }

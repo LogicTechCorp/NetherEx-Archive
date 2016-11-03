@@ -6,13 +6,13 @@
     "variants": {
         "type": {
             "basalt": {
-                "model": "nex:stone_basalt_slab"
+                "model": "nex:stone_slab_basalt"
             },
             "basalt_smooth": {
-                "model": "nex:stone_basalt_smooth_slab"
+                "model": "nex:stone_slab_basalt_smooth"
             },
             "basalt_brick": {
-                "model": "nex:stone_basalt_brick_slab"
+                "model": "nex:stone_slab_basalt_brick"
             }
         }
     }
