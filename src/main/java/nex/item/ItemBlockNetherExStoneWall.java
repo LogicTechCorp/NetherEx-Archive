@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockNetherExStone;
 import nex.init.NetherExBlocks;
 
+@SuppressWarnings("ConstantConditions")
 public class ItemBlockNetherExStoneWall extends ItemBlockNetherEx
 {
     public ItemBlockNetherExStoneWall()

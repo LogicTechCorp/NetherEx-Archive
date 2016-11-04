@@ -5,8 +5,7 @@
         "textures": {
             "texture": "blocks/red_nether_brick"
         },
-        "uvlock": true,
-        "transform": "forge:default-block"
+        "uvlock": true
     },
     "variants": {
         "normal": [

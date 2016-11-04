@@ -5,8 +5,7 @@
         "textures": {
             "texture": "nex:blocks/stone_basalt"
         },
-        "uvlock": true,
-        "transform": "forge:default-block"
+        "uvlock": true
     },
     "variants": {
         "normal": [

@@ -1,6 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
+        "model": "minecraft:stairs",
         "textures": {
             "bottom": "nex:blocks/stone_basalt_smooth",
             "top": "nex:blocks/stone_basalt_smooth",
@@ -8,12 +9,14 @@
         }
     },
     "variants": {
-        "normal": {
-            "model": "minecraft:stairs"
-        },
-        "inventory": {
-            "model": "minecraft:stairs"
-        },
+        "normal": [
+            {
+            }
+        ],
+        "inventory": [
+            {
+            }
+        ],
         "facing=east,half=bottom,shape=straight": {
             "model": "minecraft:stairs"
         },

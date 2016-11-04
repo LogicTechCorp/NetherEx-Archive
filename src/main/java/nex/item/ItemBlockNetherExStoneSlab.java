@@ -18,6 +18,7 @@ package nex.item;
 
 import nex.init.NetherExBlocks;
 
+@SuppressWarnings("ConstantConditions")
 public class ItemBlockNetherExStoneSlab extends ItemBlockNetherExSlab
 {
     public ItemBlockNetherExStoneSlab(boolean isDouble)

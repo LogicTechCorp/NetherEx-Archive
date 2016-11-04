@@ -16,6 +16,7 @@
 
 package nex.init;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -28,12 +29,24 @@ import java.util.List;
 
 import static nex.init.NetherExBlocks.*;
 
+@SuppressWarnings("ConstantConditions")
 public class NetherExRecipes
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExRecipes");
 
     public static void init()
     {
+        removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE));
+
+        addSlabRecipe(new ItemStack(VANILLA_STONE_SLAB, 6, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
+        addStairRecipe(new ItemStack(RED_NETHER_BRICK_STAIRS, 8, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 3, 0));
+        addWallRecipe(new ItemStack(VANILLA_STONE_WALL, 6, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0));
+        addWallRecipe(new ItemStack(VANILLA_STONE_WALL, 6, 1), new ItemStack(Blocks.NETHER_BRICK, 1, 0));
+        addWallRecipe(new ItemStack(VANILLA_STONE_WALL, 6, 2), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
+        addFenceRecipe(new ItemStack(VANILLA_STONE_FENCE, 4, 0), new ItemStack(QUARTZ_FENCE_GATE, 4, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0), new ItemStack(Blocks.STONE_SLAB, 1, 7));
+        addFenceRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE, 4, 0), new ItemStack(NETHER_BRICK_FENCE_GATE, 4, 0), new ItemStack(Blocks.NETHER_BRICK, 1, 0), new ItemStack(Blocks.STONE_SLAB, 6, 0));
+        addFenceRecipe(new ItemStack(VANILLA_STONE_FENCE, 4, 1), new ItemStack(RED_NETHER_BRICK_FENCE_GATE, 4, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0), new ItemStack(VANILLA_STONE_SLAB, 1, 0));
+
         add4x4Recipe(new ItemStack(STONE, 4, 1), new ItemStack(STONE, 4, 0));
         add4x4Recipe(new ItemStack(STONE, 4, 2), new ItemStack(STONE, 4, 1));
         addSlabRecipe(new ItemStack(STONE_SLAB, 6, 0), new ItemStack(STONE, 1, 0));
@@ -52,41 +65,41 @@ public class NetherExRecipes
         LOGGER.info("Recipes have been initialized.");
     }
 
-    public static void addShaped(ItemStack result, Object... input)
+    private static void addShaped(ItemStack result, Object... input)
     {
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(result, input));
     }
 
-    public static void addSmelting(ItemStack output, ItemStack input, float xp)
+    private static void addSmelting(ItemStack output, ItemStack input, float xp)
     {
         FurnaceRecipes.instance().addSmeltingRecipe(input, output, xp);
     }
 
-    public static void add4x4Recipe(ItemStack result, ItemStack input)
+    private static void add4x4Recipe(ItemStack result, ItemStack input)
     {
         addShaped(result, "##", "##", '#', input);
         addShaped(input, "##", "##", '#', result);
     }
 
-    public static void addSlabRecipe(ItemStack result, ItemStack input)
+    private static void addSlabRecipe(ItemStack result, ItemStack input)
     {
         addShaped(result, "###", '#', input);
         addShaped(input, "##", '#', result);
     }
 
-    public static void addStairRecipe(ItemStack result, ItemStack input)
+    private static void addStairRecipe(ItemStack result, ItemStack input)
     {
         addShaped(result, "#  ", "## ", "###", '#', input);
         addShaped(input, "##", "##", '#', result);
     }
 
-    public static void addFenceRecipe(ItemStack... stacks)
+    private static void addFenceRecipe(ItemStack... stacks)
     {
         addShaped(stacks[0], "#X#", "#X#", '#', stacks[2], 'X', stacks[3]);
         addShaped(stacks[1], "#X#", "#X#", '#', stacks[3], 'X', stacks[2]);
     }
 
-    public static void addWallRecipe(ItemStack result, ItemStack input)
+    private static void addWallRecipe(ItemStack result, ItemStack input)
     {
         addShaped(result, "###", "###", '#', input);
         addShaped(input, "#", '#', result);

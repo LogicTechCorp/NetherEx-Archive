@@ -16,12 +16,11 @@
 
 package nex.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.NetherEx;
 import org.apache.commons.lang3.StringUtils;
@@ -56,23 +55,5 @@ public class BlockNetherExFenceGate extends BlockFenceGate
         setSoundType(SoundType.STONE);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(NetherEx.MOD_ID + ":" + gateName + "." + gateType);
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-    {
-        EnumFacing.Axis facing = state.getValue(FACING).getAxis();
-
-        Block northBlock = worldIn.getBlockState(pos.north()).getBlock();
-        Block eastBlock = worldIn.getBlockState(pos.east()).getBlock();
-        Block southBlock = worldIn.getBlockState(pos.south()).getBlock();
-        Block westBlock = worldIn.getBlockState(pos.west()).getBlock();
-
-        if(facing == EnumFacing.Axis.Z && ((westBlock instanceof BlockWall) || (eastBlock instanceof BlockWall)) || facing == EnumFacing.Axis.X && ((northBlock instanceof BlockWall) || (southBlock instanceof BlockWall)))
-        {
-            return state.withProperty(IN_WALL, true);
-        }
-
-        return state.withProperty(IN_WALL, false);
     }
 }

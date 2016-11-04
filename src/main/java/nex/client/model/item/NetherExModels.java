@@ -37,6 +37,7 @@ import nex.init.NetherExBlocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class NetherExModels
 {
@@ -60,12 +61,12 @@ public class NetherExModels
 
         for(BlockVanillaStone.EnumTypeWall type : BlockVanillaStone.EnumTypeWall.values())
         {
-            registerModel(NetherExBlocks.VANILLA_STONE_WALL, type.ordinal(), NetherExBlocks.VANILLA_STONE_WALL.getRegistryName().toString(), String.format("east=false,north=true,south=true,type=%s,up=true,west=false", type.getName()));
+            registerModel(NetherExBlocks.VANILLA_STONE_WALL, type.ordinal(), NetherExBlocks.VANILLA_STONE_WALL.getRegistryName().toString() + String.format("_%s", type.getName()), "inventory");
         }
 
         for(BlockVanillaStone.EnumTypeFence type : BlockVanillaStone.EnumTypeFence.values())
         {
-            registerModel(NetherExBlocks.VANILLA_STONE_FENCE, type.ordinal(), NetherExBlocks.VANILLA_STONE_FENCE.getRegistryName().toString(), String.format("east=false,north=true,south=true,type=%s,west=false", type.getName()));
+            registerModel(NetherExBlocks.VANILLA_STONE_FENCE, type.ordinal(), NetherExBlocks.VANILLA_STONE_FENCE.getRegistryName().toString() + String.format("_%s", type.getName()), "inventory");
         }
 
         registerModel(NetherExBlocks.RED_NETHER_BRICK_STAIRS, "normal");
@@ -85,8 +86,13 @@ public class NetherExModels
             registerModel(NetherExBlocks.STONE, type.ordinal(), NetherExBlocks.STONE.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(NetherExBlocks.STONE_SLAB, type.ordinal(), NetherExBlocks.STONE_SLAB.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(NetherExBlocks.STONE_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.STONE_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(NetherExBlocks.STONE_WALL, type.ordinal(), NetherExBlocks.STONE_WALL.getRegistryName().toString(), String.format("east=false,north=true,south=true,type=%s,up=true,west=false", type.getName()));
             registerModel(NetherExBlocks.STONE_FENCE, type.ordinal(), NetherExBlocks.STONE_FENCE.getRegistryName().toString(), String.format("east=false,north=true,south=true,type=%s,west=false", type.getName()));
+        }
+
+        for(BlockNetherExStone.EnumType type : BlockNetherExStone.EnumType.values())
+        {
+            registerModel(NetherExBlocks.STONE_WALL, type.ordinal(), NetherExBlocks.STONE_WALL.getRegistryName().toString() + String.format("_%s", type.getName()), "inventory");
+            registerModel(NetherExBlocks.STONE_FENCE, type.ordinal(), NetherExBlocks.STONE_FENCE.getRegistryName().toString() + String.format("_%s", type.getName()), "inventory");
         }
 
         registerModel(NetherExBlocks.BASALT_STAIRS, "normal");

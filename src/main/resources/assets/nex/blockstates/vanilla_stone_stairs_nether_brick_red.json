@@ -1,6 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
+        "model": "minecraft:stairs",
         "textures": {
             "bottom": "blocks/red_nether_brick",
             "top": "blocks/red_nether_brick",
@@ -8,12 +9,14 @@
         }
     },
     "variants": {
-        "normal": {
-            "model": "minecraft:stairs"
-        },
-        "inventory": {
-            "model": "minecraft:stairs"
-        },
+        "normal": [
+            {
+            }
+        ],
+        "inventory": [
+            {
+            }
+        ],
         "facing=east,half=bottom,shape=straight": {
             "model": "minecraft:stairs"
         },

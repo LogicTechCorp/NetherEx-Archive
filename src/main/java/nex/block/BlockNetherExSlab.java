@@ -20,6 +20,11 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import nex.NetherEx;
 
 public abstract class BlockNetherExSlab extends BlockSlab
@@ -52,6 +57,13 @@ public abstract class BlockNetherExSlab extends BlockSlab
     public boolean isDouble()
     {
         return isDouble;
+    }
+
+    @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        IBlockState state = getStateFromMeta(meta);
+        return isDouble() ? state : (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double) hitY <= 0.5D) ? state.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM) : state.withProperty(HALF, BlockSlab.EnumBlockHalf.TOP));
     }
 
     private static Material singleClassHack(Material material, boolean isDoubleIn)
