@@ -6,6 +6,11 @@
     },
     "variants": {
         "type": {
+            "quartz": {
+                "textures": {
+                    "wall": "blocks/quartz_block_bottom"
+                }
+            },
             "nether_brick": {
                 "textures": {
                     "wall": "blocks/nether_brick"

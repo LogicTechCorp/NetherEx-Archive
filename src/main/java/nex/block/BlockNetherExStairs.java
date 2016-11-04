@@ -24,15 +24,21 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BlockNetherExStairs extends BlockStairs
 {
-    public BlockNetherExStairs(String name, IBlockState state)
+    public BlockNetherExStairs(String name, int prefixLength, IBlockState state)
     {
         super(state);
 
         String[] nameParts = name.split("_");
-        String stairName = nameParts[0] + StringUtils.capitalize(nameParts[1]);
-        String stairType = nameParts[2];
+        String stairName = nameParts[0];
 
-        for(int i = 3; i < nameParts.length; i++)
+        for(int i = 1; i <= prefixLength; i++)
+        {
+            stairName += StringUtils.capitalize(nameParts[i]);
+        }
+
+        String stairType = nameParts[prefixLength + 1];
+
+        for(int i = prefixLength + 2; i < nameParts.length; i++)
         {
             stairType += StringUtils.capitalize(nameParts[i]);
         }

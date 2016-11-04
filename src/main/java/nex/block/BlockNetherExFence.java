@@ -20,6 +20,10 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import nex.NetherEx;
 
 public class BlockNetherExFence extends BlockFence
@@ -34,5 +38,11 @@ public class BlockNetherExFence extends BlockFence
         setSoundType(SoundType.STONE);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
+    }
+
+    @Override
+    public boolean isSideSolid(IBlockState baseState, IBlockAccess world, BlockPos pos, EnumFacing side)
+    {
+        return side == EnumFacing.UP;
     }
 }

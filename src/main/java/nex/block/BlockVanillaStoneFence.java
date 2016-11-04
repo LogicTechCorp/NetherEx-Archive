@@ -28,7 +28,7 @@ import java.util.List;
 
 public class BlockVanillaStoneFence extends BlockNetherExFence
 {
-    public static final PropertyEnum<BlockVanillaStone.EnumTypeWithOut> TYPE = PropertyEnum.create("type", BlockVanillaStone.EnumTypeWithOut.class);
+    public static final PropertyEnum<BlockVanillaStone.EnumTypeFence> TYPE = PropertyEnum.create("type", BlockVanillaStone.EnumTypeFence.class);
 
     public BlockVanillaStoneFence()
     {
@@ -41,7 +41,7 @@ public class BlockVanillaStoneFence extends BlockNetherExFence
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockVanillaStone.EnumTypeWithOut type : BlockVanillaStone.EnumTypeWithOut.values())
+        for(BlockVanillaStone.EnumTypeFence type : BlockVanillaStone.EnumTypeFence.values())
         {
             list.add(new ItemStack(itemIn, 1, type.ordinal()));
         }
@@ -56,7 +56,7 @@ public class BlockVanillaStoneFence extends BlockNetherExFence
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockVanillaStone.EnumTypeWithOut.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockVanillaStone.EnumTypeFence.values()[meta]);
     }
 
     @Override

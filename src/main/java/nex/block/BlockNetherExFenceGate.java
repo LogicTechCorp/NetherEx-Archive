@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BlockNetherExFenceGate extends BlockFenceGate
 {
-    public BlockNetherExFenceGate(String name, Material material)
+    public BlockNetherExFenceGate(String name, int prefixLength, Material material)
     {
         super(BlockPlanks.EnumType.OAK);
 
@@ -36,10 +36,16 @@ public class BlockNetherExFenceGate extends BlockFenceGate
         ReflectionHelper.setPrivateValue(Block.class, this, material.getMaterialMapColor(), "field_181083_K", "blockMapColor");
 
         String[] nameParts = name.split("_");
-        String gateName = nameParts[0] + StringUtils.capitalize(nameParts[1]) + StringUtils.capitalize(nameParts[2]);
-        String gateType = nameParts[3];
+        String gateName = nameParts[0];
 
-        for(int i = 4; i < nameParts.length; i++)
+        for(int i = 1; i <= prefixLength; i++)
+        {
+            gateName += StringUtils.capitalize(nameParts[i]);
+        }
+
+        String gateType = nameParts[prefixLength + 1];
+
+        for(int i = prefixLength + 2; i < nameParts.length; i++)
         {
             gateType += StringUtils.capitalize(nameParts[i]);
         }
@@ -62,7 +68,7 @@ public class BlockNetherExFenceGate extends BlockFenceGate
         Block southBlock = worldIn.getBlockState(pos.south()).getBlock();
         Block westBlock = worldIn.getBlockState(pos.west()).getBlock();
 
-        if(facing == EnumFacing.Axis.Z && ((westBlock instanceof BlockWall || westBlock instanceof BlockNetherExWall) || (eastBlock instanceof BlockWall || eastBlock instanceof BlockNetherExWall)) || facing == EnumFacing.Axis.X && ((northBlock instanceof BlockWall || northBlock instanceof BlockNetherExWall) || (southBlock instanceof BlockWall || southBlock instanceof BlockNetherExWall)))
+        if(facing == EnumFacing.Axis.Z && ((westBlock instanceof BlockWall) || (eastBlock instanceof BlockWall)) || facing == EnumFacing.Axis.X && ((northBlock instanceof BlockWall) || (southBlock instanceof BlockWall)))
         {
             return state.withProperty(IN_WALL, true);
         }

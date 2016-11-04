@@ -20,8 +20,20 @@ import net.minecraft.util.IStringSerializable;
 
 public class BlockVanillaStone
 {
-    public enum EnumTypeWith implements IStringSerializable
+    public enum EnumTypeSlab implements IStringSerializable
     {
+        NETHER_BRICK_RED;
+
+        @Override
+        public String getName()
+        {
+            return toString().toLowerCase();
+        }
+    }
+
+    public enum EnumTypeWall implements IStringSerializable
+    {
+        QUARTZ,
         NETHER_BRICK,
         NETHER_BRICK_RED;
 
@@ -32,8 +44,9 @@ public class BlockVanillaStone
         }
     }
 
-    public enum EnumTypeWithOut implements IStringSerializable
+    public enum EnumTypeFence implements IStringSerializable
     {
+        QUARTZ,
         NETHER_BRICK_RED;
 
         @Override

@@ -16,19 +16,14 @@
 
 package nex.item;
 
-import com.google.common.base.CaseFormat;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 
 public class ItemBlockNetherEx extends ItemBlock
 {
-    public static String formattedRegName;
-
     public ItemBlockNetherEx(Block block)
     {
         super(block);
-
-        formattedRegName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, block.getRegistryName().toString());
 
         setRegistryName(block.getRegistryName());
     }

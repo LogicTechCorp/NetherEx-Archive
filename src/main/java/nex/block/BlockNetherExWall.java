@@ -21,7 +21,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.NetherEx;
 
@@ -40,5 +44,11 @@ public class BlockNetherExWall extends BlockWall
         setSoundType(SoundType.STONE);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
+    }
+
+    @Override
+    public boolean isSideSolid(IBlockState baseState, IBlockAccess world, BlockPos pos, EnumFacing side)
+    {
+        return side == EnumFacing.UP;
     }
 }

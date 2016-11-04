@@ -14,25 +14,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.item;
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+package nex.client.gui;
 
-import com.google.common.base.CaseFormat;
-import net.minecraft.item.ItemStack;
-import nex.block.BlockVanillaStone;
-import nex.init.NetherExBlocks;
+import mcp.MethodsReturnNonnullByDefault;
 
-public class ItemBlockVanillaStoneWall extends ItemBlockNetherEx
-{
-    public ItemBlockVanillaStoneWall()
-    {
-        super(NetherExBlocks.VANILLA_STONE_WALL);
-
-        setHasSubtypes(true);
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanillaStone.EnumTypeWall.values()[stack.getItemDamage()].getName());
-    }
-}
+import javax.annotation.ParametersAreNonnullByDefault;

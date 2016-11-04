@@ -29,7 +29,7 @@ import java.util.List;
 
 public class BlockVanillaStoneWall extends BlockNetherExWall
 {
-    public static final PropertyEnum<BlockVanillaStone.EnumTypeWith> TYPE = PropertyEnum.create("type", BlockVanillaStone.EnumTypeWith.class);
+    public static final PropertyEnum<BlockVanillaStone.EnumTypeWall> TYPE = PropertyEnum.create("type", BlockVanillaStone.EnumTypeWall.class);
 
     public BlockVanillaStoneWall()
     {
@@ -45,7 +45,7 @@ public class BlockVanillaStoneWall extends BlockNetherExWall
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockVanillaStone.EnumTypeWith type : BlockVanillaStone.EnumTypeWith.values())
+        for(BlockVanillaStone.EnumTypeWall type : BlockVanillaStone.EnumTypeWall.values())
         {
             list.add(new ItemStack(itemIn, 1, type.ordinal()));
         }
@@ -60,7 +60,7 @@ public class BlockVanillaStoneWall extends BlockNetherExWall
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockVanillaStone.EnumTypeWith.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockVanillaStone.EnumTypeWall.values()[meta]);
     }
 
     @Override

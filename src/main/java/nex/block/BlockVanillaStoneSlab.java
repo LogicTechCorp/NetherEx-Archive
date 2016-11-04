@@ -36,7 +36,7 @@ import java.util.Random;
 
 public class BlockVanillaStoneSlab extends BlockNetherExSlab
 {
-    public static final PropertyEnum<BlockVanillaStone.EnumTypeWithOut> TYPE = PropertyEnum.create("type", BlockVanillaStone.EnumTypeWithOut.class);
+    public static final PropertyEnum<BlockVanillaStone.EnumTypeSlab> TYPE = PropertyEnum.create("type", BlockVanillaStone.EnumTypeSlab.class);
 
     public BlockVanillaStoneSlab(boolean isDoubleIn)
     {
@@ -49,7 +49,7 @@ public class BlockVanillaStoneSlab extends BlockNetherExSlab
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for(BlockVanillaStone.EnumTypeWithOut type : BlockVanillaStone.EnumTypeWithOut.values())
+        for(BlockVanillaStone.EnumTypeSlab type : BlockVanillaStone.EnumTypeSlab.values())
         {
             list.add(new ItemStack(item, 1, type.ordinal()));
         }
@@ -58,7 +58,7 @@ public class BlockVanillaStoneSlab extends BlockNetherExSlab
     @Override
     public String getUnlocalizedName(int meta)
     {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanillaStone.EnumTypeWithOut.values()[meta].getName());
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanillaStone.EnumTypeSlab.values()[meta].getName());
     }
 
     @Override
@@ -82,7 +82,7 @@ public class BlockVanillaStoneSlab extends BlockNetherExSlab
     @Override
     public Comparable<?> getTypeForItem(ItemStack stack)
     {
-        return BlockVanillaStone.EnumTypeWithOut.values()[stack.getMetadata() & 7];
+        return BlockVanillaStone.EnumTypeSlab.values()[stack.getMetadata() & 7];
     }
 
     @Override
@@ -95,7 +95,7 @@ public class BlockVanillaStoneSlab extends BlockNetherExSlab
     public IBlockState getStateFromMeta(int meta)
     {
         IBlockState state = getDefaultState();
-        state = state.withProperty(TYPE, BlockVanillaStone.EnumTypeWithOut.values()[meta & 7]);
+        state = state.withProperty(TYPE, BlockVanillaStone.EnumTypeSlab.values()[meta & 7]);
 
         if(!isDouble())
         {
