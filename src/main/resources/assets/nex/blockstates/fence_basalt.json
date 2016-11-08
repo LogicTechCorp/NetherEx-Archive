@@ -1,0 +1,60 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "fence_post"
+    },
+    "variants": {
+        "type": {
+            "normal": {
+                "textures": {
+                    "texture": "nex:blocks/block_basalt_normal"
+                }
+            },
+            "smooth": {
+                "textures": {
+                    "texture": "nex:blocks/block_basalt_smooth"
+                }
+            },
+            "brick": {
+                "textures": {
+                    "texture": "nex:blocks/block_basalt_brick"
+                }
+            }
+        },
+        "north": {
+            "true": {
+                "submodel": "fence_side",
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "east": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 90,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "south": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 180,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "west": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 270,
+                "uvlock": true
+            },
+            "false": {
+            }
+        }
+    }
+}

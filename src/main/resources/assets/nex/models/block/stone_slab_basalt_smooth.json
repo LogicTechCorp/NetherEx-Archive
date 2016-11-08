@@ -1,8 +1,0 @@
-{
-    "parent": "block/half_slab",
-    "textures": {
-        "bottom": "nex:blocks/stone_basalt_smooth",
-        "top": "nex:blocks/stone_basalt_smooth",
-        "side": "nex:blocks/stone_basalt_smooth"
-    }
-}

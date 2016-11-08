@@ -24,21 +24,15 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BlockNetherExStairs extends BlockStairs
 {
-    public BlockNetherExStairs(String name, int prefixLength, IBlockState state)
+    public BlockNetherExStairs(String name, IBlockState state)
     {
         super(state);
 
         String[] nameParts = name.split("_");
-        String stairName = nameParts[0];
 
-        for(int i = 1; i <= prefixLength; i++)
-        {
-            stairName += StringUtils.capitalize(nameParts[i]);
-        }
+        String stairType = nameParts[0] + StringUtils.capitalize(nameParts[1]);
 
-        String stairType = nameParts[prefixLength + 1];
-
-        for(int i = prefixLength + 2; i < nameParts.length; i++)
+        for(int i = 2; i < nameParts.length; i++)
         {
             stairType += StringUtils.capitalize(nameParts[i]);
         }
@@ -47,7 +41,7 @@ public class BlockNetherExStairs extends BlockStairs
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(NetherEx.MOD_ID + ":" + name);
-        setUnlocalizedName(NetherEx.MOD_ID + ":" + stairName + "." + stairType);
+        setRegistryName(NetherEx.MOD_ID + ":stairs_" + name);
+        setUnlocalizedName(NetherEx.MOD_ID + ":stairs." + stairType);
     }
 }

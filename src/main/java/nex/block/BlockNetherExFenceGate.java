@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BlockNetherExFenceGate extends BlockFenceGate
 {
-    public BlockNetherExFenceGate(String name, int prefixLength, Material material)
+    public BlockNetherExFenceGate(String name, Material material)
     {
         super(BlockPlanks.EnumType.OAK);
 
@@ -36,16 +36,10 @@ public class BlockNetherExFenceGate extends BlockFenceGate
         ReflectionHelper.setPrivateValue(Block.class, this, material.getMaterialMapColor(), "field_181083_K", "blockMapColor");
 
         String[] nameParts = name.split("_");
-        String gateName = nameParts[0];
 
-        for(int i = 1; i <= prefixLength; i++)
-        {
-            gateName += StringUtils.capitalize(nameParts[i]);
-        }
+        String gateType = nameParts[0] + StringUtils.capitalize(nameParts[1]);
 
-        String gateType = nameParts[prefixLength + 1];
-
-        for(int i = prefixLength + 2; i < nameParts.length; i++)
+        for(int i = 2; i < nameParts.length; i++)
         {
             gateType += StringUtils.capitalize(nameParts[i]);
         }
@@ -54,8 +48,8 @@ public class BlockNetherExFenceGate extends BlockFenceGate
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(NetherEx.MOD_ID + ":" + name);
-        setUnlocalizedName(NetherEx.MOD_ID + ":" + gateName + "." + gateType);
+        setRegistryName(NetherEx.MOD_ID + ":fence_gate_" + name.substring(name.indexOf("_")));
+        setUnlocalizedName(NetherEx.MOD_ID + ":fenceGate." + gateType);
     }
 
     @Override
