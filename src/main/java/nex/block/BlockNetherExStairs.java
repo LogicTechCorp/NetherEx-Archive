@@ -30,7 +30,8 @@ public class BlockNetherExStairs extends BlockStairs
 
         String[] nameParts = name.split("_");
 
-        String stairType = nameParts[0] + StringUtils.capitalize(nameParts[1]);
+        String stairName = ":stairs" + StringUtils.capitalize(nameParts[0]) + ".";
+        String stairType = nameParts[1];
 
         for(int i = 2; i < nameParts.length; i++)
         {
@@ -41,7 +42,7 @@ public class BlockNetherExStairs extends BlockStairs
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(NetherEx.MOD_ID + ":stairs_" + name);
-        setUnlocalizedName(NetherEx.MOD_ID + ":stairs." + stairType);
+        setRegistryName(NetherEx.MOD_ID + ":stairs_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name));
+        setUnlocalizedName(NetherEx.MOD_ID + stairName + stairType);
     }
 }

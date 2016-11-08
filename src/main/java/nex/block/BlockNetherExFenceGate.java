@@ -37,7 +37,8 @@ public class BlockNetherExFenceGate extends BlockFenceGate
 
         String[] nameParts = name.split("_");
 
-        String gateType = nameParts[0] + StringUtils.capitalize(nameParts[1]);
+        String gateName = ":fenceGate" + StringUtils.capitalize(nameParts[0]) + ".";
+        String gateType = nameParts[1];
 
         for(int i = 2; i < nameParts.length; i++)
         {
@@ -48,8 +49,8 @@ public class BlockNetherExFenceGate extends BlockFenceGate
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(NetherEx.MOD_ID + ":fence_gate_" + name.substring(name.indexOf("_")));
-        setUnlocalizedName(NetherEx.MOD_ID + ":fenceGate." + gateType);
+        setRegistryName(NetherEx.MOD_ID + ":fence_gate_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name));
+        setUnlocalizedName(NetherEx.MOD_ID + gateName + gateType);
     }
 
     @Override

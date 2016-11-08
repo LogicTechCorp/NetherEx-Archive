@@ -89,7 +89,7 @@ public class NetherExBlocks
     public static final BlockNetherExFenceGate FENCE_GATE_BASALT_SMOOTH = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_basalt_brick")
-    public static final BlockNetherExFenceGate FENCE_GATE_BASALT_BRICK= null;
+    public static final BlockNetherExFenceGate FENCE_GATE_BASALT_BRICK = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
