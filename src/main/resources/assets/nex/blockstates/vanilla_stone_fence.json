@@ -1,5 +1,8 @@
 {
     "forge_marker": 1,
+    "defaults": {
+        "model": "fence_post"
+    },
     "variants": {
         "type": {
             "quartz": {
