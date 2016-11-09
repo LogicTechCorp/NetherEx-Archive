@@ -36,6 +36,8 @@ public class NetherExRecipes
 
     public static void init()
     {
+        LOGGER.info("Recipe registration started.");
+
         removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE));
 
         addSlabRecipe(new ItemStack(SLAB_VANILLA, 6, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
@@ -49,20 +51,25 @@ public class NetherExRecipes
 
         add4x4Recipe(new ItemStack(BLOCK_BASALT, 4, 1), new ItemStack(BLOCK_BASALT, 4, 0));
         add4x4Recipe(new ItemStack(BLOCK_BASALT, 4, 2), new ItemStack(BLOCK_BASALT, 4, 1));
+        add4x4Recipe(new ItemStack(BLOCK_BASALT, 4, 3), new ItemStack(BLOCK_BASALT, 4, 2));
         addSlabRecipe(new ItemStack(SLAB_BASALT, 6, 0), new ItemStack(BLOCK_BASALT, 1, 0));
         addSlabRecipe(new ItemStack(SLAB_BASALT, 6, 1), new ItemStack(BLOCK_BASALT, 1, 1));
         addSlabRecipe(new ItemStack(SLAB_BASALT, 6, 2), new ItemStack(BLOCK_BASALT, 1, 2));
+        addSlabRecipe(new ItemStack(SLAB_BASALT, 6, 3), new ItemStack(BLOCK_BASALT, 1, 3));
         addStairRecipe(new ItemStack(STAIRS_BASALT_NORMAL, 8, 0), new ItemStack(BLOCK_BASALT, 3, 0));
         addStairRecipe(new ItemStack(STAIRS_BASALT_SMOOTH, 8, 0), new ItemStack(BLOCK_BASALT, 3, 1));
         addStairRecipe(new ItemStack(STAIRS_BASALT_BRICK, 8, 0), new ItemStack(BLOCK_BASALT, 3, 2));
+        addStairRecipe(new ItemStack(STAIRS_BASALT_PILLAR, 8, 0), new ItemStack(BLOCK_BASALT, 3, 3));
         addWallRecipe(new ItemStack(WALL_BASALT, 6, 0), new ItemStack(BLOCK_BASALT, 1, 0));
         addWallRecipe(new ItemStack(WALL_BASALT, 6, 1), new ItemStack(BLOCK_BASALT, 1, 1));
         addWallRecipe(new ItemStack(WALL_BASALT, 6, 2), new ItemStack(BLOCK_BASALT, 1, 2));
+        addWallRecipe(new ItemStack(WALL_BASALT, 6, 3), new ItemStack(BLOCK_BASALT, 1, 3));
         addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 0), new ItemStack(FENCE_GATE_BASALT, 4, 0), new ItemStack(BLOCK_BASALT, 1, 0), new ItemStack(SLAB_BASALT, 1, 0));
         addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 1), new ItemStack(FENCE_GATE_BASALT_SMOOTH, 4, 0), new ItemStack(BLOCK_BASALT, 1, 1), new ItemStack(SLAB_BASALT, 1, 1));
         addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 2), new ItemStack(FENCE_GATE_BASALT_BRICK, 4, 0), new ItemStack(BLOCK_BASALT, 1, 2), new ItemStack(SLAB_BASALT, 1, 2));
+        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 3), new ItemStack(FENCE_GATE_BASALT_PILLAR, 4, 0), new ItemStack(BLOCK_BASALT, 1, 3), new ItemStack(SLAB_BASALT, 1, 3));
 
-        LOGGER.info("Recipes have been initialized.");
+        LOGGER.info("Recipe registration completed.");
     }
 
     private static void addShaped(ItemStack result, Object... input)

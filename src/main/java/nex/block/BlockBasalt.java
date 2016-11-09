@@ -76,7 +76,8 @@ public class BlockBasalt extends BlockNetherEx
     {
         NORMAL,
         SMOOTH,
-        BRICK;
+        BRICK,
+        PILLAR;
 
         @Override
         public String getName()

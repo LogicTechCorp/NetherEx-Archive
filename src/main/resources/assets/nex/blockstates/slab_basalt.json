@@ -13,6 +13,9 @@
             },
             "brick": {
                 "model": "nex:slab_basalt_brick"
+            },
+            "pillar": {
+                "model": "nex:slab_basalt_pillar"
             }
         }
     }

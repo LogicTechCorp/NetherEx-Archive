@@ -16,6 +16,11 @@
                 "textures": {
                     "wall": "nex:blocks/block_basalt_brick"
                 }
+            },
+            "pillar": {
+                "textures": {
+                    "wall": "nex:blocks/block_basalt_pillar_side"
+                }
             }
         },
         "up": {

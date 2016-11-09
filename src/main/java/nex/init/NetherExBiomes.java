@@ -50,11 +50,13 @@ public class NetherExBiomes
         @SubscribeEvent
         public static void onRegisterBiomes(RegistryEvent.Register<Biome> event)
         {
+            LOGGER.info("Biome registration started.");
+
             event.getRegistry().registerAll(
                     new BiomeHell()
             );
 
-            LOGGER.info("Biome registration has been completed.");
+            LOGGER.info("Biome registration completed.");
         }
     }
 

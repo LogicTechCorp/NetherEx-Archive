@@ -20,6 +20,9 @@
                 "textures": {
                     "all": "nex:blocks/block_basalt_brick"
                 }
+            },
+            "pillar": {
+                "model": "nex:block_basalt_pillar"
             }
         }
     }

@@ -16,12 +16,17 @@
 
 package nex.init;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class NetherExFluids
 {
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExFluids");
 
     static
     {
-
+        LOGGER.info("Fluid registration started.");
+        LOGGER.info("Fluid registration completed.");
     }
 
     public static void runStaticInit()

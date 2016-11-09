@@ -50,7 +50,7 @@ public class NetherEx
 
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|Main");
 
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
@@ -60,7 +60,7 @@ public class NetherEx
         NetherExBiomes.replaceNether();
         proxy.preInit();
 
-        LOGGER.info("PreInitialization ended.");
+        LOGGER.info("PreInitialization completed.");
     }
 
     @Mod.EventHandler
@@ -71,7 +71,7 @@ public class NetherEx
         NetherExRecipes.init();
         proxy.init();
 
-        LOGGER.info("Initialization ended.");
+        LOGGER.info("Initialization completed.");
     }
 
     @Mod.EventHandler
@@ -81,7 +81,7 @@ public class NetherEx
 
         IMCHandler.routeMessages(event);
 
-        LOGGER.info("Inter Mod Compatibility ended.");
+        LOGGER.info("Inter Mod Compatibility completed.");
     }
 
     @Mod.EventHandler
@@ -91,6 +91,6 @@ public class NetherEx
 
         proxy.postInit();
 
-        LOGGER.info("PostInitialization ended.");
+        LOGGER.info("PostInitialization completed.");
     }
 }

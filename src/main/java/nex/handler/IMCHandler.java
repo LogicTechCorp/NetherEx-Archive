@@ -30,7 +30,7 @@ public class IMCHandler
 
     public static void routeMessages(FMLInterModComms.IMCEvent event)
     {
-        LOGGER.info("Routing messages.");
+        LOGGER.info("Message routing started.");
 
         for(FMLInterModComms.IMCMessage message : event.getMessages())
         {

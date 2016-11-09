@@ -36,10 +36,12 @@ public class NetherExItems
         @SubscribeEvent
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
+            LOGGER.info("Item registration started.");
+
             event.getRegistry().registerAll(
             );
 
-            LOGGER.info("Item registration has been completed.");
+            LOGGER.info("Item registration completed.");
         }
     }
 }
