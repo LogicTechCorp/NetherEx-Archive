@@ -34,6 +34,7 @@ import nex.init.NetherExBlocks;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("ConstantConditions")
 public class BlockVanillaSlab extends BlockNetherExSlab
 {
     public static final PropertyEnum<BlockVanilla.EnumTypeSlab> TYPE = PropertyEnum.create("type", BlockVanilla.EnumTypeSlab.class);

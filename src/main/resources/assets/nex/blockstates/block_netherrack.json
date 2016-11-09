@@ -1,0 +1,36 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "fiery": {
+                "textures": {
+                    "all": "nex:blocks/block_netherrack_fiery"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "all": "nex:blocks/block_netherrack_icy"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "all": "nex:blocks/block_netherrack_lively"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "all": "nex:blocks/block_netherrack_gloomy"
+                }
+            },
+            "holy": {
+                "textures": {
+                    "all": "nex:blocks/block_netherrack_holy"
+                }
+            }
+        }
+    }
+}

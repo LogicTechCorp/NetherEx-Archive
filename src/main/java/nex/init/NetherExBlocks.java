@@ -91,6 +91,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_basalt_brick")
     public static final BlockNetherExFenceGate FENCE_GATE_BASALT_BRICK = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_netherrack")
+    public static final BlockNetherrack BLOCK_NETHERRACK = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
     @Mod.EventBusSubscriber
@@ -120,7 +123,8 @@ public class NetherExBlocks
                     new BlockBasaltFence(),
                     new BlockNetherExFenceGate("basalt_normal", Material.ROCK),
                     new BlockNetherExFenceGate("basalt_smooth", Material.ROCK),
-                    new BlockNetherExFenceGate("basalt_brick", Material.ROCK)
+                    new BlockNetherExFenceGate("basalt_brick", Material.ROCK),
+                    new BlockNetherrack()
             );
 
             LOGGER.info("Block registration has been completed.");
@@ -148,7 +152,8 @@ public class NetherExBlocks
                     new ItemBlockBasaltFence(),
                     new ItemBlockNetherEx(FENCE_GATE_BASALT),
                     new ItemBlockNetherEx(FENCE_GATE_BASALT_SMOOTH),
-                    new ItemBlockNetherEx(FENCE_GATE_BASALT_BRICK)
+                    new ItemBlockNetherEx(FENCE_GATE_BASALT_BRICK),
+                    new ItemBlockNetherrack()
             );
 
             LOGGER.info("ItemBlock registration has been completed.");

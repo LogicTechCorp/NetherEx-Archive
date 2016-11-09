@@ -32,6 +32,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
 import nex.block.BlockBasalt;
+import nex.block.BlockNetherrack;
 import nex.block.BlockVanilla;
 import nex.init.NetherExBlocks;
 import org.apache.logging.log4j.LogManager;
@@ -101,6 +102,11 @@ public class NetherExModels
         registerModel(NetherExBlocks.FENCE_GATE_BASALT, "normal");
         registerModel(NetherExBlocks.FENCE_GATE_BASALT_SMOOTH, "normal");
         registerModel(NetherExBlocks.FENCE_GATE_BASALT_BRICK, "normal");
+
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        {
+            registerModel(NetherExBlocks.BLOCK_NETHERRACK, type.ordinal(), NetherExBlocks.BLOCK_NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
 
         LOGGER.info("Model registration has been completed.");
     }
