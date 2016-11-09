@@ -106,6 +106,7 @@ public class NetherExModels
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             registerModel(NetherExBlocks.BLOCK_NETHERRACK, type.ordinal(), NetherExBlocks.BLOCK_NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.BLOCK_NETHER_BRICK, type.ordinal(), NetherExBlocks.BLOCK_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         LOGGER.info("Model registration has been completed.");

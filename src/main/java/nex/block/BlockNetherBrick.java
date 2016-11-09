@@ -23,25 +23,25 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IStringSerializable;
 
 import java.util.List;
 
-public class BlockNetherrack extends BlockNetherEx
+public class BlockNetherBrick extends BlockNetherEx
 {
-    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
+    public static final PropertyEnum<BlockNetherrack.EnumType> TYPE = PropertyEnum.create("type", BlockNetherrack.EnumType.class);
 
-    public BlockNetherrack()
+    public BlockNetherBrick()
     {
-        super("block_netherrack", Material.ROCK);
+        super("block_nether_brick", Material.ROCK);
 
-        setHardness(0.4F);
+        setHardness(1.5F);
+        setResistance(10.0F);
     }
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for(EnumType type : EnumType.values())
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             list.add(new ItemStack(item, 1, type.ordinal()));
         }
@@ -56,7 +56,7 @@ public class BlockNetherrack extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.values()[meta]);
     }
 
     @Override
@@ -69,20 +69,5 @@ public class BlockNetherrack extends BlockNetherEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
-    }
-
-    public enum EnumType implements IStringSerializable
-    {
-        FIERY,
-        ICY,
-        LIVELY,
-        GLOOMY,
-        HOLY;
-
-        @Override
-        public String getName()
-        {
-            return toString().toLowerCase();
-        }
     }
 }
