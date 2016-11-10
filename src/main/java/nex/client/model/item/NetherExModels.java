@@ -105,11 +105,34 @@ public class NetherExModels
         registerModel(FENCE_GATE_BASALT_BRICK, "normal");
         registerModel(FENCE_GATE_BASALT_PILLAR, "normal");
 
+        ModelLoader.setCustomStateMapper(SLAB_NETHER_BRICK_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
+        ModelLoader.setCustomStateMapper(WALL_NETHER_BRICK, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_FIERY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_ICY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_LIVELY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_GLOOMY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_HOLY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             registerModel(BLOCK_NETHERRACK, type.ordinal(), BLOCK_NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(BLOCK_NETHER_BRICK, type.ordinal(), BLOCK_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(SLAB_NETHER_BRICK, type.ordinal(), SLAB_NETHER_BRICK.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
+            registerModel(SLAB_NETHER_BRICK_DOUBLE, type.ordinal(), SLAB_NETHER_BRICK_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(WALL_NETHER_BRICK, type.ordinal(), String.format("nex:wall_nether_brick_%s", type.getName()), "inventory");
+            registerModel(FENCE_NETHER_BRICK, type.ordinal(), String.format("nex:fence_nether_Brick_%s", type.getName()), "inventory");
         }
+
+        registerModel(STAIRS_NETHER_BRICK_FIERY, "normal");
+        registerModel(STAIRS_NETHER_BRICK_ICY, "normal");
+        registerModel(STAIRS_NETHER_BRICK_LIVELY, "normal");
+        registerModel(STAIRS_NETHER_BRICK_GLOOMY, "normal");
+        registerModel(STAIRS_NETHER_BRICK_HOLY, "normal");
+        registerModel(FENCE_GATE_NETHER_BRICK_FIERY, "normal");
+        registerModel(FENCE_GATE_NETHER_BRICK_ICY, "normal");
+        registerModel(FENCE_GATE_NETHER_BRICK_LIVELY, "normal");
+        registerModel(FENCE_GATE_NETHER_BRICK_GLOOMY, "normal");
+        registerModel(FENCE_GATE_NETHER_BRICK_HOLY, "normal");
 
         LOGGER.info("Model registration completed.");
     }

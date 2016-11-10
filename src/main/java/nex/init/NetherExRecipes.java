@@ -69,6 +69,30 @@ public class NetherExRecipes
         addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 2), new ItemStack(FENCE_GATE_BASALT_BRICK, 4, 0), new ItemStack(BLOCK_BASALT, 1, 2), new ItemStack(SLAB_BASALT, 1, 2));
         addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 3), new ItemStack(FENCE_GATE_BASALT_PILLAR, 4, 0), new ItemStack(BLOCK_BASALT, 1, 3), new ItemStack(SLAB_BASALT, 1, 3));
 
+        addSlabRecipe(new ItemStack(SLAB_NETHER_BRICK, 6, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 0));
+        addSlabRecipe(new ItemStack(SLAB_NETHER_BRICK, 6, 1), new ItemStack(BLOCK_NETHER_BRICK, 1, 1));
+        addSlabRecipe(new ItemStack(SLAB_NETHER_BRICK, 6, 2), new ItemStack(BLOCK_NETHER_BRICK, 1, 2));
+        addSlabRecipe(new ItemStack(SLAB_NETHER_BRICK, 6, 3), new ItemStack(BLOCK_NETHER_BRICK, 1, 3));
+        addSlabRecipe(new ItemStack(SLAB_NETHER_BRICK, 6, 4), new ItemStack(BLOCK_NETHER_BRICK, 1, 4));
+
+        addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_FIERY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 0));
+        addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_ICY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 1));
+        addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_LIVELY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 2));
+        addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_GLOOMY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 3));
+        addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_HOLY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 4));
+
+        addWallRecipe(new ItemStack(WALL_NETHER_BRICK, 6, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 0));
+        addWallRecipe(new ItemStack(WALL_NETHER_BRICK, 6, 1), new ItemStack(BLOCK_NETHER_BRICK, 1, 1));
+        addWallRecipe(new ItemStack(WALL_NETHER_BRICK, 6, 2), new ItemStack(BLOCK_NETHER_BRICK, 1, 2));
+        addWallRecipe(new ItemStack(WALL_NETHER_BRICK, 6, 3), new ItemStack(BLOCK_NETHER_BRICK, 1, 3));
+        addWallRecipe(new ItemStack(WALL_NETHER_BRICK, 6, 3), new ItemStack(BLOCK_NETHER_BRICK, 1, 4));
+
+        addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 0), new ItemStack(FENCE_GATE_NETHER_BRICK_FIERY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 0), new ItemStack(SLAB_NETHER_BRICK, 1, 0));
+        addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 1), new ItemStack(FENCE_GATE_NETHER_BRICK_ICY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 1), new ItemStack(SLAB_NETHER_BRICK, 1, 1));
+        addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 2), new ItemStack(FENCE_GATE_NETHER_BRICK_LIVELY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 2), new ItemStack(SLAB_NETHER_BRICK, 1, 2));
+        addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 3), new ItemStack(FENCE_GATE_NETHER_BRICK_GLOOMY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 3), new ItemStack(SLAB_NETHER_BRICK, 1, 3));
+        addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 4), new ItemStack(FENCE_GATE_NETHER_BRICK_HOLY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 4), new ItemStack(SLAB_NETHER_BRICK, 1, 4));
+
         LOGGER.info("Recipe registration completed.");
     }
 

@@ -16,6 +16,7 @@
 
 package nex.block;
 
+import com.google.common.base.CaseFormat;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -49,7 +50,7 @@ public class BlockNetherExFenceGate extends BlockFenceGate
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(NetherEx.MOD_ID + ":fence_gate_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name));
+        setRegistryName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, NetherEx.MOD_ID + ":fence_gate_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name)));
         setUnlocalizedName(NetherEx.MOD_ID + gateName + gateType);
     }
 

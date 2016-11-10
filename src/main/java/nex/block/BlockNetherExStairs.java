@@ -16,6 +16,7 @@
 
 package nex.block;
 
+import com.google.common.base.CaseFormat;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -42,7 +43,7 @@ public class BlockNetherExStairs extends BlockStairs
 
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(NetherEx.MOD_ID + ":stairs_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name));
+        setRegistryName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, NetherEx.MOD_ID + ":stairs_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name)));
         setUnlocalizedName(NetherEx.MOD_ID + stairName + stairType);
     }
 }

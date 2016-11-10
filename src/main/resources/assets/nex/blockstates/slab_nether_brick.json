@@ -1,0 +1,38 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "half=top,type=fiery": {
+            "model": "nex:slab_nether_brick_fiery_top"
+        },
+        "half=bottom,type=fiery": {
+            "model": "nex:slab_nether_brick_fiery_bottom"
+        },
+        "half=top,type=icy": {
+            "model": "nex:slab_nether_brick_icy_top"
+        },
+        "half=bottom,type=icy": {
+            "model": "nex:slab_nether_brick_icy_bottom"
+        },
+        "half=top,type=lively": {
+            "model": "nex:slab_nether_brick_lively_top"
+        },
+        "half=bottom,type=lively": {
+            "model": "nex:slab_nether_brick_lively_bottom"
+        },
+        "half=top,type=gloomy": {
+            "model": "nex:slab_nether_brick_gloomy_top"
+        },
+        "half=bottom,type=gloomy": {
+            "model": "nex:slab_nether_brick_gloomy_bottom"
+        },
+        "half=top,type=holy": {
+            "model": "nex:slab_nether_brick_holy_top"
+        },
+        "half=bottom,type=holy": {
+            "model": "nex:slab_nether_brick_holy_bottom"
+        }
+    }
+}

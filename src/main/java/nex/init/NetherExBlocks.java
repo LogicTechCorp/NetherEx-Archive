@@ -103,6 +103,48 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_nether_brick")
     public static final BlockNetherBrick BLOCK_NETHER_BRICK = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_nether_brick")
+    public static final BlockNetherBrickSlab SLAB_NETHER_BRICK = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_nether_brick_double")
+    public static final BlockNetherBrickSlab SLAB_NETHER_BRICK_DOUBLE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_nether_brick_fiery")
+    public static final BlockNetherExStairs STAIRS_NETHER_BRICK_FIERY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_nether_brick_icy")
+    public static final BlockNetherExStairs STAIRS_NETHER_BRICK_ICY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_nether_brick_lively")
+    public static final BlockNetherExStairs STAIRS_NETHER_BRICK_LIVELY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_nether_brick_gloomy")
+    public static final BlockNetherExStairs STAIRS_NETHER_BRICK_GLOOMY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_nether_brick_holy")
+    public static final BlockNetherExStairs STAIRS_NETHER_BRICK_HOLY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":wall_nether_brick")
+    public static final BlockNetherBrickWall WALL_NETHER_BRICK = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_nether_brick")
+    public static final BlockNetherBrickFence FENCE_NETHER_BRICK = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_nether_brick_fiery")
+    public static final BlockNetherExFenceGate FENCE_GATE_NETHER_BRICK_FIERY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_nether_brick_icy")
+    public static final BlockNetherExFenceGate FENCE_GATE_NETHER_BRICK_ICY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_nether_brick_lively")
+    public static final BlockNetherExFenceGate FENCE_GATE_NETHER_BRICK_LIVELY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_nether_brick_gloomy")
+    public static final BlockNetherExFenceGate FENCE_GATE_NETHER_BRICK_GLOOMY = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_nether_brick_holy")
+    public static final BlockNetherExFenceGate FENCE_GATE_NETHER_BRICK_HOLY = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
     @Mod.EventBusSubscriber
@@ -138,7 +180,21 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("basalt_brick", Material.ROCK),
                     new BlockNetherExFenceGate("basalt_pillar", Material.ROCK),
                     new BlockNetherrack(),
-                    new BlockNetherBrick()
+                    new BlockNetherBrick(),
+                    new BlockNetherBrickSlab(false),
+                    new BlockNetherBrickSlab(true),
+                    new BlockNetherExStairs("netherBrick_fiery", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockNetherExStairs("netherBrick_icy", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockNetherExStairs("netherBrick_lively", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockNetherExStairs("netherBrick_gloomy", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockNetherExStairs("netherBrick_holy", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockNetherBrickWall(),
+                    new BlockNetherBrickFence(),
+                    new BlockNetherExFenceGate("netherBrick_fiery", Material.ROCK),
+                    new BlockNetherExFenceGate("netherBrick_icy", Material.ROCK),
+                    new BlockNetherExFenceGate("netherBrick_lively", Material.ROCK),
+                    new BlockNetherExFenceGate("netherBrick_gloomy", Material.ROCK),
+                    new BlockNetherExFenceGate("netherBrick_holy", Material.ROCK)
             );
 
             LOGGER.info("Block registration completed.");
@@ -172,7 +228,21 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(FENCE_GATE_BASALT_BRICK),
                     new ItemBlockNetherEx(FENCE_GATE_BASALT_PILLAR),
                     new ItemBlockNetherrack(),
-                    new ItemBlockNetherBrick()
+                    new ItemBlockNetherBrick(),
+                    new ItemBlockNetherBrickSlab(false),
+                    new ItemBlockNetherBrickSlab(true),
+                    new ItemBlockNetherEx(STAIRS_NETHER_BRICK_FIERY),
+                    new ItemBlockNetherEx(STAIRS_NETHER_BRICK_ICY),
+                    new ItemBlockNetherEx(STAIRS_NETHER_BRICK_LIVELY),
+                    new ItemBlockNetherEx(STAIRS_NETHER_BRICK_GLOOMY),
+                    new ItemBlockNetherEx(STAIRS_NETHER_BRICK_HOLY),
+                    new ItemBlockNetherBrickWall(),
+                    new ItemBlockNetherBrickFence(),
+                    new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_FIERY),
+                    new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_ICY),
+                    new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_LIVELY),
+                    new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_GLOOMY),
+                    new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_HOLY)
             );
 
             LOGGER.info("ItemBlock registration completed.");
