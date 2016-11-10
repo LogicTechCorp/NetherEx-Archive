@@ -4,10 +4,11 @@
         "transform": "forge:default-block"
     },
     "variants": {
-        "type": {
-            "nether_brick_red": {
-                "model": "nex:slab_nether_brick_red"
-            }
+        "half=top,type=nether_brick_red": {
+            "model": "nex:slab_nether_brick_red_top"
+        },
+        "half=bottom,type=nether_brick_red": {
+            "model": "nex:slab_nether_brick_red_bottom"
         }
     }
 }

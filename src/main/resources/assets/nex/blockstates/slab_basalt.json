@@ -4,19 +4,29 @@
         "transform": "forge:default-block"
     },
     "variants": {
-        "type": {
-            "normal": {
-                "model": "nex:slab_basalt_normal"
-            },
-            "smooth": {
-                "model": "nex:slab_basalt_smooth"
-            },
-            "brick": {
-                "model": "nex:slab_basalt_brick"
-            },
-            "pillar": {
-                "model": "nex:slab_basalt_pillar"
-            }
+        "half=top,type=normal": {
+            "model": "nex:slab_basalt_normal_top"
+        },
+        "half=bottom,type=normal": {
+            "model": "nex:slab_basalt_normal_bottom"
+        },
+        "half=top,type=smooth": {
+            "model": "nex:slab_basalt_smooth_top"
+        },
+        "half=bottom,type=smooth": {
+            "model": "nex:slab_basalt_smooth_bottom"
+        },
+        "half=top,type=brick": {
+            "model": "nex:slab_basalt_brick_top"
+        },
+        "half=bottom,type=brick": {
+            "model": "nex:slab_basalt_brick_bottom"
+        },
+        "half=top,type=pillar": {
+            "model": "nex:slab_basalt_pillar_top"
+        },
+        "half=bottom,type=pillar": {
+            "model": "nex:slab_basalt_pillar_bottom"
         }
     }
 }
