@@ -23,6 +23,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import nex.block.state.DualBlockStateContainer;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class BlockVanillaWall extends BlockNetherExWall
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(BlockVanilla.EnumTypeWall type : BlockVanilla.EnumTypeWall.values())
         {

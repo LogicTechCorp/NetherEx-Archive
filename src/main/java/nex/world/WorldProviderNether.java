@@ -27,10 +27,9 @@ import nex.world.gen.ChunkProviderNether;
 public class WorldProviderNether extends WorldProviderHell
 {
     @Override
-    public void createBiomeProvider()
+    public void init()
     {
-        biomeProvider = new BiomeProviderNether(worldObj.getSeed());
-        isHellWorld = true;
+        biomeProvider = new BiomeProviderNether(world.getSeed());
         hasNoSky = true;
         setDimension(-1);
     }
@@ -38,7 +37,7 @@ public class WorldProviderNether extends WorldProviderHell
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderNether(worldObj);
+        return new ChunkProviderNether(world);
     }
 
     @Override

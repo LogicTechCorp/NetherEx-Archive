@@ -30,7 +30,7 @@ import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, guiFactory = NetherEx.GUI_FACTORY, updateJSON = NetherEx.UPDATE_JSON, dependencies = NetherEx.DEPEND)
+@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, guiFactory = NetherEx.GUI_FACTORY, updateJSON = NetherEx.UPDATE_JSON)
 public class NetherEx
 {
     public static final String MOD_ID = "nex";
@@ -38,7 +38,6 @@ public class NetherEx
     public static final String VERSION = "@VERSION@";
     public static final String GUI_FACTORY = "nex.client.gui.GuiFactory";
     public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/0274bc72f4359c497d490c29c1ced425";
-    public static final String DEPEND = "required-after:Forge@[1.10.2-12.18.2.2123,);";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
 

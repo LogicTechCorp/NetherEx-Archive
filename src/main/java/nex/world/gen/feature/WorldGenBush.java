@@ -41,7 +41,7 @@ public class WorldGenBush extends WorldGenerator
         {
             BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if(world.isAirBlock(newPos) && (!world.provider.getHasNoSky() || newPos.getY() < world.getHeight() - 1) && block.canBlockStay(world, newPos, block.getDefaultState()) && world.getBlockState(newPos.down()) == targetBlock)
+            if(world.isAirBlock(newPos) && (!world.provider.isSurfaceWorld() || newPos.getY() < world.getHeight() - 1) && block.canBlockStay(world, newPos, block.getDefaultState()) && world.getBlockState(newPos.down()) == targetBlock)
             {
                 world.setBlockState(newPos, block.getDefaultState(), 2);
             }
