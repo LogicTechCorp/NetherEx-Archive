@@ -36,7 +36,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
 import nex.block.BlockBasalt;
 import nex.block.BlockNetherrack;
-import nex.block.BlockThornstalk;
 import nex.block.BlockVanilla;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -135,7 +134,7 @@ public class NetherExModels
         registerModel(FENCE_GATE_NETHER_BRICK_GLOOMY, "normal");
         registerModel(FENCE_GATE_NETHER_BRICK_HOLY, "normal");
 
-        registerModel(PLANT_THORNSTALK,"normal");
+        registerModel(PLANT_THORNSTALK, "normal");
 
         LOGGER.info("Model registration completed.");
     }

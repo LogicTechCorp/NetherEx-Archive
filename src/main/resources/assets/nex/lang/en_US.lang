@@ -5,7 +5,6 @@ language.code=en_us
 
 # Config
 config.nex=NetherEx Config
-
 config.nex:client=Client Settings
 config.nex:client.tooltip=Settings that only affect the Client
 config.nex:client.disableNetherFog=Disable Nether Fog
@@ -46,6 +45,43 @@ config.nex:biomeHell.generateLavaTraps=Generate Lava Traps
 config.nex:biomeHell.generateLavaTraps.tooltip=Do Lava Traps generate in the Hell biome
 config.nex:biomeHell.lavaTrapRarity=Lava Traps Rarity
 config.nex:biomeHell.lavaTrapRarity.tooltip=How rare Lava Traps are in the Hell biome
+config.nex:biomeRuthlessSands=Ruthless Sands Biome Settings
+config.nex:biomeRuthlessSands.tooltip=Settings that only affect the Ruthless Sands biome
+config.nex:biomeRuthlessSands.biomeRarity=Biome Rarity
+config.nex:biomeRuthlessSands.biomeRarity.tooltip=How rare the Ruthless Sands biome is
+config.nex:biomeRuthlessSands.generateLavaSprings=Generate Lava Springs
+config.nex:biomeRuthlessSands.generateLavaSprings.tooltip=Do Lava Springs generate in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.lavaSpringRarity=Lava Springs Rarity
+config.nex:biomeRuthlessSands.lavaSpringRarity.tooltip=How rare Lava Springs are in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.generateGlowstonePass1=Generate Glowstone Pass 1
+config.nex:biomeRuthlessSands.generateGlowstonePass1.tooltip=Does Glowstone generate during the first pass in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.glowstonePass1Rarity=Glowstone Pass 1 Rarity
+config.nex:biomeRuthlessSands.glowstonePass1Rarity.tooltip=How rare Glowstone is during the first pass in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.generateGlowstonePass2=Generate Glowstone Pass 2
+config.nex:biomeRuthlessSands.generateGlowstonePass2.tooltip=Does Glowstone generate during the second pass in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.glowstonePass2Rarity=Glowstone Pass 2 Rarity
+config.nex:biomeRuthlessSands.glowstonePass2Rarity.tooltip=How rare Glowstone is during the second pass in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.generateQuartzOre=Generate Quartz Ore
+config.nex:biomeRuthlessSands.generateQuartzOre.tooltip=Does Quartz Ore generate in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.quartzOreRarity=Quartz Ore Rarity
+config.nex:biomeRuthlessSands.quartzOreRarity.tooltip=How rare Quartz Ore is in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.generateLavaTraps=Generate Lava Traps
+config.nex:biomeRuthlessSands.generateLavaTraps.tooltip=Do Lava Traps generate in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.lavaTrapRarity=Lava Traps Rarity
+config.nex:biomeRuthlessSands.lavaTrapRarity.tooltip=How rare Lava Traps are in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.generateThornstalk=Generate Thornstalk
+config.nex:biomeRuthlessSands.generateThornstalk.tooltip=Does Thornstalk generate in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.thornstalkRarity=Thornstalk Rarity
+config.nex:biomeRuthlessSands.thornstalkRarity.tooltip=How rare Thornstalk is in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.generateAltars=Generate Altars
+config.nex:biomeRuthlessSands.generateAltars.tooltip=Do Altars generate in the Ruthless Sands biome
+config.nex:biomeRuthlessSands.altarRarity=Altar Rarity
+config.nex:biomeRuthlessSands.altarRarity.tooltip=How rare Altars are in the Ruthless Sands biome
+config.nex:miscellaneous=Miscellaneous Settings
+config.nex:miscellaneous.generateSoulSand=Generate Soul Sand
+config.nex:miscellaneous.generateSoulSand.tooltip=Does Soul Sand generate outside of the Ruthless Sands biome
+config.nex:miscellaneous.generateGravel=Generate Gravel
+config.nex:miscellaneous.generateGravel.tooltip=Does Gravel generate in the Nether
 
 # Creative Tabs
 itemGroup.nex=NetherEx

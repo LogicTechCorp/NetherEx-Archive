@@ -26,8 +26,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import nex.block.state.DualBlockStateContainer;
 
-import java.util.List;
-
 public class BlockNetherBrickWall extends BlockNetherExWall
 {
     public static final PropertyEnum<BlockNetherrack.EnumType> TYPE = PropertyEnum.create("type", BlockNetherrack.EnumType.class);

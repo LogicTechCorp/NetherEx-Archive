@@ -32,7 +32,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import nex.init.NetherExBlocks;
 
-import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")

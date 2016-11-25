@@ -25,8 +25,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import java.util.List;
-
 public class BlockVanillaFence extends BlockNetherExFence
 {
     public static final PropertyEnum<BlockVanilla.EnumTypeFence> TYPE = PropertyEnum.create("type", BlockVanilla.EnumTypeFence.class);

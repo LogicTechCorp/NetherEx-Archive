@@ -25,7 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -33,6 +32,8 @@ import nex.handler.ConfigurationHandler;
 import nex.world.gen.feature.*;
 
 import java.util.Random;
+
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 public class BiomeHell extends BiomeNetherEx
 {
@@ -58,7 +59,7 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
 
-        setNameAndRegister("hell", ConfigurationHandler.BiomeHell.biomeRarity, BiomeDictionary.Type.NETHER, BiomeDictionary.Type.HOT, BiomeDictionary.Type.DRY);
+        setNameAndRegister("hell", ConfigurationHandler.BiomeHell.biomeRarity, NETHER, HOT, DRY);
     }
 
     @Override

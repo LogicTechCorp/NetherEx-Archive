@@ -41,6 +41,8 @@ public class ConfigurationHandler
 
     public static Client client = new Client();
     public static BiomeHell biome_hell = new BiomeHell();
+    public static BiomeRuthlessSands biome_ruthless_sands = new BiomeRuthlessSands();
+    public static Miscellaneous miscellaneous = new Miscellaneous();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigurationHandler");
 
@@ -71,6 +73,32 @@ public class ConfigurationHandler
         public static int lavaTrapRarity = 16;
     }
 
+    public static class BiomeRuthlessSands
+    {
+        public static boolean generateLavaSprings = true;
+        public static boolean generateGlowstonePass1 = true;
+        public static boolean generateGlowstonePass2 = true;
+        public static boolean generateQuartzOre = true;
+        public static boolean generateLavaTraps = true;
+        public static boolean generateThornstalk = true;
+        public static boolean generateAltars = true;
+
+        public static int biomeRarity = 7;
+        public static int lavaSpringRarity = 8;
+        public static int glowstonePass1Rarity = 10;
+        public static int glowstonePass2Rarity = 10;
+        public static int quartzOreRarity = 16;
+        public static int lavaTrapRarity = 16;
+        public static int thornstalkRarity = 20;
+        public static int altarRarity = 2;
+    }
+
+    public static class Miscellaneous
+    {
+        public static boolean generateSoulSand = false;
+        public static boolean generateGravel = false;
+    }
+
     public static Configuration getConfiguration()
     {
         if(configuration == null)
@@ -83,10 +111,7 @@ public class ConfigurationHandler
                 String fileName = "NetherEx.cfg";
                 Optional<Map.Entry<String, Configuration>> entryOptional = configsMap.entrySet().stream().filter(entry -> fileName.equals(new File(entry.getKey()).getName())).findFirst();
 
-                if(entryOptional.isPresent())
-                {
-                    configuration = entryOptional.get().getValue();
-                }
+                entryOptional.ifPresent(stringConfigurationEntry -> configuration = stringConfigurationEntry.getValue());
             }
             catch(Throwable ignored)
             {

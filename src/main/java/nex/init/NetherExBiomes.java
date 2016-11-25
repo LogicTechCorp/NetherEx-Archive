@@ -29,6 +29,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.world.WorldProviderNether;
 import nex.world.biome.BiomeHell;
+import nex.world.biome.BiomeRuthlessSands;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,6 +43,9 @@ public class NetherExBiomes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hell")
     public static final BiomeHell HELL = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ruthless_sands")
+    public static final BiomeRuthlessSands RUTHLESS_SANDS = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");
 
     @Mod.EventBusSubscriber
@@ -53,7 +57,8 @@ public class NetherExBiomes
             LOGGER.info("Biome registration started.");
 
             event.getRegistry().registerAll(
-                    new BiomeHell()
+                    new BiomeHell(),
+                    new BiomeRuthlessSands()
             );
 
             LOGGER.info("Biome registration completed.");

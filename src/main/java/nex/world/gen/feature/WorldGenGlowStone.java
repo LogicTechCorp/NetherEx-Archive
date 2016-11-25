@@ -38,7 +38,7 @@ public class WorldGenGlowStone extends WorldGenerator
         }
         else
         {
-            world.setBlockState(pos, Blocks.GLOWSTONE.getDefaultState(), 2);
+            world.setBlockState(pos, Blocks.GLOWSTONE.getDefaultState(), 3);
 
             for(int i = 0; i < 1500; ++i)
             {
@@ -63,7 +63,7 @@ public class WorldGenGlowStone extends WorldGenerator
 
                     if(j == 1)
                     {
-                        world.setBlockState(newPos, Blocks.GLOWSTONE.getDefaultState(), 2);
+                        world.setBlockState(newPos, Blocks.GLOWSTONE.getDefaultState(), 3);
                     }
                 }
             }
