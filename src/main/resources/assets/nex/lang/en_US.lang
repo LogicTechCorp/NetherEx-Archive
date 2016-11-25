@@ -1,3 +1,8 @@
+# Lang File Settings
+language.name=English
+language.region=United States
+language.code=en_us
+
 # Config
 config.nex=NetherEx Config
 
@@ -95,7 +100,6 @@ tile.nex:blockNetherBrick.icy.name=Icy Nether Brick
 tile.nex:blockNetherBrick.lively.name=Lively Nether Brick
 tile.nex:blockNetherBrick.gloomy.name=Gloomy Nether Brick
 tile.nex:blockNetherBrick.holy.name=Holy Nether Brick
-
 tile.nex:slabNetherBrick.fiery.name=Fiery Nether Brick Slab
 tile.nex:slabNetherBrick.icy.name=Icy Nether Brick Slab
 tile.nex:slabNetherBrick.lively.name=Lively Nether Brick Slab
@@ -126,3 +130,6 @@ tile.nex:fenceGateNetherBrick.icy.name=Icy Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.lively.name=Lively Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.gloomy.name=Gloomy Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.holy.name=Holy Nether Brick Fence Gate
+tile.nex:plantThornstalk.top.name=Thornstalk
+tile.nex:plantThornstalk.middle.name=Thornstalk
+tile.nex:plantThornstalk.bottom.name=Thornstalk

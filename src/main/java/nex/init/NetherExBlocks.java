@@ -145,6 +145,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_nether_brick_holy")
     public static final BlockNetherExFenceGate FENCE_GATE_NETHER_BRICK_HOLY = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_thornstalk")
+    public static final BlockThornstalk PLANT_THORNSTALK = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
     @Mod.EventBusSubscriber
@@ -194,7 +197,8 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("netherBrick_icy", Material.ROCK),
                     new BlockNetherExFenceGate("netherBrick_lively", Material.ROCK),
                     new BlockNetherExFenceGate("netherBrick_gloomy", Material.ROCK),
-                    new BlockNetherExFenceGate("netherBrick_holy", Material.ROCK)
+                    new BlockNetherExFenceGate("netherBrick_holy", Material.ROCK),
+                    new BlockThornstalk()
             );
 
             LOGGER.info("Block registration completed.");
@@ -242,7 +246,8 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_ICY),
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_LIVELY),
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_GLOOMY),
-                    new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_HOLY)
+                    new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_HOLY),
+                    new ItemBlockThornstalk()
             );
 
             LOGGER.info("ItemBlock registration completed.");

@@ -1,0 +1,25 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cross"
+    },
+    "variants": {
+        "part": {
+            "top": {
+                "textures": {
+                    "cross": "nex:blocks/plant_thornstalk_top"
+                }
+            },
+            "middle": {
+                "textures": {
+                    "cross": "nex:blocks/plant_thornstalk_middle"
+                }
+            },
+            "bottom": {
+                "textures": {
+                    "cross": "nex:blocks/plant_thornstalk_bottom"
+                }
+            }
+        }
+    }
+}
