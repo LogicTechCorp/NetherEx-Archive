@@ -87,6 +87,11 @@ config.nex:miscellaneous.generateGravel.tooltip=Does Gravel generate in the Neth
 itemGroup.nex=NetherEx
 
 # Items
+item.nex:itemNetherBrick.fiery.name=Fiery Nether Brick
+item.nex:itemNetherBrick.icy.name=Icy Nether Brick
+item.nex:itemNetherBrick.lively.name=Lively Nether Brick
+item.nex:itemNetherBrick.gloomy.name=Gloomy Nether Brick
+item.nex:itemNetherBrick.holy.name=Holy Nether Brick
 item.nex:itemBoneWithered.name=Withered Bone
 item.nex:itemBoneMealWithered.name=Withered Bone Meal
 item.nex:foodMeatGhastRaw.name=Raw Ghast Meat
@@ -180,8 +185,8 @@ tile.nex:fenceGateNetherBrick.lively.name=Lively Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.gloomy.name=Gloomy Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.holy.name=Holy Nether Brick Fence Gate
 tile.nex:plantThornstalk.name=Thornstalk
-tile.nex:plantMushroomBlue.name=Blue Mushroom
-tile.nex:plantMushroomOrange.name=Orange Mushroom
+tile.nex:plantMushroomBrown.name=Brown Elder Mushroom
+tile.nex:plantMushroomRed.name=Red Elder Mushroom
 
 # Tooltips
 tooltip.nex:itemMirror.bedSpawnPoint=§aBed Spawn Point %s

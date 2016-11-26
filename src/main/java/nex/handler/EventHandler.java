@@ -21,18 +21,20 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import nex.init.NetherExItems;
-import util.NBTUtil;
+import nex.util.NBTUtil;
 
 import java.util.ListIterator;
 import java.util.Random;
@@ -105,12 +107,25 @@ public class EventHandler
         }
         else if(event.getEntity() instanceof EntityWitherSkeleton)
         {
+            ListIterator<EntityItem> iter = event.getDrops().listIterator();
+
+            while(iter.hasNext())
+            {
+                EntityItem entityItem = iter.next();
+                ItemStack stack = entityItem.getEntityItem();
+
+                if(stack.getItem() == Items.BONE || stack.getItem() == Items.COAL)
+                {
+                    iter.remove();
+                }
+            }
+
             event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHERED, rand.nextInt(4), 0)));
         }
     }
 
     @SubscribeEvent
-    public static void onPlayerClone(PlayerEvent.Clone event)
+    public static void onPlayerClone(Clone event)
     {
         EntityPlayer oldPlayer = event.getOriginal();
         EntityPlayer newPlayer = event.getEntityPlayer();
@@ -118,6 +133,27 @@ public class EventHandler
         if(oldPlayer.inventory.hasItemStack(new ItemStack(NetherExItems.ITEM_MIRROR, 1, 0)))
         {
             newPlayer.inventory.copyInventory(oldPlayer.inventory);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerRespawn(PlayerRespawnEvent event)
+    {
+        EntityPlayer player = event.player;
+        InventoryPlayer inventory = player.inventory;
+
+        for(int i = 0; i < inventory.getSizeInventory(); i++)
+        {
+            ItemStack stack = inventory.getStackInSlot(i);
+
+            if(stack.getItem() == NetherExItems.ITEM_MIRROR)
+            {
+                if(stack.getTagCompound().hasKey("SpawnPointBed"))
+                {
+                    int[] spawnPoint = stack.getTagCompound().getIntArray("SpawnPointBed");
+                    player.setSpawnPoint(new BlockPos(spawnPoint[0], spawnPoint[1], spawnPoint[2]), true);
+                }
+            }
         }
     }
 

@@ -2,7 +2,7 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "skin": "nex:blocks/plant_mushroom_skin_orange"
+            "skin": "nex:blocks/plant_mushroom_skin_brown"
         }
     },
     "variants": {

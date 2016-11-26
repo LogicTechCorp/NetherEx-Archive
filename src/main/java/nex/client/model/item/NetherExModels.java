@@ -123,7 +123,7 @@ public class NetherExModels
             registerModel(SLAB_NETHER_BRICK, type.ordinal(), SLAB_NETHER_BRICK.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
             registerModel(SLAB_NETHER_BRICK_DOUBLE, type.ordinal(), SLAB_NETHER_BRICK_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(WALL_NETHER_BRICK, type.ordinal(), String.format("nex:wall_nether_brick_%s", type.getName()), "inventory");
-            registerModel(FENCE_NETHER_BRICK, type.ordinal(), String.format("nex:fence_nether_Brick_%s", type.getName()), "inventory");
+            registerModel(FENCE_NETHER_BRICK, type.ordinal(), String.format("nex:fence_nether_brick_%s", type.getName()), "inventory");
         }
 
         registerModel(STAIRS_NETHER_BRICK_FIERY, "normal");
@@ -141,8 +141,13 @@ public class NetherExModels
 
         for(BlockMushroom.EnumType type : BlockMushroom.EnumType.values())
         {
-            registerModel(PLANT_MUSHROOM_BLUE, type.ordinal(), PLANT_MUSHROOM_BLUE.getRegistryName().toString(), String.format("variant=%s", type.getName()));
-            registerModel(PLANT_MUSHROOM_ORANGE, type.ordinal(), PLANT_MUSHROOM_ORANGE.getRegistryName().toString(), String.format("variant=%s", type.getName()));
+            registerModel(PLANT_MUSHROOM_BROWN, type.ordinal(), PLANT_MUSHROOM_BROWN.getRegistryName().toString(), String.format("variant=%s", type.getName()));
+            registerModel(PLANT_MUSHROOM_RED, type.ordinal(), PLANT_MUSHROOM_RED.getRegistryName().toString(), String.format("variant=%s", type.getName()));
+        }
+
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        {
+            registerModel(ITEM_NETHER_BRICK, type.ordinal(), ITEM_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         registerModel(ITEM_BONE_WITHERED, "normal");

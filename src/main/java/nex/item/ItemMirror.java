@@ -28,11 +28,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import util.NBTUtil;
+import nex.util.NBTUtil;
 
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("ConstantConditions, unchecked")
 public class ItemMirror extends ItemNetherEx
 {
     public ItemMirror()
@@ -41,8 +42,8 @@ public class ItemMirror extends ItemNetherEx
 
         setMaxStackSize(1);
 
-        addPropertyOverride(new ResourceLocation("on"),
-                (stack, worldIn, entityIn) -> !stack.hasTagCompound() ? 0.0F : stack.getTagCompound().hasKey("SpawnPoint") ? 1.0F : 0.0F);
+        addPropertyOverride(new ResourceLocation("on"), (stack, worldIn, entityIn) ->
+                !stack.hasTagCompound() ? 0.0F : stack.getTagCompound().hasKey("SpawnPointMirror") ? 1.0F : 0.0F);
     }
 
     @Override
@@ -71,6 +72,7 @@ public class ItemMirror extends ItemNetherEx
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         BlockPos bed = player.getBedLocation();
+        BlockPos spawn = world.getSpawnPoint();
         BlockPos mirror = player.getPosition();
         ItemStack stack = player.getHeldItem(hand);
 
@@ -83,6 +85,10 @@ public class ItemMirror extends ItemNetherEx
                 if(bed != null)
                 {
                     compound.setIntArray("SpawnPointBed", new int[]{bed.getX(), bed.getY(), bed.getZ()});
+                }
+                else
+                {
+                    compound.setIntArray("SpawnPointBed", new int[]{spawn.getX(), spawn.getY(), spawn.getZ()});
                 }
                 compound.setIntArray("SpawnPointMirror", new int[]{mirror.getX(), mirror.getY(), mirror.getZ()});
                 stack.setTagCompound(compound);

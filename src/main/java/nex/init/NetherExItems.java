@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.item.ItemMirror;
+import nex.item.ItemNetherBrick;
 import nex.item.ItemNetherEx;
 import nex.item.ItemNetherExFood;
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +34,8 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExItems
 {
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_nether_brick")
+    public static final ItemNetherBrick ITEM_NETHER_BRICK = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_withered")
     public static final ItemNetherEx ITEM_BONE_WITHERED = null;
@@ -63,11 +66,12 @@ public class NetherExItems
             LOGGER.info("Item registration started.");
 
             event.getRegistry().registerAll(
+                    new ItemNetherBrick(),
                     new ItemNetherEx("item_bone_withered"),
                     new ItemNetherEx("item_bone_meal_withered"),
-                    new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 0), 0.4F),
-                    new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 0), 0.8F),
-                    new ItemNetherExFood("food_congealed_magma_cream", 2, 0.6F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 300, 0), 0.5F),
+                    new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
+                    new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
+                    new ItemNetherExFood("food_congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemMirror()
             );
 
