@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "nex:blocks/plant_mushroom_flesh",
+        "down": "nex:blocks/plant_mushroom_flesh",
+        "up": "#skin",
+        "north": "nex:blocks/plant_mushroom_flesh",
+        "east": "#skin",
+        "south": "nex:blocks/plant_mushroom_flesh",
+        "west": "nex:blocks/plant_mushroom_flesh"
+    }
+}

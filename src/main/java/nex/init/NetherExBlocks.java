@@ -100,6 +100,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_netherrack")
     public static final BlockNetherrack BLOCK_NETHERRACK = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
+    public static final BlockQuartzOre ORE_QUARTZ = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_nether_brick")
     public static final BlockNetherBrick BLOCK_NETHER_BRICK = null;
 
@@ -148,6 +151,12 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_thornstalk")
     public static final BlockThornstalk PLANT_THORNSTALK = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_blue")
+    public static final BlockMushroom PLANT_MUSHROOM_BLUE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_orange")
+    public static final BlockMushroom PLANT_MUSHROOM_ORANGE = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
     @Mod.EventBusSubscriber
@@ -183,6 +192,7 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("basalt_brick", Material.ROCK),
                     new BlockNetherExFenceGate("basalt_pillar", Material.ROCK),
                     new BlockNetherrack(),
+                    new BlockQuartzOre(),
                     new BlockNetherBrick(),
                     new BlockNetherBrickSlab(false),
                     new BlockNetherBrickSlab(true),
@@ -198,7 +208,9 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("netherBrick_lively", Material.ROCK),
                     new BlockNetherExFenceGate("netherBrick_gloomy", Material.ROCK),
                     new BlockNetherExFenceGate("netherBrick_holy", Material.ROCK),
-                    new BlockThornstalk()
+                    new BlockThornstalk(),
+                    new BlockMushroom("plant_mushroom_blue"),
+                    new BlockMushroom("plant_mushroom_orange")
             );
 
             LOGGER.info("Block registration completed.");
@@ -232,6 +244,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(FENCE_GATE_BASALT_BRICK),
                     new ItemBlockNetherEx(FENCE_GATE_BASALT_PILLAR),
                     new ItemBlockNetherrack(),
+                    new ItemBlockQuartzOre(),
                     new ItemBlockNetherBrick(),
                     new ItemBlockNetherBrickSlab(false),
                     new ItemBlockNetherBrickSlab(true),
@@ -247,7 +260,9 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_LIVELY),
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_GLOOMY),
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_HOLY),
-                    new ItemBlockThornstalk()
+                    new ItemBlockThornstalk(),
+                    new ItemBlockMushroom(PLANT_MUSHROOM_BLUE),
+                    new ItemBlockMushroom(PLANT_MUSHROOM_ORANGE)
             );
 
             LOGGER.info("ItemBlock registration completed.");

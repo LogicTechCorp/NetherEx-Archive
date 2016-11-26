@@ -16,15 +16,24 @@
 
 package nex.item;
 
+import com.google.common.base.CaseFormat;
+import net.minecraft.item.ItemStack;
+import nex.block.BlockNetherrack;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockThornstalk extends ItemBlockNetherEx
+public class ItemBlockQuartzOre extends ItemBlockNetherEx
 {
-    public ItemBlockThornstalk()
+    public ItemBlockQuartzOre()
     {
-        super(NetherExBlocks.PLANT_THORNSTALK);
+        super(NetherExBlocks.ORE_QUARTZ);
 
         setHasSubtypes(true);
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockNetherrack.EnumType.values()[stack.getItemDamage()].getName());
     }
 }

@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "nex:items/food_meat_ghast_raw"
+    }
+}

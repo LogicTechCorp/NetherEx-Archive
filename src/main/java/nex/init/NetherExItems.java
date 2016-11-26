@@ -16,18 +16,42 @@
 
 package nex.init;
 
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
+import nex.item.ItemMirror;
+import nex.item.ItemNetherEx;
+import nex.item.ItemNetherExFood;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExItems
 {
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_withered")
+    public static final ItemNetherEx ITEM_BONE_WITHERED = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_meal_withered")
+    public static final ItemNetherEx ITEM_BONE_MEAL_WITHERED = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_meat_ghast_raw")
+    public static final ItemNetherExFood FOOD_MEAT_GHAST_RAW = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_meat_ghast_cooked")
+    public static final ItemNetherExFood FOOD_MEAT_GHAST_COOKED = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_congealed_magma_cream")
+    public static final ItemNetherExFood FOOD_MAGMA_CREAM_CONGEALED = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_mirror")
+    public static final ItemMirror ITEM_MIRROR = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");
 
     @Mod.EventBusSubscriber
@@ -39,6 +63,12 @@ public class NetherExItems
             LOGGER.info("Item registration started.");
 
             event.getRegistry().registerAll(
+                    new ItemNetherEx("item_bone_withered"),
+                    new ItemNetherEx("item_bone_meal_withered"),
+                    new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 0), 0.4F),
+                    new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 0), 0.8F),
+                    new ItemNetherExFood("food_congealed_magma_cream", 2, 0.6F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 300, 0), 0.5F),
+                    new ItemMirror()
             );
 
             LOGGER.info("Item registration completed.");

@@ -35,12 +35,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
 import nex.block.BlockBasalt;
+import nex.block.BlockMushroom;
 import nex.block.BlockNetherrack;
 import nex.block.BlockVanilla;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static nex.init.NetherExBlocks.*;
+import static nex.init.NetherExItems.*;
 
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(Side.CLIENT)
@@ -116,6 +118,7 @@ public class NetherExModels
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             registerModel(BLOCK_NETHERRACK, type.ordinal(), BLOCK_NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(ORE_QUARTZ, type.ordinal(), ORE_QUARTZ.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(BLOCK_NETHER_BRICK, type.ordinal(), BLOCK_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(SLAB_NETHER_BRICK, type.ordinal(), SLAB_NETHER_BRICK.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
             registerModel(SLAB_NETHER_BRICK_DOUBLE, type.ordinal(), SLAB_NETHER_BRICK_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
@@ -135,6 +138,19 @@ public class NetherExModels
         registerModel(FENCE_GATE_NETHER_BRICK_HOLY, "normal");
 
         registerModel(PLANT_THORNSTALK, "normal");
+
+        for(BlockMushroom.EnumType type : BlockMushroom.EnumType.values())
+        {
+            registerModel(PLANT_MUSHROOM_BLUE, type.ordinal(), PLANT_MUSHROOM_BLUE.getRegistryName().toString(), String.format("variant=%s", type.getName()));
+            registerModel(PLANT_MUSHROOM_ORANGE, type.ordinal(), PLANT_MUSHROOM_ORANGE.getRegistryName().toString(), String.format("variant=%s", type.getName()));
+        }
+
+        registerModel(ITEM_BONE_WITHERED, "normal");
+        registerModel(ITEM_BONE_MEAL_WITHERED, "normal");
+        registerModel(FOOD_MEAT_GHAST_RAW, "normal");
+        registerModel(FOOD_MEAT_GHAST_COOKED, "normal");
+        registerModel(FOOD_MAGMA_CREAM_CONGEALED, "normal");
+        registerModel(ITEM_MIRROR, "normal");
 
         LOGGER.info("Model registration completed.");
     }

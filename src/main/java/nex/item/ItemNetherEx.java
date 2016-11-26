@@ -16,15 +16,16 @@
 
 package nex.item;
 
-import nex.init.NetherExBlocks;
+import com.google.common.base.CaseFormat;
+import net.minecraft.item.Item;
+import nex.NetherEx;
 
-@SuppressWarnings("ConstantConditions")
-public class ItemBlockThornstalk extends ItemBlockNetherEx
+public class ItemNetherEx extends Item
 {
-    public ItemBlockThornstalk()
+    public ItemNetherEx(String name)
     {
-        super(NetherExBlocks.PLANT_THORNSTALK);
-
-        setHasSubtypes(true);
+        setCreativeTab(NetherEx.CREATIVE_TAB);
+        setRegistryName(NetherEx.MOD_ID + ":" + name);
+        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 }

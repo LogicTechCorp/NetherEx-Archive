@@ -16,15 +16,17 @@
 
 package nex.item;
 
-import nex.init.NetherExBlocks;
+import com.google.common.base.CaseFormat;
+import net.minecraft.item.ItemFood;
+import nex.NetherEx;
 
-@SuppressWarnings("ConstantConditions")
-public class ItemBlockThornstalk extends ItemBlockNetherEx
+public class ItemNetherExFood extends ItemFood
 {
-    public ItemBlockThornstalk()
+    public ItemNetherExFood(String name, int amount, float saturation, boolean isWolfFood)
     {
-        super(NetherExBlocks.PLANT_THORNSTALK);
-
-        setHasSubtypes(true);
+        super(amount, saturation, isWolfFood);
+        setCreativeTab(NetherEx.CREATIVE_TAB);
+        setRegistryName(NetherEx.MOD_ID + ":" + name);
+        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 }

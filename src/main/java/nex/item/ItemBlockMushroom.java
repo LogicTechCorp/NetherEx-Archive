@@ -16,14 +16,14 @@
 
 package nex.item;
 
-import nex.init.NetherExBlocks;
+import net.minecraft.block.Block;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockThornstalk extends ItemBlockNetherEx
+public class ItemBlockMushroom extends ItemBlockNetherEx
 {
-    public ItemBlockThornstalk()
+    public ItemBlockMushroom(Block block)
     {
-        super(NetherExBlocks.PLANT_THORNSTALK);
+        super(block);
 
         setHasSubtypes(true);
     }

@@ -27,6 +27,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.handler.ConfigurationHandler;
+import nex.init.NetherExBlocks;
 import nex.world.gen.feature.*;
 
 import java.util.Random;
@@ -35,11 +36,11 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
-    private WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
+    private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), false);
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator quartz = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
-    private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
+    private WorldGenerator quartz = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3));
+    private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
     private WorldGenAncientAltar ancientAltar = new WorldGenAncientAltar();
 
@@ -48,7 +49,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled());
 
         topBlock = Blocks.SOUL_SAND.getDefaultState();
-        fillerBlock = Blocks.NETHERRACK.getDefaultState();
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3);
 
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitherSkeleton.class, 20, 4, 4));

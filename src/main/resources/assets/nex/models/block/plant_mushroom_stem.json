@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "side": "nex:blocks/plant_mushroom_stem",
+        "end": "nex:blocks/plant_mushroom_flesh"
+    }
+}

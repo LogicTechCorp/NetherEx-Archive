@@ -1,0 +1,14 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "nex:items/item_mirror_off"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "on": 1
+            },
+            "model": "nex:item/item_mirror_on"
+        }
+    ]
+}

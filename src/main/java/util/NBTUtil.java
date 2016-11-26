@@ -14,17 +14,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.item;
+package util;
 
-import nex.init.NetherExBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-@SuppressWarnings("ConstantConditions")
-public class ItemBlockThornstalk extends ItemBlockNetherEx
+public class NBTUtil
 {
-    public ItemBlockThornstalk()
+    public static void setTag(ItemStack stack)
     {
-        super(NetherExBlocks.PLANT_THORNSTALK);
+        if(!stack.hasTagCompound())
+        {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+    }
 
-        setHasSubtypes(true);
+    public static NBTTagCompound setTag(ItemStack stack, NBTTagCompound compound)
+    {
+        if(stack.hasTagCompound())
+        {
+            compound = stack.getTagCompound();
+        }
+        else
+        {
+            compound = new NBTTagCompound();
+        }
+
+        return compound;
     }
 }

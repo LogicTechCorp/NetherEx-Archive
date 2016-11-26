@@ -86,6 +86,14 @@ config.nex:miscellaneous.generateGravel.tooltip=Does Gravel generate in the Neth
 # Creative Tabs
 itemGroup.nex=NetherEx
 
+# Items
+item.nex:itemBoneWithered.name=Withered Bone
+item.nex:itemBoneMealWithered.name=Withered Bone Meal
+item.nex:foodMeatGhastRaw.name=Raw Ghast Meat
+item.nex:foodMeatGhastCooked.name=Cooked Ghast Meat
+item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream
+item.nex:itemMirror.name=Mirror of Return
+
 # Tiles (Blocks)
 tile.nex:slabVanilla.netherBrickRed.name=Red Nether Brick Slab
 tile.nex:slabVanillaDouble.netherBrickRed.name=Red Nether Brick Slabs
@@ -131,6 +139,11 @@ tile.nex:blockNetherrack.icy.name=Icy Netherrack
 tile.nex:blockNetherrack.lively.name=Lively Netherrack
 tile.nex:blockNetherrack.gloomy.name=Gloomy Netherrack
 tile.nex:blockNetherrack.holy.name=Holy Netherrack
+tile.nex:oreQuartz.fiery.name=Fiery Quartz Ore
+tile.nex:oreQuartz.icy.name=Icy Quartz Ore
+tile.nex:oreQuartz.lively.name=Lively Quartz Ore
+tile.nex:oreQuartz.gloomy.name=Gloomy Quartz Ore
+tile.nex:oreQuartz.holy.name=Holy Quartz Ore
 tile.nex:blockNetherBrick.fiery.name=Fiery Nether Brick
 tile.nex:blockNetherBrick.icy.name=Icy Nether Brick
 tile.nex:blockNetherBrick.lively.name=Lively Nether Brick
@@ -166,6 +179,11 @@ tile.nex:fenceGateNetherBrick.icy.name=Icy Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.lively.name=Lively Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.gloomy.name=Gloomy Nether Brick Fence Gate
 tile.nex:fenceGateNetherBrick.holy.name=Holy Nether Brick Fence Gate
-tile.nex:plantThornstalk.top.name=Thornstalk
-tile.nex:plantThornstalk.middle.name=Thornstalk
-tile.nex:plantThornstalk.bottom.name=Thornstalk
+tile.nex:plantThornstalk.name=Thornstalk
+tile.nex:plantMushroomBlue.name=Blue Mushroom
+tile.nex:plantMushroomOrange.name=Orange Mushroom
+
+# Tooltips
+tooltip.nex:itemMirror.bedSpawnPoint=§aBed Spawn Point %s
+tooltip.nex:itemMirror.mirrorSpawnPoint=§9Mirror Spawn Point %s
+tooltip.nex:itemMirror.deathPoint=§cDeath Point %s
