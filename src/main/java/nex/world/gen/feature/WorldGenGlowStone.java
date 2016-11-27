@@ -32,7 +32,7 @@ public class WorldGenGlowStone extends WorldGenerator
         {
             return false;
         }
-        else if(world.getBlockState(pos.up()).getBlock() != Blocks.NETHERRACK)
+        else if(!world.getBlockState(pos.up()).isSideSolid(world, pos.up(), EnumFacing.DOWN))
         {
             return false;
         }

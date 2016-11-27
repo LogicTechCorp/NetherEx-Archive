@@ -138,6 +138,7 @@ public class NetherExModels
         registerModel(FENCE_GATE_NETHER_BRICK_HOLY, "normal");
 
         registerModel(PLANT_THORNSTALK, "normal");
+        registerModel(BLOCK_HYPHAE, "normal");
 
         for(BlockMushroom.EnumType type : BlockMushroom.EnumType.values())
         {

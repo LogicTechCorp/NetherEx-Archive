@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": {
+            "model": "cube_bottom_top",
+            "textures": {
+                "bottom": "nex:blocks/block_netherrack_lively",
+                "top": "nex:blocks/block_hyphae_top",
+                "side": "nex:blocks/block_hyphae_side"
+            },
+            "transform": "forge:default-block"
+        }
+    }
+}

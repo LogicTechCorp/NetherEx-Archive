@@ -86,7 +86,7 @@ public class BlockThornstalk extends BlockNetherEx
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor, BlockPos fromPos)
     {
         Block blockUp = world.getBlockState(pos.up()).getBlock();
         Block blockDown = world.getBlockState(pos.down()).getBlock();
@@ -97,19 +97,7 @@ public class BlockThornstalk extends BlockNetherEx
         }
         else
         {
-            if(blockDown != this && blockUp != this || blockDown == this && blockUp != this)
-            {
-                world.setBlockState(pos, state.withProperty(PART, EnumPart.TOP), 2);
-            }
-            else if(blockDown != this && blockUp == this || blockDown == this && blockUp == this)
-            {
-                world.setBlockState(pos, state.withProperty(PART, EnumPart.MIDDLE), 2);
-
-                if(blockDown == this)
-                {
-                    world.setBlockState(pos.down(), state.withProperty(PART, EnumPart.BOTTOM), 2);
-                }
-            }
+            world.setBlockState(pos, getActualState(state, world, pos), 2);
         }
     }
 
@@ -125,9 +113,22 @@ public class BlockThornstalk extends BlockNetherEx
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return new BlockStateContainer(this, PART);
+        IBlockState stateUp = world.getBlockState(pos.up());
+
+        if(stateUp.getBlock() != this)
+        {
+            return state.withProperty(PART, EnumPart.TOP);
+        }
+        else if(stateUp == state.withProperty(PART, EnumPart.TOP))
+        {
+            return state.withProperty(PART, EnumPart.MIDDLE);
+        }
+        else
+        {
+            return state.withProperty(PART, EnumPart.BOTTOM);
+        }
     }
 
     @Override
@@ -141,6 +142,13 @@ public class BlockThornstalk extends BlockNetherEx
     {
         return state.getValue(PART).ordinal();
     }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, PART);
+    }
+
 
     public void generate(World world, Random rand, BlockPos pos)
     {

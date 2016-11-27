@@ -89,7 +89,7 @@ public class ConfigurationHandler
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
         public static int lavaTrapRarity = 16;
-        public static int thornstalkRarity = 20;
+        public static int thornstalkRarity = 10;
         public static int altarRarity = 2;
     }
 

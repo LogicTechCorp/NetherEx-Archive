@@ -151,6 +151,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_thornstalk")
     public static final BlockThornstalk PLANT_THORNSTALK = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_hyphae")
+    public static final BlockHyphae BLOCK_HYPHAE = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_brown")
     public static final BlockMushroom PLANT_MUSHROOM_BROWN = null;
 
@@ -209,6 +212,7 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("netherBrick_gloomy", Material.ROCK),
                     new BlockNetherExFenceGate("netherBrick_holy", Material.ROCK),
                     new BlockThornstalk(),
+                    new BlockHyphae(),
                     new BlockMushroom("plant_mushroom_brown"),
                     new BlockMushroom("plant_mushroom_red")
             );
@@ -261,6 +265,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_GLOOMY),
                     new ItemBlockNetherEx(FENCE_GATE_NETHER_BRICK_HOLY),
                     new ItemBlockThornstalk(),
+                    new ItemBlockNetherEx(BLOCK_HYPHAE),
                     new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),
                     new ItemBlockMushroom(PLANT_MUSHROOM_RED)
             );
