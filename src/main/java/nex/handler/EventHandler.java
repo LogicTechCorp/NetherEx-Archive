@@ -43,57 +43,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
-    @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event)
-    {
-        BlockPos deathPoint = event.getEntity().getPosition();
-
-        if(event.getEntity() instanceof EntityPlayer)
-        {
-            EntityPlayer player = (EntityPlayer) event.getEntity();
-            InventoryPlayer inventory = player.inventory;
-
-            for(int i = 0; i < inventory.getSizeInventory(); i++)
-            {
-                ItemStack stack = inventory.getStackInSlot(i);
-
-                if(stack.getItem() == NetherExItems.ITEM_MIRROR)
-                {
-                    NBTTagCompound compound = NBTUtil.setTag(stack, stack.getTagCompound());
-                    compound.setIntArray("DeathPoint", new int[]{deathPoint.getX(), deathPoint.getY(), deathPoint.getZ()});
-                    stack.setTagCompound(compound);
-
-                    if(stack.getTagCompound().hasKey("SpawnPointMirror"))
-                    {
-                        int[] spawnPoint = stack.getTagCompound().getIntArray("SpawnPointMirror");
-                        player.setSpawnPoint(new BlockPos(spawnPoint[0], spawnPoint[1], spawnPoint[2]), true);
-                    }
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onPlayerDrop(PlayerDropsEvent event)
-    {
-        EntityPlayer player = event.getEntityPlayer();
-
-        ListIterator<EntityItem> iter = event.getDrops().listIterator();
-
-        while(iter.hasNext())
-        {
-            EntityItem entityItem = iter.next();
-            ItemStack stack = entityItem.getEntityItem();
-
-            if(stack.getItem() == NetherExItems.ITEM_MIRROR)
-            {
-                if(addToPlayerInventory(player, stack))
-                {
-                    iter.remove();
-                }
-            }
-        }
-    }
 
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event)
@@ -122,60 +71,5 @@ public class EventHandler
 
             event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHERED, rand.nextInt(4), 0)));
         }
-    }
-
-    @SubscribeEvent
-    public static void onPlayerClone(Clone event)
-    {
-        EntityPlayer oldPlayer = event.getOriginal();
-        EntityPlayer newPlayer = event.getEntityPlayer();
-
-        if(oldPlayer.inventory.hasItemStack(new ItemStack(NetherExItems.ITEM_MIRROR, 1, 0)))
-        {
-            newPlayer.inventory.copyInventory(oldPlayer.inventory);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPlayerRespawn(PlayerRespawnEvent event)
-    {
-        EntityPlayer player = event.player;
-        InventoryPlayer inventory = player.inventory;
-
-        for(int i = 0; i < inventory.getSizeInventory(); i++)
-        {
-            ItemStack stack = inventory.getStackInSlot(i);
-
-            if(stack.getItem() == NetherExItems.ITEM_MIRROR)
-            {
-                if(stack.getTagCompound().hasKey("SpawnPointBed"))
-                {
-                    int[] spawnPoint = stack.getTagCompound().getIntArray("SpawnPointBed");
-                    player.setSpawnPoint(new BlockPos(spawnPoint[0], spawnPoint[1], spawnPoint[2]), true);
-                }
-            }
-        }
-    }
-
-    private static boolean addToPlayerInventory(EntityPlayer player, ItemStack stack)
-    {
-        if(stack == null || player == null)
-        {
-            return false;
-        }
-
-        InventoryPlayer inventory = player.inventory;
-
-        for(int i = 0; i < inventory.getSizeInventory(); i++)
-        {
-            if(inventory.getStackInSlot(i) == ItemStack.EMPTY)
-            {
-                inventory.setInventorySlotContents(i, stack.copy());
-                inventory.getStackInSlot(i).setTagCompound(stack.getTagCompound());
-                return true;
-            }
-        }
-
-        return false;
     }
 }

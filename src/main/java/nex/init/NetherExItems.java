@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.item.ItemMirror;
 import nex.item.ItemNetherBrick;
 import nex.item.ItemNetherEx;
 import nex.item.ItemNetherExFood;
@@ -52,9 +51,6 @@ public class NetherExItems
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_congealed_magma_cream")
     public static final ItemNetherExFood FOOD_MAGMA_CREAM_CONGEALED = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_mirror")
-    public static final ItemMirror ITEM_MIRROR = null;
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");
 
     @Mod.EventBusSubscriber
@@ -71,8 +67,7 @@ public class NetherExItems
                     new ItemNetherEx("item_bone_meal_withered"),
                     new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemNetherExFood("food_congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemMirror()
+                    new ItemNetherExFood("food_congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible()
             );
 
             LOGGER.info("Item registration completed.");

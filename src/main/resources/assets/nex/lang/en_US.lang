@@ -97,7 +97,6 @@ item.nex:itemBoneMealWithered.name=Withered Bone Meal
 item.nex:foodMeatGhastRaw.name=Raw Ghast Meat
 item.nex:foodMeatGhastCooked.name=Cooked Ghast Meat
 item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream
-item.nex:itemMirror.name=Mirror of Return
 
 # Tiles (Blocks)
 tile.nex:slabVanilla.netherBrickRed.name=Red Nether Brick Slab
@@ -188,8 +187,3 @@ tile.nex:plantThornstalk.name=Thornstalk
 tile.nex:blockHyphae.name=Hyphae
 tile.nex:plantMushroomBrown.name=Brown Elder Mushroom
 tile.nex:plantMushroomRed.name=Red Elder Mushroom
-
-# Tooltips
-tooltip.nex:itemMirror.bedSpawnPoint=§aBed Spawn Point %s
-tooltip.nex:itemMirror.mirrorSpawnPoint=§9Mirror Spawn Point %s
-tooltip.nex:itemMirror.deathPoint=§cDeath Point %s
