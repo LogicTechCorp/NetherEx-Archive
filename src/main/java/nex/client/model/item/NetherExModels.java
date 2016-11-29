@@ -156,7 +156,6 @@ public class NetherExModels
         registerModel(FOOD_MEAT_GHAST_RAW, "normal");
         registerModel(FOOD_MEAT_GHAST_COOKED, "normal");
         registerModel(FOOD_MAGMA_CREAM_CONGEALED, "normal");
-        registerModel(ITEM_MIRROR, "normal");
 
         LOGGER.info("Model registration completed.");
     }

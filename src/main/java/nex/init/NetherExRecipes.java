@@ -93,7 +93,6 @@ public class NetherExRecipes
         addShaped(new ItemStack(ITEM_BONE_MEAL_WITHERED, 3, 0), "#", '#', ITEM_BONE_WITHERED);
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(Items.MAGMA_CREAM, 1, 0), 0.5F);
-        addShaped(new ItemStack(ITEM_MIRROR, 1, 0), "*X*", "X#X", "*X*", '*', Items.GHAST_TEAR, 'X', Items.GOLD_INGOT, '#', Blocks.GLASS_PANE);
 
         LOGGER.info("Recipe registration completed.");
     }
