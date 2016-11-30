@@ -81,7 +81,6 @@ public class ConfigurationHandler
         public static boolean generateQuartzOre = true;
         public static boolean generateLavaTraps = true;
         public static boolean generateThornstalk = true;
-        public static boolean generateAltars = true;
 
         public static int biomeRarity = 7;
         public static int lavaSpringRarity = 8;
@@ -90,7 +89,6 @@ public class ConfigurationHandler
         public static int quartzOreRarity = 16;
         public static int lavaTrapRarity = 16;
         public static int thornstalkRarity = 10;
-        public static int altarRarity = 2;
     }
 
     public static class Miscellaneous
