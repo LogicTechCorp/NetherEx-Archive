@@ -20,6 +20,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -35,6 +36,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
+
+@SuppressWarnings("ConstantConditions")
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBiomes
 {
@@ -65,8 +69,11 @@ public class NetherExBiomes
         }
     }
 
-    public static void replaceNether()
+    public static void init()
     {
+        BiomeDictionary.addTypes(HELL, NETHER, HOT, DRY);
+        BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
+
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
         DimensionManager.registerDimension(-1, nether);

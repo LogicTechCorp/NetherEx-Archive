@@ -33,8 +33,6 @@ import nex.world.gen.feature.*;
 
 import java.util.Random;
 
-import static net.minecraftforge.common.BiomeDictionary.Type.*;
-
 public class BiomeHell extends BiomeNetherEx
 {
     private WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
@@ -49,7 +47,7 @@ public class BiomeHell extends BiomeNetherEx
 
     public BiomeHell()
     {
-        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled());
+        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell", ConfigurationHandler.BiomeHell.biomeRarity);
 
         topBlock = Blocks.NETHERRACK.getDefaultState();
         fillerBlock = Blocks.NETHERRACK.getDefaultState();
@@ -58,8 +56,6 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
-
-        setNameAndRegister("hell", ConfigurationHandler.BiomeHell.biomeRarity, NETHER, HOT, DRY);
     }
 
     @Override

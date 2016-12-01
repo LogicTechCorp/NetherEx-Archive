@@ -32,7 +32,7 @@ public class ItemBlockNetherExSlab extends ItemSlab
 
         slab = (BlockNetherExSlab) block;
 
-        setRegistryName(block.getRegistryName());
+        setRegistryName(block.getRegistryName().toString());
     }
 
     @Override

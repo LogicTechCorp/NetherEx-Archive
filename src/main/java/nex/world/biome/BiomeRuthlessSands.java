@@ -35,8 +35,6 @@ import nex.world.gen.feature.WorldGenThornstalk;
 
 import java.util.Random;
 
-import static net.minecraftforge.common.BiomeDictionary.Type.*;
-
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
     private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), false);
@@ -48,15 +46,13 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
     public BiomeRuthlessSands()
     {
-        super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled());
+        super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands", ConfigurationHandler.BiomeRuthlessSands.biomeRarity);
 
         topBlock = Blocks.SOUL_SAND.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3);
 
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitherSkeleton.class, 20, 4, 4));
-
-        setNameAndRegister("ruthless_sands", ConfigurationHandler.BiomeRuthlessSands.biomeRarity, NETHER, HOT, DRY, SANDY);
     }
 
     @Override

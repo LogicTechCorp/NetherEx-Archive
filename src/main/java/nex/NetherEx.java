@@ -30,12 +30,13 @@ import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, guiFactory = NetherEx.GUI_FACTORY, updateJSON = NetherEx.UPDATE_JSON)
+@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, guiFactory = NetherEx.GUI_FACTORY, updateJSON = NetherEx.UPDATE_JSON)
 public class NetherEx
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
+    public static final String DEPENDENCIES = "required-after:forge@[1.11-13.19.0.2176,);";
     public static final String GUI_FACTORY = "nex.client.gui.GuiFactory";
     public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/0274bc72f4359c497d490c29c1ced425";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
@@ -56,7 +57,7 @@ public class NetherEx
     {
         LOGGER.info("PreInitialization started.");
 
-        NetherExBiomes.replaceNether();
+        NetherExBiomes.init();
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");

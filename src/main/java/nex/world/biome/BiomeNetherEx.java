@@ -16,17 +16,15 @@
 
 package nex.world.biome;
 
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import nex.NetherEx;
 import nex.init.NetherExBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
-    public BiomeNetherEx(BiomeProperties properties)
+    public BiomeNetherEx(BiomeProperties properties, String name, int weight)
     {
         super(properties);
 
@@ -34,18 +32,14 @@ public abstract class BiomeNetherEx extends Biome
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
+
+        setRegistryName(NetherEx.MOD_ID + ":" + name);
+        NetherExBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
     }
 
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
         return new BiomeDecoratorNether();
-    }
-
-    public void setNameAndRegister(String name, int weight, BiomeDictionary.Type... types)
-    {
-        setRegistryName(new ResourceLocation(NetherEx.MOD_ID, name));
-        BiomeDictionary.registerBiomeType(this, types);
-        NetherExBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
     }
 }
