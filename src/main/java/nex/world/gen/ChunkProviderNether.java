@@ -70,8 +70,8 @@ public class ChunkProviderNether extends ChunkProviderHell
     private double[] noiseData4;
     private double[] noiseData5;
 
-    private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
+    private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
 
     public ChunkProviderNether(World worldIn)
     {
@@ -97,8 +97,8 @@ public class ChunkProviderNether extends ChunkProviderHell
         noiseGenScale = ctx.getScale();
         noiseGenDepth = ctx.getDepth();
 
-        netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
+        netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
     }
 
     private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)

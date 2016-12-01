@@ -168,8 +168,6 @@ public class NetherExBlocks
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
-            NetherExFluids.runStaticInit();
-
             LOGGER.info("Block registration started.");
 
             event.getRegistry().registerAll(
