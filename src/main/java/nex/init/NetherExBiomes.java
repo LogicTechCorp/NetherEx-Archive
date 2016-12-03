@@ -29,6 +29,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.world.WorldProviderNether;
+import nex.world.biome.BiomeFungiForest;
 import nex.world.biome.BiomeHell;
 import nex.world.biome.BiomeRuthlessSands;
 import org.apache.logging.log4j.LogManager;
@@ -50,6 +51,9 @@ public class NetherExBiomes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ruthless_sands")
     public static final BiomeRuthlessSands RUTHLESS_SANDS = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fungi_forest")
+    public static final BiomeFungiForest FUNGI_FOREST = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");
 
     @Mod.EventBusSubscriber
@@ -62,7 +66,8 @@ public class NetherExBiomes
 
             event.getRegistry().registerAll(
                     new BiomeHell(),
-                    new BiomeRuthlessSands()
+                    new BiomeRuthlessSands(),
+                    new BiomeFungiForest()
             );
 
             LOGGER.info("Biome registration completed.");
@@ -73,6 +78,7 @@ public class NetherExBiomes
     {
         BiomeDictionary.addTypes(HELL, NETHER, HOT, DRY);
         BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
+        BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, HOT, DRY, MUSHROOM);
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
