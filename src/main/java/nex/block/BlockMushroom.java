@@ -51,7 +51,7 @@ public class BlockMushroom extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, EnumType.values()[meta]);
+        return getDefaultState().withProperty(VARIANT, EnumType.values()[meta]);
     }
 
     @Override
