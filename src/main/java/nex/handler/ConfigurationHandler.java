@@ -42,6 +42,7 @@ public class ConfigurationHandler
     public static Client client = new Client();
     public static BiomeHell biome_hell = new BiomeHell();
     public static BiomeRuthlessSands biome_ruthless_sands = new BiomeRuthlessSands();
+    public static BiomeFungiForest biome_fungi_forest = new BiomeFungiForest();
     public static Miscellaneous miscellaneous = new Miscellaneous();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigurationHandler");
@@ -96,11 +97,13 @@ public class ConfigurationHandler
         public static boolean generateGlowstonePass1 = true;
         public static boolean generateGlowstonePass2 = true;
         public static boolean generateQuartzOre = true;
+        public static boolean generateElderMushrooms = true;
 
         public static int biomeRarity = 5;
         public static int glowstonePass1Rarity = 10;
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
+        public static int elderMushroomRarity = 16;
     }
 
     public static class Miscellaneous

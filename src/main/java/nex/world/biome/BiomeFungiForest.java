@@ -24,6 +24,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.handler.ConfigurationHandler;
 import nex.init.NetherExBlocks;
+import nex.world.gen.feature.WorldGenElderMushroom;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
 
@@ -34,6 +35,7 @@ public class BiomeFungiForest extends BiomeNetherEx
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartz = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(2), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2));
+    private WorldGenerator elderMushroom = new WorldGenElderMushroom();
 
     public BiomeFungiForest()
     {
@@ -71,6 +73,14 @@ public class BiomeFungiForest extends BiomeNetherEx
             for(int i = 0; i < ConfigurationHandler.BiomeFungiForest.quartzOreRarity; i++)
             {
                 quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeFungiForest.generateElderMushrooms)
+        {
+            for(int i = 0; i < ConfigurationHandler.BiomeFungiForest.elderMushroomRarity * 16; i++)
+            {
+                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
             }
         }
 
