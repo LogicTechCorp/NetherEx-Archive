@@ -108,7 +108,7 @@ public class WorldGenElderMushroom extends WorldGenerator
                     {
                         airAmount += 1.0F;
                     }
-                    else if(block == NetherExBlocks.BLOCK_NETHERRACK || block == Blocks.GLOWSTONE|| block instanceof BlockMushroom)
+                    else if(block == NetherExBlocks.BLOCK_NETHERRACK || block == Blocks.GLOWSTONE || block instanceof BlockMushroom)
                     {
                         return false;
                     }

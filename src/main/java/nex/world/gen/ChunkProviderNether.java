@@ -103,7 +103,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
     private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
-        buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5, biomes);
+        buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
         for(int x = 0; x < 4; x++)
         {
@@ -274,7 +274,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         }
     }
 
-    private double[] generateHeightMap(double[] heightMap, int posX, int posY, int posZ, int xSize, int ySize, int zSize, Biome[] biomes)
+    private double[] generateHeightMap(double[] heightMap, int posX, int posY, int posZ, int xSize, int ySize, int zSize)
     {
         if(heightMap == null)
         {
