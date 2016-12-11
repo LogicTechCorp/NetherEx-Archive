@@ -16,18 +16,76 @@
 
 package nex.world.gen.structure;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.PlacementSettings;
+import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import nex.NetherEx;
 
 import java.util.Random;
 
+@SuppressWarnings("ConstantConditions")
 public class NetherStructures
 {
+    public static class AncientAltar extends Structure
+    {
+        private static final ResourceLocation INTACT = new ResourceLocation(NetherEx.MOD_ID + ":altar_ancient_intact");
+        private static final ResourceLocation DESTROYED = new ResourceLocation(NetherEx.MOD_ID + ":altar_ancient_destroyed");
+        private static final ResourceLocation RUINED = new ResourceLocation(NetherEx.MOD_ID + ":altar_ancient_ruined");
+
+        private int altar = 0;
+
+        public AncientAltar()
+        {
+
+        }
+
+        public AncientAltar(int altarIn, Random rand, int x, int z, int xSize, int ySize, int zSize)
+        {
+            super(rand, x, 32, z, xSize, ySize, zSize);
+
+            altar = altarIn;
+        }
+
+        @Override
+        public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
+        {
+            if(!offsetToGroundLevel(world, structureBB, 0))
+            {
+                return false;
+            }
+            else
+            {
+                BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().minY, getBoundingBox().minZ);
+                Mirror[] mirrors = Mirror.values();
+                Rotation[] rotations = Rotation.values();
+                MinecraftServer minecraftServer = world.getMinecraftServer();
+                TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+                PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setReplacedBlock(Blocks.AIR).setBoundingBox(getBoundingBox());
+                Template template = templateManager.getTemplate(minecraftServer, altar == 0 ? INTACT : altar == 1 ? DESTROYED : altar == 3 ? RUINED : INTACT);
+                BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
+
+                if(isSuitablePos(world, pos))
+                {
+                    template.addBlocksToWorldChunk(world, pos.add(-(structureSize.getX() / 2), 0, -(structureSize.getZ() / 2)), placementSettings);
+                    System.out.println(pos.toString());
+                }
+
+                return true;
+            }
+        }
+    }
+
     abstract static class Structure extends StructureComponent
     {
         public int xSize;
@@ -77,7 +135,7 @@ public class NetherStructures
             hPos = compound.getInteger("HPos");
         }
 
-        protected boolean offsetToAverageGroundLevel(World worldIn, StructureBoundingBox structurebb, int yOffset)
+        protected boolean offsetToGroundLevel(World world, StructureBoundingBox structureBB, int yOffset)
         {
             if(hPos >= 0)
             {
@@ -95,9 +153,9 @@ public class NetherStructures
                     {
                         pos.setPos(l, 32, k);
 
-                        if(structurebb.isVecInside(pos))
+                        if(structureBB.isVecInside(pos))
                         {
-                            i += Math.max(worldIn.getTopSolidOrLiquidBlock(pos).getY(), worldIn.provider.getAverageGroundLevel());
+                            i += Math.max(world.getSeaLevel(), getSuitablePos(world, pos).getY());
                             j++;
                         }
                     }
@@ -114,6 +172,62 @@ public class NetherStructures
                     return true;
                 }
             }
+        }
+
+        protected boolean isSuitablePos(World world, BlockPos pos)
+        {
+            for(int posZ = -1; posZ < 2; posZ++)
+            {
+                for(int posX = -1; posX < 2; posX++)
+                {
+                    BlockPos newPos = pos.add(posX, 0, posZ);
+
+                    if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.DOWN))
+                    {
+                        if(!world.isAirBlock(newPos.up()))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        protected BlockPos getSuitablePos(World world, BlockPos pos)
+        {
+            for(pos = new BlockPos(pos.getX(), 96, pos.getZ()); pos.getY() < 97 && pos.getY() > 32; pos = pos.down())
+            {
+                int airAmount = 0;
+
+                for(int posZ = -1; posZ < 2; posZ++)
+                {
+                    for(int posX = -1; posX < 2; posX++)
+                    {
+                        BlockPos newPos = pos.add(posX, 0, posZ);
+
+                        if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.DOWN))
+                        {
+                            if(world.isAirBlock(newPos.up()))
+                            {
+                                airAmount++;
+                            }
+                        }
+                    }
+                }
+
+                if(airAmount == 9)
+                {
+                    break;
+                }
+            }
+
+            return pos;
         }
     }
 }

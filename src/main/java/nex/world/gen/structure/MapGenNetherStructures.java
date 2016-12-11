@@ -31,7 +31,8 @@ import java.util.Random;
 public class MapGenNetherStructures extends MapGenStructure
 {
     private static final List<Biome> BIOMES = Lists.newArrayList(NetherExBiomes.HELL, NetherExBiomes.RUTHLESS_SANDS, NetherExBiomes.FUNGI_FOREST);
-    private int maxChunkDistance = 32;
+    private int maxChunkDistance = 16;
+    private int minChunkDistance = 8;
 
     @Override
     public String getStructureName()
@@ -43,7 +44,7 @@ public class MapGenNetherStructures extends MapGenStructure
     public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
     {
         world = worldIn;
-        return findNearestStructurePosBySpacing(worldIn, this, pos, maxChunkDistance, 8, 14357617, false, 100, p_180706_3_);
+        return findNearestStructurePosBySpacing(worldIn, this, pos, maxChunkDistance, minChunkDistance, 14357617, false, 100, p_180706_3_);
 
     }
 
@@ -68,8 +69,8 @@ public class MapGenNetherStructures extends MapGenStructure
         Random random = world.setRandomSeed(k, l, 14357617);
         k = k * maxChunkDistance;
         l = l * maxChunkDistance;
-        k = k + random.nextInt(maxChunkDistance - 8);
-        l = l + random.nextInt(maxChunkDistance - 8);
+        k = k + random.nextInt(maxChunkDistance - minChunkDistance);
+        l = l + random.nextInt(maxChunkDistance - minChunkDistance);
 
         if(i == k && j == l)
         {
@@ -104,12 +105,12 @@ public class MapGenNetherStructures extends MapGenStructure
         {
         }
 
-        public Start(World world, Random random, int chunkX, int chunkZ)
+        public Start(World world, Random rand, int chunkX, int chunkZ)
         {
-            this(world, random, chunkX, chunkZ, world.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)));
+            this(world, rand, chunkX, chunkZ, world.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)));
         }
 
-        public Start(World world, Random random, int chunkX, int chunkZ, Biome biome)
+        public Start(World world, Random rand, int chunkX, int chunkZ, Biome biome)
         {
             if(biome == NetherExBiomes.HELL)
             {
@@ -117,7 +118,26 @@ public class MapGenNetherStructures extends MapGenStructure
             }
             else if(biome == NetherExBiomes.RUTHLESS_SANDS)
             {
+                int[] altarTypeChance = new int[]{0, 1, 1, 3, 3, 3};
+                int altarType = altarTypeChance[rand.nextInt(altarTypeChance.length)];
 
+                NetherStructures.AncientAltar altar;
+
+                if(altarType == 0)
+                {
+                    altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
+                }
+                else if(altarType == 1)
+                {
+                    altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 6, 4, 7);
+
+                }
+                else
+                {
+                    altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 2, 5);
+                }
+
+                components.add(altar);
             }
             else if(biome == NetherExBiomes.FUNGI_FOREST)
             {

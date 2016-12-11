@@ -16,10 +16,15 @@
 
 package nex.init;
 
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import nex.world.gen.structure.MapGenNetherStructures;
+import nex.world.gen.structure.NetherStructures;
+
 public class NetherExStructures
 {
     public static void init()
     {
-
+        MapGenStructureIO.registerStructure(MapGenNetherStructures.Start.class, "Nether Structures");
+        MapGenStructureIO.registerStructureComponent(NetherStructures.AncientAltar.class, "AA");
     }
 }

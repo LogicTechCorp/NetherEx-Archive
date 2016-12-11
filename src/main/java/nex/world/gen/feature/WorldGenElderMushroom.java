@@ -71,9 +71,9 @@ public class WorldGenElderMushroom extends WorldGenerator
             pos = pos.down();
         }
 
-        for(int posZ = -1; posZ <= 1; posZ++)
+        for(int posZ = -1; posZ < 2; posZ++)
         {
-            for(int posX = -1; posX <= 1; posX++)
+            for(int posX = -1; posX < 2; posX++)
             {
                 if(world.getBlockState(pos.add(posX, 0, posZ)).getBlock() != NetherExBlocks.BLOCK_HYPHAE)
                 {
@@ -82,14 +82,14 @@ public class WorldGenElderMushroom extends WorldGenerator
             }
         }
 
-        WorldServer worldServer = (WorldServer) world;
-        MinecraftServer minecraftServer = world.getMinecraftServer();
-        TemplateManager templateManager = worldServer.getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(NetherEx.MOD_ID + ":plant_mushroom_" + getRandomMushroom(rand)));
         Mirror[] mirrors = Mirror.values();
         Mirror mirror = mirrors[rand.nextInt(mirrors.length)];
         Rotation[] rotations = Rotation.values();
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
+        WorldServer worldServer = (WorldServer) world;
+        MinecraftServer minecraftServer = world.getMinecraftServer();
+        TemplateManager templateManager = worldServer.getStructureTemplateManager();
+        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(NetherEx.MOD_ID + ":plant_mushroom_" + getRandomMushroom(rand)));
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
         float airAmount = 0;

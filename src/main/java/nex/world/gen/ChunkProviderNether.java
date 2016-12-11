@@ -41,6 +41,7 @@ import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigurationHandler;
+import nex.world.gen.structure.MapGenNetherStructures;
 
 import java.util.List;
 import java.util.Random;
@@ -72,6 +73,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
+    private MapGenNetherStructures netherStructures = new MapGenNetherStructures();
 
     public ChunkProviderNether(World worldIn)
     {
@@ -99,6 +101,9 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
         netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
+        netherStructures = (MapGenNetherStructures) TerrainGen.getModdedMapGen(netherStructures, InitMapGenEvent.EventType.SCATTERED_FEATURE);
+
+        worldIn.setSeaLevel(31);
     }
 
     private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
@@ -375,6 +380,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);
+        netherStructures.generate(world, chunkX, chunkZ, primer);
 
         Chunk chunk = new Chunk(world, primer, chunkX, chunkZ);
         Biome[] biomes = world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
@@ -399,6 +405,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         BlockFalling.fallInstantly = true;
 
         netherBridge.generateStructure(world, rand, chunkPos);
+        netherStructures.generateStructure(world, rand, chunkPos);
         biome.decorate(world, rand, blockPos);
         WorldEntitySpawner.performWorldGenSpawning(world, biome, blockPos.getX() + 8, blockPos.getZ() + 8, 16, 16, rand);
 
@@ -433,12 +440,22 @@ public class ChunkProviderNether extends ChunkProviderHell
     @Override
     public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean force)
     {
-        return "Fortress".equals(structureName) && netherBridge != null ? netherBridge.getClosestStrongholdPos(worldIn, position, force) : null;
+        if("Fortress".equals(structureName))
+        {
+            return netherBridge != null ? netherBridge.getClosestStrongholdPos(worldIn, position, force) : null;
+        }
+        else if("NetherStructures".equals(structureName))
+        {
+            return netherStructures != null ? netherStructures.getClosestStrongholdPos(worldIn, position, force) : null;
+        }
+
+        return null;
     }
 
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         netherBridge.generate(world, chunkX, chunkZ, null);
+        netherStructures.generate(world, chunkX, chunkZ, null);
     }
 }
