@@ -19,10 +19,7 @@ package nex.world.gen.structure;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -73,13 +70,7 @@ public class NetherStructures
                 TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
                 PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setReplacedBlock(Blocks.AIR).setBoundingBox(getBoundingBox());
                 Template template = templateManager.getTemplate(minecraftServer, altar == 0 ? INTACT : altar == 1 ? DESTROYED : altar == 3 ? RUINED : INTACT);
-                BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-
-                if(isSuitablePos(world, pos))
-                {
-                    template.addBlocksToWorldChunk(world, pos.add(-(structureSize.getX() / 2), 0, -(structureSize.getZ() / 2)), placementSettings);
-                    System.out.println(pos.toString());
-                }
+                template.addBlocksToWorldChunk(world, pos, placementSettings);
 
                 return true;
             }
@@ -151,11 +142,18 @@ public class NetherStructures
                 {
                     for(int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
                     {
-                        pos.setPos(l, 32, k);
+                        pos.setPos(l, 96, k);
 
                         if(structureBB.isVecInside(pos))
                         {
-                            i += Math.max(world.getSeaLevel(), getSuitablePos(world, pos).getY());
+                            Tuple<BlockPos, Boolean> tuple = getSuitableGroundPos(world, pos);
+
+                            if(!tuple.getSecond())
+                            {
+                                return false;
+                            }
+
+                            i += tuple.getFirst().getY();
                             j++;
                         }
                     }
@@ -174,60 +172,21 @@ public class NetherStructures
             }
         }
 
-        protected boolean isSuitablePos(World world, BlockPos pos)
+        public Tuple<BlockPos, Boolean> getSuitableGroundPos(World world, BlockPos pos)
         {
-            for(int posZ = -1; posZ < 2; posZ++)
-            {
-                for(int posX = -1; posX < 2; posX++)
-                {
-                    BlockPos newPos = pos.add(posX, 0, posZ);
+            boolean isSuitable = false;
 
-                    if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.DOWN))
-                    {
-                        if(!world.isAirBlock(newPos.up()))
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
+            while(!isSuitable && pos.getY() > 32)
+            {
+                if(world.getBlockState(pos).getBlock().isBlockSolid(world, pos, EnumFacing.DOWN) && world.isAirBlock(pos.up()))
+                {
+                    isSuitable = true;
                 }
+
+                pos = pos.down();
             }
 
-            return true;
-        }
-
-        protected BlockPos getSuitablePos(World world, BlockPos pos)
-        {
-            for(pos = new BlockPos(pos.getX(), 96, pos.getZ()); pos.getY() < 97 && pos.getY() > 32; pos = pos.down())
-            {
-                int airAmount = 0;
-
-                for(int posZ = -1; posZ < 2; posZ++)
-                {
-                    for(int posX = -1; posX < 2; posX++)
-                    {
-                        BlockPos newPos = pos.add(posX, 0, posZ);
-
-                        if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.DOWN))
-                        {
-                            if(world.isAirBlock(newPos.up()))
-                            {
-                                airAmount++;
-                            }
-                        }
-                    }
-                }
-
-                if(airAmount == 9)
-                {
-                    break;
-                }
-            }
-
-            return pos;
+            return new Tuple<>(pos.up(), isSuitable);
         }
     }
 }

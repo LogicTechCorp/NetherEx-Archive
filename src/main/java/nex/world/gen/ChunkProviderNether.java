@@ -379,8 +379,8 @@ public class ChunkProviderNether extends ChunkProviderHell
         setBlocksInChunk(chunkX, chunkZ, primer, biomesForGen);
         replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
-        netherBridge.generate(world, chunkX, chunkZ, primer);
         netherStructures.generate(world, chunkX, chunkZ, primer);
+        netherBridge.generate(world, chunkX, chunkZ, primer);
 
         Chunk chunk = new Chunk(world, primer, chunkX, chunkZ);
         Biome[] biomes = world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
@@ -404,8 +404,8 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         BlockFalling.fallInstantly = true;
 
-        netherBridge.generateStructure(world, rand, chunkPos);
         netherStructures.generateStructure(world, rand, chunkPos);
+        netherBridge.generateStructure(world, rand, chunkPos);
         biome.decorate(world, rand, blockPos);
         WorldEntitySpawner.performWorldGenSpawning(world, biome, blockPos.getX() + 8, blockPos.getZ() + 8, 16, 16, rand);
 
