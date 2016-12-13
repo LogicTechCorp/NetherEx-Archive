@@ -37,7 +37,7 @@ public class NetherEx
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
-    public static final String DEPENDENCIES = "required-after:forge@[1.11-13.19.1.2188,);";
+    public static final String DEPENDENCIES = "required-after:forge@[1.11-13.19.1.2189,);";
     public static final String GUI_FACTORY = "nex.client.gui.GuiFactory";
     public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/0274bc72f4359c497d490c29c1ced425";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
