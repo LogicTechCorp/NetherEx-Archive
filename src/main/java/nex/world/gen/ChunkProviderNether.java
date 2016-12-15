@@ -438,15 +438,15 @@ public class ChunkProviderNether extends ChunkProviderHell
     }
 
     @Override
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean force)
+    public BlockPos getStrongholdGen(World world, String structureName, BlockPos pos, boolean force)
     {
         if("Fortress".equals(structureName))
         {
-            return netherBridge != null ? netherBridge.getClosestStrongholdPos(worldIn, position, force) : null;
+            return netherBridge != null ? netherBridge.getClosestStrongholdPos(world, pos, force) : null;
         }
         else if("NetherStructures".equals(structureName))
         {
-            return netherStructures != null ? netherStructures.getClosestStrongholdPos(worldIn, position, force) : null;
+            return netherStructures != null ? netherStructures.getClosestStrongholdPos(world, pos, force) : null;
         }
 
         return null;
@@ -455,7 +455,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        netherBridge.generate(world, chunkX, chunkZ, null);
         netherStructures.generate(world, chunkX, chunkZ, null);
+        netherBridge.generate(world, chunkX, chunkZ, null);
     }
 }

@@ -21,12 +21,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import nex.init.NetherExBiomes;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -183,25 +180,6 @@ public class MapGenNetherStructures extends MapGenStructure
             }
 
             updateBoundingBox();
-        }
-
-        @Override
-        public void generateStructure(World world, Random rand, StructureBoundingBox structureBB)
-        {
-            Iterator<StructureComponent> iterator = components.iterator();
-            List<StructureComponent> list = Lists.newArrayList();
-
-            while(iterator.hasNext())
-            {
-                StructureComponent structurecomponent = iterator.next();
-
-                if (structurecomponent.getBoundingBox().intersectsWith(structureBB) && !structurecomponent.addComponentParts(world, rand, structureBB))
-                {
-                    list.add(iterator.next());
-                }
-            }
-
-            components.removeAll(list);
         }
     }
 }

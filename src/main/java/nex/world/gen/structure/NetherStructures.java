@@ -26,7 +26,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -108,12 +107,12 @@ public class NetherStructures
             BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
 
             Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-            
+
             if(!tuple.getSecond())
             {
                 return false;
             }
-            
+
             pos = tuple.getFirst();
 
             MinecraftServer minecraftServer = world.getMinecraftServer();
@@ -155,12 +154,12 @@ public class NetherStructures
             BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
 
             Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-            
+
             if(!tuple.getSecond())
             {
                 return false;
             }
-            
+
             pos = tuple.getFirst();
 
             MinecraftServer minecraftServer = world.getMinecraftServer();
@@ -390,11 +389,11 @@ public class NetherStructures
                     BlockPos newPos = pos.add(posX, 0, posZ);
                     Block block = world.getBlockState(newPos).getBlock();
 
-                    if(block.isBlockSolid(world, newPos, EnumFacing.DOWN) && block != Blocks.NETHER_BRICK && block != Blocks.NETHER_BRICK_FENCE  && block != Blocks.NETHER_BRICK_STAIRS)
+                    if(block.isBlockSolid(world, newPos, EnumFacing.DOWN) && block != Blocks.NETHER_BRICK && block != Blocks.NETHER_BRICK_FENCE && block != Blocks.NETHER_BRICK_STAIRS)
                     {
                         if(world.isAirBlock(pos.up()))
                         {
-                            suitablePositions ++;
+                            suitablePositions++;
                         }
                     }
                 }
