@@ -86,9 +86,8 @@ public class WorldGenElderMushroom extends WorldGenerator
         Mirror mirror = mirrors[rand.nextInt(mirrors.length)];
         Rotation[] rotations = Rotation.values();
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
-        WorldServer worldServer = (WorldServer) world;
         MinecraftServer minecraftServer = world.getMinecraftServer();
-        TemplateManager templateManager = worldServer.getStructureTemplateManager();
+        TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
         Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(NetherEx.MOD_ID + ":plant_mushroom_" + getRandomMushroom(rand)));
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());

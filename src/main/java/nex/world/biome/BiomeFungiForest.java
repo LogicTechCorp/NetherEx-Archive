@@ -30,6 +30,7 @@ import nex.world.gen.feature.WorldGenMinableMeta;
 
 import java.util.Random;
 
+@SuppressWarnings("ConstantConditions")
 public class BiomeFungiForest extends BiomeNetherEx
 {
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
@@ -72,7 +73,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeFungiForest.quartzOreRarity; i++)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
+                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 

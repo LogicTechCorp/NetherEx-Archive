@@ -25,6 +25,11 @@ public class NetherExStructures
     public static void init()
     {
         MapGenStructureIO.registerStructure(MapGenNetherStructures.Start.class, "Nether Structures");
-        MapGenStructureIO.registerStructureComponent(NetherStructures.AncientAltar.class, "AA");
+        MapGenStructureIO.registerStructureComponent(NetherStructures.ArtifactTower.class, "ArtifactTower");
+        MapGenStructureIO.registerStructureComponent(NetherStructures.BlacksmithHut.class, "BlacksmithHut");
+        MapGenStructureIO.registerStructureComponent(NetherStructures.ChiefHut.class, "ChiefHut");
+        MapGenStructureIO.registerStructureComponent(NetherStructures.PigmanHut.class, "PigmanHut");
+        MapGenStructureIO.registerStructureComponent(NetherStructures.AncientAltar.class, "AncientAltar");
+        MapGenStructureIO.registerStructureComponent(NetherStructures.AncientThrone.class, "AncientThrone");
     }
 }

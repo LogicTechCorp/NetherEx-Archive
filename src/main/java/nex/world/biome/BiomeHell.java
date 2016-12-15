@@ -117,7 +117,7 @@ public class BiomeHell extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeHell.quartzOreRarity; i++)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
+                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 
@@ -127,7 +127,7 @@ public class BiomeHell extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeHell.magmaRarity; i++)
             {
-                magma.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(9) + 28, rand.nextInt(16) + 8));
+                magma.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
             }
 
         }

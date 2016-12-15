@@ -21,9 +21,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import nex.init.NetherExBiomes;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -114,30 +117,61 @@ public class MapGenNetherStructures extends MapGenStructure
         {
             if(biome == NetherExBiomes.HELL)
             {
+                int structureType = rand.nextInt(4);
 
+                if(structureType == 0)
+                {
+                    NetherStructures.ArtifactTower tower = new NetherStructures.ArtifactTower(rand, chunkX * 16, chunkZ * 16, 8, 12, 8);
+                    components.add(tower);
+                }
+                else if(structureType == 1)
+                {
+                    NetherStructures.BlacksmithHut hut = new NetherStructures.BlacksmithHut(rand, chunkX * 16, chunkZ * 16, 8, 5, 9);
+                    components.add(hut);
+                }
+                else if(structureType == 2)
+                {
+                    NetherStructures.ChiefHut hut = new NetherStructures.ChiefHut(rand, chunkX * 16, chunkZ * 16, 11, 6, 9);
+                    components.add(hut);
+                }
+                else if(structureType == 3)
+                {
+                    NetherStructures.PigmanHut hut = new NetherStructures.PigmanHut(rand, chunkX * 16, chunkZ * 16, 9, 5, 9);
+                    components.add(hut);
+                }
             }
             else if(biome == NetherExBiomes.RUTHLESS_SANDS)
             {
-                int[] altarTypeChance = new int[]{0, 1, 1, 3, 3, 3};
-                int altarType = altarTypeChance[rand.nextInt(altarTypeChance.length)];
+                int structureType = rand.nextInt(2);
 
-                NetherStructures.AncientAltar altar;
-
-                if(altarType == 0)
+                if(structureType == 0)
                 {
-                    altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
-                }
-                else if(altarType == 1)
-                {
-                    altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 6, 4, 7);
+                    int[] altarTypeChance = new int[]{0, 1, 1, 3, 3, 3};
+                    int altarType = altarTypeChance[rand.nextInt(altarTypeChance.length)];
 
-                }
-                else
-                {
-                    altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 2, 5);
-                }
+                    NetherStructures.AncientAltar altar;
 
-                components.add(altar);
+                    if(altarType == 0)
+                    {
+                        altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
+                    }
+                    else if(altarType == 1)
+                    {
+                        altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 6, 4, 7);
+
+                    }
+                    else
+                    {
+                        altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 2, 5);
+                    }
+
+                    components.add(altar);
+                }
+                else if(structureType == 1)
+                {
+                    NetherStructures.AncientThrone throne = new NetherStructures.AncientThrone(rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
+                    components.add(throne);
+                }
             }
             else if(biome == NetherExBiomes.FUNGI_FOREST)
             {
@@ -149,6 +183,25 @@ public class MapGenNetherStructures extends MapGenStructure
             }
 
             updateBoundingBox();
+        }
+
+        @Override
+        public void generateStructure(World world, Random rand, StructureBoundingBox structureBB)
+        {
+            Iterator<StructureComponent> iterator = components.iterator();
+            List<StructureComponent> list = Lists.newArrayList();
+
+            while(iterator.hasNext())
+            {
+                StructureComponent structurecomponent = iterator.next();
+
+                if (structurecomponent.getBoundingBox().intersectsWith(structureBB) && !structurecomponent.addComponentParts(world, rand, structureBB))
+                {
+                    list.add(iterator.next());
+                }
+            }
+
+            components.removeAll(list);
         }
     }
 }

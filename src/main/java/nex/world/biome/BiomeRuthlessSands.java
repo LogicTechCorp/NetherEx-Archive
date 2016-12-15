@@ -35,6 +35,7 @@ import nex.world.gen.feature.WorldGenThornstalk;
 
 import java.util.Random;
 
+@SuppressWarnings("ConstantConditions")
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
     private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), false);
@@ -90,7 +91,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeRuthlessSands.quartzOreRarity; i++)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
+                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 
