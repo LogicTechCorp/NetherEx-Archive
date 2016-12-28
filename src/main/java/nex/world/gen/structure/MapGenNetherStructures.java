@@ -31,8 +31,8 @@ import java.util.Random;
 public class MapGenNetherStructures extends MapGenStructure
 {
     private static final List<Biome> BIOMES = Lists.newArrayList(NetherExBiomes.HELL, NetherExBiomes.RUTHLESS_SANDS, NetherExBiomes.FUNGI_FOREST);
-    private int maxChunkDistance = 16;
-    private int minChunkDistance = 8;
+    private int maxChunkDistance = 8;
+    private int minChunkDistance = 4;
 
     @Override
     public String getStructureName()
@@ -112,29 +112,27 @@ public class MapGenNetherStructures extends MapGenStructure
 
         public Start(World world, Random rand, int chunkX, int chunkZ, Biome biome)
         {
+            NetherStructures.Structure structure = null;
+
             if(biome == NetherExBiomes.HELL)
             {
                 int structureType = rand.nextInt(4);
 
                 if(structureType == 0)
                 {
-                    NetherStructures.ArtifactTower tower = new NetherStructures.ArtifactTower(rand, chunkX * 16, chunkZ * 16, 8, 12, 8);
-                    components.add(tower);
+                    structure = new NetherStructures.ArtifactTower(rand, chunkX * 16, chunkZ * 16, 8, 12, 8);
                 }
                 else if(structureType == 1)
                 {
-                    NetherStructures.BlacksmithHut hut = new NetherStructures.BlacksmithHut(rand, chunkX * 16, chunkZ * 16, 8, 5, 9);
-                    components.add(hut);
+                    structure = new NetherStructures.BlacksmithHut(rand, chunkX * 16, chunkZ * 16, 8, 5, 9);
                 }
                 else if(structureType == 2)
                 {
-                    NetherStructures.ChiefHut hut = new NetherStructures.ChiefHut(rand, chunkX * 16, chunkZ * 16, 11, 6, 9);
-                    components.add(hut);
+                    structure = new NetherStructures.ChiefHut(rand, chunkX * 16, chunkZ * 16, 11, 6, 9);
                 }
-                else if(structureType == 3)
+                else
                 {
-                    NetherStructures.PigmanHut hut = new NetherStructures.PigmanHut(rand, chunkX * 16, chunkZ * 16, 9, 5, 9);
-                    components.add(hut);
+                    structure = new NetherStructures.PigmanHut(rand, chunkX * 16, chunkZ * 16, 9, 5, 9);
                 }
             }
             else if(biome == NetherExBiomes.RUTHLESS_SANDS)
@@ -146,28 +144,24 @@ public class MapGenNetherStructures extends MapGenStructure
                     int[] altarTypeChance = new int[]{0, 1, 1, 3, 3, 3};
                     int altarType = altarTypeChance[rand.nextInt(altarTypeChance.length)];
 
-                    NetherStructures.AncientAltar altar;
-
                     if(altarType == 0)
                     {
-                        altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
+                        structure = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
                     }
                     else if(altarType == 1)
                     {
-                        altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 6, 4, 7);
+                        structure = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 6, 4, 7);
 
                     }
                     else
                     {
-                        altar = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 2, 5);
+                        structure = new NetherStructures.AncientAltar(altarType, rand, chunkX * 16, chunkZ * 16, 5, 2, 5);
                     }
 
-                    components.add(altar);
                 }
-                else if(structureType == 1)
+                else
                 {
-                    NetherStructures.AncientThrone throne = new NetherStructures.AncientThrone(rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
-                    components.add(throne);
+                    structure = new NetherStructures.AncientThrone(rand, chunkX * 16, chunkZ * 16, 5, 5, 5);
                 }
             }
             else if(biome == NetherExBiomes.FUNGI_FOREST)
@@ -177,6 +171,11 @@ public class MapGenNetherStructures extends MapGenStructure
             else
             {
 
+            }
+
+            if(structure != null)
+            {
+                components.add(structure);
             }
 
             updateBoundingBox();

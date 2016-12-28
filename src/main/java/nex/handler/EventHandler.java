@@ -34,7 +34,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
-
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event)
     {

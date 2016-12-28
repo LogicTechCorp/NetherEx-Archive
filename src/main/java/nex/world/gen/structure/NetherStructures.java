@@ -16,7 +16,6 @@
 
 package nex.world.gen.structure;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -24,7 +23,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -51,39 +49,27 @@ public class NetherStructures
 
         public ArtifactTower(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96 - ySize, z, xSize, ySize, zSize);
+            super(rand, x, 96, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
-
-            Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-
-            if(!tuple.getSecond())
+            if(!offsetToEvenGround(world, structureBB, 0))
             {
                 return false;
             }
-
-            pos = tuple.getFirst();
-
-            MinecraftServer minecraftServer = world.getMinecraftServer();
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(minecraftServer, TOWER);
-            PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(getBoundingBox());
-            BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-            boolean hasSpace = hasEnoughSpace(world, pos, structureSize, 0.75F);
-
-            if(hasSpace)
+            else
             {
-                BlockPos newPos = pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2));
-                template.addBlocksToWorld(world, newPos, placementSettings.copy());
-                setChestContents(world, rand, newPos, template, placementSettings, LootTableList.CHESTS_NETHER_BRIDGE);
+                BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+                MinecraftServer minecraftServer = world.getMinecraftServer();
+                TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+                Template template = templateManager.getTemplate(minecraftServer, TOWER);
+                PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(boundingBox);
+                template.addBlocksToWorldChunk(world, pos, placementSettings.copy());
+                setChestContents(world, rand, pos, template, placementSettings.copy(), LootTableList.CHESTS_NETHER_BRIDGE);
                 return true;
             }
-
-            return false;
         }
     }
 
@@ -98,39 +84,27 @@ public class NetherStructures
 
         public BlacksmithHut(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96 - ySize, z, xSize, ySize, zSize);
+            super(rand, x, 96, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
-
-            Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-
-            if(!tuple.getSecond())
+            if(!offsetToEvenGround(world, structureBB, 0))
             {
                 return false;
             }
-
-            pos = tuple.getFirst();
-
-            MinecraftServer minecraftServer = world.getMinecraftServer();
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(minecraftServer, HUT);
-            PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(getBoundingBox());
-            BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-            boolean hasSpace = hasEnoughSpace(world, pos, structureSize, 0.75F);
-
-            if(hasSpace)
+            else
             {
-                BlockPos newPos = pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2));
-                template.addBlocksToWorld(world, newPos, placementSettings.copy());
-                setChestContents(world, rand, newPos, template, placementSettings, LootTableList.CHESTS_NETHER_BRIDGE);
+                BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+                MinecraftServer minecraftServer = world.getMinecraftServer();
+                TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+                Template template = templateManager.getTemplate(minecraftServer, HUT);
+                PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(boundingBox);
+                template.addBlocksToWorldChunk(world, pos, placementSettings.copy());
+                setChestContents(world, rand, pos, template, placementSettings.copy(), LootTableList.CHESTS_NETHER_BRIDGE);
                 return true;
             }
-
-            return false;
         }
     }
 
@@ -145,39 +119,27 @@ public class NetherStructures
 
         public ChiefHut(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96 - ySize, z, xSize, ySize, zSize);
+            super(rand, x, 96, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
-
-            Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-
-            if(!tuple.getSecond())
+            if(!offsetToEvenGround(world, structureBB, 0))
             {
                 return false;
             }
-
-            pos = tuple.getFirst();
-
-            MinecraftServer minecraftServer = world.getMinecraftServer();
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(minecraftServer, HUT);
-            PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(getBoundingBox());
-            BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-            boolean hasSpace = hasEnoughSpace(world, pos, structureSize, 0.75F);
-
-            if(hasSpace)
+            else
             {
-                BlockPos newPos = pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2));
-                template.addBlocksToWorld(world, newPos, placementSettings.copy());
-                setChestContents(world, rand, newPos, template, placementSettings, LootTableList.CHESTS_NETHER_BRIDGE);
+                BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+                MinecraftServer minecraftServer = world.getMinecraftServer();
+                TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+                Template template = templateManager.getTemplate(minecraftServer, HUT);
+                PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(boundingBox);
+                template.addBlocksToWorldChunk(world, pos, placementSettings.copy());
+                setChestContents(world, rand, pos, template, placementSettings.copy(), LootTableList.CHESTS_NETHER_BRIDGE);
                 return true;
             }
-
-            return false;
         }
     }
 
@@ -192,39 +154,27 @@ public class NetherStructures
 
         public PigmanHut(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96 - ySize, z, xSize, ySize, zSize);
+            super(rand, x, 96, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
-
-            Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-
-            if(!tuple.getSecond())
+            if(!offsetToEvenGround(world, structureBB, 0))
             {
                 return false;
             }
-
-            pos = tuple.getFirst();
-
-            MinecraftServer minecraftServer = world.getMinecraftServer();
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(minecraftServer, HUT);
-            PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(getBoundingBox());
-            BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-            boolean hasSpace = hasEnoughSpace(world, pos, structureSize, 0.75F);
-
-            if(hasSpace)
+            else
             {
-                BlockPos newPos = pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2));
-                template.addBlocksToWorld(world, newPos, placementSettings.copy());
-                setChestContents(world, rand, newPos, template, placementSettings, LootTableList.CHESTS_NETHER_BRIDGE);
+                BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+                MinecraftServer minecraftServer = world.getMinecraftServer();
+                TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+                Template template = templateManager.getTemplate(minecraftServer, HUT);
+                PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(boundingBox);
+                template.addBlocksToWorldChunk(world, pos, placementSettings.copy());
+                setChestContents(world, rand, pos, template, placementSettings.copy(), LootTableList.CHESTS_NETHER_BRIDGE);
                 return true;
             }
-
-            return false;
         }
     }
 
@@ -243,7 +193,7 @@ public class NetherStructures
 
         public AncientAltar(int altarIn, Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96 - ySize, z, xSize, ySize, zSize);
+            super(rand, x, 96, z, xSize, ySize, zSize);
 
             altar = altarIn;
         }
@@ -251,31 +201,20 @@ public class NetherStructures
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
-
-            Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-
-            if(!tuple.getSecond())
+            if(!offsetToEvenGround(world, structureBB, 0))
             {
                 return false;
             }
-
-            pos = tuple.getFirst();
-
-            MinecraftServer minecraftServer = world.getMinecraftServer();
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(minecraftServer, altar == 0 ? INTACT : altar == 1 ? DESTROYED : altar == 3 ? RUINED : INTACT);
-            PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setReplacedBlock(Blocks.AIR).setBoundingBox(getBoundingBox());
-            BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-            boolean hasSpace = hasEnoughSpace(world, pos, structureSize, 0.50F);
-
-            if(hasSpace)
+            else
             {
-                template.addBlocksToWorld(world, pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2)), placementSettings.copy());
+                BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+                MinecraftServer minecraftServer = world.getMinecraftServer();
+                TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+                Template template = templateManager.getTemplate(minecraftServer, altar == 0 ? INTACT : altar == 1 ? DESTROYED : altar == 3 ? RUINED : INTACT);
+                PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(boundingBox).setReplacedBlock(Blocks.AIR);
+                template.addBlocksToWorldChunk(world, pos, placementSettings.copy());
                 return true;
             }
-
-            return false;
         }
     }
 
@@ -290,37 +229,26 @@ public class NetherStructures
 
         public AncientThrone(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96 - ySize, z, xSize, ySize, zSize);
+            super(rand, x, 96, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(getBoundingBox().minX, getBoundingBox().maxY, getBoundingBox().minZ);
-
-            Tuple<BlockPos, Boolean> tuple = getSuitablePos(world, pos);
-
-            if(!tuple.getSecond())
+            if(!offsetToEvenGround(world, structureBB, 0))
             {
                 return false;
             }
-
-            pos = tuple.getFirst();
-
-            MinecraftServer minecraftServer = world.getMinecraftServer();
-            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-            Template template = templateManager.getTemplate(minecraftServer, THRONE);
-            PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(getBoundingBox());
-            BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-            boolean hasSpace = hasEnoughSpace(world, pos, structureSize, 0.50F);
-
-            if(hasSpace)
+            else
             {
-                template.addBlocksToWorld(world, pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2)), placementSettings.copy());
+                BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+                MinecraftServer minecraftServer = world.getMinecraftServer();
+                TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+                Template template = templateManager.getTemplate(minecraftServer, THRONE);
+                PlacementSettings placementSettings = new PlacementSettings().setMirror(mirrors[rand.nextInt(mirrors.length)]).setRotation(rotations[rand.nextInt(rotations.length)]).setBoundingBox(boundingBox).setReplacedBlock(Blocks.AIR);
+                template.addBlocksToWorldChunk(world, pos, placementSettings.copy());
                 return true;
             }
-
-            return false;
         }
     }
 
@@ -332,6 +260,7 @@ public class NetherStructures
         public int xSize;
         public int ySize;
         public int zSize;
+        public int hPos = -1;
 
         public Structure(Random rand, int x, int y, int z, int xSizeIn, int ySizeIn, int zSizeIn)
         {
@@ -362,6 +291,7 @@ public class NetherStructures
             compound.setInteger("XSize", xSize);
             compound.setInteger("YSize", ySize);
             compound.setInteger("ZSize", zSize);
+            compound.setInteger("HPos", hPos);
         }
 
         @Override
@@ -370,71 +300,71 @@ public class NetherStructures
             xSize = compound.getInteger("XSize");
             ySize = compound.getInteger("YSize");
             zSize = compound.getInteger("ZSize");
+            hPos = compound.getInteger("HPos");
         }
 
-        protected Tuple<BlockPos, Boolean> getSuitablePos(World world, BlockPos pos)
+        protected boolean offsetToEvenGround(World world, StructureBoundingBox structureBB, int yOffset)
         {
-            boolean isSuitable = false;
-            int suitablePositions = 0;
-
-            while((world.isAirBlock(pos) || !world.isAirBlock(pos) && !isSuitable) && pos.getY() > 32)
+            if(hPos >= 0)
             {
-                pos = pos.down();
+                return true;
             }
-
-            for(int posZ = -1; posZ < 2; posZ++)
+            else
             {
-                for(int posX = -1; posX < 2; posX++)
-                {
-                    BlockPos newPos = pos.add(posX, 0, posZ);
-                    Block block = world.getBlockState(newPos).getBlock();
+                int i = 0;
+                int j = 0;
+                BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 
-                    if(block.isBlockSolid(world, newPos, EnumFacing.DOWN) && block != Blocks.NETHER_BRICK && block != Blocks.NETHER_BRICK_FENCE && block != Blocks.NETHER_BRICK_STAIRS)
+                for(int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
+                {
+                    for(int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
                     {
-                        if(world.isAirBlock(pos.up()))
+                        pos.setPos(l, boundingBox.maxY, k);
+
+                        if(structureBB.isVecInside(pos))
                         {
-                            suitablePositions++;
+                            Tuple<BlockPos, Boolean> tuple = getSuitableGroundPos(world, pos);
+
+                            if(!tuple.getSecond())
+                            {
+                                return false;
+                            }
+
+                            i += tuple.getFirst().getY();
+                            j++;
                         }
                     }
                 }
-            }
 
-            if(suitablePositions == 9)
-            {
-                isSuitable = true;
-            }
-
-            return new Tuple<>(pos, isSuitable);
-        }
-    }
-
-    protected static boolean hasEnoughSpace(World world, BlockPos pos, BlockPos structureSize, float percentage)
-    {
-        float airAmount = 0;
-        float blockAmount = (MathHelper.abs(structureSize.getX()) + 2) * (MathHelper.abs(structureSize.getY()) + 1) * (MathHelper.abs(structureSize.getZ()) + 2);
-
-        for(int posZ = -1; posZ < structureSize.getZ() + 1; posZ++)
-        {
-            for(int posX = -1; posX < structureSize.getX() + 1; posX++)
-            {
-                for(int posY = 0; posY < structureSize.getY() + 1; posY++)
+                if(j == 0)
                 {
-                    BlockPos newPos = pos.add(-(posX / 2), posY + 1, -(posZ / 2));
-                    Block block = world.getBlockState(newPos).getBlock();
-
-                    if(world.isAirBlock(newPos))
-                    {
-                        airAmount += 1.0F;
-                    }
-                    else if(!block.isBlockSolid(world, newPos, EnumFacing.DOWN))
-                    {
-                        return false;
-                    }
+                    return false;
+                }
+                else
+                {
+                    hPos = i / j;
+                    boundingBox.offset(0, hPos - boundingBox.minY + yOffset, 0);
+                    return true;
                 }
             }
         }
 
-        return MathHelper.abs(airAmount) / MathHelper.abs(blockAmount) >= percentage;
+        public Tuple<BlockPos, Boolean> getSuitableGroundPos(World world, BlockPos pos)
+        {
+            boolean isSuitable = false;
+
+            while(!isSuitable && pos.getY() > 32)
+            {
+                if(world.getBlockState(pos).getBlock().isBlockSolid(world, pos, EnumFacing.DOWN) && world.isAirBlock(pos.up()))
+                {
+                    isSuitable = true;
+                }
+
+                pos = pos.down();
+            }
+
+            return new Tuple<>(pos.up(), isSuitable);
+        }
     }
 
     protected static void setChestContents(World world, Random rand, BlockPos pos, Template template, PlacementSettings placementSettings, ResourceLocation lootTableList)
@@ -447,11 +377,11 @@ public class NetherStructures
             {
                 BlockPos blockPos = entry.getKey();
                 world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 3);
-                TileEntity tileentity = world.getTileEntity(blockPos.down());
+                TileEntity tileEntity = world.getTileEntity(blockPos.down());
 
-                if(tileentity instanceof TileEntityChest)
+                if(tileEntity instanceof TileEntityChest)
                 {
-                    ((TileEntityChest) tileentity).setLootTable(lootTableList, rand.nextLong());
+                    ((TileEntityChest) tileEntity).setLootTable(lootTableList, rand.nextLong());
                 }
             }
         }

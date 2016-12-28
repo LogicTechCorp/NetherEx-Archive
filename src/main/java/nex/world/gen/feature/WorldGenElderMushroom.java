@@ -70,9 +70,9 @@ public class WorldGenElderMushroom extends WorldGenerator
             pos = pos.down();
         }
 
-        for(int posZ = -1; posZ < 2; posZ++)
+        for(int posX = -1; posX < 2; posX++)
         {
-            for(int posX = -1; posX < 2; posX++)
+            for(int posZ = -1; posZ < 2; posZ++)
             {
                 if(world.getBlockState(pos.add(posX, 0, posZ)).getBlock() != NetherExBlocks.BLOCK_HYPHAE)
                 {
@@ -91,7 +91,7 @@ public class WorldGenElderMushroom extends WorldGenerator
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
         float airAmount = 0;
-        float blockAmount = (MathHelper.abs(structureSize.getX()) + 2) * (MathHelper.abs(structureSize.getY()) + 1) * (MathHelper.abs(structureSize.getZ()) + 2);
+        float blockAmount = MathHelper.abs((structureSize.getX() + 2) * (structureSize.getY() + 1) * (structureSize.getZ() + 2));
 
         for(int posZ = -1; posZ < structureSize.getZ() + 1; posZ++)
         {
