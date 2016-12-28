@@ -46,6 +46,7 @@ import nex.world.gen.structure.MapGenNetherStructures;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("ConstantConditions")
 public class ChunkProviderNether extends ChunkProviderHell
 {
     private World world;
@@ -404,8 +405,8 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         BlockFalling.fallInstantly = true;
 
-        netherStructures.generateStructure(world, rand, chunkPos);
         netherBridge.generateStructure(world, rand, chunkPos);
+        netherStructures.generateStructure(world, rand, chunkPos);
         biome.decorate(world, rand, blockPos);
         WorldEntitySpawner.performWorldGenSpawning(world, biome, blockPos.getX() + 8, blockPos.getZ() + 8, 16, 16, rand);
 
@@ -455,7 +456,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        netherStructures.generate(world, chunkX, chunkZ, null);
         netherBridge.generate(world, chunkX, chunkZ, null);
+        netherStructures.generate(world, chunkX, chunkZ, null);
     }
 }

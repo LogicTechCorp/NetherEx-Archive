@@ -16,6 +16,7 @@
 
 package nex.world.gen.structure;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -355,7 +356,9 @@ public class NetherStructures
 
             while(!isSuitable && pos.getY() > 32)
             {
-                if(world.getBlockState(pos).getBlock().isBlockSolid(world, pos, EnumFacing.DOWN) && world.isAirBlock(pos.up()))
+                Block block = world.getBlockState(pos).getBlock();
+
+                if(world.isAirBlock(pos.up()) && block.isBlockSolid(world, pos, EnumFacing.DOWN) && block != Blocks.NETHER_BRICK && block != Blocks.NETHER_BRICK_FENCE && block != Blocks.NETHER_BRICK_STAIRS)
                 {
                     isSuitable = true;
                 }
