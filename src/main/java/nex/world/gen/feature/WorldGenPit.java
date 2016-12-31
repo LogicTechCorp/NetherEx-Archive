@@ -26,12 +26,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class WorldGenPool extends WorldGenerator
+public class WorldGenPit extends WorldGenerator
 {
     private final Block block;
     private final IBlockState surroundingBlock;
 
-    public WorldGenPool(Block blockIn, IBlockState surroundingBlockIn)
+    public WorldGenPit(Block blockIn, IBlockState surroundingBlockIn)
     {
         block = blockIn;
         surroundingBlock = surroundingBlockIn;

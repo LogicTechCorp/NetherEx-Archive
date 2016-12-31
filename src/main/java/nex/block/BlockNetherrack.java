@@ -23,8 +23,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class BlockNetherrack extends BlockNetherEx
 {
@@ -44,6 +47,12 @@ public class BlockNetherrack extends BlockNetherEx
         {
             list.add(new ItemStack(item, 1, type.ordinal()));
         }
+    }
+
+    @Override
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
+    {
+        return side == EnumFacing.UP;
     }
 
     @Override

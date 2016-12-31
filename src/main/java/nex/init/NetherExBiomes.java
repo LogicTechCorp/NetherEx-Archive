@@ -32,6 +32,7 @@ import nex.world.WorldProviderNether;
 import nex.world.biome.BiomeFungiForest;
 import nex.world.biome.BiomeHell;
 import nex.world.biome.BiomeRuthlessSands;
+import nex.world.biome.BiomeTorridWasteland;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,6 +55,9 @@ public class NetherExBiomes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fungi_forest")
     public static final BiomeFungiForest FUNGI_FOREST = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":torrid_wasteland")
+    public static final BiomeTorridWasteland TORRID_WASTELAND = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");
 
     @Mod.EventBusSubscriber
@@ -67,7 +71,8 @@ public class NetherExBiomes
             event.getRegistry().registerAll(
                     new BiomeHell(),
                     new BiomeRuthlessSands(),
-                    new BiomeFungiForest()
+                    new BiomeFungiForest(),
+                    new BiomeTorridWasteland()
             );
 
             LOGGER.info("Biome registration completed.");
@@ -79,6 +84,7 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(HELL, NETHER, HOT, DRY);
         BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, HOT, DRY, MUSHROOM);
+        BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);

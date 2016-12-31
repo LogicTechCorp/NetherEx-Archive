@@ -33,6 +33,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.Map;
 import java.util.Optional;
 
+@SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber
 @Config(modid = NetherEx.MOD_ID, name = "NetherEx")
 public class ConfigurationHandler
@@ -43,6 +44,7 @@ public class ConfigurationHandler
     public static BiomeHell biome_hell = new BiomeHell();
     public static BiomeRuthlessSands biome_ruthless_sands = new BiomeRuthlessSands();
     public static BiomeFungiForest biome_fungi_forest = new BiomeFungiForest();
+    public static BiomeTorridWasteland biome_torrid_wasteland = new BiomeTorridWasteland();
     public static Miscellaneous miscellaneous = new Miscellaneous();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigurationHandler");
@@ -104,6 +106,30 @@ public class ConfigurationHandler
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
         public static int elderMushroomRarity = 16;
+    }
+
+    public static class BiomeTorridWasteland
+    {
+        public static boolean generateLavaSprings = true;
+        public static boolean generateFire = true;
+        public static boolean generateGlowstonePass1 = true;
+        public static boolean generateGlowstonePass2 = true;
+        public static boolean generateQuartzOre = true;
+        public static boolean generateBasalt = true;
+        public static boolean generateMagma = true;
+        public static boolean generateLavaTraps = true;
+        public static boolean generateLavaPits = true;
+
+        public static int biomeRarity = 4;
+        public static int lavaSpringRarity = 24;
+        public static int fireRarity = 30;
+        public static int glowstonePass1Rarity = 10;
+        public static int glowstonePass2Rarity = 10;
+        public static int quartzOreRarity = 16;
+        public static int basaltRarity = 12;
+        public static int magmaRarity = 12;
+        public static int lavaTrapRarity = 48;
+        public static int lavaPitRarity = 8;
     }
 
     public static class Miscellaneous

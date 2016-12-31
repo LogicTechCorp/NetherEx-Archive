@@ -129,7 +129,6 @@ public class BiomeHell extends BiomeNetherEx
             {
                 magma.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
             }
-
         }
 
         if(ConfigurationHandler.BiomeHell.generateLavaTraps)
