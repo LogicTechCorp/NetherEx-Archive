@@ -160,6 +160,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_red")
     public static final BlockMushroom PLANT_MUSHROOM_RED = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fluid_ichor")
+    public static final BlockIchor FLUID_ICHOR = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
 
     @Mod.EventBusSubscriber
@@ -168,6 +171,16 @@ public class NetherExBlocks
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
+            LOGGER.info("Fluid registration started.");
+
+            NetherExFluids.init();
+
+            LOGGER.info("Fluid registration Ended.");
+            LOGGER.info("Material registration started.");
+
+            NetherExMaterials.init();
+
+            LOGGER.info("Material registration Ended.");
             LOGGER.info("Block registration started.");
 
             event.getRegistry().registerAll(
@@ -212,7 +225,8 @@ public class NetherExBlocks
                     new BlockThornstalk(),
                     new BlockHyphae(),
                     new BlockMushroom("plant_mushroom_brown"),
-                    new BlockMushroom("plant_mushroom_red")
+                    new BlockMushroom("plant_mushroom_red"),
+                    new BlockIchor()
             );
 
             LOGGER.info("Block registration completed.");
@@ -265,7 +279,8 @@ public class NetherExBlocks
                     new ItemBlockThornstalk(),
                     new ItemBlockNetherEx(BLOCK_HYPHAE),
                     new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),
-                    new ItemBlockMushroom(PLANT_MUSHROOM_RED)
+                    new ItemBlockMushroom(PLANT_MUSHROOM_RED),
+                    new ItemBlockNetherEx(FLUID_ICHOR)
             );
 
             LOGGER.info("ItemBlock registration completed.");

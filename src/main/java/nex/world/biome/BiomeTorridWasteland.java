@@ -127,7 +127,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeTorridWasteland.lavaPitRarity; i++)
             {
-                lavaPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
+                lavaPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 

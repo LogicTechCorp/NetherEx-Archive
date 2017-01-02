@@ -168,7 +168,11 @@ public class MapGenNetherStructures extends MapGenStructure
             {
 
             }
-            else
+            else if(biome == NetherExBiomes.TORRID_WASTELAND)
+            {
+
+            }
+            else if(biome == NetherExBiomes.ARCTIC_ABYSS)
             {
 
             }

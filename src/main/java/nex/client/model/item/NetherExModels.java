@@ -55,6 +55,8 @@ public class NetherExModels
     {
         LOGGER.info("Model registration started.");
 
+        registerModel(FLUID_ICHOR);
+
         ModelLoader.setCustomStateMapper(SLAB_VANILLA_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
         ModelLoader.setCustomStateMapper(WALL_VANILLA, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_QUARTZ, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());

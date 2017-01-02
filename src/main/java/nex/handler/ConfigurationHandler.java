@@ -132,6 +132,20 @@ public class ConfigurationHandler
         public static int lavaPitRarity = 8;
     }
 
+    public static class BiomeArcticAbyss
+    {
+        public static boolean generateGlowstonePass1 = true;
+        public static boolean generateGlowstonePass2 = true;
+        public static boolean generateQuartzOre = true;
+        public static boolean generateIchor = true;
+
+        public static int biomeRarity = 3;
+        public static int glowstonePass1Rarity = 10;
+        public static int glowstonePass2Rarity = 10;
+        public static int quartzOreRarity = 16;
+        public static int ichorPitRarity = 1;
+    }
+
     public static class Miscellaneous
     {
         public static boolean generateSoulSand = false;

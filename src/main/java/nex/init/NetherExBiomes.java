@@ -29,10 +29,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.world.WorldProviderNether;
-import nex.world.biome.BiomeFungiForest;
-import nex.world.biome.BiomeHell;
-import nex.world.biome.BiomeRuthlessSands;
-import nex.world.biome.BiomeTorridWasteland;
+import nex.world.biome.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -58,6 +55,9 @@ public class NetherExBiomes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":torrid_wasteland")
     public static final BiomeTorridWasteland TORRID_WASTELAND = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":arctic_abyss")
+    public static final BiomeArcticAbyss ARCTIC_ABYSS = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");
 
     @Mod.EventBusSubscriber
@@ -72,7 +72,8 @@ public class NetherExBiomes
                     new BiomeHell(),
                     new BiomeRuthlessSands(),
                     new BiomeFungiForest(),
-                    new BiomeTorridWasteland()
+                    new BiomeTorridWasteland(),
+                    new BiomeArcticAbyss()
             );
 
             LOGGER.info("Biome registration completed.");
@@ -85,6 +86,7 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, HOT, DRY, MUSHROOM);
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
+        BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, WET, COLD);
 
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);

@@ -90,7 +90,6 @@ config.nex:biomeFungiForest.generateQuartzOre=Generate Quartz Ore
 config.nex:biomeFungiForest.generateQuartzOre.tooltip=Does Quartz Ore generate in the Fungi Forest biome
 config.nex:biomeFungiForest.quartzOreRarity=Quartz Ore Rarity
 config.nex:biomeFungiForest.quartzOreRarity.tooltip=How rare Quartz Ore is in the Fungi Forest biome
-
 config.nex:biomeTorridWasteland=Torrid Wasteland Biome Settings
 config.nex:biomeTorridWasteland.tooltip=Settings that only affect the Torrid Wasteland biome
 config.nex:biomeTorridWasteland.biomeRarity=Biome Rarity
@@ -131,7 +130,26 @@ config.nex:biomeTorridWasteland.generateLavaPits=Generate Lava Pits
 config.nex:biomeTorridWasteland.generateLavaPits.tooltip=Do Lava Pits generate in the Torrid Wasteland biome
 config.nex:biomeTorridWasteland.lavaPitRarity=Lava Pit Rarity
 config.nex:biomeTorridWasteland.lavaPitRarity.tooltip=How rare Lava Pits are in the Torrid Wasteland biome
-
+config.nex:biomeArcticAbyss=Arctic Abyss Biome Settings
+config.nex:biomeArcticAbyss.tooltip=Settings that only affect the Arctic Abyss biome
+config.nex:biomeArcticAbyss.biomeRarity=Biome Rarity
+config.nex:biomeArcticAbyss.biomeRarity.tooltip=How rare the Arctic Abyss biome is
+config.nex:biomeArcticAbyss.generateGlowstonePass1=Generate Glowstone Pass 1
+config.nex:biomeArcticAbyss.generateGlowstonePass1.tooltip=Does Glowstone generate during the first pass in the Arctic Abyss biome
+config.nex:biomeArcticAbyss.glowstonePass1Rarity=Glowstone Pass 1 Rarity
+config.nex:biomeArcticAbyss.glowstonePass1Rarity.tooltip=How rare Glowstone is during the first pass in the Arctic Abyss biome
+config.nex:biomeArcticAbyss.generateGlowstonePass2=Generate Glowstone Pass 2
+config.nex:biomeArcticAbyss.generateGlowstonePass2.tooltip=Does Glowstone generate during the second pass in the Arctic Abyss biome
+config.nex:biomeArcticAbyss.glowstonePass2Rarity=Glowstone Pass 2 Rarity
+config.nex:biomeArcticAbyss.glowstonePass2Rarity.tooltip=How rare Glowstone is during the second pass in the Arctic Abyss biome
+config.nex:biomeArcticAbyss.generateQuartzOre=Generate Quartz Ore
+config.nex:biomeArcticAbyss.generateQuartzOre.tooltip=Does Quartz Ore generate in the Arctic Abyss biome
+config.nex:biomeArcticAbyss.quartzOreRarity=Quartz Ore Rarity
+config.nex:biomeArcticAbyss.quartzOreRarity.tooltip=How rare Quartz Ore is in the Arctic Abyss biome
+config.nex:biomeArcticAbyss.generateIchorPit=Generate Ichor Pits
+config.nex:biomeArcticAbyss.generateIchorPit.tooltip=Do Ichor Pits generate in the Arctic Abyss biome
+config.nex:biomeArcticAbyss.ichorPitRarity=Ichor Pit Rarity
+config.nex:biomeArcticAbyss.ichorPitRarity.tooltip=How rare Ichor Pits are in the Arctic Abyss biome
 config.nex:miscellaneous=Miscellaneous Settings
 config.nex:miscellaneous.generateSoulSand=Generate Soul Sand
 config.nex:miscellaneous.generateSoulSand.tooltip=Does Soul Sand generate outside of the Ruthless Sands biome
@@ -140,6 +158,9 @@ config.nex:miscellaneous.generateGravel.tooltip=Does Gravel generate in the Neth
 
 # Creative Tabs
 itemGroup.nex=NetherEx
+
+#Fluids
+fluid.ichor=Ichor
 
 # Items
 item.nex:itemNetherBrick.fiery.name=Fiery Nether Brick
@@ -242,3 +263,4 @@ tile.nex:plantThornstalk.name=Thornstalk
 tile.nex:blockHyphae.name=Hyphae
 tile.nex:plantMushroomBrown.name=Brown Elder Mushroom
 tile.nex:plantMushroomRed.name=Red Elder Mushroom
+tile.nex:fluidIchor.name=Ichor

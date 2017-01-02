@@ -61,7 +61,7 @@ public class NetherStructures
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
             BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
-            return generateStructure(world, rand, pos, TOWER, Blocks.STRUCTURE_VOID, 0.50F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
+            return generateStructure(world, rand, pos, TOWER, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
 
@@ -83,7 +83,7 @@ public class NetherStructures
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
             BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
-            return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.50F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
+            return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
 
@@ -105,7 +105,7 @@ public class NetherStructures
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
             BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
-            return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.50F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
+            return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
 
@@ -178,7 +178,7 @@ public class NetherStructures
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
             BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
-            return generateStructure(world, rand, pos, THRONE, Blocks.AIR, 0.50F, false, false, null);
+            return generateStructure(world, rand, pos, THRONE, Blocks.AIR, 0.75F, false, false, null);
         }
     }
 
