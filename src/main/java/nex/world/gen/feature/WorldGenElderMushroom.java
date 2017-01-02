@@ -117,6 +117,7 @@ public class WorldGenElderMushroom extends WorldGenerator
         if(MathHelper.abs(airAmount) / MathHelper.abs(blockAmount) >= 0.75F)
         {
             template.addBlocksToWorld(world, pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2)), placementSettings.copy());
+            return true;
         }
 
         return false;
