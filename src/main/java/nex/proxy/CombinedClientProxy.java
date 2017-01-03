@@ -17,8 +17,15 @@
 
 package nex.proxy;
 
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.client.render.entity.RenderMogus;
+import nex.client.render.entity.RenderSalamander;
+import nex.client.render.entity.RenderWight;
+import nex.entity.monster.EntityWight;
+import nex.entity.neutral.EntityMogus;
+import nex.entity.neutral.EntitySalamander;
 
 @SideOnly(Side.CLIENT)
 public class CombinedClientProxy implements IProxy
@@ -26,7 +33,9 @@ public class CombinedClientProxy implements IProxy
     @Override
     public void preInit()
     {
-
+        RenderingRegistry.registerEntityRenderingHandler(EntityMogus.class, RenderMogus::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySalamander.class, RenderSalamander::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityWight.class, RenderWight::new);
     }
 
     @Override

@@ -159,6 +159,11 @@ config.nex:miscellaneous.generateGravel.tooltip=Does Gravel generate in the Neth
 # Creative Tabs
 itemGroup.nex=NetherEx
 
+#Entities (Mobs)
+entity.nex:mogus.name=Mogus
+entity.nex:salamander.name=Salamander
+entity.nex:wight.name=Wight
+
 #Fluids
 fluid.ichor=Ichor
 
@@ -173,6 +178,8 @@ item.nex:itemBoneMealWithered.name=Withered Bone Meal
 item.nex:foodMeatGhastRaw.name=Raw Ghast Meat
 item.nex:foodMeatGhastCooked.name=Cooked Ghast Meat
 item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream
+item.nex:itemHideSalamander.orange.name=Orange Salamander Hide
+item.nex:itemHideSalamander.black.name=Black Salamander Hide
 
 # Tiles (Blocks)
 tile.nex:slabVanilla.netherBrickRed.name=Red Nether Brick Slab

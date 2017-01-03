@@ -17,10 +17,7 @@
 
 package nex.world.biome;
 
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -57,7 +54,9 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 25, 4, 4));
     }
+
 
     @Override
     public void decorate(World world, Random rand, BlockPos pos)

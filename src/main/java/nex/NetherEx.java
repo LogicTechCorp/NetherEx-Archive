@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.IMCHandler;
 import nex.init.NetherExBiomes;
+import nex.init.NetherExEntities;
 import nex.init.NetherExRecipes;
 import nex.init.NetherExStructures;
 import nex.proxy.IProxy;
@@ -59,6 +60,7 @@ public class NetherEx
     {
         LOGGER.info("PreInitialization started.");
 
+        NetherExEntities.init();
         NetherExBiomes.init();
         NetherExStructures.init();
         proxy.preInit();

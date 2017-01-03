@@ -39,6 +39,7 @@ import nex.block.BlockBasalt;
 import nex.block.BlockMushroom;
 import nex.block.BlockNetherrack;
 import nex.block.BlockVanilla;
+import nex.item.ItemSalamanderHide;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -127,6 +128,7 @@ public class NetherExModels
             registerModel(SLAB_NETHER_BRICK_DOUBLE, type.ordinal(), SLAB_NETHER_BRICK_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(WALL_NETHER_BRICK, type.ordinal(), String.format("nex:wall_nether_brick_%s", type.getName()), "inventory");
             registerModel(FENCE_NETHER_BRICK, type.ordinal(), String.format("nex:fence_nether_brick_%s", type.getName()), "inventory");
+            registerModel(ITEM_NETHER_BRICK, type.ordinal(), ITEM_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         registerModel(STAIRS_NETHER_BRICK_FIERY, "normal");
@@ -149,16 +151,16 @@ public class NetherExModels
             registerModel(PLANT_MUSHROOM_RED, type.ordinal(), PLANT_MUSHROOM_RED.getRegistryName().toString(), String.format("variant=%s", type.getName()));
         }
 
-        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
-        {
-            registerModel(ITEM_NETHER_BRICK, type.ordinal(), ITEM_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
-        }
-
         registerModel(ITEM_BONE_WITHERED, "normal");
         registerModel(ITEM_BONE_MEAL_WITHERED, "normal");
         registerModel(FOOD_MEAT_GHAST_RAW, "normal");
         registerModel(FOOD_MEAT_GHAST_COOKED, "normal");
         registerModel(FOOD_MAGMA_CREAM_CONGEALED, "normal");
+
+        for(ItemSalamanderHide.EnumType type : ItemSalamanderHide.EnumType.values())
+        {
+            registerModel(ITEM_HIDE_SALAMANDER, type.ordinal(), ITEM_HIDE_SALAMANDER.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
 
         LOGGER.info("Model registration completed.");
     }
