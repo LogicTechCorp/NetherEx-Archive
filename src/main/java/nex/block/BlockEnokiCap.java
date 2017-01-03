@@ -36,7 +36,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.init.NetherExBlocks;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
@@ -164,7 +163,14 @@ public class BlockEnokiCap extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return null;
+        if(state.getValue(AGE) < 5)
+        {
+            return Item.getItemFromBlock(this);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     @Override
@@ -195,7 +201,7 @@ public class BlockEnokiCap extends BlockNetherEx
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
     {
         super.harvestBlock(world, player, pos, state, te, stack);
         spawnAsEntity(world, pos, new ItemStack(Item.getItemFromBlock(this)));

@@ -165,6 +165,8 @@ public class NetherExModels
             registerModel(ITEM_HIDE_SALAMANDER, type.ordinal(), ITEM_HIDE_SALAMANDER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        registerModel(FOOD_MUSHROOM_ENOKI, "normal");
+
         LOGGER.info("Model registration completed.");
     }
 

@@ -25,6 +25,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -34,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.init.NetherExBlocks;
+import nex.init.NetherExItems;
 
 import java.util.List;
 import java.util.Random;
@@ -160,6 +162,19 @@ public class BlockEnokiStem extends BlockNetherEx
         if(!canSurviveAt(world, pos))
         {
             world.scheduleUpdate(pos, this, 1);
+        }
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        if(rand.nextInt(4) == 3)
+        {
+            return NetherExItems.FOOD_MUSHROOM_ENOKI;
+        }
+        else
+        {
+            return null;
         }
     }
 

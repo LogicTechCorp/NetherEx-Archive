@@ -56,6 +56,9 @@ public class NetherExItems
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_hide_salamander")
     public static final ItemSalamanderHide ITEM_HIDE_SALAMANDER = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_mushroom_enoki")
+    public static final ItemNetherExFood FOOD_MUSHROOM_ENOKI = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");
 
     @Mod.EventBusSubscriber
@@ -73,7 +76,8 @@ public class NetherExItems
                     new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemSalamanderHide()
+                    new ItemSalamanderHide(),
+                    new ItemNetherExFood("food_mushroom_enoki", 3, 0.7F, false)
             );
 
             LOGGER.info("Item registration completed.");

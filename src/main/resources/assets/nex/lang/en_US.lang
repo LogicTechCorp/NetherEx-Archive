@@ -184,6 +184,7 @@ item.nex:foodMeatGhastCooked.name=Cooked Ghast Meat
 item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream
 item.nex:itemHideSalamander.orange.name=Orange Salamander Hide
 item.nex:itemHideSalamander.black.name=Black Salamander Hide
+item.nex:foodMushroomEnoki.name=Enoki Mushroom
 
 # Tiles (Blocks)
 tile.nex:slabVanilla.netherBrickRed.name=Red Nether Brick Slab
