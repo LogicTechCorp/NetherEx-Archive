@@ -161,6 +161,12 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_red")
     public static final BlockMushroom PLANT_MUSHROOM_RED = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_enoki_stem")
+    public static final BlockEnokiStem PLANT_ENOKI_STEM = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_enoki_cap")
+    public static final BlockEnokiCap PLANT_ENOKI_CAP = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fluid_ichor")
     public static final BlockIchor FLUID_ICHOR = null;
 
@@ -227,6 +233,8 @@ public class NetherExBlocks
                     new BlockHyphae(),
                     new BlockMushroom("plant_mushroom_brown"),
                     new BlockMushroom("plant_mushroom_red"),
+                    new BlockEnokiStem(),
+                    new BlockEnokiCap(),
                     new BlockIchor()
             );
 
@@ -281,6 +289,8 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_HYPHAE),
                     new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),
                     new ItemBlockMushroom(PLANT_MUSHROOM_RED),
+                    new ItemBlockNetherEx(PLANT_ENOKI_STEM),
+                    new ItemBlockNetherEx(PLANT_ENOKI_CAP),
                     new ItemBlockNetherEx(FLUID_ICHOR)
             );
 

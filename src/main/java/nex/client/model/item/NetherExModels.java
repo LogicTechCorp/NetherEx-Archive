@@ -151,6 +151,9 @@ public class NetherExModels
             registerModel(PLANT_MUSHROOM_RED, type.ordinal(), PLANT_MUSHROOM_RED.getRegistryName().toString(), String.format("variant=%s", type.getName()));
         }
 
+        registerModel(PLANT_ENOKI_STEM, "normal");
+        registerModel(PLANT_ENOKI_CAP, "normal");
+
         registerModel(ITEM_BONE_WITHERED, "normal");
         registerModel(ITEM_BONE_MEAL_WITHERED, "normal");
         registerModel(FOOD_MEAT_GHAST_RAW, "normal");

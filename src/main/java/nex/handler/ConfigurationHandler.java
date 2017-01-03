@@ -102,12 +102,14 @@ public class ConfigurationHandler
         public static boolean generateGlowstonePass2 = true;
         public static boolean generateQuartzOre = true;
         public static boolean generateElderMushrooms = true;
+        public static boolean generateEnokiMushrooms = true;
 
         public static int biomeRarity = 5;
         public static int glowstonePass1Rarity = 10;
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
         public static int elderMushroomRarity = 16;
+        public static int enokiMushroomRarity = 4;
     }
 
     public static class BiomeTorridWasteland

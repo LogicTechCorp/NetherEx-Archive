@@ -27,6 +27,7 @@ import nex.entity.neutral.EntityMogus;
 import nex.handler.ConfigurationHandler;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.WorldGenElderMushroom;
+import nex.world.gen.feature.WorldGenEnokiMushroom;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
 
@@ -39,6 +40,7 @@ public class BiomeFungiForest extends BiomeNetherEx
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartz = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(2), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2));
     private WorldGenerator elderMushroom = new WorldGenElderMushroom();
+    private WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
 
     public BiomeFungiForest()
     {
@@ -80,6 +82,7 @@ public class BiomeFungiForest extends BiomeNetherEx
                 quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
+        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
         if(ConfigurationHandler.BiomeFungiForest.generateElderMushrooms)
         {
@@ -89,7 +92,14 @@ public class BiomeFungiForest extends BiomeNetherEx
             }
         }
 
-        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
+        if(ConfigurationHandler.BiomeFungiForest.generateEnokiMushrooms)
+        {
+            for(int i = 0; i < ConfigurationHandler.BiomeFungiForest.enokiMushroomRarity * 16; i++)
+            {
+                enokiMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, pos));
     }
 }
