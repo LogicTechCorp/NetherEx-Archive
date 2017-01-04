@@ -187,6 +187,8 @@ item.nex:itemHideSalamander.black.name=Black Salamander Hide
 item.nex:foodMushroomEnoki.name=Enoki Mushroom
 
 # Tiles (Blocks)
+tile.nex:blockObsidianCrying.name=Crying Obsidian
+tile.nex:blockPortalNether.name=Nether Portal
 tile.nex:slabVanilla.netherBrickRed.name=Red Nether Brick Slab
 tile.nex:slabVanillaDouble.netherBrickRed.name=Red Nether Brick Slabs
 tile.nex:stairsVanilla.netherBrickRed.name=Red Nether Brick Stairs

@@ -45,6 +45,8 @@ public class NetherExRecipes
 
         removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE));
 
+        addSurroundedRecipe(new ItemStack(BLOCK_OBSIDIAN_CRYING, 1, 0), new ItemStack(Blocks.OBSIDIAN, 1, 0), new ItemStack(Items.DYE, 1, 4));
+
         addSlabRecipe(new ItemStack(SLAB_VANILLA, 6, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
         addStairRecipe(new ItemStack(STAIRS_RED_NETHER_BRICK, 8, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 3, 0));
         addWallRecipe(new ItemStack(WALL_VANILLA, 6, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0));
@@ -112,6 +114,11 @@ public class NetherExRecipes
     {
         addShaped(result, "##", "##", '#', input);
         addShaped(input, "##", "##", '#', result);
+    }
+
+    private static void addSurroundedRecipe(ItemStack result, ItemStack core, ItemStack surrounding)
+    {
+        addShaped(result, "###", "#X#", "###", '#', surrounding, 'X', core);
     }
 
     private static void addSlabRecipe(ItemStack result, ItemStack input)

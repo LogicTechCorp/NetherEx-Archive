@@ -37,9 +37,9 @@ public class EntitySalamander extends EntityMob
 {
     private static final DataParameter<Integer> SALAMANDER_TYPE = EntityDataManager.createKey(EntitySalamander.class, DataSerializers.VARINT);
 
-    public EntitySalamander(World worldIn)
+    public EntitySalamander(World world)
     {
-        super(worldIn);
+        super(world);
 
         setSize(0.95F, 0.45F);
         stepHeight = 0.5F;

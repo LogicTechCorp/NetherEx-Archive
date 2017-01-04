@@ -35,9 +35,9 @@ public class EntityMogus extends EntityMob
 {
     private static final DataParameter<Integer> MOGUS_TYPE = EntityDataManager.createKey(EntityMogus.class, DataSerializers.VARINT);
 
-    public EntityMogus(World worldIn)
+    public EntityMogus(World world)
     {
-        super(worldIn);
+        super(world);
 
         setSize(0.35F, 0.45F);
         stepHeight = 0.5F;
