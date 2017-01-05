@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "nex:items/tool_shovel_bone"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "withered": 1
+            },
+            "model": "nex:item/tool_shovel_bone_withered"
+        }
+    ]
+}

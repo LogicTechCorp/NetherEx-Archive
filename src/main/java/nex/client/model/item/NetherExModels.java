@@ -28,7 +28,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
-import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.IFluidBlock;
@@ -36,7 +35,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
-import nex.block.*;
+import nex.block.BlockBasalt;
+import nex.block.BlockMushroom;
+import nex.block.BlockNetherrack;
+import nex.block.BlockVanilla;
 import nex.item.ItemSalamanderHide;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,15 +58,6 @@ public class NetherExModels
         LOGGER.info("Model registration started.");
 
         registerModel(FLUID_ICHOR);
-
-        ModelLoader.setCustomStateMapper(BLOCK_OBSIDIAN_CRYING, new StateMap.Builder().ignore(BlockCryingObsidian.AXIS).build());
-
-        registerModel(BLOCK_OBSIDIAN_CRYING, "normal");
-
-        for(EnumFacing.Axis axis : EnumFacing.Axis.values())
-        {
-            registerModel(BLOCK_PORTAL_NETHER, axis.ordinal(), BLOCK_PORTAL_NETHER.getRegistryName().toString(), String.format("axis=%s", axis.getName()));
-        }
 
         ModelLoader.setCustomStateMapper(SLAB_VANILLA_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
         ModelLoader.setCustomStateMapper(WALL_VANILLA, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
@@ -173,6 +166,12 @@ public class NetherExModels
         }
 
         registerModel(FOOD_MUSHROOM_ENOKI, "normal");
+
+        registerModel(TOOL_BONE_SWORD, "normal");
+        registerModel(TOOL_BONE_PICKAXE, "normal");
+        registerModel(TOOL_BONE_SHOVEL, "normal");
+        registerModel(TOOL_BONE_AXE, "normal");
+        registerModel(TOOL_BONE_HOE, "normal");
 
         LOGGER.info("Model registration completed.");
     }

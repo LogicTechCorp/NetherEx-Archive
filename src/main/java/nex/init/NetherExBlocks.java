@@ -35,12 +35,6 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBlocks
 {
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_obsidian_crying")
-    public static final BlockCryingObsidian BLOCK_OBSIDIAN_CRYING = null;
-
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_portal_nether")
-    public static final BlockNetherPortal BLOCK_PORTAL_NETHER = null;
-
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_vanilla")
     public static final BlockVanillaSlab SLAB_VANILLA = null;
 
@@ -197,8 +191,6 @@ public class NetherExBlocks
             LOGGER.info("Block registration started.");
 
             event.getRegistry().registerAll(
-                    new BlockCryingObsidian(),
-                    new BlockNetherPortal(),
                     new BlockVanillaSlab(false),
                     new BlockVanillaSlab(true),
                     new BlockNetherExStairs("vanilla_nether_brick_red", Blocks.RED_NETHER_BRICK.getDefaultState()),
@@ -255,8 +247,6 @@ public class NetherExBlocks
             LOGGER.info("ItemBlock registration started.");
 
             event.getRegistry().registerAll(
-                    new ItemBlockNetherEx(BLOCK_OBSIDIAN_CRYING),
-                    new ItemBlockNetherEx(BLOCK_PORTAL_NETHER),
                     new ItemBlockVanillaSlab(false),
                     new ItemBlockVanillaSlab(true),
                     new ItemBlockNetherEx(STAIRS_RED_NETHER_BRICK),

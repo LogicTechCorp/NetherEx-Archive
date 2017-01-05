@@ -23,9 +23,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import nex.block.BlockBasalt;
 import nex.block.BlockNetherrack;
+import nex.util.NBTUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,8 +46,6 @@ public class NetherExRecipes
         LOGGER.info("Recipe registration started.");
 
         removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE));
-
-        addSurroundedRecipe(new ItemStack(BLOCK_OBSIDIAN_CRYING, 1, 0), new ItemStack(Blocks.OBSIDIAN, 1, 0), new ItemStack(Items.DYE, 1, 4));
 
         addSlabRecipe(new ItemStack(SLAB_VANILLA, 6, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
         addStairRecipe(new ItemStack(STAIRS_RED_NETHER_BRICK, 8, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 3, 0));
@@ -97,6 +97,32 @@ public class NetherExRecipes
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(Items.MAGMA_CREAM, 1, 0), 0.5F);
 
+        ItemStack boneSword = new ItemStack(TOOL_BONE_SWORD, 1, 0);
+        ItemStack bonePickaxe = new ItemStack(TOOL_BONE_SWORD, 1, 0);
+        ItemStack boneShovel = new ItemStack(TOOL_BONE_SWORD, 1, 0);
+        ItemStack boneAxe = new ItemStack(TOOL_BONE_SWORD, 1, 0);
+        ItemStack boneHoe = new ItemStack(TOOL_BONE_SWORD, 1, 0);
+
+        addSwordRecipe(boneSword, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addPickaxeRecipe(bonePickaxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addShovelRecipe(boneShovel, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addAxeRecipe(boneHoe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addHoeRecipe(boneAxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+
+        NBTTagCompound compound = new NBTTagCompound();
+        compound.setBoolean("Withered", true);
+        NBTUtil.setTag(boneSword, compound);
+        NBTUtil.setTag(bonePickaxe, compound);
+        NBTUtil.setTag(boneShovel, compound);
+        NBTUtil.setTag(boneAxe, compound);
+        NBTUtil.setTag(boneHoe, compound);
+
+        addSwordRecipe(boneSword, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addPickaxeRecipe(bonePickaxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addShovelRecipe(boneShovel, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addAxeRecipe(boneHoe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addHoeRecipe(boneAxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+
         LOGGER.info("Recipe registration completed.");
     }
 
@@ -116,7 +142,7 @@ public class NetherExRecipes
         addShaped(input, "##", "##", '#', result);
     }
 
-    private static void addSurroundedRecipe(ItemStack result, ItemStack core, ItemStack surrounding)
+    private static void addSurroundedRecipe(ItemStack result, ItemStack surrounding, ItemStack core)
     {
         addShaped(result, "###", "#X#", "###", '#', surrounding, 'X', core);
     }
@@ -143,6 +169,31 @@ public class NetherExRecipes
     {
         addShaped(result, "###", "###", '#', input);
         addShaped(input, "#", '#', result);
+    }
+
+    private static void addSwordRecipe(ItemStack result, ItemStack core, ItemStack handle)
+    {
+        addShaped(result, " # ", " # ", " X ", '#', core, 'X', handle);
+    }
+
+    private static void addPickaxeRecipe(ItemStack result, ItemStack core, ItemStack handle)
+    {
+        addShaped(result, "###", " X ", " X ", '#', core, 'X', handle);
+    }
+
+    private static void addShovelRecipe(ItemStack result, ItemStack core, ItemStack handle)
+    {
+        addShaped(result, " # ", " X ", " X ", '#', core, 'X', handle);
+    }
+
+    private static void addAxeRecipe(ItemStack result, ItemStack core, ItemStack handle)
+    {
+        addShaped(result, "##", "#X", " X", '#', core, 'X', handle);
+    }
+
+    private static void addHoeRecipe(ItemStack result, ItemStack core, ItemStack handle)
+    {
+        addShaped(result, "##", " X", " X", '#', core, 'X', handle);
     }
 
     private static void removeRecipe(ItemStack output)

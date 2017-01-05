@@ -15,23 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.init;
+package nex.item;
 
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialLiquid;
-import net.minecraft.item.Item;
-import net.minecraftforge.common.util.EnumHelper;
-import nex.NetherEx;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import nex.init.NetherExMaterials;
+import nex.util.NBTUtil;
 
-public class NetherExMaterials
+public class ItemBonePickaxe extends ItemNetherExPickaxe
 {
-    public static final Material ICHOR = new MaterialLiquid(MapColor.PURPLE);
-
-    public static Item.ToolMaterial BONE = EnumHelper.addToolMaterial(NetherEx.MOD_ID + ":bone", 2, 250, 12.0F, 1.2F, 22);
-
-    public static void init()
+    public ItemBonePickaxe()
     {
+        super("tool_pickaxe_bone", NetherExMaterials.BONE);
 
+        addPropertyOverride(new ResourceLocation("withered"), (stack, worldIn, entityIn) -> isWithered(stack) ? 1.0F : 0.0F);
+    }
+
+    private static boolean isWithered(ItemStack stack)
+    {
+        NBTUtil.setTag(stack);
+        return stack.getTagCompound().hasKey("Withered");
     }
 }

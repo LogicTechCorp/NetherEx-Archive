@@ -185,6 +185,11 @@ item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream
 item.nex:itemHideSalamander.orange.name=Orange Salamander Hide
 item.nex:itemHideSalamander.black.name=Black Salamander Hide
 item.nex:foodMushroomEnoki.name=Enoki Mushroom
+item.nex:toolSwordBone.name=Golden Bone Sword
+item.nex:toolPickaxeBone.name=Golden Bone Pickaxe
+item.nex:toolShovelBone.name=Golden Bone Shovel
+item.nex:toolAxeBone.name=Golden Bone Axe
+item.nex:toolHoeBone.name=Golden Bone Hoe
 
 # Tiles (Blocks)
 tile.nex:blockObsidianCrying.name=Crying Obsidian

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "nex:items/tool_pickaxe_bone_withered"
+    }
+}

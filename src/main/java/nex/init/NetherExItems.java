@@ -25,10 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.item.ItemNetherBrick;
-import nex.item.ItemNetherEx;
-import nex.item.ItemNetherExFood;
-import nex.item.ItemSalamanderHide;
+import nex.item.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -59,6 +56,21 @@ public class NetherExItems
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_mushroom_enoki")
     public static final ItemNetherExFood FOOD_MUSHROOM_ENOKI = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_sword")
+    public static final ItemBoneSword TOOL_BONE_SWORD = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_pickaxe")
+    public static final ItemBonePickaxe TOOL_BONE_PICKAXE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_shovel")
+    public static final ItemBoneShovel TOOL_BONE_SHOVEL = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_axe")
+    public static final ItemBoneAxe TOOL_BONE_AXE = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_hoe")
+    public static final ItemBoneHoe TOOL_BONE_HOE = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");
 
     @Mod.EventBusSubscriber
@@ -77,7 +89,12 @@ public class NetherExItems
                     new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemSalamanderHide(),
-                    new ItemNetherExFood("food_mushroom_enoki", 3, 0.7F, false)
+                    new ItemNetherExFood("food_mushroom_enoki", 3, 0.7F, false),
+                    new ItemBoneSword(),
+                    new ItemBonePickaxe(),
+                    new ItemBoneShovel(),
+                    new ItemBoneAxe(),
+                    new ItemBoneHoe()
             );
 
             LOGGER.info("Item registration completed.");
