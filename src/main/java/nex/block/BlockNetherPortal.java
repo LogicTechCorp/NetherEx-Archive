@@ -58,6 +58,8 @@ public class BlockNetherPortal extends BlockNetherEx
         super("block_portal_nether", Material.PORTAL);
 
         setSoundType(SoundType.GLASS);
+        setLightLevel(0.75F);
+        setHardness(-1);
     }
 
     @SideOnly(Side.CLIENT)
@@ -154,11 +156,18 @@ public class BlockNetherPortal extends BlockNetherEx
             {
                 entity.lastPortalPos = pos;
                 entity.lastPortalVec = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
-                entity.teleportDirection = entity.getHorizontalFacing();
+                entity.teleportDirection = getMetaFromState(state) == 1 ? EnumFacing.SOUTH : EnumFacing.NORTH;
 
-                toWorldServer.worldTeleporter = new NetherExTeleporter(toWorldServer);
-                entity.changeDimension(toDimensionId);
-                toWorldServer.worldTeleporter = new Teleporter(toWorldServer);
+                if(entity.portalCounter == 100)
+                {
+                    toWorldServer.worldTeleporter = new NetherExTeleporter(toWorldServer);
+                    entity.changeDimension(toDimensionId);
+                    toWorldServer.worldTeleporter = new Teleporter(toWorldServer);
+                }
+                else if(entity.portalCounter == 0)
+                {
+                    entity.portalCounter = 400;
+                }
             }
         }
     }
@@ -194,7 +203,7 @@ public class BlockNetherPortal extends BlockNetherEx
         return new BlockStateContainer(this, AXIS);
     }
 
-    public boolean trySpawnPortal(World world, BlockPos pos, Entity entity, EnumFacing facing)
+    public boolean trySpawnPortal(World world, BlockPos pos, Entity entity, EnumFacing facing, boolean forceSpawn)
     {
         BlockPos offset1 = pos.offset(facing);
         BlockPos offset2 = pos.offset(facing, 2);
@@ -205,7 +214,7 @@ public class BlockNetherPortal extends BlockNetherEx
             canSpawnPortal = true;
         }
 
-        if(canSpawnPortal)
+        if(canSpawnPortal || forceSpawn)
         {
             int meta = 0;
 

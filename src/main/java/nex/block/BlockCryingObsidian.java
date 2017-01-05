@@ -48,7 +48,7 @@ public class BlockCryingObsidian extends BlockNetherEx
         if(!world.isRemote && player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL)
         {
             player.getHeldItem(hand).getItem().onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
-            return NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos, player, facing);
+            return NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos, player, facing, false);
         }
 
         return false;
