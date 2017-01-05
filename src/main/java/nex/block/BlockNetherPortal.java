@@ -25,16 +25,23 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.init.NetherExBlocks;
+import nex.world.NetherExTeleporter;
 
 import java.util.Random;
 
@@ -135,9 +142,24 @@ public class BlockNetherPortal extends BlockNetherEx
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if(!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss())
+        if(!world.isRemote && !entity.isDead && entity.isNonBoss())
         {
-            entity.setPortal(pos);
+            int fromDimensionId = entity.dimension;
+            int toDimensionId = fromDimensionId == -1 ? 0 : -1;
+
+            MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance().getServer();
+            WorldServer toWorldServer = server.worldServerForDimension(toDimensionId);
+
+            if(toDimensionId != -1 && server.getAllowNether() || toDimensionId == -1)
+            {
+                entity.lastPortalPos = pos;
+                entity.lastPortalVec = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
+                entity.teleportDirection = entity.getHorizontalFacing();
+
+                toWorldServer.worldTeleporter = new NetherExTeleporter(toWorldServer);
+                entity.changeDimension(toDimensionId);
+                toWorldServer.worldTeleporter = new Teleporter(toWorldServer);
+            }
         }
     }
 
@@ -170,5 +192,42 @@ public class BlockNetherPortal extends BlockNetherEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, AXIS);
+    }
+
+    public boolean trySpawnPortal(World world, BlockPos pos, Entity entity, EnumFacing facing)
+    {
+        BlockPos offset1 = pos.offset(facing);
+        BlockPos offset2 = pos.offset(facing, 2);
+        boolean canSpawnPortal = false;
+
+        if(world.getBlockState(offset1).getMaterial().isReplaceable() && world.getBlockState(offset2).getMaterial().isReplaceable())
+        {
+            canSpawnPortal = true;
+        }
+
+        if(canSpawnPortal)
+        {
+            int meta = 0;
+
+            if(entity.getHorizontalFacing().getAxis() == EnumFacing.Axis.X && (facing == EnumFacing.DOWN || facing == EnumFacing.UP))
+            {
+                meta = 2;
+            }
+            else if(facing != EnumFacing.DOWN && facing != EnumFacing.UP)
+            {
+                meta = 1;
+            }
+            else if(entity.getHorizontalFacing().getAxis() == EnumFacing.Axis.Z && (facing == EnumFacing.DOWN || facing == EnumFacing.UP))
+            {
+                meta = 0;
+            }
+
+            world.setBlockState(pos, NetherExBlocks.BLOCK_OBSIDIAN_CRYING.getStateFromMeta(meta));
+            world.setBlockState(offset1, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(meta));
+            world.setBlockState(offset2, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(meta));
+            return true;
+        }
+
+        return false;
     }
 }

@@ -45,41 +45,10 @@ public class BlockCryingObsidian extends BlockNetherEx
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL)
+        if(!world.isRemote && player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL)
         {
-            BlockPos offset1 = pos.offset(facing);
-            BlockPos offset2 = pos.offset(facing, 2);
-            boolean canSpawnPortal = false;
-
-            if(world.getBlockState(offset1).getMaterial().isReplaceable() && world.getBlockState(offset2).getMaterial().isReplaceable())
-            {
-                canSpawnPortal = true;
-            }
-
-            if(canSpawnPortal)
-            {
-                if(player.getHorizontalFacing().getAxis() == EnumFacing.Axis.X && (facing == EnumFacing.DOWN || facing == EnumFacing.UP))
-                {
-                    world.setBlockState(pos, NetherExBlocks.BLOCK_OBSIDIAN_CRYING.getStateFromMeta(2));
-                    world.setBlockState(offset1, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(2));
-                    world.setBlockState(offset2, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(2));
-                    return true;
-                }
-                else if(facing != EnumFacing.DOWN && facing != EnumFacing.UP)
-                {
-                    world.setBlockState(pos, NetherExBlocks.BLOCK_OBSIDIAN_CRYING.getStateFromMeta(1));
-                    world.setBlockState(offset1, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(1));
-                    world.setBlockState(offset2, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(1));
-                    return true;
-                }
-                else if(player.getHorizontalFacing().getAxis() == EnumFacing.Axis.Z && (facing == EnumFacing.DOWN || facing == EnumFacing.UP))
-                {
-                    world.setBlockState(pos, NetherExBlocks.BLOCK_OBSIDIAN_CRYING.getStateFromMeta(0));
-                    world.setBlockState(offset1, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(0));
-                    world.setBlockState(offset2, NetherExBlocks.BLOCK_PORTAL_NETHER.getStateFromMeta(0));
-                    return true;
-                }
-            }
+            player.getHeldItem(hand).getItem().onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
+            return NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos, player, facing);
         }
 
         return false;
