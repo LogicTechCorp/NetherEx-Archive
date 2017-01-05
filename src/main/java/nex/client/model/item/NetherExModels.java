@@ -195,43 +195,38 @@ public class NetherExModels
         });
     }
 
-    private static void registerModel(Object object, String location)
+    private static void registerModel(Block block, String location)
     {
-        if(object instanceof Block)
-        {
-            ModelResourceLocation modelLocation = new ModelResourceLocation(((Block) object).getRegistryName(), location);
-            ModelBakery.registerItemVariants((Item.getItemFromBlock((Block) object)), modelLocation);
-            registerModel(object, MeshDefinitionFix.create(stack -> modelLocation));
-        }
-        else if(object instanceof Item)
-        {
-            ModelResourceLocation modelLocation = new ModelResourceLocation(((Item) object).getRegistryName(), location);
-            ModelBakery.registerItemVariants(((Item) object), modelLocation);
-            registerModel(object, MeshDefinitionFix.create(stack -> modelLocation));
-        }
+        ModelResourceLocation modelLocation = new ModelResourceLocation(block.getRegistryName(), location);
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(block), modelLocation);
+        registerModel(block, MeshDefinitionFix.create(stack -> modelLocation));
     }
 
-    private static void registerModel(Object object, int metadata, String location, String variant)
+    private static void registerModel(Item item, String location)
     {
-        if(object instanceof Block)
-        {
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block) object), metadata, new ModelResourceLocation(location, variant));
-        }
-        else if(object instanceof Item)
-        {
-            ModelLoader.setCustomModelResourceLocation((Item) object, metadata, new ModelResourceLocation(location, variant));
-        }
+        ModelResourceLocation modelLocation = new ModelResourceLocation(item.getRegistryName(), location);
+        ModelBakery.registerItemVariants(item, modelLocation);
+        registerModel(item, MeshDefinitionFix.create(stack -> modelLocation));
+
     }
 
-    private static void registerModel(Object object, ItemMeshDefinition definition)
+    private static void registerModel(Block block, int metadata, String location, String variant)
     {
-        if(object instanceof Block)
-        {
-            ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock((Block) object), definition);
-        }
-        else if(object instanceof Item)
-        {
-            ModelLoader.setCustomMeshDefinition((Item) object, definition);
-        }
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), metadata, new ModelResourceLocation(location, variant));
+    }
+
+    private static void registerModel(Item item, int metadata, String location, String variant)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(location, variant));
+    }
+
+    private static void registerModel(Block block, ItemMeshDefinition definition)
+    {
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(block), definition);
+    }
+
+    private static void registerModel(Item item, ItemMeshDefinition definition)
+    {
+        ModelLoader.setCustomMeshDefinition(item, definition);
     }
 }

@@ -22,25 +22,27 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class NBTUtil
 {
-    public static void setTag(ItemStack stack)
+    public static ItemStack setTag(ItemStack stack)
     {
-        if(!stack.hasTagCompound())
+        if(stack.getTagCompound() == null)
         {
             stack.setTagCompound(new NBTTagCompound());
         }
+
+        return stack;
     }
 
-    public static NBTTagCompound setTag(ItemStack stack, NBTTagCompound compound)
+    public static ItemStack setTag(ItemStack stack, NBTTagCompound compound)
     {
-        if(stack.hasTagCompound())
+        if(stack.getTagCompound() == null)
         {
-            compound = stack.getTagCompound();
+            stack.setTagCompound(compound);
         }
         else
         {
-            compound = new NBTTagCompound();
+            stack.getTagCompound().merge(compound);
         }
 
-        return compound;
+        return stack;
     }
 }

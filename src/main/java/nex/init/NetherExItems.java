@@ -56,19 +56,19 @@ public class NetherExItems
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_mushroom_enoki")
     public static final ItemNetherExFood FOOD_MUSHROOM_ENOKI = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_sword")
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_sword_bone")
     public static final ItemBoneSword TOOL_BONE_SWORD = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_pickaxe")
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_pickaxe_bone")
     public static final ItemBonePickaxe TOOL_BONE_PICKAXE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_shovel")
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_shovel_bone")
     public static final ItemBoneShovel TOOL_BONE_SHOVEL = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_axe")
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_axe_bone")
     public static final ItemBoneAxe TOOL_BONE_AXE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_bone_hoe")
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tool_hoe_bone")
     public static final ItemBoneHoe TOOL_BONE_HOE = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");

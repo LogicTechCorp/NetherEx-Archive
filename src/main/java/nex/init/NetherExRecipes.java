@@ -97,31 +97,20 @@ public class NetherExRecipes
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(Items.MAGMA_CREAM, 1, 0), 0.5F);
 
-        ItemStack boneSword = new ItemStack(TOOL_BONE_SWORD, 1, 0);
-        ItemStack bonePickaxe = new ItemStack(TOOL_BONE_SWORD, 1, 0);
-        ItemStack boneShovel = new ItemStack(TOOL_BONE_SWORD, 1, 0);
-        ItemStack boneAxe = new ItemStack(TOOL_BONE_SWORD, 1, 0);
-        ItemStack boneHoe = new ItemStack(TOOL_BONE_SWORD, 1, 0);
-
-        addSwordRecipe(boneSword, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addPickaxeRecipe(bonePickaxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addShovelRecipe(boneShovel, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addAxeRecipe(boneHoe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addHoeRecipe(boneAxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addSwordRecipe(new ItemStack(TOOL_BONE_SWORD, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addPickaxeRecipe(new ItemStack(TOOL_BONE_PICKAXE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_BONE_SHOVEL, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addAxeRecipe(new ItemStack(TOOL_BONE_AXE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addHoeRecipe(new ItemStack(TOOL_BONE_HOE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
 
         NBTTagCompound compound = new NBTTagCompound();
         compound.setBoolean("Withered", true);
-        NBTUtil.setTag(boneSword, compound);
-        NBTUtil.setTag(bonePickaxe, compound);
-        NBTUtil.setTag(boneShovel, compound);
-        NBTUtil.setTag(boneAxe, compound);
-        NBTUtil.setTag(boneHoe, compound);
 
-        addSwordRecipe(boneSword, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addPickaxeRecipe(bonePickaxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addShovelRecipe(boneShovel, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addAxeRecipe(boneHoe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addHoeRecipe(boneAxe, new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addSwordRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_SWORD, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addPickaxeRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_PICKAXE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addShovelRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_SHOVEL, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addAxeRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_AXE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addHoeRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_HOE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
 
         LOGGER.info("Recipe registration completed.");
     }

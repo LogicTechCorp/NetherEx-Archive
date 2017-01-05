@@ -20,7 +20,6 @@ package nex.item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import nex.init.NetherExMaterials;
-import nex.util.NBTUtil;
 
 public class ItemBoneHoe extends ItemNetherExHoe
 {
@@ -33,7 +32,6 @@ public class ItemBoneHoe extends ItemNetherExHoe
 
     private static boolean isWithered(ItemStack stack)
     {
-        NBTUtil.setTag(stack);
-        return stack.getTagCompound().hasKey("Withered");
+        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Withered");
     }
 }
