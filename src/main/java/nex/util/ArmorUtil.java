@@ -38,7 +38,7 @@ public class ArmorUtil
                 return false;
             }
 
-            armorMaterials.add(((ItemArmor)testStack.getItem()).getArmorMaterial());
+            armorMaterials.add(((ItemArmor) testStack.getItem()).getArmorMaterial());
         }
 
         for(ItemArmor.ArmorMaterial testMaterial : armorMaterials)

@@ -17,10 +17,9 @@
 
 package nex.item;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -28,15 +27,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
-import nex.init.NetherExBlocks;
-import nex.init.NetherExMaterials;
 
-@SuppressWarnings("ConstantConditions")
-public class ItemBoneHoe extends ItemNetherExHoe
+public class ItemWitheredBoneMeal extends ItemNetherEx
 {
-    public ItemBoneHoe()
+    public ItemWitheredBoneMeal()
     {
-        super("tool_hoe_bone", NetherExMaterials.TOOL_BONE_WITHERED);
+        super("item_bone_meal_withered");
     }
 
     @Override
@@ -50,26 +46,49 @@ public class ItemBoneHoe extends ItemNetherExHoe
         }
         else
         {
-            int hook = ForgeEventFactory.onHoeUse(stack, player, world, pos);
-
-            if(hook != 0)
+            if(applyBoneMeal(stack, world, pos, player))
             {
-                return hook > 0 ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
-            }
-
-            IBlockState iblockstate = world.getBlockState(pos);
-            Block block = iblockstate.getBlock();
-
-            if(facing != EnumFacing.DOWN && world.isAirBlock(pos.up()))
-            {
-                if(block == Blocks.SOUL_SAND)
+                if(!world.isRemote)
                 {
-                    setBlock(stack, player, world, pos, NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState());
-                    return EnumActionResult.SUCCESS;
+                    world.playEvent(2005, pos, 0);
                 }
-            }
 
+                return EnumActionResult.SUCCESS;
+            }
             return EnumActionResult.PASS;
         }
+    }
+
+    private static boolean applyBoneMeal(ItemStack stack, World world, BlockPos pos, EntityPlayer player)
+    {
+        IBlockState state = world.getBlockState(pos);
+
+        int hook = ForgeEventFactory.onApplyBonemeal(player, world, pos, state, stack);
+
+        if(hook != 0)
+        {
+            return hook > 0;
+        }
+        if(state.getBlock() instanceof IGrowable)
+        {
+            IGrowable growable = (IGrowable) state.getBlock();
+
+            if(growable.canGrow(world, pos, state, world.isRemote))
+            {
+                if(!world.isRemote)
+                {
+                    if(growable.canUseBonemeal(world, world.rand, pos, state))
+                    {
+                        growable.grow(world, world.rand, pos, state);
+                    }
+
+                    stack.shrink(1);
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }

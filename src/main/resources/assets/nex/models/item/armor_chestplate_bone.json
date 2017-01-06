@@ -1,14 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "nex:items/armor_chestplate_bone"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "variant": 1
-            },
-            "model": "nex:item/armor_chestplate_bone_variant"
-        }
-    ]
+        "layer0": "nex:items/armor_chestplate_bone_withered"
+    }
 }

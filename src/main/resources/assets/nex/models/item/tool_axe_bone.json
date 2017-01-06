@@ -1,14 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "nex:items/tool_axe_bone"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "variant": 1
-            },
-            "model": "nex:item/tool_axe_bone_variant"
-        }
-    ]
+        "layer0": "nex:items/tool_axe_bone_withered"
+    }
 }

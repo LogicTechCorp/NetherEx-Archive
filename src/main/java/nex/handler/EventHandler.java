@@ -17,17 +17,23 @@
 
 package nex.handler;
 
+import net.minecraft.block.BlockNetherWart;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
@@ -76,10 +82,38 @@ public class EventHandler
         {
             if(event.getTarget() instanceof EntityPlayer)
             {
-                if(ArmorUtil.isWearingFullArmorSet((EntityPlayer) event.getTarget(), NetherExMaterials.ARMOR_BONE))
+                if(ArmorUtil.isWearingFullArmorSet((EntityPlayer) event.getTarget(), NetherExMaterials.ARMOR_BONE_WITHERED))
                 {
                     ((AbstractSkeleton) event.getEntity()).setAttackTarget(null);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBoneMealUse(BonemealEvent event)
+    {
+        IBlockState state = event.getBlock();
+        EntityPlayer player = event.getEntityPlayer();
+        ItemStack mainStack = player.getHeldItem(EnumHand.MAIN_HAND);
+        ItemStack offStack = player.getHeldItem(EnumHand.OFF_HAND);
+
+        if(mainStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED || offStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED)
+        {
+            if(state.getBlock() == Blocks.NETHER_WART)
+            {
+                int age = state.getValue(BlockNetherWart.AGE);
+
+                if(age < 3)
+                {
+                    state = state.withProperty(BlockNetherWart.AGE, age + 1);
+                    event.getWorld().setBlockState(event.getPos(), state);
+                    event.setResult(Event.Result.ALLOW);
+                }
+            }
+            else
+            {
+                event.setCanceled(true);
             }
         }
     }

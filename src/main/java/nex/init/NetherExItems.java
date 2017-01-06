@@ -40,7 +40,7 @@ public class NetherExItems
     public static final ItemNetherEx ITEM_BONE_WITHERED = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_meal_withered")
-    public static final ItemNetherEx ITEM_BONE_MEAL_WITHERED = null;
+    public static final ItemWitheredBoneMeal ITEM_BONE_MEAL_WITHERED = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_hide_salamander")
     public static final ItemSalamanderHide ITEM_HIDE_SALAMANDER = null;
@@ -109,7 +109,7 @@ public class NetherExItems
             event.getRegistry().registerAll(
                     new ItemNetherBrick(),
                     new ItemNetherEx("item_bone_withered"),
-                    new ItemNetherEx("item_bone_meal_withered"),
+                    new ItemWitheredBoneMeal(),
                     new ItemSalamanderHide(),
                     new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),

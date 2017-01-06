@@ -17,36 +17,13 @@
 
 package nex.item;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import nex.init.NetherExMaterials;
-import nex.util.NBTUtil;
 
 public class ItemBoneAxe extends ItemNetherExAxe
 {
     public ItemBoneAxe()
     {
-        super("tool_axe_bone", NetherExMaterials.TOOL_BONE, 6.0F, -3.0F);
-
-        addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entityIn) -> isVariant(stack) ? 1.0F : 0.0F);
-    }
-
-    @Override
-    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        NBTTagCompound compound = new NBTTagCompound();
-        compound.setBoolean("Variant", true);
-        list.add(new ItemStack(item, 1, 0));
-        list.add(NBTUtil.setTag(new ItemStack(item, 1, 0), compound));
-    }
-
-    private static boolean isVariant(ItemStack stack)
-    {
-        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant");
+        super("tool_axe_bone", NetherExMaterials.TOOL_BONE_WITHERED, 6.0F, -3.0F);
     }
 }
 
