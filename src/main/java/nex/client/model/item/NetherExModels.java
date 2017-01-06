@@ -97,6 +97,8 @@ public class NetherExModels
 
         registerModel(BLOCK_HYPHAE, "normal");
         registerModel(BLOCK_SAND_SOUL_TILLED, "moisture=0");
+        registerModel(BLOCK_GLASS_SOUL, "normal");
+        registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
 
         registerModel(PLANT_THORNSTALK, "normal");
 

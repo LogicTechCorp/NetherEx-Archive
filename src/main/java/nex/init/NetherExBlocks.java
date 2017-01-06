@@ -50,6 +50,12 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_sand_soul_tilled")
     public static final BlockTilledSoulSand BLOCK_SAND_SOUL_TILLED = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_glass_soul")
+    public static final BlockSoulGlass BLOCK_GLASS_SOUL = null;
+
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_glass_pane_soul")
+    public static final BlockSoulGlassPane BLOCK_GLASS_PANE_SOUL = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
     public static final BlockQuartzOre ORE_QUARTZ = null;
 
@@ -199,6 +205,8 @@ public class NetherExBlocks
                     new BlockNetherBrick(),
                     new BlockHyphae(),
                     new BlockTilledSoulSand(),
+                    new BlockSoulGlass(),
+                    new BlockSoulGlassPane(),
                     new BlockQuartzOre(),
                     new BlockThornstalk(),
                     new BlockMushroom("plant_mushroom_brown"),
@@ -256,6 +264,8 @@ public class NetherExBlocks
                     new ItemBlockNetherBrick(),
                     new ItemBlockNetherEx(BLOCK_HYPHAE),
                     new ItemBlockNetherEx(BLOCK_SAND_SOUL_TILLED),
+                    new ItemBlockNetherEx(BLOCK_GLASS_SOUL),
+                    new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
                     new ItemBlockQuartzOre(),
                     new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),
                     new ItemBlockMushroom(PLANT_MUSHROOM_RED),

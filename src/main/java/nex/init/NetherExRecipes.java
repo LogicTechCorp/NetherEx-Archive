@@ -50,32 +50,9 @@ public class NetherExRecipes
 
         removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE));
 
-        addSlabRecipe(new ItemStack(SLAB_VANILLA, 6, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
-        addStairRecipe(new ItemStack(STAIRS_RED_NETHER_BRICK, 8, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 3, 0));
-        addWallRecipe(new ItemStack(WALL_VANILLA, 6, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0));
-        addWallRecipe(new ItemStack(WALL_VANILLA, 6, 1), new ItemStack(Blocks.NETHER_BRICK, 1, 0));
-        addWallRecipe(new ItemStack(WALL_VANILLA, 6, 2), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
-        addFenceRecipe(new ItemStack(FENCE_VANILLA, 4, 0), new ItemStack(FENCE_GATE_QUARTZ, 4, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0), new ItemStack(Blocks.STONE_SLAB, 1, 7));
-        addFenceRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE, 4, 0), new ItemStack(FENCE_GATE_NETHER_BRICK, 4, 0), new ItemStack(Blocks.NETHER_BRICK, 1, 0), new ItemStack(Blocks.STONE_SLAB, 6, 0));
-        addFenceRecipe(new ItemStack(FENCE_VANILLA, 4, 1), new ItemStack(FENCE_GATE_RED_NETHER_BRICK, 4, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0), new ItemStack(SLAB_VANILLA, 1, 0));
-
-        for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
-        {
-            addSlabRecipe(new ItemStack(SLAB_BASALT, 6, type.ordinal()), new ItemStack(BLOCK_BASALT, 1, type.ordinal()));
-            addWallRecipe(new ItemStack(WALL_BASALT, 6, type.ordinal()), new ItemStack(BLOCK_BASALT, 1, type.ordinal()));
-        }
-
         add4x4Recipe(new ItemStack(BLOCK_BASALT, 4, 1), new ItemStack(BLOCK_BASALT, 4, 0));
         add4x4Recipe(new ItemStack(BLOCK_BASALT, 4, 2), new ItemStack(BLOCK_BASALT, 4, 1));
         add4x4Recipe(new ItemStack(BLOCK_BASALT, 4, 3), new ItemStack(BLOCK_BASALT, 4, 2));
-        addStairRecipe(new ItemStack(STAIRS_BASALT_NORMAL, 8, 0), new ItemStack(BLOCK_BASALT, 3, 0));
-        addStairRecipe(new ItemStack(STAIRS_BASALT_SMOOTH, 8, 0), new ItemStack(BLOCK_BASALT, 3, 1));
-        addStairRecipe(new ItemStack(STAIRS_BASALT_BRICK, 8, 0), new ItemStack(BLOCK_BASALT, 3, 2));
-        addStairRecipe(new ItemStack(STAIRS_BASALT_PILLAR, 8, 0), new ItemStack(BLOCK_BASALT, 3, 3));
-        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 0), new ItemStack(FENCE_GATE_BASALT, 4, 0), new ItemStack(BLOCK_BASALT, 1, 0), new ItemStack(SLAB_BASALT, 1, 0));
-        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 1), new ItemStack(FENCE_GATE_BASALT_SMOOTH, 4, 0), new ItemStack(BLOCK_BASALT, 1, 1), new ItemStack(SLAB_BASALT, 1, 1));
-        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 2), new ItemStack(FENCE_GATE_BASALT_BRICK, 4, 0), new ItemStack(BLOCK_BASALT, 1, 2), new ItemStack(SLAB_BASALT, 1, 2));
-        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 3), new ItemStack(FENCE_GATE_BASALT_PILLAR, 4, 0), new ItemStack(BLOCK_BASALT, 1, 3), new ItemStack(SLAB_BASALT, 1, 3));
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
@@ -85,11 +62,39 @@ public class NetherExRecipes
             addWallRecipe(new ItemStack(WALL_NETHER_BRICK, 6, type.ordinal()), new ItemStack(BLOCK_NETHER_BRICK, 1, type.ordinal()));
         }
 
+        addSmelting(new ItemStack(BLOCK_GLASS_SOUL, 1, 0), new ItemStack(Blocks.SOUL_SAND, 1, 0), 0.5F);
+        addPaneRecipe(new ItemStack(BLOCK_GLASS_PANE_SOUL, 16, 0), new ItemStack(BLOCK_GLASS_SOUL, 1, 0));
+
+        addSlabRecipe(new ItemStack(SLAB_VANILLA, 6, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
+
+        for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
+        {
+            addSlabRecipe(new ItemStack(SLAB_BASALT, 6, type.ordinal()), new ItemStack(BLOCK_BASALT, 1, type.ordinal()));
+            addWallRecipe(new ItemStack(WALL_BASALT, 6, type.ordinal()), new ItemStack(BLOCK_BASALT, 1, type.ordinal()));
+        }
+
+        addStairRecipe(new ItemStack(STAIRS_RED_NETHER_BRICK, 8, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 3, 0));
+        addStairRecipe(new ItemStack(STAIRS_BASALT_NORMAL, 8, 0), new ItemStack(BLOCK_BASALT, 3, 0));
+        addStairRecipe(new ItemStack(STAIRS_BASALT_SMOOTH, 8, 0), new ItemStack(BLOCK_BASALT, 3, 1));
+        addStairRecipe(new ItemStack(STAIRS_BASALT_BRICK, 8, 0), new ItemStack(BLOCK_BASALT, 3, 2));
+        addStairRecipe(new ItemStack(STAIRS_BASALT_PILLAR, 8, 0), new ItemStack(BLOCK_BASALT, 3, 3));
         addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_FIERY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 0));
         addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_ICY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 1));
         addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_LIVELY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 2));
         addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_GLOOMY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 3));
         addStairRecipe(new ItemStack(STAIRS_NETHER_BRICK_HOLY, 8, 0), new ItemStack(BLOCK_NETHER_BRICK, 3, 4));
+
+        addWallRecipe(new ItemStack(WALL_VANILLA, 6, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0));
+        addWallRecipe(new ItemStack(WALL_VANILLA, 6, 1), new ItemStack(Blocks.NETHER_BRICK, 1, 0));
+        addWallRecipe(new ItemStack(WALL_VANILLA, 6, 2), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
+
+        addFenceRecipe(new ItemStack(FENCE_VANILLA, 4, 0), new ItemStack(FENCE_GATE_QUARTZ, 4, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0), new ItemStack(Blocks.STONE_SLAB, 1, 7));
+        addFenceRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE, 4, 0), new ItemStack(FENCE_GATE_NETHER_BRICK, 4, 0), new ItemStack(Blocks.NETHER_BRICK, 1, 0), new ItemStack(Blocks.STONE_SLAB, 6, 0));
+        addFenceRecipe(new ItemStack(FENCE_VANILLA, 4, 1), new ItemStack(FENCE_GATE_RED_NETHER_BRICK, 4, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0), new ItemStack(SLAB_VANILLA, 1, 0));
+        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 0), new ItemStack(FENCE_GATE_BASALT, 4, 0), new ItemStack(BLOCK_BASALT, 1, 0), new ItemStack(SLAB_BASALT, 1, 0));
+        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 1), new ItemStack(FENCE_GATE_BASALT_SMOOTH, 4, 0), new ItemStack(BLOCK_BASALT, 1, 1), new ItemStack(SLAB_BASALT, 1, 1));
+        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 2), new ItemStack(FENCE_GATE_BASALT_BRICK, 4, 0), new ItemStack(BLOCK_BASALT, 1, 2), new ItemStack(SLAB_BASALT, 1, 2));
+        addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 3), new ItemStack(FENCE_GATE_BASALT_PILLAR, 4, 0), new ItemStack(BLOCK_BASALT, 1, 3), new ItemStack(SLAB_BASALT, 1, 3));
         addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 0), new ItemStack(FENCE_GATE_NETHER_BRICK_FIERY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 0), new ItemStack(SLAB_NETHER_BRICK, 1, 0));
         addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 1), new ItemStack(FENCE_GATE_NETHER_BRICK_ICY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 1), new ItemStack(SLAB_NETHER_BRICK, 1, 1));
         addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 2), new ItemStack(FENCE_GATE_NETHER_BRICK_LIVELY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 2), new ItemStack(SLAB_NETHER_BRICK, 1, 2));
@@ -137,6 +142,11 @@ public class NetherExRecipes
     {
         addShaped(result, "##", "##", '#', input);
         addShaped(input, "##", "##", '#', result);
+    }
+
+    private static void addPaneRecipe(ItemStack result, ItemStack input)
+    {
+        addShaped(result, "###", "###", '#', input);
     }
 
     private static void addSurroundedRecipe(ItemStack result, ItemStack surrounding, ItemStack core)

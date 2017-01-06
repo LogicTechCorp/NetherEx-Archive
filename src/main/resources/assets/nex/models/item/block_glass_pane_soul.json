@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "nex:blocks/block_glass_soul"
+    }
+}
