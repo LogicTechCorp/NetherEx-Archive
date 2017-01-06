@@ -18,15 +18,20 @@
 package nex.handler;
 
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.init.NetherExItems;
+import nex.init.NetherExMaterials;
+import nex.util.ArmorUtil;
 
 import java.util.ListIterator;
 import java.util.Random;
@@ -61,6 +66,21 @@ public class EventHandler
             }
 
             event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHERED, rand.nextInt(4), 0)));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSetAttackTarget(LivingSetAttackTargetEvent event)
+    {
+        if(event.getEntity() instanceof AbstractSkeleton)
+        {
+            if(event.getTarget() instanceof EntityPlayer)
+            {
+                if(ArmorUtil.isWearingFullArmorSet((EntityPlayer) event.getTarget(), NetherExMaterials.ARMOR_BONE))
+                {
+                    ((AbstractSkeleton) event.getEntity()).setAttackTarget(null);
+                }
+            }
         }
     }
 }

@@ -17,9 +17,14 @@
 
 package nex.item;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import nex.init.NetherExMaterials;
+import nex.util.NBTUtil;
 
 public class ItemBoneSword extends ItemNetherExSword
 {
@@ -28,6 +33,15 @@ public class ItemBoneSword extends ItemNetherExSword
         super("tool_sword_bone", NetherExMaterials.TOOL_BONE);
 
         addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entityIn) -> isVariant(stack) ? 1.0F : 0.0F);
+    }
+
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
+    {
+        NBTTagCompound compound = new NBTTagCompound();
+        compound.setBoolean("Variant", true);
+        list.add(new ItemStack(item, 1, 0));
+        list.add(NBTUtil.setTag(new ItemStack(item, 1, 0), compound));
     }
 
     private static boolean isVariant(ItemStack stack)
