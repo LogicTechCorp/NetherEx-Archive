@@ -156,22 +156,31 @@ public class NetherExModels
 
         registerModel(ITEM_BONE_WITHERED, "normal");
         registerModel(ITEM_BONE_MEAL_WITHERED, "normal");
-        registerModel(FOOD_MEAT_GHAST_RAW, "normal");
-        registerModel(FOOD_MEAT_GHAST_COOKED, "normal");
-        registerModel(FOOD_MAGMA_CREAM_CONGEALED, "normal");
 
         for(ItemSalamanderHide.EnumType type : ItemSalamanderHide.EnumType.values())
         {
             registerModel(ITEM_HIDE_SALAMANDER, type.ordinal(), ITEM_HIDE_SALAMANDER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        registerModel(FOOD_MEAT_GHAST_RAW, "normal");
+        registerModel(FOOD_MEAT_GHAST_COOKED, "normal");
+        registerModel(FOOD_MAGMA_CREAM_CONGEALED, "normal");
         registerModel(FOOD_MUSHROOM_ENOKI, "normal");
 
-        registerModel(TOOL_BONE_SWORD, "normal");
-        registerModel(TOOL_BONE_PICKAXE, "normal");
-        registerModel(TOOL_BONE_SHOVEL, "normal");
-        registerModel(TOOL_BONE_AXE, "normal");
-        registerModel(TOOL_BONE_HOE, "normal");
+        registerModel(TOOL_SWORD_BONE, "normal");
+        registerModel(TOOL_PICKAXE_BONE, "normal");
+        registerModel(TOOL_SHOVEL_BONE, "normal");
+        registerModel(TOOL_AXE_BONE, "normal");
+        registerModel(TOOL_HOE_BONE, "normal");
+
+        registerModel(ARMOR_HELMET_BONE, "normal");
+        registerModel(ARMOR_CHESTPLATE_BONE, "normal");
+        registerModel(ARMOR_LEGGINGS_BONE, "normal");
+        registerModel(ARMOR_BOOTS_BONE, "normal");
+        registerModel(ARMOR_HELMET_HIDE_SALAMANDER, "normal");
+        registerModel(ARMOR_CHESTPLATE_HIDE_SALAMANDER, "normal");
+        registerModel(ARMOR_LEGGINGS_HIDE_SALAMANDER, "normal");
+        registerModel(ARMOR_BOOTS_HIDE_SALAMANDER, "normal");
 
         LOGGER.info("Model registration completed.");
     }

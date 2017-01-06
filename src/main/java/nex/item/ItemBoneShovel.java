@@ -25,13 +25,13 @@ public class ItemBoneShovel extends ItemNetherExShovel
 {
     public ItemBoneShovel()
     {
-        super("tool_shovel_bone", NetherExMaterials.BONE);
+        super("tool_shovel_bone", NetherExMaterials.TOOL_BONE);
 
-        addPropertyOverride(new ResourceLocation("withered"), (stack, worldIn, entityIn) -> isWithered(stack) ? 1.0F : 0.0F);
+        addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entityIn) -> isVariant(stack) ? 1.0F : 0.0F);
     }
 
-    private static boolean isWithered(ItemStack stack)
+    private static boolean isVariant(ItemStack stack)
     {
-        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Withered");
+        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant");
     }
 }

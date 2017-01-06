@@ -6,9 +6,9 @@
     "overrides": [
         {
             "predicate": {
-                "withered": 1
+                "variant": 1
             },
-            "model": "nex:item/tool_axe_bone_withered"
+            "model": "nex:item/tool_axe_bone_variant"
         }
     ]
 }

@@ -17,15 +17,18 @@
 
 package nex.item;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import nex.NetherEx;
 import nex.init.NetherExMaterials;
 
-public class ItemBoneAxe extends ItemNetherExAxe
+public class ItemSalamanderHideArmor extends ItemNetherExArmor
 {
-    public ItemBoneAxe()
+    public ItemSalamanderHideArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
-        super("tool_axe_bone", NetherExMaterials.TOOL_BONE, 6.0F, -3.0F);
+        super("armor_" + name + "_hide_salamander", NetherExMaterials.ARMOR_HIDE_SALAMANDER, renderIndex, equipmentSlot);
 
         addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entityIn) -> isVariant(stack) ? 1.0F : 0.0F);
     }
@@ -34,5 +37,10 @@ public class ItemBoneAxe extends ItemNetherExAxe
     {
         return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant");
     }
-}
 
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
+    {
+        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant") ? String.format(NetherEx.MOD_ID + ":textures/models/armor/hide_salamander_variant_layer_%d.png", getEquipmentSlot() == EntityEquipmentSlot.LEGS ? 2 : 1) : super.getArmorTexture(stack, entity, slot, type);
+    }
+}

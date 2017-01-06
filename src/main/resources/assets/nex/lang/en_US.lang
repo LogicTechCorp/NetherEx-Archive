@@ -179,17 +179,25 @@ item.nex:itemNetherBrick.gloomy.name=Gloomy Nether Brick
 item.nex:itemNetherBrick.holy.name=Holy Nether Brick
 item.nex:itemBoneWithered.name=Withered Bone
 item.nex:itemBoneMealWithered.name=Withered Bone Meal
+item.nex:itemHideSalamander.orange.name=Orange Salamander Hide
+item.nex:itemHideSalamander.black.name=Black Salamander Hide
 item.nex:foodMeatGhastRaw.name=Raw Ghast Meat
 item.nex:foodMeatGhastCooked.name=Cooked Ghast Meat
 item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream
-item.nex:itemHideSalamander.orange.name=Orange Salamander Hide
-item.nex:itemHideSalamander.black.name=Black Salamander Hide
 item.nex:foodMushroomEnoki.name=Enoki Mushroom
 item.nex:toolSwordBone.name=Golden Bone Sword
 item.nex:toolPickaxeBone.name=Golden Bone Pickaxe
 item.nex:toolShovelBone.name=Golden Bone Shovel
 item.nex:toolAxeBone.name=Golden Bone Axe
 item.nex:toolHoeBone.name=Golden Bone Hoe
+item.nex:armorHelmetBone.name=Bone Helmet
+item.nex:armorChestplateBone.name=Bone Chestplate
+item.nex:armorLeggingsBone.name=Bone Leggings
+item.nex:armorBootsBone.name=Bone Boots
+item.nex:armorHelmetHideSalamander.name=Salamander Hide Helmet
+item.nex:armorChestplateHideSalamander.name=Salamander Hide Chestplate
+item.nex:armorLeggingsHideSalamander.name=Salamander Hide Leggings
+item.nex:armorBootsHideSalamander.name=Salamander Hide Boots
 
 # Tiles (Blocks)
 tile.nex:blockObsidianCrying.name=Crying Obsidian

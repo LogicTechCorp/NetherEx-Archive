@@ -20,15 +20,20 @@ package nex.init;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 import nex.NetherEx;
 
 public class NetherExMaterials
 {
-    public static final Material ICHOR = new MaterialLiquid(MapColor.PURPLE);
+    public static final Material FLUID_ICHOR = new MaterialLiquid(MapColor.PURPLE);
 
-    public static Item.ToolMaterial BONE = EnumHelper.addToolMaterial(NetherEx.MOD_ID + ":bone", 2, 250, 12.0F, 1.2F, 22);
+    public static Item.ToolMaterial TOOL_BONE = EnumHelper.addToolMaterial(NetherEx.MOD_ID + ":bone", 2, 250, 12.0F, 1.2F, 22);
+
+    public static ItemArmor.ArmorMaterial ARMOR_BONE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":bone", NetherEx.MOD_ID + ":bone", 8, new int[]{2, 3, 3, 2}, 16, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.5F);
+    public static ItemArmor.ArmorMaterial ARMOR_HIDE_SALAMANDER = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":hide_salamander", NetherEx.MOD_ID + ":hide_salamander", 10, new int[]{2, 5, 4, 2}, 21, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F);
 
     public static void init()
     {

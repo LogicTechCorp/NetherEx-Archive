@@ -24,6 +24,6 @@ public class BlockIchor extends BlockNetherExFluid
 {
     public BlockIchor()
     {
-        super("fluid_ichor", NetherExFluids.ICHOR, NetherExMaterials.ICHOR);
+        super("fluid_ichor", NetherExFluids.ICHOR, NetherExMaterials.FLUID_ICHOR);
     }
 }

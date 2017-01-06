@@ -1,0 +1,14 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "nex:items/armor_boots_hide_salamander"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "variant": 1
+            },
+            "model": "nex:item/armor_boots_hide_salamander_variant"
+        }
+    ]
+}

@@ -1,14 +1,14 @@
 {
-    "parent": "item/handheld",
+    "parent": "item/generated",
     "textures": {
-        "layer0": "nex:items/tool_shovel_bone"
+        "layer0": "nex:items/armor_boots_bone"
     },
     "overrides": [
         {
             "predicate": {
                 "variant": 1
             },
-            "model": "nex:item/tool_shovel_bone_variant"
+            "model": "nex:item/armor_boots_bone_variant"
         }
     ]
 }

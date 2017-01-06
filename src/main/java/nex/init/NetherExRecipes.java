@@ -47,6 +47,8 @@ public class NetherExRecipes
 
         removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE));
 
+        NBTTagCompound compound = new NBTTagCompound();
+
         addSlabRecipe(new ItemStack(SLAB_VANILLA, 6, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 1, 0));
         addStairRecipe(new ItemStack(STAIRS_RED_NETHER_BRICK, 8, 0), new ItemStack(Blocks.RED_NETHER_BRICK, 3, 0));
         addWallRecipe(new ItemStack(WALL_VANILLA, 6, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0));
@@ -94,23 +96,39 @@ public class NetherExRecipes
         addFenceRecipe(new ItemStack(FENCE_NETHER_BRICK, 4, 4), new ItemStack(FENCE_GATE_NETHER_BRICK_HOLY, 4, 0), new ItemStack(BLOCK_NETHER_BRICK, 1, 4), new ItemStack(SLAB_NETHER_BRICK, 1, 4));
 
         addShaped(new ItemStack(ITEM_BONE_MEAL_WITHERED, 3, 0), "#", '#', ITEM_BONE_WITHERED);
+
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(Items.MAGMA_CREAM, 1, 0), 0.5F);
 
-        addSwordRecipe(new ItemStack(TOOL_BONE_SWORD, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addPickaxeRecipe(new ItemStack(TOOL_BONE_PICKAXE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addShovelRecipe(new ItemStack(TOOL_BONE_SHOVEL, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addAxeRecipe(new ItemStack(TOOL_BONE_AXE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
-        addHoeRecipe(new ItemStack(TOOL_BONE_HOE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        compound.setBoolean("Variant", true);
 
-        NBTTagCompound compound = new NBTTagCompound();
-        compound.setBoolean("Withered", true);
+        addSwordRecipe(new ItemStack(TOOL_SWORD_BONE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addPickaxeRecipe(new ItemStack(TOOL_PICKAXE_BONE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addAxeRecipe(new ItemStack(TOOL_AXE_BONE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addHoeRecipe(new ItemStack(TOOL_HOE_BONE, 1, 0), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addSwordRecipe(NBTUtil.setTag(new ItemStack(TOOL_SWORD_BONE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addPickaxeRecipe(NBTUtil.setTag(new ItemStack(TOOL_PICKAXE_BONE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addShovelRecipe(NBTUtil.setTag(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addAxeRecipe(NBTUtil.setTag(new ItemStack(TOOL_AXE_BONE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addHoeRecipe(NBTUtil.setTag(new ItemStack(TOOL_HOE_BONE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
 
-        addSwordRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_SWORD, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addPickaxeRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_PICKAXE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addShovelRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_SHOVEL, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addAxeRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_AXE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addHoeRecipe(NBTUtil.setTag(new ItemStack(TOOL_BONE_HOE, 1, 0), compound), new ItemStack(Items.GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addHelmetRecipe(new ItemStack(ARMOR_HELMET_BONE, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addChestplateRecipe(new ItemStack(ARMOR_CHESTPLATE_BONE, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addLeggingsRecipe(new ItemStack(ARMOR_LEGGINGS_BONE, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addBootsRecipe(new ItemStack(ARMOR_BOOTS_BONE, 1, 0), new ItemStack(Items.BONE, 1, 0));
+        addHelmetRecipe(NBTUtil.setTag(new ItemStack(ARMOR_HELMET_BONE, 1, 0), compound), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addChestplateRecipe(NBTUtil.setTag(new ItemStack(ARMOR_CHESTPLATE_BONE, 1, 0), compound), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addLeggingsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_LEGGINGS_BONE, 1, 0), compound), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addBootsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_BOOTS_BONE, 1, 0), compound), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addHelmetRecipe(new ItemStack(ARMOR_HELMET_HIDE_SALAMANDER, 1, 0), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 0));
+        addChestplateRecipe(new ItemStack(ARMOR_CHESTPLATE_HIDE_SALAMANDER, 1, 0), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 0));
+        addLeggingsRecipe(new ItemStack(ARMOR_LEGGINGS_HIDE_SALAMANDER, 1, 0), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 0));
+        addBootsRecipe(new ItemStack(ARMOR_BOOTS_HIDE_SALAMANDER, 1, 0), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 0));
+        addHelmetRecipe(NBTUtil.setTag(new ItemStack(ARMOR_HELMET_HIDE_SALAMANDER, 1, 0), compound), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
+        addChestplateRecipe(NBTUtil.setTag(new ItemStack(ARMOR_CHESTPLATE_HIDE_SALAMANDER, 1, 0), compound), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
+        addLeggingsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_LEGGINGS_HIDE_SALAMANDER, 1, 0), compound), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
+        addBootsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_BOOTS_HIDE_SALAMANDER, 1, 0), compound), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
 
         LOGGER.info("Recipe registration completed.");
     }
@@ -183,6 +201,26 @@ public class NetherExRecipes
     private static void addHoeRecipe(ItemStack result, ItemStack core, ItemStack handle)
     {
         addShaped(result, "##", " X", " X", '#', core, 'X', handle);
+    }
+
+    private static void addHelmetRecipe(ItemStack result, ItemStack input)
+    {
+        addShaped(result, "###", "# #", '#', input);
+    }
+
+    private static void addChestplateRecipe(ItemStack result, ItemStack input)
+    {
+        addShaped(result, "# #", "###", "###", '#', input);
+    }
+
+    private static void addLeggingsRecipe(ItemStack result, ItemStack input)
+    {
+        addShaped(result, "###", "# #", "# #", '#', input);
+    }
+
+    private static void addBootsRecipe(ItemStack result, ItemStack input)
+    {
+        addShaped(result, "# #", "# #", '#', input);
     }
 
     private static void removeRecipe(ItemStack output)

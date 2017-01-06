@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "nex:items/tool_hoe_bone_withered"
+        "layer0": "nex:items/tool_axe_bone_variant"
     }
 }

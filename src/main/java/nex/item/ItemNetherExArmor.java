@@ -17,22 +17,19 @@
 
 package nex.item;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import nex.init.NetherExMaterials;
+import com.google.common.base.CaseFormat;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemArmor;
+import nex.NetherEx;
 
-public class ItemBoneAxe extends ItemNetherExAxe
+public class ItemNetherExArmor extends ItemArmor
 {
-    public ItemBoneAxe()
+    public ItemNetherExArmor(String name, ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
-        super("tool_axe_bone", NetherExMaterials.TOOL_BONE, 6.0F, -3.0F);
+        super(material, renderIndex, equipmentSlot);
 
-        addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entityIn) -> isVariant(stack) ? 1.0F : 0.0F);
-    }
-
-    private static boolean isVariant(ItemStack stack)
-    {
-        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant");
+        setCreativeTab(NetherEx.CREATIVE_TAB);
+        setRegistryName(NetherEx.MOD_ID + ":" + name);
+        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 }
-
