@@ -23,7 +23,7 @@ public class BlockVanilla
 {
     public enum EnumTypeSlab implements IStringSerializable
     {
-        NETHER_BRICK_RED;
+        BRICK_NETHER_RED;
 
         @Override
         public String getName()
@@ -35,8 +35,8 @@ public class BlockVanilla
     public enum EnumTypeWall implements IStringSerializable
     {
         QUARTZ,
-        NETHER_BRICK,
-        NETHER_BRICK_RED;
+        BRICK_NETHER,
+        BRICK_NETHER_RED;
 
         @Override
         public String getName()
@@ -48,7 +48,7 @@ public class BlockVanilla
     public enum EnumTypeFence implements IStringSerializable
     {
         QUARTZ,
-        NETHER_BRICK_RED;
+        BRICK_NETHER_RED;
 
         @Override
         public String getName()

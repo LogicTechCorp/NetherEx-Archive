@@ -42,7 +42,7 @@ public class BlockNetherBrickSlab extends BlockNetherExSlab
 
     public BlockNetherBrickSlab(boolean isDoubleIn)
     {
-        super("slab_nether_brick", Material.ROCK, isDoubleIn);
+        super("slab_brick_nether", Material.ROCK, isDoubleIn);
 
         setHardness(2.0F);
         setResistance(10F);
@@ -66,7 +66,7 @@ public class BlockNetherBrickSlab extends BlockNetherExSlab
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NetherExBlocks.SLAB_NETHER_BRICK);
+        return Item.getItemFromBlock(NetherExBlocks.SLAB_BRICK_NETHER);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class BlockNetherBrickSlab extends BlockNetherExSlab
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(NetherExBlocks.SLAB_NETHER_BRICK, 1, damageDropped(state));
+        return new ItemStack(NetherExBlocks.SLAB_BRICK_NETHER, 1, damageDropped(state));
     }
 
     @Override

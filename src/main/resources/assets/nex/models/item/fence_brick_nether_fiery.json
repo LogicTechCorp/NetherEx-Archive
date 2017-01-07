@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_inventory",
+    "textures": {
+        "texture": "nex:blocks/block_brick_nether_fiery"
+    }
+}

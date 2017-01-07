@@ -25,11 +25,6 @@
                 "textures": {
                     "all": "nex:blocks/ore_quartz_gloomy"
                 }
-            },
-            "holy": {
-                "textures": {
-                    "all": "nex:blocks/ore_quartz_holy"
-                }
             }
         }
     }

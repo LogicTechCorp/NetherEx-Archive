@@ -8,22 +8,27 @@
         "type": {
             "fiery": {
                 "textures": {
-                    "all": "nex:blocks/block_netherrack_fiery"
+                    "all": "nex:blocks/block_brick_nether_fiery"
                 }
             },
             "icy": {
                 "textures": {
-                    "all": "nex:blocks/block_netherrack_icy"
+                    "all": "nex:blocks/block_brick_nether_icy"
                 }
             },
             "lively": {
                 "textures": {
-                    "all": "nex:blocks/block_netherrack_lively"
+                    "all": "nex:blocks/block_brick_nether_lively"
                 }
             },
             "gloomy": {
                 "textures": {
-                    "all": "nex:blocks/block_netherrack_gloomy"
+                    "all": "nex:blocks/block_brick_nether_gloomy"
+                }
+            },
+            "holy": {
+                "textures": {
+                    "all": "nex:blocks/block_brick_nether_holy"
                 }
             }
         }

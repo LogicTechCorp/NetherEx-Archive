@@ -5,14 +5,24 @@
     },
     "variants": {
         "type": {
-            "quartz": {
+            "fiery": {
                 "textures": {
-                    "texture": "blocks/quartz_block_bottom"
+                    "texture": "nex:blocks/block_brick_nether_fiery"
                 }
             },
-            "brick_nether_red": {
+            "icy": {
                 "textures": {
-                    "texture": "blocks/red_nether_brick"
+                    "texture": "nex:blocks/block_brick_nether_icy"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "texture": "nex:blocks/block_brick_nether_lively"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "texture": "nex:blocks/block_brick_nether_gloomy"
                 }
             }
         },

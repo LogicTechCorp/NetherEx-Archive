@@ -33,7 +33,7 @@ public class BlockNetherBrickWall extends BlockNetherExWall
 
     public BlockNetherBrickWall()
     {
-        super("wall_nether_brick", Material.ROCK);
+        super("wall_brick_nether", Material.ROCK);
 
         ((DualBlockStateContainer) blockState).destroySuper();
         setDefaultState(blockState.getBaseState());

@@ -6,7 +6,7 @@
     },
     "variants": {
         "type": {
-            "nether_brick_red": {
+            "brick_nether_red": {
                 "textures": {
                     "all": "blocks/red_nether_brick"
                 }

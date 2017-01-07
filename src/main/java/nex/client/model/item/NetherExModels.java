@@ -62,17 +62,16 @@ public class NetherExModels
         ModelLoader.setCustomStateMapper(WALL_VANILLA, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         ModelLoader.setCustomStateMapper(WALL_BASALT, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_QUARTZ, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_RED_NETHER_BRICK, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_RED_BRICK_NETHER, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT_SMOOTH, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT_BRICK, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT_PILLAR, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_FIERY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_ICY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_LIVELY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_GLOOMY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_NETHER_BRICK_HOLY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_FIERY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_ICY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_LIVELY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_GLOOMY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
 
         for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
         {
@@ -87,12 +86,12 @@ public class NetherExModels
         {
             registerModel(BLOCK_NETHERRACK, type.ordinal(), BLOCK_NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(ORE_QUARTZ, type.ordinal(), ORE_QUARTZ.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(BLOCK_NETHER_BRICK, type.ordinal(), BLOCK_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(SLAB_NETHER_BRICK, type.ordinal(), SLAB_NETHER_BRICK.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
-            registerModel(SLAB_NETHER_BRICK_DOUBLE, type.ordinal(), SLAB_NETHER_BRICK_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(WALL_NETHER_BRICK, type.ordinal(), String.format("nex:wall_nether_brick_%s", type.getName()), "inventory");
-            registerModel(FENCE_NETHER_BRICK, type.ordinal(), String.format("nex:fence_nether_brick_%s", type.getName()), "inventory");
-            registerModel(ITEM_NETHER_BRICK, type.ordinal(), ITEM_NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(BLOCK_BRICK_NETHER, type.ordinal(), BLOCK_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(SLAB_BRICK_NETHER, type.ordinal(), SLAB_BRICK_NETHER.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
+            registerModel(SLAB_BRICK_NETHER_DOUBLE, type.ordinal(), SLAB_BRICK_NETHER_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(WALL_BRICK_NETHER, type.ordinal(), String.format("nex:wall_brick_nether_%s", type.getName()), "inventory");
+            registerModel(FENCE_BRICK_NETHER, type.ordinal(), String.format("nex:fence_brick_nether_%s", type.getName()), "inventory");
+            registerModel(ITEM_BRICK_NETHER, type.ordinal(), ITEM_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         registerModel(BLOCK_HYPHAE, "normal");
@@ -119,24 +118,23 @@ public class NetherExModels
             registerModel(SLAB_VANILLA_DOUBLE, type.ordinal(), SLAB_VANILLA_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
-        ModelLoader.setCustomStateMapper(SLAB_NETHER_BRICK_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
+        ModelLoader.setCustomStateMapper(SLAB_BRICK_NETHER_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
 
-        registerModel(STAIRS_RED_NETHER_BRICK, "normal");
+        registerModel(STAIRS_RED_BRICK_NETHER, "normal");
         registerModel(STAIRS_BASALT_NORMAL, "normal");
         registerModel(STAIRS_BASALT_SMOOTH, "normal");
         registerModel(STAIRS_BASALT_BRICK, "normal");
         registerModel(STAIRS_BASALT_PILLAR, "normal");
-        registerModel(STAIRS_NETHER_BRICK_FIERY, "normal");
-        registerModel(STAIRS_NETHER_BRICK_ICY, "normal");
-        registerModel(STAIRS_NETHER_BRICK_LIVELY, "normal");
-        registerModel(STAIRS_NETHER_BRICK_GLOOMY, "normal");
-        registerModel(STAIRS_NETHER_BRICK_HOLY, "normal");
+        registerModel(STAIRS_BRICK_NETHER_FIERY, "normal");
+        registerModel(STAIRS_BRICK_NETHER_ICY, "normal");
+        registerModel(STAIRS_BRICK_NETHER_LIVELY, "normal");
+        registerModel(STAIRS_BRICK_NETHER_GLOOMY, "normal");
 
         for(BlockVanilla.EnumTypeWall type : BlockVanilla.EnumTypeWall.values())
         {
             registerModel(WALL_VANILLA, type.ordinal(), String.format("nex:wall_%s", type.getName()), "inventory");
         }
-        ModelLoader.setCustomStateMapper(WALL_NETHER_BRICK, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+        ModelLoader.setCustomStateMapper(WALL_BRICK_NETHER, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
 
         for(BlockVanilla.EnumTypeFence type : BlockVanilla.EnumTypeFence.values())
         {
@@ -144,17 +142,16 @@ public class NetherExModels
         }
 
         registerModel(FENCE_GATE_QUARTZ, "normal");
-        registerModel(FENCE_GATE_NETHER_BRICK, "normal");
-        registerModel(FENCE_GATE_RED_NETHER_BRICK, "normal");
+        registerModel(FENCE_GATE_BRICK_NETHER, "normal");
+        registerModel(FENCE_GATE_RED_BRICK_NETHER, "normal");
         registerModel(FENCE_GATE_BASALT, "normal");
         registerModel(FENCE_GATE_BASALT_SMOOTH, "normal");
         registerModel(FENCE_GATE_BASALT_BRICK, "normal");
         registerModel(FENCE_GATE_BASALT_PILLAR, "normal");
-        registerModel(FENCE_GATE_NETHER_BRICK_FIERY, "normal");
-        registerModel(FENCE_GATE_NETHER_BRICK_ICY, "normal");
-        registerModel(FENCE_GATE_NETHER_BRICK_LIVELY, "normal");
-        registerModel(FENCE_GATE_NETHER_BRICK_GLOOMY, "normal");
-        registerModel(FENCE_GATE_NETHER_BRICK_HOLY, "normal");
+        registerModel(FENCE_GATE_BRICK_NETHER_FIERY, "normal");
+        registerModel(FENCE_GATE_BRICK_NETHER_ICY, "normal");
+        registerModel(FENCE_GATE_BRICK_NETHER_LIVELY, "normal");
+        registerModel(FENCE_GATE_BRICK_NETHER_GLOOMY, "normal");
 
         registerModel(ITEM_BONE_WITHERED, "normal");
         registerModel(ITEM_BONE_MEAL_WITHERED, "normal");

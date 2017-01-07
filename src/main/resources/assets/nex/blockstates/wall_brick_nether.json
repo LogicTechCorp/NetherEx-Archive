@@ -2,19 +2,29 @@
     "forge_marker": 1,
     "variants": {
         "type": {
-            "quartz": {
+            "fiery": {
                 "textures": {
-                    "wall": "blocks/quartz_block_bottom"
+                    "wall": "nex:blocks/block_brick_nether_fiery"
                 }
             },
-            "brick_nether": {
+            "icy": {
                 "textures": {
-                    "wall": "blocks/nether_brick"
+                    "wall": "nex:blocks/block_brick_nether_icy"
                 }
             },
-            "brick_nether_red": {
+            "lively": {
                 "textures": {
-                    "wall": "blocks/red_nether_brick"
+                    "wall": "nex:blocks/block_brick_nether_lively"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "wall": "nex:blocks/block_brick_nether_gloomy"
+                }
+            },
+            "holy": {
+                "textures": {
+                    "wall": "nex:blocks/block_brick_nether_holy"
                 }
             }
         },

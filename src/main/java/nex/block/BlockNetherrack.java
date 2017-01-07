@@ -85,8 +85,7 @@ public class BlockNetherrack extends BlockNetherEx
         FIERY,
         ICY,
         LIVELY,
-        GLOOMY,
-        HOLY;
+        GLOOMY;
 
         @Override
         public String getName()

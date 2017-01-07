@@ -33,8 +33,8 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExItems
 {
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_nether_brick")
-    public static final ItemNetherBrick ITEM_NETHER_BRICK = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_brick_nether")
+    public static final ItemNetherBrick ITEM_BRICK_NETHER = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_withered")
     public static final ItemNetherEx ITEM_BONE_WITHERED = null;

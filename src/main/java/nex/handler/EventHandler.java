@@ -47,6 +47,49 @@ import java.util.Random;
 public class EventHandler
 {
     @SubscribeEvent
+    public static void onBoneMealUse(BonemealEvent event)
+    {
+        IBlockState state = event.getBlock();
+        EntityPlayer player = event.getEntityPlayer();
+        ItemStack mainStack = player.getHeldItem(EnumHand.MAIN_HAND);
+        ItemStack offStack = player.getHeldItem(EnumHand.OFF_HAND);
+
+        if(mainStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED || offStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED)
+        {
+            if(state.getBlock() == Blocks.NETHER_WART)
+            {
+                int age = state.getValue(BlockNetherWart.AGE);
+
+                if(age < 3)
+                {
+                    state = state.withProperty(BlockNetherWart.AGE, age + 1);
+                    event.getWorld().setBlockState(event.getPos(), state);
+                    event.setResult(Event.Result.ALLOW);
+                }
+            }
+            else
+            {
+                event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSetAttackTarget(LivingSetAttackTargetEvent event)
+    {
+        if(event.getEntity() instanceof AbstractSkeleton)
+        {
+            if(event.getTarget() instanceof EntityPlayer)
+            {
+                if(ArmorUtil.isWearingFullArmorSet((EntityPlayer) event.getTarget(), NetherExMaterials.ARMOR_BONE_WITHERED))
+                {
+                    ((AbstractSkeleton) event.getEntity()).setAttackTarget(null);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event)
     {
         Random rand = new Random();
@@ -72,49 +115,6 @@ public class EventHandler
             }
 
             event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHERED, rand.nextInt(4), 0)));
-        }
-    }
-
-    @SubscribeEvent
-    public static void onSetAttackTarget(LivingSetAttackTargetEvent event)
-    {
-        if(event.getEntity() instanceof AbstractSkeleton)
-        {
-            if(event.getTarget() instanceof EntityPlayer)
-            {
-                if(ArmorUtil.isWearingFullArmorSet((EntityPlayer) event.getTarget(), NetherExMaterials.ARMOR_BONE_WITHERED))
-                {
-                    ((AbstractSkeleton) event.getEntity()).setAttackTarget(null);
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onBoneMealUse(BonemealEvent event)
-    {
-        IBlockState state = event.getBlock();
-        EntityPlayer player = event.getEntityPlayer();
-        ItemStack mainStack = player.getHeldItem(EnumHand.MAIN_HAND);
-        ItemStack offStack = player.getHeldItem(EnumHand.OFF_HAND);
-
-        if(mainStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED || offStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED)
-        {
-            if(state.getBlock() == Blocks.NETHER_WART)
-            {
-                int age = state.getValue(BlockNetherWart.AGE);
-
-                if(age < 3)
-                {
-                    state = state.withProperty(BlockNetherWart.AGE, age + 1);
-                    event.getWorld().setBlockState(event.getPos(), state);
-                    event.setResult(Event.Result.ALLOW);
-                }
-            }
-            else
-            {
-                event.setCanceled(true);
-            }
         }
     }
 }

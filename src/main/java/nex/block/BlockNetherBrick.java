@@ -32,7 +32,7 @@ public class BlockNetherBrick extends BlockNetherEx
 
     public BlockNetherBrick()
     {
-        super("block_nether_brick", Material.ROCK);
+        super("block_brick_nether", Material.ROCK);
 
         setHardness(1.5F);
         setResistance(10.0F);

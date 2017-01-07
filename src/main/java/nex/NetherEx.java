@@ -20,16 +20,14 @@ package nex;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import nex.handler.IMCHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
 import nex.init.NetherExRecipes;
 import nex.init.NetherExStructures;
 import nex.proxy.IProxy;
+import nex.util.RemapUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -97,5 +95,15 @@ public class NetherEx
         proxy.postInit();
 
         LOGGER.info("PostInitialization completed.");
+    }
+
+    @Mod.EventHandler
+    public void onMissingMappings(FMLMissingMappingsEvent event)
+    {
+        LOGGER.info("Missing Mappings started.");
+
+        RemapUtil.remap(event.get());
+
+        LOGGER.info("Missing Mappings completed.");
     }
 }

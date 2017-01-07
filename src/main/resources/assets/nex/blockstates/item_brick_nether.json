@@ -1,0 +1,36 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "builtin/generated",
+        "transform": "forge:default-item"
+    },
+    "variants": {
+        "type": {
+            "fiery": {
+                "textures": {
+                    "layer0": "nex:items/item_brick_nether_fiery"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "layer0": "nex:items/item_brick_nether_icy"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "layer0": "nex:items/item_brick_nether_lively"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "layer0": "nex:items/item_brick_nether_gloomy"
+                }
+            },
+            "holy": {
+                "textures": {
+                    "layer0": "nex:items/item_brick_nether_holy"
+                }
+            }
+        }
+    }
+}
