@@ -33,7 +33,7 @@ public class MapGenNetherStructures extends MapGenStructure
 {
     private static final List<Biome> BIOMES = Lists.newArrayList(NetherExBiomes.HELL, NetherExBiomes.RUTHLESS_SANDS, NetherExBiomes.FUNGI_FOREST);
     private int maxChunkDistance = 8;
-    private int minChunkDistance = 4;
+    private int minChunkDistance = 2;
 
     @Override
     public String getStructureName()
@@ -42,10 +42,10 @@ public class MapGenNetherStructures extends MapGenStructure
     }
 
     @Override
-    public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
+    public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean bool)
     {
         world = worldIn;
-        return findNearestStructurePosBySpacing(worldIn, this, pos, maxChunkDistance, minChunkDistance, 14357617, false, 100, p_180706_3_);
+        return findNearestStructurePosBySpacing(worldIn, this, pos, maxChunkDistance, minChunkDistance, 14357617, false, 100, bool);
 
     }
 

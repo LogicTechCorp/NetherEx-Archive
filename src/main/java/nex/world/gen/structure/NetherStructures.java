@@ -18,10 +18,10 @@
 package nex.world.gen.structure;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
@@ -38,7 +38,6 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraft.world.storage.loot.LootTableList;
 import nex.NetherEx;
 
-import java.util.Map;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
@@ -128,7 +127,7 @@ public class NetherStructures
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
             BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
-            return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.25F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
+            return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
 
@@ -157,7 +156,7 @@ public class NetherStructures
         {
             BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
             ResourceLocation ALTAR = altar == 0 ? INTACT : altar == 1 ? DESTROYED : altar == 3 ? RUINED : INTACT;
-            return generateStructure(world, rand, pos, ALTAR, Blocks.AIR, 0.25F, false, false, null);
+            return generateStructure(world, rand, pos, ALTAR, Blocks.AIR, 0.25F, false, true, null);
         }
     }
 
@@ -179,7 +178,7 @@ public class NetherStructures
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
             BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
-            return generateStructure(world, rand, pos, THRONE, Blocks.AIR, 0.75F, false, false, null);
+            return generateStructure(world, rand, pos, THRONE, Blocks.AIR, 0.25F, false, true, null);
         }
     }
 
@@ -284,16 +283,17 @@ public class NetherStructures
                 }
             }
 
+            BlockPos newPos = pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2));
+            boolean canSpawn = !world.isAirBlock(newPos) || !world.isAirBlock(newPos.down());
             float airBlockRatio = isBuried ? MathHelper.abs(blockAmount) / MathHelper.abs(airAmount) : MathHelper.abs(airAmount) / MathHelper.abs(blockAmount);
 
-            if(airBlockRatio >= percentage)
+            if(canSpawn && airBlockRatio >= percentage)
             {
-                BlockPos newPos = pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2));
                 template.addBlocksToWorldChunk(world, newPos, placementSettings.copy());
 
                 if(hasLoot)
                 {
-                    setChestContents(world, rand, newPos, template, placementSettings.copy(), lootTable);
+                    setChestContents(world, rand, newPos, structureSize, lootTable);
                 }
                 return true;
             }
@@ -301,22 +301,18 @@ public class NetherStructures
             return false;
         }
 
-        protected static void setChestContents(World world, Random rand, BlockPos pos, Template template, PlacementSettings placementSettings, ResourceLocation lootTableList)
+        protected static void setChestContents(World world, Random rand, BlockPos pos, BlockPos structureSize, ResourceLocation lootTableList)
         {
-            Map<BlockPos, String> map = template.getDataBlocks(pos, placementSettings);
+            Iterable<BlockPos> blockPositions = BlockPos.getAllInBox(pos, new BlockPos(pos.getX() + structureSize.getX(), pos.getY() + structureSize.getY(), pos.getZ() + structureSize.getZ()));
 
-            for(Map.Entry<BlockPos, String> entry : map.entrySet())
+            for(BlockPos newPos : blockPositions)
             {
-                if("chest".equals(entry.getValue()))
-                {
-                    BlockPos blockPos = entry.getKey();
-                    world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 3);
-                    TileEntity tileEntity = world.getTileEntity(blockPos.down());
+                Block block = world.getBlockState(newPos).getBlock();
 
-                    if(tileEntity instanceof TileEntityChest)
-                    {
-                        ((TileEntityChest) tileEntity).setLootTable(lootTableList, rand.nextLong());
-                    }
+                if(block instanceof BlockChest)
+                {
+                    TileEntityChest chest = (TileEntityChest) world.getTileEntity(newPos);
+                    chest.setLootTable(lootTableList, rand.nextLong());
                 }
             }
         }
