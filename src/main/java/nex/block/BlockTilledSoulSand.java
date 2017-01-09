@@ -36,7 +36,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.init.NetherExBlocks;
-import nex.init.NetherExMaterials;
 
 import java.util.Random;
 
@@ -134,7 +133,7 @@ public class BlockTilledSoulSand extends BlockNetherEx
     {
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {
-            if(world.getBlockState(mutablePos).getMaterial() == NetherExMaterials.FLUID_ICHOR)
+            if(world.getBlockState(mutablePos).getBlock() == NetherExBlocks.FLUID_ICHOR)
             {
                 return true;
             }

@@ -17,12 +17,50 @@
 
 package nex.item;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
+import nex.util.NBTUtil;
 
 public class ItemBoneSword extends ItemNetherExSword
 {
     public ItemBoneSword()
     {
         super("tool_sword_bone", NetherExMaterials.TOOL_BONE_WITHERED);
+    }
+
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
+    {
+        NBTTagCompound compound = new NBTTagCompound();
+
+        if(entity.dimension == -1)
+        {
+            compound.setBoolean("Nether", true);
+        }
+        else
+        {
+            compound.setBoolean("Nether", false);
+        }
+
+        NBTUtil.setTag(stack, compound);
+    }
+
+    @Override
+    public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState state)
+    {
+        if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
+        {
+            if(stack.getTagCompound().getBoolean("Nether"))
+            {
+                return ToolMaterial.IRON.getHarvestLevel();
+            }
+        }
+
+        return ToolMaterial.GOLD.getHarvestLevel();
     }
 }

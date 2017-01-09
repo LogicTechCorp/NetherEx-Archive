@@ -19,6 +19,7 @@ package nex.handler;
 
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
@@ -27,14 +28,20 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
 import nex.util.ArmorUtil;
@@ -46,6 +53,35 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
+    @SubscribeEvent
+    public static void onRenderBlockOverlay(RenderBlockOverlayEvent event)
+    {
+        RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
+
+        if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
+        {
+            EntityPlayer player = event.getPlayer();
+            World world = player.getEntityWorld();
+            BlockPos pos = player.getPosition();
+
+            for(int x = -1; x < 2; x++)
+            {
+                for(int z = -1; z < 2; z++)
+                {
+                    for(int y = -1; y < 2; y++)
+                    {
+                        BlockPos newPos = pos.add(x, y, z);
+
+                        if(world.getBlockState(newPos).getBlock() == NetherExBlocks.FLUID_ICHOR)
+                        {
+                            event.setCanceled(true);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onBoneMealUse(BonemealEvent event)
     {
@@ -75,6 +111,26 @@ public class EventHandler
     }
 
     @SubscribeEvent
+    public static void onCropPreGrow(BlockEvent.CropGrowEvent.Pre event)
+    {
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        IBlockState state = event.getState();
+
+        if(state.getBlock() == Blocks.NETHER_WART)
+        {
+            if(world.getBlockState(pos.down()).getBlock() == NetherExBlocks.BLOCK_SAND_SOUL_TILLED)
+            {
+                event.setResult(Event.Result.ALLOW);
+            }
+            else
+            {
+                event.setResult(Event.Result.DENY);
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onSetAttackTarget(LivingSetAttackTargetEvent event)
     {
         if(event.getEntity() instanceof AbstractSkeleton)
@@ -84,6 +140,35 @@ public class EventHandler
                 if(ArmorUtil.isWearingFullArmorSet((EntityPlayer) event.getTarget(), NetherExMaterials.ARMOR_BONE_WITHERED))
                 {
                     ((AbstractSkeleton) event.getEntity()).setAttackTarget(null);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingAttacked(LivingAttackEvent event)
+    {
+        Entity entity = event.getEntity();
+        World world = entity.getEntityWorld();
+        BlockPos pos = entity.getPosition();
+        DamageSource source = event.getSource();
+
+        if(source == DamageSource.LAVA || source == DamageSource.IN_FIRE || source == DamageSource.ON_FIRE)
+        {
+            for(int x = -1; x < 2; x++)
+            {
+                for(int z = -1; z < 2; z++)
+                {
+                    for(int y = -1; y < 2; y++)
+                    {
+                        BlockPos newPos = pos.add(x, y, z);
+
+                        if(world.getBlockState(newPos).getBlock() == NetherExBlocks.FLUID_ICHOR)
+                        {
+                            entity.extinguish();
+                            event.setCanceled(true);
+                        }
+                    }
                 }
             }
         }
