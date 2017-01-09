@@ -54,13 +54,13 @@ public class NetherStructures
 
         public ArtifactTower(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96, z, xSize, ySize, zSize);
+            super(rand, x, 32, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
+            BlockPos pos = new BlockPos(boundingBox.minX + 8, 96, boundingBox.minZ + 8);
             return generateStructure(world, rand, pos, TOWER, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
@@ -76,13 +76,13 @@ public class NetherStructures
 
         public BlacksmithHut(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96, z, xSize, ySize, zSize);
+            super(rand, x, 32, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
+            BlockPos pos = new BlockPos(boundingBox.minX + 8, 96, boundingBox.minZ + 8);
             return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
@@ -98,13 +98,13 @@ public class NetherStructures
 
         public ChiefHut(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96, z, xSize, ySize, zSize);
+            super(rand, x, 32, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
+            BlockPos pos = new BlockPos(boundingBox.minX + 8, 96, boundingBox.minZ + 8);
             return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
@@ -120,13 +120,13 @@ public class NetherStructures
 
         public PigmanHut(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96, z, xSize, ySize, zSize);
+            super(rand, x, 32, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
+            BlockPos pos = new BlockPos(boundingBox.minX + 8, 96, boundingBox.minZ + 8);
             return generateStructure(world, rand, pos, HUT, Blocks.STRUCTURE_VOID, 0.75F, false, true, LootTableList.CHESTS_NETHER_BRIDGE);
         }
     }
@@ -146,7 +146,7 @@ public class NetherStructures
 
         public AncientAltar(int altarIn, Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96, z, xSize, ySize, zSize);
+            super(rand, x, 32, z, xSize, ySize, zSize);
 
             altar = altarIn;
         }
@@ -154,9 +154,9 @@ public class NetherStructures
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
+            BlockPos pos = new BlockPos(boundingBox.minX + 8, 96, boundingBox.minZ + 8);
             ResourceLocation ALTAR = altar == 0 ? INTACT : altar == 1 ? DESTROYED : altar == 3 ? RUINED : INTACT;
-            return generateStructure(world, rand, pos, ALTAR, Blocks.AIR, 0.25F, false, true, null);
+            return generateStructure(world, rand, pos, ALTAR, Blocks.AIR, 0.25F, true, false, null);
         }
     }
 
@@ -171,14 +171,14 @@ public class NetherStructures
 
         public AncientThrone(Random rand, int x, int z, int xSize, int ySize, int zSize)
         {
-            super(rand, x, 96, z, xSize, ySize, zSize);
+            super(rand, x, 32, z, xSize, ySize, zSize);
         }
 
         @Override
         public boolean addComponentParts(World world, Random rand, StructureBoundingBox structureBB)
         {
-            BlockPos pos = new BlockPos(boundingBox.minX + 8, boundingBox.minY, boundingBox.minZ + 8);
-            return generateStructure(world, rand, pos, THRONE, Blocks.AIR, 0.25F, false, true, null);
+            BlockPos pos = new BlockPos(boundingBox.minX + 8, 96, boundingBox.minZ + 8);
+            return generateStructure(world, rand, pos, THRONE, Blocks.AIR, 0.25F, true, false, null);
         }
     }
 
@@ -265,13 +265,13 @@ public class NetherStructures
             Template template = templateManager.getTemplate(minecraftServer, templateLocation);
             BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
             float airAmount = 0;
-            float blockAmount = MathHelper.abs((structureSize.getX() + 2) * (structureSize.getY() + 1) * (structureSize.getZ() + 2));
+            float blockAmount = MathHelper.abs((structureSize.getX() + 2) * (structureSize.getY() + 2) * (structureSize.getZ() + 2));
 
             for(int posZ = -1; posZ < structureSize.getZ() + 1; posZ++)
             {
                 for(int posX = -1; posX < structureSize.getX() + 1; posX++)
                 {
-                    for(int posY = 0; posY < structureSize.getY() + 1; posY++)
+                    for(int posY = -1; posY < structureSize.getY() + 1; posY++)
                     {
                         BlockPos newPos = pos.add(-(posX / 2), posY + 1, -(posZ / 2));
 
