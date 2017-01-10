@@ -63,5 +63,24 @@ public class ItemBoneAxe extends ItemNetherExAxe
 
         return NetherExMaterials.TOOL_BONE_WITHERED.getHarvestLevel();
     }
+
+    @Override
+    public void setDamage(ItemStack stack, int damage)
+    {
+        if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
+        {
+            if(!stack.getTagCompound().getBoolean("Nether"))
+            {
+                damage += 15;
+
+                if(getDamage(stack) - 16 == 0)
+                {
+                    damage += 1;
+                }
+            }
+        }
+
+        super.setDamage(stack, damage);
+    }
 }
 

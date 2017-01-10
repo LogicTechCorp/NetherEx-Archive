@@ -60,20 +60,6 @@ public class ItemBoneHoe extends ItemNetherExHoe
     }
 
     @Override
-    public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState state)
-    {
-        if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
-        {
-            if(stack.getTagCompound().getBoolean("Nether"))
-            {
-                return ToolMaterial.IRON.getHarvestLevel();
-            }
-        }
-
-        return ToolMaterial.GOLD.getHarvestLevel();
-    }
-
-    @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack stack = player.getHeldItem(hand);
@@ -105,5 +91,38 @@ public class ItemBoneHoe extends ItemNetherExHoe
 
             return EnumActionResult.PASS;
         }
+    }
+
+    @Override
+    public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState state)
+    {
+        if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
+        {
+            if(stack.getTagCompound().getBoolean("Nether"))
+            {
+                return ToolMaterial.IRON.getHarvestLevel();
+            }
+        }
+
+        return ToolMaterial.GOLD.getHarvestLevel();
+    }
+
+    @Override
+    public void setDamage(ItemStack stack, int damage)
+    {
+        if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
+        {
+            if(!stack.getTagCompound().getBoolean("Nether"))
+            {
+                damage += 15;
+
+                if(getDamage(stack) - 16 == 0)
+                {
+                    damage += 1;
+                }
+            }
+        }
+
+        super.setDamage(stack, damage);
     }
 }
