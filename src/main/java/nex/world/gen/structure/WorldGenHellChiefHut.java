@@ -36,12 +36,11 @@ import nex.util.WorldGenUtil;
 import java.util.List;
 import java.util.Random;
 
-public class WorldGenAncientAltar extends WorldGenerator
+public class WorldGenHellChiefHut extends WorldGenerator
 {
     private List<WeightedUtil.NamedItem> variants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("destroyed", 3),
-            new WeightedUtil.NamedItem("ruined", 2),
-            new WeightedUtil.NamedItem("intact", 1)
+            new WeightedUtil.NamedItem("basic", 3),
+            new WeightedUtil.NamedItem("gold", 2)
     );
 
     @Override
@@ -55,7 +54,7 @@ public class WorldGenAncientAltar extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "altar_sands_ancient_"));
+        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "hut_hell_chief_"));
 
         ChunkPos chunkPos = new ChunkPos(blockPos);
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());

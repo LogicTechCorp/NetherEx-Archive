@@ -67,7 +67,8 @@ public class ConfigurationHandler
         public static boolean generateQuartzOre = true;
         public static boolean generateMagma = true;
         public static boolean generateLavaTraps = true;
-        public static boolean generateHuts = true;
+        public static boolean generateChiefHuts = true;
+        public static boolean generatePigmanHuts = true;
 
         public static int biomeRarity = 10;
         public static int lavaSpringRarity = 8;
@@ -77,7 +78,8 @@ public class ConfigurationHandler
         public static int quartzOreRarity = 16;
         public static int magmaRarity = 4;
         public static int lavaTrapRarity = 16;
-        public static int hutRarity = 24;
+        public static int chiefHutRarity = 32;
+        public static int pigmanHutRarity = 24;
     }
 
     public static class BiomeRuthlessSands
@@ -88,7 +90,7 @@ public class ConfigurationHandler
         public static boolean generateQuartzOre = true;
         public static boolean generateLavaTraps = true;
         public static boolean generateThornstalk = true;
-        public static boolean generateAltars = true;
+        public static boolean generateAncientAltars = true;
 
         public static int biomeRarity = 7;
         public static int lavaSpringRarity = 8;
@@ -97,7 +99,7 @@ public class ConfigurationHandler
         public static int quartzOreRarity = 16;
         public static int lavaTrapRarity = 16;
         public static int thornstalkRarity = 10;
-        public static int altarRarity = 32;
+        public static int ancientAltarRarity = 32;
     }
 
     public static class BiomeFungiForest
@@ -127,7 +129,7 @@ public class ConfigurationHandler
         public static boolean generateMagma = true;
         public static boolean generateLavaTraps = true;
         public static boolean generateLavaPits = true;
-        public static boolean generatePyramids = true;
+        public static boolean generateBlazingPyramids = true;
 
         public static int biomeRarity = 4;
         public static int lavaSpringRarity = 24;
@@ -139,7 +141,7 @@ public class ConfigurationHandler
         public static int magmaRarity = 12;
         public static int lavaTrapRarity = 48;
         public static int lavaPitRarity = 8;
-        public static int pyramidRarity = 8;
+        public static int blazingPyramidRarity = 8;
     }
 
     public static class BiomeArcticAbyss

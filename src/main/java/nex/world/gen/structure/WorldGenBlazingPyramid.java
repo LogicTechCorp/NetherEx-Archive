@@ -56,7 +56,7 @@ public class WorldGenBlazingPyramid extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "pyramid_maze_"));
+        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "pyramid_torrid_blazing_"));
 
         ChunkPos chunkPos = new ChunkPos(blockPos);
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());

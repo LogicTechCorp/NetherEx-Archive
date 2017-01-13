@@ -36,10 +36,11 @@ import nex.util.WorldGenUtil;
 import java.util.List;
 import java.util.Random;
 
-public class WorldGenHellHut extends WorldGenerator
+public class WorldGenHellPigmanHut extends WorldGenerator
 {
     private List<WeightedUtil.NamedItem> variants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("hell_basic", 3)
+            new WeightedUtil.NamedItem("basic", 3),
+            new WeightedUtil.NamedItem("brew", 2)
     );
 
     @Override
@@ -53,7 +54,7 @@ public class WorldGenHellHut extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "hut_pigman_"));
+        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "hut_hell_pigman_"));
 
         ChunkPos chunkPos = new ChunkPos(blockPos);
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());

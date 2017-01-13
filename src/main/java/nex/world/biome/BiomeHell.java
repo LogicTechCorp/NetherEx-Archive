@@ -28,7 +28,8 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.handler.ConfigurationHandler;
 import nex.world.gen.feature.*;
-import nex.world.gen.structure.WorldGenHellHut;
+import nex.world.gen.structure.WorldGenHellChiefHut;
+import nex.world.gen.structure.WorldGenHellPigmanHut;
 
 import java.util.Random;
 
@@ -43,7 +44,8 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator quartz = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
-    private WorldGenerator hut = new WorldGenHellHut();
+    private WorldGenerator chiefHut = new WorldGenHellChiefHut();
+    private WorldGenerator pigmanHut = new WorldGenHellPigmanHut();
 
     public BiomeHell()
     {
@@ -141,11 +143,19 @@ public class BiomeHell extends BiomeNetherEx
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateHuts)
+        if(ConfigurationHandler.BiomeHell.generateChiefHuts)
         {
-            if(rand.nextInt(ConfigurationHandler.BiomeHell.hutRarity) == 0)
+            if(rand.nextInt(ConfigurationHandler.BiomeHell.chiefHutRarity) == 0)
             {
-                hut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                chiefHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeHell.generatePigmanHuts)
+        {
+            if(rand.nextInt(ConfigurationHandler.BiomeHell.pigmanHutRarity) == 0)
+            {
+                pigmanHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

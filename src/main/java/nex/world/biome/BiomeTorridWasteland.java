@@ -44,7 +44,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), true);
     private WorldGenerator lavaPit = new WorldGenPit(Blocks.LAVA, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
-    private WorldGenerator pyramid = new WorldGenBlazingPyramid();
+    private WorldGenerator blazingPyramid = new WorldGenBlazingPyramid();
 
     public BiomeTorridWasteland()
     {
@@ -137,11 +137,11 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             }
         }
 
-        if(ConfigurationHandler.BiomeTorridWasteland.generatePyramids)
+        if(ConfigurationHandler.BiomeTorridWasteland.generateBlazingPyramids)
         {
-            if(rand.nextInt(ConfigurationHandler.BiomeTorridWasteland.pyramidRarity) == 0)
+            if(rand.nextInt(ConfigurationHandler.BiomeTorridWasteland.blazingPyramidRarity) == 0)
             {
-                pyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                blazingPyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
