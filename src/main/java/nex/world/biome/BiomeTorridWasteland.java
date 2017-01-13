@@ -28,6 +28,7 @@ import nex.entity.neutral.EntitySalamander;
 import nex.handler.ConfigurationHandler;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.*;
+import nex.world.gen.structure.WorldGenBlazingPyramid;
 
 import java.util.Random;
 
@@ -43,6 +44,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), true);
     private WorldGenerator lavaPit = new WorldGenPit(Blocks.LAVA, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
+    private WorldGenerator pyramid = new WorldGenBlazingPyramid();
 
     public BiomeTorridWasteland()
     {
@@ -131,7 +133,15 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeTorridWasteland.lavaPitRarity; i++)
             {
-                lavaPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                lavaPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeTorridWasteland.generatePyramids)
+        {
+            if(rand.nextInt(ConfigurationHandler.BiomeTorridWasteland.pyramidRarity) == 0)
+            {
+                pyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

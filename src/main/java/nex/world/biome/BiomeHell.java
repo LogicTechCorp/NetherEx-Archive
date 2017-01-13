@@ -28,6 +28,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.handler.ConfigurationHandler;
 import nex.world.gen.feature.*;
+import nex.world.gen.structure.WorldGenHellHut;
 
 import java.util.Random;
 
@@ -42,6 +43,7 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator quartz = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
+    private WorldGenerator hut = new WorldGenHellHut();
 
     public BiomeHell()
     {
@@ -136,6 +138,14 @@ public class BiomeHell extends BiomeNetherEx
             for(int i = 0; i < ConfigurationHandler.BiomeHell.lavaTrapRarity; i++)
             {
                 lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeHell.generateHuts)
+        {
+            if(rand.nextInt(ConfigurationHandler.BiomeHell.hutRarity) == 0)
+            {
+                hut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

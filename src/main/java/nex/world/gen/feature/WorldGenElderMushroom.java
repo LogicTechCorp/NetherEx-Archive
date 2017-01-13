@@ -35,6 +35,7 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import nex.NetherEx;
 import nex.block.BlockMushroom;
 import nex.init.NetherExBlocks;
+import nex.util.WeightedUtil;
 
 import java.util.List;
 import java.util.Random;
@@ -42,25 +43,25 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class WorldGenElderMushroom extends WorldGenerator
 {
-    private List<MushroomSize> mushroomSizes = Lists.newArrayList(
-            new MushroomSize("brown_tiny", 6),
-            new MushroomSize("brown_tiny_variant", 6),
-            new MushroomSize("brown_small", 5),
-            new MushroomSize("brown_small_variant", 5),
-            new MushroomSize("brown_medium", 4),
-            new MushroomSize("brown_medium_variant", 4),
-            new MushroomSize("brown_large", 3),
-            new MushroomSize("brown_huge", 2),
-            new MushroomSize("brown_gigantic", 1),
-            new MushroomSize("red_tiny", 6),
-            new MushroomSize("red_tiny_variant", 6),
-            new MushroomSize("red_small", 5),
-            new MushroomSize("red_small_variant", 5),
-            new MushroomSize("red_small_variant_2", 5),
-            new MushroomSize("red_medium", 4),
-            new MushroomSize("red_large", 3),
-            new MushroomSize("red_huge", 2),
-            new MushroomSize("red_gigantic", 1)
+    private List<WeightedUtil.NamedItem> variants = Lists.newArrayList(
+            new WeightedUtil.NamedItem("brown_tiny", 6),
+            new WeightedUtil.NamedItem("brown_tiny_variant", 6),
+            new WeightedUtil.NamedItem("brown_small", 5),
+            new WeightedUtil.NamedItem("brown_small_variant", 5),
+            new WeightedUtil.NamedItem("brown_medium", 4),
+            new WeightedUtil.NamedItem("brown_medium_variant", 4),
+            new WeightedUtil.NamedItem("brown_large", 3),
+            new WeightedUtil.NamedItem("brown_huge", 2),
+            new WeightedUtil.NamedItem("brown_gigantic", 1),
+            new WeightedUtil.NamedItem("red_tiny", 6),
+            new WeightedUtil.NamedItem("red_tiny_variant", 6),
+            new WeightedUtil.NamedItem("red_small", 5),
+            new WeightedUtil.NamedItem("red_small_variant", 5),
+            new WeightedUtil.NamedItem("red_small_variant_2", 5),
+            new WeightedUtil.NamedItem("red_medium", 4),
+            new WeightedUtil.NamedItem("red_large", 3),
+            new WeightedUtil.NamedItem("red_huge", 2),
+            new WeightedUtil.NamedItem("red_gigantic", 1)
     );
 
     @Override
@@ -88,15 +89,15 @@ public class WorldGenElderMushroom extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(NetherEx.MOD_ID + ":plant_mushroom_" + getRandomMushroom(rand)));
+        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants, "plant_mushroom_"));
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
         float airAmount = 0;
         float blockAmount = MathHelper.abs((structureSize.getX() + 2) * (structureSize.getY() + 1) * (structureSize.getZ() + 2));
 
-        for(int posZ = -1; posZ < structureSize.getZ() + 1; posZ++)
+        for(int posX = -1; posX < structureSize.getX() + 1; posX++)
         {
-            for(int posX = -1; posX < structureSize.getX() + 1; posX++)
+            for(int posZ = -1; posZ < structureSize.getZ() + 1; posZ++)
             {
                 for(int posY = 0; posY < structureSize.getY() + 1; posY++)
                 {
@@ -122,22 +123,5 @@ public class WorldGenElderMushroom extends WorldGenerator
         }
 
         return false;
-    }
-
-    private String getRandomMushroom(Random rand)
-    {
-        MushroomSize mushroom = WeightedRandom.getRandomItem(rand, mushroomSizes);
-        return mushroom.name;
-    }
-
-    public class MushroomSize extends WeightedRandom.Item
-    {
-        private String name;
-
-        public MushroomSize(String nameIn, int weight)
-        {
-            super(weight);
-            name = nameIn;
-        }
     }
 }

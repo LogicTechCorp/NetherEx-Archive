@@ -33,6 +33,8 @@ import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenLava;
 import nex.world.gen.feature.WorldGenMinableMeta;
 import nex.world.gen.feature.WorldGenThornstalk;
+import nex.world.gen.structure.WorldGenAncientAltar;
+import nex.world.gen.structure.WorldGenHellHut;
 
 import java.util.Random;
 
@@ -45,6 +47,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     private WorldGenerator quartz = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3));
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
+    private WorldGenerator altar = new WorldGenAncientAltar();
 
     public BiomeRuthlessSands()
     {
@@ -111,6 +114,14 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             for(int i = 0; i < ConfigurationHandler.BiomeRuthlessSands.thornstalkRarity; i++)
             {
                 thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeRuthlessSands.generateAltars)
+        {
+            if(rand.nextInt(ConfigurationHandler.BiomeRuthlessSands.altarRarity) == 0)
+            {
+                altar.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
