@@ -29,7 +29,7 @@ public class WeightedUtil
     public static ResourceLocation getRandomStructure(Random rand, List<NamedItem> variants, String prefix)
     {
         WeightedUtil.NamedItem randomItem = WeightedRandom.getRandomItem(rand, variants);
-        return  new ResourceLocation(NetherEx.MOD_ID + ":" + prefix + randomItem.name);
+        return new ResourceLocation(NetherEx.MOD_ID + ":" + prefix + randomItem.name);
     }
 
     public static class NamedItem extends WeightedRandom.Item

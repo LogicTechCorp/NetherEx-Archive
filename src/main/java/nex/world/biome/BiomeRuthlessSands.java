@@ -34,7 +34,6 @@ import nex.world.gen.feature.WorldGenLava;
 import nex.world.gen.feature.WorldGenMinableMeta;
 import nex.world.gen.feature.WorldGenThornstalk;
 import nex.world.gen.structure.WorldGenAncientAltar;
-import nex.world.gen.structure.WorldGenHellHut;
 
 import java.util.Random;
 

@@ -18,7 +18,6 @@
 package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
-import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -64,7 +63,6 @@ public class WorldGenHellHut extends WorldGenerator
 
         if(spawnPos != BlockPos.ORIGIN)
         {
-            System.out.println("Pigman Hut:" + spawnPos.toString());
             template.addBlocksToWorld(world, spawnPos, settings.copy(), 20);
             WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
             return true;

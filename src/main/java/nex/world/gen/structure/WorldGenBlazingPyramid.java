@@ -66,7 +66,6 @@ public class WorldGenBlazingPyramid extends WorldGenerator
 
         if(spawnPos != BlockPos.ORIGIN)
         {
-            System.out.println("Blazing Pyramid:" + spawnPos.toString());
             template.addBlocksToWorld(world, spawnPos, settings.copy(), 20);
             WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
             return true;
