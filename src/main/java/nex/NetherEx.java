@@ -23,11 +23,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import nex.handler.IMCHandler;
+import nex.handler.RemapHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
 import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
-import nex.handler.RemapHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
