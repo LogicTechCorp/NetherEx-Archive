@@ -27,7 +27,7 @@ import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
 import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
-import nex.util.RemapUtil;
+import nex.handler.RemapHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -106,7 +106,7 @@ public class NetherEx
     {
         LOGGER.info("Missing Mappings started.");
 
-        RemapUtil.remap(event.get());
+        RemapHandler.remap(event.get());
 
         LOGGER.info("Missing Mappings completed.");
     }

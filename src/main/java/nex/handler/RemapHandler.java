@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.util;
+package nex.handler;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -40,7 +40,7 @@ import java.util.function.Predicate;
  *
  * @author Choonster
  */
-public class RemapUtil
+public class RemapHandler
 {
     private static final Map<String, String> customNames = ImmutableMap.<String, String>builder()
             .put("block_nether_brick", "block_brick_nether")
@@ -63,9 +63,9 @@ public class RemapUtil
             .put("item_nether_brick", "item_brick_nether")
             .build();
 
-    private static List<Predicate<FMLMissingMappingsEvent.MissingMapping>> mappingsToFix = ImmutableList.of(RemapUtil::remapRegistryName);
+    private static List<Predicate<FMLMissingMappingsEvent.MissingMapping>> mappingsToFix = ImmutableList.of(RemapHandler::remapRegistryName);
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|RemapUtil");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|RemapHandler");
 
     public static void remap(List<FMLMissingMappingsEvent.MissingMapping> mappings)
     {

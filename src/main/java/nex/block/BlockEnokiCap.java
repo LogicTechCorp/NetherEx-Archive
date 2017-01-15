@@ -161,19 +161,6 @@ public class BlockEnokiCap extends BlockNetherEx
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        if(state.getValue(AGE) < 5)
-        {
-            return Item.getItemFromBlock(this);
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    @Override
     public boolean isFullCube(IBlockState state)
     {
         return false;

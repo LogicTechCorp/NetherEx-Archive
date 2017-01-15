@@ -25,6 +25,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -168,13 +169,13 @@ public class BlockEnokiStem extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        if(rand.nextInt(4) == 3)
+        if(rand.nextInt(4) == 0)
         {
             return NetherExItems.FOOD_MUSHROOM_ENOKI;
         }
         else
         {
-            return null;
+            return Items.AIR;
         }
     }
 
