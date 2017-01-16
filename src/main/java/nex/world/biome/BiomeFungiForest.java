@@ -17,6 +17,8 @@
 
 package nex.world.biome;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -44,7 +46,7 @@ public class BiomeFungiForest extends BiomeNetherEx
 
     public BiomeFungiForest()
     {
-        super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest", ConfigurationHandler.BiomeFungiForest.biomeRarity);
+        super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest", ConfigurationHandler.BiomeFungiForest.biomeRarity, new ItemStack(Blocks.LAVA));
 
         spawnableMonsterList.add(new SpawnListEntry(EntityMogus.class, 100, 4, 8));
 

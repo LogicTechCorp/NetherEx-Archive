@@ -19,6 +19,7 @@ package nex.world.biome;
 
 import net.minecraft.entity.monster.*;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -49,7 +50,7 @@ public class BiomeHell extends BiomeNetherEx
 
     public BiomeHell()
     {
-        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell", ConfigurationHandler.BiomeHell.biomeRarity);
+        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell", ConfigurationHandler.BiomeHell.biomeRarity, new ItemStack(Blocks.LAVA));
 
         topBlock = Blocks.NETHERRACK.getDefaultState();
         fillerBlock = Blocks.NETHERRACK.getDefaultState();

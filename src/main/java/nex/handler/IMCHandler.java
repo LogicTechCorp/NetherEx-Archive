@@ -17,9 +17,9 @@
 
 package nex.handler;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import nex.init.NetherExBiomes;
 import org.apache.logging.log4j.LogManager;
@@ -97,9 +97,9 @@ public class IMCHandler
         NBTTagCompound compound = message.getNBTValue();
         int biomeId = compound.getInteger("BiomeId");
         int biomeWeight = compound.getInteger("BiomeWeight");
+        ItemStack stack = new ItemStack(compound);
 
         Biome biome = Biome.getBiome(biomeId);
-        BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(biome, biomeWeight);
 
         if(biome != null)
         {
@@ -107,7 +107,7 @@ public class IMCHandler
             {
                 LOGGER.info(String.format("Attempting to add the %s biome, for %s, to the Nether.", biome.getBiomeName(), message.getSender()));
 
-                if(NetherExBiomes.addBiome(entry))
+                if(NetherExBiomes.addBiome(biome, biomeWeight, stack))
                 {
                     LOGGER.info(String.format("The attempt to add the %s biome, for %s, to the Nether was successful.", biome.getBiomeName(), message.getSender()));
                 }

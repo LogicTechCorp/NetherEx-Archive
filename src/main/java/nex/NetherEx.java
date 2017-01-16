@@ -66,7 +66,7 @@ public class NetherEx
         NetherExEntities.init();
         NetherExBiomes.init();
         proxy.preInit();
-
+        
         LOGGER.info("PreInitialization completed.");
     }
 

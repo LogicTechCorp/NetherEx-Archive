@@ -17,15 +17,15 @@
 
 package nex.world.biome;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraftforge.common.BiomeManager;
 import nex.NetherEx;
 import nex.init.NetherExBiomes;
 
 public abstract class BiomeNetherEx extends Biome
 {
-    public BiomeNetherEx(BiomeProperties properties, String name, int weight)
+    public BiomeNetherEx(BiomeProperties properties, String name, int weight, ItemStack stack)
     {
         super(properties);
 
@@ -35,7 +35,7 @@ public abstract class BiomeNetherEx extends Biome
         spawnableCaveCreatureList.clear();
 
         setRegistryName(NetherEx.MOD_ID + ":" + name);
-        NetherExBiomes.addBiome(new BiomeManager.BiomeEntry(this, weight));
+        NetherExBiomes.addBiome(this, weight, stack);
     }
 
     @Override

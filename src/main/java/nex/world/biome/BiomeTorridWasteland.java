@@ -18,6 +18,7 @@
 package nex.world.biome;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -48,7 +49,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
     public BiomeTorridWasteland()
     {
-        super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland", ConfigurationHandler.BiomeTorridWasteland.biomeRarity);
+        super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland", ConfigurationHandler.BiomeTorridWasteland.biomeRarity, new ItemStack(Blocks.LAVA));
 
         spawnableMonsterList.add(new SpawnListEntry(EntitySalamander.class, 100, 3, 6));
 

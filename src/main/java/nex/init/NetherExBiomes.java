@@ -19,6 +19,10 @@ package nex.init;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -43,6 +47,7 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 public class NetherExBiomes
 {
     private static Set<BiomeManager.BiomeEntry> biomeEntries = Sets.newHashSet();
+    private static Set<BiomeOceanEntry> oceanEntries = Sets.newHashSet();
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hell")
     public static final BiomeHell HELL = null;
@@ -109,27 +114,57 @@ public class NetherExBiomes
         return -1;
     }
 
-    public static boolean addBiome(BiomeManager.BiomeEntry entry)
+    public static boolean addBiome(Biome biome, int weight, ItemStack stack)
     {
-        for(BiomeManager.BiomeEntry e : biomeEntries)
+        BiomeManager.BiomeEntry biomeEntry = new BiomeManager.BiomeEntry(biome, weight);
+
+        for(BiomeManager.BiomeEntry entry : biomeEntries)
         {
-            if(entry.biome == e.biome)
+            if(biomeEntry.biome == entry.biome)
             {
-                e.itemWeight += entry.itemWeight;
+                entry.itemWeight += biomeEntry.itemWeight;
+
+                if(stack != ItemStack.EMPTY)
+                {
+                    break;
+                }
                 return false;
             }
         }
 
-        return biomeEntries.add(entry);
+        BiomeOceanEntry oceanEntry;
+
+        if(Block.getBlockFromItem(stack.getItem()) != Blocks.AIR)
+        {
+            oceanEntry = new BiomeOceanEntry(biome, Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getItemDamage()));
+        }
+        else
+        {
+            oceanEntry = new BiomeOceanEntry(biome, Blocks.LAVA.getDefaultState());
+        }
+
+        if(!oceanEntries.contains(oceanEntry))
+        {
+            oceanEntries.add(oceanEntry);
+        }
+
+        return biomeEntries.add(biomeEntry);
     }
 
     public static boolean removeBiome(Biome biome)
     {
-        for(BiomeManager.BiomeEntry e : biomeEntries)
+        for(BiomeManager.BiomeEntry biomeEntry : biomeEntries)
         {
-            if(biome == e.biome)
+            if(biome == biomeEntry.biome)
             {
-                return biomeEntries.remove(e);
+                for(BiomeOceanEntry oceanEntry : oceanEntries)
+                {
+                    if(biomeEntry.biome == oceanEntry.biome)
+                    {
+                        oceanEntries.remove(oceanEntry);
+                    }
+                }
+                return biomeEntries.remove(biomeEntry);
             }
         }
 
@@ -139,5 +174,30 @@ public class NetherExBiomes
     public static ImmutableList<BiomeManager.BiomeEntry> getBiomeEntries()
     {
         return ImmutableList.copyOf(biomeEntries);
+    }
+
+    public static IBlockState getBiomeOceanBlockState(Biome biome)
+    {
+        for(BiomeOceanEntry oceanEntry : oceanEntries)
+        {
+            if(biome == oceanEntry.biome)
+            {
+                return oceanEntry.state;
+            }
+        }
+
+        return Blocks.LAVA.getDefaultState();
+    }
+
+    public static class BiomeOceanEntry
+    {
+        public final Biome biome;
+        public final IBlockState state;
+
+        public BiomeOceanEntry(Biome biomeIn, IBlockState stateIn)
+        {
+            biome = biomeIn;
+            state = stateIn;
+        }
     }
 }

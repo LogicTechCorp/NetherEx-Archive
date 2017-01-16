@@ -18,6 +18,7 @@
 package nex.world.biome;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -43,7 +44,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
     public BiomeArcticAbyss()
     {
-        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss", ConfigurationHandler.BiomeArcticAbyss.biomeRarity);
+        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss", ConfigurationHandler.BiomeArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA));
 
         spawnableMonsterList.add(new SpawnListEntry(EntityWight.class, 100, 1, 4));
 
