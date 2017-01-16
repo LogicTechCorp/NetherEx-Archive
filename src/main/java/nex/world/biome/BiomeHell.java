@@ -42,7 +42,7 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
-    private WorldGenerator quartz = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator quartzOre = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
     private WorldGenerator chiefHut = new WorldGenHellChiefHut();
@@ -122,7 +122,7 @@ public class BiomeHell extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeHell.quartzOreRarity; i++)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
+                quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 

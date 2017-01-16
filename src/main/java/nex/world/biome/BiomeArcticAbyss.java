@@ -39,7 +39,8 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 {
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator quartz = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(1), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
+    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(1), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
+    private WorldGenerator rimeOre = new WorldGenMinableMeta(NetherExBlocks.ORE_RIME.getDefaultState(), 7, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
     private WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, Blocks.PACKED_ICE.getDefaultState());
 
     public BiomeArcticAbyss()
@@ -79,7 +80,15 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeArcticAbyss.quartzOreRarity; i++)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
+                quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
+            }
+        }
+
+        if(ConfigurationHandler.BiomeArcticAbyss.generateRimeOre)
+        {
+            for(int i = 0; i < ConfigurationHandler.BiomeArcticAbyss.rimeOreRarity; i++)
+            {
+                rimeOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 

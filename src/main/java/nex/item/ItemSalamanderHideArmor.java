@@ -42,7 +42,7 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
     {
         super("armor_" + name + "_hide_salamander", NetherExMaterials.ARMOR_HIDE_SALAMANDER, renderIndex, equipmentSlot);
 
-        addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entityIn) -> isVariant(stack) ? 1.0F : 0.0F);
+        addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entity) -> isVariant(stack) ? 1.0F : 0.0F);
     }
 
     @Override

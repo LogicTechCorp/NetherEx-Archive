@@ -99,6 +99,8 @@ public class NetherExModels
         registerModel(BLOCK_GLASS_SOUL, "normal");
         registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
 
+        registerModel(ORE_RIME, "normal");
+
         registerModel(PLANT_THORNSTALK, "normal");
 
         for(BlockMushroom.EnumType type : BlockMushroom.EnumType.values())
@@ -161,6 +163,8 @@ public class NetherExModels
             registerModel(ITEM_HIDE_SALAMANDER, type.ordinal(), ITEM_HIDE_SALAMANDER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        registerModel(ITEM_GEM_RIME, "normal");
+
         registerModel(FOOD_MEAT_GHAST_RAW, "normal");
         registerModel(FOOD_MEAT_GHAST_COOKED, "normal");
         registerModel(FOOD_MAGMA_CREAM_CONGEALED, "normal");
@@ -215,7 +219,6 @@ public class NetherExModels
         ModelResourceLocation modelLocation = new ModelResourceLocation(item.getRegistryName(), location);
         ModelBakery.registerItemVariants(item, modelLocation);
         registerModel(item, MeshDefinitionFix.create(stack -> modelLocation));
-
     }
 
     private static void registerModel(Block block, int metadata, String location, String variant)

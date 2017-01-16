@@ -59,6 +59,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
     public static final BlockQuartzOre ORE_QUARTZ = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_rime")
+    public static final BlockRimeOre ORE_RIME = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_thornstalk")
     public static final BlockThornstalk PLANT_THORNSTALK = null;
 
@@ -202,6 +205,7 @@ public class NetherExBlocks
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
                     new BlockQuartzOre(),
+                    new BlockRimeOre(),
                     new BlockThornstalk(),
                     new BlockMushroom("plant_mushroom_brown"),
                     new BlockMushroom("plant_mushroom_red"),
@@ -259,6 +263,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_GLASS_SOUL),
                     new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
                     new ItemBlockQuartzOre(),
+                    new ItemBlockNetherEx(ORE_RIME),
                     new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),
                     new ItemBlockMushroom(PLANT_MUSHROOM_RED),
                     new ItemBlockNetherEx(PLANT_ENOKI_STEM),

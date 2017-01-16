@@ -44,7 +44,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), false);
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator quartz = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3));
+    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3));
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
     private WorldGenerator ancientAltar = new WorldGenAncientAltar();
@@ -95,7 +95,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeRuthlessSands.quartzOreRarity; i++)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
+                quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 

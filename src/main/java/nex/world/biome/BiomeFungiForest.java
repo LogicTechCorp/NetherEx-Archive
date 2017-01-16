@@ -40,7 +40,7 @@ public class BiomeFungiForest extends BiomeNetherEx
 {
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator quartz = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(2), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2));
+    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(2), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2));
     private WorldGenerator elderMushroom = new WorldGenElderMushroom();
     private WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
 
@@ -81,7 +81,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigurationHandler.BiomeFungiForest.quartzOreRarity; i++)
             {
-                quartz.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
+                quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));

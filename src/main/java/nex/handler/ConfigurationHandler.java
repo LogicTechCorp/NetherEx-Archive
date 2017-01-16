@@ -149,12 +149,14 @@ public class ConfigurationHandler
         public static boolean generateGlowstonePass1 = true;
         public static boolean generateGlowstonePass2 = true;
         public static boolean generateQuartzOre = true;
+        public static boolean generateRimeOre = true;
         public static boolean generateIchor = true;
 
         public static int biomeRarity = 1;
         public static int glowstonePass1Rarity = 10;
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
+        public static int rimeOreRarity = 16;
         public static int ichorPitRarity = 1;
     }
 
