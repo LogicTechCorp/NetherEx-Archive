@@ -30,6 +30,7 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.handler.ConfigHandler;
 import nex.world.gen.feature.*;
 import nex.world.gen.structure.WorldGenHellChiefHut;
+import nex.world.gen.structure.WorldGenHellGrave;
 import nex.world.gen.structure.WorldGenHellPigmanHut;
 
 import java.util.Random;
@@ -47,6 +48,7 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
     private WorldGenerator chiefHut = new WorldGenHellChiefHut();
     private WorldGenerator pigmanHut = new WorldGenHellPigmanHut();
+    private WorldGenerator grave = new WorldGenHellGrave();
 
     public BiomeHell()
     {
@@ -157,6 +159,14 @@ public class BiomeHell extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.BiomeHell.pigmanHutRarity) == 0)
             {
                 pigmanHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.BiomeHell.generateGraves)
+        {
+            if(rand.nextInt(ConfigHandler.BiomeHell.graveRarity) == 0)
+            {
+                grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

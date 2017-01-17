@@ -69,6 +69,7 @@ public class ConfigHandler
         public static boolean generateLavaTraps = true;
         public static boolean generateChiefHuts = true;
         public static boolean generatePigmanHuts = true;
+        public static boolean generateGraves = true;
 
         public static int biomeRarity = 10;
         public static int lavaSpringRarity = 8;
@@ -78,8 +79,9 @@ public class ConfigHandler
         public static int quartzOreRarity = 16;
         public static int magmaRarity = 4;
         public static int lavaTrapRarity = 16;
-        public static int chiefHutRarity = 26;
-        public static int pigmanHutRarity = 28;
+        public static int chiefHutRarity = 24;
+        public static int pigmanHutRarity = 16;
+        public static int graveRarity = 8;
     }
 
     public static class BiomeRuthlessSands
