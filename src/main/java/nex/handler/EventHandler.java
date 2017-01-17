@@ -20,7 +20,6 @@ package nex.handler;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
@@ -30,13 +29,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -56,35 +52,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
-    @SubscribeEvent
-    public static void onRenderBlockOverlay(RenderBlockOverlayEvent event)
-    {
-        RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
-
-        if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
-        {
-            EntityPlayer player = event.getPlayer();
-            World world = player.getEntityWorld();
-            BlockPos pos = player.getPosition();
-
-            for(int x = -1; x < 2; x++)
-            {
-                for(int z = -1; z < 2; z++)
-                {
-                    for(int y = -1; y < 2; y++)
-                    {
-                        BlockPos newPos = pos.add(x, y, z);
-
-                        if(world.getBlockState(newPos).getBlock() == NetherExBlocks.FLUID_ICHOR)
-                        {
-                            event.setCanceled(true);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void onBoneMealUse(BonemealEvent event)
     {
@@ -175,35 +142,6 @@ public class EventHandler
     }
 
     @SubscribeEvent
-    public static void onLivingAttacked(LivingAttackEvent event)
-    {
-        Entity entity = event.getEntity();
-        World world = entity.getEntityWorld();
-        BlockPos pos = entity.getPosition();
-        DamageSource source = event.getSource();
-
-        if(source == DamageSource.LAVA || source == DamageSource.IN_FIRE || source == DamageSource.ON_FIRE)
-        {
-            for(int x = -1; x < 2; x++)
-            {
-                for(int z = -1; z < 2; z++)
-                {
-                    for(int y = -1; y < 2; y++)
-                    {
-                        BlockPos newPos = pos.add(x, y, z);
-
-                        if(world.getBlockState(newPos).getBlock() == NetherExBlocks.FLUID_ICHOR)
-                        {
-                            entity.extinguish();
-                            event.setCanceled(true);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event)
     {
         Random rand = new Random();
@@ -211,7 +149,7 @@ public class EventHandler
 
         if(event.getEntity() instanceof EntityGhast)
         {
-            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.FOOD_MEAT_GHAST_RAW, rand.nextInt(3) + 1, 0)));
+            event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.FOOD_MEAT_GHAST_RAW, rand.nextInt(3) + 1, 0)));
         }
         else if(event.getEntity() instanceof EntityWitherSkeleton)
         {

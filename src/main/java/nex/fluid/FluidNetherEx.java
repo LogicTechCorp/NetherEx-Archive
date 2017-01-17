@@ -20,6 +20,7 @@ package nex.fluid;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 public class FluidNetherEx extends Fluid
 {
@@ -29,5 +30,11 @@ public class FluidNetherEx extends Fluid
 
         FluidRegistry.registerFluid(this);
         FluidRegistry.addBucketForFluid(this);
+    }
+
+    @Override
+    public boolean doesVaporize(FluidStack fluidStack)
+    {
+        return false;
     }
 }

@@ -31,6 +31,7 @@ public class WorldProviderNether extends WorldProviderHell
     public void init()
     {
         biomeProvider = new BiomeProviderNether(world.getSeed());
+        doesWaterVaporize = true;
         hasNoSky = true;
         setDimension(-1);
     }
