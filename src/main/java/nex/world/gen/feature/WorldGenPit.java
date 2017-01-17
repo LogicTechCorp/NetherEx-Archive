@@ -31,22 +31,24 @@ public class WorldGenPit extends WorldGenerator
 {
     private final Block block;
     private final IBlockState surroundingBlock;
+    private final IBlockState blockToIgnore;
 
-    public WorldGenPit(Block blockIn, IBlockState surroundingBlockIn)
+    public WorldGenPit(Block blockIn, IBlockState surroundingBlockIn, IBlockState blockToIgnoreIn)
     {
         block = blockIn;
         surroundingBlock = surroundingBlockIn;
+        blockToIgnore = blockToIgnoreIn;
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        for(pos = pos.add(-8, 0, -8); pos.getY() > 5 && world.isAirBlock(pos); pos = pos.down())
+        for(pos = pos.add(-8, 0, -8); pos.getY() > 32 && (world.isAirBlock(pos) || world.getBlockState(pos) == blockToIgnore); pos = pos.down())
         {
 
         }
 
-        if(pos.getY() <= 4)
+        if(pos.getY() < 32)
         {
             return false;
         }

@@ -41,7 +41,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(1), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
     private WorldGenerator rimeOre = new WorldGenMinableMeta(NetherExBlocks.ORE_RIME.getDefaultState(), 7, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
-    private WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, Blocks.PACKED_ICE.getDefaultState());
+    private WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, Blocks.PACKED_ICE.getDefaultState(), Blocks.MAGMA.getDefaultState());
 
     public BiomeArcticAbyss()
     {
@@ -96,7 +96,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         if(ConfigHandler.BiomeArcticAbyss.generateIchor)
         {
-            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.ichorPitRarity; i++)
+            if(rand.nextInt(ConfigHandler.BiomeArcticAbyss.ichorPitRarity) == 0)
             {
                 ichorPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }

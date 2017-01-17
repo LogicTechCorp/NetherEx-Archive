@@ -81,7 +81,7 @@ public class ConfigHandler
         public static int lavaTrapRarity = 16;
         public static int chiefHutRarity = 24;
         public static int pigmanHutRarity = 16;
-        public static int graveRarity = 8;
+        public static int graveRarity = 4;
     }
 
     public static class BiomeRuthlessSands
@@ -143,7 +143,7 @@ public class ConfigHandler
         public static int magmaRarity = 12;
         public static int lavaTrapRarity = 48;
         public static int lavaPitRarity = 8;
-        public static int blazingPyramidRarity = 4;
+        public static int blazingPyramidRarity = 1;
     }
 
     public static class BiomeArcticAbyss
@@ -159,7 +159,7 @@ public class ConfigHandler
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
         public static int rimeOreRarity = 16;
-        public static int ichorPitRarity = 1;
+        public static int ichorPitRarity = 4;
     }
 
     public static class Miscellaneous
