@@ -21,9 +21,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -57,8 +55,7 @@ public class EntitySalamander extends EntityMob
         tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
         tasks.addTask(3, new EntityAIWander(this, 1.0D));
         tasks.addTask(4, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        targetTasks.addTask(0, new EntityAIHurtByTarget(this, false));
     }
 
     @Override

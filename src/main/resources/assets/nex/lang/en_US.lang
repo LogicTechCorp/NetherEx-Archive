@@ -181,6 +181,10 @@ config.nex:miscellaneous.generateGravel=Generate Gravel
 config.nex:miscellaneous.generateGravel.tooltip=Does Gravel generate in the Nether
 config.nex:miscellaneous.turnMagmaIntoLava=Does Magma Turn Into Lava
 config.nex:miscellaneous.turnMagmaIntoLava.tooltip=Does Magma turn into lava when mined
+config.nex:miscellaneous.doesTilledSoulSandRequireIchor=Does Tilled Soul Sand Require Ichor
+config.nex:miscellaneous.doesTilledSoulSandRequireIchor.tooltip=Does Tilled Soul Sand require Ichor to grow crops
+config.nex:miscellaneous.doesNetherwartUseNewGrowthSystem=Does Netherwart Use New Growth System
+config.nex:miscellaneous.doesNetherwartUseNewGrowthSystem.tooltip=Does Netherwart use NetherEx's crop growth system
 
 # Creative Tabs
 itemGroup.nex=NetherEx

@@ -35,6 +35,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
@@ -78,7 +79,7 @@ public class BlockTilledSoulSand extends BlockNetherEx
     {
         int moisture = state.getValue(MOISTURE);
 
-        if(!hasBlood(world, pos))
+        if(!hasFluid(world, pos))
         {
             if(moisture > 0)
             {
@@ -92,6 +93,11 @@ public class BlockTilledSoulSand extends BlockNetherEx
         else if(moisture < 7)
         {
             world.setBlockState(pos, state.withProperty(MOISTURE, 7), 2);
+        }
+        else if(moisture == 7)
+        {
+            world.scheduleUpdate(pos.up(), world.getBlockState(pos.up()).getBlock(), 600);
+            world.scheduleUpdate(pos, this, 600);
         }
     }
 
@@ -129,11 +135,13 @@ public class BlockTilledSoulSand extends BlockNetherEx
         return block instanceof IPlantable && canSustainPlant(world.getBlockState(pos), world, pos, EnumFacing.UP, (IPlantable) block);
     }
 
-    private boolean hasBlood(World world, BlockPos pos)
+    private boolean hasFluid(World world, BlockPos pos)
     {
+        Block block = ConfigHandler.Miscellaneous.doesTilledSoulSandRequireIchor ? NetherExBlocks.FLUID_ICHOR : Blocks.LAVA;
+
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {
-            if(world.getBlockState(mutablePos).getBlock() == NetherExBlocks.FLUID_ICHOR)
+            if(world.getBlockState(mutablePos).getBlock() == block)
             {
                 return true;
             }
@@ -166,7 +174,7 @@ public class BlockTilledSoulSand extends BlockNetherEx
             case EAST:
                 IBlockState testState = blockAccess.getBlockState(pos.offset(side));
                 Block block = testState.getBlock();
-                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH || block != NetherExBlocks.BLOCK_SAND_SOUL_TILLED;
+                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.BLOCK_SAND_SOUL_TILLED;
             default:
                 return super.shouldSideBeRendered(state, blockAccess, pos, side);
         }

@@ -120,9 +120,9 @@ public class EventHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(state.getBlock() == Blocks.NETHER_WART)
+        if(state.getBlock() == Blocks.NETHER_WART && ConfigHandler.Miscellaneous.doesNetherwartUseNewGrowthSystem)
         {
-            if(world.getBlockState(pos.down()).getBlock() == NetherExBlocks.BLOCK_SAND_SOUL_TILLED)
+            if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getStateFromMeta(7))
             {
                 event.setResult(Event.Result.ALLOW);
             }
@@ -146,7 +146,7 @@ public class EventHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigurationHandler.Miscellaneous.turnMagmaIntoLava)
+                if(ConfigHandler.Miscellaneous.turnMagmaIntoLava)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {

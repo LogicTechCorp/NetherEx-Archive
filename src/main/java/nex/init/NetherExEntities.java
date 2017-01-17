@@ -18,10 +18,7 @@
 package nex.init;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.monster.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import nex.NetherEx;
 import nex.entity.monster.EntityWight;

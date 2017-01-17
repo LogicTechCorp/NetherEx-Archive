@@ -28,7 +28,7 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import nex.NetherEx;
-import nex.handler.ConfigurationHandler;
+import nex.handler.ConfigHandler;
 
 import java.util.List;
 import java.util.Set;
@@ -42,7 +42,7 @@ public class ModGuiConfig extends GuiConfig
 
     private static List<IConfigElement> getConfigElements()
     {
-        Configuration configuration = ConfigurationHandler.getConfiguration();
+        Configuration configuration = ConfigHandler.getConfiguration();
 
         ConfigCategory parentCategory = configuration.getCategory(Configuration.CATEGORY_GENERAL);
         Set<ConfigCategory> childCategories = parentCategory.getChildren();

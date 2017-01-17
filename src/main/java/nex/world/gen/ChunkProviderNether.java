@@ -41,7 +41,7 @@ import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import nex.handler.ConfigurationHandler;
+import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 
 import java.util.List;
@@ -223,12 +223,12 @@ public class ChunkProviderNether extends ChunkProviderHell
                                         topState = biome.topBlock;
                                         fillerState = biome.fillerBlock;
 
-                                        if(ConfigurationHandler.Miscellaneous.generateGravel && genGravel)
+                                        if(ConfigHandler.Miscellaneous.generateGravel && genGravel)
                                         {
                                             topState = Blocks.GRAVEL.getDefaultState();
                                         }
 
-                                        if(ConfigurationHandler.Miscellaneous.generateSoulSand && genSoulSand)
+                                        if(ConfigHandler.Miscellaneous.generateSoulSand && genSoulSand)
                                         {
                                             topState = Blocks.SOUL_SAND.getDefaultState();
                                             fillerState = Blocks.SOUL_SAND.getDefaultState();

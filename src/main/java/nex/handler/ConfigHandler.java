@@ -37,7 +37,7 @@ import java.util.Optional;
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber
 @Config(modid = NetherEx.MOD_ID, name = "NetherEx")
-public class ConfigurationHandler
+public class ConfigHandler
 {
     private static Configuration configuration;
 
@@ -49,7 +49,7 @@ public class ConfigurationHandler
     public static BiomeArcticAbyss biome_arctic_abyss = new BiomeArcticAbyss();
     public static Miscellaneous miscellaneous = new Miscellaneous();
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigurationHandler");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigHandler");
 
     public static class Client
     {
@@ -165,6 +165,8 @@ public class ConfigurationHandler
         public static boolean generateSoulSand = false;
         public static boolean generateGravel = false;
         public static boolean turnMagmaIntoLava = false;
+        public static boolean doesTilledSoulSandRequireIchor = true;
+        public static boolean doesNetherwartUseNewGrowthSystem = true;
     }
 
     public static Configuration getConfiguration()

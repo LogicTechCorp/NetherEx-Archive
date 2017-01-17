@@ -26,7 +26,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.entity.monster.EntityWight;
-import nex.handler.ConfigurationHandler;
+import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
@@ -45,7 +45,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
     public BiomeArcticAbyss()
     {
-        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss", ConfigurationHandler.BiomeArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA));
+        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss", ConfigHandler.BiomeArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA));
 
         spawnableMonsterList.add(new SpawnListEntry(EntityWight.class, 100, 1, 4));
 
@@ -58,17 +58,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeArcticAbyss.generateGlowstonePass1)
+        if(ConfigHandler.BiomeArcticAbyss.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigurationHandler.BiomeArcticAbyss.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeArcticAbyss.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeArcticAbyss.generateGlowstonePass2)
+        if(ConfigHandler.BiomeArcticAbyss.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeArcticAbyss.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -76,17 +76,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeArcticAbyss.generateQuartzOre)
+        if(ConfigHandler.BiomeArcticAbyss.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeArcticAbyss.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 
-        if(ConfigurationHandler.BiomeArcticAbyss.generateRimeOre)
+        if(ConfigHandler.BiomeArcticAbyss.generateRimeOre)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeArcticAbyss.rimeOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.rimeOreRarity; i++)
             {
                 rimeOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -94,9 +94,9 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeArcticAbyss.generateIchor)
+        if(ConfigHandler.BiomeArcticAbyss.generateIchor)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeArcticAbyss.ichorPitRarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.ichorPitRarity; i++)
             {
                 ichorPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }

@@ -27,7 +27,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
-import nex.handler.ConfigurationHandler;
+import nex.handler.ConfigHandler;
 import nex.world.gen.feature.*;
 import nex.world.gen.structure.WorldGenHellChiefHut;
 import nex.world.gen.structure.WorldGenHellPigmanHut;
@@ -50,7 +50,7 @@ public class BiomeHell extends BiomeNetherEx
 
     public BiomeHell()
     {
-        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell", ConfigurationHandler.BiomeHell.biomeRarity, new ItemStack(Blocks.LAVA));
+        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell", ConfigHandler.BiomeHell.biomeRarity, new ItemStack(Blocks.LAVA));
 
         topBlock = Blocks.NETHERRACK.getDefaultState();
         fillerBlock = Blocks.NETHERRACK.getDefaultState();
@@ -68,39 +68,39 @@ public class BiomeHell extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeHell.generateLavaSprings)
+        if(ConfigHandler.BiomeHell.generateLavaSprings)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.lavaSpringRarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeHell.lavaSpringRarity; i++)
             {
                 lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateFire)
+        if(ConfigHandler.BiomeHell.generateFire)
         {
-            for(int i = 0; i < rand.nextInt(ConfigurationHandler.BiomeHell.fireRarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeHell.fireRarity); i++)
             {
                 fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateGlowstonePass1)
+        if(ConfigHandler.BiomeHell.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigurationHandler.BiomeHell.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeHell.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateGlowstonePass2)
+        if(ConfigHandler.BiomeHell.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeHell.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateBrownMushrooms)
+        if(ConfigHandler.BiomeHell.generateBrownMushrooms)
         {
             if(rand.nextBoolean())
             {
@@ -108,7 +108,7 @@ public class BiomeHell extends BiomeNetherEx
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateRedMushrooms)
+        if(ConfigHandler.BiomeHell.generateRedMushrooms)
         {
             if(rand.nextBoolean())
             {
@@ -118,9 +118,9 @@ public class BiomeHell extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeHell.generateQuartzOre)
+        if(ConfigHandler.BiomeHell.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeHell.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -128,33 +128,33 @@ public class BiomeHell extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigurationHandler.BiomeHell.generateMagma)
+        if(ConfigHandler.BiomeHell.generateMagma)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.magmaRarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeHell.magmaRarity; i++)
             {
                 magma.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateLavaTraps)
+        if(ConfigHandler.BiomeHell.generateLavaTraps)
         {
-            for(int i = 0; i < ConfigurationHandler.BiomeHell.lavaTrapRarity; i++)
+            for(int i = 0; i < ConfigHandler.BiomeHell.lavaTrapRarity; i++)
             {
                 lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generateChiefHuts)
+        if(ConfigHandler.BiomeHell.generateChiefHuts)
         {
-            if(rand.nextInt(ConfigurationHandler.BiomeHell.chiefHutRarity) == 0)
+            if(rand.nextInt(ConfigHandler.BiomeHell.chiefHutRarity) == 0)
             {
                 chiefHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigurationHandler.BiomeHell.generatePigmanHuts)
+        if(ConfigHandler.BiomeHell.generatePigmanHuts)
         {
-            if(rand.nextInt(ConfigurationHandler.BiomeHell.pigmanHutRarity) == 0)
+            if(rand.nextInt(ConfigHandler.BiomeHell.pigmanHutRarity) == 0)
             {
                 pigmanHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
