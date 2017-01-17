@@ -127,6 +127,22 @@ public class EventHandler
     }
 
     @SubscribeEvent
+    public static void onCreateFluidSource(BlockEvent.CreateFluidSourceEvent event)
+    {
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        IBlockState state = event.getState();
+
+        if(world.provider.getDimension() == -1)
+        {
+            if(state.getBlock() == Blocks.LAVA || state.getBlock() == Blocks.FLOWING_LAVA)
+            {
+                event.setResult(ConfigHandler.Miscellaneous.isLavaInfiniteInTheNether ? Event.Result.ALLOW : Event.Result.DEFAULT);
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onSetAttackTarget(LivingSetAttackTargetEvent event)
     {
         if(event.getEntity() instanceof AbstractSkeleton)

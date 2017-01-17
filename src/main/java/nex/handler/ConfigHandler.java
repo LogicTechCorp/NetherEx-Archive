@@ -169,6 +169,7 @@ public class ConfigHandler
         public static boolean turnMagmaIntoLava = false;
         public static boolean doesTilledSoulSandRequireIchor = true;
         public static boolean doesNetherwartUseNewGrowthSystem = true;
+        public static boolean isLavaInfiniteInTheNether = false;
     }
 
     public static Configuration getConfiguration()

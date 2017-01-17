@@ -189,6 +189,8 @@ config.nex:miscellaneous.doesTilledSoulSandRequireIchor=Does Tilled Soul Sand Re
 config.nex:miscellaneous.doesTilledSoulSandRequireIchor.tooltip=Does Tilled Soul Sand require Ichor to grow crops
 config.nex:miscellaneous.doesNetherwartUseNewGrowthSystem=Does Netherwart Use New Growth System
 config.nex:miscellaneous.doesNetherwartUseNewGrowthSystem.tooltip=Does Netherwart use NetherEx's crop growth system
+config.nex:miscellaneous.isLavaInfiniteInTheNether=Is Lava Infinite In The Nether
+config.nex:miscellaneous.isLavaInfiniteInTheNether.tooltip=Is Lava infinite in the Nether
 
 # Creative Tabs
 itemGroup.nex=NetherEx
