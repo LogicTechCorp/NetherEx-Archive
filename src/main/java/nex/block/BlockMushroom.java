@@ -49,9 +49,9 @@ public class BlockMushroom extends BlockNetherEx
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(EnumType type : EnumType.values())
+        for(int i = 9; i < 13; i ++)
         {
-            list.add(new ItemStack(item, 1, type.ordinal()));
+            list.add(new ItemStack(item, 1, i));
         }
     }
 
