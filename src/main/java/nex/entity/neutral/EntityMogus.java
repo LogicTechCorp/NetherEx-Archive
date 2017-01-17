@@ -30,6 +30,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
+import nex.init.NetherExItems;
 
 public class EntityMogus extends EntityMob
 {
@@ -55,7 +56,7 @@ public class EntityMogus extends EntityMob
         tasks.addTask(2, new EntityAIWander(this, 1.0D));
         tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(4, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+        targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
     }
 
     @Override
@@ -94,7 +95,7 @@ public class EntityMogus extends EntityMob
     @Override
     protected Item getDropItem()
     {
-        return getType() == 0 ? Item.getItemFromBlock(Blocks.RED_MUSHROOM) : Item.getItemFromBlock(Blocks.BROWN_MUSHROOM);
+        return getType() == 0 ? Item.getItemFromBlock(Blocks.BROWN_MUSHROOM) : getType() == 1 ? Item.getItemFromBlock(Blocks.RED_MUSHROOM) : NetherExItems.FOOD_MUSHROOM_ENOKI;
     }
 
     public int getType()

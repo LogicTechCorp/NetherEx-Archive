@@ -49,7 +49,7 @@ public class BlockMushroom extends BlockNetherEx
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(int i = 9; i < 13; i ++)
+        for(int i = 9; i < 13; i++)
         {
             list.add(new ItemStack(item, 1, i));
         }

@@ -42,16 +42,6 @@ public class NetherExEntities
         registerEntity("salamander", EntitySalamander.class, 1, 16711680, 16762880);
         registerEntity("wight", EntityWight.class, 2, 16711680, 16762880);
 
-        addEntitySpawn(EntityPigZombie.class, 100, 4, 4, EnumCreatureType.MONSTER, NetherExBiomes.HELL);
-        addEntitySpawn(EntityGhast.class, 50, 4, 4, EnumCreatureType.MONSTER, NetherExBiomes.HELL);
-        addEntitySpawn(EntityBlaze.class, 25, 4, 4, EnumCreatureType.MONSTER, NetherExBiomes.HELL);
-        addEntitySpawn(EntityMagmaCube.class, 2, 4, 4, EnumCreatureType.MONSTER, NetherExBiomes.HELL);
-        addEntitySpawn(EntityEnderman.class, 1, 4, 4, EnumCreatureType.MONSTER, NetherExBiomes.HELL);
-        addEntitySpawn(EntityWitherSkeleton.class, 100, 1, 4, EnumCreatureType.MONSTER, NetherExBiomes.RUTHLESS_SANDS);
-        addEntitySpawn(EntityMogus.class, 100, 4, 8, EnumCreatureType.CREATURE, NetherExBiomes.FUNGI_FOREST);
-        addEntitySpawn(EntitySalamander.class, 100, 1, 4, EnumCreatureType.CREATURE, NetherExBiomes.TORRID_WASTELAND);
-        addEntitySpawn(EntityWight.class, 100, 1, 4, EnumCreatureType.CREATURE, NetherExBiomes.ARCTIC_ABYSS);
-
         LOGGER.info("Entity registration Ended.");
     }
 
@@ -65,10 +55,5 @@ public class NetherExEntities
     {
         ResourceLocation registryName = new ResourceLocation(NetherEx.MOD_ID + ":" + name);
         EntityRegistry.registerModEntity(registryName, cls, registryName.toString(), id, NetherEx.instance, 64, 1, true, primaryEggColor, secondaryEggColor);
-    }
-
-    private static void addEntitySpawn(Class<? extends EntityLiving> cls, int weight, int minSpawnCount, int maxSpawnCount, EnumCreatureType creatureType, Biome... biomes)
-    {
-        EntityRegistry.addSpawn(cls, weight, minSpawnCount, maxSpawnCount, creatureType, biomes);
     }
 }
