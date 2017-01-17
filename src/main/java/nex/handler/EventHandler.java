@@ -19,6 +19,7 @@ package nex.handler;
 
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
@@ -26,6 +27,7 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -33,6 +35,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -126,6 +129,32 @@ public class EventHandler
             else
             {
                 event.setResult(Event.Result.DENY);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event)
+    {
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        IBlockState state = event.getState();
+
+        if(!(event.getPlayer() instanceof FakePlayer))
+        {
+            EntityPlayer player = event.getPlayer();
+
+            if(state.getBlock() == Blocks.MAGMA)
+            {
+                if(ConfigurationHandler.Miscellaneous.turnMagmaIntoLava)
+                {
+                    if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
+                    {
+                        world.setBlockState(pos, Blocks.LAVA.getDefaultState(), 3);
+                        player.getHeldItemMainhand().damageItem(1, player);
+                        event.setCanceled(true);
+                    }
+                }
             }
         }
     }

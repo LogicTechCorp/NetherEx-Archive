@@ -179,6 +179,8 @@ config.nex:miscellaneous.generateSoulSand=Generate Soul Sand
 config.nex:miscellaneous.generateSoulSand.tooltip=Does Soul Sand generate outside of the Ruthless Sands biome
 config.nex:miscellaneous.generateGravel=Generate Gravel
 config.nex:miscellaneous.generateGravel.tooltip=Does Gravel generate in the Nether
+config.nex:miscellaneous.turnMagmaIntoLava=Does Magma Turn Into Lava
+config.nex:miscellaneous.turnMagmaIntoLava.tooltip=Does Magma turn into lava when mined
 
 # Creative Tabs
 itemGroup.nex=NetherEx
@@ -236,6 +238,7 @@ tile.nex:blockHyphae.name=Hyphae
 tile.nex:blockSandSoulTilled.name=Tilled Soul Sand
 tile.nex:blockGlassSoul.name=Soul Glass
 tile.nex:blockGlassPaneSoul.name=Soul Glass Pane
+tile.nex:blockRime.name=Rime Block
 tile.nex:oreQuartz.fiery.name=Fiery Quartz Ore
 tile.nex:oreQuartz.icy.name=Icy Quartz Ore
 tile.nex:oreQuartz.lively.name=Lively Quartz Ore

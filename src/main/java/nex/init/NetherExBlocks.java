@@ -56,6 +56,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_glass_pane_soul")
     public static final BlockSoulGlassPane BLOCK_GLASS_PANE_SOUL = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_rime")
+    public static final BlockRime BLOCK_RIME = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
     public static final BlockQuartzOre ORE_QUARTZ = null;
 
@@ -204,6 +207,7 @@ public class NetherExBlocks
                     new BlockTilledSoulSand(),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
+                    new BlockRime(),
                     new BlockQuartzOre(),
                     new BlockRimeOre(),
                     new BlockThornstalk(),
@@ -262,6 +266,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_SAND_SOUL_TILLED),
                     new ItemBlockNetherEx(BLOCK_GLASS_SOUL),
                     new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
+                    new ItemBlockNetherEx(BLOCK_RIME),
                     new ItemBlockQuartzOre(),
                     new ItemBlockNetherEx(ORE_RIME),
                     new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),

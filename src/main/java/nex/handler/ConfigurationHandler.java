@@ -164,6 +164,7 @@ public class ConfigurationHandler
     {
         public static boolean generateSoulSand = false;
         public static boolean generateGravel = false;
+        public static boolean turnMagmaIntoLava = false;
     }
 
     public static Configuration getConfiguration()

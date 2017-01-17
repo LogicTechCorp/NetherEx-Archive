@@ -98,6 +98,7 @@ public class NetherExModels
         registerModel(BLOCK_SAND_SOUL_TILLED, "moisture=0");
         registerModel(BLOCK_GLASS_SOUL, "normal");
         registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
+        registerModel(BLOCK_RIME, "normal");
 
         registerModel(ORE_RIME, "normal");
 
