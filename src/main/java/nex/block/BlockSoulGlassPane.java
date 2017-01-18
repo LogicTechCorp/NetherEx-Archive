@@ -34,8 +34,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.init.NetherExBlocks;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockSoulGlassPane extends BlockNetherEx
@@ -113,10 +113,7 @@ public class BlockSoulGlassPane extends BlockNetherEx
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        return state.withProperty(NORTH, canPaneConnectTo(worldIn, pos, EnumFacing.NORTH))
-                .withProperty(SOUTH, canPaneConnectTo(worldIn, pos, EnumFacing.SOUTH))
-                .withProperty(WEST, canPaneConnectTo(worldIn, pos, EnumFacing.WEST))
-                .withProperty(EAST, canPaneConnectTo(worldIn, pos, EnumFacing.EAST));
+        return state.withProperty(NORTH, canPaneConnectTo(worldIn, pos, EnumFacing.NORTH)).withProperty(SOUTH, canPaneConnectTo(worldIn, pos, EnumFacing.SOUTH)).withProperty(WEST, canPaneConnectTo(worldIn, pos, EnumFacing.WEST)).withProperty(EAST, canPaneConnectTo(worldIn, pos, EnumFacing.EAST));
     }
 
     @Override
@@ -152,7 +149,7 @@ public class BlockSoulGlassPane extends BlockNetherEx
 
     private boolean canPaneConnectToBlock(Block block)
     {
-        return block.getDefaultState().isFullCube() || block == this || block == Blocks.GLASS || block == Blocks.STAINED_GLASS || block == Blocks.STAINED_GLASS_PANE || block instanceof BlockPane;
+        return block.getDefaultState().isFullCube() || block == this || block == NetherExBlocks.BLOCK_GLASS_SOUL || block == Blocks.GLASS || block == Blocks.STAINED_GLASS || block == Blocks.STAINED_GLASS_PANE || block instanceof BlockPane;
     }
 
     private static int getBoundingBoxIndex(EnumFacing facing)

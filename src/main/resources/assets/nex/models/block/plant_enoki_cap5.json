@@ -2,7 +2,7 @@
     "parent": "nex:block/plant_enoki_cap0",
     "textures": {
         "side": "nex:blocks/plant_enoki_cap5",
-        "top-bottom": "nex:blocks/plant_enoki_w2",
+        "bottom": "nex:blocks/plant_enoki_w2",
         "particle": "nex:blocks/plant_enoki_stem1"
     }
 }

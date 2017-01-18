@@ -132,10 +132,10 @@ public class BlockEnokiCap extends BlockNetherEx
 
                         for(int j1 = 0; j1 < l; ++j1)
                         {
-                            EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
-                            BlockPos blockpos1 = pos.offset(enumfacing);
+                            EnumFacing facing = EnumFacing.Plane.HORIZONTAL.random(rand);
+                            BlockPos blockpos1 = pos.offset(facing);
 
-                            if(world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && areAllNeighborsEmpty(world, blockpos1, enumfacing.getOpposite()))
+                            if(world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && areAllNeighborsEmpty(world, blockpos1, facing.getOpposite()))
                             {
                                 placeGrownCap(world, blockpos1, i + 1);
                                 flag2 = true;
@@ -221,14 +221,47 @@ public class BlockEnokiCap extends BlockNetherEx
     public boolean canSurvive(World world, BlockPos pos)
     {
         IBlockState stateUp = world.getBlockState(pos.up());
-        return stateUp.getBlock() == NetherExBlocks.PLANT_ENOKI_STEM || stateUp == NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2);
+        Block blockUp = stateUp.getBlock();
+
+        if(blockUp != NetherExBlocks.PLANT_ENOKI_STEM && stateUp != NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2))
+        {
+            if(stateUp.getMaterial() == Material.AIR)
+            {
+                int i = 0;
+
+                for(EnumFacing facing : EnumFacing.Plane.HORIZONTAL)
+                {
+                    IBlockState stateSide = world.getBlockState(pos.offset(facing));
+                    Block blockSide = stateSide.getBlock();
+
+                    if(blockSide == NetherExBlocks.PLANT_ENOKI_STEM)
+                    {
+                        i++;
+                    }
+                    else if(stateSide.getMaterial() != Material.AIR)
+                    {
+                        return false;
+                    }
+                }
+
+                return i == 1;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
     }
 
-    private static boolean areAllNeighborsEmpty(World world, BlockPos pos, EnumFacing face)
+    private static boolean areAllNeighborsEmpty(World world, BlockPos pos, EnumFacing facing)
     {
-        for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+        for(EnumFacing enumFacing : EnumFacing.Plane.HORIZONTAL)
         {
-            if(enumfacing != face && !world.isAirBlock(pos.offset(enumfacing)))
+            if(enumFacing != facing && !world.isAirBlock(pos.offset(enumFacing)))
             {
                 return false;
             }
