@@ -110,7 +110,7 @@ public class BlockThornstalk extends BlockNetherEx
         Block blockDown2 = world.getBlockState(pos.down(2)).getBlock();
         Block blockDown3 = world.getBlockState(pos.down(3)).getBlock();
 
-        return !(blockDown == this && blockDown2 == this && blockDown3 == this) && block == Blocks.AIR && (blockDown == this || blockDown == Blocks.SAND || blockDown == Blocks.SOUL_SAND);
+        return !(blockDown == this && blockDown2 == this && blockDown3 == this) && block == Blocks.AIR && (blockDown == this || blockDown == Blocks.SOUL_SAND);
     }
 
     @Override

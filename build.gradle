@@ -15,7 +15,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = mod_version
 group = "NetherEx"
-archivesBaseName = "NetherEx_" + minecraft_version
+archivesBaseName = "NetherEx-" + minecraft_version
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
