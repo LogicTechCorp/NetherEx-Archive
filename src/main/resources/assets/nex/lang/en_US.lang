@@ -191,6 +191,8 @@ config.nex:miscellaneous.doesNetherwartUseNewGrowthSystem=Does Netherwart Use Ne
 config.nex:miscellaneous.doesNetherwartUseNewGrowthSystem.tooltip=Does Netherwart use NetherEx's crop growth system
 config.nex:miscellaneous.isLavaInfiniteInTheNether=Is Lava Infinite In The Nether
 config.nex:miscellaneous.isLavaInfiniteInTheNether.tooltip=Is Lava infinite in the Nether
+config.nex:miscellaneous.enableNetherPortalFix=Enable Nether Portal Fix
+config.nex:miscellaneous.enableNetherPortalFix.tooltip=Is Nether Portal teleportation fixed
 
 # Creative Tabs
 itemGroup.nex=NetherEx

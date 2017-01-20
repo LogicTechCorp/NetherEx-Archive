@@ -32,18 +32,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
 import nex.util.ArmorUtil;
+import nex.world.NetherExTeleporter;
 
 import java.util.ListIterator;
 import java.util.Random;
@@ -52,6 +56,21 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
+
+    @SubscribeEvent
+    public static void onWorldLoad(WorldEvent.Load event)
+    {
+        World world = event.getWorld();
+
+        if(ConfigHandler.Miscellaneous.enableNetherPortalFix && world instanceof WorldServer)
+        {
+            if(world.provider.getDimension() == 0 || event.getWorld().provider.getDimension() == -1)
+            {
+                ReflectionHelper.setPrivateValue(WorldServer.class, ((WorldServer) world), new NetherExTeleporter((WorldServer) world), "field_85177_Q", "worldTeleporter");
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onBoneMealUse(BonemealEvent event)
     {
@@ -87,7 +106,7 @@ public class EventHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(state.getBlock() == Blocks.NETHER_WART && ConfigHandler.Miscellaneous.doesNetherwartUseNewGrowthSystem)
+        if(ConfigHandler.Miscellaneous.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
             if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getStateFromMeta(7))
             {

@@ -43,12 +43,12 @@ public class WorldGenPit extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        for(pos = pos.add(-8, 0, -8); pos.getY() > 32 && (world.isAirBlock(pos) || world.getBlockState(pos) == blockToIgnore); pos = pos.down())
+        for(pos = pos.add(-8, 0, -8); pos.getY() > 33 && (world.isAirBlock(pos) || world.getBlockState(pos) == blockToIgnore); pos = pos.down())
         {
 
         }
 
-        if(pos.getY() < 32)
+        if(pos.getY() < 33)
         {
             return false;
         }

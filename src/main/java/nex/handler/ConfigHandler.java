@@ -170,6 +170,7 @@ public class ConfigHandler
         public static boolean doesTilledSoulSandRequireIchor = true;
         public static boolean doesNetherwartUseNewGrowthSystem = true;
         public static boolean isLavaInfiniteInTheNether = false;
+        public static boolean enableNetherPortalFix = true;
     }
 
     public static Configuration getConfiguration()
