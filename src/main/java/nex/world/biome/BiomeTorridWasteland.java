@@ -49,7 +49,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
     public BiomeTorridWasteland()
     {
-        super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland", ConfigHandler.BiomeTorridWasteland.biomeRarity, new ItemStack(Blocks.LAVA));
+        super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland", ConfigHandler.TorridWasteland.biomeRarity, new ItemStack(Blocks.LAVA));
 
         spawnableMonsterList.add(new SpawnListEntry(EntitySalamander.class, 100, 3, 6));
 
@@ -62,33 +62,33 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeTorridWasteland.generateLavaSprings)
+        if(ConfigHandler.TorridWasteland.generateLavaSprings)
         {
-            for(int i = 0; i < ConfigHandler.BiomeTorridWasteland.lavaSpringRarity; i++)
+            for(int i = 0; i < ConfigHandler.TorridWasteland.lavaSpringRarity; i++)
             {
                 lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeTorridWasteland.generateFire)
+        if(ConfigHandler.TorridWasteland.generateFire)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeTorridWasteland.fireRarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.TorridWasteland.fireRarity); i++)
             {
                 fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeTorridWasteland.generateGlowstonePass1)
+        if(ConfigHandler.TorridWasteland.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeTorridWasteland.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.TorridWasteland.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeTorridWasteland.generateGlowstonePass2)
+        if(ConfigHandler.TorridWasteland.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigHandler.BiomeTorridWasteland.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.TorridWasteland.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -96,9 +96,9 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeTorridWasteland.generateQuartzOre)
+        if(ConfigHandler.TorridWasteland.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigHandler.BiomeTorridWasteland.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.TorridWasteland.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -106,41 +106,41 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.BiomeTorridWasteland.generateBasalt)
+        if(ConfigHandler.TorridWasteland.generateBasalt)
         {
-            for(int i = 0; i < ConfigHandler.BiomeTorridWasteland.basaltRarity; i++)
+            for(int i = 0; i < ConfigHandler.TorridWasteland.basaltRarity; i++)
             {
                 basalt.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 
-        if(ConfigHandler.BiomeTorridWasteland.generateMagma)
+        if(ConfigHandler.TorridWasteland.generateMagma)
         {
-            for(int i = 0; i < ConfigHandler.BiomeTorridWasteland.magmaRarity; i++)
+            for(int i = 0; i < ConfigHandler.TorridWasteland.magmaRarity; i++)
             {
                 magma.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(9) + 28, rand.nextInt(16)));
             }
         }
 
-        if(ConfigHandler.BiomeTorridWasteland.generateLavaTraps)
+        if(ConfigHandler.TorridWasteland.generateLavaTraps)
         {
-            for(int i = 0; i < ConfigHandler.BiomeTorridWasteland.lavaTrapRarity; i++)
+            for(int i = 0; i < ConfigHandler.TorridWasteland.lavaTrapRarity; i++)
             {
                 lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeTorridWasteland.generateLavaPits)
+        if(ConfigHandler.TorridWasteland.generateLavaPits)
         {
-            for(int i = 0; i < ConfigHandler.BiomeTorridWasteland.lavaPitRarity; i++)
+            for(int i = 0; i < ConfigHandler.TorridWasteland.lavaPitRarity; i++)
             {
                 lavaPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeTorridWasteland.generateBlazingPyramids)
+        if(ConfigHandler.TorridWasteland.generateBlazingPyramids)
         {
-            if(rand.nextInt(ConfigHandler.BiomeTorridWasteland.blazingPyramidRarity) == 0)
+            if(rand.nextInt(ConfigHandler.TorridWasteland.blazingPyramidRarity) == 0)
             {
                 blazingPyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }

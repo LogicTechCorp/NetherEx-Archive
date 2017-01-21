@@ -42,12 +42,12 @@ public class ConfigHandler
     private static Configuration configuration;
 
     public static Client client = new Client();
-    public static BiomeHell biome_hell = new BiomeHell();
-    public static BiomeRuthlessSands biome_ruthless_sands = new BiomeRuthlessSands();
-    public static BiomeFungiForest biome_fungi_forest = new BiomeFungiForest();
-    public static BiomeTorridWasteland biome_torrid_wasteland = new BiomeTorridWasteland();
-    public static BiomeArcticAbyss biome_arctic_abyss = new BiomeArcticAbyss();
-    public static Miscellaneous miscellaneous = new Miscellaneous();
+    public static Hell biome_hell = new Hell();
+    public static RuthlessSands biome_ruthless_sands = new RuthlessSands();
+    public static FungiForest biome_fungi_forest = new FungiForest();
+    public static TorridWasteland biome_torrid_wasteland = new TorridWasteland();
+    public static ArcticAbyss biome_arctic_abyss = new ArcticAbyss();
+    public static Misc miscellaneous = new Misc();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigHandler");
 
@@ -56,7 +56,7 @@ public class ConfigHandler
         public static boolean disableNetherFog = false;
     }
 
-    public static class BiomeHell
+    public static class Hell
     {
         public static boolean generateLavaSprings = true;
         public static boolean generateFire = true;
@@ -84,7 +84,7 @@ public class ConfigHandler
         public static int graveRarity = 4;
     }
 
-    public static class BiomeRuthlessSands
+    public static class RuthlessSands
     {
         public static boolean generateLavaSprings = true;
         public static boolean generateGlowstonePass1 = true;
@@ -104,7 +104,7 @@ public class ConfigHandler
         public static int ancientAltarRarity = 32;
     }
 
-    public static class BiomeFungiForest
+    public static class FungiForest
     {
         public static boolean generateGlowstonePass1 = true;
         public static boolean generateGlowstonePass2 = true;
@@ -120,7 +120,7 @@ public class ConfigHandler
         public static int enokiMushroomRarity = 4;
     }
 
-    public static class BiomeTorridWasteland
+    public static class TorridWasteland
     {
         public static boolean generateLavaSprings = true;
         public static boolean generateFire = true;
@@ -146,7 +146,7 @@ public class ConfigHandler
         public static int blazingPyramidRarity = 1;
     }
 
-    public static class BiomeArcticAbyss
+    public static class ArcticAbyss
     {
         public static boolean generateGlowstonePass1 = true;
         public static boolean generateGlowstonePass2 = true;
@@ -162,7 +162,7 @@ public class ConfigHandler
         public static int ichorPitRarity = 4;
     }
 
-    public static class Miscellaneous
+    public static class Misc
     {
         public static boolean generateSoulSand = false;
         public static boolean generateGravel = false;

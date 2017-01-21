@@ -99,6 +99,7 @@ public class NetherExModels
         registerModel(BLOCK_GLASS_SOUL, "normal");
         registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
         registerModel(BLOCK_RIME, "normal");
+        registerModel(BLOCK_ICE_FROSTBURN, "normal");
 
         registerModel(ORE_RIME, "normal");
 

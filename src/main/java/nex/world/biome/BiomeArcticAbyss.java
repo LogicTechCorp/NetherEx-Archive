@@ -41,15 +41,15 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(1), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
     private WorldGenerator rimeOre = new WorldGenMinableMeta(NetherExBlocks.ORE_RIME.getDefaultState(), 7, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
-    private WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, Blocks.PACKED_ICE.getDefaultState(), Blocks.MAGMA.getDefaultState());
+    private WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState(), Blocks.MAGMA.getDefaultState());
 
     public BiomeArcticAbyss()
     {
-        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss", ConfigHandler.BiomeArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA));
+        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss", ConfigHandler.ArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA));
 
         spawnableMonsterList.add(new SpawnListEntry(EntityWight.class, 100, 1, 4));
 
-        topBlock = Blocks.PACKED_ICE.getDefaultState();
+        topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1);
     }
 
@@ -58,17 +58,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeArcticAbyss.generateGlowstonePass1)
+        if(ConfigHandler.ArcticAbyss.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeArcticAbyss.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.ArcticAbyss.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeArcticAbyss.generateGlowstonePass2)
+        if(ConfigHandler.ArcticAbyss.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.ArcticAbyss.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -76,17 +76,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeArcticAbyss.generateQuartzOre)
+        if(ConfigHandler.ArcticAbyss.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.ArcticAbyss.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 
-        if(ConfigHandler.BiomeArcticAbyss.generateRimeOre)
+        if(ConfigHandler.ArcticAbyss.generateRimeOre)
         {
-            for(int i = 0; i < ConfigHandler.BiomeArcticAbyss.rimeOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.ArcticAbyss.rimeOreRarity; i++)
             {
                 rimeOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -94,9 +94,9 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.BiomeArcticAbyss.generateIchor)
+        if(ConfigHandler.ArcticAbyss.generateIchor)
         {
-            if(rand.nextInt(ConfigHandler.BiomeArcticAbyss.ichorPitRarity) == 0)
+            if(rand.nextInt(ConfigHandler.ArcticAbyss.ichorPitRarity) == 0)
             {
                 ichorPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }

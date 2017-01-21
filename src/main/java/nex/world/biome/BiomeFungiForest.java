@@ -46,7 +46,7 @@ public class BiomeFungiForest extends BiomeNetherEx
 
     public BiomeFungiForest()
     {
-        super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest", ConfigHandler.BiomeFungiForest.biomeRarity, new ItemStack(Blocks.LAVA));
+        super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest", ConfigHandler.FungiForest.biomeRarity, new ItemStack(Blocks.LAVA));
 
         spawnableMonsterList.add(new SpawnListEntry(EntityMogus.class, 100, 4, 8));
 
@@ -59,17 +59,17 @@ public class BiomeFungiForest extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeFungiForest.generateGlowstonePass1)
+        if(ConfigHandler.FungiForest.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeFungiForest.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.FungiForest.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeFungiForest.generateGlowstonePass2)
+        if(ConfigHandler.FungiForest.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigHandler.BiomeFungiForest.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.FungiForest.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -77,26 +77,26 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeFungiForest.generateQuartzOre)
+        if(ConfigHandler.FungiForest.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigHandler.BiomeFungiForest.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.FungiForest.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.BiomeFungiForest.generateElderMushrooms)
+        if(ConfigHandler.FungiForest.generateElderMushrooms)
         {
-            for(int i = 0; i < ConfigHandler.BiomeFungiForest.elderMushroomRarity * 16; i++)
+            for(int i = 0; i < ConfigHandler.FungiForest.elderMushroomRarity * 16; i++)
             {
                 elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeFungiForest.generateEnokiMushrooms)
+        if(ConfigHandler.FungiForest.generateEnokiMushrooms)
         {
-            for(int i = 0; i < ConfigHandler.BiomeFungiForest.enokiMushroomRarity * 16; i++)
+            for(int i = 0; i < ConfigHandler.FungiForest.enokiMushroomRarity * 16; i++)
             {
                 enokiMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
             }

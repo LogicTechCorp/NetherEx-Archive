@@ -59,6 +59,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_rime")
     public static final BlockRime BLOCK_RIME = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_ice_frostburn")
+    public static final BlockFrostburnIce BLOCK_ICE_FROSTBURN = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
     public static final BlockQuartzOre ORE_QUARTZ = null;
 
@@ -208,6 +211,7 @@ public class NetherExBlocks
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
                     new BlockRime(),
+                    new BlockFrostburnIce(),
                     new BlockQuartzOre(),
                     new BlockRimeOre(),
                     new BlockThornstalk(),
@@ -267,6 +271,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_GLASS_SOUL),
                     new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
                     new ItemBlockNetherEx(BLOCK_RIME),
+                    new ItemBlockNetherEx(BLOCK_ICE_FROSTBURN),
                     new ItemBlockQuartzOre(),
                     new ItemBlockNetherEx(ORE_RIME),
                     new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),

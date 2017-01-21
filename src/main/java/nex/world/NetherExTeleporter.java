@@ -17,8 +17,8 @@
 
 package nex.world;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +27,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 /**
  * A fix for Nether Portal teleportation
@@ -50,72 +49,75 @@ public class NetherExTeleporter extends Teleporter
     @Override
     public void placeInPortal(Entity entity, float rotationYaw)
     {
-        BlockPos lastPortalPos = ReflectionHelper.getPrivateValue(Entity.class, entity, "field_181016_an ", "lastPortalPos");
-
-        PortalPositionAndDimension from = new PortalPositionAndDimension(lastPortalPos);
-        super.placeInPortal(entity, rotationYaw);
-        PortalPositionAndDimension to = new PortalPositionAndDimension(entity.getPosition());
-
-        NBTTagCompound tagCompound = entity.getEntityData().getCompoundTag("TeleportInfo");
-        NBTTagList tagList = tagCompound.getTagList("ReturnPortals", Constants.NBT.TAG_COMPOUND);
-
-        for(int i = tagList.tagCount() - 1; i >= 0; i--)
+        if(entity instanceof EntityPlayer)
         {
-            NBTTagCompound portalCompound = tagList.getCompoundTagAt(i);
-            PortalPositionAndDimension testTo = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("To")), portalCompound.getInteger("ToDim"));
+            PortalPositionAndDimension from = new PortalPositionAndDimension(entity.lastPortalPos);
+            super.placeInPortal(entity, rotationYaw);
+            PortalPositionAndDimension to = new PortalPositionAndDimension(entity.getPosition());
 
-            if(testTo.dimensionId == entity.world.provider.getDimension() && testTo.distanceSq(to) <= 9)
+            NBTTagCompound tagCompound = entity.getEntityData().getCompoundTag("TeleportInfo");
+            NBTTagList tagList = tagCompound.getTagList("ReturnPortals", Constants.NBT.TAG_COMPOUND);
+
+            for(int i = tagList.tagCount() - 1; i >= 0; i--)
             {
-                tagList.removeTag(i);
-            }
-        }
+                NBTTagCompound portalCompound = tagList.getCompoundTagAt(i);
+                PortalPositionAndDimension testTo = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("To")), portalCompound.getInteger("ToDim"));
 
-        NBTTagCompound portalCompound = new NBTTagCompound();
-        portalCompound.setLong("From", from.toLong());
-        portalCompound.setInteger("FromDim", from.dimensionId);
-        portalCompound.setLong("To", to.toLong());
-        portalCompound.setInteger("ToDim", to.dimensionId);
-        tagList.appendTag(portalCompound);
-        tagCompound.setTag("ReturnPortals", tagList);
-        entity.getEntityData().setTag("TeleportInfo", tagCompound);
+                if(testTo.dimensionId == entity.world.provider.getDimension() && testTo.distanceSq(to) <= 9)
+                {
+                    tagList.removeTag(i);
+                }
+            }
+
+            NBTTagCompound portalCompound = new NBTTagCompound();
+            portalCompound.setLong("From", from.toLong());
+            portalCompound.setInteger("FromDim", from.dimensionId);
+            portalCompound.setLong("To", to.toLong());
+            portalCompound.setInteger("ToDim", to.dimensionId);
+            tagList.appendTag(portalCompound);
+            tagCompound.setTag("ReturnPortals", tagList);
+            entity.getEntityData().setTag("TeleportInfo", tagCompound);
+        }
+        else
+        {
+            super.placeInPortal(entity, rotationYaw);
+        }
     }
 
     @Override
     public boolean placeInExistingPortal(Entity entity, float rotationYaw)
     {
-        Long2ObjectMap<PortalPosition> destinationCoordinateCache = ReflectionHelper.getPrivateValue(Teleporter.class, this, "field_85191_c", "destinationCoordinateCache");
-        BlockPos lastPortalPos = ReflectionHelper.getPrivateValue(Entity.class, entity, "field_181016_an ", "lastPortalPos");
-
-        NBTTagCompound tagCompound = entity.getEntityData().getCompoundTag("TeleportInfo");
-        NBTTagList tagList = tagCompound.getTagList("ReturnPortals", Constants.NBT.TAG_COMPOUND);
-
-        for(int i = tagList.tagCount() - 1; i >= 0; i--)
+        if(entity instanceof EntityPlayer)
         {
-            NBTTagCompound portalCompound = tagList.getCompoundTagAt(i);
-            PortalPositionAndDimension to = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("To")), portalCompound.getInteger("ToDim"));
+            NBTTagCompound tagCompound = entity.getEntityData().getCompoundTag("TeleportInfo");
+            NBTTagList tagList = tagCompound.getTagList("ReturnPortals", Constants.NBT.TAG_COMPOUND);
 
-            if(to.dimensionId == entity.getEntityWorld().provider.getDimension() && to.distanceSq(lastPortalPos) <= 9)
+            for(int i = tagList.tagCount() - 1; i >= 0; i--)
             {
-                int x = MathHelper.floor(entity.posX);
-                int y = MathHelper.floor(entity.posZ);
-                long key = ChunkPos.asLong(x, y);
+                NBTTagCompound portalCompound = tagList.getCompoundTagAt(i);
+                PortalPositionAndDimension to = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("To")), portalCompound.getInteger("ToDim"));
 
-                PortalPositionAndDimension from = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("From")), portalCompound.getInteger("FromDim"));
-                destinationCoordinateCache.put(key, from);
-
-                PortalPosition oldValue = destinationCoordinateCache.get(key);
-
-                if(oldValue != null)
+                if(to.dimensionId == entity.getEntityWorld().provider.getDimension() && to.distanceSq(entity.lastPortalPos) <= 9)
                 {
-                    destinationCoordinateCache.put(key, oldValue);
+                    int x = MathHelper.floor(entity.posX);
+                    int y = MathHelper.floor(entity.posZ);
+                    long key = ChunkPos.asLong(x, y);
+
+                    PortalPositionAndDimension from = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("From")), portalCompound.getInteger("FromDim"));
+                    destinationCoordinateCache.put(key, from);
+
+                    PortalPosition oldValue = destinationCoordinateCache.get(key);
+
+                    if(oldValue != null)
+                    {
+                        destinationCoordinateCache.put(key, oldValue);
+                    }
+
+                    tagList.removeTag(i);
+                    tagCompound.setTag("ReturnPortals", tagList);
+                    entity.getEntityData().setTag("TeleportInfo", tagCompound);
+                    return super.placeInExistingPortal(entity, rotationYaw);
                 }
-
-                ReflectionHelper.setPrivateValue(Teleporter.class, this, destinationCoordinateCache, "field_85191_c", "destinationCoordinateCache");
-
-                tagList.removeTag(i);
-                tagCompound.setTag("ReturnPortals", tagList);
-                entity.getEntityData().setTag("TeleportInfo", tagCompound);
-                return super.placeInExistingPortal(entity, rotationYaw);
             }
         }
 

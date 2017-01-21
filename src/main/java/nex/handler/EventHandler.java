@@ -39,10 +39,10 @@ import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
@@ -60,13 +60,11 @@ public class EventHandler
     @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event)
     {
-        World world = event.getWorld();
-
-        if(ConfigHandler.Miscellaneous.enableNetherPortalFix && world instanceof WorldServer)
+        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.Misc.enableNetherPortalFix && event.getWorld() instanceof WorldServer)
         {
-            if(world.provider.getDimension() == 0 || event.getWorld().provider.getDimension() == -1)
+            if(event.getWorld().provider.getDimension() == 0 || event.getWorld().provider.getDimension() == -1)
             {
-                ReflectionHelper.setPrivateValue(WorldServer.class, ((WorldServer) world), new NetherExTeleporter((WorldServer) world), "field_85177_Q", "worldTeleporter");
+                ((WorldServer) event.getWorld()).worldTeleporter = new NetherExTeleporter((WorldServer) event.getWorld());
             }
         }
     }
@@ -74,6 +72,7 @@ public class EventHandler
     @SubscribeEvent
     public static void onBoneMealUse(BonemealEvent event)
     {
+        World world = event.getWorld();
         IBlockState state = event.getBlock();
         EntityPlayer player = event.getEntityPlayer();
         ItemStack mainStack = player.getHeldItem(EnumHand.MAIN_HAND);
@@ -88,7 +87,7 @@ public class EventHandler
                 if(age < 3)
                 {
                     state = state.withProperty(BlockNetherWart.AGE, age + 1);
-                    event.getWorld().setBlockState(event.getPos(), state);
+                    world.setBlockState(event.getPos(), state);
                     event.setResult(Event.Result.ALLOW);
                 }
             }
@@ -106,7 +105,7 @@ public class EventHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(ConfigHandler.Miscellaneous.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
+        if(ConfigHandler.Misc.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
             if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getStateFromMeta(7))
             {
@@ -132,7 +131,7 @@ public class EventHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigHandler.Miscellaneous.turnMagmaIntoLava)
+                if(ConfigHandler.Misc.turnMagmaIntoLava)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {
@@ -156,7 +155,7 @@ public class EventHandler
         {
             if(state.getBlock() == Blocks.LAVA || state.getBlock() == Blocks.FLOWING_LAVA)
             {
-                event.setResult(ConfigHandler.Miscellaneous.isLavaInfiniteInTheNether ? Event.Result.ALLOW : Event.Result.DEFAULT);
+                event.setResult(ConfigHandler.Misc.isLavaInfiniteInTheNether ? Event.Result.ALLOW : Event.Result.DEFAULT);
             }
         }
     }

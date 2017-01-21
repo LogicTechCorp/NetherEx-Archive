@@ -35,7 +35,6 @@ public class BlockNetherExWall extends BlockWall
     {
         super(Blocks.PLANKS);
 
-        ReflectionHelper.setPrivateValue(Block.class, this, material, "field_149764_J", "blockMaterial");
         ReflectionHelper.setPrivateValue(Block.class, this, material.getMaterialMapColor(), "field_181083_K", "blockMapColor");
 
         useNeighborBrightness = true;

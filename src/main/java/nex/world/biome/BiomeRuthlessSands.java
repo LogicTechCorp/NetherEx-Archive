@@ -51,7 +51,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
     public BiomeRuthlessSands()
     {
-        super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands", ConfigHandler.BiomeRuthlessSands.biomeRarity, new ItemStack(Blocks.LAVA));
+        super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands", ConfigHandler.RuthlessSands.biomeRarity, new ItemStack(Blocks.LAVA));
 
         topBlock = Blocks.SOUL_SAND.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3);
@@ -65,25 +65,25 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeRuthlessSands.generateLavaSprings)
+        if(ConfigHandler.RuthlessSands.generateLavaSprings)
         {
-            for(int i = 0; i < ConfigHandler.BiomeRuthlessSands.lavaSpringRarity; i++)
+            for(int i = 0; i < ConfigHandler.RuthlessSands.lavaSpringRarity; i++)
             {
                 lavaSpring.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeRuthlessSands.generateGlowstonePass1)
+        if(ConfigHandler.RuthlessSands.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.BiomeRuthlessSands.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.RuthlessSands.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeRuthlessSands.generateGlowstonePass2)
+        if(ConfigHandler.RuthlessSands.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigHandler.BiomeRuthlessSands.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.RuthlessSands.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -91,9 +91,9 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.BiomeRuthlessSands.generateQuartzOre)
+        if(ConfigHandler.RuthlessSands.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigHandler.BiomeRuthlessSands.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.RuthlessSands.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -101,25 +101,25 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.BiomeRuthlessSands.generateLavaTraps)
+        if(ConfigHandler.RuthlessSands.generateLavaTraps)
         {
-            for(int i = 0; i < ConfigHandler.BiomeRuthlessSands.lavaTrapRarity; i++)
+            for(int i = 0; i < ConfigHandler.RuthlessSands.lavaTrapRarity; i++)
             {
                 lavaTrap.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(120) + 8, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeRuthlessSands.generateThornstalk)
+        if(ConfigHandler.RuthlessSands.generateThornstalk)
         {
-            for(int i = 0; i < ConfigHandler.BiomeRuthlessSands.thornstalkRarity; i++)
+            for(int i = 0; i < ConfigHandler.RuthlessSands.thornstalkRarity; i++)
             {
                 thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.BiomeRuthlessSands.generateAncientAltars)
+        if(ConfigHandler.RuthlessSands.generateAncientAltars)
         {
-            if(rand.nextInt(ConfigHandler.BiomeRuthlessSands.ancientAltarRarity) == 0)
+            if(rand.nextInt(ConfigHandler.RuthlessSands.ancientAltarRarity) == 0)
             {
                 ancientAltar.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
