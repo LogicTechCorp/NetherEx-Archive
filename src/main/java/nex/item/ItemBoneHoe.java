@@ -18,6 +18,7 @@
 package nex.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -77,11 +78,30 @@ public class ItemBoneHoe extends ItemNetherExHoe
                 return hook > 0 ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
             }
 
-            IBlockState iblockstate = world.getBlockState(pos);
-            Block block = iblockstate.getBlock();
+            IBlockState state = world.getBlockState(pos);
+            Block block = state.getBlock();
 
             if(facing != EnumFacing.DOWN && world.isAirBlock(pos.up()))
             {
+                if(block == Blocks.GRASS || block == Blocks.GRASS_PATH)
+                {
+                    setBlock(stack, player, world, pos, Blocks.FARMLAND.getDefaultState());
+                    return EnumActionResult.SUCCESS;
+                }
+
+                if(block == Blocks.DIRT)
+                {
+                    switch(state.getValue(BlockDirt.VARIANT))
+                    {
+                        case DIRT:
+                            setBlock(stack, player, world, pos, Blocks.FARMLAND.getDefaultState());
+                            return EnumActionResult.SUCCESS;
+                        case COARSE_DIRT:
+                            setBlock(stack, player, world, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+                            return EnumActionResult.SUCCESS;
+                    }
+                }
+
                 if(block == Blocks.SOUL_SAND)
                 {
                     setBlock(stack, player, world, pos, NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState());

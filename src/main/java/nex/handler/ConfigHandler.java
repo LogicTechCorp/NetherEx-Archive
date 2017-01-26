@@ -171,6 +171,7 @@ public class ConfigHandler
         public static boolean doesNetherwartUseNewGrowthSystem = true;
         public static boolean isLavaInfiniteInTheNether = false;
         public static boolean enableNetherPortalFix = true;
+        public static boolean allowAllHoesToTillSoulSand = false;
     }
 
     public static Configuration getConfiguration()

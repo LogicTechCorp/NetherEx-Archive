@@ -26,6 +26,7 @@ import nex.handler.IMCHandler;
 import nex.handler.RemapHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
+import nex.init.NetherExOreDict;
 import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
@@ -76,6 +77,7 @@ public class NetherEx
         LOGGER.info("Initialization started.");
 
         NetherExRecipes.init();
+        NetherExOreDict.init();
         proxy.init();
 
         LOGGER.info("Initialization completed.");

@@ -193,6 +193,8 @@ config.nex:miscellaneous.isLavaInfiniteInTheNether=Is Lava Infinite In The Nethe
 config.nex:miscellaneous.isLavaInfiniteInTheNether.tooltip=Is Lava infinite in the Nether
 config.nex:miscellaneous.enableNetherPortalFix=Enable Nether Portal Fix
 config.nex:miscellaneous.enableNetherPortalFix.tooltip=Is Nether Portal teleportation fixed
+config.nex:miscellaneous.allowAllHoesToTillSoulSand=Allow All Hoes To Till Soul Sand
+config.nex:miscellaneous.allowAllHoesToTillSoulSand.tooltip=Are All Hoes Allowed To Till Soul Sand
 
 # Creative Tabs
 itemGroup.nex=NetherEx

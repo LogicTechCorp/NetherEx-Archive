@@ -28,8 +28,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -37,6 +40,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -65,6 +69,33 @@ public class EventHandler
             if(event.getWorld().provider.getDimension() == 0 || event.getWorld().provider.getDimension() == -1)
             {
                 ((WorldServer) event.getWorld()).worldTeleporter = new NetherExTeleporter((WorldServer) event.getWorld());
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onHoeUse(UseHoeEvent event)
+    {
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        EntityPlayer player = event.getEntityPlayer();
+        ItemStack stack = event.getCurrent();
+
+        if(stack.getItem() == Items.GOLDEN_HOE || ConfigHandler.Misc.allowAllHoesToTillSoulSand)
+        {
+            if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
+            {
+                for(EnumHand hand : EnumHand.values())
+                {
+                    if(player.getHeldItem(hand).getItem() instanceof ItemHoe)
+                    {
+                        player.swingArm(hand);
+                    }
+                }
+
+                world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.setBlockState(pos, NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState(), 11);
+                event.setResult(Event.Result.ALLOW);
             }
         }
     }
