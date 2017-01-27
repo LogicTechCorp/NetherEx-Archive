@@ -35,6 +35,6 @@ public class ItemBlockVanillaFence extends ItemBlockNetherEx
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanilla.EnumTypeFence.values()[stack.getItemDamage()].getName());
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanilla.EnumTypeFence.fromMeta(stack.getItemDamage()).getName());
     }
 }

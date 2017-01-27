@@ -60,7 +60,7 @@ public class BlockVanillaWall extends BlockNetherExWall
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockVanilla.EnumTypeWall.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockVanilla.EnumTypeWall.fromMeta(meta));
     }
 
     @Override

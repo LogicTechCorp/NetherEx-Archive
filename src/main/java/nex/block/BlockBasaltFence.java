@@ -56,7 +56,7 @@ public class BlockBasaltFence extends BlockNetherExFence
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockBasalt.EnumType.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockBasalt.EnumType.fromMeta(meta));
     }
 
     @Override

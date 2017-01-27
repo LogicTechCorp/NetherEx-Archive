@@ -35,6 +35,6 @@ public class ItemBlockBasalt extends ItemBlockNetherEx
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockBasalt.EnumType.values()[stack.getItemDamage()].getName());
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockBasalt.EnumType.fromMeta(stack.getItemDamage()).getName());
     }
 }

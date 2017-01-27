@@ -135,7 +135,7 @@ public class BlockThornstalk extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(PART, EnumPart.values()[meta]);
+        return getDefaultState().withProperty(PART, EnumPart.fromMeta(meta));
     }
 
     @Override
@@ -178,9 +178,20 @@ public class BlockThornstalk extends BlockNetherEx
         MIDDLE,
         BOTTOM;
 
+        @Override
         public String getName()
         {
             return toString().toLowerCase();
+        }
+
+        public static EnumPart fromMeta(int meta)
+        {
+            if(meta < 0 || meta >= values().length)
+            {
+                meta = 0;
+            }
+
+            return values()[meta];
         }
     }
 }

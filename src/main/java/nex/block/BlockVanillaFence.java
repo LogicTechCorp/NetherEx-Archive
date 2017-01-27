@@ -56,7 +56,7 @@ public class BlockVanillaFence extends BlockNetherExFence
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockVanilla.EnumTypeFence.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockVanilla.EnumTypeFence.fromMeta(meta));
     }
 
     @Override

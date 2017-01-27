@@ -30,6 +30,16 @@ public class BlockVanilla
         {
             return toString().toLowerCase();
         }
+
+        public static EnumTypeSlab fromMeta(int meta)
+        {
+            if(meta < 0 || meta >= values().length)
+            {
+                meta = 0;
+            }
+
+            return values()[meta];
+        }
     }
 
     public enum EnumTypeWall implements IStringSerializable
@@ -43,6 +53,16 @@ public class BlockVanilla
         {
             return toString().toLowerCase();
         }
+
+        public static EnumTypeWall fromMeta(int meta)
+        {
+            if(meta < 0 || meta >= values().length)
+            {
+                meta = 0;
+            }
+
+            return values()[meta];
+        }
     }
 
     public enum EnumTypeFence implements IStringSerializable
@@ -54,6 +74,16 @@ public class BlockVanilla
         public String getName()
         {
             return toString().toLowerCase();
+        }
+
+        public static EnumTypeFence fromMeta(int meta)
+        {
+            if(meta < 0 || meta >= values().length)
+            {
+                meta = 0;
+            }
+
+            return values()[meta];
         }
     }
 }

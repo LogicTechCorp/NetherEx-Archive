@@ -104,7 +104,7 @@ public class BlockQuartzOre extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.values()[meta]);
+        return getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.fromMeta(meta));
     }
 
     @Override

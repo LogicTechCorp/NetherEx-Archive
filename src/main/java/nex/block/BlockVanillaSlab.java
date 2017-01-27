@@ -60,7 +60,7 @@ public class BlockVanillaSlab extends BlockNetherExSlab
     @Override
     public String getUnlocalizedName(int meta)
     {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanilla.EnumTypeSlab.values()[meta].getName());
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanilla.EnumTypeSlab.fromMeta(meta).getName());
     }
 
     @Override
@@ -84,7 +84,7 @@ public class BlockVanillaSlab extends BlockNetherExSlab
     @Override
     public Comparable<?> getTypeForItem(ItemStack stack)
     {
-        return BlockVanilla.EnumTypeSlab.values()[stack.getMetadata() & 7];
+        return BlockVanilla.EnumTypeSlab.fromMeta(stack.getMetadata() & 7);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class BlockVanillaSlab extends BlockNetherExSlab
     public IBlockState getStateFromMeta(int meta)
     {
         IBlockState state = getDefaultState();
-        state = state.withProperty(TYPE, BlockVanilla.EnumTypeSlab.values()[meta & 7]);
+        state = state.withProperty(TYPE, BlockVanilla.EnumTypeSlab.fromMeta(meta & 7));
 
         if(!isDouble())
         {

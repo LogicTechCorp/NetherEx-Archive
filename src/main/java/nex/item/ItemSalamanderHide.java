@@ -45,7 +45,7 @@ public class ItemSalamanderHide extends ItemNetherEx
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, EnumType.values()[stack.getItemDamage()].getName());
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, EnumType.fromMeta(stack.getItemDamage()).getName());
     }
 
     public enum EnumType implements IStringSerializable
@@ -57,6 +57,16 @@ public class ItemSalamanderHide extends ItemNetherEx
         public String getName()
         {
             return toString().toLowerCase();
+        }
+
+        public static EnumType fromMeta(int meta)
+        {
+            if(meta < 0 || meta >= values().length)
+            {
+                meta = 0;
+            }
+
+            return values()[meta];
         }
     }
 }

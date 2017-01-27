@@ -65,7 +65,7 @@ public class BlockNetherrack extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.values()[meta]);
+        return getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
     }
 
     @Override
@@ -91,6 +91,16 @@ public class BlockNetherrack extends BlockNetherEx
         public String getName()
         {
             return toString().toLowerCase();
+        }
+
+        public static EnumType fromMeta(int meta)
+        {
+            if(meta < 0 || meta >= values().length)
+            {
+                meta = 0;
+            }
+
+            return values()[meta];
         }
     }
 }
