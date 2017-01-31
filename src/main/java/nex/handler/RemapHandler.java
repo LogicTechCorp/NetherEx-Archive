@@ -61,6 +61,9 @@ public class RemapHandler
             .put("fence_gate_nether_brick_lively", "fence_gate_brick_nether_lively")
             .put("fence_gate_nether_brick_gloomy", "fence_gate_brick_nether_gloomy")
             .put("item_nether_brick", "item_brick_nether")
+            .put("plant_enoki_cap", "plant_mushroom_enoki_cap")
+            .put("plant_enoki_stem", "plant_mushroom_enoki_stem")
+            .put("plant_mushroom_elder", "plant_mushroom_elder_cap")
             .build();
 
     private static List<Predicate<FMLMissingMappingsEvent.MissingMapping>> mappingsToFix = ImmutableList.of(RemapHandler::remapRegistryName);

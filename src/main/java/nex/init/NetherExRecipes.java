@@ -48,7 +48,7 @@ public class NetherExRecipes
         NBTTagCompound variant = new NBTTagCompound();
         variant.setBoolean("Variant", true);
 
-        removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE));
+        removeRecipe(new ItemStack(Blocks.NETHER_BRICK_FENCE, 1, 0));
 
         add1x1Recipe(new ItemStack(BLOCK_BASALT, 1, 0), new ItemStack(BLOCK_BASALT, 1, 1));
         add1x1Recipe(new ItemStack(BLOCK_BASALT, 1, 1), new ItemStack(BLOCK_BASALT, 1, 2));

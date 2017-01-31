@@ -1,0 +1,242 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "north": true
+            },
+            "apply": {
+                "model": "nex:plant_mushroom_enoki_stem_side"
+            }
+        },
+        {
+            "when": {
+                "east": true
+            },
+            "apply": {
+                "model": "nex:plant_mushroom_enoki_stem_side",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": true
+            },
+            "apply": {
+                "model": "nex:plant_mushroom_enoki_stem_side",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "west": true
+            },
+            "apply": {
+                "model": "nex:plant_mushroom_enoki_stem_side",
+                "y": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "up": true
+            },
+            "apply": {
+                "model": "nex:plant_mushroom_enoki_stem_side",
+                "x": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "down": true
+            },
+            "apply": {
+                "model": "nex:plant_mushroom_enoki_stem_side",
+                "x": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "north": false
+            },
+            "apply": [
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside",
+                    "weight": 6
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside1"
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside2"
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside3"
+                }
+            ]
+        },
+        {
+            "when": {
+                "east": false
+            },
+            "apply": [
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside1",
+                    "y": 90,
+                    "uvlock": true
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside2",
+                    "y": 90,
+                    "uvlock": true
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside3",
+                    "y": 90,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside",
+                    "weight": 6,
+                    "y": 90,
+                    "uvlock": true
+                }
+            ]
+        },
+        {
+            "when": {
+                "south": false
+            },
+            "apply": [
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside2",
+                    "y": 180,
+                    "uvlock": true
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside3",
+                    "y": 180,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside",
+                    "weight": 6,
+                    "y": 180,
+                    "uvlock": true
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside1",
+                    "y": 180,
+                    "uvlock": true
+                }
+            ]
+        },
+        {
+            "when": {
+                "west": false
+            },
+            "apply": [
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside3",
+                    "y": 270,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside",
+                    "weight": 6,
+                    "y": 270,
+                    "uvlock": true
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside1",
+                    "y": 270,
+                    "uvlock": true
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside2",
+                    "y": 270,
+                    "uvlock": true
+                }
+            ]
+        },
+        {
+            "when": {
+                "up": false
+            },
+            "apply": [
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v1",
+                    "x": 270,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v1",
+                    "x": 270,
+                    "y": 90,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v1",
+                    "x": 270,
+                    "y": 180,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v2",
+                    "x": 270,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v2",
+                    "x": 270,
+                    "y": 180,
+                    "uvlock": false
+                }
+            ]
+        },
+        {
+            "when": {
+                "down": false
+            },
+            "apply": [
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v1",
+                    "x": 90,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v1",
+                    "x": 90,
+                    "y": 180,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v2",
+                    "x": 90,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v2",
+                    "x": 90,
+                    "y": 90,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v2",
+                    "x": 90,
+                    "y": 180,
+                    "uvlock": false
+                },
+                {
+                    "model": "nex:plant_mushroom_enoki_stem_noside_v2",
+                    "x": 90,
+                    "y": 270,
+                    "uvlock": false
+                }
+            ]
+        }
+    ]
+}

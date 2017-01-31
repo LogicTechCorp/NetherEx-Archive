@@ -30,7 +30,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import nex.block.BlockMushroom;
 import nex.init.NetherExBlocks;
 import nex.util.WeightedUtil;
 
@@ -86,7 +85,7 @@ public class WorldGenElderMushroom extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants, "plant_mushroom_"));
+        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants, "plant_mushroom_elder_"));
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
         float airAmount = 0;
@@ -105,7 +104,7 @@ public class WorldGenElderMushroom extends WorldGenerator
                     {
                         airAmount += 1.0F;
                     }
-                    else if(block == NetherExBlocks.BLOCK_NETHERRACK || block == Blocks.GLOWSTONE || block instanceof BlockMushroom)
+                    else if(block == Blocks.NETHERRACK || block == Blocks.GLOWSTONE || block == NetherExBlocks.BLOCK_NETHERRACK || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_CAP || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_STEM)
                     {
                         return false;
                     }

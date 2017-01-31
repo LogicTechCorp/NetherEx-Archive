@@ -17,21 +17,24 @@
 
 package nex.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
+import com.google.common.base.CaseFormat;
+import net.minecraft.item.ItemStack;
+import nex.block.BlockElderMushroomCap;
+import nex.init.NetherExBlocks;
 
-public class ItemBlockNetherEx extends ItemBlock
+@SuppressWarnings("ConstantConditions")
+public class ItemBlockElderMushroom extends ItemBlockNetherEx
 {
-    public ItemBlockNetherEx(Block block)
+    public ItemBlockElderMushroom()
     {
-        super(block);
+        super(NetherExBlocks.PLANT_MUSHROOM_ELDER_CAP);
 
-        setRegistryName(block.getRegistryName().toString());
+        setHasSubtypes(true);
     }
 
     @Override
-    public int getMetadata(int meta)
+    public String getUnlocalizedName(ItemStack stack)
     {
-        return meta;
+        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockElderMushroomCap.EnumType.fromMeta(stack.getItemDamage()).getName());
     }
 }

@@ -29,6 +29,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.init.NetherExItems;
 
@@ -75,6 +76,12 @@ public class EntitySalamander extends EntityMob
     {
         super.entityInit();
         dataManager.register(SALAMANDER_TYPE, 0);
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override

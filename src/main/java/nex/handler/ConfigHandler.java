@@ -152,7 +152,7 @@ public class ConfigHandler
         public static boolean generateGlowstonePass2 = true;
         public static boolean generateQuartzOre = true;
         public static boolean generateRimeOre = true;
-        public static boolean generateIchor = true;
+        public static boolean generateIchorPits = true;
 
         public static int biomeRarity = 1;
         public static int glowstonePass1Rarity = 10;

@@ -94,11 +94,16 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.ArcticAbyss.generateIchor)
+        if(ConfigHandler.ArcticAbyss.generateIchorPits)
         {
-            if(rand.nextInt(ConfigHandler.ArcticAbyss.ichorPitRarity) == 0)
+            BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
+
+            if(world.getBiomeForCoordsBody(newPos) == this)
             {
-                ichorPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                if(rand.nextInt(ConfigHandler.ArcticAbyss.ichorPitRarity) == 0)
+                {
+                    ichorPit.generate(world, rand, newPos);
+                }
             }
         }
 

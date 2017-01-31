@@ -35,10 +35,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
-import nex.block.BlockBasalt;
-import nex.block.BlockMushroom;
-import nex.block.BlockNetherrack;
-import nex.block.BlockVanilla;
+import nex.block.*;
 import nex.item.ItemSalamanderHide;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -105,14 +102,18 @@ public class NetherExModels
 
         registerModel(PLANT_THORNSTALK, "normal");
 
-        for(BlockMushroom.EnumType type : BlockMushroom.EnumType.values())
+        for(BlockElderMushroomStem.EnumType type : BlockElderMushroomStem.EnumType.values())
         {
-            registerModel(PLANT_MUSHROOM_BROWN, type.ordinal(), PLANT_MUSHROOM_BROWN.getRegistryName().toString(), String.format("variant=%s", type.getName()));
-            registerModel(PLANT_MUSHROOM_RED, type.ordinal(), PLANT_MUSHROOM_RED.getRegistryName().toString(), String.format("variant=%s", type.getName()));
+            registerModel(PLANT_MUSHROOM_ELDER_STEM, type.ordinal(), PLANT_MUSHROOM_ELDER_STEM.getRegistryName().toString(), String.format("axis=%s", type.getName()));
         }
 
-        registerModel(PLANT_ENOKI_STEM, "normal");
-        registerModel(PLANT_ENOKI_CAP, "normal");
+        for(BlockElderMushroomCap.EnumType type : BlockElderMushroomCap.EnumType.values())
+        {
+            registerModel(PLANT_MUSHROOM_ELDER_CAP, type.ordinal(), PLANT_MUSHROOM_ELDER_CAP.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
+        registerModel(PLANT_MUSHROOM_ENOKI_STEM, "normal");
+        registerModel(PLANT_MUSHROOM_ENOKI_CAP, "normal");
 
         registerModel(FLUID_ICHOR);
 

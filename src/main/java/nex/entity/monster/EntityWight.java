@@ -17,10 +17,14 @@
 
 package nex.entity.monster;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 @SuppressWarnings("ConstantConditions")
@@ -54,5 +58,12 @@ public class EntityWight extends EntityMob
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.5D);
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        Block block = world.getBlockState((new BlockPos(this)).down()).getBlock();
+        return world.getDifficulty() != EnumDifficulty.PEACEFUL && block != Blocks.MAGMA;
     }
 }

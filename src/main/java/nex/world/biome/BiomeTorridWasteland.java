@@ -132,15 +132,27 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         if(ConfigHandler.TorridWasteland.generateLavaPits)
         {
-            for(int i = 0; i < ConfigHandler.TorridWasteland.lavaPitRarity; i++)
+            BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
+
+            if(world.getBiomeForCoordsBody(newPos) == this)
             {
-                lavaPit.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8));
+                for(int i = 0; i < ConfigHandler.TorridWasteland.lavaPitRarity; i++)
+                {
+                    lavaPit.generate(world, rand, newPos);
+                }
             }
         }
 
         if(ConfigHandler.TorridWasteland.generateBlazingPyramids)
         {
-            if(rand.nextInt(ConfigHandler.TorridWasteland.blazingPyramidRarity) == 0)
+            int rarity = ConfigHandler.TorridWasteland.blazingPyramidRarity;
+
+            if(rarity <= 0)
+            {
+                rarity = 1;
+            }
+
+            if(rand.nextInt(rarity) == 0)
             {
                 blazingPyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }

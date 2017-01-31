@@ -20,7 +20,7 @@ package nex.world.gen.feature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.block.BlockEnokiCap;
+import nex.block.BlockEnokiMushroomCap;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
@@ -31,9 +31,9 @@ public class WorldGenEnokiMushroom extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 7)
+        if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 7)
         {
-            BlockEnokiCap.generatePlant(world, pos, rand, 8);
+            BlockEnokiMushroomCap.generatePlant(world, pos, rand, 8);
             return true;
         }
 

@@ -71,17 +71,17 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_thornstalk")
     public static final BlockThornstalk PLANT_THORNSTALK = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_brown")
-    public static final BlockMushroom PLANT_MUSHROOM_BROWN = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_elder_cap")
+    public static final BlockElderMushroomCap PLANT_MUSHROOM_ELDER_CAP = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_red")
-    public static final BlockMushroom PLANT_MUSHROOM_RED = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_elder_stem")
+    public static final BlockElderMushroomStem PLANT_MUSHROOM_ELDER_STEM = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_enoki_stem")
-    public static final BlockEnokiStem PLANT_ENOKI_STEM = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_enoki_stem")
+    public static final BlockEnokiMushroomStem PLANT_MUSHROOM_ENOKI_STEM = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_enoki_cap")
-    public static final BlockEnokiCap PLANT_ENOKI_CAP = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_enoki_cap")
+    public static final BlockEnokiMushroomCap PLANT_MUSHROOM_ENOKI_CAP = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fluid_ichor")
     public static final BlockIchor FLUID_ICHOR = null;
@@ -215,10 +215,10 @@ public class NetherExBlocks
                     new BlockQuartzOre(),
                     new BlockRimeOre(),
                     new BlockThornstalk(),
-                    new BlockMushroom("plant_mushroom_brown"),
-                    new BlockMushroom("plant_mushroom_red"),
-                    new BlockEnokiStem(),
-                    new BlockEnokiCap(),
+                    new BlockElderMushroomCap(),
+                    new BlockElderMushroomStem(),
+                    new BlockEnokiMushroomStem(),
+                    new BlockEnokiMushroomCap(),
                     new BlockIchor(),
                     new BlockVanillaSlab(false),
                     new BlockBasaltSlab(false),
@@ -274,10 +274,10 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_ICE_FROSTBURN),
                     new ItemBlockQuartzOre(),
                     new ItemBlockNetherEx(ORE_RIME),
-                    new ItemBlockMushroom(PLANT_MUSHROOM_BROWN),
-                    new ItemBlockMushroom(PLANT_MUSHROOM_RED),
-                    new ItemBlockNetherEx(PLANT_ENOKI_STEM),
-                    new ItemBlockNetherEx(PLANT_ENOKI_CAP),
+                    new ItemBlockElderMushroom(),
+                    new ItemBlockNetherEx(PLANT_MUSHROOM_ELDER_STEM),
+                    new ItemBlockNetherEx(PLANT_MUSHROOM_ENOKI_STEM),
+                    new ItemBlockNetherEx(PLANT_MUSHROOM_ENOKI_CAP),
                     new ItemBlockThornstalk(),
                     new ItemBlockNetherEx(FLUID_ICHOR),
                     new ItemBlockVanillaSlab(false),
