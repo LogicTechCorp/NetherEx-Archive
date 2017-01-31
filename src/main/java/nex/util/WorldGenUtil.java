@@ -19,6 +19,7 @@ package nex.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -41,7 +42,9 @@ public class WorldGenUtil
                 {
                     BlockPos newPos = pos.add(x, 0, z);
 
-                    if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.DOWN))
+                    Block block = world.getBlockState(newPos).getBlock();
+
+                    if(block.isBlockSolid(world, newPos, EnumFacing.DOWN) && block != Blocks.NETHER_BRICK)
                     {
                         if(world.isAirBlock(newPos.up()))
                         {
