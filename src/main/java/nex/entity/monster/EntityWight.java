@@ -18,6 +18,8 @@
 package nex.entity.monster;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -65,5 +67,25 @@ public class EntityWight extends EntityMob
     {
         Block block = world.getBlockState((new BlockPos(this)).down()).getBlock();
         return world.getDifficulty() != EnumDifficulty.PEACEFUL && block != Blocks.MAGMA;
+    }
+
+    @Override
+    public String getName()
+    {
+        if(hasCustomName())
+        {
+            return getCustomNameTag();
+        }
+        else
+        {
+            String entityName = EntityList.getEntityString(this);
+
+            if(entityName == null)
+            {
+                entityName = "generic";
+            }
+
+            return I18n.format(entityName + ".name");
+        }
     }
 }

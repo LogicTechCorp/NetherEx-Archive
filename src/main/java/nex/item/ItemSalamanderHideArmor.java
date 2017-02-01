@@ -65,7 +65,8 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
     {
         if(ArmorUtil.isWearingFullArmorSet(player, getArmorMaterial()))
         {
-            player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE));
+            player.extinguish();
+            player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 100, 0));
         }
     }
 

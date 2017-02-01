@@ -20,23 +20,26 @@ package nex.handler;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Enchantments;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.init.*;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -47,6 +50,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import nex.entity.item.EntityObsidianBoat;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
@@ -72,6 +76,41 @@ public class EventHandler
             }
         }
     }
+
+    @SubscribeEvent
+    public static void onRenderBlockOverlay(RenderBlockOverlayEvent event)
+    {
+        RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
+        EntityPlayer player = event.getPlayer();
+        World world = player.getEntityWorld();
+        BlockPos pos = player.getPosition();
+
+        if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
+        {
+            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_HIDE_SALAMANDER))
+            {
+                event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRenderEntityOnFire(RenderBlockOverlayEvent event)
+    {
+        RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
+        EntityPlayer player = event.getPlayer();
+        World world = player.getEntityWorld();
+        BlockPos pos = player.getPosition();
+
+        if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
+        {
+            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_HIDE_SALAMANDER))
+            {
+                event.setCanceled(true);
+            }
+        }
+    }
+
 
     @SubscribeEvent
     public static void onHoeUse(UseHoeEvent event)
@@ -202,6 +241,24 @@ public class EventHandler
                 {
                     ((AbstractSkeleton) event.getEntity()).setAttackTarget(null);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingAttacked(LivingAttackEvent event)
+    {
+        Entity entity = event.getEntity();
+        World world = entity.getEntityWorld();
+        BlockPos pos = entity.getPosition();
+        DamageSource source = event.getSource();
+
+        if(source == DamageSource.LAVA || source == DamageSource.IN_FIRE || source == DamageSource.ON_FIRE)
+        {
+            if(entity instanceof EntityLivingBase && entity.isRiding() && entity.getRidingEntity() instanceof EntityObsidianBoat)
+            {
+                entity.extinguish();
+                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 120, 0));
             }
         }
     }

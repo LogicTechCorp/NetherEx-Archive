@@ -18,6 +18,8 @@
 package nex.entity.neutral;
 
 import com.google.common.collect.Lists;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -83,6 +85,28 @@ public class EntityMogus extends EntityMob
     public boolean getCanSpawnHere()
     {
         return world.getDifficulty() != EnumDifficulty.PEACEFUL;
+    }
+
+    @Override
+    public String getName()
+    {
+        if(hasCustomName())
+        {
+            return getCustomNameTag();
+        }
+        else
+        {
+            String entityName = EntityList.getEntityString(this);
+
+            if(entityName == null)
+            {
+                entityName = "generic";
+            }
+
+            String type = getType() == 0 ? "brown" : getType() == 1 ? "red" : "white";
+
+            return I18n.format(entityName + "." + type + ".name");
+        }
     }
 
     @Override

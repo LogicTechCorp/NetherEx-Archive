@@ -167,6 +167,7 @@ public class NetherExModels
         }
 
         registerModel(ITEM_GEM_RIME, "normal");
+        registerModel(ITEM_BOAT_OBSIDIAN, "normal");
 
         registerModel(FOOD_MEAT_GHAST_RAW, "normal");
         registerModel(FOOD_MEAT_GHAST_COOKED, "normal");

@@ -200,9 +200,15 @@ config.nex:miscellaneous.allowAllHoesToTillSoulSand.tooltip=Are All Hoes Allowed
 itemGroup.nex=NetherEx
 
 #Entities (Mobs)
-entity.nex:mogus.name=Mogus
-entity.nex:salamander.name=Salamander
-entity.nex:wight.name=Wight
+entity.nex:itemBoatObsidian.name=Obsidian Boat
+entity.nex:neutralMogus.name=Mogus
+entity.nex:neutralMogus.brown.name=Brown Mogus
+entity.nex:neutralMogus.red.name=Red Mogus
+entity.nex:neutralMogus.white.name=White Mogus
+entity.nex:neutralSalamander.name=Salamander
+entity.nex:neutralSalamander.orange.name=Salamander
+entity.nex:neutralSalamander.black.name=Salamander
+entity.nex:monsterWight.name=Wight
 
 #Fluids
 fluid.ichor=Ichor
@@ -217,6 +223,7 @@ item.nex:itemBoneMealWithered.name=Withered Bone Meal
 item.nex:itemHideSalamander.orange.name=Orange Salamander Hide
 item.nex:itemHideSalamander.black.name=Black Salamander Hide
 item.nex:itemGemRime.name=Rime Gem
+item.nex:itemBoatObsidian.name=Obsidian Boat
 item.nex:foodMeatGhastRaw.name=Raw Ghast Meat
 item.nex:foodMeatGhastCooked.name=Cooked Ghast Meat
 item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream

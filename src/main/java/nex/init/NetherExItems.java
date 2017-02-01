@@ -48,6 +48,9 @@ public class NetherExItems
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_gem_rime")
     public static final ItemNetherEx ITEM_GEM_RIME = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_boat_obsidian")
+    public static final ItemObsidianBoat ITEM_BOAT_OBSIDIAN = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":food_meat_ghast_raw")
     public static final ItemNetherExFood FOOD_MEAT_GHAST_RAW = null;
 
@@ -115,6 +118,7 @@ public class NetherExItems
                     new ItemWitheredBoneMeal(),
                     new ItemSalamanderHide(),
                     new ItemNetherEx("item_gem_rime"),
+                    new ItemObsidianBoat(),
                     new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),

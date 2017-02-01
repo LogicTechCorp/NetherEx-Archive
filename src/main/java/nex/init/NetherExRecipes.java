@@ -106,6 +106,7 @@ public class NetherExRecipes
 
         add1x1Recipe(new ItemStack(ITEM_BONE_MEAL_WITHERED, 3, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
         add1x1Recipe(new ItemStack(ITEM_GEM_RIME, 9, 0), new ItemStack(BLOCK_RIME, 1, 0));
+        addBoatRecipe(new ItemStack(ITEM_BOAT_OBSIDIAN, 1, 0), new ItemStack(Blocks.OBSIDIAN, 1, 0));
 
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(Items.MAGMA_CREAM, 1, 0), 0.5F);
@@ -234,6 +235,11 @@ public class NetherExRecipes
     private static void addBootsRecipe(ItemStack result, ItemStack input)
     {
         addShaped(result, "# #", "# #", '#', input);
+    }
+
+    private static void addBoatRecipe(ItemStack result, ItemStack input)
+    {
+        addShaped(result, "# #", "###", '#', input);
     }
 
     private static void removeRecipe(ItemStack output)
