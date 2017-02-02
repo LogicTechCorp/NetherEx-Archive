@@ -40,6 +40,7 @@ import java.util.Random;
 public class WorldGenElderMushroom extends WorldGenerator
 {
     private final List<WeightedUtil.NamedItem> variants;
+    private final boolean isWorldGen;
 
     public static List<WeightedUtil.NamedItem> brownVariants = Lists.newArrayList(
             new WeightedUtil.NamedItem("brown_tiny", 6),
@@ -65,15 +66,16 @@ public class WorldGenElderMushroom extends WorldGenerator
             new WeightedUtil.NamedItem("red_gigantic", 1)
     );
 
-    public WorldGenElderMushroom(List<WeightedUtil.NamedItem> variantsIn)
+    public WorldGenElderMushroom(List<WeightedUtil.NamedItem> variantsIn, boolean isWorldGenIn)
     {
         variants = variantsIn;
+        isWorldGen = isWorldGenIn;
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        while(world.isAirBlock(pos) && pos.getY() > 32)
+        while(isWorldGen && world.isAirBlock(pos) && pos.getY() > 32)
         {
             pos = pos.down();
         }
@@ -88,6 +90,8 @@ public class WorldGenElderMushroom extends WorldGenerator
                 }
             }
         }
+
+        pos = pos.up();
 
         Mirror[] mirrors = Mirror.values();
         Mirror mirror = mirrors[rand.nextInt(mirrors.length)];
@@ -107,7 +111,7 @@ public class WorldGenElderMushroom extends WorldGenerator
             {
                 for(int posY = 0; posY < structureSize.getY() + 1; posY++)
                 {
-                    BlockPos newPos = pos.add(-(posX / 2), posY + 1, -(posZ / 2));
+                    BlockPos newPos = pos.add(-(posX / 2), posY, -(posZ / 2));
                     Block block = world.getBlockState(newPos).getBlock();
 
                     if(world.isAirBlock(newPos))
@@ -124,7 +128,12 @@ public class WorldGenElderMushroom extends WorldGenerator
 
         if(MathHelper.abs(airAmount) / MathHelper.abs(blockAmount) >= 0.75F)
         {
-            template.addBlocksToWorld(world, pos.add(-(structureSize.getX() / 2), 1, -(structureSize.getZ() / 2)), placementSettings.copy());
+            if(!isWorldGen)
+            {
+                world.setBlockToAir(pos);
+            }
+
+            template.addBlocksToWorld(world, pos.add(-(structureSize.getX() / 2), 0, -(structureSize.getZ() / 2)), placementSettings.copy());
             return true;
         }
 

@@ -129,9 +129,9 @@ public class EntitySalamander extends EntityMob
     }
 
     @Override
-    public EntityItem dropItemWithOffset(Item itemIn, int size, float offsetY)
+    public EntityItem dropItemWithOffset(Item item, int size, float offsetY)
     {
-        return entityDropItem(new ItemStack(itemIn, size, getType()), offsetY);
+        return entityDropItem(new ItemStack(item, size, getType()), offsetY);
     }
 
     public int getType()

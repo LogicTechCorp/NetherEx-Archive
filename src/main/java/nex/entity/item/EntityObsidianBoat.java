@@ -31,7 +31,6 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -838,11 +837,6 @@ public class EntityObsidianBoat extends EntityBoat
                             for(int i = 0; i < 3; ++i)
                             {
                                 entityDropItem(new ItemStack(Blocks.OBSIDIAN, 1, 0), 0.0F);
-                            }
-
-                            for(int j = 0; j < 2; ++j)
-                            {
-                                dropItemWithOffset(Items.STICK, 1, 0.0F);
                             }
                         }
                     }

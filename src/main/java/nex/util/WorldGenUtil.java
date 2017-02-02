@@ -24,27 +24,31 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
 public class WorldGenUtil
 {
-    public static BlockPos getSuitableHeight(World world, BlockPos pos, float xSize, float zSize, float divisor)
+    public static BlockPos getSuitableHeight(World world, BlockPos pos, float xSize, float zSize, float percentage)
     {
         while(pos.getY() > 32)
         {
             int topBlocks = 0;
 
-            for(int x = 0; x <= xSize; x++)
+            for(int x = 0; x <= MathHelper.abs(xSize); x++)
             {
-                for(int z = 0; z <= zSize; z++)
+                for(int z = 0; z <= MathHelper.abs(zSize); z++)
                 {
-                    BlockPos newPos = pos.add(x, 0, z);
+                    int xPos = (int) (xSize > 0 ? xSize - x : xSize + x);
+                    int zPos = (int) (zSize > 0 ? zSize - z : zSize + z);
+
+                    BlockPos newPos = pos.add(xPos, 0, zPos);
 
                     Block block = world.getBlockState(newPos).getBlock();
 
-                    if(block.isBlockSolid(world, newPos, EnumFacing.DOWN) && block != Blocks.NETHER_BRICK)
+                    if(block != Blocks.NETHER_BRICK && block.isBlockSolid(world, newPos, EnumFacing.DOWN))
                     {
                         if(world.isAirBlock(newPos.up()))
                         {
@@ -54,7 +58,7 @@ public class WorldGenUtil
                 }
             }
 
-            if(topBlocks >= (Math.abs(xSize * zSize) - (Math.abs(xSize * zSize) / divisor)))
+            if(topBlocks >= MathHelper.abs(xSize * zSize) * percentage)
             {
                 return pos.up();
             }
@@ -64,6 +68,7 @@ public class WorldGenUtil
 
         return BlockPos.ORIGIN;
     }
+
 
     public static void setChestContents(World world, Random rand, BlockPos pos, BlockPos structureSize, ResourceLocation lootTableList)
     {

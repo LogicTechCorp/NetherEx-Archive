@@ -141,7 +141,7 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
             elderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.redVariants, false);
         }
 
-        elderMushroom.generate(world, rand, pos);
+        elderMushroom.generate(world, rand, pos.down());
     }
 
     @Override

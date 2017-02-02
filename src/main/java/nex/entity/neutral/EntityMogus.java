@@ -22,10 +22,11 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -33,8 +34,9 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import nex.init.NetherExItems;
+import nex.init.NetherExBlocks;
 
+@SuppressWarnings("ConstantConditions")
 public class EntityMogus extends EntityMob
 {
     private static final DataParameter<Integer> MOGUS_TYPE = EntityDataManager.createKey(EntityMogus.class, DataSerializers.VARINT);
@@ -126,8 +128,48 @@ public class EntityMogus extends EntityMob
     @Override
     protected Item getDropItem()
     {
-        return getType() == 0 ? Item.getItemFromBlock(Blocks.BROWN_MUSHROOM) : getType() == 1 ? Item.getItemFromBlock(Blocks.RED_MUSHROOM) : NetherExItems.FOOD_MUSHROOM_ENOKI;
+        return Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER);
     }
+
+    @Override
+    public EntityItem dropItemWithOffset(Item item, int size, float offsetY)
+    {
+        if(getType() != 2)
+        {
+            entityDropItem(new ItemStack(item, 1, getType()), offsetY);
+        }
+        else
+        {
+            entityDropItem(new ItemStack(item, 2, 0), offsetY);
+            entityDropItem(new ItemStack(item, 2, 1), offsetY);
+        }
+
+        return entityDropItem(ItemStack.EMPTY, offsetY);
+    }
+
+    @Override
+    public EntityItem entityDropItem(ItemStack stack, float offsetY)
+    {
+        if(stack.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            EntityItem item = new EntityItem(this.world, this.posX, this.posY + (double) offsetY, this.posZ, stack);
+            item.setDefaultPickupDelay();
+            if(captureDrops)
+            {
+                capturedDrops.add(item);
+            }
+            else
+            {
+                world.spawnEntity(item);
+            }
+            return item;
+        }
+    }
+
 
     public int getType()
     {
@@ -138,7 +180,7 @@ public class EntityMogus extends EntityMob
     {
         WeightedRandom.Item brown = new WeightedRandom.Item(10);
         WeightedRandom.Item red = new WeightedRandom.Item(10);
-        WeightedRandom.Item white = new WeightedRandom.Item(5);
+        WeightedRandom.Item white = new WeightedRandom.Item(2);
         WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(brown, red, white));
         dataManager.set(MOGUS_TYPE, item == brown ? 0 : item == red ? 1 : 2);
     }

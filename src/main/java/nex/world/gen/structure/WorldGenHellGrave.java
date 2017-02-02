@@ -18,6 +18,7 @@
 package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -60,9 +61,9 @@ public class WorldGenHellGrave extends WorldGenerator
 
         ChunkPos chunkPos = new ChunkPos(pos);
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());
-        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setRandom(rand);
+        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setReplacedBlock(Blocks.AIR).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos spawnPos = WorldGenUtil.getSuitableHeight(world, template.getZeroPositionWithTransform(new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), mirror, rotation), structureSize.getX(), structureSize.getZ(), 8.0F);
+        BlockPos spawnPos = WorldGenUtil.getSuitableHeight(world, new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), structureSize.getX(), structureSize.getZ(), 0.8F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
