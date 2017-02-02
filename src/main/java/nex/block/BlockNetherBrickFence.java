@@ -50,7 +50,7 @@ public class BlockNetherBrickFence extends BlockNetherExFence
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(TYPE).ordinal();
+        return getMetaFromState(state);
     }
 
     @Override

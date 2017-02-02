@@ -71,6 +71,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_thornstalk")
     public static final BlockThornstalk PLANT_THORNSTALK = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_elder")
+    public static final BlockElderMushroom PLANT_MUSHROOM_ELDER = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_elder_cap")
     public static final BlockElderMushroomCap PLANT_MUSHROOM_ELDER_CAP = null;
 
@@ -215,6 +218,7 @@ public class NetherExBlocks
                     new BlockQuartzOre(),
                     new BlockRimeOre(),
                     new BlockThornstalk(),
+                    new BlockElderMushroom(),
                     new BlockElderMushroomCap(),
                     new BlockElderMushroomStem(),
                     new BlockEnokiMushroomStem(),
@@ -274,7 +278,8 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_ICE_FROSTBURN),
                     new ItemBlockQuartzOre(),
                     new ItemBlockNetherEx(ORE_RIME),
-                    new ItemBlockElderMushroom(),
+                    new ItemBlockElderMushroom(PLANT_MUSHROOM_ELDER),
+                    new ItemBlockElderMushroom(PLANT_MUSHROOM_ELDER_CAP),
                     new ItemBlockNetherEx(PLANT_MUSHROOM_ELDER_STEM),
                     new ItemBlockNetherEx(PLANT_MUSHROOM_ENOKI_STEM),
                     new ItemBlockNetherEx(PLANT_MUSHROOM_ENOKI_CAP),

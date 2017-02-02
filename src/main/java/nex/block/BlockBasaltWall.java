@@ -54,7 +54,7 @@ public class BlockBasaltWall extends BlockNetherExWall
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(TYPE).ordinal();
+        return getMetaFromState(state);
     }
 
     @Override

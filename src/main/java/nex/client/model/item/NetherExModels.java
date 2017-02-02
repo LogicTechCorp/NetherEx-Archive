@@ -75,8 +75,8 @@ public class NetherExModels
             registerModel(BLOCK_BASALT, type.ordinal(), BLOCK_BASALT.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(SLAB_BASALT, type.ordinal(), SLAB_BASALT.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
             registerModel(SLAB_BASALT_DOUBLE, type.ordinal(), SLAB_BASALT_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(WALL_BASALT, type.ordinal(), String.format("nex:wall_basalt_%s", type.getName()), "inventory");
-            registerModel(FENCE_BASALT, type.ordinal(), String.format("nex:fence_basalt_%s", type.getName()), "inventory");
+            registerModel(WALL_BASALT, type.ordinal(), String.format(WALL_BASALT.getRegistryName().toString() + "_%s", type.getName()), "inventory");
+            registerModel(FENCE_BASALT, type.ordinal(), String.format(FENCE_BASALT.getRegistryName().toString() + "_%s", type.getName()), "inventory");
         }
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
@@ -86,8 +86,8 @@ public class NetherExModels
             registerModel(BLOCK_BRICK_NETHER, type.ordinal(), BLOCK_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(SLAB_BRICK_NETHER, type.ordinal(), SLAB_BRICK_NETHER.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
             registerModel(SLAB_BRICK_NETHER_DOUBLE, type.ordinal(), SLAB_BRICK_NETHER_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(WALL_BRICK_NETHER, type.ordinal(), String.format("nex:wall_brick_nether_%s", type.getName()), "inventory");
-            registerModel(FENCE_BRICK_NETHER, type.ordinal(), String.format("nex:fence_brick_nether_%s", type.getName()), "inventory");
+            registerModel(WALL_BRICK_NETHER, type.ordinal(), String.format(WALL_BRICK_NETHER.getRegistryName().toString() + "_%s", type.getName()), "inventory");
+            registerModel(FENCE_BRICK_NETHER, type.ordinal(), String.format(FENCE_BRICK_NETHER.getRegistryName().toString() + "_%s", type.getName()), "inventory");
             registerModel(ITEM_BRICK_NETHER, type.ordinal(), ITEM_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
@@ -102,14 +102,15 @@ public class NetherExModels
 
         registerModel(PLANT_THORNSTALK, "normal");
 
+        for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
+        {
+            registerModel(PLANT_MUSHROOM_ELDER, type.ordinal(), String.format(PLANT_MUSHROOM_ELDER.getRegistryName().toString() + "_%s", type.getName()), "inventory");
+            registerModel(PLANT_MUSHROOM_ELDER_CAP, type.ordinal(), PLANT_MUSHROOM_ELDER_CAP.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
         for(BlockElderMushroomStem.EnumType type : BlockElderMushroomStem.EnumType.values())
         {
             registerModel(PLANT_MUSHROOM_ELDER_STEM, type.ordinal(), PLANT_MUSHROOM_ELDER_STEM.getRegistryName().toString(), String.format("axis=%s", type.getName()));
-        }
-
-        for(BlockElderMushroomCap.EnumType type : BlockElderMushroomCap.EnumType.values())
-        {
-            registerModel(PLANT_MUSHROOM_ELDER_CAP, type.ordinal(), PLANT_MUSHROOM_ELDER_CAP.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         registerModel(PLANT_MUSHROOM_ENOKI_STEM, "normal");

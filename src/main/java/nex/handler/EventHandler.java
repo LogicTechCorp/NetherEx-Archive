@@ -18,6 +18,7 @@
 package nex.handler;
 
 import net.minecraft.block.BlockNetherWart;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -143,12 +144,11 @@ public class EventHandler
     public static void onBoneMealUse(BonemealEvent event)
     {
         World world = event.getWorld();
+        BlockPos pos = event.getPos();
         IBlockState state = event.getBlock();
         EntityPlayer player = event.getEntityPlayer();
-        ItemStack mainStack = player.getHeldItem(EnumHand.MAIN_HAND);
-        ItemStack offStack = player.getHeldItem(EnumHand.OFF_HAND);
 
-        if(mainStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED || offStack.getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED)
+        if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED)
         {
             if(state.getBlock() == Blocks.NETHER_WART)
             {
@@ -157,8 +157,17 @@ public class EventHandler
                 if(age < 3)
                 {
                     state = state.withProperty(BlockNetherWart.AGE, age + 1);
-                    world.setBlockState(event.getPos(), state);
+                    world.setBlockState(pos, state);
                     event.setResult(Event.Result.ALLOW);
+                }
+            }
+            else if(state.getBlock() instanceof IGrowable)
+            {
+                IGrowable growable = (IGrowable) state.getBlock();
+
+                if(growable.canGrow(world, pos, state, world.isRemote))
+                {
+                    growable.grow(world, world.rand, pos, state);
                 }
             }
             else

@@ -25,12 +25,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 
 public class BlockElderMushroomCap extends BlockNetherEx
 {
-    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
+    public static final PropertyEnum<BlockElderMushroom.EnumType> TYPE = PropertyEnum.create("type", BlockElderMushroom.EnumType.class);
 
     public BlockElderMushroomCap()
     {
@@ -43,7 +42,7 @@ public class BlockElderMushroomCap extends BlockNetherEx
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(EnumType type : EnumType.values())
+        for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
         {
             list.add(new ItemStack(item, 1, type.ordinal()));
         }
@@ -58,7 +57,7 @@ public class BlockElderMushroomCap extends BlockNetherEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+        return getDefaultState().withProperty(TYPE, BlockElderMushroom.EnumType.fromMeta(meta));
     }
 
     @Override
@@ -71,27 +70,5 @@ public class BlockElderMushroomCap extends BlockNetherEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
-    }
-
-    public static enum EnumType implements IStringSerializable
-    {
-        BROWN,
-        RED;
-
-        @Override
-        public String getName()
-        {
-            return toString().toLowerCase();
-        }
-
-        public static EnumType fromMeta(int meta)
-        {
-            if(meta < 0 || meta >= values().length)
-            {
-                meta = 0;
-            }
-
-            return values()[meta];
-        }
     }
 }

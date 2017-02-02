@@ -72,7 +72,7 @@ public class BlockNetherBrickSlab extends BlockNetherExSlab
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(TYPE).ordinal();
+        return getMetaFromState(state);
     }
 
     @Override
