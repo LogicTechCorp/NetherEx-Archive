@@ -148,7 +148,14 @@ public class BiomeHell extends BiomeNetherEx
 
         if(ConfigHandler.Hell.generateChiefHuts)
         {
-            if(rand.nextInt(ConfigHandler.Hell.chiefHutRarity) == 0)
+            int rarity = ConfigHandler.Hell.chiefHutRarity;
+
+            if(rarity <= 0)
+            {
+                rarity = 1;
+            }
+
+            if(rand.nextInt(rarity) == 0)
             {
                 chiefHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
@@ -156,7 +163,14 @@ public class BiomeHell extends BiomeNetherEx
 
         if(ConfigHandler.Hell.generatePigmanHuts)
         {
-            if(rand.nextInt(ConfigHandler.Hell.pigmanHutRarity) == 0)
+            int rarity = ConfigHandler.Hell.pigmanHutRarity;
+
+            if(rarity <= 0)
+            {
+                rarity = 1;
+            }
+
+            if(rand.nextInt(rarity) == 0)
             {
                 pigmanHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
@@ -164,7 +178,14 @@ public class BiomeHell extends BiomeNetherEx
 
         if(ConfigHandler.Hell.generateGraves)
         {
-            if(rand.nextInt(ConfigHandler.Hell.graveRarity) == 0)
+            int rarity = ConfigHandler.Hell.graveRarity;
+
+            if(rarity <= 0)
+            {
+                rarity = 1;
+            }
+
+            if(rand.nextInt(rarity) == 0)
             {
                 grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
