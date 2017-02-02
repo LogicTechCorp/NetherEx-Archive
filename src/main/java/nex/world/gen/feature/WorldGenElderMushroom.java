@@ -39,7 +39,9 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class WorldGenElderMushroom extends WorldGenerator
 {
-    private List<WeightedUtil.NamedItem> variants = Lists.newArrayList(
+    private final List<WeightedUtil.NamedItem> variants;
+
+    public static List<WeightedUtil.NamedItem> brownVariants = Lists.newArrayList(
             new WeightedUtil.NamedItem("brown_tiny", 6),
             new WeightedUtil.NamedItem("brown_tiny_variant", 6),
             new WeightedUtil.NamedItem("brown_small", 5),
@@ -48,7 +50,10 @@ public class WorldGenElderMushroom extends WorldGenerator
             new WeightedUtil.NamedItem("brown_medium_variant", 4),
             new WeightedUtil.NamedItem("brown_large", 3),
             new WeightedUtil.NamedItem("brown_huge", 2),
-            new WeightedUtil.NamedItem("brown_gigantic", 1),
+            new WeightedUtil.NamedItem("brown_gigantic", 1)
+    );
+
+    public static List<WeightedUtil.NamedItem> redVariants = Lists.newArrayList(
             new WeightedUtil.NamedItem("red_tiny", 6),
             new WeightedUtil.NamedItem("red_tiny_variant", 6),
             new WeightedUtil.NamedItem("red_small", 5),
@@ -59,6 +64,11 @@ public class WorldGenElderMushroom extends WorldGenerator
             new WeightedUtil.NamedItem("red_huge", 2),
             new WeightedUtil.NamedItem("red_gigantic", 1)
     );
+
+    public WorldGenElderMushroom(List<WeightedUtil.NamedItem> variantsIn)
+    {
+        variants = variantsIn;
+    }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)

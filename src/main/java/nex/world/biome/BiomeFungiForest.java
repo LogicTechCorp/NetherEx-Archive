@@ -41,7 +41,8 @@ public class BiomeFungiForest extends BiomeNetherEx
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(2), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2));
-    private WorldGenerator elderMushroom = new WorldGenElderMushroom();
+    private WorldGenerator brownElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.brownVariants);
+    private WorldGenerator redElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.redVariants);
     private WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
 
     public BiomeFungiForest()
@@ -88,9 +89,19 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         if(ConfigHandler.FungiForest.generateElderMushrooms)
         {
-            for(int i = 0; i < ConfigHandler.FungiForest.elderMushroomRarity * 16; i++)
+            if(rand.nextBoolean())
             {
-                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+                for(int i = 0; i < ConfigHandler.FungiForest.elderMushroomRarity * 16; i++)
+                {
+                    brownElderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+                }
+            }
+            else
+            {
+                for(int i = 0; i < ConfigHandler.FungiForest.elderMushroomRarity * 16; i++)
+                {
+                    redElderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+                }
             }
         }
 

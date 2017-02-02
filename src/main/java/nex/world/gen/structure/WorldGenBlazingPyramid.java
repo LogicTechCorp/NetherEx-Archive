@@ -46,9 +46,9 @@ public class WorldGenBlazingPyramid extends WorldGenerator
     );
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos blockPos)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
-        rand = world.getChunkFromBlockCoords(blockPos).getRandomWithSeed(world.getSeed());
+        rand = world.getChunkFromBlockCoords(pos).getRandomWithSeed(world.getSeed());
 
         Mirror[] mirrors = Mirror.values();
         Rotation[] rotations = Rotation.values();
@@ -58,11 +58,11 @@ public class WorldGenBlazingPyramid extends WorldGenerator
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "pyramid_torrid_blazing_"));
 
-        ChunkPos chunkPos = new ChunkPos(blockPos);
+        ChunkPos chunkPos = new ChunkPos(pos);
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos spawnPos = WorldGenUtil.getSuitableHeight(world, template.getZeroPositionWithTransform(new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), mirror, rotation), structureSize.getX(), structureSize.getZ());
+        BlockPos spawnPos = WorldGenUtil.getSuitableHeight(world, template.getZeroPositionWithTransform(new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), mirror, rotation), structureSize.getX(), structureSize.getZ(), 8.0F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {

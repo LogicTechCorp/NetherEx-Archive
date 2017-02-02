@@ -30,7 +30,7 @@ import java.util.Random;
 
 public class WorldGenUtil
 {
-    public static BlockPos getSuitableHeight(World world, BlockPos pos, int xSize, int zSize)
+    public static BlockPos getSuitableHeight(World world, BlockPos pos, float xSize, float zSize, float divisor)
     {
         while(pos.getY() > 32)
         {
@@ -54,7 +54,7 @@ public class WorldGenUtil
                 }
             }
 
-            if(topBlocks >= (Math.abs(xSize * zSize) - (Math.abs(xSize * zSize) / 8)))
+            if(topBlocks >= (Math.abs(xSize * zSize) - (Math.abs(xSize * zSize) / divisor)))
             {
                 return pos.up();
             }
