@@ -272,8 +272,9 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
 
     public static void generatePlant(World world, BlockPos pos, Random rand, int x)
     {
-        world.setBlockState(pos.down(), NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);
-        growTreeRecursive(world, pos.down(), rand, pos, x, 0);
+        BlockPos newPos = !world.isAirBlock(pos) ? pos.down() : pos;
+        world.setBlockState(newPos, NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);
+        growTreeRecursive(world, newPos, rand, newPos, x, 0);
     }
 
     private static void growTreeRecursive(World world, BlockPos pos, Random rand, BlockPos pos1, int x, int z)
@@ -310,10 +311,10 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
 
             for(int k = 0; k < l; ++k)
             {
-                EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
-                BlockPos blockPos = pos.down(i).offset(enumfacing);
+                EnumFacing facing = EnumFacing.Plane.HORIZONTAL.random(rand);
+                BlockPos blockPos = pos.down(i).offset(facing);
 
-                if(Math.abs(blockPos.getX() - pos1.getX()) < x && Math.abs(blockPos.getZ() - pos1.getZ()) < x && world.isAirBlock(blockPos) && world.isAirBlock(blockPos.up()) && areAllNeighborsEmpty(world, blockPos, enumfacing.getOpposite()))
+                if(Math.abs(blockPos.getX() - pos1.getX()) < x && Math.abs(blockPos.getZ() - pos1.getZ()) < x && world.isAirBlock(blockPos) && world.isAirBlock(blockPos.up()) && areAllNeighborsEmpty(world, blockPos, facing.getOpposite()))
                 {
                     flag = true;
                     world.setBlockState(blockPos, NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);

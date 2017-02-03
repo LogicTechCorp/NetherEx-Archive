@@ -116,7 +116,7 @@ public class ConfigHandler
         public static int glowstonePass1Rarity = 10;
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
-        public static int elderMushroomRarity = 16;
+        public static int elderMushroomRarity = 32;
         public static int enokiMushroomRarity = 4;
     }
 
@@ -159,7 +159,7 @@ public class ConfigHandler
         public static int glowstonePass2Rarity = 10;
         public static int quartzOreRarity = 16;
         public static int rimeOreRarity = 16;
-        public static int ichorPitRarity = 4;
+        public static int ichorPitRarity = 16;
     }
 
     public static class Misc

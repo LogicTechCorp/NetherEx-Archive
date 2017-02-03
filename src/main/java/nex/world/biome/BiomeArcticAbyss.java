@@ -100,7 +100,14 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
             if(world.getBiomeForCoordsBody(newPos) == this)
             {
-                if(rand.nextInt(ConfigHandler.ArcticAbyss.ichorPitRarity) == 0)
+                int rarity = ConfigHandler.ArcticAbyss.ichorPitRarity;
+
+                if(rarity <= 0)
+                {
+                    rarity = 1;
+                }
+
+                if(rand.nextInt(rarity) == 0)
                 {
                     ichorPit.generate(world, rand, newPos);
                 }
