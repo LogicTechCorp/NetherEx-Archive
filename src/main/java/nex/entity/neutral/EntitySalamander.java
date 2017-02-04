@@ -70,7 +70,7 @@ public class EntitySalamander extends EntityMob
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.2D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.4D);
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.5D);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class EntitySalamander extends EntityMob
 
             String type = getType() == 0 ? "orange" : "black";
 
-            return I18n.format(entityName + "." + type + ".name");
+            return I18n.format("entity." + entityName + "." + type + ".name");
         }
     }
 

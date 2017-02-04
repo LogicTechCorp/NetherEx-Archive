@@ -24,10 +24,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import nex.handler.IMCHandler;
 import nex.handler.RemapHandler;
-import nex.init.NetherExBiomes;
-import nex.init.NetherExEntities;
-import nex.init.NetherExOreDict;
-import nex.init.NetherExRecipes;
+import nex.init.*;
 import nex.proxy.IProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,6 +75,7 @@ public class NetherEx
 
         NetherExRecipes.init();
         NetherExOreDict.init();
+        NetherExAchievements.init();
         proxy.init();
 
         LOGGER.info("Initialization completed.");

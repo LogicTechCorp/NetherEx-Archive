@@ -26,12 +26,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -41,6 +41,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -52,6 +53,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.entity.item.EntityObsidianBoat;
+import nex.entity.neutral.EntityMogus;
+import nex.init.NetherExAchievements;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
@@ -94,24 +97,6 @@ public class EventHandler
             }
         }
     }
-
-    @SubscribeEvent
-    public static void onRenderEntityOnFire(RenderBlockOverlayEvent event)
-    {
-        RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
-        EntityPlayer player = event.getPlayer();
-        World world = player.getEntityWorld();
-        BlockPos pos = player.getPosition();
-
-        if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
-        {
-            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_HIDE_SALAMANDER))
-            {
-                event.setCanceled(true);
-            }
-        }
-    }
-
 
     @SubscribeEvent
     public static void onHoeUse(UseHoeEvent event)
@@ -242,14 +227,24 @@ public class EventHandler
     @SubscribeEvent
     public static void onSetAttackTarget(LivingSetAttackTargetEvent event)
     {
-        if(event.getEntity() instanceof AbstractSkeleton)
+        EntityLivingBase attacker = (EntityLivingBase) event.getEntity();
+        EntityLivingBase attackee = event.getTarget();
+
+        if(attackee instanceof EntityPlayer)
         {
-            if(event.getTarget() instanceof EntityPlayer)
+            EntityPlayer player = (EntityPlayer) attackee;
+
+            if(attacker instanceof AbstractSkeleton)
             {
-                if(ArmorUtil.isWearingFullArmorSet((EntityPlayer) event.getTarget(), NetherExMaterials.ARMOR_BONE_WITHERED))
+                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_BONE_WITHERED))
                 {
-                    ((AbstractSkeleton) event.getEntity()).setAttackTarget(null);
+                    ((AbstractSkeleton) attacker).setAttackTarget(null);
+                    player.addStat(NetherExAchievements.IN_PLAIN_SIGHT);
                 }
+            }
+            if(attacker instanceof EntityPigZombie)
+            {
+                player.addStat(NetherExAchievements.UH_OH);
             }
         }
     }
@@ -257,17 +252,73 @@ public class EventHandler
     @SubscribeEvent
     public static void onLivingAttacked(LivingAttackEvent event)
     {
+        EntityLivingBase entity = (EntityLivingBase) event.getEntity();
+        World world = entity.getEntityWorld();
+        BlockPos pos = entity.getPosition();
+        DamageSource source = event.getSource();
+
+        if(source.isFireDamage())
+        {
+            if(!entity.isImmuneToFire() && entity.isRiding() && entity.getRidingEntity() instanceof EntityObsidianBoat)
+            {
+                event.setCanceled(true);
+            }
+        }
+        if(entity instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer) entity;
+
+            if(source.isFireDamage())
+            {
+                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_HIDE_SALAMANDER))
+                {
+                    event.setCanceled(true);
+                }
+            }
+            if(player.dimension == -1)
+            {
+                if(source == DamageSource.LAVA && player.isPotionActive(MobEffects.FIRE_RESISTANCE))
+                {
+                    player.addStat(NetherExAchievements.STAYIN_FROSTY);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event)
+    {
         Entity entity = event.getEntity();
         World world = entity.getEntityWorld();
         BlockPos pos = entity.getPosition();
         DamageSource source = event.getSource();
 
-        if(source == DamageSource.LAVA || source == DamageSource.IN_FIRE || source == DamageSource.ON_FIRE)
+        if(entity instanceof EntityPlayer)
         {
-            if(entity instanceof EntityLivingBase && entity.isRiding() && entity.getRidingEntity() instanceof EntityObsidianBoat)
+            EntityPlayer player = (EntityPlayer) entity;
+
+            if(player.dimension == -1)
             {
-                entity.extinguish();
-                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 120, 0));
+                if(source.isFireDamage())
+                {
+                    player.addStat(NetherExAchievements.BURN_BABY_BURN);
+                }
+                if(source.getSourceOfDamage() instanceof EntityPigZombie)
+                {
+                    player.addStat(NetherExAchievements.NETHER_AGAIN);
+                }
+                if(source.getSourceOfDamage() instanceof EntityMogus)
+                {
+                    player.addStat(NetherExAchievements.CUTE_BUT_DEADLY);
+                }
+            }
+        }
+        if(entity instanceof AbstractSkeleton)
+        {
+            if(source.getSourceOfDamage() instanceof EntityPlayer)
+            {
+                EntityPlayer player = (EntityPlayer) source.getSourceOfDamage();
+                player.addStat(NetherExAchievements.FROM_WITHIN);
             }
         }
     }

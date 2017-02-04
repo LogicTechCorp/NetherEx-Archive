@@ -32,6 +32,7 @@ public class BlockRime extends BlockNetherEx
     {
         super("block_rime", Material.ROCK);
 
+        setLightLevel(0.9375F);
         setHardness(5.0F);
         setResistance(10.0F);
     }

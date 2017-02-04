@@ -72,7 +72,7 @@ public class EntityMogus extends EntityMob
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0D);
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
     }
 
@@ -107,7 +107,7 @@ public class EntityMogus extends EntityMob
 
             String type = getType() == 0 ? "brown" : getType() == 1 ? "red" : "white";
 
-            return I18n.format(entityName + "." + type + ".name");
+            return I18n.format("entity." + entityName + "." + type + ".name");
         }
     }
 

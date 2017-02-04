@@ -19,20 +19,15 @@ package nex.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import nex.NetherEx;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
-import nex.util.ArmorUtil;
 import nex.util.NBTUtil;
 
 @SuppressWarnings("ConstantConditions")
@@ -58,16 +53,6 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
         return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant") ? String.format(NetherEx.MOD_ID + ":textures/models/armor/hide_salamander_variant_layer_%d.png", getEquipmentSlot() == EntityEquipmentSlot.LEGS ? 2 : 1) : super.getArmorTexture(stack, entity, slot, type);
-    }
-
-    @Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
-    {
-        if(ArmorUtil.isWearingFullArmorSet(player, getArmorMaterial()))
-        {
-            player.extinguish();
-            player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 100, 0));
-        }
     }
 
     @Override
