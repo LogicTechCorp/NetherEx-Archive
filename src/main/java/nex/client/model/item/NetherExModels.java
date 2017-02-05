@@ -91,6 +91,12 @@ public class NetherExModels
             registerModel(ITEM_BRICK_NETHER, type.ordinal(), ITEM_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        for(BlockNetherrackPath.EnumType type : BlockNetherrackPath.EnumType.values())
+        {
+            registerModel(BLOCK_NETHERRACK_PATH, type.ordinal(), BLOCK_NETHERRACK_PATH.getRegistryName().toString(), String.format("type=%s", type.getName()));
+
+        }
+
         registerModel(BLOCK_HYPHAE, "normal");
         registerModel(BLOCK_SAND_SOUL_TILLED, "moisture=0");
         registerModel(BLOCK_GLASS_SOUL, "normal");

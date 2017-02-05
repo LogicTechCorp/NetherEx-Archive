@@ -44,6 +44,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_brick_nether")
     public static final BlockNetherBrick BLOCK_BRICK_NETHER = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_netherrack_path")
+    public static final BlockNetherrackPath BLOCK_NETHERRACK_PATH = null;
+
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_hyphae")
     public static final BlockHyphae BLOCK_HYPHAE = null;
 
@@ -209,6 +212,7 @@ public class NetherExBlocks
                     new BlockBasalt(),
                     new BlockNetherrack(),
                     new BlockNetherBrick(),
+                    new BlockNetherrackPath(),
                     new BlockHyphae(),
                     new BlockTilledSoulSand(),
                     new BlockSoulGlass(),
@@ -270,6 +274,7 @@ public class NetherExBlocks
                     new ItemBlockBasalt(),
                     new ItemBlockNetherrack(),
                     new ItemBlockNetherBrick(),
+                    new ItemBlockNetherrackPath(),
                     new ItemBlockNetherEx(BLOCK_HYPHAE),
                     new ItemBlockNetherEx(BLOCK_SAND_SOUL_TILLED),
                     new ItemBlockNetherEx(BLOCK_GLASS_SOUL),

@@ -31,7 +31,7 @@ import java.util.Random;
 
 public class WorldGenUtil
 {
-    public static BlockPos getSuitableHeight(World world, BlockPos pos, float xSize, float zSize, float percentage)
+    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, float xSize, float zSize, float percentage)
     {
         while(pos.getY() > 32)
         {
@@ -68,7 +68,6 @@ public class WorldGenUtil
 
         return BlockPos.ORIGIN;
     }
-
 
     public static void setChestContents(World world, Random rand, BlockPos pos, BlockPos structureSize, ResourceLocation lootTableList)
     {

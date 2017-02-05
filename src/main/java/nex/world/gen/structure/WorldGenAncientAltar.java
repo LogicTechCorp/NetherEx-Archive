@@ -61,7 +61,7 @@ public class WorldGenAncientAltar extends WorldGenerator
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos spawnPos = WorldGenUtil.getSuitableHeight(world, new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), structureSize.getX(), structureSize.getZ(), 0.8F);
+        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), structureSize.getX(), structureSize.getZ(), 0.8F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
