@@ -246,6 +246,10 @@ public class EventHandler
             {
                 player.addStat(NetherExAchievements.UH_OH);
             }
+            if(attacker instanceof EntityMogus)
+            {
+                player.addStat(NetherExAchievements.CUTE_BUT_DEADLY);
+            }
         }
     }
 
@@ -293,26 +297,6 @@ public class EventHandler
         BlockPos pos = entity.getPosition();
         DamageSource source = event.getSource();
 
-        if(entity instanceof EntityPlayer)
-        {
-            EntityPlayer player = (EntityPlayer) entity;
-
-            if(player.dimension == -1)
-            {
-                if(source.isFireDamage())
-                {
-                    player.addStat(NetherExAchievements.BURN_BABY_BURN);
-                }
-                if(source.getSourceOfDamage() instanceof EntityPigZombie)
-                {
-                    player.addStat(NetherExAchievements.NETHER_AGAIN);
-                }
-                if(source.getSourceOfDamage() instanceof EntityMogus)
-                {
-                    player.addStat(NetherExAchievements.CUTE_BUT_DEADLY);
-                }
-            }
-        }
         if(entity instanceof AbstractSkeleton)
         {
             if(source.getSourceOfDamage() instanceof EntityPlayer)

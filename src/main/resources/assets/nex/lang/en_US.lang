@@ -6,18 +6,14 @@ language.code=en_us
 # Achievements
 achievement.nex:stayinFrosty=Stayin' Frosty!
 achievement.nex:stayinFrosty.desc=Swim in Lava while having Fire Resistance
-achievement.nex:burnBabyBurn=Burn Baby Burn!
-achievement.nex:burnBabyBurn.desc=Die from Fire
 achievement.nex:uhOh=UH OH!
-achievement.nex:uhOh.desc=Attack a Zombie Pigman
-achievement.nex:netherAgain=Nether Again!
-achievement.nex:netherAgain.desc=Get killed by a Zombie Pigman
-achievement.nex:fromWithin=From Within!
-achievement.nex:fromWithin.desc=Kill a Skeleton while disguised as one
+achievement.nex:uhOh.desc=Enrage a Zombie Pigman
 achievement.nex:inPlainSight=In Plain Sight!
 achievement.nex:inPlainSight.desc=Wear a full set of Bone Armor in front of a Skeleton
+achievement.nex:fromWithin=From Within!
+achievement.nex:fromWithin.desc=Kill a Skeleton while disguised as one
 achievement.nex:cuteButDeadly=Cute But Deadly!
-achievement.nex:cuteButDeadly.desc=Get killed by a Mogus
+achievement.nex:cuteButDeadly.desc=Enrage a Mogus
 
 # Config
 config.nex=NetherEx Config
