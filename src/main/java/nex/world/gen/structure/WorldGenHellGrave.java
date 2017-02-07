@@ -18,6 +18,8 @@
 package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
@@ -36,6 +38,7 @@ import nex.util.WorldGenUtil;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class WorldGenHellGrave extends WorldGenerator
 {
@@ -45,6 +48,10 @@ public class WorldGenHellGrave extends WorldGenerator
             new WeightedUtil.NamedItem("single_fancy", 2),
             new WeightedUtil.NamedItem("group_basic", 1)
     );
+
+    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
+            Blocks.NETHERRACK.getDefaultState(),
+            Blocks.QUARTZ_ORE.getDefaultState());
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
@@ -63,12 +70,13 @@ public class WorldGenHellGrave extends WorldGenerator
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setReplacedBlock(Blocks.AIR).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), structureSize.getX(), structureSize.getZ(), 0.8F);
+        BlockPos newPos = new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2);
+        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 1.0F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
             template.addBlocksToWorld(world, spawnPos.down(), settings.copy(), 20);
-            WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
+            WorldGenUtil.setChestContents(world, rand, spawnPos.down(), structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
             return true;
         }
         return false;

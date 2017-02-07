@@ -18,6 +18,9 @@
 package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -35,6 +38,7 @@ import nex.util.WorldGenUtil;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class WorldGenHellChiefHut extends WorldGenerator
 {
@@ -42,6 +46,10 @@ public class WorldGenHellChiefHut extends WorldGenerator
             new WeightedUtil.NamedItem("basic", 3),
             new WeightedUtil.NamedItem("gold", 2)
     );
+
+    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
+            Blocks.NETHERRACK.getDefaultState(),
+            Blocks.QUARTZ_ORE.getDefaultState());
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
@@ -60,7 +68,8 @@ public class WorldGenHellChiefHut extends WorldGenerator
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), structureSize.getX(), structureSize.getZ(), 0.8F);
+        BlockPos newPos = new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2);
+        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 0.8F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {

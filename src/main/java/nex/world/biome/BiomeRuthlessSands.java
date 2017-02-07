@@ -109,6 +109,14 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             }
         }
 
+        if(ConfigHandler.RuthlessSands.generateThornstalk)
+        {
+            for(int i = 0; i < ConfigHandler.RuthlessSands.thornstalkRarity; i++)
+            {
+                thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
         if(ConfigHandler.RuthlessSands.generateAncientAltars)
         {
             int rarity = ConfigHandler.RuthlessSands.ancientAltarRarity;
@@ -121,14 +129,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             if(rand.nextInt(rarity) == 0)
             {
                 ancientAltar.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.RuthlessSands.generateThornstalk)
-        {
-            for(int i = 0; i < ConfigHandler.RuthlessSands.thornstalkRarity; i++)
-            {
-                thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 

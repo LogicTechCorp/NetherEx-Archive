@@ -91,7 +91,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         {
             if(rand.nextBoolean())
             {
-                for(int i = 0; i < ConfigHandler.FungiForest.elderMushroomRarity * 16; i++)
+                for(int i = 0; i < ConfigHandler.FungiForest.elderMushroomRarity * 12; i++)
                 {
                     brownElderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
                 }

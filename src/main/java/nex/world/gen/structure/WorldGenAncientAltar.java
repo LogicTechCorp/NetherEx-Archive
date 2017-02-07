@@ -18,6 +18,9 @@
 package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -29,13 +32,15 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTableList;
+import nex.init.NetherExBlocks;
 import nex.util.WeightedUtil;
 import nex.util.WorldGenUtil;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
+@SuppressWarnings("ConstantConditions")
 public class WorldGenAncientAltar extends WorldGenerator
 {
     private List<WeightedUtil.NamedItem> variants = Lists.newArrayList(
@@ -43,6 +48,14 @@ public class WorldGenAncientAltar extends WorldGenerator
             new WeightedUtil.NamedItem("ruined", 2),
             new WeightedUtil.NamedItem("intact", 1)
     );
+
+    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
+            Blocks.SOUL_SAND.getDefaultState(),
+            NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3),
+            NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3),
+            NetherExBlocks.PLANT_THORNSTALK.getDefaultState(),
+            NetherExBlocks.PLANT_THORNSTALK.getStateFromMeta(1),
+            NetherExBlocks.PLANT_THORNSTALK.getStateFromMeta(2));
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
@@ -61,12 +74,12 @@ public class WorldGenAncientAltar extends WorldGenerator
         StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2), structureSize.getX(), structureSize.getZ(), 0.8F);
+        BlockPos newPos = new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2);
+        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 0.8F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
             template.addBlocksToWorld(world, spawnPos, settings.copy(), 20);
-            WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
             return true;
         }
         return false;

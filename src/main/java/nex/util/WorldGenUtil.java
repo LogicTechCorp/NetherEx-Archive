@@ -19,19 +19,20 @@ package nex.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
+import java.util.Set;
 
 public class WorldGenUtil
 {
-    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, float xSize, float zSize, float percentage)
+    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> foundations, float xSize, float zSize, float percentage)
     {
         while(pos.getY() > 32)
         {
@@ -41,19 +42,22 @@ public class WorldGenUtil
             {
                 for(int z = 0; z <= MathHelper.abs(zSize); z++)
                 {
-                    int xPos = (int) (xSize > 0 ? xSize - x : xSize + x);
-                    int zPos = (int) (zSize > 0 ? zSize - z : zSize + z);
+                    int posX = (int) (xSize > 0 ? xSize - x : xSize + x);
+                    int posZ = (int) (zSize > 0 ? zSize - z : zSize + z);
 
-                    BlockPos newPos = pos.add(xPos, 0, zPos);
+                    BlockPos newPos = pos.add(posX, 0, posZ);
+                    IBlockState state = world.getBlockState(newPos);
 
-                    Block block = world.getBlockState(newPos).getBlock();
-
-                    if(block != Blocks.NETHER_BRICK && block.isBlockSolid(world, newPos, EnumFacing.DOWN))
+                    if(foundations.contains(state))
                     {
-                        if(world.isAirBlock(newPos.up()))
+                        if(world.getBlockState(newPos.up()).getMaterial().isReplaceable() && !world.getBlockState(newPos.down()).getMaterial().isReplaceable())
                         {
                             topBlocks++;
                         }
+                    }
+                    else if(state != Blocks.AIR.getDefaultState())
+                    {
+                        return BlockPos.ORIGIN;
                     }
                 }
             }
@@ -71,16 +75,25 @@ public class WorldGenUtil
 
     public static void setChestContents(World world, Random rand, BlockPos pos, BlockPos structureSize, ResourceLocation lootTableList)
     {
-        Iterable<BlockPos> blockPositions = BlockPos.getAllInBox(pos, new BlockPos(pos.getX() + structureSize.getX(), pos.getY() + structureSize.getY(), pos.getZ() + structureSize.getZ()));
-
-        for(BlockPos newPos : blockPositions)
+        for(int x = 0; x <= MathHelper.abs(structureSize.getX()); x++)
         {
-            Block block = world.getBlockState(newPos).getBlock();
-
-            if(block instanceof BlockChest)
+            for(int z = 0; z <= MathHelper.abs(structureSize.getZ()); z++)
             {
-                TileEntityChest chest = (TileEntityChest) world.getTileEntity(newPos);
-                chest.setLootTable(lootTableList, rand.nextLong());
+                for(int y = 0; y <= structureSize.getY(); y++)
+                {
+
+                    int posX = structureSize.getX() > 0 ? structureSize.getX() - x : structureSize.getX() + x;
+                    int posZ = structureSize.getZ() > 0 ? structureSize.getZ() - z : structureSize.getZ() + z;
+
+                    BlockPos newPos = pos.add(posX, y, posZ);
+                    Block block = world.getBlockState(newPos).getBlock();
+
+                    if(block instanceof BlockChest)
+                    {
+                        TileEntityChest chest = (TileEntityChest) world.getTileEntity(newPos);
+                        chest.setLootTable(lootTableList, rand.nextLong());
+                    }
+                }
             }
         }
     }

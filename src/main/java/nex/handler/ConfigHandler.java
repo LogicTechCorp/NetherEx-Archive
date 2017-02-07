@@ -79,8 +79,8 @@ public class ConfigHandler
         public static int quartzOreRarity = 16;
         public static int magmaRarity = 4;
         public static int lavaTrapRarity = 16;
-        public static int chiefHutRarity = 48;
-        public static int pigmanHutRarity = 32;
+        public static int chiefHutRarity = 64;
+        public static int pigmanHutRarity = 48;
         public static int graveRarity = 16;
     }
 
@@ -101,7 +101,7 @@ public class ConfigHandler
         public static int quartzOreRarity = 16;
         public static int lavaTrapRarity = 16;
         public static int thornstalkRarity = 10;
-        public static int ancientAltarRarity = 40;
+        public static int ancientAltarRarity = 32;
     }
 
     public static class FungiForest
