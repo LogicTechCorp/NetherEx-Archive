@@ -28,10 +28,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBiomes;
 import nex.world.gen.feature.*;
-import nex.world.gen.structure.WorldGenHellChiefHut;
 import nex.world.gen.structure.WorldGenHellGrave;
-import nex.world.gen.structure.WorldGenHellPigmanHut;
+import nex.world.gen.structure.WorldGenHellVillage;
 
 import java.util.Random;
 
@@ -46,13 +46,12 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator quartzOre = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
-    private WorldGenerator chiefHut = new WorldGenHellChiefHut();
-    private WorldGenerator pigmanHut = new WorldGenHellPigmanHut();
+    private WorldGenerator village = new WorldGenHellVillage();
     private WorldGenerator grave = new WorldGenHellGrave();
 
     public BiomeHell()
     {
-        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell", ConfigHandler.Hell.biomeRarity, new ItemStack(Blocks.LAVA));
+        super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell");
 
         topBlock = Blocks.NETHERRACK.getDefaultState();
         fillerBlock = Blocks.NETHERRACK.getDefaultState();
@@ -62,8 +61,12 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 25, 4, 4));
-    }
 
+        if(ConfigHandler.Hell.generateBiome)
+        {
+            NetherExBiomes.addBiome(this, ConfigHandler.Hell.biomeRarity, new ItemStack(Blocks.LAVA, 1, 0));
+        }
+    }
 
     @Override
     public void decorate(World world, Random rand, BlockPos pos)
@@ -146,9 +149,9 @@ public class BiomeHell extends BiomeNetherEx
             }
         }
 
-        if(ConfigHandler.Hell.generateChiefHuts)
+        if(ConfigHandler.Hell.generateVillages)
         {
-            int rarity = ConfigHandler.Hell.chiefHutRarity;
+            int rarity = ConfigHandler.Hell.villageRarity;
 
             if(rarity <= 0)
             {
@@ -157,22 +160,7 @@ public class BiomeHell extends BiomeNetherEx
 
             if(rand.nextInt(rarity) == 0)
             {
-                chiefHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Hell.generatePigmanHuts)
-        {
-            int rarity = ConfigHandler.Hell.pigmanHutRarity;
-
-            if(rarity <= 0)
-            {
-                rarity = 1;
-            }
-
-            if(rand.nextInt(rarity) == 0)
-            {
-                pigmanHut.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                village.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

@@ -20,6 +20,7 @@ package nex.world.gen.structure;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -53,7 +54,9 @@ public class WorldGenBlazingPyramid extends WorldGenerator
     private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
             NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(),
             NetherExBlocks.BLOCK_BASALT.getDefaultState(),
-            NetherExBlocks.ORE_QUARTZ.getDefaultState());
+            NetherExBlocks.ORE_QUARTZ.getDefaultState(),
+            Blocks.MAGMA.getDefaultState()
+    );
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)

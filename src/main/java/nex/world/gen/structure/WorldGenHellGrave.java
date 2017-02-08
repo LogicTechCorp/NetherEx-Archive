@@ -51,7 +51,9 @@ public class WorldGenHellGrave extends WorldGenerator
 
     private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
             Blocks.NETHERRACK.getDefaultState(),
-            Blocks.QUARTZ_ORE.getDefaultState());
+            Blocks.QUARTZ_ORE.getDefaultState(),
+            Blocks.MAGMA.getDefaultState()
+    );
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)

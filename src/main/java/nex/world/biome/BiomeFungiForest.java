@@ -27,6 +27,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.entity.neutral.EntityMogus;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.WorldGenElderMushroom;
 import nex.world.gen.feature.WorldGenEnokiMushroom;
@@ -47,12 +48,17 @@ public class BiomeFungiForest extends BiomeNetherEx
 
     public BiomeFungiForest()
     {
-        super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest", ConfigHandler.FungiForest.biomeRarity, new ItemStack(Blocks.LAVA));
+        super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest");
 
         spawnableMonsterList.add(new SpawnListEntry(EntityMogus.class, 100, 4, 8));
 
         topBlock = NetherExBlocks.BLOCK_HYPHAE.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2);
+
+        if(ConfigHandler.FungiForest.generateBiome)
+        {
+            NetherExBiomes.addBiome(this, ConfigHandler.FungiForest.biomeRarity, new ItemStack(Blocks.LAVA, 1, 0));
+        }
     }
 
     @Override

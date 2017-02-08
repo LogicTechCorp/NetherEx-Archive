@@ -58,6 +58,7 @@ public class ConfigHandler
 
     public static class Hell
     {
+        public static boolean generateBiome = true;
         public static boolean generateLavaSprings = true;
         public static boolean generateFire = true;
         public static boolean generateGlowstonePass1 = true;
@@ -67,8 +68,7 @@ public class ConfigHandler
         public static boolean generateQuartzOre = true;
         public static boolean generateMagma = true;
         public static boolean generateLavaTraps = true;
-        public static boolean generateChiefHuts = true;
-        public static boolean generatePigmanHuts = true;
+        public static boolean generateVillages = true;
         public static boolean generateGraves = true;
 
         public static int biomeRarity = 10;
@@ -79,13 +79,13 @@ public class ConfigHandler
         public static int quartzOreRarity = 16;
         public static int magmaRarity = 4;
         public static int lavaTrapRarity = 16;
-        public static int chiefHutRarity = 64;
-        public static int pigmanHutRarity = 48;
-        public static int graveRarity = 16;
+        public static int villageRarity = 4;
+        public static int graveRarity = 24;
     }
 
     public static class RuthlessSands
     {
+        public static boolean generateBiome = true;
         public static boolean generateLavaSprings = true;
         public static boolean generateGlowstonePass1 = true;
         public static boolean generateGlowstonePass2 = true;
@@ -106,6 +106,7 @@ public class ConfigHandler
 
     public static class FungiForest
     {
+        public static boolean generateBiome = true;
         public static boolean generateGlowstonePass1 = true;
         public static boolean generateGlowstonePass2 = true;
         public static boolean generateQuartzOre = true;
@@ -122,6 +123,7 @@ public class ConfigHandler
 
     public static class TorridWasteland
     {
+        public static boolean generateBiome = true;
         public static boolean generateLavaSprings = true;
         public static boolean generateFire = true;
         public static boolean generateGlowstonePass1 = true;
@@ -143,11 +145,12 @@ public class ConfigHandler
         public static int magmaRarity = 12;
         public static int lavaTrapRarity = 48;
         public static int lavaPitRarity = 8;
-        public static int blazingPyramidRarity = 1;
+        public static int blazingPyramidRarity = 4;
     }
 
     public static class ArcticAbyss
     {
+        public static boolean generateBiome = true;
         public static boolean generateGlowstonePass1 = true;
         public static boolean generateGlowstonePass2 = true;
         public static boolean generateQuartzOre = true;

@@ -55,7 +55,8 @@ public class WorldGenAncientAltar extends WorldGenerator
             NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3),
             NetherExBlocks.PLANT_THORNSTALK.getDefaultState(),
             NetherExBlocks.PLANT_THORNSTALK.getStateFromMeta(1),
-            NetherExBlocks.PLANT_THORNSTALK.getStateFromMeta(2));
+            NetherExBlocks.PLANT_THORNSTALK.getStateFromMeta(2)
+    );
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)

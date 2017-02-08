@@ -27,6 +27,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.entity.neutral.EntitySalamander;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.*;
 import nex.world.gen.structure.WorldGenBlazingPyramid;
@@ -49,12 +50,17 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
     public BiomeTorridWasteland()
     {
-        super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland", ConfigHandler.TorridWasteland.biomeRarity, new ItemStack(Blocks.LAVA));
+        super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
 
         spawnableMonsterList.add(new SpawnListEntry(EntitySalamander.class, 100, 3, 6));
 
         topBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
+
+        if(ConfigHandler.TorridWasteland.generateBiome)
+        {
+            NetherExBiomes.addBiome(this, ConfigHandler.TorridWasteland.biomeRarity, new ItemStack(Blocks.LAVA, 1, 0));
+        }
     }
 
     @Override

@@ -27,6 +27,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.entity.monster.EntityWight;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
@@ -45,12 +46,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
     public BiomeArcticAbyss()
     {
-        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss", ConfigHandler.ArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA));
+        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
 
         spawnableMonsterList.add(new SpawnListEntry(EntityWight.class, 100, 1, 4));
 
         topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1);
+
+        if(ConfigHandler.ArcticAbyss.generateBiome)
+        {
+            NetherExBiomes.addBiome(this, ConfigHandler.ArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA, 1, 0));
+        }
     }
 
     @Override

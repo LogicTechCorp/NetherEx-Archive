@@ -116,6 +116,11 @@ public class NetherExBiomes
 
     public static boolean addBiome(Biome biome, int weight, ItemStack stack)
     {
+        if(weight <= 0)
+        {
+            weight = 1;
+        }
+
         BiomeManager.BiomeEntry biomeEntry = new BiomeManager.BiomeEntry(biome, weight);
 
         for(BiomeManager.BiomeEntry entry : biomeEntries)
