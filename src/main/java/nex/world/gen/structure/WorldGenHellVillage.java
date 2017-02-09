@@ -70,12 +70,12 @@ public class WorldGenHellVillage extends WorldGenerator
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
-        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 0.8F);
+        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 0.75F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
-            template.addBlocksToWorld(world, spawnPos, settings.copy(), 20);
-            WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
+            template.addBlocksToWorld(world, spawnPos.down(), settings.copy(), 3);
+            WorldGenUtil.setChestContents(world, rand, spawnPos.down(), structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
             return true;
         }
         return false;

@@ -25,10 +25,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
@@ -68,16 +66,14 @@ public class WorldGenHellGrave extends WorldGenerator
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "grave_hell_"));
 
-        ChunkPos chunkPos = new ChunkPos(pos);
-        StructureBoundingBox structureBB = new StructureBoundingBox(chunkPos.getXStart(), 0, chunkPos.getZStart(), chunkPos.getXEnd(), 256, chunkPos.getZEnd());
-        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setBoundingBox(structureBB).setReplacedBlock(Blocks.AIR).setRandom(rand);
+        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos newPos = new BlockPos(chunkPos.getXStart() + 8 - structureSize.getX() / 2, 96, chunkPos.getZStart() + 8 - structureSize.getZ() / 2);
-        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 1.0F);
+        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
+        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 0.8F);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
-            template.addBlocksToWorld(world, spawnPos.down(), settings.copy(), 20);
+            template.addBlocksToWorld(world, spawnPos.down(), settings.copy(), 3);
             WorldGenUtil.setChestContents(world, rand, spawnPos.down(), structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
             return true;
         }

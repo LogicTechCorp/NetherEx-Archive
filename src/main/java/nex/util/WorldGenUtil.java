@@ -19,9 +19,11 @@ package nex.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -71,6 +73,31 @@ public class WorldGenUtil
         }
 
         return BlockPos.ORIGIN;
+    }
+
+    public static void setSpawnerMob(World world, BlockPos pos, BlockPos structureSize, ResourceLocation mob)
+    {
+        for(int x = 0; x <= MathHelper.abs(structureSize.getX()); x++)
+        {
+            for(int z = 0; z <= MathHelper.abs(structureSize.getZ()); z++)
+            {
+                for(int y = 0; y <= structureSize.getY(); y++)
+                {
+
+                    int posX = structureSize.getX() > 0 ? structureSize.getX() - x : structureSize.getX() + x;
+                    int posZ = structureSize.getZ() > 0 ? structureSize.getZ() - z : structureSize.getZ() + z;
+
+                    BlockPos newPos = pos.add(posX, y, posZ);
+                    Block block = world.getBlockState(newPos).getBlock();
+
+                    if(block instanceof BlockMobSpawner)
+                    {
+                        TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(newPos);
+                        spawner.getSpawnerBaseLogic().setEntityId(mob);
+                    }
+                }
+            }
+        }
     }
 
     public static void setChestContents(World world, Random rand, BlockPos pos, BlockPos structureSize, ResourceLocation lootTableList)

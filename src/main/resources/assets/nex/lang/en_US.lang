@@ -219,6 +219,13 @@ config.nex:miscellaneous.allowAllHoesToTillSoulSand.tooltip=Are All Hoes Allowed
 # Creative Tabs
 itemGroup.nex=NetherEx
 
+# Effects
+effect.nex:freeze=Freeze
+effectType.nex:normalFreeze=Normal Freeze
+effectType.nex:longFreeze=Long Freeze
+effectType.nex:strongFreeze=Strong Freeze
+
+
 #Entities (Mobs)
 entity.nex:itemBoatObsidian.name=Obsidian Boat
 entity.nex:neutralMogus.name=Mogus
