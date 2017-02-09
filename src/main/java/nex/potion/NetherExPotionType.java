@@ -17,6 +17,7 @@
 
 package nex.potion;
 
+import com.google.common.base.CaseFormat;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import nex.NetherEx;
@@ -25,7 +26,7 @@ public class NetherExPotionType extends PotionType
 {
     public NetherExPotionType(String name, PotionEffect effect)
     {
-        super(null, new PotionEffect[]{effect});
+        super(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, NetherEx.MOD_ID + ":" + name), effect);
 
         setRegistryName(NetherEx.MOD_ID + ":" + name);
     }

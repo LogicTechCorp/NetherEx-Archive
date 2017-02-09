@@ -40,7 +40,7 @@ public class NetherExPotion extends Potion
         iconTexture = new ResourceLocation(NetherEx.MOD_ID + ":textures/potions/" + name + ".png");
 
         setRegistryName(NetherEx.MOD_ID + ":" + name);
-        setPotionName("effect." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
+        setPotionName("potion.effect." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 
     @Override

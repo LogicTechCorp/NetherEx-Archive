@@ -220,10 +220,19 @@ config.nex:miscellaneous.allowAllHoesToTillSoulSand.tooltip=Are All Hoes Allowed
 itemGroup.nex=NetherEx
 
 # Effects
-effect.nex:freeze=Freeze
-effectType.nex:normalFreeze=Normal Freeze
-effectType.nex:longFreeze=Long Freeze
-effectType.nex:strongFreeze=Strong Freeze
+potion.effect.nex:freeze=Frozen
+potion.effect.nex:normalFreeze=Potion of Freezing
+potion.effect.nex:longFreeze=Potion of Freezing
+potion.effect.nex:strongFreeze=Potion of Freezing
+splash_potion.effect.nex:normalFreeze=Splash Potion of Freezing
+splash_potion.effect.nex:longFreeze=Splash Potion of Freezing
+splash_potion.effect.nex:strongFreeze=Splash Potion of Freezing
+lingering_potion.effect.nex:normalFreeze=Lingering Potion of Freezing
+lingering_potion.effect.nex:longFreeze=Lingering Potion of Freezing
+lingering_potion.effect.nex:strongFreeze=Lingering Potion of Freezing
+tipped_arrow.effect.nex:normalFreeze=Arrow of Freezing
+tipped_arrow.effect.nex:longFreeze=Arrow of Freezing
+tipped_arrow.effect.nex:strongFreeze=Arrow of Freezing
 
 
 #Entities (Mobs)

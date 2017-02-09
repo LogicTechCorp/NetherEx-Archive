@@ -52,9 +52,9 @@ public class NetherExEffectTypes
             LOGGER.info("Effect Type registration started.");
 
             event.getRegistry().registerAll(
-                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 1800)),
-                    new NetherExPotionType("long_freeze", new PotionEffect(NetherExEffects.FREEZE, 4800)),
-                    new NetherExPotionType("strong_freeze", new PotionEffect(NetherExEffects.FREEZE, 900))
+                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 400)),
+                    new NetherExPotionType("long_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
+                    new NetherExPotionType("strong_freeze", new PotionEffect(NetherExEffects.FREEZE, 200))
             );
 
             LOGGER.info("Effect Type registration completed.");
