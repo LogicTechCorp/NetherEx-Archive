@@ -35,12 +35,6 @@ public class NetherExEffectTypes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":normal_freeze")
     public static final PotionType NORMAL_FREEZE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":long_freeze")
-    public static final PotionType LONG_FREEZE = null;
-
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":strong_freeze")
-    public static final PotionType STRONG_FREEZE = null;
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffectTypes");
 
     @Mod.EventBusSubscriber
@@ -52,9 +46,7 @@ public class NetherExEffectTypes
             LOGGER.info("Effect Type registration started.");
 
             event.getRegistry().registerAll(
-                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 400)),
-                    new NetherExPotionType("long_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
-                    new NetherExPotionType("strong_freeze", new PotionEffect(NetherExEffects.FREEZE, 200))
+                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 300))
             );
 
             LOGGER.info("Effect Type registration completed.");

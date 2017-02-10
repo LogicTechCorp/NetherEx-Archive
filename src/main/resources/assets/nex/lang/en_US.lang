@@ -21,17 +21,9 @@ itemGroup.nex=NetherEx
 # Effects
 potion.effect.nex:freeze=Freeze
 potion.effect.nex:normalFreeze=Potion of Freezing
-potion.effect.nex:longFreeze=Potion of Freezing
-potion.effect.nex:strongFreeze=Potion of Freezing
 splash_potion.effect.nex:normalFreeze=Splash Potion of Freezing
-splash_potion.effect.nex:longFreeze=Long Freeze
-splash_potion.effect.nex:strongFreeze=Strong Freeze
-lingering_potion.effect.nex:normalFreeze=Normal Freeze
-lingering_potion.effect.nex:longFreeze=Long Freeze
-lingering_potion.effect.nex:strongFreeze=Strong Freeze
-tipped_arrow.effect.nex:normalFreeze=Normal Freeze
-tipped_arrow.effect.nex:longFreeze=Long Freeze
-tipped_arrow.effect.nex:strongFreeze=Strong Freeze
+lingering_potion.effect.nex:normalFreeze=Lingering Potion of Freezing
+tipped_arrow.effect.nex:normalFreeze=Arrow of Freezing
 
 
 #Entities (Mobs)

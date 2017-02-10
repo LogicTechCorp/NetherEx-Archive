@@ -25,7 +25,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.AbstractSkeleton;
+import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemHoe;
@@ -250,7 +253,7 @@ public class EventHandler
 
         if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(entity instanceof EntityPigZombie || entity instanceof EntityBlaze)
+            if(!(entity instanceof EntityWight))
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
@@ -266,28 +269,29 @@ public class EventHandler
 
         if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(entity instanceof EntityLiving && !(entity instanceof EntityWight))
+            if(!(entity instanceof EntityWight) && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.Feature.PotionEffects.chanceOfFreezing) == 0)
             {
-                if(!entity.isPotionActive(NetherExEffects.FREEZE))
+                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+            }
+        }
+        if(entity instanceof EntityLiving && !(entity instanceof EntityWight))
+        {
+            if(!entity.isPotionActive(NetherExEffects.FREEZE))
+            {
+                if(((EntityLiving) entity).isAIDisabled())
                 {
-                    if(((EntityLiving) entity).isAIDisabled())
-                    {
-                        ((EntityLiving) entity).setNoAI(false);
-                    }
-
-                    if(world.rand.nextInt(512) == 0)
-                    {
-                        entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
-                    }
+                    ((EntityLiving) entity).setNoAI(false);
+                    entity.setSilent(false);
                 }
-                else
-                {
-                    ((EntityLiving) entity).setNoAI(true);
+            }
+            else
+            {
+                ((EntityLiving) entity).setNoAI(true);
+                entity.setSilent(true);
 
-                    if(world.rand.nextInt(512) == 0)
-                    {
-                        entity.removePotionEffect(NetherExEffects.FREEZE);
-                    }
+                if(world.rand.nextInt(ConfigHandler.Feature.PotionEffects.chanceOfThawing) == 0)
+                {
+                    entity.removePotionEffect(NetherExEffects.FREEZE);
                 }
             }
         }

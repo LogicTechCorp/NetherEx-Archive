@@ -36,10 +36,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import static net.minecraft.init.Blocks.*;
-import static net.minecraft.init.Items.*;
+import static net.minecraft.init.Items.GOLD_INGOT;
+import static net.minecraft.init.Items.MAGMA_CREAM;
 import static net.minecraft.init.PotionTypes.AWKWARD;
 import static nex.init.NetherExBlocks.*;
-import static nex.init.NetherExEffectTypes.*;
+import static nex.init.NetherExEffectTypes.NORMAL_FREEZE;
 import static nex.init.NetherExItems.*;
 
 @SuppressWarnings("ConstantConditions")
@@ -137,8 +138,6 @@ public class NetherExRecipes
         addBootsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_BOOTS_HIDE_SALAMANDER, 1, 0), variant), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
 
         addBrewing(AWKWARD, ITEM_GEM_RIME, NORMAL_FREEZE);
-        addBrewing(NORMAL_FREEZE, REDSTONE, LONG_FREEZE);
-        addBrewing(NORMAL_FREEZE, GLOWSTONE_DUST, STRONG_FREEZE);
 
         LOGGER.info("Recipe registration completed.");
     }
