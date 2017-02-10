@@ -22,16 +22,16 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.AbstractSkeleton;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -40,12 +40,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -53,11 +50,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.entity.item.EntityObsidianBoat;
+import nex.entity.monster.EntityWight;
 import nex.entity.neutral.EntityMogus;
-import nex.init.NetherExAchievements;
-import nex.init.NetherExBlocks;
-import nex.init.NetherExItems;
-import nex.init.NetherExMaterials;
+import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.world.NetherExTeleporter;
 
@@ -72,7 +67,7 @@ public class EventHandler
     @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event)
     {
-        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.Misc.enableNetherPortalFix && event.getWorld() instanceof WorldServer)
+        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.Dimension.Nether.enablePortalFix && event.getWorld() instanceof WorldServer)
         {
             if(event.getWorld().provider.getDimension() == 0 || event.getWorld().provider.getDimension() == -1)
             {
@@ -99,14 +94,36 @@ public class EventHandler
     }
 
     @SubscribeEvent
-    public static void onHoeUse(UseHoeEvent event)
+    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event)
     {
         World world = event.getWorld();
         BlockPos pos = event.getPos();
         EntityPlayer player = event.getEntityPlayer();
-        ItemStack stack = event.getCurrent();
+        ItemStack stack = event.getItemStack();
 
-        if(stack.getItem() == Items.GOLDEN_HOE || ConfigHandler.Misc.allowAllHoesToTillSoulSand)
+        if(stack.getItem() instanceof ItemSpade)
+        {
+            IBlockState state = world.getBlockState(pos);
+
+            if(state.getBlock() == Blocks.NETHERRACK || state.getBlock() == NetherExBlocks.BLOCK_NETHERRACK)
+            {
+                for(EnumHand hand : EnumHand.values())
+                {
+                    if(player.getHeldItem(hand).getItem() instanceof ItemSpade)
+                    {
+                        player.swingArm(hand);
+                    }
+                }
+
+                int meta = state.getBlock() == Blocks.NETHERRACK ? 0 : NetherExBlocks.BLOCK_NETHERRACK.getMetaFromState(state) + 1;
+
+                world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK_PATH.getStateFromMeta(meta), 11);
+                stack.damageItem(1, player);
+            }
+
+        }
+        if(stack.getItem() == NetherExItems.TOOL_HOE_BONE || stack.getItem() == Items.GOLDEN_HOE || ConfigHandler.Feature.Farming.allowAllHoesToTillSoulSand && stack.getItem() instanceof ItemHoe)
         {
             if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
             {
@@ -120,7 +137,7 @@ public class EventHandler
 
                 world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 world.setBlockState(pos, NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState(), 11);
-                event.setResult(Event.Result.ALLOW);
+                stack.damageItem(1, player);
             }
         }
     }
@@ -169,7 +186,7 @@ public class EventHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(ConfigHandler.Misc.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
+        if(ConfigHandler.Feature.Farming.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
             if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getStateFromMeta(7))
             {
@@ -195,7 +212,7 @@ public class EventHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigHandler.Misc.turnMagmaIntoLava)
+                if(ConfigHandler.Feature.Misc.turnMagmaIntoLava)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {
@@ -219,7 +236,59 @@ public class EventHandler
         {
             if(state.getBlock() == Blocks.LAVA || state.getBlock() == Blocks.FLOWING_LAVA)
             {
-                event.setResult(ConfigHandler.Misc.isLavaInfiniteInTheNether ? Event.Result.ALLOW : Event.Result.DEFAULT);
+                event.setResult(ConfigHandler.Dimension.Nether.isLavaInfinite ? Event.Result.ALLOW : Event.Result.DEFAULT);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingSpawn(LivingSpawnEvent event)
+    {
+        World world = event.getWorld();
+        BlockPos pos = new BlockPos(event.getX(), event.getY(), event.getZ());
+        EntityLivingBase entity = event.getEntityLiving();
+
+        if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
+        {
+            if(entity instanceof EntityPigZombie || entity instanceof EntityBlaze)
+            {
+                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event)
+    {
+        World world = event.getEntityLiving().getEntityWorld();
+        BlockPos pos = new BlockPos(event.getEntityLiving());
+        EntityLivingBase entity = event.getEntityLiving();
+
+        if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
+        {
+            if(entity instanceof EntityLiving && !(entity instanceof EntityWight))
+            {
+                if(!entity.isPotionActive(NetherExEffects.FREEZE))
+                {
+                    if(((EntityLiving) entity).isAIDisabled())
+                    {
+                        ((EntityLiving) entity).setNoAI(false);
+                    }
+
+                    if(world.rand.nextInt(512) == 0)
+                    {
+                        entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                    }
+                }
+                else
+                {
+                    ((EntityLiving) entity).setNoAI(true);
+
+                    if(world.rand.nextInt(512) == 0)
+                    {
+                        entity.removePotionEffect(NetherExEffects.FREEZE);
+                    }
+                }
             }
         }
     }

@@ -17,6 +17,8 @@
 
 package nex.world.biome;
 
+import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -49,13 +51,15 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
 
         spawnableMonsterList.add(new SpawnListEntry(EntityWight.class, 100, 1, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 50, 1, 1));
+        spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 25, 1, 1));
 
         topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1);
 
-        if(ConfigHandler.ArcticAbyss.generateBiome)
+        if(ConfigHandler.Biome.ArcticAbyss.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.ArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA, 1, 0));
+            NetherExBiomes.addBiome(this, ConfigHandler.Biome.ArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA, 1, 0));
         }
     }
 
@@ -64,17 +68,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.ArcticAbyss.generateGlowstonePass1)
+        if(ConfigHandler.Biome.ArcticAbyss.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.ArcticAbyss.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.Biome.ArcticAbyss.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.ArcticAbyss.generateGlowstonePass2)
+        if(ConfigHandler.Biome.ArcticAbyss.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigHandler.ArcticAbyss.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.Biome.ArcticAbyss.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -82,17 +86,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.ArcticAbyss.generateQuartzOre)
+        if(ConfigHandler.Biome.ArcticAbyss.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigHandler.ArcticAbyss.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.Biome.ArcticAbyss.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 
-        if(ConfigHandler.ArcticAbyss.generateRimeOre)
+        if(ConfigHandler.Biome.ArcticAbyss.generateRimeOre)
         {
-            for(int i = 0; i < ConfigHandler.ArcticAbyss.rimeOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.Biome.ArcticAbyss.rimeOreRarity; i++)
             {
                 rimeOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -100,13 +104,13 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.ArcticAbyss.generateIchorPits)
+        if(ConfigHandler.Biome.ArcticAbyss.generateIchorPits)
         {
             BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
 
             if(world.getBiomeForCoordsBody(newPos) == this)
             {
-                int rarity = ConfigHandler.ArcticAbyss.ichorPitRarity;
+                int rarity = ConfigHandler.Biome.ArcticAbyss.ichorPitRarity;
 
                 if(rarity <= 0)
                 {
