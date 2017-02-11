@@ -245,7 +245,7 @@ public class EventHandler
     }
 
     @SubscribeEvent
-    public static void onLivingSpawn(LivingSpawnEvent event)
+    public static void onLivingSpecialSpawn(LivingSpawnEvent.SpecialSpawn event)
     {
         World world = event.getWorld();
         BlockPos pos = new BlockPos(event.getX(), event.getY(), event.getZ());

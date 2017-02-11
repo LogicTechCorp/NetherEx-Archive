@@ -23,6 +23,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
+import nex.entity.monster.EntityEmber;
+import nex.entity.monster.EntityNethermite;
 import nex.entity.monster.EntityWight;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
@@ -43,6 +45,8 @@ public class NetherExEntities
         registerEntity("neutral_salamander", EntitySalamander.class, 21, 16711680, 16762880);
 
         registerEntity("monster_wight", EntityWight.class, 30, 16711680, 16762880);
+        registerEntity("monster_ember", EntityEmber.class, 31, 16711680, 16762880);
+        registerEntity("monster_nethermite", EntityNethermite.class, 32, 16711680, 16762880);
 
         LOGGER.info("Entity registration Ended.");
     }

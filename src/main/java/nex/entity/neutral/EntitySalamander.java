@@ -87,6 +87,12 @@ public class EntitySalamander extends EntityMob
     }
 
     @Override
+    protected boolean canTriggerWalking()
+    {
+        return false;
+    }
+
+    @Override
     public String getName()
     {
         if(hasCustomName())

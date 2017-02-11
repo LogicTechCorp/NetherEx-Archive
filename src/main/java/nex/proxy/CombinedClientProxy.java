@@ -20,11 +20,10 @@ package nex.proxy;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.client.render.entity.RenderMogus;
-import nex.client.render.entity.RenderObsidianBoat;
-import nex.client.render.entity.RenderSalamander;
-import nex.client.render.entity.RenderWight;
+import nex.client.render.entity.*;
 import nex.entity.item.EntityObsidianBoat;
+import nex.entity.monster.EntityEmber;
+import nex.entity.monster.EntityNethermite;
 import nex.entity.monster.EntityWight;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
@@ -38,6 +37,8 @@ public class CombinedClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityMogus.class, RenderMogus::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySalamander.class, RenderSalamander::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWight.class, RenderWight::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityEmber.class, RenderEmber::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityNethermite.class, RenderNethermite::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
     }
 

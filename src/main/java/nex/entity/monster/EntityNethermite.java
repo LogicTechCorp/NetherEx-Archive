@@ -18,27 +18,49 @@
 package nex.entity.monster;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-@SuppressWarnings("ConstantConditions")
-public class EntityWight extends EntityMob
+public class EntityNethermite extends EntityMob
 {
-    public EntityWight(World world)
+    public EntityNethermite(World world)
     {
         super(world);
 
-        setSize(0.55F, 1.5F);
+        setSize(0.4F, 0.3F);
         stepHeight = 0.5F;
         isImmuneToFire = true;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return SoundEvents.ENTITY_SILVERFISH_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return SoundEvents.ENTITY_SILVERFISH_DEATH;
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn)
+    {
+        playSound(SoundEvents.ENTITY_ENDERMITE_STEP, 0.15F, 1.0F);
     }
 
     @Override
@@ -47,26 +69,33 @@ public class EntityWight extends EntityMob
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
         tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        tasks.addTask(2, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        tasks.addTask(4, new EntityAILookIdle(this));
+        targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+        targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
     }
 
     @Override
-    public boolean getCanSpawnHere()
+    public void onUpdate()
     {
-        Block block = world.getBlockState((new BlockPos(this)).down()).getBlock();
-        return world.getDifficulty() != EnumDifficulty.PEACEFUL && block != Blocks.MAGMA;
+        renderYawOffset = rotationYaw;
+        super.onUpdate();
+    }
+
+    @Override
+    public void setRenderYawOffset(float offset)
+    {
+        rotationYaw = offset;
+        super.setRenderYawOffset(offset);
     }
 
     @Override
@@ -76,22 +105,8 @@ public class EntityWight extends EntityMob
     }
 
     @Override
-    public String getName()
+    public EnumCreatureAttribute getCreatureAttribute()
     {
-        if(hasCustomName())
-        {
-            return getCustomNameTag();
-        }
-        else
-        {
-            String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
-            return I18n.format("entity." + entityName + ".name");
-        }
+        return EnumCreatureAttribute.ARTHROPOD;
     }
 }

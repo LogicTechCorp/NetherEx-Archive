@@ -22,7 +22,10 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ModelSalamander extends ModelBase
 {
     private ModelRenderer frontRightLeg;
@@ -39,85 +42,73 @@ public class ModelSalamander extends ModelBase
 
     public ModelSalamander()
     {
-        float scale = 0F;
         frontRightLeg = new ModelRenderer(this, 0, 18);
-        frontRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, scale);
+        frontRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
         frontRightLeg.setRotationPoint(-6F, 19.5F, -4.5F);
-
         frontLeftLeg = new ModelRenderer(this, 0, 18);
-        frontLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, scale);
+        frontLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
         frontLeftLeg.setRotationPoint(6F, 19.5F, -4.5F);
-
         toothLeft = new ModelRenderer(this, 0, 27);
-        toothLeft.addBox(1.5F, -6.5F, -1F, 1, 1, 1, scale);
+        toothLeft.addBox(1.5F, -6.5F, -1F, 1, 1, 1, 0.0F);
         toothLeft.setRotationPoint(0F, 20.5F, -7.5F);
         toothLeft.rotateAngleX = 1.5708F;
-
         toothRight = new ModelRenderer(this, 0, 27);
-        toothRight.addBox(-2.5F, -6.5F, -1F, 1, 1, 1, scale);
+        toothRight.addBox(-2.5F, -6.5F, -1F, 1, 1, 1, 0.0F);
         toothRight.setRotationPoint(0F, 20.5F, -7.5F);
         toothRight.rotateAngleX = 1.5708F;
-
         jawLower = new ModelRenderer(this, 0, 9);
-        jawLower.addBox(-3F, -7F, -2.5F, 6, 7, 2, scale);
+        jawLower.addBox(-3F, -7F, -2.5F, 6, 7, 2, 0.0F);
         jawLower.setRotationPoint(0F, 20.5F, -7.5F);
         jawLower.rotateAngleX = 1.5708F;
-
         jawUpper = new ModelRenderer(this, 0, 0);
-        jawUpper.addBox(-2.5F, -6.5F, 0F, 5, 6, 3, scale);
+        jawUpper.addBox(-2.5F, -6.5F, 0F, 5, 6, 3, 0.0F);
         jawUpper.setRotationPoint(0F, 20.5F, -7.5F);
         jawUpper.rotateAngleX = 1.5708F;
-
         bodyFront = new ModelRenderer(this, 16, 0);
-        bodyFront.addBox(-4.5F, -5F, -3F, 9, 10, 6, scale);
+        bodyFront.addBox(-4.5F, -5F, -3F, 9, 10, 6, 0.0F);
         bodyFront.setRotationPoint(0F, 20F, -3F);
         bodyFront.rotateAngleX = 1.5708F;
-
         bodyBack = new ModelRenderer(this, 16, 16);
-        bodyBack.addBox(-3.5F, -3.5F, -2.5F, 7, 7, 5, scale);
+        bodyBack.addBox(-3.5F, -3.5F, -2.5F, 7, 7, 5, 0.0F);
         bodyBack.setRotationPoint(0F, 20F, 5.5F);
         bodyBack.rotateAngleX = 1.5708F;
-
         tail = new ModelRenderer(this, 46, 0);
-        tail.addBox(-2.5F, -3.5F, -1.5F, 5, 7, 3, scale);
+        tail.addBox(-2.5F, -3.5F, -1.5F, 5, 7, 3, 0.0F);
         tail.setRotationPoint(0F, 20F, 12.5F);
         tail.rotateAngleX = 1.5708F;
-
         hindRightLeg = new ModelRenderer(this, 0, 18);
-        hindRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, scale);
+        hindRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
         hindRightLeg.setRotationPoint(-5F, 19.5F, 5.5F);
-
         hindLeftLeg = new ModelRenderer(this, 0, 18);
-        hindLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, scale);
+        hindLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
         hindLeftLeg.setRotationPoint(5F, 19.5F, 5.5F);
 
 
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
 
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5);
-        frontRightLeg.render(f5);
-        frontLeftLeg.render(f5);
-        toothLeft.renderWithRotation(f5);
-        toothRight.renderWithRotation(f5);
-        jawLower.renderWithRotation(f5);
-        jawUpper.renderWithRotation(f5);
-        bodyFront.renderWithRotation(f5);
-        bodyBack.renderWithRotation(f5);
-        tail.renderWithRotation(f5);
-        hindRightLeg.render(f5);
-        hindLeftLeg.render(f5);
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale);
+        frontRightLeg.render(scale);
+        frontLeftLeg.render(scale);
+        toothLeft.renderWithRotation(scale);
+        toothRight.renderWithRotation(scale);
+        jawLower.renderWithRotation(scale);
+        jawUpper.renderWithRotation(scale);
+        bodyFront.renderWithRotation(scale);
+        bodyBack.renderWithRotation(scale);
+        tail.renderWithRotation(scale);
+        hindRightLeg.render(scale);
+        hindLeftLeg.render(scale);
     }
 
-    private void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+    private void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        frontRightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-        frontLeftLeg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
-        hindRightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.141593F) * 1.4F * f1;
-        hindLeftLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        frontRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        frontLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
+        hindRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
+        hindLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 }

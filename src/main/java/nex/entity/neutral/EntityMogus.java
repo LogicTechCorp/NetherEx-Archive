@@ -90,6 +90,12 @@ public class EntityMogus extends EntityMob
     }
 
     @Override
+    protected boolean canTriggerWalking()
+    {
+        return false;
+    }
+
+    @Override
     public String getName()
     {
         if(hasCustomName())
@@ -156,7 +162,7 @@ public class EntityMogus extends EntityMob
         }
         else
         {
-            EntityItem item = new EntityItem(this.world, this.posX, this.posY + (double) offsetY, this.posZ, stack);
+            EntityItem item = new EntityItem(world, posX, posY + (double) offsetY, posZ, stack);
             item.setDefaultPickupDelay();
             if(captureDrops)
             {
