@@ -71,8 +71,7 @@ public class EntityNethermite extends EntityMob
         tasks.addTask(2, new EntityAIWander(this, 1.0D));
         tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(4, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
     }
 
     @Override

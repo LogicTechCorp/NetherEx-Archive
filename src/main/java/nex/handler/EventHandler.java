@@ -22,6 +22,7 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -53,12 +54,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.entity.item.EntityObsidianBoat;
-import nex.entity.monster.EntityWight;
+import nex.entity.monster.EntityNethermite;
 import nex.entity.neutral.EntityMogus;
 import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.world.NetherExTeleporter;
 
+import java.util.Arrays;
 import java.util.ListIterator;
 import java.util.Random;
 
@@ -225,6 +227,17 @@ public class EventHandler
                     }
                 }
             }
+            if(player.dimension == -1)
+            {
+                boolean canSpawn = Arrays.asList(ConfigHandler.Dimension.Nether.nethermiteWhitelist).contains(state.getBlock().getRegistryName().toString());
+
+                if(canSpawn && world.rand.nextInt(ConfigHandler.Dimension.Nether.chanceOfNethermiteSpawning) == 0)
+                {
+                    EntityNethermite nethermite = new EntityNethermite(world);
+                    nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
+                    world.spawnEntity(nethermite);
+                }
+            }
         }
     }
 
@@ -251,11 +264,16 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getX(), event.getY(), event.getZ());
         EntityLivingBase entity = event.getEntityLiving();
 
-        if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
+        if(entity != null && !(entity instanceof EntityPlayer))
         {
-            if(!(entity instanceof EntityWight))
+            boolean canFreeze = !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+
+            if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
             {
-                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                if(canFreeze)
+                {
+                    entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                }
             }
         }
     }
@@ -267,31 +285,36 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
 
-        if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
+        if(entity != null && !(entity instanceof EntityPlayer))
         {
-            if(!(entity instanceof EntityWight) && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.Feature.PotionEffects.chanceOfFreezing) == 0)
+            boolean canFreeze = !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+
+            if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
             {
-                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
-            }
-        }
-        if(entity instanceof EntityLiving && !(entity instanceof EntityWight))
-        {
-            if(!entity.isPotionActive(NetherExEffects.FREEZE))
-            {
-                if(((EntityLiving) entity).isAIDisabled())
+                if(canFreeze && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.PotionEffects.Freeze.chanceOfFreezing) == 0)
                 {
-                    ((EntityLiving) entity).setNoAI(false);
-                    entity.setSilent(false);
+                    entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
                 }
             }
-            else
+            if(entity instanceof EntityLiving && canFreeze)
             {
-                ((EntityLiving) entity).setNoAI(true);
-                entity.setSilent(true);
-
-                if(world.rand.nextInt(ConfigHandler.Feature.PotionEffects.chanceOfThawing) == 0)
+                if(!entity.isPotionActive(NetherExEffects.FREEZE))
                 {
-                    entity.removePotionEffect(NetherExEffects.FREEZE);
+                    if(((EntityLiving) entity).isAIDisabled())
+                    {
+                        ((EntityLiving) entity).setNoAI(false);
+                        entity.setSilent(false);
+                    }
+                }
+                else
+                {
+                    ((EntityLiving) entity).setNoAI(true);
+                    entity.setSilent(true);
+
+                    if(world.rand.nextInt(ConfigHandler.PotionEffects.Freeze.chanceOfThawing) == 0)
+                    {
+                        entity.removePotionEffect(NetherExEffects.FREEZE);
+                    }
                 }
             }
         }

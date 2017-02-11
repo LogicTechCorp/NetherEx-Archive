@@ -39,28 +39,28 @@ public class ModelNethermite extends ModelBase
     public ModelNethermite()
     {
         head = new ModelRenderer(this, 0, 0);
-        head.setRotationPoint(0.0F, 22.0F, 0.0F);
+        head.setRotationPoint(0.0F, 22.0F, -4.0F);
         head.addBox(-1.5F, 0.0F, -0.5F, 3, 2, 1);
         upperBody = new ModelRenderer(this, 0, 3);
-        upperBody.setRotationPoint(0.0F, 21.0F, 3.0F);
+        upperBody.setRotationPoint(0.0F, 21.0F, -1.0F);
         upperBody.addBox(-2.0F, 0.0F, -2.5F, 4, 3, 5);
         lowerBody = new ModelRenderer(this, 0, 11);
-        lowerBody.setRotationPoint(0.0F, 22.0F, 8.0F);
+        lowerBody.setRotationPoint(0.0F, 22.0F, 4.0F);
         lowerBody.addBox(-1.5F, 0.0F, -2.5F, 3, 2, 3);
         tail = new ModelRenderer(this, 0, 16);
-        tail.setRotationPoint(0.0F, 23.0F, 9.0F);
+        tail.setRotationPoint(0.0F, 23.0F, 5.0F);
         tail.addBox(-0.5F, 0.0F, -1.0F, 1, 1, 2);
         upperBodySpine = new ModelRenderer(this, 18, 5);
-        upperBodySpine.setRotationPoint(0.0F, 20.0F, 3.0F);
+        upperBodySpine.setRotationPoint(0.0F, 20.0F, -1.0F);
         upperBodySpine.addBox(0.0F, 0.0F, -2.5F, 0, 1, 5);
         lowerBodySpine = new ModelRenderer(this, 12, 12);
-        lowerBodySpine.setRotationPoint(0.0F, 21.0F, 7.0F);
+        lowerBodySpine.setRotationPoint(0.0F, 21.0F, 3.0F);
         lowerBodySpine.addBox(0.0F, 0.0F, -1.5F, 0, 1, 3);
         tailSpineUpper = new ModelRenderer(this, 6, 16);
-        tailSpineUpper.setRotationPoint(0.0F, 22.0F, 9.0F);
+        tailSpineUpper.setRotationPoint(0.0F, 22.0F, 5.0F);
         tailSpineUpper.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
         tailSpineLower = new ModelRenderer(this, 6, 19);
-        tailSpineLower.setRotationPoint(0.0F, 23.0F, 11.0F);
+        tailSpineLower.setRotationPoint(0.0F, 23.0F, 7.0F);
         tailSpineLower.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
     }
 
