@@ -18,23 +18,15 @@
 package nex.entity.monster;
 
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.handler.ConfigHandler;
@@ -81,7 +73,7 @@ public class EntitySpinout extends EntityMob
 
         if(spinCooldown == 0)
         {
-            spinCounter ++;
+            spinCounter++;
         }
         if(spinCounter >= ConfigHandler.Entity.Spin.spinTime * 20)
         {
@@ -90,7 +82,7 @@ public class EntitySpinout extends EntityMob
         }
         if(spinCooldown > 0)
         {
-            spinCooldown --;
+            spinCooldown--;
         }
     }
 
