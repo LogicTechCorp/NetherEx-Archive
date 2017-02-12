@@ -107,7 +107,7 @@ public class EntitySpinout extends EntityMob
     {
         return !(source.isProjectile() && isSpinning()) && super.attackEntityFrom(source, amount);
     }
-    
+
     @Override
     public boolean getCanSpawnHere()
     {
