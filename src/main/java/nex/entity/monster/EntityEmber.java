@@ -217,19 +217,8 @@ public class EntityEmber extends EntityMob
     @Override
     public boolean getCanSpawnHere()
     {
-        if(world.getDifficulty() != EnumDifficulty.PEACEFUL)
-        {
-            BlockPos pos = new BlockPos(posX, getEntityBoundingBox().minY, posZ);
-
-            Block block = world.getBlockState(pos).getBlock();
-            IBlockState state = world.getBlockState(pos.down());
-
-            if(world.isAirBlock(pos.up()) && block == Blocks.LAVA && state.isSideSolid(world, pos.down(), EnumFacing.UP))
-            {
-                return true;
-            }
-        }
-        return false;
+        Block block = world.getBlockState((new BlockPos(this)).down()).getBlock();
+        return world.getDifficulty() != EnumDifficulty.PEACEFUL && block == Blocks.MAGMA;
     }
 
     @Override

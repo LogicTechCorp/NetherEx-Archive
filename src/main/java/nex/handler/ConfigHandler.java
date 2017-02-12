@@ -33,9 +33,9 @@ public class ConfigHandler
 {
     public static Client client = new Client();
     public static Dimension dimension = new Dimension();
-    public static Feature feature = new Feature();
-    public static Entity entity = new Entity();
+    public static Block block = new Block();
     public static PotionEffects potion_effects = new PotionEffects();
+    public static Entity entity = new Entity();
     public static Biome biome = new Biome();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigHandler");
@@ -60,47 +60,40 @@ public class ConfigHandler
             public static boolean generateGravel = false;
             public static boolean isLavaInfinite = false;
             public static boolean enablePortalFix = true;
-
-            @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
-            @Config.RangeInt(min = 1, max = 64)
-            public static int chanceOfNethermiteSpawning = 16;
-
-            @Config.Comment("Add blocks the Nethermite should spawn from")
-            public static String[] nethermiteWhitelist = new String[]{"minecraft:netherrack", "nex:block_netherrack"};
         }
     }
 
-    public static class Entity
+    public static class Block
     {
-        public static Spin spin = new Spin();
+        public static SoulSand soul_sand = new SoulSand();
+        public static Rime rime = new Rime();
+        public static Magma magma = new Magma();
 
-        public static class Spin
-        {
-            @Config.Comment({"The lower the number the less time it spins", "The higher the number the more time it spins"})
-            @Config.RangeInt(min = 1, max = 64)
-            public static int spinTime = 6;
-
-            @Config.Comment({"The lower the number the less time it goes without spinning", "The higher the number the more time it goes without spinning"})
-            @Config.RangeInt(min = 1, max = 64)
-            public static int spinCooldown = 2;
-        }
-    }
-
-    public static class Feature
-    {
-        public static Farming farming = new Farming();
-        public static Misc misc = new Misc();
-
-        public static class Farming
+        public static class SoulSand
         {
             public static boolean doesNetherwartUseNewGrowthSystem = true;
-            public static boolean allowAllHoesToTillSoulSand = false;
-            public static boolean doesTilledSoulSandRequireIchor = true;
+            public static boolean allowAllHoesToTill = false;
+            public static boolean doesRequireIchor = true;
         }
 
-        public static class Misc
+        public static class Magma
         {
-            public static boolean turnMagmaIntoLava = false;
+            public static boolean turnIntoLava = false;
+        }
+
+        public static class Rime
+        {
+            public static boolean canFreezeWater = true;
+            public static boolean canFreezeLava = true;
+            public static boolean canFreezeMobs = true;
+        }
+
+        public static class Thornstalk
+        {
+            public static boolean canDestroyItems = false;
+
+            @Config.Comment("Add mobs the Thornstalk shouldn't hurt")
+            public static String[] blacklist = new String[]{"minecraft:wither_skeleton", "minecraft:zombie_pigman", "nex:monster_spinout"};
         }
     }
 
@@ -118,8 +111,35 @@ public class ConfigHandler
             @Config.RangeInt(min = 1, max = 64)
             public static int chanceOfThawing = 1024;
 
-            @Config.Comment("Add mobs that you do not want to freeze")
-            public static String[] blacklist = new String[]{"minecraft:blaze", "minecraft:polar_bear", "nex:monster_wight", "nex:monster_ember"};
+            @Config.Comment("Add mobs that shouldn't freeze")
+            public static String[] blacklist = new String[]{"minecraft:blaze", "minecraft:polar_bear", "nex:monster_wight", "nex:monster_ember", "nex:monster_spinout"};
+        }
+    }
+
+    public static class Entity
+    {
+        public static Nethermite nethermite = new Nethermite();
+        public static Spin spin = new Spin();
+
+        public static class Nethermite
+        {
+            @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int chanceOfSpawning = 16;
+
+            @Config.Comment("Add block the Nethermite should spawn from")
+            public static String[] whitelist = new String[]{"minecraft:netherrack", "nex:block_netherrack"};
+        }
+
+        public static class Spin
+        {
+            @Config.Comment({"The lower the number the less time it spins", "The higher the number the more time it spins"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int spinTime = 6;
+
+            @Config.Comment({"The lower the number the less time it goes without spinning", "The higher the number the more time it goes without spinning"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int spinCooldown = 2;
         }
     }
 

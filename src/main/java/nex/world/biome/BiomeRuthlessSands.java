@@ -27,7 +27,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
-import nex.entity.monster.EntityEmber;
+import nex.entity.monster.EntitySpinout;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
@@ -57,9 +57,9 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         topBlock = Blocks.SOUL_SAND.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3);
 
-        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityWitherSkeleton.class, 45, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEmber.class, 25, 4, 6));
+        spawnableMonsterList.add(new SpawnListEntry(EntitySpinout.class, 100, 1, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityWitherSkeleton.class, 65, 1, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 45, 1, 4));
 
         if(ConfigHandler.Biome.RuthlessSands.generateBiome)
         {

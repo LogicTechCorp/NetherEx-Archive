@@ -128,7 +128,7 @@ public class EventHandler
             }
 
         }
-        if(stack.getItem() == NetherExItems.TOOL_HOE_BONE || stack.getItem() == Items.GOLDEN_HOE || ConfigHandler.Feature.Farming.allowAllHoesToTillSoulSand && stack.getItem() instanceof ItemHoe)
+        if(stack.getItem() == NetherExItems.TOOL_HOE_BONE || stack.getItem() == Items.GOLDEN_HOE || ConfigHandler.Block.SoulSand.allowAllHoesToTill && stack.getItem() instanceof ItemHoe)
         {
             if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
             {
@@ -191,7 +191,7 @@ public class EventHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(ConfigHandler.Feature.Farming.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
+        if(ConfigHandler.Block.SoulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
             if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getStateFromMeta(7))
             {
@@ -217,7 +217,7 @@ public class EventHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigHandler.Feature.Misc.turnMagmaIntoLava)
+                if(ConfigHandler.Block.Magma.turnIntoLava)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {
@@ -229,9 +229,9 @@ public class EventHandler
             }
             if(player.dimension == -1)
             {
-                boolean canSpawn = Arrays.asList(ConfigHandler.Dimension.Nether.nethermiteWhitelist).contains(state.getBlock().getRegistryName().toString());
+                boolean canSpawn = Arrays.asList(ConfigHandler.Entity.Nethermite.whitelist).contains(state.getBlock().getRegistryName().toString());
 
-                if(canSpawn && world.rand.nextInt(ConfigHandler.Dimension.Nether.chanceOfNethermiteSpawning) == 0)
+                if(canSpawn && world.rand.nextInt(ConfigHandler.Entity.Nethermite.chanceOfSpawning) == 0)
                 {
                     EntityNethermite nethermite = new EntityNethermite(world);
                     nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
@@ -264,7 +264,7 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getX(), event.getY(), event.getZ());
         EntityLivingBase entity = event.getEntityLiving();
 
-        if(entity != null && !(entity instanceof EntityPlayer))
+        if(!(entity instanceof EntityPlayer))
         {
             boolean canFreeze = !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
@@ -285,7 +285,7 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
 
-        if(entity != null && !(entity instanceof EntityPlayer))
+        if(!(entity instanceof EntityPlayer))
         {
             boolean canFreeze = !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
 

@@ -19,11 +19,20 @@ package nex.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import nex.handler.ConfigHandler;
+import nex.init.NetherExEffects;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class BlockRime extends BlockNetherEx
@@ -46,7 +55,7 @@ public class BlockRime extends BlockNetherEx
             {
                 for(int y = -1; y < 2; y++)
                 {
-                    solidifySurroundings(world, pos.add(x, y, z));
+                    freezeSurroundings(world, pos.add(x, y, z), world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + x, pos.getY() + y, pos.getZ() + z)));
                 }
             }
         }
@@ -60,17 +69,30 @@ public class BlockRime extends BlockNetherEx
         world.scheduleUpdate(pos, this, MathHelper.getInt(RANDOM, 20, 40));
     }
 
-    private void solidifySurroundings(World world, BlockPos pos)
+    private void freezeSurroundings(World world, BlockPos pos, List<EntityLivingBase> entities)
     {
         IBlockState state = world.getBlockState(pos);
 
-        if(state == Blocks.WATER.getDefaultState())
+        if(state == Blocks.WATER.getDefaultState() && ConfigHandler.Block.Rime.canFreezeWater)
         {
             world.setBlockState(pos, Blocks.ICE.getDefaultState(), 3);
         }
-        else if(state == Blocks.LAVA.getDefaultState())
+        else if(state == Blocks.LAVA.getDefaultState() && ConfigHandler.Block.Rime.canFreezeLava)
         {
             world.setBlockState(pos, Blocks.MAGMA.getDefaultState(), 3);
+        }
+
+        for(EntityLivingBase entity : entities)
+        {
+            if(!(entity instanceof EntityPlayer))
+            {
+                boolean canFreeze = !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+
+                if(canFreeze && ConfigHandler.Block.Rime.canFreezeMobs)
+                {
+                    entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                }
+            }
         }
     }
 }

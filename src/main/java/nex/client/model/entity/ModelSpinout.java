@@ -77,16 +77,18 @@ public class ModelSpinout extends ModelBase
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity)
     {
         EntitySpinout spin = (EntitySpinout) entity;
+        float age = 0;
 
-        upperBody.rotateAngleY = -(((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F);
-        middleBody.rotateAngleY = (((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F;
-        lowerBody.rotateAngleY = (-((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F);
-
-        if(spin.spinCounter > 0)
+        if(spin.isSpinning())
         {
-            upperSpinner.rotateAngleY = ((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F;
-            middleSpinner.rotateAngleY = -((((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F);
-            lowerSpinner.rotateAngleY = ((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F;
+            age = ageInTicks;
         }
+
+        upperBody.rotateAngleY = -(((float) Math.PI / 4F) + age * (float) Math.PI * 0.03F * 7.0F);
+        middleBody.rotateAngleY = (((float) Math.PI / 4F) + age * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F;
+        lowerBody.rotateAngleY = (-((float) Math.PI / 4F) + age * (float) Math.PI * 0.03F * 7.0F);
+        upperSpinner.rotateAngleY = ((float) Math.PI / 4F) + age * (float) Math.PI * 0.03F * 7.0F;
+        middleSpinner.rotateAngleY = -((((float) Math.PI / 4F) + age * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F);
+        lowerSpinner.rotateAngleY = ((float) Math.PI / 4F) + age * (float) Math.PI * 0.03F * 7.0F;
     }
 }

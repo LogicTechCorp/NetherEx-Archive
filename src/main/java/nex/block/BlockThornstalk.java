@@ -24,9 +24,10 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
@@ -37,7 +38,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.handler.ConfigHandler;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class BlockThornstalk extends BlockNetherEx
@@ -80,9 +83,18 @@ public class BlockThornstalk extends BlockNetherEx
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if(entity instanceof EntityLivingBase && !(entity instanceof EntityPigZombie) && !(entity instanceof EntityWitherSkeleton))
+        if(entity instanceof EntityPlayer)
         {
             entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+        }
+        else
+        {
+            boolean canHurt = !Arrays.asList(ConfigHandler.Block.Thornstalk.blacklist).contains(EntityList.getKey(entity).toString());
+
+            if((entity instanceof EntityLivingBase || entity instanceof EntityItem && ConfigHandler.Block.Thornstalk.canDestroyItems) && canHurt)
+            {
+                entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+            }
         }
     }
 

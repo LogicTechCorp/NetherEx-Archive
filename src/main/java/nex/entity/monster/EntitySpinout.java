@@ -33,8 +33,12 @@ import nex.handler.ConfigHandler;
 
 public class EntitySpinout extends EntityMob
 {
-    public int spinCounter;
-    public int spinCooldown;
+    private int spinCounter;
+    private int spinCooldown;
+    public boolean spinning;
+    private EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
+    private EntityAIBase wander = new EntityAIWander(this, 1.0D);
+    private EntityAIBase lookIdle = new EntityAILookIdle(this);
 
     public EntitySpinout(World world)
     {
@@ -49,10 +53,7 @@ public class EntitySpinout extends EntityMob
     protected void initEntityAI()
     {
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
-        tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        tasks.addTask(2, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
     }
 
     @Override
@@ -71,16 +72,41 @@ public class EntitySpinout extends EntityMob
     {
         super.onEntityUpdate();
 
-        if(spinCooldown == 0)
+        if(isSpinning())
+        {
+            if(tasks.taskEntries.size() == 1)
+            {
+                tasks.addTask(1, attackMelee);
+                tasks.addTask(2, wander);
+                tasks.addTask(3, lookIdle);
+            }
+        }
+        else
+        {
+            if(tasks.taskEntries.size() == 4)
+            {
+                tasks.removeTask(attackMelee);
+                tasks.removeTask(wander);
+                tasks.removeTask(lookIdle);
+            }
+        }
+
+        if(spinCooldown == 0 && !isInLava())
         {
             spinCounter++;
+
+            if(!spinning)
+            {
+                spinning = true;
+            }
         }
         if(spinCounter >= ConfigHandler.Entity.Spin.spinTime * 20)
         {
             spinCounter = 0;
+            spinning = false;
             spinCooldown = ConfigHandler.Entity.Spin.spinCooldown * 20;
         }
-        if(spinCooldown > 0)
+        if(spinCooldown > 0 && !isInLava())
         {
             spinCooldown--;
         }
@@ -91,6 +117,7 @@ public class EntitySpinout extends EntityMob
     {
         compound.setInteger("SpinCounter", spinCounter);
         compound.setInteger("SpinCooldown", spinCooldown);
+        compound.setBoolean("Spinning", spinning);
         return super.writeToNBT(compound);
     }
 
@@ -99,6 +126,7 @@ public class EntitySpinout extends EntityMob
     {
         spinCounter = compound.getInteger("SpinCounter");
         spinCooldown = compound.getInteger("SpinCooldown");
+        spinning = compound.getBoolean("Spinning");
         super.readFromNBT(compound);
     }
 
@@ -148,6 +176,6 @@ public class EntitySpinout extends EntityMob
 
     public boolean isSpinning()
     {
-        return spinCounter > 0;
+        return spinning;
     }
 }

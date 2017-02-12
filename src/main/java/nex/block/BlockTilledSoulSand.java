@@ -17,7 +17,6 @@
 
 package nex.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -131,13 +130,13 @@ public class BlockTilledSoulSand extends BlockNetherEx
 
     private boolean hasCrops(World world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos.up()).getBlock();
+        net.minecraft.block.Block block = world.getBlockState(pos.up()).getBlock();
         return block instanceof IPlantable && canSustainPlant(world.getBlockState(pos), world, pos, EnumFacing.UP, (IPlantable) block);
     }
 
     private boolean hasFluid(World world, BlockPos pos)
     {
-        Block block = ConfigHandler.Feature.Farming.doesTilledSoulSandRequireIchor ? NetherExBlocks.FLUID_ICHOR : Blocks.LAVA;
+        net.minecraft.block.Block block = ConfigHandler.Block.SoulSand.doesRequireIchor ? NetherExBlocks.FLUID_ICHOR : Blocks.LAVA;
 
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {
@@ -151,7 +150,7 @@ public class BlockTilledSoulSand extends BlockNetherEx
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, net.minecraft.block.Block block, BlockPos fromPos)
     {
         super.neighborChanged(state, world, pos, block, fromPos);
 
@@ -173,7 +172,7 @@ public class BlockTilledSoulSand extends BlockNetherEx
             case WEST:
             case EAST:
                 IBlockState testState = blockAccess.getBlockState(pos.offset(side));
-                Block block = testState.getBlock();
+                net.minecraft.block.Block block = testState.getBlock();
                 return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.BLOCK_SAND_SOUL_TILLED;
             default:
                 return super.shouldSideBeRendered(state, blockAccess, pos, side);
