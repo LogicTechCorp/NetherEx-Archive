@@ -38,6 +38,7 @@ entity.nex:neutralSalamander.black.name=Salamander
 entity.nex:monsterWight.name=Wight
 entity.nex:monsterEmber.name=Ember
 entity.nex:monsterNethermite.name=Nethermite
+entity.nex:monsterSpinout.name=Spinout
 
 #Fluids
 fluid.ichor=Ichor

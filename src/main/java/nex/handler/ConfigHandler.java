@@ -34,6 +34,7 @@ public class ConfigHandler
     public static Client client = new Client();
     public static Dimension dimension = new Dimension();
     public static Feature feature = new Feature();
+    public static Entity entity = new Entity();
     public static PotionEffects potion_effects = new PotionEffects();
     public static Biome biome = new Biome();
 
@@ -66,6 +67,22 @@ public class ConfigHandler
 
             @Config.Comment("Add blocks the Nethermite should spawn from")
             public static String[] nethermiteWhitelist = new String[]{"minecraft:netherrack", "nex:block_netherrack"};
+        }
+    }
+
+    public static class Entity
+    {
+        public static Spin spin = new Spin();
+
+        public static class Spin
+        {
+            @Config.Comment({"The lower the number the less time it spins", "The higher the number the more time it spins"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int spinTime = 6;
+
+            @Config.Comment({"The lower the number the less time it goes without spinning", "The higher the number the more time it goes without spinning"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int spinCooldown = 2;
         }
     }
 

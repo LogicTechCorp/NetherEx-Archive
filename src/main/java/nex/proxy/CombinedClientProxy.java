@@ -24,6 +24,7 @@ import nex.client.render.entity.*;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.EntityEmber;
 import nex.entity.monster.EntityNethermite;
+import nex.entity.monster.EntitySpinout;
 import nex.entity.monster.EntityWight;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
@@ -34,12 +35,13 @@ public class CombinedClientProxy implements IProxy
     @Override
     public void preInit()
     {
+        RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityMogus.class, RenderMogus::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySalamander.class, RenderSalamander::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWight.class, RenderWight::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityEmber.class, RenderEmber::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityNethermite.class, RenderNethermite::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpinout.class, RenderSpinout::new);
     }
 
     @Override

@@ -66,9 +66,9 @@ public class ModelWight extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scaleFactor)
     {
-        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scaleFactor, entity);
         head.render(scaleFactor);
         hood.render(scaleFactor);
         upperBody.render(scaleFactor);
@@ -80,12 +80,12 @@ public class ModelWight extends ModelBase
     }
 
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scaleFactor, Entity entity)
     {
-        head.rotateAngleY = netHeadYaw / 57.29578F;
-        head.rotateAngleX = headPitch / 57.29578F;
-        hood.rotateAngleY = netHeadYaw / 57.29578F;
-        hood.rotateAngleX = headPitch / 57.29578F;
+        head.rotateAngleY = rotationYaw / 57.29578F;
+        head.rotateAngleX = rotationPitch / 57.29578F;
+        hood.rotateAngleY = rotationYaw / 57.29578F;
+        hood.rotateAngleX = rotationPitch / 57.29578F;
         rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 2.0F * limbSwingAmount * 0.5F;
         leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
         rightArm.rotateAngleZ = 0F;

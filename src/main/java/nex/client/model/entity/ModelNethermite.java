@@ -67,6 +67,7 @@ public class ModelNethermite extends ModelBase
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
         head.render(scale);
         upperBody.render(scale);
         lowerBody.render(scale);
@@ -78,7 +79,7 @@ public class ModelNethermite extends ModelBase
     }
 
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scaleFactor, Entity entityIn)
     {
         head.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 0 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(0 - 2));
         head.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 0 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(0 - 2);
