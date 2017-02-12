@@ -78,6 +78,10 @@ public class ModelSpinout extends ModelBase
     {
         EntitySpinout spin = (EntitySpinout) entity;
 
+        upperBody.rotateAngleY = -(((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F);
+        middleBody.rotateAngleY = (((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F;
+        lowerBody.rotateAngleY = (-((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F);
+
         if(spin.spinCounter > 0)
         {
             upperSpinner.rotateAngleY = ((float) Math.PI / 4F) + ageInTicks * (float) Math.PI * 0.03F * 7.0F;
