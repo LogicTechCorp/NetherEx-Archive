@@ -25,7 +25,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -36,10 +35,10 @@ import nex.handler.ConfigHandler;
 
 public class EntitySpinout extends EntityMob
 {
+    private static final DataParameter<Integer> COUNTER = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> COOLDOWN = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> SPINNING = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.BOOLEAN);
 
-    private int spinCounter;
-    private int spinCooldown;
     private EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
     private EntityAIBase wander = new EntityAIWander(this, 1.0D);
     private EntityAIBase lookIdle = new EntityAILookIdle(this);
@@ -75,6 +74,8 @@ public class EntitySpinout extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
+        dataManager.register(COUNTER, 0);
+        dataManager.register(COOLDOWN, 0);
         dataManager.register(SPINNING, false);
     }
 
@@ -102,41 +103,25 @@ public class EntitySpinout extends EntityMob
             }
         }
 
-        if(spinCooldown == 0 && !isInLava())
+        if(getCooldown() == 0 && !isInLava())
         {
-            spinCounter++;
+            setCounter(getCounter() + 1);
 
             if(!isSpinning())
             {
                 setSpinning(true);
             }
         }
-        if(spinCounter >= ConfigHandler.Entity.Spin.spinTime * 20)
+        if(getCounter() >= ConfigHandler.Entity.Spin.spinTime * 20)
         {
-            spinCounter = 0;
+            setCounter(0);
             setSpinning(false);
-            spinCooldown = ConfigHandler.Entity.Spin.spinCooldown * 20;
+            setCooldown(ConfigHandler.Entity.Spin.spinCooldown * 20);
         }
-        if(spinCooldown > 0 && !isInLava())
+        if(getCooldown() > 0 && !isInLava())
         {
-            spinCooldown--;
+            setCooldown(getCooldown() - 1);
         }
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
-        compound.setInteger("SpinCounter", spinCounter);
-        compound.setInteger("SpinCooldown", spinCooldown);
-        return super.writeToNBT(compound);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound)
-    {
-        spinCounter = compound.getInteger("SpinCounter");
-        spinCooldown = compound.getInteger("SpinCooldown");
-        super.readFromNBT(compound);
     }
 
     @Override
@@ -183,6 +168,26 @@ public class EntitySpinout extends EntityMob
         }
     }
 
+    private void setCounter(int amount)
+    {
+        dataManager.set(COUNTER, amount);
+    }
+
+    public int getCounter()
+    {
+        return dataManager.get(COUNTER);
+    }
+
+    private void setCooldown(int amount)
+    {
+        dataManager.set(COOLDOWN, amount);
+    }
+
+    public int getCooldown()
+    {
+        return dataManager.get(COOLDOWN);
+    }
+
     public boolean isSpinning()
     {
         return dataManager.get(SPINNING);
@@ -191,10 +196,5 @@ public class EntitySpinout extends EntityMob
     private void setSpinning(boolean bool)
     {
         dataManager.set(SPINNING, bool);
-    }
-
-    public int getSpinTime()
-    {
-        return spinCounter;
     }
 }
