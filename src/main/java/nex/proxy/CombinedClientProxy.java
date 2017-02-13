@@ -22,10 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.render.entity.*;
 import nex.entity.item.EntityObsidianBoat;
-import nex.entity.monster.EntityEmber;
-import nex.entity.monster.EntityNethermite;
-import nex.entity.monster.EntitySpinout;
-import nex.entity.monster.EntityWight;
+import nex.entity.monster.*;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 
@@ -42,6 +39,7 @@ public class CombinedClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityEmber.class, RenderEmber::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityNethermite.class, RenderNethermite::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpinout.class, RenderSpinout::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySporeCreeper.class, RenderSporeCreeper::new);
     }
 
     @Override

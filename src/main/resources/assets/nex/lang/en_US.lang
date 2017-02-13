@@ -39,6 +39,7 @@ entity.nex:monsterWight.name=Wight
 entity.nex:monsterEmber.name=Ember
 entity.nex:monsterNethermite.name=Nethermite
 entity.nex:monsterSpinout.name=Spinout
+entity.nex:monsterSporeCreeper.name=Spore Creeper
 
 #Fluids
 fluid.ichor=Ichor
