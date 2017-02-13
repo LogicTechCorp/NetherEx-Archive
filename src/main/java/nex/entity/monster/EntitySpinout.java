@@ -25,6 +25,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -125,6 +126,24 @@ public class EntitySpinout extends EntityMob
     }
 
     @Override
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("SpinCounter", getCounter());
+        compound.setInteger("SpinCooldown", getCooldown());
+        compound.setBoolean("Spinning", isSpinning());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+        super.readEntityFromNBT(compound);
+        setCounter(compound.getInteger("SpinCounter"));
+        setCooldown(compound.getInteger("SpinCooldown"));
+        setSpinning(compound.getBoolean("Spinning"));
+    }
+
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         return !(source.isProjectile() && isSpinning()) && super.attackEntityFrom(source, amount);
@@ -183,7 +202,7 @@ public class EntitySpinout extends EntityMob
         dataManager.set(COOLDOWN, amount);
     }
 
-    public int getCooldown()
+    private int getCooldown()
     {
         return dataManager.get(COOLDOWN);
     }
@@ -193,8 +212,8 @@ public class EntitySpinout extends EntityMob
         return dataManager.get(SPINNING);
     }
 
-    private void setSpinning(boolean bool)
+    private void setSpinning(boolean spinningIn)
     {
-        dataManager.set(SPINNING, bool);
+        dataManager.set(SPINNING, spinningIn);
     }
 }

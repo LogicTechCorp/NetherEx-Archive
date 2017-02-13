@@ -26,6 +26,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -77,6 +78,20 @@ public class EntitySalamander extends EntityMob
     {
         super.entityInit();
         dataManager.register(SALAMANDER_TYPE, 0);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("Type", getType());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+        super.readEntityFromNBT(compound);
+        setType(compound.getInteger("Type"));
     }
 
     @Override
@@ -136,5 +151,19 @@ public class EntitySalamander extends EntityMob
         WeightedRandom.Item black = new WeightedRandom.Item(1);
         WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(orange, black));
         dataManager.set(SALAMANDER_TYPE, item == orange ? 0 : 1);
+    }
+
+    public void setType(int id)
+    {
+        if(id < 0)
+        {
+            id = 0;
+        }
+        else if(id > 1)
+        {
+            id = 1;
+        }
+
+        dataManager.set(SALAMANDER_TYPE, id);
     }
 }
