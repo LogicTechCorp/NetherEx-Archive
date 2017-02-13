@@ -27,7 +27,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -118,20 +117,6 @@ public class EntityMogus extends EntityMob
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
-        compound.setInteger("Type", getType());
-        return super.writeToNBT(compound);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound)
-    {
-        setType(compound.getInteger("Type"));
-        super.readFromNBT(compound);
-    }
-
-    @Override
     protected Item getDropItem()
     {
         return Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER);
@@ -189,19 +174,5 @@ public class EntityMogus extends EntityMob
         WeightedRandom.Item white = new WeightedRandom.Item(2);
         WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(brown, red, white));
         dataManager.set(MOGUS_TYPE, item == brown ? 0 : item == red ? 1 : 2);
-    }
-
-    public void setType(int id)
-    {
-        if(id < 0)
-        {
-            id = 0;
-        }
-        else if(id > 2)
-        {
-            id = 2;
-        }
-
-        dataManager.set(MOGUS_TYPE, id);
     }
 }
