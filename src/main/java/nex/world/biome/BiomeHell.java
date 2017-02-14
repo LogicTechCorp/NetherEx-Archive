@@ -152,14 +152,7 @@ public class BiomeHell extends BiomeNetherEx
 
         if(ConfigHandler.Biome.Hell.generateVillages)
         {
-            int rarity = ConfigHandler.Biome.Hell.villageRarity;
-
-            if(rarity <= 0)
-            {
-                rarity = 1;
-            }
-
-            if(rand.nextInt(rarity) == 0)
+            if(rand.nextInt(ConfigHandler.Biome.Hell.villageRarity) == 0)
             {
                 village.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
@@ -167,14 +160,7 @@ public class BiomeHell extends BiomeNetherEx
 
         if(ConfigHandler.Biome.Hell.generateGraves)
         {
-            int rarity = ConfigHandler.Biome.Hell.graveRarity;
-
-            if(rarity <= 0)
-            {
-                rarity = 1;
-            }
-
-            if(rand.nextInt(rarity) == 0)
+            if(rand.nextInt(ConfigHandler.Biome.Hell.graveRarity) == 0)
             {
                 grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }

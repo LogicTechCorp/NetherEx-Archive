@@ -126,14 +126,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         if(ConfigHandler.Biome.RuthlessSands.generateAncientAltars)
         {
-            int rarity = ConfigHandler.Biome.RuthlessSands.ancientAltarRarity;
-
-            if(rarity <= 0)
-            {
-                rarity = 1;
-            }
-
-            if(rand.nextInt(rarity) == 0)
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.ancientAltarRarity) == 0)
             {
                 ancientAltar.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }

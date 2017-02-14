@@ -17,6 +17,7 @@
 
 package nex.entity.monster;
 
+import com.google.common.collect.Lists;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -26,6 +27,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import nex.handler.ConfigHandler;
 
@@ -40,7 +42,16 @@ public class EntitySpore extends EntityMob
 
         setSize(0.65F, 0.75F);
         isImmuneToFire = true;
+        setRandomStage();
     }
+
+    public EntitySpore(World world, int stage)
+    {
+        this(world);
+
+        setStage(stage);
+    }
+
 
     @Override
     protected void applyEntityAttributes()
@@ -61,10 +72,6 @@ public class EntitySpore extends EntityMob
     public void onUpdate()
     {
         super.onUpdate();
-
-        posX = prevPosX;
-        posY = prevPosY;
-        posZ = prevPosZ;
 
         if(getStage() == 2)
         {
@@ -87,15 +94,21 @@ public class EntitySpore extends EntityMob
         }
         else
         {
-            if(world.getEntitiesWithinAABB(EntityPlayer.class, getEntityBoundingBox().expand(-2, -2, -2)).size() > 0)
+            if(world.getEntitiesWithinAABB(EntityPlayer.class, getEntityBoundingBox().expand(2, 2, 2)).size() > 0)
             {
                 setDead();
 
                 if(!world.isRemote)
                 {
-                    EntitySporeCreeper creeper = new EntitySporeCreeper(world);
-                    creeper.setPosition(posX, posY, posZ);
-                    world.spawnEntity(creeper);
+
+                    int creeperSpawns = rand.nextInt(ConfigHandler.Entity.Spore.creeperSpawns) + 1;
+
+                    for(int i = 0; i < creeperSpawns; i++)
+                    {
+                        EntitySporeCreeper creeper = new EntitySporeCreeper(world);
+                        creeper.setPosition(posX, posY, posZ);
+                        world.spawnEntity(creeper);
+                    }
                 }
             }
         }
@@ -153,6 +166,17 @@ public class EntitySpore extends EntityMob
     private int getCounter()
     {
         return dataManager.get(COUNTER);
+    }
+
+    private void setRandomStage()
+    {
+        WeightedRandom.Item one = new WeightedRandom.Item(10);
+        WeightedRandom.Item two = new WeightedRandom.Item(8);
+        WeightedRandom.Item three = new WeightedRandom.Item(6);
+        WeightedRandom.Item four = new WeightedRandom.Item(4);
+        WeightedRandom.Item five = new WeightedRandom.Item(2);
+        WeightedRandom.Item stage = WeightedRandom.getRandomItem(rand, Lists.newArrayList(one, two, three, four, five));
+        setStage(stage == one ? 0 : stage == two ? 1 : stage == three ? 2 : stage == four ? 3 : 4);
     }
 
     private void setStage(int stage)

@@ -24,6 +24,11 @@ potion.effect.nex:normalFreeze=Potion of Freezing
 splash_potion.effect.nex:normalFreeze=Splash Potion of Freezing
 lingering_potion.effect.nex:normalFreeze=Lingering Potion of Freezing
 tipped_arrow.effect.nex:normalFreeze=Arrow of Freezing
+potion.effect.nex:spore=Spore
+potion.effect.nex:normalSpore=Potion of Dispersal
+splash_potion.effect.nex:normalSpore=Splash Potion of Dispersal
+lingering_potion.effect.nex:normalSpore=Lingering Potion of Dispersal
+tipped_arrow.effect.nex:normalSpore=Arrow of Dispersal
 
 
 #Entities (Mobs)

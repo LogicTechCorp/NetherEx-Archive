@@ -35,6 +35,9 @@ public class NetherExEffectTypes
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":normal_freeze")
     public static final PotionType NORMAL_FREEZE = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":normal_spore")
+    public static final PotionType NORMAL_SPORE = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffectTypes");
 
     @Mod.EventBusSubscriber
@@ -46,7 +49,8 @@ public class NetherExEffectTypes
             LOGGER.info("Effect Type registration started.");
 
             event.getRegistry().registerAll(
-                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 300))
+                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 300)),
+                    new NetherExPotionType("normal_spore", new PotionEffect(NetherExEffects.SPORE, 300))
             );
 
             LOGGER.info("Effect Type registration completed.");

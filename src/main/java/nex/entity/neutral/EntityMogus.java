@@ -164,7 +164,7 @@ public class EntityMogus extends EntityMob
         WeightedRandom.Item red = new WeightedRandom.Item(10);
         WeightedRandom.Item white = new WeightedRandom.Item(2);
         WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(brown, red, white));
-        dataManager.set(MOGUS_TYPE, item == brown ? 0 : item == red ? 1 : 2);
+        setType(item == brown ? 0 : item == red ? 1 : 2);
     }
 
     public void setType(int id)

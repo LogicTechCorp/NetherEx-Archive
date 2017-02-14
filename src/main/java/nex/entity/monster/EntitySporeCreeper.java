@@ -22,6 +22,7 @@ import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -50,7 +51,7 @@ public class EntitySporeCreeper extends EntityMob
     private int lastActiveTime;
     private int timeSinceIgnited;
     private int fuseTime = 30;
-    private int explosionRadius = 3;
+    private int explosionRadius = 2;
 
     public EntitySporeCreeper(World world)
     {
@@ -71,7 +72,8 @@ public class EntitySporeCreeper extends EntityMob
         tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(5, new EntityAILookIdle(this));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPigZombie.class, true));
+        targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
     }
 
     @Override

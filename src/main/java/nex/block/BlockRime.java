@@ -84,14 +84,11 @@ public class BlockRime extends BlockNetherEx
 
         for(EntityLivingBase entity : entities)
         {
-            if(!(entity instanceof EntityPlayer))
-            {
-                boolean canFreeze = !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+            boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
-                if(canFreeze && ConfigHandler.Block.Rime.canFreezeMobs)
-                {
-                    entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
-                }
+            if(canFreeze && ConfigHandler.Block.Rime.canFreezeMobs)
+            {
+                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
         }
     }

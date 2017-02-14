@@ -28,6 +28,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -42,7 +43,9 @@ import nex.NetherEx;
 import nex.client.particle.ParticleSporeExplosionHuge;
 import nex.client.particle.ParticleSporeExplosionLarge;
 import nex.entity.monster.EntitySpore;
+import nex.entity.monster.EntitySporeCreeper;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExEffects;
 
 import java.util.List;
 import java.util.Map;
@@ -165,10 +168,8 @@ public class ExplosionSpore extends Explosion
         net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(world, this, list, f3);
         Vec3d vec3d = new Vec3d(explosionX, explosionY, explosionZ);
 
-        for(int k2 = 0; k2 < list.size(); ++k2)
+        for(Entity entity : list)
         {
-            Entity entity = list.get(k2);
-
             if(!entity.isImmuneToExplosions())
             {
                 double d12 = entity.getDistance(explosionX, explosionY, explosionZ) / (double) f3;
@@ -187,7 +188,16 @@ public class ExplosionSpore extends Explosion
                         d9 = d9 / d13;
                         double d14 = (double) world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
                         double d10 = (1.0D - d12) * d14;
-                        entity.attackEntityFrom(DamageSource.causeExplosionDamage(this), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
+
+                        if(!(entity instanceof EntitySporeCreeper) && !(entity instanceof EntitySpore))
+                        {
+                            entity.attackEntityFrom(DamageSource.causeExplosionDamage(this), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
+                        }
+                        if(entity instanceof EntityLivingBase)
+                        {
+                            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.SPORE, 300, 0));
+                        }
+
                         double d11 = d10;
 
                         if(entity instanceof EntityLivingBase)
@@ -253,7 +263,7 @@ public class ExplosionSpore extends Explosion
             {
                 if(world.getBlockState(pos).getMaterial() == Material.AIR && world.getBlockState(pos.down()).isFullBlock() && explosionRNG.nextInt(ConfigHandler.Entity.SporeCreeper.chanceOfSporeSpawning) == 0)
                 {
-                    EntitySpore spore = new EntitySpore(world);
+                    EntitySpore spore = new EntitySpore(world, 0);
                     spore.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
                     world.spawnEntity(spore);
                 }

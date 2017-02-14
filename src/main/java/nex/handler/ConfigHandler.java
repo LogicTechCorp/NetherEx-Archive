@@ -100,6 +100,7 @@ public class ConfigHandler
     public static class PotionEffects
     {
         public static Freeze freeze = new Freeze();
+        public static Spore spore = new Spore();
 
         public static class Freeze
         {
@@ -113,6 +114,16 @@ public class ConfigHandler
 
             @Config.Comment("Add mobs that shouldn't freeze")
             public static String[] blacklist = new String[]{"minecraft:blaze", "minecraft:polar_bear", "nex:monster_wight", "nex:monster_ember", "nex:monster_spinout"};
+        }
+
+        public static class Spore
+        {
+            @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int chanceOfSporeSpawning = 32;
+
+            @Config.Comment("Add mobs that shouldn't spawn Spores")
+            public static String[] blacklist = new String[]{"nex:monster_spore_creeper", "nex:monster_spore", "nex:neutral_mogus"};
         }
     }
 
@@ -156,6 +167,11 @@ public class ConfigHandler
             @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
             @Config.RangeInt(min = 1, max = 512)
             public static int growthTime = 60;
+
+            @Config.Comment({"The lower the number the less Spore Creeper spawn", "The higher the number the more Spore Creeper spawn"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int creeperSpawns = 4;
+
         }
 
     }

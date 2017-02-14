@@ -153,14 +153,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         if(ConfigHandler.Biome.TorridWasteland.generateBlazingPyramids)
         {
-            int rarity = ConfigHandler.Biome.TorridWasteland.blazingPyramidRarity;
-
-            if(rarity <= 0)
-            {
-                rarity = 1;
-            }
-
-            if(rand.nextInt(rarity) == 0)
+            if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.blazingPyramidRarity) == 0)
             {
                 blazingPyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }

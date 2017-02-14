@@ -150,7 +150,7 @@ public class EntitySalamander extends EntityMob
         WeightedRandom.Item orange = new WeightedRandom.Item(10);
         WeightedRandom.Item black = new WeightedRandom.Item(1);
         WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(orange, black));
-        dataManager.set(SALAMANDER_TYPE, item == orange ? 0 : 1);
+        setType(item == orange ? 0 : 1);
     }
 
     public void setType(int id)
