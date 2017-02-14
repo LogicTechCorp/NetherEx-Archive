@@ -23,6 +23,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -84,6 +85,12 @@ public class EntitySpinout extends EntityMob
     public void onUpdate()
     {
         super.onUpdate();
+
+        if(world.getBlockState(getPosition().down()).getBlock() == Blocks.SOUL_SAND)
+        {
+            motionX /= 0.4D;
+            motionZ /= 0.4D;
+        }
 
         if(isSpinning())
         {
