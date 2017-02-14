@@ -47,6 +47,7 @@ public class NetherExEntities
         registerEntity("monster_nethermite", EntityNethermite.class, 32, 16711680, 16762880);
         registerEntity("monster_spinout", EntitySpinout.class, 33, 16711680, 16762880);
         registerEntity("monster_spore_creeper", EntitySporeCreeper.class, 34, 16711680, 16762880);
+        registerEntity("monster_spore", EntitySpore.class, 35, 16711680, 16762880);
 
         LOGGER.info("Entity registration Ended.");
     }

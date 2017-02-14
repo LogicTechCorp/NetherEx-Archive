@@ -119,7 +119,9 @@ public class ConfigHandler
     public static class Entity
     {
         public static Nethermite nethermite = new Nethermite();
-        public static Spin spin = new Spin();
+        public static Spinout spinout = new Spinout();
+        public static SporeCreeper spore_creeper = new SporeCreeper();
+        public static Spore spore = new Spore();
 
         public static class Nethermite
         {
@@ -131,7 +133,7 @@ public class ConfigHandler
             public static String[] whitelist = new String[]{"minecraft:netherrack", "nex:block_netherrack"};
         }
 
-        public static class Spin
+        public static class Spinout
         {
             @Config.Comment({"The lower the number the less time it spins", "The higher the number the more time it spins"})
             @Config.RangeInt(min = 1, max = 64)
@@ -141,6 +143,21 @@ public class ConfigHandler
             @Config.RangeInt(min = 1, max = 64)
             public static int spinCooldown = 2;
         }
+
+        public static class SporeCreeper
+        {
+            @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int chanceOfSporeSpawning = 12;
+        }
+
+        public static class Spore
+        {
+            @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
+            @Config.RangeInt(min = 1, max = 512)
+            public static int growthTime = 60;
+        }
+
     }
 
     public static class Biome

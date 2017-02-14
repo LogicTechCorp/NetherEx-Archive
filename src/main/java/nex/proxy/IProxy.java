@@ -17,6 +17,9 @@
 
 package nex.proxy;
 
+import net.minecraft.client.particle.IParticleFactory;
+import net.minecraft.world.World;
+
 public interface IProxy
 {
     void preInit();
@@ -24,4 +27,6 @@ public interface IProxy
     void init();
 
     void postInit();
+
+    void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, IParticleFactory factory);
 }

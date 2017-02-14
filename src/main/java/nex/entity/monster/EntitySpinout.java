@@ -113,11 +113,11 @@ public class EntitySpinout extends EntityMob
                 setSpinning(true);
             }
         }
-        if(getCounter() >= ConfigHandler.Entity.Spin.spinTime * 20)
+        if(getCounter() >= ConfigHandler.Entity.Spinout.spinTime * 20)
         {
             setCounter(0);
             setSpinning(false);
-            setCooldown(ConfigHandler.Entity.Spin.spinCooldown * 20);
+            setCooldown(ConfigHandler.Entity.Spinout.spinCooldown * 20);
         }
         if(getCooldown() > 0 && !isInLava())
         {
@@ -187,19 +187,9 @@ public class EntitySpinout extends EntityMob
         }
     }
 
-    private void setCounter(int amount)
-    {
-        dataManager.set(COUNTER, amount);
-    }
-
     public int getCounter()
     {
         return dataManager.get(COUNTER);
-    }
-
-    private void setCooldown(int amount)
-    {
-        dataManager.set(COOLDOWN, amount);
     }
 
     private int getCooldown()
@@ -210,6 +200,16 @@ public class EntitySpinout extends EntityMob
     public boolean isSpinning()
     {
         return dataManager.get(SPINNING);
+    }
+
+    private void setCounter(int amount)
+    {
+        dataManager.set(COUNTER, amount);
+    }
+
+    private void setCooldown(int amount)
+    {
+        dataManager.set(COOLDOWN, amount);
     }
 
     private void setSpinning(boolean spinningIn)

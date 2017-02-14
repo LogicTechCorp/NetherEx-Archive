@@ -33,10 +33,12 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.ai.EntityAISporeCreeperSwell;
+import nex.world.ExplosionSpore;
 
 import java.util.Collection;
 
@@ -231,9 +233,10 @@ public class EntitySporeCreeper extends EntityMob
     {
         if(!world.isRemote)
         {
-            boolean flag = world.getGameRules().getBoolean("mobGriefing");
             dead = true;
-            world.createExplosion(this, posX, posY, posZ, (float) explosionRadius, flag);
+            Explosion explosion = new ExplosionSpore(world, this, posX, posY, posZ, (float) explosionRadius, true, true);
+            explosion.doExplosionA();
+            explosion.doExplosionB(true);
             setDead();
             spawnLingeringCloud();
         }

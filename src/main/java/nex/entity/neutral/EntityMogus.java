@@ -153,30 +153,6 @@ public class EntityMogus extends EntityMob
         return entityDropItem(ItemStack.EMPTY, offsetY);
     }
 
-    @Override
-    public EntityItem entityDropItem(ItemStack stack, float offsetY)
-    {
-        if(stack.isEmpty())
-        {
-            return null;
-        }
-        else
-        {
-            EntityItem item = new EntityItem(world, posX, posY + (double) offsetY, posZ, stack);
-            item.setDefaultPickupDelay();
-            if(captureDrops)
-            {
-                capturedDrops.add(item);
-            }
-            else
-            {
-                world.spawnEntity(item);
-            }
-            return item;
-        }
-    }
-
-
     public int getType()
     {
         return dataManager.get(MOGUS_TYPE);

@@ -17,6 +17,9 @@
 
 package nex.proxy;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.IParticleFactory;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,6 +43,7 @@ public class CombinedClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityNethermite.class, RenderNethermite::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpinout.class, RenderSpinout::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySporeCreeper.class, RenderSporeCreeper::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, RenderSpore::new);
     }
 
     @Override
@@ -52,5 +56,11 @@ public class CombinedClientProxy implements IProxy
     public void postInit()
     {
 
+    }
+
+    @Override
+    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, IParticleFactory factory)
+    {
+        Minecraft.getMinecraft().effectRenderer.addEffect(factory.createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
     }
 }

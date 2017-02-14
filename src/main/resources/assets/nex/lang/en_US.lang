@@ -40,6 +40,12 @@ entity.nex:monsterEmber.name=Ember
 entity.nex:monsterNethermite.name=Nethermite
 entity.nex:monsterSpinout.name=Spinout
 entity.nex:monsterSporeCreeper.name=Spore Creeper
+entity.nex:monsterSpore.name=Spore
+entity.nex:monsterSpore.one.name=Spore Stage One
+entity.nex:monsterSpore.two.name=Spore Stage Two
+entity.nex:monsterSpore.three.name=Spore Stage Three
+entity.nex:monsterSpore.four.name=Spore Stage Four
+entity.nex:monsterSpore.five.name=Spore Stage Five
 
 #Fluids
 fluid.ichor=Ichor
