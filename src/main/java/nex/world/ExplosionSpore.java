@@ -195,7 +195,7 @@ public class ExplosionSpore extends Explosion
                         }
                         if(entity instanceof EntityLivingBase)
                         {
-                            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.SPORE, 300, 0));
+                            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.SPORE, 2400, 0));
                         }
 
                         double d11 = d10;

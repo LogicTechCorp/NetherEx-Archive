@@ -49,10 +49,10 @@ public class ModelSpore extends ModelBase
         stageThreeOuter.setRotationPoint(0.0F, 9.0F, 0.0F);
         stageThreeOuter.addBox(-6.5F, 0.0F, -6.5F, 13, 15, 13);
         stageFour = new ModelRenderer(this, 0, 72);
-        stageFour.setRotationPoint(0.0F, 1.0F, 0.0F);
+        stageFour.setRotationPoint(0.0F, 2.0F, 0.0F);
         stageFour.addBox(-5.0F, 0.0F, -5.0F, 10, 8, 10);
         stageFive = new ModelRenderer(this, 0, 90);
-        stageFive.setRotationPoint(0.0F, 0.0F, 0.0F);
+        stageFive.setRotationPoint(0.0F, 1.0F, 0.0F);
         stageFive.addBox(-5.5F, 0.0F, -5.5F, 11, 9, 11);
     }
 

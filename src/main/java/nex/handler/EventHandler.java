@@ -324,7 +324,7 @@ public class EventHandler
             {
                 BlockPos newPos = pos.offset(EnumFacing.Plane.HORIZONTAL.random(world.rand));
 
-                if(!world.isRemote)
+                if(!world.isRemote && world.isAirBlock(newPos) && world.getBlockState(newPos.down()).isSideSolid(world, newPos.down(), EnumFacing.UP))
                 {
                     EntitySpore spore = new EntitySpore(world, 0);
                     spore.setPosition(newPos.getX(), newPos.getY(), newPos.getZ());

@@ -105,11 +105,11 @@ public class ConfigHandler
         public static class Freeze
         {
             @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 2048)
             public static int chanceOfFreezing = 512;
 
             @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 2048)
             public static int chanceOfThawing = 1024;
 
             @Config.Comment("Add mobs that shouldn't freeze")
@@ -119,8 +119,8 @@ public class ConfigHandler
         public static class Spore
         {
             @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
-            @Config.RangeInt(min = 1, max = 64)
-            public static int chanceOfSporeSpawning = 32;
+            @Config.RangeInt(min = 1, max = 256)
+            public static int chanceOfSporeSpawning = 128;
 
             @Config.Comment("Add mobs that shouldn't spawn Spores")
             public static String[] blacklist = new String[]{"nex:monster_spore_creeper", "nex:monster_spore", "nex:neutral_mogus"};
@@ -138,7 +138,7 @@ public class ConfigHandler
         {
             @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int chanceOfSpawning = 16;
+            public static int chanceOfSpawning = 24;
 
             @Config.Comment("Add block the Nethermite should spawn from")
             public static String[] whitelist = new String[]{"minecraft:netherrack", "nex:block_netherrack"};

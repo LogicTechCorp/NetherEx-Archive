@@ -49,8 +49,8 @@ public class NetherExEffectTypes
             LOGGER.info("Effect Type registration started.");
 
             event.getRegistry().registerAll(
-                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 300)),
-                    new NetherExPotionType("normal_spore", new PotionEffect(NetherExEffects.SPORE, 300))
+                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
+                    new NetherExPotionType("normal_spore", new PotionEffect(NetherExEffects.SPORE, 600))
             );
 
             LOGGER.info("Effect Type registration completed.");
