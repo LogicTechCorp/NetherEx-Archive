@@ -19,6 +19,7 @@ package nex.proxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.IParticleFactory;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,6 +45,7 @@ public class CombinedClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntitySpinout.class, RenderSpinout::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySporeCreeper.class, RenderSporeCreeper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, RenderSpore::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueen.class, RenderGhastQueen::new);
     }
 
     @Override

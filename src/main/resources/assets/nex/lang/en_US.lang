@@ -51,6 +51,7 @@ entity.nex:monsterSpore.two.name=Spore Stage Two
 entity.nex:monsterSpore.three.name=Spore Stage Three
 entity.nex:monsterSpore.four.name=Spore Stage Four
 entity.nex:monsterSpore.five.name=Spore Stage Five
+entity.nex:monsterGhastQueen.name=Ghast Queen
 
 #Fluids
 fluid.ichor=Ichor
