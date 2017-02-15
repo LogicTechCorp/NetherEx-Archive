@@ -24,7 +24,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
-import nex.client.model.entity.ModelEmber;
 import nex.client.model.entity.ModelGhastQueen;
 import nex.entity.monster.EntityGhastQueen;
 

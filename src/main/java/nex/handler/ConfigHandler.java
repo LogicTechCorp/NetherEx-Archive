@@ -133,6 +133,7 @@ public class ConfigHandler
         public static Spinout spinout = new Spinout();
         public static SporeCreeper spore_creeper = new SporeCreeper();
         public static Spore spore = new Spore();
+        public static GhastQueen ghast_queen = new GhastQueen();
 
         public static class Nethermite
         {
@@ -147,11 +148,11 @@ public class ConfigHandler
         public static class Spinout
         {
             @Config.Comment({"The lower the number the less time it spins", "The higher the number the more time it spins"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 512)
             public static int spinTime = 6;
 
             @Config.Comment({"The lower the number the less time it goes without spinning", "The higher the number the more time it goes without spinning"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 512)
             public static int spinCooldown = 2;
         }
 
@@ -174,6 +175,16 @@ public class ConfigHandler
 
         }
 
+        public static class GhastQueen
+        {
+            @Config.Comment({"The lower the number the less time it goes without spinning", "The higher the number the more time it goes without spinning"})
+            @Config.RangeInt(min = 1, max = 512)
+            public static int attackCooldown = 10;
+
+            @Config.Comment({"The lower the number the less Ghast spawn", "The higher the number the more Ghast spawn"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int ghastSpawns = 4;
+        }
     }
 
     public static class Biome

@@ -18,7 +18,6 @@
 package nex.client.model.entity;
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -43,7 +42,7 @@ public class ModelGhastQueen extends ModelBase
     private ModelRenderer middleLeftTentacle;
     private ModelRenderer backLeftTentacle;
 
-    public ModelGhastQueen() 
+    public ModelGhastQueen()
     {
         textureWidth = 128;
         textureHeight = 128;
@@ -132,12 +131,12 @@ public class ModelGhastQueen extends ModelBase
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        frontRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)0) + 0.4F;
-        middleRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)1) + 0.4F;
-        backRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)2) + 0.4F;
-        frontLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)3) + 0.4F;
-        middleLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)4) + 0.4F;
-        backLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)5) + 0.4F;
+        frontRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 0) + 0.4F;
+        middleRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 1) + 0.4F;
+        backRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 2) + 0.4F;
+        frontLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 3) + 0.4F;
+        middleLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 4) + 0.4F;
+        backLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 5) + 0.4F;
     }
 
     private void setRotationAngles(ModelRenderer model, float x, float y, float z)
