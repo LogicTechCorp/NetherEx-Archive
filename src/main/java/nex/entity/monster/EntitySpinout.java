@@ -41,9 +41,9 @@ public class EntitySpinout extends EntityMob
     private static final DataParameter<Integer> COOLDOWN = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> SPINNING = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.BOOLEAN);
 
-    private EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
-    private EntityAIBase wander = new EntityAIWander(this, 1.0D);
-    private EntityAIBase lookIdle = new EntityAILookIdle(this);
+    private final EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
+    private final EntityAIBase wander = new EntityAIWander(this, 1.0D);
+    private final EntityAIBase lookIdle = new EntityAILookIdle(this);
 
     public EntitySpinout(World world)
     {
@@ -65,7 +65,6 @@ public class EntitySpinout extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
@@ -219,8 +218,8 @@ public class EntitySpinout extends EntityMob
         dataManager.set(COOLDOWN, amount);
     }
 
-    private void setSpinning(boolean spinningIn)
+    private void setSpinning(boolean spinning)
     {
-        dataManager.set(SPINNING, spinningIn);
+        dataManager.set(SPINNING, spinning);
     }
 }

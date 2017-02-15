@@ -26,6 +26,7 @@ import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.*;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
+import nex.entity.projectile.EntityGhastQueenFireball;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,18 +38,21 @@ public class NetherExEntities
     {
         LOGGER.info("Entity registration started.");
 
-        registerEntity("item_boat_obsidian", EntityObsidianBoat.class, 0);
+        registerEntity("projectile_ghast_queen_fireball", EntityGhastQueenFireball.class, 10);
 
-        registerEntity("neutral_mogus", EntityMogus.class, 20, 16711680, 16762880);
-        registerEntity("neutral_salamander", EntitySalamander.class, 21, 16711680, 16762880);
+        registerEntity("item_boat_obsidian", EntityObsidianBoat.class, 20);
 
-        registerEntity("monster_wight", EntityWight.class, 30, 16711680, 16762880);
-        registerEntity("monster_ember", EntityEmber.class, 31, 16711680, 16762880);
-        registerEntity("monster_nethermite", EntityNethermite.class, 32, 16711680, 16762880);
-        registerEntity("monster_spinout", EntitySpinout.class, 33, 16711680, 16762880);
-        registerEntity("monster_spore_creeper", EntitySporeCreeper.class, 34, 16711680, 16762880);
-        registerEntity("monster_spore", EntitySpore.class, 35, 16711680, 16762880);
-        registerEntity("monster_ghast_queen", EntityGhastQueen.class, 36, 16711680, 16762880);
+        registerEntity("neutral_mogus", EntityMogus.class, 40, 16711680, 16762880);
+        registerEntity("neutral_salamander", EntitySalamander.class, 41, 16711680, 16762880);
+
+        registerEntity("monster_wight", EntityWight.class, 50, 16711680, 16762880);
+        registerEntity("monster_ember", EntityEmber.class, 51, 16711680, 16762880);
+        registerEntity("monster_nethermite", EntityNethermite.class, 52, 16711680, 16762880);
+        registerEntity("monster_spinout", EntitySpinout.class, 53, 16711680, 16762880);
+        registerEntity("monster_spore_creeper", EntitySporeCreeper.class, 54, 16711680, 16762880);
+        registerEntity("monster_spore", EntitySpore.class, 55, 16711680, 16762880);
+
+        registerEntity("boss_ghast_queen", EntityGhastQueen.class, 60, 16711680, 16762880);
 
         LOGGER.info("Entity registration Ended.");
     }
