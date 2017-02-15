@@ -21,43 +21,43 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.math.MathHelper;
-import nex.entity.monster.EntityGhastQueen;
+import nex.entity.boss.EntityGhastQueen;
 
 public class EntityAIGhastQueenLookAround extends EntityAIBase
+{
+    private final EntityGhast parentEntity;
+
+    public EntityAIGhastQueenLookAround(EntityGhastQueen ghast)
     {
-        private final EntityGhast parentEntity;
+        parentEntity = ghast;
+        setMutexBits(2);
+    }
 
-        public EntityAIGhastQueenLookAround(EntityGhastQueen ghast)
+    @Override
+    public boolean shouldExecute()
+    {
+        return true;
+    }
+
+    @Override
+    public void updateTask()
+    {
+        if(parentEntity.getAttackTarget() == null)
         {
-            parentEntity = ghast;
-            setMutexBits(2);
+            parentEntity.rotationYaw = -((float) MathHelper.atan2(parentEntity.motionX, parentEntity.motionZ)) * (180F / (float) Math.PI);
+            parentEntity.renderYawOffset = parentEntity.rotationYaw;
         }
-
-        @Override
-        public boolean shouldExecute()
+        else
         {
-            return true;
-        }
+            EntityLivingBase target = parentEntity.getAttackTarget();
 
-        @Override
-        public void updateTask()
-        {
-            if (parentEntity.getAttackTarget() == null)
+            if(target.getDistanceSqToEntity(parentEntity) < 4096.0D)
             {
-                parentEntity.rotationYaw = -((float) MathHelper.atan2(parentEntity.motionX, parentEntity.motionZ)) * (180F / (float)Math.PI);
+                double d1 = target.posX - parentEntity.posX;
+                double d2 = target.posZ - parentEntity.posZ;
+                parentEntity.rotationYaw = -((float) MathHelper.atan2(d1, d2)) * (180F / (float) Math.PI);
                 parentEntity.renderYawOffset = parentEntity.rotationYaw;
-            }
-            else
-            {
-                EntityLivingBase target = parentEntity.getAttackTarget();
-
-                if (target.getDistanceSqToEntity(parentEntity) < 4096.0D)
-                {
-                    double d1 = target.posX - parentEntity.posX;
-                    double d2 = target.posZ - parentEntity.posZ;
-                    parentEntity.rotationYaw = -((float)MathHelper.atan2(d1, d2)) * (180F / (float)Math.PI);
-                    parentEntity.renderYawOffset = parentEntity.rotationYaw;
-                }
             }
         }
     }
+}

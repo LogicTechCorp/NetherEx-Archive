@@ -22,6 +22,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import nex.NetherEx;
+import nex.entity.boss.EntityGhastQueen;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.*;
 import nex.entity.neutral.EntityMogus;

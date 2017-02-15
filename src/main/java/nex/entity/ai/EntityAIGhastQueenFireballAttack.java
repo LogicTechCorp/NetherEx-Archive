@@ -23,73 +23,73 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import nex.entity.monster.EntityGhastQueen;
+import nex.entity.boss.EntityGhastQueen;
 import nex.entity.projectile.EntityGhastQueenFireball;
 
 public class EntityAIGhastQueenFireballAttack extends EntityAIBase
+{
+    private final EntityGhast parentEntity;
+    public int attackTimer;
+
+    public EntityAIGhastQueenFireballAttack(EntityGhastQueen ghast)
     {
-        private final EntityGhast parentEntity;
-        public int attackTimer;
-
-        public EntityAIGhastQueenFireballAttack(EntityGhastQueen ghast)
-        {
-            parentEntity = ghast;
-        }
-
-        @Override
-        public boolean shouldExecute()
-        {
-            return parentEntity.getAttackTarget() != null;
-        }
-
-        @Override
-        public void startExecuting()
-        {
-            attackTimer = 0;
-        }
-
-        @Override
-        public void resetTask()
-        {
-            parentEntity.setAttacking(false);
-        }
-
-        @Override
-        public void updateTask()
-        {
-            EntityLivingBase target = parentEntity.getAttackTarget();
-
-            if (target.getDistanceSqToEntity(parentEntity) < 4096.0D && parentEntity.canEntityBeSeen(target))
-            {
-                World world = parentEntity.world;
-                attackTimer++;
-
-                if(attackTimer == 10)
-                {
-                    world.playEvent(null, 1015, new BlockPos(parentEntity), 0);
-                }
-
-                if(attackTimer == 20)
-                {
-                    Vec3d vec3d = parentEntity.getLook(1.0F);
-                    double d2 = target.posX - (parentEntity.posX + vec3d.xCoord * 4.0D);
-                    double d3 = target.getEntityBoundingBox().minY + (double)(target.height / 2.0F) - (0.5D + parentEntity.posY + (double)(parentEntity.height / 2.0F));
-                    double d4 = target.posZ - (parentEntity.posZ + vec3d.zCoord * 4.0D);
-                    world.playEvent(null, 1016, new BlockPos(parentEntity), 0);
-                    EntityGhastQueenFireball fireball = new EntityGhastQueenFireball(world, parentEntity, d2, d3, d4);
-                    fireball.explosionPower = parentEntity.getFireballStrength();
-                    fireball.posX = parentEntity.posX + vec3d.xCoord * 4.0D;
-                    fireball.posY = parentEntity.posY + (double)(parentEntity.height / 2.0F) + 0.5D;
-                    fireball.posZ = parentEntity.posZ + vec3d.zCoord * 4.0D;
-                    world.spawnEntity(fireball);
-                    attackTimer = -40;
-                }
-            }
-            else if (attackTimer > 0)
-            {
-                --attackTimer;
-            }
-
-            parentEntity.setAttacking(attackTimer > 10);
-        }
+        parentEntity = ghast;
     }
+
+    @Override
+    public boolean shouldExecute()
+    {
+        return parentEntity.getAttackTarget() != null;
+    }
+
+    @Override
+    public void startExecuting()
+    {
+        attackTimer = 0;
+    }
+
+    @Override
+    public void resetTask()
+    {
+        parentEntity.setAttacking(false);
+    }
+
+    @Override
+    public void updateTask()
+    {
+        EntityLivingBase target = parentEntity.getAttackTarget();
+
+        if(target.getDistanceSqToEntity(parentEntity) < 4096.0D && parentEntity.canEntityBeSeen(target))
+        {
+            World world = parentEntity.world;
+            attackTimer++;
+
+            if(attackTimer == 10)
+            {
+                world.playEvent(null, 1015, new BlockPos(parentEntity), 0);
+            }
+
+            if(attackTimer == 20)
+            {
+                Vec3d vec3d = parentEntity.getLook(1.0F);
+                double d2 = target.posX - (parentEntity.posX + vec3d.xCoord * 4.0D);
+                double d3 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + parentEntity.posY + (double) (parentEntity.height / 2.0F));
+                double d4 = target.posZ - (parentEntity.posZ + vec3d.zCoord * 4.0D);
+                world.playEvent(null, 1016, new BlockPos(parentEntity), 0);
+                EntityGhastQueenFireball fireball = new EntityGhastQueenFireball(world, parentEntity, d2, d3, d4);
+                fireball.explosionPower = parentEntity.getFireballStrength();
+                fireball.posX = parentEntity.posX + vec3d.xCoord * 4.0D;
+                fireball.posY = parentEntity.posY + (double) (parentEntity.height / 2.0F) + 0.5D;
+                fireball.posZ = parentEntity.posZ + vec3d.zCoord * 4.0D;
+                world.spawnEntity(fireball);
+                attackTimer = -40;
+            }
+        }
+        else if(attackTimer > 0)
+        {
+            --attackTimer;
+        }
+
+        parentEntity.setAttacking(attackTimer > 10);
+    }
+}

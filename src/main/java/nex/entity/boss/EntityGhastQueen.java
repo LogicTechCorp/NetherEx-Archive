@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.entity.monster;
+package nex.entity.boss;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
@@ -38,8 +38,6 @@ public class EntityGhastQueen extends EntityGhast
     private static final DataParameter<Integer> GHAST_SPAWNING_STAGE = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> GHAST_SPAWNING_STAGE_STARTED = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> SHOULD_SPAWN_GHAST = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.BOOLEAN);
-
-    private static boolean ghastSpawnStageStarted[] = new boolean[4];
 
     public EntityGhastQueen(World world)
     {
@@ -83,10 +81,6 @@ public class EntityGhastQueen extends EntityGhast
         {
             if(getGhastSpawningStage() < 4)
             {
-                System.out.println("Queen Health: " + getHealth());
-                System.out.println("Ghast Spawning Stage: " + getGhastSpawningStage());
-                System.out.println("Ghast Spawning Stage Started: " + getGhastSpawnStageStarted());
-
                 if(!getGhastSpawnStageStarted() && getHealth() < getMaxHealth() - getGhastSpawningStage() * 35.0D)
                 {
                     setShouldSpawnGhast(true);
@@ -102,8 +96,6 @@ public class EntityGhastQueen extends EntityGhast
                         ghast.setPosition(posX, posY - 1, posZ);
                         ghast.setAttackTarget(getAttackTarget());
                         world.spawnEntity(ghast);
-
-                        System.out.println("Ghastling Health: " + ghast.getHealth());
                     }
 
                     setGhastSpawnStageStarted(getGhastSpawningStage() + 1);
@@ -145,7 +137,7 @@ public class EntityGhastQueen extends EntityGhast
         setGhastSpawnStageStarted(compound.getInteger("GhastSpawnStageStarted"));
         setShouldSpawnGhast(compound.getBoolean("SpawnGhast"));
     }
-    
+
     @Override
     public String getName()
     {

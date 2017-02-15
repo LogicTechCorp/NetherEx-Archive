@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelGhastQueen;
-import nex.entity.monster.EntityGhastQueen;
+import nex.entity.boss.EntityGhastQueen;
 
 @SideOnly(Side.CLIENT)
 public class RenderGhastQueen extends RenderLiving<EntityGhastQueen>

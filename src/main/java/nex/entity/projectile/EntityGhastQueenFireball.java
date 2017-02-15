@@ -49,16 +49,16 @@ public class EntityGhastQueenFireball extends EntityFireball
     @Override
     protected void onImpact(RayTraceResult result)
     {
-        if (!world.isRemote)
+        if(!world.isRemote)
         {
-            if (result.entityHit != null)
+            if(result.entityHit != null)
             {
                 result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("ghastQueenFireball", this, shootingEntity).setFireDamage().setProjectile(), 12.0F);
                 applyEnchantments(shootingEntity, result.entityHit);
             }
 
             boolean flag = world.getGameRules().getBoolean("mobGriefing");
-            world.newExplosion(null, posX, posY, posZ, (float)explosionPower, flag, flag);
+            world.newExplosion(null, posX, posY, posZ, (float) explosionPower, flag, flag);
             setDead();
         }
     }
@@ -75,7 +75,7 @@ public class EntityGhastQueenFireball extends EntityFireball
     {
         super.readEntityFromNBT(compound);
 
-        if (compound.hasKey("ExplosionPower", 99))
+        if(compound.hasKey("ExplosionPower", 99))
         {
             explosionPower = compound.getInteger("ExplosionPower");
         }

@@ -24,6 +24,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.render.entity.*;
+import nex.entity.boss.EntityGhastQueen;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.*;
 import nex.entity.neutral.EntityMogus;

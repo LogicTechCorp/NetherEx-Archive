@@ -23,7 +23,6 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.projectile.EntityDragonFireball;
 import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
 import nex.entity.projectile.EntityGhastQueenFireball;
@@ -42,7 +41,7 @@ public class RenderGhastQueenFireball extends Render<EntityGhastQueenFireball>
     {
         GlStateManager.pushMatrix();
         bindEntityTexture(fireball);
-        GlStateManager.translate((float)x, (float)y, (float)z);
+        GlStateManager.translate((float) x, (float) y, (float) z);
         GlStateManager.enableRescaleNormal();
         GlStateManager.scale(2.0F, 2.0F, 2.0F);
         Tessellator tessellator = Tessellator.getInstance();
@@ -51,9 +50,9 @@ public class RenderGhastQueenFireball extends Render<EntityGhastQueenFireball>
         float f1 = 0.5F;
         float f2 = 0.25F;
         GlStateManager.rotate(180.0F - renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate((float)(renderManager.options.thirdPersonView == 2 ? -1 : 1) * -renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+        GlStateManager.rotate((float) (renderManager.options.thirdPersonView == 2 ? -1 : 1) * -renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 
-        if (renderOutlines)
+        if(renderOutlines)
         {
             GlStateManager.enableColorMaterial();
             GlStateManager.enableOutlineMode(getTeamColor(fireball));
