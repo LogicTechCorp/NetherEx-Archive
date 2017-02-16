@@ -25,19 +25,19 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
-import nex.entity.projectile.EntityGhastQueenFireball;
+import nex.entity.projectile.EntityGhastlingFireball;
 
-public class RenderGhastQueenFireball extends Render<EntityGhastQueenFireball>
+public class RenderGhastlingFireball extends Render<EntityGhastlingFireball>
 {
-    private static final ResourceLocation GHAST_QUEEN_FIREBALL_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/ghast/ghast_queen_fireball.png");
+    private static final ResourceLocation GHASTLING_FIREBALL_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/ghast/ghastling_fireball.png");
 
-    public RenderGhastQueenFireball(RenderManager manager)
+    public RenderGhastlingFireball(RenderManager manager)
     {
         super(manager);
     }
 
     @Override
-    public void doRender(EntityGhastQueenFireball fireball, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityGhastlingFireball fireball, double x, double y, double z, float entityYaw, float partialTicks)
     {
         GlStateManager.pushMatrix();
         bindEntityTexture(fireball);
@@ -74,8 +74,8 @@ public class RenderGhastQueenFireball extends Render<EntityGhastQueenFireball>
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityGhastQueenFireball fireball)
+    protected ResourceLocation getEntityTexture(EntityGhastlingFireball fireball)
     {
-        return GHAST_QUEEN_FIREBALL_TEXTURE;
+        return GHASTLING_FIREBALL_TEXTURE;
     }
 }

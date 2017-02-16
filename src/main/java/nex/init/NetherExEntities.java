@@ -28,6 +28,7 @@ import nex.entity.monster.*;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.projectile.EntityGhastQueenFireball;
+import nex.entity.projectile.EntityGhastlingFireball;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,6 +41,7 @@ public class NetherExEntities
         LOGGER.info("Entity registration started.");
 
         registerEntity("projectile_ghast_queen_fireball", EntityGhastQueenFireball.class, 10);
+        registerEntity("projectile_ghastling_fireball", EntityGhastlingFireball.class, 11);
 
         registerEntity("item_boat_obsidian", EntityObsidianBoat.class, 20);
 
@@ -52,6 +54,7 @@ public class NetherExEntities
         registerEntity("monster_spinout", EntitySpinout.class, 53, 16711680, 16762880);
         registerEntity("monster_spore_creeper", EntitySporeCreeper.class, 54, 16711680, 16762880);
         registerEntity("monster_spore", EntitySpore.class, 55, 16711680, 16762880);
+        registerEntity("monster_ghastling", EntityGhastling.class, 56, 16711680, 16762880);
 
         registerEntity("boss_ghast_queen", EntityGhastQueen.class, 60, 16711680, 16762880);
 

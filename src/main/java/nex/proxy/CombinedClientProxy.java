@@ -29,6 +29,7 @@ import nex.entity.monster.*;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.projectile.EntityGhastQueenFireball;
+import nex.entity.projectile.EntityGhastlingFireball;
 import nex.init.NetherExParticleTypes;
 
 @SideOnly(Side.CLIENT)
@@ -38,6 +39,7 @@ public class CombinedClientProxy implements IProxy
     public void preInit()
     {
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueenFireball.class, RenderGhastQueenFireball::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGhastlingFireball.class, RenderGhastlingFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityMogus.class, RenderMogus::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySalamander.class, RenderSalamander::new);
@@ -47,6 +49,7 @@ public class CombinedClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntitySpinout.class, RenderSpinout::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySporeCreeper.class, RenderSporeCreeper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, RenderSpore::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGhastling.class, RenderGhastling::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueen.class, RenderGhastQueen::new);
     }
 

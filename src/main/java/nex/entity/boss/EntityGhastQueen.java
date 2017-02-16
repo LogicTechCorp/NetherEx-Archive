@@ -20,6 +20,7 @@ package nex.entity.boss;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,9 +28,10 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
+import nex.entity.ai.EntityAIGhastFly;
+import nex.entity.ai.EntityAIGhastLookAround;
 import nex.entity.ai.EntityAIGhastQueenFireballAttack;
-import nex.entity.ai.EntityAIGhastQueenFly;
-import nex.entity.ai.EntityAIGhastQueenLookAround;
+import nex.entity.monster.EntityGhastling;
 import nex.handler.ConfigHandler;
 
 public class EntityGhastQueen extends EntityGhast
@@ -39,19 +41,20 @@ public class EntityGhastQueen extends EntityGhast
     private static final DataParameter<Integer> GHAST_SPAWNING_STAGE_STARTED = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> SHOULD_SPAWN_GHAST = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.BOOLEAN);
 
+    private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
+
     public EntityGhastQueen(World world)
     {
         super(world);
 
-        setSize(6.0F, 6.0F);
+        setSize(9.5F, 9.5F);
     }
 
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAIGhastQueenLookAround(this));
-        tasks.addTask(1, new EntityAIGhastQueenFly(this));
-        tasks.addTask(2, new EntityAIGhastQueenFireballAttack(this));
+        tasks.addTask(1, new EntityAIGhastLookAround(this));
+        tasks.addTask(2, new EntityAIGhastFly(this));
         targetTasks.addTask(0, new EntityAIFindEntityNearestPlayer(this));
     }
 
@@ -73,12 +76,23 @@ public class EntityGhastQueen extends EntityGhast
     }
 
     @Override
+    public float getEyeHeight()
+    {
+        return 3.75F;
+    }
+
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
 
         if(getCooldown() == 0)
         {
+            if(tasks.taskEntries.size() == 2)
+            {
+                tasks.addTask(0, fireballAttack);
+            }
+
             if(getGhastSpawningStage() < 4)
             {
                 if(!getGhastSpawnStageStarted() && getHealth() < getMaxHealth() - getGhastSpawningStage() * 35.0D)
@@ -88,14 +102,11 @@ public class EntityGhastQueen extends EntityGhast
 
                 if(!world.isRemote && shouldSpawnGhast())
                 {
-                    for(int i = 0; i < ConfigHandler.Entity.GhastQueen.ghastSpawns; i++)
+                    for(int i = 0; i < ConfigHandler.Entity.GhastQueen.ghastlingSpawns; i++)
                     {
-                        EntityGhast ghast = new EntityGhast(world);
-                        ghast.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-                        ghast.setHealth(20.0F);
-                        ghast.setPosition(posX, posY - 1, posZ);
-                        ghast.setAttackTarget(getAttackTarget());
-                        world.spawnEntity(ghast);
+                        EntityGhastling ghastling = new EntityGhastling(world);
+                        ghastling.setPosition(posX, posY - 1, posZ);
+                        world.spawnEntity(ghastling);
                     }
 
                     setGhastSpawnStageStarted(getGhastSpawningStage() + 1);
@@ -107,7 +118,7 @@ public class EntityGhastQueen extends EntityGhast
         }
         else
         {
-            setAttackTarget(null);
+            tasks.removeTask(fireballAttack);
             setCooldown(getCooldown() - 1);
         }
     }

@@ -17,37 +17,34 @@
 
 package nex.client.render.entity;
 
+import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
-import nex.client.model.entity.ModelGhastQueen;
-import nex.entity.boss.EntityGhastQueen;
+import nex.entity.monster.EntityGhastling;
 
-@SideOnly(Side.CLIENT)
-public class RenderGhastQueen extends RenderLiving<EntityGhastQueen>
+public class RenderGhastling extends RenderLiving<EntityGhastling>
 {
-    private static final ResourceLocation GHAST_QUEEN_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/ghast/ghast_queen.png");
-    private static final ResourceLocation GHAST_QUEEN_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/ghast/ghast_queen_shooting.png");
+    private static final ResourceLocation GHASTLING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/ghast/ghastling.png");
+    private static final ResourceLocation GHASTLING_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/ghast/ghastling_shooting.png");
 
-    public RenderGhastQueen(RenderManager manager)
+    public RenderGhastling(RenderManager manager)
     {
-        super(manager, new ModelGhastQueen(), 0.3F);
+        super(manager, new ModelGhast(), 0.3F);
     }
 
     @Override
-    protected void preRenderCallback(EntityGhastQueen ghastQueen, float partialTickTime)
+    protected void preRenderCallback(EntityGhastling ghastling, float partialTickTime)
     {
-        GlStateManager.scale(7.25F, 7.25F, 7.25F);
+        GlStateManager.scale(2.25F, 2.25F, 2.25F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityGhastQueen ghastQueen)
+    protected ResourceLocation getEntityTexture(EntityGhastling ghastling)
     {
-        return ghastQueen.isAttacking() ? GHAST_QUEEN_SHOOTING_TEXTURE : GHAST_QUEEN_TEXTURE;
+        return ghastling.isAttacking() ? GHASTLING_SHOOTING_TEXTURE : GHASTLING_TEXTURE;
     }
 }

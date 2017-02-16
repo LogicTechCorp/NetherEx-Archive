@@ -20,15 +20,14 @@ package nex.entity.ai;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.monster.EntityGhast;
-import nex.entity.boss.EntityGhastQueen;
 
 import java.util.Random;
 
-public class EntityAIGhastQueenFly extends EntityAIBase
+public class EntityAIGhastFly extends EntityAIBase
 {
     private final EntityGhast parentEntity;
 
-    public EntityAIGhastQueenFly(EntityGhastQueen ghast)
+    public EntityAIGhastFly(EntityGhast ghast)
     {
         parentEntity = ghast;
         setMutexBits(1);

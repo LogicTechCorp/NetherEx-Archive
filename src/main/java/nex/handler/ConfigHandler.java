@@ -179,11 +179,11 @@ public class ConfigHandler
         {
             @Config.Comment({"The lower the number the less time it goes without spinning", "The higher the number the more time it goes without spinning"})
             @Config.RangeInt(min = 1, max = 512)
-            public static int attackCooldown = 30;
+            public static int attackCooldown = 10;
 
-            @Config.Comment({"The lower the number the less Ghast spawn", "The higher the number the more Ghast spawn"})
+            @Config.Comment({"The lower the number the less Ghastling spawn", "The higher the number the more Ghastling spawn"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int ghastSpawns = 4;
+            public static int ghastlingSpawns = 4;
         }
     }
 

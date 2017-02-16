@@ -21,13 +21,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.math.MathHelper;
-import nex.entity.boss.EntityGhastQueen;
 
-public class EntityAIGhastQueenLookAround extends EntityAIBase
+public class EntityAIGhastLookAround extends EntityAIBase
 {
     private final EntityGhast parentEntity;
 
-    public EntityAIGhastQueenLookAround(EntityGhastQueen ghast)
+    public EntityAIGhastLookAround(EntityGhast ghast)
     {
         parentEntity = ghast;
         setMutexBits(2);

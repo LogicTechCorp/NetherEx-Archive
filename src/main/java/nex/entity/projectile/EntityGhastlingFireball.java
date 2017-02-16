@@ -22,17 +22,18 @@ import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import nex.entity.boss.EntityGhastQueen;
 
-public class EntityGhastQueenFireball extends EntityFireball
+public class EntityGhastlingFireball extends EntityFireball
 {
     public int explosionPower;
 
-    public EntityGhastQueenFireball(World worldIn)
+    public EntityGhastlingFireball(World world)
     {
-        super(worldIn);
+        super(world);
     }
 
-    public EntityGhastQueenFireball(World worldIn, EntityLivingBase shooter, double accelX, double accelY, double accelZ)
+    public EntityGhastlingFireball(World worldIn, EntityLivingBase shooter, double accelX, double accelY, double accelZ)
     {
         super(worldIn, shooter, accelX, accelY, accelZ);
     }
@@ -42,9 +43,9 @@ public class EntityGhastQueenFireball extends EntityFireball
     {
         if(!world.isRemote)
         {
-            if(result.entityHit != null)
+            if(result.entityHit != null && !(result.entityHit instanceof EntityGhastQueen))
             {
-                result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("ghastQueenFireball", this, shootingEntity).setFireDamage().setProjectile(), 24.0F);
+                result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("ghastlingFireball", this, shootingEntity).setFireDamage().setProjectile(), 6.0F);
                 applyEnchantments(shootingEntity, result.entityHit);
             }
 

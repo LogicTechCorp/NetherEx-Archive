@@ -33,6 +33,7 @@ tipped_arrow.effect.nex:normalSpore=Arrow of Dispersal
 
 #Entities (Mobs)
 entity.nex:projectileGhastQueenFireball.name=Ghast Queen Fireball
+entity.nex:projectileGhastlingFireball.name=Ghastling Fireball
 entity.nex:itemBoatObsidian.name=Obsidian Boat
 entity.nex:neutralMogus.name=Mogus
 entity.nex:neutralMogus.brown.name=Brown Mogus
@@ -52,6 +53,7 @@ entity.nex:monsterSpore.two.name=Spore Stage Two
 entity.nex:monsterSpore.three.name=Spore Stage Three
 entity.nex:monsterSpore.four.name=Spore Stage Four
 entity.nex:monsterSpore.five.name=Spore Stage Five
+entity.nex:monsterGhastling.name=Ghastling
 entity.nex:bossGhastQueen.name=Ghast Queen
 
 #Fluids
