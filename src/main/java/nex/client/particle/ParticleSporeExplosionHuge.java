@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
+import nex.init.NetherExParticleTypes;
 
 @SideOnly(Side.CLIENT)
 public class ParticleSporeExplosionHuge extends Particle
@@ -51,7 +52,7 @@ public class ParticleSporeExplosionHuge extends Particle
             double d0 = posX + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
             double d1 = posY + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
             double d2 = posZ + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
-            NetherEx.proxy.spawnParticle(world, d0, d1, d2, (double) ((float) timeSinceStart / (float) maximumTime), 0.0D, 0.0D, new ParticleSporeExplosionLarge.Factory());
+            NetherEx.proxy.spawnParticle(world, d0, d1, d2, (double) ((float) timeSinceStart / (float) maximumTime), 0.0D, 0.0D, NetherExParticleTypes.SPORE_EXPLOSION_LARGE);
         }
 
         timeSinceStart++;

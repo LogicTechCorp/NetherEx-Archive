@@ -18,7 +18,6 @@
 package nex.proxy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,6 +29,7 @@ import nex.entity.monster.*;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.projectile.EntityGhastQueenFireball;
+import nex.init.NetherExParticleTypes;
 
 @SideOnly(Side.CLIENT)
 public class CombinedClientProxy implements IProxy
@@ -63,8 +63,8 @@ public class CombinedClientProxy implements IProxy
     }
 
     @Override
-    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, IParticleFactory factory)
+    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, int id)
     {
-        Minecraft.getMinecraft().effectRenderer.addEffect(factory.createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
+        Minecraft.getMinecraft().effectRenderer.addEffect(NetherExParticleTypes.getFromID(id).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
     }
 }

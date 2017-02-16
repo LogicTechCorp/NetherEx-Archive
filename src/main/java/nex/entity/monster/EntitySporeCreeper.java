@@ -233,15 +233,12 @@ public class EntitySporeCreeper extends EntityMob
 
     private void explode()
     {
-        if(!world.isRemote)
-        {
-            dead = true;
-            Explosion explosion = new ExplosionSpore(world, this, posX, posY, posZ, (float) explosionRadius, true, true);
-            explosion.doExplosionA();
-            explosion.doExplosionB(true);
-            setDead();
-            spawnLingeringCloud();
-        }
+        dead = true;
+        Explosion explosion = new ExplosionSpore(world, this, posX, posY, posZ, (float) explosionRadius, true, true);
+        explosion.doExplosionA();
+        explosion.doExplosionB(true);
+        setDead();
+        spawnLingeringCloud();
     }
 
     private void spawnLingeringCloud()
@@ -266,12 +263,12 @@ public class EntitySporeCreeper extends EntityMob
         }
     }
 
-    public boolean hasIgnited()
+    private boolean hasIgnited()
     {
         return dataManager.get(IGNITED);
     }
 
-    public void ignite()
+    private void ignite()
     {
         dataManager.set(IGNITED, true);
     }
