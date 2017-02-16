@@ -37,8 +37,8 @@ public class ModelSalamander extends ModelBase
     private ModelRenderer bodyFront;
     private ModelRenderer bodyBack;
     private ModelRenderer tail;
-    private ModelRenderer hindRightLeg;
-    private ModelRenderer hindLeftLeg;
+    private ModelRenderer backRightLeg;
+    private ModelRenderer backLeftLeg;
 
     public ModelSalamander()
     {
@@ -76,21 +76,18 @@ public class ModelSalamander extends ModelBase
         tail.addBox(-2.5F, -3.5F, -1.5F, 5, 7, 3, 0.0F);
         tail.setRotationPoint(0F, 20F, 12.5F);
         tail.rotateAngleX = 1.5708F;
-        hindRightLeg = new ModelRenderer(this, 0, 18);
-        hindRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
-        hindRightLeg.setRotationPoint(-5F, 19.5F, 5.5F);
-        hindLeftLeg = new ModelRenderer(this, 0, 18);
-        hindLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
-        hindLeftLeg.setRotationPoint(5F, 19.5F, 5.5F);
-
-
+        backRightLeg = new ModelRenderer(this, 0, 18);
+        backRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
+        backRightLeg.setRotationPoint(-5F, 19.5F, 5.5F);
+        backLeftLeg = new ModelRenderer(this, 0, 18);
+        backLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
+        backLeftLeg.setRotationPoint(5F, 19.5F, 5.5F);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-
-        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale);
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
         frontRightLeg.render(scale);
         frontLeftLeg.render(scale);
         toothLeft.renderWithRotation(scale);
@@ -100,15 +97,16 @@ public class ModelSalamander extends ModelBase
         bodyFront.renderWithRotation(scale);
         bodyBack.renderWithRotation(scale);
         tail.renderWithRotation(scale);
-        hindRightLeg.render(scale);
-        hindLeftLeg.render(scale);
+        backRightLeg.render(scale);
+        backLeftLeg.render(scale);
     }
 
-    private void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scaleFactor, Entity entity)
     {
         frontRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         frontLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
-        hindRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
-        hindLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        backRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
+        backLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 }

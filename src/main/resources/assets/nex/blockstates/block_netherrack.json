@@ -1,31 +1,32 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "cube_all",
         "transform": "forge:default-block"
     },
     "variants": {
-        "type": {
-            "fiery": {
-                "textures": {
-                    "all": "nex:blocks/block_netherrack_fiery"
-                }
-            },
-            "icy": {
-                "textures": {
-                    "all": "nex:blocks/block_netherrack_icy"
-                }
-            },
-            "lively": {
-                "textures": {
-                    "all": "nex:blocks/block_netherrack_lively"
-                }
-            },
-            "gloomy": {
-                "textures": {
-                    "all": "nex:blocks/block_netherrack_gloomy"
-                }
-            }
-        }
+        "type=fiery": [
+            { "model": "nex:block_netherrack_fiery", "transform": "forge:default-block" },
+            { "model": "nex:block_netherrack_fiery", "y": 180 },
+            { "model": "nex:block_netherrack_fiery_mirrored" },
+            { "model": "nex:block_netherrack_fiery_mirrored", "y": 180 }
+        ],
+        "type=icy": [
+            { "model": "nex:block_netherrack_icy" },
+            { "model": "nex:block_netherrack_icy", "y": 180 },
+            { "model": "nex:block_netherrack_icy_mirrored" },
+            { "model": "nex:block_netherrack_icy_mirrored", "y": 180 }
+        ],
+        "type=lively": [
+            { "model": "nex:block_netherrack_lively" },
+            { "model": "nex:block_netherrack_lively", "y": 180 },
+            { "model": "nex:block_netherrack_lively_mirrored" },
+            { "model": "nex:block_netherrack_lively_mirrored", "y": 180 }
+        ],
+        "type=gloomy": [
+            { "model": "nex:block_netherrack_gloomy" },
+            { "model": "nex:block_netherrack_gloomy", "y": 180 },
+            { "model": "nex:block_netherrack_gloomy_mirrored" },
+            { "model": "nex:block_netherrack_gloomy_mirrored", "y": 180 }
+        ]
     }
 }

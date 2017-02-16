@@ -171,7 +171,7 @@ public class ConfigHandler
 
             @Config.Comment({"The lower the number the less Spore Creeper spawn", "The higher the number the more Spore Creeper spawn"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int creeperSpawns = 4;
+            public static int creeperSpawns = 3;
 
         }
 
