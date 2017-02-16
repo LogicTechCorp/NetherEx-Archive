@@ -42,7 +42,7 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class BlockTilledSoulSand extends BlockNetherEx
 {
-    private static final PropertyInteger MOISTURE = PropertyInteger.create("moisture", 0, 7);
+    public static final PropertyInteger MOISTURE = PropertyInteger.create("moisture", 0, 7);
     private static final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
 
     public BlockTilledSoulSand()

@@ -223,7 +223,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
         IBlockState stateUp = world.getBlockState(pos.up());
         Block blockUp = stateUp.getBlock();
 
-        if(blockUp != NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM && stateUp != NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2))
+        if(blockUp != NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM && stateUp != NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
         {
             if(stateUp.getMaterial() == Material.AIR)
             {

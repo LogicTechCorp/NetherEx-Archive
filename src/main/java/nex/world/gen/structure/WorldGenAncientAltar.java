@@ -30,6 +30,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import nex.block.BlockNetherrack;
+import nex.block.BlockThornstalk;
 import nex.init.NetherExBlocks;
 import nex.util.WeightedUtil;
 import nex.util.WorldGenUtil;
@@ -49,11 +51,11 @@ public class WorldGenAncientAltar extends WorldGenerator
 
     private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
             Blocks.SOUL_SAND.getDefaultState(),
-            NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3),
-            NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3),
+            NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY),
+            NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY),
             NetherExBlocks.PLANT_THORNSTALK.getDefaultState(),
-            NetherExBlocks.PLANT_THORNSTALK.getStateFromMeta(1),
-            NetherExBlocks.PLANT_THORNSTALK.getStateFromMeta(2)
+            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.MIDDLE),
+            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.BOTTOM)
     );
 
     @Override

@@ -25,6 +25,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import nex.block.BlockNetherrack;
 import nex.entity.monster.EntitySpore;
 import nex.entity.monster.EntitySporeCreeper;
 import nex.entity.neutral.EntityMogus;
@@ -43,7 +44,7 @@ public class BiomeFungiForest extends BiomeNetherEx
 {
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(2), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2));
+    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
     private WorldGenerator brownElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.brownVariants, true);
     private WorldGenerator redElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.redVariants, true);
     private WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
@@ -57,7 +58,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntitySpore.class, 25, 1, 4));
 
         topBlock = NetherExBlocks.BLOCK_HYPHAE.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(2);
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
 
         if(ConfigHandler.Biome.FungiForest.generateBiome)
         {

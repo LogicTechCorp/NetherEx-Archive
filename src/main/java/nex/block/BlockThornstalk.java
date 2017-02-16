@@ -45,7 +45,7 @@ import java.util.Random;
 
 public class BlockThornstalk extends BlockNetherEx
 {
-    private static final PropertyEnum<EnumPart> PART = PropertyEnum.create("part", EnumPart.class);
+    public static final PropertyEnum<EnumPart> PART = PropertyEnum.create("part", EnumPart.class);
 
     public BlockThornstalk()
     {

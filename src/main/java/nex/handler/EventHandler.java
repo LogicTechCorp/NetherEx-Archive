@@ -55,6 +55,8 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import nex.block.BlockNetherrackPath;
+import nex.block.BlockTilledSoulSand;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.EntityNethermite;
 import nex.entity.monster.EntitySpore;
@@ -126,7 +128,7 @@ public class EventHandler
                 int meta = state.getBlock() == Blocks.NETHERRACK ? 0 : NetherExBlocks.BLOCK_NETHERRACK.getMetaFromState(state) + 1;
 
                 world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK_PATH.getStateFromMeta(meta), 11);
+                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK_PATH.getDefaultState().withProperty(BlockNetherrackPath.TYPE, BlockNetherrackPath.EnumType.fromMeta(meta)), 11);
                 stack.damageItem(1, player);
             }
 
@@ -196,7 +198,7 @@ public class EventHandler
 
         if(ConfigHandler.Block.SoulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
-            if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getStateFromMeta(7))
+            if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
             {
                 event.setResult(Event.Result.ALLOW);
             }

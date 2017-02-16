@@ -43,7 +43,6 @@ public class EntitySpinout extends EntityMob
 
     private final EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
     private final EntityAIBase wander = new EntityAIWander(this, 1.0D);
-    private final EntityAIBase lookIdle = new EntityAILookIdle(this);
 
     public EntitySpinout(World world)
     {
@@ -97,7 +96,6 @@ public class EntitySpinout extends EntityMob
             {
                 tasks.addTask(1, attackMelee);
                 tasks.addTask(2, wander);
-                tasks.addTask(3, lookIdle);
             }
         }
         else
@@ -106,11 +104,10 @@ public class EntitySpinout extends EntityMob
             {
                 tasks.removeTask(attackMelee);
                 tasks.removeTask(wander);
-                tasks.removeTask(lookIdle);
             }
         }
 
-        if(getCooldown() == 0 && !isInLava())
+        if(getCooldown() == 0)
         {
             setCounter(getCounter() + 1);
 
@@ -125,7 +122,7 @@ public class EntitySpinout extends EntityMob
             setSpinning(false);
             setCooldown(ConfigHandler.Entity.Spinout.spinCooldown * 20);
         }
-        if(getCooldown() > 0 && !isInLava())
+        if(getCooldown() > 0)
         {
             setCooldown(getCooldown() - 1);
         }

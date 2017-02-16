@@ -155,7 +155,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             }
             else
             {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(state.getValue(TYPE).ordinal() - 1));
+                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
             }
         }
     }

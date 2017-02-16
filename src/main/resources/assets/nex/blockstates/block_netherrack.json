@@ -1,11 +1,7 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "transform": "forge:default-block"
-    },
     "variants": {
         "type=fiery": [
-            { "model": "nex:block_netherrack_fiery", "transform": "forge:default-block" },
+            { "model": "nex:block_netherrack_fiery" },
             { "model": "nex:block_netherrack_fiery", "y": 180 },
             { "model": "nex:block_netherrack_fiery_mirrored" },
             { "model": "nex:block_netherrack_fiery_mirrored", "y": 180 }

@@ -19,11 +19,19 @@ package nex.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
+
+import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
 public class BlockHyphae extends BlockNetherEx
@@ -33,6 +41,56 @@ public class BlockHyphae extends BlockNetherEx
         super("block_hyphae", Material.ROCK);
 
         setHardness(0.6F);
+
+        if(ConfigHandler.Block.Hyphae.doesSpread)
+        {
+            setTickRandomly(true);
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
+    {
+        if(rand.nextInt(10) == 0)
+        {
+            world.spawnParticle(EnumParticleTypes.TOWN_AURA, (double) ((float) pos.getX() + rand.nextFloat()), (double) ((float) pos.getY() + 1.1F), (double) ((float) pos.getZ() + rand.nextFloat()), 0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+        if(!world.isRemote && ConfigHandler.Block.Hyphae.doesSpread)
+        {
+            if(world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2)
+            {
+                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
+            }
+            else
+            {
+                if(world.getLightFromNeighbors(pos.up()) >= 9)
+                {
+                    for(int i = 0; i < 4; ++i)
+                    {
+                        BlockPos newPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+                        IBlockState blockState = world.getBlockState(newPos);
+                        IBlockState blockState1 = world.getBlockState(newPos.up());
+
+                        if(blockState.getBlock() == NetherExBlocks.BLOCK_NETHERRACK && blockState.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && blockState1.getLightOpacity(world, newPos.up()) <= 2)
+                        {
+                            world.setBlockState(newPos, getDefaultState());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return NetherExBlocks.BLOCK_NETHERRACK.getItemDropped(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY), rand, fortune);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class BlockElderMushroomStem extends BlockNetherEx
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return getStateFromMeta(meta).withProperty(AXIS, EnumType.fromAxis(facing.getAxis()));
+        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(AXIS, EnumType.fromAxis(facing.getAxis()));
     }
 
     @Override

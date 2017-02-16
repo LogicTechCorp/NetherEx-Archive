@@ -68,6 +68,8 @@ public class ConfigHandler
         public static SoulSand soul_sand = new SoulSand();
         public static Rime rime = new Rime();
         public static Magma magma = new Magma();
+        public static Thornstalk thornstalk = new Thornstalk();
+        public static Hyphae hyphae = new Hyphae();
 
         public static class SoulSand
         {
@@ -94,6 +96,11 @@ public class ConfigHandler
 
             @Config.Comment("Add mobs the Thornstalk shouldn't hurt")
             public static String[] blacklist = new String[]{"minecraft:wither_skeleton", "minecraft:zombie_pigman", "nex:monster_spinout"};
+        }
+
+        public static class Hyphae
+        {
+            public static boolean doesSpread = false;
         }
     }
 

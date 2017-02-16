@@ -27,6 +27,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import nex.block.BlockNetherrack;
 import nex.entity.monster.EntitySpinout;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
@@ -42,11 +43,11 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
-    private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), false);
+    private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), false);
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(3), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3));
-    private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3), true);
+    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY));
+    private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
     private WorldGenerator ancientAltar = new WorldGenAncientAltar();
 
@@ -55,7 +56,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
 
         topBlock = Blocks.SOUL_SAND.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(3);
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY);
 
         spawnableMonsterList.add(new SpawnListEntry(EntitySpinout.class, 100, 1, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityWitherSkeleton.class, 65, 1, 4));

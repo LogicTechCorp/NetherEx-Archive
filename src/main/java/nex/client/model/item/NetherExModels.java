@@ -81,7 +81,7 @@ public class NetherExModels
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
-            registerModel(BLOCK_NETHERRACK, type.ordinal(), BLOCK_NETHERRACK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(BLOCK_NETHERRACK, type.ordinal(), String.format(BLOCK_NETHERRACK.getRegistryName().toString() + "_%s", type.getName()), "inventory");
             registerModel(ORE_QUARTZ, type.ordinal(), ORE_QUARTZ.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(BLOCK_BRICK_NETHER, type.ordinal(), BLOCK_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(SLAB_BRICK_NETHER, type.ordinal(), SLAB_BRICK_NETHER.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));

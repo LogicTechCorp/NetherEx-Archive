@@ -26,6 +26,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import nex.block.BlockNetherrack;
 import nex.entity.monster.EntityWight;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
@@ -41,8 +42,8 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 {
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
-    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getStateFromMeta(1), 14, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
-    private WorldGenerator rimeOre = new WorldGenMinableMeta(NetherExBlocks.ORE_RIME.getDefaultState(), 7, NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1));
+    private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY));
+    private WorldGenerator rimeOre = new WorldGenMinableMeta(NetherExBlocks.ORE_RIME.getDefaultState(), 7, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY));
     private WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState(), Blocks.MAGMA.getDefaultState());
 
     public BiomeArcticAbyss()
@@ -53,7 +54,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 50, 1, 1));
 
         topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getStateFromMeta(1);
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
 
         if(ConfigHandler.Biome.ArcticAbyss.generateBiome)
         {
