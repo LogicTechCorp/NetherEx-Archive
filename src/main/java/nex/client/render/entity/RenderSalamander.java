@@ -29,8 +29,8 @@ import nex.entity.neutral.EntitySalamander;
 @SideOnly(Side.CLIENT)
 public class RenderSalamander extends RenderLiving<EntitySalamander>
 {
-    private static final ResourceLocation ORANGE_SALAMANDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/salamander/salamander_orange.png");
-    private static final ResourceLocation BLACK_SALAMANDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/salamander/salamander_black.png");
+    private static final ResourceLocation ORANGE_SALAMANDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/salamander/salamander_orange.png");
+    private static final ResourceLocation BLACK_SALAMANDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/salamander/salamander_black.png");
 
     public RenderSalamander(RenderManager manager)
     {

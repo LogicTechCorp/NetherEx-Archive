@@ -88,6 +88,12 @@ item.nex:armorChestplateHideSalamander.name=Salamander Hide Chestplate
 item.nex:armorLeggingsHideSalamander.name=Salamander Hide Leggings
 item.nex:armorBootsHideSalamander.name=Salamander Hide Boots
 
+# Subtitles
+subtitle.nex:sound.mob.GhastQueenMoan=Ghast Queen Moan
+subtitle.nex:sound.mob.GhastQueenScream=Ghast Queen Scream
+subtitle.nex:sound.mob.GhastQueenFireball=Ghast Queen Fireball
+subtitle.nex:sound.mob.GhastQueenDeath=Ghast Queen Death
+
 # Tiles (Blocks)
 tile.nex:blockBasalt.normal.name=Basalt
 tile.nex:blockBasalt.smooth.name=Smooth Basalt

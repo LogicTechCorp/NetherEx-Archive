@@ -18,6 +18,7 @@
 package nex.proxy;
 
 import net.minecraft.world.World;
+import nex.init.NetherExParticleTypes;
 
 public class DedicatedServerProxy implements IProxy
 {
@@ -40,7 +41,7 @@ public class DedicatedServerProxy implements IProxy
     }
 
     @Override
-    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, int id)
+    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, NetherExParticleTypes type)
     {
 
     }

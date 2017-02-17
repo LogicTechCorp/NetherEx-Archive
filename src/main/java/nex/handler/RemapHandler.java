@@ -126,7 +126,7 @@ public class RemapHandler
         }
 
         String newPath = customNames.get(missingPath);
-        ResourceLocation registryName = new ResourceLocation(mapping.resourceLocation.getResourceDomain(), newPath);
+        ResourceLocation registryName = new ResourceLocation(mapping.resourceLocation.getResourceDomain() + newPath);
         return attemptRemap(mapping, registryName);
     }
 }

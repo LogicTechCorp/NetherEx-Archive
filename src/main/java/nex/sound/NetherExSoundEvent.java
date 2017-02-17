@@ -15,17 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.init;
+package nex.sound;
 
-import net.minecraftforge.fluids.Fluid;
-import nex.fluid.FluidIchor;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 
-public class NetherExFluids
+public class NetherExSoundEvent extends SoundEvent
 {
-    public static final Fluid ICHOR = new FluidIchor();
-
-    public static void init()
+    public NetherExSoundEvent(ResourceLocation soundNameIn)
     {
+        super(soundNameIn);
 
+        setRegistryName(soundNameIn);
     }
 }

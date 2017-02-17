@@ -66,8 +66,8 @@ public class CombinedClientProxy implements IProxy
     }
 
     @Override
-    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, int id)
+    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, NetherExParticleTypes type)
     {
-        Minecraft.getMinecraft().effectRenderer.addEffect(NetherExParticleTypes.getFromID(id).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
+        Minecraft.getMinecraft().effectRenderer.addEffect(NetherExParticleTypes.get(type).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
     }
 }

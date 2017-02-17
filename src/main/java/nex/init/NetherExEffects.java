@@ -27,7 +27,6 @@ import nex.potion.NetherExPotion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings("ConstantConditions")
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffects
 {
@@ -40,7 +39,7 @@ public class NetherExEffects
     public static class EventHandler
     {
         @SubscribeEvent
-        public static void onRegisterBlocks(RegistryEvent.Register<Potion> event)
+        public static void onRegisterPotions(RegistryEvent.Register<Potion> event)
         {
             LOGGER.info("Effect registration started.");
 

@@ -18,6 +18,7 @@
 package nex.proxy;
 
 import net.minecraft.world.World;
+import nex.init.NetherExParticleTypes;
 
 public interface IProxy
 {
@@ -27,5 +28,5 @@ public interface IProxy
 
     void postInit();
 
-    void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, int id);
+    void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, NetherExParticleTypes type);
 }

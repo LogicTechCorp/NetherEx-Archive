@@ -29,7 +29,7 @@ import nex.client.model.entity.ModelWight;
 @SideOnly(Side.CLIENT)
 public class RenderWight extends RenderLiving
 {
-    private static final ResourceLocation WIGHT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/wight.png");
+    private static final ResourceLocation WIGHT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/wight.png");
 
     public RenderWight(RenderManager manager)
     {

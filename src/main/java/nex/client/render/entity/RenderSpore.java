@@ -29,7 +29,7 @@ import nex.entity.monster.EntitySpore;
 @SideOnly(Side.CLIENT)
 public class RenderSpore extends RenderLiving<EntitySpore>
 {
-    private static final ResourceLocation SPORE_TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/spore.png");
+    private static final ResourceLocation SPORE_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/spore.png");
 
     public RenderSpore(RenderManager manager)
     {

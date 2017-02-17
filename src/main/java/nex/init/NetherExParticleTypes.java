@@ -23,15 +23,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.particle.ParticleSporeExplosionHuge;
 import nex.client.particle.ParticleSporeExplosionLarge;
 
-public class NetherExParticleTypes
+public enum NetherExParticleTypes
 {
-    public static final int SPORE_EXPLOSION_LARGE = 0;
-    public static final int SPORE_EXPLOSION_HUGE = 1;
+    SPORE_EXPLOSION_LARGE,
+    SPORE_EXPLOSION_HUGE;
 
     @SideOnly(Side.CLIENT)
-    public static IParticleFactory getFromID(int id)
+    public static IParticleFactory get(NetherExParticleTypes type)
     {
-        switch(id)
+        switch(type.ordinal())
         {
             default:
             case 0:

@@ -44,7 +44,7 @@ public class NetherExEffectTypes
     public static class EventHandler
     {
         @SubscribeEvent
-        public static void onRegisterBlocks(RegistryEvent.Register<PotionType> event)
+        public static void onRegisterPotionTypes(RegistryEvent.Register<PotionType> event)
         {
             LOGGER.info("Effect Type registration started.");
 

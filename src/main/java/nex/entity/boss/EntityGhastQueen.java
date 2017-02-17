@@ -27,12 +27,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import nex.entity.ai.EntityAIGhastFly;
 import nex.entity.ai.EntityAIGhastLookAround;
 import nex.entity.ai.EntityAIGhastQueenFireballAttack;
 import nex.entity.monster.EntityGhastling;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExSoundEvents;
 
 public class EntityGhastQueen extends EntityGhast
 {
@@ -48,6 +50,24 @@ public class EntityGhastQueen extends EntityGhast
         super(world);
 
         setSize(9.5F, 9.5F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return NetherExSoundEvents.GHAST_QUEEN_MOAN;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.GHAST_QUEEN_SCREAM;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.GHAST_QUEEN_DEATH;
     }
 
     @Override

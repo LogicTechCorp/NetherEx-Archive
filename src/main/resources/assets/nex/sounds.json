@@ -1,0 +1,22 @@
+{
+    "ghast_queen_moan": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/ghast_queen_moan1", "nex:mob/ghast/ghast_queen_moan2", "nex:mob/ghast/ghast_queen_moan3", "nex:mob/ghast/ghast_queen_moan4", "nex:mob/ghast/ghast_queen_moan5" ],
+        "subtitle": "subtitle.nex:sound.mob.ghastQueenMoan"
+    },
+    "ghast_queen_scream": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/ghast_queen_scream1", "nex:mob/ghast/ghast_queen_scream2", "nex:mob/ghast/ghast_queen_scream3", "nex:mob/ghast/ghast_queen_scream4", "nex:mob/ghast/ghast_queen_scream5" ],
+        "subtitle": "subtitle.nex:sound.mob.ghastQueenScream"
+    },
+    "ghast_queen_fireball": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/ghast_queen_fireball" ],
+        "subtitle": "subtitle.nex:sound.mob.ghastQueenFireball"
+    },
+    "ghast_queen_death": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/ghast_queen_death" ],
+        "subtitle": "subtitle.nex:sound.mob.ghastQueenDeath"
+    }
+}
