@@ -125,6 +125,7 @@ public class EntitySpinout extends EntityMob
         if(getCooldown() > 0)
         {
             setCooldown(getCooldown() - 1);
+            getNavigator().clearPathEntity();
         }
     }
 

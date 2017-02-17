@@ -17,24 +17,24 @@
 
 package nex.entity.monster;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.handler.ConfigHandler;
 
 public class EntityEmber extends EntityMob
 {
@@ -75,8 +75,8 @@ public class EntityEmber extends EntityMob
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAILeapAtTarget(this, 0.4F));
-        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
+        tasks.addTask(0, new EntityAILeapAtTarget(this, 0.45F));
+        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
         tasks.addTask(2, new EntityAIWander(this, 1.0D));
         tasks.addTask(3, new EntityAILookIdle(this));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
@@ -88,7 +88,7 @@ public class EntityEmber extends EntityMob
         super.applyEntityAttributes();
 
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.5D);
@@ -98,6 +98,8 @@ public class EntityEmber extends EntityMob
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
+
+        world.spawnParticle(EnumParticleTypes.FLAME, posX + (rand.nextDouble() - 0.5D) * (double) width, posY + rand.nextDouble() * (double) height, posZ + (rand.nextDouble() - 0.5D) * (double) width, 0.0D, 0.0D, 0.0D);
 
         if(jumpTicks != jumpDuration)
         {
@@ -160,6 +162,16 @@ public class EntityEmber extends EntityMob
     }
 
     @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        if(rand.nextInt(ConfigHandler.Entity.Ember.chanceOfSettingPlayerOnFire) == 0)
+        {
+            entity.setFire(4);
+        }
+        return super.attackEntityAsMob(entity);
+    }
+
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
@@ -215,8 +227,7 @@ public class EntityEmber extends EntityMob
     @Override
     public boolean getCanSpawnHere()
     {
-        Block block = world.getBlockState((new BlockPos(this)).down()).getBlock();
-        return world.getDifficulty() != EnumDifficulty.PEACEFUL && block == Blocks.MAGMA;
+        return world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override

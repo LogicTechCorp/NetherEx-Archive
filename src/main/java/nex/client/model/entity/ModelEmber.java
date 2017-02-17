@@ -26,11 +26,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelEmber extends ModelBase
 {
-    public ModelRenderer base;
-    public ModelRenderer body;
-    public ModelRenderer headBottom;
-    public ModelRenderer headMiddle;
-    public ModelRenderer headTop;
+    private ModelRenderer base;
+    private ModelRenderer body;
+    private ModelRenderer headBottom;
+    private ModelRenderer headMiddle;
+    private ModelRenderer headTop;
 
     public ModelEmber()
     {
@@ -59,12 +59,5 @@ public class ModelEmber extends ModelBase
         headBottom.render(scale);
         headMiddle.render(scale);
         headTop.render(scale);
-    }
-
-    public void setRotationAngles(ModelRenderer model, float x, float y, float z)
-    {
-        model.rotateAngleX = x;
-        model.rotateAngleY = y;
-        model.rotateAngleZ = z;
     }
 }

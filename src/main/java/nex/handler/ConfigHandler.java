@@ -136,11 +136,19 @@ public class ConfigHandler
 
     public static class Entity
     {
+        public static Ember ember = new Ember();
         public static Nethermite nethermite = new Nethermite();
         public static Spinout spinout = new Spinout();
         public static SporeCreeper spore_creeper = new SporeCreeper();
         public static Spore spore = new Spore();
         public static GhastQueen ghast_queen = new GhastQueen();
+
+        public static class Ember
+        {
+            @Config.Comment({"The higher the number the rarer it is", "The lower the number the more common it is"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int chanceOfSettingPlayerOnFire = 4;
+        }
 
         public static class Nethermite
         {
