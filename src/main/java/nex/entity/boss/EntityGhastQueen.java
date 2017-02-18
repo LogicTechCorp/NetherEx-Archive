@@ -130,7 +130,7 @@ public class EntityGhastQueen extends EntityGhast
                     }
 
                     setGhastSpawnStageStarted(getGhastSpawningStage() + 1);
-                    setCooldown(ConfigHandler.Entity.GhastQueen.attackCooldown * 20);
+                    setCooldown(ConfigHandler.Entity.GhastQueen.ghastlingSpawnCooldown * 20);
                     setGhastSpawningStage(getGhastSpawningStage() + 1);
                     setShouldSpawnGhast(false);
                 }

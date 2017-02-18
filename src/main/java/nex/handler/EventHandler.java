@@ -269,7 +269,7 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getX(), event.getY(), event.getZ());
         EntityLivingBase entity = event.getEntityLiving();
 
-        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffect.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
         if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
@@ -287,11 +287,11 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
 
-        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffect.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
         if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(canFreeze && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.PotionEffects.Freeze.chanceOfFreezing) == 0)
+            if(canFreeze && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.Biome.ArcticAbyss.chanceOfFreezing) == 0)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
@@ -311,16 +311,16 @@ public class EventHandler
                 ((EntityLiving) entity).setNoAI(true);
                 entity.setSilent(true);
 
-                if(world.rand.nextInt(ConfigHandler.PotionEffects.Freeze.chanceOfThawing) == 0)
+                if(world.rand.nextInt(ConfigHandler.PotionEffect.Freeze.chanceOfThawing) == 0)
                 {
                     entity.removePotionEffect(NetherExEffects.FREEZE);
                 }
             }
         }
 
-        boolean canSpawnSpore = entity instanceof EntityPlayer || !Arrays.asList(ConfigHandler.PotionEffects.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+        boolean canSpawnSpore = entity instanceof EntityPlayer || !Arrays.asList(ConfigHandler.PotionEffect.Spore.blacklist).contains(EntityList.getKey(entity).toString());
 
-        if(canSpawnSpore && entity.isPotionActive(NetherExEffects.SPORE) && world.rand.nextInt(ConfigHandler.PotionEffects.Spore.chanceOfSporeSpawning) == 0)
+        if(canSpawnSpore && entity.isPotionActive(NetherExEffects.SPORE) && world.rand.nextInt(ConfigHandler.PotionEffect.Spore.chanceOfSporeSpawning) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
