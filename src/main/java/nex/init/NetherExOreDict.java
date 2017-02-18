@@ -40,7 +40,7 @@ public class NetherExOreDict
         addOreDictEntry("paneGlass", new ItemStack(NetherExBlocks.BLOCK_GLASS_PANE_SOUL, 1, OreDictionary.WILDCARD_VALUE));
 
         addOreDictEntry("oreQuartz", new ItemStack(NetherExBlocks.ORE_QUARTZ, 1, OreDictionary.WILDCARD_VALUE));
-        addOreDictEntry("dyeBlack", new ItemStack(NetherExItems.ITEM_BONE_MEAL_WITHERED, 1, OreDictionary.WILDCARD_VALUE));
+        addOreDictEntry("dyeBlack", new ItemStack(NetherExItems.ITEM_DUST_WITHER, 1, OreDictionary.WILDCARD_VALUE));
 
         LOGGER.info("Ore Dictionary registration completed.");
     }

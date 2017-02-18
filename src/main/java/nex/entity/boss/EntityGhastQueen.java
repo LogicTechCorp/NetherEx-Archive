@@ -23,11 +23,14 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import nex.entity.ai.EntityAIGhastFly;
 import nex.entity.ai.EntityAIGhastLookAround;
@@ -45,11 +48,14 @@ public class EntityGhastQueen extends EntityGhast
 
     private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
 
+    private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
+
     public EntityGhastQueen(World world)
     {
         super(world);
 
         setSize(9.5F, 9.5F);
+        experienceValue = 100;
     }
 
     @Override
@@ -141,12 +147,8 @@ public class EntityGhastQueen extends EntityGhast
             tasks.removeTask(fireballAttack);
             setCooldown(getCooldown() - 1);
         }
-    }
 
-    @Override
-    public int getFireballStrength()
-    {
-        return 3;
+        bossInfo.setPercent(getHealth() / getMaxHealth());
     }
 
     @Override
@@ -167,6 +169,49 @@ public class EntityGhastQueen extends EntityGhast
         setGhastSpawningStage(compound.getInteger("GhastSpawningStage"));
         setGhastSpawnStageStarted(compound.getInteger("GhastSpawnStageStarted"));
         setShouldSpawnGhast(compound.getBoolean("SpawnGhast"));
+
+        if(hasCustomName())
+        {
+            bossInfo.setName(getDisplayName());
+        }
+    }
+
+    @Override
+    public boolean isNonBoss()
+    {
+        return false;
+    }
+
+    @Override
+    public int getFireballStrength()
+    {
+        return 3;
+    }
+
+    @Override
+    protected void despawnEntity()
+    {
+    }
+
+    @Override
+    public void addTrackingPlayer(EntityPlayerMP player)
+    {
+        super.addTrackingPlayer(player);
+        bossInfo.addPlayer(player);
+    }
+
+    @Override
+    public void removeTrackingPlayer(EntityPlayerMP player)
+    {
+        super.removeTrackingPlayer(player);
+        bossInfo.removePlayer(player);
+    }
+
+    @Override
+    public void setCustomNameTag(String name)
+    {
+        super.setCustomNameTag(name);
+        bossInfo.setName(getDisplayName());
     }
 
     @Override

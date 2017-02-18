@@ -20,6 +20,8 @@ package nex.handler;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -44,6 +46,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.*;
@@ -55,6 +58,8 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.block.BlockNetherrackPath;
 import nex.block.BlockTilledSoulSand;
 import nex.entity.item.EntityObsidianBoat;
@@ -87,6 +92,20 @@ public class EventHandler
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void onMouse(MouseEvent event)
+    {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+
+        if(player.isPotionActive(NetherExEffects.FREEZE))
+        {
+            KeyBinding.unPressAllKeys();
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public static void onRenderBlockOverlay(RenderBlockOverlayEvent event)
     {
         RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
@@ -160,7 +179,7 @@ public class EventHandler
         IBlockState state = event.getBlock();
         EntityPlayer player = event.getEntityPlayer();
 
-        if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() == NetherExItems.ITEM_BONE_MEAL_WITHERED)
+        if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() == NetherExItems.ITEM_DUST_WITHER)
         {
             if(state.getBlock() == Blocks.NETHER_WART)
             {
@@ -318,6 +337,11 @@ public class EventHandler
             }
         }
 
+        if(entity instanceof EntityPlayer && entity.isPotionActive(NetherExEffects.FREEZE))
+        {
+            entity.setPosition(entity.prevPosX, entity.prevPosY, entity.prevPosZ);
+        }
+
         boolean canSpawnSpore = entity instanceof EntityPlayer || !Arrays.asList(ConfigHandler.PotionEffect.Spore.blacklist).contains(EntityList.getKey(entity).toString());
 
         if(canSpawnSpore && entity.isPotionActive(NetherExEffects.SPORE) && world.rand.nextInt(ConfigHandler.PotionEffect.Spore.chanceOfSporeSpawning) == 0)
@@ -444,7 +468,7 @@ public class EventHandler
                 }
             }
 
-            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHERED, rand.nextInt(4), 0)));
+            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHER, rand.nextInt(4), 0)));
         }
     }
 }

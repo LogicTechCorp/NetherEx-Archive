@@ -75,7 +75,7 @@ public class NetherExRecipes
 
         addSmelting(new ItemStack(BLOCK_GLASS_SOUL, 1, 0), new ItemStack(SOUL_SAND, 1, 0), 0.5F);
         addPaneRecipe(new ItemStack(BLOCK_GLASS_PANE_SOUL, 16, 0), new ItemStack(BLOCK_GLASS_SOUL, 1, 0));
-        add3x3Recipe(new ItemStack(BLOCK_RIME, 1, 0), new ItemStack(ITEM_GEM_RIME, 1, 0));
+        add3x3Recipe(new ItemStack(BLOCK_RIME, 1, 0), new ItemStack(ITEM_CRYSTAL_RIME, 1, 0));
 
         addSlabRecipe(new ItemStack(SLAB_VANILLA, 6, 0), new ItemStack(RED_NETHER_BRICK, 1, 0));
 
@@ -111,23 +111,23 @@ public class NetherExRecipes
         addFenceRecipe(new ItemStack(FENCE_BRICK_NETHER, 4, 2), new ItemStack(FENCE_GATE_BRICK_NETHER_LIVELY, 4, 0), new ItemStack(BLOCK_BRICK_NETHER, 1, 2), new ItemStack(SLAB_BRICK_NETHER, 1, 2));
         addFenceRecipe(new ItemStack(FENCE_BRICK_NETHER, 4, 3), new ItemStack(FENCE_GATE_BRICK_NETHER_GLOOMY, 4, 0), new ItemStack(BLOCK_BRICK_NETHER, 1, 3), new ItemStack(SLAB_BRICK_NETHER, 1, 3));
 
-        add1x1Recipe(new ItemStack(ITEM_BONE_MEAL_WITHERED, 3, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        add1x1Recipe(new ItemStack(ITEM_GEM_RIME, 9, 0), new ItemStack(BLOCK_RIME, 1, 0));
+        add1x1Recipe(new ItemStack(ITEM_DUST_WITHER, 3, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        add1x1Recipe(new ItemStack(ITEM_CRYSTAL_RIME, 9, 0), new ItemStack(BLOCK_RIME, 1, 0));
         addBoatRecipe(new ItemStack(ITEM_BOAT_OBSIDIAN, 1, 0), new ItemStack(OBSIDIAN, 1, 0));
 
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(MAGMA_CREAM, 1, 0), 0.5F);
 
-        addSwordRecipe(new ItemStack(TOOL_SWORD_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addPickaxeRecipe(new ItemStack(TOOL_PICKAXE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addShovelRecipe(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addAxeRecipe(new ItemStack(TOOL_AXE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addHoeRecipe(new ItemStack(TOOL_HOE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addSwordRecipe(new ItemStack(TOOL_SWORD_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addPickaxeRecipe(new ItemStack(TOOL_PICKAXE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addAxeRecipe(new ItemStack(TOOL_AXE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addHoeRecipe(new ItemStack(TOOL_HOE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
 
-        addHelmetRecipe(new ItemStack(ARMOR_HELMET_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addChestplateRecipe(new ItemStack(ARMOR_CHESTPLATE_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addLeggingsRecipe(new ItemStack(ARMOR_LEGGINGS_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
-        addBootsRecipe(new ItemStack(ARMOR_BOOTS_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHERED, 1, 0));
+        addHelmetRecipe(new ItemStack(ARMOR_HELMET_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addChestplateRecipe(new ItemStack(ARMOR_CHESTPLATE_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addLeggingsRecipe(new ItemStack(ARMOR_LEGGINGS_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addBootsRecipe(new ItemStack(ARMOR_BOOTS_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addHelmetRecipe(new ItemStack(ARMOR_HELMET_HIDE_SALAMANDER, 1, 0), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 0));
         addChestplateRecipe(new ItemStack(ARMOR_CHESTPLATE_HIDE_SALAMANDER, 1, 0), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 0));
         addLeggingsRecipe(new ItemStack(ARMOR_LEGGINGS_HIDE_SALAMANDER, 1, 0), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 0));
@@ -137,7 +137,7 @@ public class NetherExRecipes
         addLeggingsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_LEGGINGS_HIDE_SALAMANDER, 1, 0), variant), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
         addBootsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_BOOTS_HIDE_SALAMANDER, 1, 0), variant), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
 
-        addBrewing(AWKWARD, ITEM_GEM_RIME, NORMAL_FREEZE);
+        addBrewing(AWKWARD, ITEM_CRYSTAL_RIME, NORMAL_FREEZE);
 
         LOGGER.info("Recipe registration completed.");
     }

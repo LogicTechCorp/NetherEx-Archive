@@ -43,7 +43,7 @@ public class BlockRimeOre extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NetherExItems.ITEM_GEM_RIME;
+        return NetherExItems.ITEM_CRYSTAL_RIME;
     }
 
     @Override

@@ -39,7 +39,6 @@ import java.util.Optional;
 @Config(modid = NetherEx.MOD_ID, name = "NetherEx")
 public class ConfigHandler
 {
-
     private static Configuration config;
     public static Client client = new Client();
     public static Dimension dimension = new Dimension();
@@ -105,7 +104,11 @@ public class ConfigHandler
             public static boolean canDestroyItems = false;
 
             @Config.Comment("Mobs the Thornstalk shouldn't hurt")
-            public static String[] blacklist = new String[]{"minecraft:wither_skeleton", "minecraft:zombie_pigman", "nex:monster_spinout"};
+            public static String[] blacklist = new String[]{
+                    "minecraft:wither_skeleton",
+                    "minecraft:zombie_pigman",
+                    "nex:monster_spinout"
+            };
         }
 
         public static class Hyphae
@@ -127,7 +130,13 @@ public class ConfigHandler
             public static int chanceOfThawing = 1024;
 
             @Config.Comment("Mobs that shouldn't freeze")
-            public static String[] blacklist = new String[]{"minecraft:blaze", "minecraft:polar_bear", "nex:monster_wight", "nex:monster_ember", "nex:monster_spinout"};
+            public static String[] blacklist = new String[]{
+                    "minecraft:blaze",
+                    "minecraft:polar_bear",
+                    "nex:monster_wight",
+                    "nex:monster_ember",
+                    "nex:monster_spinout"
+            };
         }
 
         public static class Spore
@@ -137,7 +146,11 @@ public class ConfigHandler
             public static int chanceOfSporeSpawning = 128;
 
             @Config.Comment("Mobs that shouldn't spawn Spores")
-            public static String[] blacklist = new String[]{"nex:monster_spore_creeper", "nex:monster_spore", "nex:neutral_mogus"};
+            public static String[] blacklist = new String[]{
+                    "nex:monster_spore_creeper",
+                    "nex:monster_spore",
+                    "nex:neutral_mogus"
+            };
         }
     }
 
@@ -160,11 +173,46 @@ public class ConfigHandler
         public static class Nethermite
         {
             @Config.Comment({"The higher the number, the rarer it is for a Nethermite to spawn", "The lower the number, the more common it is for a Nethermite to spawn"})
-            @Config.RangeInt(min = 1, max = 64)
-            public static int chanceOfSpawning = 24;
+            @Config.RangeInt(min = 1, max = 128)
+            public static int chanceOfSpawning = 64;
 
             @Config.Comment("Blocks the Nethermite should spawn from")
-            public static String[] whitelist = new String[]{"minecraft:netherrack", "nex:block_netherrack"};
+            public static String[] whitelist = new String[]{
+                    "minecraft:quartz_ore",
+                    "nex:ore_quartz",
+                    "tconstruct:ore",
+                    "nethermetals:nether_coal_ore",
+                    "nethermetals:nether_redstone_ore",
+                    "nethermetals:nether_diamond_ore",
+                    "nethermetals:nether_emerald_ore",
+                    "nethermetals:nether_gold_ore",
+                    "nethermetals:nether_iron_ore",
+                    "nethermetals:nether_lapis_ore",
+                    "nethermetals:nether_antimony_ore",
+                    "nethermetals:nether_bismuth_ore",
+                    "nethermetals:nether_copper_ore",
+                    "nethermetals:nether_lead_ore",
+                    "nethermetals:nether_mercury_ore",
+                    "nethermetals:nether_nickel_ore",
+                    "nethermetals:nether_platnium_ore",
+                    "nethermetals:nether_silver_ore",
+                    "nethermetals:nether_tin_ore",
+                    "nethermetals:nether_zinc_ore",
+                    "nethermetals:nether_aluminum_ore",
+                    "nethermetals:nether_cadmium_ore",
+                    "nethermetals:nether_chromium_ore",
+                    "nethermetals:nether_iridium_ore",
+                    "nethermetals:nether_magnesium_ore",
+                    "nethermetals:nether_magnanese_ore",
+                    "nethermetals:nether_osmium_ore",
+                    "nethermetals:nether_plutonium_ore",
+                    "nethermetals:nether_rutile_ore",
+                    "nethermetals:nether_tantalum_ore",
+                    "nethermetals:nether_titanium_ore",
+                    "nethermetals:nether_tungsten_ore",
+                    "nethermetals:nether_uramium_ore",
+                    "nethermetals:nether_zirconium_ore"
+            };
         }
 
         public static class Spinout

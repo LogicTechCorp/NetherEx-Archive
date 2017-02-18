@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "nex:items/item_gem_rime"
+        "layer0": "nex:items/item_dust_wither"
     }
 }

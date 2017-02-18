@@ -59,7 +59,6 @@ public class EntitySporeCreeper extends EntityMob
 
         setSize(0.6F, 1.7F);
         stepHeight = 0.5F;
-        isImmuneToFire = true;
     }
 
     @Override

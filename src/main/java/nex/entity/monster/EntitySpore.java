@@ -41,7 +41,6 @@ public class EntitySpore extends EntityMob
         super(world);
 
         setSize(0.65F, 0.75F);
-        isImmuneToFire = true;
         setRandomStage();
     }
 

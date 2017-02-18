@@ -19,15 +19,19 @@ package nex.entity.monster;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import nex.init.NetherExEffects;
 
 @SuppressWarnings("ConstantConditions")
 public class EntityWight extends EntityMob
@@ -38,7 +42,6 @@ public class EntityWight extends EntityMob
 
         setSize(0.55F, 1.5F);
         stepHeight = 0.5F;
-        isImmuneToFire = true;
     }
 
     @Override
@@ -60,6 +63,30 @@ public class EntityWight extends EntityMob
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+    }
+
+    @Override
+    public void onUpdate()
+    {
+        super.onUpdate();
+
+        if(getAttackTarget() != null)
+        {
+            if(getAttackTarget().isPotionActive(NetherExEffects.FREEZE))
+            {
+                setAttackTarget(null);
+            }
+        }
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        if(entity instanceof EntityLivingBase && !((EntityLivingBase) entity).isPotionActive(NetherExEffects.FREEZE))
+        {
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+        }
+        return super.attackEntityAsMob(entity);
     }
 
     @Override

@@ -36,17 +36,17 @@ public class NetherExItems
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_brick_nether")
     public static final ItemNetherBrick ITEM_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_withered")
-    public static final ItemNetherEx ITEM_BONE_WITHERED = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_wither")
+    public static final ItemNetherEx ITEM_BONE_WITHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_bone_meal_withered")
-    public static final ItemWitheredBoneMeal ITEM_BONE_MEAL_WITHERED = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_dust_wither")
+    public static final ItemWitherDust ITEM_DUST_WITHER = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_hide_salamander")
     public static final ItemSalamanderHide ITEM_HIDE_SALAMANDER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_gem_rime")
-    public static final ItemNetherEx ITEM_GEM_RIME = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_crystal_rime")
+    public static final ItemNetherEx ITEM_CRYSTAL_RIME = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":item_boat_obsidian")
     public static final ItemObsidianBoat ITEM_BOAT_OBSIDIAN = null;
@@ -114,10 +114,10 @@ public class NetherExItems
 
             event.getRegistry().registerAll(
                     new ItemNetherBrick(),
-                    new ItemNetherEx("item_bone_withered"),
-                    new ItemWitheredBoneMeal(),
+                    new ItemNetherEx("item_bone_wither"),
+                    new ItemWitherDust(),
                     new ItemSalamanderHide(),
-                    new ItemNetherEx("item_gem_rime"),
+                    new ItemNetherEx("item_crystal_rime"),
                     new ItemObsidianBoat(),
                     new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
                     new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),

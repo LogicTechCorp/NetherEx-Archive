@@ -42,7 +42,7 @@ public class EntitySpinout extends EntityMob
     private static final DataParameter<Boolean> SPINNING = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.BOOLEAN);
 
     private final EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
-    private final EntityAIBase wander = new EntityAIWander(this, 1.0D);
+    private final EntityAIBase wander = new EntityAIWander(this, 1.0D, 1);
 
     public EntitySpinout(World world)
     {
@@ -90,26 +90,15 @@ public class EntitySpinout extends EntityMob
             motionZ /= 0.4D;
         }
 
-        if(isSpinning())
+        if(getCooldown() == 0)
         {
+            setCounter(getCounter() + 1);
+
             if(tasks.taskEntries.size() == 1)
             {
                 tasks.addTask(1, attackMelee);
                 tasks.addTask(2, wander);
             }
-        }
-        else
-        {
-            if(tasks.taskEntries.size() == 4)
-            {
-                tasks.removeTask(attackMelee);
-                tasks.removeTask(wander);
-            }
-        }
-
-        if(getCooldown() == 0)
-        {
-            setCounter(getCounter() + 1);
 
             if(!isSpinning())
             {
@@ -125,6 +114,13 @@ public class EntitySpinout extends EntityMob
         if(getCooldown() > 0)
         {
             setCooldown(getCooldown() - 1);
+
+            if(tasks.taskEntries.size() == 3)
+            {
+                tasks.removeTask(attackMelee);
+                tasks.removeTask(wander);
+            }
+
             getNavigator().clearPathEntity();
         }
     }

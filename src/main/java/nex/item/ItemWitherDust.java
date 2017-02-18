@@ -28,11 +28,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
-public class ItemWitheredBoneMeal extends ItemNetherEx
+public class ItemWitherDust extends ItemNetherEx
 {
-    public ItemWitheredBoneMeal()
+    public ItemWitherDust()
     {
-        super("item_bone_meal_withered");
+        super("item_dust_wither");
     }
 
     @Override

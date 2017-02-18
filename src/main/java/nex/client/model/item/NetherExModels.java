@@ -165,15 +165,15 @@ public class NetherExModels
         registerModel(FENCE_GATE_BRICK_NETHER_LIVELY, "normal");
         registerModel(FENCE_GATE_BRICK_NETHER_GLOOMY, "normal");
 
-        registerModel(ITEM_BONE_WITHERED, "normal");
-        registerModel(ITEM_BONE_MEAL_WITHERED, "normal");
+        registerModel(ITEM_BONE_WITHER, "normal");
+        registerModel(ITEM_DUST_WITHER, "normal");
 
         for(ItemSalamanderHide.EnumType type : ItemSalamanderHide.EnumType.values())
         {
             registerModel(ITEM_HIDE_SALAMANDER, type.ordinal(), ITEM_HIDE_SALAMANDER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
-        registerModel(ITEM_GEM_RIME, "normal");
+        registerModel(ITEM_CRYSTAL_RIME, "normal");
         registerModel(ITEM_BOAT_OBSIDIAN, "normal");
 
         registerModel(FOOD_MEAT_GHAST_RAW, "normal");

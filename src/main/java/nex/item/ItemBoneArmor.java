@@ -33,6 +33,6 @@ public class ItemBoneArmor extends ItemNetherExArmor
     @Override
     public boolean getIsRepairable(ItemStack armor, ItemStack repair)
     {
-        return repair.getItem() == NetherExItems.ITEM_BONE_WITHERED;
+        return repair.getItem() == NetherExItems.ITEM_BONE_WITHER;
     }
 }
