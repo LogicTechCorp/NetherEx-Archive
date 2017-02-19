@@ -24,13 +24,9 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
@@ -76,12 +72,6 @@ public class BlockVanillaSlab extends BlockNetherExSlab
     }
 
     @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-    {
-        return new ItemStack(NetherExBlocks.SLAB_VANILLA, 1, damageDropped(state));
-    }
-
-    @Override
     public Comparable<?> getTypeForItem(ItemStack stack)
     {
         return BlockVanilla.EnumTypeSlab.fromMeta(stack.getMetadata() & 7);
@@ -96,12 +86,11 @@ public class BlockVanillaSlab extends BlockNetherExSlab
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState state = getDefaultState();
-        state = state.withProperty(TYPE, BlockVanilla.EnumTypeSlab.fromMeta(meta & 7));
+        IBlockState state = getDefaultState().withProperty(TYPE, BlockVanilla.EnumTypeSlab.fromMeta(meta & 7));
 
         if(!isDouble())
         {
-            state = state.withProperty(HALF, (meta & 8) == 8 ? EnumBlockHalf.BOTTOM : EnumBlockHalf.TOP);
+            state = state.withProperty(HALF, (meta & 8) == 0 ? EnumBlockHalf.BOTTOM : EnumBlockHalf.TOP);
         }
 
         return state;
