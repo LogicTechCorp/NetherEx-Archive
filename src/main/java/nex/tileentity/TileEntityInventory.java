@@ -21,7 +21,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -41,7 +40,7 @@ public class TileEntityInventory extends TileEntity
     public TileEntityInventory(int size)
     {
         inventory = new ItemStackHandler(size);
-        rand =  new Random();
+        rand = new Random();
     }
 
     @Override
@@ -91,7 +90,7 @@ public class TileEntityInventory extends TileEntity
         {
             ItemStack stack = inventory.getStackInSlot(i);
 
-            if (!stack.isEmpty())
+            if(!stack.isEmpty())
             {
                 spawnItemStack(world, pos, stack);
             }
@@ -104,13 +103,13 @@ public class TileEntityInventory extends TileEntity
         double offsetY = rand.nextFloat() * 0.8F + 0.1F;
         double offsetZ = rand.nextFloat() * 0.8F + 0.1F;
 
-        while (!stack.isEmpty())
+        while(!stack.isEmpty())
         {
-            EntityItem item = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack.splitStack(rand.nextInt(21) + 10));
-            item.motionX = rand.nextGaussian() * 0.05000000074505806D;
-            item.motionY = rand.nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
-            item.motionZ = rand.nextGaussian() * 0.05000000074505806D;
-            world.spawnEntity(item);
+            EntityItem entityItem = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack.splitStack(rand.nextInt(21) + 10));
+            entityItem.motionX = rand.nextGaussian() * 0.05000000074505806D;
+            entityItem.motionY = rand.nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
+            entityItem.motionZ = rand.nextGaussian() * 0.05000000074505806D;
+            world.spawnEntity(entityItem);
         }
     }
 

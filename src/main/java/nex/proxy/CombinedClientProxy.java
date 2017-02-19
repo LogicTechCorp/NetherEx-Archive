@@ -19,10 +19,12 @@ package nex.proxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.render.entity.*;
+import nex.client.render.tileentity.RenderSummoningAltar;
 import nex.entity.boss.EntityGhastQueen;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.*;
@@ -31,6 +33,7 @@ import nex.entity.neutral.EntitySalamander;
 import nex.entity.projectile.EntityGhastQueenFireball;
 import nex.entity.projectile.EntityGhastlingFireball;
 import nex.init.NetherExParticleTypes;
+import nex.tileentity.TileEntitySummoningAltar;
 
 @SideOnly(Side.CLIENT)
 public class CombinedClientProxy implements IProxy
@@ -38,6 +41,8 @@ public class CombinedClientProxy implements IProxy
     @Override
     public void preInit()
     {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySummoningAltar.class, new RenderSummoningAltar());
+
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueenFireball.class, RenderGhastQueenFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastlingFireball.class, RenderGhastlingFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
