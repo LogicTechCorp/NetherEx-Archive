@@ -47,7 +47,6 @@ public class EntityMogus extends EntityMob
 
         setSize(0.35F, 0.45F);
         stepHeight = 0.5F;
-        isImmuneToFire = true;
 
         setRandomType();
     }
