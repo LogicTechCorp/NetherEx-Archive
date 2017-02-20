@@ -17,9 +17,37 @@
 
 package nex.client.render.tileentity;
 
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.client.model.animation.FastTESR;
 import nex.tileentity.TileEntitySummoningAltar;
 
-public class RenderSummoningAltar extends TileEntitySpecialRenderer<TileEntitySummoningAltar>
+import java.util.List;
+
+public class RenderSummoningAltar extends FastTESR<TileEntitySummoningAltar>
 {
+    @Override
+    public void renderTileEntityFast(TileEntitySummoningAltar altar, double x, double y, double z, float partialTicks, int destroyStage, VertexBuffer vertexRenderer)
+    {
+        ItemStack stack = altar.getInventory().getStackInSlot(0);
+
+        if(!stack.isEmpty())
+        {
+            World world = altar.getWorld();
+            float time = (world.getTotalWorldTime() + partialTicks) / 20;
+
+            IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, world, null);
+            List<BakedQuad> quads = model.getQuads(null, null, 0L);
+
+            for(BakedQuad quad : quads)
+            {
+                vertexRenderer.addVertexData(quad.getVertexData());
+                vertexRenderer.putPosition(x, y + 1, z);
+            }
+        }
+    }
 }
