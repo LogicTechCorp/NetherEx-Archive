@@ -43,27 +43,27 @@ public class WorldGenElderMushroom extends WorldGenerator
     private final boolean isWorldGen;
 
     public static List<WeightedUtil.NamedItem> brownVariants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("brown_tiny", 6),
-            new WeightedUtil.NamedItem("brown_tiny_variant", 6),
-            new WeightedUtil.NamedItem("brown_small", 5),
-            new WeightedUtil.NamedItem("brown_small_variant", 5),
-            new WeightedUtil.NamedItem("brown_medium", 4),
-            new WeightedUtil.NamedItem("brown_medium_variant", 4),
-            new WeightedUtil.NamedItem("brown_large", 3),
-            new WeightedUtil.NamedItem("brown_huge", 2),
-            new WeightedUtil.NamedItem("brown_gigantic", 1)
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_tiny", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_tiny_variant", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_small", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_small_variant", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_medium", 4),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_medium_variant", 4),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_large", 3),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_huge", 2),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_gigantic", 1)
     );
 
     public static List<WeightedUtil.NamedItem> redVariants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("red_tiny", 6),
-            new WeightedUtil.NamedItem("red_tiny_variant", 6),
-            new WeightedUtil.NamedItem("red_small", 5),
-            new WeightedUtil.NamedItem("red_small_variant", 5),
-            new WeightedUtil.NamedItem("red_small_variant_2", 5),
-            new WeightedUtil.NamedItem("red_medium", 4),
-            new WeightedUtil.NamedItem("red_large", 3),
-            new WeightedUtil.NamedItem("red_huge", 2),
-            new WeightedUtil.NamedItem("red_gigantic", 1)
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_tiny", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_tiny_variant", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_small", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_small_variant", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_small_variant_2", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_medium", 4),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_large", 3),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_huge", 2),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_gigantic", 1)
     );
 
     public WorldGenElderMushroom(List<WeightedUtil.NamedItem> variantsIn, boolean isWorldGenIn)
@@ -99,7 +99,7 @@ public class WorldGenElderMushroom extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants, "plant_mushroom_elder_"));
+        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants));
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
         float airAmount = 0;

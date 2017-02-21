@@ -19,6 +19,7 @@ package nex.entity.monster;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAreaEffectCloud;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -32,6 +33,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.Explosion;
@@ -39,10 +41,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.ai.EntityAISporeCreeperSwell;
+import nex.init.NetherExItems;
 import nex.world.ExplosionSpore;
 
 import java.util.Collection;
 
+@SuppressWarnings("ConstantConditions")
 public class EntitySporeCreeper extends EntityMob
 {
     private static final DataParameter<Integer> STATE = EntityDataManager.createKey(EntitySporeCreeper.class, DataSerializers.VARINT);
@@ -173,6 +177,19 @@ public class EntitySporeCreeper extends EntityMob
         }
 
         super.onUpdate();
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        if(source.getEntity() != null && source.getEntity() instanceof EntityLivingBase)
+        {
+            if(((EntityLivingBase) source.getEntity()).getHeldItemMainhand().getItem() == NetherExItems.TOOL_SWORD_BONE)
+            {
+                amount *= 2.0F;
+            }
+        }
+        return super.attackEntityFrom(source, amount);
     }
 
     @Override

@@ -26,10 +26,10 @@ import java.util.Random;
 
 public class WeightedUtil
 {
-    public static ResourceLocation getRandomStructure(Random rand, List<NamedItem> variants, String addon)
+    public static ResourceLocation getRandomStructure(Random rand, List<NamedItem> variants)
     {
         WeightedUtil.NamedItem randomItem = WeightedRandom.getRandomItem(rand, variants);
-        return new ResourceLocation(NetherEx.MOD_ID + ":" + addon + randomItem.name);
+        return new ResourceLocation(NetherEx.MOD_ID + ":" + randomItem.name);
     }
 
     public static class NamedItem extends WeightedRandom.Item

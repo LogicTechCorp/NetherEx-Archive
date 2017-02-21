@@ -18,11 +18,10 @@
 package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,20 +37,32 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class WorldGenHellGrave extends WorldGenerator
+public class WorldGenStructure extends WorldGenerator
 {
-    private List<WeightedUtil.NamedItem> variants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("single_empty", 4),
-            new WeightedUtil.NamedItem("single_chest", 3),
-            new WeightedUtil.NamedItem("single_fancy", 2),
-            new WeightedUtil.NamedItem("group_basic", 1)
-    );
+    private final Set<IBlockState> allowedBlocks;
+    private final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
+    private final ResourceLocation spawnerMob;
+    private final boolean hasChest;
 
-    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
-            Blocks.NETHERRACK.getDefaultState(),
-            Blocks.QUARTZ_ORE.getDefaultState(),
-            Blocks.MAGMA.getDefaultState()
-    );
+    public WorldGenStructure(String biomeName, String structureName, String[] variantsIn, Set<IBlockState> allowedBlocksIn, ResourceLocation spawnerMobIn, boolean hasChestIn)
+    {
+        allowedBlocks = allowedBlocksIn;
+
+        if(variantsIn.length > 1)
+        {
+            for(int i = 0; i < variantsIn.length; i++)
+            {
+                variants.add(new WeightedUtil.NamedItem(structureName + "_" + biomeName + "_" + variantsIn[i], i + 1));
+            }
+        }
+        else
+        {
+            variants.add(new WeightedUtil.NamedItem(structureName + "_" + biomeName, 1));
+        }
+
+        spawnerMob = spawnerMobIn;
+        hasChest = hasChestIn;
+    }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
@@ -64,9 +75,9 @@ public class WorldGenHellGrave extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants, "grave_hell_"));
+        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants));
 
-        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR).setRandom(rand);
+        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 0.8F);
@@ -74,7 +85,16 @@ public class WorldGenHellGrave extends WorldGenerator
         if(spawnPos != BlockPos.ORIGIN)
         {
             template.addBlocksToWorld(world, spawnPos.down(), settings.copy(), 3);
-            WorldGenUtil.setChestContents(world, rand, spawnPos.down(), structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
+
+            if(spawnerMob != null)
+            {
+                WorldGenUtil.setSpawnerMob(world, spawnPos.down(), structureSize, spawnerMob);
+            }
+            if(hasChest)
+            {
+                WorldGenUtil.setChestContents(world, rand, spawnPos.down(), structureSize, LootTableList.CHESTS_NETHER_BRIDGE);
+            }
+
             return true;
         }
         return false;

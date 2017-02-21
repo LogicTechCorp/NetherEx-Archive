@@ -17,9 +17,12 @@
 
 package nex.world.biome;
 
+import com.google.common.collect.Sets;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -30,13 +33,19 @@ import nex.entity.monster.EntityEmber;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 import nex.world.gen.feature.*;
-import nex.world.gen.structure.WorldGenHellGrave;
-import nex.world.gen.structure.WorldGenHellVillage;
+import nex.world.gen.structure.WorldGenStructure;
 
 import java.util.Random;
+import java.util.Set;
 
 public class BiomeHell extends BiomeNetherEx
 {
+    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
+            Blocks.NETHERRACK.getDefaultState(),
+            Blocks.QUARTZ_ORE.getDefaultState(),
+            Blocks.MAGMA.getDefaultState()
+    );
+
     private WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
     private WorldGenerator fire = new WorldGenFire(Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
@@ -46,8 +55,12 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator quartzOre = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
-    private WorldGenerator village = new WorldGenHellVillage();
-    private WorldGenerator grave = new WorldGenHellGrave();
+    private WorldGenerator crypt = new WorldGenStructure("hell", "crypt", new String[]{""}, allowedBlocks, null, true);
+    private WorldGenerator grave = new WorldGenStructure("hell", "grave", new String[]{"chest", "empty"}, allowedBlocks, null, true);
+    private WorldGenerator graveyard = new WorldGenStructure("hell", "graveyard", new String[]{""}, allowedBlocks, new ResourceLocation("zombie_pigman"), true);
+    private WorldGenerator sarcophagus = new WorldGenStructure("hell", "sarcophagus", new String[]{""}, allowedBlocks, new ResourceLocation("magma_cube"), true);
+    private WorldGenerator mausoleum = new WorldGenStructure("hell", "mausoleum", new String[]{""}, allowedBlocks, new ResourceLocation("blaze"), true);
+    private WorldGenerator prison = new WorldGenStructure("prison", "mausoleum", new String[]{""}, allowedBlocks, new ResourceLocation("magma_cube"), true);
 
     public BiomeHell()
     {
@@ -150,11 +163,11 @@ public class BiomeHell extends BiomeNetherEx
             }
         }
 
-        if(ConfigHandler.Biome.Hell.generateVillages)
+        if(ConfigHandler.Biome.Hell.generateCrypts)
         {
-            if(rand.nextInt(ConfigHandler.Biome.Hell.villageRarity) == 0)
+            if(rand.nextInt(ConfigHandler.Biome.Hell.cryptRarity) == 0)
             {
-                village.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                crypt.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
@@ -163,6 +176,38 @@ public class BiomeHell extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.Hell.graveRarity) == 0)
             {
                 grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.Hell.generateGraveyards)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.Hell.graveyardRarity) == 0)
+            {
+                graveyard.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.Hell.generateSarcophagus)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.Hell.sarcophagusRarity) == 0)
+            {
+                sarcophagus.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.Hell.generateMausoleums)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.Hell.mausoleumRarity) == 0)
+            {
+                mausoleum.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.Hell.generatePrisons)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.Hell.prisonRarity) == 0)
+            {
+                prison.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

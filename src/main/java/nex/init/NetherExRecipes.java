@@ -36,8 +36,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static net.minecraft.init.Blocks.*;
-import static net.minecraft.init.Items.GOLD_INGOT;
-import static net.minecraft.init.Items.MAGMA_CREAM;
+import static net.minecraft.init.Items.*;
 import static net.minecraft.init.PotionTypes.AWKWARD;
 import static nex.init.NetherExBlocks.*;
 import static nex.init.NetherExEffectTypes.NORMAL_FREEZE;
@@ -100,7 +99,7 @@ public class NetherExRecipes
         addWallRecipe(new ItemStack(WALL_VANILLA, 6, 2), new ItemStack(RED_NETHER_BRICK, 1, 0));
 
         addFenceRecipe(new ItemStack(FENCE_VANILLA, 4, 0), new ItemStack(FENCE_GATE_QUARTZ, 4, 0), new ItemStack(QUARTZ_BLOCK, 1, 0), new ItemStack(STONE_SLAB, 1, 7));
-        addFenceRecipe(new ItemStack(NETHER_BRICK_FENCE, 4, 0), new ItemStack(FENCE_GATE_BRICK_NETHER, 4, 0), new ItemStack(NETHER_BRICK, 1, 0), new ItemStack(STONE_SLAB, 6, 0));
+        addFenceRecipe(new ItemStack(NETHER_BRICK_FENCE, 4, 0), new ItemStack(FENCE_GATE_BRICK_NETHER, 4, 0), new ItemStack(NETHER_BRICK, 1, 0), new ItemStack(STONE_SLAB, 1, 6));
         addFenceRecipe(new ItemStack(FENCE_VANILLA, 4, 1), new ItemStack(FENCE_GATE_RED_BRICK_NETHER, 4, 0), new ItemStack(RED_NETHER_BRICK, 1, 0), new ItemStack(SLAB_VANILLA, 1, 0));
         addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 0), new ItemStack(FENCE_GATE_BASALT, 4, 0), new ItemStack(BLOCK_BASALT, 1, 0), new ItemStack(SLAB_BASALT, 1, 0));
         addFenceRecipe(new ItemStack(FENCE_BASALT, 4, 1), new ItemStack(FENCE_GATE_BASALT_SMOOTH, 4, 0), new ItemStack(BLOCK_BASALT, 1, 1), new ItemStack(SLAB_BASALT, 1, 1));
@@ -123,6 +122,11 @@ public class NetherExRecipes
         addShovelRecipe(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addAxeRecipe(new ItemStack(TOOL_AXE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addHoeRecipe(new ItemStack(TOOL_HOE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_SWORD_BONE, 1, 0), new ItemStack(GOLDEN_SWORD, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_PICKAXE_BONE, 1, 0), new ItemStack(GOLDEN_PICKAXE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), new ItemStack(GOLDEN_SHOVEL, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_AXE_BONE, 1, 0), new ItemStack(GOLDEN_AXE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addShovelRecipe(new ItemStack(TOOL_HOE_BONE, 1, 0), new ItemStack(GOLDEN_HOE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
 
         addHelmetRecipe(new ItemStack(ARMOR_HELMET_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addChestplateRecipe(new ItemStack(ARMOR_CHESTPLATE_BONE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));

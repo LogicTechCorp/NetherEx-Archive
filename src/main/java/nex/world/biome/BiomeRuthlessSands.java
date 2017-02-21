@@ -17,10 +17,13 @@
 
 package nex.world.biome;
 
+import com.google.common.collect.Sets;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -28,6 +31,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.block.BlockNetherrack;
+import nex.block.BlockThornstalk;
 import nex.entity.monster.EntitySpinout;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
@@ -36,20 +40,35 @@ import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenLava;
 import nex.world.gen.feature.WorldGenMinableMeta;
 import nex.world.gen.feature.WorldGenThornstalk;
-import nex.world.gen.structure.WorldGenAncientAltar;
+import nex.world.gen.structure.WorldGenStructure;
 
 import java.util.Random;
+import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
+    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
+            Blocks.SOUL_SAND.getDefaultState(),
+            NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY),
+            NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY),
+            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.TOP),
+            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.MIDDLE),
+            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.BOTTOM)
+    );
+
     private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), false);
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY));
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
-    private WorldGenerator ancientAltar = new WorldGenAncientAltar();
+    private WorldGenerator crypt = new WorldGenStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, null, true);
+    private WorldGenerator grave = new WorldGenStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, null, true);
+    private WorldGenerator graveyard = new WorldGenStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new ResourceLocation("wither_skeleton"), true);
+    private WorldGenerator sarcophagus = new WorldGenStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new ResourceLocation("wither_skeleton"), true);
+    private WorldGenerator altar = new WorldGenStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, null, false);
+    private WorldGenerator throne = new WorldGenStructure("ruthless_sands", "throne", new String[]{""}, allowedBlocks, null, false);
 
     public BiomeRuthlessSands()
     {
@@ -125,11 +144,51 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             }
         }
 
-        if(ConfigHandler.Biome.RuthlessSands.generateAncientAltars)
+        if(ConfigHandler.Biome.RuthlessSands.generateCrypts)
         {
-            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.ancientAltarRarity) == 0)
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.cryptRarity) == 0)
             {
-                ancientAltar.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                crypt.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.RuthlessSands.generateGraves)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.graveRarity) == 0)
+            {
+                grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.RuthlessSands.generateGraveyards)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.graveyardRarity) == 0)
+            {
+                graveyard.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.RuthlessSands.generateSarcophagus)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.sarcophagusRarity) == 0)
+            {
+                sarcophagus.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.RuthlessSands.generateAltars)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.altarRarity) == 0)
+            {
+                altar.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.RuthlessSands.generateThrones)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.throneRarity) == 0)
+            {
+                throne.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

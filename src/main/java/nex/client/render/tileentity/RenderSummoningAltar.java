@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.animation.FastTESR;
 import nex.tileentity.TileEntitySummoningAltar;
@@ -41,12 +42,25 @@ public class RenderSummoningAltar extends FastTESR<TileEntitySummoningAltar>
             float time = (world.getTotalWorldTime() + partialTicks) / 20;
 
             IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, world, null);
-            List<BakedQuad> quads = model.getQuads(null, null, 0L);
+            List<BakedQuad> quads;
+
+            for(EnumFacing facing : EnumFacing.values())
+            {
+                quads = model.getQuads(null, facing, 0L);
+
+                for(BakedQuad quad : quads)
+                {
+                    vertexRenderer.addVertexData(quad.getVertexData());
+                    vertexRenderer.putPosition(x, y + 1.5D, z);
+                }
+            }
+
+            quads = model.getQuads(null, null, 0L);
 
             for(BakedQuad quad : quads)
             {
                 vertexRenderer.addVertexData(quad.getVertexData());
-                vertexRenderer.putPosition(x, y + 1, z);
+                vertexRenderer.putPosition(x, y + 1.5D, z);
             }
         }
     }

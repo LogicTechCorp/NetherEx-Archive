@@ -17,14 +17,18 @@
 
 package nex.world.biome;
 
+import com.google.common.collect.Sets;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import nex.NetherEx;
 import nex.block.BlockNetherrack;
 import nex.entity.monster.EntitySpore;
 import nex.entity.monster.EntitySporeCreeper;
@@ -36,18 +40,31 @@ import nex.world.gen.feature.WorldGenElderMushroom;
 import nex.world.gen.feature.WorldGenEnokiMushroom;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
+import nex.world.gen.structure.WorldGenStructure;
 
 import java.util.Random;
+import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeFungiForest extends BiomeNetherEx
 {
+    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
+            NetherExBlocks.BLOCK_HYPHAE.getDefaultState(),
+            NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY),
+            NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY)
+    );
+
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
     private WorldGenerator brownElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.brownVariants, true);
     private WorldGenerator redElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.redVariants, true);
     private WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
+    private WorldGenerator crypt = new WorldGenStructure("fungi_forest", "crypt", new String[]{""}, allowedBlocks, null, true);
+    private WorldGenerator grave = new WorldGenStructure("fungi_forest", "grave", new String[]{"chest", "empty"}, allowedBlocks, null, true);
+    private WorldGenerator graveyard = new WorldGenStructure("fungi_forest", "graveyard", new String[]{""}, allowedBlocks, new ResourceLocation(NetherEx.MOD_ID + ":monster_spore_creeper"), true);
+    private WorldGenerator sarcophagus = new WorldGenStructure("fungi_forest", "sarcophagus", new String[]{""}, allowedBlocks, new ResourceLocation(NetherEx.MOD_ID + ":monster_spore_creeper"), true);
+    private WorldGenerator temple = new WorldGenStructure("fungi_forest", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new ResourceLocation(NetherEx.MOD_ID + ":monster_spore_creeper"), true);
 
     public BiomeFungiForest()
     {
@@ -96,7 +113,48 @@ public class BiomeFungiForest extends BiomeNetherEx
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
+
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
+
+        if(ConfigHandler.Biome.FungiForest.generateCrypts)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.FungiForest.cryptRarity) == 0)
+            {
+                crypt.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.FungiForest.generateGraves)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.FungiForest.graveRarity) == 0)
+            {
+                grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.FungiForest.generateGraveyards)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.FungiForest.graveyardRarity) == 0)
+            {
+                graveyard.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.FungiForest.generateSarcophagus)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.FungiForest.sarcophagusRarity) == 0)
+            {
+                sarcophagus.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.FungiForest.generateTemples)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.FungiForest.templeRarity) == 0)
+            {
+                temple.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
 
         if(ConfigHandler.Biome.FungiForest.generateElderMushrooms)
         {

@@ -23,10 +23,15 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import nex.init.NetherExItems;
 
+@SuppressWarnings("ConstantConditions")
 public class BlockElderMushroomCap extends BlockNetherEx
 {
     public static final PropertyEnum<BlockElderMushroom.EnumType> TYPE = PropertyEnum.create("type", BlockElderMushroom.EnumType.class);
@@ -46,6 +51,12 @@ public class BlockElderMushroomCap extends BlockNetherEx
         {
             list.add(new ItemStack(item, 1, type.ordinal()));
         }
+    }
+
+    @Override
+    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
+    {
+        return player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_AXE_BONE;
     }
 
     @Override

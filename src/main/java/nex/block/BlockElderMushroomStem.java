@@ -23,11 +23,15 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nex.init.NetherExItems;
 
+@SuppressWarnings("ConstantConditions")
 public class BlockElderMushroomStem extends BlockNetherEx
 {
     public static final PropertyEnum<EnumType> AXIS = PropertyEnum.create("axis", EnumType.class);
@@ -43,7 +47,13 @@ public class BlockElderMushroomStem extends BlockNetherEx
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(AXIS, EnumType.fromAxis(facing.getAxis()));
+        return getStateFromMeta(meta).withProperty(AXIS, EnumType.fromAxis(facing.getAxis()));
+    }
+
+    @Override
+    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
+    {
+        return player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_AXE_BONE;
     }
 
     @Override

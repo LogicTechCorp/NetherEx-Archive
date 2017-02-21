@@ -17,6 +17,7 @@
 
 package nex.handler;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -130,11 +131,12 @@ public class EventHandler
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = event.getItemStack();
 
-        if(stack.getItem() instanceof ItemSpade)
+        if(stack.getItem() == NetherExItems.TOOL_SHOVEL_BONE || ConfigHandler.Block.Netherrack.allowAllShovelsToFlatten && stack.getItem() instanceof ItemHoe)
         {
             IBlockState state = world.getBlockState(pos);
+            Block block = state.getBlock();
 
-            if(state.getBlock() == Blocks.NETHERRACK || state.getBlock() == NetherExBlocks.BLOCK_NETHERRACK)
+            if(block == Blocks.NETHERRACK || block == NetherExBlocks.BLOCK_NETHERRACK || block == NetherExBlocks.BLOCK_HYPHAE)
             {
                 for(EnumHand hand : EnumHand.values())
                 {
@@ -144,7 +146,7 @@ public class EventHandler
                     }
                 }
 
-                int meta = state.getBlock() == Blocks.NETHERRACK ? 0 : NetherExBlocks.BLOCK_NETHERRACK.getMetaFromState(state) + 1;
+                int meta = block == Blocks.NETHERRACK ? 0 : block == NetherExBlocks.BLOCK_HYPHAE ? 3 : NetherExBlocks.BLOCK_NETHERRACK.getMetaFromState(state) + 1;
 
                 world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK_PATH.getDefaultState().withProperty(BlockNetherrackPath.TYPE, BlockNetherrackPath.EnumType.fromMeta(meta)), 11);
@@ -152,7 +154,7 @@ public class EventHandler
             }
 
         }
-        if(stack.getItem() == NetherExItems.TOOL_HOE_BONE || stack.getItem() == Items.GOLDEN_HOE || ConfigHandler.Block.SoulSand.allowAllHoesToTill && stack.getItem() instanceof ItemHoe)
+        if(stack.getItem() == NetherExItems.TOOL_HOE_BONE || ConfigHandler.Block.SoulSand.allowAllHoesToTill && stack.getItem() instanceof ItemHoe)
         {
             if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
             {

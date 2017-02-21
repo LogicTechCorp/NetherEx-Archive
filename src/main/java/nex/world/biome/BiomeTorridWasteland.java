@@ -17,27 +17,40 @@
 
 package nex.world.biome;
 
+import com.google.common.collect.Sets;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import nex.block.BlockBasalt;
+import nex.block.BlockNetherrack;
 import nex.entity.monster.EntityEmber;
 import nex.entity.neutral.EntitySalamander;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.*;
-import nex.world.gen.structure.WorldGenBlazingPyramid;
+import nex.world.gen.structure.WorldGenStructure;
 
 import java.util.Random;
+import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeTorridWasteland extends BiomeNetherEx
 {
+    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
+            Blocks.MAGMA.getDefaultState(),
+            NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY),
+            NetherExBlocks.BLOCK_BASALT.getDefaultState().withProperty(BlockBasalt.TYPE, BlockBasalt.EnumType.NORMAL),
+            NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY)
+    );
+
     private WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), false);
     private WorldGenerator fire = new WorldGenFire(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
@@ -47,7 +60,11 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), true);
     private WorldGenerator lavaPit = new WorldGenPit(Blocks.LAVA, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState());
-    private WorldGenerator blazingPyramid = new WorldGenBlazingPyramid();
+    private WorldGenerator crypt = new WorldGenStructure("torrid_wasteland", "crypt", new String[]{""}, allowedBlocks, null, true);
+    private WorldGenerator grave = new WorldGenStructure("torrid_wasteland", "grave", new String[]{"chest", "empty"}, allowedBlocks, null, true);
+    private WorldGenerator graveyard = new WorldGenStructure("torrid_wasteland", "graveyard", new String[]{""}, allowedBlocks, new ResourceLocation("blaze"), true);
+    private WorldGenerator sarcophagus = new WorldGenStructure("torrid_wasteland", "sarcophagus", new String[]{""}, allowedBlocks, new ResourceLocation("blaze"), true);
+    private WorldGenerator pyramid = new WorldGenStructure("torrid_wasteland", "pyramid", new String[]{"advanced", "hard", "medium", "easy"}, allowedBlocks, new ResourceLocation("blaze"), true);
 
     public BiomeTorridWasteland()
     {
@@ -138,6 +155,46 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             }
         }
 
+        if(ConfigHandler.Biome.TorridWasteland.generateCrypts)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.cryptRarity) == 0)
+            {
+                crypt.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.TorridWasteland.generateGraves)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.graveRarity) == 0)
+            {
+                grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.TorridWasteland.generateGraveyards)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.graveyardRarity) == 0)
+            {
+                graveyard.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.TorridWasteland.generateSarcophagus)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.sarcophagusRarity) == 0)
+            {
+                sarcophagus.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.TorridWasteland.generatePyramids)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.pyramidRarity) == 0)
+            {
+                pyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
         if(ConfigHandler.Biome.TorridWasteland.generateLavaPits)
         {
             BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
@@ -148,14 +205,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
                 {
                     lavaPit.generate(world, rand, newPos);
                 }
-            }
-        }
-
-        if(ConfigHandler.Biome.TorridWasteland.generateBlazingPyramids)
-        {
-            if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.blazingPyramidRarity) == 0)
-            {
-                blazingPyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
