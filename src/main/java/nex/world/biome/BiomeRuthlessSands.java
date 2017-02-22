@@ -23,13 +23,13 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import nex.NetherEx;
 import nex.block.BlockNetherrack;
 import nex.block.BlockThornstalk;
 import nex.entity.monster.EntitySpinout;
@@ -63,12 +63,12 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY));
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
-    private WorldGenerator crypt = new WorldGenStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, null, true);
-    private WorldGenerator grave = new WorldGenStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, null, true);
-    private WorldGenerator graveyard = new WorldGenStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new ResourceLocation("wither_skeleton"), true);
-    private WorldGenerator sarcophagus = new WorldGenStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new ResourceLocation("wither_skeleton"), true);
-    private WorldGenerator altar = new WorldGenStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, null, false);
-    private WorldGenerator throne = new WorldGenStructure("ruthless_sands", "throne", new String[]{""}, allowedBlocks, null, false);
+    private WorldGenerator crypt = new WorldGenStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true);
+    private WorldGenerator grave = new WorldGenStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true);
+    private WorldGenerator graveyard = new WorldGenStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true);
+    private WorldGenerator sarcophagus = new WorldGenStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true);
+    private WorldGenerator altar = new WorldGenStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, new String[]{""}, false);
+    private WorldGenerator throne = new WorldGenStructure("ruthless_sands", "throne", new String[]{""}, allowedBlocks, new String[]{""}, false);
 
     public BiomeRuthlessSands()
     {

@@ -21,13 +21,13 @@ import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import nex.NetherEx;
 import nex.block.BlockBasalt;
 import nex.block.BlockNetherrack;
 import nex.entity.monster.EntityEmber;
@@ -60,11 +60,11 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), true);
     private WorldGenerator lavaPit = new WorldGenPit(Blocks.LAVA, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState());
-    private WorldGenerator crypt = new WorldGenStructure("torrid_wasteland", "crypt", new String[]{""}, allowedBlocks, null, true);
-    private WorldGenerator grave = new WorldGenStructure("torrid_wasteland", "grave", new String[]{"chest", "empty"}, allowedBlocks, null, true);
-    private WorldGenerator graveyard = new WorldGenStructure("torrid_wasteland", "graveyard", new String[]{""}, allowedBlocks, new ResourceLocation("blaze"), true);
-    private WorldGenerator sarcophagus = new WorldGenStructure("torrid_wasteland", "sarcophagus", new String[]{""}, allowedBlocks, new ResourceLocation("blaze"), true);
-    private WorldGenerator pyramid = new WorldGenStructure("torrid_wasteland", "pyramid", new String[]{"advanced", "hard", "medium", "easy"}, allowedBlocks, new ResourceLocation("blaze"), true);
+    private WorldGenerator crypt = new WorldGenStructure("torrid_wasteland", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true);
+    private WorldGenerator grave = new WorldGenStructure("torrid_wasteland", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true);
+    private WorldGenerator graveyard = new WorldGenStructure("torrid_wasteland", "graveyard", new String[]{""}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, true);
+    private WorldGenerator sarcophagus = new WorldGenStructure("torrid_wasteland", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, true);
+    private WorldGenerator pyramid = new WorldGenStructure("torrid_wasteland", "pyramid", new String[]{"advanced", "hard", "medium", "easy"}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, true);
 
     public BiomeTorridWasteland()
     {

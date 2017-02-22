@@ -126,7 +126,6 @@ public class ConfigHandler
     public static class PotionEffect
     {
         public static Freeze freeze = new Freeze();
-
         public static Spore spore = new Spore();
 
         public static class Freeze
@@ -138,6 +137,7 @@ public class ConfigHandler
             @Config.Comment("Mobs that shouldn't freeze")
             public static String[] blacklist = new String[]{
                     "minecraft:blaze",
+                    "minecraft:ghast",
                     "minecraft:polar_bear",
                     "nex:monster_wight",
                     "nex:monster_ember",
@@ -223,7 +223,6 @@ public class ConfigHandler
 
         public static class Spinout
         {
-
             @Config.Comment({"The lower the number, the less time a Spinout spins", "The higher the number, the more time a Spinout spins"})
             @Config.RangeInt(min = 1, max = 512)
             public static int spinTime = 6;
@@ -249,7 +248,6 @@ public class ConfigHandler
             @Config.Comment({"The lower the number, the less Spore Creeper spawn from a Spore", "The higher the number, the more Spore Creeper spawn from a Spore"})
             @Config.RangeInt(min = 1, max = 64)
             public static int creeperSpawns = 3;
-
         }
 
         public static class GhastQueen

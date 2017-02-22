@@ -19,6 +19,7 @@ package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -37,18 +38,19 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+@SuppressWarnings("ConstantConditions")
 public class WorldGenStructure extends WorldGenerator
 {
     private final Set<IBlockState> allowedBlocks;
     private final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
-    private final ResourceLocation spawnerMob;
+    private final ResourceLocation[] spawnerMobs;
     private final boolean hasChest;
 
-    public WorldGenStructure(String biomeName, String structureName, String[] variantsIn, Set<IBlockState> allowedBlocksIn, ResourceLocation spawnerMobIn, boolean hasChestIn)
+    public WorldGenStructure(String biomeName, String structureName, String[] variantsIn, Set<IBlockState> allowedBlocksIn, String[] spawnerMobsIn, boolean hasChestIn)
     {
         allowedBlocks = allowedBlocksIn;
 
-        if(variantsIn.length > 1)
+        if(!variantsIn[0].equals(""))
         {
             for(int i = 0; i < variantsIn.length; i++)
             {
@@ -60,7 +62,20 @@ public class WorldGenStructure extends WorldGenerator
             variants.add(new WeightedUtil.NamedItem(structureName + "_" + biomeName, 1));
         }
 
-        spawnerMob = spawnerMobIn;
+        if(!spawnerMobsIn[0].equals(""))
+        {
+            spawnerMobs = new ResourceLocation[spawnerMobsIn.length];
+
+            for(int i = 0; i < spawnerMobsIn.length; i++)
+            {
+                spawnerMobs[i] = new ResourceLocation(spawnerMobsIn[i]);
+            }
+        }
+        else
+        {
+            spawnerMobs = new ResourceLocation[0];
+        }
+
         hasChest = hasChestIn;
     }
 
@@ -77,7 +92,7 @@ public class WorldGenStructure extends WorldGenerator
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants));
 
-        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setRandom(rand);
+        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize.getX(), structureSize.getZ(), 0.8F);
@@ -86,9 +101,9 @@ public class WorldGenStructure extends WorldGenerator
         {
             template.addBlocksToWorld(world, spawnPos.down(), settings.copy(), 3);
 
-            if(spawnerMob != null)
+            if(spawnerMobs.length > 0)
             {
-                WorldGenUtil.setSpawnerMob(world, spawnPos.down(), structureSize, spawnerMob);
+                WorldGenUtil.setSpawnerMob(world, spawnPos.down(), structureSize, spawnerMobs[rand.nextInt(spawnerMobs.length)]);
             }
             if(hasChest)
             {
