@@ -123,6 +123,19 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
+        if(ConfigHandler.Biome.ArcticAbyss.generateIchorPits)
+        {
+            BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
+
+            if(world.getBiomeForCoordsBody(newPos) == this)
+            {
+                if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.ichorPitRarity) == 0)
+                {
+                    ichorPit.generate(world, rand, newPos);
+                }
+            }
+        }
+
         if(ConfigHandler.Biome.ArcticAbyss.generateCrypts)
         {
             if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.cryptRarity) == 0)
@@ -176,19 +189,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.templeRarity) == 0)
             {
                 temple.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Biome.ArcticAbyss.generateIchorPits)
-        {
-            BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
-
-            if(world.getBiomeForCoordsBody(newPos) == this)
-            {
-                if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.ichorPitRarity) == 0)
-                {
-                    ichorPit.generate(world, rand, newPos);
-                }
             }
         }
 

@@ -288,6 +288,7 @@ public class ConfigHandler
             public static boolean generateSarcophagus = true;
             public static boolean generateMausoleums = true;
             public static boolean generatePrisons = true;
+            public static boolean generateVillages = true;
 
             @Config.Comment({"The lower the number, the rarer the Hell is", "The higher the number, the more common the Hell biome is"})
             @Config.RangeInt(min = 1, max = 64)
@@ -340,11 +341,15 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Mausoleums are", "The lower the number, the more common Mausoleums are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int mausoleumRarity = 2;
+            public static int mausoleumRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Prisons are", "The lower the number, the more common Prisons are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int prisonRarity = 4;
+            public static int prisonRarity = 50;
+
+            @Config.Comment({"The higher the number, the rarer Villages are", "The lower the number, the more common Villages are"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int villageRarity = 2;
         }
 
         public static class RuthlessSands
@@ -413,7 +418,7 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Thrones are", "The lower the number, the more common Thrones are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int throneRarity = 24;
+            public static int throneRarity = 55;
         }
 
         public static class FungiForest
@@ -472,7 +477,7 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Temples are", "The lower the number, the more common Temples are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int templeRarity = 48;
+            public static int templeRarity = 2;
         }
 
         public static class TorridWasteland
@@ -572,7 +577,7 @@ public class ConfigHandler
 
             @Config.Comment({"The lower the number, the rarer the Arctic Abyss biome is", "The higher the number, the more common the Arctic Abyss biome is"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int biomeRarity = 2;
+            public static int biomeRarity = 1;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
             @Config.RangeInt(min = 1, max = 64)
@@ -616,15 +621,15 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Lighthouses are", "The lower the number, the more common Lighthouses are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int lighthouseRarity = 4;
+            public static int lighthouseRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Specimen are", "The lower the number, the more common Specimen are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int specimenRarity = 8;
+            public static int specimenRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Specimen are", "The lower the number, the more common Specimen are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int templeRarity = 2;
+            public static int templeRarity = 64;
         }
     }
 

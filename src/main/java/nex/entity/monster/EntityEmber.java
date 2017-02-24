@@ -55,8 +55,8 @@ public class EntityEmber extends EntityMob
         setMovementSpeed(0.0D);
         setPathPriority(PathNodeType.WATER, -1.0F);
         setPathPriority(PathNodeType.LAVA, 1.0F);
-        setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
-        setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
+        setPathPriority(PathNodeType.DANGER_FIRE, 1.0F);
+        setPathPriority(PathNodeType.DAMAGE_FIRE, 1.0F);
     }
 
     @Override

@@ -19,6 +19,7 @@ package nex.world.biome;
 
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -71,7 +72,8 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
 
         spawnableMonsterList.add(new SpawnListEntry(EntitySalamander.class, 100, 3, 6));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEmber.class, 25, 4, 6));
+        spawnableMonsterList.add(new SpawnListEntry(EntityEmber.class, 50, 4, 6));
+        spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 25, 4, 4));
 
         topBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
@@ -155,6 +157,19 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             }
         }
 
+        if(ConfigHandler.Biome.TorridWasteland.generateLavaPits)
+        {
+            BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
+
+            if(world.getBiomeForCoordsBody(newPos) == this)
+            {
+                for(int i = 0; i < ConfigHandler.Biome.TorridWasteland.lavaPitRarity; i++)
+                {
+                    lavaPit.generate(world, rand, newPos);
+                }
+            }
+        }
+
         if(ConfigHandler.Biome.TorridWasteland.generateCrypts)
         {
             if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.cryptRarity) == 0)
@@ -192,19 +207,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.pyramidRarity) == 0)
             {
                 pyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Biome.TorridWasteland.generateLavaPits)
-        {
-            BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
-
-            if(world.getBiomeForCoordsBody(newPos) == this)
-            {
-                for(int i = 0; i < ConfigHandler.Biome.TorridWasteland.lavaPitRarity; i++)
-                {
-                    lavaPit.generate(world, rand, newPos);
-                }
             }
         }
 

@@ -97,13 +97,6 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
     }
 
     @Override
-    public boolean canPlaceBlockAt(World world, BlockPos pos)
-    {
-        IBlockState soil = world.getBlockState(pos.down());
-        return super.canPlaceBlockAt(world, pos) && soil.getBlock().canSustainPlant(soil, world, pos.down(), EnumFacing.UP, this);
-    }
-
-    @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
     {
         return EnumPlantType.Nether;
@@ -118,7 +111,8 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return !isClient;
+        IBlockState soil = world.getBlockState(pos.down());
+        return !isClient && soil.getBlock().canSustainPlant(soil, world, pos.down(), EnumFacing.UP, this);
     }
 
     @Override

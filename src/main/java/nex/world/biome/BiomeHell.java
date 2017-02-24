@@ -60,6 +60,7 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator sarcophagus = new WorldGenStructure("hell", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true);
     private WorldGenerator mausoleum = new WorldGenStructure("hell", "mausoleum", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true);
     private WorldGenerator prison = new WorldGenStructure("hell", "prison", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true);
+    private WorldGenerator village = new WorldGenStructure("hell", "village", new String[]{"huge", "large_variant", "large", "medium_variant_2", "medium_variant", "medium", "small_variant_2", "small_variant", "small", "tiny_variant_3", "tiny_variant_2", "tiny_variant", "tiny"}, allowedBlocks, new String[]{""}, true);
 
     public BiomeHell()
     {
@@ -68,12 +69,12 @@ public class BiomeHell extends BiomeNetherEx
         topBlock = Blocks.NETHERRACK.getDefaultState();
         fillerBlock = Blocks.NETHERRACK.getDefaultState();
 
-        spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityEmber.class, 25, 4, 6));
+        spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 3, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 25, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEmber.class, 25, 4, 6));
 
         if(ConfigHandler.Biome.Hell.generateBiome)
         {
@@ -207,6 +208,14 @@ public class BiomeHell extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.Hell.prisonRarity) == 0)
             {
                 prison.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.Hell.generateVillages)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.Hell.villageRarity) == 0)
+            {
+                village.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
