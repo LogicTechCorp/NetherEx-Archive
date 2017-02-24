@@ -17,16 +17,12 @@
 
 package nex.init;
 
-import net.minecraftforge.fluids.Fluid;
-import nex.fluid.FluidIchor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class NetherExFluids
+public class NetherExLootTables
 {
-    public static final Fluid ICHOR = new FluidIchor();
-
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExFluids");
+    public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExLootTables");
 
     public static void init()
     {

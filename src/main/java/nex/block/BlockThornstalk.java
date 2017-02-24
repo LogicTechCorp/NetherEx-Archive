@@ -31,6 +31,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -104,7 +105,7 @@ public class BlockThornstalk extends BlockNetherEx
         Block blockUp = world.getBlockState(pos.up()).getBlock();
         Block blockDown = world.getBlockState(pos.down()).getBlock();
 
-        if(!((blockUp == Blocks.AIR || blockUp == this) && (blockDown.isBlockSolid(world, pos.down(), null) || blockDown == this)))
+        if(!((blockUp == Blocks.AIR || blockUp == this) && (blockDown.isBlockSolid(world, pos.down(), EnumFacing.UP) || blockDown == this)))
         {
             world.destroyBlock(pos, true);
         }

@@ -26,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -38,7 +39,8 @@ import nex.init.NetherExBlocks;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
 import nex.world.gen.feature.WorldGenPit;
-import nex.world.gen.structure.WorldGenStructure;
+import nex.world.gen.structure.WorldGenGroundStructure;
+import nex.world.gen.structure.WorldGenWallStructure;
 
 import java.util.Random;
 import java.util.Set;
@@ -57,13 +59,14 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY));
     private WorldGenerator rimeOre = new WorldGenMinableMeta(NetherExBlocks.ORE_RIME.getDefaultState(), 7, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY));
     private WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState(), Blocks.MAGMA.getDefaultState());
-    private WorldGenerator crypt = new WorldGenStructure("arctic_abyss", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator grave = new WorldGenStructure("arctic_abyss", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator graveyard = new WorldGenStructure("arctic_abyss", "graveyard", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true);
-    private WorldGenerator sarcophagus = new WorldGenStructure("arctic_abyss", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true);
-    private WorldGenerator lighthouse = new WorldGenStructure("arctic_abyss", "lighthouse", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true);
-    private WorldGenerator specimen = new WorldGenStructure("arctic_abyss", "specimen", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, false);
-    private WorldGenerator temple = new WorldGenStructure("arctic_abyss", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true);
+    private WorldGenerator crypt = new WorldGenGroundStructure("arctic_abyss", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator grave = new WorldGenGroundStructure("arctic_abyss", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator graveyard = new WorldGenGroundStructure("arctic_abyss", "graveyard", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator sarcophagus = new WorldGenGroundStructure("arctic_abyss", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator lighthouse = new WorldGenGroundStructure("arctic_abyss", "lighthouse", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator specimen = new WorldGenGroundStructure("arctic_abyss", "specimen", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, false, LootTableList.EMPTY);
+    private WorldGenerator temple = new WorldGenGroundStructure("arctic_abyss", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator fossil = new WorldGenWallStructure("arctic_abyss", "fossil", new String[]{"skull_creeper", "rib_creeper", "leg_creeper"}, new String[]{""}, false, LootTableList.EMPTY);
 
     public BiomeArcticAbyss()
     {
@@ -189,6 +192,14 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.templeRarity) == 0)
             {
                 temple.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.ArcticAbyss.generateFossils)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.fossilRarity) == 0)
+            {
+                fossil.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

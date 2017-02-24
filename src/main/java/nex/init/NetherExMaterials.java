@@ -22,6 +22,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 import nex.NetherEx;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class NetherExMaterials
 {
@@ -29,6 +31,8 @@ public class NetherExMaterials
 
     public static final ItemArmor.ArmorMaterial ARMOR_BONE_WITHERED = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":bone_withered", NetherEx.MOD_ID + ":bone_withered", 8, new int[]{2, 3, 3, 2}, 16, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.5F);
     public static final ItemArmor.ArmorMaterial ARMOR_HIDE_SALAMANDER = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":hide_salamander", NetherEx.MOD_ID + ":hide_salamander", 10, new int[]{2, 5, 4, 2}, 21, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F);
+
+    public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExMaterials");
 
     public static void init()
     {

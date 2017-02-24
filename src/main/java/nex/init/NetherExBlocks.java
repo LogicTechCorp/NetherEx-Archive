@@ -199,16 +199,22 @@ public class NetherExBlocks
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
-            LOGGER.info("Fluid registration started.");
+            NetherExFluids.LOGGER.info("Fluid registration started.");
 
             NetherExFluids.init();
 
-            LOGGER.info("Fluid registration Ended.");
-            LOGGER.info("Material registration started.");
+            NetherExFluids.LOGGER.info("Fluid registration Ended.");
+            NetherExMaterials.LOGGER.info("Material registration started.");
 
             NetherExMaterials.init();
 
-            LOGGER.info("Material registration Ended.");
+            NetherExMaterials.LOGGER.info("Material registration Ended.");
+            NetherExLootTables.LOGGER.info("Loot Table registration started.");
+
+            NetherExLootTables.init();
+
+            NetherExLootTables.LOGGER.info("Loot Table registration Ended.");
+
             LOGGER.info("Block registration started.");
 
             event.getRegistry().registerAll(

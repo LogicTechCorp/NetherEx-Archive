@@ -223,6 +223,10 @@ config.nex:biome.ruthlessSands.generateThrones=Generate Thrones
 config.nex:biome.ruthlessSands.generateThrones.tooltip=Do Thrones generate in the Ruthless Sands biome
 config.nex:biome.ruthlessSands.throneRarity=Throne Rarity
 config.nex:biome.ruthlessSands.throneRarity.tooltip=How rare Thrones are in the Ruthless Sands biome
+config.nex:biome.ruthlessSands.generateWaypoints=Generate Waypoints
+config.nex:biome.ruthlessSands.generateWaypoints.tooltip=Do Waypoints generate in the Ruthless Sands biome
+config.nex:biome.ruthlessSands.waypointRarity=Waypoint Rarity
+config.nex:biome.ruthlessSands.waypointRarity.tooltip=How rare Waypoints are in the Ruthless Sands biome
 config.nex:biome.fungiForest=Fungi Forest Biome Settings
 config.nex:biome.fungiForest.tooltip=Settings that only affect the Fungi Forest biome
 config.nex:biome.fungiForest.generateBiome=Generate Biome
@@ -387,6 +391,10 @@ config.nex:biome.arcticAbyss.generateTemples=Generate Temples
 config.nex:biome.arcticAbyss.generateTemples.tooltip=Do Temples generate in the Arctic Abyss biome
 config.nex:biome.arcticAbyss.templeRarity=Temple Rarity
 config.nex:biome.arcticAbyss.templeRarity.tooltip=How rare Temple are in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.generateFossils=Generate Fossils
+config.nex:biome.arcticAbyss.generateFossils.tooltip=Do Fossils generate in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.fossilRarity=Fossil Rarity
+config.nex:biome.arcticAbyss.fossilRarity.tooltip=How rare Fossils are in the Arctic Abyss biome
 
 # Creative Tabs
 itemGroup.nex=NetherEx

@@ -25,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -32,7 +33,7 @@ import nex.entity.monster.EntityEmber;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 import nex.world.gen.feature.*;
-import nex.world.gen.structure.WorldGenStructure;
+import nex.world.gen.structure.WorldGenGroundStructure;
 
 import java.util.Random;
 import java.util.Set;
@@ -54,13 +55,13 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator quartzOre = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
-    private WorldGenerator crypt = new WorldGenStructure("hell", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator grave = new WorldGenStructure("hell", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator graveyard = new WorldGenStructure("hell", "graveyard", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true);
-    private WorldGenerator sarcophagus = new WorldGenStructure("hell", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true);
-    private WorldGenerator mausoleum = new WorldGenStructure("hell", "mausoleum", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true);
-    private WorldGenerator prison = new WorldGenStructure("hell", "prison", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true);
-    private WorldGenerator village = new WorldGenStructure("hell", "village", new String[]{"huge", "large_variant", "large", "medium_variant_2", "medium_variant", "medium", "small_variant_2", "small_variant", "small", "tiny_variant_3", "tiny_variant_2", "tiny_variant", "tiny"}, allowedBlocks, new String[]{""}, true);
+    private WorldGenerator crypt = new WorldGenGroundStructure("hell", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator grave = new WorldGenGroundStructure("hell", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator graveyard = new WorldGenGroundStructure("hell", "graveyard", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator sarcophagus = new WorldGenGroundStructure("hell", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator mausoleum = new WorldGenGroundStructure("hell", "mausoleum", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator prison = new WorldGenGroundStructure("hell", "prison", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator village = new WorldGenGroundStructure("hell", "village", new String[]{"huge", "large_variant", "large", "medium_variant_2", "medium_variant", "medium", "small_variant_2", "small_variant", "small", "tiny_variant_3", "tiny_variant_2", "tiny_variant", "tiny"}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
 
     public BiomeHell()
     {

@@ -26,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -40,7 +41,7 @@ import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenLava;
 import nex.world.gen.feature.WorldGenMinableMeta;
 import nex.world.gen.feature.WorldGenThornstalk;
-import nex.world.gen.structure.WorldGenStructure;
+import nex.world.gen.structure.WorldGenGroundStructure;
 
 import java.util.Random;
 import java.util.Set;
@@ -63,12 +64,13 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY));
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
-    private WorldGenerator crypt = new WorldGenStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator grave = new WorldGenStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator graveyard = new WorldGenStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true);
-    private WorldGenerator sarcophagus = new WorldGenStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true);
-    private WorldGenerator altar = new WorldGenStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, new String[]{""}, false);
-    private WorldGenerator throne = new WorldGenStructure("ruthless_sands", "throne", new String[]{""}, allowedBlocks, new String[]{""}, false);
+    private WorldGenerator crypt = new WorldGenGroundStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator grave = new WorldGenGroundStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator graveyard = new WorldGenGroundStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator sarcophagus = new WorldGenGroundStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator altar = new WorldGenGroundStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
+    private WorldGenerator throne = new WorldGenGroundStructure("ruthless_sands", "throne", new String[]{""}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
+    private WorldGenerator waypoint = new WorldGenGroundStructure("ruthless_sands", "waypoint", new String[]{""}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
 
     public BiomeRuthlessSands()
     {
@@ -189,6 +191,14 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.throneRarity) == 0)
             {
                 throne.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.RuthlessSands.generateWaypoints)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.waypointRarity) == 0)
+            {
+                waypoint.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

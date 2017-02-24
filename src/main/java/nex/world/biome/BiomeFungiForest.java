@@ -24,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -39,7 +40,7 @@ import nex.world.gen.feature.WorldGenElderMushroom;
 import nex.world.gen.feature.WorldGenEnokiMushroom;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
-import nex.world.gen.structure.WorldGenStructure;
+import nex.world.gen.structure.WorldGenGroundStructure;
 
 import java.util.Random;
 import java.util.Set;
@@ -59,11 +60,11 @@ public class BiomeFungiForest extends BiomeNetherEx
     private WorldGenerator brownElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.brownVariants, true);
     private WorldGenerator redElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.redVariants, true);
     private WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
-    private WorldGenerator crypt = new WorldGenStructure("fungi_forest", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator grave = new WorldGenStructure("fungi_forest", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true);
-    private WorldGenerator graveyard = new WorldGenStructure("fungi_forest", "graveyard", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true);
-    private WorldGenerator sarcophagus = new WorldGenStructure("fungi_forest", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true);
-    private WorldGenerator temple = new WorldGenStructure("fungi_forest", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true);
+    private WorldGenerator crypt = new WorldGenGroundStructure("fungi_forest", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator grave = new WorldGenGroundStructure("fungi_forest", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator graveyard = new WorldGenGroundStructure("fungi_forest", "graveyard", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator sarcophagus = new WorldGenGroundStructure("fungi_forest", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator temple = new WorldGenGroundStructure("fungi_forest", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
 
     public BiomeFungiForest()
     {

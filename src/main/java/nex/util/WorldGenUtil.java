@@ -24,6 +24,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -34,18 +35,21 @@ import java.util.Set;
 
 public class WorldGenUtil
 {
-    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> foundations, float xSize, float zSize, float percentage)
+    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> foundations, BlockPos structureSize, float percentage)
     {
         while(pos.getY() > 32)
         {
+            float sizeX = structureSize.getX();
+            float sizeZ = structureSize.getY();
+
             int topBlocks = 0;
 
-            for(int x = 0; x <= MathHelper.abs(xSize); x++)
+            for(int x = 0; x <= MathHelper.abs(sizeX); x++)
             {
-                for(int z = 0; z <= MathHelper.abs(zSize); z++)
+                for(int z = 0; z <= MathHelper.abs(sizeZ); z++)
                 {
-                    int posX = (int) (xSize > 0 ? xSize - x : xSize + x);
-                    int posZ = (int) (zSize > 0 ? zSize - z : zSize + z);
+                    int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
+                    int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
 
                     BlockPos newPos = pos.add(posX, 0, posZ);
                     IBlockState state = world.getBlockState(newPos);
@@ -64,9 +68,93 @@ public class WorldGenUtil
                 }
             }
 
-            if(topBlocks >= MathHelper.abs(xSize * zSize) * percentage)
+            if(topBlocks >= MathHelper.abs(sizeX * sizeZ) * percentage)
             {
                 return pos.up();
+            }
+
+            pos = pos.down();
+        }
+
+        return BlockPos.ORIGIN;
+    }
+
+    public static BlockPos getSuitableAirPos(World world, BlockPos pos, BlockPos structureSize, float percentage)
+    {
+        while(pos.getY() > 32)
+        {
+            float sizeX = structureSize.getX();
+            float sizeZ = structureSize.getZ();
+            float sizeY = structureSize.getY();
+
+            int airBlocks = 0;
+
+            for(int x = 0; x <= MathHelper.abs(sizeX); x++)
+            {
+                for(int z = 0; z <= MathHelper.abs(sizeZ); z++)
+                {
+                    for(int y = 0; y <= sizeY; y++)
+                    {
+
+                        int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
+                        int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
+                        int posY = (int) sizeY - y;
+
+                        BlockPos newPos = pos.add(posX, posY, posZ);
+
+                        if(world.isAirBlock(newPos))
+                        {
+                            airBlocks++;
+                        }
+                    }
+                }
+            }
+
+            if(airBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ) * percentage)
+            {
+                return pos;
+            }
+
+            pos = pos.down();
+        }
+
+        return BlockPos.ORIGIN;
+    }
+
+    public static BlockPos getSuitableWallPos(World world, BlockPos pos, BlockPos structureSize, float percentage)
+    {
+        while(pos.getY() > 32)
+        {
+            float sizeX = structureSize.getX();
+            float sizeZ = structureSize.getZ();
+            float sizeY = structureSize.getY();
+
+            int wallBlocks = 0;
+
+            for(int x = 0; x <= MathHelper.abs(sizeX); x++)
+            {
+                for(int z = 0; z <= MathHelper.abs(sizeZ); z++)
+                {
+                    for(int y = 0; y <= sizeY; y++)
+                    {
+
+                        int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
+                        int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
+                        int posY = (int) sizeY - y;
+
+                        BlockPos newPos = pos.add(posX, posY, posZ);
+
+                        if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.UP))
+                        {
+                            wallBlocks++;
+                        }
+                    }
+                }
+            }
+
+            if(wallBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ) * percentage)
+            {
+                return pos;
             }
 
             pos = pos.down();

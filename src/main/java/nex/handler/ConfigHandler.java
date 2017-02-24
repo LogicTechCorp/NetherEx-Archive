@@ -367,6 +367,7 @@ public class ConfigHandler
             public static boolean generateSarcophagus = true;
             public static boolean generateAltars = true;
             public static boolean generateThrones = true;
+            public static boolean generateWaypoints = true;
 
             @Config.Comment({"The lower the number, the rarer The Ruthless Sands is", "The higher the number, the more common the Ruthless Sands biome is"})
             @Config.RangeInt(min = 1, max = 64)
@@ -419,6 +420,11 @@ public class ConfigHandler
             @Config.Comment({"The higher the number, the rarer Thrones are", "The lower the number, the more common Thrones are"})
             @Config.RangeInt(min = 1, max = 64)
             public static int throneRarity = 55;
+
+            @Config.Comment({"The higher the number, the rarer Waypoints are", "The lower the number, the more common Waypoints are"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int waypointRarity = 16;
+
         }
 
         public static class FungiForest
@@ -574,6 +580,7 @@ public class ConfigHandler
             public static boolean generateLighthouses = true;
             public static boolean generateSpecimen = true;
             public static boolean generateTemples = true;
+            public static boolean generateFossils = true;
 
             @Config.Comment({"The lower the number, the rarer the Arctic Abyss biome is", "The higher the number, the more common the Arctic Abyss biome is"})
             @Config.RangeInt(min = 1, max = 64)
@@ -630,6 +637,10 @@ public class ConfigHandler
             @Config.Comment({"The higher the number, the rarer Specimen are", "The lower the number, the more common Specimen are"})
             @Config.RangeInt(min = 1, max = 64)
             public static int templeRarity = 64;
+
+            @Config.Comment({"The higher the number, the rarer Fossils are", "The lower the number, the more common Fossils are"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int fossilRarity = 64;
         }
     }
 
