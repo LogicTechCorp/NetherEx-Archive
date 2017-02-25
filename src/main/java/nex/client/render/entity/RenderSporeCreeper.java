@@ -31,7 +31,7 @@ import nex.entity.monster.EntitySporeCreeper;
 @SideOnly(Side.CLIENT)
 public class RenderSporeCreeper extends RenderLiving<EntitySporeCreeper>
 {
-    private static final ResourceLocation CREEPER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/spore_creeper.png");
+    private static final ResourceLocation CREEPER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/spore_creeper.png");
 
     public RenderSporeCreeper(RenderManager manager)
     {

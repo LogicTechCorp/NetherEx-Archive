@@ -29,7 +29,7 @@ import nex.entity.monster.EntityNethermite;
 @SideOnly(Side.CLIENT)
 public class RenderNethermite extends RenderLiving<EntityNethermite>
 {
-    private static final ResourceLocation NETHERMITE_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/nethermite.png");
+    private static final ResourceLocation NETHERMITE_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/nethermite.png");
 
     public RenderNethermite(RenderManager manager)
     {

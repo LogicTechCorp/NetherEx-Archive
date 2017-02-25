@@ -29,7 +29,7 @@ import nex.entity.monster.EntitySpinout;
 @SideOnly(Side.CLIENT)
 public class RenderSpinout extends RenderLiving<EntitySpinout>
 {
-    private static final ResourceLocation SPINOUT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/spinout.png");
+    private static final ResourceLocation SPINOUT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/spinout.png");
 
     public RenderSpinout(RenderManager manager)
     {

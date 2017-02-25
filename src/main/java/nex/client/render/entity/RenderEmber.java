@@ -29,7 +29,7 @@ import nex.entity.monster.EntityEmber;
 @SideOnly(Side.CLIENT)
 public class RenderEmber extends RenderLiving<EntityEmber>
 {
-    private static final ResourceLocation EMBER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/ember.png");
+    private static final ResourceLocation EMBER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ember.png");
 
     public RenderEmber(RenderManager manager)
     {

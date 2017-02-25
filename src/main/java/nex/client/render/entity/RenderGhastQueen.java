@@ -30,8 +30,8 @@ import nex.entity.boss.EntityGhastQueen;
 @SideOnly(Side.CLIENT)
 public class RenderGhastQueen extends RenderLiving<EntityGhastQueen>
 {
-    private static final ResourceLocation GHAST_QUEEN_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/ghast/ghast_queen.png");
-    private static final ResourceLocation GHAST_QUEEN_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/ghast/ghast_queen_shooting.png");
+    private static final ResourceLocation GHAST_QUEEN_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen.png");
+    private static final ResourceLocation GHAST_QUEEN_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen_shooting.png");
 
     public RenderGhastQueen(RenderManager manager)
     {

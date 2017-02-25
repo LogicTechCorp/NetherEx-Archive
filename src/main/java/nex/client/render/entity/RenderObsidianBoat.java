@@ -33,7 +33,7 @@ import nex.entity.item.EntityObsidianBoat;
 @SideOnly(Side.CLIENT)
 public class RenderObsidianBoat extends Render<EntityObsidianBoat>
 {
-    private static final ResourceLocation OBSIDIAN_BOAT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/boat_obsidian.png");
+    private static final ResourceLocation OBSIDIAN_BOAT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/boat_obsidian.png");
 
     private ModelBase modelBoat = new ModelBoat();
 

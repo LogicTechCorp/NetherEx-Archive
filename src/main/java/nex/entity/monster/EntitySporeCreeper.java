@@ -42,6 +42,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.ai.EntityAISporeCreeperSwell;
 import nex.init.NetherExItems;
+import nex.init.NetherExSoundEvents;
 import nex.world.ExplosionSpore;
 
 import java.util.Collection;
@@ -63,6 +64,18 @@ public class EntitySporeCreeper extends EntityMob
 
         setSize(0.6F, 1.7F);
         stepHeight = 0.5F;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_SPORE;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_SPORE;
     }
 
     @Override
@@ -159,7 +172,7 @@ public class EntitySporeCreeper extends EntityMob
 
             if(i > 0 && timeSinceIgnited == 0)
             {
-                playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.5F);
+                playSound(NetherExSoundEvents.ENTITY_WARN_SPORE, 1.0F, 0.5F);
             }
 
             timeSinceIgnited += i;
@@ -190,18 +203,6 @@ public class EntitySporeCreeper extends EntityMob
             }
         }
         return super.attackEntityFrom(source, amount);
-    }
-
-    @Override
-    protected SoundEvent getHurtSound()
-    {
-        return SoundEvents.ENTITY_CREEPER_HURT;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound()
-    {
-        return SoundEvents.ENTITY_CREEPER_DEATH;
     }
 
     @Override

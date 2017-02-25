@@ -29,7 +29,7 @@ import nex.entity.projectile.EntityGhastlingFireball;
 
 public class RenderGhastlingFireball extends Render<EntityGhastlingFireball>
 {
-    private static final ResourceLocation GHASTLING_FIREBALL_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/ghast/ghastling_fireball.png");
+    private static final ResourceLocation GHASTLING_FIREBALL_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling_fireball.png");
 
     public RenderGhastlingFireball(RenderManager manager)
     {

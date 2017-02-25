@@ -471,24 +471,35 @@ item.nex:armorLeggingsHideSalamander.name=Salamander Hide Leggings
 item.nex:armorBootsHideSalamander.name=Salamander Hide Boots
 
 # Subtitles
+subtitle.nex:sound.mob.ambientMogus=Mogus Converse
+subtitle.nex:sound.mob.hurtMogus=Mogus Wince
+subtitle.nex:sound.mob.deathMogus=Mogus Death
+subtitle.nex:sound.mob.ambientSalamander=Salamander Snarl
+subtitle.nex:sound.mob.hurtSalamander=Salamander Roar
+subtitle.nex:sound.mob.deathSalamander=Salamander Death
 subtitle.nex:sound.mob.ambientWight=Wight Whisper
 subtitle.nex:sound.mob.hurtWight=Wight Moan
 subtitle.nex:sound.mob.deathWight=Wight Death
+subtitle.nex:sound.mob.hurtEmber=Ember Dwindle
+subtitle.nex:sound.mob.deathEmber=Ember Extinguish
 subtitle.nex:sound.mob.ambientNethermite=Nethermite Chatter
 subtitle.nex:sound.mob.hurtNethermite=Nethermite Shriek
 subtitle.nex:sound.mob.deathNethermite=Nethermite Death
 subtitle.nex:sound.mob.ambientSpinout=Spinout Spin
 subtitle.nex:sound.mob.hurtSpinout=Spinout Hurt
 subtitle.nex:sound.mob.deathSpinout=Spinout Death
+subtitle.nex:sound.mob.ambientGhastling=Ghastling Moan
+subtitle.nex:sound.mob.hurtGhastling=Ghastling Scream
+subtitle.nex:sound.mob.deathGhastling=Ghastling Death
+subtitle.nex:sound.mob.warnGhastling=Ghastling Warn
+subtitle.nex:sound.mob.shootGhastling=Ghastling Shoot
+subtitle.nex:sound.mob.hurtSpore=Spore Hurt
+subtitle.nex:sound.mob.deathSpore=Spore Death
+subtitle.nex:sound.mob.warnSpore=Spore Sizzle
 subtitle.nex:sound.mob.ambientGhastQueen=Ghast Queen Moan
 subtitle.nex:sound.mob.hurtGhastQueen=Ghast Queen Scream
 subtitle.nex:sound.mob.deathGhastQueen=Ghast Queen Death
 subtitle.nex:sound.mob.shootGhastQueen=Ghast Queen Fireball
-subtitle.nex:sound.mob.ambientGhastling=Ghastling Moan
-subtitle.nex:sound.mob.hurtGhastling=Ghastling Scream
-subtitle.nex:sound.mob.deathGhastling=Ghastling Death
-subtitle.nex:sound.mob.warnGhastling=Ghastling Fireball
-subtitle.nex:sound.mob.shootGhastling=Ghastling Warn
 
 # Tiles (Blocks)
 tile.nex:blockBasalt.normal.name=Basalt

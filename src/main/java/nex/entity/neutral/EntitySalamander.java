@@ -30,10 +30,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.init.NetherExItems;
+import nex.init.NetherExSoundEvents;
 
 public class EntitySalamander extends EntityMob
 {
@@ -48,6 +50,24 @@ public class EntitySalamander extends EntityMob
         isImmuneToFire = true;
 
         setRandomType();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return NetherExSoundEvents.ENTITY_AMBIENT_SALAMANDER;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_SALAMANDER;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_SALAMANDER;
     }
 
     @Override
@@ -116,14 +136,7 @@ public class EntitySalamander extends EntityMob
         else
         {
             String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
             String type = getType() == 0 ? "orange" : "black";
-
             return I18n.format("entity." + entityName + "." + type + ".name");
         }
     }

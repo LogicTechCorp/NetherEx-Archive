@@ -29,9 +29,9 @@ import nex.entity.neutral.EntityMogus;
 @SideOnly(Side.CLIENT)
 public class RenderMogus extends RenderLiving<EntityMogus>
 {
-    private static final ResourceLocation BROWN_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/mogus/mogus_brown.png");
-    private static final ResourceLocation RED_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/mogus/mogus_red.png");
-    private static final ResourceLocation WHITE_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/mogus/mogus_white.png");
+    private static final ResourceLocation BROWN_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/mogus_brown.png");
+    private static final ResourceLocation RED_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/mogus_red.png");
+    private static final ResourceLocation WHITE_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/mogus_white.png");
 
     public RenderMogus(RenderManager manager)
     {

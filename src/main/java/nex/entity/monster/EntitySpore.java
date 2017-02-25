@@ -18,8 +18,6 @@
 package nex.entity.monster;
 
 import com.google.common.collect.Lists;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
@@ -29,10 +27,12 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExItems;
+import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
 public class EntitySpore extends EntityMob
@@ -54,12 +54,23 @@ public class EntitySpore extends EntityMob
         setStage(stage);
     }
 
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_SPORE;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_SPORE;
+    }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0D);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
     }
 
     @Override
@@ -74,6 +85,8 @@ public class EntitySpore extends EntityMob
     public void onUpdate()
     {
         super.onUpdate();
+
+        updateSize();
 
         if(getStage() < 4)
         {
@@ -142,28 +155,6 @@ public class EntitySpore extends EntityMob
         return false;
     }
 
-    @Override
-    public String getName()
-    {
-        if(hasCustomName())
-        {
-            return getCustomNameTag();
-        }
-        else
-        {
-            String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
-            String stage = getStage() == 0 ? "one" : getStage() == 1 ? "two" : getStage() == 2 ? "three" : getStage() == 1 ? "four" : "five";
-
-            return I18n.format("entity." + entityName + "." + stage + ".name");
-        }
-    }
-
     public int getStage()
     {
         return dataManager.get(STAGE);
@@ -197,8 +188,6 @@ public class EntitySpore extends EntityMob
         }
 
         dataManager.set(STAGE, stage);
-        updateSize();
-        updateHealth();
     }
 
     private void setCounter(int amount)
@@ -208,45 +197,17 @@ public class EntitySpore extends EntityMob
 
     private void updateSize()
     {
-        if(getStage() == 0 || getStage() == 1 && width != 0.65F)
+        if(getStage() == 0 || getStage() == 1 && (width != 0.65F || height != 0.75F))
         {
             setSize(0.65F, 0.75F);
         }
-        else if(getStage() == 2 && width != 0785F)
+        else if(getStage() == 2 && (width != 0.78F || height != 0.88F))
         {
             setSize(0.78F, 0.88F);
         }
-        else if(getStage() == 3 || getStage() == 4 && width != 0.8F)
+        else if(getStage() == 3 || getStage() == 4 && (width != 0.8F || height != 1.48F))
         {
             setSize(0.8F, 1.48F);
-        }
-    }
-
-    private void updateHealth()
-    {
-        if(getStage() == 0 && getMaxHealth() != 2.0F)
-        {
-            getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0D);
-        }
-        else if(getStage() == 1 && getMaxHealth() != 4.0F)
-        {
-            getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
-            setHealth(getHealth() * 2.0F);
-        }
-        else if(getStage() == 2 && getMaxHealth() != 8.0F)
-        {
-            getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-            setHealth(getHealth() * 2.0F);
-        }
-        else if(getStage() == 3 && getMaxHealth() != 16.0F)
-        {
-            getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-            setHealth(getHealth() * 2.0F);
-        }
-        else if(getStage() == 4 && getMaxHealth() != 32.0F)
-        {
-            getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32.0D);
-            setHealth(getHealth() * 2.0F);
         }
     }
 }

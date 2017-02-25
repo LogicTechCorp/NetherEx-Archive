@@ -31,10 +31,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.init.NetherExBlocks;
+import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
 public class EntityMogus extends EntityMob
@@ -49,6 +51,24 @@ public class EntityMogus extends EntityMob
         stepHeight = 0.5F;
 
         setRandomType();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return NetherExSoundEvents.ENTITY_AMBIENT_MOGUS;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_MOGUS;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_MOGUS;
     }
 
     @Override

@@ -21,9 +21,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityBoat;
@@ -131,27 +129,7 @@ public class EntityObsidianBoat extends EntityBoat
     {
         return getEntityBoundingBox();
     }
-
-    @Override
-    public String getName()
-    {
-        if(hasCustomName())
-        {
-            return getCustomNameTag();
-        }
-        else
-        {
-            String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
-            return I18n.format(entityName + ".name");
-        }
-    }
-
+    
     @Override
     public boolean canBePushed()
     {

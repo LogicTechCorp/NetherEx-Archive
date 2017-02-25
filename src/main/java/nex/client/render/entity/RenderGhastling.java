@@ -27,8 +27,8 @@ import nex.entity.monster.EntityGhastling;
 
 public class RenderGhastling extends RenderLiving<EntityGhastling>
 {
-    private static final ResourceLocation GHASTLING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/ghast/ghastling.png");
-    private static final ResourceLocation GHASTLING_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/ghast/ghastling_shooting.png");
+    private static final ResourceLocation GHASTLING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling.png");
+    private static final ResourceLocation GHASTLING_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling_shooting.png");
 
     public RenderGhastling(RenderManager manager)
     {

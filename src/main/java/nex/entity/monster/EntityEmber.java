@@ -17,9 +17,7 @@
 
 package nex.entity.monster;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -28,6 +26,7 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
@@ -35,6 +34,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExSoundEvents;
 
 public class EntityEmber extends EntityMob
 {
@@ -70,6 +70,18 @@ public class EntityEmber extends EntityMob
     public float getBrightness(float partialTicks)
     {
         return 1.0F;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_EMBER;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_EMBER;
     }
 
     @Override
@@ -234,26 +246,6 @@ public class EntityEmber extends EntityMob
     public boolean isNotColliding()
     {
         return world.checkNoEntityCollision(getEntityBoundingBox(), this) && world.getCollisionBoxes(this, getEntityBoundingBox()).isEmpty();
-    }
-
-    @Override
-    public String getName()
-    {
-        if(hasCustomName())
-        {
-            return getCustomNameTag();
-        }
-        else
-        {
-            String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
-            return I18n.format("entity." + entityName + ".name");
-        }
     }
 
     public void setMovementSpeed(double newSpeed)

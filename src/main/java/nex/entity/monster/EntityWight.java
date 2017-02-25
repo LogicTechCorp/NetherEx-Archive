@@ -18,9 +18,7 @@
 package nex.entity.monster;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -120,25 +118,5 @@ public class EntityWight extends EntityMob
     protected boolean canTriggerWalking()
     {
         return false;
-    }
-
-    @Override
-    public String getName()
-    {
-        if(hasCustomName())
-        {
-            return getCustomNameTag();
-        }
-        else
-        {
-            String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
-            return I18n.format("entity." + entityName + ".name");
-        }
     }
 }

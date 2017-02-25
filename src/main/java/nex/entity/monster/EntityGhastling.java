@@ -17,8 +17,6 @@
 
 package nex.entity.monster;
 
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.monster.EntityGhast;
@@ -82,25 +80,5 @@ public class EntityGhastling extends EntityGhast
     public int getFireballStrength()
     {
         return 1;
-    }
-
-    @Override
-    public String getName()
-    {
-        if(hasCustomName())
-        {
-            return getCustomNameTag();
-        }
-        else
-        {
-            String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
-            return I18n.format("entity." + entityName + ".name");
-        }
     }
 }

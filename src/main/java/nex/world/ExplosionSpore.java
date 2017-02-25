@@ -37,6 +37,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import nex.NetherEx;
 import nex.entity.monster.EntitySpore;
 import nex.entity.monster.EntitySporeCreeper;
@@ -150,7 +151,7 @@ public class ExplosionSpore extends Explosion
             int j2 = MathHelper.floor(explosionZ - (double) f3 - 1.0D);
             int j1 = MathHelper.floor(explosionZ + (double) f3 + 1.0D);
             List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(exploder, new AxisAlignedBB((double) k1, (double) i2, (double) j2, (double) l1, (double) i1, (double) j1));
-            net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(world, this, list, f3);
+            ForgeEventFactory.onExplosionDetonate(world, this, list, f3);
             Vec3d vec3d = new Vec3d(explosionX, explosionY, explosionZ);
 
             for(Entity entity : list)

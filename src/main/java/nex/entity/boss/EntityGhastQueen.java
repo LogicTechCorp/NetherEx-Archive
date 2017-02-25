@@ -17,8 +17,6 @@
 
 package nex.entity.boss;
 
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
@@ -212,26 +210,6 @@ public class EntityGhastQueen extends EntityGhast
     {
         super.setCustomNameTag(name);
         bossInfo.setName(getDisplayName());
-    }
-
-    @Override
-    public String getName()
-    {
-        if(hasCustomName())
-        {
-            return getCustomNameTag();
-        }
-        else
-        {
-            String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
-            return I18n.format("entity." + entityName + ".name");
-        }
     }
 
     private int getCooldown()
