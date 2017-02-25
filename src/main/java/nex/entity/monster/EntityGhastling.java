@@ -22,10 +22,12 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import nex.entity.ai.EntityAIGhastFly;
 import nex.entity.ai.EntityAIGhastLookAround;
 import nex.entity.ai.EntityAIGhastlingFireballAttack;
+import nex.init.NetherExSoundEvents;
 
 public class EntityGhastling extends EntityGhast
 {
@@ -34,6 +36,24 @@ public class EntityGhastling extends EntityGhast
         super(world);
 
         setSize(2.0F, 2.0F);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return NetherExSoundEvents.ENTITY_AMBIENT_GHASTLING;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_GHASTLING;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_GHASTLING;
     }
 
     @Override

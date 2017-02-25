@@ -31,10 +31,13 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExSoundEvents;
 
+@SuppressWarnings("ConstantConditions")
 public class EntitySpinout extends EntityMob
 {
     private static final DataParameter<Integer> COUNTER = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.VARINT);
@@ -51,6 +54,33 @@ public class EntitySpinout extends EntityMob
         setSize(0.55F, 1.95F);
         stepHeight = 0.5F;
         isImmuneToFire = true;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return NetherExSoundEvents.ENTITY_AMBIENT_SPINOUT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_SPINOUT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_SPINOUT;
+    }
+
+    @Override
+    public void playSound(SoundEvent sound, float volume, float pitch)
+    {
+        if(!isSilent() || isSilent() && sound != NetherExSoundEvents.ENTITY_AMBIENT_SPINOUT)
+        {
+            world.playSound(null, posX, posY, posZ, sound, getSoundCategory(), volume, pitch);
+        }
     }
 
     @Override
@@ -94,15 +124,18 @@ public class EntitySpinout extends EntityMob
         {
             setCounter(getCounter() + 1);
 
+            if(!isSpinning())
+            {
+                setSpinning(true);
+            }
             if(tasks.taskEntries.size() == 1)
             {
                 tasks.addTask(1, attackMelee);
                 tasks.addTask(2, wander);
             }
-
-            if(!isSpinning())
+            if(isSilent())
             {
-                setSpinning(true);
+                setSilent(false);
             }
         }
         if(getCounter() >= ConfigHandler.Entity.Spinout.spinTime * 20)
@@ -119,6 +152,10 @@ public class EntitySpinout extends EntityMob
             {
                 tasks.removeTask(attackMelee);
                 tasks.removeTask(wander);
+            }
+            if(!isSilent())
+            {
+                setSilent(true);
             }
 
             getNavigator().clearPathEntity();

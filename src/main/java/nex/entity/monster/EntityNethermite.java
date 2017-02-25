@@ -27,6 +27,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nex.init.NetherExSoundEvents;
 
 public class EntityNethermite extends EntityMob
 {
@@ -42,25 +43,25 @@ public class EntityNethermite extends EntityMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
+        return NetherExSoundEvents.ENTITY_AMBIENT_NETHERMITE;
     }
 
     @Override
     protected SoundEvent getHurtSound()
     {
-        return SoundEvents.ENTITY_SILVERFISH_HURT;
+        return NetherExSoundEvents.ENTITY_HURT_NETHERMITE;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return SoundEvents.ENTITY_SILVERFISH_DEATH;
+        return NetherExSoundEvents.ENTITY_DEATH_NETHERMITE;
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, Block blockIn)
+    protected void playStepSound(BlockPos pos, Block block)
     {
-        playSound(SoundEvents.ENTITY_ENDERMITE_STEP, 0.15F, 1.0F);
+        playSound(SoundEvents.ENTITY_SILVERFISH_STEP, 0.15F, 1.0F);
     }
 
     @Override

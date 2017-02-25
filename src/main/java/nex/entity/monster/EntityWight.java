@@ -28,10 +28,12 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.init.NetherExEffects;
+import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
 public class EntityWight extends EntityMob
@@ -42,6 +44,24 @@ public class EntityWight extends EntityMob
 
         setSize(0.55F, 1.5F);
         stepHeight = 0.5F;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return NetherExSoundEvents.ENTITY_AMBIENT_WIGHT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_WIGHT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_WIGHT;
     }
 
     @Override

@@ -61,19 +61,19 @@ public class EntityGhastQueen extends EntityGhast
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.GHAST_QUEEN_MOAN;
+        return NetherExSoundEvents.ENTITY_AMBIENT_GHAST_QUEEN;
     }
 
     @Override
     protected SoundEvent getHurtSound()
     {
-        return NetherExSoundEvents.GHAST_QUEEN_SCREAM;
+        return NetherExSoundEvents.ENTITY_HURT_GHAST_QUEEN;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.GHAST_QUEEN_DEATH;
+        return NetherExSoundEvents.ENTITY_DEATH_GHAST_QUEEN;
     }
 
     @Override

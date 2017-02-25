@@ -451,6 +451,7 @@ item.nex:itemHideSalamander.orange.name=Orange Salamander Hide
 item.nex:itemHideSalamander.black.name=Black Salamander Hide
 item.nex:itemCrystalRime.name=Rime Crystal
 item.nex:itemBoatObsidian.name=Obsidian Boat
+item.nex:itemSpore.name=Spore
 item.nex:foodMeatGhastRaw.name=Raw Ghast Meat
 item.nex:foodMeatGhastCooked.name=Cooked Ghast Meat
 item.nex:foodCongealedMagmaCream.name=Congealed Magma Cream
@@ -470,10 +471,24 @@ item.nex:armorLeggingsHideSalamander.name=Salamander Hide Leggings
 item.nex:armorBootsHideSalamander.name=Salamander Hide Boots
 
 # Subtitles
-subtitle.nex:sound.mob.GhastQueenMoan=Ghast Queen Moan
-subtitle.nex:sound.mob.GhastQueenScream=Ghast Queen Scream
-subtitle.nex:sound.mob.GhastQueenFireball=Ghast Queen Fireball
-subtitle.nex:sound.mob.GhastQueenDeath=Ghast Queen Death
+subtitle.nex:sound.mob.ambientWight=Wight Whisper
+subtitle.nex:sound.mob.hurtWight=Wight Moan
+subtitle.nex:sound.mob.deathWight=Wight Death
+subtitle.nex:sound.mob.ambientNethermite=Nethermite Chatter
+subtitle.nex:sound.mob.hurtNethermite=Nethermite Shriek
+subtitle.nex:sound.mob.deathNethermite=Nethermite Death
+subtitle.nex:sound.mob.ambientSpinout=Spinout Spin
+subtitle.nex:sound.mob.hurtSpinout=Spinout Hurt
+subtitle.nex:sound.mob.deathSpinout=Spinout Death
+subtitle.nex:sound.mob.ambientGhastQueen=Ghast Queen Moan
+subtitle.nex:sound.mob.hurtGhastQueen=Ghast Queen Scream
+subtitle.nex:sound.mob.deathGhastQueen=Ghast Queen Death
+subtitle.nex:sound.mob.shootGhastQueen=Ghast Queen Fireball
+subtitle.nex:sound.mob.ambientGhastling=Ghastling Moan
+subtitle.nex:sound.mob.hurtGhastling=Ghastling Scream
+subtitle.nex:sound.mob.deathGhastling=Ghastling Death
+subtitle.nex:sound.mob.warnGhastling=Ghastling Fireball
+subtitle.nex:sound.mob.shootGhastling=Ghastling Warn
 
 # Tiles (Blocks)
 tile.nex:blockBasalt.normal.name=Basalt

@@ -40,6 +40,7 @@ import static net.minecraft.init.Items.*;
 import static net.minecraft.init.PotionTypes.AWKWARD;
 import static nex.init.NetherExBlocks.*;
 import static nex.init.NetherExEffectTypes.NORMAL_FREEZE;
+import static nex.init.NetherExEffectTypes.NORMAL_SPORE;
 import static nex.init.NetherExItems.*;
 
 @SuppressWarnings("ConstantConditions")
@@ -142,6 +143,7 @@ public class NetherExRecipes
         addBootsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_BOOTS_HIDE_SALAMANDER, 1, 0), variant), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
 
         addBrewing(AWKWARD, ITEM_CRYSTAL_RIME, NORMAL_FREEZE);
+        addBrewing(AWKWARD, ITEM_SPORE, NORMAL_SPORE);
 
         LOGGER.info("Recipe registration completed.");
     }

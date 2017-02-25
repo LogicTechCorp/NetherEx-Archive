@@ -20,12 +20,13 @@ package nex.entity.ai;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import nex.entity.monster.EntityGhastling;
 import nex.entity.projectile.EntityGhastlingFireball;
+import nex.init.NetherExSoundEvents;
 
+@SuppressWarnings("ConstantConditions")
 public class EntityAIGhastlingFireballAttack extends EntityAIBase
 {
     private final EntityGhast parentEntity;
@@ -66,7 +67,7 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
 
             if(attackTimer == 10)
             {
-                world.playEvent(null, 1015, new BlockPos(parentEntity), 0);
+                parentEntity.playSound(NetherExSoundEvents.ENTITY_WARN_GHASTLING, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
             }
 
             if(attackTimer == 20)
@@ -75,7 +76,7 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
                 double d2 = target.posX - (parentEntity.posX + vec3d.xCoord * 4.0D);
                 double d3 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + parentEntity.posY + (double) (parentEntity.height / 2.0F));
                 double d4 = target.posZ - (parentEntity.posZ + vec3d.zCoord * 4.0D);
-                world.playEvent(null, 1016, new BlockPos(parentEntity), 0);
+                parentEntity.playSound(NetherExSoundEvents.ENTITY_SHOOT_GHASTLING, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
                 EntityGhastlingFireball fireball = new EntityGhastlingFireball(world, parentEntity, d2, d3, d4);
                 fireball.explosionPower = parentEntity.getFireballStrength();
                 fireball.posX = parentEntity.posX + vec3d.xCoord * 4.0D;

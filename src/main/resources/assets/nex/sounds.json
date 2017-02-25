@@ -1,22 +1,94 @@
 {
-    "ghast_queen_moan": {
+    "ambient_wight": {
         "category": "hostile",
-        "sounds": [ "nex:mob/ghast/ghast_queen_moan1", "nex:mob/ghast/ghast_queen_moan2", "nex:mob/ghast/ghast_queen_moan3", "nex:mob/ghast/ghast_queen_moan4", "nex:mob/ghast/ghast_queen_moan5" ],
-        "subtitle": "subtitle.nex:sound.mob.ghastQueenMoan"
+        "sounds": [ "nex:mob/wight/ambient_wight_1", "nex:mob/wight/ambient_wight_2", "nex:mob/wight/ambient_wight_3" ],
+        "subtitle": "subtitle.nex:sound.mob.ambientWight"
     },
-    "ghast_queen_scream": {
+    "hurt_wight": {
         "category": "hostile",
-        "sounds": [ "nex:mob/ghast/ghast_queen_scream1", "nex:mob/ghast/ghast_queen_scream2", "nex:mob/ghast/ghast_queen_scream3", "nex:mob/ghast/ghast_queen_scream4", "nex:mob/ghast/ghast_queen_scream5" ],
-        "subtitle": "subtitle.nex:sound.mob.ghastQueenScream"
+        "sounds": [ "nex:mob/wight/hurt_wight" ],
+        "subtitle": "subtitle.nex:sound.mob.hurtWight"
     },
-    "ghast_queen_fireball": {
+    "death_wight": {
         "category": "hostile",
-        "sounds": [ "nex:mob/ghast/ghast_queen_fireball" ],
-        "subtitle": "subtitle.nex:sound.mob.ghastQueenFireball"
+        "sounds": [ "nex:mob/wight/death_wight" ],
+        "subtitle": "subtitle.nex:sound.mob.deathWight"
     },
-    "ghast_queen_death": {
+
+    "ambient_nethermite": {
         "category": "hostile",
-        "sounds": [ "nex:mob/ghast/ghast_queen_death" ],
-        "subtitle": "subtitle.nex:sound.mob.ghastQueenDeath"
+        "sounds": [ "nex:mob/nethermite/ambient_nethermite" ],
+        "subtitle": "subtitle.nex:sound.mob.ambientNethermite"
+    },
+    "hurt_nethermite": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/nethermite/hurt_nethermite" ],
+        "subtitle": "subtitle.nex:sound.mob.hurtNethermite"
+    },
+    "death_nethermite": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/nethermite/death_nethermite" ],
+        "subtitle": "subtitle.nex:sound.mob.deathNethermite"
+    },
+
+    "ambient_spinout": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/spinout/ambient_spinout_1", "nex:mob/spinout/ambient_spinout_2", "nex:mob/spinout/ambient_spinout_3" ],
+        "subtitle": "subtitle.nex:sound.mob.ambientSpinout"
+    },
+    "hurt_spinout": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/spinout/hurt_spinout" ],
+        "subtitle": "subtitle.nex:sound.mob.hurtSpinout"
+    },
+    "death_spinout": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/spinout/death_spinout" ],
+        "subtitle": "subtitle.nex:sound.mob.deathSpinout"
+    },
+    "ambient_ghast_queen": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/ambient_ghast_queen_1", "nex:mob/ghast/ambient_ghast_queen_2", "nex:mob/ghast/ambient_ghast_queen_3", "nex:mob/ghast/ambient_ghast_queen_4", "nex:mob/ghast/ambient_ghast_queen_5" ],
+        "subtitle": "subtitle.nex:sound.mob.ambientGhastQueen"
+    },
+    "hurt_ghast_queen": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/hurt_ghast_queen_1", "nex:mob/ghast/hurt_ghast_queen_2", "nex:mob/ghast/hurt_ghast_queen_3", "nex:mob/ghast/hurt_ghast_queen_4", "nex:mob/ghast/hurt_ghast_queen_5" ],
+        "subtitle": "subtitle.nex:sound.mob.hurtGhastQueen"
+    },
+    "death_ghast_queen": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/death_ghast_queen" ],
+        "subtitle": "subtitle.nex:sound.mob.deathGhastQueen"
+    },
+    "shoot_ghast_queen": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/shoot_ghast_queen" ],
+        "subtitle": "subtitle.nex:sound.mob.shootGhastQueen"
+    },
+    "ambient_ghastling": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/ambient_ghastling_1", "nex:mob/ghast/ambient_ghastling_2", "nex:mob/ghast/ambient_ghastling_3", "nex:mob/ghast/ambient_ghastling_4", "nex:mob/ghast/ambient_ghastling_5", "nex:mob/ghast/ambient_ghastling_6", "nex:mob/ghast/ambient_ghastling_7" ],
+        "subtitle": "subtitle.nex:sound.mob.ambientGhastling"
+    },
+    "hurt_ghastling": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/hurt_ghastling_1", "nex:mob/ghast/hurt_ghastling_2", "nex:mob/ghast/hurt_ghastling_3", "nex:mob/ghast/hurt_ghastling_4", "nex:mob/ghast/hurt_ghastling_5" ],
+        "subtitle": "subtitle.nex:sound.mob.hurtGhastling"
+    },
+    "death_ghastling": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/death_ghastling" ],
+        "subtitle": "subtitle.nex:sound.mob.deathGhastling"
+    },
+    "warn_ghastling": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/worn_ghastling" ],
+        "subtitle": "subtitle.nex:sound.mob.shootGhastling"
+    },
+    "shoot_ghastling": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/ghast/shoot_ghastling" ],
+        "subtitle": "subtitle.nex:sound.mob.shootGhastling"
     }
 }
