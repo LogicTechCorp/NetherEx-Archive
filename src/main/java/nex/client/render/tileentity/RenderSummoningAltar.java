@@ -18,50 +18,44 @@
 package nex.client.render.tileentity;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.animation.FastTESR;
 import nex.tileentity.TileEntitySummoningAltar;
 
-import java.util.List;
-
-public class RenderSummoningAltar extends FastTESR<TileEntitySummoningAltar>
+public class RenderSummoningAltar extends TileEntitySpecialRenderer<TileEntitySummoningAltar>
 {
     @Override
-    public void renderTileEntityFast(TileEntitySummoningAltar altar, double x, double y, double z, float partialTicks, int destroyStage, VertexBuffer vertexRenderer)
+    public void renderTileEntityAt(TileEntitySummoningAltar altar, double x, double y, double z, float partialTicks, int destroyStage)
     {
+        if(altar == null)
+        {
+            return;
+        }
+
+        World world = altar.getWorld();
         ItemStack stack = altar.getInventory().getStackInSlot(0);
 
         if(!stack.isEmpty())
         {
-            World world = altar.getWorld();
-            float time = (world.getTotalWorldTime() + partialTicks) / 20;
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(x + 0.5F, y + 1.225F, z + 0.5F);
+            GlStateManager.disableLighting();
 
-            IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, world, null);
-            List<BakedQuad> quads;
+            GlStateManager.rotate(((world.getTotalWorldTime() + partialTicks) / 15.0F) * (180.0F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+            GlStateManager.pushAttrib();
 
-            for(EnumFacing facing : EnumFacing.values())
-            {
-                quads = model.getQuads(null, facing, 0L);
+            RenderHelper.enableStandardItemLighting();
+            Minecraft.getMinecraft().getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
+            RenderHelper.disableStandardItemLighting();
 
-                for(BakedQuad quad : quads)
-                {
-                    vertexRenderer.addVertexData(quad.getVertexData());
-                    vertexRenderer.putPosition(x, y + 1.5D, z);
-                }
-            }
-
-            quads = model.getQuads(null, null, 0L);
-
-            for(BakedQuad quad : quads)
-            {
-                vertexRenderer.addVertexData(quad.getVertexData());
-                vertexRenderer.putPosition(x, y + 1.5D, z);
-            }
+            GlStateManager.popAttrib();
+            GlStateManager.enableLighting();
+            GlStateManager.popMatrix();
         }
     }
 }

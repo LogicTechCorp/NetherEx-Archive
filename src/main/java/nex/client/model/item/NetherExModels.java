@@ -104,6 +104,11 @@ public class NetherExModels
         registerModel(BLOCK_RIME, "normal");
         registerModel(BLOCK_ICE_FROSTBURN, "normal");
 
+        for(BlockUrnOfSorrow.EnumType type : BlockUrnOfSorrow.EnumType.values())
+        {
+            registerModel(TILE_URN_SORROW, type.ordinal(), TILE_URN_SORROW.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
+
         registerModel(ORE_RIME, "normal");
 
         registerModel(PLANT_THORNSTALK, "normal");

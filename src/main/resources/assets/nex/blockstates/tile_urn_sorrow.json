@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "empty": {
+                "model": "nex:tile_urn_sorrow_empty"
+            },
+            "full": {
+                "model": "nex:tile_urn_sorrow_full"
+            }
+        }
+    }
+}

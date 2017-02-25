@@ -118,6 +118,9 @@ public class NetherExSoundEvents
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":shoot_ghast_queen")
     public static final SoundEvent ENTITY_SHOOT_GHAST_QUEEN = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":summon_ghast_queen")
+    public static final SoundEvent ENTITY_SUMMON_GHAST_QUEEN = null;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExSoundEvents");
 
     @Mod.EventBusSubscriber
@@ -157,7 +160,8 @@ public class NetherExSoundEvents
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghast_queen")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghast_queen")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_ghast_queen")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghast_queen"))
+                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghast_queen")),
+                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":summon_ghast_queen"))
             );
 
             LOGGER.info("Sound registration completed.");

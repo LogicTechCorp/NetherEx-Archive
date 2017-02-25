@@ -143,5 +143,10 @@
         "category": "hostile",
         "sounds": [ "nex:mob/ghast/shoot_ghast_queen" ],
         "subtitle": "subtitle.nex:sound.mob.shootGhastQueen"
+    },
+    "summon_ghast_queen": {
+        "category": "ambient",
+        "sounds": [ "nex:mob/ghast/summon_ghast_queen" ],
+        "subtitle": "subtitle.nex:sound.mob.summonGhastQueen"
     }
 }

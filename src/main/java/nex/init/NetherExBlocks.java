@@ -65,8 +65,8 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_ice_frostburn")
     public static final BlockFrostburnIce BLOCK_ICE_FROSTBURN = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tile_altar_summoning")
-    public static final BlockSummoningAltar TILE_ALTAR_SUMMONING = null;
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tile_urn_sorrow")
+    public static final BlockUrnOfSorrow TILE_URN_SORROW = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
     public static final BlockQuartzOre ORE_QUARTZ = null;
@@ -228,7 +228,7 @@ public class NetherExBlocks
                     new BlockSoulGlassPane(),
                     new BlockRime(),
                     new BlockFrostburnIce(),
-                    new BlockSummoningAltar(),
+                    new BlockUrnOfSorrow(),
                     new BlockQuartzOre(),
                     new BlockRimeOre(),
                     new BlockThornstalk(),
@@ -291,7 +291,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
                     new ItemBlockNetherEx(BLOCK_RIME),
                     new ItemBlockNetherEx(BLOCK_ICE_FROSTBURN),
-                    new ItemBlockNetherEx(TILE_ALTAR_SUMMONING),
+                    new ItemBlockUrnOfSorrow(),
                     new ItemBlockQuartzOre(),
                     new ItemBlockNetherEx(ORE_RIME),
                     new ItemBlockElderMushroom(PLANT_MUSHROOM_ELDER),
