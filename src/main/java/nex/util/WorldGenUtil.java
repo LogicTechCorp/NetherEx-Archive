@@ -40,7 +40,7 @@ public class WorldGenUtil
         while(pos.getY() > 32)
         {
             float sizeX = structureSize.getX();
-            float sizeZ = structureSize.getY();
+            float sizeZ = structureSize.getZ();
 
             int topBlocks = 0;
 
@@ -70,7 +70,7 @@ public class WorldGenUtil
 
             if(topBlocks >= MathHelper.abs(sizeX * sizeZ) * percentage)
             {
-                return pos.up();
+                return pos;
             }
 
             pos = pos.down();

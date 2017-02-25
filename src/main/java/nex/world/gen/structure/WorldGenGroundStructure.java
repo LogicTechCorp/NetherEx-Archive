@@ -100,15 +100,15 @@ public class WorldGenGroundStructure extends WorldGenerator
 
         if(spawnPos != BlockPos.ORIGIN)
         {
-            template.addBlocksToWorld(world, spawnPos.down(), settings.copy(), 3);
+            template.addBlocksToWorld(world, spawnPos, settings.copy(), 3);
 
             if(spawnerMobs.length > 0)
             {
-                WorldGenUtil.setSpawnerMob(world, spawnPos.down(), structureSize, spawnerMobs[rand.nextInt(spawnerMobs.length)]);
+                WorldGenUtil.setSpawnerMob(world, spawnPos, structureSize, spawnerMobs[rand.nextInt(spawnerMobs.length)]);
             }
             if(hasChest)
             {
-                WorldGenUtil.setChestContents(world, rand, spawnPos.down(), structureSize, lootTable);
+                WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, lootTable);
             }
 
             return true;

@@ -207,7 +207,10 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         {
             if(rand.nextInt(ConfigHandler.Biome.TorridWasteland.pyramidRarity) == 0)
             {
-                pyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                for(int i = 0; i < 4; i++)
+                {
+                    pyramid.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                }
             }
         }
 

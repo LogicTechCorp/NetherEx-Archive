@@ -69,7 +69,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     private WorldGenerator graveyard = new WorldGenGroundStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
     private WorldGenerator sarcophagus = new WorldGenGroundStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
     private WorldGenerator altar = new WorldGenGroundStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
-    private WorldGenerator throne = new WorldGenGroundStructure("ruthless_sands", "throne", new String[]{""}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
     private WorldGenerator waypoint = new WorldGenGroundStructure("ruthless_sands", "waypoint", new String[]{""}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
 
     public BiomeRuthlessSands()
@@ -183,14 +182,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.altarRarity) == 0)
             {
                 altar.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Biome.RuthlessSands.generateThrones)
-        {
-            if(rand.nextInt(ConfigHandler.Biome.RuthlessSands.throneRarity) == 0)
-            {
-                throne.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

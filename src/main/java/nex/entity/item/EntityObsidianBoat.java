@@ -129,7 +129,7 @@ public class EntityObsidianBoat extends EntityBoat
     {
         return getEntityBoundingBox();
     }
-    
+
     @Override
     public boolean canBePushed()
     {

@@ -349,7 +349,7 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Villages are", "The lower the number, the more common Villages are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int villageRarity = 2;
+            public static int villageRarity = 1;
         }
 
         public static class RuthlessSands
@@ -366,7 +366,6 @@ public class ConfigHandler
             public static boolean generateGraveyards = true;
             public static boolean generateSarcophagus = true;
             public static boolean generateAltars = true;
-            public static boolean generateThrones = true;
             public static boolean generateWaypoints = true;
 
             @Config.Comment({"The lower the number, the rarer The Ruthless Sands is", "The higher the number, the more common the Ruthless Sands biome is"})
@@ -417,13 +416,9 @@ public class ConfigHandler
             @Config.RangeInt(min = 1, max = 64)
             public static int altarRarity = 48;
 
-            @Config.Comment({"The higher the number, the rarer Thrones are", "The lower the number, the more common Thrones are"})
-            @Config.RangeInt(min = 1, max = 64)
-            public static int throneRarity = 55;
-
             @Config.Comment({"The higher the number, the rarer Waypoints are", "The lower the number, the more common Waypoints are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int waypointRarity = 16;
+            public static int waypointRarity = 32;
 
         }
 
@@ -483,7 +478,7 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Temples are", "The lower the number, the more common Temples are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int templeRarity = 2;
+            public static int templeRarity = 1;
         }
 
         public static class TorridWasteland
@@ -562,7 +557,7 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Pyramids are", "The lower the number, the more common Pyramids are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int pyramidRarity = 2;
+            public static int pyramidRarity = 1;
         }
 
         public static class ArcticAbyss

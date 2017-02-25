@@ -216,7 +216,10 @@ public class BiomeHell extends BiomeNetherEx
         {
             if(rand.nextInt(ConfigHandler.Biome.Hell.villageRarity) == 0)
             {
-                village.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                for(int i = 0; i < 4; i++)
+                {
+                    village.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+                }
             }
         }
 
