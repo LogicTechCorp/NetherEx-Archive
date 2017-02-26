@@ -40,6 +40,7 @@ import static net.minecraft.init.Items.*;
 import static net.minecraft.init.PotionTypes.AWKWARD;
 import static nex.init.NetherExBlocks.*;
 import static nex.init.NetherExEffectTypes.NORMAL_FREEZE;
+import static nex.init.NetherExEffectTypes.NORMAL_LOST;
 import static nex.init.NetherExEffectTypes.NORMAL_SPORE;
 import static nex.init.NetherExItems.*;
 
@@ -144,6 +145,7 @@ public class NetherExRecipes
 
         addBrewing(AWKWARD, ITEM_CRYSTAL_RIME, NORMAL_FREEZE);
         addBrewing(AWKWARD, ITEM_SPORE, NORMAL_SPORE);
+        addBrewing(AWKWARD, FOOD_MEAT_GHAST_RAW, NORMAL_LOST);
 
         LOGGER.info("Recipe registration completed.");
     }

@@ -406,7 +406,11 @@ potion.effect.nex:normalSpore=Potion of Dispersal
 splash_potion.effect.nex:normalSpore=Splash Potion of Dispersal
 lingering_potion.effect.nex:normalSpore=Lingering Potion of Dispersal
 tipped_arrow.effect.nex:normalSpore=Arrow of Dispersal
-
+potion.effect.nex:lost=The Lost
+potion.effect.nex:normalLost=Potion of The Lost
+splash_potion.effect.nex:normalLost=Splash Potion of The Lost
+lingering_potion.effect.nex:normalLost=Lingering Potion of The Lost
+tipped_arrow.effect.nex:normalLost=Arrow of The Lost
 
 #Entities (Mobs)
 entity.nex:projectileGhastQueenFireball.name=Ghast Queen Fireball

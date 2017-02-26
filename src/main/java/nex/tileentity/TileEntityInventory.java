@@ -17,6 +17,7 @@
 
 package nex.tileentity;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,6 +42,12 @@ public class TileEntityInventory extends TileEntity
     {
         inventory = new ItemStackHandler(size);
         rand = new Random();
+    }
+
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
+    {
+        return oldState.getBlock() != newSate.getBlock();
     }
 
     @Override

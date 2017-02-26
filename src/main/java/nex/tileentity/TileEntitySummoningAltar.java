@@ -22,7 +22,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
+import nex.block.BlockUrnOfSorrow;
 import nex.entity.boss.EntityGhastQueen;
+import nex.init.NetherExBlocks;
 import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
@@ -39,7 +41,7 @@ public class TileEntitySummoningAltar extends TileEntityInventory implements ITi
     @Override
     public void update()
     {
-        if(getBlockMetadata() == 1)
+        if(BlockUrnOfSorrow.EnumType.fromMeta(getBlockMetadata()) == BlockUrnOfSorrow.EnumType.FULL)
         {
             ItemStack stack = getInventory().getStackInSlot(0);
 
@@ -50,15 +52,11 @@ public class TileEntitySummoningAltar extends TileEntityInventory implements ITi
                     world.playSound(null, pos, NetherExSoundEvents.ENTITY_SUMMON_GHAST_QUEEN, SoundCategory.AMBIENT, 0.5F, 1.0F);
                 }
                 setSummoningTime(getSummoningTime() + 1);
+                setCanBreak(false);
             }
-            else
-            {
-                setSummoningTime(0);
-            }
+
             if(getSummoningTime() / 20.0F >= 6.8F)
             {
-                getInventory().setStackInSlot(0, ItemStack.EMPTY);
-                
                 EntityGhastQueen ghastQueen = new EntityGhastQueen(getWorld());
                 ghastQueen.setPosition(pos.getX(), pos.getY() + 10, pos.getZ());
 
@@ -66,6 +64,11 @@ public class TileEntitySummoningAltar extends TileEntityInventory implements ITi
                 {
                     getWorld().spawnEntity(ghastQueen);
                 }
+
+                getInventory().setStackInSlot(0, ItemStack.EMPTY);
+                getWorld().setBlockState(pos, NetherExBlocks.TILE_URN_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+                setSummoningTime(0);
+                setCanBreak(true);
             }
         }
     }

@@ -32,6 +32,7 @@ public class NetherExEffects
 {
     public static final NetherExPotion FREEZE = new NetherExPotion("freeze", true, 93, 188, 210);
     public static final NetherExPotion SPORE = new NetherExPotion("spore", true, 142, 96, 40);
+    public static final NetherExPotion LOST = new NetherExPotion("lost", true, 103, 62, 124);
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffects");
 
@@ -45,7 +46,8 @@ public class NetherExEffects
 
             event.getRegistry().registerAll(
                     FREEZE,
-                    SPORE
+                    SPORE,
+                    LOST
             );
 
             LOGGER.info("Effect registration completed.");
