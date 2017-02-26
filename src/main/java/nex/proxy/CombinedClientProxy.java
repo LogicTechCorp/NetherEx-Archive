@@ -33,7 +33,7 @@ import nex.entity.neutral.EntitySalamander;
 import nex.entity.projectile.EntityGhastQueenFireball;
 import nex.entity.projectile.EntityGhastlingFireball;
 import nex.init.NetherExParticleTypes;
-import nex.tileentity.TileEntitySummoningAltar;
+import nex.tileentity.TileEntityUrnOfSorrow;
 
 @SideOnly(Side.CLIENT)
 public class CombinedClientProxy implements IProxy
@@ -41,7 +41,7 @@ public class CombinedClientProxy implements IProxy
     @Override
     public void preInit()
     {
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySummoningAltar.class, new RenderSummoningAltar());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUrnOfSorrow.class, new RenderSummoningAltar());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueenFireball.class, RenderGhastQueenFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastlingFireball.class, RenderGhastlingFireball::new);

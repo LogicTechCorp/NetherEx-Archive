@@ -90,13 +90,13 @@ public class WorldGenAirStructure extends WorldGenerator
 
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
-        BlockPos spawnPos = WorldGenUtil.getSuitableAirPos(world, newPos, structureSize, 0.8F);
+        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 80, pos.getZ() - structureSize.getZ() / 2);
+        BlockPos spawnPos = WorldGenUtil.getSuitableAirPos(world, newPos, structureSize);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
             template.addBlocksToWorld(world, spawnPos, settings.copy(), 3);
-
+            
             if(spawnerMobs.length > 0)
             {
                 WorldGenUtil.setSpawnerMob(world, spawnPos, structureSize, spawnerMobs[rand.nextInt(spawnerMobs.length)]);

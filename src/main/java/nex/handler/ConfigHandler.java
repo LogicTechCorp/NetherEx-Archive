@@ -435,6 +435,7 @@ public class ConfigHandler
             public static boolean generateGraveyards = true;
             public static boolean generateSarcophagus = true;
             public static boolean generateTemples = true;
+            public static boolean generateCastles = true;
 
             @Config.Comment({"The lower the number, the rarer the Fungi Forest biome is", "The higher the number, the more common the Fungi Forest biome is"})
             @Config.RangeInt(min = 1, max = 64)
@@ -479,6 +480,10 @@ public class ConfigHandler
             @Config.Comment({"The higher the number, the rarer Temples are", "The lower the number, the more common Temples are"})
             @Config.RangeInt(min = 1, max = 64)
             public static int templeRarity = 1;
+
+            @Config.Comment({"The higher the number, the rarer Castles are", "The lower the number, the more common Castles are"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int castleRarity = 64;
         }
 
         public static class TorridWasteland

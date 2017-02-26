@@ -28,12 +28,12 @@ import nex.init.NetherExBlocks;
 import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
-public class TileEntitySummoningAltar extends TileEntityInventory implements ITickable
+public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITickable
 {
     private int summoningTime = 0;
     private boolean canBreak = true;
 
-    public TileEntitySummoningAltar()
+    public TileEntityUrnOfSorrow()
     {
         super(1);
     }
@@ -58,7 +58,7 @@ public class TileEntitySummoningAltar extends TileEntityInventory implements ITi
             if(getSummoningTime() / 20.0F >= 6.8F)
             {
                 EntityGhastQueen ghastQueen = new EntityGhastQueen(getWorld());
-                ghastQueen.setPosition(pos.getX(), pos.getY() + 10, pos.getZ());
+                ghastQueen.setPosition(pos.getX(), pos.getY() + 8, pos.getZ());
 
                 if(!getWorld().isRemote)
                 {

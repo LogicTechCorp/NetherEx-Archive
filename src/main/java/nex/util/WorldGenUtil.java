@@ -79,7 +79,7 @@ public class WorldGenUtil
         return BlockPos.ORIGIN;
     }
 
-    public static BlockPos getSuitableAirPos(World world, BlockPos pos, BlockPos structureSize, float percentage)
+    public static BlockPos getSuitableAirPos(World world, BlockPos pos, BlockPos structureSize)
     {
         while(pos.getY() > 32)
         {
@@ -95,14 +95,13 @@ public class WorldGenUtil
                 {
                     for(int y = 0; y <= sizeY; y++)
                     {
-
                         int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
                         int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
                         int posY = (int) sizeY - y;
 
                         BlockPos newPos = pos.add(posX, posY, posZ);
 
-                        if(world.isAirBlock(newPos))
+                        if(world.getBlockState(newPos).getMaterial().isReplaceable())
                         {
                             airBlocks++;
                         }
@@ -110,7 +109,7 @@ public class WorldGenUtil
                 }
             }
 
-            if(airBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ) * percentage)
+            if(airBlocks == MathHelper.abs(sizeX * sizeY * sizeZ))
             {
                 return pos;
             }
@@ -137,7 +136,6 @@ public class WorldGenUtil
                 {
                     for(int y = 0; y <= sizeY; y++)
                     {
-
                         int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
                         int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
                         int posY = (int) sizeY - y;

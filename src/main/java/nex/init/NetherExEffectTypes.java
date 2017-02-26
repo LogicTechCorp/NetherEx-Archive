@@ -39,7 +39,7 @@ public class NetherExEffectTypes
     public static final PotionType NORMAL_SPORE = null;
 
     @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":normal_lost")
-    public static final PotionType NORMAL_LOST= null;
+    public static final PotionType NORMAL_LOST = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffectTypes");
 

@@ -39,9 +39,7 @@ import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
 import static net.minecraft.init.PotionTypes.AWKWARD;
 import static nex.init.NetherExBlocks.*;
-import static nex.init.NetherExEffectTypes.NORMAL_FREEZE;
-import static nex.init.NetherExEffectTypes.NORMAL_LOST;
-import static nex.init.NetherExEffectTypes.NORMAL_SPORE;
+import static nex.init.NetherExEffectTypes.*;
 import static nex.init.NetherExItems.*;
 
 @SuppressWarnings("ConstantConditions")

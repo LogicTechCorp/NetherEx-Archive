@@ -25,7 +25,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
@@ -38,13 +37,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import nex.init.NetherExEffectTypes;
 import nex.init.NetherExEffects;
-import nex.tileentity.TileEntitySummoningAltar;
+import nex.tileentity.TileEntityUrnOfSorrow;
 
-import java.util.List;
-
-public class BlockUrnOfSorrow extends BlockTileEntity<TileEntitySummoningAltar>
+public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 {
     public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
@@ -52,7 +48,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntitySummoningAltar>
 
     public BlockUrnOfSorrow()
     {
-        super("tile_urn_sorrow", Material.ROCK, TileEntitySummoningAltar.class);
+        super("tile_urn_sorrow", Material.ROCK, TileEntityUrnOfSorrow.class);
 
         setHardness(0.5F);
     }
@@ -87,7 +83,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntitySummoningAltar>
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        TileEntitySummoningAltar altar = (TileEntitySummoningAltar) world.getTileEntity(pos);
+        TileEntityUrnOfSorrow altar = (TileEntityUrnOfSorrow) world.getTileEntity(pos);
 
         if(altar == null)
         {
@@ -137,7 +133,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntitySummoningAltar>
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        TileEntitySummoningAltar altar = (TileEntitySummoningAltar) world.getTileEntity(pos);
+        TileEntityUrnOfSorrow altar = (TileEntityUrnOfSorrow) world.getTileEntity(pos);
 
         if(altar == null)
         {

@@ -1,8 +1,7 @@
 {
     "textures": {
         "0": "nex:blocks/tile_urn_sorrow_full",
-        "1": "nex:blocks/tile_urn_sorrow_full_bottom",
-        "particle": "#0"
+        "1": "nex:blocks/tile_urn_sorrow_full_bottom"
     },
     "elements": [
         {

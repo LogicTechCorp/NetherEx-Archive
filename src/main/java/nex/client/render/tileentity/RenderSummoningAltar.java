@@ -24,12 +24,12 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import nex.tileentity.TileEntitySummoningAltar;
+import nex.tileentity.TileEntityUrnOfSorrow;
 
-public class RenderSummoningAltar extends TileEntitySpecialRenderer<TileEntitySummoningAltar>
+public class RenderSummoningAltar extends TileEntitySpecialRenderer<TileEntityUrnOfSorrow>
 {
     @Override
-    public void renderTileEntityAt(TileEntitySummoningAltar altar, double x, double y, double z, float partialTicks, int destroyStage)
+    public void renderTileEntityAt(TileEntityUrnOfSorrow altar, double x, double y, double z, float partialTicks, int destroyStage)
     {
         if(altar == null)
         {
