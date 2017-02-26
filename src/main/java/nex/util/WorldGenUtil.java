@@ -101,7 +101,7 @@ public class WorldGenUtil
 
                         BlockPos newPos = pos.add(posX, posY, posZ);
 
-                        if(world.getBlockState(newPos).getMaterial().isReplaceable())
+                        if(world.isAirBlock(newPos))
                         {
                             airBlocks++;
                         }

@@ -90,7 +90,7 @@ public class WorldGenWallStructure extends WorldGenerator
 
         PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 80, pos.getZ() - structureSize.getZ() / 2);
+        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos = WorldGenUtil.getSuitableWallPos(world, newPos, structureSize, 0.8F);
 
         if(spawnPos != BlockPos.ORIGIN)

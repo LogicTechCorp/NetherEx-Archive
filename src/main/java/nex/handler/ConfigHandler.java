@@ -479,11 +479,11 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Temples are", "The lower the number, the more common Temples are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int templeRarity = 1;
+            public static int templeRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Castles are", "The lower the number, the more common Castles are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int castleRarity = 64;
+            public static int castleRarity = 32;
         }
 
         public static class TorridWasteland
@@ -562,7 +562,7 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Pyramids are", "The lower the number, the more common Pyramids are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int pyramidRarity = 1;
+            public static int pyramidRarity = 2;
         }
 
         public static class ArcticAbyss
