@@ -110,7 +110,6 @@ public class WorldGenGroundStructure extends WorldGenerator
             {
                 WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, lootTable);
             }
-
             return true;
         }
         return false;

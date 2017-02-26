@@ -17,62 +17,30 @@
 
 package nex.world.gen.structure;
 
-import com.google.common.collect.Lists;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import nex.block.BlockUrnOfSorrow;
+import nex.tileentity.TileEntityUrnOfSorrow;
 import nex.util.WeightedUtil;
 import nex.util.WorldGenUtil;
 
-import java.util.List;
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
-public class WorldGenWallStructure extends WorldGenerator
+public class WorldGenGhastCastle extends WorldGenAirStructure
 {
-    private final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
-    private final ResourceLocation[] spawnerMobs;
-    private final boolean hasChest;
-    private final ResourceLocation lootTable;
-
-    public WorldGenWallStructure(String biomeName, String structureName, String[] variantsIn, String[] spawnerMobsIn, boolean hasChestIn, ResourceLocation lootTableIn)
+    public WorldGenGhastCastle(String biomeName, String structureName, String[] variantsIn, String[] spawnerMobsIn, boolean hasChestIn, ResourceLocation lootTableIn)
     {
-        if(!variantsIn[0].equals(""))
-        {
-            for(int i = 0; i < variantsIn.length; i++)
-            {
-                variants.add(new WeightedUtil.NamedItem(structureName + "_" + biomeName + "_" + variantsIn[i], i + 1));
-            }
-        }
-        else
-        {
-            variants.add(new WeightedUtil.NamedItem(structureName + "_" + biomeName, 1));
-        }
-
-        if(!spawnerMobsIn[0].equals(""))
-        {
-            spawnerMobs = new ResourceLocation[spawnerMobsIn.length];
-
-            for(int i = 0; i < spawnerMobsIn.length; i++)
-            {
-                spawnerMobs[i] = new ResourceLocation(spawnerMobsIn[i]);
-            }
-        }
-        else
-        {
-            spawnerMobs = new ResourceLocation[0];
-        }
-
-        hasChest = hasChestIn;
-        lootTable = lootTableIn;
+        super(biomeName, structureName, variantsIn, spawnerMobsIn, hasChestIn, lootTableIn);
     }
 
     @Override
@@ -88,14 +56,15 @@ public class WorldGenWallStructure extends WorldGenerator
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants));
 
-        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR).setRandom(rand);
+        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
-        BlockPos spawnPos = WorldGenUtil.getSuitableWallPos(world, newPos, structureSize, 0.8F);
+        BlockPos spawnPos = WorldGenUtil.getSuitableAirPos(world, newPos, structureSize);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
             template.addBlocksToWorld(world, spawnPos, settings.copy(), 3);
+            setUrnImmovable(world, spawnPos, structureSize);
 
             if(spawnerMobs.length > 0)
             {
@@ -108,5 +77,29 @@ public class WorldGenWallStructure extends WorldGenerator
             return true;
         }
         return false;
+    }
+
+    private static void setUrnImmovable(World world, BlockPos pos, BlockPos structureSize)
+    {
+        for(int x = 0; x <= MathHelper.abs(structureSize.getX()) - 2; x++)
+        {
+            for(int z = 0; z <= MathHelper.abs(structureSize.getZ()) - 2; z++)
+            {
+                for(int y = 0; y <= structureSize.getY() - 11; y++)
+                {
+                    int posX = structureSize.getX() > 0 ? structureSize.getX() - x : structureSize.getX() + x;
+                    int posZ = structureSize.getZ() > 0 ? structureSize.getZ() - z : structureSize.getZ() + z;
+
+                    BlockPos newPos = pos.add(posX, y, posZ);
+                    Block block = world.getBlockState(newPos).getBlock();
+
+                    if(block instanceof BlockUrnOfSorrow)
+                    {
+                        TileEntityUrnOfSorrow urn = (TileEntityUrnOfSorrow) world.getTileEntity(newPos);
+                        urn.setCanBreak(false);
+                    }
+                }
+            }
+        }
     }
 }

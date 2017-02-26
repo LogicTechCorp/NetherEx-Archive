@@ -49,16 +49,16 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
             {
                 if(getSummoningTime() == 0)
                 {
-                    world.playSound(null, pos, NetherExSoundEvents.ENTITY_SUMMON_GHAST_QUEEN, SoundCategory.AMBIENT, 0.5F, 1.0F);
+                    getWorld().playSound(null, getPos(), NetherExSoundEvents.ENTITY_SUMMON_GHAST_QUEEN, SoundCategory.AMBIENT, 0.5F, 1.0F);
                 }
                 setSummoningTime(getSummoningTime() + 1);
                 setCanBreak(false);
             }
-
             if(getSummoningTime() / 20.0F >= 6.8F)
             {
                 EntityGhastQueen ghastQueen = new EntityGhastQueen(getWorld());
-                ghastQueen.setPosition(pos.getX(), pos.getY() + 8, pos.getZ());
+                ghastQueen.setPosition(getPos().getX(), getPos().getY() + 7, getPos().getZ());
+                ghastQueen.setUrnPos(getPos());
 
                 if(!getWorld().isRemote)
                 {
@@ -68,7 +68,6 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
                 getInventory().setStackInSlot(0, ItemStack.EMPTY);
                 getWorld().setBlockState(pos, NetherExBlocks.TILE_URN_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
                 setSummoningTime(0);
-                setCanBreak(true);
             }
         }
     }
@@ -78,7 +77,7 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     {
         super.writeToNBT(compound);
         compound.setInteger("SummoningTime", getSummoningTime());
-        compound.setBoolean("CanBreak", canBreak);
+        compound.setBoolean("CanBreak", canBreak());
         return compound;
     }
 
@@ -105,7 +104,7 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
         summoningTime = summoningTimeIn;
     }
 
-    private void setCanBreak(boolean canBreakIn)
+    public void setCanBreak(boolean canBreakIn)
     {
         canBreak = canBreakIn;
     }

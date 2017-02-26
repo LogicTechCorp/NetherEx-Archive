@@ -97,11 +97,10 @@ public class WorldGenUtil
                     {
                         int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
                         int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
-                        int posY = (int) sizeY - y;
 
-                        BlockPos newPos = pos.add(posX, posY, posZ);
+                        BlockPos newPos = pos.add(posX, y, posZ);
 
-                        if(world.isAirBlock(newPos))
+                        if(world.getBlockState(newPos) == Blocks.AIR.getDefaultState())
                         {
                             airBlocks++;
                         }
@@ -138,9 +137,8 @@ public class WorldGenUtil
                     {
                         int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
                         int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
-                        int posY = (int) sizeY - y;
 
-                        BlockPos newPos = pos.add(posX, posY, posZ);
+                        BlockPos newPos = pos.add(posX, y, posZ);
 
                         if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.UP))
                         {
@@ -169,7 +167,6 @@ public class WorldGenUtil
             {
                 for(int y = 0; y <= structureSize.getY(); y++)
                 {
-
                     int posX = structureSize.getX() > 0 ? structureSize.getX() - x : structureSize.getX() + x;
                     int posZ = structureSize.getZ() > 0 ? structureSize.getZ() - z : structureSize.getZ() + z;
 
@@ -194,7 +191,6 @@ public class WorldGenUtil
             {
                 for(int y = 0; y <= structureSize.getY(); y++)
                 {
-
                     int posX = structureSize.getX() > 0 ? structureSize.getX() - x : structureSize.getX() + x;
                     int posZ = structureSize.getZ() > 0 ? structureSize.getZ() - z : structureSize.getZ() + z;
 

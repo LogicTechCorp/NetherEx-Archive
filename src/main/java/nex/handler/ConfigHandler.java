@@ -483,7 +483,7 @@ public class ConfigHandler
 
             @Config.Comment({"The higher the number, the rarer Castles are", "The lower the number, the more common Castles are"})
             @Config.RangeInt(min = 1, max = 64)
-            public static int castleRarity = 32;
+            public static int castleRarity = 2;
         }
 
         public static class TorridWasteland

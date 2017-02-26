@@ -26,15 +26,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
+import nex.block.BlockUrnOfSorrow;
 import nex.entity.ai.EntityAIGhastFly;
 import nex.entity.ai.EntityAIGhastLookAround;
 import nex.entity.ai.EntityAIGhastQueenFireballAttack;
 import nex.entity.monster.EntityGhastling;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBlocks;
 import nex.init.NetherExSoundEvents;
 
 public class EntityGhastQueen extends EntityGhast
@@ -43,6 +47,8 @@ public class EntityGhastQueen extends EntityGhast
     private static final DataParameter<Integer> GHAST_SPAWNING_STAGE = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> GHAST_SPAWNING_STAGE_STARTED = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> SHOULD_SPAWN_GHAST = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.BOOLEAN);
+
+    private BlockPos urnPos = BlockPos.ORIGIN;
 
     private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
 
@@ -124,13 +130,13 @@ public class EntityGhastQueen extends EntityGhast
                     setShouldSpawnGhast(true);
                 }
 
-                if(!world.isRemote && shouldSpawnGhast())
+                if(!getEntityWorld().isRemote && shouldSpawnGhast())
                 {
                     for(int i = 0; i < ConfigHandler.Entity.GhastQueen.ghastlingSpawns; i++)
                     {
-                        EntityGhastling ghastling = new EntityGhastling(world);
-                        ghastling.setPosition(posX, posY - 1, posZ);
-                        world.spawnEntity(ghastling);
+                        EntityGhastling ghastling = new EntityGhastling(getEntityWorld());
+                        ghastling.setPosition(getPosition().getX(), getPosition().getY() - 1, getPosition().getZ());
+                        getEntityWorld().spawnEntity(ghastling);
                     }
 
                     setGhastSpawnStageStarted(getGhastSpawningStage() + 1);
@@ -150,23 +156,41 @@ public class EntityGhastQueen extends EntityGhast
     }
 
     @Override
+    public void onDeath(DamageSource cause)
+    {
+        if(getUrnPos() != BlockPos.ORIGIN)
+        {
+            getEntityWorld().setBlockToAir(getUrnPos());
+            getEntityWorld().setBlockState(getUrnPos(), NetherExBlocks.TILE_URN_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+        }
+
+        super.onDeath(cause);
+    }
+
+    @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
+        compound.setIntArray("UrnPos", new int[]{getUrnPos().getX(), getUrnPos().getY(), getUrnPos().getZ()});
         compound.setInteger("Cooldown", getCooldown());
         compound.setInteger("GhastSpawningStage", getGhastSpawningStage());
         compound.setBoolean("GhastSpawnStageStarted", getGhastSpawnStageStarted());
         compound.setBoolean("SpawnGhast", shouldSpawnGhast());
+
+        System.out.println(getUrnPos().toString());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
+        setUrnPos(new BlockPos(compound.getIntArray("UrnPos")[0], compound.getIntArray("UrnPos")[1], compound.getIntArray("UrnPos")[2]));
         setCooldown(compound.getInteger("Cooldown"));
         setGhastSpawningStage(compound.getInteger("GhastSpawningStage"));
         setGhastSpawnStageStarted(compound.getInteger("GhastSpawnStageStarted"));
         setShouldSpawnGhast(compound.getBoolean("SpawnGhast"));
+
+        System.out.println(getUrnPos().toString());
 
         if(hasCustomName())
         {
@@ -212,6 +236,11 @@ public class EntityGhastQueen extends EntityGhast
         bossInfo.setName(getDisplayName());
     }
 
+    private BlockPos getUrnPos()
+    {
+        return urnPos;
+    }
+
     private int getCooldown()
     {
         return getDataManager().get(COOLDOWN);
@@ -230,6 +259,11 @@ public class EntityGhastQueen extends EntityGhast
     private boolean getGhastSpawnStageStarted()
     {
         return getDataManager().get(GHAST_SPAWNING_STAGE).intValue() != getDataManager().get(GHAST_SPAWNING_STAGE_STARTED).intValue();
+    }
+
+    public void setUrnPos(BlockPos urnPosIn)
+    {
+        urnPos = urnPosIn;
     }
 
     private void setCooldown(int amount)

@@ -38,10 +38,10 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class WorldGenAirStructure extends WorldGenerator
 {
-    private final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
-    private final ResourceLocation[] spawnerMobs;
-    private final boolean hasChest;
-    private final ResourceLocation lootTable;
+    public final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
+    public final ResourceLocation[] spawnerMobs;
+    public final boolean hasChest;
+    public final ResourceLocation lootTable;
 
     public WorldGenAirStructure(String biomeName, String structureName, String[] variantsIn, String[] spawnerMobsIn, boolean hasChestIn, ResourceLocation lootTableIn)
     {
@@ -105,7 +105,6 @@ public class WorldGenAirStructure extends WorldGenerator
             {
                 WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, lootTable);
             }
-
             return true;
         }
         return false;
