@@ -25,6 +25,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -94,9 +95,8 @@ public class BlockHyphae extends BlockNetherEx
     }
 
     @Override
-    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing, IPlantable plantable)
     {
-        IBlockState plant = plantable.getPlant(world, pos.offset(direction));
-        return plant.getBlock() == NetherExBlocks.PLANT_MUSHROOM_ELDER;
+        return plantable.getPlantType(world, pos.offset(facing)) == EnumPlantType.Nether;
     }
 }

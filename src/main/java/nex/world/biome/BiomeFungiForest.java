@@ -171,7 +171,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigHandler.Biome.FungiForest.elderMushroomRarity * 16; i++)
             {
-                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, 112, rand.nextInt(16) + 8));
+                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
             }
         }
 
