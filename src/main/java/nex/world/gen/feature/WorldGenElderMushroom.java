@@ -66,6 +66,27 @@ public class WorldGenElderMushroom extends WorldGenerator
             new WeightedUtil.NamedItem("plant_mushroom_elder_red_gigantic", 1)
     );
 
+    public static List<WeightedUtil.NamedItem> allVariants = Lists.newArrayList(
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_tiny", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_tiny_variant", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_small", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_small_variant", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_medium", 4),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_medium_variant", 4),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_large", 3),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_huge", 2),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_brown_gigantic", 1),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_tiny", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_tiny_variant", 6),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_small", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_small_variant", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_small_variant_2", 5),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_medium", 4),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_large", 3),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_huge", 2),
+            new WeightedUtil.NamedItem("plant_mushroom_elder_red_gigantic", 1)
+    );
+
     public WorldGenElderMushroom(List<WeightedUtil.NamedItem> variantsIn, boolean isWorldGenIn)
     {
         variants = variantsIn;
@@ -75,66 +96,67 @@ public class WorldGenElderMushroom extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
+        label_while:
         while(isWorldGen && world.isAirBlock(pos) && pos.getY() > 32)
         {
             pos = pos.down();
-        }
 
-        for(int posX = -1; posX < 2; posX++)
-        {
-            for(int posZ = -1; posZ < 2; posZ++)
+            for(int posX = -1; posX < 2; posX++)
             {
-                if(world.getBlockState(pos.add(posX, 0, posZ)).getBlock() != NetherExBlocks.BLOCK_HYPHAE)
+                for(int posZ = -1; posZ < 2; posZ++)
                 {
-                    return false;
-                }
-            }
-        }
-
-        pos = pos.up();
-
-        Mirror[] mirrors = Mirror.values();
-        Mirror mirror = mirrors[rand.nextInt(mirrors.length)];
-        Rotation[] rotations = Rotation.values();
-        Rotation rotation = rotations[rand.nextInt(rotations.length)];
-        MinecraftServer minecraftServer = world.getMinecraftServer();
-        TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants));
-        PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
-        BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-        float airAmount = 0;
-        float blockAmount = MathHelper.abs((structureSize.getX() + 2) * (structureSize.getY() + 1) * (structureSize.getZ() + 2));
-
-        for(int posX = -1; posX < structureSize.getX() + 1; posX++)
-        {
-            for(int posZ = -1; posZ < structureSize.getZ() + 1; posZ++)
-            {
-                for(int posY = 0; posY < structureSize.getY() + 1; posY++)
-                {
-                    BlockPos newPos = pos.add(-(posX / 2), posY, -(posZ / 2));
-                    Block block = world.getBlockState(newPos).getBlock();
-
-                    if(world.isAirBlock(newPos))
+                    if(world.getBlockState(pos.add(posX, 0, posZ)).getBlock() != NetherExBlocks.BLOCK_HYPHAE)
                     {
-                        airAmount += 1.0F;
-                    }
-                    else if(block == Blocks.NETHERRACK || block == Blocks.GLOWSTONE || block == NetherExBlocks.BLOCK_NETHERRACK || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_CAP || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_STEM)
-                    {
-                        return false;
+                        continue label_while;
                     }
                 }
             }
-        }
 
-        if(MathHelper.abs(airAmount) / MathHelper.abs(blockAmount) >= 0.75F)
-        {
-            if(!isWorldGen)
+            pos = pos.up();
+
+            Mirror[] mirrors = Mirror.values();
+            Mirror mirror = mirrors[rand.nextInt(mirrors.length)];
+            Rotation[] rotations = Rotation.values();
+            Rotation rotation = rotations[rand.nextInt(rotations.length)];
+            MinecraftServer minecraftServer = world.getMinecraftServer();
+            TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+            Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants));
+            PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
+            BlockPos structureSize = Template.transformedBlockPos(placementSettings, template.getSize());
+            float airAmount = 0;
+            float blockAmount = MathHelper.abs((structureSize.getX() + 2) * (structureSize.getY() + 1) * (structureSize.getZ() + 2));
+
+            for(int posX = -1; posX < structureSize.getX() + 1; posX++)
             {
-                world.setBlockToAir(pos);
+                for(int posZ = -1; posZ < structureSize.getZ() + 1; posZ++)
+                {
+                    for(int posY = 0; posY < structureSize.getY() + 1; posY++)
+                    {
+                        BlockPos newPos = pos.add(-(posX / 2), posY, -(posZ / 2));
+                        Block block = world.getBlockState(newPos).getBlock();
+
+                        if(world.isAirBlock(newPos))
+                        {
+                            airAmount += 1.0F;
+                        }
+                        else if(block == Blocks.NETHERRACK || block == Blocks.GLOWSTONE || block == NetherExBlocks.BLOCK_NETHERRACK || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_CAP || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_STEM)
+                        {
+                            return false;
+                        }
+                    }
+                }
             }
 
-            template.addBlocksToWorld(world, pos.add(-(structureSize.getX() / 2), 0, -(structureSize.getZ() / 2)), placementSettings.copy());
-            return true;
+            if(MathHelper.abs(airAmount) / MathHelper.abs(blockAmount) >= 0.75F)
+            {
+                if(!isWorldGen)
+                {
+                    world.setBlockToAir(pos);
+                }
+
+                template.addBlocksToWorld(world, pos.add(-(structureSize.getX() / 2), 0, -(structureSize.getZ() / 2)), placementSettings);
+                return true;
+            }
         }
 
         return false;

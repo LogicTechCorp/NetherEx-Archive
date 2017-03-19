@@ -22,6 +22,8 @@ import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
@@ -29,14 +31,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.template.BlockRotationProcessor;
+import net.minecraft.world.gen.structure.template.PlacementSettings;
+import net.minecraft.world.gen.structure.template.Template;
+import nex.block.BlockUrnOfSorrow;
+import nex.tileentity.TileEntityUrnOfSorrow;
 
 import java.util.Random;
 import java.util.Set;
 
+@SuppressWarnings("ConstantConditions")
 public class WorldGenUtil
 {
-    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> foundations, BlockPos structureSize, float percentage)
+    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> allowedBlocks, BlockPos structureSize, float percentage)
     {
+        label_while:
         while(pos.getY() > 32)
         {
             float sizeX = structureSize.getX();
@@ -54,7 +64,7 @@ public class WorldGenUtil
                     BlockPos newPos = pos.add(posX, 0, posZ);
                     IBlockState state = world.getBlockState(newPos);
 
-                    if(foundations.contains(state))
+                    if(allowedBlocks.contains(state))
                     {
                         if(world.getBlockState(newPos.up()).getMaterial().isReplaceable() && !world.getBlockState(newPos.down()).getMaterial().isReplaceable())
                         {
@@ -63,7 +73,8 @@ public class WorldGenUtil
                     }
                     else if(state != Blocks.AIR.getDefaultState())
                     {
-                        return BlockPos.ORIGIN;
+                        pos = pos.down();
+                        continue label_while;
                     }
                 }
             }
@@ -81,6 +92,7 @@ public class WorldGenUtil
 
     public static BlockPos getSuitableAirPos(World world, BlockPos pos, BlockPos structureSize)
     {
+        label_while:
         while(pos.getY() > 32)
         {
             float sizeX = structureSize.getX();
@@ -100,15 +112,20 @@ public class WorldGenUtil
 
                         BlockPos newPos = pos.add(posX, y, posZ);
 
-                        if(world.getBlockState(newPos) == Blocks.AIR.getDefaultState())
+                        if(world.getBlockState(newPos).getMaterial().isReplaceable())
                         {
                             airBlocks++;
+                        }
+                        else
+                        {
+                            pos = pos.down();
+                            continue label_while;
                         }
                     }
                 }
             }
 
-            if(airBlocks == MathHelper.abs(sizeX * sizeY * sizeZ))
+            if(airBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ))
             {
                 return pos;
             }
@@ -159,50 +176,101 @@ public class WorldGenUtil
         return BlockPos.ORIGIN;
     }
 
-    public static void setSpawnerMob(World world, BlockPos pos, BlockPos structureSize, ResourceLocation mob)
+    public static void generateStructure(World world, BlockPos pos, Random rand, Template template, PlacementSettings placementSettings, ResourceLocation lootTableList, ResourceLocation spawnerMob)
     {
-        for(int x = 0; x <= MathHelper.abs(structureSize.getX()); x++)
+        if((!template.blocks.isEmpty() || !placementSettings.getIgnoreEntities() && !template.entities.isEmpty()) && template.size.getX() >= 1 && template.size.getY() >= 1 && template.size.getZ() >= 1)
         {
-            for(int z = 0; z <= MathHelper.abs(structureSize.getZ()); z++)
+            BlockRotationProcessor processor = new BlockRotationProcessor(pos, placementSettings);
+            Block block = placementSettings.getReplacedBlock();
+            StructureBoundingBox boundingBox = placementSettings.getBoundingBox();
+
+            for(Template.BlockInfo blockInfo : template.blocks)
             {
-                for(int y = 0; y <= structureSize.getY(); y++)
+                BlockPos blockpos = Template.transformedBlockPos(placementSettings, blockInfo.pos).add(pos);
+                Template.BlockInfo blockInfo1 = processor != null ? processor.processBlock(world, blockpos, blockInfo) : blockInfo;
+
+                if(blockInfo1 != null)
                 {
-                    int posX = structureSize.getX() > 0 ? structureSize.getX() - x : structureSize.getX() + x;
-                    int posZ = structureSize.getZ() > 0 ? structureSize.getZ() - z : structureSize.getZ() + z;
+                    Block block1 = blockInfo1.blockState.getBlock();
 
-                    BlockPos newPos = pos.add(posX, y, posZ);
-                    Block block = world.getBlockState(newPos).getBlock();
-
-                    if(block instanceof BlockMobSpawner)
+                    if((block == null || block != block1) && (!placementSettings.getIgnoreStructureBlock() || block1 != Blocks.STRUCTURE_BLOCK) && (boundingBox == null || boundingBox.isVecInside(blockpos)))
                     {
-                        TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(newPos);
-                        spawner.getSpawnerBaseLogic().setEntityId(mob);
+                        IBlockState state = blockInfo1.blockState.withMirror(placementSettings.getMirror());
+                        IBlockState state1 = state.withRotation(placementSettings.getRotation());
+
+                        if(blockInfo1.tileentityData != null)
+                        {
+                            TileEntity tileEntity = world.getTileEntity(blockpos);
+
+                            if(tileEntity != null)
+                            {
+                                if(tileEntity instanceof IInventory)
+                                {
+                                    ((IInventory) tileEntity).clear();
+                                }
+
+                                world.setBlockState(blockpos, Blocks.BARRIER.getDefaultState(), 4);
+                            }
+                        }
+
+                        if(world.setBlockState(blockpos, state1, 3) && blockInfo1.tileentityData != null)
+                        {
+                            TileEntity tileEntity = world.getTileEntity(blockpos);
+
+                            if(tileEntity != null)
+                            {
+                                blockInfo1.tileentityData.setInteger("x", blockpos.getX());
+                                blockInfo1.tileentityData.setInteger("y", blockpos.getY());
+                                blockInfo1.tileentityData.setInteger("z", blockpos.getZ());
+                                tileEntity.readFromNBT(blockInfo1.tileentityData);
+                                tileEntity.mirror(placementSettings.getMirror());
+                                tileEntity.rotate(placementSettings.getRotation());
+
+                                if(state1.getBlock() instanceof BlockChest)
+                                {
+                                    ((TileEntityChest) tileEntity).setLootTable(lootTableList, rand.nextLong());
+
+                                }
+                                if(state1.getBlock() instanceof BlockMobSpawner)
+                                {
+                                    ((TileEntityMobSpawner) tileEntity).getSpawnerBaseLogic().setEntityId(spawnerMob);
+                                }
+                                if(state.getBlock() instanceof BlockUrnOfSorrow)
+                                {
+                                    ((TileEntityUrnOfSorrow) tileEntity).setCanBreak(false);
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
 
-    public static void setChestContents(World world, Random rand, BlockPos pos, BlockPos structureSize, ResourceLocation lootTableList)
-    {
-        for(int x = 0; x <= MathHelper.abs(structureSize.getX()); x++)
-        {
-            for(int z = 0; z <= MathHelper.abs(structureSize.getZ()); z++)
+            for(Template.BlockInfo blockInfo2 : template.blocks)
             {
-                for(int y = 0; y <= structureSize.getY(); y++)
+                if(block == null || block != blockInfo2.blockState.getBlock())
                 {
-                    int posX = structureSize.getX() > 0 ? structureSize.getX() - x : structureSize.getX() + x;
-                    int posZ = structureSize.getZ() > 0 ? structureSize.getZ() - z : structureSize.getZ() + z;
+                    BlockPos blockpos1 = Template.transformedBlockPos(placementSettings, blockInfo2.pos).add(pos);
 
-                    BlockPos newPos = pos.add(posX, y, posZ);
-                    Block block = world.getBlockState(newPos).getBlock();
-
-                    if(block instanceof BlockChest)
+                    if(boundingBox == null || boundingBox.isVecInside(blockpos1))
                     {
-                        TileEntityChest chest = (TileEntityChest) world.getTileEntity(newPos);
-                        chest.setLootTable(lootTableList, rand.nextLong());
+                        world.notifyNeighborsRespectDebug(blockpos1, blockInfo2.blockState.getBlock(), false);
+
+                        if(blockInfo2.tileentityData != null)
+                        {
+                            TileEntity tileEntity = world.getTileEntity(blockpos1);
+
+                            if(tileEntity != null)
+                            {
+                                tileEntity.markDirty();
+                            }
+                        }
                     }
                 }
+            }
+
+            if(!placementSettings.getIgnoreEntities())
+            {
+                template.addEntitiesToWorld(world, pos, placementSettings.getMirror(), placementSettings.getRotation(), boundingBox);
             }
         }
     }

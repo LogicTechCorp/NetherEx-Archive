@@ -21,6 +21,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -36,11 +37,12 @@ import nex.entity.neutral.EntityMogus;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
+import nex.init.NetherExLootTables;
 import nex.world.gen.feature.WorldGenElderMushroom;
 import nex.world.gen.feature.WorldGenEnokiMushroom;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
-import nex.world.gen.structure.WorldGenGhastCastle;
+import nex.world.gen.structure.WorldGenAirStructure;
 import nex.world.gen.structure.WorldGenGroundStructure;
 
 import java.util.Random;
@@ -58,15 +60,14 @@ public class BiomeFungiForest extends BiomeNetherEx
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
-    private WorldGenerator brownElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.brownVariants, true);
-    private WorldGenerator redElderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.redVariants, true);
+    private WorldGenerator elderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.allVariants, true);
     private WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
-    private WorldGenerator crypt = new WorldGenGroundStructure("fungi_forest", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator grave = new WorldGenGroundStructure("fungi_forest", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator graveyard = new WorldGenGroundStructure("fungi_forest", "graveyard", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator sarcophagus = new WorldGenGroundStructure("fungi_forest", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator temple = new WorldGenGroundStructure("fungi_forest", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator castle = new WorldGenGhastCastle("fungi_forest", "castle", new String[]{""}, new String[]{"ghast"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
+    private WorldGenerator crypt = new WorldGenGroundStructure("fungi_forest", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
+    private WorldGenerator grave = new WorldGenGroundStructure("fungi_forest", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE});
+    private WorldGenerator graveyard = new WorldGenGroundStructure("fungi_forest", "graveyard", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
+    private WorldGenerator sarcophagus = new WorldGenGroundStructure("fungi_forest", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
+    private WorldGenerator temple = new WorldGenGroundStructure("fungi_forest", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{NetherEx.MOD_ID + ":monster_spore_creeper"}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
+    private WorldGenerator castle = new WorldGenAirStructure("fungi_forest", "castle", new String[]{""}, new String[]{"ghast"}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
 
     public BiomeFungiForest()
     {
@@ -158,21 +159,19 @@ public class BiomeFungiForest extends BiomeNetherEx
             }
         }
 
+        if(ConfigHandler.Biome.FungiForest.generateCastles)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.FungiForest.castleRarity) == 0)
+            {
+                castle.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
         if(ConfigHandler.Biome.FungiForest.generateElderMushrooms)
         {
-            if(rand.nextBoolean())
+            for(int i = 0; i < ConfigHandler.Biome.FungiForest.elderMushroomRarity * 16; i++)
             {
-                for(int i = 0; i < ConfigHandler.Biome.FungiForest.elderMushroomRarity * 12; i++)
-                {
-                    brownElderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
-                }
-            }
-            else
-            {
-                for(int i = 0; i < ConfigHandler.Biome.FungiForest.elderMushroomRarity * 16; i++)
-                {
-                    redElderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
-                }
+                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, 112, rand.nextInt(16) + 8));
             }
         }
 
@@ -181,14 +180,6 @@ public class BiomeFungiForest extends BiomeNetherEx
             for(int i = 0; i < ConfigHandler.Biome.FungiForest.enokiMushroomRarity * 16; i++)
             {
                 enokiMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Biome.FungiForest.generateCastles)
-        {
-            if(rand.nextInt(ConfigHandler.Biome.FungiForest.castleRarity) == 0)
-            {
-                castle.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

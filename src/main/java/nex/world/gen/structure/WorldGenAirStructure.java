@@ -38,41 +38,37 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class WorldGenAirStructure extends WorldGenerator
 {
-    public final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
-    public final ResourceLocation[] spawnerMobs;
-    public final boolean hasChest;
-    public final ResourceLocation lootTable;
+    private final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
+    private final ResourceLocation[] spawnerMobs;
+    private final ResourceLocation[] lootTables;
 
-    public WorldGenAirStructure(String biomeName, String structureName, String[] variantsIn, String[] spawnerMobsIn, boolean hasChestIn, ResourceLocation lootTableIn)
+    public WorldGenAirStructure(String biomeName, String structureName, String[] variantsIn, String[] spawnerMobsIn, ResourceLocation[] lootTablesIn)
     {
         if(!variantsIn[0].equals(""))
         {
             for(int i = 0; i < variantsIn.length; i++)
             {
-                variants.add(new WeightedUtil.NamedItem(structureName + "_" + biomeName + "_" + variantsIn[i], i + 1));
+                variants.add(new WeightedUtil.NamedItem(structureName + "_" + (biomeName.equals("") ? "" : biomeName + "_") + variantsIn[i], i + 1));
             }
         }
         else
         {
-            variants.add(new WeightedUtil.NamedItem(structureName + "_" + biomeName, 1));
+            variants.add(new WeightedUtil.NamedItem(structureName + (biomeName.equals("") ? "" : "_" + biomeName), 1));
         }
 
-        if(!spawnerMobsIn[0].equals(""))
+        spawnerMobs = new ResourceLocation[spawnerMobsIn.length];
+
+        for(int i = 0; i < spawnerMobsIn.length; i++)
         {
-            spawnerMobs = new ResourceLocation[spawnerMobsIn.length];
-
-            for(int i = 0; i < spawnerMobsIn.length; i++)
-            {
-                spawnerMobs[i] = new ResourceLocation(spawnerMobsIn[i]);
-            }
+            spawnerMobs[i] = new ResourceLocation(spawnerMobsIn[i]);
         }
-        else
+
+        lootTables = new ResourceLocation[lootTablesIn.length];
+
+        for(int i = 0; i < lootTablesIn.length; i++)
         {
-            spawnerMobs = new ResourceLocation[0];
+            lootTables[i] = lootTablesIn[i];
         }
-
-        hasChest = hasChestIn;
-        lootTable = lootTableIn;
     }
 
     @Override
@@ -88,23 +84,14 @@ public class WorldGenAirStructure extends WorldGenerator
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants));
 
-        PlacementSettings settings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
-        BlockPos structureSize = Template.transformedBlockPos(settings.copy(), template.getSize());
-        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
+        PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
+        BlockPos structureSize = Template.transformedBlockPos(placementSettings, template.getSize());
+        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 112, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos = WorldGenUtil.getSuitableAirPos(world, newPos, structureSize);
 
         if(spawnPos != BlockPos.ORIGIN)
         {
-            template.addBlocksToWorld(world, spawnPos, settings.copy(), 3);
-
-            if(spawnerMobs.length > 0)
-            {
-                WorldGenUtil.setSpawnerMob(world, spawnPos, structureSize, spawnerMobs[rand.nextInt(spawnerMobs.length)]);
-            }
-            if(hasChest)
-            {
-                WorldGenUtil.setChestContents(world, rand, spawnPos, structureSize, lootTable);
-            }
+            WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings, lootTables[rand.nextInt(lootTables.length)], spawnerMobs[rand.nextInt(spawnerMobs.length)]);
             return true;
         }
         return false;

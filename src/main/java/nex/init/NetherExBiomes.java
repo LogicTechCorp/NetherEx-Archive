@@ -49,19 +49,19 @@ public class NetherExBiomes
     private static Set<BiomeManager.BiomeEntry> biomeEntries = Sets.newHashSet();
     private static Set<BiomeOceanEntry> oceanEntries = Sets.newHashSet();
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hell")
+    @GameRegistry.ObjectHolder("hell")
     public static final BiomeHell HELL = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ruthless_sands")
+    @GameRegistry.ObjectHolder("ruthless_sands")
     public static final BiomeRuthlessSands RUTHLESS_SANDS = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fungi_forest")
+    @GameRegistry.ObjectHolder("fungi_forest")
     public static final BiomeFungiForest FUNGI_FOREST = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":torrid_wasteland")
+    @GameRegistry.ObjectHolder("torrid_wasteland")
     public static final BiomeTorridWasteland TORRID_WASTELAND = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":arctic_abyss")
+    @GameRegistry.ObjectHolder("arctic_abyss")
     public static final BiomeArcticAbyss ARCTIC_ABYSS = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");

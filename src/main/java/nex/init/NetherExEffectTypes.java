@@ -32,13 +32,13 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffectTypes
 {
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":normal_freeze")
+    @GameRegistry.ObjectHolder("normal_freeze")
     public static final PotionType NORMAL_FREEZE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":normal_spore")
+    @GameRegistry.ObjectHolder("normal_spore")
     public static final PotionType NORMAL_SPORE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":normal_lost")
+    @GameRegistry.ObjectHolder("normal_lost")
     public static final PotionType NORMAL_LOST = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffectTypes");

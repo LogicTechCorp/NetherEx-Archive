@@ -23,6 +23,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import nex.NetherEx;
 
+@SuppressWarnings("ConstantConditions")
 public class BlockNetherEx extends Block
 {
     public BlockNetherEx(String name, Material material)

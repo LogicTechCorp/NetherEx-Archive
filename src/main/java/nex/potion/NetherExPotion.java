@@ -29,6 +29,7 @@ import nex.NetherEx;
 
 import java.awt.*;
 
+@SuppressWarnings("ConstantConditions")
 public class NetherExPotion extends Potion
 {
     private final ResourceLocation iconTexture;

@@ -31,94 +31,94 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExSoundEvents
 {
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ambient_mogus")
+    @GameRegistry.ObjectHolder("ambient_mogus")
     public static final SoundEvent ENTITY_AMBIENT_MOGUS = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_mogus")
+    @GameRegistry.ObjectHolder("hurt_mogus")
     public static final SoundEvent ENTITY_HURT_MOGUS = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_mogus")
+    @GameRegistry.ObjectHolder("death_mogus")
     public static final SoundEvent ENTITY_DEATH_MOGUS = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ambient_salamander")
+    @GameRegistry.ObjectHolder("ambient_salamander")
     public static final SoundEvent ENTITY_AMBIENT_SALAMANDER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_salamander")
+    @GameRegistry.ObjectHolder("hurt_salamander")
     public static final SoundEvent ENTITY_HURT_SALAMANDER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_salamander")
+    @GameRegistry.ObjectHolder("death_salamander")
     public static final SoundEvent ENTITY_DEATH_SALAMANDER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ambient_wight")
+    @GameRegistry.ObjectHolder("ambient_wight")
     public static final SoundEvent ENTITY_AMBIENT_WIGHT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_wight")
+    @GameRegistry.ObjectHolder("hurt_wight")
     public static final SoundEvent ENTITY_HURT_WIGHT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_wight")
+    @GameRegistry.ObjectHolder("death_wight")
     public static final SoundEvent ENTITY_DEATH_WIGHT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_ember")
+    @GameRegistry.ObjectHolder("hurt_ember")
     public static final SoundEvent ENTITY_HURT_EMBER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_ember")
+    @GameRegistry.ObjectHolder("death_ember")
     public static final SoundEvent ENTITY_DEATH_EMBER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ambient_nethermite")
+    @GameRegistry.ObjectHolder("ambient_nethermite")
     public static final SoundEvent ENTITY_AMBIENT_NETHERMITE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_nethermite")
+    @GameRegistry.ObjectHolder("hurt_nethermite")
     public static final SoundEvent ENTITY_HURT_NETHERMITE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_nethermite")
+    @GameRegistry.ObjectHolder("death_nethermite")
     public static final SoundEvent ENTITY_DEATH_NETHERMITE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ambient_spinout")
+    @GameRegistry.ObjectHolder("ambient_spinout")
     public static final SoundEvent ENTITY_AMBIENT_SPINOUT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_spinout")
+    @GameRegistry.ObjectHolder("hurt_spinout")
     public static final SoundEvent ENTITY_HURT_SPINOUT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_spinout")
+    @GameRegistry.ObjectHolder("death_spinout")
     public static final SoundEvent ENTITY_DEATH_SPINOUT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_spore")
+    @GameRegistry.ObjectHolder("hurt_spore")
     public static final SoundEvent ENTITY_HURT_SPORE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_spore")
+    @GameRegistry.ObjectHolder("death_spore")
     public static final SoundEvent ENTITY_DEATH_SPORE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":warn_spore")
+    @GameRegistry.ObjectHolder("warn_spore")
     public static final SoundEvent ENTITY_WARN_SPORE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ambient_ghastling")
+    @GameRegistry.ObjectHolder("ambient_ghastling")
     public static final SoundEvent ENTITY_AMBIENT_GHASTLING = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_ghastling")
+    @GameRegistry.ObjectHolder("hurt_ghastling")
     public static final SoundEvent ENTITY_HURT_GHASTLING = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_ghastling")
+    @GameRegistry.ObjectHolder("death_ghastling")
     public static final SoundEvent ENTITY_DEATH_GHASTLING = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":warn_ghastling")
+    @GameRegistry.ObjectHolder("warn_ghastling")
     public static final SoundEvent ENTITY_WARN_GHASTLING = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":shoot_ghastling")
+    @GameRegistry.ObjectHolder("shoot_ghastling")
     public static final SoundEvent ENTITY_SHOOT_GHASTLING = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ambient_ghast_queen")
+    @GameRegistry.ObjectHolder("ambient_ghast_queen")
     public static final SoundEvent ENTITY_AMBIENT_GHAST_QUEEN = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":hurt_ghast_queen")
+    @GameRegistry.ObjectHolder("hurt_ghast_queen")
     public static final SoundEvent ENTITY_HURT_GHAST_QUEEN = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":death_ghast_queen")
+    @GameRegistry.ObjectHolder("death_ghast_queen")
     public static final SoundEvent ENTITY_DEATH_GHAST_QUEEN = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":shoot_ghast_queen")
+    @GameRegistry.ObjectHolder("shoot_ghast_queen")
     public static final SoundEvent ENTITY_SHOOT_GHAST_QUEEN = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":summon_ghast_queen")
+    @GameRegistry.ObjectHolder("summon_ghast_queen")
     public static final SoundEvent ENTITY_SUMMON_GHAST_QUEEN = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExSoundEvents");

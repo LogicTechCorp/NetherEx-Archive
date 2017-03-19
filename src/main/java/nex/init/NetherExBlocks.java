@@ -35,160 +35,160 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBlocks
 {
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_basalt")
+    @GameRegistry.ObjectHolder("block_basalt")
     public static final BlockBasalt BLOCK_BASALT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_netherrack")
+    @GameRegistry.ObjectHolder("block_netherrack")
     public static final BlockNetherrack BLOCK_NETHERRACK = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_brick_nether")
+    @GameRegistry.ObjectHolder("block_brick_nether")
     public static final BlockNetherBrick BLOCK_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_netherrack_path")
+    @GameRegistry.ObjectHolder("block_netherrack_path")
     public static final BlockNetherrackPath BLOCK_NETHERRACK_PATH = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_hyphae")
+    @GameRegistry.ObjectHolder("block_hyphae")
     public static final BlockHyphae BLOCK_HYPHAE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_sand_soul_tilled")
+    @GameRegistry.ObjectHolder("block_sand_soul_tilled")
     public static final BlockTilledSoulSand BLOCK_SAND_SOUL_TILLED = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_glass_soul")
+    @GameRegistry.ObjectHolder("block_glass_soul")
     public static final BlockSoulGlass BLOCK_GLASS_SOUL = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_glass_pane_soul")
+    @GameRegistry.ObjectHolder("block_glass_pane_soul")
     public static final BlockSoulGlassPane BLOCK_GLASS_PANE_SOUL = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_rime")
+    @GameRegistry.ObjectHolder("block_rime")
     public static final BlockRime BLOCK_RIME = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_ice_frostburn")
+    @GameRegistry.ObjectHolder("block_ice_frostburn")
     public static final BlockFrostburnIce BLOCK_ICE_FROSTBURN = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":tile_urn_sorrow")
+    @GameRegistry.ObjectHolder("tile_urn_sorrow")
     public static final BlockUrnOfSorrow TILE_URN_SORROW = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_quartz")
+    @GameRegistry.ObjectHolder("ore_quartz")
     public static final BlockQuartzOre ORE_QUARTZ = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":ore_rime")
+    @GameRegistry.ObjectHolder("ore_rime")
     public static final BlockRimeOre ORE_RIME = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_thornstalk")
+    @GameRegistry.ObjectHolder("plant_thornstalk")
     public static final BlockThornstalk PLANT_THORNSTALK = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_elder")
+    @GameRegistry.ObjectHolder("plant_mushroom_elder")
     public static final BlockElderMushroom PLANT_MUSHROOM_ELDER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_elder_cap")
+    @GameRegistry.ObjectHolder("plant_mushroom_elder_cap")
     public static final BlockElderMushroomCap PLANT_MUSHROOM_ELDER_CAP = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_elder_stem")
+    @GameRegistry.ObjectHolder("plant_mushroom_elder_stem")
     public static final BlockElderMushroomStem PLANT_MUSHROOM_ELDER_STEM = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_enoki_stem")
+    @GameRegistry.ObjectHolder("plant_mushroom_enoki_stem")
     public static final BlockEnokiMushroomStem PLANT_MUSHROOM_ENOKI_STEM = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":plant_mushroom_enoki_cap")
+    @GameRegistry.ObjectHolder("plant_mushroom_enoki_cap")
     public static final BlockEnokiMushroomCap PLANT_MUSHROOM_ENOKI_CAP = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fluid_ichor")
+    @GameRegistry.ObjectHolder("fluid_ichor")
     public static final BlockIchor FLUID_ICHOR = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_vanilla")
+    @GameRegistry.ObjectHolder("slab_vanilla")
     public static final BlockVanillaSlab SLAB_VANILLA = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_basalt")
+    @GameRegistry.ObjectHolder("slab_basalt")
     public static final BlockBasaltSlab SLAB_BASALT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_brick_nether")
+    @GameRegistry.ObjectHolder("slab_brick_nether")
     public static final BlockNetherBrickSlab SLAB_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_vanilla_double")
+    @GameRegistry.ObjectHolder("slab_vanilla_double")
     public static final BlockVanillaSlab SLAB_VANILLA_DOUBLE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_basalt_double")
+    @GameRegistry.ObjectHolder("slab_basalt_double")
     public static final BlockBasaltSlab SLAB_BASALT_DOUBLE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":slab_brick_nether_double")
+    @GameRegistry.ObjectHolder("slab_brick_nether_double")
     public static final BlockNetherBrickSlab SLAB_BRICK_NETHER_DOUBLE = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_brick_nether_red")
+    @GameRegistry.ObjectHolder("stairs_brick_nether_red")
     public static final BlockNetherExStairs STAIRS_RED_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_basalt_normal")
+    @GameRegistry.ObjectHolder("stairs_basalt_normal")
     public static final BlockNetherExStairs STAIRS_BASALT_NORMAL = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_basalt_smooth")
+    @GameRegistry.ObjectHolder("stairs_basalt_smooth")
     public static final BlockNetherExStairs STAIRS_BASALT_SMOOTH = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_basalt_brick")
+    @GameRegistry.ObjectHolder("stairs_basalt_brick")
     public static final BlockNetherExStairs STAIRS_BASALT_BRICK = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_basalt_pillar")
+    @GameRegistry.ObjectHolder("stairs_basalt_pillar")
     public static final BlockNetherExStairs STAIRS_BASALT_PILLAR = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_brick_nether_fiery")
+    @GameRegistry.ObjectHolder("stairs_brick_nether_fiery")
     public static final BlockNetherExStairs STAIRS_BRICK_NETHER_FIERY = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_brick_nether_icy")
+    @GameRegistry.ObjectHolder("stairs_brick_nether_icy")
     public static final BlockNetherExStairs STAIRS_BRICK_NETHER_ICY = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_brick_nether_lively")
+    @GameRegistry.ObjectHolder("stairs_brick_nether_lively")
     public static final BlockNetherExStairs STAIRS_BRICK_NETHER_LIVELY = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":stairs_brick_nether_gloomy")
+    @GameRegistry.ObjectHolder("stairs_brick_nether_gloomy")
     public static final BlockNetherExStairs STAIRS_BRICK_NETHER_GLOOMY = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":wall_vanilla")
+    @GameRegistry.ObjectHolder("wall_vanilla")
     public static final BlockVanillaWall WALL_VANILLA = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":wall_basalt")
+    @GameRegistry.ObjectHolder("wall_basalt")
     public static final BlockBasaltWall WALL_BASALT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":wall_brick_nether")
+    @GameRegistry.ObjectHolder("wall_brick_nether")
     public static final BlockNetherBrickWall WALL_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_vanilla")
+    @GameRegistry.ObjectHolder("fence_vanilla")
     public static final BlockVanillaFence FENCE_VANILLA = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_basalt")
+    @GameRegistry.ObjectHolder("fence_basalt")
     public static final BlockBasaltFence FENCE_BASALT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_brick_nether")
+    @GameRegistry.ObjectHolder("fence_brick_nether")
     public static final BlockNetherBrickFence FENCE_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_quartz")
+    @GameRegistry.ObjectHolder("fence_gate_quartz")
     public static final BlockNetherExFenceGate FENCE_GATE_QUARTZ = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_brick_nether")
+    @GameRegistry.ObjectHolder("fence_gate_brick_nether")
     public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_brick_nether_red")
+    @GameRegistry.ObjectHolder("fence_gate_brick_nether_red")
     public static final BlockNetherExFenceGate FENCE_GATE_RED_BRICK_NETHER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_basalt_normal")
+    @GameRegistry.ObjectHolder("fence_gate_basalt_normal")
     public static final BlockNetherExFenceGate FENCE_GATE_BASALT = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_basalt_smooth")
+    @GameRegistry.ObjectHolder("fence_gate_basalt_smooth")
     public static final BlockNetherExFenceGate FENCE_GATE_BASALT_SMOOTH = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_basalt_brick")
+    @GameRegistry.ObjectHolder("fence_gate_basalt_brick")
     public static final BlockNetherExFenceGate FENCE_GATE_BASALT_BRICK = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_basalt_pillar")
+    @GameRegistry.ObjectHolder("fence_gate_basalt_pillar")
     public static final BlockNetherExFenceGate FENCE_GATE_BASALT_PILLAR = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_brick_nether_fiery")
+    @GameRegistry.ObjectHolder("fence_gate_brick_nether_fiery")
     public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_FIERY = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_brick_nether_icy")
+    @GameRegistry.ObjectHolder("fence_gate_brick_nether_icy")
     public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_ICY = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_brick_nether_lively")
+    @GameRegistry.ObjectHolder("fence_gate_brick_nether_lively")
     public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_LIVELY = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":fence_gate_brick_nether_gloomy")
+    @GameRegistry.ObjectHolder("fence_gate_brick_nether_gloomy")
     public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_GLOOMY = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");

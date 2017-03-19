@@ -23,6 +23,7 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -37,6 +38,7 @@ import nex.entity.monster.EntitySpinout;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
+import nex.init.NetherExLootTables;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenLava;
 import nex.world.gen.feature.WorldGenMinableMeta;
@@ -64,12 +66,12 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY));
     private WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), true);
     private WorldGenerator thornstalk = new WorldGenThornstalk();
-    private WorldGenerator crypt = new WorldGenGroundStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator grave = new WorldGenGroundStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator graveyard = new WorldGenGroundStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator sarcophagus = new WorldGenGroundStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, true, LootTableList.CHESTS_NETHER_BRIDGE);
-    private WorldGenerator altar = new WorldGenGroundStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
-    private WorldGenerator waypoint = new WorldGenGroundStructure("ruthless_sands", "waypoint", new String[]{""}, allowedBlocks, new String[]{""}, false, LootTableList.EMPTY);
+    private WorldGenerator crypt = new WorldGenGroundStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
+    private WorldGenerator grave = new WorldGenGroundStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE});
+    private WorldGenerator graveyard = new WorldGenGroundStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
+    private WorldGenerator sarcophagus = new WorldGenGroundStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, new ResourceLocation[]{LootTableList.CHESTS_NETHER_BRIDGE});
+    private WorldGenerator altar = new WorldGenGroundStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private WorldGenerator waypoint = new WorldGenGroundStructure("ruthless_sands", "waypoint", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
 
     public BiomeRuthlessSands()
     {

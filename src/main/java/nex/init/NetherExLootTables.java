@@ -17,11 +17,15 @@
 
 package nex.init;
 
+import net.minecraft.util.ResourceLocation;
+import nex.NetherEx;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class NetherExLootTables
 {
+    public static final ResourceLocation CHEST_GRAVE = new ResourceLocation(NetherEx.MOD_ID + ":chest/grave");
+
     public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExLootTables");
 
     public static void init()

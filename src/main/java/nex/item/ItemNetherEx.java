@@ -21,6 +21,7 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.item.Item;
 import nex.NetherEx;
 
+@SuppressWarnings("ConstantConditions")
 public class ItemNetherEx extends Item
 {
     public ItemNetherEx(String name)
