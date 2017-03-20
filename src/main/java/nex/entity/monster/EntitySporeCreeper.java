@@ -35,6 +35,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -42,6 +43,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.ai.EntityAISporeCreeperSwell;
 import nex.init.NetherExItems;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 import nex.world.ExplosionSpore;
 
@@ -209,6 +211,12 @@ public class EntitySporeCreeper extends EntityMob
     public boolean attackEntityAsMob(Entity entityIn)
     {
         return true;
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_SPORE_CREEPER;
     }
 
     @SideOnly(Side.CLIENT)

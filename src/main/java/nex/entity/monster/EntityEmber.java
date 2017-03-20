@@ -26,6 +26,7 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -34,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 public class EntityEmber extends EntityMob
@@ -246,6 +248,12 @@ public class EntityEmber extends EntityMob
     public boolean isNotColliding()
     {
         return world.checkNoEntityCollision(getEntityBoundingBox(), this) && world.getCollisionBoxes(this, getEntityBoundingBox()).isEmpty();
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_EMBER;
     }
 
     public void setMovementSpeed(double newSpeed)

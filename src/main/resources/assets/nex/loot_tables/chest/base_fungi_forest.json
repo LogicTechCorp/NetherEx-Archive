@@ -1,0 +1,53 @@
+{
+    "pools": [
+        {
+            "name": "fungi_forest_base_pool",
+            "rolls": {
+                "min": 1,
+                "max": 5
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "nex:food_mushroom_enoki"
+                },
+                {
+                    "type": "item",
+                    "weight": 2,
+                    "name": "nex:plant_mushroom_elder"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "nex:block_hyphae"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "nex:plant_mushroom_elder_cap"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "nex:plant_mushroom_elder_stem"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "nex:item_spore"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "minecraft:gunpowder"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "minecraft:mushroom_stew"
+                }
+            ]
+        }
+    ]
+}

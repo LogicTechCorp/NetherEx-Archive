@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-            "name": "grave_pool",
+            "name": "arctic_abyss_base_pool",
             "rolls": {
                 "min": 1,
                 "max": 10
@@ -9,36 +9,51 @@
             "entries": [
                 {
                     "type": "item",
-                    "weight": 30,
-                    "name": "minecraft:bone",
+                    "weight": 10,
+                    "name": "nex:block_ice_frostburn",
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 6
+                                "max": 5
                             }
                         }
                     ]
                 },
                 {
                     "type": "item",
-                    "weight": 15,
-                    "name": "minecraft:rotten_flesh",
+                    "weight": 5,
+                    "name": "minecraft:ghast_tear"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "nex:item_crystal_rime"
+                },
+                {
+                    "type": "item",
+                    "weight": 10,
+                    "name": "minecraft:bone_block"
+                },
+                {
+                    "type": "item",
+                    "weight": 3,
+                    "name": "minecraft:nether_wart",
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 2
+                                "max": 3
                             }
                         }
                     ]
                 },
                 {
-                    "type": "loot_table",
-                    "name": "minecraft:chests/simple_dungeon",
-                    "weight": 1
+                    "type": "item",
+                    "weight": 5,
+                    "name": "minecraft:quartz"
                 }
             ]
         }

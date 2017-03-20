@@ -176,7 +176,7 @@ public class WorldGenUtil
         return BlockPos.ORIGIN;
     }
 
-    public static void generateStructure(World world, BlockPos pos, Random rand, Template template, PlacementSettings placementSettings, ResourceLocation lootTableList, ResourceLocation spawnerMob)
+    public static void generateStructure(World world, BlockPos pos, Random rand, Template template, PlacementSettings placementSettings, ResourceLocation[] lootTables, ResourceLocation[] spawnerMobs)
     {
         if((!template.blocks.isEmpty() || !placementSettings.getIgnoreEntities() && !template.entities.isEmpty()) && template.size.getX() >= 1 && template.size.getY() >= 1 && template.size.getZ() >= 1)
         {
@@ -228,12 +228,12 @@ public class WorldGenUtil
 
                                 if(state1.getBlock() instanceof BlockChest)
                                 {
-                                    ((TileEntityChest) tileEntity).setLootTable(lootTableList, rand.nextLong());
+                                    ((TileEntityChest) tileEntity).setLootTable(lootTables[rand.nextInt(lootTables.length)], rand.nextLong());
 
                                 }
                                 if(state1.getBlock() instanceof BlockMobSpawner)
                                 {
-                                    ((TileEntityMobSpawner) tileEntity).getSpawnerBaseLogic().setEntityId(spawnerMob);
+                                    ((TileEntityMobSpawner) tileEntity).getSpawnerBaseLogic().setEntityId(spawnerMobs[rand.nextInt(spawnerMobs.length)]);
                                 }
                                 if(state.getBlock() instanceof BlockUrnOfSorrow)
                                 {

@@ -22,19 +22,17 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import nex.init.NetherExItems;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 public class EntitySalamander extends EntityMob
@@ -142,15 +140,9 @@ public class EntitySalamander extends EntityMob
     }
 
     @Override
-    protected Item getDropItem()
+    protected ResourceLocation getLootTable()
     {
-        return NetherExItems.ITEM_HIDE_SALAMANDER;
-    }
-
-    @Override
-    public EntityItem dropItemWithOffset(Item item, int size, float offsetY)
-    {
-        return entityDropItem(new ItemStack(item, size, getType()), offsetY);
+        return getType() == 0 ? NetherExLootTables.ENTITY_SALAMANDER_ORANGE : NetherExLootTables.ENTITY_SALAMANDER_BLACK;
     }
 
     public int getType()

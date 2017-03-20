@@ -26,11 +26,13 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.init.NetherExEffects;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
@@ -118,5 +120,11 @@ public class EntityWight extends EntityMob
     protected boolean canTriggerWalking()
     {
         return false;
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_WIGHT;
     }
 }

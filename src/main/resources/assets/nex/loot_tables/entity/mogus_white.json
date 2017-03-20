@@ -1,0 +1,21 @@
+{
+    "pools": [
+        {
+            "name": "white_mogus_loot_pool",
+            "rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "nex:entity/mogus_brown"
+                },
+                {
+                    "type": "loot_table",
+                    "name": "nex:entity/mogus_red"
+                }
+            ]
+        }
+    ]
+}

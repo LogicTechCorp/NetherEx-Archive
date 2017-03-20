@@ -24,9 +24,11 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 public class EntityNethermite extends EntityMob
@@ -108,5 +110,11 @@ public class EntityNethermite extends EntityMob
     public EnumCreatureAttribute getCreatureAttribute()
     {
         return EnumCreatureAttribute.ARTHROPOD;
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_NETHERMITE;
     }
 }

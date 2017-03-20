@@ -27,6 +27,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
@@ -39,6 +40,7 @@ import nex.entity.ai.EntityAIGhastQueenFireballAttack;
 import nex.entity.monster.EntityGhastling;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 public class EntityGhastQueen extends EntityGhast
@@ -234,6 +236,12 @@ public class EntityGhastQueen extends EntityGhast
     {
         super.setCustomNameTag(name);
         bossInfo.setName(getDisplayName());
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_GHAST_QUEEN;
     }
 
     private BlockPos getUrnPos()

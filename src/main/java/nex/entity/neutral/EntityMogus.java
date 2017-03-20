@@ -22,20 +22,18 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import nex.init.NetherExBlocks;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
@@ -151,25 +149,9 @@ public class EntityMogus extends EntityMob
     }
 
     @Override
-    protected Item getDropItem()
+    protected ResourceLocation getLootTable()
     {
-        return Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER);
-    }
-
-    @Override
-    public EntityItem dropItemWithOffset(Item item, int size, float offsetY)
-    {
-        if(getType() != 2)
-        {
-            entityDropItem(new ItemStack(item, 1, getType()), offsetY);
-        }
-        else
-        {
-            entityDropItem(new ItemStack(item, 2, 0), offsetY);
-            entityDropItem(new ItemStack(item, 2, 1), offsetY);
-        }
-
-        return entityDropItem(ItemStack.EMPTY, offsetY);
+        return getType() == 0 ? NetherExLootTables.ENTITY_MOGUS_BROWN : getType() == 1 ? NetherExLootTables.ENTITY_MOGUS_RED : NetherExLootTables.ENTITY_MOGUS_WHITE;
     }
 
     public int getType()

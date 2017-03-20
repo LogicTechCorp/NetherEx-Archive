@@ -27,11 +27,13 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExItems;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
@@ -153,6 +155,12 @@ public class EntitySpore extends EntityMob
     protected boolean canTriggerWalking()
     {
         return false;
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_SPORE;
     }
 
     public int getStage()

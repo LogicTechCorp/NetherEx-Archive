@@ -22,17 +22,17 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 @SuppressWarnings("ConstantConditions")
@@ -197,9 +197,9 @@ public class EntitySpinout extends EntityMob
     }
 
     @Override
-    protected Item getDropItem()
+    protected ResourceLocation getLootTable()
     {
-        return Items.QUARTZ;
+        return NetherExLootTables.ENTITY_SPINOUT;
     }
 
     public int getCounter()

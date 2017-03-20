@@ -91,7 +91,7 @@ public class WorldGenWallStructure extends WorldGenerator
 
         if(spawnPos != BlockPos.ORIGIN)
         {
-            WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings, lootTables[rand.nextInt(lootTables.length)], spawnerMobs[rand.nextInt(spawnerMobs.length)]);
+            WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings, lootTables, spawnerMobs);
             return true;
         }
         return false;

@@ -20,11 +20,13 @@ package nex.entity.monster;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import nex.entity.ai.EntityAIGhastFly;
 import nex.entity.ai.EntityAIGhastLookAround;
 import nex.entity.ai.EntityAIGhastlingFireballAttack;
+import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
 public class EntityGhastling extends EntityGhast
@@ -80,5 +82,11 @@ public class EntityGhastling extends EntityGhast
     public int getFireballStrength()
     {
         return 1;
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_GHASTLING;
     }
 }
