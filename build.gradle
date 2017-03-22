@@ -48,9 +48,3 @@ processResources {
         exclude 'mcmod.info'
     }
 }
-
-jar {
-    manifest {
-        attributes 'FMLAT': 'nex_at.cfg'
-    }
-}

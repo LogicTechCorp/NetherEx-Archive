@@ -27,7 +27,6 @@ import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
@@ -44,6 +43,7 @@ import nex.entity.monster.EntitySporeCreeper;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExEffects;
 import nex.init.NetherExParticleTypes;
+import nex.init.NetherExSoundEvents;
 
 import java.util.List;
 import java.util.Map;
@@ -214,7 +214,7 @@ public class ExplosionSpore extends Explosion
     @Override
     public void doExplosionB(boolean spawnParticles)
     {
-        world.playSound(null, explosionX, explosionY, explosionZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
+        world.playSound(null, explosionX, explosionY, explosionZ, NetherExSoundEvents.ENTITY_EXPLODE_SPORE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 
         if(explosionSize >= 2.0F && isSmoking)
         {

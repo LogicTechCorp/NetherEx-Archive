@@ -86,7 +86,7 @@
     },
     "hurt_spore": {
         "category": "hostile",
-        "sounds": [ "nex:mob/spore/hurt_spore_1", "nex:mob/spore/hurt_spore_2", "nex:mob/spore/hurt_spore_3" ],
+        "sounds": [ "nex:mob/spore/hurt_spore_1", "nex:mob/spore/hurt_spore_2", "nex:mob/spore/hurt_spore_3", "nex:mob/spore/hurt_spore_4" ],
         "subtitle": "subtitle.nex:sound.mob.hurtGhastling"
     },
     "death_spore": {
@@ -98,6 +98,11 @@
         "category": "hostile",
         "sounds": [ "nex:mob/spore/warn_spore" ],
         "subtitle": "subtitle.nex:sound.mob.warnSpore"
+    },
+    "explode_spore": {
+        "category": "hostile",
+        "sounds": [ "nex:mob/spore/explode_spore" ],
+        "subtitle": "subtitle.nex:sound.mob.explodeSpore"
     },
     "ambient_ghastling": {
         "category": "hostile",

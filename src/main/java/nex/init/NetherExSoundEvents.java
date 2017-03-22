@@ -91,6 +91,9 @@ public class NetherExSoundEvents
     @GameRegistry.ObjectHolder("warn_spore")
     public static final SoundEvent ENTITY_WARN_SPORE = null;
 
+    @GameRegistry.ObjectHolder("explode_spore")
+    public static final SoundEvent ENTITY_EXPLODE_SPORE = null;
+
     @GameRegistry.ObjectHolder("ambient_ghastling")
     public static final SoundEvent ENTITY_AMBIENT_GHASTLING = null;
 
@@ -152,6 +155,7 @@ public class NetherExSoundEvents
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spore")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_spore")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":warn_spore")),
+                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":explode_ghastling")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghastling")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghastling")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_ghastling")),

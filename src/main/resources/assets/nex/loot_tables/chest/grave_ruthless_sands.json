@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "loot_table",
-                    "name": "nex:chests/base_ruthless_sands"
+                    "name": "nex:chest/base_ruthless_sands"
                 }
             ]
         },
@@ -16,7 +16,7 @@
             "entries": [
                 {
                     "type": "loot_table",
-                    "name": "nex:chests/base_grave"
+                    "name": "nex:chest/base_grave"
                 }
             ]
         }

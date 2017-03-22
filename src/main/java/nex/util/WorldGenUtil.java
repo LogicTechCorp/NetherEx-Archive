@@ -27,7 +27,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -35,15 +37,25 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.BlockRotationProcessor;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.block.BlockUrnOfSorrow;
 import nex.tileentity.TileEntityUrnOfSorrow;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class WorldGenUtil
 {
+    private static final Field blocks = ReflectionHelper.findField(Template.class, "field_186270_a", "blocks");
+    private static final Field entities = ReflectionHelper.findField(Template.class, "field_186271_b", "entities");
+    private static final Field size = ReflectionHelper.findField(Template.class, "field_186272_c", "size");
+    private static final Method addEntitiesToWorld = ReflectionHelper.findMethod(Template.class, null, new String[]{"func_186263_a", "addEntitiesToWorld"}, World.class, BlockPos.class, Mirror.class, Rotation.class, StructureBoundingBox.class);
+
     public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> allowedBlocks, BlockPos structureSize, float percentage)
     {
         label_while:
@@ -178,100 +190,117 @@ public class WorldGenUtil
 
     public static void generateStructure(World world, BlockPos pos, Random rand, Template template, PlacementSettings placementSettings, ResourceLocation[] lootTables, ResourceLocation[] spawnerMobs)
     {
-        if((!template.blocks.isEmpty() || !placementSettings.getIgnoreEntities() && !template.entities.isEmpty()) && template.size.getX() >= 1 && template.size.getY() >= 1 && template.size.getZ() >= 1)
+        try
         {
-            BlockRotationProcessor processor = new BlockRotationProcessor(pos, placementSettings);
-            Block block = placementSettings.getReplacedBlock();
-            StructureBoundingBox boundingBox = placementSettings.getBoundingBox();
+            List<Template.BlockInfo> tempBlocks = (List<Template.BlockInfo>) blocks.get(template);
+            List<Template.EntityInfo> tempEntities = (List<Template.EntityInfo>) blocks.get(template);
 
-            for(Template.BlockInfo blockInfo : template.blocks)
+            if((!tempBlocks.isEmpty() || !placementSettings.getIgnoreEntities() && !tempEntities.isEmpty()) && template.getSize().getX() >= 1 && template.getSize().getY() >= 1 && template.getSize().getZ() >= 1)
             {
-                BlockPos blockpos = Template.transformedBlockPos(placementSettings, blockInfo.pos).add(pos);
-                Template.BlockInfo blockInfo1 = processor != null ? processor.processBlock(world, blockpos, blockInfo) : blockInfo;
+                BlockRotationProcessor processor = new BlockRotationProcessor(pos, placementSettings);
+                Block block = placementSettings.getReplacedBlock();
+                StructureBoundingBox boundingBox = placementSettings.getBoundingBox();
 
-                if(blockInfo1 != null)
+                for(Template.BlockInfo blockInfo : tempBlocks)
                 {
-                    Block block1 = blockInfo1.blockState.getBlock();
+                    BlockPos blockpos = Template.transformedBlockPos(placementSettings, blockInfo.pos).add(pos);
+                    Template.BlockInfo blockInfo1 = processor != null ? processor.processBlock(world, blockpos, blockInfo) : blockInfo;
 
-                    if((block == null || block != block1) && (!placementSettings.getIgnoreStructureBlock() || block1 != Blocks.STRUCTURE_BLOCK) && (boundingBox == null || boundingBox.isVecInside(blockpos)))
+                    if(blockInfo1 != null)
                     {
-                        IBlockState state = blockInfo1.blockState.withMirror(placementSettings.getMirror());
-                        IBlockState state1 = state.withRotation(placementSettings.getRotation());
+                        Block block1 = blockInfo1.blockState.getBlock();
 
-                        if(blockInfo1.tileentityData != null)
+                        if((block == null || block != block1) && (!placementSettings.getIgnoreStructureBlock() || block1 != Blocks.STRUCTURE_BLOCK) && (boundingBox == null || boundingBox.isVecInside(blockpos)))
                         {
-                            TileEntity tileEntity = world.getTileEntity(blockpos);
+                            IBlockState state = blockInfo1.blockState.withMirror(placementSettings.getMirror());
+                            IBlockState state1 = state.withRotation(placementSettings.getRotation());
 
-                            if(tileEntity != null)
+                            if(blockInfo1.tileentityData != null)
                             {
-                                if(tileEntity instanceof IInventory)
-                                {
-                                    ((IInventory) tileEntity).clear();
-                                }
+                                TileEntity tileEntity = world.getTileEntity(blockpos);
 
-                                world.setBlockState(blockpos, Blocks.BARRIER.getDefaultState(), 4);
+                                if(tileEntity != null)
+                                {
+                                    if(tileEntity instanceof IInventory)
+                                    {
+                                        ((IInventory) tileEntity).clear();
+                                    }
+
+                                    world.setBlockState(blockpos, Blocks.BARRIER.getDefaultState(), 4);
+                                }
                             }
-                        }
 
-                        if(world.setBlockState(blockpos, state1, 3) && blockInfo1.tileentityData != null)
-                        {
-                            TileEntity tileEntity = world.getTileEntity(blockpos);
-
-                            if(tileEntity != null)
+                            if(world.setBlockState(blockpos, state1, 3) && blockInfo1.tileentityData != null)
                             {
-                                blockInfo1.tileentityData.setInteger("x", blockpos.getX());
-                                blockInfo1.tileentityData.setInteger("y", blockpos.getY());
-                                blockInfo1.tileentityData.setInteger("z", blockpos.getZ());
-                                tileEntity.readFromNBT(blockInfo1.tileentityData);
-                                tileEntity.mirror(placementSettings.getMirror());
-                                tileEntity.rotate(placementSettings.getRotation());
+                                TileEntity tileEntity = world.getTileEntity(blockpos);
 
-                                if(state1.getBlock() instanceof BlockChest)
+                                if(tileEntity != null)
                                 {
-                                    ((TileEntityChest) tileEntity).setLootTable(lootTables[rand.nextInt(lootTables.length)], rand.nextLong());
+                                    blockInfo1.tileentityData.setInteger("x", blockpos.getX());
+                                    blockInfo1.tileentityData.setInteger("y", blockpos.getY());
+                                    blockInfo1.tileentityData.setInteger("z", blockpos.getZ());
+                                    tileEntity.readFromNBT(blockInfo1.tileentityData);
+                                    tileEntity.mirror(placementSettings.getMirror());
+                                    tileEntity.rotate(placementSettings.getRotation());
 
-                                }
-                                if(state1.getBlock() instanceof BlockMobSpawner)
-                                {
-                                    ((TileEntityMobSpawner) tileEntity).getSpawnerBaseLogic().setEntityId(spawnerMobs[rand.nextInt(spawnerMobs.length)]);
-                                }
-                                if(state.getBlock() instanceof BlockUrnOfSorrow)
-                                {
-                                    ((TileEntityUrnOfSorrow) tileEntity).setCanBreak(false);
+                                    if(state1.getBlock() instanceof BlockChest)
+                                    {
+                                        ((TileEntityChest) tileEntity).setLootTable(lootTables[rand.nextInt(lootTables.length)], rand.nextLong());
+
+                                    }
+                                    if(state1.getBlock() instanceof BlockMobSpawner)
+                                    {
+                                        ((TileEntityMobSpawner) tileEntity).getSpawnerBaseLogic().setEntityId(spawnerMobs[rand.nextInt(spawnerMobs.length)]);
+                                    }
+                                    if(state.getBlock() instanceof BlockUrnOfSorrow)
+                                    {
+                                        ((TileEntityUrnOfSorrow) tileEntity).setCanBreak(false);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
 
-            for(Template.BlockInfo blockInfo2 : template.blocks)
-            {
-                if(block == null || block != blockInfo2.blockState.getBlock())
+                for(Template.BlockInfo blockInfo2 : tempBlocks)
                 {
-                    BlockPos blockpos1 = Template.transformedBlockPos(placementSettings, blockInfo2.pos).add(pos);
-
-                    if(boundingBox == null || boundingBox.isVecInside(blockpos1))
+                    if(block == null || block != blockInfo2.blockState.getBlock())
                     {
-                        world.notifyNeighborsRespectDebug(blockpos1, blockInfo2.blockState.getBlock(), false);
+                        BlockPos blockpos1 = Template.transformedBlockPos(placementSettings, blockInfo2.pos).add(pos);
 
-                        if(blockInfo2.tileentityData != null)
+                        if(boundingBox == null || boundingBox.isVecInside(blockpos1))
                         {
-                            TileEntity tileEntity = world.getTileEntity(blockpos1);
+                            world.notifyNeighborsRespectDebug(blockpos1, blockInfo2.blockState.getBlock(), false);
 
-                            if(tileEntity != null)
+                            if(blockInfo2.tileentityData != null)
                             {
-                                tileEntity.markDirty();
+                                TileEntity tileEntity = world.getTileEntity(blockpos1);
+
+                                if(tileEntity != null)
+                                {
+                                    tileEntity.markDirty();
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            if(!placementSettings.getIgnoreEntities())
-            {
-                template.addEntitiesToWorld(world, pos, placementSettings.getMirror(), placementSettings.getRotation(), boundingBox);
+                if(!placementSettings.getIgnoreEntities())
+                {
+                    try
+                    {
+                        addEntitiesToWorld.invoke(template, world, pos, placementSettings.getMirror(), placementSettings.getRotation(), boundingBox);
+                    }
+                    catch(IllegalAccessException | InvocationTargetException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
             }
+        }
+        catch(IllegalAccessException e)
+        {
+            e.printStackTrace();
         }
     }
 }

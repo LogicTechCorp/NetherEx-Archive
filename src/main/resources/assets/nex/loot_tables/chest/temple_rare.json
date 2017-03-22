@@ -16,7 +16,7 @@
             "entries": [
                 {
                     "type": "loot_table",
-                    "name": "nex:chests/base_temple"
+                    "name": "nex:chest/base_temple"
                 }
             ]
         }

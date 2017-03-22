@@ -17,6 +17,7 @@
 
 package nex.world;
 
+import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,9 +25,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+
+import java.lang.reflect.Field;
 
 /**
  * A fix for Nether Portal teleportation
@@ -40,6 +45,9 @@ public class NetherExTeleporter extends Teleporter
 {
     private final WorldServer world;
 
+    private static final Field lastPortalPos = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
+    private static final Field destinationCoordinateCache = ReflectionHelper.findField(Teleporter.class, "field_85191_c", "destinationCoordinateCache");
+
     public NetherExTeleporter(WorldServer worldIn)
     {
         super(worldIn);
@@ -51,7 +59,15 @@ public class NetherExTeleporter extends Teleporter
     {
         if(entity instanceof EntityPlayer)
         {
-            PortalPositionAndDimension from = new PortalPositionAndDimension(entity.lastPortalPos);
+            PortalPositionAndDimension from = null;
+            try
+            {
+                from = new PortalPositionAndDimension((BlockPos) lastPortalPos.get(entity));
+            }
+            catch(IllegalAccessException e)
+            {
+                e.printStackTrace();
+            }
             super.placeInPortal(entity, rotationYaw);
             PortalPositionAndDimension to = new PortalPositionAndDimension(entity.getPosition());
 
@@ -97,26 +113,37 @@ public class NetherExTeleporter extends Teleporter
                 NBTTagCompound portalCompound = tagList.getCompoundTagAt(i);
                 PortalPositionAndDimension to = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("To")), portalCompound.getInteger("ToDim"));
 
-                if(to.dimensionId == entity.getEntityWorld().provider.getDimension() && to.distanceSq(entity.lastPortalPos) <= 9)
+                try
                 {
-                    int x = MathHelper.floor(entity.posX);
-                    int y = MathHelper.floor(entity.posZ);
-                    long key = ChunkPos.asLong(x, y);
-
-                    PortalPositionAndDimension from = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("From")), portalCompound.getInteger("FromDim"));
-                    destinationCoordinateCache.put(key, from);
-
-                    PortalPosition oldValue = destinationCoordinateCache.get(key);
-
-                    if(oldValue != null)
+                    if(to.dimensionId == entity.getEntityWorld().provider.getDimension() && to.distanceSq((Vec3i) lastPortalPos.get(entity)) <= 9)
                     {
-                        destinationCoordinateCache.put(key, oldValue);
-                    }
+                        int x = MathHelper.floor(entity.posX);
+                        int y = MathHelper.floor(entity.posZ);
+                        long key = ChunkPos.asLong(x, y);
 
-                    tagList.removeTag(i);
-                    tagCompound.setTag("ReturnPortals", tagList);
-                    entity.getEntityData().setTag("TeleportInfo", tagCompound);
-                    return super.placeInExistingPortal(entity, rotationYaw);
+                        PortalPositionAndDimension from = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("From")), portalCompound.getInteger("FromDim"));
+
+                        Long2ObjectMap<PortalPosition> tempDCC = (Long2ObjectMap<PortalPosition>) destinationCoordinateCache.get(this);
+                        tempDCC.put(key, from);
+                        destinationCoordinateCache.set(this, tempDCC);
+
+                        PortalPosition oldValue = tempDCC.get(key);
+
+                        if(oldValue != null)
+                        {
+                            tempDCC.put(key, oldValue);
+                            destinationCoordinateCache.set(this, tempDCC);
+                        }
+
+                        tagList.removeTag(i);
+                        tagCompound.setTag("ReturnPortals", tagList);
+                        entity.getEntityData().setTag("TeleportInfo", tagCompound);
+                        return super.placeInExistingPortal(entity, rotationYaw);
+                    }
+                }
+                catch(IllegalAccessException e)
+                {
+                    e.printStackTrace();
                 }
             }
         }

@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "loot_table",
-                    "name": "nex:chests/base_fungi_forest"
+                    "name": "nex:chest/base_fungi_forest"
                 }
             ]
         },
@@ -16,7 +16,7 @@
             "entries": [
                 {
                     "type": "loot_table",
-                    "name": "nex:chests/base_grave"
+                    "name": "nex:chest/base_grave"
                 }
             ]
         }

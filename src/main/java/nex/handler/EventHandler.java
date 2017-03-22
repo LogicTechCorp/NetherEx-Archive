@@ -59,6 +59,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.block.BlockNetherrackPath;
@@ -71,6 +72,7 @@ import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.world.NetherExTeleporter;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.ListIterator;
 import java.util.Random;
@@ -79,15 +81,25 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
+    private static final Field worldTeleporter = ReflectionHelper.findField(WorldServer.class, "field_85177_Q", "worldTeleporter");
 
     @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event)
     {
-        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.Dimension.Nether.enablePortalFix && event.getWorld() instanceof WorldServer)
+        World world = event.getWorld();
+
+        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.Dimension.Nether.enablePortalFix && world instanceof WorldServer)
         {
-            if(event.getWorld().provider.getDimension() == 0 || event.getWorld().provider.getDimension() == -1)
+            if(world.provider.getDimension() == 0 || world.provider.getDimension() == -1)
             {
-                ((WorldServer) event.getWorld()).worldTeleporter = new NetherExTeleporter((WorldServer) event.getWorld());
+                try
+                {
+                    worldTeleporter.set(world, new NetherExTeleporter((WorldServer) world));
+                }
+                catch(IllegalAccessException e)
+                {
+                    e.printStackTrace();
+                }
             }
         }
     }
