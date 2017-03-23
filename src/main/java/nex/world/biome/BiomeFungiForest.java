@@ -20,7 +20,6 @@ package nex.world.biome;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -81,7 +80,7 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         if(ConfigHandler.Biome.FungiForest.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.Biome.FungiForest.biomeRarity, new ItemStack(Blocks.LAVA, 1, 0));
+            NetherExBiomes.addBiome(this, ConfigHandler.Biome.FungiForest.biomeRarity, Blocks.LAVA.getDefaultState());
         }
     }
 

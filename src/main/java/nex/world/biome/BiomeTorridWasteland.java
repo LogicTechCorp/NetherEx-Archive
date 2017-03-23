@@ -21,7 +21,6 @@ import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -82,7 +81,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         if(ConfigHandler.Biome.TorridWasteland.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.Biome.TorridWasteland.biomeRarity, new ItemStack(Blocks.LAVA, 1, 0));
+            NetherExBiomes.addBiome(this, ConfigHandler.Biome.TorridWasteland.biomeRarity, Blocks.LAVA.getDefaultState());
         }
     }
 

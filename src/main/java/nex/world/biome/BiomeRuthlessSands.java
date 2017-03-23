@@ -22,7 +22,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -86,7 +85,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         if(ConfigHandler.Biome.RuthlessSands.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.Biome.RuthlessSands.biomeRarity, new ItemStack(Blocks.LAVA, 1, 0));
+            NetherExBiomes.addBiome(this, ConfigHandler.Biome.RuthlessSands.biomeRarity, Blocks.LAVA.getDefaultState());
         }
     }
 

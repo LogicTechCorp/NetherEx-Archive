@@ -146,7 +146,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                                 Biome biome = biomes[posX + posZ * 16];
 
                                 IBlockState state = null;
-                                IBlockState oceanState = NetherExBiomes.getBiomeOceanBlockState(biome);
+                                IBlockState oceanState = NetherExBiomes.getBiomeOceanBlock(biome);
 
                                 if(posY < 32)
                                 {
@@ -199,7 +199,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                 IBlockState topState = biome.topBlock;
                 IBlockState fillerState = biome.fillerBlock;
-                IBlockState oceanState = NetherExBiomes.getBiomeOceanBlockState(biome);
+                IBlockState oceanState = NetherExBiomes.getBiomeOceanBlock(biome);
 
                 for(int y = 127; y >= 0; y--)
                 {

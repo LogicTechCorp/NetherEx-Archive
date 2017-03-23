@@ -19,10 +19,8 @@ package nex.init;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -114,7 +112,7 @@ public class NetherExBiomes
         return -1;
     }
 
-    public static boolean addBiome(Biome biome, int weight, ItemStack stack)
+    public static boolean addBiome(Biome biome, int weight, IBlockState state)
     {
         if(weight <= 0)
         {
@@ -128,25 +126,11 @@ public class NetherExBiomes
             if(biomeEntry.biome == entry.biome)
             {
                 entry.itemWeight += biomeEntry.itemWeight;
-
-                if(stack != ItemStack.EMPTY)
-                {
-                    break;
-                }
-                return false;
+                break;
             }
         }
 
-        BiomeOceanEntry oceanEntry;
-
-        if(Block.getBlockFromItem(stack.getItem()) != Blocks.AIR)
-        {
-            oceanEntry = new BiomeOceanEntry(biome, Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getItemDamage()));
-        }
-        else
-        {
-            oceanEntry = new BiomeOceanEntry(biome, Blocks.LAVA.getDefaultState());
-        }
+        BiomeOceanEntry oceanEntry = new BiomeOceanEntry(biome, state == Blocks.AIR.getDefaultState() ? Blocks.LAVA.getDefaultState() : state);
 
         if(!oceanEntries.contains(oceanEntry))
         {
@@ -181,7 +165,7 @@ public class NetherExBiomes
         return ImmutableList.copyOf(biomeEntries);
     }
 
-    public static IBlockState getBiomeOceanBlockState(Biome biome)
+    public static IBlockState getBiomeOceanBlock(Biome biome)
     {
         for(BiomeOceanEntry oceanEntry : oceanEntries)
         {

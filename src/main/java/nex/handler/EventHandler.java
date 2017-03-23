@@ -81,7 +81,7 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
-    private static final Field worldTeleporter = ReflectionHelper.findField(WorldServer.class, "field_85177_Q", "worldTeleporter");
+    private static final Field FIELD_WORLD_TELEPORTER = ReflectionHelper.findField(WorldServer.class, "field_85177_Q", "worldTeleporter");
 
     @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event)
@@ -94,7 +94,7 @@ public class EventHandler
             {
                 try
                 {
-                    worldTeleporter.set(world, new NetherExTeleporter((WorldServer) world));
+                    FIELD_WORLD_TELEPORTER.set(world, new NetherExTeleporter((WorldServer) world));
                 }
                 catch(IllegalAccessException e)
                 {

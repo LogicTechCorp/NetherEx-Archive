@@ -51,10 +51,9 @@ import java.util.Set;
 @SuppressWarnings("ConstantConditions")
 public class WorldGenUtil
 {
-    private static final Field blocks = ReflectionHelper.findField(Template.class, "field_186270_a", "blocks");
-    private static final Field entities = ReflectionHelper.findField(Template.class, "field_186271_b", "entities");
-    private static final Field size = ReflectionHelper.findField(Template.class, "field_186272_c", "size");
-    private static final Method addEntitiesToWorld = ReflectionHelper.findMethod(Template.class, null, new String[]{"func_186263_a", "addEntitiesToWorld"}, World.class, BlockPos.class, Mirror.class, Rotation.class, StructureBoundingBox.class);
+    private static final Field FIELD_BLOCKS = ReflectionHelper.findField(Template.class, "field_186270_a", "blocks");
+    private static final Field FIELD_ENTITIES = ReflectionHelper.findField(Template.class, "field_186271_b", "entities");
+    private static final Method METHOD_ADD_ENTITIES_TO_WORLD = ReflectionHelper.findMethod(Template.class, null, new String[]{"func_186263_a", "addEntitiesToWorld"}, World.class, BlockPos.class, Mirror.class, Rotation.class, StructureBoundingBox.class);
 
     public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> allowedBlocks, BlockPos structureSize, float percentage)
     {
@@ -192,16 +191,16 @@ public class WorldGenUtil
     {
         try
         {
-            List<Template.BlockInfo> tempBlocks = (List<Template.BlockInfo>) blocks.get(template);
-            List<Template.EntityInfo> tempEntities = (List<Template.EntityInfo>) blocks.get(template);
+            List<Template.BlockInfo> blocks = (List<Template.BlockInfo>) FIELD_BLOCKS.get(template);
+            List<Template.EntityInfo> entities = (List<Template.EntityInfo>) FIELD_ENTITIES.get(template);
 
-            if((!tempBlocks.isEmpty() || !placementSettings.getIgnoreEntities() && !tempEntities.isEmpty()) && template.getSize().getX() >= 1 && template.getSize().getY() >= 1 && template.getSize().getZ() >= 1)
+            if((!blocks.isEmpty() || !placementSettings.getIgnoreEntities() && !entities.isEmpty()) && template.getSize().getX() >= 1 && template.getSize().getY() >= 1 && template.getSize().getZ() >= 1)
             {
                 BlockRotationProcessor processor = new BlockRotationProcessor(pos, placementSettings);
                 Block block = placementSettings.getReplacedBlock();
                 StructureBoundingBox boundingBox = placementSettings.getBoundingBox();
 
-                for(Template.BlockInfo blockInfo : tempBlocks)
+                for(Template.BlockInfo blockInfo : blocks)
                 {
                     BlockPos blockpos = Template.transformedBlockPos(placementSettings, blockInfo.pos).add(pos);
                     Template.BlockInfo blockInfo1 = processor != null ? processor.processBlock(world, blockpos, blockInfo) : blockInfo;
@@ -262,7 +261,7 @@ public class WorldGenUtil
                     }
                 }
 
-                for(Template.BlockInfo blockInfo2 : tempBlocks)
+                for(Template.BlockInfo blockInfo2 : blocks)
                 {
                     if(block == null || block != blockInfo2.blockState.getBlock())
                     {
@@ -289,7 +288,7 @@ public class WorldGenUtil
                 {
                     try
                     {
-                        addEntitiesToWorld.invoke(template, world, pos, placementSettings.getMirror(), placementSettings.getRotation(), boundingBox);
+                        METHOD_ADD_ENTITIES_TO_WORLD.invoke(template, world, pos, placementSettings.getMirror(), placementSettings.getRotation(), boundingBox);
                     }
                     catch(IllegalAccessException | InvocationTargetException e)
                     {

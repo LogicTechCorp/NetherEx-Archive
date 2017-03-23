@@ -22,7 +22,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -83,7 +82,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         if(ConfigHandler.Biome.ArcticAbyss.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.Biome.ArcticAbyss.biomeRarity, new ItemStack(Blocks.MAGMA, 1, 0));
+            NetherExBiomes.addBiome(this, ConfigHandler.Biome.ArcticAbyss.biomeRarity, Blocks.MAGMA.getDefaultState());
         }
     }
 

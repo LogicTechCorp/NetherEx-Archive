@@ -45,8 +45,8 @@ public class NetherExTeleporter extends Teleporter
 {
     private final WorldServer world;
 
-    private static final Field lastPortalPos = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
-    private static final Field destinationCoordinateCache = ReflectionHelper.findField(Teleporter.class, "field_85191_c", "destinationCoordinateCache");
+    private static final Field FIELD_LAST_PORTAL_POS = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
+    private static final Field FIELD_DESTINATION_COORDINATE_CACHE = ReflectionHelper.findField(Teleporter.class, "field_85191_c", "destinationCoordinateCache");
 
     public NetherExTeleporter(WorldServer worldIn)
     {
@@ -62,7 +62,7 @@ public class NetherExTeleporter extends Teleporter
             PortalPositionAndDimension from = null;
             try
             {
-                from = new PortalPositionAndDimension((BlockPos) lastPortalPos.get(entity));
+                from = new PortalPositionAndDimension((BlockPos) FIELD_LAST_PORTAL_POS.get(entity));
             }
             catch(IllegalAccessException e)
             {
@@ -115,7 +115,7 @@ public class NetherExTeleporter extends Teleporter
 
                 try
                 {
-                    if(to.dimensionId == entity.getEntityWorld().provider.getDimension() && to.distanceSq((Vec3i) lastPortalPos.get(entity)) <= 9)
+                    if(to.dimensionId == entity.getEntityWorld().provider.getDimension() && to.distanceSq((Vec3i) FIELD_LAST_PORTAL_POS.get(entity)) <= 9)
                     {
                         int x = MathHelper.floor(entity.posX);
                         int y = MathHelper.floor(entity.posZ);
@@ -123,16 +123,16 @@ public class NetherExTeleporter extends Teleporter
 
                         PortalPositionAndDimension from = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("From")), portalCompound.getInteger("FromDim"));
 
-                        Long2ObjectMap<PortalPosition> tempDCC = (Long2ObjectMap<PortalPosition>) destinationCoordinateCache.get(this);
-                        tempDCC.put(key, from);
-                        destinationCoordinateCache.set(this, tempDCC);
+                        Long2ObjectMap<PortalPosition> destinationCoordinateCache = (Long2ObjectMap<PortalPosition>) FIELD_DESTINATION_COORDINATE_CACHE.get(this);
+                        destinationCoordinateCache.put(key, from);
+                        FIELD_DESTINATION_COORDINATE_CACHE.set(this, destinationCoordinateCache);
 
-                        PortalPosition oldValue = tempDCC.get(key);
+                        PortalPosition oldValue = destinationCoordinateCache.get(key);
 
                         if(oldValue != null)
                         {
-                            tempDCC.put(key, oldValue);
-                            destinationCoordinateCache.set(this, tempDCC);
+                            destinationCoordinateCache.put(key, oldValue);
+                            FIELD_DESTINATION_COORDINATE_CACHE.set(this, destinationCoordinateCache);
                         }
 
                         tagList.removeTag(i);
