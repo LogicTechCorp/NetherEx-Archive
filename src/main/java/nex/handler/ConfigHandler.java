@@ -127,6 +127,7 @@ public class ConfigHandler
     {
         public static Freeze freeze = new Freeze();
         public static Spore spore = new Spore();
+        public static Lost lost = new Lost();
 
         public static class Freeze
         {
@@ -147,7 +148,7 @@ public class ConfigHandler
 
         public static class Spore
         {
-            @Config.Comment({"The higher the number, the rarer it is to spawn a spore", "The lower the number, the more common it is to spawn a spore"})
+            @Config.Comment({"The higher the number, the rarer it is to spawn a Spore", "The lower the number, the more common it is to spawn a Spore"})
             @Config.RangeInt(min = 1, max = 256)
             public static int chanceOfSporeSpawning = 128;
 
@@ -157,6 +158,13 @@ public class ConfigHandler
                     "nex:monster_spore",
                     "nex:neutral_mogus"
             };
+        }
+
+        public static class Lost
+        {
+            @Config.Comment({"The higher the number, the rarer it is to spawn a Ghastling", "The lower the number, the more common it is to spawn a Ghastling"})
+            @Config.RangeInt(min = 1, max = 256)
+            public static int chanceOfGhastlingSpawning = 256;
         }
     }
 

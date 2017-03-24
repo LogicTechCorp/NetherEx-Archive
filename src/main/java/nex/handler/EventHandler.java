@@ -65,6 +65,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.block.BlockNetherrackPath;
 import nex.block.BlockTilledSoulSand;
 import nex.entity.item.EntityObsidianBoat;
+import nex.entity.monster.EntityGhastling;
 import nex.entity.monster.EntityNethermite;
 import nex.entity.monster.EntitySpore;
 import nex.entity.neutral.EntityMogus;
@@ -370,6 +371,21 @@ public class EventHandler
                     spore.setPosition(newPos.getX(), newPos.getY(), newPos.getZ());
                     world.spawnEntity(spore);
                 }
+            }
+        }
+
+        boolean canSpawnGhastling = entity instanceof EntityPlayer && world.provider.getDimension() == -1;
+
+        if(canSpawnGhastling && entity.isPotionActive(NetherExEffects.LOST) && world.rand.nextInt(ConfigHandler.PotionEffect.Lost.chanceOfGhastlingSpawning) == 0)
+        {
+            BlockPos newPos = pos.add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
+
+            if(!world.isRemote && world.isAirBlock(newPos))
+            {
+                EntityGhastling ghastling = new EntityGhastling(world);
+                ghastling.setPosition(newPos.getX(), newPos.getY(), newPos.getZ());
+                ghastling.setAttackTarget(entity);
+                world.spawnEntity(ghastling);
             }
         }
     }

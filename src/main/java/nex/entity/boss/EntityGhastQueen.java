@@ -94,6 +94,7 @@ public class EntityGhastQueen extends EntityGhast
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(256.0D);
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(140.0D);
     }
 
@@ -251,22 +252,22 @@ public class EntityGhastQueen extends EntityGhast
 
     private int getCooldown()
     {
-        return getDataManager().get(COOLDOWN);
+        return dataManager.get(COOLDOWN);
     }
 
     private int getGhastSpawningStage()
     {
-        return getDataManager().get(GHAST_SPAWNING_STAGE);
+        return dataManager.get(GHAST_SPAWNING_STAGE);
     }
 
     private boolean shouldSpawnGhast()
     {
-        return getDataManager().get(SHOULD_SPAWN_GHAST);
+        return dataManager.get(SHOULD_SPAWN_GHAST);
     }
 
     private boolean getGhastSpawnStageStarted()
     {
-        return getDataManager().get(GHAST_SPAWNING_STAGE).intValue() != getDataManager().get(GHAST_SPAWNING_STAGE_STARTED).intValue();
+        return dataManager.get(GHAST_SPAWNING_STAGE).intValue() != dataManager.get(GHAST_SPAWNING_STAGE_STARTED).intValue();
     }
 
     public void setUrnPos(BlockPos urnPosIn)
@@ -276,21 +277,21 @@ public class EntityGhastQueen extends EntityGhast
 
     private void setCooldown(int amount)
     {
-        getDataManager().set(COOLDOWN, amount);
+        dataManager.set(COOLDOWN, amount);
     }
 
     private void setGhastSpawningStage(int stage)
     {
-        getDataManager().set(GHAST_SPAWNING_STAGE, stage);
+        dataManager.set(GHAST_SPAWNING_STAGE, stage);
     }
 
     private void setShouldSpawnGhast(boolean spawnGhast)
     {
-        getDataManager().set(SHOULD_SPAWN_GHAST, spawnGhast);
+        dataManager.set(SHOULD_SPAWN_GHAST, spawnGhast);
     }
 
     private void setGhastSpawnStageStarted(int started)
     {
-        getDataManager().set(GHAST_SPAWNING_STAGE_STARTED, started);
+        dataManager.set(GHAST_SPAWNING_STAGE_STARTED, started);
     }
 }
