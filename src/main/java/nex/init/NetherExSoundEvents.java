@@ -155,7 +155,7 @@ public class NetherExSoundEvents
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spore")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_spore")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":warn_spore")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":explode_ghastling")),
+                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":explode_spore")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghastling")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghastling")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_ghastling")),

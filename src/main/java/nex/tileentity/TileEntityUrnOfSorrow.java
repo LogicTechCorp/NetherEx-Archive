@@ -18,6 +18,7 @@
 package nex.tileentity;
 
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
@@ -59,6 +60,8 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
                 EntityGhastQueen ghastQueen = new EntityGhastQueen(getWorld());
                 ghastQueen.setPosition(getPos().getX(), getPos().getY() + 7, getPos().getZ());
                 ghastQueen.setUrnPos(getPos());
+
+                world.playSound(null, getPos().getX(), getPos().getY() + 7, getPos().getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 
                 if(!getWorld().isRemote)
                 {

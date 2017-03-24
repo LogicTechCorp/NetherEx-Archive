@@ -214,7 +214,7 @@ public class ExplosionSpore extends Explosion
     @Override
     public void doExplosionB(boolean spawnParticles)
     {
-        world.playSound(null, explosionX, explosionY, explosionZ, NetherExSoundEvents.ENTITY_EXPLODE_SPORE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
+        world.playSound(null, explosionX, explosionY, explosionZ, NetherExSoundEvents.ENTITY_EXPLODE_SPORE, SoundCategory.HOSTILE, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 
         if(explosionSize >= 2.0F && isSmoking)
         {
