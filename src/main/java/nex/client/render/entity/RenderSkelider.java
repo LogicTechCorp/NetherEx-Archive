@@ -23,22 +23,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
-import nex.client.model.entity.ModelWight;
-import nex.entity.monster.EntityWight;
+import nex.client.model.entity.ModelSkelider;
+import nex.entity.monster.EntitySkelider;
 
 @SideOnly(Side.CLIENT)
-public class RenderWight extends RenderLiving<EntityWight>
+public class RenderSkelider extends RenderLiving<EntitySkelider>
 {
-    private static final ResourceLocation WIGHT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/wight.png");
+    private static final ResourceLocation SKELIDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/skelider/skelider.png");
 
-    public RenderWight(RenderManager manager)
+    public RenderSkelider(RenderManager manager)
     {
-        super(manager, new ModelWight(), 0.5F);
+        super(manager, new ModelSkelider(), 0.5F);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityWight entity)
+    protected ResourceLocation getEntityTexture(EntitySkelider entity)
     {
-        return WIGHT_TEXTURE;
+        return SKELIDER_TEXTURE;
     }
 }

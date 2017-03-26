@@ -55,6 +55,8 @@ public class CombinedClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntitySporeCreeper.class, RenderSporeCreeper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, RenderSpore::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastling.class, RenderGhastling::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySkelider.class, RenderSkelider::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityKeeper.class, RenderKeeper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueen.class, RenderGhastQueen::new);
     }
 

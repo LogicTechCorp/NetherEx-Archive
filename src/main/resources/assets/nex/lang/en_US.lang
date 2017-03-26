@@ -39,6 +39,10 @@ config.nex:dimension.nether.enablePortalFix.tooltip=Is Nether Portal teleportati
 
 config.nex:block=Block Settings
 config.nex:block.tooltip=Settings that only affect Blocks
+config.nex:block.netherrack=Netherrack Settings
+config.nex:block.netherrack.tooltip=Settings that only affect Netherrack
+config.nex:block.netherrack.allowAllShovelsToFlatten=Allow All Shovels To Flatten
+config.nex:block.netherrack.allowAllShovelsToFlatten.tooltip=Are all Shovels allowed to flatten Netherrack
 config.nex:block.soulSand=Soul Sand Settings
 config.nex:block.soulSand.tooltip=Settings that only affect Soul Sand
 config.nex:block.soulSand.doesNetherwartUseNewGrowthSystem=Does Netherwart Use New Growth System
@@ -463,6 +467,8 @@ entity.nex:monsterSpore.three.name=Spore Stage Three
 entity.nex:monsterSpore.four.name=Spore Stage Four
 entity.nex:monsterSpore.five.name=Spore Stage Five
 entity.nex:monsterGhastling.name=Ghastling
+entity.nex:monsterSkelider.name=Skelider
+entity.nex:monsterKeeper.name=Keeper
 entity.nex:bossGhastQueen.name=Ghast Queen
 
 #Fluids
