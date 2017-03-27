@@ -142,7 +142,9 @@ public class ConfigHandler
                     "minecraft:polar_bear",
                     "nex:monster_wight",
                     "nex:monster_ember",
-                    "nex:monster_spinout"
+                    "nex:monster_spinout",
+                    "nex:monster_skelider",
+                    "nex:monster_keeper"
             };
         }
 
@@ -176,6 +178,7 @@ public class ConfigHandler
         public static SporeCreeper spore_creeper = new SporeCreeper();
         public static Spore spore = new Spore();
         public static GhastQueen ghast_queen = new GhastQueen();
+        public static Keeper keeper = new Keeper();
 
         public static class Ember
         {
@@ -267,6 +270,13 @@ public class ConfigHandler
             @Config.Comment({"The lower the number, the less Ghastling spawn", "The higher the number, the more Ghastling spawn"})
             @Config.RangeInt(min = 1, max = 64)
             public static int ghastlingSpawns = 4;
+        }
+
+        public static class Keeper
+        {
+            @Config.Comment({"The lower the number, the less cooldown the Keeper has after charging", "The higher the number, the more cooldown the Keeper has after charging"})
+            @Config.RangeInt(min = 1, max = 512)
+            public static int chargeCooldown = 12;
         }
     }
 

@@ -149,26 +149,27 @@ public class ModelSkelider extends ModelBase
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
+        head.rotateAngleX = headPitch * 0.017453292F + 0.1308996938995747F;
         head.rotateAngleY = netHeadYaw * 0.017453292F;
-        head.rotateAngleX = headPitch * 0.017453292F;
 
-        leftLeg1Upper.rotateAngleZ = -((float) Math.PI / 4F);
-        rightLeg1Upper.rotateAngleZ = ((float) Math.PI / 4F);
-        leftLeg2Upper.rotateAngleZ = -0.58119464F;
-        rightLeg2Upper.rotateAngleZ = 0.58119464F;
-        leftLeg3Upper.rotateAngleZ = -0.58119464F;
-        rightLeg3Upper.rotateAngleZ = 0.58119464F;
-        leftLeg4Upper.rotateAngleZ = -((float) Math.PI / 4F);
-        rightLeg4Upper.rotateAngleZ = ((float) Math.PI / 4F);
+        leftLeg1Upper.rotateAngleZ = 0.2617993877991494F;
+        rightLeg1Upper.rotateAngleZ = -0.2617993877991494F;
+        leftLeg2Upper.rotateAngleZ = 0.2617993877991494F;
+        rightLeg2Upper.rotateAngleZ = -0.2617993877991494F;
+        leftLeg3Upper.rotateAngleZ = 0.2617993877991494F;
+        rightLeg3Upper.rotateAngleZ = -0.2617993877991494F;
+        leftLeg4Upper.rotateAngleZ = 0.2617993877991494F;
+        rightLeg4Upper.rotateAngleZ = -0.2617993877991494F;
 
-        leftLeg1Upper.rotateAngleY = ((float) Math.PI / 4F);
-        rightLeg1Upper.rotateAngleY = -((float) Math.PI / 4F);
-        leftLeg2Upper.rotateAngleY = 0.3926991F;
-        rightLeg2Upper.rotateAngleY = -0.3926991F;
-        leftLeg3Upper.rotateAngleY = -0.3926991F;
-        rightLeg3Upper.rotateAngleY = 0.3926991F;
-        leftLeg4Upper.rotateAngleY = -((float) Math.PI / 4F);
-        rightLeg4Upper.rotateAngleY = ((float) Math.PI / 4F);
+        leftLeg1Upper.rotateAngleY = -0.7853981633974483F;
+        rightLeg1Upper.rotateAngleY = 0.7853981633974483F;
+        leftLeg2Upper.rotateAngleY = -0.2617993877991494F;
+        rightLeg2Upper.rotateAngleY = 0.2617993877991494F;
+        leftLeg3Upper.rotateAngleY = 0.2617993877991494F;
+        rightLeg3Upper.rotateAngleY = -0.2617993877991494F;
+        leftLeg4Upper.rotateAngleY = 0.7853981633974483F;
+        rightLeg4Upper.rotateAngleY = -0.7853981633974483F;
+
         float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbSwingAmount;
         float f4 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float) Math.PI) * 0.4F) * limbSwingAmount;
         float f5 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;

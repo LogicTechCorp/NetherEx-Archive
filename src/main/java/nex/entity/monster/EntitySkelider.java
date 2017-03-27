@@ -17,6 +17,7 @@
 
 package nex.entity.monster;
 
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.world.World;
 
@@ -27,5 +28,13 @@ public class EntitySkelider extends EntitySpider
         super(world);
 
         setSize(1.5F, 1.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
     }
 }

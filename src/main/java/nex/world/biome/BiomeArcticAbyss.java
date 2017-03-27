@@ -32,6 +32,8 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.NetherEx;
 import nex.block.BlockNetherrack;
+import nex.entity.monster.EntityKeeper;
+import nex.entity.monster.EntitySkelider;
 import nex.entity.monster.EntityWight;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
@@ -75,7 +77,9 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         spawnableMonsterList.add(new SpawnListEntry(EntityWight.class, 100, 1, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 1, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntitySkelider.class, 35, 1, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 25, 1, 1));
+        spawnableMonsterList.add(new SpawnListEntry(EntityKeeper.class, 15, 1, 1));
 
         topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
