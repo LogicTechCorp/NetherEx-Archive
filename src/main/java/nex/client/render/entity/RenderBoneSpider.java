@@ -17,28 +17,46 @@
 
 package nex.client.render.entity;
 
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
-import nex.client.model.entity.ModelSkelider;
-import nex.entity.monster.EntitySkelider;
+import nex.client.model.entity.ModelBoneSpider;
+import nex.client.model.entity.ModelBoneSpiderHead;
+import nex.client.render.entity.layers.LayerBoneSpiderEyes;
+import nex.entity.monster.EntityBoneSpider;
 
 @SideOnly(Side.CLIENT)
-public class RenderSkelider extends RenderLiving<EntitySkelider>
+public class RenderBoneSpider extends RenderLiving<EntityBoneSpider>
 {
-    private static final ResourceLocation SKELIDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/skelider/skelider.png");
+    private final ModelBase spiderHead = new ModelBoneSpiderHead();
+    ;
+    private static final ResourceLocation BONE_SPIDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bone_spider/bone_spider.png");
 
-    public RenderSkelider(RenderManager manager)
+    public RenderBoneSpider(RenderManager manager)
     {
-        super(manager, new ModelSkelider(), 0.5F);
+        super(manager, new ModelBoneSpider(), 0.5F);
+
+        addLayer(new LayerBoneSpiderEyes(this));
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntitySkelider entity)
+    protected float getDeathMaxRotation(EntityBoneSpider boneSpider)
     {
-        return SKELIDER_TEXTURE;
+        return 180.0F;
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(EntityBoneSpider boneSpider)
+    {
+        return BONE_SPIDER_TEXTURE;
+    }
+
+    public ModelBase getSpiderHead()
+    {
+        return spiderHead;
     }
 }

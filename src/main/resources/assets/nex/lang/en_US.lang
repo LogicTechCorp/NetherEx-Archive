@@ -121,6 +121,10 @@ config.nex:entity.spore.growthTime=Growth Time
 config.nex:entity.spore.growthTime.tooltip=How long does it take for a Spore to grow
 config.nex:entity.spore.creeperSpawns=Creeper Spawns
 config.nex:entity.spore.creeperSpawns.tooltip=How many Spore Creepers Spawn from a Spore
+config.nex:entity.brute=Brute Settings
+config.nex:entity.brute.tooltip=Settings that only affect the Brute
+config.nex:entity.brute.chargeCooldown=Charge Cooldown
+config.nex:entity.brute.chargeCooldown.tooltip=How long is the cooldown after charging players
 config.nex:entity.ghastQueen=Ghast Queen Settings
 config.nex:entity.ghastQueen.tooltip=Settings that only affect the Ghast Queen
 config.nex:entity.ghastQueen.ghastlingSpawnCooldown=Ghastling Spawn Cooldown
@@ -467,8 +471,8 @@ entity.nex:monsterSpore.three.name=Spore Stage Three
 entity.nex:monsterSpore.four.name=Spore Stage Four
 entity.nex:monsterSpore.five.name=Spore Stage Five
 entity.nex:monsterGhastling.name=Ghastling
-entity.nex:monsterSkelider.name=Skelider
-entity.nex:monsterKeeper.name=Keeper
+entity.nex:monsterBoneSpider.name=Bone Spider
+entity.nex:monsterBrute.name=Brute
 entity.nex:bossGhastQueen.name=Ghast Queen
 
 #Fluids

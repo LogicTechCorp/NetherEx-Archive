@@ -21,7 +21,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,18 +28,19 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExLootTables;
 
-public class EntityKeeper extends EntityMob
+public class EntityBrute extends EntityMob
 {
-    private static final DataParameter<Integer> COOLDOWN = EntityDataManager.createKey(EntityKeeper.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(EntityKeeper.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<BlockPos> POS_TO_CHARGE = EntityDataManager.createKey(EntityKeeper.class, DataSerializers.BLOCK_POS);
+    private static final DataParameter<Integer> COOLDOWN = EntityDataManager.createKey(EntityBrute.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(EntityBrute.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<BlockPos> POS_TO_CHARGE = EntityDataManager.createKey(EntityBrute.class, DataSerializers.BLOCK_POS);
 
-    public EntityKeeper(World world)
+    public EntityBrute(World world)
     {
         super(world);
 
@@ -51,7 +51,6 @@ public class EntityKeeper extends EntityMob
     protected void initEntityAI()
     {
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
@@ -81,13 +80,13 @@ public class EntityKeeper extends EntityMob
     {
         super.onUpdate();
 
+        if(getAttackTarget() == null)
+        {
+            setCharging(false);
+        }
+
         if(getCooldown() == 0)
         {
-            int posMoveX = getPosToCharge().getX() + (getHorizontalFacing() == EnumFacing.EAST ? -rand.nextInt(5) - 5 : getHorizontalFacing() == EnumFacing.WEST ? rand.nextInt(5) + 5 : 0);
-            int posMoveZ = getPosToCharge().getZ() + (getHorizontalFacing() == EnumFacing.SOUTH ? -rand.nextInt(5) - 5 : getHorizontalFacing() == EnumFacing.NORTH ? rand.nextInt(5) + 5 : 0);
-
-            BlockPos newPos = new BlockPos(posMoveX, getPosToCharge().getY(), posMoveZ);
-
             if(getAttackTarget() != null && !isCharging())
             {
                 setPosToCharge(getAttackTarget().getPosition());
@@ -95,28 +94,17 @@ public class EntityKeeper extends EntityMob
             }
             if(isCharging())
             {
-                getNavigator().tryMoveToXYZ(newPos.getX() + 0.5F, newPos.getY() + 0.5F, newPos.getZ() + 0.5F, 2.5F);
+                getNavigator().tryMoveToXYZ(getPosToCharge().getX() + 0.5F, getPosToCharge().getY(), getPosToCharge().getZ() + 0.5F, 2.5F);
             }
-            if(getPosition().distanceSqToCenter(newPos.getX(), newPos.getY(), newPos.getZ()) <= 1.0F)
+            if(getDistanceSq(getPosToCharge()) <= 0.75F)
             {
                 setCharging(false);
-                setCooldown(ConfigHandler.Entity.Keeper.chargeCooldown * 20);
+                setCooldown(ConfigHandler.Entity.Brute.chargeCooldown * 20 / 4);
             }
         }
         if(getCooldown() > 0)
         {
             setCooldown(getCooldown() - 1);
-        }
-    }
-
-    @Override
-    protected void collideWithEntity(Entity entity)
-    {
-        super.collideWithEntity(entity);
-
-        if(isCharging() && !(entity instanceof EntityKeeper) && entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + rand.nextInt((int) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() / 2)))
-        {
-            entity.motionY += 0.45D;
         }
     }
 
@@ -134,6 +122,23 @@ public class EntityKeeper extends EntityMob
         super.readEntityFromNBT(compound);
         setCooldown(compound.getInteger("ChargeCooldown"));
         setCharging(compound.getBoolean("Charging"));
+    }
+
+    @Override
+    protected void collideWithEntity(Entity entity)
+    {
+        super.collideWithEntity(entity);
+
+        if(isCharging() && !(entity instanceof EntityBrute) && entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + rand.nextInt((int) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() / 2)))
+        {
+            entity.motionY += 0.45D;
+        }
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_BRUTE;
     }
 
     private int getCooldown()
@@ -156,9 +161,9 @@ public class EntityKeeper extends EntityMob
         dataManager.set(COOLDOWN, amount);
     }
 
-    private void setCharging(boolean spinning)
+    private void setCharging(boolean charging)
     {
-        dataManager.set(CHARGING, spinning);
+        dataManager.set(CHARGING, charging);
     }
 
     private void setPosToCharge(BlockPos posToCharge)

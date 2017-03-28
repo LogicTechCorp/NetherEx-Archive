@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelSkelider extends ModelBase
+public class ModelBoneSpider extends ModelBase
 {
     private ModelRenderer head;
     private ModelRenderer thorax;
@@ -47,7 +47,7 @@ public class ModelSkelider extends ModelBase
     private ModelRenderer leftLeg4Upper;
     private ModelRenderer leftLeg4Lower;
 
-    public ModelSkelider()
+    public ModelBoneSpider()
     {
         textureHeight = 64;
 

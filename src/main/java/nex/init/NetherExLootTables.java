@@ -49,7 +49,9 @@ public class NetherExLootTables
     public static final ResourceLocation ENTITY_SPINOUT = new ResourceLocation(NetherEx.MOD_ID + ":entity/spinout");
     public static final ResourceLocation ENTITY_SPORE_CREEPER = new ResourceLocation(NetherEx.MOD_ID + ":entity/spore_creeper");
     public static final ResourceLocation ENTITY_SPORE = new ResourceLocation(NetherEx.MOD_ID + ":entity/spore");
-    public static final ResourceLocation ENTITY_GHASTLING = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghastling");
+    public static final ResourceLocation ENTITY_GHASTLING = new ResourceLocation(NetherEx.MOD_ID + ":entity/bone_spider");
+    public static final ResourceLocation ENTITY_BONE_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
+    public static final ResourceLocation ENTITY_BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
     public static final ResourceLocation ENTITY_GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast_queen");
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExLootTables");

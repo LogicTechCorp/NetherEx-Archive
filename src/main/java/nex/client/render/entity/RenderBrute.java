@@ -23,22 +23,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
-import nex.client.model.entity.ModelKeeper;
-import nex.entity.monster.EntityKeeper;
+import nex.client.model.entity.ModelBrute;
+import nex.entity.monster.EntityBrute;
 
 @SideOnly(Side.CLIENT)
-public class RenderKeeper extends RenderLiving<EntityKeeper>
+public class RenderBrute extends RenderLiving<EntityBrute>
 {
-    private static final ResourceLocation KEEPER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/keeper.png");
+    private static final ResourceLocation BRUTE_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/brute.png");
 
-    public RenderKeeper(RenderManager manager)
+    public RenderBrute(RenderManager manager)
     {
-        super(manager, new ModelKeeper(), 0.5F);
+        super(manager, new ModelBrute(), 0.5F);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityKeeper entity)
+    protected ResourceLocation getEntityTexture(EntityBrute entity)
     {
-        return KEEPER_TEXTURE;
+        return BRUTE_TEXTURE;
     }
 }

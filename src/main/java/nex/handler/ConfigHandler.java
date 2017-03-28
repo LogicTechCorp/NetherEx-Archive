@@ -143,8 +143,8 @@ public class ConfigHandler
                     "nex:monster_wight",
                     "nex:monster_ember",
                     "nex:monster_spinout",
-                    "nex:monster_skelider",
-                    "nex:monster_keeper"
+                    "nex:monster_bone_spider",
+                    "nex:monster_brute"
             };
         }
 
@@ -178,7 +178,7 @@ public class ConfigHandler
         public static SporeCreeper spore_creeper = new SporeCreeper();
         public static Spore spore = new Spore();
         public static GhastQueen ghast_queen = new GhastQueen();
-        public static Keeper keeper = new Keeper();
+        public static Brute brute = new Brute();
 
         public static class Ember
         {
@@ -272,9 +272,9 @@ public class ConfigHandler
             public static int ghastlingSpawns = 4;
         }
 
-        public static class Keeper
+        public static class Brute
         {
-            @Config.Comment({"The lower the number, the less cooldown the Keeper has after charging", "The higher the number, the more cooldown the Keeper has after charging"})
+            @Config.Comment({"The lower the number, the less cooldown the Brute has after charging", "The higher the number, the more cooldown the Brute has after charging"})
             @Config.RangeInt(min = 1, max = 512)
             public static int chargeCooldown = 12;
         }

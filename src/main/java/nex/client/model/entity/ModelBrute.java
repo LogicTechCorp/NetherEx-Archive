@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelKeeper extends ModelBase
+public class ModelBrute extends ModelBase
 {
     private ModelRenderer head;
     private ModelRenderer nose;
@@ -46,7 +46,7 @@ public class ModelKeeper extends ModelBase
     private ModelRenderer rightLeg;
     private ModelRenderer leftLeg;
 
-    public ModelKeeper()
+    public ModelBrute()
     {
         textureWidth = 128;
         textureHeight = 128;

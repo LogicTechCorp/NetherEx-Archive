@@ -19,11 +19,13 @@ package nex.entity.monster;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import nex.init.NetherExLootTables;
 
-public class EntitySkelider extends EntitySpider
+public class EntityBoneSpider extends EntitySpider
 {
-    public EntitySkelider(World world)
+    public EntityBoneSpider(World world)
     {
         super(world);
 
@@ -36,5 +38,11 @@ public class EntitySkelider extends EntitySpider
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return NetherExLootTables.ENTITY_BONE_SPIDER;
     }
 }

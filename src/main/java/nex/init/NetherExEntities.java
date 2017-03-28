@@ -56,8 +56,8 @@ public class NetherExEntities
         registerEntity("monster_spore_creeper", EntitySporeCreeper.class, entityId++, 5576214, 15721297);
         registerEntity("monster_spore", EntitySpore.class, entityId++, 15721297, 5576214);
         registerEntity("monster_ghastling", EntityGhastling.class, entityId++, 16447992, 14077883);
-        registerEntity("monster_skelider", EntitySkelider.class, entityId++, 13750221, 13369344);
-        registerEntity("monster_keeper", EntityKeeper.class, entityId++, 11045525, 4793626);
+        registerEntity("monster_bone_spider", EntityBoneSpider.class, entityId++, 13750221, 13369344);
+        registerEntity("monster_brute", EntityBrute.class, entityId++, 11045525, 4793626);
 
         registerEntity("boss_ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
 
