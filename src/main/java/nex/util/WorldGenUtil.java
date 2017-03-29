@@ -101,52 +101,6 @@ public class WorldGenUtil
         return BlockPos.ORIGIN;
     }
 
-    public static BlockPos getSuitableAirPos(World world, BlockPos pos, BlockPos structureSize)
-    {
-        label_while:
-        while(pos.getY() > 32)
-        {
-            float sizeX = structureSize.getX();
-            float sizeZ = structureSize.getZ();
-            float sizeY = structureSize.getY();
-
-            int airBlocks = 0;
-
-            for(int x = 0; x <= MathHelper.abs(sizeX); x++)
-            {
-                for(int z = 0; z <= MathHelper.abs(sizeZ); z++)
-                {
-                    for(int y = 0; y <= sizeY; y++)
-                    {
-                        int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
-                        int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
-
-                        BlockPos newPos = pos.add(posX, y, posZ);
-
-                        if(world.getBlockState(newPos).getMaterial().isReplaceable())
-                        {
-                            airBlocks++;
-                        }
-                        else
-                        {
-                            pos = pos.down();
-                            continue label_while;
-                        }
-                    }
-                }
-            }
-
-            if(airBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ))
-            {
-                return pos;
-            }
-
-            pos = pos.down();
-        }
-
-        return BlockPos.ORIGIN;
-    }
-
     public static BlockPos getSuitableWallPos(World world, BlockPos pos, BlockPos structureSize, float percentage)
     {
         while(pos.getY() > 32)
@@ -177,6 +131,115 @@ public class WorldGenUtil
             }
 
             if(wallBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ) * percentage)
+            {
+                return pos;
+            }
+
+            pos = pos.down();
+        }
+
+        return BlockPos.ORIGIN;
+    }
+
+    public static BlockPos getSuitableCeilingPos(World world, BlockPos pos, BlockPos structureSize)
+    {
+        label_while:
+        while(pos.getY() < 112)
+        {
+            float sizeX = structureSize.getX();
+            float sizeZ = structureSize.getZ();
+            float sizeY = structureSize.getY();
+
+            int ceilingBlocks = 0;
+            int airBlocks = 0;
+
+            for(int x = 0; x <= MathHelper.abs(sizeX); x++)
+            {
+                for(int z = 0; z <= MathHelper.abs(sizeZ); z++)
+                {
+                    for(int y = 0; y <= sizeY; y++)
+                    {
+                        int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
+                        int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
+
+                        BlockPos newPos = pos.add(posX, -y, posZ);
+
+                        if(y == 0)
+                        {
+                            if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.UP))
+                            {
+                                ceilingBlocks++;
+                            }
+                            else
+                            {
+                                pos = pos.up();
+                                continue label_while;
+                            }
+                        }
+                        else
+                        {
+                            if(world.getBlockState(newPos).getBlock().isReplaceable(world, newPos))
+                            {
+                                airBlocks++;
+                            }
+                            else
+                            {
+                                pos = pos.up();
+                                continue label_while;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            if(airBlocks >= MathHelper.abs(sizeX * (sizeY - 1) * sizeZ) && ceilingBlocks >= MathHelper.abs(sizeX * sizeZ))
+            {
+                return pos.add(0, -sizeY, 0);
+            }
+
+            pos = pos.up();
+        }
+
+        return BlockPos.ORIGIN;
+    }
+
+    public static BlockPos getSuitableAirPos(World world, BlockPos pos, BlockPos structureSize)
+    {
+        label_while:
+        while(pos.getY() > 32)
+        {
+            float sizeX = structureSize.getX();
+            float sizeZ = structureSize.getZ();
+            float sizeY = structureSize.getY();
+
+            int airBlocks = 0;
+
+            for(int x = 0; x <= MathHelper.abs(sizeX); x++)
+            {
+                for(int z = 0; z <= MathHelper.abs(sizeZ); z++)
+                {
+                    for(int y = 0; y <= sizeY; y++)
+                    {
+                        int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
+                        int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
+
+                        BlockPos newPos = pos.add(posX, y, posZ);
+
+                        if(world.getBlockState(newPos).getBlock().isReplaceable(world, newPos))
+                        {
+                            airBlocks++;
+                        }
+                        else
+                        {
+                            pos = pos.down();
+                            continue label_while;
+                        }
+                    }
+                }
+            }
+
+            if(airBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ))
             {
                 return pos;
             }

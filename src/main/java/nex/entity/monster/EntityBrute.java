@@ -51,7 +51,7 @@ public class EntityBrute extends EntityMob
     protected void initEntityAI()
     {
         tasks.addTask(0, new EntityAISwimming(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
     }
 
     @Override
@@ -94,7 +94,7 @@ public class EntityBrute extends EntityMob
             }
             if(isCharging())
             {
-                getNavigator().tryMoveToXYZ(getPosToCharge().getX() + 0.5F, getPosToCharge().getY(), getPosToCharge().getZ() + 0.5F, 2.5F);
+                getNavigator().tryMoveToXYZ(getPosToCharge().getX(), getPosToCharge().getY(), getPosToCharge().getZ(), 2.5F);
             }
             if(getDistanceSq(getPosToCharge()) <= 0.75F)
             {
