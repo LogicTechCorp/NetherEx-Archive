@@ -55,6 +55,7 @@ public class NetherExModels
     {
         LOGGER.info("Model registration started.");
 
+        ModelLoader.setCustomStateMapper(BLOCK_FIRE_BLUE, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());
         ModelLoader.setCustomStateMapper(SLAB_VANILLA_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
         ModelLoader.setCustomStateMapper(SLAB_BASALT_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
         ModelLoader.setCustomStateMapper(WALL_VANILLA, new StateMap.Builder().ignore(BlockWall.VARIANT).build());

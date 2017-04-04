@@ -54,6 +54,8 @@ public class BlockBlueFire extends BlockNetherEx
 
         setLightLevel(1.0F);
         setTickRandomly(true);
+
+        setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 
     @SideOnly(Side.CLIENT)
@@ -108,12 +110,12 @@ public class BlockBlueFire extends BlockNetherEx
                 world.setBlockToAir(pos);
             }
 
-            IBlockState testState = world.getBlockState(pos.down());
-            boolean flag = testState.getBlock().isFireSource(world, pos.down(), EnumFacing.UP) || testState.getMaterial() == Material.ICE || testState.getMaterial() == Material.PACKED_ICE;
+            Block block = world.getBlockState(pos.down()).getBlock();
+            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP);
 
             int i = state.getValue(AGE);
 
-            if(!flag && world.isRaining() && canDie(world, pos) && rand.nextFloat() < 0.2F + (float) i * 0.03F)
+            if(flag && world.isRaining() && canDie(world, pos) && rand.nextFloat() < 0.2F + (float) i * 0.03F)
             {
                 world.setBlockToAir(pos);
             }
@@ -217,60 +219,60 @@ public class BlockBlueFire extends BlockNetherEx
             world.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
         }
 
-        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !Blocks.FIRE.canCatchFire(world, pos.down(), EnumFacing.UP))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canCatchFire(world, pos.down(), EnumFacing.UP))
         {
-            if(Blocks.FIRE.canCatchFire(world, pos.west(), EnumFacing.EAST))
+            if(canCatchFire(world, pos.west(), EnumFacing.EAST))
             {
                 for(int j = 0; j < 2; ++j)
                 {
                     double d3 = (double) pos.getX() + rand.nextDouble() * 0.10000000149011612D;
                     double d8 = (double) pos.getY() + rand.nextDouble();
                     double d13 = (double) pos.getZ() + rand.nextDouble();
-                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d3, d8, d13, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d3, d8, d13, 0.0D, 0.0D, 0.0D);
                 }
             }
 
-            if(Blocks.FIRE.canCatchFire(world, pos.east(), EnumFacing.WEST))
+            if(canCatchFire(world, pos.east(), EnumFacing.WEST))
             {
                 for(int k = 0; k < 2; ++k)
                 {
                     double d4 = (double) (pos.getX() + 1) - rand.nextDouble() * 0.10000000149011612D;
                     double d9 = (double) pos.getY() + rand.nextDouble();
                     double d14 = (double) pos.getZ() + rand.nextDouble();
-                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d4, d9, d14, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d4, d9, d14, 0.0D, 0.0D, 0.0D);
                 }
             }
 
-            if(Blocks.FIRE.canCatchFire(world, pos.north(), EnumFacing.SOUTH))
+            if(canCatchFire(world, pos.north(), EnumFacing.SOUTH))
             {
                 for(int l = 0; l < 2; ++l)
                 {
                     double d5 = (double) pos.getX() + rand.nextDouble();
                     double d10 = (double) pos.getY() + rand.nextDouble();
                     double d15 = (double) pos.getZ() + rand.nextDouble() * 0.10000000149011612D;
-                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d5, d10, d15, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d5, d10, d15, 0.0D, 0.0D, 0.0D);
                 }
             }
 
-            if(Blocks.FIRE.canCatchFire(world, pos.south(), EnumFacing.NORTH))
+            if(canCatchFire(world, pos.south(), EnumFacing.NORTH))
             {
                 for(int i1 = 0; i1 < 2; ++i1)
                 {
                     double d6 = (double) pos.getX() + rand.nextDouble();
                     double d11 = (double) pos.getY() + rand.nextDouble();
                     double d16 = (double) (pos.getZ() + 1) - rand.nextDouble() * 0.10000000149011612D;
-                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d6, d11, d16, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d6, d11, d16, 0.0D, 0.0D, 0.0D);
                 }
             }
 
-            if(Blocks.FIRE.canCatchFire(world, pos.up(), EnumFacing.DOWN))
+            if(canCatchFire(world, pos.up(), EnumFacing.DOWN))
             {
                 for(int j1 = 0; j1 < 2; ++j1)
                 {
                     double d7 = (double) pos.getX() + rand.nextDouble();
                     double d12 = (double) (pos.getY() + 1) - rand.nextDouble() * 0.10000000149011612D;
                     double d17 = (double) pos.getZ() + rand.nextDouble();
-                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d7, d12, d17, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d7, d12, d17, 0.0D, 0.0D, 0.0D);
                 }
             }
         }
@@ -281,7 +283,7 @@ public class BlockBlueFire extends BlockNetherEx
                 double d0 = (double) pos.getX() + rand.nextDouble();
                 double d1 = (double) pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
                 double d2 = (double) pos.getZ() + rand.nextDouble();
-                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
         }
     }
@@ -321,6 +323,20 @@ public class BlockBlueFire extends BlockNetherEx
     public int quantityDropped(Random random)
     {
         return 0;
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canCatchFire(world, pos.down(), EnumFacing.UP))
+        {
+            return state.withProperty(NORTH, canCatchFire(world, pos.north(), EnumFacing.SOUTH))
+                    .withProperty(EAST, canCatchFire(world, pos.east(), EnumFacing.WEST))
+                    .withProperty(SOUTH, canCatchFire(world, pos.south(), EnumFacing.NORTH))
+                    .withProperty(WEST, canCatchFire(world, pos.west(), EnumFacing.EAST))
+                    .withProperty(UPPER, canCatchFire(world, pos.up(), EnumFacing.DOWN));
+        }
+        return getDefaultState();
     }
 
     @Override
