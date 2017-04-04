@@ -139,6 +139,7 @@ public class ConfigHandler
             public static String[] blacklist = new String[]{
                     "minecraft:blaze",
                     "minecraft:ghast",
+                    "minecraft:wither_skeleton",
                     "minecraft:polar_bear",
                     "nex:monster_wight",
                     "nex:monster_ember",
