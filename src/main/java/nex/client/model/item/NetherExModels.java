@@ -36,6 +36,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import nex.NetherEx;
 import nex.block.*;
+import nex.init.NetherExBlocks;
 import nex.item.ItemSalamanderHide;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -103,6 +104,14 @@ public class NetherExModels
         registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
         registerModel(BLOCK_RIME, "normal");
         registerModel(BLOCK_ICE_FROSTBURN, "normal");
+
+        for(BlockBone.EnumType type : BlockBone.EnumType.values())
+        {
+            registerModel(NetherExBlocks.BLOCK_BONE, type.ordinal(), NetherExBlocks.BLOCK_BONE.getRegistryName().toString(), String.format("axis=y,size=%s", type.getName()));
+        }
+
+        registerModel(BLOCK_IRON_WORN, "normal");
+        registerModel(BLOCK_FIRE_BLUE, "normal");
 
         for(BlockUrnOfSorrow.EnumType type : BlockUrnOfSorrow.EnumType.values())
         {

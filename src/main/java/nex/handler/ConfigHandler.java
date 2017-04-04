@@ -586,6 +586,7 @@ public class ConfigHandler
         public static class ArcticAbyss
         {
             public static boolean generateBiome = true;
+            public static boolean generateFire = true;
             public static boolean generateGlowstonePass1 = true;
             public static boolean generateGlowstonePass2 = true;
             public static boolean generateQuartzOre = true;
@@ -603,6 +604,10 @@ public class ConfigHandler
             @Config.Comment({"The lower the number, the rarer the Arctic Abyss biome is", "The higher the number, the more common the Arctic Abyss biome is"})
             @Config.RangeInt(min = 1, max = 64)
             public static int biomeRarity = 1;
+
+            @Config.Comment({"The lower the number, the rarer Fire is", "The higher the number, the more common Fire is"})
+            @Config.RangeInt(min = 1, max = 64)
+            public static int fireRarity = 5;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
             @Config.RangeInt(min = 1, max = 64)

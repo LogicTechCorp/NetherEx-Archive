@@ -3,7 +3,7 @@
         {
             "name": "temple_base_pool",
             "rolls": {
-                "min": 1,
+                "min": 2,
                 "max": 7
             },
             "entries": [

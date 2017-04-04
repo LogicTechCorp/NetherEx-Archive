@@ -39,6 +39,7 @@ import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
+import nex.world.gen.feature.WorldGenBlueFire;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
 import nex.world.gen.feature.WorldGenPit;
@@ -57,6 +58,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY)
     );
 
+    private WorldGenerator fire = new WorldGenBlueFire(NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState());
     private WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY));
@@ -94,6 +96,14 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     public void decorate(World world, Random rand, BlockPos pos)
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
+
+        if(ConfigHandler.Biome.ArcticAbyss.generateFire)
+        {
+            for(int i = 0; i < rand.nextInt(ConfigHandler.Biome.ArcticAbyss.fireRarity); i++)
+            {
+                fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+            }
+        }
 
         if(ConfigHandler.Biome.ArcticAbyss.generateGlowstonePass1)
         {

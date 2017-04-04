@@ -4,12 +4,12 @@
             "name": "ruthless_sands_base_pool",
             "rolls": {
                 "min": 1,
-                "max": 5
+                "max": 6
             },
             "entries": [
                 {
                     "type": "item",
-                    "weight": 15,
+                    "weight": 10,
                     "name": "nex:plant_thornstalk"
                 },
                 {

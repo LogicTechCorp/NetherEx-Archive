@@ -65,6 +65,15 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder("block_ice_frostburn")
     public static final BlockFrostburnIce BLOCK_ICE_FROSTBURN = null;
 
+    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_bone")
+    public static final BlockBone BLOCK_BONE = null;
+
+    @GameRegistry.ObjectHolder("block_iron_worn")
+    public static final BlockWornIron BLOCK_IRON_WORN = null;
+
+    @GameRegistry.ObjectHolder("block_fire_blue")
+    public static final BlockBlueFire BLOCK_FIRE_BLUE = null;
+
     @GameRegistry.ObjectHolder("tile_urn_sorrow")
     public static final BlockUrnOfSorrow TILE_URN_SORROW = null;
 
@@ -228,6 +237,9 @@ public class NetherExBlocks
                     new BlockSoulGlassPane(),
                     new BlockRime(),
                     new BlockFrostburnIce(),
+                    new BlockBone(),
+                    new BlockWornIron(),
+                    new BlockBlueFire(),
                     new BlockUrnOfSorrow(),
                     new BlockQuartzOre(),
                     new BlockRimeOre(),
@@ -291,6 +303,8 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
                     new ItemBlockNetherEx(BLOCK_RIME),
                     new ItemBlockNetherEx(BLOCK_ICE_FROSTBURN),
+                    new ItemBlockBone(),
+                    new ItemBlockNetherEx(BLOCK_IRON_WORN),
                     new ItemBlockUrnOfSorrow(),
                     new ItemBlockQuartzOre(),
                     new ItemBlockNetherEx(ORE_RIME),

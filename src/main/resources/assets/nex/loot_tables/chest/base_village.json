@@ -3,7 +3,7 @@
         {
             "name": "village_base_pool",
             "rolls": {
-                "min": 2,
+                "min": 3,
                 "max": 7
             },
             "entries": [

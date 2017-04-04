@@ -42,7 +42,7 @@ public class WorldGenFire extends WorldGenerator
 
             if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == targetBlock)
             {
-                world.setBlockState(newPos, Blocks.FIRE.getDefaultState(), 2);
+                world.setBlockState(newPos, Blocks.FIRE.getDefaultState(), 3);
             }
         }
 

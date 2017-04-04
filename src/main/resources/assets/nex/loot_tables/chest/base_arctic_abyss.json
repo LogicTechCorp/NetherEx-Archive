@@ -4,7 +4,7 @@
             "name": "arctic_abyss_base_pool",
             "rolls": {
                 "min": 1,
-                "max": 10
+                "max": 6
             },
             "entries": [
                 {
