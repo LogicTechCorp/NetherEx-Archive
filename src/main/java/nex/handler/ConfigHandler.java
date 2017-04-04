@@ -183,7 +183,7 @@ public class ConfigHandler
         public static class Ember
         {
             @Config.Comment({"The higher the number, the rarer it is to set a player on fire", "The lower the number, the more common it is to set a player on fire"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int chanceOfSettingPlayerOnFire = 4;
         }
 
@@ -246,7 +246,7 @@ public class ConfigHandler
         public static class SporeCreeper
         {
             @Config.Comment({"The higher the number, the rarer it is for s Spore Creeper to spawn a Spore on death", "The lower the number, the more common it is for a Spore Creeper to spawn a Spore on death"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int chanceOfSporeSpawning = 12;
         }
 
@@ -257,7 +257,7 @@ public class ConfigHandler
             public static int growthTime = 60;
 
             @Config.Comment({"The lower the number, the less Spore Creeper spawn from a Spore", "The higher the number, the more Spore Creeper spawn from a Spore"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int creeperSpawns = 3;
         }
 
@@ -268,7 +268,7 @@ public class ConfigHandler
             public static int ghastlingSpawnCooldown = 10;
 
             @Config.Comment({"The lower the number, the less Ghastling spawn", "The higher the number, the more Ghastling spawn"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int ghastlingSpawns = 4;
         }
 
@@ -309,64 +309,64 @@ public class ConfigHandler
             public static boolean generateVillages = true;
 
             @Config.Comment({"The lower the number, the rarer the Hell is", "The higher the number, the more common the Hell biome is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int biomeRarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lavaSpringRarity = 8;
 
             @Config.Comment({"The lower the number, the rarer Fire is", "The higher the number, the more common Fire is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int fireRarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass1Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass2Rarity = 10;
 
             @Config.LangKey("config.nex:biome.hell.quartzOreRarity")
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int quartzOreRarity = 16;
 
             @Config.Comment({"The lower the number, the rarer Magma is", "The higher the number, the more common Magma is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int magmaRarity = 4;
 
             @Config.Comment({"The lower the number, the rarer Lava Traps are", "The higher the number, the more common Lava Traps are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lavaTrapRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer Crypts are", "The lower the number, the more common Crypts are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int cryptRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Graves are", "The lower the number, the more common Graves are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer Graveyards are", "The lower the number, the more common Graveyards are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveyardRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Sarcophagus are", "The lower the number, the more common Sarcophagus are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int sarcophagusRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Mausoleums are", "The lower the number, the more common Mausoleums are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int mausoleumRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Prisons are", "The lower the number, the more common Prisons are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int prisonRarity = 50;
 
             @Config.Comment({"The higher the number, the rarer Villages are", "The lower the number, the more common Villages are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int villageRarity = 1;
         }
 
@@ -387,55 +387,55 @@ public class ConfigHandler
             public static boolean generateWaypoints = true;
 
             @Config.Comment({"The lower the number, the rarer The Ruthless Sands is", "The higher the number, the more common the Ruthless Sands biome is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int biomeRarity = 8;
 
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lavaSpringRarity = 8;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass1Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass2Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int quartzOreRarity = 16;
 
             @Config.Comment({"The lower the number, the rarer Lava Traps are", "The higher the number, the more common Lava Traps are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lavaTrapRarity = 16;
 
             @Config.Comment({"The lower the number, the rarer Thornstalk is", "The higher the number, the more common Thornstalk is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int thornstalkRarity = 10;
 
             @Config.Comment({"The higher the number, the rarer Crypts are", "The lower the number, the more common Crypts are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int cryptRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Graves are", "The lower the number, the more common Graves are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer Graveyards are", "The lower the number, the more common Graveyards are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveyardRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Sarcophagus are", "The lower the number, the more common Sarcophagus are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int sarcophagusRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Altars are", "The lower the number, the more common Altars are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int altarRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Waypoints are", "The lower the number, the more common Waypoints are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int waypointRarity = 32;
 
         }
@@ -456,51 +456,51 @@ public class ConfigHandler
             public static boolean generateCastles = true;
 
             @Config.Comment({"The lower the number, the rarer the Fungi Forest biome is", "The higher the number, the more common the Fungi Forest biome is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int biomeRarity = 4;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass1Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass2Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int quartzOreRarity = 16;
 
             @Config.Comment({"The lower the number, the rarer Elder Mushrooms are", "The higher the number, the more common Elder Mushrooms are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int elderMushroomRarity = 32;
 
             @Config.Comment({"The lower the number, the rarer Enoki Mushrooms are", "The higher the number, the more common Enoki Mushrooms are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int enokiMushroomRarity = 4;
 
             @Config.Comment({"The higher the number, the rarer Crypts are", "The lower the number, the more common Crypts are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int cryptRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Graves are", "The lower the number, the more common Graves are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer Graveyards are", "The lower the number, the more common Graveyards are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveyardRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Sarcophagus are", "The lower the number, the more common Sarcophagus are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int sarcophagusRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Temples are", "The lower the number, the more common Temples are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int templeRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Castles are", "The lower the number, the more common Castles are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int castleRarity = 64;
         }
 
@@ -523,63 +523,63 @@ public class ConfigHandler
             public static boolean generatePyramids = true;
 
             @Config.Comment({"The lower the number, the rarer the Torrid Wasteland biome is", "The higher the number, the more common the Torrid Wateland biome is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int biomeRarity = 6;
 
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lavaSpringRarity = 24;
 
             @Config.Comment({"The lower the number, the rarer Fire is", "The higher the number, the more common Fire is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int fireRarity = 32;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass1Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass2Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int quartzOreRarity = 16;
 
             @Config.Comment({"The lower the number, the rarer Basalt is", "The higher the number, the more common Basalt is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int basaltRarity = 12;
 
             @Config.Comment({"The lower the number, the rarer Magma is", "The higher the number, the more common Magma is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int magmaRarity = 12;
 
             @Config.Comment({"The lower the number, the rarer Lava Traps are", "The higher the number, the more common Lava Traps are is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lavaTrapRarity = 48;
 
             @Config.Comment({"The lower the number, the rarer Lava Pis are", "The higher the number, the more common Lava Pits are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lavaPitRarity = 8;
 
             @Config.Comment({"The higher the number, the rarer Crypts are", "The lower the number, the more common Crypts are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int cryptRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Graves are", "The lower the number, the more common Graves are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer Graveyards are", "The lower the number, the more common Graveyards are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveyardRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Sarcophagus are", "The lower the number, the more common Sarcophagus are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int sarcophagusRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Pyramids are", "The lower the number, the more common Pyramids are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int pyramidRarity = 2;
         }
 
@@ -602,31 +602,31 @@ public class ConfigHandler
             public static boolean generateFossils = true;
 
             @Config.Comment({"The lower the number, the rarer the Arctic Abyss biome is", "The higher the number, the more common the Arctic Abyss biome is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int biomeRarity = 1;
 
             @Config.Comment({"The lower the number, the rarer Fire is", "The higher the number, the more common Fire is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int fireRarity = 5;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass1Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass2Rarity = 10;
 
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int quartzOreRarity = 16;
 
             @Config.Comment({"The lower the number, the rarer Rime Ore is", "The higher the number, the more common Rime Ore is"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int rimeOreRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer Ichor Pits are", "The lower the number, the more common Ichor Pits are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int ichorPitRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer it is for mobs to Freeze in the Arctic Abyss biome", "The lower the number, the more common it is for mobs to Freeze in the Arctic Abyss biome"})
@@ -634,35 +634,35 @@ public class ConfigHandler
             public static int chanceOfFreezing = 512;
 
             @Config.Comment({"The higher the number, the rarer Crypts are", "The lower the number, the more common Crypts are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int cryptRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Graves are", "The lower the number, the more common Graves are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveRarity = 16;
 
             @Config.Comment({"The higher the number, the rarer Graveyards are", "The lower the number, the more common Graveyards are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int graveyardRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Sarcophagus are", "The lower the number, the more common Sarcophagus are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int sarcophagusRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Lighthouses are", "The lower the number, the more common Lighthouses are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int lighthouseRarity = 48;
 
             @Config.Comment({"The higher the number, the rarer Specimen are", "The lower the number, the more common Specimen are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int specimenRarity = 32;
 
             @Config.Comment({"The higher the number, the rarer Specimen are", "The lower the number, the more common Specimen are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int templeRarity = 64;
 
             @Config.Comment({"The higher the number, the rarer Fossils are", "The lower the number, the more common Fossils are"})
-            @Config.RangeInt(min = 1, max = 64)
+            @Config.RangeInt(min = 1, max = 128)
             public static int fossilRarity = 64;
         }
     }

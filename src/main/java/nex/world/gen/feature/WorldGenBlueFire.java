@@ -18,7 +18,6 @@
 package nex.world.gen.feature;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -44,7 +43,7 @@ public class WorldGenBlueFire extends WorldGenerator
 
             if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == targetBlock)
             {
-                world.setBlockState(newPos, NetherExBlocks.BLOCK_FIRE_BLUE.getDefaultState(), 3);
+                world.setBlockState(newPos, NetherExBlocks.BLOCK_FIRE_BLUE.getDefaultState(), 2);
             }
         }
 
