@@ -601,6 +601,7 @@ public class ConfigHandler
             public static boolean generateSpecimen = true;
             public static boolean generateTemples = true;
             public static boolean generateFossils = true;
+            public static boolean generatePrisons = true;
 
             @Config.Comment({"The lower the number, the rarer the Arctic Abyss biome is", "The higher the number, the more common the Arctic Abyss biome is"})
             @Config.RangeInt(min = 1, max = 128)
@@ -665,6 +666,10 @@ public class ConfigHandler
             @Config.Comment({"The higher the number, the rarer Fossils are", "The lower the number, the more common Fossils are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int fossilRarity = 64;
+
+            @Config.Comment({"The higher the number, the rarer Prions are", "The lower the number, the more common Prisons are"})
+            @Config.RangeInt(min = 1, max = 128)
+            public static int prisonRarity = 2;
         }
     }
 

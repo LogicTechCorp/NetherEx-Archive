@@ -72,6 +72,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     private WorldGenerator specimen = new WorldGenGroundStructure("arctic_abyss", "specimen", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{LootTableList.EMPTY});
     private WorldGenerator temple = new WorldGenGroundStructure("arctic_abyss", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
     private WorldGenerator fossil = new WorldGenWallStructure("arctic_abyss", "fossil", new String[]{"skull_creeper", "rib_creeper", "leg_creeper"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private WorldGenerator prison = new WorldGenGroundStructure("arctic_abyss", "prison", new String[]{"large", "medium_variant", "medium", "small"}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_wight", NetherEx.MOD_ID + ":monster_bone_spider"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE, NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
 
     public BiomeArcticAbyss()
     {
@@ -215,6 +216,14 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.fossilRarity) == 0)
             {
                 fossil.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.ArcticAbyss.generatePrisons)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.prisonRarity) == 0)
+            {
+                prison.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

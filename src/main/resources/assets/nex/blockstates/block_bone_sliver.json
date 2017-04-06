@@ -1,6 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
+        "model": "nex:block_bone_sliver",
         "transform": "forge:default-block"
     },
     "variants": {
@@ -13,17 +14,6 @@
             },
             "z": {
                 "x": 90
-            }
-        },
-        "size": {
-            "large": {
-                "model": "nex:block_bone_large"
-            },
-            "medium": {
-                "model": "nex:block_bone_medium"
-            },
-            "small": {
-                "model": "nex:block_bone_small"
             }
         }
     }

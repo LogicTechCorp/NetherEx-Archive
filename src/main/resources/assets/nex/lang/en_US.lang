@@ -427,6 +427,10 @@ config.nex:biome.arcticAbyss.generateFossils=Generate Fossils
 config.nex:biome.arcticAbyss.generateFossils.tooltip=Do Fossils generate in the Arctic Abyss biome
 config.nex:biome.arcticAbyss.fossilRarity=Fossil Rarity
 config.nex:biome.arcticAbyss.fossilRarity.tooltip=How rare Fossils are in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.generatePrisons=Generate Prisons
+config.nex:biome.arcticAbyss.generatePrisons.tooltip=Do Prisons generate in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.prisonRarity=Prison Rarity
+config.nex:biome.arcticAbyss.prisonRarity.tooltip=How rare Prisons are in the Arctic Abyss biome
 
 # Creative Tabs
 itemGroup.nex=NetherEx
@@ -565,9 +569,8 @@ tile.nex:blockGlassSoul.name=Soul Glass
 tile.nex:blockGlassPaneSoul.name=Soul Glass Pane
 tile.nex:blockRime.name=Rime Block
 tile.nex:blockIceFrostburn.name=Frostburn Ice
-tile.nex:blockBone.large.name=Large Block of Bone
-tile.nex:blockBone.medium.name=Medium Block of Bone
-tile.nex:blockBone.small.name=Small Block of Bone
+tile.nex:blockBoneSliver.name=Sliver of Bone
+tile.nex:blockBoneChunk.name=Chunk of Bone
 tile.nex:blockIronWorn.name=Worn Block of Iron
 tile.nex:blockFireBlue.name=Blue Fire
 tile.nex:tileUrnSorrow.empty.name=Urn of Sorrow

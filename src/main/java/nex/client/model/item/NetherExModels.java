@@ -105,11 +105,8 @@ public class NetherExModels
         registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
         registerModel(BLOCK_RIME, "normal");
         registerModel(BLOCK_ICE_FROSTBURN, "normal");
-
-        for(BlockBone.EnumType type : BlockBone.EnumType.values())
-        {
-            registerModel(NetherExBlocks.BLOCK_BONE, type.ordinal(), NetherExBlocks.BLOCK_BONE.getRegistryName().toString(), String.format("axis=y,size=%s", type.getName()));
-        }
+        registerModel(NetherExBlocks.BLOCK_BONE_SLIVER, "axis=y");
+        registerModel(NetherExBlocks.BLOCK_BONE_CHUNK, "facing=up");
 
         registerModel(BLOCK_IRON_WORN, "normal");
         registerModel(BLOCK_FIRE_BLUE, "normal");
