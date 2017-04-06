@@ -19,6 +19,11 @@ package nex.block;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+
+import java.util.Random;
 
 public class BlockWornIron extends BlockNetherEx
 {
@@ -29,5 +34,17 @@ public class BlockWornIron extends BlockNetherEx
         setSoundType(SoundType.METAL);
         setHardness(5.0F);
         setResistance(10.0F);
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Items.field_191525_da;
+    }
+
+    @Override
+    public int quantityDropped(Random rand)
+    {
+        return rand.nextInt(4);
     }
 }
