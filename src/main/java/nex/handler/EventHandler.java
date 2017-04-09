@@ -139,6 +139,8 @@ public class EventHandler
         }
         else if(type == RenderBlockOverlayEvent.OverlayType.WATER && world.getBlockState(pos).getBlock() == NetherExBlocks.FLUID_ICHOR)
         {
+            event.setCanceled(true);
+
             Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(NetherEx.MOD_ID + ":textures/blocks/fluid_ichor_overlay.png"));
             Tessellator tessellator = Tessellator.getInstance();
             VertexBuffer vertexbuffer = tessellator.getBuffer();
@@ -158,8 +160,6 @@ public class EventHandler
             GlStateManager.popMatrix();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.disableBlend();
-
-            event.setCanceled(true);
         }
     }
 

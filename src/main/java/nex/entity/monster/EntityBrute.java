@@ -44,7 +44,7 @@ public class EntityBrute extends EntityMob
     {
         super(world);
 
-        setSize(1.75F, 2.25F);
+        setSize(1.25F, 2.25F);
     }
 
     @Override

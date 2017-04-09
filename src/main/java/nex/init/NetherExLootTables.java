@@ -38,21 +38,24 @@ public class NetherExLootTables
     public static final ResourceLocation CHEST_TEMPLE_ARCTIC_ABYSS = new ResourceLocation(NetherEx.MOD_ID + ":chest/temple_arctic_abyss");
     public static final ResourceLocation CHEST_VILLAGE_BASE = new ResourceLocation(NetherEx.MOD_ID + ":chest/base_village");
 
-    public static final ResourceLocation ENTITY_MOGUS_BROWN = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus_brown");
-    public static final ResourceLocation ENTITY_MOGUS_RED = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus_red");
-    public static final ResourceLocation ENTITY_MOGUS_WHITE = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus_white");
-    public static final ResourceLocation ENTITY_SALAMANDER_ORANGE = new ResourceLocation(NetherEx.MOD_ID + ":entity/salamander_orange");
-    public static final ResourceLocation ENTITY_SALAMANDER_BLACK = new ResourceLocation(NetherEx.MOD_ID + ":entity/salamander_black");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_FARMER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_farmer");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_BUTCHER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/entity_pigtificate_butcher");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_BLACKSMITH = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/entity_pigtificate_blacksmith");
+    public static final ResourceLocation ENTITY_MOGUS_BROWN = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_brown");
+    public static final ResourceLocation ENTITY_MOGUS_RED = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_red");
+    public static final ResourceLocation ENTITY_MOGUS_WHITE = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_white");
+    public static final ResourceLocation ENTITY_SALAMANDER_ORANGE = new ResourceLocation(NetherEx.MOD_ID + ":entity/salamander/salamander_orange");
+    public static final ResourceLocation ENTITY_SALAMANDER_BLACK = new ResourceLocation(NetherEx.MOD_ID + ":entity/salamander/salamander_black");
     public static final ResourceLocation ENTITY_WIGHT = new ResourceLocation(NetherEx.MOD_ID + ":entity/wight");
     public static final ResourceLocation ENTITY_EMBER = new ResourceLocation(NetherEx.MOD_ID + ":entity/ember");
     public static final ResourceLocation ENTITY_NETHERMITE = new ResourceLocation(NetherEx.MOD_ID + ":entity/nethermite");
     public static final ResourceLocation ENTITY_SPINOUT = new ResourceLocation(NetherEx.MOD_ID + ":entity/spinout");
     public static final ResourceLocation ENTITY_SPORE_CREEPER = new ResourceLocation(NetherEx.MOD_ID + ":entity/spore_creeper");
     public static final ResourceLocation ENTITY_SPORE = new ResourceLocation(NetherEx.MOD_ID + ":entity/spore");
-    public static final ResourceLocation ENTITY_GHASTLING = new ResourceLocation(NetherEx.MOD_ID + ":entity/bone_spider");
-    public static final ResourceLocation ENTITY_BONE_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
+    public static final ResourceLocation ENTITY_GHASTLING = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghastling");
+    public static final ResourceLocation ENTITY_BONE_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/bone_spider");
     public static final ResourceLocation ENTITY_BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
-    public static final ResourceLocation ENTITY_GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast_queen");
+    public static final ResourceLocation ENTITY_GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghast_queen");
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExLootTables");
 

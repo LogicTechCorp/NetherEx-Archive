@@ -39,7 +39,7 @@ import nex.init.NetherExSoundEvents;
 @SuppressWarnings("ConstantConditions")
 public class EntityMogus extends EntityMob
 {
-    private static final DataParameter<Integer> MOGUS_TYPE = EntityDataManager.createKey(EntityMogus.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityMogus.class, DataSerializers.VARINT);
 
     public EntityMogus(World world)
     {
@@ -97,7 +97,7 @@ public class EntityMogus extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(MOGUS_TYPE, 0);
+        dataManager.register(TYPE, 0);
     }
 
     @Override
@@ -136,14 +136,7 @@ public class EntityMogus extends EntityMob
         else
         {
             String entityName = EntityList.getEntityString(this);
-
-            if(entityName == null)
-            {
-                entityName = "generic";
-            }
-
             String type = getType() == 0 ? "brown" : getType() == 1 ? "red" : "white";
-
             return I18n.format("entity." + entityName + "." + type + ".name");
         }
     }
@@ -156,7 +149,7 @@ public class EntityMogus extends EntityMob
 
     public int getType()
     {
-        return dataManager.get(MOGUS_TYPE);
+        return dataManager.get(TYPE);
     }
 
     private void setRandomType()
@@ -179,6 +172,6 @@ public class EntityMogus extends EntityMob
             id = 2;
         }
 
-        dataManager.set(MOGUS_TYPE, id);
+        dataManager.set(TYPE, id);
     }
 }

@@ -52,7 +52,7 @@ public class ModelBrute extends ModelBase
         textureHeight = 128;
 
         head = new ModelRenderer(this, 0, 0);
-        head.setRotationPoint(0.0F, -3.0F, 0.0F);
+        head.setRotationPoint(0.0F, -3.0F, -10.0F);
         head.addBox(-4.0F, -4.0F, -6.0F, 8, 8, 6);
         setRotationAngles(head, 0.1308996938995747F, 0.0F, 0.0F);
         nose = new ModelRenderer(this, 60, 0);
@@ -68,7 +68,7 @@ public class ModelBrute extends ModelBase
         teeth.addBox(-3.0F, -0.5F, 0.0F, 6, 1, 0);
         lip.addChild(teeth);
         upperBody = new ModelRenderer(this, 0, 14);
-        upperBody.setRotationPoint(0.0F, 13.0F, 9.5F);
+        upperBody.setRotationPoint(0.0F, 13.0F, -0.5F);
         upperBody.addBox(-12.0F, -24.0F, -6.5F, 24, 24, 13);
         setRotationAngles(upperBody, 0.2617993877991494F, 0.0F, 0.0F);
         stomach = new ModelRenderer(this, 74, 42);
@@ -88,33 +88,33 @@ public class ModelBrute extends ModelBase
         lowerScale.addBox(-1.5F, -2.0F, 0.0F, 3, 4, 2);
         upperBody.addChild(lowerScale);
         rightFrontChain = new ModelRenderer(this, 77, 0);
-        rightFrontChain.setRotationPoint(7.5F, -8.5F, -3.0F);
+        rightFrontChain.setRotationPoint(7.5F, -8.5F, -13.0F);
         rightFrontChain.addBox(-1.5F, 0.0F, 0.0F, 3, 28, 0);
         rightBackChain = new ModelRenderer(this, 74, 24);
-        rightBackChain.setRotationPoint(7.5F, 11.3F, 15.8F);
+        rightBackChain.setRotationPoint(7.5F, 11.3F, 5.8F);
         rightBackChain.addBox(-1.5F, 0.0F, 0.0F, 3, 4, 0);
         leftFrontChain = new ModelRenderer(this, 74, 0);
-        leftFrontChain.setRotationPoint(-7.5F, -8.5F, -3.0F);
+        leftFrontChain.setRotationPoint(-7.5F, -8.5F, -13.0F);
         leftFrontChain.addBox(-1.5F, 0.0F, 0.0F, 3, 16, 0);
         leftBackChain = new ModelRenderer(this, 74, 16);
-        leftBackChain.setRotationPoint(-7.5F, 11.3F, 15.8F);
+        leftBackChain.setRotationPoint(-7.5F, 11.3F, 5.8F);
         leftBackChain.addBox(-1.5F, 0.0F, 0.0F, 3, 10, 0);
         rightArm = new ModelRenderer(this, 0, 80);
-        rightArm.setRotationPoint(10.0F, -3.0F, 2.0F);
+        rightArm.setRotationPoint(10.0F, -3.0F, -8.0F);
         rightArm.addBox(0.0F, -3.5F, -3.5F, 7, 24, 7);
         setRotationAngles(rightArm, -0.2617993877991494F, 0.0F, 0.0F);
         leftArm = new ModelRenderer(this, 28, 80);
-        leftArm.setRotationPoint(-10.0F, -3.0F, 2.0F);
+        leftArm.setRotationPoint(-10.0F, -3.0F, -8.0F);
         leftArm.addBox(-7.0F, -3.5F, -3.5F, 7, 24, 7);
         setRotationAngles(leftArm, -0.2617993877991494F, 0.0F, 0.0F);
         lowerBody = new ModelRenderer(this, 0, 51);
-        lowerBody.setRotationPoint(0.0F, 14.0F, 10.0F);
+        lowerBody.setRotationPoint(0.0F, 14.0F, 0.0F);
         lowerBody.addBox(-10.5F, -2.5F, -4.5F, 21, 5, 9);
         rightLeg = new ModelRenderer(this, 0, 65);
-        rightLeg.setRotationPoint(6.0F, 16.0F, 10.0F);
+        rightLeg.setRotationPoint(6.0F, 16.0F, 0.0F);
         rightLeg.addBox(-3.5F, 0.0F, -3.5F, 7, 8, 7);
         leftLeg = new ModelRenderer(this, 28, 65);
-        leftLeg.setRotationPoint(-6.0F, 16.0F, 10.0F);
+        leftLeg.setRotationPoint(-6.0F, 16.0F, 0.0F);
         leftLeg.addBox(-3.5F, 0.0F, -3.5F, 7, 8, 7);
     }
 
