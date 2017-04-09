@@ -45,7 +45,6 @@ public class EntityPigtificate extends EntityAgeable
         super(world);
 
         setSize(0.6F, 2.2F);
-        setHomePosAndDistance(getPosition(), 48);
         setRandomType();
     }
 
@@ -54,16 +53,16 @@ public class EntityPigtificate extends EntityAgeable
     {
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-        tasks.addTask(2, new EntityAIMoveTowardsRestriction(this, 0.6D));
-        tasks.addTask(3, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-        tasks.addTask(4, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        tasks.addTask(2, new EntityAIWander(this, 0.6D));
+        tasks.addTask(3, new EntityAIMoveTowardsRestriction(this, 0.6D));
+        tasks.addTask(4, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
+        tasks.addTask(5, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
     }
 
@@ -72,6 +71,17 @@ public class EntityPigtificate extends EntityAgeable
     {
         super.entityInit();
         dataManager.register(TYPE, 0);
+    }
+
+    @Override
+    protected void updateAITasks()
+    {
+        super.updateAITasks();
+
+        if(!hasHome())
+        {
+            setHomePosAndDistance(new BlockPos(this), 48);
+        }
     }
 
     @Override

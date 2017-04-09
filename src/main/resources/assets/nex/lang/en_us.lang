@@ -431,6 +431,18 @@ config.nex:biome.arcticAbyss.generatePrisons=Generate Prisons
 config.nex:biome.arcticAbyss.generatePrisons.tooltip=Do Prisons generate in the Arctic Abyss biome
 config.nex:biome.arcticAbyss.prisonRarity=Prison Rarity
 config.nex:biome.arcticAbyss.prisonRarity.tooltip=How rare Prisons are in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.generateChainIslands=Generate Chain Islands
+config.nex:biome.arcticAbyss.generateChainIslands.tooltip=Do Chain Islands generate in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.chainIslandRarity=Chain Island Rarity
+config.nex:biome.arcticAbyss.chainIslandRarity.tooltip=How rare Chain Islands are in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.generateHangingChains=Generate Hanging Chains
+config.nex:biome.arcticAbyss.generateHangingChains.tooltip=Do Hanging Chains generate in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.hangingChainRarity=Hanging Chain Rarity
+config.nex:biome.arcticAbyss.hangingChainRarity.tooltip=How rare Hanging Chains are in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.generateFallenChains=Generate Fallen Chains
+config.nex:biome.arcticAbyss.generateFallenChains.tooltip=Do Fallen Chains generate in the Arctic Abyss biome
+config.nex:biome.arcticAbyss.fallenChainRarity=Fallen Chain Rarity
+config.nex:biome.arcticAbyss.fallenChainRarity.tooltip=How rare Fallen Chains are in the Arctic Abyss biome
 
 # Creative Tabs
 itemGroup.nex=NetherEx

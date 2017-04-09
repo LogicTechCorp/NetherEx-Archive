@@ -602,6 +602,9 @@ public class ConfigHandler
             public static boolean generateTemples = true;
             public static boolean generateFossils = true;
             public static boolean generatePrisons = true;
+            public static boolean generateChainIslands = true;
+            public static boolean generateHangingChains = true;
+            public static boolean generateFallenChains = true;
 
             @Config.Comment({"The lower the number, the rarer the Arctic Abyss biome is", "The higher the number, the more common the Arctic Abyss biome is"})
             @Config.RangeInt(min = 1, max = 128)
@@ -670,6 +673,18 @@ public class ConfigHandler
             @Config.Comment({"The higher the number, the rarer Prions are", "The lower the number, the more common Prisons are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int prisonRarity = 4;
+
+            @Config.Comment({"The higher the number, the rarer Chain Islands are", "The lower the number, the more common Chain Islands are"})
+            @Config.RangeInt(min = 1, max = 128)
+            public static int chainIslandRarity = 3;
+
+            @Config.Comment({"The higher the number, the rarer Hanging Chains are", "The lower the number, the more common Hanging Chains are"})
+            @Config.RangeInt(min = 1, max = 128)
+            public static int hangingChainRarity = 24;
+
+            @Config.Comment({"The higher the number, the rarer Fallen Chains are", "The lower the number, the more common Fallen Chains are"})
+            @Config.RangeInt(min = 1, max = 128)
+            public static int fallenChainRarity = 12;
         }
     }
 

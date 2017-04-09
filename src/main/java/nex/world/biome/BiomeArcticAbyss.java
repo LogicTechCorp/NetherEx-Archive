@@ -43,6 +43,7 @@ import nex.world.gen.feature.WorldGenBlueFire;
 import nex.world.gen.feature.WorldGenGlowStone;
 import nex.world.gen.feature.WorldGenMinableMeta;
 import nex.world.gen.feature.WorldGenPit;
+import nex.world.gen.structure.WorldGenCeilingStructure;
 import nex.world.gen.structure.WorldGenGroundStructure;
 import nex.world.gen.structure.WorldGenWallStructure;
 
@@ -71,8 +72,11 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     private WorldGenerator lighthouse = new WorldGenGroundStructure("arctic_abyss", "lighthouse", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS});
     private WorldGenerator specimen = new WorldGenGroundStructure("arctic_abyss", "specimen", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{LootTableList.EMPTY});
     private WorldGenerator temple = new WorldGenGroundStructure("arctic_abyss", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
-    private WorldGenerator fossil = new WorldGenWallStructure("arctic_abyss", "fossil", new String[]{"skull_creeper", "rib_creeper", "leg_creeper"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private WorldGenerator fossil = new WorldGenWallStructure("arctic_abyss", "fossil", new String[]{"skull_huge_extinct", "skull_creeper_variant", "skull_creeper", "skull_extinct_variant", "skull_extinct", "jaw_extinct", "rib_huge_extinct", "rib_creeper", "rib_extinct", "leg_creeper_variant_2", "leg_creeper_variant", "leg_creeper", "leg_extinct_variant", "leg_extinct", "tail_huge_extinct", "tail_extinct", "fin_extinct"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
     private WorldGenerator prison = new WorldGenGroundStructure("arctic_abyss", "prison", new String[]{"large", "medium_variant", "medium", "small"}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_wight", NetherEx.MOD_ID + ":monster_bone_spider"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE, NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
+    private WorldGenerator chainIsland = new WorldGenCeilingStructure("arctic_abyss", "chain", new String[]{"island_large", "island_medium", "island_small"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private WorldGenerator hangingChain = new WorldGenCeilingStructure("arctic_abyss", "chain", new String[]{"hanging_long", "hanging_medium", "hanging_short"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private WorldGenerator fallenChain = new WorldGenGroundStructure("arctic_abyss", "chain", new String[]{"fallen_long", "fallen_medium", "fallen_short_variant", "fallen_short"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
 
     public BiomeArcticAbyss()
     {
@@ -97,6 +101,14 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     public void decorate(World world, Random rand, BlockPos pos)
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
+
+        if(ConfigHandler.Biome.ArcticAbyss.generateChainIslands)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.chainIslandRarity) == 0)
+            {
+                chainIsland.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+            }
+        }
 
         if(ConfigHandler.Biome.ArcticAbyss.generateFire)
         {
@@ -224,6 +236,22 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.prisonRarity) == 0)
             {
                 prison.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.ArcticAbyss.generateHangingChains)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.hangingChainRarity) == 0)
+            {
+                hangingChain.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.Biome.ArcticAbyss.generateFallenChains)
+        {
+            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.fallenChainRarity) == 0)
+            {
+                fallenChain.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
