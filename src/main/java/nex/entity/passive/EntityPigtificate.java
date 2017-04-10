@@ -38,14 +38,16 @@ import nex.init.NetherExLootTables;
 
 public class EntityPigtificate extends EntityAgeable
 {
-    private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> PROFESSION = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> CAREER = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> LEVEL = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
 
     public EntityPigtificate(World world)
     {
         super(world);
 
         setSize(0.6F, 2.2F);
-        setRandomType();
+        setRandomProfession();
     }
 
     @Override
@@ -70,7 +72,9 @@ public class EntityPigtificate extends EntityAgeable
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(TYPE, 0);
+        dataManager.register(PROFESSION, 0);
+        dataManager.register(CAREER, 0);
+        dataManager.register(LEVEL, 0);
     }
 
     @Override
@@ -88,14 +92,18 @@ public class EntityPigtificate extends EntityAgeable
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("Type", getType());
+        compound.setInteger("Profession", getProfession());
+        compound.setInteger("Career", getCareer());
+        compound.setInteger("Level", getLevel());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        setType(compound.getInteger("Type"));
+        setProfession(compound.getInteger("Profession"));
+        setCareer(compound.getInteger("Career"));
+        setLevel(compound.getInteger("Level"));
     }
 
     @Override
@@ -104,11 +112,16 @@ public class EntityPigtificate extends EntityAgeable
         EntityPigtificate pigtificate = new EntityPigtificate(world);
         pigtificate.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(pigtificate)), null);
         return pigtificate;
-
     }
 
     @Override
     public boolean canBeLeashedTo(EntityPlayer player)
+    {
+        return false;
+    }
+
+    @Override
+    protected boolean canDespawn()
     {
         return false;
     }
@@ -123,7 +136,7 @@ public class EntityPigtificate extends EntityAgeable
         else
         {
             String entityName = EntityList.getEntityString(this);
-            String type = getType() == 0 ? "farmer" : getType() == 1 ? "butcher" : "blacksmith";
+            String type = getProfession() == 0 ? "farmer" : getProfession() == 1 ? "butcher" : "blacksmith";
             return I18n.format("entity." + entityName + "." + type + ".name");
         }
     }
@@ -131,34 +144,64 @@ public class EntityPigtificate extends EntityAgeable
     @Override
     protected ResourceLocation getLootTable()
     {
-        return getType() == 0 ? NetherExLootTables.ENTITY_PIGTIFICATE_FARMER : getType() == 1 ? NetherExLootTables.ENTITY_PIGTIFICATE_BUTCHER : NetherExLootTables.ENTITY_PIGTIFICATE_BLACKSMITH;
+        return getProfession() == 0 ? NetherExLootTables.ENTITY_PIGTIFICATE_FARMER : getProfession() == 1 ? NetherExLootTables.ENTITY_PIGTIFICATE_BUTCHER : NetherExLootTables.ENTITY_PIGTIFICATE_BLACKSMITH;
     }
 
-    public int getType()
+    public int getProfession()
     {
-        return dataManager.get(TYPE);
+        return dataManager.get(PROFESSION);
     }
 
-    private void setRandomType()
+    public int getCareer()
+    {
+        return dataManager.get(CAREER);
+    }
+
+    public int getLevel()
+    {
+        return dataManager.get(LEVEL);
+    }
+
+    private void setRandomProfession()
     {
         WeightedRandom.Item farmer = new WeightedRandom.Item(10);
         WeightedRandom.Item butcher = new WeightedRandom.Item(10);
         WeightedRandom.Item blacksmith = new WeightedRandom.Item(5);
         WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(farmer, butcher, blacksmith));
-        setType(item == farmer ? 0 : item == butcher ? 1 : 2);
+        setProfession(item == farmer ? 0 : item == butcher ? 1 : 2);
     }
 
-    public void setType(int id)
+    public void setProfession(int profession)
     {
-        if(id < 0)
+        if(profession < 0)
         {
-            id = 0;
+            profession = 0;
         }
-        else if(id > 2)
+        else if(profession > 2)
         {
-            id = 2;
+            profession = 2;
         }
 
-        dataManager.set(TYPE, id);
+        dataManager.set(PROFESSION, profession);
+    }
+
+    public void setCareer(int career)
+    {
+        if(career < 0)
+        {
+            career = 0;
+        }
+
+        dataManager.set(CAREER, career);
+    }
+
+    public void setLevel(int level)
+    {
+        if(level < 0)
+        {
+            level = 0;
+        }
+
+        dataManager.set(LEVEL, level);
     }
 }
