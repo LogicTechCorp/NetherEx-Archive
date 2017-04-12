@@ -164,9 +164,9 @@ public class EntityPigtificate extends EntityAgeable
 
     private void setRandomProfession()
     {
-        WeightedRandom.Item farmer = new WeightedRandom.Item(10);
-        WeightedRandom.Item butcher = new WeightedRandom.Item(10);
-        WeightedRandom.Item blacksmith = new WeightedRandom.Item(5);
+        WeightedRandom.Item farmer = new WeightedRandom.Item(4);
+        WeightedRandom.Item butcher = new WeightedRandom.Item(5);
+        WeightedRandom.Item blacksmith = new WeightedRandom.Item(8);
         WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(farmer, butcher, blacksmith));
         setProfession(item == farmer ? 0 : item == butcher ? 1 : 2);
     }

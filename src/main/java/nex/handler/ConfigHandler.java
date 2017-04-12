@@ -36,7 +36,7 @@ import java.util.Optional;
 
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber
-@Config(modid = NetherEx.MOD_ID, name = "NetherEx")
+@Config(modid = NetherEx.MOD_ID, name = "NetherEx/NetherEx")
 public class ConfigHandler
 {
     private static Configuration config;

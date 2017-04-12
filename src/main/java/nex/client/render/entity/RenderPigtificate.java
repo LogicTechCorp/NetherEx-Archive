@@ -60,6 +60,6 @@ public class RenderPigtificate extends RenderLiving<EntityPigtificate>
     @Override
     protected ResourceLocation getEntityTexture(EntityPigtificate pigtificate)
     {
-        return pigtificate.getType() == 0 ? PIGTIFICATE_FARMER_TEXTURE : pigtificate.getType() == 1 ? PIGTIFICATE_BUTCHER_TEXTURE : PIGTIFICATE_BLACKSMITH_TEXTURE;
+        return pigtificate.getProfession() == 0 ? PIGTIFICATE_FARMER_TEXTURE : pigtificate.getProfession() == 1 ? PIGTIFICATE_BUTCHER_TEXTURE : PIGTIFICATE_BLACKSMITH_TEXTURE;
     }
 }
