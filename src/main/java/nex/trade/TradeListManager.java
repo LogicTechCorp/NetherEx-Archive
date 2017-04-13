@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.recipe;
+package nex.trade;
 
 import nex.NetherEx;
 import org.apache.commons.io.IOUtils;
@@ -27,9 +27,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class TradeManager
+public class TradeListManager
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeManager");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeListManager");
 
     public static void init(File file)
     {
@@ -50,18 +50,20 @@ public class TradeManager
                 catch(Exception e)
                 {
                     LOGGER.fatal("The attempt to copy the Pigtificate Trade List was unsuccessful.");
+                    LOGGER.fatal(e);
                 }
 
                 LOGGER.info("The Pigtificate Trade List was successfully copied to config folder.");
             }
             else
             {
-                LOGGER.info("The Pigtificate Trade List was already copied to config folder.");
+                LOGGER.info("The Pigtificate Trade List is already located in the config folder.");
             }
         }
         catch(IOException e)
         {
-            LOGGER.fatal("The attempt to copy the Pigtificate Trade List was unsuccessful.");
+            LOGGER.fatal("The attempt to copy the Pigtificate Trade List to the config folder was unsuccessful.");
+            LOGGER.fatal(e);
         }
     }
 }

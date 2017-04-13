@@ -26,7 +26,7 @@ import nex.handler.IMCHandler;
 import nex.handler.RemapHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
-import nex.recipe.TradeManager;
+import nex.trade.TradeListManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -66,7 +66,7 @@ public class NetherEx
 
         NetherExEntities.init();
         NetherExBiomes.init();
-        TradeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/pigtificate_trade_list.json"));
+        TradeListManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/pigtificate_trade_list.json"));
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");
