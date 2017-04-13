@@ -55,5 +55,4 @@ public class TradeCareer
             return null;
         }
     }
-
 }

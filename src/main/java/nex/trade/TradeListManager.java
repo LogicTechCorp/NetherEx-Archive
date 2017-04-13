@@ -17,6 +17,8 @@
 
 package nex.trade;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import nex.NetherEx;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -29,6 +31,13 @@ import java.io.InputStream;
 
 public class TradeListManager
 {
+    private static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(TradeList.class, TradeList.Deserializer.class)
+            .registerTypeAdapter(TradeProfession.class, TradeProfession.Deserializer.class)
+            .registerTypeAdapter(TradeCareer.class, TradeCareer.Deserializer.class)
+            .registerTypeAdapter(TradeOffer.class, TradeOffer.Deserializer.class)
+            .create();
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeListManager");
 
     public static void init(File file)
