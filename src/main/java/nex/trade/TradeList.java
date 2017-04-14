@@ -18,18 +18,13 @@
 package nex.trade;
 
 import com.google.common.collect.Lists;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class TradeList
 {
-    private final String name;
-    private final List<TradeProfession> professions;
+    private String name;
+    private List<TradeProfession> professions;
 
     public TradeList(String nameIn, TradeProfession[] professionsIn)
     {
@@ -45,14 +40,5 @@ public class TradeList
     public List<TradeProfession> getProfessions()
     {
         return professions;
-    }
-
-    public static class Deserializer implements JsonDeserializer<TradeList>
-    {
-        @Override
-        public TradeList deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
-        {
-            return null;
-        }
     }
 }
