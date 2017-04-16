@@ -17,20 +17,12 @@
 
 package nex.trade;
 
-import com.google.common.collect.Lists;
-
 import java.util.List;
 
 public class TradeProfession
 {
     private String name;
     private List<TradeCareer> careers;
-
-    public TradeProfession(String nameIn, TradeCareer[] careersIn)
-    {
-        name = nameIn;
-        careers = Lists.newArrayList(careersIn);
-    }
 
     public String getName()
     {

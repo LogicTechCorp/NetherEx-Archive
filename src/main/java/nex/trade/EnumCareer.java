@@ -15,42 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.recipe;
+package nex.trade;
 
-import net.minecraft.item.ItemStack;
-
-public class TradeRecipe
+public enum EnumCareer
 {
-    private ItemStack output;
-    private ItemStack inputA;
-    private ItemStack inputB;
-    private int stock;
+    FARMER,
+    TOOLSMITH,
+    BUTCHER;
 
-    public TradeRecipe(ItemStack outputIn, ItemStack inputAIn, ItemStack inputBIn, int stockIn)
+    public static EnumCareer fromCareer(TradeCareer career)
     {
-        output = outputIn;
-        inputA = inputAIn;
-        inputB = inputBIn;
-        stock = stockIn;
-    }
-
-    public ItemStack getOutput()
-    {
-        return output;
-    }
-
-    public ItemStack getInputA()
-    {
-        return inputA;
-    }
-
-    public ItemStack getInputB()
-    {
-        return inputB;
-    }
-
-    public int getStock()
-    {
-        return stock;
+        return valueOf(career.getName().toUpperCase());
     }
 }

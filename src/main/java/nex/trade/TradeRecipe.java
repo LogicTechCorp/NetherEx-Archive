@@ -17,20 +17,40 @@
 
 package nex.trade;
 
-import java.util.List;
+import net.minecraft.item.ItemStack;
 
-public class TradeList
+public class TradeRecipe
 {
-    private String name;
-    private List<TradeProfession> professions;
+    private ItemStack output;
+    private ItemStack inputA;
+    private ItemStack inputB;
+    private int amount;
 
-    public String getName()
+    public TradeRecipe(ItemStack outputIn, ItemStack inputAIn, ItemStack inputBIn, int amountIn)
     {
-        return name;
+        output = outputIn;
+        inputA = inputAIn;
+        inputB = inputBIn;
+        amount = amountIn;
     }
 
-    public List<TradeProfession> getProfessions()
+    public ItemStack getOutput()
     {
-        return professions;
+        return output;
+    }
+
+    public ItemStack getInputA()
+    {
+        return inputA;
+    }
+
+    public ItemStack getInputB()
+    {
+        return inputB;
+    }
+
+    public int getAmount()
+    {
+        return amount;
     }
 }
