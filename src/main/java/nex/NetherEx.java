@@ -66,7 +66,7 @@ public class NetherEx
 
         NetherExEntities.init();
         NetherExBiomes.init();
-        TradeListManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/pigtificate_trade_list.json"));
+        TradeListManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trades/default_trade_list.json"));
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");

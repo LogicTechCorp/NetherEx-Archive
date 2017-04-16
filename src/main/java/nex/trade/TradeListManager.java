@@ -51,23 +51,30 @@ public class TradeListManager
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeListManager");
 
-    public static void init(File file)
+    public static void init(File defaultTradeList)
     {
         for(EnumCareer career : EnumCareer.values())
         {
             offerLists.put(career, Maps.newHashMap());
         }
 
+        File directory = defaultTradeList.getParentFile();
+
         try
         {
+            if(!directory.exists())
+            {
+                directory.mkdir();
+            }
+
             LOGGER.info("Attempting to copy the Pigtificate Trade List to the config folder.");
 
-            if(file.createNewFile())
+            if(defaultTradeList.createNewFile())
             {
                 try
                 {
-                    InputStream inStream = NetherEx.class.getResourceAsStream("/assets/nex/pigtificate_trade_list.json");
-                    FileWriter writer = new FileWriter(file);
+                    InputStream inStream = NetherEx.class.getResourceAsStream("/assets/nex/default_trade_list.json");
+                    FileWriter writer = new FileWriter(defaultTradeList);
                     IOUtils.copy(inStream, writer);
                     writer.close();
                     inStream.close();
@@ -94,106 +101,113 @@ public class TradeListManager
         try
         {
             Gson gson = new Gson();
-            String jsonText = Files.toString(file, Charsets.UTF_8);
-            TradeList list = gson.fromJson(jsonText, TradeList.class);
+            List<File> tradeFiles = Lists.newArrayList(directory.listFiles());
 
-            for(TradeProfession profession : list.getProfessions())
+            for(File tradeFile : tradeFiles)
             {
-                for(TradeCareer career : profession.getCareers())
+                String jsonText = Files.toString(tradeFile, Charsets.UTF_8);
+                TradeList tradeList = gson.fromJson(jsonText, TradeList.class);
+
+                LOGGER.info("Adding trades from the " + tradeList.getName() + " trade list.");
+
+                for(TradeProfession profession : tradeList.getProfessions())
                 {
-                    for(TradeOffer offer : career.getOffers())
+                    for(TradeCareer career : profession.getCareers())
                     {
-                        ItemStack outputStack;
-                        TradeOffer.Output output = offer.getOutput();
-                        String outputId = output.getId();
-                        int outputMeta = output.getMeta();
-                        TradeOffer.Amount outAmount = output.getAmount();
-                        List<TradeOffer.Enchantment> enchantments = output.getEnchantments();
-                        TradeOffer.Display display = output.getDisplay();
+                        for(TradeOffer offer : career.getOffers())
+                        {
+                            ItemStack outputStack;
+                            TradeOffer.Output output = offer.getOutput();
+                            String outputId = output.getId();
+                            int outputMeta = output.getMeta();
+                            TradeOffer.Amount outAmount = output.getAmount();
+                            List<TradeOffer.Enchantment> enchantments = output.getEnchantments();
+                            TradeOffer.Display display = output.getDisplay();
 
-                        if(Block.getBlockFromName(outputId) != null)
-                        {
-                            outputStack = new ItemStack(Block.getBlockFromName(outputId), rand.nextInt((outAmount.getMax() - outAmount.getMin()) + 1) + outAmount.getMin(), outputMeta);
-                        }
-                        else if(Item.getByNameOrId(outputId) != null)
-                        {
-                            outputStack = new ItemStack(Item.getByNameOrId(outputId), rand.nextInt((outAmount.getMax() - outAmount.getMin()) + 1) + outAmount.getMin(), outputMeta);
-                        }
-                        else
-                        {
-                            continue;
-                        }
-
-                        if(enchantments.size() > 0)
-                        {
-                            for(TradeOffer.Enchantment enchantment : enchantments)
+                            if(Block.getBlockFromName(outputId) != null)
                             {
-                                outputStack.addEnchantment(Enchantment.getEnchantmentByLocation(enchantment.getId()), enchantment.getLevel());
+                                outputStack = new ItemStack(Block.getBlockFromName(outputId), rand.nextInt((outAmount.getMax() - outAmount.getMin()) + 1) + outAmount.getMin(), outputMeta);
                             }
-                        }
-
-                        if(!display.getName().equals(""))
-                        {
-                            outputStack.setStackDisplayName(display.getName());
-                        }
-                        if(display.getLore().size() > 0)
-                        {
-                            NBTUtil.setTag(outputStack);
-                            NBTTagList loreList = new NBTTagList();
-
-                            for(String lore : display.getLore())
+                            else if(Item.getByNameOrId(outputId) != null)
                             {
-                                loreList.appendTag(new NBTTagString(lore));
+                                outputStack = new ItemStack(Item.getByNameOrId(outputId), rand.nextInt((outAmount.getMax() - outAmount.getMin()) + 1) + outAmount.getMin(), outputMeta);
+                            }
+                            else
+                            {
+                                continue;
                             }
 
-                            NBTTagCompound displayCompound = new NBTTagCompound();
-                            displayCompound.setTag("Lore", loreList);
-                            NBTTagCompound compound = new NBTTagCompound();
-                            compound.setTag("display", displayCompound);
-                            NBTUtil.setTag(outputStack, compound);
-                        }
+                            if(enchantments.size() > 0)
+                            {
+                                for(TradeOffer.Enchantment enchantment : enchantments)
+                                {
+                                    outputStack.addEnchantment(Enchantment.getEnchantmentByLocation(enchantment.getId()), enchantment.getLevel());
+                                }
+                            }
 
-                        ItemStack inputStackA;
-                        TradeOffer.Input inputA = offer.getInputA();
-                        String inputAId = inputA.getId();
-                        int inputAMeta = inputA.getMeta();
-                        TradeOffer.Amount inputAAmount = inputA.getAmount();
+                            if(!display.getName().equals(""))
+                            {
+                                outputStack.setStackDisplayName(display.getName());
+                            }
+                            if(display.getLore().size() > 0)
+                            {
+                                NBTUtil.setTag(outputStack);
+                                NBTTagList loreList = new NBTTagList();
 
-                        if(Block.getBlockFromName(inputAId) != null)
-                        {
-                            inputStackA = new ItemStack(Block.getBlockFromName(inputAId), rand.nextInt((inputAAmount.getMax() - inputAAmount.getMin()) + 1) + inputAAmount.getMin(), inputAMeta);
-                        }
-                        else if(Item.getByNameOrId(inputAId) != null)
-                        {
-                            inputStackA = new ItemStack(Item.getByNameOrId(inputAId), rand.nextInt((inputAAmount.getMax() - inputAAmount.getMin()) + 1) + inputAAmount.getMin(), inputAMeta);
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                                for(String lore : display.getLore())
+                                {
+                                    loreList.appendTag(new NBTTagString(lore));
+                                }
 
-                        ItemStack inputStackB;
-                        TradeOffer.Input inputB = offer.getInputB();
-                        String inputBId = inputB.getId();
-                        int inputBMeta = inputB.getMeta();
-                        TradeOffer.Amount inputBAmount = inputB.getAmount();
+                                NBTTagCompound displayCompound = new NBTTagCompound();
+                                displayCompound.setTag("Lore", loreList);
+                                NBTTagCompound compound = new NBTTagCompound();
+                                compound.setTag("display", displayCompound);
+                                NBTUtil.setTag(outputStack, compound);
+                            }
 
-                        if(Block.getBlockFromName(inputBId) != null)
-                        {
-                            inputStackB = new ItemStack(Block.getBlockFromName(inputBId), rand.nextInt((inputBAmount.getMax() - inputBAmount.getMin()) + 1) + inputBAmount.getMin(), inputBMeta);
-                        }
-                        else if(Item.getByNameOrId(inputBId) != null)
-                        {
-                            inputStackB = new ItemStack(Item.getByNameOrId(inputBId), rand.nextInt((inputBAmount.getMax() - inputBAmount.getMin()) + 1) + inputBAmount.getMin(), inputBMeta);
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                            ItemStack inputStackA;
+                            TradeOffer.Input inputA = offer.getInputA();
+                            String inputAId = inputA.getId();
+                            int inputAMeta = inputA.getMeta();
+                            TradeOffer.Amount inputAAmount = inputA.getAmount();
 
-                        TradeOffer.Amount offerAmount = offer.getAmount();
-                        TradeRecipe trade = new TradeRecipe(outputStack, inputStackA, inputStackB, rand.nextInt((offerAmount.getMax() - offerAmount.getMin()) + 1) + offerAmount.getMin());
-                        offerLists.get(EnumCareer.fromCareer(career)).computeIfAbsent(offer.getLevel(), k -> Lists.newArrayList()).add(trade);
+                            if(Block.getBlockFromName(inputAId) != null)
+                            {
+                                inputStackA = new ItemStack(Block.getBlockFromName(inputAId), rand.nextInt((inputAAmount.getMax() - inputAAmount.getMin()) + 1) + inputAAmount.getMin(), inputAMeta);
+                            }
+                            else if(Item.getByNameOrId(inputAId) != null)
+                            {
+                                inputStackA = new ItemStack(Item.getByNameOrId(inputAId), rand.nextInt((inputAAmount.getMax() - inputAAmount.getMin()) + 1) + inputAAmount.getMin(), inputAMeta);
+                            }
+                            else
+                            {
+                                continue;
+                            }
+
+                            ItemStack inputStackB;
+                            TradeOffer.Input inputB = offer.getInputB();
+                            String inputBId = inputB.getId();
+                            int inputBMeta = inputB.getMeta();
+                            TradeOffer.Amount inputBAmount = inputB.getAmount();
+
+                            if(Block.getBlockFromName(inputBId) != null)
+                            {
+                                inputStackB = new ItemStack(Block.getBlockFromName(inputBId), rand.nextInt((inputBAmount.getMax() - inputBAmount.getMin()) + 1) + inputBAmount.getMin(), inputBMeta);
+                            }
+                            else if(Item.getByNameOrId(inputBId) != null)
+                            {
+                                inputStackB = new ItemStack(Item.getByNameOrId(inputBId), rand.nextInt((inputBAmount.getMax() - inputBAmount.getMin()) + 1) + inputBAmount.getMin(), inputBMeta);
+                            }
+                            else
+                            {
+                                continue;
+                            }
+
+                            TradeOffer.Amount offerAmount = offer.getAmount();
+                            TradeRecipe trade = new TradeRecipe(outputStack, inputStackA, inputStackB, rand.nextInt((offerAmount.getMax() - offerAmount.getMin()) + 1) + offerAmount.getMin());
+                            offerLists.get(EnumCareer.fromCareer(career)).computeIfAbsent(offer.getLevel(), k -> Lists.newArrayList()).add(trade);
+                        }
                     }
                 }
             }
