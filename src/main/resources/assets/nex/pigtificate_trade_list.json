@@ -10,7 +10,7 @@
                         {
                             "output": {
                                 "id": "minecraft:golden_pickaxe", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "ench": [ { "id": "minecraft:mending", "level": 3 }, { "id": "minecraft:unbreaking", "level": 1 } ],
+                                "enchantments": [ { "id": "minecraft:mending", "level": 3 }, { "id": "minecraft:unbreaking", "level": 1 } ],
                                 "display": { "name": "Golden Pickaxe", "lore": [ "A golden pickaxe", "Forged with magic!" ] }
                             },
                             "inputA": { "id": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 3, "max": 3 } },

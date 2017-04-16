@@ -57,7 +57,7 @@ public class TradeOffer
         private String id;
         private int meta;
         private Amount amount;
-        private List<Enchantment> ench;
+        private List<Enchantment> enchantments;
         private Display display;
 
         public String getId()
@@ -75,9 +75,9 @@ public class TradeOffer
             return amount;
         }
 
-        public List<Enchantment> getEnch()
+        public List<Enchantment> getEnchantments()
         {
-            return ench;
+            return enchantments;
         }
 
         public Display getDisplay()

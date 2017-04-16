@@ -108,7 +108,7 @@ public class TradeListManager
                         String outputId = output.getId();
                         int outputMeta = output.getMeta();
                         TradeOffer.Amount outAmount = output.getAmount();
-                        List<TradeOffer.Enchantment> enchantments = output.getEnch();
+                        List<TradeOffer.Enchantment> enchantments = output.getEnchantments();
                         TradeOffer.Display display = output.getDisplay();
 
                         if(Block.getBlockFromName(outputId) != null)
