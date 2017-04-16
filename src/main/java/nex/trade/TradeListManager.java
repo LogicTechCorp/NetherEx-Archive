@@ -17,7 +17,10 @@
 
 package nex.trade;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import nex.NetherEx;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -67,6 +70,19 @@ public class TradeListManager
         {
             LOGGER.fatal("The attempt to copy the Pigtificate Trade List to the config folder was unsuccessful.");
             LOGGER.fatal(e);
+        }
+
+        try
+        {
+            String jsonText = Files.toString(file, Charsets.UTF_8);
+            TradeList list = GSON.fromJson(jsonText, TradeList.class);
+
+            System.out.println(list.getName());
+            System.out.println(list.getProfessions());
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
         }
     }
 }
