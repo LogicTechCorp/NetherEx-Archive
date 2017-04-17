@@ -39,8 +39,8 @@ public class NetherExLootTables
     public static final ResourceLocation CHEST_VILLAGE_BASE = new ResourceLocation(NetherEx.MOD_ID + ":chest/base_village");
 
     public static final ResourceLocation ENTITY_PIGTIFICATE_FARMER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_farmer");
-    public static final ResourceLocation ENTITY_PIGTIFICATE_BUTCHER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/entity_pigtificate_butcher");
-    public static final ResourceLocation ENTITY_PIGTIFICATE_BLACKSMITH = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/entity_pigtificate_blacksmith");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_BUTCHER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_butcher");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_TOOLSMITH = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_toolsmith");
     public static final ResourceLocation ENTITY_MOGUS_BROWN = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_brown");
     public static final ResourceLocation ENTITY_MOGUS_RED = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_red");
     public static final ResourceLocation ENTITY_MOGUS_WHITE = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_white");

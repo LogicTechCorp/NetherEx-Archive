@@ -23,17 +23,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.NetherEx;
 import nex.client.model.entity.ModelPigtificate;
 import nex.entity.passive.EntityPigtificate;
+import nex.trade.TradeProfession;
 
 @SideOnly(Side.CLIENT)
 public class RenderPigtificate extends RenderLiving<EntityPigtificate>
 {
-    private static final ResourceLocation PIGTIFICATE_FARMER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_farmer.png");
-    private static final ResourceLocation PIGTIFICATE_BUTCHER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_butcher.png");
-    private static final ResourceLocation PIGTIFICATE_BLACKSMITH_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_blacksmith.png");
-
     public RenderPigtificate(RenderManager manager)
     {
         super(manager, new ModelPigtificate(), 0.5F);
@@ -60,6 +56,6 @@ public class RenderPigtificate extends RenderLiving<EntityPigtificate>
     @Override
     protected ResourceLocation getEntityTexture(EntityPigtificate pigtificate)
     {
-        return pigtificate.getProfession() == 0 ? PIGTIFICATE_FARMER_TEXTURE : pigtificate.getProfession() == 1 ? PIGTIFICATE_BUTCHER_TEXTURE : PIGTIFICATE_BLACKSMITH_TEXTURE;
+        return TradeProfession.EnumType.fromIndex(pigtificate.getProfession()).getTextureLocation();
     }
 }

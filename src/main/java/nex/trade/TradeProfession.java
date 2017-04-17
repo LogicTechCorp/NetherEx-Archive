@@ -17,6 +17,9 @@
 
 package nex.trade;
 
+import net.minecraft.util.ResourceLocation;
+import nex.NetherEx;
+
 import java.util.List;
 
 public class TradeProfession
@@ -33,4 +36,35 @@ public class TradeProfession
     {
         return careers;
     }
+
+    public enum EnumType
+    {
+        FARMER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_farmer.png")),
+        BLACKSMITH(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_blacksmith.png")),
+        BUTCHER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_butcher.png"));
+
+        private ResourceLocation textureLocation;
+
+        EnumType(ResourceLocation textureLocationIn)
+        {
+            textureLocation = textureLocationIn;
+        }
+
+        public static EnumType fromIndex(int index)
+        {
+            EnumType profession = values()[index];
+            return profession != null ? profession : FARMER;
+        }
+
+        public static EnumType fromProfession(TradeProfession profession)
+        {
+            return valueOf(profession.getName().toUpperCase());
+        }
+
+        public ResourceLocation getTextureLocation()
+        {
+            return textureLocation;
+        }
+    }
+
 }
