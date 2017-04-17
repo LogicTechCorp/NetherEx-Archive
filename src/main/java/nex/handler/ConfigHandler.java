@@ -35,15 +35,25 @@ import java.util.Map;
 import java.util.Optional;
 
 @Config.LangKey("config.nex:title")
-@Config(modid = NetherEx.MOD_ID, name = "NetherEx/NetherEx")
+@Config(modid = NetherEx.MOD_ID, name = "NetherEx/NetherEx", category = "nex")
 public class ConfigHandler
 {
-    private static Configuration config;
+    @Config.Name("client")
     public static Client client = new Client();
+
+    @Config.Name("dimension")
     public static Dimension dimension = new Dimension();
+
+    @Config.Name("block")
     public static Block block = new Block();
-    public static PotionEffect potion_effect = new PotionEffect();
+
+    @Config.Name("potion_effect")
+    public static PotionEffect potionEffect = new PotionEffect();
+
+    @Config.Name("entity")
     public static Entity entity = new Entity();
+
+    @Config.Name("biome")
     public static Biome biome = new Biome();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigHandler");
@@ -51,6 +61,7 @@ public class ConfigHandler
     @Config.LangKey("config.nex:client")
     public static class Client
     {
+        @Config.Name("visual")
         public static Visual visual = new Visual();
 
         @Config.LangKey("config.nex:client.visual")
@@ -64,6 +75,7 @@ public class ConfigHandler
     @Config.LangKey("config.nex:dimension")
     public static class Dimension
     {
+        @Config.Name("nether")
         public static Nether nether = new Nether();
 
         @Config.LangKey("config.nex:dimension.nether")
@@ -86,11 +98,22 @@ public class ConfigHandler
     @Config.LangKey("config.nex:block")
     public static class Block
     {
+        @Config.Name("netherrack")
         public static Netherrack netherrack = new Netherrack();
-        public static SoulSand soul_sand = new SoulSand();
+
+        @Config.Name("soul_sand")
+        public static SoulSand soulSand = new SoulSand();
+
+        @Config.Name("magma")
         public static Magma magma = new Magma();
+
+        @Config.Name("rime")
         public static Rime rime = new Rime();
+
+        @Config.Name("thornstalk")
         public static Thornstalk thornstalk = new Thornstalk();
+
+        @Config.Name("hyphae")
         public static Hyphae hyphae = new Hyphae();
 
         @Config.LangKey("config.nex:block.netherrack")
@@ -159,8 +182,13 @@ public class ConfigHandler
     @Config.LangKey("config.nex:potionEffect")
     public static class PotionEffect
     {
+        @Config.Name("freeze")
         public static Freeze freeze = new Freeze();
+
+        @Config.Name("spore")
         public static Spore spore = new Spore();
+
+        @Config.Name("lost")
         public static Lost lost = new Lost();
 
         @Config.LangKey("config.nex:potionEffect.freeze")
@@ -216,12 +244,25 @@ public class ConfigHandler
     @Config.LangKey("config.nex:entity")
     public static class Entity
     {
+        @Config.Name("ember")
         public static Ember ember = new Ember();
+
+        @Config.Name("nethermite")
         public static Nethermite nethermite = new Nethermite();
+
+        @Config.Name("spinout")
         public static Spinout spinout = new Spinout();
-        public static SporeCreeper spore_creeper = new SporeCreeper();
+
+        @Config.Name("spore_creeper")
+        public static SporeCreeper sporeCreeper = new SporeCreeper();
+
+        @Config.Name("client")
         public static Spore spore = new Spore();
-        public static GhastQueen ghast_queen = new GhastQueen();
+
+        @Config.Name("ghast_queen")
+        public static GhastQueen ghastQueen = new GhastQueen();
+
+        @Config.Name("brute")
         public static Brute brute = new Brute();
 
         @Config.LangKey("config.nex:entity.ember")
@@ -345,11 +386,20 @@ public class ConfigHandler
     @Config.LangKey("config.nex:biome")
     public static class Biome
     {
+        @Config.Name("hell")
         public static Hell hell = new Hell();
-        public static RuthlessSands ruthless_sands = new RuthlessSands();
-        public static FungiForest fungi_forest = new FungiForest();
-        public static TorridWasteland torrid_wasteland = new TorridWasteland();
-        public static ArcticAbyss arctic_abyss = new ArcticAbyss();
+
+        @Config.Name("ruthless_sands")
+        public static RuthlessSands ruthlessSands = new RuthlessSands();
+
+        @Config.Name("fungi_forest")
+        public static FungiForest fungiForest = new FungiForest();
+
+        @Config.Name("torrid_wasteland")
+        public static TorridWasteland torridWasteland = new TorridWasteland();
+
+        @Config.Name("arctic_abyss")
+        public static ArcticAbyss arcticAbyss = new ArcticAbyss();
 
         @Config.LangKey("config.nex:biome.hell")
         public static class Hell
@@ -405,18 +455,15 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.hell.generateVillages")
             public static boolean generateVillages = true;
 
-
             @Config.LangKey("config.nex:biome.hell.biomeRarity")
             @Config.Comment({"The lower the number, the rarer the Hell is", "The higher the number, the more common the Hell biome is"})
             @Config.RangeInt(min = 1, max = 128)
             public static int biomeRarity = 10;
 
-
             @Config.LangKey("config.nex:biome.hell.lavaSpringRarity")
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int lavaSpringRarity = 8;
-
 
             @Config.LangKey("config.nex:biome.hell.fireRarity")
             @Config.Comment({"The lower the number, the rarer Fire is", "The higher the number, the more common Fire is"})
@@ -428,7 +475,6 @@ public class ConfigHandler
             @Config.RangeInt(min = 1, max = 128)
             public static int glowstonePass1Rarity = 10;
 
-
             @Config.LangKey("config.nex:biome.hell.glowstonePass2Rarity")
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
             @Config.RangeInt(min = 1, max = 128)
@@ -439,36 +485,30 @@ public class ConfigHandler
             @Config.RangeInt(min = 1, max = 128)
             public static int quartzOreRarity = 16;
 
-
             @Config.LangKey("config.nex:biome.hell.magmaRarity")
             @Config.Comment({"The lower the number, the rarer Magma is", "The higher the number, the more common Magma is"})
             @Config.RangeInt(min = 1, max = 128)
             public static int magmaRarity = 4;
-
 
             @Config.LangKey("config.nex:biome.hell.lavaTrapRarity")
             @Config.Comment({"The lower the number, the rarer Lava Traps are", "The higher the number, the more common Lava Traps are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int lavaTrapRarity = 16;
 
-
             @Config.LangKey("config.nex:biome.hell.cryptRarity")
             @Config.Comment({"The higher the number, the rarer Crypts are", "The lower the number, the more common Crypts are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int cryptRarity = 64;
-
 
             @Config.LangKey("config.nex:biome.hell.graveRarity")
             @Config.Comment({"The higher the number, the rarer Graves are", "The lower the number, the more common Graves are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int graveRarity = 24;
 
-
             @Config.LangKey("config.nex:biome.hell.graveyardRarity")
             @Config.Comment({"The higher the number, the rarer Graveyards are", "The lower the number, the more common Graveyards are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int graveyardRarity = 64;
-
 
             @Config.LangKey("config.nex:biome.hell.sarcophagusRarity")
             @Config.Comment({"The higher the number, the rarer Sarcophagus are", "The lower the number, the more common Sarcophagus are"})
@@ -533,12 +573,10 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.ruthlessSands.generateWaypoints")
             public static boolean generateWaypoints = true;
 
-
             @Config.LangKey("config.nex:biome.ruthlessSands.biomeRarity")
             @Config.Comment({"The lower the number, the rarer The Ruthless Sands is", "The higher the number, the more common the Ruthless Sands biome is"})
             @Config.RangeInt(min = 1, max = 128)
             public static int biomeRarity = 8;
-
 
             @Config.LangKey("config.nex:biome.ruthlessSands.lavaSpringRarity")
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
@@ -704,7 +742,6 @@ public class ConfigHandler
         @Config.LangKey("config.nex:biome.torridWasteland.")
         public static class TorridWasteland
         {
-
             @Config.LangKey("config.nex:biome.torridWasteland.generateBiome")
             public static boolean generateBiome = true;
 
@@ -825,7 +862,6 @@ public class ConfigHandler
             @Config.RangeInt(min = 1, max = 128)
             public static int pyramidRarity = 4;
         }
-
 
         @Config.LangKey("config.nex:biome.arcticAbyss.")
         public static class ArcticAbyss
