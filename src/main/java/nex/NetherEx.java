@@ -32,14 +32,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, guiFactory = NetherEx.GUI_FACTORY, updateJSON = NetherEx.UPDATE_JSON)
+@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, updateJSON = NetherEx.UPDATE_JSON)
 public class NetherEx
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
     public static final String DEPENDENCIES = "required-after:forge@[1.11.2-13.20.0.2228,);";
-    public static final String GUI_FACTORY = "nex.client.gui.GuiFactory";
     public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/6bfffa8b9e881eceb5a76a735eabba73";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
