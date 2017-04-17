@@ -84,7 +84,7 @@ public class ModelPigtificate extends ModelBase
         head.rotateAngleY = netHeadYaw * 0.017453292F;
         head.rotateAngleX = headPitch * 0.017453292F;
 
-        rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
+        rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
         leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
         rightArm.rotateAngleZ = 0.0F;
         leftArm.rotateAngleZ = 0.0F;
