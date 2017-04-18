@@ -60,6 +60,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -73,6 +74,7 @@ import nex.entity.monster.EntitySpore;
 import nex.entity.neutral.EntityMogus;
 import nex.init.*;
 import nex.util.ArmorUtil;
+import nex.village.NetherVillageManager;
 import nex.world.NetherExTeleporter;
 
 import java.lang.reflect.Field;
@@ -105,6 +107,16 @@ public class EventHandler
                 }
             }
         }
+        if(world.provider.getDimension() == -1)
+        {
+            NetherVillageManager.init(world);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onWorldTick(TickEvent.WorldTickEvent event)
+    {
+        NetherVillageManager.getNetherVillages().tick();
     }
 
     @SubscribeEvent

@@ -21,51 +21,72 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.entity.ai.*;
+import nex.init.NetherExBlocks;
+import nex.init.NetherExItems;
 import nex.trade.TradeCareer;
 import nex.trade.TradeListManager;
 import nex.trade.TradeProfession;
+import nex.village.NetherVillage;
+import nex.village.NetherVillageManager;
 
 import java.util.List;
+import java.util.UUID;
 
+@SuppressWarnings("ConstantConditions")
 public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 {
     private static final DataParameter<Integer> PROFESSION = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> CAREER = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> CAREER_LEVEL = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
 
+    private int randomTickDivider;
+
+    NetherVillage village;
+
     private boolean needsInitialization;
+    private boolean willingToMate;
+    private boolean mating;
+    private boolean additionalTasksSet;
+    private boolean lookingForHome;
 
     private int timeUntilRestock;
 
     private EntityPlayer customer;
     private MerchantRecipeList tradeList;
-    private String lastCustomer;
+    private UUID lastCustomer;
+
+    private final InventoryBasic inventory;
 
     public EntityPigtificate(World world)
     {
         super(world);
 
+        inventory = new InventoryBasic("Items", false, 8);
         setSize(0.6F, 2.2F);
+        isImmuneToFire = true;
         setRandomProfession();
     }
 
@@ -74,10 +95,21 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     {
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-        tasks.addTask(2, new EntityAIWander(this, 0.6D));
-        tasks.addTask(3, new EntityAIMoveTowardsRestriction(this, 0.6D));
-        tasks.addTask(4, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-        tasks.addTask(5, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        tasks.addTask(1, new EntityAIAvoidEntity(this, EntityEvoker.class, 12.0F, 0.8D, 0.8D));
+        tasks.addTask(1, new EntityAIAvoidEntity(this, EntityVindicator.class, 8.0F, 0.8D, 0.8D));
+        tasks.addTask(1, new EntityAIAvoidEntity(this, EntityVex.class, 8.0F, 0.6D, 0.6D));
+        tasks.addTask(1, new EntityAIPigtificateTradePlayer(this));
+        tasks.addTask(1, new EntityAIPigtificateLookAtTradePlayer(this));
+        tasks.addTask(2, new EntityAIMoveInFenceGates(this));
+        tasks.addTask(3, new EntityAIRestrictOpenFenceGate(this));
+        tasks.addTask(4, new EntityAIOpenFenceGate(this, true));
+        tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
+        tasks.addTask(6, new EntityAIPigtificateMate(this));
+        //tasks.addTask(7, new EntityAIFollowGolem(this));
+        tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
+        tasks.addTask(9, new EntityAIPigtificateInteract(this));
+        tasks.addTask(9, new EntityAIWanderAvoidWater(this, 0.6D));
+        tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
     @Override
@@ -97,11 +129,70 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public void handleStatusUpdate(byte id)
+    {
+        if(id == 12)
+        {
+            spawnParticles(EnumParticleTypes.HEART);
+        }
+        else if(id == 13)
+        {
+            spawnParticles(EnumParticleTypes.VILLAGER_ANGRY);
+        }
+        else if(id == 14)
+        {
+            spawnParticles(EnumParticleTypes.VILLAGER_HAPPY);
+        }
+        else
+        {
+            super.handleStatusUpdate(id);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void spawnParticles(EnumParticleTypes particleType)
+    {
+        for(int i = 0; i < 5; ++i)
+        {
+            double d0 = rand.nextGaussian() * 0.02D;
+            double d1 = rand.nextGaussian() * 0.02D;
+            double d2 = rand.nextGaussian() * 0.02D;
+            world.spawnParticle(particleType, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + 1.0D + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d0, d1, d2, new int[0]);
+        }
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return isChild() ? 0.81F : 1.62F;
+    }
+
+    @Override
     protected void updateAITasks()
     {
-        if(!hasHome())
+        if(randomTickDivider-- <= 0)
         {
-            setHomePosAndDistance(new BlockPos(this), 48);
+            BlockPos blockpos = new BlockPos(this);
+            NetherVillageManager.getNetherVillages().addToNetherVillagerPositionList(blockpos);
+            randomTickDivider = 70 + rand.nextInt(50);
+            village = NetherVillageManager.getNetherVillages().getNearestNetherVillage(blockpos, 32);
+
+            if(village == null)
+            {
+                detachHome();
+            }
+            else
+            {
+                BlockPos blockpos1 = village.getCenter();
+                setHomePosAndDistance(blockpos1, village.getNetherVillageRadius());
+
+                if(lookingForHome)
+                {
+                    lookingForHome = false;
+                    village.setDefaultPlayerReputation(5);
+                }
+            }
         }
 
         if(!isTrading() && timeUntilRestock > 0)
@@ -122,6 +213,13 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
                     populateTradeList();
                     needsInitialization = false;
+
+                    if(village != null && lastCustomer != null)
+                    {
+                        world.setEntityState(this, (byte) 14);
+                        village.modifyPlayerReputation(lastCustomer, 1);
+                    }
+
                 }
 
                 addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
@@ -132,17 +230,53 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
+    protected void updateEquipmentIfNeeded(EntityItem itemEntity)
+    {
+        ItemStack stack = itemEntity.getEntityItem();
+        Item item = stack.getItem();
+
+        if(canPickupItem(item))
+        {
+            ItemStack stack1 = inventory.addItem(stack);
+
+            if(stack1.isEmpty())
+            {
+                itemEntity.setDead();
+            }
+            else
+            {
+                stack.setCount(stack1.getCount());
+            }
+        }
+    }
+
+    @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
         compound.setInteger("Profession", getProfession());
         compound.setInteger("Career", getCareer());
         compound.setInteger("CareerLevel", getCareerLevel());
+        compound.setBoolean("Willing", willingToMate);
 
         if(tradeList != null)
         {
             compound.setTag("Trades", tradeList.getRecipiesAsTags());
         }
+
+        NBTTagList list = new NBTTagList();
+
+        for(int i = 0; i < inventory.getSizeInventory(); i++)
+        {
+            ItemStack stack = inventory.getStackInSlot(i);
+
+            if(!stack.isEmpty())
+            {
+                list.appendTag(stack.writeToNBT(new NBTTagCompound()));
+            }
+        }
+
+        compound.setTag("Inventory", list);
     }
 
     @Override
@@ -152,12 +286,28 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         setProfession(compound.getInteger("Profession"));
         setCareer(compound.getInteger("Career"));
         setCareerLevel(compound.getInteger("CareerLevel"));
+        setWillingToMate(compound.getBoolean("Willing"));
 
         if(compound.hasKey("Trades", 10))
         {
             NBTTagCompound trades = compound.getCompoundTag("Trades");
             tradeList = new MerchantRecipeList(trades);
         }
+
+        NBTTagList list = compound.getTagList("Inventory", 10);
+
+        for(int i = 0; i < list.tagCount(); ++i)
+        {
+            ItemStack stack = new ItemStack(list.getCompoundTagAt(i));
+
+            if(!stack.isEmpty())
+            {
+                inventory.addItem(stack);
+            }
+        }
+
+        setCanPickUpLoot(true);
+        setAdditionalAITasks();
     }
 
     @Override
@@ -204,6 +354,66 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
+    public void setRevengeTarget(EntityLivingBase livingBase)
+    {
+        super.setRevengeTarget(livingBase);
+
+        if(village != null && livingBase != null)
+        {
+            village.addOrRenewAggressor(livingBase);
+
+            if(livingBase instanceof EntityPlayer)
+            {
+                int i = -1;
+
+                if(isChild())
+                {
+                    i = -3;
+                }
+
+                village.modifyPlayerReputation(livingBase.getUniqueID(), i);
+
+                if(isEntityAlive())
+                {
+                    world.setEntityState(this, (byte) 13);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onDeath(DamageSource cause)
+    {
+        if(village != null)
+        {
+            Entity entity = cause.getEntity();
+
+            if(entity != null)
+            {
+                if(entity instanceof EntityPlayer)
+                {
+                    village.modifyPlayerReputation(entity.getUniqueID(), -2);
+                }
+                else if(entity instanceof IMob)
+                {
+                    village.endMatingSeason();
+                }
+            }
+            else
+            {
+                EntityPlayer entityplayer = world.getClosestPlayerToEntity(this, 16.0D);
+
+                if(entityplayer != null)
+                {
+                    village.endMatingSeason();
+                }
+            }
+        }
+
+        super.onDeath(cause);
+    }
+
+    @Override
     public boolean canBeLeashedTo(EntityPlayer player)
     {
         return false;
@@ -213,6 +423,29 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     protected boolean canDespawn()
     {
         return false;
+    }
+
+    @Override
+    public boolean replaceItemInInventory(int inventorySlot, ItemStack stack)
+    {
+        if(super.replaceItemInInventory(inventorySlot, stack))
+        {
+            return true;
+        }
+        else
+        {
+            int i = inventorySlot - 300;
+
+            if(i >= 0 && i < inventory.getSizeInventory())
+            {
+                inventory.setInventorySlotContents(i, stack);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
     @Override
@@ -276,10 +509,11 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         {
             timeUntilRestock = 40;
             needsInitialization = true;
+            willingToMate = true;
 
             if(getCustomer() != null)
             {
-                lastCustomer = getCustomer().getName();
+                lastCustomer = getCustomer().getUniqueID();
             }
             else
             {
@@ -312,6 +546,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         return new BlockPos(this);
     }
 
+    private void setAdditionalAITasks()
+    {
+        if(!additionalTasksSet)
+        {
+            additionalTasksSet = true;
+        }
+    }
+
     private void populateTradeList()
     {
         if(getCareer() != 0 && getCareerLevel() != 0)
@@ -341,6 +583,45 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         return customer != null;
     }
 
+    public boolean isMating()
+    {
+        return mating;
+    }
+
+    private boolean canPickupItem(Item itemIn)
+    {
+        return itemIn == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) || itemIn == NetherExItems.FOOD_MUSHROOM_ENOKI;
+    }
+
+    private boolean hasEnoughItems(int multiplier)
+    {
+        for(int i = 0; i < inventory.getSizeInventory(); i++)
+        {
+            ItemStack stack = inventory.getStackInSlot(i);
+
+            if(!stack.isEmpty())
+            {
+                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 32 * multiplier))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean canAbandonItems()
+    {
+        return hasEnoughItems(2);
+    }
+
+    public boolean wantsMoreFood()
+    {
+        boolean flag = getProfession() == 0;
+        return flag ? !hasEnoughItems(5) : !hasEnoughItems(1);
+    }
+
     public int getProfession()
     {
         return dataManager.get(PROFESSION);
@@ -354,6 +635,47 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     public int getCareerLevel()
     {
         return dataManager.get(CAREER_LEVEL);
+    }
+
+    public boolean getWillingToMate(boolean updateFirst)
+    {
+        if(!willingToMate && updateFirst && hasEnoughItems(1))
+        {
+            boolean flag = false;
+
+            for(int i = 0; i < inventory.getSizeInventory(); ++i)
+            {
+                ItemStack stack = inventory.getStackInSlot(i);
+
+                if(!stack.isEmpty())
+                {
+                    if(stack.getItem() == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) && stack.getCount() >= 4)
+                    {
+                        flag = true;
+                        inventory.decrStackSize(i, 3);
+                    }
+                    else if(stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 24)
+                    {
+                        flag = true;
+                        inventory.decrStackSize(i, 12);
+                    }
+                }
+
+                if(flag)
+                {
+                    world.setEntityState(this, (byte) 18);
+                    willingToMate = true;
+                    break;
+                }
+            }
+        }
+
+        return willingToMate;
+    }
+
+    public InventoryBasic getInventory()
+    {
+        return inventory;
     }
 
     private void setRandomProfession()
@@ -411,5 +733,15 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         }
 
         dataManager.set(CAREER_LEVEL, level);
+    }
+
+    public void setWillingToMate(boolean willingToMateIn)
+    {
+        willingToMate = willingToMateIn;
+    }
+
+    public void setMating(boolean matingIn)
+    {
+        mating = matingIn;
     }
 }
