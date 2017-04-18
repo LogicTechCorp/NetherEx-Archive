@@ -28,7 +28,7 @@ import nex.village.NetherVillageManager;
 public class EntityAIRestrictOpenFenceGate extends EntityAIBase
 {
     private final EntityCreature entityObj;
-    private NetherVillageFenceGateInfo frontDoor;
+    private NetherVillageFenceGateInfo fenceGate;
 
     public EntityAIRestrictOpenFenceGate(EntityCreature creatureIn)
     {
@@ -58,8 +58,8 @@ public class EntityAIRestrictOpenFenceGate extends EntityAIBase
             }
             else
             {
-                frontDoor = village.getNearestFenceGate(blockpos);
-                return frontDoor != null && (double) frontDoor.getDistanceToInsideBlockSq(blockpos) < 2.25D;
+                fenceGate = village.getNearestFenceGate(blockpos);
+                return fenceGate != null && (double) fenceGate.getDistanceToInsideBlockSq(blockpos) < 2.25D;
             }
         }
     }
@@ -67,7 +67,7 @@ public class EntityAIRestrictOpenFenceGate extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return !entityObj.world.isDaytime() && (!frontDoor.getIsDetachedFromNetherVillageFlag() && frontDoor.isInsideSide(new BlockPos(entityObj)));
+        return !entityObj.world.isDaytime() && (!fenceGate.getIsDetachedFromNetherVillageFlag() && fenceGate.isInsideSide(new BlockPos(entityObj)));
     }
 
     @Override
@@ -82,12 +82,12 @@ public class EntityAIRestrictOpenFenceGate extends EntityAIBase
     {
         ((PathNavigateGround) entityObj.getNavigator()).setBreakDoors(true);
         ((PathNavigateGround) entityObj.getNavigator()).setEnterDoors(true);
-        frontDoor = null;
+        fenceGate = null;
     }
 
     @Override
     public void updateTask()
     {
-        frontDoor.incrementFenceGateOpeningRestrictionCounter();
+        fenceGate.incrementFenceGateOpeningRestrictionCounter();
     }
 }

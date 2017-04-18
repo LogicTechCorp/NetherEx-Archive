@@ -107,10 +107,8 @@ public class EventHandler
                 }
             }
         }
-        if(world.provider.getDimension() == -1)
-        {
-            NetherVillageManager.init(world);
-        }
+
+        NetherVillageManager.init(world);
     }
 
     @SubscribeEvent

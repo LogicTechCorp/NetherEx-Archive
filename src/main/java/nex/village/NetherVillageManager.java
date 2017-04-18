@@ -29,7 +29,7 @@ public class NetherVillageManager
 
     public static void init(World world)
     {
-        LOGGER.info("Reading Nether Village data.");
+        LOGGER.info("Attempting to read the Nether Village data.");
 
         String s = NetherVillageCollection.fileNameForProvider(world.provider);
         NetherVillageCollection netherVillageCollection = (NetherVillageCollection) world.getPerWorldStorage().getOrLoadData(NetherVillageCollection.class, s);

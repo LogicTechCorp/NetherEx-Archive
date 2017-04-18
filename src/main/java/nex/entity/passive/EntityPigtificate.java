@@ -35,6 +35,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -85,8 +86,10 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         super(world);
 
         inventory = new InventoryBasic("Items", false, 8);
-        setSize(0.6F, 2.2F);
         isImmuneToFire = true;
+        ((PathNavigateGround)getNavigator()).setBreakDoors(true);
+        setCanPickUpLoot(true);
+        setSize(0.6F, 1.95F);
         setRandomProfession();
     }
 
@@ -171,14 +174,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     @Override
     protected void updateAITasks()
     {
-        if(randomTickDivider-- <= 0)
+        if (randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
             NetherVillageManager.getNetherVillages().addToNetherVillagerPositionList(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
             village = NetherVillageManager.getNetherVillages().getNearestNetherVillage(blockpos, 32);
 
-            if(village == null)
+            if (village == null)
             {
                 detachHome();
             }
@@ -195,31 +198,30 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             }
         }
 
-        if(!isTrading() && timeUntilRestock > 0)
+        if (!isTrading() && timeUntilRestock > 0)
         {
             --timeUntilRestock;
 
-            if(timeUntilRestock <= 0)
+            if (timeUntilRestock <= 0)
             {
-                if(needsInitialization)
+                if (needsInitialization)
                 {
-                    for(MerchantRecipe trade : tradeList)
+                    for (MerchantRecipe merchantrecipe : tradeList)
                     {
-                        if(trade.isRecipeDisabled())
+                        if (merchantrecipe.isRecipeDisabled())
                         {
-                            trade.increaseMaxTradeUses(rand.nextInt(6) + rand.nextInt(6) + 2);
+                            merchantrecipe.increaseMaxTradeUses(rand.nextInt(6) + rand.nextInt(6) + 2);
                         }
                     }
 
                     populateTradeList();
                     needsInitialization = false;
 
-                    if(village != null && lastCustomer != null)
+                    if (village != null && lastCustomer != null)
                     {
-                        world.setEntityState(this, (byte) 14);
+                        world.setEntityState(this, (byte)14);
                         village.modifyPlayerReputation(lastCustomer, 1);
                     }
-
                 }
 
                 addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));

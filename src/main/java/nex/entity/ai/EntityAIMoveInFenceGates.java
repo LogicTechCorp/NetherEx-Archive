@@ -44,7 +44,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     {
         BlockPos blockpos = new BlockPos(entityObj);
 
-        if((!entityObj.world.isDaytime() || entityObj.world.isRaining() && !entityObj.world.getBiome(blockpos).canRain()) && entityObj.world.provider.getDimension() == -1 || entityObj.world.provider.hasSkyLight())
+        if((!entityObj.world.isDaytime() || entityObj.world.isRaining() && !entityObj.world.getBiome(blockpos).canRain()) && (entityObj.world.provider.getDimension() == -1 || entityObj.world.provider.hasSkyLight()))
         {
             if(entityObj.getRNG().nextInt(50) != 0)
             {
