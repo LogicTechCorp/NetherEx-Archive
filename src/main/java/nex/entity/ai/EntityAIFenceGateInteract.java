@@ -63,7 +63,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
                 for(int i = 0; i < Math.min(path.getCurrentPathIndex() + 2, path.getCurrentPathLength()); ++i)
                 {
                     PathPoint pathpoint = path.getPathPointFromIndex(i);
-                    fenceGatePos = new BlockPos(pathpoint.xCoord, pathpoint.yCoord + 1, pathpoint.zCoord);
+                    fenceGatePos = new BlockPos(pathpoint.xCoord, pathpoint.yCoord, pathpoint.zCoord);
 
                     if(theEntity.getDistanceSq((double) fenceGatePos.getX(), theEntity.posY, (double) fenceGatePos.getZ()) <= 2.25D)
                     {
@@ -76,7 +76,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
                     }
                 }
 
-                fenceGatePos = (new BlockPos(theEntity)).up();
+                fenceGatePos = (new BlockPos(theEntity));
                 fenceGate = getFenceGate(fenceGatePos);
                 return fenceGate != null;
             }

@@ -25,12 +25,12 @@ import nex.village.NetherVillage;
 import nex.village.NetherVillageFenceGateInfo;
 import nex.village.NetherVillageManager;
 
-public class EntityAIRestrictOpenFenceGate extends EntityAIBase
+public class EntityAIRestrictFenceGateUse extends EntityAIBase
 {
     private final EntityCreature entityObj;
     private NetherVillageFenceGateInfo fenceGate;
 
-    public EntityAIRestrictOpenFenceGate(EntityCreature creatureIn)
+    public EntityAIRestrictFenceGateUse(EntityCreature creatureIn)
     {
         entityObj = creatureIn;
 

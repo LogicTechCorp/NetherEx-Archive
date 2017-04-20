@@ -43,7 +43,7 @@ public class NetherVillageFenceGateInfo
     {
         fenceGateBlockPos = pos;
         insideDirection = facing;
-        insideBlock = pos.offset(facing, 2);
+        insideBlock = pos.offset(facing, 3);
         lastActivityTimestamp = timestamp;
     }
 

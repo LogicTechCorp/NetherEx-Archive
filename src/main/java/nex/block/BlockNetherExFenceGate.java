@@ -21,6 +21,7 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -53,6 +54,12 @@ public class BlockNetherExFenceGate extends BlockFenceGate
         setSoundType(SoundType.STONE);
         setRegistryName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, NetherEx.MOD_ID + ":fence_gate_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name)));
         setUnlocalizedName(NetherEx.MOD_ID + gateName + gateType);
+    }
+
+    @Override
+    public PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return state.getValue(OPEN) ? PathNodeType.DOOR_OPEN : PathNodeType.DOOR_WOOD_CLOSED;
     }
 
     @Override

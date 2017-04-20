@@ -87,7 +87,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
         inventory = new InventoryBasic("Items", false, 8);
         isImmuneToFire = true;
-        ((PathNavigateGround)getNavigator()).setBreakDoors(true);
+        ((PathNavigateGround) getNavigator()).setBreakDoors(true);
         setCanPickUpLoot(true);
         setSize(0.6F, 1.95F);
         setRandomProfession();
@@ -104,8 +104,8 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         tasks.addTask(1, new EntityAIPigtificateTradePlayer(this));
         tasks.addTask(1, new EntityAIPigtificateLookAtTradePlayer(this));
         tasks.addTask(2, new EntityAIMoveInFenceGates(this));
-        tasks.addTask(3, new EntityAIRestrictOpenFenceGate(this));
-        tasks.addTask(4, new EntityAIOpenFenceGate(this, true));
+        tasks.addTask(3, new EntityAIRestrictFenceGateUse(this));
+        tasks.addTask(4, new EntityAIUseFenceGate(this, true));
         tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
         tasks.addTask(6, new EntityAIPigtificateMate(this));
         //tasks.addTask(7, new EntityAIFollowGolem(this));
@@ -174,14 +174,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     @Override
     protected void updateAITasks()
     {
-        if (randomTickDivider-- <= 0)
+        if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
             NetherVillageManager.getNetherVillages().addToNetherVillagerPositionList(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
             village = NetherVillageManager.getNetherVillages().getNearestNetherVillage(blockpos, 32);
 
-            if (village == null)
+            if(village == null)
             {
                 detachHome();
             }
@@ -198,17 +198,17 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             }
         }
 
-        if (!isTrading() && timeUntilRestock > 0)
+        if(!isTrading() && timeUntilRestock > 0)
         {
             --timeUntilRestock;
 
-            if (timeUntilRestock <= 0)
+            if(timeUntilRestock <= 0)
             {
-                if (needsInitialization)
+                if(needsInitialization)
                 {
-                    for (MerchantRecipe merchantrecipe : tradeList)
+                    for(MerchantRecipe merchantrecipe : tradeList)
                     {
-                        if (merchantrecipe.isRecipeDisabled())
+                        if(merchantrecipe.isRecipeDisabled())
                         {
                             merchantrecipe.increaseMaxTradeUses(rand.nextInt(6) + rand.nextInt(6) + 2);
                         }
@@ -217,9 +217,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
                     populateTradeList();
                     needsInitialization = false;
 
-                    if (village != null && lastCustomer != null)
+                    if(village != null && lastCustomer != null)
                     {
-                        world.setEntityState(this, (byte)14);
+                        world.setEntityState(this, (byte) 14);
                         village.modifyPlayerReputation(lastCustomer, 1);
                     }
                 }

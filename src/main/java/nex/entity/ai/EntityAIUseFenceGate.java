@@ -22,12 +22,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
-public class EntityAIOpenFenceGate extends EntityAIFenceGateInteract
+public class EntityAIUseFenceGate extends EntityAIFenceGateInteract
 {
     boolean closeFenceGate;
     int closeFenceGateTemporisation;
 
-    public EntityAIOpenFenceGate(EntityLiving entitylivingIn, boolean shouldClose)
+    public EntityAIUseFenceGate(EntityLiving entitylivingIn, boolean shouldClose)
     {
         super(entitylivingIn);
         theEntity = entitylivingIn;
@@ -70,7 +70,7 @@ public class EntityAIOpenFenceGate extends EntityAIFenceGateInteract
 
         if(state.getBlock() instanceof BlockFenceGate)
         {
-            world.setBlockState(fenceGatePos, state.withProperty(BlockFenceGate.OPEN, true), 10);
+            world.setBlockState(fenceGatePos, state.withProperty(BlockFenceGate.OPEN, open), 10);
             world.markBlockRangeForRenderUpdate(fenceGatePos, fenceGatePos);
             world.playEvent(null, open ? 1008 : 1014, fenceGatePos, 0);
         }
