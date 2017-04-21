@@ -94,7 +94,7 @@ public class EntitySpore extends EntityMob
         {
             setCounter(getCounter() + 1);
 
-            if(getCounter() >= (ConfigHandler.Entity.Spore.growthTime / (getStage() + 1)) * 20)
+            if(getCounter() >= (ConfigHandler.entity.spore.growthTime / (getStage() + 1)) * 20)
             {
                 setCounter(0);
                 setStage(getStage() + 1);
@@ -109,7 +109,7 @@ public class EntitySpore extends EntityMob
                 if(!world.isRemote)
                 {
 
-                    int creeperSpawns = rand.nextInt(ConfigHandler.Entity.Spore.creeperSpawns) + 1;
+                    int creeperSpawns = rand.nextInt(ConfigHandler.entity.spore.creeperSpawns) + 1;
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {

@@ -73,20 +73,20 @@ public class BlockRime extends BlockNetherEx
     {
         IBlockState state = world.getBlockState(pos);
 
-        if(state == Blocks.WATER.getDefaultState() && ConfigHandler.Block.Rime.canFreezeWater)
+        if(state == Blocks.WATER.getDefaultState() && ConfigHandler.block.rime.canFreezeWater)
         {
             world.setBlockState(pos, Blocks.ICE.getDefaultState(), 3);
         }
-        else if(state == Blocks.LAVA.getDefaultState() && ConfigHandler.Block.Rime.canFreezeLava)
+        else if(state == Blocks.LAVA.getDefaultState() && ConfigHandler.block.rime.canFreezeLava)
         {
             world.setBlockState(pos, Blocks.MAGMA.getDefaultState(), 3);
         }
 
         for(EntityLivingBase entity : entities)
         {
-            boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffect.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+            boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
-            if(canFreeze && ConfigHandler.Block.Rime.canFreezeMobs)
+            if(canFreeze && ConfigHandler.block.rime.canFreezeMobs)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
