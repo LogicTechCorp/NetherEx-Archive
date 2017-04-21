@@ -99,7 +99,7 @@ public class EntityBrute extends EntityMob
             if(getDistanceSq(getPosToCharge()) <= 0.75F)
             {
                 setCharging(false);
-                setCooldown(ConfigHandler.Entity.Brute.chargeCooldown * 20 / 4);
+                setCooldown(ConfigHandler.entity.brute.chargeCooldown * 20 / 4);
             }
         }
         if(getCooldown() > 0)

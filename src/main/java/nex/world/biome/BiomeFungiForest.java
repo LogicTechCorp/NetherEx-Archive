@@ -78,9 +78,9 @@ public class BiomeFungiForest extends BiomeNetherEx
         topBlock = NetherExBlocks.BLOCK_HYPHAE.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
 
-        if(ConfigHandler.Biome.FungiForest.generateBiome)
+        if(ConfigHandler.biome.fungiForest.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.Biome.FungiForest.biomeRarity, Blocks.LAVA.getDefaultState());
+            NetherExBiomes.addBiome(this, ConfigHandler.biome.fungiForest.biomeRarity, Blocks.LAVA.getDefaultState());
         }
     }
 
@@ -89,17 +89,17 @@ public class BiomeFungiForest extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.Biome.FungiForest.generateGlowstonePass1)
+        if(ConfigHandler.biome.fungiForest.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.Biome.FungiForest.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.biome.fungiForest.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateGlowstonePass2)
+        if(ConfigHandler.biome.fungiForest.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigHandler.Biome.FungiForest.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.biome.fungiForest.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -107,9 +107,9 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.Biome.FungiForest.generateQuartzOre)
+        if(ConfigHandler.biome.fungiForest.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigHandler.Biome.FungiForest.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.biome.fungiForest.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -117,65 +117,65 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.Biome.FungiForest.generateCrypts)
+        if(ConfigHandler.biome.fungiForest.generateCrypts)
         {
-            if(rand.nextInt(ConfigHandler.Biome.FungiForest.cryptRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.fungiForest.cryptRarity) == 0)
             {
                 crypt.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateGraves)
+        if(ConfigHandler.biome.fungiForest.generateGraves)
         {
-            if(rand.nextInt(ConfigHandler.Biome.FungiForest.graveRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.fungiForest.graveRarity) == 0)
             {
                 grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateGraveyards)
+        if(ConfigHandler.biome.fungiForest.generateGraveyards)
         {
-            if(rand.nextInt(ConfigHandler.Biome.FungiForest.graveyardRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.fungiForest.graveyardRarity) == 0)
             {
                 graveyard.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateSarcophagus)
+        if(ConfigHandler.biome.fungiForest.generateSarcophagus)
         {
-            if(rand.nextInt(ConfigHandler.Biome.FungiForest.sarcophagusRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.fungiForest.sarcophagusRarity) == 0)
             {
                 sarcophagus.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateTemples)
+        if(ConfigHandler.biome.fungiForest.generateTemples)
         {
-            if(rand.nextInt(ConfigHandler.Biome.FungiForest.templeRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.fungiForest.templeRarity) == 0)
             {
                 temple.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateCastles)
+        if(ConfigHandler.biome.fungiForest.generateCastles)
         {
-            if(rand.nextInt(ConfigHandler.Biome.FungiForest.castleRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.fungiForest.castleRarity) == 0)
             {
                 castle.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateElderMushrooms)
+        if(ConfigHandler.biome.fungiForest.generateElderMushrooms)
         {
-            for(int i = 0; i < ConfigHandler.Biome.FungiForest.elderMushroomRarity * 16; i++)
+            for(int i = 0; i < ConfigHandler.biome.fungiForest.elderMushroomRarity * 16; i++)
             {
                 elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.FungiForest.generateEnokiMushrooms)
+        if(ConfigHandler.biome.fungiForest.generateEnokiMushrooms)
         {
-            for(int i = 0; i < ConfigHandler.Biome.FungiForest.enokiMushroomRarity * 16; i++)
+            for(int i = 0; i < ConfigHandler.biome.fungiForest.enokiMushroomRarity * 16; i++)
             {
                 enokiMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
             }

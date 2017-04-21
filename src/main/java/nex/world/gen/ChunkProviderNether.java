@@ -223,12 +223,12 @@ public class ChunkProviderNether extends ChunkProviderHell
                                         topState = biome.topBlock;
                                         fillerState = biome.fillerBlock;
 
-                                        if(ConfigHandler.Dimension.Nether.generateGravel && genGravel)
+                                        if(ConfigHandler.dimension.nether.generateGravel && genGravel)
                                         {
                                             topState = Blocks.GRAVEL.getDefaultState();
                                         }
 
-                                        if(ConfigHandler.Dimension.Nether.generateSoulSand && genSoulSand)
+                                        if(ConfigHandler.dimension.nether.generateSoulSand && genSoulSand)
                                         {
                                             topState = Blocks.SOUL_SAND.getDefaultState();
                                             fillerState = Blocks.SOUL_SAND.getDefaultState();
