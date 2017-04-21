@@ -10,7 +10,8 @@
                     "oceanBlock": {
                         "name": "minecraft:lava",
                         "meta": 0
-                    }
+                    },
+                    "type": "COOL"
                 }
             ]
         },
@@ -23,7 +24,8 @@
                     "oceanBlock": {
                         "name": "minecraft:diamond_block",
                         "meta": 0
-                    }
+                    },
+                    "type": "COOL"
                 }
             ]
         }
