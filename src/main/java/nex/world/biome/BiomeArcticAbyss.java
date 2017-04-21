@@ -90,7 +90,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         if(ConfigHandler.biome.arcticAbyss.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.arcticAbyss.biomeRarity, Blocks.MAGMA.getDefaultState());
+            NetherExBiomes.addBiome(this, ConfigHandler.biome.arcticAbyss.biomeRarity, Blocks.MAGMA.getDefaultState(), BiomeTypeNetherEx.COLD);
         }
     }
 

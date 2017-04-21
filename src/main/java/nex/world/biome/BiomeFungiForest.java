@@ -80,7 +80,7 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         if(ConfigHandler.biome.fungiForest.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.fungiForest.biomeRarity, Blocks.LAVA.getDefaultState());
+            NetherExBiomes.addBiome(this, ConfigHandler.biome.fungiForest.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.COOL);
         }
     }
 

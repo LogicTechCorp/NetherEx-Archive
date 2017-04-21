@@ -27,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
 import nex.init.NetherExBiomes;
+import nex.world.biome.BiomeTypeNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -85,14 +86,14 @@ public class AdditionalBiomeManager
                         Block block = Block.getBlockFromName(additionalBiome.getOceanBlock().getName());
                         int meta = additionalBiome.getOceanBlock().getMeta();
                         IBlockState state = block.getStateFromMeta(meta);
+                        BiomeTypeNetherEx type = BiomeTypeNetherEx.valueOf(additionalBiome.getType().toUpperCase());
 
                         if(biome == null)
                         {
                             continue;
                         }
 
-                        NetherExBiomes.addBiome(biome, weight, state);
-
+                        NetherExBiomes.addBiome(biome, weight, state, type == null ? BiomeTypeNetherEx.WARM : type);
                         LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " biome list was added to the Nether.");
                     }
                 }

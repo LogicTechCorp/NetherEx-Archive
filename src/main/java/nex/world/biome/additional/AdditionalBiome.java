@@ -22,6 +22,7 @@ public class AdditionalBiome
     private String name;
     private int weight;
     private OceanBlock oceanBlock;
+    private String type;
 
     public String getName()
     {
@@ -36,6 +37,11 @@ public class AdditionalBiome
     public OceanBlock getOceanBlock()
     {
         return oceanBlock;
+    }
+
+    public String getType()
+    {
+        return type;
     }
 
     public static class OceanBlock

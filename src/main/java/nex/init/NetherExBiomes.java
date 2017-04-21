@@ -17,14 +17,10 @@
 
 package nex.init;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -36,17 +32,12 @@ import nex.world.biome.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Set;
-
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 @SuppressWarnings("ConstantConditions")
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBiomes
 {
-    private static Set<BiomeManager.BiomeEntry> biomeEntries = Sets.newHashSet();
-    private static Set<BiomeOceanEntry> oceanEntries = Sets.newHashSet();
-
     @GameRegistry.ObjectHolder("hell")
     public static final BiomeHell HELL = null;
 
@@ -99,94 +90,8 @@ public class NetherExBiomes
         LOGGER.info("The Nether has been overridden.");
     }
 
-    public static int getBiomeId(String name)
+    public static void addBiome(Biome biome, int weight, IBlockState state, BiomeTypeNetherEx type)
     {
-        for(BiomeManager.BiomeEntry entry : biomeEntries)
-        {
-            if(entry.biome.getRegistryName().getResourcePath().equals(name))
-            {
-                return Biome.getIdForBiome(entry.biome);
-            }
-        }
-
-        return -1;
-    }
-
-    public static boolean addBiome(Biome biome, int weight, IBlockState state)
-    {
-        if(weight <= 0)
-        {
-            weight = 1;
-        }
-
-        BiomeManager.BiomeEntry biomeEntry = new BiomeManager.BiomeEntry(biome, weight);
-
-        for(BiomeManager.BiomeEntry entry : biomeEntries)
-        {
-            if(biomeEntry.biome == entry.biome)
-            {
-                entry.itemWeight += biomeEntry.itemWeight;
-                break;
-            }
-        }
-
-        BiomeOceanEntry oceanEntry = new BiomeOceanEntry(biome, state == Blocks.AIR.getDefaultState() ? Blocks.LAVA.getDefaultState() : state);
-
-        if(!oceanEntries.contains(oceanEntry))
-        {
-            oceanEntries.add(oceanEntry);
-        }
-
-        return biomeEntries.add(biomeEntry);
-    }
-
-    public static boolean removeBiome(Biome biome)
-    {
-        for(BiomeManager.BiomeEntry biomeEntry : biomeEntries)
-        {
-            if(biome == biomeEntry.biome)
-            {
-                for(BiomeOceanEntry oceanEntry : oceanEntries)
-                {
-                    if(biomeEntry.biome == oceanEntry.biome)
-                    {
-                        oceanEntries.remove(oceanEntry);
-                    }
-                }
-                return biomeEntries.remove(biomeEntry);
-            }
-        }
-
-        return false;
-    }
-
-    public static ImmutableList<BiomeManager.BiomeEntry> getBiomeEntries()
-    {
-        return ImmutableList.copyOf(biomeEntries);
-    }
-
-    public static IBlockState getBiomeOceanBlock(Biome biome)
-    {
-        for(BiomeOceanEntry oceanEntry : oceanEntries)
-        {
-            if(biome == oceanEntry.biome)
-            {
-                return oceanEntry.state;
-            }
-        }
-
-        return Blocks.LAVA.getDefaultState();
-    }
-
-    public static class BiomeOceanEntry
-    {
-        public final Biome biome;
-        public final IBlockState state;
-
-        public BiomeOceanEntry(Biome biomeIn, IBlockState stateIn)
-        {
-            biome = biomeIn;
-            state = stateIn;
-        }
+        type.addBiomeEntry(biome, weight).addOceanEntry(biome, state);
     }
 }

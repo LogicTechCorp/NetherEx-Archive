@@ -81,7 +81,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         if(ConfigHandler.biome.torridWasteland.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.torridWasteland.biomeRarity, Blocks.LAVA.getDefaultState());
+            NetherExBiomes.addBiome(this, ConfigHandler.biome.torridWasteland.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.HOT);
         }
     }
 

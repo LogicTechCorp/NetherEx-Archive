@@ -85,7 +85,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         if(ConfigHandler.biome.ruthlessSands.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.ruthlessSands.biomeRarity, Blocks.LAVA.getDefaultState());
+            NetherExBiomes.addBiome(this, ConfigHandler.biome.ruthlessSands.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.WARM);
         }
     }
 

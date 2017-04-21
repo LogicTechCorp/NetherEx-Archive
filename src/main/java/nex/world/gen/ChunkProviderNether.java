@@ -42,7 +42,7 @@ import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
-import nex.init.NetherExBiomes;
+import nex.world.biome.BiomeTypeNetherEx;
 
 import java.util.List;
 import java.util.Random;
@@ -146,7 +146,8 @@ public class ChunkProviderNether extends ChunkProviderHell
                                 Biome biome = biomes[posX + posZ * 16];
 
                                 IBlockState state = null;
-                                IBlockState oceanState = NetherExBiomes.getBiomeOceanBlock(biome);
+                                BiomeTypeNetherEx type = BiomeTypeNetherEx.getTypeFromBiome(biome);
+                                IBlockState oceanState = type == null ? Blocks.LAVA.getDefaultState() : type.getBiomeOceanBlock(biome);
 
                                 if(posY < 32)
                                 {
@@ -199,7 +200,8 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                 IBlockState topState = biome.topBlock;
                 IBlockState fillerState = biome.fillerBlock;
-                IBlockState oceanState = NetherExBiomes.getBiomeOceanBlock(biome);
+                BiomeTypeNetherEx type = BiomeTypeNetherEx.getTypeFromBiome(biome);
+                IBlockState oceanState = type == null ? Blocks.LAVA.getDefaultState() : type.getBiomeOceanBlock(biome);
 
                 for(int y = 127; y >= 0; y--)
                 {

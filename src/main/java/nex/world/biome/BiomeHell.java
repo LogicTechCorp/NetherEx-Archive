@@ -82,7 +82,7 @@ public class BiomeHell extends BiomeNetherEx
 
         if(ConfigHandler.biome.hell.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.hell.biomeRarity, Blocks.LAVA.getDefaultState());
+            NetherExBiomes.addBiome(this, ConfigHandler.biome.hell.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.WARM);
         }
     }
 
