@@ -1,0 +1,31 @@
+{
+    "name": "Example",
+    "mods": [
+        {
+            "name": "minecraft",
+            "biomes": [
+                {
+                    "name": "plains",
+                    "weight": 10,
+                    "oceanBlock": {
+                        "name": "minecraft:lava",
+                        "meta": 0
+                    }
+                }
+            ]
+        },
+        {
+            "name": "biomesoplenty",
+            "biomes": [
+                {
+                    "name": "origin_island",
+                    "weight": 20,
+                    "oceanBlock": {
+                        "name": "minecraft:diamond_block",
+                        "meta": 0
+                    }
+                }
+            ]
+        }
+    ]
+}

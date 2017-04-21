@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.trade;
+package nex.village.trade;
 
 import java.util.List;
 
@@ -54,15 +54,15 @@ public class TradeOffer
 
     public class Output
     {
-        private String id;
+        private String name;
         private int meta;
         private Amount amount;
         private List<Enchantment> enchantments;
         private Display display;
 
-        public String getId()
+        public String getName()
         {
-            return id;
+            return name;
         }
 
         public int getMeta()
@@ -88,13 +88,13 @@ public class TradeOffer
 
     public class Input
     {
-        private String id;
+        private String name;
         private int meta;
         private Amount amount;
 
-        public String getId()
+        public String getName()
         {
-            return id;
+            return name;
         }
 
         public int getMeta()
@@ -126,12 +126,12 @@ public class TradeOffer
 
     public class Enchantment
     {
-        private String id;
+        private String name;
         private int level;
 
-        public String getId()
+        public String getName()
         {
-            return id;
+            return name;
         }
 
         public int getLevel()

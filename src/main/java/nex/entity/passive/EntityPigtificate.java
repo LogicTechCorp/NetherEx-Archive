@@ -48,11 +48,11 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
-import nex.trade.TradeCareer;
-import nex.trade.TradeListManager;
-import nex.trade.TradeProfession;
 import nex.village.NetherVillage;
 import nex.village.NetherVillageManager;
+import nex.village.trade.TradeCareer;
+import nex.village.trade.TradeListManager;
+import nex.village.trade.TradeProfession;
 
 import java.util.List;
 import java.util.UUID;

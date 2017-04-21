@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.trade;
+package nex.village.trade;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;

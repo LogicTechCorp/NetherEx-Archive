@@ -21,12 +21,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
-import nex.handler.IMCHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.RemapHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
-import nex.trade.TradeListManager;
+import nex.village.trade.TradeListManager;
+import nex.world.biome.additional.AdditionalBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,7 +41,7 @@ public class NetherEx
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
-    public static final String DEPENDENCIES = "required-after:forge@[1.11.2-13.20.0.2228,);";
+    public static final String DEPENDENCIES = "required-after:forge@[1.11.2-13.20.0.2282,);required-after:biomesoplenty;";
     public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/6bfffa8b9e881eceb5a76a735eabba73";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
@@ -65,7 +68,8 @@ public class NetherEx
 
         NetherExEntities.init();
         NetherExBiomes.init();
-        TradeListManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trades/default_trade_list.json"));
+        TradeListManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trade Lists"));
+        AdditionalBiomeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Biome Lists"));
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");
@@ -82,16 +86,6 @@ public class NetherEx
         proxy.init();
 
         LOGGER.info("Initialization completed.");
-    }
-
-    @Mod.EventHandler
-    public void onInterModCommunication(FMLInterModComms.IMCEvent event)
-    {
-        LOGGER.info("Inter Mod Compatibility started.");
-
-        IMCHandler.routeMessages(event);
-
-        LOGGER.info("Inter Mod Compatibility completed.");
     }
 
     @Mod.EventHandler

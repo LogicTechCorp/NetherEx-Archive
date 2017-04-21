@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.trade;
+package nex.village.trade;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableList;
@@ -33,14 +33,12 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.village.MerchantRecipe;
 import nex.NetherEx;
 import nex.util.NBTUtil;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -53,14 +51,12 @@ public class TradeListManager
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeListManager");
 
-    public static void init(File defaultTradeList)
+    public static void init(File directory)
     {
         for(TradeCareer.EnumType career : TradeCareer.EnumType.values())
         {
             offerLists.put(career, Maps.newHashMap());
         }
-
-        File directory = defaultTradeList.getParentFile();
 
         try
         {
@@ -69,34 +65,12 @@ public class TradeListManager
                 directory.mkdir();
             }
 
-            LOGGER.info("Attempting to copy the Pigtificate Trade List to the config folder.");
-
-            if(defaultTradeList.createNewFile())
-            {
-                try
-                {
-                    InputStream inStream = NetherEx.class.getResourceAsStream("/assets/nex/default_trade_list.json");
-                    FileWriter writer = new FileWriter(defaultTradeList);
-                    IOUtils.copy(inStream, writer);
-                    writer.close();
-                    inStream.close();
-                }
-                catch(Exception e)
-                {
-                    LOGGER.fatal("The attempt to copy the Pigtificate Trade List was unsuccessful.");
-                    LOGGER.fatal(e);
-                }
-
-                LOGGER.info("The Pigtificate Trade List was successfully copied to config folder.");
-            }
-            else
-            {
-                LOGGER.info("The Pigtificate Trade List is already located in the config folder.");
-            }
+            LOGGER.info("Copying the Trade List Directory to the config folder.");
+            FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_lists").getFile()), directory);
         }
         catch(IOException e)
         {
-            LOGGER.fatal("The attempt to copy the Pigtificate Trade List to the config folder was unsuccessful.");
+            LOGGER.fatal("The attempt to copy the Trade List Directory to the config folder was unsuccessful.");
             LOGGER.fatal(e);
         }
 
@@ -110,6 +84,11 @@ public class TradeListManager
                 String jsonText = Files.toString(tradeFile, Charsets.UTF_8);
                 TradeList tradeList = gson.fromJson(jsonText, TradeList.class);
 
+                //if(tradeList.getName().equalsIgnoreCase("Example"))
+                //{
+                //    continue;
+                //}
+
                 LOGGER.info("Adding trades from the " + tradeList.getName() + " trade list.");
 
                 for(TradeProfession profession : tradeList.getProfessions())
@@ -120,7 +99,7 @@ public class TradeListManager
                         {
                             ItemStack outputStack;
                             TradeOffer.Output output = offer.getOutput();
-                            String outputId = output.getId();
+                            String outputId = output.getName();
                             int outputMeta = output.getMeta();
                             TradeOffer.Amount outAmount = output.getAmount();
                             List<TradeOffer.Enchantment> enchantments = output.getEnchantments();
@@ -143,7 +122,7 @@ public class TradeListManager
                             {
                                 for(TradeOffer.Enchantment enchantment : enchantments)
                                 {
-                                    outputStack.addEnchantment(Enchantment.getEnchantmentByLocation(enchantment.getId()), enchantment.getLevel());
+                                    outputStack.addEnchantment(Enchantment.getEnchantmentByLocation(enchantment.getName()), enchantment.getLevel());
                                 }
                             }
 
@@ -173,7 +152,7 @@ public class TradeListManager
 
                             ItemStack inputStackA;
                             TradeOffer.Input inputA = offer.getInputA();
-                            String inputAId = inputA.getId();
+                            String inputAId = inputA.getName();
                             int inputAMeta = inputA.getMeta();
                             TradeOffer.Amount inputAAmount = inputA.getAmount();
 
@@ -192,7 +171,7 @@ public class TradeListManager
 
                             ItemStack inputStackB;
                             TradeOffer.Input inputB = offer.getInputB();
-                            String inputBId = inputB.getId();
+                            String inputBId = inputB.getName();
                             int inputBMeta = inputB.getMeta();
                             TradeOffer.Amount inputBAmount = inputB.getAmount();
 
@@ -219,7 +198,7 @@ public class TradeListManager
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            LOGGER.fatal(e);
         }
     }
 

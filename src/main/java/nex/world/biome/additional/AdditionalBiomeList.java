@@ -15,22 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.trade;
+package nex.world.biome.additional;
 
 import java.util.List;
 
-public class TradeList
+public class AdditionalBiomeList
 {
     private String name;
-    private List<TradeProfession> professions;
+    private List<AdditionalBiomeMod> mods;
 
     public String getName()
     {
         return name;
     }
 
-    public List<TradeProfession> getProfessions()
+    public List<AdditionalBiomeMod> getMods()
     {
-        return professions;
+        return mods;
     }
 }

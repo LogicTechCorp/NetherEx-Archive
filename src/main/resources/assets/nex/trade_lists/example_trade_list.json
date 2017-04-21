@@ -1,5 +1,5 @@
 {
-    "name": "Default",
+    "name": "Example",
     "professions": [
         {
             "name": "farmer",
@@ -9,10 +9,10 @@
                     "trades": [
                         {
                             "output": {
-                                "id": "minecraft:nether_wart", "meta": 0, "amount": { "min": 2, "max": 5 }
+                                "name": "minecraft:nether_wart", "meta": 0, "amount": { "min": 2, "max": 5 }
                             },
-                            "inputA": { "id": "minecraft:gold_nugget", "meta": 0, "amount": { "min": 3, "max": 15 } },
-                            "inputB": { "id": "minecraft:air", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "minecraft:gold_nugget", "meta": 0, "amount": { "min": 3, "max": 15 } },
+                            "inputB": { "name": "minecraft:air", "meta": 0, "amount": { "min": 1, "max": 1 } },
                             "amount": { "min": 2, "max": 4 },
                             "level": 1
                         }
@@ -28,12 +28,12 @@
                     "trades": [
                         {
                             "output": {
-                                "id": "minecraft:golden_pickaxe", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "id": "minecraft:mending", "level": 3 }, { "id": "minecraft:unbreaking", "level": 1 } ],
+                                "name": "minecraft:golden_pickaxe", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:mending", "level": 3 }, { "name": "minecraft:unbreaking", "level": 1 } ],
                                 "display": { "name": "Golden Pickaxe", "lore": [ "A golden pickaxe", "Forged with magic!" ] }
                             },
-                            "inputA": { "id": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 3, "max": 3 } },
-                            "inputB": { "id": "minecraft:stick", "meta": 0, "amount": { "min": 2, "max": 2 } },
+                            "inputA": { "name": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 3, "max": 3 } },
+                            "inputB": { "name": "minecraft:stick", "meta": 0, "amount": { "min": 2, "max": 2 } },
                             "amount": { "min": 2, "max": 4 },
                             "level": 1
                         }
@@ -49,10 +49,10 @@
                     "trades": [
                         {
                             "output": {
-                                "id": "nex:food_meat_ghast_raw", "meta": 0, "amount": { "min": 3, "max": 17 }
+                                "name": "nex:food_meat_ghast_raw", "meta": 0, "amount": { "min": 3, "max": 17 }
                             },
-                            "inputA": { "id": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 2, "max": 11 } },
-                            "inputB": { "id": "minecraft:air", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 2, "max": 11 } },
+                            "inputB": { "name": "minecraft:quartz", "meta": 0, "amount": { "min": 1, "max": 9 } },
                             "amount": { "min": 2, "max": 4 },
                             "level": 1
                         }
