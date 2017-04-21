@@ -93,7 +93,7 @@ public class EventHandler
     {
         World world = event.getWorld();
 
-        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.Dimension.Nether.enablePortalFix && world instanceof WorldServer)
+        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.dimension.nether.enablePortalFix && world instanceof WorldServer)
         {
             if(world.provider.getDimension() == 0 || world.provider.getDimension() == -1)
             {
@@ -181,7 +181,7 @@ public class EventHandler
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = event.getItemStack();
 
-        if(stack.getItem() == NetherExItems.TOOL_SHOVEL_BONE || ConfigHandler.Block.Netherrack.allowAllShovelsToFlatten && stack.getItem() instanceof ItemHoe)
+        if(stack.getItem() == NetherExItems.TOOL_SHOVEL_BONE || ConfigHandler.block.netherrack.allowAllShovelsToFlatten && stack.getItem() instanceof ItemHoe)
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
@@ -204,7 +204,7 @@ public class EventHandler
             }
 
         }
-        if(stack.getItem() == NetherExItems.TOOL_HOE_BONE || ConfigHandler.Block.SoulSand.allowAllHoesToTill && stack.getItem() instanceof ItemHoe)
+        if(stack.getItem() == NetherExItems.TOOL_HOE_BONE || ConfigHandler.block.soulSand.allowAllHoesToTill && stack.getItem() instanceof ItemHoe)
         {
             if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
             {
@@ -267,7 +267,7 @@ public class EventHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(ConfigHandler.Block.SoulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
+        if(ConfigHandler.block.soulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
             if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
             {
@@ -293,7 +293,7 @@ public class EventHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigHandler.Block.Magma.turnIntoLava)
+                if(ConfigHandler.block.magma.turnIntoLava)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {
@@ -305,9 +305,9 @@ public class EventHandler
             }
             if(player.dimension == -1)
             {
-                boolean canSpawn = Arrays.asList(ConfigHandler.Entity.Nethermite.whitelist).contains(state.getBlock().getRegistryName().toString());
+                boolean canSpawn = Arrays.asList(ConfigHandler.entity.nethermite.whitelist).contains(state.getBlock().getRegistryName().toString());
 
-                if(canSpawn && world.rand.nextInt(ConfigHandler.Entity.Nethermite.chanceOfSpawning) == 0)
+                if(canSpawn && world.rand.nextInt(ConfigHandler.entity.nethermite.chanceOfSpawning) == 0)
                 {
                     EntityNethermite nethermite = new EntityNethermite(world);
                     nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
@@ -328,7 +328,7 @@ public class EventHandler
         {
             if(state.getBlock() == Blocks.LAVA || state.getBlock() == Blocks.FLOWING_LAVA)
             {
-                event.setResult(ConfigHandler.Dimension.Nether.isLavaInfinite ? Event.Result.ALLOW : Event.Result.DEFAULT);
+                event.setResult(ConfigHandler.dimension.nether.isLavaInfinite ? Event.Result.ALLOW : Event.Result.DEFAULT);
             }
         }
     }
@@ -340,7 +340,7 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getX(), event.getY(), event.getZ());
         EntityLivingBase entity = event.getEntityLiving();
 
-        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffect.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
         if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
@@ -358,11 +358,11 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
 
-        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.PotionEffect.Freeze.blacklist).contains(EntityList.getKey(entity).toString());
+        boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
         if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(canFreeze && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.Biome.ArcticAbyss.chanceOfFreezing) == 0)
+            if(canFreeze && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.biome.arcticAbyss.chanceOfFreezing) == 0)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
@@ -382,7 +382,7 @@ public class EventHandler
                 ((EntityLiving) entity).setNoAI(true);
                 entity.setSilent(true);
 
-                if(world.rand.nextInt(ConfigHandler.PotionEffect.Freeze.chanceOfThawing) == 0)
+                if(world.rand.nextInt(ConfigHandler.potionEffect.freeze.chanceOfThawing) == 0)
                 {
                     entity.removePotionEffect(NetherExEffects.FREEZE);
                 }
@@ -394,9 +394,9 @@ public class EventHandler
             entity.setPosition(entity.prevPosX, entity.prevPosY, entity.prevPosZ);
         }
 
-        boolean canSpawnSpore = entity instanceof EntityPlayer || !Arrays.asList(ConfigHandler.PotionEffect.Spore.blacklist).contains(EntityList.getKey(entity).toString());
+        boolean canSpawnSpore = entity instanceof EntityPlayer || !Arrays.asList(ConfigHandler.potionEffect.spore.blacklist).contains(EntityList.getKey(entity).toString());
 
-        if(canSpawnSpore && entity.isPotionActive(NetherExEffects.SPORE) && world.rand.nextInt(ConfigHandler.PotionEffect.Spore.chanceOfSporeSpawning) == 0)
+        if(canSpawnSpore && entity.isPotionActive(NetherExEffects.SPORE) && world.rand.nextInt(ConfigHandler.potionEffect.spore.chanceOfSporeSpawning) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
@@ -413,7 +413,7 @@ public class EventHandler
 
         boolean canSpawnGhastling = entity instanceof EntityPlayer && world.provider.getDimension() == -1;
 
-        if(canSpawnGhastling && entity.isPotionActive(NetherExEffects.LOST) && world.rand.nextInt(ConfigHandler.PotionEffect.Lost.chanceOfGhastlingSpawning) == 0)
+        if(canSpawnGhastling && entity.isPotionActive(NetherExEffects.LOST) && world.rand.nextInt(ConfigHandler.potionEffect.lost.chanceOfGhastlingSpawning) == 0)
         {
             BlockPos newPos = pos.add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
 

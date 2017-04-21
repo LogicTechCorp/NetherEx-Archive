@@ -68,10 +68,10 @@ public class AdditionalBiomeManager
                 String jsonText = Files.toString(additionalBiomeFile, Charsets.UTF_8);
                 AdditionalBiomeList biomeList = gson.fromJson(jsonText, AdditionalBiomeList.class);
 
-                //if(biomeList.getName().equalsIgnoreCase("Example"))
-                //{
-                //    continue;
-                //}
+                if(biomeList.getName().equalsIgnoreCase("Example"))
+                {
+                    continue;
+                }
 
                 LOGGER.info("Adding biomes from the " + biomeList.getName() + " biome list.");
 

@@ -88,9 +88,9 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateBiome)
+        if(ConfigHandler.biome.arcticAbyss.generateBiome)
         {
-            NetherExBiomes.addBiome(this, ConfigHandler.Biome.ArcticAbyss.biomeRarity, Blocks.MAGMA.getDefaultState());
+            NetherExBiomes.addBiome(this, ConfigHandler.biome.arcticAbyss.biomeRarity, Blocks.MAGMA.getDefaultState());
         }
     }
 
@@ -99,33 +99,33 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateChainIslands)
+        if(ConfigHandler.biome.arcticAbyss.generateChainIslands)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.chainIslandRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.chainIslandRarity) == 0)
             {
                 chainIsland.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateFire)
+        if(ConfigHandler.biome.arcticAbyss.generateFire)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.Biome.ArcticAbyss.fireRarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.biome.arcticAbyss.fireRarity); i++)
             {
                 fire.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateGlowstonePass1)
+        if(ConfigHandler.biome.arcticAbyss.generateGlowstonePass1)
         {
-            for(int i = 0; i < rand.nextInt(ConfigHandler.Biome.ArcticAbyss.glowstonePass1Rarity); i++)
+            for(int i = 0; i < rand.nextInt(ConfigHandler.biome.arcticAbyss.glowstonePass1Rarity); i++)
             {
                 glowstonePass1.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateGlowstonePass2)
+        if(ConfigHandler.biome.arcticAbyss.generateGlowstonePass2)
         {
-            for(int i = 0; i < ConfigHandler.Biome.ArcticAbyss.glowstonePass2Rarity; i++)
+            for(int i = 0; i < ConfigHandler.biome.arcticAbyss.glowstonePass2Rarity; i++)
             {
                 glowstonePass2.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
@@ -133,17 +133,17 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateQuartzOre)
+        if(ConfigHandler.biome.arcticAbyss.generateQuartzOre)
         {
-            for(int i = 0; i < ConfigHandler.Biome.ArcticAbyss.quartzOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.biome.arcticAbyss.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateRimeOre)
+        if(ConfigHandler.biome.arcticAbyss.generateRimeOre)
         {
-            for(int i = 0; i < ConfigHandler.Biome.ArcticAbyss.rimeOreRarity; i++)
+            for(int i = 0; i < ConfigHandler.biome.arcticAbyss.rimeOreRarity; i++)
             {
                 rimeOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
@@ -151,78 +151,78 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, pos));
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateIchorPits)
+        if(ConfigHandler.biome.arcticAbyss.generateIchorPits)
         {
             BlockPos newPos = pos.add(rand.nextInt(16) + 8, rand.nextInt(64) + 32, rand.nextInt(16) + 8);
 
             if(world.getBiomeForCoordsBody(newPos) == this)
             {
-                if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.ichorPitRarity) == 0)
+                if(rand.nextInt(ConfigHandler.biome.arcticAbyss.ichorPitRarity) == 0)
                 {
                     ichorPit.generate(world, rand, newPos);
                 }
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateCrypts)
+        if(ConfigHandler.biome.arcticAbyss.generateCrypts)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.cryptRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.cryptRarity) == 0)
             {
                 crypt.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateGraves)
+        if(ConfigHandler.biome.arcticAbyss.generateGraves)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.graveRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.graveRarity) == 0)
             {
                 grave.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateGraveyards)
+        if(ConfigHandler.biome.arcticAbyss.generateGraveyards)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.graveyardRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.graveyardRarity) == 0)
             {
                 graveyard.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateSarcophagus)
+        if(ConfigHandler.biome.arcticAbyss.generateSarcophagus)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.sarcophagusRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.sarcophagusRarity) == 0)
             {
                 sarcophagus.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateFossils)
+        if(ConfigHandler.biome.arcticAbyss.generateFossils)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.fossilRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.fossilRarity) == 0)
             {
                 fossil.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generatePrisons)
+        if(ConfigHandler.biome.arcticAbyss.generatePrisons)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.prisonRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.prisonRarity) == 0)
             {
                 prison.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateHangingChains)
+        if(ConfigHandler.biome.arcticAbyss.generateHangingChains)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.hangingChainRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.hangingChainRarity) == 0)
             {
                 hangingChain.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 
-        if(ConfigHandler.Biome.ArcticAbyss.generateFallenChains)
+        if(ConfigHandler.biome.arcticAbyss.generateFallenChains)
         {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.fallenChainRarity) == 0)
+            if(rand.nextInt(ConfigHandler.biome.arcticAbyss.fallenChainRarity) == 0)
             {
                 fallenChain.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }

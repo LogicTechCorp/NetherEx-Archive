@@ -84,10 +84,10 @@ public class TradeListManager
                 String jsonText = Files.toString(tradeFile, Charsets.UTF_8);
                 TradeList tradeList = gson.fromJson(jsonText, TradeList.class);
 
-                //if(tradeList.getName().equalsIgnoreCase("Example"))
-                //{
-                //    continue;
-                //}
+                if(tradeList.getName().equalsIgnoreCase("Example"))
+                {
+                    continue;
+                }
 
                 LOGGER.info("Adding trades from the " + tradeList.getName() + " trade list.");
 
