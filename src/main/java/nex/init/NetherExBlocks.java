@@ -59,6 +59,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder("block_glass_pane_soul")
     public static final BlockSoulGlassPane BLOCK_GLASS_PANE_SOUL = null;
 
+    @GameRegistry.ObjectHolder("block_amethyst")
+    public static final BlockAmethyst BLOCK_AMETHYST = null;
+
     @GameRegistry.ObjectHolder("block_rime")
     public static final BlockRime BLOCK_RIME = null;
 
@@ -82,6 +85,9 @@ public class NetherExBlocks
 
     @GameRegistry.ObjectHolder("ore_quartz")
     public static final BlockQuartzOre ORE_QUARTZ = null;
+
+    @GameRegistry.ObjectHolder("ore_amethyst")
+    public static final BlockAmethystOre ORE_AMETHYST = null;
 
     @GameRegistry.ObjectHolder("ore_rime")
     public static final BlockRimeOre ORE_RIME = null;
@@ -238,6 +244,7 @@ public class NetherExBlocks
                     new BlockTilledSoulSand(),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
+                    new BlockAmethyst(),
                     new BlockRime(),
                     new BlockFrostburnIce(),
                     new BlockBoneSliver(),
@@ -246,6 +253,7 @@ public class NetherExBlocks
                     new BlockBlueFire(),
                     new BlockUrnOfSorrow(),
                     new BlockQuartzOre(),
+                    new BlockAmethystOre(),
                     new BlockRimeOre(),
                     new BlockThornstalk(),
                     new BlockElderMushroom(),
@@ -305,6 +313,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_SAND_SOUL_TILLED),
                     new ItemBlockNetherEx(BLOCK_GLASS_SOUL),
                     new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
+                    new ItemBlockNetherEx(BLOCK_AMETHYST),
                     new ItemBlockNetherEx(BLOCK_RIME),
                     new ItemBlockNetherEx(BLOCK_ICE_FROSTBURN),
                     new ItemBlockNetherEx(BLOCK_BONE_SLIVER),
@@ -312,6 +321,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(BLOCK_IRON_WORN),
                     new ItemBlockUrnOfSorrow(),
                     new ItemBlockQuartzOre(),
+                    new ItemBlockNetherEx(ORE_AMETHYST),
                     new ItemBlockNetherEx(ORE_RIME),
                     new ItemBlockElderMushroom(PLANT_MUSHROOM_ELDER),
                     new ItemBlockElderMushroom(PLANT_MUSHROOM_ELDER_CAP),

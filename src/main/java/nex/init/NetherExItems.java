@@ -45,6 +45,9 @@ public class NetherExItems
     @GameRegistry.ObjectHolder("item_hide_salamander")
     public static final ItemSalamanderHide ITEM_HIDE_SALAMANDER = null;
 
+    @GameRegistry.ObjectHolder("item_crystal_amethyst")
+    public static final ItemNetherEx ITEM_CRYSTAL_AMETHYST = null;
+
     @GameRegistry.ObjectHolder("item_crystal_rime")
     public static final ItemNetherEx ITEM_CRYSTAL_RIME = null;
 
@@ -120,6 +123,7 @@ public class NetherExItems
                     new ItemNetherEx("item_bone_wither"),
                     new ItemWitherDust(),
                     new ItemSalamanderHide(),
+                    new ItemNetherEx("item_crystal_amethyst"),
                     new ItemNetherEx("item_crystal_rime"),
                     new ItemObsidianBoat(),
                     new ItemNetherEx("item_spore"),

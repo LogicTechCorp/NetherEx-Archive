@@ -1,4 +1,19 @@
 {
+    "ambient_pigtificate": {
+        "category": "neutral",
+        "sounds": [ "nex:mob/pigtificate/ambient_pigtificate_1", "nex:mob/pigtificate/ambient_pigtificate_2", "nex:mob/pigtificate/ambient_pigtificate_3", "nex:mob/pigtificate/ambient_pigtificate_4", "nex:mob/pigtificate/ambient_pigtificate_5" ],
+        "subtitle": "subtitle.nex:sound.pigtificate.ambientPigtificate"
+    },
+    "hurt_pigtificate": {
+        "category": "neutral",
+        "sounds": [ "nex:mob/pigtificate/hurt_pigtificate" ],
+        "subtitle": "subtitle.nex:sound.mob.hurtPigtificate"
+    },
+    "death_pigtificate": {
+        "category": "neutral",
+        "sounds": [ "nex:mob/pigtificate/death_pigtificate" ],
+        "subtitle": "subtitle.nex:sound.mob.deathPigtificate"
+    },
     "ambient_mogus": {
         "category": "neutral",
         "sounds": [ "nex:mob/mogus/ambient_mogus_1", "nex:mob/mogus/ambient_mogus_2" ],

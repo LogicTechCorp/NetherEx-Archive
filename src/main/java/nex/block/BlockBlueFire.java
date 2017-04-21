@@ -24,12 +24,12 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -54,7 +54,6 @@ public class BlockBlueFire extends BlockNetherEx
 
         setLightLevel(1.0F);
         setTickRandomly(true);
-
         setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 
@@ -101,6 +100,22 @@ public class BlockBlueFire extends BlockNetherEx
     }
 
     @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    {
+        if(entity instanceof EntityItem)
+        {
+            entity.setDead();
+        }
+        else if(entity instanceof EntityLivingBase)
+        {
+            if(!entity.isImmuneToFire())
+            {
+                entity.attackEntityFrom(DamageSource.IN_FIRE, 2.0F);
+            }
+        }
+    }
+
+    @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
         if(world.getGameRules().getBoolean("doFireTick"))
@@ -110,12 +125,9 @@ public class BlockBlueFire extends BlockNetherEx
                 world.setBlockToAir(pos);
             }
 
-            Block block = world.getBlockState(pos.down()).getBlock();
-            boolean flag = block.isFireSource(world, pos.down(), EnumFacing.UP);
-
             int i = state.getValue(AGE);
 
-            if(flag && world.isRaining() && canDie(world, pos) && rand.nextFloat() < 0.2F + (float) i * 0.03F)
+            if(world.isRaining() && canDie(world, pos) && rand.nextFloat() < 0.2F + (float) i * 0.03F)
             {
                 world.setBlockToAir(pos);
             }
@@ -128,25 +140,6 @@ public class BlockBlueFire extends BlockNetherEx
                 }
 
                 world.scheduleUpdate(pos, this, tickRate(world) + rand.nextInt(10));
-
-                if(!flag)
-                {
-                    if(!canNeighborCatchFire(world, pos))
-                    {
-                        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || i > 3)
-                        {
-                            world.setBlockToAir(pos);
-                        }
-
-                        return;
-                    }
-
-                    if(!canCatchFire(world, pos.down(), EnumFacing.UP) && i == 15 && rand.nextInt(4) == 0)
-                    {
-                        world.setBlockToAir(pos);
-                        return;
-                    }
-                }
 
                 boolean flag1 = world.isBlockinHighHumidity(pos);
                 int j = 0;

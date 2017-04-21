@@ -420,6 +420,9 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.hell.generateQuartzOre")
             public static boolean generateQuartzOre = true;
 
+            @Config.LangKey("config.nex:biome.hell.generateAmethystOre")
+            public static boolean generateAmethystOre = true;
+
             @Config.LangKey("config.nex:biome.hell.generateMagma")
             public static boolean generateMagma = true;
 
@@ -476,6 +479,11 @@ public class ConfigHandler
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
             @Config.RangeInt(min = 1, max = 128)
             public static int quartzOreRarity = 16;
+
+            @Config.LangKey("config.nex:biome.hell.amethystOreRarity")
+            @Config.Comment({"The lower the number, the rarer Amethyst Ore is", "The higher the number, the more common Amethyst Ore is"})
+            @Config.RangeInt(min = 1, max = 128)
+            public static int amethystOreRarity = 8;
 
             @Config.LangKey("config.nex:biome.hell.magmaRarity")
             @Config.Comment({"The lower the number, the rarer Magma is", "The higher the number, the more common Magma is"})
@@ -891,15 +899,6 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.arcticAbyss.generateSarcophagus")
             public static boolean generateSarcophagus = true;
 
-            @Config.LangKey("config.nex:biome.arcticAbyss.generateLighthouses")
-            public static boolean generateLighthouses = true;
-
-            @Config.LangKey("config.nex:biome.arcticAbyss.generateSpecimen")
-            public static boolean generateSpecimen = true;
-
-            @Config.LangKey("config.nex:biome.arcticAbyss.generateTemples")
-            public static boolean generateTemples = true;
-
             @Config.LangKey("config.nex:biome.arcticAbyss.generateFossils")
             public static boolean generateFossils = true;
 
@@ -974,21 +973,6 @@ public class ConfigHandler
             @Config.Comment({"The higher the number, the rarer Sarcophagus are", "The lower the number, the more common Sarcophagus are"})
             @Config.RangeInt(min = 1, max = 128)
             public static int sarcophagusRarity = 76;
-
-            @Config.LangKey("config.nex:biome.arcticAbyss.lighthouseRarity")
-            @Config.Comment({"The higher the number, the rarer Lighthouses are", "The lower the number, the more common Lighthouses are"})
-            @Config.RangeInt(min = 1, max = 128)
-            public static int lighthouseRarity = 48;
-
-            @Config.LangKey("config.nex:biome.arcticAbyss.specimenRarity")
-            @Config.Comment({"The higher the number, the rarer Specimen are", "The lower the number, the more common Specimen are"})
-            @Config.RangeInt(min = 1, max = 128)
-            public static int specimenRarity = 64;
-
-            @Config.LangKey("config.nex:biome.arcticAbyss.templeRarity")
-            @Config.Comment({"The higher the number, the rarer Specimen are", "The lower the number, the more common Specimen are"})
-            @Config.RangeInt(min = 1, max = 128)
-            public static int templeRarity = 64;
 
             @Config.LangKey("config.nex:biome.arcticAbyss.fossilRarity")
             @Config.Comment({"The higher the number, the rarer Fossils are", "The lower the number, the more common Fossils are"})

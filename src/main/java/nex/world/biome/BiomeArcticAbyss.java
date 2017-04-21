@@ -69,9 +69,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     private WorldGenerator grave = new WorldGenGroundStructure("arctic_abyss", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
     private WorldGenerator graveyard = new WorldGenGroundStructure("arctic_abyss", "graveyard", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_ARCTIC_ABYSS, NetherExLootTables.CHEST_GRAVE_RARE});
     private WorldGenerator sarcophagus = new WorldGenGroundStructure("arctic_abyss", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
-    private WorldGenerator lighthouse = new WorldGenGroundStructure("arctic_abyss", "lighthouse", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS});
-    private WorldGenerator specimen = new WorldGenGroundStructure("arctic_abyss", "specimen", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{LootTableList.EMPTY});
-    private WorldGenerator temple = new WorldGenGroundStructure("arctic_abyss", "temple", new String[]{"hard", "medium", "easy"}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
     private WorldGenerator fossil = new WorldGenWallStructure("arctic_abyss", "fossil", new String[]{"skull_huge_extinct", "skull_creeper_variant", "skull_creeper", "skull_extinct_variant", "skull_extinct", "jaw_extinct", "rib_huge_extinct", "rib_creeper", "rib_extinct", "leg_creeper_variant_2", "leg_creeper_variant", "leg_creeper", "leg_extinct_variant", "leg_extinct", "tail_huge_extinct", "tail_extinct", "fin_extinct"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
     private WorldGenerator prison = new WorldGenGroundStructure("arctic_abyss", "prison", new String[]{"large", "medium_variant", "medium", "small"}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_wight", NetherEx.MOD_ID + ":monster_bone_spider"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE, NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
     private WorldGenerator chainIsland = new WorldGenCeilingStructure("arctic_abyss", "chain", new String[]{"island_large", "island_medium", "island_small"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
@@ -196,30 +193,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.sarcophagusRarity) == 0)
             {
                 sarcophagus.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Biome.ArcticAbyss.generateLighthouses)
-        {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.lighthouseRarity) == 0)
-            {
-                lighthouse.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Biome.ArcticAbyss.generateSpecimen)
-        {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.specimenRarity) == 0)
-            {
-                specimen.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.Biome.ArcticAbyss.generateTemples)
-        {
-            if(rand.nextInt(ConfigHandler.Biome.ArcticAbyss.templeRarity) == 0)
-            {
-                temple.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 

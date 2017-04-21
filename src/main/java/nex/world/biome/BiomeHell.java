@@ -31,6 +31,7 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.entity.monster.EntityEmber;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
+import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
 import nex.world.gen.feature.*;
 import nex.world.gen.structure.WorldGenGroundStructure;
@@ -38,6 +39,7 @@ import nex.world.gen.structure.WorldGenGroundStructure;
 import java.util.Random;
 import java.util.Set;
 
+@SuppressWarnings("ConstantConditions")
 public class BiomeHell extends BiomeNetherEx
 {
     private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
@@ -53,6 +55,7 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator quartzOre = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator amethystOre = new WorldGenMinableMeta(NetherExBlocks.ORE_AMETHYST.getDefaultState(), 7, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
     private WorldGenerator crypt = new WorldGenGroundStructure("hell", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_BASE});
@@ -143,6 +146,14 @@ public class BiomeHell extends BiomeNetherEx
             for(int i = 0; i < ConfigHandler.Biome.Hell.quartzOreRarity; i++)
             {
                 quartzOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
+            }
+        }
+
+        if(ConfigHandler.Biome.Hell.generateAmethystOre)
+        {
+            for(int i = 0; i < ConfigHandler.Biome.Hell.amethystOreRarity; i++)
+            {
+                amethystOre.generate(world, rand, pos.add(rand.nextInt(16), rand.nextInt(120) + 8, rand.nextInt(16)));
             }
         }
 

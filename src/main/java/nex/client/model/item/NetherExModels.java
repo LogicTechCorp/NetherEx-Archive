@@ -103,6 +103,7 @@ public class NetherExModels
         registerModel(BLOCK_SAND_SOUL_TILLED, "moisture=0");
         registerModel(BLOCK_GLASS_SOUL, "normal");
         registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
+        registerModel(BLOCK_AMETHYST, "normal");
         registerModel(BLOCK_RIME, "normal");
         registerModel(BLOCK_ICE_FROSTBURN, "normal");
         registerModel(NetherExBlocks.BLOCK_BONE_SLIVER, "axis=y");
@@ -116,6 +117,7 @@ public class NetherExModels
             registerModel(TILE_URN_SORROW, type.ordinal(), TILE_URN_SORROW.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        registerModel(ORE_AMETHYST, "normal");
         registerModel(ORE_RIME, "normal");
 
         registerModel(PLANT_THORNSTALK, "normal");
@@ -185,6 +187,7 @@ public class NetherExModels
             registerModel(ITEM_HIDE_SALAMANDER, type.ordinal(), ITEM_HIDE_SALAMANDER.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        registerModel(ITEM_CRYSTAL_AMETHYST, "normal");
         registerModel(ITEM_CRYSTAL_RIME, "normal");
         registerModel(ITEM_BOAT_OBSIDIAN, "normal");
         registerModel(ITEM_SPORE, "normal");

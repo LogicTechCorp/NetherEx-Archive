@@ -31,6 +31,15 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExSoundEvents
 {
+    @GameRegistry.ObjectHolder("ambient_pigtificate")
+    public static final SoundEvent ENTITY_AMBIENT_PIGTIFICATE = null;
+
+    @GameRegistry.ObjectHolder("hurt_pigtificate")
+    public static final SoundEvent ENTITY_HURT_PIGTIFICATE = null;
+
+    @GameRegistry.ObjectHolder("death_pigtificate")
+    public static final SoundEvent ENTITY_DEATH_PIGTIFICATE = null;
+
     @GameRegistry.ObjectHolder("ambient_mogus")
     public static final SoundEvent ENTITY_AMBIENT_MOGUS = null;
 
@@ -135,6 +144,9 @@ public class NetherExSoundEvents
             LOGGER.info("Sound registration started.");
 
             event.getRegistry().registerAll(
+                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_pigtificate")),
+                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_pigtificate")),
+                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_pigtificate")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_mogus")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_mogus")),
                     new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_mogus")),

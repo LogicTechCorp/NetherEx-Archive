@@ -47,6 +47,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
+import nex.init.NetherExSoundEvents;
 import nex.trade.TradeCareer;
 import nex.trade.TradeListManager;
 import nex.trade.TradeProfession;
@@ -70,6 +71,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     private boolean needsInitialization;
     private boolean willingToMate;
     private boolean mating;
+    private boolean playing;
     private boolean additionalTasksSet;
     private boolean lookingForHome;
 
@@ -91,6 +93,58 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         setCanPickUpLoot(true);
         setSize(0.6F, 1.95F);
         setRandomProfession();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return NetherExSoundEvents.ENTITY_AMBIENT_PIGTIFICATE;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound()
+    {
+        return NetherExSoundEvents.ENTITY_HURT_PIGTIFICATE;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.ENTITY_DEATH_PIGTIFICATE;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void handleStatusUpdate(byte id)
+    {
+        if(id == 12)
+        {
+            spawnParticles(EnumParticleTypes.HEART);
+        }
+        else if(id == 13)
+        {
+            spawnParticles(EnumParticleTypes.VILLAGER_ANGRY);
+        }
+        else if(id == 14)
+        {
+            spawnParticles(EnumParticleTypes.VILLAGER_HAPPY);
+        }
+        else
+        {
+            super.handleStatusUpdate(id);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void spawnParticles(EnumParticleTypes particleType)
+    {
+        for(int i = 0; i < 5; ++i)
+        {
+            double d0 = rand.nextGaussian() * 0.02D;
+            double d1 = rand.nextGaussian() * 0.02D;
+            double d2 = rand.nextGaussian() * 0.02D;
+            world.spawnParticle(particleType, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + 1.0D + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d0, d1, d2, new int[0]);
+        }
     }
 
     @Override
@@ -129,40 +183,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         dataManager.register(PROFESSION, 0);
         dataManager.register(CAREER, 0);
         dataManager.register(CAREER_LEVEL, 0);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-        if(id == 12)
-        {
-            spawnParticles(EnumParticleTypes.HEART);
-        }
-        else if(id == 13)
-        {
-            spawnParticles(EnumParticleTypes.VILLAGER_ANGRY);
-        }
-        else if(id == 14)
-        {
-            spawnParticles(EnumParticleTypes.VILLAGER_HAPPY);
-        }
-        else
-        {
-            super.handleStatusUpdate(id);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void spawnParticles(EnumParticleTypes particleType)
-    {
-        for(int i = 0; i < 5; ++i)
-        {
-            double d0 = rand.nextGaussian() * 0.02D;
-            double d1 = rand.nextGaussian() * 0.02D;
-            double d2 = rand.nextGaussian() * 0.02D;
-            world.spawnParticle(particleType, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + 1.0D + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d0, d1, d2, new int[0]);
-        }
     }
 
     @Override
@@ -548,14 +568,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         return new BlockPos(this);
     }
 
-    private void setAdditionalAITasks()
-    {
-        if(!additionalTasksSet)
-        {
-            additionalTasksSet = true;
-        }
-    }
-
     private void populateTradeList()
     {
         if(getCareer() != 0 && getCareerLevel() != 0)
@@ -675,6 +687,11 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         return willingToMate;
     }
 
+    public boolean isPlaying()
+    {
+        return playing;
+    }
+
     public InventoryBasic getInventory()
     {
         return inventory;
@@ -737,6 +754,19 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         dataManager.set(CAREER_LEVEL, level);
     }
 
+    private void setAdditionalAITasks()
+    {
+        if(!additionalTasksSet)
+        {
+            additionalTasksSet = true;
+
+            if(isChild())
+            {
+                tasks.addTask(8, new EntityAIPigtificatePlay(this, 0.32D));
+            }
+        }
+    }
+
     public void setWillingToMate(boolean willingToMateIn)
     {
         willingToMate = willingToMateIn;
@@ -745,5 +775,10 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     public void setMating(boolean matingIn)
     {
         mating = matingIn;
+    }
+
+    public void setPlaying(boolean playingIn)
+    {
+        playing = playingIn;
     }
 }
