@@ -55,7 +55,7 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator smallBrownMushroom = new WorldGenBush(Blocks.BROWN_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator smallRedMushroom = new WorldGenBush(Blocks.RED_MUSHROOM, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator quartzOre = new WorldGenMinableMeta(Blocks.QUARTZ_ORE.getDefaultState(), 14, Blocks.NETHERRACK.getDefaultState());
-    private WorldGenerator amethystOre = new WorldGenMinableMeta(NetherExBlocks.ORE_AMETHYST.getDefaultState(), 7, Blocks.NETHERRACK.getDefaultState());
+    private WorldGenerator amethystOre = new WorldGenMinableMeta(NetherExBlocks.ORE_AMETHYST.getDefaultState(), 3, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
     private WorldGenerator crypt = new WorldGenGroundStructure("hell", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_BASE});
