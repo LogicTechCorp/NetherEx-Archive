@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,6 +25,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -93,6 +95,24 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
         for(EnumType type : EnumType.values())
         {
             list.add(new ItemStack(item, 1, type.ordinal()));
+        }
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        IBlockState soil = world.getBlockState(pos.down());
+        return super.canPlaceBlockAt(world, pos) && soil.getBlock().canSustainPlant(soil, world, pos.down(), EnumFacing.UP, this);
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
+    {
+        IBlockState soil = world.getBlockState(pos.down());
+        if(!soil.getBlock().canSustainPlant(soil, world, pos.down(), EnumFacing.UP, this))
+        {
+            dropBlockAsItem(world, pos, state, 0);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 

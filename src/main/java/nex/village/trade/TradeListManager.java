@@ -46,7 +46,7 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class TradeListManager
 {
-    public static HashMap<TradeCareer.EnumType, HashMap<Integer, List<MerchantRecipe>>> offerLists = Maps.newHashMap();
+    private static HashMap<TradeCareer.EnumType, HashMap<Integer, List<MerchantRecipe>>> offerLists = Maps.newHashMap();
     private static Random rand = new Random();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeListManager");
@@ -198,6 +198,7 @@ public class TradeListManager
         }
         catch(IOException e)
         {
+            LOGGER.fatal("NetherEx was unable to read the Trade lists.");
             LOGGER.fatal(e);
         }
     }

@@ -101,6 +101,7 @@ public class AdditionalBiomeManager
         }
         catch(IOException e)
         {
+            LOGGER.fatal("NetherEx was unable to read the Biome lists.");
             LOGGER.fatal(e);
         }
     }
