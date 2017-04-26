@@ -18,6 +18,7 @@
 package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -45,6 +46,7 @@ public class NetherEx
     public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/6bfffa8b9e881eceb5a76a735eabba73";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
+    public static final boolean IS_DEV_ENV = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;

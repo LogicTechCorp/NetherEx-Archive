@@ -27,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
 import nex.init.NetherExBiomes;
+import nex.util.FileUtil;
 import nex.world.biome.BiomeTypeNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -51,7 +52,15 @@ public class AdditionalBiomeManager
             }
 
             LOGGER.info("Copying the Biome List Directory to the config folder.");
-            FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_lists").getFile()), directory);
+
+            if(NetherEx.IS_DEV_ENV)
+            {
+                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_lists").getFile()), directory);
+            }
+            else
+            {
+                FileUtil.extractFromJar("/assets/nex/biome_lists", directory.getPath());
+            }
         }
         catch(IOException e)
         {

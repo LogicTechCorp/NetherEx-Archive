@@ -32,6 +32,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.village.MerchantRecipe;
 import nex.NetherEx;
+import nex.util.FileUtil;
 import nex.util.NBTUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -60,13 +61,16 @@ public class TradeListManager
 
         try
         {
-            if(!directory.exists())
-            {
-                directory.mkdir();
-            }
-
             LOGGER.info("Copying the Trade List Directory to the config folder.");
-            FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_lists").getFile()), directory);
+
+            if(NetherEx.IS_DEV_ENV)
+            {
+                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_lists").getFile()), directory);
+            }
+            else
+            {
+                FileUtil.extractFromJar("/assets/nex/trade_lists", directory.getPath());
+            }
         }
         catch(IOException e)
         {
