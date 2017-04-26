@@ -30,7 +30,7 @@ public class WorldProviderNether extends WorldProviderHell
     @Override
     public void init()
     {
-        biomeProvider = new BiomeProviderNether(world.getSeed());
+        biomeProvider = new BiomeProviderNether(world);
         doesWaterVaporize = true;
         hasNoSky = true;
         setDimension(-1);

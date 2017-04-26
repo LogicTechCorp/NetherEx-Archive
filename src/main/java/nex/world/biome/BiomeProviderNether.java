@@ -22,13 +22,14 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import nex.init.NetherExBiomes;
-import nex.world.gen.layer.GenLayerNether;
+import nex.world.gen.layer.GenLayerNetherEx;
 
 import java.util.List;
 import java.util.Random;
@@ -47,10 +48,10 @@ public class BiomeProviderNether extends BiomeProvider
         biomesToSpawnIn = Lists.newArrayList();
     }
 
-    public BiomeProviderNether(long seed)
+    public BiomeProviderNether(World world)
     {
         this();
-        GenLayer[] genLayers = GenLayerNether.initializeAllBiomeGenerators(seed);
+        GenLayer[] genLayers = GenLayerNetherEx.initializeAllBiomeGenerators(world.getSeed(), world.getWorldType());
         genBiomes = genLayers[0];
         biomeIndexLayer = genLayers[1];
     }
