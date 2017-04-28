@@ -270,7 +270,7 @@ public class ConfigHandler
             @Config.LangKey("config.nex:entity.ember.chanceOfSettingPlayerOnFire")
             @Config.Comment({"The higher the number, the rarer it is to set a player on fire", "The lower the number, the more common it is to set a player on fire"})
             @Config.RangeInt(min = 1, max = 128)
-            public int chanceOfSettingPlayerOnFire = 4;
+            public int chanceOfSettingPlayerOnFire = 1;
         }
 
         public class Nethermite
@@ -359,7 +359,7 @@ public class ConfigHandler
             @Config.LangKey("config.nex:entity.brute.chargeCooldown")
             @Config.Comment({"The lower the number, the less cooldown the Brute has after charging", "The higher the number, the more cooldown the Brute has after charging"})
             @Config.RangeInt(min = 1, max = 512)
-            public int chargeCooldown = 12;
+            public int chargeCooldown = 2;
         }
 
         public class GhastQueen

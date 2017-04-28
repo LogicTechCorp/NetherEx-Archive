@@ -189,8 +189,9 @@ public class NetherExModels
 
         registerModel(ITEM_CRYSTAL_AMETHYST, "normal");
         registerModel(ITEM_CRYSTAL_RIME, "normal");
-        registerModel(ITEM_BOAT_OBSIDIAN, "normal");
         registerModel(ITEM_SPORE, "normal");
+        registerModel(ITEM_TEAR_GHAST_QUEEN, "normal");
+        registerModel(ITEM_BOAT_OBSIDIAN, "normal");
 
         registerModel(FOOD_MEAT_GHAST_RAW, "normal");
         registerModel(FOOD_MEAT_GHAST_COOKED, "normal");

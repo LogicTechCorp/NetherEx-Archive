@@ -69,8 +69,8 @@ public class EntityWight extends EntityMob
     {
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
-        tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        tasks.addTask(2, new EntityAILookIdle(this));
+        tasks.addTask(2, new EntityAIWander(this, 1.0D, 5));
+        tasks.addTask(3, new EntityAILookIdle(this));
         targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
@@ -104,7 +104,7 @@ public class EntityWight extends EntityMob
     {
         if(entity instanceof EntityLivingBase && !((EntityLivingBase) entity).isPotionActive(NetherExEffects.FREEZE))
         {
-            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 160, 0));
         }
         return super.attackEntityAsMob(entity);
     }

@@ -19,7 +19,9 @@ package nex.entity.neutral;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -76,7 +78,7 @@ public class EntitySalamander extends EntityMob
         tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
         tasks.addTask(3, new EntityAIWander(this, 1.0D));
         tasks.addTask(4, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAIHurtByTarget(this, false));
+        targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
     }
 
     @Override
@@ -88,7 +90,7 @@ public class EntitySalamander extends EntityMob
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.2D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
     }
 
     @Override
@@ -122,6 +124,16 @@ public class EntitySalamander extends EntityMob
     protected boolean canTriggerWalking()
     {
         return false;
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        if(getType() == 1 && entity instanceof EntityLivingBase)
+        {
+            entity.setFire(8);
+        }
+        return super.attackEntityAsMob(entity);
     }
 
     @Override

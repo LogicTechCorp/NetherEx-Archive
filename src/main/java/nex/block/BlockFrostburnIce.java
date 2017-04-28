@@ -38,7 +38,6 @@ public class BlockFrostburnIce extends BlockNetherEx
 
         setSoundType(SoundType.GLASS);
         setLightOpacity(3);
-        slipperiness = 0.98F;
         setHardness(0.5F);
     }
 

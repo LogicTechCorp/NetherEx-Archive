@@ -391,7 +391,7 @@ public class EventHandler
 
         if(entity instanceof EntityPlayer && entity.isPotionActive(NetherExEffects.FREEZE))
         {
-            entity.setPosition(entity.prevPosX, entity.prevPosY, entity.prevPosZ);
+            entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
         }
 
         boolean canSpawnSpore = entity instanceof EntityPlayer || !Arrays.asList(ConfigHandler.potionEffect.spore.blacklist).contains(EntityList.getKey(entity).toString());

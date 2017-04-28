@@ -89,7 +89,7 @@ public class WorldGenAirStructure extends WorldGenerator
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 112, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos = WorldGenUtil.getSuitableAirPos(world, newPos, structureSize);
 
-        if(spawnPos != BlockPos.ORIGIN)
+        if(!spawnPos.equals(BlockPos.ORIGIN))
         {
             WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings, lootTables, spawnerMobs);
             return true;

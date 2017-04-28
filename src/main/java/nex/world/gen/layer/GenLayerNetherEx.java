@@ -42,6 +42,6 @@ public abstract class GenLayerNetherEx extends GenLayer
         genLayer.initWorldGenSeed(seed);
         genLayerVoronoiZoom.initWorldGenSeed(seed);
 
-        return new GenLayer[] {genLayer, genLayerVoronoiZoom};
+        return new GenLayer[]{genLayer, genLayerVoronoiZoom};
     }
 }

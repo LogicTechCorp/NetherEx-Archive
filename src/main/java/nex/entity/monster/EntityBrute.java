@@ -21,6 +21,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -40,6 +42,8 @@ public class EntityBrute extends EntityMob
     private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(EntityBrute.class, DataSerializers.BOOLEAN);
     private static final DataParameter<BlockPos> POS_TO_CHARGE = EntityDataManager.createKey(EntityBrute.class, DataSerializers.BLOCK_POS);
 
+    private static boolean addedExtraChargeDistance;
+
     public EntityBrute(World world)
     {
         super(world);
@@ -51,7 +55,9 @@ public class EntityBrute extends EntityMob
     protected void initEntityAI()
     {
         tasks.addTask(0, new EntityAISwimming(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+        tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 64.0F));
+        tasks.addTask(2, new EntityAIWander(this, 1.0D, 360));
+        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     @Override
@@ -59,9 +65,9 @@ public class EntityBrute extends EntityMob
     {
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(42.0D);
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.5D);
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(16.0D);
         getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.5D);
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
     }
@@ -80,7 +86,7 @@ public class EntityBrute extends EntityMob
     {
         super.onUpdate();
 
-        if(getAttackTarget() == null)
+        if(isCharging() && (getAttackTarget() == null || (prevPosX == posX && prevPosY == posY && prevPosZ == posZ)))
         {
             setCharging(false);
         }
@@ -95,11 +101,18 @@ public class EntityBrute extends EntityMob
             if(isCharging())
             {
                 getNavigator().tryMoveToXYZ(getPosToCharge().getX(), getPosToCharge().getY(), getPosToCharge().getZ(), 2.5F);
-            }
-            if(getDistanceSq(getPosToCharge()) <= 0.75F)
-            {
-                setCharging(false);
-                setCooldown(ConfigHandler.entity.brute.chargeCooldown * 20 / 4);
+
+                if(!addedExtraChargeDistance && getDistanceSq(getPosToCharge()) <= 4.0D)
+                {
+                    setPosToCharge(getPosToCharge().offset(getHorizontalFacing(), 4));
+                    addedExtraChargeDistance = true;
+                }
+                if(getPosition().equals(getPosToCharge()))
+                {
+                    addedExtraChargeDistance = false;
+                    setCharging(false);
+                    setCooldown(ConfigHandler.entity.brute.chargeCooldown * 20);
+                }
             }
         }
         if(getCooldown() > 0)
@@ -114,6 +127,7 @@ public class EntityBrute extends EntityMob
         super.writeEntityToNBT(compound);
         compound.setInteger("ChargeCooldown", getCooldown());
         compound.setBoolean("Charging", isCharging());
+        compound.setBoolean("AddedExtraChargeDistance", addedExtraChargeDistance);
     }
 
     @Override
@@ -122,6 +136,7 @@ public class EntityBrute extends EntityMob
         super.readEntityFromNBT(compound);
         setCooldown(compound.getInteger("ChargeCooldown"));
         setCharging(compound.getBoolean("Charging"));
+        addedExtraChargeDistance = compound.getBoolean("AddedExtraChargeDistance");
     }
 
     @Override

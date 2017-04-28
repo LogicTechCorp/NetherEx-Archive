@@ -94,7 +94,7 @@ public class WorldGenGroundStructure extends WorldGenerator
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize, 0.8F);
 
-        if(spawnPos != BlockPos.ORIGIN)
+        if(!spawnPos.equals(BlockPos.ORIGIN))
         {
             WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings, lootTables, spawnerMobs);
             return true;
