@@ -39,9 +39,9 @@ public class TradeProfession
 
     public enum EnumType
     {
-        FARMER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_farmer.png")),
+        FORAGER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_forager.png")),
         BLACKSMITH(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_blacksmith.png")),
-        BUTCHER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_butcher.png"));
+        SORCERER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_sorcerer.png"));
 
         private ResourceLocation textureLocation;
 
@@ -53,7 +53,7 @@ public class TradeProfession
         public static EnumType fromIndex(int index)
         {
             EnumType profession = values()[index];
-            return profession != null ? profession : FARMER;
+            return profession != null ? profession : FORAGER;
         }
 
         public static EnumType fromProfession(TradeProfession profession)

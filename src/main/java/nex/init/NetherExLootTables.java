@@ -38,9 +38,13 @@ public class NetherExLootTables
     public static final ResourceLocation CHEST_TEMPLE_ARCTIC_ABYSS = new ResourceLocation(NetherEx.MOD_ID + ":chest/temple_arctic_abyss");
     public static final ResourceLocation CHEST_VILLAGE_BASE = new ResourceLocation(NetherEx.MOD_ID + ":chest/base_village");
 
-    public static final ResourceLocation ENTITY_PIGTIFICATE_FARMER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_farmer");
-    public static final ResourceLocation ENTITY_PIGTIFICATE_BUTCHER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_butcher");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_HUNTER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_hunter");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_GATHERER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_gatherer");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_SCAVENGER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_scavenger");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_ARMORSMITH = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_armorsmith");
     public static final ResourceLocation ENTITY_PIGTIFICATE_TOOLSMITH = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_toolsmith");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_ENCHANTER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_enchanter");
+    public static final ResourceLocation ENTITY_PIGTIFICATE_BREWER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_brewer");
     public static final ResourceLocation ENTITY_MOGUS_BROWN = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_brown");
     public static final ResourceLocation ENTITY_MOGUS_RED = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_red");
     public static final ResourceLocation ENTITY_MOGUS_WHITE = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_white");

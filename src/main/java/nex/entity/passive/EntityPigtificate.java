@@ -54,6 +54,7 @@ import nex.village.trade.TradeCareer;
 import nex.village.trade.TradeListManager;
 import nex.village.trade.TradeProfession;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -576,6 +577,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         }
         else
         {
+            setRandomCareer();
             setCareerLevel(1);
         }
 
@@ -588,7 +590,16 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
         if(trades != null)
         {
-            tradeList.addAll(trades);
+            Collections.shuffle(trades, rand);
+
+            if(getCareerLevel() == 1)
+            {
+                trades.addAll(trades.subList(0, 2));
+            }
+            else
+            {
+                tradeList.add(trades.get(0));
+            }
         }
     }
 

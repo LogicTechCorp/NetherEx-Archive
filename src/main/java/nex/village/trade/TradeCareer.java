@@ -56,9 +56,13 @@ public class TradeCareer
 
     public enum EnumType
     {
-        FARMER(TradeProfession.EnumType.FARMER, 4, NetherExLootTables.ENTITY_PIGTIFICATE_FARMER),
+        HUNTER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_HUNTER),
+        GATHERER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_GATHERER),
+        SCAVENGER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_SCAVENGER),
+        ARMORSMITH(TradeProfession.EnumType.BLACKSMITH, 8, NetherExLootTables.ENTITY_PIGTIFICATE_ARMORSMITH),
         TOOLSMITH(TradeProfession.EnumType.BLACKSMITH, 8, NetherExLootTables.ENTITY_PIGTIFICATE_TOOLSMITH),
-        BUTCHER(TradeProfession.EnumType.BUTCHER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_BUTCHER);
+        ENCHANTER(TradeProfession.EnumType.SORCERER, 8, NetherExLootTables.ENTITY_PIGTIFICATE_ENCHANTER),
+        BREWER(TradeProfession.EnumType.SORCERER, 8, NetherExLootTables.ENTITY_PIGTIFICATE_BREWER);
 
         private TradeProfession.EnumType profession;
         private int weight;
@@ -74,7 +78,7 @@ public class TradeCareer
         public static EnumType fromIndex(int index)
         {
             EnumType career = values()[index];
-            return career != null ? career : FARMER;
+            return career != null ? career : HUNTER;
         }
 
         public static EnumType fromCareer(TradeCareer career)

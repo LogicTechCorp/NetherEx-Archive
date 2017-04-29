@@ -505,7 +505,11 @@ public class EventHandler
             if(source.getSourceOfDamage() instanceof EntityPlayer)
             {
                 EntityPlayer player = (EntityPlayer) source.getSourceOfDamage();
-                player.addStat(NetherExAchievements.FROM_WITHIN);
+
+                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_BONE_WITHERED))
+                {
+                    player.addStat(NetherExAchievements.FROM_WITHIN);
+                }
             }
         }
     }
@@ -535,7 +539,7 @@ public class EventHandler
                 }
             }
 
-            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHER, rand.nextInt(4), 0)));
+            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHER, rand.nextInt(3), 0)));
         }
     }
 }
