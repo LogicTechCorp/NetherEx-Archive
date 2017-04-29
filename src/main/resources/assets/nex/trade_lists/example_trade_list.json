@@ -1,18 +1,15 @@
 {
-    "name": "Example",
+    "name": "Example Trade List",
     "professions": [
         {
-            "name": "farmer",
+            "name": "forager",
             "careers": [
                 {
-                    "name": "farmer",
+                    "name": "gatherer",
                     "trades": [
                         {
-                            "output": {
-                                "name": "minecraft:nether_wart", "meta": 0, "amount": { "min": 2, "max": 5 }
-                            },
+                            "output": { "name": "minecraft:nether_wart", "meta": 0, "amount": { "min": 2, "max": 5 } },
                             "inputA": { "name": "minecraft:gold_nugget", "meta": 0, "amount": { "min": 3, "max": 15 } },
-                            "inputB": { "name": "minecraft:air", "meta": 0, "amount": { "min": 1, "max": 1 } },
                             "amount": { "min": 2, "max": 4 },
                             "level": 1
                         }
@@ -29,11 +26,10 @@
                         {
                             "output": {
                                 "name": "minecraft:golden_pickaxe", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "name": "minecraft:mending", "level": 3 }, { "name": "minecraft:unbreaking", "level": 1 } ],
+                                "enchantments": [ { "name": "minecraft:mending", "amount": { "min": 1, "max": 1 } }, { "name": "minecraft:unbreaking", "amount": { "min": 2, "max": 2 } } ],
                                 "display": { "name": "Golden Pickaxe", "lore": [ "A golden pickaxe", "Forged with magic!" ] }
                             },
                             "inputA": { "name": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 3, "max": 3 } },
-                            "inputB": { "name": "minecraft:stick", "meta": 0, "amount": { "min": 2, "max": 2 } },
                             "amount": { "min": 2, "max": 4 },
                             "level": 1
                         }
@@ -42,14 +38,15 @@
             ]
         },
         {
-            "name": "butcher",
+            "name": "sorcerer",
             "careers": [
                 {
-                    "name": "butcher",
+                    "name": "enchanter",
                     "trades": [
                         {
                             "output": {
-                                "name": "nex:food_meat_ghast_raw", "meta": 0, "amount": { "min": 3, "max": 17 }
+                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:mending", "amount": { "min": 1, "max": 3 } }, { "name": "minecraft:unbreaking", "amount": { "min": 2, "max": 6 } } ]
                             },
                             "inputA": { "name": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 2, "max": 11 } },
                             "inputB": { "name": "minecraft:quartz", "meta": 0, "amount": { "min": 1, "max": 9 } },

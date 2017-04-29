@@ -127,16 +127,16 @@ public class TradeOffer
     public class Enchantment
     {
         private String name;
-        private int level;
+        private Amount amount;
 
         public String getName()
         {
             return name;
         }
 
-        public int getLevel()
+        public Amount getAmount()
         {
-            return level;
+            return amount;
         }
     }
 

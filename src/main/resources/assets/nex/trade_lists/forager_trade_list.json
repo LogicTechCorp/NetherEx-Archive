@@ -1,0 +1,188 @@
+{
+    "name": "Forager Trade List",
+    "professions": [
+        {
+            "name": "forager",
+            "careers": [
+                {
+                    "name": "hunter",
+                    "trades": [
+                        {
+                            "output": { "name": "minecraft:rotten_flesh", "meta": 0, "amount": { "min": 9, "max": 15 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 4, "max": 16 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:spider_eye", "meta": 0, "amount": { "min": 4, "max": 6 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:magma_cream", "meta": 0, "amount": { "min": 1, "max": 2 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 1, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:cooked_rabbit", "meta": 0, "amount": { "min": 3, "max": 7 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 2 } },
+                            "amount": { "min": 2, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 2 } },
+                            "inputA": { "name": "nex:food_raw_ghast_meat", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "nex:food_meat_ghast_cooked", "meta": 0, "amount": { "min": 2, "max": 4 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 6 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 3
+                        },
+                        {
+                            "output": { "name": "minecraft:ender_pearl", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 5, "max": 7 } },
+                            "amount": { "min": 1, "max": 8 },
+                            "level": 3
+                        }
+                    ]
+                },
+                {
+                    "name": "gatherer",
+                    "trades": [
+                        {
+                            "output": { "name": "nex:food_congealed_magma_cream", "meta": 0, "amount": { "min": 2, "max": 2 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputB": { "name": "minecraft:magma_cream", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 1, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:mushroom_stew", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 4, "max": 12 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "nex:plant_mushroom_elder", "meta": 1, "amount": { "min": 2, "max": 4 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 3 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "minecraft:bone", "meta": 0, "amount": { "min": 32, "max": 64 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:bread", "meta": 0, "amount": { "min": 5, "max": 16 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 2 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "nex:plant_mushroom_elder", "meta": 0, "amount": { "min": 4, "max": 7 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 3, "max": 4 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "nex:food_mushroom_enoki", "meta": 0, "amount": { "min": 3, "max": 3 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 4 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "minecraft:quartz_block", "meta": 0, "amount": { "min": 3, "max": 5 } },
+                            "amount": { "min": 1, "max": 3 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:nether_wart", "meta": 0, "amount": { "min": 3, "max": 5 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 3, "max": 4 } },
+                            "amount": { "min": 2, "max": 6 },
+                            "level": 3
+                        },
+                        {
+                            "output": { "name": "minecraft:melon_block", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 5, "max": 8 } },
+                            "amount": { "min": 1, "max": 8 },
+                            "level": 3
+                        }
+                    ]
+                },
+                {
+                    "name": "scavenger",
+                    "trades": [
+                        {
+                            "output": { "name": "minecraft:cobblestone", "meta": 0, "amount": { "min": 4, "max": 16 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 4, "max": 16 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "minecraft:stone", "meta": 0, "amount": { "min": 16, "max": 28 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:dirt", "meta": 0, "amount": { "min": 1, "max": 4 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 2 } },
+                            "amount": { "min": 4, "max": 16 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:gravel", "meta": 0, "amount": { "min": 8, "max": 16 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 4, "max": 16 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:log", "meta": 0, "amount": { "min": 1, "max": 4 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 3, "max": 8 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:iron_ingot", "meta": 0, "amount": { "min": 1, "max": 3 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 2 } },
+                            "amount": { "min": 1, "max": 8 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:coal_ore", "meta": 0, "amount": { "min": 3, "max": 7 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 2, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:diamond", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 5, "max": 9 } },
+                            "amount": { "min": 1, "max": 3 },
+                            "level": 3
+                        },
+                        {
+                            "output": { "name": "minecraft:book", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 6, "max": 10 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 3
+                        },
+                        {
+                            "output": { "name": "minecraft:potion", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:block_amethyst", "meta": 0, "amount": { "min": 1, "max": 3 } },
+                            "amount": { "min": 1, "max": 3 },
+                            "level": 4
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

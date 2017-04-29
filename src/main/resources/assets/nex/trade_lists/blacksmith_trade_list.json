@@ -1,0 +1,158 @@
+{
+    "name": "Blacksmith Trade List",
+    "professions": [
+        {
+            "name": "blacksmith",
+            "careers": [
+                {
+                    "name": "armorsmith",
+                    "trades": [
+                        {
+                            "output": { "name": "nex:item_hide_salamander", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 6 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "minecraft:iron_ingot", "meta": 0, "amount": { "min": 10, "max": 20 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:leather", "meta": 0, "amount": { "min": 1, "max": 2 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 4 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:iron_nugget", "meta": 0, "amount": { "min": 12, "max": 24 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 4, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:chainmail_chestplate", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 12, "max": 20 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:chainmail_boots", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 6, "max": 14 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:chainmail_helmet", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 6, "max": 14 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:chainmail_leggings", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 9, "max": 18 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "nex:armor_helmet_hide_salamander", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:block_amethyst", "meta": 0, "amount": { "min": 1, "max": 3 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 3
+                        },
+                        {
+                            "output": { "name": "nex:armor_chestplate_hide_salamander", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:block_amethyst", "meta": 0, "amount": { "min": 3, "max": 4 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 3
+                        },
+                        {
+                            "output": { "name": "nex:armor_leggings_hide_salamander", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:block_amethyst", "meta": 0, "amount": { "min": 2, "max": 4 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 3
+                        },
+                        {
+                            "output": { "name": "nex:armor_boots_hide_salamander", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:block_amethyst", "meta": 0, "amount": { "min": 1, "max": 3 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 3
+                        }
+                    ]
+                },
+                {
+                    "name": "toolsmith",
+                    "trades": [
+                        {
+                            "output": { "name": "minecraft:iron_nugget", "meta": 0, "amount": { "min": 10, "max": 24 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "amount": { "min": 4, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "minecraft:gold_ingot", "meta": 0, "amount": { "min": 4, "max": 8 } },
+                            "amount": { "min": 2, "max": 8 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:stone_pickaxe", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 4 } },
+                            "amount": { "min": 2, "max": 4 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:stone_sword", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 5 } },
+                            "amount": { "min": 2, "max": 4 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:stone_shovel", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 3 } },
+                            "amount": { "min": 2, "max": 4 },
+                            "level": 1
+                        },
+                        {
+                            "output": { "name": "minecraft:diamond", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 2, "max": 4 } },
+                            "amount": { "min": 2, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:iron_pickaxe", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 6 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:iron_axe", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 5 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:iron_sword", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 5, "max": 7 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:iron_shovel", "meta": 0, "amount": { "min": 1, "max": 1 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 5 } },
+                            "amount": { "min": 1, "max": 2 },
+                            "level": 2
+                        },
+                        {
+                            "output": { "name": "minecraft:gold_nugget", "meta": 0, "amount": { "min": 12, "max": 28 } },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 6, "max": 9 } },
+                            "amount": { "min": 2, "max": 4 },
+                            "level": 3
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

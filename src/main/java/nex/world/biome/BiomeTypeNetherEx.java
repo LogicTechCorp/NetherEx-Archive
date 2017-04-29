@@ -17,7 +17,6 @@
 
 package nex.world.biome;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
@@ -83,9 +82,9 @@ public enum BiomeTypeNetherEx
         return Blocks.LAVA.getDefaultState();
     }
 
-    public ImmutableList<BiomeManager.BiomeEntry> getBiomeEntries()
+    public List<BiomeManager.BiomeEntry> getBiomeEntries()
     {
-        return ImmutableList.copyOf(biomeEntries);
+        return Lists.newArrayList(biomeEntries);
     }
 
     public static BiomeTypeNetherEx getTypeFromBiome(Biome biome)
@@ -101,10 +100,10 @@ public enum BiomeTypeNetherEx
             }
         }
 
-        return null;
+        return WARM;
     }
 
-    public static ImmutableList<BiomeManager.BiomeEntry> getAllBiomeEntries()
+    public static List<BiomeManager.BiomeEntry> getAllBiomeEntries()
     {
         List<BiomeManager.BiomeEntry> biomeEntries = Lists.newArrayList();
 
@@ -113,6 +112,6 @@ public enum BiomeTypeNetherEx
             biomeEntries.addAll(type.getBiomeEntries());
         }
 
-        return ImmutableList.copyOf(biomeEntries);
+        return biomeEntries;
     }
 }

@@ -571,13 +571,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private void populateTradeList()
     {
-        if(getCareer() != 0 && getCareerLevel() != 0)
+        if(getCareerLevel() != 0)
         {
             setCareerLevel(getCareerLevel() + 1);
         }
         else
         {
-            setRandomCareer();
             setCareerLevel(1);
         }
 
@@ -588,13 +587,13 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
         List<MerchantRecipe> trades = TradeListManager.getTrades(TradeCareer.EnumType.fromIndex(getCareer()), getCareerLevel());
 
-        if(trades != null)
+        if(trades.size() > 0)
         {
             Collections.shuffle(trades, rand);
 
-            if(getCareerLevel() == 1)
+            if(getCareerLevel() == 1 && trades.size() > 1)
             {
-                trades.addAll(trades.subList(0, 2));
+                tradeList.addAll(trades.subList(0, 2));
             }
             else
             {

@@ -83,7 +83,7 @@ public class AdditionalBiomeManager
                     continue;
                 }
 
-                LOGGER.info("Adding biomes from the " + biomeList.getName() + " biome list.");
+                LOGGER.info("Adding biomes from the " + biomeList.getName() + ".");
 
                 for(AdditionalBiomeMod biomeMod : biomeList.getMods())
                 {
