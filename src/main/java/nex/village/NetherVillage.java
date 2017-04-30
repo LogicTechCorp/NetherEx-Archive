@@ -31,6 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import nex.entity.neutral.EntityGoldGolem;
 import nex.entity.passive.EntityPigtificate;
 
 import java.util.Iterator;
@@ -41,7 +42,7 @@ import java.util.UUID;
 public class NetherVillage
 {
     private World world;
-    private final List<NetherVillageFenceGateInfo> villageFenceGateInfoList = Lists.newArrayList();
+    private final List<VillageFenceGateInfo> villageFenceGateInfoList = Lists.newArrayList();
     private BlockPos centerHelper = BlockPos.ORIGIN;
     private BlockPos center = BlockPos.ORIGIN;
     private int villageRadius;
@@ -50,7 +51,7 @@ public class NetherVillage
     private int numPigtificates;
     private int noBreedTicks;
     private final Map<UUID, Integer> playerReputation = Maps.newHashMap();
-    private final List<NetherVillage.NetherVillageAggressor> villageAggressors = Lists.newArrayList();
+    private final List<VillageAggressor> villageAggressors = Lists.newArrayList();
     private int numGoldGolems;
 
     public NetherVillage()
@@ -91,7 +92,7 @@ public class NetherVillage
 
             if(vec3d != null)
             {
-                EntityIronGolem golem = new EntityIronGolem(world);
+                EntityGoldGolem golem = new EntityGoldGolem(world);
                 golem.setPosition(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord);
                 world.spawnEntity(golem);
                 ++numGoldGolems;
@@ -105,7 +106,7 @@ public class NetherVillage
         {
             BlockPos blockpos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(6) - 3, world.rand.nextInt(16) - 8);
 
-            if(isBlockPosWithinSqNetherVillageRadius(blockpos) && isAreaClearAround(new BlockPos(x, y, z), blockpos))
+            if(isBlockPosWithinSqVillageRadius(blockpos) && isAreaClearAround(new BlockPos(x, y, z), blockpos))
             {
                 return new Vec3d((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ());
             }
@@ -145,7 +146,7 @@ public class NetherVillage
 
     private void updateNumGoldGolems()
     {
-        List<EntityIronGolem> list = world.getEntitiesWithinAABB(EntityIronGolem.class, new AxisAlignedBB((double) (center.getX() - villageRadius), (double) (center.getY() - 4), (double) (center.getZ() - villageRadius), (double) (center.getX() + villageRadius), (double) (center.getY() + 4), (double) (center.getZ() + villageRadius)));
+        List<EntityGoldGolem> list = world.getEntitiesWithinAABB(EntityGoldGolem.class, new AxisAlignedBB((double) (center.getX() - villageRadius), (double) (center.getY() - 4), (double) (center.getZ() - villageRadius), (double) (center.getX() + villageRadius), (double) (center.getY() + 4), (double) (center.getZ() + villageRadius)));
         numGoldGolems = list.size();
     }
 
@@ -165,12 +166,12 @@ public class NetherVillage
         return center;
     }
 
-    public int getNetherVillageRadius()
+    public int getVillageRadius()
     {
         return villageRadius;
     }
 
-    public int getNumNetherVillageFenceGates()
+    public int getNumVillageFenceGates()
     {
         return villageFenceGateInfoList.size();
     }
@@ -185,22 +186,22 @@ public class NetherVillage
         return numPigtificates;
     }
 
-    public boolean isBlockPosWithinSqNetherVillageRadius(BlockPos pos)
+    public boolean isBlockPosWithinSqVillageRadius(BlockPos pos)
     {
         return center.distanceSq(pos) < (double) (villageRadius * villageRadius);
     }
 
-    public List<NetherVillageFenceGateInfo> getNetherVillageFenceGateInfoList()
+    public List<VillageFenceGateInfo> getVillageFenceGateInfoList()
     {
         return villageFenceGateInfoList;
     }
 
-    public NetherVillageFenceGateInfo getNearestFenceGate(BlockPos pos)
+    public VillageFenceGateInfo getNearestFenceGate(BlockPos pos)
     {
-        NetherVillageFenceGateInfo fenceGateInfo = null;
+        VillageFenceGateInfo fenceGateInfo = null;
         int i = Integer.MAX_VALUE;
 
-        for(NetherVillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
+        for(VillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
         {
             int j = fenceGateInfo1.getDistanceToFenceGateBlockSq(pos);
 
@@ -214,12 +215,12 @@ public class NetherVillage
         return fenceGateInfo;
     }
 
-    public NetherVillageFenceGateInfo getFenceGateInfo(BlockPos pos)
+    public VillageFenceGateInfo getFenceGateInfo(BlockPos pos)
     {
-        NetherVillageFenceGateInfo fenceGateInfo = null;
+        VillageFenceGateInfo fenceGateInfo = null;
         int i = Integer.MAX_VALUE;
 
-        for(NetherVillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
+        for(VillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
         {
             int j = fenceGateInfo1.getDistanceToFenceGateBlockSq(pos);
 
@@ -248,7 +249,7 @@ public class NetherVillage
         return fenceGateInfo;
     }
 
-    public NetherVillageFenceGateInfo getExistedFenceGate(BlockPos fenceGateBlock)
+    public VillageFenceGateInfo getExistedFenceGate(BlockPos fenceGateBlock)
     {
         if(center.distanceSq(fenceGateBlock) > (double) (villageRadius * villageRadius))
         {
@@ -256,7 +257,7 @@ public class NetherVillage
         }
         else
         {
-            for(NetherVillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
+            for(VillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
             {
                 if(fenceGateInfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && fenceGateInfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
                 {
@@ -268,11 +269,11 @@ public class NetherVillage
         }
     }
 
-    public void addNetherVillageFenceGateInfo(NetherVillageFenceGateInfo fenceGateInfo)
+    public void addVillageFenceGateInfo(VillageFenceGateInfo fenceGateInfo)
     {
         villageFenceGateInfoList.add(fenceGateInfo);
         centerHelper = centerHelper.add(fenceGateInfo.getFenceGateBlockPos());
-        updateNetherVillageRadiusAndCenter();
+        updateVillageRadiusAndCenter();
         lastAddFenceGateTimestamp = fenceGateInfo.getLastActivityTimestamp();
     }
 
@@ -283,7 +284,7 @@ public class NetherVillage
 
     public void addOrRenewAggressor(EntityLivingBase entitylivingbaseIn)
     {
-        for(NetherVillage.NetherVillageAggressor aggressor : villageAggressors)
+        for(VillageAggressor aggressor : villageAggressors)
         {
             if(aggressor.aggressor == entitylivingbaseIn)
             {
@@ -292,17 +293,17 @@ public class NetherVillage
             }
         }
 
-        villageAggressors.add(new NetherVillage.NetherVillageAggressor(entitylivingbaseIn, tickCounter));
+        villageAggressors.add(new VillageAggressor(entitylivingbaseIn, tickCounter));
     }
 
-    public EntityLivingBase findNearestNetherVillageAggressor(EntityLivingBase entitylivingbaseIn)
+    public EntityLivingBase findNearestVillageAggressor(EntityLivingBase entitylivingbaseIn)
     {
         double d0 = Double.MAX_VALUE;
-        NetherVillage.NetherVillageAggressor aggressor = null;
+        VillageAggressor aggressor = null;
 
-        for(NetherVillageAggressor villageAggressor : villageAggressors)
+        for(VillageAggressor villageAggressor : villageAggressors)
         {
-            NetherVillageAggressor aggressor1 = villageAggressor;
+            VillageAggressor aggressor1 = villageAggressor;
             double d1 = aggressor1.aggressor.getDistanceSqToEntity(entitylivingbaseIn);
 
             if(d1 <= d0)
@@ -351,11 +352,11 @@ public class NetherVillage
     {
         boolean flag = false;
         boolean flag1 = world.rand.nextInt(50) == 0;
-        Iterator<NetherVillageFenceGateInfo> iterator = villageFenceGateInfoList.iterator();
+        Iterator<VillageFenceGateInfo> iterator = villageFenceGateInfoList.iterator();
 
         while(iterator.hasNext())
         {
-            NetherVillageFenceGateInfo fenceGateInfo = iterator.next();
+            VillageFenceGateInfo fenceGateInfo = iterator.next();
 
             if(flag1)
             {
@@ -366,18 +367,18 @@ public class NetherVillage
             {
                 centerHelper = centerHelper.subtract(fenceGateInfo.getFenceGateBlockPos());
                 flag = true;
-                fenceGateInfo.setIsDetachedFromNetherVillageFlag(true);
+                fenceGateInfo.setIsDetachedFromVillageFlag(true);
                 iterator.remove();
             }
         }
 
         if(flag)
         {
-            updateNetherVillageRadiusAndCenter();
+            updateVillageRadiusAndCenter();
         }
     }
 
-    private void updateNetherVillageRadiusAndCenter()
+    private void updateVillageRadiusAndCenter()
     {
         int i = villageFenceGateInfoList.size();
 
@@ -391,7 +392,7 @@ public class NetherVillage
             center = new BlockPos(centerHelper.getX() / i, centerHelper.getY() / i, centerHelper.getZ() / i);
             int j = 0;
 
-            for(NetherVillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
+            for(VillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
             {
                 j = Math.max(fenceGateInfo.getDistanceToFenceGateBlockSq(center), j);
             }
@@ -429,7 +430,7 @@ public class NetherVillage
         return getPlayerReputation(uuid) <= -15;
     }
 
-    public void readNetherVillageDataFromNBT(NBTTagCompound compound)
+    public void readVillageDataFromNBT(NBTTagCompound compound)
     {
         numPigtificates = compound.getInteger("PopSize");
         villageRadius = compound.getInteger("Radius");
@@ -444,7 +445,7 @@ public class NetherVillage
         for(int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound tagCompound = nbttaglist.getCompoundTagAt(i);
-            NetherVillageFenceGateInfo fenceGateInfo = new NetherVillageFenceGateInfo(new BlockPos(tagCompound.getInteger("X"), tagCompound.getInteger("Y"), tagCompound.getInteger("Z")), tagCompound.getInteger("IDX"), tagCompound.getInteger("IDZ"), tagCompound.getInteger("TS"));
+            VillageFenceGateInfo fenceGateInfo = new VillageFenceGateInfo(new BlockPos(tagCompound.getInteger("X"), tagCompound.getInteger("Y"), tagCompound.getInteger("Z")), tagCompound.getInteger("IDX"), tagCompound.getInteger("IDZ"), tagCompound.getInteger("TS"));
             villageFenceGateInfoList.add(fenceGateInfo);
         }
 
@@ -465,7 +466,7 @@ public class NetherVillage
         }
     }
 
-    public void writeNetherVillageDataToNBT(NBTTagCompound compound)
+    public void writeVillageDataToNBT(NBTTagCompound compound)
     {
         compound.setInteger("PopSize", numPigtificates);
         compound.setInteger("Radius", villageRadius);
@@ -481,7 +482,7 @@ public class NetherVillage
         compound.setInteger("ACZ", centerHelper.getZ());
         NBTTagList nbttaglist = new NBTTagList();
 
-        for(NetherVillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
+        for(VillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
         {
             NBTTagCompound tagCompound = new NBTTagCompound();
             tagCompound.setInteger("X", fenceGateInfo.getFenceGateBlockPos().getX());
@@ -535,12 +536,12 @@ public class NetherVillage
         }
     }
 
-    class NetherVillageAggressor
+    class VillageAggressor
     {
         public EntityLivingBase aggressor;
         public int aggressionTime;
 
-        NetherVillageAggressor(EntityLivingBase aggressorIn, int aggressionTimeIn)
+        VillageAggressor(EntityLivingBase aggressorIn, int aggressionTimeIn)
         {
             aggressor = aggressorIn;
             aggressionTime = aggressionTimeIn;

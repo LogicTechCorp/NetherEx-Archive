@@ -50,7 +50,7 @@ public class EntityBoneSpider extends EntitySpider
     {
         if(entity instanceof EntityPlayer)
         {
-            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 320, 0));
+            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(NetherExEffects.FROSTBITE, 320, 0));
         }
         return super.attackEntityAsMob(entity);
     }

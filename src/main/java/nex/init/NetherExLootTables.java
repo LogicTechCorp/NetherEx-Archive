@@ -45,6 +45,7 @@ public class NetherExLootTables
     public static final ResourceLocation ENTITY_PIGTIFICATE_TOOLSMITH = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_toolsmith");
     public static final ResourceLocation ENTITY_PIGTIFICATE_ENCHANTER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_enchanter");
     public static final ResourceLocation ENTITY_PIGTIFICATE_BREWER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_brewer");
+    public static final ResourceLocation ENTITY_GOLEM_GOLD = new ResourceLocation(NetherEx.MOD_ID + ":entity/gold_golem");
     public static final ResourceLocation ENTITY_MOGUS_BROWN = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_brown");
     public static final ResourceLocation ENTITY_MOGUS_RED = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_red");
     public static final ResourceLocation ENTITY_MOGUS_WHITE = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_white");

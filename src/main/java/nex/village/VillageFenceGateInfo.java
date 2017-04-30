@@ -20,16 +20,16 @@ package nex.village;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class NetherVillageFenceGateInfo
+public class VillageFenceGateInfo
 {
     private final BlockPos fenceGateBlockPos;
     private final BlockPos insideBlock;
     private final EnumFacing insideDirection;
     private int lastActivityTimestamp;
-    private boolean isDetachedFromNetherVillageFlag;
+    private boolean isDetachedFromVillageFlag;
     private int fenceGateOpeningRestrictionCounter;
 
-    public NetherVillageFenceGateInfo(BlockPos pos, int deltaX, int deltaZ, int timestamp)
+    public VillageFenceGateInfo(BlockPos pos, int deltaX, int deltaZ, int timestamp)
     {
         this(pos, getFaceDirection(deltaX, deltaZ), timestamp);
     }
@@ -39,7 +39,7 @@ public class NetherVillageFenceGateInfo
         return deltaX < 0 ? EnumFacing.WEST : (deltaX > 0 ? EnumFacing.EAST : (deltaZ < 0 ? EnumFacing.NORTH : EnumFacing.SOUTH));
     }
 
-    public NetherVillageFenceGateInfo(BlockPos pos, EnumFacing facing, int timestamp)
+    public VillageFenceGateInfo(BlockPos pos, EnumFacing facing, int timestamp)
     {
         fenceGateBlockPos = pos;
         insideDirection = facing;
@@ -114,14 +114,14 @@ public class NetherVillageFenceGateInfo
         lastActivityTimestamp = timestamp;
     }
 
-    public boolean getIsDetachedFromNetherVillageFlag()
+    public boolean getIsDetachedFromVillageFlag()
     {
-        return isDetachedFromNetherVillageFlag;
+        return isDetachedFromVillageFlag;
     }
 
-    public void setIsDetachedFromNetherVillageFlag(boolean detached)
+    public void setIsDetachedFromVillageFlag(boolean detached)
     {
-        isDetachedFromNetherVillageFlag = detached;
+        isDetachedFromVillageFlag = detached;
     }
 
     public EnumFacing getInsideDirection()

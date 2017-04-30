@@ -22,13 +22,13 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.BlockPos;
 import nex.village.NetherVillage;
-import nex.village.NetherVillageFenceGateInfo;
+import nex.village.VillageFenceGateInfo;
 import nex.village.NetherVillageManager;
 
 public class EntityAIRestrictFenceGateUse extends EntityAIBase
 {
     private final EntityCreature entityObj;
-    private NetherVillageFenceGateInfo fenceGate;
+    private VillageFenceGateInfo fenceGate;
 
     public EntityAIRestrictFenceGateUse(EntityCreature creatureIn)
     {
@@ -50,7 +50,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
         else
         {
             BlockPos blockpos = new BlockPos(entityObj);
-            NetherVillage village = NetherVillageManager.getNetherVillages().getNearestNetherVillage(blockpos, 16);
+            NetherVillage village = NetherVillageManager.getNetherVillages().getNearestVillage(blockpos, 16);
 
             if(village == null)
             {
@@ -67,7 +67,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public boolean continueExecuting()
     {
-        return !entityObj.world.isDaytime() && (!fenceGate.getIsDetachedFromNetherVillageFlag() && fenceGate.isInsideSide(new BlockPos(entityObj)));
+        return !entityObj.world.isDaytime() && (!fenceGate.getIsDetachedFromVillageFlag() && fenceGate.isInsideSide(new BlockPos(entityObj)));
     }
 
     @Override

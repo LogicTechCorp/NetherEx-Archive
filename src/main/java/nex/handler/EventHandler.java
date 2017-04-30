@@ -502,7 +502,9 @@ public class EventHandler
 
         if(entity instanceof EntityLivingBase)
         {
-            if(((EntityLivingBase) entity).isPotionActive(NetherExEffects.FROSTBITE))
+            EntityPlayer player = (EntityPlayer) entity;
+
+            if(!player.isPotionActive(MobEffects.REGENERATION) && !player.isPotionActive(MobEffects.ABSORPTION) && player.isPotionActive(NetherExEffects.FROSTBITE))
             {
                 event.setCanceled(true);
             }

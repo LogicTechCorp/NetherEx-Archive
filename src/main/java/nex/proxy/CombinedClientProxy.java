@@ -28,6 +28,7 @@ import nex.client.render.tileentity.RenderSummoningAltar;
 import nex.entity.boss.EntityGhastQueen;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.*;
+import nex.entity.neutral.EntityGoldGolem;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.passive.EntityPigtificate;
@@ -48,6 +49,7 @@ public class CombinedClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastlingFireball.class, RenderGhastlingFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigtificate.class, RenderPigtificate::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGoldGolem.class, RenderGoldGolem::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityMogus.class, RenderMogus::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySalamander.class, RenderSalamander::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWight.class, RenderWight::new);

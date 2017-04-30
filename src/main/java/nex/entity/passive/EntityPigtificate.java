@@ -163,7 +163,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         tasks.addTask(4, new EntityAIUseFenceGate(this, true));
         tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
         tasks.addTask(6, new EntityAIPigtificateMate(this));
-        //tasks.addTask(7, new EntityAIFollowGolem(this));
+        tasks.addTask(7, new EntityAIPigtificateFollowGoldGolem(this));
         tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIPigtificateInteract(this));
         tasks.addTask(9, new EntityAIWanderAvoidWater(this, 0.6D));
@@ -198,9 +198,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            NetherVillageManager.getNetherVillages().addToNetherVillagerPositionList(blockpos);
+            NetherVillageManager.getNetherVillages().addToVillagerPositionList(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
-            village = NetherVillageManager.getNetherVillages().getNearestNetherVillage(blockpos, 32);
+            village = NetherVillageManager.getNetherVillages().getNearestVillage(blockpos, 32);
 
             if(village == null)
             {
@@ -209,7 +209,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             else
             {
                 BlockPos blockpos1 = village.getCenter();
-                setHomePosAndDistance(blockpos1, village.getNetherVillageRadius());
+                setHomePosAndDistance(blockpos1, village.getVillageRadius());
 
                 if(lookingForHome)
                 {

@@ -36,7 +36,7 @@ public class NetherVillageCollection extends WorldSavedData
 {
     private World world;
     private final List<BlockPos> villagerPositionsList = Lists.newArrayList();
-    private final List<NetherVillageFenceGateInfo> newFenceGates = Lists.newArrayList();
+    private final List<VillageFenceGateInfo> newFenceGates = Lists.newArrayList();
     private final List<NetherVillage> villageList = Lists.newArrayList();
     private int tickCounter;
 
@@ -62,7 +62,7 @@ public class NetherVillageCollection extends WorldSavedData
         }
     }
 
-    public void addToNetherVillagerPositionList(BlockPos pos)
+    public void addToVillagerPositionList(BlockPos pos)
     {
         if(villagerPositionsList.size() <= 64)
         {
@@ -82,9 +82,9 @@ public class NetherVillageCollection extends WorldSavedData
             village.tick(tickCounter);
         }
 
-        removeAnnihilatedNetherVillages();
-        dropOldestNetherVillagerPosition();
-        addNewFenceGatesToNetherVillageOrCreateNetherVillage();
+        removeAnnihilatedVillages();
+        dropOldestVillagerPosition();
+        addNewFenceGatesToVillageOrCreateVillage();
 
         if(tickCounter % 400 == 0)
         {
@@ -92,7 +92,7 @@ public class NetherVillageCollection extends WorldSavedData
         }
     }
 
-    private void removeAnnihilatedNetherVillages()
+    private void removeAnnihilatedVillages()
     {
         Iterator<NetherVillage> iterator = villageList.iterator();
 
@@ -108,12 +108,12 @@ public class NetherVillageCollection extends WorldSavedData
         }
     }
 
-    public List<NetherVillage> getNetherVillageList()
+    public List<NetherVillage> getVillageList()
     {
         return villageList;
     }
 
-    public NetherVillage getNearestNetherVillage(BlockPos fenceGateBlock, int radius)
+    public NetherVillage getNearestVillage(BlockPos fenceGateBlock, int radius)
     {
         NetherVillage village = null;
         double d0 = 3.4028234663852886E38D;
@@ -124,7 +124,7 @@ public class NetherVillageCollection extends WorldSavedData
 
             if(d1 < d0)
             {
-                float f = (float) (radius + village1.getNetherVillageRadius());
+                float f = (float) (radius + village1.getVillageRadius());
 
                 if(d1 <= (double) (f * f))
                 {
@@ -137,7 +137,7 @@ public class NetherVillageCollection extends WorldSavedData
         return village;
     }
 
-    private void dropOldestNetherVillagerPosition()
+    private void dropOldestVillagerPosition()
     {
         if(!villagerPositionsList.isEmpty())
         {
@@ -145,11 +145,11 @@ public class NetherVillageCollection extends WorldSavedData
         }
     }
 
-    private void addNewFenceGatesToNetherVillageOrCreateNetherVillage()
+    private void addNewFenceGatesToVillageOrCreateVillage()
     {
-        for(NetherVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(VillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
-            NetherVillage village = getNearestNetherVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
+            NetherVillage village = getNearestVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
 
             if(village == null)
             {
@@ -158,7 +158,7 @@ public class NetherVillageCollection extends WorldSavedData
                 markDirty();
             }
 
-            village.addNetherVillageFenceGateInfo(villagefenceGateinfo);
+            village.addVillageFenceGateInfo(villagefenceGateinfo);
         }
 
         newFenceGates.clear();
@@ -178,7 +178,7 @@ public class NetherVillageCollection extends WorldSavedData
 
                     if(outside != null)
                     {
-                        NetherVillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
+                        VillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
 
                         if(villagefenceGateinfo == null)
                         {
@@ -194,9 +194,9 @@ public class NetherVillageCollection extends WorldSavedData
         }
     }
 
-    private NetherVillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
+    private VillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
     {
-        for(NetherVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(VillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
             if(villagefenceGateinfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && villagefenceGateinfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(villagefenceGateinfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
             {
@@ -206,7 +206,7 @@ public class NetherVillageCollection extends WorldSavedData
 
         for(NetherVillage village : villageList)
         {
-            NetherVillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
+            VillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
 
             if(villagefenceGateinfo1 != null)
             {
@@ -219,7 +219,7 @@ public class NetherVillageCollection extends WorldSavedData
 
     private void addToNewFenceGatesList(BlockPos fenceGateBlock, EnumFacing facing)
     {
-        newFenceGates.add(new NetherVillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
+        newFenceGates.add(new VillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
     }
 
     private boolean positionInList(BlockPos pos)
@@ -268,7 +268,7 @@ public class NetherVillageCollection extends WorldSavedData
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             NetherVillage village = new NetherVillage();
-            village.readNetherVillageDataFromNBT(nbttagcompound);
+            village.readVillageDataFromNBT(nbttagcompound);
             villageList.add(village);
         }
     }
@@ -282,7 +282,7 @@ public class NetherVillageCollection extends WorldSavedData
         for(NetherVillage village : villageList)
         {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
-            village.writeNetherVillageDataToNBT(nbttagcompound);
+            village.writeVillageDataToNBT(nbttagcompound);
             nbttaglist.appendTag(nbttagcompound);
         }
 

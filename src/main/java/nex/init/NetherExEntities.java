@@ -25,6 +25,7 @@ import nex.NetherEx;
 import nex.entity.boss.EntityGhastQueen;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.*;
+import nex.entity.neutral.EntityGoldGolem;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.passive.EntityPigtificate;
@@ -49,6 +50,7 @@ public class NetherExEntities
 
         registerEntity("passive_pigtificate", EntityPigtificate.class, entityId++, 15771042, 12422002);
 
+        registerEntity("neutral_gold_golem", EntityGoldGolem.class, entityId++, 16773448, 14520344);
         registerEntity("neutral_mogus", EntityMogus.class, entityId++, 6770482, 5114119);
         registerEntity("neutral_salamander", EntitySalamander.class, entityId++, 15949838, 394758);
 

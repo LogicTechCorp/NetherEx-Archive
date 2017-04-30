@@ -56,7 +56,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            village = NetherVillageManager.getNetherVillages().getNearestNetherVillage(new BlockPos(pigtificate), 0);
+            village = NetherVillageManager.getNetherVillages().getNearestVillage(new BlockPos(pigtificate), 0);
 
             if(village == null)
             {
@@ -133,7 +133,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            int i = (int) ((double) ((float) village.getNumNetherVillageFenceGates()) * 0.35D);
+            int i = (int) ((double) ((float) village.getNumVillageFenceGates()) * 0.35D);
             return village.getNumPigtificates() < i;
         }
     }
