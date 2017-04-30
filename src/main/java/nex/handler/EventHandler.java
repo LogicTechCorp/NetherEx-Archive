@@ -22,8 +22,6 @@ import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
@@ -48,12 +46,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -175,32 +171,6 @@ public class EventHandler
             GlStateManager.popMatrix();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.disableBlend();
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPostRenderGameOverlay(RenderGameOverlayEvent.Post event)
-    {
-        ScaledResolution resolution = event.getResolution();
-        int width = resolution.getScaledWidth();
-        int height = resolution.getScaledHeight();
-        EntityPlayer player = minecraft.player;
-
-        if(event.getType() == RenderGameOverlayEvent.ElementType.HEALTH)
-        {
-            int health = MathHelper.ceil(player.getHealth());
-
-            minecraft.renderEngine.bindTexture(new ResourceLocation(NetherEx.MOD_ID + ":textures/gui/icons.png"));
-            GlStateManager.disableDepth();
-            GlStateManager.enableBlend();
-
-            if(player.isPotionActive(NetherExEffects.FROSTBITE))
-            {
-            }
-
-            GlStateManager.disableBlend();
-            GlStateManager.enableDepth();
-            minecraft.renderEngine.bindTexture(Gui.ICONS);
         }
     }
 
