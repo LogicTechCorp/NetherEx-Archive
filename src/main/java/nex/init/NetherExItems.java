@@ -54,6 +54,9 @@ public class NetherExItems
     @GameRegistry.ObjectHolder("item_spore")
     public static final ItemNetherEx ITEM_SPORE = null;
 
+    @GameRegistry.ObjectHolder("item_fang_spider_bone")
+    public static final ItemNetherEx ITEM_FANG_SPIDER_BONE = null;
+
     @GameRegistry.ObjectHolder("item_tear_ghast_queen")
     public static final ItemNetherEx ITEM_TEAR_GHAST_QUEEN = null;
 
@@ -129,6 +132,7 @@ public class NetherExItems
                     new ItemNetherEx("item_crystal_amethyst"),
                     new ItemNetherEx("item_crystal_rime"),
                     new ItemNetherEx("item_spore"),
+                    new ItemNetherEx("item_fang_spider_bone"),
                     new ItemGhastQueenTear(),
                     new ItemObsidianBoat(),
                     new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),

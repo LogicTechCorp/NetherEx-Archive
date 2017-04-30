@@ -35,6 +35,9 @@ public class NetherExEffectTypes
     @GameRegistry.ObjectHolder("normal_freeze")
     public static final PotionType NORMAL_FREEZE = null;
 
+    @GameRegistry.ObjectHolder("normal_frostbite")
+    public static final PotionType NORMAL_FROSTBITE = null;
+
     @GameRegistry.ObjectHolder("normal_spore")
     public static final PotionType NORMAL_SPORE = null;
 
@@ -53,6 +56,7 @@ public class NetherExEffectTypes
 
             event.getRegistry().registerAll(
                     new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
+                    new NetherExPotionType("normal_frostbite", new PotionEffect(NetherExEffects.FROSTBITE, 600)),
                     new NetherExPotionType("normal_spore", new PotionEffect(NetherExEffects.SPORE, 600)),
                     new NetherExPotionType("normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
             );

@@ -35,7 +35,6 @@ import nex.block.BlockNetherrack;
 import nex.block.BlockThornstalk;
 import nex.entity.monster.EntitySpinout;
 import nex.handler.ConfigHandler;
-import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
 import nex.world.gen.feature.WorldGenGlowStone;
@@ -82,11 +81,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntitySpinout.class, 100, 1, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityWitherSkeleton.class, 65, 1, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 45, 1, 4));
-
-        if(ConfigHandler.biome.ruthlessSands.generateBiome)
-        {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.ruthlessSands.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.WARM);
-        }
     }
 
     @Override

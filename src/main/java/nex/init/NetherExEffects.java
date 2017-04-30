@@ -31,6 +31,7 @@ import org.apache.logging.log4j.Logger;
 public class NetherExEffects
 {
     public static final NetherExPotion FREEZE = new NetherExPotion("freeze", true, 93, 188, 210);
+    public static final NetherExPotion FROSTBITE = new NetherExPotion("frostbite", true, 19, 226, 255);
     public static final NetherExPotion SPORE = new NetherExPotion("spore", true, 142, 96, 40);
     public static final NetherExPotion LOST = new NetherExPotion("lost", true, 103, 62, 124);
 
@@ -46,6 +47,7 @@ public class NetherExEffects
 
             event.getRegistry().registerAll(
                     FREEZE,
+                    FROSTBITE,
                     SPORE,
                     LOST
             );

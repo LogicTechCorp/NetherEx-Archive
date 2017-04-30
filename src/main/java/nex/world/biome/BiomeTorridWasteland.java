@@ -34,7 +34,6 @@ import nex.block.BlockNetherrack;
 import nex.entity.monster.EntityEmber;
 import nex.entity.neutral.EntitySalamander;
 import nex.handler.ConfigHandler;
-import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
 import nex.world.gen.feature.*;
@@ -78,11 +77,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         topBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
-
-        if(ConfigHandler.biome.torridWasteland.generateBiome)
-        {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.torridWasteland.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.HOT);
-        }
     }
 
     @Override

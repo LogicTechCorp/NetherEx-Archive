@@ -17,10 +17,14 @@
 
 package nex.entity.monster;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import nex.init.NetherExEffects;
 import nex.init.NetherExLootTables;
 
 public class EntityBoneSpider extends EntitySpider
@@ -39,6 +43,16 @@ public class EntityBoneSpider extends EntitySpider
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        if(entity instanceof EntityPlayer)
+        {
+            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 320, 0));
+        }
+        return super.attackEntityAsMob(entity);
     }
 
     @Override

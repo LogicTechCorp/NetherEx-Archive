@@ -190,6 +190,7 @@ public class NetherExModels
         registerModel(ITEM_CRYSTAL_AMETHYST, "normal");
         registerModel(ITEM_CRYSTAL_RIME, "normal");
         registerModel(ITEM_SPORE, "normal");
+        registerModel(ITEM_FANG_SPIDER_BONE, "normal");
         registerModel(ITEM_TEAR_GHAST_QUEEN, "normal");
         registerModel(ITEM_BOAT_OBSIDIAN, "normal");
 

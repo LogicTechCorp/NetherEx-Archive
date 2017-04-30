@@ -19,7 +19,6 @@ package nex.world.biome;
 
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -33,7 +32,6 @@ import nex.entity.monster.EntitySpore;
 import nex.entity.monster.EntitySporeCreeper;
 import nex.entity.neutral.EntityMogus;
 import nex.handler.ConfigHandler;
-import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
 import nex.world.gen.feature.WorldGenElderMushroom;
@@ -77,11 +75,6 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         topBlock = NetherExBlocks.BLOCK_HYPHAE.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
-
-        if(ConfigHandler.biome.fungiForest.generateBiome)
-        {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.fungiForest.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.COOL);
-        }
     }
 
     @Override

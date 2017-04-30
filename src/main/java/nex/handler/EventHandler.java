@@ -22,6 +22,8 @@ import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
@@ -46,10 +48,12 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -86,6 +90,7 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class EventHandler
 {
+    private static final Minecraft minecraft = Minecraft.getMinecraft();
     private static final Field FIELD_WORLD_TELEPORTER = ReflectionHelper.findField(WorldServer.class, "field_85177_Q", "worldTeleporter");
 
     @SubscribeEvent
@@ -121,7 +126,7 @@ public class EventHandler
     @SideOnly(Side.CLIENT)
     public static void onMouse(MouseEvent event)
     {
-        EntityPlayer player = Minecraft.getMinecraft().player;
+        EntityPlayer player = minecraft.player;
 
         if(player.isPotionActive(NetherExEffects.FREEZE))
         {
@@ -151,16 +156,16 @@ public class EventHandler
         {
             event.setCanceled(true);
 
-            Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(NetherEx.MOD_ID + ":textures/blocks/fluid_ichor_overlay.png"));
+            minecraft.renderEngine.bindTexture(new ResourceLocation(NetherEx.MOD_ID + ":textures/blocks/fluid_ichor_overlay.png"));
             Tessellator tessellator = Tessellator.getInstance();
             VertexBuffer vertexbuffer = tessellator.getBuffer();
-            float f = Minecraft.getMinecraft().player.getBrightness(partialTicks);
+            float f = minecraft.player.getBrightness(partialTicks);
             GlStateManager.color(f, f, f, 0.85F);
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.pushMatrix();
-            float f7 = -Minecraft.getMinecraft().player.rotationYaw / 64.0F;
-            float f8 = Minecraft.getMinecraft().player.rotationPitch / 64.0F;
+            float f7 = -minecraft.player.rotationYaw / 64.0F;
+            float f8 = minecraft.player.rotationPitch / 64.0F;
             vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX);
             vertexbuffer.pos(-1.0D, -1.0D, -0.5D).tex((double) (4.0F + f7), (double) (4.0F + f8)).endVertex();
             vertexbuffer.pos(1.0D, -1.0D, -0.5D).tex((double) (0.0F + f7), (double) (4.0F + f8)).endVertex();
@@ -170,6 +175,32 @@ public class EventHandler
             GlStateManager.popMatrix();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.disableBlend();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPostRenderGameOverlay(RenderGameOverlayEvent.Post event)
+    {
+        ScaledResolution resolution = event.getResolution();
+        int width = resolution.getScaledWidth();
+        int height = resolution.getScaledHeight();
+        EntityPlayer player = minecraft.player;
+
+        if(event.getType() == RenderGameOverlayEvent.ElementType.HEALTH)
+        {
+            int health = MathHelper.ceil(player.getHealth());
+
+            minecraft.renderEngine.bindTexture(new ResourceLocation(NetherEx.MOD_ID + ":textures/gui/icons.png"));
+            GlStateManager.disableDepth();
+            GlStateManager.enableBlend();
+
+            if(player.isPotionActive(NetherExEffects.FROSTBITE))
+            {
+            }
+
+            GlStateManager.disableBlend();
+            GlStateManager.enableDepth();
+            minecraft.renderEngine.bindTexture(Gui.ICONS);
         }
     }
 
@@ -488,6 +519,22 @@ public class EventHandler
                 {
                     player.addStat(NetherExAchievements.STAYIN_FROSTY);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingHeal(LivingHealEvent event)
+    {
+        Entity entity = event.getEntity();
+        World world = entity.getEntityWorld();
+        BlockPos pos = entity.getPosition();
+
+        if(entity instanceof EntityLivingBase)
+        {
+            if(((EntityLivingBase) entity).isPotionActive(NetherExEffects.FROSTBITE))
+            {
+                event.setCanceled(true);
             }
         }
     }

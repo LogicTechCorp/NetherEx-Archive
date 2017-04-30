@@ -253,7 +253,7 @@ public class ConfigHandler
         @Config.LangKey("config.nex:entity.sporeCreeper")
         public SporeCreeper sporeCreeper = new SporeCreeper();
 
-        @Config.Name("client")
+        @Config.Name("spore")
         @Config.LangKey("config.nex:entity.spore")
         public Spore spore = new Spore();
 
@@ -400,9 +400,6 @@ public class ConfigHandler
 
         public class Hell
         {
-            @Config.LangKey("config.nex:biome.hell.generateBiome")
-            public boolean generateBiome = true;
-
             @Config.LangKey("config.nex:biome.hell.generateLavaSprings")
             public boolean generateLavaSprings = true;
 
@@ -454,11 +451,6 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.hell.generateVillages")
             public boolean generateVillages = true;
 
-            @Config.LangKey("config.nex:biome.hell.biomeRarity")
-            @Config.Comment({"The lower the number, the rarer the Hell is", "The higher the number, the more common the Hell biome is"})
-            @Config.RangeInt(min = 1, max = 128)
-            public int biomeRarity = 10;
-
             @Config.LangKey("config.nex:biome.hell.lavaSpringRarity")
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
             @Config.RangeInt(min = 1, max = 128)
@@ -487,7 +479,7 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.hell.amethystOreRarity")
             @Config.Comment({"The lower the number, the rarer Amethyst Ore is", "The higher the number, the more common Amethyst Ore is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int amethystOreRarity = 8;
+            public int amethystOreRarity = 16;
 
             @Config.LangKey("config.nex:biome.hell.magmaRarity")
             @Config.Comment({"The lower the number, the rarer Magma is", "The higher the number, the more common Magma is"})
@@ -537,9 +529,6 @@ public class ConfigHandler
 
         public class RuthlessSands
         {
-            @Config.LangKey("config.nex:biome.ruthlessSands.generateBiome")
-            public boolean generateBiome = true;
-
             @Config.LangKey("config.nex:biome.ruthlessSands.generateLavaSprings")
             public boolean generateLavaSprings = true;
 
@@ -576,11 +565,6 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.ruthlessSands.generateWaypoints")
             public boolean generateWaypoints = true;
 
-            @Config.LangKey("config.nex:biome.ruthlessSands.biomeRarity")
-            @Config.Comment({"The lower the number, the rarer The Ruthless Sands is", "The higher the number, the more common the Ruthless Sands biome is"})
-            @Config.RangeInt(min = 1, max = 128)
-            public int biomeRarity = 8;
-
             @Config.LangKey("config.nex:biome.ruthlessSands.lavaSpringRarity")
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
             @Config.RangeInt(min = 1, max = 128)
@@ -589,17 +573,17 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.ruthlessSands.glowstonePass1Rarity")
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int glowstonePass1Rarity = 10;
+            public int glowstonePass1Rarity = 5;
 
             @Config.LangKey("config.nex:biome.ruthlessSands.glowstonePass2Rarity")
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int glowstonePass2Rarity = 10;
+            public int glowstonePass2Rarity = 5;
 
             @Config.LangKey("config.nex:biome.ruthlessSands.quartzOreRarity")
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int quartzOreRarity = 16;
+            public int quartzOreRarity = 24;
 
             @Config.LangKey("config.nex:biome.ruthlessSands.lavaTrapRarity")
             @Config.Comment({"The lower the number, the rarer Lava Traps are", "The higher the number, the more common Lava Traps are"})
@@ -644,9 +628,6 @@ public class ConfigHandler
 
         public class FungiForest
         {
-            @Config.LangKey("config.nex:biome.fungiForest.generateBiome")
-            public boolean generateBiome = true;
-
             @Config.LangKey("config.nex:biome.fungiForest.generateGlowstonePass1")
             public boolean generateGlowstonePass1 = true;
 
@@ -680,20 +661,15 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.fungiForest.generateCastles")
             public boolean generateCastles = true;
 
-            @Config.LangKey("config.nex:biome.fungiForest.biomeRarity")
-            @Config.Comment({"The lower the number, the rarer the Fungi Forest biome is", "The higher the number, the more common the Fungi Forest biome is"})
-            @Config.RangeInt(min = 1, max = 128)
-            public int biomeRarity = 4;
-
             @Config.LangKey("config.nex:biome.fungiForest.glowstonePass1Rarity")
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int glowstonePass1Rarity = 10;
+            public int glowstonePass1Rarity = 16;
 
             @Config.LangKey("config.nex:biome.fungiForest.glowstonePass2Rarity")
             @Config.Comment({"The lower the number, the rarer Glowstone is", "The higher the number, the more common Glowstone is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int glowstonePass2Rarity = 10;
+            public int glowstonePass2Rarity = 16;
 
             @Config.LangKey("config.nex:biome.fungiForest.quartzOreRarity")
             @Config.Comment({"The lower the number, the rarer Quartz Ore is", "The higher the number, the more common Quartz Ore is"})
@@ -743,9 +719,6 @@ public class ConfigHandler
 
         public class TorridWasteland
         {
-            @Config.LangKey("config.nex:biome.torridWasteland.generateBiome")
-            public boolean generateBiome = true;
-
             @Config.LangKey("config.nex:biome.torridWasteland.generateLavaSprings")
             public boolean generateLavaSprings = true;
 
@@ -788,11 +761,6 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.torridWasteland.generatePyramids")
             public boolean generatePyramids = true;
 
-            @Config.LangKey("config.nex:biome.torridWasteland.biomeRarity")
-            @Config.Comment({"The lower the number, the rarer the Torrid Wasteland biome is", "The higher the number, the more common the Torrid Wateland biome is"})
-            @Config.RangeInt(min = 1, max = 128)
-            public int biomeRarity = 6;
-
             @Config.LangKey("config.nex:biome.torridWasteland.lavaSpringRarity")
             @Config.Comment({"The lower the number, the rarer Lava Springs are", "The higher the number, the more common Lava Springs are"})
             @Config.RangeInt(min = 1, max = 128)
@@ -821,12 +789,12 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.torridWasteland.basaltRarity")
             @Config.Comment({"The lower the number, the rarer Basalt is", "The higher the number, the more common Basalt is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int basaltRarity = 12;
+            public int basaltRarity = 14;
 
             @Config.LangKey("config.nex:biome.torridWasteland.magmaRarity")
             @Config.Comment({"The lower the number, the rarer Magma is", "The higher the number, the more common Magma is"})
             @Config.RangeInt(min = 1, max = 128)
-            public int magmaRarity = 12;
+            public int magmaRarity = 10;
 
             @Config.LangKey("config.nex:biome.torridWasteland.lavaTrapRarity")
             @Config.Comment({"The lower the number, the rarer Lava Traps are", "The higher the number, the more common Lava Traps are is"})
@@ -866,9 +834,6 @@ public class ConfigHandler
 
         public class ArcticAbyss
         {
-            @Config.LangKey("config.nex:biome.arcticAbyss.generateBiome")
-            public boolean generateBiome = true;
-
             @Config.LangKey("config.nex:biome.arcticAbyss.generateFire")
             public boolean generateFire = true;
 
@@ -913,11 +878,6 @@ public class ConfigHandler
 
             @Config.LangKey("config.nex:biome.arcticAbyss.generateFallenChains")
             public boolean generateFallenChains = true;
-
-            @Config.LangKey("config.nex:biome.arcticAbyss.biomeRarity")
-            @Config.Comment({"The lower the number, the rarer the Arctic Abyss biome is", "The higher the number, the more common the Arctic Abyss biome is"})
-            @Config.RangeInt(min = 1, max = 128)
-            public int biomeRarity = 1;
 
             @Config.LangKey("config.nex:biome.arcticAbyss.fireRarity")
             @Config.Comment({"The lower the number, the rarer Fire is", "The higher the number, the more common Fire is"})

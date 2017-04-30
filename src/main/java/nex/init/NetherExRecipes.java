@@ -76,6 +76,7 @@ public class NetherExRecipes
         addSmelting(new ItemStack(BLOCK_GLASS_SOUL, 1, 0), new ItemStack(SOUL_SAND, 1, 0), 0.5F);
         addPaneRecipe(new ItemStack(BLOCK_GLASS_PANE_SOUL, 16, 0), new ItemStack(BLOCK_GLASS_SOUL, 1, 0));
         add3x3Recipe(new ItemStack(BLOCK_RIME, 1, 0), new ItemStack(ITEM_CRYSTAL_RIME, 1, 0));
+        add3x3Recipe(new ItemStack(BLOCK_AMETHYST, 1, 0), new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0));
         add2x3Recipe(new ItemStack(BLOCK_BONE_SLIVER, 1, 0), new ItemStack(DYE, 6, EnumDyeColor.WHITE.getDyeDamage()));
         add1x3Recipe(new ItemStack(BLOCK_BONE_CHUNK, 1, 0), new ItemStack(DYE, 3, EnumDyeColor.WHITE.getDyeDamage()));
 
@@ -118,6 +119,7 @@ public class NetherExRecipes
 
         add1x1Recipe(new ItemStack(ITEM_DUST_WITHER, 3, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         add1x1Recipe(new ItemStack(ITEM_CRYSTAL_RIME, 9, 0), new ItemStack(BLOCK_RIME, 1, 0));
+        add1x1Recipe(new ItemStack(ITEM_CRYSTAL_AMETHYST, 9, 0), new ItemStack(BLOCK_AMETHYST, 1, 0));
         addBoatRecipe(new ItemStack(ITEM_BOAT_OBSIDIAN, 1, 0), new ItemStack(OBSIDIAN, 1, 0));
 
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
@@ -148,6 +150,7 @@ public class NetherExRecipes
         addBootsRecipe(NBTUtil.setTag(new ItemStack(ARMOR_BOOTS_HIDE_SALAMANDER, 1, 0), variant), new ItemStack(ITEM_HIDE_SALAMANDER, 1, 1));
 
         addBrewing(AWKWARD, ITEM_CRYSTAL_RIME, NORMAL_FREEZE);
+        addBrewing(AWKWARD, ITEM_FANG_SPIDER_BONE, NORMAL_FROSTBITE);
         addBrewing(AWKWARD, ITEM_SPORE, NORMAL_SPORE);
         addBrewing(AWKWARD, FOOD_MEAT_GHAST_RAW, NORMAL_LOST);
 

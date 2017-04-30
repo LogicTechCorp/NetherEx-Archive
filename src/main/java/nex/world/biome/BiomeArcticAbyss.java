@@ -36,7 +36,6 @@ import nex.entity.monster.EntityBoneSpider;
 import nex.entity.monster.EntityBrute;
 import nex.entity.monster.EntityWight;
 import nex.handler.ConfigHandler;
-import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
 import nex.world.gen.feature.WorldGenBlueFire;
@@ -87,11 +86,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
         fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
-
-        if(ConfigHandler.biome.arcticAbyss.generateBiome)
-        {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.arcticAbyss.biomeRarity, Blocks.MAGMA.getDefaultState(), BiomeTypeNetherEx.COLD);
-        }
     }
 
     @Override

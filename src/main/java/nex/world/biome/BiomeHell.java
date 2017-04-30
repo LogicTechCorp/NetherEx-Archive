@@ -30,7 +30,6 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.entity.monster.EntityEmber;
 import nex.handler.ConfigHandler;
-import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
 import nex.world.gen.feature.*;
@@ -79,11 +78,6 @@ public class BiomeHell extends BiomeNetherEx
         spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 3, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 4, 4));
-
-        if(ConfigHandler.biome.hell.generateBiome)
-        {
-            NetherExBiomes.addBiome(this, ConfigHandler.biome.hell.biomeRarity, Blocks.LAVA.getDefaultState(), BiomeTypeNetherEx.WARM);
-        }
     }
 
     @Override

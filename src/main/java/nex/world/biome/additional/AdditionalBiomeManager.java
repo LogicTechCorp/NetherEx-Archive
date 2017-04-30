@@ -103,7 +103,7 @@ public class AdditionalBiomeManager
                         }
 
                         NetherExBiomes.addBiome(biome, weight, state, type == null ? BiomeTypeNetherEx.WARM : type);
-                        LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " biome list was added to the Nether.");
+                        LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " was added to the Nether.");
                     }
                 }
             }
