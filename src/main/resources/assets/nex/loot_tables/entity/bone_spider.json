@@ -1,1 +1,17 @@
-{ }
+{
+    "pools": [
+        {
+            "name": "bone_spider_loot_pool",
+            "rolls": {
+                "min": 0,
+                "max": 2
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "nex:item_fang_spider_bone"
+                }
+            ]
+        }
+    ]
+}
