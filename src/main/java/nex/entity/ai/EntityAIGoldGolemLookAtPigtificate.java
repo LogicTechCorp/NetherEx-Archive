@@ -36,17 +36,17 @@ public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (!theGolem.world.isDaytime())
+        if(!theGolem.world.isDaytime())
         {
             return false;
         }
-        else if (theGolem.getRNG().nextInt(8000) != 0)
+        else if(theGolem.getRNG().nextInt(8000) != 0)
         {
             return false;
         }
         else
         {
-            thePigtificate = (EntityPigtificate)theGolem.world.findNearestEntityWithinAABB(EntityPigtificate.class, theGolem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), theGolem);
+            thePigtificate = (EntityPigtificate) theGolem.world.findNearestEntityWithinAABB(EntityPigtificate.class, theGolem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), theGolem);
             return thePigtificate != null;
         }
     }

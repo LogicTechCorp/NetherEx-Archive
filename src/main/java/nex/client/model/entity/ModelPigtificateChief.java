@@ -43,7 +43,7 @@ public class ModelPigtificateChief extends ModelBase
     private ModelRenderer rightArm;
     private ModelRenderer leftArm;
 
-    public ModelPigtificateChief() 
+    public ModelPigtificateChief()
     {
         textureWidth = 128;
         textureHeight = 128;
@@ -125,7 +125,7 @@ public class ModelPigtificateChief extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale) 
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
         rightLeg.render(scale);
         leftLeg.render(scale);
@@ -136,7 +136,7 @@ public class ModelPigtificateChief extends ModelBase
         leftArm.render(scale);
     }
 
-    public void setRotationAngles(ModelRenderer modelRenderer, float x, float y, float z) 
+    public void setRotationAngles(ModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

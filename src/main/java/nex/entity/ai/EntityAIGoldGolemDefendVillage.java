@@ -48,15 +48,15 @@ public class EntityAIGoldGolemDefendVillage extends EntityAITarget
         {
             villageAgressorTarget = village.findNearestVillageAggressor(goldgolem);
 
-            if (villageAgressorTarget instanceof EntitySporeCreeper)
+            if(villageAgressorTarget instanceof EntitySporeCreeper)
             {
                 return false;
             }
-            else if (isSuitableTarget(villageAgressorTarget, false))
+            else if(isSuitableTarget(villageAgressorTarget, false))
             {
                 return true;
             }
-            else if (taskOwner.getRNG().nextInt(20) == 0)
+            else if(taskOwner.getRNG().nextInt(20) == 0)
             {
                 villageAgressorTarget = village.getNearestTargetPlayer(goldgolem);
                 return isSuitableTarget(villageAgressorTarget, false);

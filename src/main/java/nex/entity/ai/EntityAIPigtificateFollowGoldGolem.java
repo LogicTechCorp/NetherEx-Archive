@@ -39,11 +39,11 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if (thePigtificate.getGrowingAge() >= 0)
+        if(thePigtificate.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if (!thePigtificate.world.isDaytime())
+        else if(!thePigtificate.world.isDaytime())
         {
             return false;
         }
@@ -51,15 +51,15 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
         {
             List<EntityGoldGolem> list = thePigtificate.world.getEntitiesWithinAABB(EntityGoldGolem.class, thePigtificate.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
 
-            if (list.isEmpty())
+            if(list.isEmpty())
             {
                 return false;
             }
             else
             {
-                for (EntityGoldGolem goldGolem : list)
+                for(EntityGoldGolem goldGolem : list)
                 {
-                    if (goldGolem.getHoldFlowerTick() > 0)
+                    if(goldGolem.getHoldFlowerTick() > 0)
                     {
                         theGolem = goldGolem;
                         break;
@@ -97,13 +97,13 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     {
         thePigtificate.getLookHelper().setLookPositionWithEntity(theGolem, 30.0F, 30.0F);
 
-        if (theGolem.getHoldFlowerTick() == takeGolemRoseTick)
+        if(theGolem.getHoldFlowerTick() == takeGolemRoseTick)
         {
             thePigtificate.getNavigator().tryMoveToEntityLiving(theGolem, 0.5D);
             tookGolemRose = true;
         }
 
-        if (tookGolemRose && thePigtificate.getDistanceSqToEntity(theGolem) < 4.0D)
+        if(tookGolemRose && thePigtificate.getDistanceSqToEntity(theGolem) < 4.0D)
         {
             theGolem.setHoldingFlower(false);
             thePigtificate.getNavigator().clearPathEntity();

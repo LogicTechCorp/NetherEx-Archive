@@ -27,7 +27,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGolem;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -42,7 +41,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.ai.EntityAIGoldGolemDefendVillage;
@@ -58,7 +56,7 @@ public class EntityGoldGolem extends EntityGolem
 
 
     NetherVillage village;
-    
+
     private int homeCheckTimer;
     private int attackTimer;
     private int holdFlowerTick;
@@ -94,19 +92,19 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected void updateAITasks()
     {
-        if (--homeCheckTimer <= 0)
+        if(--homeCheckTimer <= 0)
         {
             homeCheckTimer = 70 + rand.nextInt(50);
             village = NetherVillageManager.getNetherVillages().getNearestVillage(new BlockPos(this), 32);
 
-            if (village == null)
+            if(village == null)
             {
                 detachHome();
             }
             else
             {
                 BlockPos blockpos = village.getCenter();
-                setHomePosAndDistance(blockpos, (int)((float)village.getVillageRadius() * 0.6F));
+                setHomePosAndDistance(blockpos, (int) ((float) village.getVillageRadius() * 0.6F));
             }
         }
 
@@ -131,9 +129,9 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected void collideWithEntity(Entity entityIn)
     {
-        if (entityIn instanceof IMob && !(entityIn instanceof EntityCreeper) && getRNG().nextInt(20) == 0)
+        if(entityIn instanceof IMob && !(entityIn instanceof EntityCreeper) && getRNG().nextInt(20) == 0)
         {
-            setAttackTarget((EntityLivingBase)entityIn);
+            setAttackTarget((EntityLivingBase) entityIn);
         }
 
         super.collideWithEntity(entityIn);
@@ -144,34 +142,32 @@ public class EntityGoldGolem extends EntityGolem
     {
         super.onLivingUpdate();
 
-        setHealth(0);
-
-        if (attackTimer > 0)
+        if(attackTimer > 0)
         {
             --attackTimer;
         }
 
-        if (holdFlowerTick > 0)
+        if(holdFlowerTick > 0)
         {
             --holdFlowerTick;
         }
 
-        if (motionX * motionX + motionZ * motionZ > 2.500000277905201E-7D && rand.nextInt(5) == 0)
+        if(motionX * motionX + motionZ * motionZ > 2.500000277905201E-7D && rand.nextInt(5) == 0)
         {
             int i = MathHelper.floor(posX);
             int j = MathHelper.floor(posY - 0.20000000298023224D);
             int k = MathHelper.floor(posZ);
             IBlockState iblockstate = world.getBlockState(new BlockPos(i, j, k));
 
-            if (iblockstate.getMaterial() != Material.AIR)
+            if(iblockstate.getMaterial() != Material.AIR)
             {
-                world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, posX + ((double)rand.nextFloat() - 0.5D) * (double)width, getEntityBoundingBox().minY + 0.1D, posZ + ((double)rand.nextFloat() - 0.5D) * (double)width, 4.0D * ((double)rand.nextFloat() - 0.5D), 0.5D, ((double)rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(iblockstate)});
+                world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, posX + ((double) rand.nextFloat() - 0.5D) * (double) width, getEntityBoundingBox().minY + 0.1D, posZ + ((double) rand.nextFloat() - 0.5D) * (double) width, 4.0D * ((double) rand.nextFloat() - 0.5D), 0.5D, ((double) rand.nextFloat() - 0.5D) * 4.0D, new int[]{Block.getStateId(iblockstate)});
             }
         }
     }
 
     @Override
-    public boolean canAttackClass(Class <? extends EntityLivingBase > cls)
+    public boolean canAttackClass(Class<? extends EntityLivingBase> cls)
     {
         return isPlayerCreated() && EntityPlayer.class.isAssignableFrom(cls) ? false : (cls == EntityCreeper.class ? false : super.canAttackClass(cls));
     }
@@ -194,10 +190,10 @@ public class EntityGoldGolem extends EntityGolem
     public boolean attackEntityAsMob(Entity entityIn)
     {
         attackTimer = 10;
-        world.setEntityState(this, (byte)4);
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(7 + rand.nextInt(15)));
+        world.setEntityState(this, (byte) 4);
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (7 + rand.nextInt(15)));
 
-        if (flag)
+        if(flag)
         {
             entityIn.motionY += 0.4000000059604645D;
             applyEnchantments(this, entityIn);
@@ -211,16 +207,16 @@ public class EntityGoldGolem extends EntityGolem
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte id)
     {
-        if (id == 4)
+        if(id == 4)
         {
             attackTimer = 10;
             playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
         }
-        else if (id == 11)
+        else if(id == 11)
         {
             holdFlowerTick = 400;
         }
-        else if (id == 34)
+        else if(id == 34)
         {
             holdFlowerTick = 0;
         }
@@ -246,12 +242,12 @@ public class EntityGoldGolem extends EntityGolem
         if(holding)
         {
             holdFlowerTick = 400;
-            world.setEntityState(this, (byte)11);
+            world.setEntityState(this, (byte) 11);
         }
         else
         {
             holdFlowerTick = 0;
-            world.setEntityState(this, (byte)34);
+            world.setEntityState(this, (byte) 34);
         }
     }
 
@@ -297,7 +293,7 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     public void onDeath(DamageSource cause)
     {
-        if (!isPlayerCreated() && attackingPlayer != null && village != null)
+        if(!isPlayerCreated() && attackingPlayer != null && village != null)
         {
             village.modifyPlayerReputation(attackingPlayer.getUniqueID(), -5);
         }

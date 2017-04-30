@@ -19,12 +19,9 @@ package nex.client.model.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityIronGolem;
 import nex.entity.neutral.EntityGoldGolem;
-import org.lwjgl.opengl.GL11;
 
 public class ModelGoldGolem extends ModelBase
 {
@@ -39,7 +36,7 @@ public class ModelGoldGolem extends ModelBase
     private ModelRenderer rightArm;
     private ModelRenderer leftArm;
 
-    public ModelGoldGolem() 
+    public ModelGoldGolem()
     {
         textureWidth = 128;
         textureHeight = 128;
@@ -80,7 +77,7 @@ public class ModelGoldGolem extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale) 
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
         setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
         head.render(scale);
@@ -102,17 +99,17 @@ public class ModelGoldGolem extends ModelBase
         leftLeg.rotateAngleY = 0.0F;
         rightLeg.rotateAngleY = 0.0F;
     }
-    
+
     @Override
     public void setLivingAnimations(EntityLivingBase entity, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
-        EntityGoldGolem goldGolem = (EntityGoldGolem)entity;
+        EntityGoldGolem goldGolem = (EntityGoldGolem) entity;
         int i = goldGolem.getAttackTimer();
 
-        if (i > 0)
+        if(i > 0)
         {
-            rightArm.rotateAngleX = -2.0F + 1.5F * triangleWave((float)i - partialTickTime, 10.0F);
-            leftArm.rotateAngleX = -2.0F + 1.5F * triangleWave((float)i - partialTickTime, 10.0F);
+            rightArm.rotateAngleX = -2.0F + 1.5F * triangleWave((float) i - partialTickTime, 10.0F);
+            leftArm.rotateAngleX = -2.0F + 1.5F * triangleWave((float) i - partialTickTime, 10.0F);
         }
         else
         {
@@ -126,7 +123,7 @@ public class ModelGoldGolem extends ModelBase
         return (Math.abs(p_78172_1_ % p_78172_2_ - p_78172_2_ * 0.5F) - p_78172_2_ * 0.25F) / (p_78172_2_ * 0.25F);
     }
 
-    public void setRotationAngles(ModelRenderer modelRenderer, float x, float y, float z) 
+    public void setRotationAngles(ModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

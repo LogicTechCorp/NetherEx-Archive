@@ -24,9 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelGoldGolem;
-import nex.client.model.entity.ModelMogus;
 import nex.entity.neutral.EntityGoldGolem;
-import nex.entity.neutral.EntityMogus;
 
 @SideOnly(Side.CLIENT)
 public class RenderGoldGolem extends RenderLiving<EntityGoldGolem>

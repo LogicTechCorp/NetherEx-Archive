@@ -23,8 +23,8 @@ import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import nex.village.NetherVillage;
-import nex.village.VillageFenceGateInfo;
 import nex.village.NetherVillageManager;
+import nex.village.VillageFenceGateInfo;
 
 public class EntityAIMoveInFenceGates extends EntityAIBase
 {
