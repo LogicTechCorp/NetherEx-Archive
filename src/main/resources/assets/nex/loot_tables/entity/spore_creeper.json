@@ -2,14 +2,20 @@
     "pools": [
         {
             "name": "spore_creeper_loot_pool",
-            "rolls": {
-                "min": 0,
-                "max": 1
-            },
+            "rolls": 1,
             "entries": [
                 {
                     "type": "item",
-                    "name": "nex:item_spore"
+                    "name": "nex:item_spore",
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
                 }
             ]
         }

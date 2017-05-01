@@ -25,7 +25,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -67,6 +66,7 @@ public class EntityGoldGolem extends EntityGolem
         setSize(1.4F, 3.0F);
     }
 
+    @Override
     protected void initEntityAI()
     {
         tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
@@ -129,7 +129,7 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected void collideWithEntity(Entity entityIn)
     {
-        if(entityIn instanceof IMob && !(entityIn instanceof EntityCreeper) && getRNG().nextInt(20) == 0)
+        if(entityIn instanceof IMob && !(entityIn instanceof EntitySporeCreeper) && getRNG().nextInt(20) == 0)
         {
             setAttackTarget((EntityLivingBase) entityIn);
         }
@@ -169,7 +169,7 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     public boolean canAttackClass(Class<? extends EntityLivingBase> cls)
     {
-        return isPlayerCreated() && EntityPlayer.class.isAssignableFrom(cls) ? false : (cls == EntityCreeper.class ? false : super.canAttackClass(cls));
+        return isPlayerCreated() && EntityPlayer.class.isAssignableFrom(cls) ? false : (cls == EntitySporeCreeper.class ? false : super.canAttackClass(cls));
     }
 
     @Override

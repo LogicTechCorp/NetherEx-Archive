@@ -48,6 +48,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.WorldServerMulti;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
@@ -94,22 +95,25 @@ public class EventHandler
     {
         World world = event.getWorld();
 
-        if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.dimension.nether.enablePortalFix && world instanceof WorldServer)
+        if(world instanceof WorldServer)
         {
-            if(world.provider.getDimension() == 0 || world.provider.getDimension() == -1)
+            if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.dimension.nether.enablePortalFix)
             {
-                try
+                if(world.provider.getDimension() == 0 || world.provider.getDimension() == -1)
                 {
-                    FIELD_WORLD_TELEPORTER.set(world, new NetherExTeleporter((WorldServer) world));
-                }
-                catch(IllegalAccessException e)
-                {
-                    e.printStackTrace();
+                    try
+                    {
+                        FIELD_WORLD_TELEPORTER.set(world, new NetherExTeleporter((WorldServer) world));
+                    }
+                    catch(IllegalAccessException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
             }
-        }
 
-        NetherVillageManager.init(world);
+            NetherVillageManager.init(world);
+        }
     }
 
     @SubscribeEvent
@@ -500,7 +504,7 @@ public class EventHandler
         World world = entity.getEntityWorld();
         BlockPos pos = entity.getPosition();
 
-        if(entity instanceof EntityLivingBase)
+        if(entity instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) entity;
 
