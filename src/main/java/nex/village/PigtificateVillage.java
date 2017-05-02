@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class NetherVillage
+public class PigtificateVillage
 {
     private World world;
     private final List<VillageFenceGateInfo> villageFenceGateInfoList = Lists.newArrayList();
@@ -53,11 +53,11 @@ public class NetherVillage
     private final List<VillageAggressor> villageAggressors = Lists.newArrayList();
     private int numGoldGolems;
 
-    public NetherVillage()
+    public PigtificateVillage()
     {
     }
 
-    public NetherVillage(World worldIn)
+    public PigtificateVillage(World worldIn)
     {
         world = worldIn;
     }

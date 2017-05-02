@@ -74,7 +74,7 @@ import nex.entity.monster.EntitySpore;
 import nex.entity.neutral.EntityMogus;
 import nex.init.*;
 import nex.util.ArmorUtil;
-import nex.village.NetherVillageManager;
+import nex.village.PigtificateVillageManager;
 import nex.world.NetherExTeleporter;
 
 import java.lang.reflect.Field;
@@ -111,14 +111,14 @@ public class EventHandler
                 }
             }
 
-            NetherVillageManager.init(world);
+            PigtificateVillageManager.init(world);
         }
     }
 
     @SubscribeEvent
     public static void onWorldTick(TickEvent.WorldTickEvent event)
     {
-        NetherVillageManager.getNetherVillages().tick();
+        PigtificateVillageManager.getPigtificateVillages().tick();
     }
 
     @SubscribeEvent

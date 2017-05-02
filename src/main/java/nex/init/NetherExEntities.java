@@ -29,6 +29,7 @@ import nex.entity.neutral.EntityGoldGolem;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.passive.EntityPigtificate;
+import nex.entity.passive.EntityPigtificateLeader;
 import nex.entity.projectile.EntityGhastQueenFireball;
 import nex.entity.projectile.EntityGhastlingFireball;
 import org.apache.logging.log4j.LogManager;
@@ -48,6 +49,7 @@ public class NetherExEntities
 
         registerEntity("item_boat_obsidian", EntityObsidianBoat.class, entityId++);
 
+        registerEntity("passive_pigtificate_leader", EntityPigtificateLeader.class, entityId++, 12422002, 15771042);
         registerEntity("passive_pigtificate", EntityPigtificate.class, entityId++, 15771042, 12422002);
 
         registerEntity("neutral_gold_golem", EntityGoldGolem.class, entityId++, 16773448, 14520344);

@@ -39,6 +39,7 @@ public class TradeProfession
 
     public enum EnumType
     {
+        LEADER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_chief.png")),
         FORAGER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_forager.png")),
         BLACKSMITH(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_blacksmith.png")),
         SORCERER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_sorcerer.png"));

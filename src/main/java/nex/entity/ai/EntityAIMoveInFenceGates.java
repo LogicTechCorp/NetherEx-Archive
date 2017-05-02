@@ -22,8 +22,8 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import nex.village.NetherVillage;
-import nex.village.NetherVillageManager;
+import nex.village.PigtificateVillage;
+import nex.village.PigtificateVillageManager;
 import nex.village.VillageFenceGateInfo;
 
 public class EntityAIMoveInFenceGates extends EntityAIBase
@@ -56,7 +56,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
             }
             else
             {
-                NetherVillage village = NetherVillageManager.getNetherVillages().getNearestVillage(blockpos, 14);
+                PigtificateVillage village = PigtificateVillageManager.getPigtificateVillages().getNearestVillage(blockpos, 14);
 
                 if(village == null)
                 {

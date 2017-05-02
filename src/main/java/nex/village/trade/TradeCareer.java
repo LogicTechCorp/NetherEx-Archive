@@ -56,6 +56,7 @@ public class TradeCareer
 
     public enum EnumType
     {
+        CHIEF(TradeProfession.EnumType.LEADER, 16, NetherExLootTables.ENTITY_PIGTIFICATE_CHIEF),
         HUNTER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_HUNTER),
         GATHERER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_GATHERER),
         SCAVENGER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_SCAVENGER),

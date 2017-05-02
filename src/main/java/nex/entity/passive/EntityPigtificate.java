@@ -23,7 +23,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -48,8 +49,8 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
-import nex.village.NetherVillage;
-import nex.village.NetherVillageManager;
+import nex.village.PigtificateVillage;
+import nex.village.PigtificateVillageManager;
 import nex.village.trade.TradeCareer;
 import nex.village.trade.TradeListManager;
 import nex.village.trade.TradeProfession;
@@ -67,7 +68,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private int randomTickDivider;
 
-    NetherVillage village;
+    PigtificateVillage village;
 
     private boolean needsInitialization;
     private boolean willingToMate;
@@ -153,9 +154,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     {
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-        tasks.addTask(1, new EntityAIAvoidEntity(this, EntityEvoker.class, 12.0F, 0.8D, 0.8D));
-        tasks.addTask(1, new EntityAIAvoidEntity(this, EntityVindicator.class, 8.0F, 0.8D, 0.8D));
-        tasks.addTask(1, new EntityAIAvoidEntity(this, EntityVex.class, 8.0F, 0.6D, 0.6D));
         tasks.addTask(1, new EntityAIPigtificateTradePlayer(this));
         tasks.addTask(1, new EntityAIPigtificateLookAtTradePlayer(this));
         tasks.addTask(2, new EntityAIMoveInFenceGates(this));
@@ -198,9 +196,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            NetherVillageManager.getNetherVillages().addToVillagerPositionList(blockpos);
+            PigtificateVillageManager.getPigtificateVillages().addToVillagerPositionList(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
-            village = NetherVillageManager.getNetherVillages().getNearestVillage(blockpos, 32);
+            village = PigtificateVillageManager.getPigtificateVillages().getNearestVillage(blockpos, 32);
 
             if(village == null)
             {
@@ -707,13 +705,13 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         return inventory;
     }
 
-    private void setRandomProfession()
+    protected void setRandomProfession()
     {
         setProfession(TradeProfession.EnumType.fromIndex(rand.nextInt(TradeProfession.EnumType.values().length)).ordinal());
         setRandomCareer();
     }
 
-    private void setRandomCareer()
+    protected void setRandomCareer()
     {
         List<TradeCareer.Weighted> careers = Lists.newArrayList();
 
@@ -727,7 +725,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
         TradeCareer.Weighted career = WeightedRandom.getRandomItem(rand, careers);
         setCareer(career.getType().ordinal());
-
     }
 
     public void setProfession(int profession)

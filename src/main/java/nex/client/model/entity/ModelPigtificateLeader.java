@@ -20,8 +20,9 @@ package nex.client.model.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
-public class ModelPigtificateChief extends ModelBase
+public class ModelPigtificateLeader extends ModelBase
 {
     private ModelRenderer rightLeg;
     private ModelRenderer leftLeg;
@@ -43,7 +44,7 @@ public class ModelPigtificateChief extends ModelBase
     private ModelRenderer rightArm;
     private ModelRenderer leftArm;
 
-    public ModelPigtificateChief()
+    public ModelPigtificateLeader()
     {
         textureWidth = 128;
         textureHeight = 128;
@@ -136,11 +137,29 @@ public class ModelPigtificateChief extends ModelBase
         leftArm.render(scale);
     }
 
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    {
+        jaw.rotateAngleY = netHeadYaw * 0.017453292F;
+        jaw.rotateAngleX = headPitch * 0.017453292F;
+
+        rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
+        leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
+        rightArm.rotateAngleZ = 0.0F;
+        leftArm.rotateAngleZ = 0.0F;
+
+        rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 1.0F;
+        leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 1.0F;
+        rightLeg.rotateAngleY = 0.0F;
+        leftLeg.rotateAngleY = 0.0F;
+        rightLeg.rotateAngleZ = 0.0F;
+        leftLeg.rotateAngleZ = 0.0F;
+    }
+
     public void setRotationAngles(ModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-
 }

@@ -38,6 +38,7 @@ public class NetherExLootTables
     public static final ResourceLocation CHEST_TEMPLE_ARCTIC_ABYSS = new ResourceLocation(NetherEx.MOD_ID + ":chest/temple_arctic_abyss");
     public static final ResourceLocation CHEST_VILLAGE_BASE = new ResourceLocation(NetherEx.MOD_ID + ":chest/base_village");
 
+    public static final ResourceLocation ENTITY_PIGTIFICATE_CHIEF = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_chief");
     public static final ResourceLocation ENTITY_PIGTIFICATE_HUNTER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_hunter");
     public static final ResourceLocation ENTITY_PIGTIFICATE_GATHERER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_gatherer");
     public static final ResourceLocation ENTITY_PIGTIFICATE_SCAVENGER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_scavenger");
