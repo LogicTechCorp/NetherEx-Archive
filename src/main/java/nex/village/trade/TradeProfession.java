@@ -17,10 +17,13 @@
 
 package nex.village.trade;
 
+import com.google.common.collect.Lists;
 import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class TradeProfession
 {
@@ -49,6 +52,23 @@ public class TradeProfession
         EnumType(ResourceLocation textureLocationIn)
         {
             textureLocation = textureLocationIn;
+        }
+
+        public static EnumType getRandom(Random rand, boolean isLeader)
+        {
+            List<EnumType> types = Lists.newArrayList();
+
+            if(isLeader)
+            {
+                return LEADER;
+            }
+            else
+            {
+                Collections.addAll(types, values());
+                types.remove(LEADER);
+            }
+
+            return types.get(rand.nextInt(types.size()));
         }
 
         public static EnumType fromIndex(int index)

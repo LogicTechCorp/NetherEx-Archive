@@ -67,12 +67,6 @@ public class BlockSoulGlass extends BlockNetherEx
     }
 
     @Override
-    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type)
-    {
-        return false;
-    }
-
-    @Override
     public int quantityDropped(Random random)
     {
         return 0;

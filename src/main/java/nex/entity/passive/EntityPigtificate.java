@@ -51,6 +51,7 @@ import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
 import nex.village.PigtificateVillage;
 import nex.village.PigtificateVillageManager;
+import nex.village.trade.Trade;
 import nex.village.trade.TradeCareer;
 import nex.village.trade.TradeListManager;
 import nex.village.trade.TradeProfession;
@@ -583,7 +584,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             tradeList = new MerchantRecipeList();
         }
 
-        List<MerchantRecipe> trades = TradeListManager.getTrades(TradeCareer.EnumType.fromIndex(getCareer()), getCareerLevel());
+        List<Trade> trades = TradeListManager.getTrades(TradeCareer.EnumType.fromIndex(getCareer()), getCareerLevel());
 
         if(trades.size() > 0)
         {
@@ -591,11 +592,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
             if(getCareerLevel() == 1 && trades.size() > 1)
             {
-                tradeList.addAll(trades.subList(0, 2));
+                for(Trade trade : trades.subList(0, 2))
+                {
+                    tradeList.add(trade.getRandomTrade(rand));
+                }
             }
             else
             {
-                tradeList.add(trades.get(0));
+                tradeList.add(trades.get(0).getRandomTrade(rand));
             }
         }
     }
@@ -707,7 +711,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     protected void setRandomProfession()
     {
-        setProfession(TradeProfession.EnumType.fromIndex(rand.nextInt(TradeProfession.EnumType.values().length)).ordinal());
+        setProfession(TradeProfession.EnumType.getRandom(rand, false).ordinal());
         setRandomCareer();
     }
 

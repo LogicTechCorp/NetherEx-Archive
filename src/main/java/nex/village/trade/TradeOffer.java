@@ -86,11 +86,18 @@ public class TradeOffer
         }
     }
 
-    public class Input
+    public static class Input
     {
         private String name;
         private int meta;
         private Amount amount;
+
+        public Input(String nameIn, int metaIn, Amount amountIn)
+        {
+            name = nameIn;
+            meta = metaIn;
+            amount = amountIn;
+        }
 
         public String getName()
         {
@@ -108,10 +115,16 @@ public class TradeOffer
         }
     }
 
-    public class Amount
+    public static class Amount
     {
         private int min;
         private int max;
+
+        public Amount(int minIn, int maxIn)
+        {
+            min = minIn;
+            max = maxIn;
+        }
 
         public int getMin()
         {
