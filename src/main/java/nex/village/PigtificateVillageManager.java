@@ -29,7 +29,7 @@ public class PigtificateVillageManager
 
     public static void init(World world)
     {
-        LOGGER.info("Attempting to read the Nether Village data.");
+        LOGGER.info("Attempting to read the Pigtificate Village data.");
 
         String s = PigtificateVillageCollection.fileNameForProvider(world.provider);
         PigtificateVillageCollection pigtificateVillageCollection = (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, s);

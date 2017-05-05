@@ -53,7 +53,7 @@ public class WorldGenUtil
 {
     private static final Field FIELD_BLOCKS = ReflectionHelper.findField(Template.class, "field_186270_a", "blocks");
     private static final Field FIELD_ENTITIES = ReflectionHelper.findField(Template.class, "field_186271_b", "entities");
-    private static final Method METHOD_ADD_ENTITIES_TO_WORLD = ReflectionHelper.findMethod(Template.class, null, new String[]{"func_186263_a", "addEntitiesToWorld"}, World.class, BlockPos.class, Mirror.class, Rotation.class, StructureBoundingBox.class);
+    private static final Method METHOD_ADD_ENTITIES_TO_WORLD = ReflectionHelper.findMethod(Template.class, "addEntitiesToWorld", "func_186263_a", World.class, BlockPos.class, Mirror.class, Rotation.class, StructureBoundingBox.class);
 
     public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> allowedBlocks, BlockPos structureSize, float percentage)
     {

@@ -58,7 +58,13 @@ public class EntityPigtificateLeader extends EntityPigtificate
     @Override
     protected void setRandomProfession()
     {
-        setProfession(TradeProfession.EnumType.LEADER.ordinal());
+        setProfession(TradeProfession.EnumType.getRandom(rand, true).ordinal());
         setRandomCareer();
+    }
+
+    @Override
+    public boolean getWillingToMate(boolean updateFirst)
+    {
+        return false;
     }
 }

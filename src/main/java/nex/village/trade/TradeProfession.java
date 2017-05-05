@@ -56,19 +56,17 @@ public class TradeProfession
 
         public static EnumType getRandom(Random rand, boolean isLeader)
         {
-            List<EnumType> types = Lists.newArrayList();
-
             if(isLeader)
             {
                 return LEADER;
             }
             else
             {
+                List<EnumType> types = Lists.newArrayList();
                 Collections.addAll(types, values());
                 types.remove(LEADER);
+                return types.get(rand.nextInt(types.size()));
             }
-
-            return types.get(rand.nextInt(types.size()));
         }
 
         public static EnumType fromIndex(int index)
