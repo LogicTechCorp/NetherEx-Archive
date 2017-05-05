@@ -46,6 +46,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.MouseEvent;
@@ -98,7 +99,7 @@ public class EventHandler
         {
             if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.dimension.nether.enablePortalFix)
             {
-                if(world.provider.getDimension() == 0 || world.provider.getDimension() == -1)
+                if(world.provider.getDimension() == DimensionType.OVERWORLD.getId() || world.provider.getDimension() == DimensionType.NETHER.getId())
                 {
                     try
                     {
@@ -328,7 +329,7 @@ public class EventHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(world.provider.getDimension() == -1)
+        if(world.provider.getDimension() == DimensionType.NETHER.getId())
         {
             if(state.getBlock() == Blocks.LAVA || state.getBlock() == Blocks.FLOWING_LAVA)
             {
@@ -415,7 +416,7 @@ public class EventHandler
             }
         }
 
-        boolean canSpawnGhastling = entity instanceof EntityPlayer && world.provider.getDimension() == -1;
+        boolean canSpawnGhastling = entity instanceof EntityPlayer && world.provider.getDimension() == DimensionType.NETHER.getId();
 
         if(canSpawnGhastling && entity.isPotionActive(NetherExEffects.LOST) && world.rand.nextInt(ConfigHandler.potionEffect.lost.chanceOfGhastlingSpawning) == 0)
         {
