@@ -38,8 +38,10 @@ public class NetherExOreDict
         addOreDictEntry("netherrack", new ItemStack(NetherExBlocks.BLOCK_NETHERRACK, 1, OreDictionary.WILDCARD_VALUE));
         addOreDictEntry("blockGlass", new ItemStack(NetherExBlocks.BLOCK_GLASS_SOUL, 1, OreDictionary.WILDCARD_VALUE));
         addOreDictEntry("paneGlass", new ItemStack(NetherExBlocks.BLOCK_GLASS_PANE_SOUL, 1, OreDictionary.WILDCARD_VALUE));
-
         addOreDictEntry("oreQuartz", new ItemStack(NetherExBlocks.ORE_QUARTZ, 1, OreDictionary.WILDCARD_VALUE));
+        addOreDictEntry("oreAmethyst", new ItemStack(NetherExBlocks.ORE_AMETHYST, 1, OreDictionary.WILDCARD_VALUE));
+        addOreDictEntry("blockAmethyst", new ItemStack(NetherExBlocks.BLOCK_AMETHYST, 1, OreDictionary.WILDCARD_VALUE));
+        addOreDictEntry("gemAmethyst", new ItemStack(NetherExItems.ITEM_CRYSTAL_AMETHYST, 1, OreDictionary.WILDCARD_VALUE));
         addOreDictEntry("dyeBlack", new ItemStack(NetherExItems.ITEM_DUST_WITHER, 1, OreDictionary.WILDCARD_VALUE));
 
         LOGGER.info("Ore Dictionary registration completed.");

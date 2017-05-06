@@ -26,10 +26,69 @@
                             "level": 1
                         },
                         {
+                            "output": {
+                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:unbreaking", "amount": { "min": 1, "max": 2 } } ]
+                            },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 8, "max": 32 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": {
+                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:protection", "amount": { "min": 1, "max": 3 } } ]
+                            },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
+                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 8, "max": 32 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": {
+                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:sharpness", "amount": { "min": 1, "max": 4 } } ]
+                            },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
+                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 8, "max": 32 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": {
+                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:fire_protection", "amount": { "min": 1, "max": 4 } } ]
+                            },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
+                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 16, "max": 48 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": {
+                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:fortune", "amount": { "min": 1, "max": 3 } } ]
+                            },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
+                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 24, "max": 64 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
+                            "output": {
+                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
+                                "enchantments": [ { "name": "minecraft:looting", "amount": { "min": 1, "max": 1 } } ]
+                            },
+                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
+                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 24, "max": 64 } },
+                            "amount": { "min": 1, "max": 4 },
+                            "level": 2
+                        },
+                        {
                             "output": { "name": "minecraft:experiance_bottle", "meta": 0, "amount": { "min": 1, "max": 3 } },
                             "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 6, "max": 16 } },
                             "amount": { "min": 1, "max": 2 },
-                            "level": 2
+                            "level": 3
                         }
                     ]
                 },

@@ -22,10 +22,6 @@ import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -43,7 +39,10 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
@@ -65,7 +64,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.NetherEx;
 import nex.block.BlockNetherrackPath;
 import nex.block.BlockTilledSoulSand;
 import nex.entity.item.EntityObsidianBoat;
@@ -142,8 +140,6 @@ public class EventHandler
         RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
         EntityPlayer player = event.getPlayer();
         World world = player.getEntityWorld();
-        float partialTicks = event.getRenderPartialTicks();
-        BlockPos pos = new BlockPos(player.getPositionEyes(partialTicks));
 
         if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
         {
@@ -151,30 +147,6 @@ public class EventHandler
             {
                 event.setCanceled(true);
             }
-        }
-        else if(type == RenderBlockOverlayEvent.OverlayType.WATER && world.getBlockState(pos).getBlock() == NetherExBlocks.FLUID_ICHOR)
-        {
-            event.setCanceled(true);
-
-            minecraft.renderEngine.bindTexture(new ResourceLocation(NetherEx.MOD_ID + ":textures/blocks/fluid_ichor_overlay.png"));
-            Tessellator tessellator = Tessellator.getInstance();
-            VertexBuffer vertexbuffer = tessellator.getBuffer();
-            float f = minecraft.player.getBrightness(partialTicks);
-            GlStateManager.color(f, f, f, 0.85F);
-            GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-            GlStateManager.pushMatrix();
-            float f7 = -minecraft.player.rotationYaw / 64.0F;
-            float f8 = minecraft.player.rotationPitch / 64.0F;
-            vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-            vertexbuffer.pos(-1.0D, -1.0D, -0.5D).tex((double) (4.0F + f7), (double) (4.0F + f8)).endVertex();
-            vertexbuffer.pos(1.0D, -1.0D, -0.5D).tex((double) (0.0F + f7), (double) (4.0F + f8)).endVertex();
-            vertexbuffer.pos(1.0D, 1.0D, -0.5D).tex((double) (0.0F + f7), (double) (0.0F + f8)).endVertex();
-            vertexbuffer.pos(-1.0D, 1.0D, -0.5D).tex((double) (4.0F + f7), (double) (0.0F + f8)).endVertex();
-            tessellator.draw();
-            GlStateManager.popMatrix();
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.disableBlend();
         }
     }
 

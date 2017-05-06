@@ -407,7 +407,6 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         netherBridge.generateStructure(world, rand, chunkPos);
         biome.decorate(world, rand, blockPos);
-        WorldEntitySpawner.performWorldGenSpawning(world, biome, blockPos.getX() + 8, blockPos.getZ() + 8, 16, 16, rand);
 
         BlockFalling.fallInstantly = false;
     }

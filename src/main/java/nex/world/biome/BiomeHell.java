@@ -62,7 +62,6 @@ public class BiomeHell extends BiomeNetherEx
     private WorldGenerator graveyard = new WorldGenGroundStructure("hell", "graveyard", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_RARE});
     private WorldGenerator sarcophagus = new WorldGenGroundStructure("hell", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
     private WorldGenerator mausoleum = new WorldGenGroundStructure("hell", "mausoleum", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
-    private WorldGenerator prison = new WorldGenGroundStructure("hell", "prison", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_RARE});
     private WorldGenerator village = new WorldGenGroundStructure("hell", "village", new String[]{"huge", "large_variant", "large", "medium_variant_2", "medium_variant", "medium", "small_variant_2", "small_variant", "small", "tiny_variant_3", "tiny_variant_2", "tiny_variant", "tiny"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_VILLAGE_BASE, NetherExLootTables.CHEST_TEMPLE_BASE, NetherExLootTables.CHEST_TEMPLE_RARE});
 
     public BiomeHell()
@@ -206,14 +205,6 @@ public class BiomeHell extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.biome.hell.mausoleumRarity) == 0)
             {
                 mausoleum.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
-            }
-        }
-
-        if(ConfigHandler.biome.hell.generatePrisons)
-        {
-            if(rand.nextInt(ConfigHandler.biome.hell.prisonRarity) == 0)
-            {
-                prison.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
             }
         }
 
