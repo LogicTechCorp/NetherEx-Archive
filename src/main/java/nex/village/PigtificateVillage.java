@@ -237,7 +237,7 @@ public class PigtificateVillage
                 BlockPos blockpos = fenceGateInfo1.getFenceGateBlockPos();
                 EnumFacing enumfacing = fenceGateInfo1.getInsideDirection();
 
-                if(world.getBlockState(blockpos.offset(enumfacing, 1)).getBlock().isPassable(world, blockpos.offset(enumfacing, 1)) && world.getBlockState(blockpos.offset(enumfacing, -1)).getBlock().isPassable(world, blockpos.offset(enumfacing, -1)) && world.getBlockState(blockpos.up().offset(enumfacing, 1)).getBlock().isPassable(world, blockpos.up().offset(enumfacing, 1)) && world.getBlockState(blockpos.up().offset(enumfacing, -1)).getBlock().isPassable(world, blockpos.up().offset(enumfacing, -1)))
+                if(world.getBlockState(blockpos.offset(enumfacing, 1)).getBlock().blocksMovement(world, blockpos.offset(enumfacing, 1)) && world.getBlockState(blockpos.offset(enumfacing, -1)).getBlock().blocksMovement(world, blockpos.offset(enumfacing, -1)) && world.getBlockState(blockpos.up().offset(enumfacing, 1)).getBlock().blocksMovement(world, blockpos.up().offset(enumfacing, 1)) && world.getBlockState(blockpos.up().offset(enumfacing, -1)).getBlock().blocksMovement(world, blockpos.up().offset(enumfacing, -1)))
                 {
                     fenceGateInfo = fenceGateInfo1;
                     i = j;

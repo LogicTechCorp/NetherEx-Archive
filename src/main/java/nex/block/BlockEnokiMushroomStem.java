@@ -192,7 +192,7 @@ public class BlockEnokiMushroomStem extends BlockNetherEx
     }
 
     @Override
-    public boolean isPassable(IBlockAccess world, BlockPos pos)
+    public boolean blocksMovement(IBlockAccess world, BlockPos pos)
     {
         return false;
     }

@@ -33,7 +33,6 @@ public class WorldProviderNether extends WorldProviderHell
         biomeProvider = new BiomeProviderNether(world);
         doesWaterVaporize = true;
         hasNoSky = true;
-        setDimension(-1);
     }
 
     @Override
