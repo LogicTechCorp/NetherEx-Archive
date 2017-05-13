@@ -29,21 +29,22 @@ public class PigtificateVillageManager
 
     public static void init(World world)
     {
-        LOGGER.info("Attempting to read the Pigtificate Village data.");
+        String dimension = world.provider.getDimensionType().name();
+        LOGGER.info("Attempting to read the Pigtificate Village data for " + dimension + ".");
 
         String s = PigtificateVillageCollection.fileNameForProvider(world.provider);
         PigtificateVillageCollection pigtificateVillageCollection = (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, s);
 
         if(pigtificateVillageCollection == null)
         {
-            LOGGER.info("The Pigtificate Village data was created successfully.");
+            LOGGER.info("The Pigtificate Village data for " + dimension + " was created successfully.");
 
             pigtificateVillages = new PigtificateVillageCollection(world);
             world.getPerWorldStorage().setData(s, pigtificateVillages);
         }
         else
         {
-            LOGGER.info("The Pigtificate Village data was read successfully.");
+            LOGGER.info("The Pigtificate Village data for " + dimension + " was read successfully.");
 
             pigtificateVillages = pigtificateVillageCollection;
             pigtificateVillages.setWorldsForAll(world);

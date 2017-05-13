@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkProviderHell;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class ChunkProviderNether extends ChunkProviderHell
+public class ChunkProviderNether implements IChunkGenerator
 {
     private static final IBlockState AIR = Blocks.AIR.getDefaultState();
     private static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
@@ -57,8 +57,8 @@ public class ChunkProviderNether extends ChunkProviderHell
     private static final IBlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
     private static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
 
-    private World world;
-    private Random rand;
+    private final World world;
+    private final Random rand;
 
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
@@ -85,7 +85,6 @@ public class ChunkProviderNether extends ChunkProviderHell
 
     public ChunkProviderNether(World worldIn)
     {
-        super(worldIn, false, worldIn.getSeed());
         world = worldIn;
         rand = new Random(world.getSeed());
         noiseGen1 = new NoiseGeneratorOctaves(rand, 16);
@@ -114,8 +113,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         worldIn.setSeaLevel(31);
     }
 
-    @Override
-    public void prepareHeights(int chunkX, int chunkZ, ChunkPrimer primer)
+    private void prepareHeights(int chunkX, int chunkZ, ChunkPrimer primer)
     {
         buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
@@ -201,8 +199,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         }
     }
 
-    @Override
-    public void buildSurfaces(int chunkX, int chunkZ, ChunkPrimer primer)
+    private void buildSurfaces(int chunkX, int chunkZ, ChunkPrimer primer)
     {
         if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, world))
         {
