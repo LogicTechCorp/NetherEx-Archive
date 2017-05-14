@@ -78,11 +78,6 @@ public class AdditionalBiomeManager
                 String jsonText = Files.toString(additionalBiomeFile, Charsets.UTF_8);
                 AdditionalBiomeList biomeList = gson.fromJson(jsonText, AdditionalBiomeList.class);
 
-                if(biomeList.getName().equalsIgnoreCase("Example"))
-                {
-                    continue;
-                }
-
                 LOGGER.info("Adding biomes from the " + biomeList.getName() + ".");
 
                 for(AdditionalBiomeMod biomeMod : biomeList.getMods())
@@ -91,18 +86,26 @@ public class AdditionalBiomeManager
                     {
                         ResourceLocation biomeRegistryName = new ResourceLocation(biomeMod.getName() + ":" + additionalBiome.getName());
                         Biome biome = Biome.REGISTRY.getObject(biomeRegistryName);
-                        int weight = additionalBiome.getWeight();
-                        Block block = Block.getBlockFromName(additionalBiome.getOceanBlock().getName());
-                        int meta = additionalBiome.getOceanBlock().getMeta();
-                        IBlockState state = block.getStateFromMeta(meta);
-                        BiomeTypeNetherEx type = BiomeTypeNetherEx.valueOf(additionalBiome.getType().toUpperCase());
 
                         if(biome == null)
                         {
                             continue;
                         }
 
-                        NetherExBiomes.addBiome(biome, weight, state, type == null ? BiomeTypeNetherEx.WARM : type);
+                        int weight = additionalBiome.getWeight();
+                        AdditionalBiome.OceanBlock oceanBlock = additionalBiome.getOceanBlock();
+
+                        if(oceanBlock == null)
+                        {
+                            oceanBlock = new AdditionalBiome.OceanBlock("minecraft:air", 0);
+                        }
+
+                        Block block = Block.getBlockFromName(oceanBlock.getName().isEmpty() ? "minecraft:air" : oceanBlock.getName());
+                        int meta = oceanBlock.getMeta();
+                        IBlockState state = block.getStateFromMeta(meta);
+                        BiomeTypeNetherEx type = BiomeTypeNetherEx.getTypeFromString(additionalBiome.getType());
+                        
+                        NetherExBiomes.addBiome(biome, weight == 0 ? 10 : weight, state, type);
                         LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " was added to the Nether.");
                     }
                 }

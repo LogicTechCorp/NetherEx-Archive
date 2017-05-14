@@ -18,6 +18,7 @@
 package nex.village.trade;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.io.Files;
@@ -85,11 +86,6 @@ public class TradeListManager
                 String jsonText = Files.toString(tradeFile, Charsets.UTF_8);
                 TradeList tradeList = gson.fromJson(jsonText, TradeList.class);
 
-                if(tradeList.getName().equalsIgnoreCase("Example"))
-                {
-                    continue;
-                }
-
                 LOGGER.info("Adding trades from the " + tradeList.getName() + ".");
 
                 for(TradeProfession profession : tradeList.getProfessions())
@@ -126,7 +122,7 @@ public class TradeListManager
 
                             if(outputDisplay != null)
                             {
-                                if(!outputDisplay.getName().equals(""))
+                                if(!Strings.isNullOrEmpty(outputDisplay.getName()))
                                 {
                                     outputStack.setStackDisplayName(outputDisplay.getName());
                                 }
@@ -191,7 +187,6 @@ public class TradeListManager
                             {
                                 continue;
                             }
-
 
                             TradeOffer.Amount offerAmount = offer.getAmount();
                             Trade trade = new Trade(outputStack, outputAmount, inputStackA, inputAAmount, inputStackB, inputBAmount, offerAmount, outputEnchantments);

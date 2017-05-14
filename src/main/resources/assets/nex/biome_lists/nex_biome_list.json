@@ -7,37 +7,21 @@
                 {
                     "name": "torrid_wasteland",
                     "weight": 6,
-                    "oceanBlock": {
-                        "name": "minecraft:lava",
-                        "meta": 0
-                    },
                     "type": "HOT"
                 },
                 {
                     "name": "hell",
                     "weight": 10,
-                    "oceanBlock": {
-                        "name": "minecraft:lava",
-                        "meta": 0
-                    },
                     "type": "WARM"
                 },
                 {
                     "name": "ruthless_sands",
                     "weight": 8,
-                    "oceanBlock": {
-                        "name": "minecraft:lava",
-                        "meta": 0
-                    },
                     "type": "WARM"
                 },
                 {
                     "name": "fungi_forest",
                     "weight": 4,
-                    "oceanBlock": {
-                        "name": "minecraft:lava",
-                        "meta": 0
-                    },
                     "type": "COOL"
                 },
                 {

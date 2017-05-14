@@ -17,6 +17,7 @@
 
 package nex.world.biome;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
@@ -85,6 +86,22 @@ public enum BiomeTypeNetherEx
     public List<BiomeManager.BiomeEntry> getBiomeEntries()
     {
         return Lists.newArrayList(biomeEntries);
+    }
+
+    public static BiomeTypeNetherEx getTypeFromString(String string)
+    {
+        if(!Strings.isNullOrEmpty(string))
+        {
+            for(BiomeTypeNetherEx type : values())
+            {
+                if(type.name().equalsIgnoreCase(string))
+                {
+                    return type;
+                }
+            }
+        }
+
+        return WARM;
     }
 
     public static BiomeTypeNetherEx getTypeFromBiome(Biome biome)

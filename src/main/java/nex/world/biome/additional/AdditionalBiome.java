@@ -49,6 +49,12 @@ public class AdditionalBiome
         private String name;
         private int meta;
 
+        public OceanBlock(String nameIn, int metaIn)
+        {
+            name = nameIn;
+            meta = metaIn;
+        }
+
         public String getName()
         {
             return name;
