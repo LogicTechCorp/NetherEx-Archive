@@ -17,13 +17,9 @@
 
 package nex.world.gen.layer;
 
-import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
-import net.minecraftforge.common.BiomeManager;
-import nex.world.biome.BiomeTypeNetherEx;
-
-import java.util.List;
+import nex.world.biome.NetherExBiomeType;
 
 public class GenLayerNetherExBiome extends GenLayerNetherEx
 {
@@ -42,15 +38,10 @@ public class GenLayerNetherExBiome extends GenLayerNetherEx
             for(int y = 0; y < areaWidth; y++)
             {
                 initChunkSeed(x + areaX, y + areaY);
-                outputs[x + y * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(BiomeTypeNetherEx.getAllBiomeEntries()).biome);
+                outputs[x + y * areaWidth] = Biome.getIdForBiome(NetherExBiomeType.getRandomBiome(NetherExBiomeType.getAllBiomes(), this));
             }
         }
 
         return outputs;
-    }
-
-    private BiomeManager.BiomeEntry getWeightedBiomeEntry(List<BiomeManager.BiomeEntry> biomeEntries)
-    {
-        return WeightedRandom.getRandomItem(biomeEntries, nextInt(WeightedRandom.getTotalWeight(biomeEntries)));
     }
 }

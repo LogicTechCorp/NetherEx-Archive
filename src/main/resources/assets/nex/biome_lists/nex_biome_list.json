@@ -7,22 +7,22 @@
                 {
                     "name": "torrid_wasteland",
                     "weight": 6,
-                    "type": "HOT"
+                    "type": "hot"
                 },
                 {
                     "name": "hell",
                     "weight": 10,
-                    "type": "WARM"
+                    "type": "warm"
                 },
                 {
                     "name": "ruthless_sands",
                     "weight": 8,
-                    "type": "WARM"
+                    "type": "neutral"
                 },
                 {
                     "name": "fungi_forest",
                     "weight": 4,
-                    "type": "COOL"
+                    "type": "cool"
                 },
                 {
                     "name": "arctic_abyss",
@@ -31,7 +31,7 @@
                         "name": "minecraft:magma",
                         "meta": 0
                     },
-                    "type": "COLD"
+                    "type": "cold"
                 }
             ]
         }

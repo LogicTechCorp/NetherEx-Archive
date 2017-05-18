@@ -28,7 +28,7 @@ import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
 import nex.init.NetherExBiomes;
 import nex.util.FileUtil;
-import nex.world.biome.BiomeTypeNetherEx;
+import nex.world.biome.NetherExBiomeType;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -103,7 +103,7 @@ public class AdditionalBiomeManager
                         Block block = Block.getBlockFromName(oceanBlock.getName().isEmpty() ? "minecraft:air" : oceanBlock.getName());
                         int meta = oceanBlock.getMeta();
                         IBlockState state = block.getStateFromMeta(meta);
-                        BiomeTypeNetherEx type = BiomeTypeNetherEx.getTypeFromString(additionalBiome.getType());
+                        NetherExBiomeType type = NetherExBiomeType.getFromString(additionalBiome.getType());
 
                         NetherExBiomes.addBiome(biome, weight, state, type);
                         LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " was added to the Nether.");

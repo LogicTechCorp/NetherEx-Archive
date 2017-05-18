@@ -90,8 +90,8 @@ public class NetherExBiomes
         LOGGER.info("The Nether has been overridden.");
     }
 
-    public static void addBiome(Biome biome, int weight, IBlockState state, BiomeTypeNetherEx type)
+    public static void addBiome(Biome biome, int weight, IBlockState oceanBlock, NetherExBiomeType type)
     {
-        type.addBiomeEntry(biome, weight).addOceanEntry(biome, state);
+        type.addBiome(biome, weight, oceanBlock);
     }
 }
