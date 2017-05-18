@@ -104,8 +104,8 @@ public class AdditionalBiomeManager
                         int meta = oceanBlock.getMeta();
                         IBlockState state = block.getStateFromMeta(meta);
                         BiomeTypeNetherEx type = BiomeTypeNetherEx.getTypeFromString(additionalBiome.getType());
-                        
-                        NetherExBiomes.addBiome(biome, weight == 0 ? 10 : weight, state, type);
+
+                        NetherExBiomes.addBiome(biome, weight, state, type);
                         LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " was added to the Nether.");
                     }
                 }

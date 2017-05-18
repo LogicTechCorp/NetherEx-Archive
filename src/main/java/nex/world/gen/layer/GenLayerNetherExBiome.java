@@ -19,7 +19,6 @@ package nex.world.gen.layer;
 
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
 import nex.world.biome.BiomeTypeNetherEx;
@@ -28,29 +27,26 @@ import java.util.List;
 
 public class GenLayerNetherExBiome extends GenLayerNetherEx
 {
-    public GenLayerNetherExBiome(long seed, GenLayer parentIn)
+    public GenLayerNetherExBiome(long seed)
     {
         super(seed);
-
-        parent = parentIn;
     }
 
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] parentInts = parent.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] childInts = IntCache.getIntCache(areaWidth * areaHeight);
+        int[] outputs = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for(int i = 0; i < areaHeight; ++i)
+        for(int x = 0; x < areaHeight; x++)
         {
-            for(int j = 0; j < areaWidth; ++j)
+            for(int y = 0; y < areaWidth; y++)
             {
-                initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                childInts[j + i * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(BiomeTypeNetherEx.getAllBiomeEntries()).biome);
+                initChunkSeed(x + areaX, y + areaY);
+                outputs[x + y * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(BiomeTypeNetherEx.getAllBiomeEntries()).biome);
             }
         }
 
-        return childInts;
+        return outputs;
     }
 
     private BiomeManager.BiomeEntry getWeightedBiomeEntry(List<BiomeManager.BiomeEntry> biomeEntries)

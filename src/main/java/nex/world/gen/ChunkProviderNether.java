@@ -148,7 +148,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                                 IBlockState state = null;
                                 BiomeTypeNetherEx type = BiomeTypeNetherEx.getTypeFromBiome(biome);
-                                IBlockState oceanState = type == null ? Blocks.LAVA.getDefaultState() : type.getBiomeOceanBlock(biome);
+                                IBlockState oceanState = type.getBiomeOceanBlock(biome);
 
                                 if(posY < 32)
                                 {
@@ -203,7 +203,7 @@ public class ChunkProviderNether extends ChunkProviderHell
                 IBlockState topState = biome.topBlock;
                 IBlockState fillerState = biome.fillerBlock;
                 BiomeTypeNetherEx type = BiomeTypeNetherEx.getTypeFromBiome(biome);
-                IBlockState oceanState = type == null ? Blocks.LAVA.getDefaultState() : type.getBiomeOceanBlock(biome);
+                IBlockState oceanState = type.getBiomeOceanBlock(biome);
 
                 for(int y = 127; y >= 0; y--)
                 {
