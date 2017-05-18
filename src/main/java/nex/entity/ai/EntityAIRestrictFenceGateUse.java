@@ -65,7 +65,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return !entityObj.world.isDaytime() && (!fenceGate.getIsDetachedFromVillageFlag() && fenceGate.isInsideSide(new BlockPos(entityObj)));
     }

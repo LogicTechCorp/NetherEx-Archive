@@ -56,12 +56,6 @@ public class BlockFrostburnIce extends BlockNetherEx
     }
 
     @Override
-    public boolean isFullyOpaque(IBlockState state)
-    {
-        return true;
-    }
-
-    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;

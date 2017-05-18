@@ -284,7 +284,7 @@ public class BlockBlueFire extends BlockNetherEx
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        return world.getBlockState(pos.down()).isFullyOpaque() || canNeighborCatchFire(world, pos);
+        return world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.UP) || canNeighborCatchFire(world, pos);
     }
 
     @Override
@@ -292,7 +292,7 @@ public class BlockBlueFire extends BlockNetherEx
     {
         if(world.provider.getDimensionType().getId() > 0 || !Blocks.PORTAL.trySpawnPortal(world, pos))
         {
-            if(!world.getBlockState(pos.down()).isFullyOpaque() && !canNeighborCatchFire(world, pos))
+            if(!world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.UP) && !canNeighborCatchFire(world, pos))
             {
                 world.setBlockToAir(pos);
             }
@@ -306,7 +306,7 @@ public class BlockBlueFire extends BlockNetherEx
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        if(!world.getBlockState(pos.down()).isFullyOpaque() && !canNeighborCatchFire(world, pos))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.UP) && !canNeighborCatchFire(world, pos))
         {
             world.setBlockToAir(pos);
         }

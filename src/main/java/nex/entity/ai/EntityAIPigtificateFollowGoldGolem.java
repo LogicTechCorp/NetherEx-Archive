@@ -72,7 +72,7 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return theGolem.getHoldFlowerTick() > 0;
     }

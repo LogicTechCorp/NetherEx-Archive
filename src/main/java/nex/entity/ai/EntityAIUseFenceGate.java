@@ -35,9 +35,9 @@ public class EntityAIUseFenceGate extends EntityAIFenceGateInteract
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
-        return closeFenceGate && closeFenceGateTemporisation > 0 && super.continueExecuting();
+        return closeFenceGate && closeFenceGateTemporisation > 0 && super.shouldContinueExecuting();
     }
 
     @Override

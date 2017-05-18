@@ -99,7 +99,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return matingTimeout >= 0 && checkSufficientDoorsPresentForNewVillager() && pigtificate.getGrowingAge() == 0 && pigtificate.getWillingToMate(false);
     }

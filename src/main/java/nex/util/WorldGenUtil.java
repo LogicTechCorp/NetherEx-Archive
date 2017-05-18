@@ -122,7 +122,7 @@ public class WorldGenUtil
 
                         BlockPos newPos = pos.add(posX, y, posZ);
 
-                        if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.UP))
+                        if(world.getBlockState(newPos).isBlockNormalCube())
                         {
                             wallBlocks++;
                         }
@@ -166,7 +166,7 @@ public class WorldGenUtil
 
                         if(y == 0)
                         {
-                            if(world.getBlockState(newPos).getBlock().isBlockSolid(world, newPos, EnumFacing.UP))
+                            if(world.getBlockState(newPos).isSideSolid(world, newPos, EnumFacing.DOWN))
                             {
                                 ceilingBlocks++;
                             }

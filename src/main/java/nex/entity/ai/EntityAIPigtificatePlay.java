@@ -84,7 +84,7 @@ public class EntityAIPigtificatePlay extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return playTime > 0;
     }

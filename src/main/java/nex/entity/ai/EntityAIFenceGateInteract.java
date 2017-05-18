@@ -88,7 +88,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return !hasStoppedFenceGateInteraction;
     }

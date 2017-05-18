@@ -103,9 +103,9 @@ public class BlockThornstalk extends BlockNetherEx
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor, BlockPos fromPos)
     {
         Block blockUp = world.getBlockState(pos.up()).getBlock();
-        Block blockDown = world.getBlockState(pos.down()).getBlock();
+        IBlockState blockDown = world.getBlockState(pos.down());
 
-        if(!((blockUp == Blocks.AIR || blockUp == this) && (blockDown.isBlockSolid(world, pos.down(), EnumFacing.UP) || blockDown == this)))
+        if(!((blockUp == Blocks.AIR || blockUp == this) && (blockDown.isSideSolid(world, pos.down(), EnumFacing.UP) || blockDown.getBlock() == this)))
         {
             world.destroyBlock(pos, true);
         }

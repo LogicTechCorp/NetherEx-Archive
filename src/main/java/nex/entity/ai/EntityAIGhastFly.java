@@ -53,7 +53,7 @@ public class EntityAIGhastFly extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return false;
     }

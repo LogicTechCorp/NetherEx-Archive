@@ -52,7 +52,7 @@ public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return lookTime > 0;
     }

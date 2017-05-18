@@ -116,7 +116,7 @@ public class PigtificateVillage
 
     private boolean isAreaClearAround(BlockPos blockSize, BlockPos blockLocation)
     {
-        if(!world.getBlockState(blockLocation.down()).isFullyOpaque())
+        if(!world.getBlockState(blockLocation.down()).isSideSolid(world, blockLocation, EnumFacing.UP))
         {
             return false;
         }
