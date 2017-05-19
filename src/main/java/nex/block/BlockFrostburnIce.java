@@ -24,10 +24,8 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
 public class BlockFrostburnIce extends BlockNetherEx
@@ -62,8 +60,8 @@ public class BlockFrostburnIce extends BlockNetherEx
     }
 
     @Override
-    public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
+    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
-        return world.getBlockState(pos.offset(side)).getBlock() == NetherExBlocks.BLOCK_FIRE_BLUE && side == EnumFacing.UP;
+        return side == EnumFacing.UP;
     }
 }

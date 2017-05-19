@@ -29,16 +29,16 @@ public class GenLayerNetherExBiome extends GenLayerNetherEx
     }
 
     @Override
-    public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
+    public int[] getInts(int areaX, int areaZ, int areaWidth, int areaHeight)
     {
         int[] outputs = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for(int x = 0; x < areaHeight; x++)
+        for(int z = 0; z < areaHeight; z++)
         {
-            for(int y = 0; y < areaWidth; y++)
+            for(int x = 0; x < areaWidth; x++)
             {
-                initChunkSeed(x + areaX, y + areaY);
-                outputs[x + y * areaWidth] = Biome.getIdForBiome(NetherExBiomeType.getRandomBiome(NetherExBiomeType.getAllBiomes(), this));
+                initChunkSeed(x + areaX, z + areaZ);
+                outputs[x + z * areaWidth] = Biome.getIdForBiome(NetherExBiomeType.getRandomBiome(NetherExBiomeType.getAllBiomes(), this));
             }
         }
 

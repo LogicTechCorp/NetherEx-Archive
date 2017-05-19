@@ -45,6 +45,9 @@ public abstract class GenLayerNetherEx extends GenLayer
     }
 
     @Override
+    public abstract int[] getInts(int areaX, int areaZ, int areaWidth, int areaHeight);
+
+    @Override
     public int nextInt(int i)
     {
         return super.nextInt(i);
