@@ -50,7 +50,6 @@ public class EntityEmber extends EntityMob
         super(world);
 
         setSize(0.35F, 0.65F);
-        stepHeight = 0.5F;
         isImmuneToFire = true;
         jumpHelper = new JumpHelper(this);
         moveHelper = new MoveHelper(this);

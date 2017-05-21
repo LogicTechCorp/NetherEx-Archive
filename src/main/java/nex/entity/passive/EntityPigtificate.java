@@ -64,8 +64,9 @@ import java.util.UUID;
 public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 {
     private static final DataParameter<Integer> PROFESSION = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> CAREER = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> CAREER_LEVEL = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
+
+    private int career;
+    private int careerLevel;
 
     private int randomTickDivider;
 
@@ -181,8 +182,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     {
         super.entityInit();
         dataManager.register(PROFESSION, 0);
-        dataManager.register(CAREER, 0);
-        dataManager.register(CAREER_LEVEL, 0);
     }
 
     @Override
@@ -655,12 +654,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     public int getCareer()
     {
-        return dataManager.get(CAREER);
+        return career;
     }
 
     public int getCareerLevel()
     {
-        return dataManager.get(CAREER_LEVEL);
+        return careerLevel;
     }
 
     public boolean getWillingToMate(boolean updateFirst)
@@ -745,24 +744,24 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         dataManager.set(PROFESSION, profession);
     }
 
-    public void setCareer(int career)
+    public void setCareer(int i)
     {
-        if(career < 0)
+        if(i < 0)
         {
-            career = 0;
+            i = 0;
         }
 
-        dataManager.set(CAREER, career);
+        career = i;
     }
 
-    public void setCareerLevel(int level)
+    public void setCareerLevel(int i)
     {
-        if(level < 0)
+        if(i < 0)
         {
-            level = 0;
+            i = 0;
         }
 
-        dataManager.set(CAREER_LEVEL, level);
+        careerLevel = i;
     }
 
     private void setAdditionalAITasks()

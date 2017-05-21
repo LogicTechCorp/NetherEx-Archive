@@ -23,9 +23,6 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -45,12 +42,15 @@ import nex.init.NetherExSoundEvents;
 
 public class EntityGhastQueen extends EntityGhast
 {
-    private static final DataParameter<Integer> COOLDOWN = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> GHAST_SPAWNING_STAGE = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> GHAST_SPAWNING_STAGE_STARTED = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean> SHOULD_SPAWN_GHAST = EntityDataManager.createKey(EntityGhastQueen.class, DataSerializers.BOOLEAN);
+    private int cooldown;
+    private int stage;
+
+    private boolean[] stageStarted = new boolean[5];
+    private boolean spawnGhastlings;
 
     private BlockPos urnPos = BlockPos.ORIGIN;
+
+    private final int maxGhastlingSpawns = ConfigHandler.entity.ghastQueen.ghastlingSpawns;
 
     private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
 
@@ -99,16 +99,6 @@ public class EntityGhastQueen extends EntityGhast
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-        dataManager.register(COOLDOWN, 0);
-        dataManager.register(GHAST_SPAWNING_STAGE, 0);
-        dataManager.register(GHAST_SPAWNING_STAGE_STARTED, 0);
-        dataManager.register(SHOULD_SPAWN_GHAST, false);
-    }
-
-    @Override
     public float getEyeHeight()
     {
         return 3.75F;
@@ -126,32 +116,35 @@ public class EntityGhastQueen extends EntityGhast
                 tasks.addTask(0, fireballAttack);
             }
 
-            if(getGhastSpawningStage() < 4)
+            if(getStage() < 4)
             {
-                if(!getGhastSpawnStageStarted() && getHealth() < getMaxHealth() - getGhastSpawningStage() * 35.0D)
+                if(!getStageStarted(getStage()) && getHealth() < getMaxHealth() - getStage() * 35.0D)
                 {
-                    setShouldSpawnGhast(true);
+                    setShouldSpawnGhastlings(true);
                 }
 
-                if(!getEntityWorld().isRemote && shouldSpawnGhast())
+                if(!getEntityWorld().isRemote && shouldSpawnGhastlings())
                 {
-                    for(int i = 0; i < ConfigHandler.entity.ghastQueen.ghastlingSpawns; i++)
+                    for(int i = 0; i < maxGhastlingSpawns; i++)
                     {
                         EntityGhastling ghastling = new EntityGhastling(getEntityWorld());
                         ghastling.setPosition(getPosition().getX(), getPosition().getY() - 1, getPosition().getZ());
                         getEntityWorld().spawnEntity(ghastling);
                     }
 
-                    setGhastSpawnStageStarted(getGhastSpawningStage() + 1);
+                    setStageStarted(getStage(), true);
                     setCooldown(ConfigHandler.entity.ghastQueen.ghastlingSpawnCooldown * 20);
-                    setGhastSpawningStage(getGhastSpawningStage() + 1);
-                    setShouldSpawnGhast(false);
+                    setStage(getStage() + 1);
+                    setShouldSpawnGhastlings(false);
                 }
             }
         }
         else
         {
-            tasks.removeTask(fireballAttack);
+            if(tasks.taskEntries.size() == 3)
+            {
+                tasks.removeTask(fireballAttack);
+            }
             setCooldown(getCooldown() - 1);
         }
 
@@ -176,11 +169,14 @@ public class EntityGhastQueen extends EntityGhast
         super.writeEntityToNBT(compound);
         compound.setIntArray("UrnPos", new int[]{getUrnPos().getX(), getUrnPos().getY(), getUrnPos().getZ()});
         compound.setInteger("Cooldown", getCooldown());
-        compound.setInteger("GhastSpawningStage", getGhastSpawningStage());
-        compound.setBoolean("GhastSpawnStageStarted", getGhastSpawnStageStarted());
-        compound.setBoolean("SpawnGhast", shouldSpawnGhast());
+        compound.setInteger("Stage", getStage());
 
-        System.out.println(getUrnPos().toString());
+        for(int i = 0; i < stageStarted.length; i++)
+        {
+            compound.setBoolean("StageStarted" + i, getStageStarted(i));
+        }
+
+        compound.setBoolean("SpawnGhast", shouldSpawnGhastlings());
     }
 
     @Override
@@ -189,11 +185,14 @@ public class EntityGhastQueen extends EntityGhast
         super.readEntityFromNBT(compound);
         setUrnPos(new BlockPos(compound.getIntArray("UrnPos")[0], compound.getIntArray("UrnPos")[1], compound.getIntArray("UrnPos")[2]));
         setCooldown(compound.getInteger("Cooldown"));
-        setGhastSpawningStage(compound.getInteger("GhastSpawningStage"));
-        setGhastSpawnStageStarted(compound.getInteger("GhastSpawnStageStarted"));
-        setShouldSpawnGhast(compound.getBoolean("SpawnGhast"));
+        setStage(compound.getInteger("Stage"));
 
-        System.out.println(getUrnPos().toString());
+        for(int i = 0; i < stageStarted.length; i++)
+        {
+            setStageStarted(i, compound.getBoolean("StageStarted" + i));
+        }
+
+        setShouldSpawnGhastlings(compound.getBoolean("SpawnGhast"));
 
         if(hasCustomName())
         {
@@ -252,46 +251,46 @@ public class EntityGhastQueen extends EntityGhast
 
     private int getCooldown()
     {
-        return dataManager.get(COOLDOWN);
+        return cooldown;
     }
 
-    private int getGhastSpawningStage()
+    private int getStage()
     {
-        return dataManager.get(GHAST_SPAWNING_STAGE);
+        return stage;
     }
 
-    private boolean shouldSpawnGhast()
+    private boolean shouldSpawnGhastlings()
     {
-        return dataManager.get(SHOULD_SPAWN_GHAST);
+        return spawnGhastlings;
     }
 
-    private boolean getGhastSpawnStageStarted()
+    private boolean getStageStarted(int i)
     {
-        return dataManager.get(GHAST_SPAWNING_STAGE).intValue() != dataManager.get(GHAST_SPAWNING_STAGE_STARTED).intValue();
+        return stageStarted[i];
     }
 
-    public void setUrnPos(BlockPos urnPosIn)
+    public void setUrnPos(BlockPos pos)
     {
-        urnPos = urnPosIn;
+        urnPos = pos;
     }
 
-    private void setCooldown(int amount)
+    private void setCooldown(int i)
     {
-        dataManager.set(COOLDOWN, amount);
+        cooldown = i;
     }
 
-    private void setGhastSpawningStage(int stage)
+    private void setStage(int i)
     {
-        dataManager.set(GHAST_SPAWNING_STAGE, stage);
+        stage = i;
     }
 
-    private void setShouldSpawnGhast(boolean spawnGhast)
+    private void setShouldSpawnGhastlings(boolean bool)
     {
-        dataManager.set(SHOULD_SPAWN_GHAST, spawnGhast);
+        spawnGhastlings = bool;
     }
 
-    private void setGhastSpawnStageStarted(int started)
+    private void setStageStarted(int i, boolean bool)
     {
-        dataManager.set(GHAST_SPAWNING_STAGE_STARTED, started);
+        stageStarted[i] = bool;
     }
 }

@@ -65,7 +65,6 @@ public class EntitySporeCreeper extends EntityMob
         super(world);
 
         setSize(0.6F, 1.7F);
-        stepHeight = 0.5F;
     }
 
     @Override

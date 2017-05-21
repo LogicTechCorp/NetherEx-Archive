@@ -24,7 +24,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -46,7 +45,6 @@ public class EntityMogus extends EntityMob
         super(world);
 
         setSize(0.35F, 0.45F);
-        stepHeight = 0.5F;
 
         setRandomType();
     }
@@ -98,20 +96,6 @@ public class EntityMogus extends EntityMob
     {
         super.entityInit();
         dataManager.register(TYPE, 0);
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
-        super.writeEntityToNBT(compound);
-        compound.setInteger("Type", getType());
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound compound)
-    {
-        super.readEntityFromNBT(compound);
-        setType(compound.getInteger("Type"));
     }
 
     @Override

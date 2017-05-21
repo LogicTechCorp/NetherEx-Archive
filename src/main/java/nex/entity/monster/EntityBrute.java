@@ -26,9 +26,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -38,11 +35,14 @@ import nex.init.NetherExLootTables;
 
 public class EntityBrute extends EntityMob
 {
-    private static final DataParameter<Integer> COOLDOWN = EntityDataManager.createKey(EntityBrute.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(EntityBrute.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<BlockPos> POS_TO_CHARGE = EntityDataManager.createKey(EntityBrute.class, DataSerializers.BLOCK_POS);
+    private int cooldown;
 
-    private static boolean addedExtraChargeDistance;
+    private boolean charging;
+    private boolean addedOffset;
+
+    private BlockPos destination;
+
+    private final int maxCooldown = ConfigHandler.entity.brute.chargeCooldown * 20;
 
     public EntityBrute(World world)
     {
@@ -73,15 +73,6 @@ public class EntityBrute extends EntityMob
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-        dataManager.register(COOLDOWN, 0);
-        dataManager.register(CHARGING, false);
-        dataManager.register(POS_TO_CHARGE, getPosition());
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -95,23 +86,23 @@ public class EntityBrute extends EntityMob
         {
             if(getAttackTarget() != null && !isCharging())
             {
-                setPosToCharge(getAttackTarget().getPosition());
+                setDestination(getAttackTarget().getPosition());
                 setCharging(true);
             }
             if(isCharging())
             {
-                getNavigator().tryMoveToXYZ(getPosToCharge().getX(), getPosToCharge().getY(), getPosToCharge().getZ(), 2.5F);
+                getNavigator().tryMoveToXYZ(getDestination().getX(), getDestination().getY(), getDestination().getZ(), 2.5F);
 
-                if(!addedExtraChargeDistance && getDistanceSq(getPosToCharge()) <= 4.0D)
+                if(!addedOffset() && getDistanceSq(getDestination()) <= 4.0D)
                 {
-                    setPosToCharge(getPosToCharge().offset(getHorizontalFacing(), 4));
-                    addedExtraChargeDistance = true;
+                    setDestination(getDestination().offset(getHorizontalFacing(), 4));
+                    setAddedOffset(true);
                 }
-                if(getPosition().equals(getPosToCharge()))
+                if(getPosition().equals(getDestination()))
                 {
-                    addedExtraChargeDistance = false;
+                    setAddedOffset(false);
                     setCharging(false);
-                    setCooldown(ConfigHandler.entity.brute.chargeCooldown * 20);
+                    setCooldown(maxCooldown);
                 }
             }
         }
@@ -127,7 +118,7 @@ public class EntityBrute extends EntityMob
         super.writeEntityToNBT(compound);
         compound.setInteger("ChargeCooldown", getCooldown());
         compound.setBoolean("Charging", isCharging());
-        compound.setBoolean("AddedExtraChargeDistance", addedExtraChargeDistance);
+        compound.setBoolean("AddedOffset", addedOffset());
     }
 
     @Override
@@ -136,7 +127,7 @@ public class EntityBrute extends EntityMob
         super.readEntityFromNBT(compound);
         setCooldown(compound.getInteger("ChargeCooldown"));
         setCharging(compound.getBoolean("Charging"));
-        addedExtraChargeDistance = compound.getBoolean("AddedExtraChargeDistance");
+        setAddedOffset(compound.getBoolean("AddedOffset"));
     }
 
     @Override
@@ -158,31 +149,41 @@ public class EntityBrute extends EntityMob
 
     private int getCooldown()
     {
-        return dataManager.get(COOLDOWN);
+        return cooldown;
     }
 
-    public boolean isCharging()
+    private boolean isCharging()
     {
-        return dataManager.get(CHARGING);
+        return charging;
     }
 
-    private BlockPos getPosToCharge()
+    private boolean addedOffset()
     {
-        return dataManager.get(POS_TO_CHARGE);
+        return addedOffset;
     }
 
-    private void setCooldown(int amount)
+    private BlockPos getDestination()
     {
-        dataManager.set(COOLDOWN, amount);
+        return destination;
     }
 
-    private void setCharging(boolean charging)
+    private void setCooldown(int i)
     {
-        dataManager.set(CHARGING, charging);
+        cooldown = i;
     }
 
-    private void setPosToCharge(BlockPos posToCharge)
+    private void setCharging(boolean bool)
     {
-        dataManager.set(POS_TO_CHARGE, posToCharge);
+        charging = bool;
+    }
+
+    private void setAddedOffset(boolean bool)
+    {
+        addedOffset = bool;
+    }
+
+    private void setDestination(BlockPos pos)
+    {
+        destination = pos;
     }
 }

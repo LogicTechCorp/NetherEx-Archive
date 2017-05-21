@@ -40,7 +40,10 @@ import nex.init.NetherExSoundEvents;
 public class EntitySpore extends EntityMob
 {
     private static final DataParameter<Integer> STAGE = EntityDataManager.createKey(EntitySpore.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> COUNTER = EntityDataManager.createKey(EntitySpore.class, DataSerializers.VARINT);
+
+    private int counter;
+
+    private final int maxSporeCreeperSpawns = ConfigHandler.entity.spore.creeperSpawns;
 
     public EntitySpore(World world)
     {
@@ -80,7 +83,6 @@ public class EntitySpore extends EntityMob
     {
         super.entityInit();
         dataManager.register(STAGE, 0);
-        dataManager.register(COUNTER, 0);
     }
 
     @Override
@@ -109,7 +111,7 @@ public class EntitySpore extends EntityMob
                 if(!world.isRemote)
                 {
 
-                    int creeperSpawns = rand.nextInt(ConfigHandler.entity.spore.creeperSpawns) + 1;
+                    int creeperSpawns = rand.nextInt(maxSporeCreeperSpawns) + 1;
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {
@@ -126,7 +128,6 @@ public class EntitySpore extends EntityMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("Stage", getStage());
         compound.setInteger("Counter", getCounter());
     }
 
@@ -134,7 +135,6 @@ public class EntitySpore extends EntityMob
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        setStage(compound.getInteger("Stage"));
         setCounter(compound.getInteger("Counter"));
     }
 
@@ -170,7 +170,7 @@ public class EntitySpore extends EntityMob
 
     private int getCounter()
     {
-        return dataManager.get(COUNTER);
+        return counter;
     }
 
     private void setRandomStage()
@@ -198,9 +198,9 @@ public class EntitySpore extends EntityMob
         dataManager.set(STAGE, stage);
     }
 
-    private void setCounter(int amount)
+    private void setCounter(int i)
     {
-        dataManager.set(COUNTER, amount);
+        counter = i;
     }
 
     private void updateSize()

@@ -21,11 +21,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -38,9 +34,13 @@ import nex.init.NetherExSoundEvents;
 @SuppressWarnings("ConstantConditions")
 public class EntitySpinout extends EntityMob
 {
-    private static final DataParameter<Integer> COUNTER = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> COOLDOWN = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean> SPINNING = EntityDataManager.createKey(EntitySpinout.class, DataSerializers.BOOLEAN);
+    private int counter;
+    private int cooldown;
+
+    private boolean spinning;
+
+    private final int maxSpinTime = ConfigHandler.entity.spinout.spinTime * 20;
+    private final int maxCooldown = ConfigHandler.entity.spinout.spinCooldown * 20;
 
     private final EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
     private final EntityAIBase wander = new EntityAIWander(this, 1.0D, 1);
@@ -50,7 +50,6 @@ public class EntitySpinout extends EntityMob
         super(world);
 
         setSize(0.55F, 1.95F);
-        stepHeight = 0.5F;
         isImmuneToFire = true;
     }
 
@@ -99,24 +98,9 @@ public class EntitySpinout extends EntityMob
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-        dataManager.register(COUNTER, 0);
-        dataManager.register(COOLDOWN, 0);
-        dataManager.register(SPINNING, false);
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();
-
-        if(world.getBlockState(getPosition().down()).getBlock() == Blocks.SOUL_SAND)
-        {
-            motionX /= 0.4D;
-            motionZ /= 0.4D;
-        }
 
         if(getCooldown() == 0)
         {
@@ -136,11 +120,11 @@ public class EntitySpinout extends EntityMob
                 setSilent(false);
             }
         }
-        if(getCounter() >= ConfigHandler.entity.spinout.spinTime * 20)
+        if(getCounter() >= maxSpinTime)
         {
             setCounter(0);
             setSpinning(false);
-            setCooldown(ConfigHandler.entity.spinout.spinCooldown * 20);
+            setCooldown(maxCooldown);
         }
         if(getCooldown() > 0)
         {
@@ -204,31 +188,31 @@ public class EntitySpinout extends EntityMob
 
     public int getCounter()
     {
-        return dataManager.get(COUNTER);
+        return counter;
     }
 
     private int getCooldown()
     {
-        return dataManager.get(COOLDOWN);
+        return cooldown;
     }
 
     public boolean isSpinning()
     {
-        return dataManager.get(SPINNING);
+        return spinning;
     }
 
-    private void setCounter(int amount)
+    private void setCounter(int i)
     {
-        dataManager.set(COUNTER, amount);
+        counter = i;
     }
 
-    private void setCooldown(int amount)
+    private void setCooldown(int i)
     {
-        dataManager.set(COOLDOWN, amount);
+        cooldown = i;
     }
 
-    private void setSpinning(boolean spinning)
+    private void setSpinning(boolean bool)
     {
-        dataManager.set(SPINNING, spinning);
+        spinning = bool;
     }
 }
