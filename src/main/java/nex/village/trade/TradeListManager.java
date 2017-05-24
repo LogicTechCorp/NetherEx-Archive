@@ -40,13 +40,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
 public class TradeListManager
 {
     private static HashMap<TradeCareer.EnumType, HashMap<Integer, List<Trade>>> offerLists = Maps.newHashMap();
-    private static Random rand = new Random();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeListManager");
 

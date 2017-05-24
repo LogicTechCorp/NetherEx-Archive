@@ -91,7 +91,13 @@ public class BlockHyphae extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NetherExBlocks.BLOCK_NETHERRACK.getItemDropped(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY), rand, fortune);
+        return Item.getItemFromBlock(NetherExBlocks.BLOCK_NETHERRACK);
+    }
+
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return BlockNetherrack.EnumType.LIVELY.ordinal();
     }
 
     @Override
