@@ -238,6 +238,24 @@ public class EventHandler
     }
 
     @SubscribeEvent
+    public static void onPlayerLeftClick(PlayerInteractEvent.LeftClickBlock event)
+    {
+        World world = event.getWorld();
+        EnumFacing facing = event.getFace();
+        BlockPos originalPos = event.getPos();
+        BlockPos offsetPos = originalPos.offset(facing);
+        IBlockState originalState = world.getBlockState(originalPos);
+        IBlockState offsetState = world.getBlockState(offsetPos);
+        EntityPlayer player = event.getEntityPlayer();
+
+        if(offsetState.getBlock() == NetherExBlocks.BLOCK_FIRE_BLUE)
+        {
+            world.playEvent(player, 1009, offsetPos, 0);
+            world.setBlockToAir(offsetPos);
+        }
+    }
+
+    @SubscribeEvent
     public static void onCropPreGrow(BlockEvent.CropGrowEvent.Pre event)
     {
         World world = event.getWorld();
