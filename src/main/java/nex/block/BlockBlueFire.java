@@ -55,6 +55,7 @@ public class BlockBlueFire extends BlockNetherEx
 
         setLightLevel(1.0F);
         setTickRandomly(true);
+        setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 
     @Override
