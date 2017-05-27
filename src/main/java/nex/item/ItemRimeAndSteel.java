@@ -44,13 +44,13 @@ public class ItemRimeAndSteel extends ItemNetherEx
         pos = pos.offset(facing);
         ItemStack stack = player.getHeldItem(hand);
 
-        if (!player.canPlayerEdit(pos, facing, stack))
+        if(!player.canPlayerEdit(pos, facing, stack))
         {
             return EnumActionResult.FAIL;
         }
         else
         {
-            if (world.isAirBlock(pos))
+            if(world.isAirBlock(pos))
             {
                 world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
                 world.setBlockState(pos, NetherExBlocks.BLOCK_FIRE_BLUE.getDefaultState(), 11);

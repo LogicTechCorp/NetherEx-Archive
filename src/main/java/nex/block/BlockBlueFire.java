@@ -355,12 +355,12 @@ public class BlockBlueFire extends BlockNetherEx
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        if (!worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && !canCatchFire(worldIn, pos.down(), EnumFacing.UP))
+        if(!worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && !canCatchFire(worldIn, pos.down(), EnumFacing.UP))
         {
             return state.withProperty(NORTH, canCatchFire(worldIn, pos.north(), EnumFacing.SOUTH))
-                    .withProperty(EAST,  canCatchFire(worldIn, pos.east(), EnumFacing.WEST))
+                    .withProperty(EAST, canCatchFire(worldIn, pos.east(), EnumFacing.WEST))
                     .withProperty(SOUTH, canCatchFire(worldIn, pos.south(), EnumFacing.NORTH))
-                    .withProperty(WEST,  canCatchFire(worldIn, pos.west(), EnumFacing.EAST))
+                    .withProperty(WEST, canCatchFire(worldIn, pos.west(), EnumFacing.EAST))
                     .withProperty(UPPER, canCatchFire(worldIn, pos.up(), EnumFacing.DOWN));
         }
         return this.getDefaultState();
