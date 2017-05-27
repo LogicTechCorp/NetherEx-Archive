@@ -80,6 +80,9 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder("block_fire_blue")
     public static final BlockBlueFire BLOCK_FIRE_BLUE = null;
 
+    @GameRegistry.ObjectHolder("block_portal_nether")
+    public static final BlockNetherPortal BLOCK_PORTAL_NETHER = null;
+
     @GameRegistry.ObjectHolder("tile_urn_sorrow")
     public static final BlockUrnOfSorrow TILE_URN_SORROW = null;
 
@@ -251,6 +254,7 @@ public class NetherExBlocks
                     new BlockBoneChunk(),
                     new BlockWornIron(),
                     new BlockBlueFire(),
+                    new BlockNetherPortal(),
                     new BlockUrnOfSorrow(),
                     new BlockQuartzOre(),
                     new BlockAmethystOre(),

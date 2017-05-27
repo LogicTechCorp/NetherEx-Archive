@@ -51,6 +51,9 @@ public class NetherExItems
     @GameRegistry.ObjectHolder("item_crystal_rime")
     public static final ItemNetherEx ITEM_CRYSTAL_RIME = null;
 
+    @GameRegistry.ObjectHolder("item_crystal_rime_steel")
+    public static final ItemNetherEx ITEM_CRYSTAL_RIME_STEEL = null;
+
     @GameRegistry.ObjectHolder("item_spore")
     public static final ItemNetherEx ITEM_SPORE = null;
 
@@ -131,6 +134,7 @@ public class NetherExItems
                     new ItemSalamanderHide(),
                     new ItemNetherEx("item_crystal_amethyst"),
                     new ItemNetherEx("item_crystal_rime"),
+                    new ItemRimeAndSteel(),
                     new ItemNetherEx("item_spore"),
                     new ItemNetherEx("item_fang_spider_bone"),
                     new ItemGhastQueenTear(),

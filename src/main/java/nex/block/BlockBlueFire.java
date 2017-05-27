@@ -36,6 +36,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
@@ -295,7 +296,7 @@ public class BlockBlueFire extends BlockNetherEx
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        if(world.provider.getDimensionType().getId() > 0 || !Blocks.PORTAL.trySpawnPortal(world, pos))
+        if(world.provider.getDimensionType().getId() > 0 || !NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos))
         {
             if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
             {
@@ -349,6 +350,20 @@ public class BlockBlueFire extends BlockNetherEx
     public int getMetaFromState(IBlockState state)
     {
         return state.getValue(AGE);
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+        if (!worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && !canCatchFire(worldIn, pos.down(), EnumFacing.UP))
+        {
+            return state.withProperty(NORTH, canCatchFire(worldIn, pos.north(), EnumFacing.SOUTH))
+                    .withProperty(EAST,  canCatchFire(worldIn, pos.east(), EnumFacing.WEST))
+                    .withProperty(SOUTH, canCatchFire(worldIn, pos.south(), EnumFacing.NORTH))
+                    .withProperty(WEST,  canCatchFire(worldIn, pos.west(), EnumFacing.EAST))
+                    .withProperty(UPPER, canCatchFire(worldIn, pos.up(), EnumFacing.DOWN));
+        }
+        return this.getDefaultState();
     }
 
     @Override

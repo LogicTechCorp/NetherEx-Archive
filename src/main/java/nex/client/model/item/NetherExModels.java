@@ -28,6 +28,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.IFluidBlock;
@@ -106,11 +107,16 @@ public class NetherExModels
         registerModel(BLOCK_AMETHYST, "normal");
         registerModel(BLOCK_RIME, "normal");
         registerModel(BLOCK_ICE_FROSTBURN, "normal");
-        registerModel(NetherExBlocks.BLOCK_BONE_SLIVER, "axis=y");
-        registerModel(NetherExBlocks.BLOCK_BONE_CHUNK, "facing=up");
+        registerModel(BLOCK_BONE_SLIVER, "axis=y");
+        registerModel(BLOCK_BONE_CHUNK, "facing=up");
 
         registerModel(BLOCK_IRON_WORN, "normal");
         registerModel(BLOCK_FIRE_BLUE, "normal");
+
+        for(EnumFacing.Axis axis : EnumFacing.Axis.values())
+        {
+            registerModel(BLOCK_PORTAL_NETHER, axis.ordinal(), BLOCK_PORTAL_NETHER.getRegistryName().toString(), String.format("axis=%s", axis.getName()));
+        }
 
         for(BlockUrnOfSorrow.EnumType type : BlockUrnOfSorrow.EnumType.values())
         {
@@ -189,6 +195,7 @@ public class NetherExModels
 
         registerModel(ITEM_CRYSTAL_AMETHYST, "normal");
         registerModel(ITEM_CRYSTAL_RIME, "normal");
+        registerModel(ITEM_CRYSTAL_RIME_STEEL, "normal");
         registerModel(ITEM_SPORE, "normal");
         registerModel(ITEM_FANG_SPIDER_BONE, "normal");
         registerModel(ITEM_TEAR_GHAST_QUEEN, "normal");
