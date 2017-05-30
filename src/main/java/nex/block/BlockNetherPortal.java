@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import com.google.common.collect.Queues;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -31,19 +32,27 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.init.NetherExBlocks;
+import nex.util.BlockUtil;
+import nex.world.NetherExTeleporter;
 
+import java.util.Queue;
 import java.util.Random;
 
+@SuppressWarnings("ConstantConditions")
 public class BlockNetherPortal extends BlockNetherEx
 {
-    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
-    protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
-    protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.0D, 0.375D, 0.0D, 1.0D, 0.625D, 1.0D);
+    private static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
+
+    private static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
+    private static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.0D, 0.375D, 0.0D, 1.0D, 0.625D, 1.0D);
+    private static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
 
     public BlockNetherPortal()
     {
@@ -118,7 +127,29 @@ public class BlockNetherPortal extends BlockNetherEx
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
+        EnumFacing.Axis axis = state.getValue(AXIS);
 
+        if(axis == EnumFacing.Axis.X)
+        {
+            if(world.isAirBlock(pos.down()) || world.isAirBlock(pos.up()) || world.isAirBlock(pos.north()) || world.isAirBlock(pos.south()))
+            {
+                world.setBlockToAir(pos);
+            }
+        }
+        else if(axis == EnumFacing.Axis.Y)
+        {
+            if(world.isAirBlock(pos.north()) || world.isAirBlock(pos.south()) || world.isAirBlock(pos.west()) || world.isAirBlock(pos.east()))
+            {
+                world.setBlockToAir(pos);
+            }
+        }
+        else if(axis == EnumFacing.Axis.Z)
+        {
+            if(world.isAirBlock(pos.down()) || world.isAirBlock(pos.up()) || world.isAirBlock(pos.west()) || world.isAirBlock(pos.east()))
+            {
+                world.setBlockToAir(pos);
+            }
+        }
     }
 
     @Override
@@ -144,9 +175,67 @@ public class BlockNetherPortal extends BlockNetherEx
     }
 
     @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        world.scheduleUpdate(pos, this, 2);
+    }
+
+    @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
+        EnumFacing.Axis axis = state.getValue(AXIS);
 
+        if(axis == EnumFacing.Axis.X)
+        {
+            if(pos.down().equals(fromPos) || pos.up().equals(fromPos) || pos.north().equals(fromPos) || pos.south().equals(fromPos))
+            {
+                if(world.isAirBlock(fromPos))
+                {
+                    world.setBlockToAir(pos);
+                }
+            }
+            else
+            {
+                if(world.getBlockState(fromPos).getBlock() == this)
+                {
+                    world.setBlockToAir(fromPos);
+                }
+            }
+        }
+        else if(axis == EnumFacing.Axis.Y)
+        {
+            if(pos.north().equals(fromPos) || pos.south().equals(fromPos) || pos.west().equals(fromPos) || pos.east().equals(fromPos))
+            {
+                if(world.isAirBlock(fromPos))
+                {
+                    world.setBlockToAir(pos);
+                }
+            }
+            else
+            {
+                if(world.getBlockState(fromPos).getBlock() == this)
+                {
+                    world.setBlockToAir(fromPos);
+                }
+            }
+        }
+        else if(axis == EnumFacing.Axis.Z)
+        {
+            if(pos.down().equals(fromPos) || pos.up().equals(fromPos) || pos.west().equals(fromPos) || pos.east().equals(fromPos))
+            {
+                if(world.isAirBlock(fromPos))
+                {
+                    world.setBlockToAir(pos);
+                }
+            }
+            else
+            {
+                if(world.getBlockState(fromPos).getBlock() == this)
+                {
+                    world.setBlockToAir(fromPos);
+                }
+            }
+        }
     }
 
     @Override
@@ -158,7 +247,42 @@ public class BlockNetherPortal extends BlockNetherEx
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
+        if(!entity.isRiding() && entity.getPassengers().isEmpty())
+        {
+            if(entity.timeUntilPortal <= 0)
+            {
+                try
+                {
+                    NetherExTeleporter.FIELD_LAST_PORTAL_POS.set(entity, pos);
+                    NetherExTeleporter.FIELD_LAST_PORTAL_VEC.set(entity, new Vec3d(entity.getHorizontalFacing().getAxis() == EnumFacing.Axis.X ? entity.getPosition().getZ() : entity.getPosition().getX(), 0.0D, 0.0D));
+                    NetherExTeleporter.FIELD_TELEPORT_DIRECTION.set(entity, entity.getHorizontalFacing());
+                }
+                catch(IllegalAccessException e)
+                {
+                    e.printStackTrace();
+                }
 
+                if(entity.dimension != DimensionType.NETHER.getId())
+                {
+                    entity.changeDimension(DimensionType.NETHER.getId());
+                }
+                else
+                {
+                    entity.changeDimension(DimensionType.OVERWORLD.getId());
+                }
+            }
+            else
+            {
+                if(entity instanceof EntityPlayer)
+                {
+                    entity.timeUntilPortal = 10;
+                }
+                else
+                {
+                    entity.timeUntilPortal = 300;
+                }
+            }
+        }
     }
 
     @Override
@@ -173,6 +297,8 @@ public class BlockNetherPortal extends BlockNetherEx
                 {
                     case X:
                         return state.withProperty(AXIS, EnumFacing.Axis.Z);
+                    case Y:
+                        return state.withProperty(AXIS, EnumFacing.Axis.Y);
                     case Z:
                         return state.withProperty(AXIS, EnumFacing.Axis.X);
                     default:
@@ -202,13 +328,126 @@ public class BlockNetherPortal extends BlockNetherEx
         return new BlockStateContainer(this, AXIS);
     }
 
+    public static int getMetaForAxis(EnumFacing.Axis axis)
+    {
+        return axis == EnumFacing.Axis.X ? 0 : axis == EnumFacing.Axis.Y ? 1 : 2;
+    }
+
     public boolean trySpawnPortal(World world, BlockPos pos)
     {
+        for(EnumFacing facing : EnumFacing.values())
+        {
+            for(EnumFacing.Axis axis : EnumFacing.Axis.values())
+            {
+                Queue<BlockPos> portalBlocks = findPortalBlocks(world, pos.offset(facing), axis);
+
+                if(portalBlocks.size() > 0)
+                {
+                    for(BlockPos newPos : portalBlocks)
+                    {
+                        world.setBlockState(newPos, getDefaultState().withProperty(AXIS, axis));
+                    }
+
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
-    public static int getMetaForAxis(EnumFacing.Axis axis)
+    private Queue<BlockPos> findPortalBlocks(World world, BlockPos pos, EnumFacing.Axis axis)
     {
-        return axis == EnumFacing.Axis.X ? 0 : axis == EnumFacing.Axis.Z ? 2 : 1;
+        Queue<BlockPos> portalBlocks = Queues.newArrayDeque();
+        Queue<BlockPos> toProcess = Queues.newArrayDeque();
+        int chances = 0;
+
+        toProcess.add(pos);
+
+        while(!toProcess.isEmpty())
+        {
+            BlockPos newPos = toProcess.remove();
+
+            if(!portalBlocks.contains(newPos))
+            {
+                if(world.isAirBlock(newPos) || world.getBlockState(newPos).getBlock() == NetherExBlocks.BLOCK_FIRE_BLUE)
+                {
+                    int neighborBlocks = getNeighborBlocks(world, newPos, portalBlocks, axis);
+
+                    if(neighborBlocks < 2)
+                    {
+                        if(chances < 40)
+                        {
+                            chances++;
+                            neighborBlocks += 2;
+                        }
+                        else
+                        {
+                            return Queues.newArrayDeque();
+                        }
+                    }
+                    if(neighborBlocks >= 2)
+                    {
+                        portalBlocks.add(newPos);
+                        addNeighborBlocks(newPos, axis, toProcess);
+                    }
+                    else if(!isPortalPart(world, newPos))
+                    {
+                        return Queues.newArrayDeque();
+                    }
+                }
+                else if(!isPortalPart(world, newPos))
+                {
+                    return Queues.newArrayDeque();
+                }
+            }
+        }
+
+        return portalBlocks;
+    }
+
+    private int getNeighborBlocks(World world, BlockPos pos, Queue<BlockPos> portalBlocks, EnumFacing.Axis axis)
+    {
+        int sides = 0;
+        Queue<BlockPos> neighbors = Queues.newArrayDeque();
+
+        addNeighborBlocks(pos, axis, neighbors);
+
+        for(BlockPos newPos : neighbors)
+        {
+            if(portalBlocks.contains(newPos) || isPortalPart(world, newPos))
+            {
+                sides++;
+            }
+        }
+
+        return sides;
+    }
+
+    private void addNeighborBlocks(BlockPos pos, EnumFacing.Axis axis, Queue<BlockPos> neighbors)
+    {
+        for(EnumFacing facing : EnumFacing.values())
+        {
+            if(axis == EnumFacing.Axis.X && (facing == EnumFacing.EAST || facing == EnumFacing.WEST))
+            {
+                continue;
+            }
+            else if(axis == EnumFacing.Axis.Y && (facing == EnumFacing.DOWN || facing == EnumFacing.UP))
+            {
+                continue;
+            }
+            else if(axis == EnumFacing.Axis.Z && (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH))
+            {
+                continue;
+            }
+
+            neighbors.add(pos.offset(facing));
+        }
+    }
+
+    private boolean isPortalPart(World world, BlockPos pos)
+    {
+        Block block = world.getBlockState(pos).getBlock();
+        return BlockUtil.isOreDict("obsidian", block) || block == NetherExBlocks.BLOCK_FIRE_BLUE || block == this;
     }
 }

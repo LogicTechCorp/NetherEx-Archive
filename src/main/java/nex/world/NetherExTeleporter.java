@@ -45,7 +45,9 @@ public class NetherExTeleporter extends Teleporter
 {
     private final WorldServer world;
 
-    private static final Field FIELD_LAST_PORTAL_POS = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
+    public static final Field FIELD_LAST_PORTAL_POS = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
+    public static final Field FIELD_LAST_PORTAL_VEC = ReflectionHelper.findField(Entity.class, "field_181017_ao", "lastPortalVec");
+    public static final Field FIELD_TELEPORT_DIRECTION = ReflectionHelper.findField(Entity.class, "field_181018_ap", "teleportDirection");
     private static final Field FIELD_DESTINATION_COORDINATE_CACHE = ReflectionHelper.findField(Teleporter.class, "field_85191_c", "destinationCoordinateCache");
 
     public NetherExTeleporter(WorldServer worldIn)
@@ -60,6 +62,7 @@ public class NetherExTeleporter extends Teleporter
         if(entity instanceof EntityPlayer)
         {
             PortalPositionAndDimension from = null;
+
             try
             {
                 from = new PortalPositionAndDimension((BlockPos) FIELD_LAST_PORTAL_POS.get(entity));
@@ -68,6 +71,7 @@ public class NetherExTeleporter extends Teleporter
             {
                 e.printStackTrace();
             }
+
             super.placeInPortal(entity, rotationYaw);
             PortalPositionAndDimension to = new PortalPositionAndDimension(entity.getPosition());
 

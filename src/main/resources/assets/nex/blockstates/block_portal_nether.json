@@ -6,13 +6,13 @@
     "variants": {
         "axis": {
             "x": {
-                "model": "portal_ns"
+                "model": "portal_ew"
             },
             "y": {
                 "model": "nex:portal_du"
             },
             "z": {
-                "model": "portal_ew"
+                "model": "portal_ns"
             }
         }
     }
