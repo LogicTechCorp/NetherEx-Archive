@@ -37,7 +37,7 @@ import java.lang.reflect.Field;
  * A fix for Nether Portal teleportation
  * <p>
  * Written by blay09 here:
- * https://github.com/blay09/NetherPortalFix/blob/1.11/src/main/java/net/blay09/mods/netherportalfix/BetterTeleporter.java
+ * https://github.com/blay09/NetherPortalFix/blob/57ba39ed44dfca813b573803115045fff6252218/src/main/java/net/blay09/mods/netherportalfix/BetterTeleporter.java
  *
  * @author blay09
  */
@@ -45,9 +45,7 @@ public class NetherExTeleporter extends Teleporter
 {
     private final WorldServer world;
 
-    public static final Field FIELD_LAST_PORTAL_POS = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
-    public static final Field FIELD_LAST_PORTAL_VEC = ReflectionHelper.findField(Entity.class, "field_181017_ao", "lastPortalVec");
-    public static final Field FIELD_TELEPORT_DIRECTION = ReflectionHelper.findField(Entity.class, "field_181018_ap", "teleportDirection");
+    private static final Field FIELD_LAST_PORTAL_POS = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
     private static final Field FIELD_DESTINATION_COORDINATE_CACHE = ReflectionHelper.findField(Teleporter.class, "field_85191_c", "destinationCoordinateCache");
 
     public NetherExTeleporter(WorldServer worldIn)

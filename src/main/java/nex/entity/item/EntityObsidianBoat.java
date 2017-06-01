@@ -36,10 +36,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.client.CPacketSteerBoat;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -333,6 +330,12 @@ public class EntityObsidianBoat extends EntityBoat
                 }
             }
         }
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(NetherExItems.ITEM_BOAT_OBSIDIAN, 1, 0);
     }
 
     private void tickLerp()

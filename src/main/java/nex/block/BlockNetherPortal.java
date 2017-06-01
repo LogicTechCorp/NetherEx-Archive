@@ -32,19 +32,22 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.init.NetherExBlocks;
 import nex.util.BlockUtil;
-import nex.world.NetherExTeleporter;
 
 import java.util.Queue;
 import java.util.Random;
 
+/**
+ * A Block that allows for Nether Portal teleportation
+ * <p>
+ * Based on code written by Alz454 here:
+ * https://github.com/enhancedportals/enhancedportals/blob/1647357d3cbed1289a653347e2107d92a2875a65/src/main/java/enhanced/portals/portal/PortalUtils.java
+ */
 @SuppressWarnings("ConstantConditions")
 public class BlockNetherPortal extends BlockNetherEx
 {
@@ -187,14 +190,7 @@ public class BlockNetherPortal extends BlockNetherEx
 
         if(axis == EnumFacing.Axis.X)
         {
-            if(pos.down().equals(fromPos) || pos.up().equals(fromPos) || pos.north().equals(fromPos) || pos.south().equals(fromPos))
-            {
-                if(world.isAirBlock(fromPos))
-                {
-                    world.setBlockToAir(pos);
-                }
-            }
-            else
+            if(pos.west().equals(fromPos) || pos.east().equals(fromPos))
             {
                 if(world.getBlockState(fromPos).getBlock() == this)
                 {
@@ -204,14 +200,7 @@ public class BlockNetherPortal extends BlockNetherEx
         }
         else if(axis == EnumFacing.Axis.Y)
         {
-            if(pos.north().equals(fromPos) || pos.south().equals(fromPos) || pos.west().equals(fromPos) || pos.east().equals(fromPos))
-            {
-                if(world.isAirBlock(fromPos))
-                {
-                    world.setBlockToAir(pos);
-                }
-            }
-            else
+            if(pos.down().equals(fromPos) || pos.up().equals(fromPos))
             {
                 if(world.getBlockState(fromPos).getBlock() == this)
                 {
@@ -221,14 +210,7 @@ public class BlockNetherPortal extends BlockNetherEx
         }
         else if(axis == EnumFacing.Axis.Z)
         {
-            if(pos.down().equals(fromPos) || pos.up().equals(fromPos) || pos.west().equals(fromPos) || pos.east().equals(fromPos))
-            {
-                if(world.isAirBlock(fromPos))
-                {
-                    world.setBlockToAir(pos);
-                }
-            }
-            else
+            if(pos.north().equals(fromPos) || pos.south().equals(fromPos))
             {
                 if(world.getBlockState(fromPos).getBlock() == this)
                 {
@@ -236,6 +218,8 @@ public class BlockNetherPortal extends BlockNetherEx
                 }
             }
         }
+
+        world.scheduleUpdate(pos, this, 1);
     }
 
     @Override
@@ -247,41 +231,9 @@ public class BlockNetherPortal extends BlockNetherEx
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if(!entity.isRiding() && entity.getPassengers().isEmpty())
+        if(!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss())
         {
-            if(entity.timeUntilPortal <= 0)
-            {
-                try
-                {
-                    NetherExTeleporter.FIELD_LAST_PORTAL_POS.set(entity, pos);
-                    NetherExTeleporter.FIELD_LAST_PORTAL_VEC.set(entity, new Vec3d(entity.getHorizontalFacing().getAxis() == EnumFacing.Axis.X ? entity.getPosition().getZ() : entity.getPosition().getX(), 0.0D, 0.0D));
-                    NetherExTeleporter.FIELD_TELEPORT_DIRECTION.set(entity, entity.getHorizontalFacing());
-                }
-                catch(IllegalAccessException e)
-                {
-                    e.printStackTrace();
-                }
-
-                if(entity.dimension != DimensionType.NETHER.getId())
-                {
-                    entity.changeDimension(DimensionType.NETHER.getId());
-                }
-                else
-                {
-                    entity.changeDimension(DimensionType.OVERWORLD.getId());
-                }
-            }
-            else
-            {
-                if(entity instanceof EntityPlayer)
-                {
-                    entity.timeUntilPortal = 10;
-                }
-                else
-                {
-                    entity.timeUntilPortal = 300;
-                }
-            }
+            entity.setPortal(pos);
         }
     }
 
