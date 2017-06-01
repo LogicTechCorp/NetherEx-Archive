@@ -42,8 +42,6 @@ public class EntityBrute extends EntityMob
 
     private BlockPos destination;
 
-    private final int maxCooldown = ConfigHandler.entity.brute.chargeCooldown * 20;
-
     public EntityBrute(World world)
     {
         super(world);
@@ -102,7 +100,7 @@ public class EntityBrute extends EntityMob
                 {
                     setAddedOffset(false);
                     setCharging(false);
-                    setCooldown(maxCooldown);
+                    setCooldown(ConfigHandler.entity.brute.chargeCooldown * 20);
                 }
             }
         }

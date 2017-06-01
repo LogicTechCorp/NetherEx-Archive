@@ -93,6 +93,10 @@ public class ConfigHandler
 
     public static class Block
     {
+        @Config.Name("nether_portal")
+        @Config.LangKey("config.nex:block.netherPortal")
+        public NetherPortal netherPortal = new NetherPortal();
+
         @Config.Name("netherrack")
         @Config.LangKey("config.nex:block.netherrack")
         public Netherrack netherrack = new Netherrack();
@@ -116,6 +120,17 @@ public class ConfigHandler
         @Config.Name("hyphae")
         @Config.LangKey("config.nex:block.hyphae")
         public Hyphae hyphae = new Hyphae();
+
+        public class NetherPortal
+        {
+            @Config.LangKey("config.nex:block.netherrack.allowPigmanSpawning")
+            public boolean allowPigmanSpawning = true;
+
+            @Config.RangeInt(min = 4, max = 2048)
+            @Config.LangKey("config.nex:block.netherrack.pigmanSpawnRarity")
+            @Config.Comment({"The higher the number, the rarer it is for Pigman to spawn", "The lower the number, the more common it is for Pigman to spawn"})
+            public int pigmanSpawnRarity = 2000;
+        }
 
         public class Netherrack
         {

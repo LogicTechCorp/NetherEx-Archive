@@ -74,7 +74,7 @@ import nex.entity.neutral.EntityMogus;
 import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.village.PigtificateVillageManager;
-import nex.world.NetherExTeleporter;
+import nex.world.TeleporterNether;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -101,7 +101,7 @@ public class EventHandler
                 {
                     try
                     {
-                        FIELD_WORLD_TELEPORTER.set(world, new NetherExTeleporter((WorldServer) world));
+                        FIELD_WORLD_TELEPORTER.set(world, new TeleporterNether((WorldServer) world));
                     }
                     catch(IllegalAccessException e)
                     {

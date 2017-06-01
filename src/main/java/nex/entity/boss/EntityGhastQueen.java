@@ -50,8 +50,6 @@ public class EntityGhastQueen extends EntityGhast
 
     private BlockPos urnPos = BlockPos.ORIGIN;
 
-    private final int maxGhastlingSpawns = ConfigHandler.entity.ghastQueen.ghastlingSpawns;
-
     private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
 
     private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
@@ -125,7 +123,7 @@ public class EntityGhastQueen extends EntityGhast
 
                 if(!getEntityWorld().isRemote && shouldSpawnGhastlings())
                 {
-                    for(int i = 0; i < maxGhastlingSpawns; i++)
+                    for(int i = 0; i < ConfigHandler.entity.ghastQueen.ghastlingSpawns; i++)
                     {
                         EntityGhastling ghastling = new EntityGhastling(getEntityWorld());
                         ghastling.setPosition(getPosition().getX(), getPosition().getY() - 1, getPosition().getZ());

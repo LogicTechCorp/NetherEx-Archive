@@ -25,8 +25,11 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -36,6 +39,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.util.BlockUtil;
 
@@ -51,7 +55,7 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class BlockNetherPortal extends BlockNetherEx
 {
-    private static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
+    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
 
     private static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
     private static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.0D, 0.375D, 0.0D, 1.0D, 0.625D, 1.0D);
@@ -151,6 +155,30 @@ public class BlockNetherPortal extends BlockNetherEx
             if(world.isAirBlock(pos.down()) || world.isAirBlock(pos.up()) || world.isAirBlock(pos.west()) || world.isAirBlock(pos.east()))
             {
                 world.setBlockToAir(pos);
+            }
+        }
+
+        if(ConfigHandler.block.netherPortal.allowPigmanSpawning)
+        {
+            if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && rand.nextInt(ConfigHandler.block.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
+            {
+                int i = pos.getY();
+                BlockPos blockPos;
+
+                for(blockPos = pos; !world.getBlockState(blockPos).isSideSolid(world, blockPos, EnumFacing.UP) && blockPos.getY() > 0; blockPos = blockPos.down())
+                {
+
+                }
+
+                if(i > 0 && !world.getBlockState(blockPos.up()).isNormalCube())
+                {
+                    Entity entity = ItemMonsterPlacer.spawnCreature(world, EntityList.getKey(EntityPigZombie.class), (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 1.1D, (double) blockPos.getZ() + 0.5D);
+
+                    if(entity != null)
+                    {
+                        entity.timeUntilPortal = entity.getPortalCooldown();
+                    }
+                }
             }
         }
     }

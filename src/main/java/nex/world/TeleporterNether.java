@@ -26,12 +26,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
-import java.lang.reflect.Field;
 
 /**
  * A fix for Nether Portal teleportation
@@ -41,17 +37,11 @@ import java.lang.reflect.Field;
  *
  * @author blay09
  */
-public class NetherExTeleporter extends Teleporter
+public class TeleporterNether extends TeleporterNetherEx
 {
-    private final WorldServer world;
-
-    private static final Field FIELD_LAST_PORTAL_POS = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
-    private static final Field FIELD_DESTINATION_COORDINATE_CACHE = ReflectionHelper.findField(Teleporter.class, "field_85191_c", "destinationCoordinateCache");
-
-    public NetherExTeleporter(WorldServer worldIn)
+    public TeleporterNether(WorldServer world)
     {
-        super(worldIn);
-        world = worldIn;
+        super(world);
     }
 
     @Override
@@ -120,8 +110,8 @@ public class NetherExTeleporter extends Teleporter
                     if(to.dimensionId == entity.getEntityWorld().provider.getDimension() && to.distanceSq((Vec3i) FIELD_LAST_PORTAL_POS.get(entity)) <= 9)
                     {
                         int x = MathHelper.floor(entity.posX);
-                        int y = MathHelper.floor(entity.posZ);
-                        long key = ChunkPos.asLong(x, y);
+                        int z = MathHelper.floor(entity.posZ);
+                        long key = ChunkPos.asLong(x, z);
 
                         PortalPositionAndDimension from = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("From")), portalCompound.getInteger("FromDim"));
 

@@ -39,9 +39,6 @@ public class EntitySpinout extends EntityMob
 
     private boolean spinning;
 
-    private final int maxSpinTime = ConfigHandler.entity.spinout.spinTime * 20;
-    private final int maxCooldown = ConfigHandler.entity.spinout.spinCooldown * 20;
-
     private final EntityAIBase attackMelee = new EntityAIAttackMelee(this, 1.0D, true);
     private final EntityAIBase wander = new EntityAIWander(this, 1.0D, 1);
 
@@ -120,11 +117,11 @@ public class EntitySpinout extends EntityMob
                 setSilent(false);
             }
         }
-        if(getCounter() >= maxSpinTime)
+        if(getCounter() >= ConfigHandler.entity.spinout.spinTime * 20)
         {
             setCounter(0);
             setSpinning(false);
-            setCooldown(maxCooldown);
+            setCooldown(ConfigHandler.entity.spinout.spinCooldown * 20);
         }
         if(getCooldown() > 0)
         {

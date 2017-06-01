@@ -39,6 +39,12 @@ config.nex:dimension.nether.enablePortalFix.tooltip=Is Nether Portal teleportati
 
 config.nex:block=Block Settings
 config.nex:block.tooltip=Settings that only affect Blocks
+config.nex:block.netherPortal=Nether Portal Settings
+config.nex:block.netherPortal.tooltip=Settings that only affect Nether Portal blocks
+config.nex:block.netherPortal.allowPigmanSpawning=Allow Pigman Spawning
+config.nex:block.netherPortal.allowPigmanSpawning.tooltip=Do Pigman spawn randomly from Nether Portal blocks
+config.nex:block.netherPortal.pigmanSpawnRarity=Pigman Spawn Rarity
+config.nex:block.netherPortal.pigmanSpawnRarity.tooltip=How rare Pigman spawns are from Nether Portal blocks
 config.nex:block.netherrack=Netherrack Settings
 config.nex:block.netherrack.tooltip=Settings that only affect Netherrack
 config.nex:block.netherrack.allowAllShovelsToFlatten=Allow All Shovels To Flatten
