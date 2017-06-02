@@ -18,7 +18,6 @@
 package nex.entity.neutral;
 
 import com.google.common.collect.Lists;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,6 +30,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nex.init.NetherExLootTables;
@@ -131,7 +131,7 @@ public class EntitySalamander extends EntityMob
         {
             String entityName = EntityList.getEntityString(this);
             String type = getType() == 0 ? "orange" : "black";
-            return I18n.format("entity." + entityName + "." + type + ".name");
+            return I18n.translateToLocal("entity." + entityName + "." + type + ".name");
         }
     }
 

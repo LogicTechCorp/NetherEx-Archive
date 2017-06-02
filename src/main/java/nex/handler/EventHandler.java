@@ -117,7 +117,10 @@ public class EventHandler
     @SubscribeEvent
     public static void onWorldTick(TickEvent.WorldTickEvent event)
     {
-        PigtificateVillageManager.getPigtificateVillages().tick();
+        if(event.phase == TickEvent.Phase.START)
+        {
+            PigtificateVillageManager.getPigtificateVillages(event.world).tick();
+        }
     }
 
     @SubscribeEvent

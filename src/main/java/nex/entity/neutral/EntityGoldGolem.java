@@ -94,7 +94,7 @@ public class EntityGoldGolem extends EntityGolem
         if(--homeCheckTimer <= 0)
         {
             homeCheckTimer = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getPigtificateVillages().getNearestVillage(new BlockPos(this), 32);
+            village = PigtificateVillageManager.getPigtificateVillages(getEntityWorld()).getNearestVillage(new BlockPos(this), 32);
 
             if(village == null)
             {

@@ -238,7 +238,7 @@ public class PigtificateVillageCollection extends WorldSavedData
     private EnumFacing getOutside(BlockPos fenceGatePos)
     {
         IBlockState fenceGateState = world.getBlockState(fenceGatePos);
-        IBlockState stairState = world.getBlockState(fenceGatePos.offset(EnumFacing.UP, 2));
+        IBlockState stairState = world.getBlockState(fenceGatePos.up(2));
 
         if(fenceGateState.getBlock() instanceof BlockFenceGate && stairState.getBlock() instanceof BlockStairs)
         {

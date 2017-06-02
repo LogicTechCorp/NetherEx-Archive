@@ -17,13 +17,16 @@
 
 package nex.village;
 
+import com.google.common.collect.Maps;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Map;
+
 public class PigtificateVillageManager
 {
-    private static PigtificateVillageCollection pigtificateVillages;
+    private static final Map<World, PigtificateVillageCollection> pigtificateVillages = Maps.newHashMap();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|PigtificateVillageManager");
 
@@ -37,20 +40,20 @@ public class PigtificateVillageManager
         {
             LOGGER.info("The Pigtificate Village data for " + dimension + " was created successfully.");
 
-            pigtificateVillages = new PigtificateVillageCollection(world);
-            world.getPerWorldStorage().setData(id, pigtificateVillages);
+            pigtificateVillages.put(world, new PigtificateVillageCollection(world));
+            world.getPerWorldStorage().setData(id, pigtificateVillages.get(world));
         }
         else
         {
             LOGGER.info("The Pigtificate Village data for " + dimension + " was read successfully.");
 
-            pigtificateVillages = pigtificateVillageCollection;
-            pigtificateVillages.setWorldsForAll(world);
+            pigtificateVillages.put(world, pigtificateVillageCollection);
+            pigtificateVillages.get(world).setWorldsForAll(world);
         }
     }
 
-    public static PigtificateVillageCollection getPigtificateVillages()
+    public static PigtificateVillageCollection getPigtificateVillages(World world)
     {
-        return pigtificateVillages;
+        return pigtificateVillages.get(world);
     }
 }

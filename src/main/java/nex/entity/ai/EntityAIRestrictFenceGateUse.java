@@ -50,7 +50,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
         else
         {
             BlockPos blockpos = new BlockPos(entityObj);
-            PigtificateVillage village = PigtificateVillageManager.getPigtificateVillages().getNearestVillage(blockpos, 16);
+            PigtificateVillage village = PigtificateVillageManager.getPigtificateVillages(entityObj.getEntityWorld()).getNearestVillage(blockpos, 16);
 
             if(village == null)
             {

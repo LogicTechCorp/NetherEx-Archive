@@ -18,7 +18,6 @@
 package nex.entity.passive;
 
 import com.google.common.collect.Lists;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
@@ -40,6 +39,7 @@ import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
@@ -196,9 +196,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            PigtificateVillageManager.getPigtificateVillages().addToVillagerPositionList(blockpos);
+            PigtificateVillageManager.getPigtificateVillages(getWorld()).addToVillagerPositionList(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getPigtificateVillages().getNearestVillage(blockpos, 32);
+            village = PigtificateVillageManager.getPigtificateVillages(getWorld()).getNearestVillage(blockpos, 32);
 
             if(village == null)
             {
@@ -479,7 +479,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         else
         {
             String entityName = EntityList.getEntityString(this);
-            return I18n.format("entity." + entityName + "." + TradeCareer.EnumType.fromIndex(getCareer()).name().toLowerCase() + ".name");
+            return I18n.translateToLocal("entity." + entityName + "." + TradeCareer.EnumType.fromIndex(getCareer()).name().toLowerCase() + ".name");
         }
     }
 
