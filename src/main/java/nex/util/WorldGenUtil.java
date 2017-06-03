@@ -46,6 +46,7 @@ import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.block.BlockUrnOfSorrow;
 import nex.entity.passive.EntityPigtificate;
+import nex.entity.passive.EntityPigtificateLeader;
 import nex.tileentity.TileEntityUrnOfSorrow;
 
 import java.lang.reflect.Field;
@@ -393,13 +394,17 @@ public class WorldGenUtil
                     entity = null;
                 }
 
-                if(entity instanceof EntityPigtificate)
-                {
-                    entity = new EntityPigtificate(world);
-                }
-
                 if(entity != null)
                 {
+                    if(entity instanceof EntityPigtificateLeader)
+                    {
+                        entity = new EntityPigtificateLeader(world);
+                    }
+                    else if(entity instanceof EntityPigtificate)
+                    {
+                        entity = new EntityPigtificate(world);
+                    }
+
                     float f = entity.getMirroredYaw(placementSettings.getMirror());
                     f = f + (entity.rotationYaw - entity.getRotatedYaw(placementSettings.getRotation()));
                     entity.setLocationAndAngles(vec3d1.xCoord, vec3d1.yCoord, vec3d1.zCoord, f, entity.rotationPitch);
