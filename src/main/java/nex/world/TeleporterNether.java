@@ -17,7 +17,6 @@
 
 package nex.world;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -115,16 +114,13 @@ public class TeleporterNether extends TeleporterNetherEx
 
                         PortalPositionAndDimension from = new PortalPositionAndDimension(BlockPos.fromLong(portalCompound.getLong("From")), portalCompound.getInteger("FromDim"));
 
-                        Long2ObjectMap<PortalPosition> destinationCoordinateCache = (Long2ObjectMap<PortalPosition>) FIELD_DESTINATION_COORDINATE_CACHE.get(this);
                         destinationCoordinateCache.put(key, from);
-                        FIELD_DESTINATION_COORDINATE_CACHE.set(this, destinationCoordinateCache);
 
                         PortalPosition oldValue = destinationCoordinateCache.get(key);
 
                         if(oldValue != null)
                         {
                             destinationCoordinateCache.put(key, oldValue);
-                            FIELD_DESTINATION_COORDINATE_CACHE.set(this, destinationCoordinateCache);
                         }
 
                         tagList.removeTag(i);

@@ -17,7 +17,6 @@
 
 package nex.world;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -42,7 +41,6 @@ public class TeleporterNetherEx extends Teleporter
     private final Random random;
 
     public static final Field FIELD_LAST_PORTAL_POS = ReflectionHelper.findField(Entity.class, "field_181016_an", "lastPortalPos");
-    public static final Field FIELD_DESTINATION_COORDINATE_CACHE = ReflectionHelper.findField(Teleporter.class, "field_85191_c", "destinationCoordinateCache");
 
     public TeleporterNetherEx(WorldServer worldIn)
     {
@@ -61,16 +59,6 @@ public class TeleporterNetherEx extends Teleporter
         boolean flag = true;
         BlockPos blockpos = BlockPos.ORIGIN;
         long l = ChunkPos.asLong(j, k);
-
-        Long2ObjectMap<PortalPosition> destinationCoordinateCache = null;
-        try
-        {
-            destinationCoordinateCache = (Long2ObjectMap<PortalPosition>) FIELD_DESTINATION_COORDINATE_CACHE.get(this);
-        }
-        catch(IllegalAccessException e)
-        {
-            e.printStackTrace();
-        }
 
         if(destinationCoordinateCache.containsKey(l))
         {
