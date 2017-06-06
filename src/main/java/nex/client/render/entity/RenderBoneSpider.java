@@ -28,13 +28,12 @@ import nex.client.model.entity.ModelBoneSpider;
 import nex.client.model.entity.ModelBoneSpiderHead;
 import nex.client.render.entity.layers.LayerBoneSpiderEyes;
 import nex.entity.monster.EntityBoneSpider;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderBoneSpider extends RenderLiving<EntityBoneSpider>
 {
     private final ModelBase spiderHead = new ModelBoneSpiderHead();
-    ;
-    private static final ResourceLocation BONE_SPIDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bone_spider/bone_spider.png");
 
     public RenderBoneSpider(RenderManager manager)
     {
@@ -52,7 +51,7 @@ public class RenderBoneSpider extends RenderLiving<EntityBoneSpider>
     @Override
     protected ResourceLocation getEntityTexture(EntityBoneSpider boneSpider)
     {
-        return BONE_SPIDER_TEXTURE;
+        return NetherExTextures.ENTITY_BONE_SPIDER;
     }
 
     public ModelBase getSpiderHead()

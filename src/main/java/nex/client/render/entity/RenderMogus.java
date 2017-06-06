@@ -25,14 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelMogus;
 import nex.entity.neutral.EntityMogus;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderMogus extends RenderLiving<EntityMogus>
 {
-    private static final ResourceLocation BROWN_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/mogus_brown.png");
-    private static final ResourceLocation RED_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/mogus_red.png");
-    private static final ResourceLocation WHITE_MOGUS_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/mogus_white.png");
-
     public RenderMogus(RenderManager manager)
     {
         super(manager, new ModelMogus(), 0.3F);
@@ -41,6 +38,6 @@ public class RenderMogus extends RenderLiving<EntityMogus>
     @Override
     protected ResourceLocation getEntityTexture(EntityMogus mogus)
     {
-        return mogus.getType() == 0 ? BROWN_MOGUS_TEXTURE : mogus.getType() == 1 ? RED_MOGUS_TEXTURE : WHITE_MOGUS_TEXTURE;
+        return mogus.getType() == 0 ? NetherExTextures.ENTITY_MOGUS_BROWN : mogus.getType() == 1 ? NetherExTextures.ENTITY_MOGUS_RED : NetherExTextures.ENTITY_MOGUS_WHITE;
     }
 }

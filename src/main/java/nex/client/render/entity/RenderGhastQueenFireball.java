@@ -26,11 +26,10 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
 import nex.entity.projectile.EntityGhastQueenFireball;
+import nex.init.NetherExTextures;
 
 public class RenderGhastQueenFireball extends Render<EntityGhastQueenFireball>
 {
-    private static final ResourceLocation GHAST_QUEEN_FIREBALL_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen_fireball.png");
-
     public RenderGhastQueenFireball(RenderManager manager)
     {
         super(manager);
@@ -76,6 +75,6 @@ public class RenderGhastQueenFireball extends Render<EntityGhastQueenFireball>
     @Override
     protected ResourceLocation getEntityTexture(EntityGhastQueenFireball fireball)
     {
-        return GHAST_QUEEN_FIREBALL_TEXTURE;
+        return NetherExTextures.ENTITY_FIREBALL_GHAST_QUEEN;
     }
 }

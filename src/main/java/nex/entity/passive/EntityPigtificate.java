@@ -63,9 +63,9 @@ import java.util.UUID;
 @SuppressWarnings("ConstantConditions")
 public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 {
-    private static final DataParameter<Integer> PROFESSION = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> CAREER = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
 
-    private int career;
+    private int profession;
     private int careerLevel;
 
     private int randomTickDivider;
@@ -181,7 +181,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(PROFESSION, 0);
+        dataManager.register(CAREER, 0);
     }
 
     @Override
@@ -649,12 +649,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     public int getProfession()
     {
-        return dataManager.get(PROFESSION);
+        return profession;
     }
 
     public int getCareer()
     {
-        return career;
+        return dataManager.get(CAREER);
     }
 
     public int getCareerLevel()
@@ -730,18 +730,18 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         setCareer(career.getType().ordinal());
     }
 
-    public void setProfession(int profession)
+    public void setProfession(int i)
     {
-        if(profession < 0)
+        if(i < 0)
         {
-            profession = 0;
+            i = 0;
         }
-        else if(profession > TradeProfession.EnumType.values().length)
+        else if(i > TradeProfession.EnumType.values().length)
         {
-            profession = TradeProfession.EnumType.values().length;
+            i = TradeProfession.EnumType.values().length;
         }
 
-        dataManager.set(PROFESSION, profession);
+        profession = i;
     }
 
     public void setCareer(int i)
@@ -751,7 +751,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             i = 0;
         }
 
-        career = i;
+        dataManager.set(CAREER, i);
     }
 
     public void setCareerLevel(int i)

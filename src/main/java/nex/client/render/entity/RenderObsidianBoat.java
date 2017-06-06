@@ -29,12 +29,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderObsidianBoat extends Render<EntityObsidianBoat>
 {
-    private static final ResourceLocation OBSIDIAN_BOAT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/boat_obsidian.png");
-
     private ModelBase modelBoat = new ModelBoat();
 
     public RenderObsidianBoat(RenderManager renderManagerIn)
@@ -91,7 +90,7 @@ public class RenderObsidianBoat extends Render<EntityObsidianBoat>
     @Override
     protected ResourceLocation getEntityTexture(EntityObsidianBoat entity)
     {
-        return OBSIDIAN_BOAT_TEXTURE;
+        return NetherExTextures.ENTITY_BOAT_OBSIDIAN;
     }
 
     @Override

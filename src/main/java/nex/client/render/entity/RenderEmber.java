@@ -25,12 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelEmber;
 import nex.entity.monster.EntityEmber;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderEmber extends RenderLiving<EntityEmber>
 {
-    private static final ResourceLocation EMBER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ember.png");
-
     public RenderEmber(RenderManager manager)
     {
         super(manager, new ModelEmber(), 0.3F);
@@ -39,6 +38,6 @@ public class RenderEmber extends RenderLiving<EntityEmber>
     @Override
     protected ResourceLocation getEntityTexture(EntityEmber ember)
     {
-        return EMBER_TEXTURE;
+        return NetherExTextures.ENTITY_EMBER;
     }
 }

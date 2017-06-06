@@ -20,6 +20,7 @@ package nex.village.trade;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import nex.init.NetherExLootTables;
+import nex.init.NetherExTextures;
 
 import java.util.List;
 
@@ -56,23 +57,25 @@ public class TradeCareer
 
     public enum EnumType
     {
-        CHIEF(TradeProfession.EnumType.LEADER, 16, NetherExLootTables.ENTITY_PIGTIFICATE_CHIEF),
-        HUNTER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_HUNTER),
-        GATHERER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_GATHERER),
-        SCAVENGER(TradeProfession.EnumType.FORAGER, 5, NetherExLootTables.ENTITY_PIGTIFICATE_SCAVENGER),
-        ARMORSMITH(TradeProfession.EnumType.BLACKSMITH, 8, NetherExLootTables.ENTITY_PIGTIFICATE_ARMORSMITH),
-        TOOLSMITH(TradeProfession.EnumType.BLACKSMITH, 8, NetherExLootTables.ENTITY_PIGTIFICATE_TOOLSMITH),
-        ENCHANTER(TradeProfession.EnumType.SORCERER, 8, NetherExLootTables.ENTITY_PIGTIFICATE_ENCHANTER),
-        BREWER(TradeProfession.EnumType.SORCERER, 8, NetherExLootTables.ENTITY_PIGTIFICATE_BREWER);
+        CHIEF(TradeProfession.EnumType.LEADER, 16, NetherExTextures.ENTITY_PIGTIFICATE_CHIEF, NetherExLootTables.ENTITY_PIGTIFICATE_CHIEF),
+        HUNTER(TradeProfession.EnumType.FORAGER, 5, NetherExTextures.ENTITY_PIGTIFICATE_HUNTER, NetherExLootTables.ENTITY_PIGTIFICATE_HUNTER),
+        GATHERER(TradeProfession.EnumType.FORAGER, 5, NetherExTextures.ENTITY_PIGTIFICATE_GATHERER, NetherExLootTables.ENTITY_PIGTIFICATE_GATHERER),
+        SCAVENGER(TradeProfession.EnumType.FORAGER, 5, NetherExTextures.ENTITY_PIGTIFICATE_SCAVENGER, NetherExLootTables.ENTITY_PIGTIFICATE_SCAVENGER),
+        ARMORSMITH(TradeProfession.EnumType.BLACKSMITH, 8, NetherExTextures.ENTITY_PIGTIFICATE_ARMORSMITH, NetherExLootTables.ENTITY_PIGTIFICATE_ARMORSMITH),
+        TOOLSMITH(TradeProfession.EnumType.BLACKSMITH, 8, NetherExTextures.ENTITY_PIGTIFICATE_TOOLSMITH, NetherExLootTables.ENTITY_PIGTIFICATE_TOOLSMITH),
+        ENCHANTER(TradeProfession.EnumType.SORCERER, 8, NetherExTextures.ENTITY_PIGTIFICATE_ENCHANTER, NetherExLootTables.ENTITY_PIGTIFICATE_ENCHANTER),
+        BREWER(TradeProfession.EnumType.SORCERER, 8, NetherExTextures.ENTITY_PIGTIFICATE_BREWER, NetherExLootTables.ENTITY_PIGTIFICATE_BREWER);
 
         private TradeProfession.EnumType profession;
         private int weight;
+        private ResourceLocation texture;
         private ResourceLocation lootTable;
 
-        EnumType(TradeProfession.EnumType professionIn, int weightIn, ResourceLocation lootTableIn)
+        EnumType(TradeProfession.EnumType professionIn, int weightIn, ResourceLocation textureIn, ResourceLocation lootTableIn)
         {
             profession = professionIn;
             weight = weightIn;
+            texture = textureIn;
             lootTable = lootTableIn;
         }
 
@@ -90,6 +93,11 @@ public class TradeCareer
         public int getWeight()
         {
             return weight;
+        }
+
+        public ResourceLocation getTexture()
+        {
+            return texture;
         }
 
         public ResourceLocation getLootTable()

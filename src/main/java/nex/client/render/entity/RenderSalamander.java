@@ -25,13 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelSalamander;
 import nex.entity.neutral.EntitySalamander;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderSalamander extends RenderLiving<EntitySalamander>
 {
-    private static final ResourceLocation ORANGE_SALAMANDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/salamander/salamander_orange.png");
-    private static final ResourceLocation BLACK_SALAMANDER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/salamander/salamander_black.png");
-
     public RenderSalamander(RenderManager manager)
     {
         super(manager, new ModelSalamander(), 0.5F);
@@ -40,6 +38,6 @@ public class RenderSalamander extends RenderLiving<EntitySalamander>
     @Override
     protected ResourceLocation getEntityTexture(EntitySalamander salamander)
     {
-        return salamander.getType() == 0 ? ORANGE_SALAMANDER_TEXTURE : BLACK_SALAMANDER_TEXTURE;
+        return salamander.getType() == 0 ? NetherExTextures.ENTITY_SALAMANDER_ORANGE : NetherExTextures.ENTITY_SALAMANDER_BLACK;
     }
 }

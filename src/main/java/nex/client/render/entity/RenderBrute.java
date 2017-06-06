@@ -25,12 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelBrute;
 import nex.entity.monster.EntityBrute;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderBrute extends RenderLiving<EntityBrute>
 {
-    private static final ResourceLocation BRUTE_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/brute.png");
-
     public RenderBrute(RenderManager manager)
     {
         super(manager, new ModelBrute(), 0.5F);
@@ -39,6 +38,6 @@ public class RenderBrute extends RenderLiving<EntityBrute>
     @Override
     protected ResourceLocation getEntityTexture(EntityBrute entity)
     {
-        return BRUTE_TEXTURE;
+        return NetherExTextures.ENTITY_BRUTE;
     }
 }

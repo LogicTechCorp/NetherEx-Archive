@@ -25,12 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelGoldGolem;
 import nex.entity.neutral.EntityGoldGolem;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderGoldGolem extends RenderLiving<EntityGoldGolem>
 {
-    private static final ResourceLocation GOLD_GOLEM_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/gold_golem.png");
-
     public RenderGoldGolem(RenderManager manager)
     {
         super(manager, new ModelGoldGolem(), 0.3F);
@@ -39,6 +38,6 @@ public class RenderGoldGolem extends RenderLiving<EntityGoldGolem>
     @Override
     protected ResourceLocation getEntityTexture(EntityGoldGolem mogus)
     {
-        return GOLD_GOLEM_TEXTURE;
+        return NetherExTextures.ENTITY_GOLEM_GOLD;
     }
 }

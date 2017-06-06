@@ -27,11 +27,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.render.entity.RenderBoneSpider;
 import nex.entity.monster.EntityBoneSpider;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class LayerBoneSpiderEyes implements LayerRenderer<EntityBoneSpider>
 {
-    private static final ResourceLocation BONE_SPIDER_EYES = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bone_spider/bone_spider_eyes.png");
     private final RenderBoneSpider spiderRenderer;
 
     public LayerBoneSpiderEyes(RenderBoneSpider renderer)
@@ -42,7 +42,7 @@ public class LayerBoneSpiderEyes implements LayerRenderer<EntityBoneSpider>
     @Override
     public void doRenderLayer(EntityBoneSpider boneSpider, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        spiderRenderer.bindTexture(BONE_SPIDER_EYES);
+        spiderRenderer.bindTexture(NetherExTextures.ENTITY_BONE_SPIDER_EYES);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);

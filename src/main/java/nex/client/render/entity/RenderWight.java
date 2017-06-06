@@ -25,12 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelWight;
 import nex.entity.monster.EntityWight;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderWight extends RenderLiving<EntityWight>
 {
-    private static final ResourceLocation WIGHT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/wight.png");
-
     public RenderWight(RenderManager manager)
     {
         super(manager, new ModelWight(), 0.5F);
@@ -39,6 +38,6 @@ public class RenderWight extends RenderLiving<EntityWight>
     @Override
     protected ResourceLocation getEntityTexture(EntityWight entity)
     {
-        return WIGHT_TEXTURE;
+        return NetherExTextures.ENTITY_WIGHT;
     }
 }

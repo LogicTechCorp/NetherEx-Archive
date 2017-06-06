@@ -25,12 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelSpore;
 import nex.entity.monster.EntitySpore;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderSpore extends RenderLiving<EntitySpore>
 {
-    private static final ResourceLocation SPORE_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/spore.png");
-
     public RenderSpore(RenderManager manager)
     {
         super(manager, new ModelSpore(), 0.3F);
@@ -39,6 +38,6 @@ public class RenderSpore extends RenderLiving<EntitySpore>
     @Override
     protected ResourceLocation getEntityTexture(EntitySpore spore)
     {
-        return SPORE_TEXTURE;
+        return NetherExTextures.ENTITY_SPORE;
     }
 }

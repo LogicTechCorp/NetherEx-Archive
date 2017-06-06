@@ -25,12 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelSpinout;
 import nex.entity.monster.EntitySpinout;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderSpinout extends RenderLiving<EntitySpinout>
 {
-    private static final ResourceLocation SPINOUT_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/spinout.png");
-
     public RenderSpinout(RenderManager manager)
     {
         super(manager, new ModelSpinout(), 0.3F);
@@ -39,6 +38,6 @@ public class RenderSpinout extends RenderLiving<EntitySpinout>
     @Override
     protected ResourceLocation getEntityTexture(EntitySpinout spinout)
     {
-        return SPINOUT_TEXTURE;
+        return NetherExTextures.ENTITY_SPINOUT;
     }
 }

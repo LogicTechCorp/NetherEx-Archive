@@ -24,12 +24,10 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
 import nex.entity.monster.EntityGhastling;
+import nex.init.NetherExTextures;
 
 public class RenderGhastling extends RenderLiving<EntityGhastling>
 {
-    private static final ResourceLocation GHASTLING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling.png");
-    private static final ResourceLocation GHASTLING_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling_shooting.png");
-
     public RenderGhastling(RenderManager manager)
     {
         super(manager, new ModelGhast(), 0.3F);
@@ -45,6 +43,6 @@ public class RenderGhastling extends RenderLiving<EntityGhastling>
     @Override
     protected ResourceLocation getEntityTexture(EntityGhastling ghastling)
     {
-        return ghastling.isAttacking() ? GHASTLING_SHOOTING_TEXTURE : GHASTLING_TEXTURE;
+        return ghastling.isAttacking() ? NetherExTextures.ENTITY_GHASTLING_SHOOTING : NetherExTextures.ENTITY_GHASTLING;
     }
 }

@@ -42,17 +42,10 @@ public class TradeProfession
 
     public enum EnumType
     {
-        LEADER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_chief.png")),
-        FORAGER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_forager.png")),
-        BLACKSMITH(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_blacksmith.png")),
-        SORCERER(new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_sorcerer.png"));
-
-        private ResourceLocation textureLocation;
-
-        EnumType(ResourceLocation textureLocationIn)
-        {
-            textureLocation = textureLocationIn;
-        }
+        LEADER,
+        FORAGER,
+        BLACKSMITH,
+        SORCERER;
 
         public static EnumType getRandom(Random rand, boolean isLeader)
         {
@@ -78,11 +71,6 @@ public class TradeProfession
         public static EnumType fromProfession(TradeProfession profession)
         {
             return valueOf(profession.getName().toUpperCase());
-        }
-
-        public ResourceLocation getTextureLocation()
-        {
-            return textureLocation;
         }
     }
 

@@ -26,13 +26,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelGhastQueen;
 import nex.entity.boss.EntityGhastQueen;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderGhastQueen extends RenderLiving<EntityGhastQueen>
 {
-    private static final ResourceLocation GHAST_QUEEN_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen.png");
-    private static final ResourceLocation GHAST_QUEEN_SHOOTING_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen_shooting.png");
-
     public RenderGhastQueen(RenderManager manager)
     {
         super(manager, new ModelGhastQueen(), 0.3F);
@@ -48,6 +46,6 @@ public class RenderGhastQueen extends RenderLiving<EntityGhastQueen>
     @Override
     protected ResourceLocation getEntityTexture(EntityGhastQueen ghastQueen)
     {
-        return ghastQueen.isAttacking() ? GHAST_QUEEN_SHOOTING_TEXTURE : GHAST_QUEEN_TEXTURE;
+        return ghastQueen.isAttacking() ? NetherExTextures.ENTITY_GHAST_QUEEN_SHOOTING : NetherExTextures.ENTITY_GHAST_QUEEN;
     }
 }

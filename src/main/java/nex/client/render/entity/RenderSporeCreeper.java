@@ -27,12 +27,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.client.model.entity.ModelSporeCreeper;
 import nex.entity.monster.EntitySporeCreeper;
+import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
 public class RenderSporeCreeper extends RenderLiving<EntitySporeCreeper>
 {
-    private static final ResourceLocation CREEPER_TEXTURE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/spore_creeper.png");
-
     public RenderSporeCreeper(RenderManager manager)
     {
         super(manager, new ModelSporeCreeper(), 0.3F);
@@ -71,6 +70,6 @@ public class RenderSporeCreeper extends RenderLiving<EntitySporeCreeper>
     @Override
     protected ResourceLocation getEntityTexture(EntitySporeCreeper creeper)
     {
-        return CREEPER_TEXTURE;
+        return NetherExTextures.ENTITY_SPORE_CREEPER;
     }
 }
