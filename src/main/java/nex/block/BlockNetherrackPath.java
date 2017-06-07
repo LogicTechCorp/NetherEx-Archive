@@ -23,6 +23,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,6 +32,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -102,17 +104,41 @@ public class BlockNetherrackPath extends BlockNetherEx
     }
 
     @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        return new ItemStack(getItemDropped(state, player.getRNG(), 0), 1, damageDropped(state));
+    }
+
+    @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        super.onBlockAdded(world, pos, state);
-        updateBlockState(state, world, pos);
+        if(world.getBlockState(pos.up()).getMaterial().isSolid())
+        {
+            if(state.getValue(TYPE) == EnumType.NORMAL)
+            {
+                world.setBlockState(pos, Blocks.NETHERRACK.getDefaultState());
+            }
+            else
+            {
+                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+            }
+        }
     }
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        super.neighborChanged(state, world, pos, blockIn, fromPos);
-        updateBlockState(state, world, pos);
+        if(world.getBlockState(pos.up()).getMaterial().isSolid())
+        {
+            if(state.getValue(TYPE) == EnumType.NORMAL)
+            {
+                world.setBlockState(pos, Blocks.NETHERRACK.getDefaultState());
+            }
+            else
+            {
+                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+            }
+        }
     }
 
     @Override
@@ -143,21 +169,6 @@ public class BlockNetherrackPath extends BlockNetherEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
-    }
-
-    private void updateBlockState(IBlockState state, World world, BlockPos pos)
-    {
-        if(world.getBlockState(pos.up()).getMaterial().isSolid())
-        {
-            if(state.getValue(TYPE) == EnumType.NORMAL)
-            {
-                world.setBlockState(pos, Blocks.NETHERRACK.getDefaultState());
-            }
-            else
-            {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
-            }
-        }
     }
 
     public enum EnumType implements IStringSerializable
