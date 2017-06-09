@@ -58,8 +58,10 @@ public class NetherExModels
         ModelLoader.setCustomStateMapper(BLOCK_FIRE_BLUE, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());
         ModelLoader.setCustomStateMapper(SLAB_VANILLA_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
         ModelLoader.setCustomStateMapper(SLAB_BASALT_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
+        ModelLoader.setCustomStateMapper(SLAB_BRICK_NETHER_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
         ModelLoader.setCustomStateMapper(WALL_VANILLA, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         ModelLoader.setCustomStateMapper(WALL_BASALT, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+        ModelLoader.setCustomStateMapper(WALL_BRICK_NETHER, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_QUARTZ, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
         ModelLoader.setCustomStateMapper(FENCE_GATE_RED_BRICK_NETHER, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
@@ -149,8 +151,6 @@ public class NetherExModels
             registerModel(SLAB_VANILLA_DOUBLE, type.ordinal(), SLAB_VANILLA_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
-        ModelLoader.setCustomStateMapper(SLAB_BRICK_NETHER_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
-
         registerModel(STAIRS_RED_BRICK_NETHER, "normal");
         registerModel(STAIRS_BASALT_NORMAL, "normal");
         registerModel(STAIRS_BASALT_SMOOTH, "normal");
@@ -165,7 +165,6 @@ public class NetherExModels
         {
             registerModel(WALL_VANILLA, type.ordinal(), String.format("nex:wall_%s", type.getName()), "inventory");
         }
-        ModelLoader.setCustomStateMapper(WALL_BRICK_NETHER, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
 
         for(BlockVanilla.EnumTypeFence type : BlockVanilla.EnumTypeFence.values())
         {
@@ -210,6 +209,7 @@ public class NetherExModels
         registerModel(TOOL_SHOVEL_BONE, "normal");
         registerModel(TOOL_AXE_BONE, "normal");
         registerModel(TOOL_HOE_BONE, "normal");
+        registerModel(TOOL_HAMMER_BONE, "normal");
 
         registerModel(ARMOR_HELMET_BONE, "normal");
         registerModel(ARMOR_CHESTPLATE_BONE, "normal");

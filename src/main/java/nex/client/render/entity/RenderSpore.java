@@ -22,7 +22,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.NetherEx;
 import nex.client.model.entity.ModelSpore;
 import nex.entity.monster.EntitySpore;
 import nex.init.NetherExTextures;

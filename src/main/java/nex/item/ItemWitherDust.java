@@ -27,6 +27,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import nex.block.BlockElderMushroom;
 
 public class ItemWitherDust extends ItemNetherEx
 {
@@ -73,7 +74,7 @@ public class ItemWitherDust extends ItemNetherEx
         {
             IGrowable growable = (IGrowable) state.getBlock();
 
-            if(growable.canGrow(world, pos, state, world.isRemote))
+            if(growable.canGrow(world, pos, state, world.isRemote) || growable instanceof BlockElderMushroom)
             {
                 if(!world.isRemote)
                 {

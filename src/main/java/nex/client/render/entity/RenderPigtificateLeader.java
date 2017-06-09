@@ -27,7 +27,6 @@ import nex.client.model.entity.ModelPigtificateLeader;
 import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
 import nex.village.trade.TradeCareer;
-import nex.village.trade.TradeProfession;
 
 @SideOnly(Side.CLIENT)
 public class RenderPigtificateLeader extends RenderLiving<EntityPigtificateLeader>

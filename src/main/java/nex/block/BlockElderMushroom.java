@@ -138,7 +138,7 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
     @Override
     public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
     {
-        return true;
+        return false;
     }
 
     @Override

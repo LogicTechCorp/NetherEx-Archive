@@ -47,7 +47,7 @@ public class ItemBlockElderMushroom extends ItemBlockFood
 
             if(stack.getItemDamage() == 0)
             {
-                player.attackEntityFrom(DamageSource.GENERIC, player.getRNG().nextInt(10) + 1);
+                player.attackEntityFrom(DamageSource.GENERIC, player.getRNG().nextInt((12 - 8) + 1) + 4);
                 player.getFoodStats().setFoodLevel(20);
 
             }

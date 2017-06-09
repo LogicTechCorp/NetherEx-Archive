@@ -18,8 +18,6 @@
 package nex.village.trade;
 
 import com.google.common.collect.Lists;
-import net.minecraft.util.ResourceLocation;
-import nex.NetherEx;
 
 import java.util.Collections;
 import java.util.List;

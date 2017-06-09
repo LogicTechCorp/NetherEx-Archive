@@ -26,7 +26,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.model.entity.ModelPigtificate;
 import nex.entity.passive.EntityPigtificate;
 import nex.village.trade.TradeCareer;
-import nex.village.trade.TradeProfession;
 
 @SideOnly(Side.CLIENT)
 public class RenderPigtificate extends RenderLiving<EntityPigtificate>

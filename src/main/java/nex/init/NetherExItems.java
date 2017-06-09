@@ -93,6 +93,9 @@ public class NetherExItems
     @GameRegistry.ObjectHolder("tool_hoe_bone")
     public static final ItemBoneHoe TOOL_HOE_BONE = null;
 
+    @GameRegistry.ObjectHolder("tool_hammer_bone")
+    public static final ItemBoneHammer TOOL_HAMMER_BONE = null;
+
     @GameRegistry.ObjectHolder("armor_helmet_bone")
     public static final ItemBoneArmor ARMOR_HELMET_BONE = null;
 
@@ -148,6 +151,7 @@ public class NetherExItems
                     new ItemBoneShovel(),
                     new ItemBoneAxe(),
                     new ItemBoneHoe(),
+                    new ItemBoneHammer(),
                     new ItemBoneArmor("helmet", 1, EntityEquipmentSlot.HEAD),
                     new ItemBoneArmor("chestplate", 1, EntityEquipmentSlot.CHEST),
                     new ItemBoneArmor("leggings", 2, EntityEquipmentSlot.LEGS),

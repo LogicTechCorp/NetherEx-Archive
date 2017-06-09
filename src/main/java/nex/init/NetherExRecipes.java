@@ -131,6 +131,7 @@ public class NetherExRecipes
         addShovelRecipe(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addAxeRecipe(new ItemStack(TOOL_AXE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addHoeRecipe(new ItemStack(TOOL_HOE_BONE, 1, 0), new ItemStack(GOLD_INGOT, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addPickaxeRecipe(new ItemStack(TOOL_HAMMER_BONE, 1, 0), new ItemStack(GOLD_BLOCK, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addShovelRecipe(new ItemStack(TOOL_SWORD_BONE, 1, 0), new ItemStack(GOLDEN_SWORD, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addShovelRecipe(new ItemStack(TOOL_PICKAXE_BONE, 1, 0), new ItemStack(GOLDEN_PICKAXE, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
         addShovelRecipe(new ItemStack(TOOL_SHOVEL_BONE, 1, 0), new ItemStack(GOLDEN_SHOVEL, 1, 0), new ItemStack(ITEM_BONE_WITHER, 1, 0));
