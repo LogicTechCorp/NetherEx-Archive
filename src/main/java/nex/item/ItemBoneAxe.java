@@ -30,7 +30,7 @@ public class ItemBoneAxe extends ItemNetherExAxe
 {
     public ItemBoneAxe()
     {
-        super("tool_axe_bone", NetherExMaterials.TOOL_BONE_WITHERED, 7.0F, -3.0F);
+        super("tool_axe_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD, 7.0F, -3.0F);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ItemBoneAxe extends ItemNetherExAxe
             }
         }
 
-        return NetherExMaterials.TOOL_BONE_WITHERED.getHarvestLevel();
+        return NetherExMaterials.TOOL_BONE_WITHERED_GOLD.getHarvestLevel();
     }
 
     @Override

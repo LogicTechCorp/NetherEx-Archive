@@ -30,7 +30,7 @@ public class ItemBoneShovel extends ItemNetherExShovel
 {
     public ItemBoneShovel()
     {
-        super("tool_shovel_bone", NetherExMaterials.TOOL_BONE_WITHERED);
+        super("tool_shovel_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
     }
 
     @Override

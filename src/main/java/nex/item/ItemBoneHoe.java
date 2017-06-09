@@ -40,7 +40,7 @@ public class ItemBoneHoe extends ItemNetherExHoe
 {
     public ItemBoneHoe()
     {
-        super("tool_hoe_bone", NetherExMaterials.TOOL_BONE_WITHERED);
+        super("tool_hoe_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
     }
 
     @Override

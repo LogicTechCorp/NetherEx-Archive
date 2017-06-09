@@ -36,7 +36,7 @@ public class ItemBoneHammer extends ItemNetherExPickaxe
 {
     public ItemBoneHammer()
     {
-        super("tool_hammer_bone", NetherExMaterials.TOOL_BONE_WITHERED);
+        super("tool_hammer_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
     }
 
     @Override

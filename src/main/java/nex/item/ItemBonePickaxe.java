@@ -30,7 +30,7 @@ public class ItemBonePickaxe extends ItemNetherExPickaxe
 {
     public ItemBonePickaxe()
     {
-        super("tool_pickaxe_bone", NetherExMaterials.TOOL_BONE_WITHERED);
+        super("tool_pickaxe_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
     }
 
     @Override
