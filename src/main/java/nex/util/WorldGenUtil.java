@@ -378,9 +378,9 @@ public class WorldGenUtil
                 Vec3d vec3d = transformedVec3d(entityInfo.pos, placementSettings.getMirror(), placementSettings.getRotation());
                 Vec3d vec3d1 = vec3d.addVector((double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
                 NBTTagList tagList = new NBTTagList();
-                tagList.appendTag(new NBTTagDouble(vec3d1.xCoord));
-                tagList.appendTag(new NBTTagDouble(vec3d1.yCoord));
-                tagList.appendTag(new NBTTagDouble(vec3d1.zCoord));
+                tagList.appendTag(new NBTTagDouble(vec3d1.x));
+                tagList.appendTag(new NBTTagDouble(vec3d1.y));
+                tagList.appendTag(new NBTTagDouble(vec3d1.z));
                 compound.setTag("Pos", tagList);
                 compound.setUniqueId("UUID", UUID.randomUUID());
                 Entity entity;
@@ -407,7 +407,7 @@ public class WorldGenUtil
 
                     float f = entity.getMirroredYaw(placementSettings.getMirror());
                     f = f + (entity.rotationYaw - entity.getRotatedYaw(placementSettings.getRotation()));
-                    entity.setLocationAndAngles(vec3d1.xCoord, vec3d1.yCoord, vec3d1.zCoord, f, entity.rotationPitch);
+                    entity.setLocationAndAngles(vec3d1.x, vec3d1.y, vec3d1.z, f, entity.rotationPitch);
                     world.spawnEntity(entity);
                 }
             }
@@ -416,9 +416,9 @@ public class WorldGenUtil
 
     private static Vec3d transformedVec3d(Vec3d vec, Mirror mirror, Rotation rotation)
     {
-        double xCoord = vec.xCoord;
-        double yCoord = vec.yCoord;
-        double zCoord = vec.zCoord;
+        double xCoord = vec.x;
+        double yCoord = vec.y;
+        double zCoord = vec.z;
         boolean flag = true;
 
         switch(mirror)

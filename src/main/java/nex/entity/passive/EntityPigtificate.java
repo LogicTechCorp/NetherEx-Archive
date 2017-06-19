@@ -248,7 +248,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     @Override
     protected void updateEquipmentIfNeeded(EntityItem itemEntity)
     {
-        ItemStack stack = itemEntity.getEntityItem();
+        ItemStack stack = itemEntity.getItem();
         Item item = stack.getItem();
 
         if(canPickupItem(item))
@@ -402,7 +402,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     {
         if(village != null)
         {
-            Entity entity = cause.getEntity();
+            Entity entity = cause.getTrueSource();
 
             if(entity != null)
             {

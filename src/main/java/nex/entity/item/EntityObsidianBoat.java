@@ -148,7 +148,7 @@ public class EntityObsidianBoat extends EntityBoat
         }
         else if(!world.isRemote && !isDead)
         {
-            if(source instanceof EntityDamageSourceIndirect && source.getEntity() != null && isPassenger(source.getEntity()))
+            if(source instanceof EntityDamageSourceIndirect && source.getTrueSource() != null && isPassenger(source.getTrueSource()))
             {
                 return false;
             }
@@ -158,7 +158,7 @@ public class EntityObsidianBoat extends EntityBoat
                 setTimeSinceHit(10);
                 setDamageTaken(getDamageTaken() + amount * 10.0F);
                 setBeenAttacked();
-                boolean flag = source.getEntity() instanceof EntityPlayer && ((EntityPlayer) source.getEntity()).capabilities.isCreativeMode;
+                boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) source.getTrueSource()).capabilities.isCreativeMode;
 
                 if(flag || getDamageTaken() > 40.0F)
                 {
@@ -728,7 +728,7 @@ public class EntityObsidianBoat extends EntityBoat
             }
 
             Vec3d vec3d = (new Vec3d((double) f, 0.0D, 0.0D)).rotateYaw(-rotationYaw * 0.017453292F - ((float) Math.PI / 2F));
-            passenger.setPosition(posX + vec3d.xCoord, posY + (double) f1, posZ + vec3d.zCoord);
+            passenger.setPosition(posX + vec3d.x, posY + (double) f1, posZ + vec3d.z);
             passenger.rotationYaw += deltaRotation;
             passenger.setRotationYawHead(passenger.getRotationYawHead() + deltaRotation);
             applyYawToEntity(passenger);

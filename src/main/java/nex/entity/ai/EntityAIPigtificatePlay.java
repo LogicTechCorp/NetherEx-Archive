@@ -128,7 +128,7 @@ public class EntityAIPigtificatePlay extends EntityAIBase
                 return;
             }
 
-            pigtificateObj.getNavigator().tryMoveToXYZ(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord, speed);
+            pigtificateObj.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, speed);
         }
     }
 }

@@ -73,15 +73,15 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
             if(attackTimer == 20)
             {
                 Vec3d vec3d = parentEntity.getLook(1.0F);
-                double d2 = target.posX - (parentEntity.posX + vec3d.xCoord * 4.0D);
+                double d2 = target.posX - (parentEntity.posX + vec3d.x * 4.0D);
                 double d3 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + parentEntity.posY + (double) (parentEntity.height / 2.0F));
-                double d4 = target.posZ - (parentEntity.posZ + vec3d.zCoord * 4.0D);
+                double d4 = target.posZ - (parentEntity.posZ + vec3d.z * 4.0D);
                 parentEntity.playSound(NetherExSoundEvents.ENTITY_SHOOT_GHASTLING, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
                 EntityGhastlingFireball fireball = new EntityGhastlingFireball(world, parentEntity, d2, d3, d4);
                 fireball.explosionPower = parentEntity.getFireballStrength();
-                fireball.posX = parentEntity.posX + vec3d.xCoord * 4.0D;
+                fireball.posX = parentEntity.posX + vec3d.x * 4.0D;
                 fireball.posY = parentEntity.posY + (double) (parentEntity.height / 2.0F) + 0.5D;
-                fireball.posZ = parentEntity.posZ + vec3d.zCoord * 4.0D;
+                fireball.posZ = parentEntity.posZ + vec3d.z * 4.0D;
                 world.spawnEntity(fireball);
                 attackTimer = -40;
             }

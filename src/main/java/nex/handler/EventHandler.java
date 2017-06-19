@@ -519,9 +519,9 @@ public class EventHandler
 
         if(entity instanceof AbstractSkeleton)
         {
-            if(source.getSourceOfDamage() instanceof EntityPlayer)
+            if(source.getTrueSource() instanceof EntityPlayer)
             {
-                EntityPlayer player = (EntityPlayer) source.getSourceOfDamage();
+                EntityPlayer player = (EntityPlayer) source.getTrueSource();
 
                 if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_BONE_WITHERED))
                 {
@@ -548,7 +548,7 @@ public class EventHandler
             while(iter.hasNext())
             {
                 EntityItem entityItem = iter.next();
-                ItemStack stack = entityItem.getEntityItem();
+                ItemStack stack = entityItem.getItem();
 
                 if(stack.getItem() == Items.BONE || stack.getItem() == Items.COAL)
                 {

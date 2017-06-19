@@ -139,9 +139,9 @@ public class EntitySpore extends EntityMob
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        if(source.getEntity() != null && source.getEntity() instanceof EntityLivingBase)
+        if(source.getTrueSource() != null && source.getTrueSource() instanceof EntityLivingBase)
         {
-            if(((EntityLivingBase) source.getEntity()).getHeldItemMainhand().getItem() == NetherExItems.TOOL_SWORD_BONE)
+            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.TOOL_SWORD_BONE)
             {
                 amount *= 2.0F;
             }

@@ -375,7 +375,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     }
 
     @Override
-    public Chunk provideChunk(int chunkX, int chunkZ)
+    public Chunk generateChunk(int chunkX, int chunkZ)
     {
         ChunkPrimer primer = new ChunkPrimer();
         rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
@@ -443,11 +443,11 @@ public class ChunkProviderNether extends ChunkProviderHell
     }
 
     @Override
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos pos, boolean force)
+    public BlockPos getNearestStructurePos(World world, String structureName, BlockPos pos, boolean force)
     {
         if("Fortress".equals(structureName))
         {
-            return netherBridge != null ? netherBridge.getClosestStrongholdPos(world, pos, force) : null;
+            return netherBridge != null ? netherBridge.getNearestStructurePos(world, pos, force) : null;
         }
 
         return null;

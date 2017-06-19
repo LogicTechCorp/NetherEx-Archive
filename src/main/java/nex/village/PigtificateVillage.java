@@ -92,7 +92,7 @@ public class PigtificateVillage
             if(vec3d != null)
             {
                 EntityGoldGolem golem = new EntityGoldGolem(world);
-                golem.setPosition(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord);
+                golem.setPosition(vec3d.x, vec3d.y, vec3d.z);
                 world.spawnEntity(golem);
                 ++numGoldGolems;
             }
@@ -237,7 +237,7 @@ public class PigtificateVillage
                 BlockPos blockpos = fenceGateInfo1.getFenceGateBlockPos();
                 EnumFacing enumfacing = fenceGateInfo1.getInsideDirection();
 
-                if(world.getBlockState(blockpos.offset(enumfacing, 1)).getBlock().blocksMovement(world, blockpos.offset(enumfacing, 1)) && world.getBlockState(blockpos.offset(enumfacing, -1)).getBlock().blocksMovement(world, blockpos.offset(enumfacing, -1)) && world.getBlockState(blockpos.up().offset(enumfacing, 1)).getBlock().blocksMovement(world, blockpos.up().offset(enumfacing, 1)) && world.getBlockState(blockpos.up().offset(enumfacing, -1)).getBlock().blocksMovement(world, blockpos.up().offset(enumfacing, -1)))
+                if(world.getBlockState(blockpos.offset(enumfacing, 1)).getBlock().isPassable(world, blockpos.offset(enumfacing, 1)) && world.getBlockState(blockpos.offset(enumfacing, -1)).getBlock().isPassable(world, blockpos.offset(enumfacing, -1)) && world.getBlockState(blockpos.up().offset(enumfacing, 1)).getBlock().isPassable(world, blockpos.up().offset(enumfacing, 1)) && world.getBlockState(blockpos.up().offset(enumfacing, -1)).getBlock().isPassable(world, blockpos.up().offset(enumfacing, -1)))
                 {
                     fenceGateInfo = fenceGateInfo1;
                     i = j;

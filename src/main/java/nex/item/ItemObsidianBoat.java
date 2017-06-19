@@ -72,15 +72,15 @@ public class ItemObsidianBoat extends ItemNetherEx
         {
             Vec3d vec3d2 = player.getLook(1.0F);
             boolean flag = false;
-            List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().addCoord(vec3d2.xCoord * 5.0D, vec3d2.yCoord * 5.0D, vec3d2.zCoord * 5.0D).expandXyz(1.0D));
+            List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(vec3d2.x * 5.0D, vec3d2.y * 5.0D, vec3d2.z * 5.0D).grow(1.0D));
 
             for(Entity entity : entities)
             {
                 if(entity.canBeCollidedWith())
                 {
-                    AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expandXyz((double) entity.getCollisionBorderSize());
+                    AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().grow((double) entity.getCollisionBorderSize());
 
-                    if(axisalignedbb.isVecInside(vec3d))
+                    if(axisalignedbb.contains(vec3d))
                     {
                         flag = true;
                     }
@@ -99,10 +99,10 @@ public class ItemObsidianBoat extends ItemNetherEx
             {
                 Block block = world.getBlockState(raytraceresult.getBlockPos()).getBlock();
                 boolean flag1 = block == Blocks.WATER || block == Blocks.FLOWING_WATER;
-                EntityObsidianBoat boat = new EntityObsidianBoat(world, raytraceresult.hitVec.xCoord, flag1 ? raytraceresult.hitVec.yCoord - 0.12D : raytraceresult.hitVec.yCoord, raytraceresult.hitVec.zCoord);
+                EntityObsidianBoat boat = new EntityObsidianBoat(world, raytraceresult.hitVec.x, flag1 ? raytraceresult.hitVec.y - 0.12D : raytraceresult.hitVec.y, raytraceresult.hitVec.z);
                 boat.rotationYaw = player.rotationYaw;
 
-                if(!world.getCollisionBoxes(boat, boat.getEntityBoundingBox().expandXyz(-0.1D)).isEmpty())
+                if(!world.getCollisionBoxes(boat, boat.getEntityBoundingBox().grow(-0.1D)).isEmpty())
                 {
                     return new ActionResult(EnumActionResult.FAIL, stack);
                 }

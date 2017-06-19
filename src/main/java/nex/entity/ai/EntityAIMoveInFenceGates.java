@@ -96,7 +96,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
 
             if(vec3d != null)
             {
-                entityObj.getNavigator().tryMoveToXYZ(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord, 1.0D);
+                entityObj.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, 1.0D);
             }
         }
         else

@@ -128,7 +128,7 @@ public class ExplosionSpore extends Explosion
                                     f -= (f2 + 0.3F) * 0.3F;
                                 }
 
-                                if(f > 0.0F && (exploder == null || exploder.verifyExplosion(this, world, blockpos, iblockstate, f)))
+                                if(f > 0.0F && (exploder == null || exploder.canExplosionDestroyBlock(this, world, blockpos, iblockstate, f)))
                                 {
                                     set.add(blockpos);
                                 }

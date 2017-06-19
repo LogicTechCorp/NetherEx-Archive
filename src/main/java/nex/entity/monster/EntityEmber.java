@@ -161,7 +161,7 @@ public class EntityEmber extends EntityMob
                         vec3d = path.getPosition(this);
                     }
 
-                    calculateRotationYaw(vec3d.xCoord, vec3d.zCoord);
+                    calculateRotationYaw(vec3d.x, vec3d.z);
                     startJumping();
                 }
             }
@@ -201,7 +201,7 @@ public class EntityEmber extends EntityMob
             {
                 Vec3d vec3d = path.getPosition(this);
 
-                if(vec3d.yCoord > posY + 0.5D)
+                if(vec3d.y > posY + 0.5D)
                 {
                     return 0.5F;
                 }
