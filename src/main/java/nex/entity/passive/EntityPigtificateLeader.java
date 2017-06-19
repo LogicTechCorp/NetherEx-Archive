@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import nex.entity.ai.EntityAIPigtificateInteract;
 import nex.entity.ai.EntityAIPigtificateLookAtTradePlayer;
 import nex.entity.ai.EntityAIPigtificateTradePlayer;
-import nex.village.trade.TradeProfession;
+import nex.village.TradeProfession;
 
 public class EntityPigtificateLeader extends EntityPigtificate
 {

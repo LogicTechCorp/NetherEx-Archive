@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 public class WorldUtil
 {
-    public static RayTraceResult raytraceFromEntity(World world, Entity entity, boolean countNonSolidBlock, double range)
+    public static RayTraceResult rayTraceFromEntity(World world, Entity entity, boolean countNonSolidBlock, double range)
     {
         float f = 1.0F;
         float f1 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * f;

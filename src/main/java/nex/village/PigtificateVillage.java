@@ -41,7 +41,7 @@ import java.util.UUID;
 public class PigtificateVillage
 {
     private World world;
-    private final List<VillageFenceGateInfo> villageFenceGateInfoList = Lists.newArrayList();
+    private final List<PigtificateVillageFenceGateInfo> villageFenceGateInfoList = Lists.newArrayList();
     private BlockPos centerHelper = BlockPos.ORIGIN;
     private BlockPos center = BlockPos.ORIGIN;
     private int villageRadius;
@@ -190,17 +190,17 @@ public class PigtificateVillage
         return center.distanceSq(pos) < (double) (villageRadius * villageRadius);
     }
 
-    public List<VillageFenceGateInfo> getVillageFenceGateInfoList()
+    public List<PigtificateVillageFenceGateInfo> getVillageFenceGateInfoList()
     {
         return villageFenceGateInfoList;
     }
 
-    public VillageFenceGateInfo getNearestFenceGate(BlockPos pos)
+    public PigtificateVillageFenceGateInfo getNearestFenceGate(BlockPos pos)
     {
-        VillageFenceGateInfo fenceGateInfo = null;
+        PigtificateVillageFenceGateInfo fenceGateInfo = null;
         int i = Integer.MAX_VALUE;
 
-        for(VillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
+        for(PigtificateVillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
         {
             int j = fenceGateInfo1.getDistanceToFenceGateBlockSq(pos);
 
@@ -214,12 +214,12 @@ public class PigtificateVillage
         return fenceGateInfo;
     }
 
-    public VillageFenceGateInfo getFenceGateInfo(BlockPos pos)
+    public PigtificateVillageFenceGateInfo getFenceGateInfo(BlockPos pos)
     {
-        VillageFenceGateInfo fenceGateInfo = null;
+        PigtificateVillageFenceGateInfo fenceGateInfo = null;
         int i = Integer.MAX_VALUE;
 
-        for(VillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
+        for(PigtificateVillageFenceGateInfo fenceGateInfo1 : villageFenceGateInfoList)
         {
             int j = fenceGateInfo1.getDistanceToFenceGateBlockSq(pos);
 
@@ -248,7 +248,7 @@ public class PigtificateVillage
         return fenceGateInfo;
     }
 
-    public VillageFenceGateInfo getExistedFenceGate(BlockPos fenceGateBlock)
+    public PigtificateVillageFenceGateInfo getExistedFenceGate(BlockPos fenceGateBlock)
     {
         if(center.distanceSq(fenceGateBlock) > (double) (villageRadius * villageRadius))
         {
@@ -256,7 +256,7 @@ public class PigtificateVillage
         }
         else
         {
-            for(VillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
+            for(PigtificateVillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
             {
                 if(fenceGateInfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && fenceGateInfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
                 {
@@ -268,7 +268,7 @@ public class PigtificateVillage
         }
     }
 
-    public void addVillageFenceGateInfo(VillageFenceGateInfo fenceGateInfo)
+    public void addVillageFenceGateInfo(PigtificateVillageFenceGateInfo fenceGateInfo)
     {
         villageFenceGateInfoList.add(fenceGateInfo);
         centerHelper = centerHelper.add(fenceGateInfo.getFenceGateBlockPos());
@@ -351,11 +351,11 @@ public class PigtificateVillage
     {
         boolean flag = false;
         boolean flag1 = world.rand.nextInt(50) == 0;
-        Iterator<VillageFenceGateInfo> iterator = villageFenceGateInfoList.iterator();
+        Iterator<PigtificateVillageFenceGateInfo> iterator = villageFenceGateInfoList.iterator();
 
         while(iterator.hasNext())
         {
-            VillageFenceGateInfo fenceGateInfo = iterator.next();
+            PigtificateVillageFenceGateInfo fenceGateInfo = iterator.next();
 
             if(flag1)
             {
@@ -391,7 +391,7 @@ public class PigtificateVillage
             center = new BlockPos(centerHelper.getX() / i, centerHelper.getY() / i, centerHelper.getZ() / i);
             int j = 0;
 
-            for(VillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
+            for(PigtificateVillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
             {
                 j = Math.max(fenceGateInfo.getDistanceToFenceGateBlockSq(center), j);
             }
@@ -444,7 +444,7 @@ public class PigtificateVillage
         for(int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound tagCompound = nbttaglist.getCompoundTagAt(i);
-            VillageFenceGateInfo fenceGateInfo = new VillageFenceGateInfo(new BlockPos(tagCompound.getInteger("X"), tagCompound.getInteger("Y"), tagCompound.getInteger("Z")), tagCompound.getInteger("IDX"), tagCompound.getInteger("IDZ"), tagCompound.getInteger("TS"));
+            PigtificateVillageFenceGateInfo fenceGateInfo = new PigtificateVillageFenceGateInfo(new BlockPos(tagCompound.getInteger("X"), tagCompound.getInteger("Y"), tagCompound.getInteger("Z")), tagCompound.getInteger("IDX"), tagCompound.getInteger("IDZ"), tagCompound.getInteger("TS"));
             villageFenceGateInfoList.add(fenceGateInfo);
         }
 
@@ -481,7 +481,7 @@ public class PigtificateVillage
         compound.setInteger("ACZ", centerHelper.getZ());
         NBTTagList nbttaglist = new NBTTagList();
 
-        for(VillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
+        for(PigtificateVillageFenceGateInfo fenceGateInfo : villageFenceGateInfoList)
         {
             NBTTagCompound tagCompound = new NBTTagCompound();
             tagCompound.setInteger("X", fenceGateInfo.getFenceGateBlockPos().getX());

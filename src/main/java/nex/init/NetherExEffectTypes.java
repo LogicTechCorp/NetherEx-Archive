@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.potion.NetherExPotionType;
+import nex.potion.PotionTypeNetherEx;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,10 +55,10 @@ public class NetherExEffectTypes
             LOGGER.info("Effect Type registration started.");
 
             event.getRegistry().registerAll(
-                    new NetherExPotionType("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
-                    new NetherExPotionType("normal_frostbite", new PotionEffect(NetherExEffects.FROSTBITE, 600)),
-                    new NetherExPotionType("normal_spore", new PotionEffect(NetherExEffects.SPORE, 600)),
-                    new NetherExPotionType("normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
+                    new PotionTypeNetherEx("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
+                    new PotionTypeNetherEx("normal_frostbite", new PotionEffect(NetherExEffects.FROSTBITE, 600)),
+                    new PotionTypeNetherEx("normal_spore", new PotionEffect(NetherExEffects.SPORE, 600)),
+                    new PotionTypeNetherEx("normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
             );
 
             LOGGER.info("Effect Type registration completed.");

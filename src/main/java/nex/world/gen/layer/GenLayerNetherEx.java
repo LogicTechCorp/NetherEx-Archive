@@ -32,7 +32,7 @@ public abstract class GenLayerNetherEx extends GenLayer
         int biomeSize = type == WorldType.LARGE_BIOMES ? 6 : 4;
         biomeSize = getModdedBiomeSize(type, biomeSize);
 
-        GenLayer genLayer = new GenLayerNetherExBiome(1L);
+        GenLayer genLayer = new GenLayerNetherBiome(1L);
         genLayer = new GenLayerFuzzyZoom(1000L, genLayer);
         genLayer = GenLayerZoom.magnify(1000L, genLayer, biomeSize);
         genLayer = new GenLayerSmooth(1000L, genLayer);

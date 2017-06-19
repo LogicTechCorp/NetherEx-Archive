@@ -30,11 +30,11 @@ import nex.NetherEx;
 import java.awt.*;
 
 @SuppressWarnings("ConstantConditions")
-public class NetherExPotion extends Potion
+public class PotionNetherEx extends Potion
 {
     private final ResourceLocation iconTexture;
 
-    public NetherExPotion(String name, boolean isBadEffect, int red, int green, int blue)
+    public PotionNetherEx(String name, boolean isBadEffect, int red, int green, int blue)
     {
         super(isBadEffect, new Color(red, green, blue).getRGB());
 

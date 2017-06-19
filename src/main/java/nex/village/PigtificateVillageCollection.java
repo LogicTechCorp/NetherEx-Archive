@@ -36,7 +36,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 {
     private World world;
     private final List<BlockPos> villagerPositionsList = Lists.newArrayList();
-    private final List<VillageFenceGateInfo> newFenceGates = Lists.newArrayList();
+    private final List<PigtificateVillageFenceGateInfo> newFenceGates = Lists.newArrayList();
     private final List<PigtificateVillage> villageList = Lists.newArrayList();
     private int tickCounter;
 
@@ -147,7 +147,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void addNewFenceGatesToVillageOrCreateVillage()
     {
-        for(VillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(PigtificateVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
             PigtificateVillage village = getNearestVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
 
@@ -178,7 +178,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
                     if(outside != null)
                     {
-                        VillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
+                        PigtificateVillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
 
                         if(villagefenceGateinfo == null)
                         {
@@ -194,9 +194,9 @@ public class PigtificateVillageCollection extends WorldSavedData
         }
     }
 
-    private VillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
+    private PigtificateVillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
     {
-        for(VillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(PigtificateVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
             if(villagefenceGateinfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && villagefenceGateinfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(villagefenceGateinfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
             {
@@ -206,7 +206,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
         for(PigtificateVillage village : villageList)
         {
-            VillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
+            PigtificateVillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
 
             if(villagefenceGateinfo1 != null)
             {
@@ -219,7 +219,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void addToNewFenceGatesList(BlockPos fenceGateBlock, EnumFacing facing)
     {
-        newFenceGates.add(new VillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
+        newFenceGates.add(new PigtificateVillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
     }
 
     private boolean positionInList(BlockPos pos)

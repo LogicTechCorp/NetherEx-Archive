@@ -23,17 +23,17 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.potion.NetherExPotion;
+import nex.potion.PotionNetherEx;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffects
 {
-    public static final NetherExPotion FREEZE = new NetherExPotion("freeze", true, 93, 188, 210);
-    public static final NetherExPotion FROSTBITE = new NetherExPotion("frostbite", true, 19, 226, 255);
-    public static final NetherExPotion SPORE = new NetherExPotion("spore", true, 142, 96, 40);
-    public static final NetherExPotion LOST = new NetherExPotion("lost", true, 103, 62, 124);
+    public static final PotionNetherEx FREEZE = new PotionNetherEx("freeze", true, 93, 188, 210);
+    public static final PotionNetherEx FROSTBITE = new PotionNetherEx("frostbite", true, 19, 226, 255);
+    public static final PotionNetherEx SPORE = new PotionNetherEx("spore", true, 142, 96, 40);
+    public static final PotionNetherEx LOST = new PotionNetherEx("lost", true, 103, 62, 124);
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffects");
 

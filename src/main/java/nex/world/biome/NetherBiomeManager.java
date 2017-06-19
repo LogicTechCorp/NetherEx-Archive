@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.world.biome.additional;
+package nex.world.biome;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
@@ -28,7 +28,6 @@ import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
 import nex.init.NetherExBiomes;
 import nex.util.FileUtil;
-import nex.world.biome.NetherExBiomeType;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,9 +37,9 @@ import java.io.IOException;
 import java.util.List;
 
 @SuppressWarnings("ConstantConditions")
-public class AdditionalBiomeManager
+public class NetherBiomeManager
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|AdditionalBiomeManager");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherBiomeManager");
 
     public static void init(File directory)
     {
@@ -76,13 +75,13 @@ public class AdditionalBiomeManager
             for(File additionalBiomeFile : additionalBiomeFiles)
             {
                 String jsonText = Files.toString(additionalBiomeFile, Charsets.UTF_8);
-                AdditionalBiomeList biomeList = gson.fromJson(jsonText, AdditionalBiomeList.class);
+                NetherBiomeList biomeList = gson.fromJson(jsonText, NetherBiomeList.class);
 
                 LOGGER.info("Adding biomes from the " + biomeList.getName() + ".");
 
-                for(AdditionalBiomeMod biomeMod : biomeList.getMods())
+                for(NetherBiomeMod biomeMod : biomeList.getMods())
                 {
-                    for(AdditionalBiome additionalBiome : biomeMod.getBiomes())
+                    for(NetherBiome additionalBiome : biomeMod.getBiomes())
                     {
                         ResourceLocation biomeRegistryName = new ResourceLocation(biomeMod.getName() + ":" + additionalBiome.getName());
                         Biome biome = Biome.REGISTRY.getObject(biomeRegistryName);
@@ -93,17 +92,17 @@ public class AdditionalBiomeManager
                         }
 
                         int weight = additionalBiome.getWeight();
-                        AdditionalBiome.OceanBlock oceanBlock = additionalBiome.getOceanBlock();
+                        NetherBiome.OceanBlock oceanBlock = additionalBiome.getOceanBlock();
 
                         if(oceanBlock == null)
                         {
-                            oceanBlock = new AdditionalBiome.OceanBlock("minecraft:air", 0);
+                            oceanBlock = new NetherBiome.OceanBlock("minecraft:air", 0);
                         }
 
                         Block block = Block.getBlockFromName(oceanBlock.getName().isEmpty() ? "minecraft:air" : oceanBlock.getName());
                         int meta = oceanBlock.getMeta();
                         IBlockState state = block.getStateFromMeta(meta);
-                        NetherExBiomeType type = NetherExBiomeType.getFromString(additionalBiome.getType());
+                        NetherBiomeType type = NetherBiomeType.getFromString(additionalBiome.getType());
 
                         NetherExBiomes.addBiome(biome, weight, state, type);
                         LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " was added to the Nether.");

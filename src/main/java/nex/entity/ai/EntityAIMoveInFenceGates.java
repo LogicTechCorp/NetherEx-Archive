@@ -23,13 +23,13 @@ import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import nex.village.PigtificateVillage;
+import nex.village.PigtificateVillageFenceGateInfo;
 import nex.village.PigtificateVillageManager;
-import nex.village.VillageFenceGateInfo;
 
 public class EntityAIMoveInFenceGates extends EntityAIBase
 {
     private final EntityCreature entityObj;
-    private VillageFenceGateInfo doorInfo;
+    private PigtificateVillageFenceGateInfo doorInfo;
     private int insidePosX = -1;
     private int insidePosZ = -1;
 

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.village.trade;
+package nex.village;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;

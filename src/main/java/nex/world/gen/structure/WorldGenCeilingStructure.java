@@ -82,7 +82,7 @@ public class WorldGenCeilingStructure extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = manager.getTemplate(server, WeightedUtil.getRandomStructure(rand, variants));
+        Template template = manager.getTemplate(server, WeightedUtil.getRandomNamedItem(rand, variants));
 
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings, template.getSize());

@@ -49,12 +49,7 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
-import nex.village.PigtificateVillage;
-import nex.village.PigtificateVillageManager;
-import nex.village.trade.Trade;
-import nex.village.trade.TradeCareer;
-import nex.village.trade.TradeListManager;
-import nex.village.trade.TradeProfession;
+import nex.village.*;
 
 import java.util.Collections;
 import java.util.List;

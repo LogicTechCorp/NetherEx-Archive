@@ -22,11 +22,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 
-public class NetherExBiomeEntry extends BiomeManager.BiomeEntry
+public class NetherBiomeEntry extends BiomeManager.BiomeEntry
 {
     private final IBlockState oceanBlock;
 
-    public NetherExBiomeEntry(Biome biome, int weight, IBlockState oceanBlockIn)
+    public NetherBiomeEntry(Biome biome, int weight, IBlockState oceanBlockIn)
     {
         super(biome, weight <= 0 ? 10 : weight);
 

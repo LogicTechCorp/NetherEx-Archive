@@ -19,11 +19,11 @@ package nex.world.gen.layer;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
-import nex.world.biome.NetherExBiomeType;
+import nex.world.biome.NetherBiomeType;
 
-public class GenLayerNetherExBiome extends GenLayerNetherEx
+public class GenLayerNetherBiome extends GenLayerNetherEx
 {
-    public GenLayerNetherExBiome(long seed)
+    public GenLayerNetherBiome(long seed)
     {
         super(seed);
     }
@@ -38,7 +38,7 @@ public class GenLayerNetherExBiome extends GenLayerNetherEx
             for(int x = 0; x < areaWidth; x++)
             {
                 initChunkSeed(x + areaX, z + areaZ);
-                outputs[x + z * areaWidth] = Biome.getIdForBiome(NetherExBiomeType.getRandomBiome(NetherExBiomeType.getAllBiomes(), this));
+                outputs[x + z * areaWidth] = Biome.getIdForBiome(NetherBiomeType.getRandomBiome(NetherBiomeType.getAllBiomes(), this));
             }
         }
 

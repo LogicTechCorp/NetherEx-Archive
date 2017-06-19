@@ -125,7 +125,7 @@ public class WorldGenElderMushroom extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomStructure(rand, variants));
+        Template template = templateManager.getTemplate(minecraftServer, WeightedUtil.getRandomNamedItem(rand, variants));
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
         float airAmount = 0;

@@ -95,7 +95,7 @@ public class ItemBoneHammer extends ItemNetherExPickaxe
     {
         World world = player.getEntityWorld();
 
-        RayTraceResult traceResult = WorldUtil.raytraceFromEntity(world, player, false, 4.5D);
+        RayTraceResult traceResult = WorldUtil.rayTraceFromEntity(world, player, false, 4.5D);
 
         if(traceResult == null)
         {

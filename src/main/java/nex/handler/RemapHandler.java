@@ -43,27 +43,6 @@ import java.util.function.Predicate;
 public class RemapHandler
 {
     private static final Map<String, String> customNames = ImmutableMap.<String, String>builder()
-            .put("block_nether_brick", "block_brick_nether")
-            .put("slab_nether_brick", "slab_brick_nether")
-            .put("slab_nether_brick_double", "slab_brick_nether_double")
-            .put("stairs_nether_brick_red", "stairs_brick_nether_red")
-            .put("stairs_nether_brick_fiery", "stairs_brick_nether_fiery")
-            .put("stairs_nether_brick_icy", "stairs_brick_nether_icy")
-            .put("stairs_nether_brick_lively", "stairs_brick_nether_lively")
-            .put("stairs_nether_brick_gloomy", "stairs_brick_nether_gloomy")
-            .put("wall_nether_brick", "wall_brick_nether")
-            .put("fence_nether_brick", "fence_brick_nether")
-            .put("fence_nether_brick_red", "fence_brick_nether_red")
-            .put("fence_gate_nether_brick", "fence_gate_brick_nether")
-            .put("fence_gate_nether_brick_red", "fence_gate_brick_nether_red")
-            .put("fence_gate_nether_brick_fiery", "fence_gate_brick_nether_fiery")
-            .put("fence_gate_nether_brick_icy", "fence_gate_brick_nether_icy")
-            .put("fence_gate_nether_brick_lively", "fence_gate_brick_nether_lively")
-            .put("fence_gate_nether_brick_gloomy", "fence_gate_brick_nether_gloomy")
-            .put("item_nether_brick", "item_brick_nether")
-            .put("plant_enoki_cap", "plant_mushroom_enoki_cap")
-            .put("plant_enoki_stem", "plant_mushroom_enoki_stem")
-            .put("plant_mushroom_elder", "plant_mushroom_elder_cap")
             .build();
 
     private static List<Predicate<FMLMissingMappingsEvent.MissingMapping>> mappingsToFix = ImmutableList.of(RemapHandler::remapRegistryName);

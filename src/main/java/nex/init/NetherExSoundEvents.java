@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.sound.NetherExSoundEvent;
+import nex.sound.SoundEventNetherEx;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -144,40 +144,40 @@ public class NetherExSoundEvents
             LOGGER.info("Sound registration started.");
 
             event.getRegistry().registerAll(
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_pigtificate")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_pigtificate")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_pigtificate")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_mogus")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_mogus")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_mogus")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_salamander")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_salamander")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_salamander")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_wight")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_wight")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_wight")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ember")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_ember")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_nethermite")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_nethermite")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_nethermite")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_spinout")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spinout")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_spinout")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spore")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_spore")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":warn_spore")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":explode_spore")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghastling")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghastling")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_ghastling")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":warn_ghastling")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghastling")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghast_queen")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghast_queen")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":death_ghast_queen")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghast_queen")),
-                    new NetherExSoundEvent(new ResourceLocation(NetherEx.MOD_ID + ":summon_ghast_queen"))
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_pigtificate")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_pigtificate")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_pigtificate")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_mogus")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_mogus")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_mogus")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_salamander")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_salamander")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_salamander")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_wight")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_wight")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_wight")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ember")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_ember")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_nethermite")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_nethermite")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_nethermite")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_spinout")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spinout")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_spinout")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spore")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_spore")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":warn_spore")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":explode_spore")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghastling")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghastling")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_ghastling")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":warn_ghastling")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghastling")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghast_queen")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghast_queen")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_ghast_queen")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghast_queen")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":summon_ghast_queen"))
             );
 
             LOGGER.info("Sound registration completed.");

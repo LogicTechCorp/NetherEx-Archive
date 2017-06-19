@@ -15,22 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.world.biome.additional;
+package nex.world.biome;
 
 import java.util.List;
 
-public class AdditionalBiomeMod
+public class NetherBiomeList
 {
     private String name;
-    private List<AdditionalBiome> biomes;
+    private List<NetherBiomeMod> mods;
 
     public String getName()
     {
         return name;
     }
 
-    public List<AdditionalBiome> getBiomes()
+    public List<NetherBiomeMod> getMods()
     {
-        return biomes;
+        return mods;
     }
 }

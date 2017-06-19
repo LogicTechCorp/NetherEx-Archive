@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public enum NetherExBiomeType
+public enum NetherBiomeType
 {
     HOT,
     WARM,
@@ -39,18 +39,18 @@ public enum NetherExBiomeType
     COOL,
     COLD;
 
-    private static final Map<Biome, NetherExBiomeEntry> biomes = Maps.newHashMap();
+    private static final Map<Biome, NetherBiomeEntry> biomes = Maps.newHashMap();
 
     public void addBiome(Biome biome, int weight, IBlockState state)
     {
-        biomes.put(biome, new NetherExBiomeEntry(biome, weight, state));
+        biomes.put(biome, new NetherBiomeEntry(biome, weight, state));
     }
 
-    public static NetherExBiomeType getTypeFromBiome(Biome biome)
+    public static NetherBiomeType getTypeFromBiome(Biome biome)
     {
-        for(NetherExBiomeType type : values())
+        for(NetherBiomeType type : values())
         {
-            for(NetherExBiomeEntry entry : type.getBiomes())
+            for(NetherBiomeEntry entry : type.getBiomes())
             {
                 if(entry.biome == biome)
                 {
@@ -62,11 +62,11 @@ public enum NetherExBiomeType
         return NEUTRAL;
     }
 
-    public static NetherExBiomeType getFromString(String string)
+    public static NetherBiomeType getFromString(String string)
     {
         if(!Strings.isNullOrEmpty(string))
         {
-            for(NetherExBiomeType type : values())
+            for(NetherBiomeType type : values())
             {
                 if(type.name().equalsIgnoreCase(string))
                 {
@@ -78,11 +78,11 @@ public enum NetherExBiomeType
         return NEUTRAL;
     }
 
-    public static List<NetherExBiomeEntry> getAllBiomes()
+    public static List<NetherBiomeEntry> getAllBiomes()
     {
-        List<NetherExBiomeEntry> biomes = Lists.newArrayList();
+        List<NetherBiomeEntry> biomes = Lists.newArrayList();
 
-        for(NetherExBiomeType type : values())
+        for(NetherBiomeType type : values())
         {
             biomes.addAll(type.getBiomes());
         }
@@ -90,17 +90,17 @@ public enum NetherExBiomeType
         return biomes;
     }
 
-    public static Biome getRandomBiome(List<NetherExBiomeEntry> biomes, Random rand)
+    public static Biome getRandomBiome(List<NetherBiomeEntry> biomes, Random rand)
     {
         return WeightedRandom.getRandomItem(biomes, rand.nextInt(WeightedRandom.getTotalWeight(biomes))).getBiome();
     }
 
-    public static Biome getRandomBiome(List<NetherExBiomeEntry> biomes, GenLayerNetherEx layer)
+    public static Biome getRandomBiome(List<NetherBiomeEntry> biomes, GenLayerNetherEx layer)
     {
         return WeightedRandom.getRandomItem(biomes, layer.nextInt(WeightedRandom.getTotalWeight(biomes))).getBiome();
     }
 
-    public List<NetherExBiomeEntry> getBiomes()
+    public List<NetherBiomeEntry> getBiomes()
     {
         return ImmutableList.copyOf(biomes.values());
     }

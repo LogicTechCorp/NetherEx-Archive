@@ -15,17 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.sound;
+package nex.world.biome;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import java.util.List;
 
-public class NetherExSoundEvent extends SoundEvent
+public class NetherBiomeMod
 {
-    public NetherExSoundEvent(ResourceLocation soundNameIn)
-    {
-        super(soundNameIn);
+    private String name;
+    private List<NetherBiome> biomes;
 
-        setRegistryName(soundNameIn);
+    public String getName()
+    {
+        return name;
+    }
+
+    public List<NetherBiome> getBiomes()
+    {
+        return biomes;
     }
 }

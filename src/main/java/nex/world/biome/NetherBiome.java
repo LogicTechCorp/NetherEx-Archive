@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.world.biome.additional;
+package nex.world.biome;
 
-public class AdditionalBiome
+public class NetherBiome
 {
     private String name;
     private int weight;

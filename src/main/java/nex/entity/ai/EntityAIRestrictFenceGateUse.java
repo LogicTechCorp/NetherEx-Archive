@@ -22,13 +22,13 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.BlockPos;
 import nex.village.PigtificateVillage;
+import nex.village.PigtificateVillageFenceGateInfo;
 import nex.village.PigtificateVillageManager;
-import nex.village.VillageFenceGateInfo;
 
 public class EntityAIRestrictFenceGateUse extends EntityAIBase
 {
     private final EntityCreature entityObj;
-    private VillageFenceGateInfo fenceGate;
+    private PigtificateVillageFenceGateInfo fenceGate;
 
     public EntityAIRestrictFenceGateUse(EntityCreature creatureIn)
     {

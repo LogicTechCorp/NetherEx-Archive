@@ -29,8 +29,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.RemapHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
-import nex.village.trade.TradeListManager;
-import nex.world.biome.additional.AdditionalBiomeManager;
+import nex.village.TradeListManager;
+import nex.world.biome.NetherBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -71,7 +71,7 @@ public class NetherEx
         NetherExEntities.init();
         NetherExBiomes.init();
         TradeListManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trade Lists"));
-        AdditionalBiomeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Biome Lists"));
+        NetherBiomeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Biome Lists"));
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");

@@ -15,19 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.potion;
+package nex.village;
 
-import com.google.common.base.CaseFormat;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionType;
-import nex.NetherEx;
+import java.util.List;
 
-public class NetherExPotionType extends PotionType
+public class TradeList
 {
-    public NetherExPotionType(String name, PotionEffect effect)
-    {
-        super(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, NetherEx.MOD_ID + ":" + name), effect);
+    private String name;
+    private List<TradeProfession> professions;
 
-        setRegistryName(NetherEx.MOD_ID + ":" + name);
+    public String getName()
+    {
+        return name;
+    }
+
+    public List<TradeProfession> getProfessions()
+    {
+        return professions;
     }
 }

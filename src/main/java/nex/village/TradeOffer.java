@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.village.trade;
+package nex.village;
 
 import java.util.List;
 
