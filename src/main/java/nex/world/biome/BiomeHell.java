@@ -19,7 +19,6 @@ package nex.world.biome;
 
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +27,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
-import nex.entity.monster.EntityEmber;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
@@ -67,16 +65,6 @@ public class BiomeHell extends BiomeNetherEx
     public BiomeHell()
     {
         super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell");
-
-        topBlock = Blocks.NETHERRACK.getDefaultState();
-        fillerBlock = Blocks.NETHERRACK.getDefaultState();
-
-        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityGhast.class, 50, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEmber.class, 25, 4, 6));
-        spawnableMonsterList.add(new SpawnListEntry(EntityBlaze.class, 3, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 2, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 4, 4));
     }
 
     @Override

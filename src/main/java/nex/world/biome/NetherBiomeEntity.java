@@ -17,33 +17,36 @@
 
 package nex.world.biome;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
-
-public class NetherBiomeEntry extends BiomeManager.BiomeEntry
+public class NetherBiomeEntity
 {
-    private final IBlockState oceanBlock;
+    private String entityId;
+    private String creatureType;
+    private int weight;
+    private int minGroupCount;
+    private int maxGroupCount;
 
-    public NetherBiomeEntry(Biome biome, int weight, IBlockState oceanBlockIn)
+    public String getId()
     {
-        super(biome, weight <= 0 ? 10 : weight);
-
-        oceanBlock = oceanBlockIn;
+        return entityId;
     }
 
-    public Biome getBiome()
+    public String getCreatureType()
     {
-        return biome;
+        return creatureType;
     }
 
     public int getWeight()
     {
-        return itemWeight;
+        return weight;
     }
 
-    public IBlockState getOceanBlock()
+    public int getMinGroupCount()
     {
-        return oceanBlock;
+        return minGroupCount;
+    }
+
+    public int getMaxGroupCount()
+    {
+        return maxGroupCount;
     }
 }

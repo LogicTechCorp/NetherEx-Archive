@@ -23,10 +23,14 @@ import com.google.common.io.Files;
 import com.google.gson.Gson;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
-import nex.init.NetherExBiomes;
 import nex.util.FileUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -68,44 +72,76 @@ public class NetherBiomeManager
         }
 
         Gson gson = new Gson();
-        List<File> additionalBiomeFiles = Lists.newArrayList(directory.listFiles());
+        List<File> netherBiomeFiles = Lists.newArrayList(directory.listFiles());
 
         try
         {
-            for(File additionalBiomeFile : additionalBiomeFiles)
+            for(File netherBiomeFile : netherBiomeFiles)
             {
-                String jsonText = Files.toString(additionalBiomeFile, Charsets.UTF_8);
+                String jsonText = Files.toString(netherBiomeFile, Charsets.UTF_8);
                 NetherBiomeList biomeList = gson.fromJson(jsonText, NetherBiomeList.class);
 
                 LOGGER.info("Adding biomes from the " + biomeList.getName() + ".");
 
                 for(NetherBiomeMod biomeMod : biomeList.getMods())
                 {
-                    for(NetherBiome additionalBiome : biomeMod.getBiomes())
+                    for(NetherBiome netherBiome : biomeMod.getBiomes())
                     {
-                        ResourceLocation biomeRegistryName = new ResourceLocation(biomeMod.getName() + ":" + additionalBiome.getName());
-                        Biome biome = Biome.REGISTRY.getObject(biomeRegistryName);
+                        ResourceLocation biomeRegistryName = new ResourceLocation(biomeMod.getId() + ":" + netherBiome.getId());
+                        Biome biome = ForgeRegistries.BIOMES.getValue(biomeRegistryName);
 
                         if(biome == null)
                         {
                             continue;
                         }
 
-                        int weight = additionalBiome.getWeight();
-                        NetherBiome.OceanBlock oceanBlock = additionalBiome.getOceanBlock();
+                        NetherBiome.Block topBlock = netherBiome.getTopBlock();
+                        NetherBiome.Block fillerBlock = netherBiome.getFillerBlock();
+                        NetherBiome.Block oceanBlock = netherBiome.getOceanBlock();
+                        IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
-                        if(oceanBlock == null)
+                        if(topBlock != null)
                         {
-                            oceanBlock = new NetherBiome.OceanBlock("minecraft:air", 0);
+                            IBlockState state = Block.getBlockFromName(topBlock.getId().isEmpty() ? "minecraft:air" : topBlock.getId()).getStateFromMeta(topBlock.getMeta());
+                            biome.topBlock = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
+
+                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's top Block to " + ForgeRegistries.BLOCKS.getKey(biome.topBlock.getBlock()).toString() + " with a meta of " + biome.topBlock.getBlock().getMetaFromState(biome.topBlock) + ".");
+
+                        }
+                        if(fillerBlock != null)
+                        {
+                            IBlockState state = Block.getBlockFromName(fillerBlock.getId().isEmpty() ? "minecraft:air" : fillerBlock.getId()).getStateFromMeta(fillerBlock.getMeta());
+                            biome.fillerBlock = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
+
+                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's filler Block to " + ForgeRegistries.BLOCKS.getKey(biome.fillerBlock.getBlock()).toString() + " with a meta of " + biome.fillerBlock.getBlock().getMetaFromState(biome.fillerBlock) + ".");
+                        }
+                        if(oceanBlock != null)
+                        {
+                            IBlockState state = Block.getBlockFromName(oceanBlock.getId().isEmpty() ? "minecraft:air" : oceanBlock.getId()).getStateFromMeta(oceanBlock.getMeta());
+                            oceanState = state.getBlock() == Blocks.AIR ? oceanState : state;
+
+                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's ocean Block to " + ForgeRegistries.BLOCKS.getKey(oceanState.getBlock()).toString() + " with a meta of " + oceanState.getBlock().getMetaFromState(oceanState) + ".");
                         }
 
-                        Block block = Block.getBlockFromName(oceanBlock.getName().isEmpty() ? "minecraft:air" : oceanBlock.getName());
-                        int meta = oceanBlock.getMeta();
-                        IBlockState state = block.getStateFromMeta(meta);
-                        NetherBiomeType type = NetherBiomeType.getFromString(additionalBiome.getType());
+                        for(NetherBiomeEntity entity : netherBiome.getEntitySpawnList())
+                        {
+                            for(EnumCreatureType creatureType : EnumCreatureType.values())
+                            {
+                                if(creatureType.toString().equalsIgnoreCase(entity.getCreatureType()))
+                                {
+                                    Class<? extends Entity> cls = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entity.getId())).getEntityClass();
 
-                        NetherExBiomes.addBiome(biome, weight, state, type);
-                        LOGGER.info("The " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " was added to the Nether.");
+                                    if(cls != null && EntityLiving.class.isAssignableFrom(cls))
+                                    {
+                                        biome.getSpawnableList(creatureType).add(new Biome.SpawnListEntry((Class<? extends EntityLiving>) cls, entity.getWeight(), entity.getMinGroupCount(), entity.getMaxGroupCount()));
+                                        LOGGER.info("Added the " + entity.getId() + " Entity to the " + biome.getBiomeName() + " biome.");
+                                    }
+                                }
+                            }
+                        }
+
+                        NetherBiomeType.getFromString(netherBiome.getClimateType()).addBiome(biome, netherBiome.getWeight(), oceanState);
+                        LOGGER.info("Added the " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " to the Nether.");
                     }
                 }
             }

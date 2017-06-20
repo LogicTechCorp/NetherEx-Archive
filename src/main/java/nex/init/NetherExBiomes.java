@@ -17,7 +17,6 @@
 
 package nex.init;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -88,10 +87,5 @@ public class NetherExBiomes
         DimensionManager.registerDimension(-1, nether);
 
         LOGGER.info("The Nether has been overridden.");
-    }
-
-    public static void addBiome(Biome biome, int weight, IBlockState oceanBlock, NetherBiomeType type)
-    {
-        type.addBiome(biome, weight, oceanBlock);
     }
 }

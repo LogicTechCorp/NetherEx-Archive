@@ -19,7 +19,6 @@ package nex.world.biome;
 
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -31,8 +30,6 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.NetherEx;
 import nex.block.BlockBasalt;
 import nex.block.BlockNetherrack;
-import nex.entity.monster.EntityEmber;
-import nex.entity.neutral.EntitySalamander;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
@@ -70,13 +67,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     public BiomeTorridWasteland()
     {
         super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
-
-        spawnableMonsterList.add(new SpawnListEntry(EntitySalamander.class, 100, 3, 6));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEmber.class, 50, 4, 6));
-        spawnableMonsterList.add(new SpawnListEntry(EntityMagmaCube.class, 25, 4, 4));
-
-        topBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState();
     }
 
     @Override

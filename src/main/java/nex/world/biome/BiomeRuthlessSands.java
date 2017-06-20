@@ -19,8 +19,6 @@ package nex.world.biome;
 
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +31,6 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.NetherEx;
 import nex.block.BlockNetherrack;
 import nex.block.BlockThornstalk;
-import nex.entity.monster.EntitySpinout;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
@@ -74,13 +71,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     public BiomeRuthlessSands()
     {
         super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
-
-        topBlock = Blocks.SOUL_SAND.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY);
-
-        spawnableMonsterList.add(new SpawnListEntry(EntitySpinout.class, 100, 1, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityWitherSkeleton.class, 65, 1, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityPigZombie.class, 45, 1, 4));
     }
 
     @Override

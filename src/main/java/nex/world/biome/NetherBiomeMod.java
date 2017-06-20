@@ -21,12 +21,12 @@ import java.util.List;
 
 public class NetherBiomeMod
 {
-    private String name;
+    private String modId;
     private List<NetherBiome> biomes;
 
-    public String getName()
+    public String getId()
     {
-        return name;
+        return modId;
     }
 
     public List<NetherBiome> getBiomes()

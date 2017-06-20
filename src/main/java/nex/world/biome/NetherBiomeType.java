@@ -35,7 +35,7 @@ public enum NetherBiomeType
 {
     HOT,
     WARM,
-    NEUTRAL,
+    TEMPERATE,
     COOL,
     COLD;
 
@@ -59,7 +59,7 @@ public enum NetherBiomeType
             }
         }
 
-        return NEUTRAL;
+        return TEMPERATE;
     }
 
     public static NetherBiomeType getFromString(String string)
@@ -75,7 +75,7 @@ public enum NetherBiomeType
             }
         }
 
-        return NEUTRAL;
+        return TEMPERATE;
     }
 
     public static List<NetherBiomeEntry> getAllBiomes()

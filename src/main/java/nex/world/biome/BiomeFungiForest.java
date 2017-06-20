@@ -28,9 +28,6 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.NetherEx;
 import nex.block.BlockNetherrack;
-import nex.entity.monster.EntitySpore;
-import nex.entity.monster.EntitySporeCreeper;
-import nex.entity.neutral.EntityMogus;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
@@ -68,13 +65,6 @@ public class BiomeFungiForest extends BiomeNetherEx
     public BiomeFungiForest()
     {
         super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest");
-
-        spawnableMonsterList.add(new SpawnListEntry(EntityMogus.class, 100, 4, 6));
-        spawnableMonsterList.add(new SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntitySpore.class, 25, 1, 4));
-
-        topBlock = NetherExBlocks.BLOCK_HYPHAE.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
     }
 
     @Override

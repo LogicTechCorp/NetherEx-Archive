@@ -17,16 +17,21 @@
 
 package nex.world.biome;
 
+import java.util.List;
+
 public class NetherBiome
 {
-    private String name;
+    private String biomeId;
     private int weight;
-    private OceanBlock oceanBlock;
-    private String type;
+    private String climateType;
+    private Block topBlock;
+    private Block fillerBlock;
+    private Block oceanBlock;
+    private List<NetherBiomeEntity> entitySpawnList;
 
-    public String getName()
+    public String getId()
     {
-        return name;
+        return biomeId;
     }
 
     public int getWeight()
@@ -34,30 +39,45 @@ public class NetherBiome
         return weight;
     }
 
-    public OceanBlock getOceanBlock()
+    public String getClimateType()
+    {
+        return climateType;
+    }
+
+    public Block getTopBlock()
+    {
+        return topBlock;
+    }
+
+    public Block getFillerBlock()
+    {
+        return fillerBlock;
+    }
+
+    public Block getOceanBlock()
     {
         return oceanBlock;
     }
 
-    public String getType()
+    public List<NetherBiomeEntity> getEntitySpawnList()
     {
-        return type;
+        return entitySpawnList;
     }
 
-    public static class OceanBlock
+    public static class Block
     {
-        private String name;
+        private String blockId;
         private int meta;
 
-        public OceanBlock(String nameIn, int metaIn)
+        public Block()
         {
-            name = nameIn;
-            meta = metaIn;
+            blockId = "";
+            meta = 0;
         }
 
-        public String getName()
+        public String getId()
         {
-            return name;
+            return blockId;
         }
 
         public int getMeta()
