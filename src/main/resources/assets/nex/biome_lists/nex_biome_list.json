@@ -54,7 +54,7 @@
                     },
                     "fillerBlock": {
                         "blockId": "minecraft:netherrack",
-                        "meta": 1
+                        "meta": 0
                     },
                     "oceanBlock": {
                         "blockId": "minecraft:lava",

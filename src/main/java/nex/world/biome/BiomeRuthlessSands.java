@@ -17,9 +17,6 @@
 
 package nex.world.biome;
 
-import com.google.common.collect.Sets;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -30,7 +27,6 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.NetherEx;
 import nex.block.BlockNetherrack;
-import nex.block.BlockThornstalk;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
@@ -41,32 +37,22 @@ import nex.world.gen.feature.WorldGenThornstalk;
 import nex.world.gen.structure.WorldGenGroundStructure;
 
 import java.util.Random;
-import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
-    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
-            Blocks.SOUL_SAND.getDefaultState(),
-            NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY),
-            NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY),
-            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.TOP),
-            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.MIDDLE),
-            NetherExBlocks.PLANT_THORNSTALK.getDefaultState().withProperty(BlockThornstalk.PART, BlockThornstalk.EnumPart.BOTTOM)
-    );
-
     private final WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), false);
     private final WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private final WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private final WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY));
     private final WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY), true);
     private final WorldGenerator thornstalk = new WorldGenThornstalk();
-    private final WorldGenerator crypt = new WorldGenGroundStructure("ruthless_sands", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_RUTHLESS_SANDS});
-    private final WorldGenerator grave = new WorldGenGroundStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
-    private final WorldGenerator graveyard = new WorldGenGroundStructure("ruthless_sands", "graveyard", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_RUTHLESS_SANDS, NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("ruthless_sands", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator altar = new WorldGenGroundStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
-    private final WorldGenerator waypoint = new WorldGenGroundStructure("ruthless_sands", "waypoint", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private final WorldGenerator crypt = new WorldGenGroundStructure("ruthless_sands", "crypt", new String[]{""}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_RUTHLESS_SANDS});
+    private final WorldGenerator grave = new WorldGenGroundStructure("ruthless_sands", "grave", new String[]{"chest", "empty"}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
+    private final WorldGenerator graveyard = new WorldGenGroundStructure("ruthless_sands", "graveyard", new String[]{""}, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_RUTHLESS_SANDS, NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("ruthless_sands", "sarcophagus", new String[]{""}, new String[]{"wither_skeleton", NetherEx.MOD_ID + ":monster_spinout"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator altar = new WorldGenGroundStructure("ruthless_sands", "altar", new String[]{"intact", "ruined", "destroyed"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private final WorldGenerator waypoint = new WorldGenGroundStructure("ruthless_sands", "waypoint", new String[]{""}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
 
     public BiomeRuthlessSands()
     {
@@ -122,14 +108,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             }
         }
 
-        if(ConfigHandler.biome.ruthlessSands.generateThornstalk)
-        {
-            for(int i = 0; i < ConfigHandler.biome.ruthlessSands.thornstalkRarity; i++)
-            {
-                thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
-            }
-        }
-
         if(ConfigHandler.biome.ruthlessSands.generateCrypts)
         {
             if(rand.nextInt(ConfigHandler.biome.ruthlessSands.cryptRarity) == 0)
@@ -175,6 +153,14 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             if(rand.nextInt(ConfigHandler.biome.ruthlessSands.waypointRarity) == 0)
             {
                 waypoint.generate(world, rand, pos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.biome.ruthlessSands.generateThornstalk)
+        {
+            for(int i = 0; i < ConfigHandler.biome.ruthlessSands.thornstalkRarity; i++)
+            {
+                thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
             }
         }
 

@@ -18,7 +18,6 @@
 package nex.world.gen.structure;
 
 import com.google.common.collect.Lists;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
@@ -35,20 +34,16 @@ import nex.util.WorldGenUtil;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class WorldGenGroundStructure extends WorldGenerator
 {
-    private final Set<IBlockState> allowedBlocks;
     private final List<WeightedUtil.NamedItem> variants = Lists.newArrayList();
     private final ResourceLocation[] spawnerMobs;
     private final ResourceLocation[] lootTables;
 
-    public WorldGenGroundStructure(String biomeName, String structureName, String[] variantsIn, Set<IBlockState> allowedBlocksIn, String[] spawnerMobsIn, ResourceLocation[] lootTablesIn)
+    public WorldGenGroundStructure(String biomeName, String structureName, String[] variantsIn, String[] spawnerMobsIn, ResourceLocation[] lootTablesIn)
     {
-        allowedBlocks = allowedBlocksIn;
-
         if(!variantsIn[0].equals(""))
         {
             for(int i = 0; i < variantsIn.length; i++)
@@ -92,7 +87,7 @@ public class WorldGenGroundStructure extends WorldGenerator
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings, template.getSize());
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
-        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, allowedBlocks, structureSize, 0.8F);
+        BlockPos spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, structureSize, 0.8F);
 
         if(!spawnPos.equals(BlockPos.ORIGIN))
         {

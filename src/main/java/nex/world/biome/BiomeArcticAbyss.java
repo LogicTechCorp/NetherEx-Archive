@@ -17,8 +17,6 @@
 
 package nex.world.biome;
 
-import com.google.common.collect.Sets;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -42,32 +40,25 @@ import nex.world.gen.structure.WorldGenGroundStructure;
 import nex.world.gen.structure.WorldGenWallStructure;
 
 import java.util.Random;
-import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeArcticAbyss extends BiomeNetherEx
 {
-    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
-            NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY),
-            NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState(),
-            NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY)
-    );
-
     private final WorldGenerator fire = new WorldGenBlueFire(NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState());
     private final WorldGenerator glowstonePass1 = new WorldGenGlowStone();
     private final WorldGenerator glowstonePass2 = new WorldGenGlowStone();
     private final WorldGenerator quartzOre = new WorldGenMinableMeta(NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY), 14, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY));
     private final WorldGenerator rimeOre = new WorldGenMinableMeta(NetherExBlocks.ORE_RIME.getDefaultState(), 7, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY));
     private final WorldGenerator ichorPit = new WorldGenPit(NetherExBlocks.FLUID_ICHOR, NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState(), Blocks.MAGMA.getDefaultState());
-    private final WorldGenerator crypt = new WorldGenGroundStructure("arctic_abyss", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_ARCTIC_ABYSS});
-    private final WorldGenerator grave = new WorldGenGroundStructure("arctic_abyss", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
-    private final WorldGenerator graveyard = new WorldGenGroundStructure("arctic_abyss", "graveyard", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_ARCTIC_ABYSS, NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("arctic_abyss", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator crypt = new WorldGenGroundStructure("arctic_abyss", "crypt", new String[]{""}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_ARCTIC_ABYSS});
+    private final WorldGenerator grave = new WorldGenGroundStructure("arctic_abyss", "grave", new String[]{"chest", "empty"}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
+    private final WorldGenerator graveyard = new WorldGenGroundStructure("arctic_abyss", "graveyard", new String[]{""}, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_ARCTIC_ABYSS, NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("arctic_abyss", "sarcophagus", new String[]{""}, new String[]{"ghast", NetherEx.MOD_ID + ":monster_wight"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
     private final WorldGenerator fossil = new WorldGenWallStructure("arctic_abyss", "fossil", new String[]{"skull_huge_extinct", "skull_creeper_variant", "skull_creeper", "skull_extinct_variant", "skull_extinct", "jaw_extinct", "rib_huge_extinct", "rib_creeper", "rib_extinct", "leg_creeper_variant_2", "leg_creeper_variant", "leg_creeper", "leg_extinct_variant", "leg_extinct", "tail_huge_extinct", "tail_extinct", "fin_extinct"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
-    private final WorldGenerator prison = new WorldGenGroundStructure("arctic_abyss", "prison", new String[]{"large", "medium_variant", "medium", "small"}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_wight", NetherEx.MOD_ID + ":monster_bone_spider"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE, NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
+    private final WorldGenerator prison = new WorldGenGroundStructure("arctic_abyss", "prison", new String[]{"large", "medium_variant", "medium", "small"}, new String[]{"blaze", NetherEx.MOD_ID + ":monster_wight", NetherEx.MOD_ID + ":monster_bone_spider"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE, NetherExLootTables.CHEST_TEMPLE_ARCTIC_ABYSS, NetherExLootTables.CHEST_TEMPLE_RARE});
     private final WorldGenerator chainIsland = new WorldGenCeilingStructure("arctic_abyss", "chain", new String[]{"island_large", "island_medium", "island_small"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
     private final WorldGenerator hangingChain = new WorldGenCeilingStructure("arctic_abyss", "chain", new String[]{"hanging_long", "hanging_medium", "hanging_short"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
-    private final WorldGenerator fallenChain = new WorldGenGroundStructure("arctic_abyss", "chain", new String[]{"fallen_long", "fallen_medium", "fallen_short_variant", "fallen_short"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
+    private final WorldGenerator fallenChain = new WorldGenGroundStructure("arctic_abyss", "chain", new String[]{"fallen_long", "fallen_medium", "fallen_short_variant", "fallen_short"}, new String[]{""}, new ResourceLocation[]{LootTableList.EMPTY});
 
     public BiomeArcticAbyss()
     {

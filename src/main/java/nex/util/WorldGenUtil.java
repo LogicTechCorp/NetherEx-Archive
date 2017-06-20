@@ -50,10 +50,8 @@ import nex.entity.passive.EntityPigtificateLeader;
 import nex.tileentity.TileEntityUrnOfSorrow;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.UUID;
 
 @SuppressWarnings("ConstantConditions")
@@ -61,9 +59,8 @@ public class WorldGenUtil
 {
     private static final Field FIELD_BLOCKS = ReflectionHelper.findField(Template.class, "field_186270_a", "blocks");
     private static final Field FIELD_ENTITIES = ReflectionHelper.findField(Template.class, "field_186271_b", "entities");
-    private static final Method METHOD_ADD_ENTITIES_TO_WORLD = ReflectionHelper.findMethod(Template.class, "addEntitiesToWorld", "func_186263_a", World.class, BlockPos.class, Mirror.class, Rotation.class, StructureBoundingBox.class);
 
-    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, Set<IBlockState> allowedBlocks, BlockPos structureSize, float percentage)
+    public static BlockPos getSuitableGroundPos(World world, BlockPos pos, BlockPos structureSize, float percentage)
     {
         label_while:
         while(pos.getY() > 32)
@@ -83,12 +80,9 @@ public class WorldGenUtil
                     BlockPos newPos = pos.add(posX, 0, posZ);
                     IBlockState state = world.getBlockState(newPos);
 
-                    if(allowedBlocks.contains(state))
+                    if(!world.getBlockState(newPos).getMaterial().isReplaceable() && !world.getBlockState(newPos.down()).getMaterial().isReplaceable() && world.getBlockState(newPos.up()).getMaterial().isReplaceable())
                     {
-                        if(world.getBlockState(newPos.up()).getMaterial().isReplaceable() && !world.getBlockState(newPos.down()).getMaterial().isReplaceable())
-                        {
-                            topBlocks++;
-                        }
+                        topBlocks++;
                     }
                     else if(state != Blocks.AIR.getDefaultState())
                     {

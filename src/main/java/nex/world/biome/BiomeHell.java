@@ -17,8 +17,6 @@
 
 package nex.world.biome;
 
-import com.google.common.collect.Sets;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -34,17 +32,10 @@ import nex.world.gen.feature.*;
 import nex.world.gen.structure.WorldGenGroundStructure;
 
 import java.util.Random;
-import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeHell extends BiomeNetherEx
 {
-    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
-            Blocks.NETHERRACK.getDefaultState(),
-            Blocks.QUARTZ_ORE.getDefaultState(),
-            Blocks.MAGMA.getDefaultState()
-    );
-
     private final WorldGenerator lavaSpring = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), false);
     private final WorldGenerator fire = new WorldGenFire(Blocks.NETHERRACK.getDefaultState());
     private final WorldGenerator glowstonePass1 = new WorldGenGlowStone();
@@ -55,12 +46,12 @@ public class BiomeHell extends BiomeNetherEx
     private final WorldGenerator amethystOre = new WorldGenMinableMeta(NetherExBlocks.ORE_AMETHYST.getDefaultState(), 3, Blocks.NETHERRACK.getDefaultState());
     private final WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, Blocks.NETHERRACK.getDefaultState());
     private final WorldGenerator lavaTrap = new WorldGenLava(Blocks.NETHERRACK.getDefaultState(), true);
-    private final WorldGenerator crypt = new WorldGenGroundStructure("hell", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_BASE});
-    private final WorldGenerator grave = new WorldGenGroundStructure("hell", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
-    private final WorldGenerator graveyard = new WorldGenGroundStructure("hell", "graveyard", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("hell", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator mausoleum = new WorldGenGroundStructure("hell", "mausoleum", new String[]{""}, allowedBlocks, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator village = new WorldGenGroundStructure("hell", "village_pigtificate", new String[]{"huge", "large_variant", "large", "medium_variant_2", "medium_variant", "medium", "small_variant_2", "small_variant", "small", "tiny_variant_3", "tiny_variant_2", "tiny_variant", "tiny"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_VILLAGE_BASE, NetherExLootTables.CHEST_TEMPLE_BASE, NetherExLootTables.CHEST_TEMPLE_RARE});
+    private final WorldGenerator crypt = new WorldGenGroundStructure("hell", "crypt", new String[]{""}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_BASE});
+    private final WorldGenerator grave = new WorldGenGroundStructure("hell", "grave", new String[]{"chest", "empty"}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
+    private final WorldGenerator graveyard = new WorldGenGroundStructure("hell", "graveyard", new String[]{""}, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("hell", "sarcophagus", new String[]{""}, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator mausoleum = new WorldGenGroundStructure("hell", "mausoleum", new String[]{""}, new String[]{"zombie_pigman", "magma_cube"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator village = new WorldGenGroundStructure("hell", "village_pigtificate", new String[]{"huge", "large_variant", "large", "medium_variant_2", "medium_variant", "medium", "small_variant_2", "small_variant", "small", "tiny_variant_3", "tiny_variant_2", "tiny_variant", "tiny"}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_VILLAGE_BASE, NetherExLootTables.CHEST_TEMPLE_BASE, NetherExLootTables.CHEST_TEMPLE_RARE});
 
     public BiomeHell()
     {

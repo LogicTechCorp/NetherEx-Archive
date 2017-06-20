@@ -17,8 +17,6 @@
 
 package nex.world.biome;
 
-import com.google.common.collect.Sets;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -28,8 +26,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import nex.NetherEx;
-import nex.block.BlockBasalt;
-import nex.block.BlockNetherrack;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExLootTables;
@@ -37,18 +33,10 @@ import nex.world.gen.feature.*;
 import nex.world.gen.structure.WorldGenGroundStructure;
 
 import java.util.Random;
-import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeTorridWasteland extends BiomeNetherEx
 {
-    private final Set<IBlockState> allowedBlocks = Sets.newHashSet(
-            Blocks.MAGMA.getDefaultState(),
-            NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY),
-            NetherExBlocks.BLOCK_BASALT.getDefaultState().withProperty(BlockBasalt.TYPE, BlockBasalt.EnumType.NORMAL),
-            NetherExBlocks.ORE_QUARTZ.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY)
-    );
-
     private final WorldGenerator lavaSpring = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), false);
     private final WorldGenerator fire = new WorldGenFire(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
     private final WorldGenerator glowstonePass1 = new WorldGenGlowStone();
@@ -58,11 +46,11 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     private final WorldGenerator magma = new WorldGenMinableMeta(Blocks.MAGMA.getDefaultState(), 32, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState());
     private final WorldGenerator lavaTrap = new WorldGenLava(NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), true);
     private final WorldGenerator lavaPit = new WorldGenPit(Blocks.LAVA, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState());
-    private final WorldGenerator crypt = new WorldGenGroundStructure("torrid_wasteland", "crypt", new String[]{""}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_TORRID_WASTELAND});
-    private final WorldGenerator grave = new WorldGenGroundStructure("torrid_wasteland", "grave", new String[]{"chest", "empty"}, allowedBlocks, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
-    private final WorldGenerator graveyard = new WorldGenGroundStructure("torrid_wasteland", "graveyard", new String[]{""}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_TORRID_WASTELAND, NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("torrid_wasteland", "sarcophagus", new String[]{""}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
-    private final WorldGenerator pyramid = new WorldGenGroundStructure("torrid_wasteland", "pyramid", new String[]{"advanced", "hard", "medium", "easy"}, allowedBlocks, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_TORRID_WASTELAND, NetherExLootTables.CHEST_TEMPLE_RARE});
+    private final WorldGenerator crypt = new WorldGenGroundStructure("torrid_wasteland", "crypt", new String[]{""}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_TORRID_WASTELAND});
+    private final WorldGenerator grave = new WorldGenGroundStructure("torrid_wasteland", "grave", new String[]{"chest", "empty"}, new String[]{""}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE});
+    private final WorldGenerator graveyard = new WorldGenGroundStructure("torrid_wasteland", "graveyard", new String[]{""}, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_BASE, NetherExLootTables.CHEST_GRAVE_TORRID_WASTELAND, NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator sarcophagus = new WorldGenGroundStructure("torrid_wasteland", "sarcophagus", new String[]{""}, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, new ResourceLocation[]{NetherExLootTables.CHEST_GRAVE_RARE});
+    private final WorldGenerator pyramid = new WorldGenGroundStructure("torrid_wasteland", "pyramid", new String[]{"advanced", "hard", "medium", "easy"}, new String[]{"blaze", NetherEx.MOD_ID + ":monster_ember"}, new ResourceLocation[]{NetherExLootTables.CHEST_TEMPLE_TORRID_WASTELAND, NetherExLootTables.CHEST_TEMPLE_RARE});
 
     public BiomeTorridWasteland()
     {
