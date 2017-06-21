@@ -18,7 +18,10 @@
 package nex.world.biome;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
 import net.minecraft.block.Block;
@@ -28,10 +31,13 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
 import nex.util.FileUtil;
+import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +45,8 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
 public class NetherBiomeManager
@@ -79,11 +87,11 @@ public class NetherBiomeManager
             for(File netherBiomeFile : netherBiomeFiles)
             {
                 String jsonText = Files.toString(netherBiomeFile, Charsets.UTF_8);
-                NetherBiomeList biomeList = gson.fromJson(jsonText, NetherBiomeList.class);
+                NetherBiome.BiomeList biomeList = gson.fromJson(jsonText, NetherBiome.BiomeList.class);
 
                 LOGGER.info("Adding biomes from the " + biomeList.getName() + ".");
 
-                for(NetherBiomeMod biomeMod : biomeList.getMods())
+                for(NetherBiome.Mod biomeMod : biomeList.getMods())
                 {
                     for(NetherBiome netherBiome : biomeMod.getBiomes())
                     {
@@ -95,9 +103,9 @@ public class NetherBiomeManager
                             continue;
                         }
 
-                        NetherBiome.Block topBlock = netherBiome.getTopBlock();
-                        NetherBiome.Block fillerBlock = netherBiome.getFillerBlock();
-                        NetherBiome.Block oceanBlock = netherBiome.getOceanBlock();
+                        NetherBiome.BiomeBlock topBlock = netherBiome.getTopBlock();
+                        NetherBiome.BiomeBlock fillerBlock = netherBiome.getFillerBlock();
+                        NetherBiome.BiomeBlock oceanBlock = netherBiome.getOceanBlock();
                         IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
                         if(topBlock != null)
@@ -123,7 +131,7 @@ public class NetherBiomeManager
                             LOGGER.info("Set the " + biome.getBiomeName() + " biome's ocean Block to " + ForgeRegistries.BLOCKS.getKey(oceanState.getBlock()).toString() + " with a meta of " + oceanState.getBlock().getMetaFromState(oceanState) + ".");
                         }
 
-                        for(NetherBiomeEntity entity : netherBiome.getEntitySpawnList())
+                        for(NetherBiome.BiomeEntity entity : netherBiome.getEntitySpawnList())
                         {
                             for(EnumCreatureType creatureType : EnumCreatureType.values())
                             {
@@ -140,7 +148,7 @@ public class NetherBiomeManager
                             }
                         }
 
-                        NetherBiomeType.getFromString(netherBiome.getClimateType()).addBiome(biome, netherBiome.getWeight(), oceanState);
+                        NetherBiomeManager.NetherBiomeType.getFromString(netherBiome.getClimateType()).addBiome(biome, netherBiome.getWeight(), oceanState);
                         LOGGER.info("Added the " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " to the Nether.");
                     }
                 }
@@ -150,6 +158,118 @@ public class NetherBiomeManager
         {
             LOGGER.fatal("NetherEx was unable to read the Biome lists.");
             LOGGER.fatal(e);
+        }
+    }
+
+    public enum NetherBiomeType
+    {
+        HOT,
+        WARM,
+        TEMPERATE,
+        COOL,
+        COLD;
+
+        private static final Map<Biome, NetherBiomeEntry> biomes = Maps.newHashMap();
+
+        public void addBiome(Biome biome, int weight, IBlockState state)
+        {
+            biomes.put(biome, new NetherBiomeManager.NetherBiomeEntry(biome, weight, state));
+        }
+
+        public static NetherBiomeManager.NetherBiomeType getTypeFromBiome(Biome biome)
+        {
+            for(NetherBiomeManager.NetherBiomeType type : values())
+            {
+                for(NetherBiomeManager.NetherBiomeEntry entry : type.getBiomes())
+                {
+                    if(entry.biome == biome)
+                    {
+                        return type;
+                    }
+                }
+            }
+
+            return TEMPERATE;
+        }
+
+        public static NetherBiomeManager.NetherBiomeType getFromString(String string)
+        {
+            if(!Strings.isNullOrEmpty(string))
+            {
+                for(NetherBiomeManager.NetherBiomeType type : values())
+                {
+                    if(type.name().equalsIgnoreCase(string))
+                    {
+                        return type;
+                    }
+                }
+            }
+
+            return TEMPERATE;
+        }
+
+        public static List<NetherBiomeManager.NetherBiomeEntry> getAllBiomes()
+        {
+            List<NetherBiomeManager.NetherBiomeEntry> biomes = Lists.newArrayList();
+
+            for(NetherBiomeManager.NetherBiomeType type : values())
+            {
+                biomes.addAll(type.getBiomes());
+            }
+
+            return biomes;
+        }
+
+        public static Biome getRandomBiome(List<NetherBiomeManager.NetherBiomeEntry> biomes, Random rand)
+        {
+            return WeightedRandom.getRandomItem(biomes, rand.nextInt(WeightedRandom.getTotalWeight(biomes))).getBiome();
+        }
+
+        public static Biome getRandomBiome(List<NetherBiomeManager.NetherBiomeEntry> biomes, GenLayerNetherEx layer)
+        {
+            return WeightedRandom.getRandomItem(biomes, layer.nextInt(WeightedRandom.getTotalWeight(biomes))).getBiome();
+        }
+
+        public List<NetherBiomeManager.NetherBiomeEntry> getBiomes()
+        {
+            return ImmutableList.copyOf(biomes.values());
+        }
+
+        public IBlockState getBiomeOceanBlock(Biome biome)
+        {
+            if(biomes.containsKey(biome))
+            {
+                return biomes.get(biome).getOceanBlock();
+            }
+
+            return Blocks.LAVA.getDefaultState();
+        }
+    }
+
+    public static class NetherBiomeEntry extends BiomeManager.BiomeEntry
+    {
+        private final IBlockState oceanBlock;
+
+        public NetherBiomeEntry(Biome biome, int weight, IBlockState oceanBlockIn)
+        {
+            super(biome, weight <= 0 ? 10 : weight);
+
+            oceanBlock = oceanBlockIn;
+        }
+
+        public Biome getBiome()
+        {
+            return biome;
+        }
+
+        public int getWeight()
+        {
+            return itemWeight;
+        }
+
+        public IBlockState getOceanBlock()
+        {
+            return oceanBlock;
         }
     }
 }

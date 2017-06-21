@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import nex.entity.ai.EntityAIPigtificateInteract;
 import nex.entity.ai.EntityAIPigtificateLookAtTradePlayer;
 import nex.entity.ai.EntityAIPigtificateTradePlayer;
-import nex.village.TradeProfession;
+import nex.village.Trade;
 
 public class EntityPigtificateLeader extends EntityPigtificate
 {
@@ -58,7 +58,7 @@ public class EntityPigtificateLeader extends EntityPigtificate
     @Override
     protected void setRandomProfession()
     {
-        setProfession(TradeProfession.EnumType.getRandom(rand, true).ordinal());
+        setProfession(Trade.Profession.EnumType.getRandom(rand, true).ordinal());
         setRandomCareer();
     }
 

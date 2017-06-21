@@ -42,22 +42,22 @@ import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings("ConstantConditions")
-public class TradeListManager
+public class TradeManager
 {
-    private static HashMap<TradeCareer.EnumType, HashMap<Integer, List<Trade>>> offerLists = Maps.newHashMap();
+    private static HashMap<Trade.Career.EnumType, HashMap<Integer, List<Trade>>> offerLists = Maps.newHashMap();
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeListManager");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeManager");
 
     public static void init(File directory)
     {
-        for(TradeCareer.EnumType career : TradeCareer.EnumType.values())
+        for(Trade.Career.EnumType career : Trade.Career.EnumType.values())
         {
             offerLists.put(career, Maps.newHashMap());
         }
 
         try
         {
-            LOGGER.info("Copying the Trade List Directory to the config folder.");
+            LOGGER.info("Copying the Trade. List Directory to the config folder.");
 
             if(NetherEx.IS_DEV_ENV)
             {
@@ -70,7 +70,7 @@ public class TradeListManager
         }
         catch(IOException e)
         {
-            LOGGER.fatal("The attempt to copy the Trade List Directory to the config folder was unsuccessful.");
+            LOGGER.fatal("The attempt to copy the Trade. List Directory to the config folder was unsuccessful.");
             LOGGER.fatal(e);
         }
 
@@ -82,23 +82,22 @@ public class TradeListManager
             for(File tradeFile : tradeFiles)
             {
                 String jsonText = Files.toString(tradeFile, Charsets.UTF_8);
-                TradeList tradeList = gson.fromJson(jsonText, TradeList.class);
+                Trade.TradeList tradeList = gson.fromJson(jsonText, Trade.TradeList.class);
 
                 LOGGER.info("Adding trades from the " + tradeList.getName() + ".");
 
-                for(TradeProfession profession : tradeList.getProfessions())
+                for(Trade.Profession profession : tradeList.getProfessions())
                 {
-                    for(TradeCareer career : profession.getCareers())
+                    for(Trade.Career career : profession.getCareers())
                     {
-                        for(TradeOffer offer : career.getTrades())
+                        for(Trade.Offer offer : career.getTrades())
                         {
                             ItemStack outputStack;
-                            TradeOffer.Output output = offer.getOutput();
-                            String outputId = output.getName();
+                            Trade.Offer.Output output = offer.getOutput();
+                            String outputId = output.getId();
                             int outputMeta = output.getMeta();
-                            TradeOffer.Amount outputAmount = output.getAmount();
-                            List<TradeOffer.Enchantment> outputEnchantments = output.getEnchantments();
-                            TradeOffer.Display outputDisplay = output.getDisplay();
+                            List<Trade.Offer.Enchantment> outputEnchantments = output.getEnchantments();
+                            Trade.Offer.Display outputDisplay = output.getDisplay();
 
                             if(Item.getByNameOrId(outputId) != null)
                             {
@@ -143,10 +142,9 @@ public class TradeListManager
                             }
 
                             ItemStack inputStackA;
-                            TradeOffer.Input inputA = offer.getInputA();
-                            String inputAId = inputA.getName();
+                            Trade.Offer.Input inputA = offer.getInputA();
+                            String inputAId = inputA.getId();
                             int inputAMeta = inputA.getMeta();
-                            TradeOffer.Amount inputAAmount = inputA.getAmount();
 
                             if(Item.getByNameOrId(inputAId) != null)
                             {
@@ -162,16 +160,15 @@ public class TradeListManager
                             }
 
                             ItemStack inputStackB;
-                            TradeOffer.Input inputB = offer.getInputB();
+                            Trade.Offer.Input inputB = offer.getInputB();
 
                             if(inputB == null)
                             {
-                                inputB = new TradeOffer.Input("minecraft:air", 0, new TradeOffer.Amount(1, 1));
+                                inputB = new Trade.Offer.Input();
                             }
 
-                            String inputBId = inputB.getName();
+                            String inputBId = inputB.getId();
                             int inputBMeta = inputB.getMeta();
-                            TradeOffer.Amount inputBAmount = inputB.getAmount();
 
                             if(Item.getByNameOrId(inputBId) != null)
                             {
@@ -186,9 +183,8 @@ public class TradeListManager
                                 continue;
                             }
 
-                            TradeOffer.Amount offerAmount = offer.getAmount();
-                            Trade trade = new Trade(outputStack, outputAmount, inputStackA, inputAAmount, inputStackB, inputBAmount, offerAmount, outputEnchantments);
-                            offerLists.get(TradeCareer.EnumType.fromCareer(career)).computeIfAbsent(offer.getLevel(), k -> Lists.newArrayList()).add(trade);
+                            Trade trade = new Trade(outputStack, output.getMinStackSize(), output.getMaxStackSize(), inputStackA, inputA.getMinStackSize(), inputA.getMaxStackSize(), inputStackB, inputB.getMinStackSize(), inputB.getMaxStackSize(), offer.getMinTradesAvailable(), offer.getMaxTradesAvailable(), outputEnchantments);
+                            offerLists.get(Trade.Career.EnumType.fromCareer(career)).computeIfAbsent(offer.getLevel(), k -> Lists.newArrayList()).add(trade);
                         }
                     }
                 }
@@ -196,12 +192,12 @@ public class TradeListManager
         }
         catch(IOException e)
         {
-            LOGGER.fatal("NetherEx was unable to read the Trade lists.");
+            LOGGER.fatal("NetherEx was unable to read the Trade. lists.");
             LOGGER.fatal(e);
         }
     }
 
-    public static List<Trade> getTrades(TradeCareer.EnumType type, int level)
+    public static List<Trade> getTrades(Trade.Career.EnumType type, int level)
     {
         List<Trade> trades = Lists.newArrayList();
 

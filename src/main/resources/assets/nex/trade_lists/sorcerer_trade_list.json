@@ -8,86 +8,96 @@
                     "name": "enchanter",
                     "trades": [
                         {
-                            "output": { "name": "minecraft:book", "meta": 0, "amount": { "min": 1, "max": 1 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 5, "max": 10 } },
-                            "amount": { "min": 2, "max": 8 },
+                            "output": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 5, "maxStackSize": 10 },
+                            "minTradesAvailable": 2,
+                            "maxTradesAvailable": 8,
                             "level": 1
                         },
                         {
-                            "output": { "name": "minecraft:glowstone_dust", "meta": 0, "amount": { "min": 3, "max": 6 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
-                            "amount": { "min": 4, "max": 8 },
+                            "output": { "itemId": "minecraft:glowstone_dust", "meta": 0, "minStackSize": 3, "maxStackSize": 6 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "minTradesAvailable": 4,
+                            "maxTradesAvailable": 8,
                             "level": 1
                         },
                         {
-                            "output": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
-                            "inputA": { "name": "minecraft:blaze_rod", "meta": 0, "amount": { "min": 4, "max": 8 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "output": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "inputA": { "itemId": "minecraft:blaze_rod", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 1
                         },
                         {
                             "output": {
-                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "name": "minecraft:unbreaking", "amount": { "min": 1, "max": 2 } } ]
+                                "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
+                                "enchantments": [ { "name": "minecraft:unbreaking", "minLevel": 1, "maxLevel": 2 } ]
                             },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 8, "max": 32 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 8, "maxStackSize": 32 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
                             "output": {
-                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "name": "minecraft:protection", "amount": { "min": 1, "max": 3 } } ]
+                                "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
+                                "enchantments": [ { "name": "minecraft:protection", "minLevel": 1, "maxLevel": 3 } ]
                             },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
-                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 8, "max": 32 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
+                            "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 8, "maxStackSize": 32 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
                             "output": {
-                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "name": "minecraft:sharpness", "amount": { "min": 1, "max": 4 } } ]
+                                "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
+                                "enchantments": [ { "name": "minecraft:sharpness", "minLevel": 1, "maxLevel": 4 } ]
                             },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
-                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 8, "max": 32 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
+                            "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 8, "maxStackSize": 32 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
                             "output": {
-                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "name": "minecraft:fire_protection", "amount": { "min": 1, "max": 4 } } ]
+                                "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
+                                "enchantments": [ { "name": "minecraft:fire_protection", "minLevel": 1, "maxLevel": 4 } ]
                             },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
-                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 16, "max": 48 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
+                            "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 16, "maxStackSize": 48 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
                             "output": {
-                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "name": "minecraft:fortune", "amount": { "min": 1, "max": 3 } } ]
+                                "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
+                                "enchantments": [ { "name": "minecraft:fortune", "minLevel": 1, "maxLevel": 3 } ]
                             },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
-                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 24, "max": 64 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
+                            "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 24, "maxStackSize": 64 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
                             "output": {
-                                "name": "minecraft:enchanted_book", "meta": 0, "amount": { "min": 1, "max": 1 },
-                                "enchantments": [ { "name": "minecraft:looting", "amount": { "min": 1, "max": 1 } } ]
+                                "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
+                                "enchantments": [ { "name": "minecraft:looting", "minLevel": 1, "maxLevel": 1 } ]
                             },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 4, "max": 8 } },
-                            "inputB": { "name": "minecraft:book", "meta": 0, "amount": { "min": 24, "max": 64 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
+                            "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 24, "maxStackSize": 64 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
-                            "output": { "name": "minecraft:experiance_bottle", "meta": 0, "amount": { "min": 1, "max": 3 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 6, "max": 16 } },
-                            "amount": { "min": 1, "max": 2 },
+                            "output": { "itemId": "minecraft:experiance_bottle", "meta": 0, "minStackSize": 1, "maxStackSize": 3 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 6, "maxStackSize": 16 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 2,
                             "level": 3
                         }
                     ]
@@ -96,39 +106,45 @@
                     "name": "brewer",
                     "trades": [
                         {
-                            "output": { "name": "nex:item_spore", "meta": 0, "amount": { "min": 2, "max": 5 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
-                            "amount": { "min": 1, "max": 8 },
+                            "output": { "itemId": "nex:item_spore", "meta": 0, "minStackSize": 2, "maxStackSize": 5 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 8,
                             "level": 1
                         },
                         {
-                            "output": { "name": "minecraft:magma_cream", "meta": 0, "amount": { "min": 1, "max": 1 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 2 } },
-                            "amount": { "min": 2, "max": 4 },
+                            "output": { "itemId": "minecraft:magma_cream", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 1, "maxStackSize": 2 },
+                            "minTradesAvailable": 2,
+                            "maxTradesAvailable": 4,
                             "level": 1
                         },
                         {
-                            "output": { "name": "minecraft:glass_bottle", "meta": 0, "amount": { "min": 3, "max": 6 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 1, "max": 1 } },
-                            "amount": { "min": 4, "max": 8 },
+                            "output": { "itemId": "minecraft:glass_bottle", "meta": 0, "minStackSize": 3, "maxStackSize": 6 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "minTradesAvailable": 4,
+                            "maxTradesAvailable": 8,
                             "level": 1
                         },
                         {
-                            "output": { "name": "minecraft:blaze_powder", "meta": 0, "amount": { "min": 1, "max": 2 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 6, "max": 12 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "output": { "itemId": "minecraft:blaze_powder", "meta": 0, "minStackSize": 1, "maxStackSize": 2 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 6, "maxStackSize": 12 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
-                            "output": { "name": "minecraft:nether_wart", "meta": 0, "amount": { "min": 1, "max": 6 } },
-                            "inputA": { "name": "nex:item_crystal_amethyst", "meta": 0, "amount": { "min": 3, "max": 4 } },
-                            "amount": { "min": 1, "max": 4 },
+                            "output": { "itemId": "minecraft:nether_wart", "meta": 0, "minStackSize": 1, "maxStackSize": 6 },
+                            "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 3, "maxStackSize": 4 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 4,
                             "level": 2
                         },
                         {
-                            "output": { "name": "minecraft:speckled_melon", "meta": 0, "amount": { "min": 1, "max": 1 } },
-                            "inputA": { "name": "nex:block_amethyst", "meta": 0, "amount": { "min": 1, "max": 2 } },
-                            "amount": { "min": 1, "max": 2 },
+                            "output": { "itemId": "minecraft:speckled_melon", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "inputA": { "itemId": "nex:block_amethyst", "meta": 0, "minStackSize": 1, "maxStackSize": 2 },
+                            "minTradesAvailable": 1,
+                            "maxTradesAvailable": 2,
                             "level": 3
                         }
                     ]

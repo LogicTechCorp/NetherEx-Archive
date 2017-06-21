@@ -49,7 +49,10 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
-import nex.village.*;
+import nex.village.PigtificateVillage;
+import nex.village.PigtificateVillageManager;
+import nex.village.Trade;
+import nex.village.TradeManager;
 
 import java.util.Collections;
 import java.util.List;
@@ -474,14 +477,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         else
         {
             String entityName = EntityList.getEntityString(this);
-            return I18n.translateToLocal("entity." + entityName + "." + TradeCareer.EnumType.fromIndex(getCareer()).name().toLowerCase() + ".name");
+            return I18n.translateToLocal("entity." + entityName + "." + Trade.Career.EnumType.fromIndex(getCareer()).name().toLowerCase() + ".name");
         }
     }
 
     @Override
     protected ResourceLocation getLootTable()
     {
-        return TradeCareer.EnumType.fromIndex(getCareer()).getLootTable();
+        return Trade.Career.EnumType.fromIndex(getCareer()).getLootTable();
     }
 
     @Override
@@ -578,7 +581,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             tradeList = new MerchantRecipeList();
         }
 
-        List<Trade> trades = TradeListManager.getTrades(TradeCareer.EnumType.fromIndex(getCareer()), getCareerLevel());
+        List<Trade> trades = TradeManager.getTrades(Trade.Career.EnumType.fromIndex(getCareer()), getCareerLevel());
 
         if(trades.size() > 0)
         {
@@ -705,23 +708,23 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     protected void setRandomProfession()
     {
-        setProfession(TradeProfession.EnumType.getRandom(rand, false).ordinal());
+        setProfession(Trade.Profession.EnumType.getRandom(rand, false).ordinal());
         setRandomCareer();
     }
 
     protected void setRandomCareer()
     {
-        List<TradeCareer.Weighted> careers = Lists.newArrayList();
+        List<Trade.Career.Weighted> careers = Lists.newArrayList();
 
-        for(TradeCareer.EnumType type : TradeCareer.EnumType.values())
+        for(Trade.Career.EnumType type : Trade.Career.EnumType.values())
         {
-            if(type.getProfession() == TradeProfession.EnumType.fromIndex(getProfession()))
+            if(type.getProfession() == Trade.Profession.EnumType.fromIndex(getProfession()))
             {
-                careers.add(new TradeCareer.Weighted(type));
+                careers.add(new Trade.Career.Weighted(type));
             }
         }
 
-        TradeCareer.Weighted career = WeightedRandom.getRandomItem(rand, careers);
+        Trade.Career.Weighted career = WeightedRandom.getRandomItem(rand, careers);
         setCareer(career.getType().ordinal());
     }
 
@@ -731,9 +734,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         {
             i = 0;
         }
-        else if(i > TradeProfession.EnumType.values().length)
+        else if(i > Trade.Profession.EnumType.values().length)
         {
-            i = TradeProfession.EnumType.values().length;
+            i = Trade.Profession.EnumType.values().length;
         }
 
         profession = i;

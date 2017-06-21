@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import nex.handler.RemapHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
-import nex.village.TradeListManager;
+import nex.village.TradeManager;
 import nex.world.biome.NetherBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -70,7 +70,7 @@ public class NetherEx
 
         NetherExEntities.init();
         NetherExBiomes.init();
-        TradeListManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trade Lists"));
+        TradeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trade Lists"));
         NetherBiomeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Biome Lists"));
         proxy.preInit();
 
