@@ -106,22 +106,23 @@ public class NetherBiomeManager
                         NetherBiome.BiomeBlock topBlock = netherBiome.getTopBlock();
                         NetherBiome.BiomeBlock fillerBlock = netherBiome.getFillerBlock();
                         NetherBiome.BiomeBlock oceanBlock = netherBiome.getOceanBlock();
+                        IBlockState topState = Blocks.NETHERRACK.getDefaultState();
+                        IBlockState fillerState = Blocks.NETHERRACK.getDefaultState();
                         IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
                         if(topBlock != null)
                         {
                             IBlockState state = Block.getBlockFromName(topBlock.getId().isEmpty() ? "minecraft:air" : topBlock.getId()).getStateFromMeta(topBlock.getMeta());
-                            biome.topBlock = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
+                            topState = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
 
-                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's top Block to " + ForgeRegistries.BLOCKS.getKey(biome.topBlock.getBlock()).toString() + " with a meta of " + biome.topBlock.getBlock().getMetaFromState(biome.topBlock) + ".");
-
+                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's top Block to " + ForgeRegistries.BLOCKS.getKey(topState.getBlock()).toString() + " with a meta of " + topState.getBlock().getMetaFromState(topState) + ".");
                         }
                         if(fillerBlock != null)
                         {
                             IBlockState state = Block.getBlockFromName(fillerBlock.getId().isEmpty() ? "minecraft:air" : fillerBlock.getId()).getStateFromMeta(fillerBlock.getMeta());
-                            biome.fillerBlock = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
+                            fillerState = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
 
-                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's filler Block to " + ForgeRegistries.BLOCKS.getKey(biome.fillerBlock.getBlock()).toString() + " with a meta of " + biome.fillerBlock.getBlock().getMetaFromState(biome.fillerBlock) + ".");
+                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's filler Block to " + ForgeRegistries.BLOCKS.getKey(fillerState.getBlock()).toString() + " with a meta of " + fillerState.getBlock().getMetaFromState(fillerState) + ".");
                         }
                         if(oceanBlock != null)
                         {
@@ -130,6 +131,8 @@ public class NetherBiomeManager
 
                             LOGGER.info("Set the " + biome.getBiomeName() + " biome's ocean Block to " + ForgeRegistries.BLOCKS.getKey(oceanState.getBlock()).toString() + " with a meta of " + oceanState.getBlock().getMetaFromState(oceanState) + ".");
                         }
+
+                        Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList = Maps.newHashMap();
 
                         for(NetherBiome.BiomeEntity entity : netherBiome.getEntitySpawnList())
                         {
@@ -141,14 +144,19 @@ public class NetherBiomeManager
 
                                     if(cls != null && EntityLiving.class.isAssignableFrom(cls))
                                     {
-                                        biome.getSpawnableList(creatureType).add(new Biome.SpawnListEntry((Class<? extends EntityLiving>) cls, entity.getWeight(), entity.getMinGroupCount(), entity.getMaxGroupCount()));
+                                        if(!entitySpawnList.containsKey(creatureType))
+                                        {
+                                            entitySpawnList.put(creatureType, Lists.newArrayList());
+                                        }
+
+                                        entitySpawnList.get(creatureType).add(new Biome.SpawnListEntry((Class<? extends EntityLiving>) cls, entity.getWeight(), entity.getMinGroupCount(), entity.getMaxGroupCount()));
                                         LOGGER.info("Added the " + entity.getId() + " Entity to the " + biome.getBiomeName() + " biome.");
                                     }
                                 }
                             }
                         }
 
-                        NetherBiomeManager.NetherBiomeType.getFromString(netherBiome.getClimateType()).addBiome(biome, netherBiome.getWeight(), oceanState);
+                        NetherBiomeManager.NetherBiomeType.getFromString(netherBiome.getClimateType()).addBiome(biome, netherBiome.getWeight(), topState, fillerState, oceanState, entitySpawnList);
                         LOGGER.info("Added the " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " to the Nether.");
                     }
                 }
@@ -171,9 +179,9 @@ public class NetherBiomeManager
 
         private static final Map<Biome, NetherBiomeEntry> biomes = Maps.newHashMap();
 
-        public void addBiome(Biome biome, int weight, IBlockState state)
+        public void addBiome(Biome biome, int weight, IBlockState topBlock, IBlockState fillerBlock, IBlockState oceanBlock, Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList)
         {
-            biomes.put(biome, new NetherBiomeManager.NetherBiomeEntry(biome, weight, state));
+            biomes.put(biome, new NetherBiomeManager.NetherBiomeEntry(biome, weight, topBlock, fillerBlock, oceanBlock, entitySpawnList));
         }
 
         public static NetherBiomeManager.NetherBiomeType getTypeFromBiome(Biome biome)
@@ -235,6 +243,26 @@ public class NetherBiomeManager
             return ImmutableList.copyOf(biomes.values());
         }
 
+        public IBlockState getBiomeTopBlock(Biome biome)
+        {
+            if(biomes.containsKey(biome))
+            {
+                return biomes.get(biome).getTopBlock();
+            }
+
+            return Blocks.NETHERRACK.getDefaultState();
+        }
+
+        public IBlockState getBiomeFillerBlock(Biome biome)
+        {
+            if(biomes.containsKey(biome))
+            {
+                return biomes.get(biome).getFillerBlock();
+            }
+
+            return Blocks.NETHERRACK.getDefaultState();
+        }
+
         public IBlockState getBiomeOceanBlock(Biome biome)
         {
             if(biomes.containsKey(biome))
@@ -244,17 +272,40 @@ public class NetherBiomeManager
 
             return Blocks.LAVA.getDefaultState();
         }
+
+        public Map<EnumCreatureType, List<Biome.SpawnListEntry>> getBiomeEntitySpawnList(Biome biome)
+        {
+            if(biomes.containsKey(biome))
+            {
+                return biomes.get(biome).getEntitySpawnList();
+            }
+
+            Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList = Maps.newHashMap();
+
+            for(EnumCreatureType creatureType : EnumCreatureType.values())
+            {
+                entitySpawnList.put(creatureType, Lists.newArrayList());
+            }
+
+            return entitySpawnList;
+        }
     }
 
     public static class NetherBiomeEntry extends BiomeManager.BiomeEntry
     {
+        private final IBlockState topBlock;
+        private final IBlockState fillerBlock;
         private final IBlockState oceanBlock;
+        private final Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList;
 
-        public NetherBiomeEntry(Biome biome, int weight, IBlockState oceanBlockIn)
+        public NetherBiomeEntry(Biome biome, int weight, IBlockState topBlockIn, IBlockState fillerBlockIn, IBlockState oceanBlockIn, Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnListIn)
         {
             super(biome, weight <= 0 ? 10 : weight);
 
+            topBlock = topBlockIn;
+            fillerBlock = fillerBlockIn;
             oceanBlock = oceanBlockIn;
+            entitySpawnList = entitySpawnListIn;
         }
 
         public Biome getBiome()
@@ -267,9 +318,24 @@ public class NetherBiomeManager
             return itemWeight;
         }
 
+        public IBlockState getTopBlock()
+        {
+            return topBlock;
+        }
+
+        public IBlockState getFillerBlock()
+        {
+            return fillerBlock;
+        }
+
         public IBlockState getOceanBlock()
         {
             return oceanBlock;
+        }
+
+        public Map<EnumCreatureType, List<Biome.SpawnListEntry>> getEntitySpawnList()
+        {
+            return entitySpawnList;
         }
     }
 }

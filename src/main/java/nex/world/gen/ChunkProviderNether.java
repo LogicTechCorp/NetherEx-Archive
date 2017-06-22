@@ -148,16 +148,15 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                                 IBlockState state = null;
                                 NetherBiomeManager.NetherBiomeType type = NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome);
-                                IBlockState oceanState = type.getBiomeOceanBlock(biome);
 
                                 if(posY < 32)
                                 {
-                                    state = oceanState;
+                                    state = type.getBiomeOceanBlock(biome);
                                 }
 
                                 if(d15 > 0.0D)
                                 {
-                                    state = biome.fillerBlock;
+                                    state = type.getBiomeFillerBlock(biome);
                                 }
 
                                 primer.setBlockState(posX, posY, posZ, state);
@@ -200,10 +199,9 @@ public class ChunkProviderNether extends ChunkProviderHell
                 boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
                 Biome biome = biomesForGen[x + z * 16];
 
-                IBlockState topState = biome.topBlock;
-                IBlockState fillerState = biome.fillerBlock;
                 NetherBiomeManager.NetherBiomeType type = NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome);
-                IBlockState oceanState = type.getBiomeOceanBlock(biome);
+                IBlockState topState = type.getBiomeTopBlock(biome);
+                IBlockState fillerState = type.getBiomeFillerBlock(biome);
 
                 for(int y = 127; y >= 0; y--)
                 {
@@ -213,19 +211,19 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                         if(checkState.getMaterial() != Material.AIR)
                         {
-                            if(checkState == biome.fillerBlock)
+                            if(checkState == type.getBiomeFillerBlock(biome))
                             {
                                 if(i1 == -1)
                                 {
                                     if(l <= 0)
                                     {
                                         topState = Blocks.AIR.getDefaultState();
-                                        fillerState = biome.topBlock;
+                                        fillerState = type.getBiomeTopBlock(biome);
                                     }
                                     else if(y >= 62 && y <= 66)
                                     {
-                                        topState = biome.topBlock;
-                                        fillerState = biome.fillerBlock;
+                                        topState = type.getBiomeTopBlock(biome);
+                                        fillerState = type.getBiomeFillerBlock(biome);
 
                                         if(ConfigHandler.dimension.nether.generateGravel && genGravel)
                                         {
@@ -241,12 +239,12 @@ public class ChunkProviderNether extends ChunkProviderHell
 
                                     if(y <= 32 && (topState == null || topState.getMaterial() == Material.AIR))
                                     {
-                                        topState = oceanState;
+                                        topState = type.getBiomeOceanBlock(biome);
                                     }
 
                                     i1 = l;
 
-                                    if(topState == biome.topBlock && fillerState == biome.fillerBlock)
+                                    if(topState == type.getBiomeTopBlock(biome) && fillerState == type.getBiomeFillerBlock(biome))
                                     {
                                         primer.setBlockState(x, y, z, topState);
                                     }
@@ -439,7 +437,8 @@ public class ChunkProviderNether extends ChunkProviderHell
             }
         }
 
-        return world.getBiomeForCoordsBody(pos).getSpawnableList(creatureType);
+        Biome biome = world.getBiomeForCoordsBody(pos);
+        return NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome).getBiomeEntitySpawnList(biome).get(creatureType);
     }
 
     @Override
