@@ -27,7 +27,8 @@ public class NetherBiome
     private BiomeBlock topBlock;
     private BiomeBlock fillerBlock;
     private BiomeBlock oceanBlock;
-    private List<NetherBiome.BiomeEntity> entitySpawnList;
+    private List<BiomeEntity> entitySpawnList;
+    private List<BiomeFeature> features;
 
     public String getId()
     {
@@ -59,22 +60,27 @@ public class NetherBiome
         return oceanBlock;
     }
 
-    public List<NetherBiome.BiomeEntity> getEntitySpawnList()
+    public List<BiomeEntity> getEntitySpawnList()
     {
         return entitySpawnList;
+    }
+
+    public List<BiomeFeature> getFeatures()
+    {
+        return features;
     }
 
     public static class BiomeList
     {
         private String name;
-        private List<NetherBiome.Mod> mods;
+        private List<Mod> mods;
 
         public String getName()
         {
             return name;
         }
 
-        public List<NetherBiome.Mod> getMods()
+        public List<Mod> getMods()
         {
             return mods;
         }
@@ -149,6 +155,52 @@ public class NetherBiome
         public int getMaxGroupCount()
         {
             return maxGroupCount;
+        }
+    }
+
+    public static class BiomeFeature
+    {
+        private String featureType;
+        private BiomeBlock blockToSpawn;
+        private BiomeBlock targetBlock;
+        private int minHeight;
+        private int maxHeight;
+        private int size;
+        private int rarity;
+
+        public String getFeatureType()
+        {
+            return featureType;
+        }
+
+        public BiomeBlock getBlockToSpawn()
+        {
+            return blockToSpawn;
+        }
+
+        public BiomeBlock getTargetBlock()
+        {
+            return targetBlock;
+        }
+
+        public int getMinHeight()
+        {
+            return minHeight;
+        }
+
+        public int getMaxHeight()
+        {
+            return maxHeight;
+        }
+
+        public int getSize()
+        {
+            return size;
+        }
+
+        public int getRarity()
+        {
+            return rarity;
         }
     }
 }

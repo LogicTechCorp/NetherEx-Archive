@@ -32,10 +32,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.oredict.OreDictionary;
+import nex.world.biome.NetherBiome;
 
 public class BlockUtil
 {
     private static final NetHandlerPlayClient HANDLER = (NetHandlerPlayClient) FMLClientHandler.instance().getClientPlayHandler();
+
+    public static IBlockState getBlock(NetherBiome.BiomeBlock block)
+    {
+        return Block.getBlockFromName(block.getId() == null || block.getId().isEmpty() || Block.getBlockFromName(block.getId()) == null ? "minecraft:air" : block.getId()).getStateFromMeta(block.getMeta());
+    }
 
     /**
      * A method that harvests blocks when they aren't able to normally

@@ -27,6 +27,7 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.village.MerchantRecipe;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExTextures;
+import nex.util.RandomUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -65,9 +66,9 @@ public class Trade extends MerchantRecipe
         ItemStack outputStack = getItemToSell().copy();
         ItemStack inputA = getItemToBuy().copy();
         ItemStack inputB = getSecondItemToBuy().copy();
-        outputStack.setCount(rand.nextInt((outputMaxStackSize - outputMinStackSize) + 1) + outputMinStackSize);
-        inputA.setCount(rand.nextInt((inputAMaxStackSize - inputAMinStackSize) + 1) + inputAMinStackSize);
-        inputB.setCount(rand.nextInt((inputBMaxStackSize - inputBMinStackSize) + 1) + inputBMinStackSize);
+        outputStack.setCount(RandomUtil.getNumberInRange(outputMinStackSize, outputMaxStackSize, rand));
+        inputA.setCount(RandomUtil.getNumberInRange(inputAMinStackSize, inputAMaxStackSize, rand));
+        inputB.setCount(RandomUtil.getNumberInRange(inputBMinStackSize, inputBMaxStackSize, rand));
 
         if(outputEnchantments.size() > 0)
         {
@@ -79,17 +80,17 @@ public class Trade extends MerchantRecipe
                 {
                     if(outputStack.getItem() instanceof ItemEnchantedBook)
                     {
-                        ((ItemEnchantedBook) outputStack.getItem()).addEnchantment(outputStack, new EnchantmentData(enchantment, rand.nextInt((enchantment.getMaxLevel() - enchantment.getMinLevel()) + 1) + enchantment.getMinLevel()));
+                        ((ItemEnchantedBook) outputStack.getItem()).addEnchantment(outputStack, new EnchantmentData(enchantment, RandomUtil.getNumberInRange(enchantment.getMinLevel(), enchantment.getMaxLevel(), rand)));
                     }
                     else
                     {
-                        outputStack.addEnchantment(enchantment, rand.nextInt((enchantment.getMaxLevel() - enchantment.getMinLevel()) + 1) + enchantment.getMinLevel());
+                        outputStack.addEnchantment(enchantment, RandomUtil.getNumberInRange(enchantment.getMinLevel(), enchantment.getMaxLevel(), rand));
                     }
                 }
             }
         }
 
-        return new MerchantRecipe(inputA, inputB, outputStack, 0, rand.nextInt((maxTradesAvailable - minTradesAvailable) + 1) + minTradesAvailable);
+        return new MerchantRecipe(inputA, inputB, outputStack, 0, RandomUtil.getNumberInRange(minTradesAvailable, maxTradesAvailable, rand));
     }
 
     public static class TradeList

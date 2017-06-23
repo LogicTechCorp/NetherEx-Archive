@@ -42,7 +42,9 @@ import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
+import nex.util.RandomUtil;
 import nex.world.biome.NetherBiomeManager;
+import nex.world.gen.feature.Feature;
 
 import java.util.List;
 import java.util.Random;
@@ -408,6 +410,30 @@ public class ChunkProviderNether extends ChunkProviderHell
         BlockFalling.fallInstantly = true;
 
         netherBridge.generateStructure(world, rand, chunkPos);
+
+        List<Feature> features = NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome).getBiomeFeatures(biome);
+
+        if(features.size() > 0)
+        {
+            for(Feature feature : features)
+            {
+                if(feature.getType() == Feature.FeatureType.ORE)
+                {
+                    for(int i = 0; i < feature.getRarity(); i++)
+                    {
+                        feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
+                    }
+                }
+                else
+                {
+                    for(int i = 0; i < feature.getRarity(); i++)
+                    {
+                        feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
+                    }
+                }
+            }
+        }
+
         biome.decorate(world, rand, blockPos);
 
         BlockFalling.fallInstantly = false;
