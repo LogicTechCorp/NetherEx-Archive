@@ -106,21 +106,21 @@ public class NetherBiomeManager
                         NetherBiome.BiomeBlock topBlock = netherBiome.getTopBlock();
                         NetherBiome.BiomeBlock fillerBlock = netherBiome.getFillerBlock();
                         NetherBiome.BiomeBlock oceanBlock = netherBiome.getOceanBlock();
-                        IBlockState topState = Blocks.NETHERRACK.getDefaultState();
-                        IBlockState fillerState = Blocks.NETHERRACK.getDefaultState();
+                        IBlockState topState = biome.topBlock;
+                        IBlockState fillerState = biome.fillerBlock;
                         IBlockState oceanState = Blocks.LAVA.getDefaultState();
 
                         if(topBlock != null)
                         {
                             IBlockState state = Block.getBlockFromName(topBlock.getId().isEmpty() ? "minecraft:air" : topBlock.getId()).getStateFromMeta(topBlock.getMeta());
-                            topState = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
+                            topState = state.getBlock() == Blocks.AIR ? topState : state;
 
                             LOGGER.info("Set the " + biome.getBiomeName() + " biome's top Block to " + ForgeRegistries.BLOCKS.getKey(topState.getBlock()).toString() + " with a meta of " + topState.getBlock().getMetaFromState(topState) + ".");
                         }
                         if(fillerBlock != null)
                         {
                             IBlockState state = Block.getBlockFromName(fillerBlock.getId().isEmpty() ? "minecraft:air" : fillerBlock.getId()).getStateFromMeta(fillerBlock.getMeta());
-                            fillerState = state.getBlock() == Blocks.AIR ? Blocks.NETHERRACK.getDefaultState() : state;
+                            fillerState = state.getBlock() == Blocks.AIR ? fillerState : state;
 
                             LOGGER.info("Set the " + biome.getBiomeName() + " biome's filler Block to " + ForgeRegistries.BLOCKS.getKey(fillerState.getBlock()).toString() + " with a meta of " + fillerState.getBlock().getMetaFromState(fillerState) + ".");
                         }
@@ -250,7 +250,7 @@ public class NetherBiomeManager
                 return biomes.get(biome).getTopBlock();
             }
 
-            return Blocks.NETHERRACK.getDefaultState();
+            return biome.topBlock;
         }
 
         public IBlockState getBiomeFillerBlock(Biome biome)
@@ -260,7 +260,7 @@ public class NetherBiomeManager
                 return biomes.get(biome).getFillerBlock();
             }
 
-            return Blocks.NETHERRACK.getDefaultState();
+            return biome.fillerBlock;
         }
 
         public IBlockState getBiomeOceanBlock(Biome biome)
