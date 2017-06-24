@@ -8,53 +8,19 @@
                     "biomeId": "torrid_wasteland",
                     "weight": 6,
                     "climateType": "hot",
-                    "topBlock": {
-                        "blockId": "nex:block_netherrack",
-                        "meta": 0
-                    },
-                    "fillerBlock": {
-                        "blockId": "nex:block_netherrack",
-                        "meta": 0
-                    },
-                    "oceanBlock": {
-                        "blockId": "minecraft:flowing_lava",
-                        "meta": 0
-                    },
+                    "topBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                    "fillerBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                    "oceanBlock": { "blockId": "minecraft:flowing_lava", "meta": 0 },
                     "entitySpawnList": [
-                        {
-                            "entityId": "nex:neutral_salamander",
-                            "creatureType": "monster",
-                            "weight": 100,
-                            "minGroupCount": 3,
-                            "maxGroupCount": 6
-                        },
-                        {
-                            "entityId": "nex:monster_ember",
-                            "creatureType": "monster",
-                            "weight": 50,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 6
-                        },
-                        {
-                            "entityId":
-                            "minecraft:magma_cube",
-                            "creatureType": "monster",
-                            "weight": 25,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 4
-                        }
+                        { "entityId": "nex:neutral_salamander", "creatureType": "monster", "weight": 100, "minGroupCount": 3, "maxGroupCount": 6 },
+                        { "entityId": "nex:monster_ember", "creatureType": "monster", "weight": 50, "minGroupCount": 4, "maxGroupCount": 6 },
+                        { "entityId": "minecraft:magma_cube", "creatureType": "monster", "weight": 25, "minGroupCount": 4, "maxGroupCount": 4 }
                     ],
                     "featureList": [
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:flowing_lava",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "hidden": false,
                             "rarity": 24,
                             "minHeight": 32,
@@ -62,48 +28,30 @@
                         },
                         {
                             "featureType": "scattered",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:fire",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:fire", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "rarity": 9,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 96
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "nex:ore_quartz",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "nex:ore_quartz", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "size": 14,
                             "rarity": 16,
                             "minHeight": 8,
@@ -111,14 +59,8 @@
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "nex:block_basalt",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "nex:block_basalt", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "size": 24,
                             "rarity": 14,
                             "minHeight": 8,
@@ -126,14 +68,8 @@
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:magma",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:magma", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "size": 32,
                             "rarity": 10,
                             "minHeight": 8,
@@ -141,14 +77,8 @@
                         },
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:lava",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:lava", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "hidden": true,
                             "rarity": 48,
                             "minHeight": 8,
@@ -156,14 +86,8 @@
                         },
                         {
                             "featureType": "pool",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:flowing_lava",
-                                "meta": 0
-                            },
-                            "surroundingBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
+                            "surroundingBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "rarity": 8,
                             "minHeight": 40,
                             "maxHeight": 112
@@ -177,10 +101,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_torrid_wasteland"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_torrid_wasteland" ]
                                 }
                             ],
                             "rarity": 64
@@ -194,9 +115,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_base"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_base" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -217,15 +136,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/grave_torrid_wasteland"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_torrid_wasteland" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 }
                             ],
                             "rarity": 64
@@ -239,13 +151,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 }
                             ],
                             "rarity": 84
@@ -259,14 +166,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/temple_torrid_wasteland",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -274,14 +175,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 2,
-                                    "lootTables": [
-                                        "nex:chest/temple_torrid_wasteland",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -289,14 +184,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 3,
-                                    "lootTables": [
-                                        "nex:chest/temple_torrid_wasteland",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -304,14 +193,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 4,
-                                    "lootTables": [
-                                        "nex:chest/temple_torrid_wasteland",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 }
                             ],
                             "rarity": 4
@@ -326,60 +209,18 @@
                     "fillerBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                     "oceanBlock": { "blockId": "minecraft:flowing_lava", "meta": 0 },
                     "entitySpawnList": [
-                        {
-                            "entityId": "minecraft:zombie_pigman",
-                            "creatureType": "monster",
-                            "weight": 100,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "minecraft:ghast",
-                            "creatureType": "monster",
-                            "weight": 50,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "nex:monster_ember",
-                            "creatureType": "monster",
-                            "weight": 25,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 6
-                        },
-                        {
-                            "entityId": "minecraft:blaze",
-                            "creatureType": "monster",
-                            "weight": 3,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "minecraft:magma_cube",
-                            "creatureType": "monster",
-                            "weight": 2,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "minecraft:enderman",
-                            "creatureType": "monster",
-                            "weight": 1,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 4
-                        }
+                        { "entityId": "minecraft:zombie_pigman", "creatureType": "monster", "weight": 100, "minGroupCount": 4, "maxGroupCount": 4 },
+                        { "entityId": "minecraft:ghast", "creatureType": "monster", "weight": 50, "minGroupCount": 4, "maxGroupCount": 4 },
+                        { "entityId": "nex:monster_ember", "creatureType": "monster", "weight": 25, "minGroupCount": 4, "maxGroupCount": 6 },
+                        { "entityId": "minecraft:blaze", "creatureType": "monster", "weight": 3, "minGroupCount": 4, "maxGroupCount": 4 },
+                        { "entityId": "minecraft:magma_cube", "creatureType": "monster", "weight": 2, "minGroupCount": 4, "maxGroupCount": 4 },
+                        { "entityId": "minecraft:enderman", "creatureType": "monster", "weight": 1, "minGroupCount": 4, "maxGroupCount": 4 }
                     ],
                     "featureList": [
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:flowing_lava",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "hidden": false,
                             "rarity": 8,
                             "minHeight": 32,
@@ -387,90 +228,54 @@
                         },
                         {
                             "featureType": "scattered",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:fire",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:fire", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "rarity": 3,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 96
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "scattered",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:brown_mushroom",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:brown_mushroom", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "rarity": 1,
                             "minHeight": 28,
                             "maxHeight": 116
                         },
                         {
                             "featureType": "scattered",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:red_mushroom",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:red_mushroom", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "rarity": 1,
                             "minHeight": 28,
                             "maxHeight": 116
                         },
                         {
                             "featureType": "scattered",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:fire",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:fire", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "rarity": 3,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:quartz_ore",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:quartz_ore", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "size": 14,
                             "rarity": 16,
                             "minHeight": 8,
@@ -478,14 +283,8 @@
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "nex:ore_amethyst",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "nex:ore_amethyst", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "size": 3,
                             "rarity": 16,
                             "minHeight": 8,
@@ -493,14 +292,8 @@
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:magma",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:magma", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "size": 32,
                             "rarity": 10,
                             "minHeight": 8,
@@ -508,14 +301,8 @@
                         },
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:lava",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "minecraft:netherrack",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:lava", "meta": 0 },
+                            "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "hidden": true,
                             "rarity": 48,
                             "minHeight": 8,
@@ -530,10 +317,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_hell"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_hell" ]
                                 }
                             ],
                             "rarity": 64
@@ -547,9 +331,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_base"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_base" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -570,15 +352,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/grave_hell"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:zombie_pigman",
-                                        "minecraft:magma_cube"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_hell" ],
+                                    "spawnerMobs": [ "minecraft:zombie_pigman", "minecraft:magma_cube" ]
                                 }
                             ],
                             "rarity": 64
@@ -592,13 +367,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:zombie_pigman",
-                                        "minecraft:magma_cube"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare" ],
+                                    "spawnerMobs": [ "minecraft:zombie_pigman", "minecraft:magma_cube" ]
                                 }
                             ],
                             "rarity": 84
@@ -612,13 +382,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:zombie_pigman",
-                                        "minecraft:magma_cube"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare" ],
+                                    "spawnerMobs": [ "minecraft:zombie_pigman", "minecraft:magma_cube" ]
                                 }
                             ],
                             "rarity": 64
@@ -632,11 +397,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -644,11 +405,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 2,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -656,11 +413,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 3,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -668,11 +421,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 4,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -680,11 +429,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 5,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -692,11 +437,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 6,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -704,11 +445,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 7,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -716,11 +453,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 8,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -728,11 +461,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 9,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -740,11 +469,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 10,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -752,11 +477,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 11,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -764,11 +485,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 12,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -776,11 +493,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 13,
-                                    "lootTables": [
-                                        "nex:chest/base_village",
-                                        "nex:chest/base_temple",
-                                        "nex:chest/temple_rare"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
                                 }
                             ],
                             "rarity": 2
@@ -795,39 +508,15 @@
                     "fillerBlock": { "blockId": "nex:block_netherrack", "meta": 3 },
                     "oceanBlock": { "blockId": "minecraft:flowing_lava", "meta": 0 },
                     "entitySpawnList": [
-                        {
-                            "entityId": "nex:monster_spinout",
-                            "creatureType": "monster",
-                            "weight": 100,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "minecraft:wither_skeleton",
-                            "creatureType": "monster",
-                            "weight": 65,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "minecraft:zombie_pigman",
-                            "creatureType": "monster",
-                            "weight": 45,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4
-                        }
+                        { "entityId": "nex:monster_spinout", "creatureType": "monster", "weight": 100, "minGroupCount": 1, "maxGroupCount": 4 },
+                        { "entityId": "minecraft:wither_skeleton", "creatureType": "monster", "weight": 65, "minGroupCount": 1, "maxGroupCount": 4 },
+                        { "entityId": "minecraft:zombie_pigman", "creatureType": "monster", "weight": 45, "minGroupCount": 1, "maxGroupCount": 4 }
                     ],
                     "featureList": [
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:flowing_lava",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 3
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 3 },
                             "hidden": false,
                             "rarity": 8,
                             "minHeight": 32,
@@ -835,34 +524,22 @@
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 96
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "nex:ore_quartz",
-                                "meta": 3
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 3
-                            },
+                            "blockToSpawn": { "blockId": "nex:ore_quartz", "meta": 3 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 3 },
                             "size": 14,
                             "rarity": 16,
                             "minHeight": 8,
@@ -870,14 +547,8 @@
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:magma",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 3
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:magma", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 3 },
                             "size": 32,
                             "rarity": 10,
                             "minHeight": 8,
@@ -885,14 +556,8 @@
                         },
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:lava",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 3
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:lava", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 3 },
                             "hidden": true,
                             "rarity": 16,
                             "minHeight": 8,
@@ -907,10 +572,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_ruthless_sands"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_ruthless_sands" ]
                                 }
                             ],
                             "rarity": 64
@@ -924,9 +586,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_base"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_base" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -947,15 +607,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/grave_ruthless_sands"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_ruthless_sands" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 }
                             ],
                             "rarity": 64
@@ -969,13 +622,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 }
                             ],
                             "rarity": 84
@@ -1030,59 +678,29 @@
                     "fillerBlock": { "blockId": "nex:block_netherrack", "meta": 2 },
                     "oceanBlock": { "blockId": "minecraft:flowing_lava", "meta": 0 },
                     "entitySpawnList": [
-                        {
-                            "entityId": "nex:neutral_mogus",
-                            "creatureType": "monster",
-                            "weight": 100,
-                            "minGroupCount": 4,
-                            "maxGroupCount": 6
-                        },
-                        {
-                            "entityId": "nex:monster_spore_creeper",
-                            "creatureType": "monster",
-                            "weight": 50,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "nex:monster_spore",
-                            "creatureType": "monster",
-                            "weight": 25,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4
-                        }
+                        { "entityId": "nex:neutral_mogus", "creatureType": "monster", "weight": 100, "minGroupCount": 4, "maxGroupCount": 6 },
+                        { "entityId": "nex:monster_spore_creeper", "creatureType": "monster", "weight": 50, "minGroupCount": 1, "maxGroupCount": 4 },
+                        { "entityId": "nex:monster_spore", "creatureType": "monster", "weight": 25, "minGroupCount": 1, "maxGroupCount": 4 }
                     ],
                     "featureList": [
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 96
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "nex:ore_quartz",
-                                "meta": 2
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 2
-                            },
+                            "blockToSpawn": { "blockId": "nex:ore_quartz", "meta": 2 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 2 },
                             "size": 14,
                             "rarity": 16,
                             "minHeight": 8,
@@ -1097,10 +715,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_fungi_forest"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_fungi_forest" ]
                                 }
                             ],
                             "rarity": 64
@@ -1114,9 +729,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_base"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_base" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -1137,14 +750,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/grave_fungi_forest"
-                                    ],
-                                    "spawnerMobs": [
-                                        "nex:monster_spore_creeper"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_fungi_forest" ],
+                                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
                                 }
                             ],
                             "rarity": 64
@@ -1158,12 +765,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "nex:monster_spore_creeper"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare" ],
+                                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
                                 }
                             ],
                             "rarity": 84
@@ -1177,13 +780,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/temple_fungi_forest",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "nex:monster_spore_creeper"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_fungi_forest", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -1191,13 +789,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 2,
-                                    "lootTables": [
-                                        "nex:chest/temple_fungi_forest",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "nex:monster_spore_creeper"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_fungi_forest", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -1205,13 +798,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 3,
-                                    "lootTables": [
-                                        "nex:chest/temple_fungi_forest",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "nex:monster_spore_creeper"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_fungi_forest", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
                                 }
                             ],
                             "rarity": 24
@@ -1225,12 +813,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:ghast"
-                                    ]
+                                    "lootTables": [ "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:ghast" ]
                                 }
                             ],
                             "rarity": 192
@@ -1245,86 +829,39 @@
                     "fillerBlock": { "blockId": "nex:block_netherrack", "meta": 1 },
                     "oceanBlock": { "blockId": "minecraft:magma", "meta": 0 },
                     "entitySpawnList": [
-                        {
-                            "entityId": "nex:monster_wight",
-                            "creatureType": "monster",
-                            "weight": 100,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "minecraft:ghast",
-                            "creatureType": "monster",
-                            "weight": 50,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4 },
-                        {
-                            "entityId": "nex:monster_bone_spider",
-                            "creatureType": "monster",
-                            "weight": 35,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 4
-                        },
-                        {
-                            "entityId": "minecraft:zombie_pigman",
-                            "creatureType": "monster",
-                            "weight": 25,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 1
-                        },
-                        {
-                            "entityId": "nex:monster_brute",
-                            "creatureType": "monster",
-                            "weight": 15,
-                            "minGroupCount": 1,
-                            "maxGroupCount": 1
-                        }
+                        { "entityId": "nex:monster_wight", "creatureType": "monster", "weight": 100, "minGroupCount": 1, "maxGroupCount": 4 },
+                        { "entityId": "minecraft:ghast", "creatureType": "monster", "weight": 50, "minGroupCount": 1, "maxGroupCount": 4 },
+                        { "entityId": "nex:monster_bone_spider", "creatureType": "monster", "weight": 35, "minGroupCount": 1, "maxGroupCount": 4 },
+                        { "entityId": "minecraft:zombie_pigman", "creatureType": "monster", "weight": 25, "minGroupCount": 1, "maxGroupCount": 1 },
+                        { "entityId": "nex:monster_brute", "creatureType": "monster", "weight": 15, "minGroupCount": 1, "maxGroupCount": 1 }
                     ],
                     "featureList": [
                         {
                             "featureType": "scattered",
-                            "blockToSpawn": {
-                                "blockId": "nex:block_fire_blue",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_ice_frostburn",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "nex:block_fire_blue", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_ice_frostburn", "meta": 0 },
                             "rarity": 3,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 96
                         },
                         {
                             "featureType": "clumped",
-                            "blockToSpawn": {
-                                "blockId": "minecraft:glowstone",
-                                "meta": 0
-                            },
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 5,
                             "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "nex:ore_quartz",
-                                "meta": 1
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 1
-                            },
+                            "blockToSpawn": { "blockId": "nex:ore_quartz", "meta": 1 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 1 },
                             "size": 14,
                             "rarity": 16,
                             "minHeight": 8,
@@ -1332,14 +869,8 @@
                         },
                         {
                             "featureType": "ore",
-                            "blockToSpawn": {
-                                "blockId": "nex:ore_rime",
-                                "meta": 0
-                            },
-                            "targetBlock": {
-                                "blockId": "nex:block_netherrack",
-                                "meta": 1
-                            },
+                            "blockToSpawn": { "blockId": "nex:ore_rime", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 1 },
                             "size": 7,
                             "rarity": 16,
                             "minHeight": 8,
@@ -1347,14 +878,8 @@
                         },
                         {
                             "featureType": "pool",
-                            "blockToSpawn": {
-                                "blockId": "nex:fluid_ichor",
-                                "meta": 0
-                            },
-                            "surroundingBlock": {
-                                "blockId": "nex:block_ice_frostburn",
-                                "meta": 1
-                            },
+                            "blockToSpawn": { "blockId": "nex:fluid_ichor", "meta": 0 },
+                            "surroundingBlock": { "blockId": "nex:block_ice_frostburn", "meta": 1 },
                             "rarity": 1,
                             "minHeight": 40,
                             "maxHeight": 112
@@ -1368,10 +893,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_arctic_abyss"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_arctic_abyss" ]
                                 }
                             ],
                             "rarity": 64
@@ -1385,9 +907,7 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_base"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_base" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -1408,15 +928,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/base_grave",
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/grave_arctic_abyss"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_arctic_abyss" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 }
                             ],
                             "rarity": 64
@@ -1430,13 +943,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_ember"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
                                 }
                             ],
                             "rarity": 84
@@ -1575,16 +1083,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 1,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/temple_arctic_abyss",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_wight",
-                                        "nex:monster_bone_spider"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -1592,16 +1092,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 2,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/temple_arctic_abyss",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_wight",
-                                        "nex:monster_bone_spider"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -1609,16 +1101,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 3,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/temple_arctic_abyss",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_wight",
-                                        "nex:monster_bone_spider"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
                                 },
                                 {
                                     "structureType": "ground",
@@ -1626,16 +1110,8 @@
                                     "rotate": true,
                                     "mirror": true,
                                     "weight": 4,
-                                    "lootTables": [
-                                        "nex:chest/grave_rare",
-                                        "nex:chest/temple_arctic_abyss",
-                                        "nex:chest/temple_rare"
-                                    ],
-                                    "spawnerMobs": [
-                                        "minecraft:blaze",
-                                        "nex:monster_wight",
-                                        "nex:monster_bone_spider"
-                                    ]
+                                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
+                                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
                                 }
                             ],
                             "rarity": 4
