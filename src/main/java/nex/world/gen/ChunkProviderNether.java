@@ -417,11 +417,14 @@ public class ChunkProviderNether extends ChunkProviderHell
         {
             for(Feature feature : features)
             {
+                if(feature.getBiome() != biome)
+                {
+                    continue;
+                }
                 if(!feature.canGenerate())
                 {
                     continue;
                 }
-
                 if(feature.getType() == Feature.FeatureType.ORE)
                 {
                     for(int i = 0; i < feature.getRarity(); i++)

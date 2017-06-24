@@ -20,17 +20,20 @@ package nex.world.gen.feature;
 import com.google.common.base.Strings;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 import java.util.Random;
 
 public abstract class Feature
 {
+    private final Biome biome;
     private final int rarity;
     private final int minHeight;
     private final int maxHeight;
 
-    public Feature(int rarityIn, int minHeightIn, int maxHeightIn)
+    public Feature(Biome biomeIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
+        biome = biomeIn;
         rarity = rarityIn;
         minHeight = minHeightIn;
         maxHeight = maxHeightIn;
@@ -41,6 +44,11 @@ public abstract class Feature
     public abstract boolean canGenerate();
 
     public abstract FeatureType getType();
+
+    public Biome getBiome()
+    {
+        return biome;
+    }
 
     public int getRarity()
     {
@@ -60,7 +68,7 @@ public abstract class Feature
     public enum FeatureType
     {
         SCATTERED,
-        GLOWSTONE,
+        CLUMPED,
         ORE,
         FLUID,
         POOL,

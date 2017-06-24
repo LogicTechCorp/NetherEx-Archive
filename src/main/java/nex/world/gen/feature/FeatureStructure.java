@@ -26,6 +26,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
@@ -46,9 +47,9 @@ public class FeatureStructure extends Feature
     private final List<Boolean> rotationList;
     private final List<Boolean> mirrorList;
 
-    public FeatureStructure(List<StructureType> typesIn, List<WeightedUtil.NamedItem> structuresIn, List<List<ResourceLocation>> lootTablesIn, List<List<ResourceLocation>> spawnerMobsIn, List<Boolean> rotationListIn, List<Boolean> mirrorListIn, int rarityIn, int minHeightIn, int maxHeightIn)
+    public FeatureStructure(Biome biomeIn, List<StructureType> typesIn, List<WeightedUtil.NamedItem> structuresIn, List<List<ResourceLocation>> lootTablesIn, List<List<ResourceLocation>> spawnerMobsIn, List<Boolean> rotationListIn, List<Boolean> mirrorListIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
-        super(rarityIn, minHeightIn, maxHeightIn);
+        super(biomeIn, rarityIn, minHeightIn, maxHeightIn);
 
         types = typesIn;
         structures = structuresIn;
@@ -58,9 +59,9 @@ public class FeatureStructure extends Feature
         mirrorList = mirrorListIn;
     }
 
-    public FeatureStructure(NetherBiome.BiomeFeature feature)
+    public FeatureStructure(Biome biome, NetherBiome.BiomeFeature feature)
     {
-        super(feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+        super(biome, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
 
         types = Lists.newArrayList();
         structures = Lists.newArrayList();
@@ -100,7 +101,7 @@ public class FeatureStructure extends Feature
             }
             if(spawnerMobs.get(index).size() == 0)
             {
-                spawnerMobs.get(index).add(new ResourceLocation("zombie_pigman"));
+                spawnerMobs.get(index).add(new ResourceLocation("minecraft:zombie_pigman"));
             }
         }
     }
@@ -162,7 +163,7 @@ public class FeatureStructure extends Feature
     @Override
     public boolean canGenerate()
     {
-        return structures.size() <= 0;
+        return structures.size() > 0;
     }
 
     @Override

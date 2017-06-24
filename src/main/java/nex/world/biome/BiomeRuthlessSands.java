@@ -17,11 +17,39 @@
 
 package nex.world.biome;
 
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import nex.handler.ConfigHandler;
+import nex.world.gen.feature.WorldGenThornstalk;
+
+import java.util.Random;
+
 @SuppressWarnings("ConstantConditions")
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
+    private final WorldGenerator thornstalk = new WorldGenThornstalk();
+
     public BiomeRuthlessSands()
     {
         super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
+    }
+
+    @Override
+    public void decorate(World world, Random rand, BlockPos pos)
+    {
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
+
+        if(ConfigHandler.biome.ruthlessSands.generateThornstalk)
+        {
+            for(int i = 0; i < ConfigHandler.biome.ruthlessSands.thornstalkRarity; i++)
+            {
+                thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, pos));
     }
 }

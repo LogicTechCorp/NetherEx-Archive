@@ -68,10 +68,10 @@ public class NetherExBlocks
     @GameRegistry.ObjectHolder("block_ice_frostburn")
     public static final BlockFrostburnIce BLOCK_ICE_FROSTBURN = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_bone_sliver")
+    @GameRegistry.ObjectHolder("block_bone_sliver")
     public static final BlockBoneSliver BLOCK_BONE_SLIVER = null;
 
-    @GameRegistry.ObjectHolder(NetherEx.MOD_ID + ":block_bone_chunk")
+    @GameRegistry.ObjectHolder("block_bone_chunk")
     public static final BlockBoneChunk BLOCK_BONE_CHUNK = null;
 
     @GameRegistry.ObjectHolder("block_iron_worn")

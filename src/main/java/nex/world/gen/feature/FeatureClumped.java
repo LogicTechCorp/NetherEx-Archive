@@ -22,25 +22,26 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import nex.util.BlockUtil;
 import nex.world.biome.NetherBiome;
 
 import java.util.Random;
 
-public class FeatureGlowStone extends Feature
+public class FeatureClumped extends Feature
 {
     private final IBlockState blockToSpawn;
 
-    public FeatureGlowStone(IBlockState blockToSpawnIn, int rarityIn, int minHeightIn, int maxHeightIn)
+    public FeatureClumped(Biome biomeIn, IBlockState blockToSpawnIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
-        super(rarityIn, minHeightIn, maxHeightIn);
+        super(biomeIn, rarityIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
     }
 
-    public FeatureGlowStone(NetherBiome.BiomeFeature feature)
+    public FeatureClumped(Biome biome, NetherBiome.BiomeFeature feature)
     {
-        super(feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 128 : feature.getMaxHeight());
+        super(biome, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 128 : feature.getMaxHeight());
 
         blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
     }
@@ -101,6 +102,6 @@ public class FeatureGlowStone extends Feature
     @Override
     public FeatureType getType()
     {
-        return FeatureType.GLOWSTONE;
+        return FeatureType.CLUMPED;
     }
 }

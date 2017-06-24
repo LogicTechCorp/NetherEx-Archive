@@ -17,11 +17,49 @@
 
 package nex.world.biome;
 
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import nex.handler.ConfigHandler;
+import nex.world.gen.feature.WorldGenElderMushroom;
+import nex.world.gen.feature.WorldGenEnokiMushroom;
+
+import java.util.Random;
+
 @SuppressWarnings("ConstantConditions")
 public class BiomeFungiForest extends BiomeNetherEx
 {
+    private final WorldGenerator elderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.allVariants, true);
+    private final WorldGenerator enokiMushroom = new WorldGenEnokiMushroom();
+
     public BiomeFungiForest()
     {
         super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest");
+    }
+
+    @Override
+    public void decorate(World world, Random rand, BlockPos pos)
+    {
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
+
+        if(ConfigHandler.biome.fungiForest.generateElderMushrooms)
+        {
+            for(int i = 0; i < ConfigHandler.biome.fungiForest.elderMushroomRarity * 16; i++)
+            {
+                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
+        if(ConfigHandler.biome.fungiForest.generateEnokiMushrooms)
+        {
+            for(int i = 0; i < ConfigHandler.biome.fungiForest.enokiMushroomRarity * 16; i++)
+            {
+                enokiMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+            }
+        }
+
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, pos));
     }
 }

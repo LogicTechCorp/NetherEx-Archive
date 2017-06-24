@@ -171,27 +171,27 @@ public class NetherBiomeManager
 
                                 if(type == Feature.FeatureType.SCATTERED)
                                 {
-                                    feature = new FeatureScattered(biomeFeature);
+                                    feature = new FeatureScattered(biome, biomeFeature);
                                 }
-                                else if(type == Feature.FeatureType.GLOWSTONE)
+                                else if(type == Feature.FeatureType.CLUMPED)
                                 {
-                                    feature = new FeatureGlowStone(biomeFeature);
+                                    feature = new FeatureClumped(biome, biomeFeature);
                                 }
                                 else if(type == Feature.FeatureType.ORE)
                                 {
-                                    feature = new FeatureOre(biomeFeature);
+                                    feature = new FeatureOre(biome, biomeFeature);
                                 }
                                 else if(type == Feature.FeatureType.FLUID)
                                 {
-                                    feature = new FeatureFluid(biomeFeature);
+                                    feature = new FeatureFluid(biome, biomeFeature);
                                 }
                                 else if(type == Feature.FeatureType.POOL)
                                 {
-                                    feature = new FeaturePool(biomeFeature);
+                                    feature = new FeaturePool(biome, biomeFeature);
                                 }
                                 else if(type == Feature.FeatureType.STRUCTURE)
                                 {
-                                    feature = new FeatureStructure(biomeFeature);
+                                    feature = new FeatureStructure(biome, biomeFeature);
                                 }
                                 else
                                 {
