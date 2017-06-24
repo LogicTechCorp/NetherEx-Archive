@@ -37,10 +37,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
 import nex.util.BlockUtil;
 import nex.util.FileUtil;
-import nex.world.gen.feature.Feature;
-import nex.world.gen.feature.FeatureFire;
-import nex.world.gen.feature.FeatureGlowStone;
-import nex.world.gen.feature.FeatureOre;
+import nex.world.gen.feature.*;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -165,16 +162,16 @@ public class NetherBiomeManager
 
                         List<Feature> features = Lists.newArrayList();
 
-                        if(netherBiome.getFeatures() != null)
+                        if(netherBiome.getFeatureList() != null)
                         {
-                            for(NetherBiome.BiomeFeature biomeFeature : netherBiome.getFeatures())
+                            for(NetherBiome.BiomeFeature biomeFeature : netherBiome.getFeatureList())
                             {
                                 Feature.FeatureType type = Feature.FeatureType.getFromString(biomeFeature.getFeatureType());
                                 Feature feature;
 
-                                if(type == Feature.FeatureType.FIRE)
+                                if(type == Feature.FeatureType.SCATTERED)
                                 {
-                                    feature = new FeatureFire(biomeFeature);
+                                    feature = new FeatureScattered(biomeFeature);
                                 }
                                 else if(type == Feature.FeatureType.GLOWSTONE)
                                 {
@@ -184,16 +181,25 @@ public class NetherBiomeManager
                                 {
                                     feature = new FeatureOre(biomeFeature);
                                 }
+                                else if(type == Feature.FeatureType.FLUID)
+                                {
+                                    feature = new FeatureFluid(biomeFeature);
+                                }
+                                else if(type == Feature.FeatureType.POOL)
+                                {
+                                    feature = new FeaturePool(biomeFeature);
+                                }
+                                else if(type == Feature.FeatureType.STRUCTURE)
+                                {
+                                    feature = new FeatureStructure(biomeFeature);
+                                }
                                 else
                                 {
                                     LOGGER.info("A biome feature with the type of " + biomeFeature.getFeatureType() + " is unknown.");
                                     continue;
                                 }
 
-                                if(feature.canGenerate())
-                                {
-                                    features.add(feature);
-                                }
+                                features.add(feature);
                             }
                         }
 

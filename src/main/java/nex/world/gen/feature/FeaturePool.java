@@ -17,38 +17,46 @@
 
 package nex.world.gen.feature;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import nex.util.BlockUtil;
+import nex.world.biome.NetherBiome;
 
 import java.util.Random;
 
-public class WorldGenPit extends WorldGenerator
+public class FeaturePool extends Feature
 {
-    private final Block block;
+    private final IBlockState blockToSpawn;
     private final IBlockState surroundingBlock;
-    private final IBlockState blockToIgnore;
 
-    public WorldGenPit(Block blockIn, IBlockState surroundingBlockIn, IBlockState blockToIgnoreIn)
+    public FeaturePool(IBlockState blockToSpawnIn, IBlockState surroundingBlockIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
-        block = blockIn;
+        super(rarityIn, minHeightIn, maxHeightIn);
+
+        blockToSpawn = blockToSpawnIn;
         surroundingBlock = surroundingBlockIn;
-        blockToIgnore = blockToIgnoreIn;
+    }
+
+    public FeaturePool(NetherBiome.BiomeFeature feature)
+    {
+        super(feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+
+        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
+        surroundingBlock = BlockUtil.getBlock(feature.getSurroundingBlock());
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
-        for(pos = pos.add(-8, 0, -8); pos.getY() > 33 && (world.isAirBlock(pos) || world.getBlockState(pos) == blockToIgnore); pos = pos.down())
+        for(pos = pos.add(-8, 0, -8); pos.getY() > 32 && (world.isAirBlock(pos)); pos = pos.down())
         {
 
         }
 
-        if(pos.getY() < 33)
+        if(pos.getY() < 32)
         {
             return false;
         }
@@ -104,7 +112,7 @@ public class WorldGenPit extends WorldGenerator
                                 return false;
                             }
 
-                            if(k < 4 && !material.isSolid() && world.getBlockState(pos.add(k1, k, l2)).getBlock() != block)
+                            if(k < 4 && !material.isSolid() && world.getBlockState(pos.add(k1, k, l2)).getBlock() != blockToSpawn.getBlock())
                             {
                                 return false;
                             }
@@ -121,7 +129,7 @@ public class WorldGenPit extends WorldGenerator
                     {
                         if(hasSpace[(l1 * 16 + i3) * 8 + i4])
                         {
-                            world.setBlockState(pos.add(l1, i4, i3), i4 >= 4 ? Blocks.AIR.getDefaultState() : block.getDefaultState(), 2);
+                            world.setBlockState(pos.add(l1, i4, i3), i4 >= 4 ? Blocks.AIR.getDefaultState() : blockToSpawn, 2);
                         }
                     }
                 }
@@ -145,5 +153,17 @@ public class WorldGenPit extends WorldGenerator
 
             return true;
         }
+    }
+
+    @Override
+    public boolean canGenerate()
+    {
+        return !(blockToSpawn == Blocks.AIR.getDefaultState() || surroundingBlock == Blocks.AIR.getDefaultState());
+    }
+
+    @Override
+    public FeatureType getType()
+    {
+        return FeatureType.POOL;
     }
 }

@@ -33,21 +33,16 @@ public class FeatureGlowStone extends Feature
 
     public FeatureGlowStone(IBlockState blockToSpawnIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
-        super(FeatureType.GLOWSTONE, rarityIn, minHeightIn, maxHeightIn);
+        super(rarityIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
     }
 
     public FeatureGlowStone(NetherBiome.BiomeFeature feature)
     {
-        super(FeatureType.GLOWSTONE, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 128 : feature.getMaxHeight());
+        super(feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 128 : feature.getMaxHeight());
 
         blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
-
-        if(blockToSpawn == Blocks.AIR.getDefaultState())
-        {
-            canGenerate = false;
-        }
     }
 
     @Override
@@ -95,5 +90,17 @@ public class FeatureGlowStone extends Feature
 
             return true;
         }
+    }
+
+    @Override
+    public boolean canGenerate()
+    {
+        return blockToSpawn != Blocks.AIR.getDefaultState();
+    }
+
+    @Override
+    public FeatureType getType()
+    {
+        return FeatureType.GLOWSTONE;
     }
 }

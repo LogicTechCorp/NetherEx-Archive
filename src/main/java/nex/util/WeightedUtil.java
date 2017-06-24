@@ -17,19 +17,16 @@
 
 package nex.util;
 
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
-import nex.NetherEx;
 
 import java.util.List;
 import java.util.Random;
 
 public class WeightedUtil
 {
-    public static ResourceLocation getRandomNamedItem(Random rand, List<NamedItem> variants)
+    public static NamedItem getRandomNamedItem(Random rand, List<NamedItem> variants)
     {
-        WeightedUtil.NamedItem randomItem = WeightedRandom.getRandomItem(rand, variants);
-        return new ResourceLocation(NetherEx.MOD_ID + ":" + randomItem.name);
+        return WeightedRandom.getRandomItem(rand, variants);
     }
 
     public static class NamedItem extends WeightedRandom.Item

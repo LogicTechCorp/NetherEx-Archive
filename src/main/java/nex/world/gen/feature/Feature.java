@@ -25,32 +25,22 @@ import java.util.Random;
 
 public abstract class Feature
 {
-    private final FeatureType type;
     private final int rarity;
     private final int minHeight;
     private final int maxHeight;
-    protected boolean canGenerate;
 
-    public Feature(FeatureType typeIn, int rarityIn, int minHeightIn, int maxHeightIn)
+    public Feature(int rarityIn, int minHeightIn, int maxHeightIn)
     {
-        type = typeIn;
         rarity = rarityIn;
         minHeight = minHeightIn;
         maxHeight = maxHeightIn;
-        canGenerate = true;
     }
 
     public abstract boolean generate(World world, BlockPos pos, Random rand);
 
-    public boolean canGenerate()
-    {
-        return canGenerate;
-    }
+    public abstract boolean canGenerate();
 
-    public FeatureType getType()
-    {
-        return type;
-    }
+    public abstract FeatureType getType();
 
     public int getRarity()
     {
@@ -69,9 +59,12 @@ public abstract class Feature
 
     public enum FeatureType
     {
-        FIRE,
+        SCATTERED,
         GLOWSTONE,
         ORE,
+        FLUID,
+        POOL,
+        STRUCTURE,
         UNKNOWN;
 
         public static FeatureType getFromString(String string)

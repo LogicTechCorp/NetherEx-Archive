@@ -15,63 +15,86 @@
                         { "entityId": "nex:neutral_salamander", "creatureType": "monster", "weight": 100, "minGroupCount": 3, "maxGroupCount": 6 },
                         { "entityId": "nex:monster_ember", "creatureType": "monster", "weight": 50, "minGroupCount": 4, "maxGroupCount": 6 },
                         { "entityId": "minecraft:magma_cube", "creatureType": "monster", "weight": 25, "minGroupCount": 4, "maxGroupCount": 4 }
-                    ]
-                },
-                {
-                    "biomeId": "hell",
-                    "weight": 10,
-                    "climateType": "warm",
-                    "topBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
-                    "fillerBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
-                    "oceanBlock": { "blockId": "minecraft:lava", "meta": 0 },
-                    "entitySpawnList": [
-                        { "entityId": "minecraft:zombie_pigman", "creatureType": "monster", "weight": 100, "minGroupCount": 4, "maxGroupCount": 4 },
-                        { "entityId": "minecraft:ghast", "creatureType": "monster", "weight": 50, "minGroupCount": 4, "maxGroupCount": 4 },
-                        { "entityId": "nex:monster_ember", "creatureType": "monster", "weight": 25, "minGroupCount": 4, "maxGroupCount": 6 },
-                        { "entityId": "minecraft:blaze", "creatureType": "monster", "weight": 3, "minGroupCount": 4, "maxGroupCount": 4 },
-                        { "entityId": "minecraft:magma_cube", "creatureType": "monster", "weight": 2, "minGroupCount": 4, "maxGroupCount": 4 },
-                        { "entityId": "minecraft:enderman", "creatureType": "monster", "weight": 1, "minGroupCount": 4, "maxGroupCount": 4 }
-                    ]
-                },
-                {
-                    "biomeId": "ruthless_sands",
-                    "weight": 8,
-                    "climateType": "temperate",
-                    "topBlock": { "blockId": "minecraft:soul_sand", "meta": 0 },
-                    "fillerBlock": { "blockId": "nex:block_netherrack", "meta": 3 },
-                    "oceanBlock": { "blockId": "minecraft:lava", "meta": 0 },
-                    "entitySpawnList": [
-                        { "entityId": "nex:monster_spinout", "creatureType": "monster", "weight": 100, "minGroupCount": 1, "maxGroupCount": 4 },
-                        { "entityId": "minecraft:wither_skeleton", "creatureType": "monster", "weight": 65, "minGroupCount": 1, "maxGroupCount": 4 },
-                        { "entityId": "minecraft:zombie_pigman", "creatureType": "monster", "weight": 45, "minGroupCount": 1, "maxGroupCount": 4 }
-                    ]
-                },
-                {
-                    "biomeId": "fungi_forest",
-                    "biome_weight": 4,
-                    "climateType": "cool",
-                    "topBlock": { "blockId": "nex:block_hyphae", "meta": 0 },
-                    "fillerBlock": { "blockId": "nex:block_netherrack", "meta": 2 },
-                    "oceanBlock": { "blockId": "minecraft:lava", "meta": 0 },
-                    "entitySpawnList": [
-                        { "entityId": "nex:neutral_mogus", "creatureType": "monster", "weight": 100, "minGroupCount": 4, "maxGroupCount": 6 },
-                        { "entityId": "nex:monster_spore_creeper", "creatureType": "monster", "weight": 50, "minGroupCount": 1, "maxGroupCount": 4 },
-                        { "entityId": "nex:monster_spore", "creatureType": "monster", "weight": 25, "minGroupCount": 1, "maxGroupCount": 4 }
-                    ]
-                },
-                {
-                    "biomeId": "arctic_abyss",
-                    "weight": 1,
-                    "climateType": "cold",
-                    "topBlock": { "blockId": "nex:block_ice_frostburn", "meta": 0 },
-                    "fillerBlock": { "blockId": "nex:block_netherrack", "meta": 1 },
-                    "oceanBlock": { "blockId": "minecraft:magma", "meta": 0 },
-                    "entitySpawnList": [
-                        { "entityId": "nex:monster_wight", "creatureType": "monster", "weight": 100, "minGroupCount": 1, "maxGroupCount": 4 },
-                        { "entityId": "minecraft:ghast", "creatureType": "monster", "weight": 50, "minGroupCount": 1, "maxGroupCount": 4 },
-                        { "entityId": "nex:monster_bone_spider", "creatureType": "monster", "weight": 35, "minGroupCount": 1, "maxGroupCount": 4 },
-                        { "entityId": "minecraft:zombie_pigman", "creatureType": "monster", "weight": 25, "minGroupCount": 1, "maxGroupCount": 1 },
-                        { "entityId": "nex:monster_brute", "creatureType": "monster", "weight": 15, "minGroupCount": 1, "maxGroupCount": 1 }
+                    ],
+                    "featureList": [
+                        {
+                            "featureType": "scattered",
+                            "blockToSpawn": { "blockId": "minecraft:fire", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        },
+                        {
+                            "featureType": "glowstone",
+                            "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        },
+                        {
+                            "featureType": "ore",
+                            "blockToSpawn": { "blockId": "minecraft:quartz_ore", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                            "size": 14,
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        },
+                        {
+                            "featureType": "ore",
+                            "blockToSpawn": { "blockId": "nex:block_basalt", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                            "size": 14,
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        },
+                        {
+                            "featureType": "fluid",
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                            "hidden": true,
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        },
+                        {
+                            "featureType": "fluid",
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
+                            "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                            "hidden": false,
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        },
+                        {
+                            "featureType": "pool",
+                            "blockToSpawn": { "blockId": "minecraft:lava", "meta": 0 },
+                            "surroundingBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
+                            "hidden": true,
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        },
+                        {
+                            "featureType": "structure",
+                            "structureList": [
+                                {
+                                    "structureType": "ground",
+                                    "structureId": "nex:grave_torrid_wasteland_chest",
+                                    "rotate": true,
+                                    "mirror": true,
+                                    "weight": 10,
+                                    "lootTables": [
+                                        "nex:base_grave"
+                                    ]
+                                }
+                            ],
+                            "rarity": 10,
+                            "minHeight": 32,
+                            "maxHeight": 128
+                        }
                     ]
                 }
             ]

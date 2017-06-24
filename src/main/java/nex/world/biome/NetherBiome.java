@@ -28,7 +28,7 @@ public class NetherBiome
     private BiomeBlock fillerBlock;
     private BiomeBlock oceanBlock;
     private List<BiomeEntity> entitySpawnList;
-    private List<BiomeFeature> features;
+    private List<BiomeFeature> featureList;
 
     public String getId()
     {
@@ -65,9 +65,9 @@ public class NetherBiome
         return entitySpawnList;
     }
 
-    public List<BiomeFeature> getFeatures()
+    public List<BiomeFeature> getFeatureList()
     {
-        return features;
+        return featureList;
     }
 
     public static class BiomeList
@@ -163,10 +163,13 @@ public class NetherBiome
         private String featureType;
         private BiomeBlock blockToSpawn;
         private BiomeBlock targetBlock;
+        private BiomeBlock surroundingBlock;
         private int minHeight;
         private int maxHeight;
         private int size;
         private int rarity;
+        private List<BiomeStructure> structureList;
+        private boolean hidden;
 
         public String getFeatureType()
         {
@@ -181,6 +184,11 @@ public class NetherBiome
         public BiomeBlock getTargetBlock()
         {
             return targetBlock;
+        }
+
+        public BiomeBlock getSurroundingBlock()
+        {
+            return surroundingBlock;
         }
 
         public int getMinHeight()
@@ -201,6 +209,62 @@ public class NetherBiome
         public int getRarity()
         {
             return rarity;
+        }
+
+        public List<BiomeStructure> getStructureList()
+        {
+            return structureList;
+        }
+
+        public boolean isHidden()
+        {
+            return hidden;
+        }
+    }
+
+    public static class BiomeStructure
+    {
+        private String structureType;
+        private String structureId;
+        private List<String> lootTables;
+        private List<String> spawnerMobs;
+        private boolean rotate;
+        private boolean mirror;
+        private int weight;
+
+        public String getStructureType()
+        {
+            return structureType;
+        }
+
+        public String getStructureId()
+        {
+            return structureId;
+        }
+
+        public List<String> getLootTables()
+        {
+            return lootTables;
+        }
+
+        public List<String> getSpawnerMobs()
+        {
+            return spawnerMobs;
+        }
+
+        public boolean rotate()
+        {
+            return rotate;
+        }
+
+        public boolean mirror()
+        {
+            return mirror;
+        }
+
+        public int getWeight()
+        {
+            return weight;
         }
     }
 }

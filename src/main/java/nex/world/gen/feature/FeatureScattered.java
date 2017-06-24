@@ -17,6 +17,7 @@
 
 package nex.world.gen.feature;
 
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -26,30 +27,25 @@ import nex.world.biome.NetherBiome;
 
 import java.util.Random;
 
-public class FeatureFire extends Feature
+public class FeatureScattered extends Feature
 {
     private final IBlockState blockToSpawn;
     private final IBlockState targetBlock;
 
-    public FeatureFire(IBlockState blockToSpawnIn, IBlockState targetBlockIn, int rarityIn, int minHeightIn, int maxHeightIn)
+    public FeatureScattered(IBlockState blockToSpawnIn, IBlockState targetBlockIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
-        super(FeatureType.FIRE, rarityIn, minHeightIn, maxHeightIn);
+        super(rarityIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         targetBlock = targetBlockIn;
     }
 
-    public FeatureFire(NetherBiome.BiomeFeature feature)
+    public FeatureScattered(NetherBiome.BiomeFeature feature)
     {
-        super(FeatureType.FIRE, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+        super(feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
 
         blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
         targetBlock = BlockUtil.getBlock(feature.getTargetBlock());
-
-        if(blockToSpawn == Blocks.AIR.getDefaultState() || targetBlock == Blocks.AIR.getDefaultState())
-        {
-            canGenerate = false;
-        }
     }
 
     @Override
@@ -61,10 +57,29 @@ public class FeatureFire extends Feature
 
             if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == targetBlock)
             {
-                world.setBlockState(newPos, blockToSpawn, 2);
+                if(blockToSpawn instanceof BlockBush && ((BlockBush) blockToSpawn).canBlockStay(world, newPos, ((BlockBush) blockToSpawn).getDefaultState()))
+                {
+                    world.setBlockState(newPos, blockToSpawn, 2);
+                }
+                else
+                {
+                    world.setBlockState(newPos, blockToSpawn, 2);
+                }
             }
         }
 
         return true;
+    }
+
+    @Override
+    public boolean canGenerate()
+    {
+        return !(blockToSpawn == Blocks.AIR.getDefaultState() || targetBlock == Blocks.AIR.getDefaultState());
+    }
+
+    @Override
+    public FeatureType getType()
+    {
+        return FeatureType.SCATTERED;
     }
 }

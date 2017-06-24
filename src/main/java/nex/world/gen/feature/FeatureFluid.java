@@ -21,23 +21,37 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import nex.util.BlockUtil;
+import nex.world.biome.NetherBiome;
 
 import java.util.Random;
 
-public class WorldGenLava extends WorldGenerator
+public class FeatureFluid extends Feature
 {
+    private final IBlockState blockToSpawn;
     private final IBlockState targetBlock;
-    private final boolean insideRock;
+    private final boolean hidden;
 
-    public WorldGenLava(IBlockState targetBlockIn, boolean insideRockIn)
+    public FeatureFluid(IBlockState blockToSpawnIn, IBlockState targetBlockIn, boolean hiddenIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
+        super(rarityIn, minHeightIn, maxHeightIn);
+
+        blockToSpawn = blockToSpawnIn;
         targetBlock = targetBlockIn;
-        insideRock = insideRockIn;
+        hidden = hiddenIn;
+    }
+
+    public FeatureFluid(NetherBiome.BiomeFeature feature)
+    {
+        super(feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 10 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+
+        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
+        targetBlock = BlockUtil.getBlock(feature.getTargetBlock());
+        hidden = feature.isHidden();
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         if(world.getBlockState(pos.up()) != targetBlock)
         {
@@ -103,14 +117,26 @@ public class WorldGenLava extends WorldGenerator
                 ++j;
             }
 
-            if(!insideRock && i == 4 && j == 1 || i == 5)
+            if(!hidden && i == 4 && j == 1 || i == 5)
             {
-                IBlockState state = Blocks.FLOWING_LAVA.getDefaultState();
+                IBlockState state = blockToSpawn;
                 world.setBlockState(pos, state, 2);
                 world.immediateBlockTick(pos, state, rand);
             }
 
             return true;
         }
+    }
+
+    @Override
+    public boolean canGenerate()
+    {
+        return !(blockToSpawn == Blocks.AIR.getDefaultState() || targetBlock == Blocks.AIR.getDefaultState());
+    }
+
+    @Override
+    public FeatureType getType()
+    {
+        return FeatureType.FLUID;
     }
 }

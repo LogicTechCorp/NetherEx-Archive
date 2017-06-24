@@ -36,7 +36,7 @@ public class FeatureOre extends Feature
 
     public FeatureOre(IBlockState blockToSpawnIn, IBlockState targetBlockIn, int sizeIn, int rarityIn, int minHeightIn, int maxHeightIn)
     {
-        super(FeatureType.ORE, rarityIn, minHeightIn, maxHeightIn);
+        super(rarityIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         targetBlock = targetBlockIn;
@@ -45,16 +45,11 @@ public class FeatureOre extends Feature
 
     public FeatureOre(NetherBiome.BiomeFeature feature)
     {
-        super(FeatureType.ORE, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 10 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+        super(feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 10 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
 
         blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
         targetBlock = BlockUtil.getBlock(feature.getTargetBlock());
         size = feature.getSize() <= 0 ? 14 : feature.getSize();
-
-        if(blockToSpawn == Blocks.AIR.getDefaultState() || targetBlock == Blocks.AIR.getDefaultState())
-        {
-            canGenerate = false;
-        }
     }
 
     @Override
@@ -118,5 +113,17 @@ public class FeatureOre extends Feature
         }
 
         return true;
+    }
+
+    @Override
+    public boolean canGenerate()
+    {
+        return !(blockToSpawn == Blocks.AIR.getDefaultState() || targetBlock == Blocks.AIR.getDefaultState());
+    }
+
+    @Override
+    public FeatureType getType()
+    {
+        return FeatureType.ORE;
     }
 }

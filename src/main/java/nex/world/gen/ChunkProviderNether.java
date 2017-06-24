@@ -417,11 +417,23 @@ public class ChunkProviderNether extends ChunkProviderHell
         {
             for(Feature feature : features)
             {
+                if(!feature.canGenerate())
+                {
+                    continue;
+                }
+
                 if(feature.getType() == Feature.FeatureType.ORE)
                 {
                     for(int i = 0; i < feature.getRarity(); i++)
                     {
                         feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
+                    }
+                }
+                else if(feature.getType() == Feature.FeatureType.STRUCTURE)
+                {
+                    if(rand.nextInt(feature.getRarity()) == 0)
+                    {
+                        feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
                     }
                 }
                 else
