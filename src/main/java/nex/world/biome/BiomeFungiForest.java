@@ -23,6 +23,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import nex.handler.ConfigHandler;
+import nex.util.RandomUtil;
 import nex.world.gen.feature.WorldGenElderMushroom;
 import nex.world.gen.feature.WorldGenEnokiMushroom;
 
@@ -48,7 +49,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigHandler.biome.fungiForest.elderMushroomRarity * 16; i++)
             {
-                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(32, 112, rand), rand.nextInt(16) + 8));
             }
         }
 
@@ -56,7 +57,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigHandler.biome.fungiForest.enokiMushroomRarity * 16; i++)
             {
-                enokiMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(80) + 32, rand.nextInt(16) + 8));
+                enokiMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(32, 128, rand), rand.nextInt(16) + 8));
             }
         }
 

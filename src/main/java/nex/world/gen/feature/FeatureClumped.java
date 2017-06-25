@@ -32,18 +32,11 @@ public class FeatureClumped extends Feature
 {
     private final IBlockState blockToSpawn;
 
-    public FeatureClumped(Biome biomeIn, IBlockState blockToSpawnIn, int rarityIn, int minHeightIn, int maxHeightIn)
-    {
-        super(biomeIn, rarityIn, minHeightIn, maxHeightIn);
-
-        blockToSpawn = blockToSpawnIn;
-    }
-
     public FeatureClumped(Biome biome, NetherBiome.BiomeFeature feature)
     {
-        super(biome, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 128 : feature.getMaxHeight());
+        super(biome, feature);
 
-        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
+        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn(), "minecraft:air");
     }
 
     @Override

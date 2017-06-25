@@ -33,20 +33,12 @@ public class FeatureScattered extends Feature
     private final IBlockState blockToSpawn;
     private final IBlockState targetBlock;
 
-    public FeatureScattered(Biome biomeIn, IBlockState blockToSpawnIn, IBlockState targetBlockIn, int rarityIn, int minHeightIn, int maxHeightIn)
-    {
-        super(biomeIn, rarityIn, minHeightIn, maxHeightIn);
-
-        blockToSpawn = blockToSpawnIn;
-        targetBlock = targetBlockIn;
-    }
-
     public FeatureScattered(Biome biome, NetherBiome.BiomeFeature feature)
     {
-        super(biome, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+        super(biome, feature);
 
-        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
-        targetBlock = BlockUtil.getBlock(feature.getTargetBlock());
+        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn(), "minecraft:air");
+        targetBlock = BlockUtil.getBlock(feature.getTargetBlock(), "minecraft:air");
     }
 
     @Override
@@ -58,9 +50,12 @@ public class FeatureScattered extends Feature
 
             if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == targetBlock)
             {
-                if(blockToSpawn instanceof BlockBush && ((BlockBush) blockToSpawn).canBlockStay(world, newPos, ((BlockBush) blockToSpawn).getDefaultState()))
+                if(blockToSpawn instanceof BlockBush)
                 {
-                    world.setBlockState(newPos, blockToSpawn, 2);
+                    if(((BlockBush) blockToSpawn).canBlockStay(world, newPos, ((BlockBush) blockToSpawn).getDefaultState()))
+                    {
+                        world.setBlockState(newPos, blockToSpawn, 2);
+                    }
                 }
                 else
                 {

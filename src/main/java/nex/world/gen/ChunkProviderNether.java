@@ -36,10 +36,7 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
-import net.minecraftforge.event.terraingen.InitMapGenEvent;
-import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
-import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
 import nex.util.RandomUtil;
@@ -149,16 +146,17 @@ public class ChunkProviderNether extends ChunkProviderHell
                                 Biome biome = biomesForGen[posX + posZ * 16];
 
                                 IBlockState state = null;
-                                NetherBiomeManager.NetherBiomeType type = NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome);
+                                IBlockState biomeFillerBlock = NetherBiomeManager.getBiomeFillerBlock(biome);
+                                IBlockState biomeOceanBlock = NetherBiomeManager.getBiomeOceanBlock(biome);
 
                                 if(posY < 32)
                                 {
-                                    state = type.getBiomeOceanBlock(biome);
+                                    state = biomeOceanBlock;
                                 }
 
                                 if(d15 > 0.0D)
                                 {
-                                    state = type.getBiomeFillerBlock(biome);
+                                    state = biomeFillerBlock;
                                 }
 
                                 primer.setBlockState(posX, posY, posZ, state);
@@ -201,71 +199,74 @@ public class ChunkProviderNether extends ChunkProviderHell
                 boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
                 Biome biome = biomesForGen[x + z * 16];
 
-                NetherBiomeManager.NetherBiomeType type = NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome);
-                IBlockState topState = type.getBiomeTopBlock(biome);
-                IBlockState fillerState = type.getBiomeFillerBlock(biome);
+                final IBlockState biomeTopBlock = NetherBiomeManager.getBiomeTopBlock(biome);
+                final IBlockState biomeFillerBlock = NetherBiomeManager.getBiomeFillerBlock(biome);
+                final IBlockState biomeOceanBlock = NetherBiomeManager.getBiomeOceanBlock(biome);
+
+                IBlockState topBlock = biomeTopBlock;
+                IBlockState fillerBlock = biomeFillerBlock;
 
                 for(int y = 127; y >= 0; y--)
                 {
                     if(y < 127 && y > 0)
                     {
-                        IBlockState checkState = primer.getBlockState(x, y, z);
+                        IBlockState checkBlock = primer.getBlockState(x, y, z);
 
-                        if(checkState.getMaterial() != Material.AIR)
+                        if(checkBlock.getMaterial() != Material.AIR)
                         {
-                            if(checkState == type.getBiomeFillerBlock(biome))
+                            if(checkBlock == biomeFillerBlock)
                             {
                                 if(i1 == -1)
                                 {
                                     if(l <= 0)
                                     {
-                                        topState = Blocks.AIR.getDefaultState();
-                                        fillerState = type.getBiomeTopBlock(biome);
+                                        topBlock = Blocks.AIR.getDefaultState();
+                                        fillerBlock = biomeTopBlock;
                                     }
                                     else if(y >= 62 && y <= 66)
                                     {
-                                        topState = type.getBiomeTopBlock(biome);
-                                        fillerState = type.getBiomeFillerBlock(biome);
+                                        topBlock = biomeTopBlock;
+                                        fillerBlock = biomeFillerBlock;
 
                                         if(ConfigHandler.dimension.nether.generateGravel && genGravel)
                                         {
-                                            topState = Blocks.GRAVEL.getDefaultState();
+                                            topBlock = Blocks.GRAVEL.getDefaultState();
                                         }
 
                                         if(ConfigHandler.dimension.nether.generateSoulSand && genSoulSand)
                                         {
-                                            topState = Blocks.SOUL_SAND.getDefaultState();
-                                            fillerState = Blocks.SOUL_SAND.getDefaultState();
+                                            topBlock = Blocks.SOUL_SAND.getDefaultState();
+                                            fillerBlock = Blocks.SOUL_SAND.getDefaultState();
                                         }
                                     }
 
-                                    if(y <= 32 && (topState == null || topState.getMaterial() == Material.AIR))
+                                    if(y <= 32 && (topBlock == null || topBlock.getMaterial() == Material.AIR))
                                     {
-                                        topState = type.getBiomeOceanBlock(biome);
+                                        topBlock = biomeOceanBlock;
                                     }
 
                                     i1 = l;
 
-                                    if(topState == type.getBiomeTopBlock(biome) && fillerState == type.getBiomeFillerBlock(biome))
+                                    if(topBlock == biomeTopBlock && fillerBlock == biomeFillerBlock)
                                     {
-                                        primer.setBlockState(x, y, z, topState);
+                                        primer.setBlockState(x, y, z, topBlock);
                                     }
                                     else
                                     {
                                         if(y > 64)
                                         {
-                                            primer.setBlockState(x, y, z, topState);
+                                            primer.setBlockState(x, y, z, topBlock);
                                         }
                                         else
                                         {
-                                            primer.setBlockState(x, y, z, fillerState);
+                                            primer.setBlockState(x, y, z, fillerBlock);
                                         }
                                     }
                                 }
                                 else if(i1 > 0)
                                 {
                                     i1--;
-                                    primer.setBlockState(x, y, z, fillerState);
+                                    primer.setBlockState(x, y, z, fillerBlock);
                                 }
                             }
                         }
@@ -411,7 +412,7 @@ public class ChunkProviderNether extends ChunkProviderHell
 
         netherBridge.generateStructure(world, rand, chunkPos);
 
-        List<Feature> features = NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome).getBiomeFeatures(biome);
+        List<Feature> features = NetherBiomeManager.getBiomeFeatures(biome);
 
         if(features.size() > 0)
         {
@@ -425,26 +426,57 @@ public class ChunkProviderNether extends ChunkProviderHell
                 {
                     continue;
                 }
+
+                int featureRarity = feature.useRandomRarity() ? rand.nextInt(feature.getRarity()) + 1 : feature.getRarity();
+                int featureHeight = RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand);
+
                 if(feature.getType() == Feature.FeatureType.ORE)
                 {
-                    for(int i = 0; i < feature.getRarity(); i++)
+                    BlockPos newPos = blockPos.add(rand.nextInt(16), featureHeight, rand.nextInt(16));
+
+                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, newPos));
+
+                    if(!feature.isSuperRare())
                     {
-                        feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
+                        for(int i = 0; i < featureRarity; i++)
+                        {
+                            feature.generate(world, newPos, rand);
+                        }
                     }
-                }
-                else if(feature.getType() == Feature.FeatureType.STRUCTURE)
-                {
-                    if(rand.nextInt(feature.getRarity()) == 0)
+                    else
                     {
-                        feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
+                        if(rand.nextInt(featureRarity) == 0)
+                        {
+                            feature.generate(world, newPos, rand);
+                        }
                     }
+
+                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, newPos));
                 }
                 else
                 {
-                    for(int i = 0; i < feature.getRarity(); i++)
+                    BlockPos newPos = blockPos.add(rand.nextInt(16) + 8, featureHeight, rand.nextInt(16) + 8);
+
+                    ForgeEventFactory.onChunkPopulate(true, this, world, rand, newPos.getX(), newPos.getZ(), false);
+                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, newPos));
+
+                    if(!feature.isSuperRare())
                     {
-                        feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
+                        for(int i = 0; i < featureRarity; i++)
+                        {
+                            feature.generate(world, newPos, rand);
+                        }
                     }
+                    else
+                    {
+                        if(rand.nextInt(featureRarity) == 0)
+                        {
+                            feature.generate(world, newPos, rand);
+                        }
+                    }
+
+                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, newPos));
+                    ForgeEventFactory.onChunkPopulate(false, this, world, rand, newPos.getX(), newPos.getZ(), false);
                 }
             }
         }
@@ -479,7 +511,7 @@ public class ChunkProviderNether extends ChunkProviderHell
         }
 
         Biome biome = world.getBiomeForCoordsBody(pos);
-        return NetherBiomeManager.NetherBiomeType.getTypeFromBiome(biome).getBiomeEntitySpawnList(biome).get(creatureType);
+        return NetherBiomeManager.getBiomeEntitySpawnList(biome).get(creatureType);
     }
 
     @Override

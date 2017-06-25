@@ -33,21 +33,12 @@ public class FeatureFluid extends Feature
     private final IBlockState targetBlock;
     private final boolean hidden;
 
-    public FeatureFluid(Biome biomeIn, IBlockState blockToSpawnIn, IBlockState targetBlockIn, boolean hiddenIn, int rarityIn, int minHeightIn, int maxHeightIn)
-    {
-        super(biomeIn, rarityIn, minHeightIn, maxHeightIn);
-
-        blockToSpawn = blockToSpawnIn;
-        targetBlock = targetBlockIn;
-        hidden = hiddenIn;
-    }
-
     public FeatureFluid(Biome biome, NetherBiome.BiomeFeature feature)
     {
-        super(biome, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 10 : feature.getMinHeight(), feature.getMaxHeight() >= 128 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+        super(biome, feature);
 
-        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
-        targetBlock = BlockUtil.getBlock(feature.getTargetBlock());
+        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn(), "minecraft:air");
+        targetBlock = BlockUtil.getBlock(feature.getTargetBlock(), "minecraft:air");
         hidden = feature.isHidden();
     }
 

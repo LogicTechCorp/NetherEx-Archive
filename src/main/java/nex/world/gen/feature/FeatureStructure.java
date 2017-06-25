@@ -19,7 +19,7 @@ package nex.world.gen.feature;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Block;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -31,6 +31,7 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraft.world.storage.loot.LootTableList;
+import nex.util.BlockUtil;
 import nex.util.WeightedUtil;
 import nex.util.WorldGenUtil;
 import nex.world.biome.NetherBiome;
@@ -42,29 +43,19 @@ public class FeatureStructure extends Feature
 {
     private final List<StructureType> types;
     private final List<WeightedUtil.NamedItem> structures;
+    private final List<Block> replacedBlocks;
     private final List<List<ResourceLocation>> lootTables;
     private final List<List<ResourceLocation>> spawnerMobs;
     private final List<Boolean> rotationList;
     private final List<Boolean> mirrorList;
 
-    public FeatureStructure(Biome biomeIn, List<StructureType> typesIn, List<WeightedUtil.NamedItem> structuresIn, List<List<ResourceLocation>> lootTablesIn, List<List<ResourceLocation>> spawnerMobsIn, List<Boolean> rotationListIn, List<Boolean> mirrorListIn, int rarityIn, int minHeightIn, int maxHeightIn)
-    {
-        super(biomeIn, rarityIn, minHeightIn, maxHeightIn);
-
-        types = typesIn;
-        structures = structuresIn;
-        lootTables = lootTablesIn;
-        spawnerMobs = spawnerMobsIn;
-        rotationList = rotationListIn;
-        mirrorList = mirrorListIn;
-    }
-
     public FeatureStructure(Biome biome, NetherBiome.BiomeFeature feature)
     {
-        super(biome, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+        super(biome, feature);
 
         types = Lists.newArrayList();
         structures = Lists.newArrayList();
+        replacedBlocks = Lists.newArrayList();
         lootTables = Lists.newArrayList();
         spawnerMobs = Lists.newArrayList();
         rotationList = Lists.newArrayList();
@@ -73,6 +64,7 @@ public class FeatureStructure extends Feature
         for(NetherBiome.BiomeStructure structure : feature.getStructureList())
         {
             int index = feature.getStructureList().indexOf(structure);
+            replacedBlocks.add(index, BlockUtil.getBlock(structure.getReplacedBlock(), ""));
             structures.add(index, new WeightedUtil.NamedItem(structure.getStructureId(), structure.getWeight()));
             types.add(index, StructureType.getFromString(structure.getStructureType()));
             lootTables.add(index, Lists.newArrayList());
@@ -125,7 +117,7 @@ public class FeatureStructure extends Feature
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template = manager.getTemplate(server, new ResourceLocation(structure.name));
 
-        PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.STRUCTURE_VOID).setRandom(rand);
+        PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(replacedBlocks.get(index)).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings, template.getSize());
         BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos;

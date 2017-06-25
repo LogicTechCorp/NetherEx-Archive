@@ -21,6 +21,7 @@ import com.google.common.base.Strings;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import nex.world.biome.NetherBiome;
 
 import java.util.Random;
 
@@ -30,13 +31,17 @@ public abstract class Feature
     private final int rarity;
     private final int minHeight;
     private final int maxHeight;
+    private final boolean randomRarity;
+    private final boolean superRare;
 
-    public Feature(Biome biomeIn, int rarityIn, int minHeightIn, int maxHeightIn)
+    public Feature(Biome biomeIn, NetherBiome.BiomeFeature feature)
     {
         biome = biomeIn;
-        rarity = rarityIn;
-        minHeight = minHeightIn;
-        maxHeight = maxHeightIn;
+        rarity = feature.getRarity() <= 0 ? 10 : feature.getRarity();
+        minHeight = feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight();
+        maxHeight = feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight();
+        randomRarity = feature.useRandomRarity();
+        superRare = feature.isSuperRare();
     }
 
     public abstract boolean generate(World world, BlockPos pos, Random rand);
@@ -63,6 +68,16 @@ public abstract class Feature
     public int getMaxHeight()
     {
         return maxHeight;
+    }
+
+    public boolean useRandomRarity()
+    {
+        return randomRarity;
+    }
+
+    public boolean isSuperRare()
+    {
+        return superRare;
     }
 
     public enum FeatureType

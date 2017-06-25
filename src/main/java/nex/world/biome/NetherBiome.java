@@ -168,6 +168,8 @@ public class NetherBiome
         private int maxHeight;
         private int size;
         private int rarity;
+        private boolean randomRarity;
+        private boolean superRare;
         private List<BiomeStructure> structureList;
         private boolean hidden;
 
@@ -211,6 +213,16 @@ public class NetherBiome
             return rarity;
         }
 
+        public boolean useRandomRarity()
+        {
+            return randomRarity;
+        }
+
+        public boolean isSuperRare()
+        {
+            return superRare;
+        }
+
         public List<BiomeStructure> getStructureList()
         {
             return structureList;
@@ -226,6 +238,7 @@ public class NetherBiome
     {
         private String structureType;
         private String structureId;
+        private String replacedBlock;
         private List<String> lootTables;
         private List<String> spawnerMobs;
         private boolean rotate;
@@ -240,6 +253,11 @@ public class NetherBiome
         public String getStructureId()
         {
             return structureId;
+        }
+
+        public String getReplacedBlock()
+        {
+            return replacedBlock;
         }
 
         public List<String> getLootTables()

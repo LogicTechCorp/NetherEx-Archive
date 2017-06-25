@@ -23,6 +23,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import nex.handler.ConfigHandler;
+import nex.util.RandomUtil;
 import nex.world.gen.feature.WorldGenThornstalk;
 
 import java.util.Random;
@@ -46,7 +47,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigHandler.biome.ruthlessSands.thornstalkRarity; i++)
             {
-                thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, rand.nextInt(96) + 32, rand.nextInt(16) + 8));
+                thornstalk.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(32, 112, rand), rand.nextInt(16) + 8));
             }
         }
 

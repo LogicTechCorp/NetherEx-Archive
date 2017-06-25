@@ -33,31 +33,23 @@ public class FeaturePool extends Feature
     private final IBlockState blockToSpawn;
     private final IBlockState surroundingBlock;
 
-    public FeaturePool(Biome biomeIn, IBlockState blockToSpawnIn, IBlockState surroundingBlockIn, int rarityIn, int minHeightIn, int maxHeightIn)
-    {
-        super(biomeIn, rarityIn, minHeightIn, maxHeightIn);
-
-        blockToSpawn = blockToSpawnIn;
-        surroundingBlock = surroundingBlockIn;
-    }
-
     public FeaturePool(Biome biome, NetherBiome.BiomeFeature feature)
     {
-        super(biome, feature.getRarity() <= 0 ? 10 : feature.getRarity(), feature.getMinHeight() <= 0 || feature.getMinHeight() >= 128 ? 4 : feature.getMinHeight(), feature.getMaxHeight() >= 120 || feature.getMaxHeight() <= 0 ? 108 : feature.getMaxHeight());
+        super(biome, feature);
 
-        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn());
-        surroundingBlock = BlockUtil.getBlock(feature.getSurroundingBlock());
+        blockToSpawn = BlockUtil.getBlock(feature.getBlockToSpawn(), "minecraft:air");
+        surroundingBlock = BlockUtil.getBlock(feature.getSurroundingBlock(), "minecraft:air");
     }
 
     @Override
     public boolean generate(World world, BlockPos pos, Random rand)
     {
-        for(pos = pos.add(-8, 0, -8); pos.getY() > 32 && (world.isAirBlock(pos)); pos = pos.down())
+        for(pos = pos.add(-8, 0, -8); pos.getY() > 33 && (world.isAirBlock(pos)); pos = pos.down())
         {
 
         }
 
-        if(pos.getY() < 32)
+        if(pos.getY() < 33)
         {
             return false;
         }

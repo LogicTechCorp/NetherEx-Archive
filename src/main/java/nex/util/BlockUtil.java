@@ -38,9 +38,14 @@ public class BlockUtil
 {
     private static final NetHandlerPlayClient HANDLER = (NetHandlerPlayClient) FMLClientHandler.instance().getClientPlayHandler();
 
-    public static IBlockState getBlock(NetherBiome.BiomeBlock block)
+    public static IBlockState getBlock(NetherBiome.BiomeBlock block, String fallback)
     {
-        return Block.getBlockFromName(block.getId() == null || block.getId().isEmpty() || Block.getBlockFromName(block.getId()) == null ? "minecraft:air" : block.getId()).getStateFromMeta(block.getMeta());
+        return Block.getBlockFromName(block.getId() == null || block.getId().isEmpty() || Block.getBlockFromName(block.getId()) == null ? fallback : block.getId()).getStateFromMeta(block.getMeta());
+    }
+
+    public static Block getBlock(String blockId, String fallback)
+    {
+        return Block.getBlockFromName(blockId == null || blockId.isEmpty() || Block.getBlockFromName(blockId) == null ? fallback : blockId);
     }
 
     /**
