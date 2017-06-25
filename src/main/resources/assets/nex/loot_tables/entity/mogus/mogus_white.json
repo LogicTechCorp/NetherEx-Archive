@@ -6,11 +6,11 @@
             "entries": [
                 {
                     "type": "loot_table",
-                    "name": "nex:entity/mogus_brown"
+                    "name": "nex:entity/mogus/mogus_brown"
                 },
                 {
                     "type": "loot_table",
-                    "name": "nex:entity/mogus_red"
+                    "name": "nex:entity/mogus/mogus_red"
                 }
             ]
         }

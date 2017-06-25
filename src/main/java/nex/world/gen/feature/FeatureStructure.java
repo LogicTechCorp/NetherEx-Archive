@@ -113,18 +113,18 @@ public class FeatureStructure extends Feature
         Mirror mirror = mirrorList.get(index) ? mirrors[rand.nextInt(mirrors.length)] : Mirror.NONE;
         Rotation rotation = rotationList.get(index) ? rotations[rand.nextInt(rotations.length)] : Rotation.NONE;
 
-        MinecraftServer server = world.getMinecraftServer();
-        TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = manager.getTemplate(server, new ResourceLocation(structure.name));
+        MinecraftServer minecraftServer = world.getMinecraftServer();
+        TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
+        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(structure.name));
 
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(replacedBlocks.get(index)).setRandom(rand);
-        BlockPos structureSize = Template.transformedBlockPos(placementSettings, template.getSize());
-        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 96, pos.getZ() - structureSize.getZ() / 2);
+        BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
+        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 128, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos;
 
         if(type == StructureType.GROUND)
         {
-            spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, structureSize, 0.8F);
+            spawnPos = WorldGenUtil.getSuitableGroundPos(world, newPos, structureSize, 0.875F);
         }
         else if(type == StructureType.AIR)
         {
@@ -145,7 +145,7 @@ public class FeatureStructure extends Feature
 
         if(!spawnPos.equals(BlockPos.ORIGIN))
         {
-            WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings, lootTables.get(index), spawnerMobs.get(index));
+            WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings.copy(), lootTables.get(index), spawnerMobs.get(index));
             return true;
         }
 

@@ -66,6 +66,7 @@ public class WorldGenUtil
         while(pos.getY() > 32)
         {
             float sizeX = structureSize.getX();
+            float sizeY = structureSize.getY();
             float sizeZ = structureSize.getZ();
 
             int topBlocks = 0;
@@ -92,7 +93,37 @@ public class WorldGenUtil
                 }
             }
 
+            int replaceableBlocks = 0;
+
             if(topBlocks >= MathHelper.abs(sizeX * sizeZ) * percentage)
+            {
+                for(int y = 1; y < sizeY; y++)
+                {
+                    for(int x = 0; x <= MathHelper.abs(sizeX); x++)
+                    {
+                        for(int z = 0; z <= MathHelper.abs(sizeZ); z++)
+                        {
+                            int posX = (int) (sizeX > 0 ? sizeX - x : sizeX + x);
+                            int posZ = (int) (sizeZ > 0 ? sizeZ - z : sizeZ + z);
+
+                            BlockPos newPos = pos.add(posX, y, posZ);
+                            IBlockState state = world.getBlockState(newPos);
+
+                            if(world.getBlockState(newPos).getMaterial().isReplaceable())
+                            {
+                                replaceableBlocks++;
+                            }
+                            else if(state != Blocks.AIR.getDefaultState())
+                            {
+                                pos = pos.down();
+                                continue label_while;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(replaceableBlocks > MathHelper.abs(sizeX * sizeY * sizeZ) * 0.875F)
             {
                 return pos;
             }
@@ -124,7 +155,7 @@ public class WorldGenUtil
 
                         BlockPos newPos = pos.add(posX, y, posZ);
 
-                        if(world.getBlockState(newPos).isBlockNormalCube())
+                        if(!world.getBlockState(newPos).getMaterial().isReplaceable())
                         {
                             wallBlocks++;
                         }
@@ -146,14 +177,14 @@ public class WorldGenUtil
     public static BlockPos getSuitableCeilingPos(World world, BlockPos pos, BlockPos structureSize)
     {
         label_while:
-        while(pos.getY() < 112)
+        while(pos.getY() < 128)
         {
             float sizeX = structureSize.getX();
             float sizeZ = structureSize.getZ();
             float sizeY = structureSize.getY();
 
             int ceilingBlocks = 0;
-            int airBlocks = 0;
+            int replaceableBlocks = 0;
 
             for(int x = 0; x <= MathHelper.abs(sizeX); x++)
             {
@@ -182,7 +213,7 @@ public class WorldGenUtil
                         {
                             if(world.getBlockState(newPos).getBlock().isReplaceable(world, newPos))
                             {
-                                airBlocks++;
+                                replaceableBlocks++;
                             }
                             else
                             {
@@ -195,7 +226,7 @@ public class WorldGenUtil
                 }
             }
 
-            if(airBlocks >= MathHelper.abs(sizeX * (sizeY - 1) * sizeZ) && ceilingBlocks >= MathHelper.abs(sizeX * sizeZ))
+            if(replaceableBlocks >= MathHelper.abs(sizeX * (sizeY - 1) * sizeZ) && ceilingBlocks >= MathHelper.abs(sizeX * sizeZ))
             {
                 return pos.add(0, -sizeY, 0);
             }
@@ -215,7 +246,7 @@ public class WorldGenUtil
             float sizeZ = structureSize.getZ();
             float sizeY = structureSize.getY();
 
-            int airBlocks = 0;
+            int replaceableBlocks = 0;
 
             for(int x = 0; x <= MathHelper.abs(sizeX); x++)
             {
@@ -228,9 +259,9 @@ public class WorldGenUtil
 
                         BlockPos newPos = pos.add(posX, y, posZ);
 
-                        if(world.getBlockState(newPos).getBlock().isReplaceable(world, newPos))
+                        if(world.getBlockState(newPos).getMaterial().isReplaceable())
                         {
-                            airBlocks++;
+                            replaceableBlocks++;
                         }
                         else
                         {
@@ -241,7 +272,7 @@ public class WorldGenUtil
                 }
             }
 
-            if(airBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ))
+            if(replaceableBlocks >= MathHelper.abs(sizeX * sizeY * sizeZ))
             {
                 return pos;
             }
