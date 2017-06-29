@@ -122,7 +122,7 @@ public class NetherExItems
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent

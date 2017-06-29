@@ -18,12 +18,12 @@
 package nex.world;
 
 import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
 import nex.world.biome.BiomeProviderNether;
-import nex.world.gen.ChunkProviderNether;
+import nex.world.gen.ChunkGeneratorNether;
 
 public class WorldProviderNether extends WorldProviderHell
 {
@@ -38,7 +38,7 @@ public class WorldProviderNether extends WorldProviderHell
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderNether(world);
+        return new ChunkGeneratorNether(world);
     }
 
     @Override

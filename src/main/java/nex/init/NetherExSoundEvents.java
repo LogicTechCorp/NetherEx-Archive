@@ -135,7 +135,7 @@ public class NetherExSoundEvents
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExSoundEvents");
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent

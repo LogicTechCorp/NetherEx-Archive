@@ -69,7 +69,7 @@ public class EntityGhastQueen extends EntityGhast
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return NetherExSoundEvents.ENTITY_HURT_GHAST_QUEEN;
     }

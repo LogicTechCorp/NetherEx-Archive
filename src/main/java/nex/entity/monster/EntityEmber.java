@@ -62,19 +62,19 @@ public class EntityEmber extends EntityMob
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender(float partialTicks)
+    public int getBrightnessForRender()
     {
         return 15728880;
     }
 
     @Override
-    public float getBrightness(float partialTicks)
+    public float getBrightness()
     {
         return 1.0F;
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return NetherExSoundEvents.ENTITY_HURT_EMBER;
     }
@@ -227,7 +227,7 @@ public class EntityEmber extends EntityMob
 
             if(d1 < 0.010000000000000002D)
             {
-                moveRelative(0.0F, 1.0F, 0.1F);
+                moveRelative(0.0F, 0.0F, 1.0F, 0.1F);
             }
         }
 

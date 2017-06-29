@@ -47,7 +47,7 @@ public class ItemWitherDust extends ItemNetherEx
         }
         else
         {
-            if(applyBoneMeal(stack, world, pos, player))
+            if(applyBoneMeal(stack, world, pos, player, hand))
             {
                 if(!world.isRemote)
                 {
@@ -60,11 +60,11 @@ public class ItemWitherDust extends ItemNetherEx
         }
     }
 
-    private static boolean applyBoneMeal(ItemStack stack, World world, BlockPos pos, EntityPlayer player)
+    private static boolean applyBoneMeal(ItemStack stack, World world, BlockPos pos, EntityPlayer player, EnumHand hand)
     {
         IBlockState state = world.getBlockState(pos);
 
-        int hook = ForgeEventFactory.onApplyBonemeal(player, world, pos, state, stack);
+        int hook = ForgeEventFactory.onApplyBonemeal(player, world, pos, state, stack, hand);
 
         if(hook != 0)
         {

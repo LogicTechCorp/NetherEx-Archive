@@ -35,6 +35,7 @@ import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.block.*;
 import nex.item.ItemSalamanderHide;
@@ -44,8 +45,9 @@ import org.apache.logging.log4j.Logger;
 import static nex.init.NetherExBlocks.*;
 import static nex.init.NetherExItems.*;
 
+@SideOnly(Side.CLIENT)
 @SuppressWarnings("ConstantConditions")
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class NetherExModels
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExModels");

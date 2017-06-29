@@ -45,11 +45,11 @@ public class BlockBasaltSlab extends BlockNetherExSlab
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
         {
-            list.add(new ItemStack(item, 1, type.ordinal()));
+            list.add(new ItemStack(this, 1, type.ordinal()));
         }
     }
 

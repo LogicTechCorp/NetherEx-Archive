@@ -59,14 +59,14 @@ public class LayerBoneSpiderEyes implements LayerRenderer<EntityBoneSpider>
         int k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        Minecraft.getMinecraft().entityRenderer.func_191514_d(true);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         spiderRenderer.getSpiderHead().render(boneSpider, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        Minecraft.getMinecraft().entityRenderer.func_191514_d(false);
-        i = boneSpider.getBrightnessForRender(partialTicks);
+        Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
+        i = boneSpider.getBrightnessForRender();
         j = i % 65536;
         k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
-        spiderRenderer.setLightmap(boneSpider, partialTicks);
+        spiderRenderer.setLightmap(boneSpider);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
     }

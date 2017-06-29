@@ -3,18 +3,6 @@ language.name=English
 language.region=United States
 language.code=en_us
 
-# Achievements
-achievement.nex:stayinFrosty=Stayin' Frosty!
-achievement.nex:stayinFrosty.desc=Swim in Lava while having Fire Resistance
-achievement.nex:uhOh=UH OH!
-achievement.nex:uhOh.desc=Enrage a Zombie Pigman
-achievement.nex:inPlainSight=In Plain Sight!
-achievement.nex:inPlainSight.desc=Wear a full set of Bone Armor in front of a Skeleton
-achievement.nex:fromWithin=From Within!
-achievement.nex:fromWithin.desc=Kill a Skeleton while disguised as one
-achievement.nex:cuteButDeadly=Cute But Deadly!
-achievement.nex:cuteButDeadly.desc=Enrage a Mogus
-
 #Config
 config.nex=NetherEx Config
 config.nex:client=Client Settings

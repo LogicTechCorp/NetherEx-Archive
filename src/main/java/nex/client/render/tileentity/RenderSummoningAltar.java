@@ -29,7 +29,7 @@ import nex.tileentity.TileEntityUrnOfSorrow;
 public class RenderSummoningAltar extends TileEntitySpecialRenderer<TileEntityUrnOfSorrow>
 {
     @Override
-    public void renderTileEntityAt(TileEntityUrnOfSorrow altar, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityUrnOfSorrow altar, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         if(altar == null)
         {

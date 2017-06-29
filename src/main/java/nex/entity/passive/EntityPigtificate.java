@@ -104,7 +104,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return NetherExSoundEvents.ENTITY_HURT_PIGTIFICATE;
     }

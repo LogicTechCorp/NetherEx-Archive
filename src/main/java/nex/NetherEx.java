@@ -23,11 +23,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import nex.handler.RemapHandler;
-import nex.init.*;
+import nex.init.NetherExBiomes;
+import nex.init.NetherExEntities;
+import nex.init.NetherExOreDict;
+import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
 import nex.village.TradeManager;
 import nex.world.biome.NetherBiomeManager;
@@ -36,14 +37,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, updateJSON = NetherEx.UPDATE_JSON)
+@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
-    public static final String DEPENDENCIES = "required-after:forge@[1.11.2-13.20.1.2386,);after:*;";
-    public static final String UPDATE_JSON = "https://gist.github.com/LogicTechCorp/f905ee90250f25c19115cde3d078f0f0";
+    public static final String DEPENDENCIES = "required-after:forge@[1.12-14.21.1.2387,);after:*;";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
     public static final boolean IS_DEV_ENV = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
@@ -55,6 +55,8 @@ public class NetherEx
     public static IProxy proxy;
 
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
+
+    private File configDirectory;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|Main");
 
@@ -68,10 +70,7 @@ public class NetherEx
     {
         LOGGER.info("PreInitialization started.");
 
-        NetherExEntities.init();
-        NetherExBiomes.init();
-        TradeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trade Lists"));
-        NetherBiomeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Biome Lists"));
+        configDirectory = event.getModConfigurationDirectory();
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");
@@ -82,9 +81,12 @@ public class NetherEx
     {
         LOGGER.info("Initialization started.");
 
+        NetherExEntities.init();
+        NetherExBiomes.init();
+        TradeManager.init(new File(configDirectory, "/NetherEx/Trade Lists"));
+        NetherBiomeManager.init(new File(configDirectory, "/NetherEx/Biome Lists"));
         NetherExRecipes.init();
         NetherExOreDict.init();
-        NetherExAchievements.init();
         proxy.init();
 
         LOGGER.info("Initialization completed.");
@@ -98,15 +100,5 @@ public class NetherEx
         proxy.postInit();
 
         LOGGER.info("PostInitialization completed.");
-    }
-
-    @Mod.EventHandler
-    public void onMissingMappings(FMLMissingMappingsEvent event)
-    {
-        LOGGER.info("Missing Mappings started.");
-
-        RemapHandler.remap(event.get());
-
-        LOGGER.info("Missing Mappings completed.");
     }
 }

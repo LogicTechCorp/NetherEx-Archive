@@ -46,7 +46,7 @@ public class NetherExEffectTypes
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffectTypes");
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent

@@ -39,7 +39,7 @@ public class BlockWornIron extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Items.field_191525_da;
+        return Items.IRON_NUGGET;
     }
 
     @Override

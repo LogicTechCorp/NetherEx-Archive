@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkProviderHell;
+import net.minecraft.world.gen.ChunkGeneratorHell;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class ChunkProviderNether extends ChunkProviderHell
+public class ChunkGeneratorNether extends ChunkGeneratorHell
 {
     private final World world;
     private final Random rand;
@@ -75,7 +75,7 @@ public class ChunkProviderNether extends ChunkProviderHell
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
 
-    public ChunkProviderNether(World worldIn)
+    public ChunkGeneratorNether(World worldIn)
     {
         super(worldIn, true, worldIn.getSeed());
         world = worldIn;

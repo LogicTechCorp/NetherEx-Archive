@@ -31,7 +31,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
@@ -64,13 +63,13 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.block.BlockNetherrackPath;
 import nex.block.BlockTilledSoulSand;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.EntityGhastling;
 import nex.entity.monster.EntityNethermite;
 import nex.entity.monster.EntitySpore;
-import nex.entity.neutral.EntityMogus;
 import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.village.PigtificateVillageManager;
@@ -82,7 +81,7 @@ import java.util.ListIterator;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class EventHandler
 {
     private static final Minecraft MC = Minecraft.getMinecraft();
@@ -441,16 +440,7 @@ public class EventHandler
                 if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_BONE_WITHERED))
                 {
                     ((AbstractSkeleton) attacker).setAttackTarget(null);
-                    player.addStat(NetherExAchievements.IN_PLAIN_SIGHT);
                 }
-            }
-            if(attacker instanceof EntityPigZombie)
-            {
-                player.addStat(NetherExAchievements.UH_OH);
-            }
-            if(attacker instanceof EntityMogus)
-            {
-                player.addStat(NetherExAchievements.CUTE_BUT_DEADLY);
             }
         }
     }
@@ -481,13 +471,6 @@ public class EventHandler
                     event.setCanceled(true);
                 }
             }
-            if(player.dimension == -1)
-            {
-                if(source == DamageSource.LAVA && player.isPotionActive(MobEffects.FIRE_RESISTANCE))
-                {
-                    player.addStat(NetherExAchievements.STAYIN_FROSTY);
-                }
-            }
         }
     }
 
@@ -505,28 +488,6 @@ public class EventHandler
             if(!player.isPotionActive(MobEffects.REGENERATION) && !player.isPotionActive(MobEffects.ABSORPTION) && player.isPotionActive(NetherExEffects.FROSTBITE))
             {
                 event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event)
-    {
-        Entity entity = event.getEntity();
-        World world = entity.getEntityWorld();
-        BlockPos pos = entity.getPosition();
-        DamageSource source = event.getSource();
-
-        if(entity instanceof AbstractSkeleton)
-        {
-            if(source.getTrueSource() instanceof EntityPlayer)
-            {
-                EntityPlayer player = (EntityPlayer) source.getTrueSource();
-
-                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_BONE_WITHERED))
-                {
-                    player.addStat(NetherExAchievements.FROM_WITHIN);
-                }
             }
         }
     }

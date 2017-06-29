@@ -251,7 +251,7 @@ public class EntityGoldGolem extends EntityGolem
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource source)
     {
         return SoundEvents.ENTITY_IRONGOLEM_HURT;
     }

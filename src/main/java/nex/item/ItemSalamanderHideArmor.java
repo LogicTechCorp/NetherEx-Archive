@@ -20,7 +20,6 @@ package nex.item;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -41,12 +40,12 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         NBTTagCompound compound = new NBTTagCompound();
         compound.setBoolean("Variant", true);
-        list.add(new ItemStack(item, 1, 0));
-        list.add(NBTUtil.setTag(new ItemStack(item, 1, 0), compound));
+        list.add(new ItemStack(this, 1, 0));
+        list.add(NBTUtil.setTag(new ItemStack(this, 1, 0), compound));
     }
 
     @Override
