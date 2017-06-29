@@ -32,22 +32,22 @@
                             "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "rarity": 30,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
-                            "minHeight": 1,
+                            "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
@@ -79,7 +79,7 @@
                         },
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": { "blockId": "minecraft:lava", "meta": 0 },
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
                             "targetBlock": { "blockId": "nex:block_netherrack", "meta": 0 },
                             "hidden": true,
                             "rarity": 48,
@@ -239,22 +239,22 @@
                             "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "rarity": 10,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
-                            "minHeight": 1,
+                            "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
@@ -263,7 +263,7 @@
                             "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "rarity": 5,
                             "superRare": true,
-                            "minHeight": 1,
+                            "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
@@ -272,7 +272,7 @@
                             "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "rarity": 5,
                             "superRare": true,
-                            "minHeight": 1,
+                            "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
@@ -304,7 +304,7 @@
                         },
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": { "blockId": "minecraft:lava", "meta": 0 },
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
                             "targetBlock": { "blockId": "minecraft:netherrack", "meta": 0 },
                             "hidden": true,
                             "rarity": 16,
@@ -549,14 +549,14 @@
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
-                            "minHeight": 1,
+                            "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
@@ -570,7 +570,7 @@
                         },
                         {
                             "featureType": "fluid",
-                            "blockToSpawn": { "blockId": "minecraft:lava", "meta": 0 },
+                            "blockToSpawn": { "blockId": "minecraft:flowing_lava", "meta": 0 },
                             "targetBlock": { "blockId": "nex:block_netherrack", "meta": 3 },
                             "hidden": true,
                             "rarity": 16,
@@ -708,14 +708,14 @@
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
-                            "minHeight": 1,
+                            "minHeight": 32,
                             "maxHeight": 128
                         },
                         {
@@ -867,24 +867,24 @@
                             "featureType": "scattered",
                             "blockToSpawn": { "blockId": "nex:block_fire_blue", "meta": 0 },
                             "targetBlock": { "blockId": "nex:block_ice_frostburn", "meta": 0 },
-                            "rarity": 10,
+                            "rarity": 5,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
                             "randomRarity": true,
-                            "minHeight": 4,
-                            "maxHeight": 124
+                            "minHeight": 32,
+                            "maxHeight": 128
                         },
                         {
                             "featureType": "clumped",
                             "blockToSpawn": { "blockId": "minecraft:glowstone", "meta": 0 },
                             "rarity": 10,
-                            "minHeight": 1,
+                            "minHeight": 32,
                             "maxHeight": 128
                         },
                         {

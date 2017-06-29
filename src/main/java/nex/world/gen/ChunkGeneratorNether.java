@@ -428,55 +428,50 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                 }
 
                 int featureRarity = feature.useRandomRarity() ? rand.nextInt(feature.getRarity()) + 1 : feature.getRarity();
-                int featureHeight = RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand);
 
                 if(feature.getType() == Feature.FeatureType.ORE)
                 {
-                    BlockPos newPos = blockPos.add(rand.nextInt(16), featureHeight, rand.nextInt(16));
-
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, newPos));
+                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
 
                     if(!feature.isSuperRare())
                     {
                         for(int i = 0; i < featureRarity; i++)
                         {
-                            feature.generate(world, newPos, rand);
+                            feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
                         }
                     }
                     else
                     {
                         if(rand.nextInt(featureRarity) == 0)
                         {
-                            feature.generate(world, newPos, rand);
+                            feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
                         }
                     }
 
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, newPos));
+                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
                 }
                 else
                 {
-                    BlockPos newPos = blockPos.add(rand.nextInt(16) + 8, featureHeight, rand.nextInt(16) + 8);
-
-                    ForgeEventFactory.onChunkPopulate(true, this, world, rand, newPos.getX(), newPos.getZ(), false);
-                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, newPos));
+                    ForgeEventFactory.onChunkPopulate(true, this, world, rand, blockPos.getX(), blockPos.getZ(), false);
+                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
 
                     if(!feature.isSuperRare())
                     {
                         for(int i = 0; i < featureRarity; i++)
                         {
-                            feature.generate(world, newPos, rand);
+                            feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
                         }
                     }
                     else
                     {
                         if(rand.nextInt(featureRarity) == 0)
                         {
-                            feature.generate(world, newPos, rand);
+                            feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
                         }
                     }
 
-                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, newPos));
-                    ForgeEventFactory.onChunkPopulate(false, this, world, rand, newPos.getX(), newPos.getZ(), false);
+                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
+                    ForgeEventFactory.onChunkPopulate(false, this, world, rand, blockPos.getX(), blockPos.getZ(), false);
                 }
             }
         }
