@@ -43,7 +43,6 @@ public class RecipeUtil
     private static File RECIPE_DIR = null;
     private static final Set<String> USED_ORE_DICTIONARY_NAMES = new TreeSet<>();
     private static final Set<String> USED_REGISTRY_NAMES = new TreeSet<>();
-    ;
 
     public static void setupDir(File file)
     {
@@ -51,7 +50,6 @@ public class RecipeUtil
         {
             RECIPE_DIR = file;
         }
-
         if(!RECIPE_DIR.exists())
         {
             RECIPE_DIR.mkdir();
@@ -75,21 +73,29 @@ public class RecipeUtil
         boolean isOreDict = false;
         Map<String, Map<String, Object>> key = new HashMap<>();
         Character curKey = null;
+
         for(; i < components.length; i++)
         {
             Object o = components[i];
+
             if(o instanceof Character)
             {
                 if(curKey != null)
+                {
                     throw new IllegalArgumentException("Provided two char keys in a row");
+                }
                 curKey = (Character) o;
             }
             else
             {
                 if(curKey == null)
+                {
                     throw new IllegalArgumentException("Providing object without a char key");
+                }
                 if(o instanceof String)
+                {
                     isOreDict = true;
+                }
                 key.put(Character.toString(curKey), serializeItem(o));
                 curKey = null;
             }
@@ -127,12 +133,17 @@ public class RecipeUtil
 
         boolean isOreDict = false;
         List<Map<String, Object>> ingredients = new ArrayList<>();
+
         for(Object o : components)
         {
             if(o instanceof String)
+            {
                 isOreDict = true;
+            }
+
             ingredients.add(serializeItem(o));
         }
+
         json.put("type", isOreDict ? "forge:ore_shapeless" : "minecraft:crafting_shapeless");
         json.put("ingredients", ingredients);
         json.put("result", serializeItem(result));
@@ -229,6 +240,7 @@ public class RecipeUtil
             ItemStack stack = (ItemStack) thing;
             Map<String, Object> ret = new HashMap<>();
             ret.put("item", stack.getItem().getRegistryName().toString());
+
             if(stack.getItem().getHasSubtypes() || stack.getItemDamage() != 0)
             {
                 ret.put("data", stack.getItemDamage());
@@ -259,6 +271,7 @@ public class RecipeUtil
     private static void generateConstants()
     {
         List<Map<String, Object>> json = new ArrayList<>();
+
         for(String s : USED_ORE_DICTIONARY_NAMES)
         {
             Map<String, Object> entry = new HashMap<>();
