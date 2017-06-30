@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:slab_brick_nether",
+            "data": 3,
+            "count": 6
+        }
+    },
+    "result": {
+        "item": "nex:block_brick_nether",
+        "data": 3
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#X#",
+        "#X#"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:slab_brick_nether",
+            "data": 0
+        },
+        "X": {
+            "item": "nex:block_brick_nether",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "nex:fence_gate_brick_nether_fiery",
+        "count": 4
+    }
+}

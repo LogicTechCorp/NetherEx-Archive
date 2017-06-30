@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:item_crystal_amethyst"
+        }
+    },
+    "result": {
+        "item": "nex:block_amethyst"
+    }
+}

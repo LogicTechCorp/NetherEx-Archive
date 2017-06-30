@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "# #"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:item_hide_salamander",
+            "data": 1
+        }
+    },
+    "result": {
+        "item": "nex:armor_helmet_hide_salamander",
+        "nbt": {
+            "Variant": true
+        }
+    }
+}

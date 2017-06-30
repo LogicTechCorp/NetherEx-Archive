@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "#X",
+        " X"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gold_ingot"
+        },
+        "X": {
+            "item": "nex:item_bone_wither"
+        }
+    },
+    "result": {
+        "item": "nex:tool_axe_bone"
+    }
+}

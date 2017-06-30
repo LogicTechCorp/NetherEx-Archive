@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "# #",
+        "# #"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:item_bone_wither"
+        }
+    },
+    "result": {
+        "item": "nex:armor_leggings_bone"
+    }
+}
