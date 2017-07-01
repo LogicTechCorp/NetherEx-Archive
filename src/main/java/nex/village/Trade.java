@@ -74,7 +74,7 @@ public class Trade extends MerchantRecipe
         {
             for(Trade.Offer.Enchantment outputEnchantment : outputEnchantments)
             {
-                Enchantment enchantment = Enchantment.getEnchantmentByLocation(outputEnchantment.getName());
+                Enchantment enchantment = Enchantment.getEnchantmentByLocation(outputEnchantment.getEnchantmentId());
 
                 if(enchantment != null)
                 {
@@ -365,13 +365,13 @@ public class Trade extends MerchantRecipe
 
         public class Enchantment
         {
-            private String name;
+            private String enchantmentId;
             private int minLevel;
             private int maxLevel;
 
-            public String getName()
+            public String getEnchantmentId()
             {
-                return name;
+                return enchantmentId;
             }
 
             public int getMinLevel()

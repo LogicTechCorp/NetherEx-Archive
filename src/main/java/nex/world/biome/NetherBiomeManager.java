@@ -117,21 +117,21 @@ public class NetherBiomeManager
                             IBlockState state = BlockUtil.getBlock(biomeTopBlock, "minecraft:air");
                             topBlock = state.getBlock() == Blocks.AIR ? topBlock : state;
 
-                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's top Block to " + ForgeRegistries.BLOCKS.getKey(topBlock.getBlock()).toString() + " with a meta of " + topBlock.getBlock().getMetaFromState(topBlock) + ".");
+                            LOGGER.info("Set the " + biome.getRegistryName().toString() + " biome's top Block to " + topBlock.getBlock().getRegistryName().toString() + " with a meta of " + topBlock.getBlock().getMetaFromState(topBlock) + ".");
                         }
                         if(biomeFillerBlock != null)
                         {
                             IBlockState state = BlockUtil.getBlock(biomeFillerBlock, "minecraft:air");
                             fillerBlock = state.getBlock() == Blocks.AIR ? fillerBlock : state;
 
-                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's filler Block to " + ForgeRegistries.BLOCKS.getKey(fillerBlock.getBlock()).toString() + " with a meta of " + fillerBlock.getBlock().getMetaFromState(fillerBlock) + ".");
+                            LOGGER.info("Set the " + biome.getRegistryName().toString() + " biome's filler Block to " + fillerBlock.getBlock().getRegistryName().toString() + " with a meta of " + fillerBlock.getBlock().getMetaFromState(fillerBlock) + ".");
                         }
                         if(biomeOceanBlock != null)
                         {
                             IBlockState state = BlockUtil.getBlock(biomeOceanBlock, "minecraft:air");
                             oceanBlock = state.getBlock() == Blocks.AIR ? oceanBlock : state;
 
-                            LOGGER.info("Set the " + biome.getBiomeName() + " biome's ocean Block to " + ForgeRegistries.BLOCKS.getKey(oceanBlock.getBlock()).toString() + " with a meta of " + oceanBlock.getBlock().getMetaFromState(oceanBlock) + ".");
+                            LOGGER.info("Set the " + biome.getRegistryName().toString() + " biome's ocean Block to " + oceanBlock.getBlock().getRegistryName().toString() + " with a meta of " + oceanBlock.getBlock().getMetaFromState(oceanBlock) + ".");
                         }
 
                         Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList = Maps.newHashMap();
@@ -154,7 +154,7 @@ public class NetherBiomeManager
                                         if(cls != null && EntityLiving.class.isAssignableFrom(cls))
                                         {
                                             entitySpawnList.get(creatureType).add(new Biome.SpawnListEntry((Class<? extends EntityLiving>) cls, entity.getWeight(), entity.getMinGroupCount(), entity.getMaxGroupCount()));
-                                            LOGGER.info("Added the " + entity.getId() + " Entity to the " + biome.getBiomeName() + " biome.");
+                                            LOGGER.info("Added the " + entity.getId() + " Entity to the " + biome.getRegistryName().toString() + " biome.");
                                         }
                                     }
                                 }
@@ -205,7 +205,7 @@ public class NetherBiomeManager
                         }
 
                         NetherBiomeManager.NetherBiomeType.getFromString(netherBiome.getClimateType()).addBiome(biome, netherBiome.getWeight(), topBlock, fillerBlock, oceanBlock, entitySpawnList, features);
-                        LOGGER.info("Added the " + biome.getBiomeName() + " biome from the " + biomeList.getName() + " to the Nether.");
+                        LOGGER.info("Added the " + biome.getRegistryName().toString() + " biome from the " + biomeList.getName() + " to the Nether.");
                     }
                 }
             }

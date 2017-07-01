@@ -1,0 +1,201 @@
+    {
+        "name": "Example Biome List",
+        "^name^": "This is the name of the biome list.",
+
+        "mods": [
+            {
+                "modId": "minecraft",
+                "^modId": "This is the mod which contains the biome that is being added to the Nether.",
+
+                "biomes": [
+                    {
+                        "biomeId": "plains",
+                        "^biomeId^": "This is the id name the biome is registered with.",
+
+                        "weight": 10,
+                        "^weight^": "This is the weight of the biome. The higher it is the more common the biome is. This is optional, the default value is 10.",
+
+                        "climateType": "temperate",
+                        "^climateType^": "This is the climate of the biome. Acceptable values are: hot, warm, temperate, cool, and cold. This is optional, the default value is temperate.",
+
+                        "topBlock": {
+                            "blockId": "minecraft:grass",
+                            "meta": 0
+                        },
+                        "^topBlock^": "This is the block that is used for the top of the biome. This is optional, the default value is the normal top block of the biome.",
+
+                        "fillerBlock": {
+                            "blockId": "minecraft:dirt",
+                            "meta": 0
+                        },
+                        "^fillerBlock^": "This is the block that is used to fill the biome. This is optional, the default value is the normal filler block of the biome.",
+
+                        "oceanBlock": {
+                            "blockId": "minecraft:lava",
+                            "meta": 0
+                        },
+                        "^oceanBlock^": "This is the block that is used for the Lava Ocean in the biome. This is optional, the default value is the Lava block.",
+
+                        "entitySpawnList": [
+                            {
+                                "entityId": "minecraft:pig",
+                                "^entityId^": "This is the id name the entity is registered with.",
+
+                                "creatureType": "ambient",
+                                "^creatureType^": "This is the creature type of the entity. Acceptable values are: monster, creature, ambient, and water_creature.",
+
+                                "weight": 25,
+                                "^weight^": "This is the weight of the entity spawn. The higher it is the more common the entity is.",
+
+                                "minGroupCount": 1,
+                                "^minGroupCount^": "This is the minimum number of entities that can spawn in the group.",
+
+                                "maxGroupCount": 4,
+                                "^explanation^": "This is the maximum number of entities that can spawn in the group."
+                            }
+                        ],
+                        "^entitySpawnList^": "This is the list of entities that can spawn in the biome.",
+
+                        "featureList": [
+                            {
+                                "featureType": "fluid",
+                                "^featureType^": "This feature type spawns fluid falls/traps around the Nether. For example, the lava that falls from the ceiling or spawns in walls.",
+
+                                "blockToSpawn": {
+                                    "blockId": "minecraft:flowing_lava",
+                                    "meta": 0
+                                },
+                                "^blockToSpawn^": "This is the fluid block that is to be spawned.",
+
+                                "targetBlock": {
+                                    "blockId": "minecraft:dirt",
+                                    "meta": 0
+                                },
+                                "^targetBlock^": "This is the block that the generator looks for when placing the fluid source block.",
+
+                                "hidden": true,
+                                "^hidden^": "Whether the fluid block spawns as a fluid fall or hidden as a fluid trap in the walls. This is optional, the default value is false",
+
+                                "rarity": 8,
+                                "^rarity^": "This is how many times the generator tries to spawn the feature in a chunk.",
+
+                                "minHeight": 32,
+                                "^minHeight^": "This is the minimum height the feature can be spawned at.",
+
+                                "maxHeight": 128,
+                                "^maxHeight^": "This is the maximum height the feature can be spawned at."
+                            },
+                            {
+                                "featureType": "scattered",
+                                "^featureType^": "This feature type spawns blocks scattered around. For example, the fire or the mushrooms that spawn in the default Nether.",
+
+                                "blockToSpawn": {
+                                    "blockId": "minecraft:fire",
+                                    "meta": 0
+                                },
+                                "targetBlock": {
+                                    "blockId": "minecraft:grass",
+                                    "meta": 0
+                                },
+                                "rarity": 10,
+                                "randomRarity": true,
+                                "^randomRarity^": "Whether the rarity is as defined or picked randomly between 1 and the provided rarity.",
+
+                                "minHeight": 32,
+                                "maxHeight": 128
+                            },
+                            {
+                                "featureType": "clumped",
+                                "^featureType^": "This feature types spawns blocks clumped together and hanging from the ceiling. For example, the Glowstone that spawns in the default Nether.",
+
+                                "blockToSpawn": {
+                                    "blockId": "minecraft:glowstone",
+                                    "meta": 0
+                                },
+                                "rarity": 10,
+                                "minHeight": 32,
+                                "maxHeight": 128
+                            },
+                            {
+                                "featureType": "ore",
+                                "^featureType^": "This feature type spawns groups of blocks. For example, the Nether Quartz Ore or the Magma that spawns in the default Nether.",
+
+                                "blockToSpawn": {
+                                    "blockId": "minecraft:quartz_ore",
+                                    "meta": 0
+                                },
+                                "targetBlock": {
+                                    "blockId": "minecraft:dirt",
+                                    "meta": 0
+                                },
+                                "size": 14,
+                                "^size^": "This is how many blocks the ore vein can be comprised of.",
+
+                                "rarity": 16,
+                                "minHeight": 10,
+                                "maxHeight": 118
+                            },
+                            {
+                                "featureType": "pool",
+                                "^featureType^": "This feature type spawns pools of fluid. For example, the lava pools that spawn in the Overworld.",
+
+                                "blockToSpawn": {
+                                    "blockId": "minecraft:lava",
+                                    "meta": 0
+                                },
+                                "surroundingBlock": {
+                                    "blockId": "nex:block_netherrack",
+                                    "meta": 0
+                                },
+                                "^surroundingBlock^": "This is the block that surrounds the fluid.",
+
+                                "rarity": 8,
+                                "minHeight": 32,
+                                "maxHeight": 96
+                            },
+                            {
+                                "featureType": "structure",
+                                "^featureType^": "This feature type spawns structures.",
+
+                                "structureList": [
+                                    {
+                                        "structureType": "ground",
+                                        "^structureType^": "This is the type of structure that is to be spawned. Acceptable values are: ground, air, wall, and ceiling.",
+
+                                        "structureId": "minecraft:igloo/igloo_top",
+                                        "^structureId^": "This is the location of the structure file.",
+
+                                        "rotate": true,
+                                        "^rotate^": "Whether the feature can be rotated randomly. This is optional, the default value is false.",
+
+                                        "mirror": true,
+                                        "^mirror^": "Whether the feature can be mirrored randomly. This is optional, the default value is false.",
+
+                                        "weight": 1,
+
+                                        "lootTables": [
+                                            "minecraft:chests/igloo_chest",
+                                            "^lootTable^ This is the location of the loot table."
+                                        ],
+                                        "^lootTables^": "This is the list of loot tables that can be applied to chests in the structure.",
+
+                                        "spawnerMobs": [
+                                            "minecraft:zombie_pigman",
+                                            "^spawnerMob^ This is the id name the entity is registered with."
+                                        ],
+                                        "^spawnerMobs^": "This is the list of mobs that can be applied to spawners in the structure."
+
+                                    }
+                                ],
+                                "superRare": true,
+                                "^superRare^": "Whether the feature should spawn multiple times per chunk or if it should only spawn once per chunk if a random number between 1 and the provided rarity is 1.",
+
+                                "rarity": 64
+                            }
+                        ],
+                        "^featureList^": "This is the list of features that can spawn in the biome."
+                    }
+                ]
+            }
+        ]
+    }
