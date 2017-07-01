@@ -35,9 +35,12 @@ public class ItemNetherBrick extends ItemNetherEx
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        if(isInCreativeTab(tab))
         {
-            list.add(new ItemStack(this, 1, type.ordinal()));
+            for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+            {
+                list.add(new ItemStack(this, 1, type.ordinal()));
+            }
         }
     }
 

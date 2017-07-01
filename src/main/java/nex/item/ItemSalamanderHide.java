@@ -35,9 +35,12 @@ public class ItemSalamanderHide extends ItemNetherEx
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(EnumType type : EnumType.values())
+        if(isInCreativeTab(tab))
         {
-            list.add(new ItemStack(this, 1, type.ordinal()));
+            for(EnumType type : EnumType.values())
+            {
+                list.add(new ItemStack(this, 1, type.ordinal()));
+            }
         }
     }
 

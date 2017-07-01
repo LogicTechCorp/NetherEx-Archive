@@ -42,10 +42,13 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        NBTTagCompound compound = new NBTTagCompound();
-        compound.setBoolean("Variant", true);
-        list.add(new ItemStack(this, 1, 0));
-        list.add(NBTUtil.setTag(new ItemStack(this, 1, 0), compound));
+        if(isInCreativeTab(tab))
+        {
+            NBTTagCompound compound = new NBTTagCompound();
+            compound.setBoolean("Variant", true);
+            list.add(new ItemStack(this, 1, 0));
+            list.add(NBTUtil.setTag(new ItemStack(this, 1, 0), compound));
+        }
     }
 
     @Override
