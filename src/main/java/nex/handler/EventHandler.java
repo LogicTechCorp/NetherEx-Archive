@@ -72,6 +72,7 @@ import nex.entity.monster.EntityNethermite;
 import nex.entity.monster.EntitySpore;
 import nex.init.*;
 import nex.util.ArmorUtil;
+import nex.util.BlockUtil;
 import nex.village.PigtificateVillageManager;
 import nex.world.TeleporterNether;
 
@@ -256,6 +257,11 @@ public class EventHandler
             world.setBlockToAir(offsetPos);
             event.setCanceled(true);
         }
+
+        if(originalState.getBlock() == Blocks.BEDROCK)
+        {
+            BlockUtil.mine3x3(world, player.getActiveItemStack(), originalPos, player);
+        }
     }
 
     @SubscribeEvent
@@ -301,7 +307,7 @@ public class EventHandler
                     }
                 }
             }
-            if(player.dimension == -1)
+            if(player.dimension == DimensionType.NETHER.getId())
             {
                 boolean canSpawn = Arrays.asList(ConfigHandler.entity.nethermite.whitelist).contains(state.getBlock().getRegistryName().toString());
 
@@ -311,6 +317,43 @@ public class EventHandler
                     nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
                     world.spawnEntity(nethermite);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onHarvestDrops(BlockEvent.HarvestDropsEvent event)
+    {
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        IBlockState state = event.getState();
+        EntityPlayer player = event.getHarvester();
+
+        if(player != null)
+        {
+            if(state.getBlock() == Blocks.BEDROCK)
+            {
+                if(player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_HAMMER_BONE)
+                {
+                    event.getDrops().add(new ItemStack(Blocks.BEDROCK, 1, 0));
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBlockPlaced(BlockEvent.PlaceEvent event)
+    {
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        IBlockState state = event.getState();
+        EntityPlayer player = event.getPlayer();
+
+        if(state.getBlock() == Blocks.BEDROCK)
+        {
+            if(player.dimension != DimensionType.NETHER.getId() || player.getPosition().getY() < 120)
+            {
+                event.setCanceled(true);
             }
         }
     }
@@ -340,7 +383,7 @@ public class EventHandler
 
         boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
-        if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
+        if(world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
             if(canFreeze)
             {
@@ -358,7 +401,7 @@ public class EventHandler
 
         boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
-        if(world.getBiomeForCoordsBody(pos) == NetherExBiomes.ARCTIC_ABYSS)
+        if(world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
             if(canFreeze && !entity.isPotionActive(NetherExEffects.FREEZE) && world.rand.nextInt(ConfigHandler.biome.arcticAbyss.chanceOfFreezing) == 0)
             {

@@ -48,6 +48,8 @@ public class FeatureStructure extends Feature
     private final List<List<ResourceLocation>> spawnerMobs;
     private final List<Boolean> rotationList;
     private final List<Boolean> mirrorList;
+    private final int minHeight;
+    private final int maxHeight;
 
     public FeatureStructure(Biome biome, NetherBiome.BiomeFeature feature)
     {
@@ -60,6 +62,8 @@ public class FeatureStructure extends Feature
         spawnerMobs = Lists.newArrayList();
         rotationList = Lists.newArrayList();
         mirrorList = Lists.newArrayList();
+        minHeight = feature.getMinHeight();
+        maxHeight = feature.getMaxHeight();
 
         for(NetherBiome.BiomeStructure structure : feature.getStructureList())
         {
@@ -119,7 +123,7 @@ public class FeatureStructure extends Feature
 
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(replacedBlocks.get(index)).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
-        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, 128, pos.getZ() - structureSize.getZ() / 2);
+        BlockPos newPos = new BlockPos(pos.getX() - structureSize.getX() / 2, maxHeight, pos.getZ() - structureSize.getZ() / 2);
         BlockPos spawnPos;
 
         if(type == StructureType.GROUND)
@@ -143,7 +147,7 @@ public class FeatureStructure extends Feature
             return false;
         }
 
-        if(!spawnPos.equals(BlockPos.ORIGIN))
+        if(!spawnPos.equals(BlockPos.ORIGIN) && spawnPos.getY() >= minHeight && spawnPos.getY() <= maxHeight)
         {
             WorldGenUtil.generateStructure(world, spawnPos, rand, template, placementSettings.copy(), lootTables.get(index), spawnerMobs.get(index));
             return true;

@@ -406,7 +406,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        Biome biome = world.getBiomeForCoordsBody(blockPos.add(16, 0, 16));
+        Biome biome = world.getBiome(blockPos.add(16, 0, 16));
 
         BlockFalling.fallInstantly = true;
 
@@ -505,7 +505,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             }
         }
 
-        Biome biome = world.getBiomeForCoordsBody(pos);
+        Biome biome = world.getBiome(pos);
         return NetherBiomeManager.getBiomeEntitySpawnList(biome).get(creatureType);
     }
 

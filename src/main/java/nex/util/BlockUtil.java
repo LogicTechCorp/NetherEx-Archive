@@ -19,25 +19,25 @@ package nex.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.network.NetHandlerPlayClient;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraft.network.play.server.SPacketBlockChange;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.oredict.OreDictionary;
 import nex.world.biome.NetherBiome;
 
 public class BlockUtil
 {
-    private static final NetHandlerPlayClient HANDLER = (NetHandlerPlayClient) FMLClientHandler.instance().getClientPlayHandler();
-
     public static IBlockState getBlock(NetherBiome.BiomeBlock block, String fallback)
     {
         return Block.getBlockFromName(block.getId() == null || block.getId().isEmpty() || Block.getBlockFromName(block.getId()) == null ? fallback : block.getId()).getStateFromMeta(block.getMeta());
@@ -48,6 +48,80 @@ public class BlockUtil
         return Block.getBlockFromName(blockId == null || blockId.isEmpty() || Block.getBlockFromName(blockId) == null ? fallback : blockId);
     }
 
+    public static boolean mine3x3(World world, ItemStack stack, BlockPos pos, EntityPlayer player)
+    {
+        RayTraceResult traceResult = WorldUtil.rayTraceFromEntity(world, player, false, 4.5D);
+
+        if(traceResult == null)
+        {
+            return true;
+        }
+
+        EnumFacing sideHit = traceResult.sideHit;
+
+        BlockPos startPos;
+        BlockPos endPos;
+
+        if(sideHit.getAxis() == EnumFacing.Axis.X)
+        {
+            startPos = new BlockPos(0, 1, 1);
+            endPos = new BlockPos(0, -1, -1);
+        }
+        else if(sideHit.getAxis() == EnumFacing.Axis.Y)
+        {
+            startPos = new BlockPos(1, 0, 1);
+            endPos = new BlockPos(-1, 0, -1);
+        }
+        else
+        {
+            startPos = new BlockPos(1, 1, 0);
+            endPos = new BlockPos(-1, -1, 0);
+        }
+
+        Iterable<BlockPos> posIter = BlockPos.getAllInBox(startPos, endPos);
+        IBlockState originalState = world.getBlockState(pos);
+        float originalStrength = ForgeHooks.blockStrength(originalState, player, world, pos);
+
+        boolean canHarvestBedrock = false;
+
+        if(originalState.getBlock() == Blocks.BEDROCK)
+        {
+            if(player.dimension == DimensionType.NETHER.getId() && player.getPosition().getY() > 120)
+            {
+                canHarvestBedrock = true;
+            }
+        }
+
+        for(BlockPos testPos : posIter)
+        {
+            testPos = testPos.add(pos);
+
+            if(testPos.equals(pos))
+            {
+                continue;
+            }
+
+            IBlockState testState = world.getBlockState(testPos);
+            float testStrength = ForgeHooks.blockStrength(testState, player, world, testPos);
+            boolean canBeHarvested = ForgeHooks.canHarvestBlock(testState.getBlock(), player, world, testPos);
+
+            if(originalState.getMaterial() == testState.getMaterial() && testStrength > 0.0F && (originalStrength / testStrength) <= 10.0F || canHarvestBedrock)
+            {
+                if(canBeHarvested && stack.canHarvestBlock(originalState) || canBeHarvested)
+                {
+                    BlockUtil.tryToHarvest(world, testState, testPos, player, sideHit);
+                }
+            }
+        }
+
+        if(canHarvestBedrock)
+        {
+            BlockUtil.tryToHarvest(world, originalState, pos, player, sideHit);
+        }
+
+        return false;
+    }
+
     /**
      * A method that harvests blocks when they aren't able to normally
      * <p>
@@ -56,13 +130,13 @@ public class BlockUtil
      *
      * @author VapourDrive
      */
-    public static void tryToHarvest(World world, IBlockState state, BlockPos pos, EntityPlayer player, EnumFacing sideHit)
+    public static boolean tryToHarvest(World world, IBlockState state, BlockPos pos, EntityPlayer player, EnumFacing side)
     {
         Block block = state.getBlock();
 
-        if(block.isAir(state, world, pos))
+        if(world.isAirBlock(pos))
         {
-            return;
+            return false;
         }
 
         EntityPlayerMP playerMP = null;
@@ -76,17 +150,16 @@ public class BlockUtil
 
         if(stack == null || stack.getItem() == null)
         {
-            return;
+            return false;
         }
-
-        if(!(stack.getItem().getToolClasses(stack).contains(block.getHarvestTool(state)) || stack.getItem().getStrVsBlock(stack, state) > 1.0f))
+        if(!(stack.getItem().getToolClasses(stack).contains(block.getHarvestTool(state)) || stack.getItem().getStrVsBlock(stack, state) > 1.0F))
         {
-            return;
+            return false;
         }
-
         if(!ForgeHooks.canHarvestBlock(block, player, world, pos))
         {
-            return;
+
+            return false;
         }
 
         int event = 0;
@@ -97,11 +170,12 @@ public class BlockUtil
 
             if(event == -1)
             {
-                return;
+                return false;
             }
         }
 
         world.playEvent(playerMP, 2001, pos, Block.getStateId(state));
+
 
         if(player.capabilities.isCreativeMode)
         {
@@ -115,20 +189,13 @@ public class BlockUtil
             }
             if(!world.isRemote)
             {
-                if(playerMP != null)
-                {
-                    playerMP.connection.sendPacket(new SPacketBlockChange(world, pos));
-                }
+                playerMP.connection.sendPacket(new SPacketBlockChange(world, pos));
             }
             else
             {
-                if(HANDLER != null)
-                {
-                    HANDLER.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, pos, sideHit));
-                }
+                Minecraft.getMinecraft().getConnection().sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, pos, side));
             }
-
-            return;
+            return true;
         }
         if(!world.isRemote)
         {
@@ -141,10 +208,7 @@ public class BlockUtil
                 block.dropXpOnBlockBreak(world, pos, event);
             }
 
-            if(playerMP != null)
-            {
-                playerMP.connection.sendPacket(new SPacketBlockChange(world, pos));
-            }
+            playerMP.connection.sendPacket(new SPacketBlockChange(world, pos));
         }
         else
         {
@@ -153,12 +217,11 @@ public class BlockUtil
                 block.onBlockDestroyedByPlayer(world, pos, state);
             }
 
-            if(HANDLER != null)
-            {
-                HANDLER.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, pos, sideHit));
-            }
+            Minecraft.getMinecraft().getConnection().sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, pos, side));
         }
+        return true;
     }
+
 
     public static boolean isOreDict(String id, Block block)
     {

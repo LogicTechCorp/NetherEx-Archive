@@ -29,6 +29,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import nex.init.NetherExBlocks;
@@ -48,7 +49,7 @@ public class ItemBoneHoe extends ItemNetherExHoe
     {
         NBTTagCompound compound = new NBTTagCompound();
 
-        if(entity.dimension == -1)
+        if(entity.dimension == DimensionType.NETHER.getId())
         {
             compound.setBoolean("Nether", true);
         }

@@ -22,6 +22,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
 import nex.util.NBTUtil;
@@ -38,7 +39,7 @@ public class ItemBoneShovel extends ItemNetherExShovel
     {
         NBTTagCompound compound = new NBTTagCompound();
 
-        if(entity.dimension == -1)
+        if(entity.dimension == DimensionType.NETHER.getId())
         {
             compound.setBoolean("Nether", true);
         }
