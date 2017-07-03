@@ -31,7 +31,7 @@
                         {
                             "output": {
                                 "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
-                                "enchantments": [ { "name": "minecraft:unbreaking", "minLevel": 1, "maxLevel": 2 } ]
+                                "enchantments": [ { "enchantmentId": "minecraft:unbreaking", "minLevel": 1, "maxLevel": 2 } ]
                             },
                             "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 8, "maxStackSize": 32 },
                             "minTradesAvailable": 1,
@@ -41,7 +41,7 @@
                         {
                             "output": {
                                 "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
-                                "enchantments": [ { "name": "minecraft:protection", "minLevel": 1, "maxLevel": 3 } ]
+                                "enchantments": [ { "enchantmentId": "minecraft:protection", "minLevel": 1, "maxLevel": 3 } ]
                             },
                             "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
                             "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 8, "maxStackSize": 32 },
@@ -52,7 +52,7 @@
                         {
                             "output": {
                                 "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
-                                "enchantments": [ { "name": "minecraft:sharpness", "minLevel": 1, "maxLevel": 4 } ]
+                                "enchantments": [ { "enchantmentId": "minecraft:sharpness", "minLevel": 1, "maxLevel": 4 } ]
                             },
                             "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
                             "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 8, "maxStackSize": 32 },
@@ -63,7 +63,7 @@
                         {
                             "output": {
                                 "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
-                                "enchantments": [ { "name": "minecraft:fire_protection", "minLevel": 1, "maxLevel": 4 } ]
+                                "enchantments": [ { "enchantmentId": "minecraft:fire_protection", "minLevel": 1, "maxLevel": 4 } ]
                             },
                             "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
                             "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 16, "maxStackSize": 48 },
@@ -74,7 +74,7 @@
                         {
                             "output": {
                                 "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
-                                "enchantments": [ { "name": "minecraft:fortune", "minLevel": 1, "maxLevel": 3 } ]
+                                "enchantments": [ { "enchantmentId": "minecraft:fortune", "minLevel": 1, "maxLevel": 3 } ]
                             },
                             "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
                             "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 24, "maxStackSize": 64 },
@@ -85,7 +85,7 @@
                         {
                             "output": {
                                 "itemId": "minecraft:enchanted_book", "meta": 0, "minStackSize": 1, "maxStackSize": 1,
-                                "enchantments": [ { "name": "minecraft:looting", "minLevel": 1, "maxLevel": 1 } ]
+                                "enchantments": [ { "enchantmentId": "minecraft:looting", "minLevel": 1, "maxLevel": 1 } ]
                             },
                             "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 4, "maxStackSize": 8 },
                             "inputB": { "itemId": "minecraft:book", "meta": 0, "minStackSize": 24, "maxStackSize": 64 },

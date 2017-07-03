@@ -54,7 +54,7 @@ public class NetherExBiomes
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent

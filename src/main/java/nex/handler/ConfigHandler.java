@@ -463,7 +463,7 @@ public class ConfigHandler
         }
     }
 
-    @Mod.EventBusSubscriber
+    @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class ConfigSyncHandler
     {
         @SubscribeEvent
