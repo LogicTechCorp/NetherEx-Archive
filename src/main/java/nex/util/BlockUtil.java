@@ -86,7 +86,7 @@ public class BlockUtil
 
         if(originalState.getBlock() == Blocks.BEDROCK)
         {
-            if(player.dimension == DimensionType.NETHER.getId() && player.getPosition().getY() > 120)
+            if(player.dimension == DimensionType.NETHER.getId() && pos.getY() >= 120)
             {
                 canHarvestBedrock = true;
             }

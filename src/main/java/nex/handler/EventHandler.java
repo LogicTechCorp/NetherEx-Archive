@@ -351,7 +351,7 @@ public class EventHandler
 
         if(state.getBlock() == Blocks.BEDROCK)
         {
-            if(player.dimension != DimensionType.NETHER.getId() || player.getPosition().getY() < 120)
+            if(player.dimension != DimensionType.NETHER.getId() || pos.getY() < 120)
             {
                 event.setCanceled(true);
             }
