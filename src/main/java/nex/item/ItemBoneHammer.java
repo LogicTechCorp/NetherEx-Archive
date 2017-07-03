@@ -70,20 +70,24 @@ public class ItemBoneHammer extends ItemNetherExPickaxe
     @Override
     public void setDamage(ItemStack stack, int damage)
     {
+        boolean isNether = true;
+
         if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
         {
-            if(!stack.getTagCompound().getBoolean("Nether"))
-            {
-                damage += 15;
+            isNether = stack.getTagCompound().getBoolean("Nether");
 
-                if(getDamage(stack) - 16 == 0)
+            if(!isNether)
+            {
+                damage += 63;
+
+                if(getDamage(stack) - 64 == 0)
                 {
                     damage += 1;
                 }
             }
         }
 
-        super.setDamage(stack, damage);
+        super.setDamage(stack, isNether ? damage * 4 : damage);
     }
 
     @Override
