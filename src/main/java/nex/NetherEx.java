@@ -37,13 +37,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
+@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, updateJSON = NetherEx.UPDATE_JSON)
 public class NetherEx
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
     public static final String DEPENDENCIES = "required-after:forge@[1.12-14.21.1.2387,);after:*;";
+    public static final String UPDATE_JSON = "https://raw.githubusercontent.com/LogicTechCorp/NetherEx/1.12.x/src/main/resources/assets/nex/version.json";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
     public static final boolean IS_DEV_ENV = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
