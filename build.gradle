@@ -7,22 +7,26 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = mod_version
+ext.publicConfigFile = file('public_build.properties')
+
+ext.publicConfig = parseConfig(publicConfigFile)
+
+version = publicConfig.version_major + "." + publicConfig.version_minor + "." + publicConfig.version_patch + "." + publicConfig.version_build
 group = "NetherEx"
-archivesBaseName = "NetherEx-" + minecraft_version
+archivesBaseName = "NetherEx-" + publicConfig.minecraft_version.toString()
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    version = minecraft_version + "-" + forge_version
-    mappings = mappings_version
+    version = publicConfig.minecraft_version + "-" + publicConfig.forge_version
+    mappings = publicConfig.mappings_version
     runDir = "run"
     replace '@VERSION@', project.version
     makeObfSourceJar = false
@@ -48,3 +52,21 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+static def parseConfig(File file) {
+    file.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
+
+task incrementBuildNumber << {
+    publicConfig.version_build = (publicConfig.version_build.toInteger()) + 1
+
+    publicConfigFile.withWriter {
+        publicConfig.toProperties().store(it, "")
+    }
+}
+
+build.dependsOn incrementBuildNumber
