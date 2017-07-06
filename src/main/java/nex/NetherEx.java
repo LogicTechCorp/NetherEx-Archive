@@ -42,7 +42,7 @@ public class NetherEx
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@VERSION@";
-    public static final String DEPENDENCIES = "required-after:forge@[1.11.2-13.20.1.2386,);after:*;";
+    public static final String DEPENDENCIES = "required-after:forge@[1.11.2-13.20.1.2386,);";
     public static final String UPDATE_JSON = "https://raw.githubusercontent.com/LogicTechCorp/NetherEx/1.11.x/src/main/resources/assets/nex/version.json";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
@@ -56,6 +56,8 @@ public class NetherEx
 
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
+    private File configDirectory;
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|Main");
 
     static
@@ -68,10 +70,7 @@ public class NetherEx
     {
         LOGGER.info("PreInitialization started.");
 
-        NetherExEntities.init();
-        NetherExBiomes.init();
-        TradeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Trade Lists"));
-        NetherBiomeManager.init(new File(event.getModConfigurationDirectory(), "/NetherEx/Biome Lists"));
+        configDirectory = event.getModConfigurationDirectory();
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");
@@ -82,6 +81,10 @@ public class NetherEx
     {
         LOGGER.info("Initialization started.");
 
+        NetherExEntities.init();
+        NetherExBiomes.init();
+        TradeManager.init(new File(configDirectory, "/NetherEx/Trade Lists"));
+        NetherBiomeManager.init(new File(configDirectory, "/NetherEx/Biome Lists"));
         NetherExRecipes.init();
         NetherExOreDict.init();
         NetherExAchievements.init();
