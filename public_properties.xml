@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <mod_name>NetherEx</mod_name>
+    <mc_version>1.12</mc_version>
+    <forge_version>14.21.1.2387</forge_version>
+    <mcp_version>snapshot_20170629</mcp_version>
+    <mod_version>2.1.1.2</mod_version>
+    <mod_group>nex</mod_group>
+    <is_dev>false</is_dev>
+</config>
