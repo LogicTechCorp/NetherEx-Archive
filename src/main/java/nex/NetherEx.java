@@ -43,7 +43,7 @@ public class NetherEx
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "@MOD_VERSION@";
-    public static final String DEPENDENCIES = "required-after:forge@[1.12-14.21.1.2387,);";
+    public static final String DEPENDENCIES = "required-after:forge@[1.12-14.21.1.2387,);after:natura;";
     public static final String UPDATE_JSON = "https://raw.githubusercontent.com/LogicTechCorp/NetherEx/1.12.x/src/main/resources/assets/nex/version.json";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
@@ -83,9 +83,7 @@ public class NetherEx
         LOGGER.info("Initialization started.");
 
         NetherExEntities.init();
-        NetherExBiomes.init();
         TradeManager.init(new File(configDirectory, "/NetherEx/Trade Lists"));
-        NetherBiomeManager.init(new File(configDirectory, "/NetherEx/Biome Lists"));
         NetherExRecipes.init();
         NetherExOreDict.init();
         proxy.init();
@@ -98,6 +96,8 @@ public class NetherEx
     {
         LOGGER.info("PostInitialization started.");
 
+        NetherExBiomes.init();
+        NetherBiomeManager.init(new File(configDirectory, "/NetherEx/Biome Lists"));
         proxy.postInit();
 
         LOGGER.info("PostInitialization completed.");
