@@ -40,11 +40,11 @@ minecraft {
     def forgePatch = Integer.parseInt(forgeVersion.group(3))
     def forgeBuild = Integer.parseInt(forgeVersion.group(4))
 
-    if(mcPattern.flags() == 3)
+    if(mcVersion.group(3) != null)
     {
         def mcMajor = Integer.parseInt(mcVersion.group(1))
         def mcMinor = Integer.parseInt(mcVersion.group(2))
-        def mcBuild = Integer.parseInt(mcVersion.group(3))
+        def mcBuild = Integer.parseInt(mcVersion.group(3).substring(1))
 
         version = mcMajor + "." + mcMinor + "." + mcBuild + "-" + forgeMajor + "." + forgeMinor + "." + forgePatch + "." + forgeBuild
     }
