@@ -85,7 +85,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class EventHandler
 {
-    private static final Minecraft MC = Minecraft.getMinecraft();
     private static final Field FIELD_WORLD_TELEPORTER = ReflectionHelper.findField(WorldServer.class, "field_85177_Q", "worldTeleporter");
 
     @SubscribeEvent
@@ -127,7 +126,7 @@ public class EventHandler
     @SideOnly(Side.CLIENT)
     public static void onMouse(MouseEvent event)
     {
-        EntityPlayer player = MC.player;
+        EntityPlayer player = Minecraft.getMinecraft().player;
 
         if(player.isPotionActive(NetherExEffects.FREEZE))
         {
