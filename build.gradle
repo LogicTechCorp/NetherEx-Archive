@@ -1,3 +1,6 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 buildscript {
     repositories {
         jcenter()
@@ -13,22 +16,87 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-ext.publicConfigFile = file('public_build.properties')
-
-ext.publicConfig = parseConfig(publicConfigFile)
-
-version = publicConfig.version_major + "." + publicConfig.version_minor + "." + publicConfig.version_patch + "." + publicConfig.version_build
-group = "NetherEx"
-archivesBaseName = "NetherEx-" + publicConfig.minecraft_version.toString()
+version = "0.0.0.0"
+group = ""
+archivesBaseName = ""
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    version = publicConfig.minecraft_version + "-" + publicConfig.forge_version
-    mappings = publicConfig.mappings_version
+    def configFile = file("public_properties.xml")
+    def configText = configFile.getText()
+
+    def mcPattern = Pattern.compile("<mc_version>(\\d+)\\.(\\d+)(\\.(\\d+))?</mc_version>")
+    def mcVersion = mcPattern.matcher(configText)
+    mcVersion.find()
+
+    def forgePattern = Pattern.compile("<forge_version>(\\d+)\\.(\\d+)\\.(\\d+).(\\d+)</forge_version>")
+    def forgeVersion = forgePattern.matcher(configText)
+    forgeVersion.find()
+
+    def forgeMajor = Integer.parseInt(forgeVersion.group(1))
+    def forgeMinor = Integer.parseInt(forgeVersion.group(2))
+    def forgePatch = Integer.parseInt(forgeVersion.group(3))
+    def forgeBuild = Integer.parseInt(forgeVersion.group(4))
+
+    if(mcPattern.flags() == 3)
+    {
+        def mcMajor = Integer.parseInt(mcVersion.group(1))
+        def mcMinor = Integer.parseInt(mcVersion.group(2))
+        def mcBuild = Integer.parseInt(mcVersion.group(3))
+
+        version = mcMajor + "." + mcMinor + "." + mcBuild + "-" + forgeMajor + "." + forgeMinor + "." + forgePatch + "." + forgeBuild
+    }
+    else
+    {
+        def mcMajor = Integer.parseInt(mcVersion.group(1))
+        def mcMinor = Integer.parseInt(mcVersion.group(2))
+
+        version = mcMajor + "." + mcMinor + "-" + forgeMajor + "." + forgeMinor + "." + forgePatch + "." + forgeBuild
+    }
+
+    def mcpPattern = Pattern.compile("<mcp_version>(\\w+)</mcp_version>")
+    def mcpVersion = mcpPattern.matcher(configText)
+    mcpVersion.find()
+
+    mappings = mcpVersion.group(1)
     runDir = "run"
-    replace '@VERSION@', project.version
+
+    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
+    def matcherDev = patternDev.matcher(configText)
+    matcherDev.find()
+
+    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+
+    if(isDev)
+    {
+        def modPattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
+        def modVersion = modPattern.matcher(configText)
+        modVersion.find()
+
+        def major = Integer.parseInt(modVersion.group(1))
+        def minor = Integer.parseInt(modVersion.group(2))
+        def patch = Integer.parseInt(modVersion.group(3))
+        def build = Integer.parseInt(modVersion.group(4))
+        def dev = modVersion.group(5)
+        def devVersion = Integer.parseInt(modVersion.group(6))
+        project.version = major + "." + minor + "." + patch + "." + build + "-" + dev + "." + devVersion
+    }
+    else
+    {
+        def modPattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+        def modVersion = modPattern.matcher(configText)
+        modVersion.find()
+
+        def major = Integer.parseInt(modVersion.group(1))
+        def minor = Integer.parseInt(modVersion.group(2))
+        def patch = Integer.parseInt(modVersion.group(3))
+        def build = Integer.parseInt(modVersion.group(4))
+        project.version = major + "." + minor + "." + patch + "." + build
+    }
+    
+    replace "@MOD_VERSION@", project.version
     makeObfSourceJar = false
 }
 
@@ -53,20 +121,210 @@ processResources {
     }
 }
 
-static def parseConfig(File file) {
-    file.withReader {
-        def prop = new Properties()
-        prop.load(it)
-        return (new ConfigSlurper().parse(prop))
+task incrementMajorNumber << {
+    String newVersion
+    Matcher matcherVersion
+
+    def configFile = file("public_properties.xml")
+    def configText = configFile.getText()
+    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
+    def matcherDev = patternDev.matcher(configText)
+    matcherDev.find()
+
+    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+
+    if(isDev)
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        def dev = matcherVersion.group(5)
+        def devVersion = Integer.parseInt(matcherVersion.group(6))
+        newVersion = (major + 1) + ".0.0.0" + "-" + dev + "." + devVersion
     }
+    else
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        newVersion = (major + 1) + ".0.0.0"
+    }
+
+    project.version = newVersion
+
+    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
+    matcherDev = patternDev.matcher(modVersion)
+    matcherDev.find()
+    isDev = matcherDev.replaceAll("<is_dev>false</is_dev>")
+    configFile.write(isDev)
 }
 
-task incrementBuildNumber << {
-    publicConfig.version_build = (publicConfig.version_build.toInteger()) + 1
+task incrementMinorNumber << {
+    String newVersion
+    Matcher matcherVersion
 
-    publicConfigFile.withWriter {
-        publicConfig.toProperties().store(it, "")
+    def configFile = file("public_properties.xml")
+    def configText = configFile.getText()
+    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
+    def matcherDev = patternDev.matcher(configText)
+    matcherDev.find()
+
+    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+
+    if(isDev)
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        def minor = Integer.parseInt(matcherVersion.group(2))
+        def build = Integer.parseInt(matcherVersion.group(4))
+        def dev = matcherVersion.group(5)
+        def devVersion = Integer.parseInt(matcherVersion.group(6))
+        newVersion = major + "." + (minor + 1) + ".0." + (build + 1) + "-" + dev + "." + devVersion
     }
+    else
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        def minor = Integer.parseInt(matcherVersion.group(2))
+        def build = Integer.parseInt(matcherVersion.group(4))
+        newVersion = major + "." + (minor + 1) + ".0." + (build + 1)
+    }
+
+    project.version = newVersion
+
+    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
+    matcherDev = patternDev.matcher(modVersion)
+    matcherDev.find()
+    isDev = matcherDev.replaceAll("<is_dev>false</is_dev>")
+    configFile.write(isDev)
 }
 
-build.dependsOn incrementBuildNumber
+task incrementPatchNumber << {
+    String newVersion
+    Matcher matcherVersion
+
+    def configFile = file("public_properties.xml")
+    def configText = configFile.getText()
+    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
+    def matcherDev = patternDev.matcher(configText)
+    matcherDev.find()
+
+    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+
+    if(isDev)
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        def minor = Integer.parseInt(matcherVersion.group(2))
+        def patch = Integer.parseInt(matcherVersion.group(3))
+        def build = Integer.parseInt(matcherVersion.group(4))
+        def dev = matcherVersion.group(5)
+        def devVersion = Integer.parseInt(matcherVersion.group(6))
+        newVersion = major + "." + minor + "." + (patch + 1) + "." + (build + 1) + "-" + dev + "." + devVersion
+    }
+    else
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        def minor = Integer.parseInt(matcherVersion.group(2))
+        def patch = Integer.parseInt(matcherVersion.group(3))
+        def build = Integer.parseInt(matcherVersion.group(4))
+        newVersion = major + "." + minor + "." + (patch + 1) + "." + (build + 1)
+    }
+
+    project.version = newVersion
+
+    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
+    matcherDev = patternDev.matcher(modVersion)
+    matcherDev.find()
+    isDev = matcherDev.replaceAll("<is_dev>false</is_dev>")
+    configFile.write(isDev)
+}
+
+task setDevVersion << {
+    String newVersion
+    Matcher matcherVersion
+
+    def configFile = file("public_properties.xml")
+    def configText = configFile.getText()
+    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
+    def matcherDev = patternDev.matcher(configText)
+    matcherDev.find()
+
+    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+
+    if(isDev)
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        def minor = Integer.parseInt(matcherVersion.group(2))
+        def patch = Integer.parseInt(matcherVersion.group(3))
+        def build = Integer.parseInt(matcherVersion.group(4))
+        def dev = matcherVersion.group(5)
+        def devVersion = Integer.parseInt(matcherVersion.group(6))
+        newVersion = major + "." + minor + "." + patch + "." + build + "-" + dev + "." + (devVersion + 1)
+    }
+    else
+    {
+        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+        matcherVersion = pattern.matcher(configText)
+        matcherVersion.find()
+
+        def major = Integer.parseInt(matcherVersion.group(1))
+        def minor = Integer.parseInt(matcherVersion.group(2))
+        def patch = Integer.parseInt(matcherVersion.group(3))
+        def build = Integer.parseInt(matcherVersion.group(4))
+        newVersion = major + "." + minor + "." + patch +  "." + build + "-dev.1"
+    }
+
+    project.version = newVersion
+
+    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
+    matcherDev = patternDev.matcher(modVersion)
+    matcherDev.find()
+    isDev = matcherDev.replaceAll("<is_dev>true</is_dev>")
+    configFile.write(isDev)
+}
+
+task getModData << {
+    def configFile = file("public_properties.xml")
+    def configText = configFile.getText()
+    def patternModName = Pattern.compile("<mod_name>(\\p{Print}+)</mod_name>")
+    def patternMcVersion = Pattern.compile("<mc_version>(\\p{Print}+)</mc_version>")
+    def patternGroup = Pattern.compile("<mod_group>(\\p{Graph}+)</mod_group>")
+    def matcherModName = patternModName.matcher(configText)
+    def matcherMcVersion = patternMcVersion.matcher(configText)
+    def matcherGroup = patternGroup.matcher(configText)
+    matcherModName.find()
+    matcherMcVersion.find()
+    matcherGroup.find()
+
+    def modName = matcherModName.group(1)
+    def mcVersion = matcherMcVersion.group(1)
+    def group = matcherGroup.group(1)
+
+    project.archivesBaseName = modName + "-" + mcVersion
+    project.group = group
+}
+
+build.dependsOn getModData
+build.mustRunAfter getModData
