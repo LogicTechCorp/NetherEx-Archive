@@ -21,6 +21,7 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
@@ -30,21 +31,16 @@ import nex.NetherEx;
 
 public abstract class BlockNetherExSlab extends BlockSlab
 {
-    public static boolean isDoubleStatic;
-    private boolean isDouble;
-
-    public BlockNetherExSlab(String name, Material material, boolean isDoubleIn)
+    public BlockNetherExSlab(String name, Material material)
     {
-        super(singleClassHack(material, isDoubleIn));
+        super(material);
 
-        isDouble = isDoubleIn;
-
-        if(!isDoubleIn)
+        if(!isDouble())
         {
             useNeighborBrightness = true;
             setCreativeTab(NetherEx.CREATIVE_TAB);
         }
-        if(isDoubleIn)
+        else
         {
             name += "_double";
         }
@@ -55,21 +51,15 @@ public abstract class BlockNetherExSlab extends BlockSlab
     }
 
     @Override
-    public boolean isDouble()
-    {
-        return isDouble;
-    }
-
-    @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         IBlockState state = getStateFromMeta(meta);
         return isDouble() ? state : (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double) hitY <= 0.5D) ? state.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM) : state.withProperty(HALF, BlockSlab.EnumBlockHalf.TOP));
     }
 
-    private static Material singleClassHack(Material material, boolean isDoubleIn)
+    @Override
+    protected BlockStateContainer createBlockState()
     {
-        isDoubleStatic = isDoubleIn;
-        return material;
+        return !isDouble() ? new BlockStateContainer(this, getVariantProperty(), HALF) : new BlockStateContainer(this, getVariantProperty());
     }
 }
