@@ -4,10 +4,11 @@
         "2.1.0.1": "Initial Release",
         "2.1.1.2": "Fixed a crash when loading on a server",
         "2.1.2.3": "Fixed compatibility issues with Natura",
-        "2.1.3.4": "Fixed a crash with Buildcraft\n Fixed an issue with Chisel"
+        "2.1.3.4": "Fixed a crash with Buildcraft\n Fixed an issue with Chisel",
+        "2.1.4.5": "Fixed recursive generation caused by COFHCore"
     },
     "promos": {
-        "1.12-latest": "2.1.3.4",
-        "1.12-recommended": "2.1.3.4"
+        "1.12-latest": "2.1.4.5",
+        "1.12-recommended": "2.1.4.5"
     }
 }

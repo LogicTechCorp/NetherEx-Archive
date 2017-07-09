@@ -452,7 +452,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                 }
                 else
                 {
-                    ForgeEventFactory.onChunkPopulate(true, this, world, rand, blockPos.getX(), blockPos.getZ(), false);
                     MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
 
                     if(!feature.isSuperRare())
@@ -471,7 +470,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                     }
 
                     MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
-                    ForgeEventFactory.onChunkPopulate(false, this, world, rand, blockPos.getX(), blockPos.getZ(), false);
                 }
             }
         }
