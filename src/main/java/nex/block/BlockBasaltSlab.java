@@ -21,7 +21,6 @@ import com.google.common.base.CaseFormat;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -36,9 +35,9 @@ public class BlockBasaltSlab extends BlockNetherExSlab
 {
     public static final PropertyEnum<BlockBasalt.EnumType> TYPE = PropertyEnum.create("type", BlockBasalt.EnumType.class);
 
-    public BlockBasaltSlab(boolean isDoubleIn)
+    public BlockBasaltSlab()
     {
-        super("slab_basalt", Material.ROCK, isDoubleIn);
+        super("slab_basalt", Material.ROCK);
 
         setHardness(2.0F);
         setResistance(10F);
@@ -57,6 +56,12 @@ public class BlockBasaltSlab extends BlockNetherExSlab
     public String getUnlocalizedName(int meta)
     {
         return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockBasalt.EnumType.fromMeta(meta).getName());
+    }
+
+    @Override
+    public boolean isDouble()
+    {
+        return false;
     }
 
     @Override
@@ -109,9 +114,12 @@ public class BlockBasaltSlab extends BlockNetherExSlab
         return meta;
     }
 
-    @Override
-    protected BlockStateContainer createBlockState()
+    public static class Double extends BlockBasaltSlab
     {
-        return !isDoubleStatic ? new BlockStateContainer(this, getVariantProperty(), HALF) : new BlockStateContainer(this, getVariantProperty());
+        @Override
+        public boolean isDouble()
+        {
+            return true;
+        }
     }
 }

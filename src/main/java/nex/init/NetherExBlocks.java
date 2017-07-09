@@ -126,13 +126,13 @@ public class NetherExBlocks
     public static final BlockNetherBrickSlab SLAB_BRICK_NETHER = null;
 
     @GameRegistry.ObjectHolder("slab_vanilla_double")
-    public static final BlockVanillaSlab SLAB_VANILLA_DOUBLE = null;
+    public static final BlockVanillaSlab.Double SLAB_VANILLA_DOUBLE = null;
 
     @GameRegistry.ObjectHolder("slab_basalt_double")
-    public static final BlockBasaltSlab SLAB_BASALT_DOUBLE = null;
+    public static final BlockBasaltSlab.Double SLAB_BASALT_DOUBLE = null;
 
     @GameRegistry.ObjectHolder("slab_brick_nether_double")
-    public static final BlockNetherBrickSlab SLAB_BRICK_NETHER_DOUBLE = null;
+    public static final BlockNetherBrickSlab.Double SLAB_BRICK_NETHER_DOUBLE = null;
 
     @GameRegistry.ObjectHolder("stairs_brick_nether_red")
     public static final BlockNetherExStairs STAIRS_RED_BRICK_NETHER = null;
@@ -271,12 +271,12 @@ public class NetherExBlocks
                     new BlockEnokiMushroomStem(),
                     new BlockEnokiMushroomCap(),
                     new BlockIchor(),
-                    new BlockVanillaSlab(false),
-                    new BlockBasaltSlab(false),
-                    new BlockNetherBrickSlab(false),
-                    new BlockVanillaSlab(true),
-                    new BlockBasaltSlab(true),
-                    new BlockNetherBrickSlab(true),
+                    new BlockVanillaSlab(),
+                    new BlockBasaltSlab(),
+                    new BlockNetherBrickSlab(),
+                    new BlockVanillaSlab.Double(),
+                    new BlockBasaltSlab.Double(),
+                    new BlockNetherBrickSlab.Double(),
                     new BlockNetherExStairs("vanilla_brick_nether_red", Blocks.RED_NETHER_BRICK.getDefaultState()),
                     new BlockNetherExStairs("basalt_normal", Blocks.STONE.getDefaultState()),
                     new BlockNetherExStairs("basalt_smooth", Blocks.STONE.getDefaultState()),
