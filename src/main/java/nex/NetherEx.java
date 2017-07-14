@@ -97,7 +97,7 @@ public class NetherEx
         LOGGER.info("PostInitialization started.");
 
         NetherExBiomes.init();
-        NetherBiomeManager.init(new File(configDirectory, "/NetherEx/Biome Lists"));
+        NetherBiomeManager.init(new File(configDirectory, "/NetherEx/Biome Configs"));
         proxy.postInit();
 
         LOGGER.info("PostInitialization completed.");

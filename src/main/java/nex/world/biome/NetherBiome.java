@@ -17,22 +17,57 @@
 
 package nex.world.biome;
 
-import java.util.List;
+import com.google.gson.JsonObject;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.JsonUtils;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import nex.util.BlockUtil;
 
 public class NetherBiome
 {
-    private String biomeId;
+    private Biome biome;
     private int weight;
-    private String climateType;
-    private BiomeBlock topBlock;
-    private BiomeBlock fillerBlock;
-    private BiomeBlock oceanBlock;
-    private List<BiomeEntity> entitySpawnList;
-    private List<BiomeFeature> featureList;
+    private NetherBiomeClimate biomeClimate;
+    private IBlockState topBlock;
+    private IBlockState fillerBlock;
+    private IBlockState oceanBlock;
 
-    public String getId()
+    private NetherBiome(Biome biomeIn, int weightIn, NetherBiomeClimate biomeClimateIn, IBlockState topBlockIn, IBlockState fillerBlockIn, IBlockState oceanBlockIn)
     {
-        return biomeId;
+        biome = biomeIn;
+        weight = weightIn;
+        biomeClimate = biomeClimateIn;
+        topBlock = topBlockIn;
+        fillerBlock = fillerBlockIn;
+        oceanBlock = oceanBlockIn;
+    }
+
+    public static NetherBiome deserialize(JsonObject config)
+    {
+        Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(JsonUtils.getString(config, "biome")));
+        int weight = JsonUtils.getInt(config, "weight", 10);
+        NetherBiomeClimate biomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
+
+        JsonObject topBlockJson = JsonUtils.getJsonObject(config, "topBlock");
+        JsonObject fillerBlockJson = JsonUtils.getJsonObject(config, "fillerBlock");
+        JsonObject oceanBlockJson = JsonUtils.getJsonObject(config, "oceanBlock");
+
+        IBlockState topBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(topBlockJson, "block"))).getDefaultState();
+        IBlockState fillerBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(fillerBlockJson, "block"))).getDefaultState();
+        IBlockState oceanBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(oceanBlockJson, "block"))).getDefaultState();
+
+        topBlock = BlockUtil.getBlockWithProperties(topBlock, JsonUtils.getJsonObject(topBlockJson, "properties"));
+        fillerBlock = BlockUtil.getBlockWithProperties(fillerBlock, JsonUtils.getJsonObject(fillerBlockJson, "properties"));
+        oceanBlock = BlockUtil.getBlockWithProperties(oceanBlock, JsonUtils.getJsonObject(oceanBlockJson, "properties"));
+
+        return new NetherBiome(biome, weight, biomeClimate, topBlock, fillerBlock, oceanBlock);
+    }
+
+    public Biome getBiome()
+    {
+        return biome;
     }
 
     public int getWeight()
@@ -40,249 +75,23 @@ public class NetherBiome
         return weight;
     }
 
-    public String getClimateType()
+    public NetherBiomeClimate getBiomeClimate()
     {
-        return climateType;
+        return biomeClimate;
     }
 
-    public BiomeBlock getTopBlock()
+    public IBlockState getTopBlock()
     {
         return topBlock;
     }
 
-    public BiomeBlock getFillerBlock()
+    public IBlockState getFillerBlock()
     {
         return fillerBlock;
     }
 
-    public BiomeBlock getOceanBlock()
+    public IBlockState getOceanBlock()
     {
         return oceanBlock;
-    }
-
-    public List<BiomeEntity> getEntitySpawnList()
-    {
-        return entitySpawnList;
-    }
-
-    public List<BiomeFeature> getFeatureList()
-    {
-        return featureList;
-    }
-
-    public static class BiomeList
-    {
-        private String name;
-        private List<Mod> mods;
-
-        public String getName()
-        {
-            return name;
-        }
-
-        public List<Mod> getMods()
-        {
-            return mods;
-        }
-    }
-
-    public static class Mod
-    {
-        private String modId;
-        private List<NetherBiome> biomes;
-
-        public String getId()
-        {
-            return modId;
-        }
-
-        public List<NetherBiome> getBiomes()
-        {
-            return biomes;
-        }
-    }
-
-    public static class BiomeBlock
-    {
-        private String blockId;
-        private int meta;
-
-        public BiomeBlock()
-        {
-            blockId = "";
-            meta = 0;
-        }
-
-        public String getId()
-        {
-            return blockId;
-        }
-
-        public int getMeta()
-        {
-            return meta;
-        }
-    }
-
-    public static class BiomeEntity
-    {
-        private String entityId;
-        private String creatureType;
-        private int weight;
-        private int minGroupCount;
-        private int maxGroupCount;
-
-        public String getId()
-        {
-            return entityId;
-        }
-
-        public String getCreatureType()
-        {
-            return creatureType;
-        }
-
-        public int getWeight()
-        {
-            return weight;
-        }
-
-        public int getMinGroupCount()
-        {
-            return minGroupCount;
-        }
-
-        public int getMaxGroupCount()
-        {
-            return maxGroupCount;
-        }
-    }
-
-    public static class BiomeFeature
-    {
-        private String featureType;
-        private BiomeBlock blockToSpawn;
-        private BiomeBlock targetBlock;
-        private BiomeBlock surroundingBlock;
-        private int minHeight;
-        private int maxHeight;
-        private int size;
-        private int rarity;
-        private boolean randomRarity;
-        private boolean superRare;
-        private List<BiomeStructure> structureList;
-        private boolean hidden;
-
-        public String getFeatureType()
-        {
-            return featureType;
-        }
-
-        public BiomeBlock getBlockToSpawn()
-        {
-            return blockToSpawn;
-        }
-
-        public BiomeBlock getTargetBlock()
-        {
-            return targetBlock;
-        }
-
-        public BiomeBlock getSurroundingBlock()
-        {
-            return surroundingBlock;
-        }
-
-        public int getMinHeight()
-        {
-            return minHeight;
-        }
-
-        public int getMaxHeight()
-        {
-            return maxHeight;
-        }
-
-        public int getSize()
-        {
-            return size;
-        }
-
-        public int getRarity()
-        {
-            return rarity;
-        }
-
-        public boolean useRandomRarity()
-        {
-            return randomRarity;
-        }
-
-        public boolean isSuperRare()
-        {
-            return superRare;
-        }
-
-        public List<BiomeStructure> getStructureList()
-        {
-            return structureList;
-        }
-
-        public boolean isHidden()
-        {
-            return hidden;
-        }
-    }
-
-    public static class BiomeStructure
-    {
-        private String structureType;
-        private String structureId;
-        private String replacedBlock;
-        private List<String> lootTables;
-        private List<String> spawnerMobs;
-        private boolean rotate;
-        private boolean mirror;
-        private int weight;
-
-        public String getStructureType()
-        {
-            return structureType;
-        }
-
-        public String getStructureId()
-        {
-            return structureId;
-        }
-
-        public String getReplacedBlock()
-        {
-            return replacedBlock;
-        }
-
-        public List<String> getLootTables()
-        {
-            return lootTables;
-        }
-
-        public List<String> getSpawnerMobs()
-        {
-            return spawnerMobs;
-        }
-
-        public boolean rotate()
-        {
-            return rotate;
-        }
-
-        public boolean mirror()
-        {
-            return mirror;
-        }
-
-        public int getWeight()
-        {
-            return weight;
-        }
     }
 }

@@ -1,0 +1,18 @@
+{
+    "type": "biome",
+    "biome": "nex:hell",
+    "weight": 10,
+    "climate": "warm",
+    "topBlock": {
+        "block": "minecraft:netherrack",
+        "properties": { }
+    },
+    "fillerBlock": {
+        "block": "minecraft:netherrack",
+        "properties": { }
+    },
+    "oceanBlock": {
+        "block": "minecraft:lava",
+        "properties": { }
+    }
+}

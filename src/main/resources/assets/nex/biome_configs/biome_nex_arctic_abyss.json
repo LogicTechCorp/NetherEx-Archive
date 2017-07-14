@@ -1,0 +1,22 @@
+{
+    "type": "biome",
+    "biome": "nex:arctic_abyss",
+    "weight": 1,
+    "climate": "cold",
+    "topBlock": {
+        "block": "nex:block_ice_frostburn",
+        "properties": {
+            "type": "icy"
+        }
+    },
+    "fillerBlock": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "icy"
+        }
+    },
+    "oceanBlock": {
+        "block": "minecraft:lava",
+        "properties": { }
+    }
+}

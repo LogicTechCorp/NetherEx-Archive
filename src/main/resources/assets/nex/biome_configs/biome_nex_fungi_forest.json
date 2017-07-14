@@ -1,0 +1,20 @@
+{
+    "type": "biome",
+    "biome": "nex:fungi_forest",
+    "weight": 4,
+    "climate": "cool",
+    "topBlock": {
+        "block": "nex:block_hyphae",
+        "properties": { }
+    },
+    "fillerBlock": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "lively"
+        }
+    },
+    "oceanBlock": {
+        "block": "minecraft:lava",
+        "properties": { }
+    }
+}

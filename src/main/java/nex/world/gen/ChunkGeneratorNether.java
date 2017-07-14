@@ -36,12 +36,13 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.terraingen.*;
+import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
+import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
-import nex.util.RandomUtil;
 import nex.world.biome.NetherBiomeManager;
-import nex.world.gen.feature.Feature;
 
 import java.util.List;
 import java.util.Random;
@@ -411,69 +412,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         BlockFalling.fallInstantly = true;
 
         netherBridge.generateStructure(world, rand, chunkPos);
-
-        List<Feature> features = NetherBiomeManager.getBiomeFeatures(biome);
-
-        if(features.size() > 0)
-        {
-            for(Feature feature : features)
-            {
-                if(feature.getBiome() != biome)
-                {
-                    continue;
-                }
-                if(!feature.canGenerate())
-                {
-                    continue;
-                }
-
-                int featureRarity = feature.useRandomRarity() ? rand.nextInt(feature.getRarity()) + 1 : feature.getRarity();
-
-                if(feature.getType() == Feature.FeatureType.ORE)
-                {
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
-
-                    if(!feature.isSuperRare())
-                    {
-                        for(int i = 0; i < featureRarity; i++)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
-                        }
-                    }
-                    else
-                    {
-                        if(rand.nextInt(featureRarity) == 0)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
-                        }
-                    }
-
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
-                }
-                else
-                {
-                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
-
-                    if(!feature.isSuperRare())
-                    {
-                        for(int i = 0; i < featureRarity; i++)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
-                        }
-                    }
-                    else
-                    {
-                        if(rand.nextInt(featureRarity) == 0)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
-                        }
-                    }
-
-                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
-                }
-            }
-        }
-
         biome.decorate(world, rand, blockPos);
 
         BlockFalling.fallInstantly = false;
@@ -503,8 +441,8 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             }
         }
 
-        Biome biome = world.getBiome(pos);
-        return NetherBiomeManager.getBiomeEntitySpawnList(biome).get(creatureType);
+        Biome biome = this.world.getBiome(pos);
+        return biome.getSpawnableList(creatureType);
     }
 
     @Override

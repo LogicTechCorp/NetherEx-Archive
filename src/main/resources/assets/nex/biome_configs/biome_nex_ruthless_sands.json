@@ -1,0 +1,20 @@
+{
+    "type": "biome",
+    "biome": "nex:ruthless_sands",
+    "weight": 8,
+    "climate": "temperate",
+    "topBlock": {
+        "block": "minecraft:soul_sand",
+        "properties": { }
+    },
+    "fillerBlock": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "gloomy"
+        }
+    },
+    "oceanBlock": {
+        "block": "minecraft:lava",
+        "properties": { }
+    }
+}

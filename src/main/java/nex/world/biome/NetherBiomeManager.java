@@ -17,35 +17,28 @@
 
 package nex.world.biome;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.io.Files;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.JsonUtils;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
-import nex.util.BlockUtil;
 import nex.util.FileUtil;
-import nex.world.gen.feature.*;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -56,6 +49,12 @@ public class NetherBiomeManager
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherBiomeManager");
 
     public static void init(File directory)
+    {
+        copyBiomeConfigsToConfigDirectory(directory);
+        parseBiomeConfigs(directory);
+    }
+
+    private static void copyBiomeConfigsToConfigDirectory(File directory)
     {
         try
         {
@@ -68,152 +67,69 @@ public class NetherBiomeManager
 
             if(NetherEx.IS_DEV_ENV)
             {
-                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_lists").getFile()), directory);
+                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), directory);
             }
             else
             {
-                FileUtil.extractFromJar("/assets/nex/biome_lists", directory.getPath());
+                FileUtil.extractFromJar("/assets/nex/biome_configs", directory.getPath());
             }
         }
         catch(IOException e)
         {
-            LOGGER.fatal("The attempt to copy the Biome List Directory to the config folder was unsuccessful.");
+            LOGGER.fatal("The attempt to copy the Biome Configs Directory to the config folder was unsuccessful.");
             LOGGER.fatal(e);
         }
+    }
 
-        Gson gson = new Gson();
-        List<File> netherBiomeFiles = Lists.newArrayList(directory.listFiles());
+    private static void parseBiomeConfigs(File directory)
+    {
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        Path directoryPath = directory.toPath();
 
         try
         {
-            for(File netherBiomeFile : netherBiomeFiles)
+            Iterator<Path> pathIter = Files.walk(directoryPath).iterator();
+
+            while(pathIter.hasNext())
             {
-                String jsonText = Files.toString(netherBiomeFile, Charsets.UTF_8);
-                NetherBiome.BiomeList biomeList = gson.fromJson(jsonText, NetherBiome.BiomeList.class);
+                Path configPath = pathIter.next();
 
-                LOGGER.info("Adding biomes from the " + biomeList.getName() + ".");
-
-                for(NetherBiome.Mod biomeMod : biomeList.getMods())
+                if(FilenameUtils.getExtension(configPath.toString()).equals("json"))
                 {
-                    for(NetherBiome netherBiome : biomeMod.getBiomes())
-                    {
-                        ResourceLocation biomeRegistryName = new ResourceLocation(biomeMod.getId() + ":" + netherBiome.getId());
-                        Biome biome = ForgeRegistries.BIOMES.getValue(biomeRegistryName);
-
-                        if(biome == null)
-                        {
-                            continue;
-                        }
-
-                        NetherBiome.BiomeBlock biomeTopBlock = netherBiome.getTopBlock();
-                        NetherBiome.BiomeBlock biomeFillerBlock = netherBiome.getFillerBlock();
-                        NetherBiome.BiomeBlock biomeOceanBlock = netherBiome.getOceanBlock();
-                        IBlockState topBlock = biome.topBlock;
-                        IBlockState fillerBlock = biome.fillerBlock;
-                        IBlockState oceanBlock = Blocks.LAVA.getDefaultState();
-
-                        if(biomeTopBlock != null)
-                        {
-                            IBlockState state = BlockUtil.getBlock(biomeTopBlock, "minecraft:air");
-                            topBlock = state.getBlock() == Blocks.AIR ? topBlock : state;
-
-                            LOGGER.info("Set the " + biome.getRegistryName().toString() + " biome's top Block to " + topBlock.getBlock().getRegistryName().toString() + " with a meta of " + topBlock.getBlock().getMetaFromState(topBlock) + ".");
-                        }
-                        if(biomeFillerBlock != null)
-                        {
-                            IBlockState state = BlockUtil.getBlock(biomeFillerBlock, "minecraft:air");
-                            fillerBlock = state.getBlock() == Blocks.AIR ? fillerBlock : state;
-
-                            LOGGER.info("Set the " + biome.getRegistryName().toString() + " biome's filler Block to " + fillerBlock.getBlock().getRegistryName().toString() + " with a meta of " + fillerBlock.getBlock().getMetaFromState(fillerBlock) + ".");
-                        }
-                        if(biomeOceanBlock != null)
-                        {
-                            IBlockState state = BlockUtil.getBlock(biomeOceanBlock, "minecraft:air");
-                            oceanBlock = state.getBlock() == Blocks.AIR ? oceanBlock : state;
-
-                            LOGGER.info("Set the " + biome.getRegistryName().toString() + " biome's ocean Block to " + oceanBlock.getBlock().getRegistryName().toString() + " with a meta of " + oceanBlock.getBlock().getMetaFromState(oceanBlock) + ".");
-                        }
-
-                        Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList = Maps.newHashMap();
-
-                        for(EnumCreatureType creatureType : EnumCreatureType.values())
-                        {
-                            entitySpawnList.put(creatureType, Lists.newArrayList());
-                        }
-
-                        if(netherBiome.getEntitySpawnList() != null)
-                        {
-                            for(NetherBiome.BiomeEntity entity : netherBiome.getEntitySpawnList())
-                            {
-                                for(EnumCreatureType creatureType : EnumCreatureType.values())
-                                {
-                                    if(creatureType.toString().equalsIgnoreCase(entity.getCreatureType()))
-                                    {
-                                        Class<? extends Entity> cls = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entity.getId())).getEntityClass();
-
-                                        if(cls != null && EntityLiving.class.isAssignableFrom(cls))
-                                        {
-                                            entitySpawnList.get(creatureType).add(new Biome.SpawnListEntry((Class<? extends EntityLiving>) cls, entity.getWeight(), entity.getMinGroupCount(), entity.getMaxGroupCount()));
-                                            LOGGER.info("Added the " + entity.getId() + " Entity to the " + biome.getRegistryName().toString() + " biome.");
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        List<Feature> features = Lists.newArrayList();
-
-                        if(netherBiome.getFeatureList() != null)
-                        {
-                            for(NetherBiome.BiomeFeature biomeFeature : netherBiome.getFeatureList())
-                            {
-                                Feature.FeatureType featureType = Feature.FeatureType.getFromString(biomeFeature.getFeatureType());
-                                Feature feature;
-
-                                if(featureType == Feature.FeatureType.SCATTERED)
-                                {
-                                    feature = new FeatureScattered(biome, biomeFeature);
-                                }
-                                else if(featureType == Feature.FeatureType.CLUMPED)
-                                {
-                                    feature = new FeatureClumped(biome, biomeFeature);
-                                }
-                                else if(featureType == Feature.FeatureType.ORE)
-                                {
-                                    feature = new FeatureOre(biome, biomeFeature);
-                                }
-                                else if(featureType == Feature.FeatureType.FLUID)
-                                {
-                                    feature = new FeatureFluid(biome, biomeFeature);
-                                }
-                                else if(featureType == Feature.FeatureType.POOL)
-                                {
-                                    feature = new FeaturePool(biome, biomeFeature);
-                                }
-                                else if(featureType == Feature.FeatureType.STRUCTURE)
-                                {
-                                    feature = new FeatureStructure(biome, biomeFeature);
-                                }
-                                else
-                                {
-                                    LOGGER.info("A biome feature with the type of " + biomeFeature.getFeatureType() + " is unknown.");
-                                    continue;
-                                }
-
-                                features.add(feature);
-                            }
-                        }
-
-                        NetherBiomeManager.NetherBiomeType.getFromString(netherBiome.getClimateType()).addBiome(biome, netherBiome.getWeight(), topBlock, fillerBlock, oceanBlock, entitySpawnList, features);
-                        LOGGER.info("Added the " + biome.getRegistryName().toString() + " biome from the " + biomeList.getName() + " to the Nether.");
-                    }
+                    parseBiomeConfig(JsonUtils.fromJson(gson, Files.newBufferedReader(configPath), JsonObject.class), configPath.toString());
+                }
+                else
+                {
+                    LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
                 }
             }
         }
         catch(IOException e)
         {
-            LOGGER.fatal("NetherEx was unable to read the Biome lists.");
-            LOGGER.fatal(e);
+            e.printStackTrace();
+        }
+    }
+
+    private static void parseBiomeConfig(JsonObject jsonConfig, String configPath)
+    {
+        String configType = JsonUtils.getString(jsonConfig, "type");
+
+        if(configType.equals("biome"))
+        {
+            NetherBiome netherBiome = NetherBiome.deserialize(jsonConfig);
+            netherBiome.getBiomeClimate().addBiome(netherBiome);
+        }
+        else if(configType.equals("feature"))
+        {
+
+        }
+        else if(configType.equals("structure"))
+        {
+
+        }
+        else
+        {
+            LOGGER.warn("The file located at, " + configPath + ", contains an incorrect type of " + configType);
         }
     }
 
@@ -221,9 +137,9 @@ public class NetherBiomeManager
     {
         List<NetherBiomeEntry> biomes = Lists.newArrayList();
 
-        for(NetherBiomeType biomeType : NetherBiomeType.values())
+        for(NetherBiomeClimate biomeClimate : NetherBiomeClimate.values())
         {
-            biomes.addAll(biomeType.getBiomeEntries());
+            biomes.addAll(biomeClimate.getBiomeEntries());
         }
 
         return biomes;
@@ -241,7 +157,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeTopBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeType.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -253,7 +169,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeFillerBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeType.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -265,7 +181,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeOceanBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeType.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -273,149 +189,5 @@ public class NetherBiomeManager
         }
 
         return Blocks.LAVA.getDefaultState();
-    }
-
-    public static Map<EnumCreatureType, List<Biome.SpawnListEntry>> getBiomeEntitySpawnList(Biome biome)
-    {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeType.getFromBiome(biome).getBiomeEntryMap();
-
-        if(biomeEntryMap.containsKey(biome))
-        {
-            return biomeEntryMap.get(biome).getEntitySpawnList();
-        }
-
-        Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList = Maps.newHashMap();
-
-        for(EnumCreatureType creatureType : EnumCreatureType.values())
-        {
-            entitySpawnList.put(creatureType, Lists.newArrayList());
-        }
-
-        return entitySpawnList;
-    }
-
-    public static List<Feature> getBiomeFeatures(Biome biome)
-    {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeType.getFromBiome(biome).getBiomeEntryMap();
-
-        if(biomeEntryMap.containsKey(biome))
-        {
-            return biomeEntryMap.get(biome).getFeatures();
-        }
-
-        return Lists.newArrayList();
-    }
-
-    public enum NetherBiomeType
-    {
-        HOT,
-        WARM,
-        TEMPERATE,
-        COOL,
-        COLD;
-
-        private static final Map<Biome, NetherBiomeEntry> biomeEntryMap = Maps.newHashMap();
-
-        public void addBiome(Biome biome, int weight, IBlockState topBlock, IBlockState fillerBlock, IBlockState oceanBlock, Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList, List<Feature> features)
-        {
-            biomeEntryMap.put(biome, new NetherBiomeEntry(biome, weight, topBlock, fillerBlock, oceanBlock, entitySpawnList, features));
-        }
-
-        public static NetherBiomeType getFromBiome(Biome biome)
-        {
-            for(NetherBiomeType biomeType : values())
-            {
-                for(NetherBiomeEntry biomeEntry : biomeType.getBiomeEntries())
-                {
-                    if(biomeEntry.biome == biome)
-                    {
-                        return biomeType;
-                    }
-                }
-            }
-
-            return TEMPERATE;
-        }
-
-        public static NetherBiomeType getFromString(String string)
-        {
-            if(!Strings.isNullOrEmpty(string))
-            {
-                for(NetherBiomeType biomeType : values())
-                {
-                    if(biomeType.name().equalsIgnoreCase(string))
-                    {
-                        return biomeType;
-                    }
-                }
-            }
-
-            return TEMPERATE;
-        }
-
-        public Map<Biome, NetherBiomeEntry> getBiomeEntryMap()
-        {
-            return ImmutableMap.copyOf(biomeEntryMap);
-        }
-
-        public List<NetherBiomeEntry> getBiomeEntries()
-        {
-            return ImmutableList.copyOf(biomeEntryMap.values());
-        }
-    }
-
-    public static class NetherBiomeEntry extends BiomeManager.BiomeEntry
-    {
-        private final IBlockState topBlock;
-        private final IBlockState fillerBlock;
-        private final IBlockState oceanBlock;
-        private final Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnList;
-        private final List<Feature> features;
-
-        public NetherBiomeEntry(Biome biome, int weight, IBlockState topBlockIn, IBlockState fillerBlockIn, IBlockState oceanBlockIn, Map<EnumCreatureType, List<Biome.SpawnListEntry>> entitySpawnListIn, List<Feature> featuresIn)
-        {
-            super(biome, weight <= 0 ? 10 : weight);
-
-            topBlock = topBlockIn;
-            fillerBlock = fillerBlockIn;
-            oceanBlock = oceanBlockIn;
-            entitySpawnList = entitySpawnListIn;
-            features = featuresIn;
-        }
-
-        public Biome getBiome()
-        {
-            return biome;
-        }
-
-        public int getWeight()
-        {
-            return itemWeight;
-        }
-
-        public IBlockState getTopBlock()
-        {
-            return topBlock;
-        }
-
-        public IBlockState getFillerBlock()
-        {
-            return fillerBlock;
-        }
-
-        public IBlockState getOceanBlock()
-        {
-            return oceanBlock;
-        }
-
-        public Map<EnumCreatureType, List<Biome.SpawnListEntry>> getEntitySpawnList()
-        {
-            return entitySpawnList;
-        }
-
-        public List<Feature> getFeatures()
-        {
-            return features;
-        }
     }
 }
