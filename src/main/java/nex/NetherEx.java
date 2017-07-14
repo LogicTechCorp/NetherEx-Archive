@@ -82,6 +82,7 @@ public class NetherEx
     {
         LOGGER.info("Initialization started.");
 
+        NetherExBiomes.init();
         NetherExEntities.init();
         TradeManager.init(new File(configDirectory, "/NetherEx/Trade Lists"));
         NetherExRecipes.init();
@@ -96,8 +97,8 @@ public class NetherEx
     {
         LOGGER.info("PostInitialization started.");
 
-        NetherExBiomes.init();
-        NetherBiomeManager.init(new File(configDirectory, "/NetherEx/Biome Configs"));
+        NetherExBiomes.postInit();
+        NetherBiomeManager.postInit(new File(configDirectory, "/NetherEx/Biome Configs"));
         proxy.postInit();
 
         LOGGER.info("PostInitialization completed.");

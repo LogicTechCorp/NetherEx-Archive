@@ -26,6 +26,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.Loader;
 import nex.NetherEx;
 import nex.util.FileUtil;
 import nex.world.gen.layer.GenLayerNetherEx;
@@ -48,7 +49,7 @@ public class NetherBiomeManager
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherBiomeManager");
 
-    public static void init(File directory)
+    public static void postInit(File directory)
     {
         copyBiomeConfigsToConfigDirectory(directory);
         parseBiomeConfigs(directory);
@@ -63,15 +64,25 @@ public class NetherBiomeManager
                 directory.mkdir();
             }
 
-            LOGGER.info("Copying the Biome List Directory to the config folder.");
+            LOGGER.info("Copying the Biome Configs Directory to the config folder.");
 
             if(NetherEx.IS_DEV_ENV)
             {
                 FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), directory);
+
+                if(Loader.isModLoaded("biomesoplenty"))
+                {
+                    FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs_bop").getFile()), directory);
+                }
             }
             else
             {
                 FileUtil.extractFromJar("/assets/nex/biome_configs", directory.getPath());
+
+                if(Loader.isModLoaded("biomesoplenty"))
+                {
+                    FileUtil.extractFromJar("/assets/nex/biome_configs_bop", directory.getPath());
+                }
             }
         }
         catch(IOException e)
@@ -112,20 +123,17 @@ public class NetherBiomeManager
 
     private static void parseBiomeConfig(JsonObject jsonConfig, String configPath)
     {
-        String configType = JsonUtils.getString(jsonConfig, "type");
+        String configType = JsonUtils.getString(jsonConfig, "configType");
 
-        if(configType.equals("biome"))
+        if(configType.equalsIgnoreCase("biome"))
         {
             NetherBiome netherBiome = NetherBiome.deserialize(jsonConfig);
-            netherBiome.getBiomeClimate().addBiome(netherBiome);
-        }
-        else if(configType.equals("feature"))
-        {
 
-        }
-        else if(configType.equals("structure"))
-        {
-
+            if(netherBiome.canGenerate())
+            {
+                netherBiome.getBiomeClimate().addBiome(netherBiome);
+                LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
+            }
         }
         else
         {

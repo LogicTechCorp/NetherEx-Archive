@@ -18,7 +18,9 @@
 package nex.world.biome;
 
 import com.google.gson.JsonObject;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -33,9 +35,16 @@ public class NetherBiome
     private IBlockState topBlock;
     private IBlockState fillerBlock;
     private IBlockState oceanBlock;
-
+    private boolean canGenerate;
+    
+    private NetherBiome(boolean canGenerateIn)
+    {
+        canGenerate = canGenerateIn;
+    }
+    
     private NetherBiome(Biome biomeIn, int weightIn, NetherBiomeClimate biomeClimateIn, IBlockState topBlockIn, IBlockState fillerBlockIn, IBlockState oceanBlockIn)
     {
+        this(true);
         biome = biomeIn;
         weight = weightIn;
         biomeClimate = biomeClimateIn;
@@ -50,19 +59,78 @@ public class NetherBiome
         int weight = JsonUtils.getInt(config, "weight", 10);
         NetherBiomeClimate biomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
 
-        JsonObject topBlockJson = JsonUtils.getJsonObject(config, "topBlock");
-        JsonObject fillerBlockJson = JsonUtils.getJsonObject(config, "fillerBlock");
-        JsonObject oceanBlockJson = JsonUtils.getJsonObject(config, "oceanBlock");
+        if(biome != null)
+        {
+            IBlockState topBlock = null;
+            IBlockState fillerBlock = null;
+            IBlockState oceanBlock = null;
 
-        IBlockState topBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(topBlockJson, "block"))).getDefaultState();
-        IBlockState fillerBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(fillerBlockJson, "block"))).getDefaultState();
-        IBlockState oceanBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(oceanBlockJson, "block"))).getDefaultState();
+            JsonObject topBlockJson = JsonUtils.getJsonObject(config, "topBlock", new JsonObject());
+            JsonObject fillerBlockJson = JsonUtils.getJsonObject(config, "fillerBlock", new JsonObject());
+            JsonObject oceanBlockJson = JsonUtils.getJsonObject(config, "oceanBlock", new JsonObject());
 
-        topBlock = BlockUtil.getBlockWithProperties(topBlock, JsonUtils.getJsonObject(topBlockJson, "properties"));
-        fillerBlock = BlockUtil.getBlockWithProperties(fillerBlock, JsonUtils.getJsonObject(fillerBlockJson, "properties"));
-        oceanBlock = BlockUtil.getBlockWithProperties(oceanBlock, JsonUtils.getJsonObject(oceanBlockJson, "properties"));
+            if(topBlockJson.entrySet().size() > 0)
+            {
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(topBlockJson, "block")));
 
-        return new NetherBiome(biome, weight, biomeClimate, topBlock, fillerBlock, oceanBlock);
+                if(block != null)
+                {
+                    topBlock = block.getDefaultState();
+                }
+            }
+            if(fillerBlockJson.entrySet().size() > 0)
+            {
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(fillerBlockJson, "block")));
+
+                if(block != null)
+                {
+                    fillerBlock = block.getDefaultState();
+                }
+            }
+            if(oceanBlockJson.entrySet().size() > 0)
+            {
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(oceanBlockJson, "block")));
+
+                if(block != null)
+                {
+                    oceanBlock = block.getDefaultState();
+                }
+            }
+
+            if(topBlock == null)
+            {
+                topBlock = biome.topBlock;
+            }
+            if(fillerBlock == null)
+            {
+                fillerBlock = biome.fillerBlock;
+            }
+            if(oceanBlock == null)
+            {
+                oceanBlock = Blocks.LAVA.getDefaultState();
+            }
+
+            JsonObject topBlockProperties = JsonUtils.getJsonObject(topBlockJson, "properties", new JsonObject());
+            JsonObject fillerBlockProperties = JsonUtils.getJsonObject(fillerBlockJson, "properties", new JsonObject());
+            JsonObject oceanBlockProperties = JsonUtils.getJsonObject(oceanBlockJson, "properties", new JsonObject());
+
+            if(topBlockProperties.entrySet().size() > 0)
+            {
+                topBlock = BlockUtil.getBlockWithProperties(topBlock, JsonUtils.getJsonObject(topBlockJson, "properties"));
+            }
+            if(fillerBlockProperties.entrySet().size() > 0)
+            {
+                fillerBlock = BlockUtil.getBlockWithProperties(fillerBlock, JsonUtils.getJsonObject(fillerBlockJson, "properties"));
+            }
+            if(oceanBlockProperties.entrySet().size() > 0)
+            {
+                oceanBlock = BlockUtil.getBlockWithProperties(oceanBlock, JsonUtils.getJsonObject(oceanBlockJson, "properties"));
+            }
+
+            return new NetherBiome(biome, weight, biomeClimate, topBlock, fillerBlock, oceanBlock);
+        }
+        
+        return new NetherBiome(false);
     }
 
     public Biome getBiome()
@@ -93,5 +161,10 @@ public class NetherBiome
     public IBlockState getOceanBlock()
     {
         return oceanBlock;
+    }
+
+    public boolean canGenerate()
+    {
+        return canGenerate;
     }
 }

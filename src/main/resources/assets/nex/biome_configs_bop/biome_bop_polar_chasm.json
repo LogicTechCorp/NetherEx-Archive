@@ -1,0 +1,9 @@
+{
+    "configType": "biome",
+    "biome": "biomesoplenty:polar_chasm",
+    "weight": 1,
+    "climate": "cold",
+    "oceanBlock": {
+        "block": "minecraft:magma"
+    }
+}

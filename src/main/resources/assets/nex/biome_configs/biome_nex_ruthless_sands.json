@@ -1,11 +1,10 @@
 {
-    "type": "biome",
+    "configType": "biome",
     "biome": "nex:ruthless_sands",
     "weight": 8,
     "climate": "temperate",
     "topBlock": {
-        "block": "minecraft:soul_sand",
-        "properties": { }
+        "block": "minecraft:soul_sand"
     },
     "fillerBlock": {
         "block": "nex:block_netherrack",
@@ -14,7 +13,6 @@
         }
     },
     "oceanBlock": {
-        "block": "minecraft:lava",
-        "properties": { }
+        "block": "minecraft:lava"
     }
 }

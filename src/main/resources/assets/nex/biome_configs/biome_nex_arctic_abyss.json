@@ -1,5 +1,5 @@
 {
-    "type": "biome",
+    "configType": "biome",
     "biome": "nex:arctic_abyss",
     "weight": 1,
     "climate": "cold",
@@ -16,7 +16,6 @@
         }
     },
     "oceanBlock": {
-        "block": "minecraft:lava",
-        "properties": { }
+        "block": "minecraft:magma"
     }
 }

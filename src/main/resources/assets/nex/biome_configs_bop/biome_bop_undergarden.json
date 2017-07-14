@@ -1,0 +1,6 @@
+{
+    "configType": "biome",
+    "biome": "biomesoplenty:undergarden",
+    "weight": 4,
+    "climate": "cool"
+}
