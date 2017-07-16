@@ -257,7 +257,7 @@ public class EventHandler
             event.setCanceled(true);
         }
 
-        if(originalState.getBlock() == Blocks.BEDROCK)
+        if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_HAMMER_BONE)
         {
             BlockUtil.mine3x3(world, player.getActiveItemStack(), originalPos, player);
         }
