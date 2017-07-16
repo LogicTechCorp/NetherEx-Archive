@@ -34,11 +34,11 @@ public enum NetherBiomeClimate
     COOL,
     COLD;
 
-    private static final Map<Biome, NetherBiomeEntry> biomeEntryMap = Maps.newHashMap();
+    private static final Map<Biome, NetherBiomeEntry> BIOME_ENTRIES = Maps.newHashMap();
 
     public void addBiome(NetherBiome netherBiome)
     {
-        biomeEntryMap.put(netherBiome.getBiome(), new NetherBiomeEntry(netherBiome));
+        BIOME_ENTRIES.put(netherBiome.getBiome(), new NetherBiomeEntry(netherBiome));
     }
 
     public static NetherBiomeClimate getFromBiome(Biome biome)
@@ -75,11 +75,11 @@ public enum NetherBiomeClimate
 
     public Map<Biome, NetherBiomeEntry> getBiomeEntryMap()
     {
-        return ImmutableMap.copyOf(biomeEntryMap);
+        return ImmutableMap.copyOf(BIOME_ENTRIES);
     }
 
     public List<NetherBiomeEntry> getBiomeEntries()
     {
-        return ImmutableList.copyOf(biomeEntryMap.values());
+        return ImmutableList.copyOf(BIOME_ENTRIES.values());
     }
 }

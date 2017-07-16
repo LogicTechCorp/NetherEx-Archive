@@ -36,10 +36,7 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
-import net.minecraftforge.event.terraingen.InitMapGenEvent;
-import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
-import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
 import nex.world.biome.NetherBiomeManager;
@@ -410,6 +407,12 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         Biome biome = world.getBiome(blockPos.add(16, 0, 16));
 
         BlockFalling.fallInstantly = true;
+        ForgeEventFactory.onChunkPopulate(true, this, world, rand, chunkX, chunkZ, false);
+        ForgeEventFactory.onChunkPopulate(false, this, world, rand, chunkX, chunkZ, false);
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
 
         netherBridge.generateStructure(world, rand, chunkPos);
         biome.decorate(world, rand, blockPos);
