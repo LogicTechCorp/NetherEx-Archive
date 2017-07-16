@@ -135,6 +135,10 @@ public class NetherBiomeManager
                 LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
             }
         }
+        else if(configType.equalsIgnoreCase("feature"))
+        {
+
+        }
         else
         {
             LOGGER.warn("The file located at, " + configPath + ", contains an incorrect type of " + configType);
