@@ -118,7 +118,10 @@ public class EventHandler
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            PigtificateVillageManager.getPigtificateVillages(event.world).tick();
+            PigtificateVillageCollection pvc = PigtificateVillageManager.getPigtificateVillages(event.world);
+            if (pvc != null) {
+                pvc.tick();
+            }
         }
     }
 
