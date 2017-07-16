@@ -73,6 +73,7 @@ import nex.entity.monster.EntitySpore;
 import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.util.BlockUtil;
+import nex.village.PigtificateVillageCollection;
 import nex.village.PigtificateVillageManager;
 import nex.world.TeleporterNether;
 
@@ -118,9 +119,11 @@ public class EventHandler
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            PigtificateVillageCollection pvc = PigtificateVillageManager.getPigtificateVillages(event.world);
-            if (pvc != null) {
-                pvc.tick();
+            PigtificateVillageCollection villages = PigtificateVillageManager.getPigtificateVillages(event.world);
+
+            if (villages != null)
+            {
+                villages.tick();
             }
         }
     }
