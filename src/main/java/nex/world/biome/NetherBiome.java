@@ -35,16 +35,9 @@ public class NetherBiome
     private IBlockState topBlock;
     private IBlockState fillerBlock;
     private IBlockState oceanBlock;
-    private boolean canGenerate;
-    
-    private NetherBiome(boolean canGenerateIn)
-    {
-        canGenerate = canGenerateIn;
-    }
-    
+
     private NetherBiome(Biome biomeIn, int weightIn, NetherBiomeClimate biomeClimateIn, IBlockState topBlockIn, IBlockState fillerBlockIn, IBlockState oceanBlockIn)
     {
-        this(true);
         biome = biomeIn;
         weight = weightIn;
         biomeClimate = biomeClimateIn;
@@ -129,8 +122,8 @@ public class NetherBiome
 
             return new NetherBiome(biome, weight, biomeClimate, topBlock, fillerBlock, oceanBlock);
         }
-        
-        return new NetherBiome(false);
+
+        return null;
     }
 
     public Biome getBiome()
@@ -161,10 +154,5 @@ public class NetherBiome
     public IBlockState getOceanBlock()
     {
         return oceanBlock;
-    }
-
-    public boolean canGenerate()
-    {
-        return canGenerate;
     }
 }

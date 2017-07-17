@@ -21,7 +21,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import nex.world.gen.feature.BiomeFeature;
 
 import java.util.List;
 import java.util.Map;
@@ -35,16 +35,16 @@ public enum GenerationStage
     POST_ORES,
     POST_DECORATE;
 
-    private static final Map<Biome, List<WorldGenerator>> BIOME_GENERATORS = Maps.newHashMap();
+    private static final Map<Biome, List<BiomeFeature>> BIOME_FEATURE = Maps.newHashMap();
 
-    public void addBiomeGenerator(Biome biome, WorldGenerator generator)
+    public void addBiomeFeature(Biome biome, BiomeFeature feature)
     {
-        BIOME_GENERATORS.computeIfAbsent(biome, k -> Lists.newArrayList()).add(generator);
+        BIOME_FEATURE.computeIfAbsent(biome, k -> Lists.newArrayList()).add(feature);
     }
 
-    public List<WorldGenerator> getBiomeGenerators(Biome biome)
+    public List<BiomeFeature> getBiomeFeatures(Biome biome)
     {
-        return Lists.newArrayList(BIOME_GENERATORS.get(biome));
+        return Lists.newArrayList(BIOME_FEATURE.get(biome));
     }
 
     public static GenerationStage getFromString(String string)

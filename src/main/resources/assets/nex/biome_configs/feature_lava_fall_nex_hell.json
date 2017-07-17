@@ -1,0 +1,14 @@
+{
+    "configType": "feature",
+    "biome": "nex:hell",
+    "featureType": "scattered",
+    "blockToSpawn": {
+        "block": "minecraft:fire"
+    },
+    "blockToSpawnOn": {
+        "block": "minecraft:netherrack"
+    },
+    "generationAttempts": 8,
+    "minHeight": 32,
+    "maxHeight": 128
+}

@@ -17,25 +17,29 @@
 
 package nex.world.gen.feature;
 
+import com.google.gson.JsonObject;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.biome.Biome;
+import nex.world.gen.GenerationStage;
 
 import java.util.Random;
 
-public class WorldGenOre extends WorldGenerator
+public class BiomeFeatureOre extends BiomeFeature
 {
     private final IBlockState blockToSpawn;
-    private final IBlockState targetBlock;
+    private final IBlockState blockToReplace;
     private final int size;
 
-    public WorldGenOre(IBlockState blockToSpawnIn, IBlockState targetBlockIn, int sizeIn)
+    public BiomeFeatureOre(Biome biome, GenerationStage generationStage, int generationAttempts, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
     {
+        super(biome, generationStage, generationAttempts, minHeight, maxHeight);
+
         blockToSpawn = blockToSpawnIn;
-        targetBlock = targetBlockIn;
+        blockToReplace = blockToReplaceIn;
         size = sizeIn;
     }
 
@@ -87,7 +91,7 @@ public class WorldGenOre extends WorldGenerator
                                     BlockPos newPos = new BlockPos(l1, i2, j2);
                                     IBlockState state = world.getBlockState(newPos);
 
-                                    if(state.getBlock().isReplaceableOreGen(state, world, newPos, BlockMatcher.forBlock(targetBlock.getBlock())) && state == targetBlock)
+                                    if(state.getBlock().isReplaceableOreGen(state, world, newPos, BlockMatcher.forBlock(blockToReplace.getBlock())) && state == blockToReplace)
                                     {
                                         world.setBlockState(newPos, blockToSpawn, 2);
                                     }
@@ -100,5 +104,11 @@ public class WorldGenOre extends WorldGenerator
         }
 
         return true;
+    }
+
+    @Override
+    public BiomeFeature deserializeFeature(JsonObject config)
+    {
+        return null;
     }
 }

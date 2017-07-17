@@ -17,35 +17,38 @@
 
 package nex.world.gen.feature;
 
+import com.google.gson.JsonObject;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.biome.Biome;
+import nex.world.gen.GenerationStage;
 
 import java.util.Random;
 
-public class WorldGenFluid extends WorldGenerator
+public class BiomeFeatureFluid extends BiomeFeature
 {
     private final IBlockState blockToSpawn;
-    private final IBlockState targetBlock;
+    private final IBlockState blockToReplace;
     private final boolean hidden;
 
-    public WorldGenFluid(IBlockState blockToSpawnIn, IBlockState targetBlockIn, boolean hiddenIn)
+    public BiomeFeatureFluid(Biome biome, GenerationStage generationStage, int generationAttempts, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, boolean hiddenIn)
     {
+        super(biome, generationStage, generationAttempts, minHeight, maxHeight);
+
         blockToSpawn = blockToSpawnIn;
-        targetBlock = targetBlockIn;
+        blockToReplace = blockToReplaceIn;
         hidden = hiddenIn;
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.getBlockState(pos.up()) != targetBlock)
+        if(world.getBlockState(pos.up()) != blockToReplace)
         {
             return false;
         }
-        else if(!world.isAirBlock(pos) && world.getBlockState(pos) != targetBlock)
+        else if(!world.isAirBlock(pos) && world.getBlockState(pos) != blockToReplace)
         {
             return false;
         }
@@ -53,27 +56,27 @@ public class WorldGenFluid extends WorldGenerator
         {
             int i = 0;
 
-            if(world.getBlockState(pos.west()) == targetBlock)
+            if(world.getBlockState(pos.west()) == blockToReplace)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.east()) == targetBlock)
+            if(world.getBlockState(pos.east()) == blockToReplace)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.north()) == targetBlock)
+            if(world.getBlockState(pos.north()) == blockToReplace)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.south()) == targetBlock)
+            if(world.getBlockState(pos.south()) == blockToReplace)
             {
                 ++i;
             }
 
-            if(world.getBlockState(pos.down()) == targetBlock)
+            if(world.getBlockState(pos.down()) == blockToReplace)
             {
                 ++i;
             }
@@ -114,5 +117,11 @@ public class WorldGenFluid extends WorldGenerator
 
             return true;
         }
+    }
+
+    @Override
+    public BiomeFeature deserializeFeature(JsonObject config)
+    {
+        return null;
     }
 }

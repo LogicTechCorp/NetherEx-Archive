@@ -29,6 +29,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.Loader;
 import nex.NetherEx;
 import nex.util.FileUtil;
+import nex.world.gen.feature.BiomeFeature;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -121,15 +122,15 @@ public class NetherBiomeManager
         }
     }
 
-    private static void parseBiomeConfig(JsonObject jsonConfig, String configPath)
+    private static void parseBiomeConfig(JsonObject config, String configPath)
     {
-        String configType = JsonUtils.getString(jsonConfig, "configType");
+        String configType = JsonUtils.getString(config, "configType");
 
         if(configType.equalsIgnoreCase("biome"))
         {
-            NetherBiome netherBiome = NetherBiome.deserialize(jsonConfig);
+            NetherBiome netherBiome = NetherBiome.deserialize(config);
 
-            if(netherBiome.canGenerate())
+            if(netherBiome != null)
             {
                 netherBiome.getBiomeClimate().addBiome(netherBiome);
                 LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
@@ -137,7 +138,13 @@ public class NetherBiomeManager
         }
         else if(configType.equalsIgnoreCase("feature"))
         {
+            BiomeFeature biomeFeature = BiomeFeature.deserialize(config);
 
+            if(biomeFeature != null)
+            {
+                biomeFeature.getGenerationStage().addBiomeFeature(biomeFeature.getBiome(), biomeFeature);
+                LOGGER.info("");
+            }
         }
         else
         {
