@@ -23,16 +23,22 @@ import net.minecraftforge.common.BiomeManager;
 
 public class NetherBiomeEntry extends BiomeManager.BiomeEntry
 {
-    private final IBlockState topBlock;
-    private final IBlockState fillerBlock;
+    private final IBlockState floorTopBlock;
+    private final IBlockState floorFillerBlock;
+    private IBlockState wallBlock;
+    private IBlockState roofBottomBlock;
+    private IBlockState roofFillerBlock;
     private final IBlockState oceanBlock;
 
     public NetherBiomeEntry(NetherBiome netherBiome)
     {
         super(netherBiome.getBiome(), netherBiome.getWeight());
 
-        topBlock = netherBiome.getTopBlock();
-        fillerBlock = netherBiome.getFillerBlock();
+        floorTopBlock = netherBiome.getFloorTopBlock();
+        floorFillerBlock = netherBiome.getFloorFillerBlock();
+        wallBlock = netherBiome.getWallBlock();
+        roofBottomBlock = netherBiome.getRoofBottomBlock();
+        roofFillerBlock = netherBiome.getRoofFillerBlock();
         oceanBlock = netherBiome.getOceanBlock();
     }
 
@@ -46,14 +52,29 @@ public class NetherBiomeEntry extends BiomeManager.BiomeEntry
         return itemWeight;
     }
 
-    public IBlockState getTopBlock()
+    public IBlockState getFloorTopBlock()
     {
-        return topBlock;
+        return floorTopBlock;
     }
 
-    public IBlockState getFillerBlock()
+    public IBlockState getFloorFillerBlock()
     {
-        return fillerBlock;
+        return floorFillerBlock;
+    }
+
+    public IBlockState getWallBlock()
+    {
+        return wallBlock;
+    }
+
+    public IBlockState getRoofBottomBlock()
+    {
+        return roofBottomBlock;
+    }
+
+    public IBlockState getRoofFillerBlock()
+    {
+        return roofFillerBlock;
     }
 
     public IBlockState getOceanBlock()

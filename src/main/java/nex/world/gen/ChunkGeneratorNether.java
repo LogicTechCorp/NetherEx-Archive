@@ -141,20 +141,16 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                                 int posY = y2 + y * 8;
                                 int posZ = z2 + z * 4;
 
-                                Biome biome = biomesForGen[posX + posZ * 16];
-
                                 IBlockState state = null;
-                                IBlockState biomeFillerBlock = NetherBiomeManager.getBiomeFillerBlock(biome);
-                                IBlockState biomeOceanBlock = NetherBiomeManager.getBiomeOceanBlock(biome);
 
                                 if(posY < 32)
                                 {
-                                    state = biomeOceanBlock;
+                                    state = Blocks.LAVA.getDefaultState();
                                 }
 
                                 if(d15 > 0.0D)
                                 {
-                                    state = biomeFillerBlock;
+                                    state = Blocks.NETHERRACK.getDefaultState();
                                 }
 
                                 primer.setBlockState(posX, posY, posZ, state);
@@ -195,14 +191,9 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                 int i1 = -1;
                 boolean genSoulSand = soulSandNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
                 boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
-                Biome biome = biomesForGen[x + z * 16];
 
-                final IBlockState biomeTopBlock = NetherBiomeManager.getBiomeTopBlock(biome);
-                final IBlockState biomeFillerBlock = NetherBiomeManager.getBiomeFillerBlock(biome);
-                final IBlockState biomeOceanBlock = NetherBiomeManager.getBiomeOceanBlock(biome);
-
-                IBlockState topBlock = biomeTopBlock;
-                IBlockState fillerBlock = biomeFillerBlock;
+                IBlockState floorTopBlock = Blocks.NETHERRACK.getDefaultState();
+                IBlockState floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
 
                 for(int y = 127; y >= 0; y--)
                 {
@@ -212,59 +203,52 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
                         if(checkBlock.getMaterial() != Material.AIR)
                         {
-                            if(checkBlock == biomeFillerBlock)
+                            if(checkBlock == Blocks.NETHERRACK.getDefaultState())
                             {
                                 if(i1 == -1)
                                 {
                                     if(l <= 0)
                                     {
-                                        topBlock = Blocks.AIR.getDefaultState();
-                                        fillerBlock = biomeTopBlock;
+                                        floorTopBlock = Blocks.AIR.getDefaultState();
+                                        floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
                                     }
                                     else if(y >= 62 && y <= 66)
                                     {
-                                        topBlock = biomeTopBlock;
-                                        fillerBlock = biomeFillerBlock;
+                                        floorTopBlock = Blocks.NETHERRACK.getDefaultState();
+                                        floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
 
                                         if(ConfigHandler.dimension.nether.generateGravel && genGravel)
                                         {
-                                            topBlock = Blocks.GRAVEL.getDefaultState();
+                                            floorTopBlock = Blocks.GRAVEL.getDefaultState();
                                         }
 
                                         if(ConfigHandler.dimension.nether.generateSoulSand && genSoulSand)
                                         {
-                                            topBlock = Blocks.SOUL_SAND.getDefaultState();
-                                            fillerBlock = Blocks.SOUL_SAND.getDefaultState();
+                                            floorTopBlock = Blocks.SOUL_SAND.getDefaultState();
+                                            floorFillerBlock = Blocks.SOUL_SAND.getDefaultState();
                                         }
                                     }
 
-                                    if(y <= 32 && (topBlock == null || topBlock.getMaterial() == Material.AIR))
+                                    if(y <= 32 && (floorTopBlock == null || floorTopBlock.getMaterial() == Material.AIR))
                                     {
-                                        topBlock = biomeOceanBlock;
+                                        floorTopBlock = Blocks.LAVA.getDefaultState();
                                     }
 
                                     i1 = l;
 
-                                    if(topBlock == biomeTopBlock && fillerBlock == biomeFillerBlock)
+                                    if(y >= 64)
                                     {
-                                        primer.setBlockState(x, y, z, topBlock);
+                                        primer.setBlockState(x, y, z, floorTopBlock);
                                     }
                                     else
                                     {
-                                        if(y > 64)
-                                        {
-                                            primer.setBlockState(x, y, z, topBlock);
-                                        }
-                                        else
-                                        {
-                                            primer.setBlockState(x, y, z, fillerBlock);
-                                        }
+                                        primer.setBlockState(x, y, z, floorFillerBlock);
                                     }
                                 }
                                 else if(i1 > 0)
                                 {
                                     i1--;
-                                    primer.setBlockState(x, y, z, fillerBlock);
+                                    primer.setBlockState(x, y, z, floorFillerBlock);
                                 }
                             }
                         }
@@ -373,6 +357,106 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         return heightMap;
     }
 
+    /**
+     * A method that replaces the default Nether blocks with ones designated for each biome
+     * <p>
+     * Written by the Biomes O' Plenty team here:
+     * https://github.com/Glitchfiend/BiomesOPlenty/blob/9873b7ad56ab8f32e6073dea060c4b67aad8b77e/src/main/java/biomesoplenty/common/biome/nether/BOPHellBiome.java#L84
+     *
+     * @author Biomes O' Plenty team
+     */
+    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomesIn)
+    {
+        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world))
+        {
+            return;
+        }
+
+        for(int x = 0; x < 16; ++x)
+        {
+            for(int z = 0; z < 16; ++z)
+            {
+                Biome biome = biomesIn[x + z * 16];
+
+                IBlockState floorTopBlock = NetherBiomeManager.getBiomeFloorTopBlock(biome);
+                IBlockState floorFillerBlock = NetherBiomeManager.getBiomeFloorFillerBlock(biome);
+                IBlockState oceanBlock = NetherBiomeManager.getBiomeOceanBlock(biome);
+                IBlockState wallBlock = NetherBiomeManager.getBiomeWallBlock(biome);
+                IBlockState roofBottomBlock = NetherBiomeManager.getBiomeRoofBottomBlock(biome);
+                IBlockState roofFillerBlock = NetherBiomeManager.getBiomeRoofFillerBlock(biome);
+
+                int localX = ((chunkX * 16) + x) & 15;
+                int localZ = ((chunkZ * 16) + z) & 15;
+
+                boolean wasLastBlockSolid = true;
+
+                for(int localY = 127; localY >= 0; localY--)
+                {
+                    int blocksToSkip = 0;
+
+                    IBlockState checkState = primer.getBlockState(localX, localY, localZ);
+
+                    if(checkState.getBlock() == Blocks.NETHERRACK)
+                    {
+                        primer.setBlockState(localX, localY, localZ, wallBlock);
+
+                        if(!wasLastBlockSolid)
+                        {
+                            primer.setBlockState(localX, localY, localZ, floorTopBlock);
+
+                            for(int floorOffset = 1; floorOffset <= 4 - 1 && localY - floorOffset >= 0; floorOffset++)
+                            {
+                                IBlockState state = primer.getBlockState(localX, localY - floorOffset, localZ);
+                                blocksToSkip = floorOffset;
+
+                                if(state.getBlock() == Blocks.NETHERRACK)
+                                {
+                                    primer.setBlockState(localX, localY - floorOffset, localZ, floorFillerBlock);
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                        }
+
+                        wasLastBlockSolid = true;
+                    }
+                    else if(checkState.getMaterial() == Material.AIR)
+                    {
+                        if(wasLastBlockSolid)
+                        {
+                            primer.setBlockState(localX, localY + 1, localZ, roofBottomBlock);
+
+                            for(int roofOffset = 2; roofOffset <= 4 && localY + roofOffset <= 127; roofOffset++)
+                            {
+                                IBlockState state = primer.getBlockState(localX, localY + roofOffset, localZ);
+
+                                if(state.getBlock() == Blocks.NETHERRACK || state == wallBlock)
+                                {
+                                    primer.setBlockState(localX, localY + roofOffset, localZ, roofFillerBlock);
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                        }
+
+                        wasLastBlockSolid = false;
+                    }
+                    else if(checkState == Blocks.LAVA.getDefaultState())
+                    {
+                        primer.setBlockState(localX, localY, localZ, oceanBlock);
+                        wasLastBlockSolid = false;
+                    }
+
+                    localY -= blocksToSkip;
+                }
+            }
+        }
+    }
+
     @Override
     public Chunk generateChunk(int chunkX, int chunkZ)
     {
@@ -381,6 +465,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         biomesForGen = world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
         prepareHeights(chunkX, chunkZ, primer);
         buildSurfaces(chunkX, chunkZ, primer);
+        replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);
 

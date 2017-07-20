@@ -26,10 +26,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.Loader;
 import nex.NetherEx;
 import nex.util.FileUtil;
-import nex.world.gen.feature.BiomeFeature;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -70,20 +68,10 @@ public class NetherBiomeManager
             if(NetherEx.IS_DEV_ENV)
             {
                 FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), directory);
-
-                if(Loader.isModLoaded("biomesoplenty"))
-                {
-                    FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs_bop").getFile()), directory);
-                }
             }
             else
             {
                 FileUtil.extractFromJar("/assets/nex/biome_configs", directory.getPath());
-
-                if(Loader.isModLoaded("biomesoplenty"))
-                {
-                    FileUtil.extractFromJar("/assets/nex/biome_configs_bop", directory.getPath());
-                }
             }
         }
         catch(IOException e)
@@ -136,16 +124,6 @@ public class NetherBiomeManager
                 LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
             }
         }
-        else if(configType.equalsIgnoreCase("feature"))
-        {
-            BiomeFeature biomeFeature = BiomeFeature.deserialize(config);
-
-            if(biomeFeature != null)
-            {
-                biomeFeature.getGenerationStage().addBiomeFeature(biomeFeature.getBiome(), biomeFeature);
-                LOGGER.info("");
-            }
-        }
         else
         {
             LOGGER.warn("The file located at, " + configPath + ", contains an incorrect type of " + configType);
@@ -174,25 +152,61 @@ public class NetherBiomeManager
         return WeightedRandom.getRandomItem(biomeEntryList, layer.nextInt(WeightedRandom.getTotalWeight(biomeEntryList))).getBiome();
     }
 
-    public static IBlockState getBiomeTopBlock(Biome biome)
+    public static IBlockState getBiomeFloorTopBlock(Biome biome)
     {
         Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
-            return biomeEntryMap.get(biome).getTopBlock();
+            return biomeEntryMap.get(biome).getFloorTopBlock();
         }
 
         return biome.topBlock;
     }
 
-    public static IBlockState getBiomeFillerBlock(Biome biome)
+    public static IBlockState getBiomeFloorFillerBlock(Biome biome)
     {
         Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
-            return biomeEntryMap.get(biome).getFillerBlock();
+            return biomeEntryMap.get(biome).getFloorFillerBlock();
+        }
+
+        return biome.fillerBlock;
+    }
+
+    public static IBlockState getBiomeWallBlock(Biome biome)
+    {
+        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+
+        if(biomeEntryMap.containsKey(biome))
+        {
+            return biomeEntryMap.get(biome).getWallBlock();
+        }
+
+        return biome.fillerBlock;
+    }
+
+    public static IBlockState getBiomeRoofBottomBlock(Biome biome)
+    {
+        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+
+        if(biomeEntryMap.containsKey(biome))
+        {
+            return biomeEntryMap.get(biome).getRoofBottomBlock();
+        }
+
+        return biome.fillerBlock;
+    }
+
+    public static IBlockState getBiomeRoofFillerBlock(Biome biome)
+    {
+        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+
+        if(biomeEntryMap.containsKey(biome))
+        {
+            return biomeEntryMap.get(biome).getRoofFillerBlock();
         }
 
         return biome.fillerBlock;

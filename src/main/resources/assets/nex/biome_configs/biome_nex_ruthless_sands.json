@@ -3,16 +3,13 @@
     "biome": "nex:ruthless_sands",
     "weight": 8,
     "climate": "temperate",
-    "topBlock": {
+    "floorTopBlock": {
         "block": "minecraft:soul_sand"
     },
-    "fillerBlock": {
+    "floorFillerBlock": {
         "block": "nex:block_netherrack",
         "properties": {
             "type": "gloomy"
         }
-    },
-    "oceanBlock": {
-        "block": "minecraft:lava"
     }
 }

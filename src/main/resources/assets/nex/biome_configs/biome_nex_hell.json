@@ -3,13 +3,10 @@
     "biome": "nex:hell",
     "weight": 10,
     "climate": "warm",
-    "topBlock": {
+    "floorTopBlock": {
         "block": "minecraft:netherrack"
     },
-    "fillerBlock": {
+    "floorFillerBlock": {
         "block": "minecraft:netherrack"
-    },
-    "oceanBlock": {
-        "block": "minecraft:lava"
     }
 }

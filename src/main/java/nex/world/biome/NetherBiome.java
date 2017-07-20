@@ -32,17 +32,23 @@ public class NetherBiome
     private Biome biome;
     private int weight;
     private NetherBiomeClimate biomeClimate;
-    private IBlockState topBlock;
-    private IBlockState fillerBlock;
+    private IBlockState floorTopBlock;
+    private IBlockState floorFillerBlock;
+    private IBlockState wallBlock;
+    private IBlockState roofBottomBlock;
+    private IBlockState roofFillerBlock;
     private IBlockState oceanBlock;
 
-    private NetherBiome(Biome biomeIn, int weightIn, NetherBiomeClimate biomeClimateIn, IBlockState topBlockIn, IBlockState fillerBlockIn, IBlockState oceanBlockIn)
+    private NetherBiome(Biome biomeIn, int weightIn, NetherBiomeClimate biomeClimateIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
     {
         biome = biomeIn;
         weight = weightIn;
         biomeClimate = biomeClimateIn;
-        topBlock = topBlockIn;
-        fillerBlock = fillerBlockIn;
+        floorTopBlock = floorTopBlockIn;
+        floorFillerBlock = floorFillerBlockIn;
+        wallBlock = wallBlockIn;
+        roofBottomBlock = roofBottomBlockIn;
+        roofFillerBlock = roofFillerBlockIn;
         oceanBlock = oceanBlockIn;
     }
 
@@ -54,30 +60,65 @@ public class NetherBiome
 
         if(biome != null)
         {
-            IBlockState topBlock = null;
-            IBlockState fillerBlock = null;
+            IBlockState floorTopBlock = null;
+            IBlockState floorFillerBlock = null;
+            IBlockState wallBlock = null;
+            IBlockState roofBottomBlock = null;
+            IBlockState roofFillerBlock = null;
+
             IBlockState oceanBlock = null;
 
-            JsonObject topBlockJson = JsonUtils.getJsonObject(config, "topBlock", new JsonObject());
-            JsonObject fillerBlockJson = JsonUtils.getJsonObject(config, "fillerBlock", new JsonObject());
+            JsonObject floorTopBlockJson = JsonUtils.getJsonObject(config, "floorTopBlock", new JsonObject());
+            JsonObject floorFillerBlockJson = JsonUtils.getJsonObject(config, "floorFillerBlock", new JsonObject());
+            JsonObject wallBlockJson = JsonUtils.getJsonObject(config, "wallBlock", new JsonObject());
+            JsonObject roofBottomBlockJson = JsonUtils.getJsonObject(config, "roofBottomBlock", new JsonObject());
+            JsonObject roofFillerBlockJson = JsonUtils.getJsonObject(config, "roofFillerBlock", new JsonObject());
+
             JsonObject oceanBlockJson = JsonUtils.getJsonObject(config, "oceanBlock", new JsonObject());
 
-            if(topBlockJson.entrySet().size() > 0)
+            if(floorTopBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(topBlockJson, "block")));
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(floorTopBlockJson, "block")));
 
                 if(block != null)
                 {
-                    topBlock = block.getDefaultState();
+                    floorTopBlock = block.getDefaultState();
                 }
             }
-            if(fillerBlockJson.entrySet().size() > 0)
+            if(floorFillerBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(fillerBlockJson, "block")));
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(floorFillerBlockJson, "block")));
 
                 if(block != null)
                 {
-                    fillerBlock = block.getDefaultState();
+                    floorFillerBlock = block.getDefaultState();
+                }
+            }
+            if(wallBlockJson.entrySet().size() > 0)
+            {
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(wallBlockJson, "block")));
+
+                if(block != null)
+                {
+                    wallBlock = block.getDefaultState();
+                }
+            }
+            if(roofBottomBlockJson.entrySet().size() > 0)
+            {
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(roofBottomBlockJson, "block")));
+
+                if(block != null)
+                {
+                    roofBottomBlock = block.getDefaultState();
+                }
+            }
+            if(roofFillerBlockJson.entrySet().size() > 0)
+            {
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(roofFillerBlockJson, "block")));
+
+                if(block != null)
+                {
+                    roofFillerBlock = block.getDefaultState();
                 }
             }
             if(oceanBlockJson.entrySet().size() > 0)
@@ -90,37 +131,67 @@ public class NetherBiome
                 }
             }
 
-            if(topBlock == null)
+            if(floorTopBlock == null)
             {
-                topBlock = biome.topBlock;
+                floorTopBlock = biome.topBlock;
             }
-            if(fillerBlock == null)
+            if(floorFillerBlock == null)
             {
-                fillerBlock = biome.fillerBlock;
+                floorFillerBlock = biome.fillerBlock;
             }
             if(oceanBlock == null)
             {
                 oceanBlock = Blocks.LAVA.getDefaultState();
             }
 
-            JsonObject topBlockProperties = JsonUtils.getJsonObject(topBlockJson, "properties", new JsonObject());
-            JsonObject fillerBlockProperties = JsonUtils.getJsonObject(fillerBlockJson, "properties", new JsonObject());
+            JsonObject floorTopBlockProperties = JsonUtils.getJsonObject(floorTopBlockJson, "properties", new JsonObject());
+            JsonObject floorFillerBlockProperties = JsonUtils.getJsonObject(floorFillerBlockJson, "properties", new JsonObject());
             JsonObject oceanBlockProperties = JsonUtils.getJsonObject(oceanBlockJson, "properties", new JsonObject());
 
-            if(topBlockProperties.entrySet().size() > 0)
+            if(floorTopBlockProperties.entrySet().size() > 0)
             {
-                topBlock = BlockUtil.getBlockWithProperties(topBlock, JsonUtils.getJsonObject(topBlockJson, "properties"));
+                floorTopBlock = BlockUtil.getBlockWithProperties(floorTopBlock, JsonUtils.getJsonObject(floorTopBlockJson, "properties"));
             }
-            if(fillerBlockProperties.entrySet().size() > 0)
+            if(floorFillerBlockProperties.entrySet().size() > 0)
             {
-                fillerBlock = BlockUtil.getBlockWithProperties(fillerBlock, JsonUtils.getJsonObject(fillerBlockJson, "properties"));
+                floorFillerBlock = BlockUtil.getBlockWithProperties(floorFillerBlock, JsonUtils.getJsonObject(floorFillerBlockJson, "properties"));
             }
             if(oceanBlockProperties.entrySet().size() > 0)
             {
                 oceanBlock = BlockUtil.getBlockWithProperties(oceanBlock, JsonUtils.getJsonObject(oceanBlockJson, "properties"));
             }
 
-            return new NetherBiome(biome, weight, biomeClimate, topBlock, fillerBlock, oceanBlock);
+            if(wallBlock == null)
+            {
+                wallBlock = floorFillerBlock;
+            }
+            if(roofBottomBlock == null)
+            {
+                roofBottomBlock = floorFillerBlock;
+            }
+            if(roofFillerBlock == null)
+            {
+                roofFillerBlock = floorFillerBlock;
+            }
+
+            JsonObject wallBlockProperties = JsonUtils.getJsonObject(wallBlockJson, "properties", new JsonObject());
+            JsonObject roofBottomBlockProperties = JsonUtils.getJsonObject(roofBottomBlockJson, "properties", new JsonObject());
+            JsonObject roofFillerBlockProperties = JsonUtils.getJsonObject(roofFillerBlockJson, "properties", new JsonObject());
+
+            if(wallBlockProperties.entrySet().size() > 0)
+            {
+                wallBlock = BlockUtil.getBlockWithProperties(wallBlock, JsonUtils.getJsonObject(wallBlockJson, "properties"));
+            }
+            if(roofBottomBlockProperties.entrySet().size() > 0)
+            {
+                roofBottomBlock = BlockUtil.getBlockWithProperties(floorFillerBlock, JsonUtils.getJsonObject(roofBottomBlockJson, "properties"));
+            }
+            if(roofFillerBlockProperties.entrySet().size() > 0)
+            {
+                roofFillerBlock = BlockUtil.getBlockWithProperties(floorFillerBlock, JsonUtils.getJsonObject(roofFillerBlockJson, "properties"));
+            }
+
+            return new NetherBiome(biome, weight, biomeClimate, floorTopBlock, floorFillerBlock, wallBlock, roofBottomBlock, roofFillerBlock, oceanBlock);
         }
 
         return null;
@@ -141,14 +212,29 @@ public class NetherBiome
         return biomeClimate;
     }
 
-    public IBlockState getTopBlock()
+    public IBlockState getFloorTopBlock()
     {
-        return topBlock;
+        return floorTopBlock;
     }
 
-    public IBlockState getFillerBlock()
+    public IBlockState getFloorFillerBlock()
     {
-        return fillerBlock;
+        return floorFillerBlock;
+    }
+
+    public IBlockState getWallBlock()
+    {
+        return wallBlock;
+    }
+
+    public IBlockState getRoofBottomBlock()
+    {
+        return roofBottomBlock;
+    }
+
+    public IBlockState getRoofFillerBlock()
+    {
+        return roofFillerBlock;
     }
 
     public IBlockState getOceanBlock()

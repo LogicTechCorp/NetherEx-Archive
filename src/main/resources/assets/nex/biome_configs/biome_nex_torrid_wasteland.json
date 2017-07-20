@@ -3,19 +3,16 @@
     "biome": "nex:torrid_wasteland",
     "weight": 6,
     "climate": "hot",
-    "topBlock": {
+    "floorTopBlock": {
         "block": "nex:block_netherrack",
         "properties": {
             "type": "fiery"
         }
     },
-    "fillerBlock": {
+    "floorFillerBlock": {
         "block": "nex:block_netherrack",
         "properties": {
             "type": "fiery"
         }
-    },
-    "oceanBlock": {
-        "block": "minecraft:lava"
     }
 }
