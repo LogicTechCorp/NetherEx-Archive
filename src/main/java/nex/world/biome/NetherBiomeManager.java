@@ -55,7 +55,7 @@ public class NetherBiomeManager
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherBiomeManager");
 
-    public static void init(File directory)
+    public static void postInit(File directory)
     {
         try
         {
