@@ -6,7 +6,7 @@
     "blockToSpawn": {
         "block": "minecraft:fire"
     },
-    "targetBlock": {
+    "blockToTarget": {
         "block": "minecraft:netherrack"
     },
     "placement": "onGround",

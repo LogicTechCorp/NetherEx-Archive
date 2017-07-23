@@ -35,7 +35,7 @@ import java.util.Random;
 public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
 {
     private IBlockState blockToSpawn;
-    private IBlockState targetBlock;
+    private IBlockState blockToTarget;
     private Placement placement;
 
     public BiomeFeatureScatter()
@@ -43,12 +43,12 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
 
     }
 
-    private BiomeFeatureScatter(float amountPerChunk, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState targetBlockIn, Placement placementIn)
+    private BiomeFeatureScatter(float amountPerChunk, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
     {
         super(amountPerChunk, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
-        targetBlock = targetBlockIn;
+        blockToTarget = blockToTargetIn;
         placement = placementIn;
     }
 
@@ -60,10 +60,10 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
         IBlockState blockToSpawn = null;
-        IBlockState targetBlock = null;
+        IBlockState blockToTarget = null;
 
         JsonObject blockToSpawnJson = JsonUtils.getJsonObject(config, "blockToSpawn", new JsonObject());
-        JsonObject targetBlockJson = JsonUtils.getJsonObject(config, "targetBlock", new JsonObject());
+        JsonObject blockToTargetJson = JsonUtils.getJsonObject(config, "blockToTarget", new JsonObject());
 
         if(blockToSpawnJson.entrySet().size() > 0)
         {
@@ -74,33 +74,33 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
                 blockToSpawn = block.getDefaultState();
             }
         }
-        if(targetBlockJson.entrySet().size() > 0)
+        if(blockToTargetJson.entrySet().size() > 0)
         {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(targetBlockJson, "block")));
+            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(blockToTargetJson, "block")));
 
             if(block != null)
             {
-                targetBlock = block.getDefaultState();
+                blockToTarget = block.getDefaultState();
             }
         }
 
         JsonObject blockToSpawnProperties = JsonUtils.getJsonObject(blockToSpawnJson, "properties", new JsonObject());
-        JsonObject targetBlockProperties = JsonUtils.getJsonObject(targetBlockJson, "properties", new JsonObject());
+        JsonObject blockToTargetProperties = JsonUtils.getJsonObject(blockToTargetJson, "properties", new JsonObject());
 
         if(blockToSpawnProperties.entrySet().size() > 0)
         {
             blockToSpawn = BlockUtil.getBlockWithProperties(blockToSpawn, JsonUtils.getJsonObject(blockToSpawnJson, "properties"));
         }
-        if(targetBlockProperties.entrySet().size() > 0)
+        if(blockToTargetProperties.entrySet().size() > 0)
         {
-            targetBlock = BlockUtil.getBlockWithProperties(targetBlock, JsonUtils.getJsonObject(targetBlockJson, "properties"));
+            blockToTarget = BlockUtil.getBlockWithProperties(blockToTarget, JsonUtils.getJsonObject(blockToTargetJson, "properties"));
         }
 
         Placement placement = Placement.getFromString(JsonUtils.getString(config, "placement"));
 
-        if(blockToSpawn != null && targetBlock != null)
+        if(blockToSpawn != null && blockToTarget != null)
         {
-            return new BiomeFeatureScatter(amountPerChunk, minHeight, maxHeight, blockToSpawn, targetBlock, placement);
+            return new BiomeFeatureScatter(amountPerChunk, minHeight, maxHeight, blockToSpawn, blockToTarget, placement);
         }
 
         return null;
@@ -113,7 +113,7 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
         {
             BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == targetBlock)
+            if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == blockToTarget)
             {
                 if(blockToSpawn instanceof BlockBush)
                 {
