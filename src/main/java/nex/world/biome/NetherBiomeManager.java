@@ -24,16 +24,22 @@ import com.google.gson.JsonObject;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
 import nex.util.FileUtil;
+import nex.world.gen.GenerationStage;
+import nex.world.gen.feature.BiomeFeature;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -96,9 +102,11 @@ public class NetherBiomeManager
 
                 if(FilenameUtils.getExtension(configPath.toString()).equals("json"))
                 {
-                    parseBiomeConfig(JsonUtils.fromJson(gson, Files.newBufferedReader(configPath), JsonObject.class), configPath.toString());
+                    BufferedReader reader = Files.newBufferedReader(configPath);
+                    parseBiomeConfig(JsonUtils.fromJson(gson, reader, JsonObject.class), configPath.toString());
+                    IOUtils.closeQuietly(reader);
                 }
-                else
+                else if(!configPath.toFile().isDirectory())
                 {
                     LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
                 }
@@ -117,11 +125,27 @@ public class NetherBiomeManager
         if(configType.equalsIgnoreCase("biome"))
         {
             NetherBiome netherBiome = NetherBiome.deserialize(config);
+            NetherBiomeClimate netherBiomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
 
             if(netherBiome != null)
             {
-                netherBiome.getBiomeClimate().addBiome(netherBiome);
+                netherBiomeClimate.addBiome(netherBiome);
                 LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
+            }
+        }
+        else if(configType.equalsIgnoreCase("feature"))
+        {
+            BiomeFeature biomeFeature = BiomeFeature.Factory.deserialize(config);
+            GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(config, "stage"));
+
+            if(biomeFeature != null)
+            {
+                Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(JsonUtils.getString(config, "biome")));
+
+                if(biome != null)
+                {
+                    generationStage.addBiomeFeature(biome, biomeFeature);
+                }
             }
         }
         else

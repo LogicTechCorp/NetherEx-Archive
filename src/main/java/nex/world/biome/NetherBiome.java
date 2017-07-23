@@ -31,7 +31,6 @@ public class NetherBiome
 {
     private Biome biome;
     private int weight;
-    private NetherBiomeClimate biomeClimate;
     private IBlockState floorTopBlock;
     private IBlockState floorFillerBlock;
     private IBlockState wallBlock;
@@ -39,11 +38,10 @@ public class NetherBiome
     private IBlockState roofFillerBlock;
     private IBlockState oceanBlock;
 
-    private NetherBiome(Biome biomeIn, int weightIn, NetherBiomeClimate biomeClimateIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
+    private NetherBiome(Biome biomeIn, int weightIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
     {
         biome = biomeIn;
         weight = weightIn;
-        biomeClimate = biomeClimateIn;
         floorTopBlock = floorTopBlockIn;
         floorFillerBlock = floorFillerBlockIn;
         wallBlock = wallBlockIn;
@@ -56,7 +54,6 @@ public class NetherBiome
     {
         Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(JsonUtils.getString(config, "biome")));
         int weight = JsonUtils.getInt(config, "weight", 10);
-        NetherBiomeClimate biomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
 
         if(biome != null)
         {
@@ -191,7 +188,7 @@ public class NetherBiome
                 roofFillerBlock = BlockUtil.getBlockWithProperties(floorFillerBlock, JsonUtils.getJsonObject(roofFillerBlockJson, "properties"));
             }
 
-            return new NetherBiome(biome, weight, biomeClimate, floorTopBlock, floorFillerBlock, wallBlock, roofBottomBlock, roofFillerBlock, oceanBlock);
+            return new NetherBiome(biome, weight, floorTopBlock, floorFillerBlock, wallBlock, roofBottomBlock, roofFillerBlock, oceanBlock);
         }
 
         return null;
@@ -205,11 +202,6 @@ public class NetherBiome
     public int getWeight()
     {
         return weight;
-    }
-
-    public NetherBiomeClimate getBiomeClimate()
-    {
-        return biomeClimate;
     }
 
     public IBlockState getFloorTopBlock()

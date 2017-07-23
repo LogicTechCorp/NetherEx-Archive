@@ -1,0 +1,16 @@
+{
+    "configType": "feature",
+    "featureType": "scatter",
+    "biome": "nex:hell",
+    "stage": "prePopulate",
+    "blockToSpawn": {
+        "block": "minecraft:fire"
+    },
+    "targetBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "placement": "onGround",
+    "amountPerChunk": 8.0,
+    "minHeight": 32,
+    "maxHeight": 128
+}
