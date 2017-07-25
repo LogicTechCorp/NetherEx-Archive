@@ -50,14 +50,14 @@ public class EntityEmber extends EntityMob
         super(world);
 
         setSize(0.35F, 0.65F);
-        isImmuneToFire = true;
-        jumpHelper = new JumpHelper(this);
-        moveHelper = new MoveHelper(this);
         setMovementSpeed(0.0D);
         setPathPriority(PathNodeType.WATER, -1.0F);
         setPathPriority(PathNodeType.LAVA, 1.0F);
         setPathPriority(PathNodeType.DANGER_FIRE, 1.0F);
         setPathPriority(PathNodeType.DAMAGE_FIRE, 1.0F);
+        isImmuneToFire = true;
+        jumpHelper = new JumpHelper(this);
+        moveHelper = new MoveHelper(this);
     }
 
     @Override

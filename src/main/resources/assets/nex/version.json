@@ -9,10 +9,11 @@
         "2.1.5.6": "Fix for players being able to break Bedrock with any item",
         "2.1.6.7": "Fixed a crash caused by null Pigtificate Villages",
         "2.1.7.8": "Fixed biome types not being registered on time",
-        "2.1.8.9": "Fixed a crash with Animania"
+        "2.1.8.9": "Fixed a crash with Animania",
+        "2.1.9.10": "Fixed mob spawners displaying incorrect mobs\n Fixed terrain damage caused by Spore Creepers when mobGriefing is false\n Fixed mobs not being immune to fire"
     },
     "promos": {
-        "1.12-latest": "2.1.8.9",
-        "1.12-recommended": "2.1.8.9"
+        "1.12-latest": "2.1.9.10",
+        "1.12-recommended": "2.1.9.10"
     }
 }

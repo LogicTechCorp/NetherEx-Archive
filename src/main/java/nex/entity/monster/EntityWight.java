@@ -44,6 +44,7 @@ public class EntityWight extends EntityMob
         super(world);
 
         setSize(0.55F, 1.5F);
+        isImmuneToFire = true;
     }
 
     @Override

@@ -46,9 +46,8 @@ public class EntitySalamander extends EntityMob
         super(world);
 
         setSize(0.95F, 0.45F);
-        isImmuneToFire = true;
-
         setRandomType();
+        isImmuneToFire = true;
     }
 
     @Override

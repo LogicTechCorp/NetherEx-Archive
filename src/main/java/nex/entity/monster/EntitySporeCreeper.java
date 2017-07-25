@@ -65,6 +65,7 @@ public class EntitySporeCreeper extends EntityMob
         super(world);
 
         setSize(0.6F, 1.7F);
+        isImmuneToFire = true;
     }
 
     @Override
@@ -258,7 +259,7 @@ public class EntitySporeCreeper extends EntityMob
     private void explode()
     {
         dead = true;
-        Explosion explosion = new ExplosionSpore(world, this, posX, posY, posZ, (float) explosionRadius, true, true);
+        Explosion explosion = new ExplosionSpore(world, this, posX, posY, posZ, (float) explosionRadius, true, world.getGameRules().getBoolean("mobGriefing"));
         explosion.doExplosionA();
         explosion.doExplosionB(true);
         setDead();

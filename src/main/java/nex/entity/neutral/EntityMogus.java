@@ -46,8 +46,8 @@ public class EntityMogus extends EntityMob
         super(world);
 
         setSize(0.35F, 0.45F);
-
         setRandomType();
+        isImmuneToFire = true;
     }
 
     @Override
