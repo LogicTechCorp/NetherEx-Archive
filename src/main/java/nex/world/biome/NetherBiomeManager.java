@@ -135,7 +135,7 @@ public class NetherBiomeManager
         }
         else if(configType.equalsIgnoreCase("feature"))
         {
-            BiomeFeature biomeFeature = BiomeFeature.Factory.deserialize(config);
+            BiomeFeature biomeFeature = BiomeFeature.getFeature(config).deserialize(config);
             GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(config, "stage"));
 
             if(biomeFeature != null)

@@ -1,0 +1,19 @@
+{
+    "configType": "feature",
+    "featureType": "fluid",
+    "biome": "nex:torrid_wasteland",
+    "stage": "lavaFall",
+    "blockToSpawn": {
+        "block": "minecraft:flowing_lava"
+    },
+    "blockToTarget": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "hidden": true,
+    "genAttempts": 48.0,
+    "minHeight": 10,
+    "maxHeight": 118
+}

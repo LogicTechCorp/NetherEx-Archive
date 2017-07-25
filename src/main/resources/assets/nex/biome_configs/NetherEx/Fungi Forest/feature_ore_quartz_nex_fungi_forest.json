@@ -1,0 +1,22 @@
+{
+    "configType": "feature",
+    "featureType": "ore",
+    "biome": "nex:fungi_forest",
+    "stage": "quartz",
+    "blockToSpawn": {
+        "block": "nex:ore_quartz",
+        "properties": {
+            "type": "lively"
+        }
+    },
+    "blockToReplace": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "lively"
+        }
+    },
+    "size": 14,
+    "genAttempts": 16.0,
+    "minHeight": 10,
+    "maxHeight": 108
+}

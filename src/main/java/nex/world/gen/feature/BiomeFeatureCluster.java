@@ -40,9 +40,9 @@ public class BiomeFeatureCluster extends BiomeFeature<BiomeFeatureCluster>
 
     }
 
-    private BiomeFeatureCluster(float amountPerChunkIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
+    private BiomeFeatureCluster(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
     {
-        super(amountPerChunkIn, minHeightIn, maxHeightIn);
+        super(genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToHangFrom = blockToHangFromIn;
@@ -51,7 +51,7 @@ public class BiomeFeatureCluster extends BiomeFeature<BiomeFeatureCluster>
     @Override
     public BiomeFeatureCluster deserialize(JsonObject config)
     {
-        float amountPerChunk = JsonUtils.getFloat(config, "amountPerChunk", 10.0F);
+        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -94,7 +94,7 @@ public class BiomeFeatureCluster extends BiomeFeature<BiomeFeatureCluster>
 
         if(blockToSpawn != null && blockToHangFrom != null)
         {
-            return new BiomeFeatureCluster(amountPerChunk, minHeight, maxHeight, blockToSpawn, blockToHangFrom);
+            return new BiomeFeatureCluster(genAttempts, minHeight, maxHeight, blockToSpawn, blockToHangFrom);
         }
 
         return null;

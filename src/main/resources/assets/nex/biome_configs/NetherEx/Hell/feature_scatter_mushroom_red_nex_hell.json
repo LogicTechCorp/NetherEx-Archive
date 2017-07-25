@@ -1,0 +1,16 @@
+{
+    "configType": "feature",
+    "featureType": "scatter",
+    "biome": "nex:hell",
+    "stage": "mushroom",
+    "blockToSpawn": {
+        "block": "minecraft:brown_mushroom"
+    },
+    "blockToTarget": {
+        "block": "minecraft:netherrack"
+    },
+    "placement": "onGround",
+    "genAttempts": 1.25,
+    "minHeight": 1,
+    "maxHeight": 128
+}

@@ -1,0 +1,16 @@
+{
+    "configType": "feature",
+    "featureType": "fluid",
+    "biome": "nex:hell",
+    "stage": "lavaTrap",
+    "blockToSpawn": {
+        "block": "minecraft:flowing_lava"
+    },
+    "blockToTarget": {
+        "block": "minecraft:netherrack"
+    },
+    "hidden": false,
+    "genAttempts": 8.0,
+    "minHeight": 4,
+    "maxHeight": 124
+}

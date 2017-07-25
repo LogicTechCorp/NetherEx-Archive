@@ -20,6 +20,7 @@ package nex.world.gen.feature;
 import com.google.gson.JsonObject;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import nex.world.gen.BiomeFeatureManager;
@@ -28,7 +29,7 @@ import java.util.Random;
 
 public abstract class BiomeFeature<F extends BiomeFeature> extends WorldGenerator
 {
-    private float amountPerChunk;
+    private float genAttempts;
     private int minHeight;
     private int maxHeight;
 
@@ -37,9 +38,9 @@ public abstract class BiomeFeature<F extends BiomeFeature> extends WorldGenerato
 
     }
 
-    protected BiomeFeature(float amountPerChunkIn, int minHeightIn, int maxHeightIn)
+    protected BiomeFeature(float genAttemptsIn, int minHeightIn, int maxHeightIn)
     {
-        amountPerChunk = amountPerChunkIn;
+        genAttempts = genAttemptsIn;
         minHeight = minHeightIn;
         maxHeight = maxHeightIn;
     }
@@ -49,9 +50,46 @@ public abstract class BiomeFeature<F extends BiomeFeature> extends WorldGenerato
     @Override
     public abstract boolean generate(World world, Random rand, BlockPos pos);
 
-    public float getAmountPerChunk()
+    public static BiomeFeature getFeature(JsonObject config)
     {
-        return amountPerChunk;
+        String featureClassIdentifier = JsonUtils.getString(config, "featureType", "");
+        Class<? extends BiomeFeature> featureClass = BiomeFeatureManager.getBiomeFeatureClass(featureClassIdentifier);
+
+        if(featureClass != null)
+        {
+            try
+            {
+                return featureClass.newInstance().deserialize(config);
+            }
+            catch(InstantiationException | IllegalAccessException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public float getGenAttempts()
+    {
+        return genAttempts;
+    }
+
+    public int getGenAttempts(Random rand)
+    {
+        int attempts = (int) MathHelper.abs(getGenAttempts());
+        float chance = MathHelper.abs(getGenAttempts()) - attempts;
+
+        if(chance > 0.0F && rand.nextFloat() > chance)
+        {
+            attempts = 0;
+        }
+        if(getGenAttempts() < 0.0F && attempts > 0)
+        {
+            attempts = rand.nextInt(MathHelper.abs(attempts)) + 1;
+        }
+
+        return attempts;
     }
 
     public int getMinHeight()
@@ -62,28 +100,5 @@ public abstract class BiomeFeature<F extends BiomeFeature> extends WorldGenerato
     public int getMaxHeight()
     {
         return maxHeight;
-    }
-
-    public static class Factory
-    {
-        public static BiomeFeature deserialize(JsonObject config)
-        {
-            String featureClassIdentifier = JsonUtils.getString(config, "featureType", "");
-            Class<? extends BiomeFeature> featureClass = BiomeFeatureManager.getBiomeFeatureClass(featureClassIdentifier);
-
-            if(featureClass != null)
-            {
-                try
-                {
-                    return featureClass.newInstance().deserialize(config);
-                }
-                catch(InstantiationException | IllegalAccessException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-
-            return null;
-        }
     }
 }

@@ -1,0 +1,18 @@
+{
+    "configType": "feature",
+    "featureType": "cluster",
+    "biome": "nex:ruthless_sands",
+    "stage": "glowstone",
+    "blockToSpawn": {
+        "block": "minecraft:glowstone"
+    },
+    "blockToHangFrom": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "gloomy"
+        }
+    },
+    "genAttempts": -10.0,
+    "minHeight": 4,
+    "maxHeight": 124
+}

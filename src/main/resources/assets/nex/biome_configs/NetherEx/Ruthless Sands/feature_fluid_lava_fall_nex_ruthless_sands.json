@@ -1,0 +1,19 @@
+{
+    "configType": "feature",
+    "featureType": "fluid",
+    "biome": "nex:ruthless_sands",
+    "stage": "lavaTrap",
+    "blockToSpawn": {
+        "block": "minecraft:flowing_lava"
+    },
+    "blockToTarget": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "gloomy"
+        }
+    },
+    "hidden": false,
+    "genAttempts": 8.0,
+    "minHeight": 4,
+    "maxHeight": 124
+}

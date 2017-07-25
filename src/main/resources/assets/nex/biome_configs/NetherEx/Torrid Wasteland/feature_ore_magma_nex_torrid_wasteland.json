@@ -1,0 +1,19 @@
+{
+    "configType": "feature",
+    "featureType": "ore",
+    "biome": "nex:torrid_wasteland",
+    "stage": "quartz",
+    "blockToSpawn": {
+        "block": "minecraft:magma"
+    },
+    "blockToReplace": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "size": 32,
+    "genAttempts": 12.0,
+    "minHeight": 28,
+    "maxHeight": 38
+}

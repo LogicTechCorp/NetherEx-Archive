@@ -1,0 +1,18 @@
+{
+    "configType": "feature",
+    "featureType": "cluster",
+    "biome": "nex:torrid_wasteland",
+    "stage": "glowstone",
+    "blockToSpawn": {
+        "block": "minecraft:glowstone"
+    },
+    "blockToHangFrom": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "genAttempts": 10.0,
+    "minHeight": 1,
+    "maxHeight": 128
+}

@@ -22,7 +22,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import nex.world.gen.feature.BiomeFeature;
 
 import java.util.List;
 import java.util.Map;
@@ -30,15 +30,22 @@ import java.util.Map;
 public enum GenerationStage
 {
     PRE_POPULATE,
+    LAVA_FALL,
+    FIRE,
+    GLOWSTONE,
     POST_POPULATE,
     PRE_DECORATE,
-    PRE_ORES,
-    POST_ORES,
+    MUSHROOM,
+    PRE_ORE,
+    QUARTZ,
+    POST_ORE,
+    MAGMA,
+    LAVA_TRAP,
     POST_DECORATE;
 
-    private static final Map<Biome, List<WorldGenerator>> BIOME_FEATURE_MAP = Maps.newHashMap();
+    private final Map<Biome, List<BiomeFeature>> BIOME_FEATURE_MAP = Maps.newHashMap();
 
-    public void addBiomeFeature(Biome biome, WorldGenerator feature)
+    public void addBiomeFeature(Biome biome, BiomeFeature feature)
     {
         BIOME_FEATURE_MAP.computeIfAbsent(biome, k -> Lists.newArrayList()).add(feature);
     }
@@ -59,7 +66,7 @@ public enum GenerationStage
         return POST_DECORATE;
     }
 
-    public static Map<Biome, List<WorldGenerator>> getBiomeFeatureMap()
+    public Map<Biome, List<BiomeFeature>> getBiomeFeatureMap()
     {
         return ImmutableMap.copyOf(BIOME_FEATURE_MAP);
     }

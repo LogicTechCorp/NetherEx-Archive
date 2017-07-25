@@ -1,0 +1,19 @@
+{
+    "configType": "feature",
+    "featureType": "scatter",
+    "biome": "nex:torrid_wasteland",
+    "stage": "fire",
+    "blockToSpawn": {
+        "block": "minecraft:fire"
+    },
+    "blockToTarget": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "placement": "onGround",
+    "genAttempts": -30.0,
+    "minHeight": 4,
+    "maxHeight": 124
+}

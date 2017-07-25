@@ -1,0 +1,9 @@
+{
+    "configType": "feature",
+    "featureType": "enoki",
+    "biome": "nex:fungi_forest",
+    "stage": "glowstone",
+    "genAttempts": 64.0,
+    "minHeight": 4,
+    "maxHeight": 124
+}

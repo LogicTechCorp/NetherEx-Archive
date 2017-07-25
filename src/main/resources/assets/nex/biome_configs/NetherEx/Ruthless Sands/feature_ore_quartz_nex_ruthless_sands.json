@@ -1,0 +1,22 @@
+{
+    "configType": "feature",
+    "featureType": "ore",
+    "biome": "nex:ruthless_sands",
+    "stage": "quartz",
+    "blockToSpawn": {
+        "block": "nex:ore_quartz",
+        "properties": {
+            "type": "gloomy"
+        }
+    },
+    "blockToReplace": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "gloomy"
+        }
+    },
+    "size": 14,
+    "genAttempts": 32.0,
+    "minHeight": 10,
+    "maxHeight": 108
+}

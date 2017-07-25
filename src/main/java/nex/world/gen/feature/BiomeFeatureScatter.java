@@ -43,9 +43,9 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
 
     }
 
-    private BiomeFeatureScatter(float amountPerChunk, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
+    private BiomeFeatureScatter(float genAttempts, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
     {
-        super(amountPerChunk, minHeight, maxHeight);
+        super(genAttempts, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToTarget = blockToTargetIn;
@@ -55,7 +55,7 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
     @Override
     public BiomeFeatureScatter deserialize(JsonObject config)
     {
-        float amountPerChunk = JsonUtils.getFloat(config, "amountPerChunk", 10.0F);
+        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -100,7 +100,7 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
 
         if(blockToSpawn != null && blockToTarget != null)
         {
-            return new BiomeFeatureScatter(amountPerChunk, minHeight, maxHeight, blockToSpawn, blockToTarget, placement);
+            return new BiomeFeatureScatter(genAttempts, minHeight, maxHeight, blockToSpawn, blockToTarget, placement);
         }
 
         return null;

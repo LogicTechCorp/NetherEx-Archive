@@ -20,7 +20,6 @@ package nex.world.gen;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import nex.world.gen.feature.BiomeFeature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,11 +45,6 @@ public class BiomeFeatureManager
         }
     }
 
-    public static Map<String, Class<? extends BiomeFeature>> getBiomeFeatureClassIdentifierMap()
-    {
-        return BIOME_FEATURE_CLASS_IDENTIFIER_MAP;
-    }
-
     public static Class<? extends BiomeFeature> getBiomeFeatureClass(String identifier)
     {
         if(BIOME_FEATURE_CLASS_IDENTIFIER_MAP.containsKey(identifier))
@@ -61,8 +55,15 @@ public class BiomeFeatureManager
         return null;
     }
 
-    public List<WorldGenerator> getBiomeFeatures(Biome biome)
+    public static List<BiomeFeature> getBiomeFeatures(Biome biome, GenerationStage generationStage)
     {
-        return Lists.newArrayList(GenerationStage.getBiomeFeatureMap().get(biome));
+        Map<Biome, List<BiomeFeature>> biomeFeatureMap = generationStage.getBiomeFeatureMap();
+
+        if(biomeFeatureMap.containsKey(biome))
+        {
+            return biomeFeatureMap.get(biome);
+        }
+
+        return Lists.newArrayList();
     }
 }

@@ -40,9 +40,9 @@ public class BiomeFeatureFluid extends BiomeFeature<BiomeFeatureFluid>
 
     }
 
-    private BiomeFeatureFluid(float amountPerChunkIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
+    private BiomeFeatureFluid(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
     {
-        super(amountPerChunkIn, minHeightIn, maxHeightIn);
+        super(genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToTarget = blockToTargetIn;
@@ -52,7 +52,7 @@ public class BiomeFeatureFluid extends BiomeFeature<BiomeFeatureFluid>
     @Override
     public BiomeFeatureFluid deserialize(JsonObject config)
     {
-        float amountPerChunk = JsonUtils.getFloat(config, "amountPerChunk", 10.0F);
+        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -97,7 +97,7 @@ public class BiomeFeatureFluid extends BiomeFeature<BiomeFeatureFluid>
 
         if(blockToSpawn != null && blockToTarget != null)
         {
-            return new BiomeFeatureFluid(amountPerChunk, minHeight, maxHeight, blockToSpawn, blockToTarget, hidden);
+            return new BiomeFeatureFluid(genAttempts, minHeight, maxHeight, blockToSpawn, blockToTarget, hidden);
         }
 
         return null;

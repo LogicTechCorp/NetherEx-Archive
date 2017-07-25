@@ -1,0 +1,15 @@
+{
+    "configType": "feature",
+    "featureType": "cluster",
+    "biome": "nex:hell",
+    "stage": "glowstone",
+    "blockToSpawn": {
+        "block": "minecraft:glowstone"
+    },
+    "blockToHangFrom": {
+        "block": "minecraft:netherrack"
+    },
+    "genAttempts": -10.0,
+    "minHeight": 4,
+    "maxHeight": 124
+}

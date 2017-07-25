@@ -42,9 +42,9 @@ public class BiomeFeatureOre extends BiomeFeature<BiomeFeatureOre>
 
     }
 
-    private BiomeFeatureOre(float amountPerChunkIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
+    private BiomeFeatureOre(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
     {
-        super(amountPerChunkIn, minHeightIn, maxHeightIn);
+        super(genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToReplace = blockToReplaceIn;
@@ -54,7 +54,7 @@ public class BiomeFeatureOre extends BiomeFeature<BiomeFeatureOre>
     @Override
     public BiomeFeatureOre deserialize(JsonObject config)
     {
-        float amountPerChunk = JsonUtils.getFloat(config, "amountPerChunk", 10.0F);
+        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -99,7 +99,7 @@ public class BiomeFeatureOre extends BiomeFeature<BiomeFeatureOre>
 
         if(blockToSpawn != null && blockToReplace != null)
         {
-            return new BiomeFeatureOre(amountPerChunk, minHeight, maxHeight, blockToSpawn, blockToReplace, size);
+            return new BiomeFeatureOre(genAttempts, minHeight, maxHeight, blockToSpawn, blockToReplace, size);
         }
 
         return null;

@@ -1,0 +1,22 @@
+{
+    "configType": "feature",
+    "featureType": "ore",
+    "biome": "nex:arctic_abyss",
+    "stage": "quartz",
+    "blockToSpawn": {
+        "block": "nex:ore_quartz",
+        "properties": {
+            "type": "icy"
+        }
+    },
+    "blockToReplace": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "icy"
+        }
+    },
+    "size": 14,
+    "genAttempts": 16.0,
+    "minHeight": 10,
+    "maxHeight": 108
+}

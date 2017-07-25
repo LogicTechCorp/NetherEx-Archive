@@ -17,21 +17,42 @@
 
 package nex.world.gen.feature;
 
+import com.google.gson.JsonObject;
+import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import nex.block.BlockEnokiMushroomCap;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
-public class WorldGenEnokiMushroom extends WorldGenerator
+public class BiomeFeatureEnoki extends BiomeFeature<BiomeFeatureEnoki>
 {
+    public BiomeFeatureEnoki()
+    {
+
+    }
+
+    private BiomeFeatureEnoki(float genAttempts, int minHeight, int maxHeight)
+    {
+        super(genAttempts, minHeight, maxHeight);
+    }
+
+    @Override
+    public BiomeFeatureEnoki deserialize(JsonObject config)
+    {
+        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int minHeight = JsonUtils.getInt(config, "minHeight", 32);
+        int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
+
+        return new BiomeFeatureEnoki(genAttempts, minHeight, maxHeight);
+
+    }
+
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 7)
+        if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 0)
         {
             BlockEnokiMushroomCap.generatePlant(world, pos, rand, 8);
             return true;

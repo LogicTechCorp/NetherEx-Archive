@@ -1,0 +1,16 @@
+{
+    "configType": "feature",
+    "featureType": "ore",
+    "biome": "nex:hell",
+    "stage": "quartz",
+    "blockToSpawn": {
+        "block": "minecraft:quartz_ore"
+    },
+    "blockToReplace": {
+        "block": "minecraft:netherrack"
+    },
+    "size": 14,
+    "genAttempts": 16.0,
+    "minHeight": 10,
+    "maxHeight": 108
+}

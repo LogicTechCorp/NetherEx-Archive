@@ -18,7 +18,7 @@
 package nex.init;
 
 import nex.world.gen.BiomeFeatureManager;
-import nex.world.gen.feature.BiomeFeatureScatter;
+import nex.world.gen.feature.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,7 +30,13 @@ public class NetherExBiomeFeatures
     {
         LOGGER.info("Biome Feature registration started.");
 
+        BiomeFeatureManager.registerBiomeFeature("fluid", BiomeFeatureFluid.class);
         BiomeFeatureManager.registerBiomeFeature("scatter", BiomeFeatureScatter.class);
+        BiomeFeatureManager.registerBiomeFeature("cluster", BiomeFeatureCluster.class);
+        BiomeFeatureManager.registerBiomeFeature("ore", BiomeFeatureOre.class);
+        BiomeFeatureManager.registerBiomeFeature("pool", BiomeFeaturePool.class);
+        BiomeFeatureManager.registerBiomeFeature("thornstalk", BiomeFeatureThornstalk.class);
+        BiomeFeatureManager.registerBiomeFeature("enoki", BiomeFeatureEnoki.class);
 
         LOGGER.info("Biome Feature registration completed.");
     }

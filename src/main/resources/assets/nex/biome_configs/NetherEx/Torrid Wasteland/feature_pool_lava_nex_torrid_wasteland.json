@@ -1,0 +1,18 @@
+{
+    "configType": "feature",
+    "featureType": "pool",
+    "biome": "nex:torrid_wasteland",
+    "stage": "lavaFall",
+    "blockToSpawn": {
+        "block": "minecraft:lava"
+    },
+    "blockToSurround": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "genAttempts": 8.0,
+    "minHeight": 10,
+    "maxHeight": 108
+}

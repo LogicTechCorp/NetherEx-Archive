@@ -41,9 +41,9 @@ public class BiomeFeaturePool extends BiomeFeature<BiomeFeaturePool>
 
     }
 
-    private BiomeFeaturePool(float amountPerChunkIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
+    private BiomeFeaturePool(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
     {
-        super(amountPerChunkIn, minHeightIn, maxHeightIn);
+        super(genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToSurround = blockToSurroundIn;
@@ -52,7 +52,7 @@ public class BiomeFeaturePool extends BiomeFeature<BiomeFeaturePool>
     @Override
     public BiomeFeaturePool deserialize(JsonObject config)
     {
-        float amountPerChunk = JsonUtils.getFloat(config, "amountPerChunk", 10.0F);
+        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -95,7 +95,7 @@ public class BiomeFeaturePool extends BiomeFeature<BiomeFeaturePool>
 
         if(blockToSpawn != null && blockToSurround != null)
         {
-            return new BiomeFeaturePool(amountPerChunk, minHeight, maxHeight, blockToSpawn, blockToSurround);
+            return new BiomeFeaturePool(genAttempts, minHeight, maxHeight, blockToSpawn, blockToSurround);
         }
 
         return null;

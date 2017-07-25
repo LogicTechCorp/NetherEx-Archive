@@ -1,0 +1,15 @@
+{
+    "configType": "feature",
+    "featureType": "pool",
+    "biome": "nex:arctic_abyss",
+    "stage": "lavaFall",
+    "blockToSpawn": {
+        "block": "nex:fluid_ichor"
+    },
+    "blockToSurround": {
+        "block": "nex:block_ice_frostburn"
+    },
+    "genAttempts": 1.125,
+    "minHeight": 36,
+    "maxHeight": 96
+}

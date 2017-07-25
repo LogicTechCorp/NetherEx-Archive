@@ -421,13 +421,6 @@ public class ConfigHandler
 
         public class RuthlessSands
         {
-            @Config.LangKey("config.nex:biome.ruthlessSands.generateThornstalk")
-            public boolean generateThornstalk = true;
-
-            @Config.LangKey("config.nex:biome.ruthlessSands.thornstalkRarity")
-            @Config.Comment({"The lower the number, the rarer Thornstalk is", "The higher the number, the more common Thornstalk is"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int thornstalkRarity = 10;
         }
 
         public class FungiForest
@@ -435,18 +428,10 @@ public class ConfigHandler
             @Config.LangKey("config.nex:biome.fungiForest.generateElderMushrooms")
             public boolean generateElderMushrooms = true;
 
-            @Config.LangKey("config.nex:biome.fungiForest.generateEnokiMushrooms")
-            public boolean generateEnokiMushrooms = true;
-
             @Config.LangKey("config.nex:biome.fungiForest.elderMushroomRarity")
             @Config.Comment({"The lower the number, the rarer Elder Mushrooms are", "The higher the number, the more common Elder Mushrooms are"})
             @Config.RangeInt(min = 1, max = 256)
             public int elderMushroomRarity = 32;
-
-            @Config.LangKey("config.nex:biome.fungiForest.enokiMushroomRarity")
-            @Config.Comment({"The lower the number, the rarer Enoki Mushrooms are", "The higher the number, the more common Enoki Mushrooms are"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int enokiMushroomRarity = 4;
         }
 
         public class TorridWasteland
