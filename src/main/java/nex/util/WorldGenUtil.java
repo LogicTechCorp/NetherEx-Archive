@@ -28,6 +28,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -344,7 +345,16 @@ public class WorldGenUtil
                                     }
                                     else if(state.getBlock() instanceof BlockMobSpawner)
                                     {
-                                        ((TileEntityMobSpawner) tileEntity).getSpawnerBaseLogic().setEntityId(spawnerMobs.get(rand.nextInt(spawnerMobs.size())));
+                                        MobSpawnerBaseLogic logic = ((TileEntityMobSpawner) tileEntity).getSpawnerBaseLogic();
+                                        NBTTagCompound compound = new NBTTagCompound();
+
+                                        logic.writeToNBT(compound);
+                                        compound.removeTag("SpawnPotentials");
+                                        logic.readFromNBT(compound);
+                                        logic.setEntityId(spawnerMobs.get(rand.nextInt(spawnerMobs.size())));
+                                        tileEntity.markDirty();
+
+                                        world.notifyBlockUpdate(pos, state, state, 3);
                                     }
                                     else if(state.getBlock() instanceof BlockUrnOfSorrow)
                                     {

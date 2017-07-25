@@ -63,6 +63,7 @@ public class EntityGoldGolem extends EntityGolem
     {
         super(world);
         setSize(1.4F, 3.0F);
+        isImmuneToFire = true;
     }
 
     @Override
