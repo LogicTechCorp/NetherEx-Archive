@@ -29,14 +29,14 @@ import nex.util.BlockUtil;
 
 public class NetherBiome
 {
-    private Biome biome;
-    private int weight;
-    private IBlockState floorTopBlock;
-    private IBlockState floorFillerBlock;
-    private IBlockState wallBlock;
-    private IBlockState roofBottomBlock;
-    private IBlockState roofFillerBlock;
-    private IBlockState oceanBlock;
+    private final Biome biome;
+    private final int weight;
+    private final IBlockState floorTopBlock;
+    private final IBlockState floorFillerBlock;
+    private final IBlockState wallBlock;
+    private final IBlockState roofBottomBlock;
+    private final IBlockState roofFillerBlock;
+    private final IBlockState oceanBlock;
 
     private NetherBiome(Biome biomeIn, int weightIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
     {

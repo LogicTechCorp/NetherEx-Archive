@@ -25,9 +25,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import nex.world.gen.BiomeFeatureManager;
+import nex.api.world.gen.feature.IBiomeFeature;
 import nex.world.gen.GenerationStage;
-import nex.world.gen.feature.BiomeFeature;
+import nex.world.gen.feature.BiomeFeatureManager;
 
 import java.util.Random;
 
@@ -269,11 +269,11 @@ public class WorldGenUtil
         {
             Biome biome = world.getBiome(pos.add(16, 0, 16));
 
-            for(BiomeFeature feature : BiomeFeatureManager.getBiomeFeatures(biome, generationStage))
+            for(IBiomeFeature feature : BiomeFeatureManager.getBiomeFeatures(biome, generationStage))
             {
                 for(int genAttempts = 0; genAttempts < feature.getGenAttempts(rand); genAttempts++)
                 {
-                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
+                    feature.generate(world, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
                 }
             }
         }

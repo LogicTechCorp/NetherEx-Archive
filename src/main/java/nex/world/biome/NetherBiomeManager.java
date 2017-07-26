@@ -29,9 +29,10 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
+import nex.api.world.gen.feature.IBiomeFeature;
 import nex.util.FileUtil;
 import nex.world.gen.GenerationStage;
-import nex.world.gen.feature.BiomeFeature;
+import nex.world.gen.feature.BiomeFeatureManager;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -135,7 +136,7 @@ public class NetherBiomeManager
         }
         else if(configType.equalsIgnoreCase("feature"))
         {
-            BiomeFeature biomeFeature = BiomeFeature.getFeature(config).deserialize(config);
+            IBiomeFeature biomeFeature = BiomeFeatureManager.deserialize(config);
             GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(config, "stage"));
 
             if(biomeFeature != null)

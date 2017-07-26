@@ -28,10 +28,7 @@ import java.util.Random;
 
 public class BiomeFeatureEnoki extends BiomeFeature<BiomeFeatureEnoki>
 {
-    public BiomeFeatureEnoki()
-    {
-
-    }
+    public static final BiomeFeatureEnoki INSTANCE = new BiomeFeatureEnoki(0.0F, 0, 0);
 
     private BiomeFeatureEnoki(float genAttempts, int minHeight, int maxHeight)
     {
@@ -46,11 +43,10 @@ public class BiomeFeatureEnoki extends BiomeFeature<BiomeFeatureEnoki>
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
         return new BiomeFeatureEnoki(genAttempts, minHeight, maxHeight);
-
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 0)
         {

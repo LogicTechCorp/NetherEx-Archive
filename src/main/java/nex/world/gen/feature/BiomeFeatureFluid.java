@@ -20,6 +20,7 @@ package nex.world.gen.feature;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -35,10 +36,7 @@ public class BiomeFeatureFluid extends BiomeFeature<BiomeFeatureFluid>
     private IBlockState blockToTarget;
     private boolean hidden;
 
-    public BiomeFeatureFluid()
-    {
-
-    }
+    public static final BiomeFeatureFluid INSTANCE = new BiomeFeatureFluid(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
     private BiomeFeatureFluid(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
     {
@@ -104,7 +102,7 @@ public class BiomeFeatureFluid extends BiomeFeature<BiomeFeatureFluid>
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         if(world.getBlockState(pos.up()) != blockToTarget)
         {

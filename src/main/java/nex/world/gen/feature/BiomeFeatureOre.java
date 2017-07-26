@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -33,14 +34,11 @@ import java.util.Random;
 
 public class BiomeFeatureOre extends BiomeFeature<BiomeFeatureOre>
 {
-    private IBlockState blockToSpawn;
-    private IBlockState blockToReplace;
-    private int size;
+    private final IBlockState blockToSpawn;
+    private final IBlockState blockToReplace;
+    private final int size;
 
-    public BiomeFeatureOre()
-    {
-
-    }
+    public static final BiomeFeatureOre INSTANCE = new BiomeFeatureOre(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0);
 
     private BiomeFeatureOre(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
     {
@@ -106,7 +104,7 @@ public class BiomeFeatureOre extends BiomeFeature<BiomeFeatureOre>
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         float f = rand.nextFloat() * (float) Math.PI;
         double d0 = (double) ((float) pos.getX() + MathHelper.sin(f) * (float) size / 8.0F);

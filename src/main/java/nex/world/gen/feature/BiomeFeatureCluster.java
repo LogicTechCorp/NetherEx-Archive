@@ -20,6 +20,7 @@ package nex.world.gen.feature;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
@@ -35,10 +36,7 @@ public class BiomeFeatureCluster extends BiomeFeature<BiomeFeatureCluster>
     private IBlockState blockToSpawn;
     private IBlockState blockToHangFrom;
 
-    public BiomeFeatureCluster()
-    {
-
-    }
+    public static final BiomeFeatureCluster INSTANCE = new BiomeFeatureCluster(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
 
     private BiomeFeatureCluster(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
     {
@@ -101,7 +99,7 @@ public class BiomeFeatureCluster extends BiomeFeature<BiomeFeatureCluster>
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         if(!world.isAirBlock(pos))
         {

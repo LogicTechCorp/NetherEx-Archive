@@ -33,13 +33,10 @@ import java.util.Random;
 
 public class BiomeFeaturePool extends BiomeFeature<BiomeFeaturePool>
 {
-    private IBlockState blockToSpawn;
-    private IBlockState blockToSurround;
+    private final IBlockState blockToSpawn;
+    private final IBlockState blockToSurround;
 
-    public BiomeFeaturePool()
-    {
-
-    }
+    public static final BiomeFeaturePool INSTANCE = new BiomeFeaturePool(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
 
     private BiomeFeaturePool(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
     {
@@ -103,7 +100,7 @@ public class BiomeFeaturePool extends BiomeFeature<BiomeFeaturePool>
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         for(pos = pos.add(-8, 0, -8); pos.getY() > getMinHeight() && world.isAirBlock(pos); pos = pos.down())
         {

@@ -29,10 +29,7 @@ import java.util.Random;
 
 public class BiomeFeatureThornstalk extends BiomeFeature<BiomeFeatureThornstalk>
 {
-    public BiomeFeatureThornstalk()
-    {
-
-    }
+    public static final BiomeFeatureThornstalk INSTANCE = new BiomeFeatureThornstalk(0.0F, 0, 0);
 
     private BiomeFeatureThornstalk(float genAttempts, int minHeight, int maxHeight)
     {
@@ -50,7 +47,7 @@ public class BiomeFeatureThornstalk extends BiomeFeature<BiomeFeatureThornstalk>
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         for(int i = 0; i < 64; ++i)
         {

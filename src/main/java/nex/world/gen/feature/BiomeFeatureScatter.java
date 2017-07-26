@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
@@ -34,14 +35,11 @@ import java.util.Random;
 
 public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
 {
-    private IBlockState blockToSpawn;
-    private IBlockState blockToTarget;
-    private Placement placement;
+    private final IBlockState blockToSpawn;
+    private final IBlockState blockToTarget;
+    private final Placement placement;
 
-    public BiomeFeatureScatter()
-    {
-
-    }
+    public static final BiomeFeatureScatter INSTANCE = new BiomeFeatureScatter(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), Placement.ON_GROUND);
 
     private BiomeFeatureScatter(float genAttempts, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
     {
@@ -107,7 +105,7 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random rand)
     {
         for(int i = 0; i < 64; ++i)
         {

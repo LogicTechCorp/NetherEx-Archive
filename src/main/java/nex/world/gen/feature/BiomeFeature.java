@@ -17,26 +17,13 @@
 
 package nex.world.gen.feature;
 
-import com.google.gson.JsonObject;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import nex.world.gen.BiomeFeatureManager;
+import nex.api.world.gen.feature.IBiomeFeature;
 
-import java.util.Random;
-
-public abstract class BiomeFeature<F extends BiomeFeature> extends WorldGenerator
+public abstract class BiomeFeature<F extends BiomeFeature> implements IBiomeFeature<F>
 {
-    private float genAttempts;
-    private int minHeight;
-    private int maxHeight;
-
-    public BiomeFeature()
-    {
-
-    }
+    private final float genAttempts;
+    private final int minHeight;
+    private final int maxHeight;
 
     protected BiomeFeature(float genAttemptsIn, int minHeightIn, int maxHeightIn)
     {
@@ -45,58 +32,19 @@ public abstract class BiomeFeature<F extends BiomeFeature> extends WorldGenerato
         maxHeight = maxHeightIn;
     }
 
-    public abstract F deserialize(JsonObject config);
-
     @Override
-    public abstract boolean generate(World world, Random rand, BlockPos pos);
-
-    public static BiomeFeature getFeature(JsonObject config)
-    {
-        String featureClassIdentifier = JsonUtils.getString(config, "featureType", "");
-        Class<? extends BiomeFeature> featureClass = BiomeFeatureManager.getBiomeFeatureClass(featureClassIdentifier);
-
-        if(featureClass != null)
-        {
-            try
-            {
-                return featureClass.newInstance().deserialize(config);
-            }
-            catch(InstantiationException | IllegalAccessException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
     public float getGenAttempts()
     {
         return genAttempts;
     }
 
-    public int getGenAttempts(Random rand)
-    {
-        int attempts = (int) MathHelper.abs(getGenAttempts());
-        float chance = MathHelper.abs(getGenAttempts()) - attempts;
-
-        if(chance > 0.0F && rand.nextFloat() > chance)
-        {
-            attempts = 0;
-        }
-        if(getGenAttempts() < 0.0F && attempts > 0)
-        {
-            attempts = rand.nextInt(MathHelper.abs(attempts)) + 1;
-        }
-
-        return attempts;
-    }
-
+    @Override
     public int getMinHeight()
     {
         return minHeight;
     }
 
+    @Override
     public int getMaxHeight()
     {
         return maxHeight;
