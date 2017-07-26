@@ -25,7 +25,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import nex.init.*;
+import nex.init.NetherExBiomes;
+import nex.init.NetherExEntities;
+import nex.init.NetherExOreDict;
+import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
 import nex.village.TradeManager;
 import nex.world.biome.NetherBiomeManager;
@@ -80,7 +83,6 @@ public class NetherEx
         LOGGER.info("Initialization started.");
 
         NetherExBiomes.init();
-        NetherExBiomeFeatures.init();
         NetherExEntities.init();
         TradeManager.init(new File(configDirectory, "/NetherEx/Trade Lists"));
         NetherExRecipes.init();

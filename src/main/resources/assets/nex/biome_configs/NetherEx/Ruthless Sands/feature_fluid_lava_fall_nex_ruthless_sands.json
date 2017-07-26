@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "fluid",
+    "featureType": "nex:fluid",
     "biome": "nex:ruthless_sands",
     "stage": "lavaTrap",
     "blockToSpawn": {

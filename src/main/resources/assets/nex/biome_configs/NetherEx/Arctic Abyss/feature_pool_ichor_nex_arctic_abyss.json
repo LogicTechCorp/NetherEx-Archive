@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "pool",
+    "featureType": "nex:pool",
     "biome": "nex:arctic_abyss",
     "stage": "lavaFall",
     "blockToSpawn": {

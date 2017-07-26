@@ -17,6 +17,11 @@
 
 package nex.init;
 
+import net.minecraft.init.Blocks;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import nex.NetherEx;
 import nex.world.gen.feature.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,18 +30,25 @@ public class NetherExBiomeFeatures
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomeFeatures");
 
-    public static void init()
+    @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
+    public static class EventHandler
     {
-        LOGGER.info("Biome Feature registration started.");
+        @SubscribeEvent
+        public static void onRegisterBiomeFeatures(RegistryEvent.Register<BiomeFeature> event)
+        {
+            LOGGER.info("Biome Feature registration started.");
 
-        BiomeFeatureManager.registerBiomeFeature("fluid", BiomeFeatureFluid.INSTANCE);
-        BiomeFeatureManager.registerBiomeFeature("scatter", BiomeFeatureScatter.INSTANCE);
-        BiomeFeatureManager.registerBiomeFeature("cluster", BiomeFeatureCluster.INSTANCE);
-        BiomeFeatureManager.registerBiomeFeature("ore", BiomeFeatureOre.INSTANCE);
-        BiomeFeatureManager.registerBiomeFeature("pool", BiomeFeaturePool.INSTANCE);
-        BiomeFeatureManager.registerBiomeFeature("thornstalk", BiomeFeatureThornstalk.INSTANCE);
-        BiomeFeatureManager.registerBiomeFeature("enoki", BiomeFeatureEnoki.INSTANCE);
+            event.getRegistry().registerAll(
+                    new BiomeFeatureFluid(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false),
+                    new BiomeFeatureScatter(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), BiomeFeatureScatter.Placement.ON_GROUND),
+                    new BiomeFeatureCluster(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState()),
+                    new BiomeFeatureOre(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0),
+                    new BiomeFeaturePool(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState()),
+                    new BiomeFeatureThornstalk(0.0F, 0, 0),
+                    new BiomeFeatureEnoki(0.0F, 0, 0)
+            );
 
-        LOGGER.info("Biome Feature registration completed.");
+            LOGGER.info("Biome Feature registration completed.");
+        }
     }
 }

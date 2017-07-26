@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "cluster",
+    "featureType": "nex:cluster",
     "biome": "nex:arctic_abyss",
     "stage": "glowstone",
     "blockToSpawn": {

@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "enoki",
+    "featureType": "nex:enoki",
     "biome": "nex:fungi_forest",
     "stage": "glowstone",
     "genAttempts": 64.0,

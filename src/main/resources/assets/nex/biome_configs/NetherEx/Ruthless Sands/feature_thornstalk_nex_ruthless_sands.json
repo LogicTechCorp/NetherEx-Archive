@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "thornstalk",
+    "featureType": "nex:thornstalk",
     "biome": "nex:ruthless_sands",
     "stage": "fire",
     "genAttempts": 10.0,

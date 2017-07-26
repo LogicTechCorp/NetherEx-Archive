@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "scatter",
+    "featureType": "nex:scatter",
     "biome": "nex:torrid_wasteland",
     "stage": "fire",
     "blockToSpawn": {

@@ -20,30 +20,29 @@ package nex.world.gen.feature;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import nex.NetherEx;
 import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureCluster extends BiomeFeature<BiomeFeatureCluster>
+public class BiomeFeatureCluster extends BiomeFeature
 {
     private IBlockState blockToSpawn;
     private IBlockState blockToHangFrom;
 
-    public static final BiomeFeatureCluster INSTANCE = new BiomeFeatureCluster(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
-
-    private BiomeFeatureCluster(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
+    public BiomeFeatureCluster(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
     {
         super(genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToHangFrom = blockToHangFromIn;
+        setRegistryName(NetherEx.MOD_ID + ":cluster");
     }
 
     @Override

@@ -22,32 +22,31 @@ import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import nex.NetherEx;
 import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
+public class BiomeFeatureScatter extends BiomeFeature
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToTarget;
     private final Placement placement;
 
-    public static final BiomeFeatureScatter INSTANCE = new BiomeFeatureScatter(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), Placement.ON_GROUND);
-
-    private BiomeFeatureScatter(float genAttempts, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
+    public BiomeFeatureScatter(float genAttempts, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
     {
         super(genAttempts, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToTarget = blockToTargetIn;
         placement = placementIn;
+        setRegistryName(NetherEx.MOD_ID + ":scatter");
     }
 
     @Override
@@ -130,7 +129,7 @@ public class BiomeFeatureScatter extends BiomeFeature<BiomeFeatureScatter>
         return true;
     }
 
-    private enum Placement
+    public enum Placement
     {
         ON_GROUND(null),
         IN_GROUND(EnumFacing.DOWN);

@@ -27,23 +27,23 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import nex.NetherEx;
 import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeaturePool extends BiomeFeature<BiomeFeaturePool>
+public class BiomeFeaturePool extends BiomeFeature
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToSurround;
 
-    public static final BiomeFeaturePool INSTANCE = new BiomeFeaturePool(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
-
-    private BiomeFeaturePool(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
+    public BiomeFeaturePool(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
     {
         super(genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToSurround = blockToSurroundIn;
+        setRegistryName(NetherEx.MOD_ID + ":pool");
     }
 
     @Override

@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "cluster",
+    "featureType": "nex:cluster",
     "biome": "nex:hell",
     "stage": "glowstone",
     "blockToSpawn": {

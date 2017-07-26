@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "ore",
+    "featureType": "nex:ore",
     "biome": "nex:torrid_wasteland",
     "stage": "quartz",
     "blockToSpawn": {

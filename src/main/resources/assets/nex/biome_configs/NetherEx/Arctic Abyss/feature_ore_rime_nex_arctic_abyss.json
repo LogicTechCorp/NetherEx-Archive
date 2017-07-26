@@ -1,6 +1,6 @@
 {
     "configType": "feature",
-    "featureType": "ore",
+    "featureType": "nex:ore",
     "biome": "nex:arctic_abyss",
     "stage": "quartz",
     "blockToSpawn": {

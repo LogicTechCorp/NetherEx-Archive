@@ -17,9 +17,15 @@
 
 package nex.world.gen.feature;
 
-import nex.api.world.gen.feature.IBiomeFeature;
+import com.google.gson.JsonObject;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class BiomeFeature<F extends BiomeFeature> implements IBiomeFeature<F>
+import java.util.Random;
+
+public abstract class BiomeFeature extends IForgeRegistryEntry.Impl<BiomeFeature>
 {
     private final float genAttempts;
     private final int minHeight;
@@ -32,19 +38,37 @@ public abstract class BiomeFeature<F extends BiomeFeature> implements IBiomeFeat
         maxHeight = maxHeightIn;
     }
 
-    @Override
+    public abstract BiomeFeature deserialize(JsonObject config);
+
+    public abstract boolean generate(World world, BlockPos pos, Random rand);
+
     public float getGenAttempts()
     {
         return genAttempts;
     }
 
-    @Override
+    public int getGenAttempts(Random rand)
+    {
+        int attempts = (int) MathHelper.abs(getGenAttempts());
+        float chance = MathHelper.abs(getGenAttempts()) - attempts;
+
+        if(chance > 0.0F && rand.nextFloat() > chance)
+        {
+            attempts = 0;
+        }
+        if(getGenAttempts() < 0.0F && attempts > 0)
+        {
+            attempts = rand.nextInt(MathHelper.abs(attempts)) + 1;
+        }
+
+        return attempts;
+    }
+
     public int getMinHeight()
     {
         return minHeight;
     }
 
-    @Override
     public int getMaxHeight()
     {
         return maxHeight;
