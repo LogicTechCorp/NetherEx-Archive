@@ -28,6 +28,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nex.init.NetherExItems;
@@ -58,6 +59,12 @@ public class BlockElderMushroomStem extends BlockNetherEx
     }
 
     @Override
+    public boolean canDropFromExplosion(Explosion explosionIn)
+    {
+        return false;
+    }
+
+    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return getDefaultState().withProperty(AXIS, EnumType.fromMeta(meta));
@@ -75,7 +82,7 @@ public class BlockElderMushroomStem extends BlockNetherEx
         return new BlockStateContainer(this, AXIS);
     }
 
-    public static enum EnumType implements IStringSerializable
+    public enum EnumType implements IStringSerializable
     {
         Y,
         X,

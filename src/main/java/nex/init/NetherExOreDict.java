@@ -63,6 +63,9 @@ public class NetherExOreDict
         addOreDictEntry("oreAmethyst", new ItemStack(NetherExBlocks.ORE_AMETHYST, 1, 0));
         addOreDictEntry("blockAmethyst", new ItemStack(NetherExBlocks.BLOCK_AMETHYST, 1, 0));
         addOreDictEntry("gemAmethyst", new ItemStack(NetherExItems.ITEM_CRYSTAL_AMETHYST, 1, 0));
+        addOreDictEntry("oreRime", new ItemStack(NetherExBlocks.ORE_RIME, 1, 0));
+        addOreDictEntry("blockRime", new ItemStack(NetherExBlocks.BLOCK_RIME, 1, 0));
+        addOreDictEntry("gemRime", new ItemStack(NetherExItems.ITEM_CRYSTAL_RIME, 1, 0));
         addOreDictEntry("dyeBlack", new ItemStack(NetherExItems.ITEM_DUST_WITHER, 1, 0));
 
         LOGGER.info("Ore Dictionary registration completed.");
