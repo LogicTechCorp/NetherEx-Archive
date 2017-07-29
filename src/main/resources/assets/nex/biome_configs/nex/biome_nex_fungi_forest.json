@@ -1,0 +1,75 @@
+{
+    "biome": "nex:fungi_forest",
+    "weight": 4,
+    "climate": "cool",
+    "floorTopBlock": {
+        "block": "nex:block_hyphae"
+    },
+    "floorFillerBlock": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "lively"
+        }
+    },
+    "biomeFeatures": [
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "genAttempts": -10.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "genAttempts": 10.0,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "feature": "nex:enoki",
+            "stage": "glowstone",
+            "genAttempts": 64.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:ore",
+            "stage": "quartz",
+            "blockToSpawn": {
+                "block": "nex:ore_quartz",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "size": 14,
+            "genAttempts": 16.0,
+            "minHeight": 10,
+            "maxHeight": 108
+        }
+    ]
+}

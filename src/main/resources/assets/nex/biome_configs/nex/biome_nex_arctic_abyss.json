@@ -1,0 +1,118 @@
+{
+    "biome": "nex:arctic_abyss",
+    "weight": 1,
+    "climate": "cold",
+    "floorTopBlock": {
+        "block": "nex:block_ice_frostburn"
+    },
+    "floorFillerBlock": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "icy"
+        }
+    },
+    "roofBottomBlock": {
+        "block": "nex:block_ice_frostburn"
+    },
+    "oceanBlock": {
+        "block": "minecraft:magma"
+    },
+    "biomeFeatures": [
+        {
+            "feature": "nex:scatter",
+            "stage": "fire",
+            "blockToSpawn": {
+                "block": "nex:block_fire_blue"
+            },
+            "blockToTarget": {
+                "block": "nex:block_ice_frostburn"
+            },
+            "placement": "onGround",
+            "genAttempts": -5.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "genAttempts": -10.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "genAttempts": 10.0,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "feature": "nex:ore",
+            "stage": "quartz",
+            "blockToSpawn": {
+                "block": "nex:ore_quartz",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "size": 14,
+            "genAttempts": 16.0,
+            "minHeight": 10,
+            "maxHeight": 108
+        },
+        {
+            "feature": "nex:ore",
+            "stage": "quartz",
+            "blockToSpawn": {
+                "block": "nex:ore_rime"
+            },
+            "blockToReplace": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "size": 7,
+            "genAttempts": 16.0,
+            "minHeight": 10,
+            "maxHeight": 108
+        },
+        {
+            "feature": "nex:pool",
+            "stage": "lavaFall",
+            "blockToSpawn": {
+                "block": "nex:fluid_ichor"
+            },
+            "blockToSurround": {
+                "block": "nex:block_ice_frostburn"
+            },
+            "genAttempts": 1.125,
+            "minHeight": 36,
+            "maxHeight": 96
+        }
+    ]
+}

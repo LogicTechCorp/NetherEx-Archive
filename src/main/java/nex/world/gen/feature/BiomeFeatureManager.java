@@ -32,7 +32,7 @@ public class BiomeFeatureManager
 {
     public static BiomeFeature deserialize(JsonObject config)
     {
-        BiomeFeature feature = getBiomeFeature(new ResourceLocation(JsonUtils.getString(config, "featureType", "")));
+        BiomeFeature feature = getBiomeFeature(new ResourceLocation(JsonUtils.getString(config, "feature", "")));
 
         if(feature != null)
         {

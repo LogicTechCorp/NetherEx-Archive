@@ -1,9 +1,0 @@
-{
-    "configType": "feature",
-    "featureType": "nex:thornstalk",
-    "biome": "nex:ruthless_sands",
-    "stage": "fire",
-    "genAttempts": 10.0,
-    "minHeight": 4,
-    "maxHeight": 124
-}

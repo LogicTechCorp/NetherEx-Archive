@@ -1,0 +1,152 @@
+{
+    "biome": "nex:hell",
+    "weight": 10,
+    "climate": "warm",
+    "floorTopBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "floorFillerBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "biomeFeatures": [
+        {
+            "feature": "nex:fluid",
+            "stage": "lavaTrap",
+            "blockToSpawn": {
+                "block": "minecraft:flowing_lava"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "hidden": false,
+            "genAttempts": 8.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:scatter",
+            "stage": "fire",
+            "blockToSpawn": {
+                "block": "minecraft:fire"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "placement": "onGround",
+            "genAttempts": -10.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "minecraft:netherrack"
+            },
+            "genAttempts": -10.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "minecraft:netherrack"
+            },
+            "genAttempts": 10.0,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "feature": "nex:scatter",
+            "stage": "mushroom",
+            "blockToSpawn": {
+                "block": "minecraft:red_mushroom"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "placement": "onGround",
+            "genAttempts": 1.25,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "feature": "nex:scatter",
+            "stage": "mushroom",
+            "blockToSpawn": {
+                "block": "minecraft:brown_mushroom"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "placement": "onGround",
+            "genAttempts": 1.25,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "feature": "nex:ore",
+            "stage": "quartz",
+            "blockToSpawn": {
+                "block": "minecraft:quartz_ore"
+            },
+            "blockToReplace": {
+                "block": "minecraft:netherrack"
+            },
+            "size": 14,
+            "genAttempts": 16.0,
+            "minHeight": 10,
+            "maxHeight": 108
+        },
+        {
+            "feature": "nex:ore",
+            "stage": "quartz",
+            "blockToSpawn": {
+                "block": "nex:ore_amethyst"
+            },
+            "blockToReplace": {
+                "block": "minecraft:netherrack"
+            },
+            "size": 3,
+            "genAttempts": 16.0,
+            "minHeight": 10,
+            "maxHeight": 108
+        },
+        {
+            "feature": "nex:ore",
+            "stage": "quartz",
+            "blockToSpawn": {
+                "block": "minecraft:magma"
+            },
+            "blockToReplace": {
+                "block": "minecraft:netherrack"
+            },
+            "size": 32,
+            "genAttempts": 4.0,
+            "minHeight": 28,
+            "maxHeight": 38
+        },
+        {
+            "feature": "nex:fluid",
+            "stage": "lavaFall",
+            "blockToSpawn": {
+                "block": "minecraft:flowing_lava"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "hidden": true,
+            "genAttempts": 16.0,
+            "minHeight": 10,
+            "maxHeight": 118
+        }
+    ]
+}
+

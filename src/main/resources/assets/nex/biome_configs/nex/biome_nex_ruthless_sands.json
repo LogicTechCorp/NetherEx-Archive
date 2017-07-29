@@ -1,0 +1,109 @@
+{
+    "biome": "nex:ruthless_sands",
+    "weight": 8,
+    "climate": "temperate",
+    "floorTopBlock": {
+        "block": "minecraft:soul_sand"
+    },
+    "floorFillerBlock": {
+        "block": "nex:block_netherrack",
+        "properties": {
+            "type": "gloomy"
+        }
+    },
+    "biomeFeatures": [
+        {
+            "feature": "nex:fluid",
+            "stage": "lavaTrap",
+            "blockToSpawn": {
+                "block": "minecraft:flowing_lava"
+            },
+            "blockToTarget": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "gloomy"
+                }
+            },
+            "hidden": false,
+            "genAttempts": 8.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "gloomy"
+                }
+            },
+            "genAttempts": -10.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:cluster",
+            "stage": "glowstone",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToHangFrom": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "gloomy"
+                }
+            },
+            "genAttempts": 10.0,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "feature": "nex:thornstalk",
+            "stage": "mushroom",
+            "genAttempts": 10.0,
+            "minHeight": 4,
+            "maxHeight": 124
+        },
+        {
+            "feature": "nex:ore",
+            "stage": "quartz",
+            "blockToSpawn": {
+                "block": "nex:ore_quartz",
+                "properties": {
+                    "type": "gloomy"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "gloomy"
+                }
+            },
+            "size": 14,
+            "genAttempts": 32.0,
+            "minHeight": 10,
+            "maxHeight": 108
+        },
+        {
+            "feature": "nex:fluid",
+            "stage": "lavaFall",
+            "blockToSpawn": {
+                "block": "minecraft:flowing_lava"
+            },
+            "blockToTarget": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "gloomy"
+                }
+            },
+            "hidden": true,
+            "genAttempts": 48.0,
+            "minHeight": 10,
+            "maxHeight": 118
+        }
+    ]
+}

@@ -18,16 +18,12 @@
 package nex.world.biome;
 
 import com.google.common.collect.Lists;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
 import nex.util.FileUtil;
 import nex.world.gen.GenerationStage;
@@ -104,7 +100,7 @@ public class NetherBiomeManager
                 if(FilenameUtils.getExtension(configPath.toString()).equals("json"))
                 {
                     BufferedReader reader = Files.newBufferedReader(configPath);
-                    parseBiomeConfig(JsonUtils.fromJson(gson, reader, JsonObject.class), configPath.toString());
+                    parseBiomeConfig(JsonUtils.fromJson(gson, reader, JsonObject.class));
                     IOUtils.closeQuietly(reader);
                 }
                 else if(!configPath.toFile().isDirectory())
@@ -119,40 +115,33 @@ public class NetherBiomeManager
         }
     }
 
-    private static void parseBiomeConfig(JsonObject config, String configPath)
+    private static void parseBiomeConfig(JsonObject config)
     {
-        String configType = JsonUtils.getString(config, "configType");
+        NetherBiome netherBiome = NetherBiome.deserialize(config);
+        NetherBiomeClimate netherBiomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
 
-        if(configType.equalsIgnoreCase("biome"))
+        if(netherBiome != null)
         {
-            NetherBiome netherBiome = NetherBiome.deserialize(config);
-            NetherBiomeClimate netherBiomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
+            netherBiomeClimate.addBiome(netherBiome);
+            LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
 
-            if(netherBiome != null)
+            JsonArray biomeFeatureConfigs = JsonUtils.getJsonArray(config, "biomeFeatures", new JsonArray());
+
+            if(biomeFeatureConfigs.size() > 0)
             {
-                netherBiomeClimate.addBiome(netherBiome);
-                LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
-            }
-        }
-        else if(configType.equalsIgnoreCase("feature"))
-        {
-            BiomeFeature biomeFeature = BiomeFeatureManager.deserialize(config);
-            GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(config, "stage"));
-
-            if(biomeFeature != null)
-            {
-                Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(JsonUtils.getString(config, "biome")));
-
-                if(biome != null)
+                for(JsonElement biomeFeatureConfig : biomeFeatureConfigs)
                 {
-                    generationStage.addBiomeFeature(biome, biomeFeature);
+                    BiomeFeature biomeFeature = BiomeFeatureManager.deserialize(biomeFeatureConfig.getAsJsonObject());
+                    GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(biomeFeatureConfig.getAsJsonObject(), "stage"));
+
+                    if(biomeFeature != null)
+                    {
+                        generationStage.addBiomeFeature(netherBiome.getBiome(), biomeFeature);
+                    }
                 }
             }
         }
-        else
-        {
-            LOGGER.warn("The file located at, " + configPath + ", contains an incorrect type of " + configType);
-        }
+
     }
 
     public static List<NetherBiomeEntry> getAllBiomeEntries()
