@@ -123,6 +123,9 @@ public class NetherExRecipes
         addBoatRecipe(new ItemStack(ITEM_BOAT_OBSIDIAN, 1, 0), new ItemStack(OBSIDIAN, 1, 0));
         addShapeless(new ItemStack(ITEM_CRYSTAL_RIME_STEEL, 1, 0), new ItemStack(FLINT_AND_STEEL, 1, 0), new ItemStack(ITEM_CRYSTAL_RIME, 1, 0));
 
+        addSmelting(new ItemStack(QUARTZ, 1, 0), new ItemStack(ORE_QUARTZ, 1, 0), 0.0F);
+        addSmelting(new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0), new ItemStack(ORE_AMETHYST, 1, 0), 0.0F);
+        addSmelting(new ItemStack(ITEM_CRYSTAL_RIME, 1, 0), new ItemStack(ORE_RIME, 1, 0), 0.0F);
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(MAGMA_CREAM, 1, 0), 0.5F);
 
