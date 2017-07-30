@@ -1,4 +1,5 @@
 {
+    "biomeType": "nex:basic",
     "biome": "nex:fungi_forest",
     "weight": 4,
     "climate": "cool",
@@ -13,7 +14,7 @@
     },
     "biomeFeatures": [
         {
-            "feature": "nex:cluster",
+            "featureType": "nex:cluster",
             "stage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -29,7 +30,7 @@
             "maxHeight": 124
         },
         {
-            "feature": "nex:cluster",
+            "featureType": "nex:cluster",
             "stage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -45,14 +46,14 @@
             "maxHeight": 128
         },
         {
-            "feature": "nex:enoki",
+            "featureType": "nex:enoki",
             "stage": "glowstone",
             "genAttempts": 64.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "feature": "nex:ore",
+            "featureType": "nex:ore",
             "stage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_quartz",

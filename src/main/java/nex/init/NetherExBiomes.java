@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.world.WorldProviderNether;
 import nex.world.biome.*;
+import nex.world.gen.feature.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -71,6 +72,36 @@ public class NetherExBiomes
             );
 
             LOGGER.info("Biome registration completed.");
+        }
+
+        @SubscribeEvent
+        public static void onRegisterNetherBiomes(RegistryEvent.Register<NetherBiome> event)
+        {
+            LOGGER.info("Nether Biome Type registration started.");
+
+            event.getRegistry().registerAll(
+                    new NetherBiomeBasic()
+            );
+
+            LOGGER.info("Nether Biome Type registration completed.");
+        }
+
+        @SubscribeEvent
+        public static void onRegisterBiomeFeatures(RegistryEvent.Register<BiomeFeature> event)
+        {
+            LOGGER.info("Biome Feature Type registration started.");
+
+            event.getRegistry().registerAll(
+                    new BiomeFeatureFluid(),
+                    new BiomeFeatureScatter(),
+                    new BiomeFeatureCluster(),
+                    new BiomeFeatureOre(),
+                    new BiomeFeaturePool(),
+                    new BiomeFeatureThornstalk(),
+                    new BiomeFeatureEnoki()
+            );
+
+            LOGGER.info("Biome Feature Type registration completed.");
         }
     }
 

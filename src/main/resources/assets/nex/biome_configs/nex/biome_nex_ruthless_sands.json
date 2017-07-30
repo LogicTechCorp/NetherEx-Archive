@@ -1,4 +1,5 @@
 {
+    "biomeType": "nex:basic",
     "biome": "nex:ruthless_sands",
     "weight": 8,
     "climate": "temperate",
@@ -13,7 +14,7 @@
     },
     "biomeFeatures": [
         {
-            "feature": "nex:fluid",
+            "featureType": "nex:fluid",
             "stage": "lavaTrap",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
@@ -30,7 +31,7 @@
             "maxHeight": 124
         },
         {
-            "feature": "nex:cluster",
+            "featureType": "nex:cluster",
             "stage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -46,7 +47,7 @@
             "maxHeight": 124
         },
         {
-            "feature": "nex:cluster",
+            "featureType": "nex:cluster",
             "stage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -62,14 +63,14 @@
             "maxHeight": 128
         },
         {
-            "feature": "nex:thornstalk",
+            "featureType": "nex:thornstalk",
             "stage": "mushroom",
             "genAttempts": 10.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "feature": "nex:ore",
+            "featureType": "nex:ore",
             "stage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_quartz",
@@ -89,7 +90,7 @@
             "maxHeight": 108
         },
         {
-            "feature": "nex:fluid",
+            "featureType": "nex:fluid",
             "stage": "lavaFall",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"

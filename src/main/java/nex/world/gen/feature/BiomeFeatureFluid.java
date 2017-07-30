@@ -20,30 +20,34 @@ package nex.world.gen.feature;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import nex.NetherEx;
 import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureFluid extends BiomeFeature
+public class BiomeFeatureFluid extends BiomeFeatureNetherEx
 {
     private IBlockState blockToSpawn;
     private IBlockState blockToTarget;
     private boolean hidden;
 
-    public BiomeFeatureFluid(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
+    public BiomeFeatureFluid()
     {
-        super(genAttemptsIn, minHeightIn, maxHeightIn);
+        this(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+    }
+
+    private BiomeFeatureFluid(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
+    {
+        super("fluid", genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToTarget = blockToTargetIn;
         hidden = hiddenIn;
-        setRegistryName(NetherEx.MOD_ID + ":fluid");
     }
 
     @Override

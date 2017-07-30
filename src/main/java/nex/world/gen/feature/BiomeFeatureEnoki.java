@@ -21,19 +21,21 @@ import com.google.gson.JsonObject;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nex.NetherEx;
 import nex.block.BlockEnokiMushroomCap;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-public class BiomeFeatureEnoki extends BiomeFeature
+public class BiomeFeatureEnoki extends BiomeFeatureNetherEx
 {
-    public BiomeFeatureEnoki(float genAttempts, int minHeight, int maxHeight)
+    public BiomeFeatureEnoki()
     {
-        super(genAttempts, minHeight, maxHeight);
+        this(0.0F, 0, 0);
+    }
 
-        setRegistryName(NetherEx.MOD_ID + ":enoki");
+    private BiomeFeatureEnoki(float genAttempts, int minHeight, int maxHeight)
+    {
+        super("enoki", genAttempts, minHeight, maxHeight);
     }
 
     @Override

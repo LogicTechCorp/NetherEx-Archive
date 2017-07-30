@@ -38,7 +38,7 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
             for(int x = 0; x < areaWidth; x++)
             {
                 initChunkSeed(x + areaX, z + areaZ);
-                outputs[x + z * areaWidth] = Biome.getIdForBiome(NetherBiomeManager.getRandomBiome(NetherBiomeManager.getAllBiomeEntries(), this));
+                outputs[x + z * areaWidth] = Biome.getIdForBiome(NetherBiomeManager.getRandomBiome(this));
             }
         }
 

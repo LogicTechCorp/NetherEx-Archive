@@ -25,10 +25,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 import nex.NetherEx;
+import nex.world.biome.NetherBiome;
 import nex.world.gen.feature.BiomeFeature;
 
 public class NetherExRegistries
 {
+    public static final IForgeRegistry<NetherBiome> NETHER_BIOMES = GameRegistry.findRegistry(NetherBiome.class);
     public static final IForgeRegistry<BiomeFeature> BIOME_FEATURES = GameRegistry.findRegistry(BiomeFeature.class);
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
@@ -37,7 +39,28 @@ public class NetherExRegistries
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.NewRegistry event)
         {
+            new RegistryBuilder<NetherBiome>().setName(new ResourceLocation(NetherEx.MOD_ID + ":nether_biomes")).setType(NetherBiome.class).setMaxID(255).disableSaving().create();
             new RegistryBuilder<BiomeFeature>().setName(new ResourceLocation(NetherEx.MOD_ID + ":biome_features")).setType(BiomeFeature.class).setMaxID(255).disableSaving().create();
         }
+    }
+
+    public static NetherBiome getNetherBiome(ResourceLocation identifier)
+    {
+        if(NetherExRegistries.NETHER_BIOMES.containsKey(identifier))
+        {
+            return NetherExRegistries.NETHER_BIOMES.getValue(identifier);
+        }
+
+        return null;
+    }
+
+    public static BiomeFeature getBiomeFeature(ResourceLocation identifier)
+    {
+        if(NetherExRegistries.BIOME_FEATURES.containsKey(identifier))
+        {
+            return NetherExRegistries.BIOME_FEATURES.getValue(identifier);
+        }
+
+        return null;
     }
 }

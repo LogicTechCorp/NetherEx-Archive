@@ -22,13 +22,14 @@ import com.google.gson.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
+import nex.init.NetherExRegistries;
 import nex.util.FileUtil;
 import nex.world.gen.GenerationStage;
 import nex.world.gen.feature.BiomeFeature;
-import nex.world.gen.feature.BiomeFeatureManager;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -44,7 +45,6 @@ import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
 public class NetherBiomeManager
@@ -66,7 +66,7 @@ public class NetherBiomeManager
                 directory.mkdir();
             }
 
-            LOGGER.info("Copying the Biome Configs Directory to the config folder.");
+            LOGGER.info("Copying the Biome Config Directory to the config folder.");
 
             if(NetherEx.IS_DEV_ENV)
             {
@@ -79,7 +79,7 @@ public class NetherBiomeManager
         }
         catch(IOException e)
         {
-            LOGGER.fatal("The attempt to copy the Biome Configs Directory to the config folder was unsuccessful.");
+            LOGGER.fatal("The attempt to copy the Biome Config Directory to the config folder was unsuccessful.");
             LOGGER.fatal(e);
         }
     }
@@ -117,7 +117,7 @@ public class NetherBiomeManager
 
     private static void parseBiomeConfig(JsonObject config)
     {
-        NetherBiome netherBiome = NetherBiome.deserialize(config);
+        NetherBiome netherBiome = deserializeBiome(config);
         NetherBiomeClimate netherBiomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
 
         if(netherBiome != null)
@@ -131,7 +131,7 @@ public class NetherBiomeManager
             {
                 for(JsonElement biomeFeatureConfig : biomeFeatureConfigs)
                 {
-                    BiomeFeature biomeFeature = BiomeFeatureManager.deserialize(biomeFeatureConfig.getAsJsonObject());
+                    BiomeFeature biomeFeature = deserializeFeature(biomeFeatureConfig.getAsJsonObject());
                     GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(biomeFeatureConfig.getAsJsonObject(), "stage"));
 
                     if(biomeFeature != null)
@@ -141,29 +141,54 @@ public class NetherBiomeManager
                 }
             }
         }
-
     }
 
-    public static List<NetherBiomeEntry> getAllBiomeEntries()
+    private static NetherBiome deserializeBiome(JsonObject config)
     {
-        List<NetherBiomeEntry> biomes = Lists.newArrayList();
+        NetherBiome netherBiome = NetherExRegistries.getNetherBiome(new ResourceLocation(JsonUtils.getString(config, "biomeType", "")));
+
+        if(netherBiome != null)
+        {
+            return netherBiome.deserialize(config);
+        }
+
+        return null;
+    }
+
+    private static BiomeFeature deserializeFeature(JsonObject config)
+    {
+        BiomeFeature feature = NetherExRegistries.getBiomeFeature(new ResourceLocation(JsonUtils.getString(config, "featureType", "")));
+
+        if(feature != null)
+        {
+            return feature.deserialize(config);
+        }
+
+        return null;
+    }
+
+    public static Biome getRandomBiome(GenLayerNetherEx layer)
+    {
+        List<NetherBiomeEntry> biomeEntryList = Lists.newArrayList();
 
         for(NetherBiomeClimate biomeClimate : NetherBiomeClimate.values())
         {
-            biomes.addAll(biomeClimate.getBiomeEntries());
+            biomeEntryList.addAll(biomeClimate.getBiomeEntries());
         }
 
-        return biomes;
-    }
-
-    public static Biome getRandomBiome(List<NetherBiomeEntry> biomeEntryList, Random rand)
-    {
-        return WeightedRandom.getRandomItem(biomeEntryList, rand.nextInt(WeightedRandom.getTotalWeight(biomeEntryList))).getBiome();
-    }
-
-    public static Biome getRandomBiome(List<NetherBiomeEntry> biomeEntryList, GenLayerNetherEx layer)
-    {
         return WeightedRandom.getRandomItem(biomeEntryList, layer.nextInt(WeightedRandom.getTotalWeight(biomeEntryList))).getBiome();
+    }
+
+    public static List<BiomeFeature> getBiomeFeatures(Biome biome, GenerationStage generationStage)
+    {
+        Map<Biome, List<BiomeFeature>> biomeFeatureMap = generationStage.getBiomeFeatureMap();
+
+        if(biomeFeatureMap.containsKey(biome))
+        {
+            return biomeFeatureMap.get(biome);
+        }
+
+        return Lists.newArrayList();
     }
 
     public static IBlockState getBiomeFloorTopBlock(Biome biome)

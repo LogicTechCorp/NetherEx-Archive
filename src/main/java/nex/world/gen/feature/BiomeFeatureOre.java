@@ -21,31 +21,35 @@ import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import nex.NetherEx;
 import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureOre extends BiomeFeature
+public class BiomeFeatureOre extends BiomeFeatureNetherEx
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToReplace;
     private final int size;
 
-    public BiomeFeatureOre(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
+    public BiomeFeatureOre()
     {
-        super(genAttemptsIn, minHeightIn, maxHeightIn);
+        this(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0);
+    }
+
+    private BiomeFeatureOre(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
+    {
+        super("ore", genAttemptsIn, minHeightIn, maxHeightIn);
 
         blockToSpawn = blockToSpawnIn;
         blockToReplace = blockToReplaceIn;
         size = sizeIn;
-        setRegistryName(NetherEx.MOD_ID + ":ore");
     }
 
     @Override

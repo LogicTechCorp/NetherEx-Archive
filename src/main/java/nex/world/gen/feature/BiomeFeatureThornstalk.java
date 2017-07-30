@@ -23,18 +23,20 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-public class BiomeFeatureThornstalk extends BiomeFeature
+public class BiomeFeatureThornstalk extends BiomeFeatureNetherEx
 {
-    public BiomeFeatureThornstalk(float genAttempts, int minHeight, int maxHeight)
+    public BiomeFeatureThornstalk()
     {
-        super(genAttempts, minHeight, maxHeight);
+        this(0.0F, 0, 0);
+    }
 
-        setRegistryName(NetherEx.MOD_ID + ":thornstalk");
+    private BiomeFeatureThornstalk(float genAttempts, int minHeight, int maxHeight)
+    {
+        super("thornstalk", genAttempts, minHeight, maxHeight);
     }
 
     @Override

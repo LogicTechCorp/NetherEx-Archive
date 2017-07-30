@@ -1,4 +1,5 @@
 {
+    "biomeType": "nex:basic",
     "biome": "nex:torrid_wasteland",
     "weight": 6,
     "climate": "hot",
@@ -16,7 +17,7 @@
     },
     "biomeFeatures": [
         {
-            "feature": "nex:fluid",
+            "featureType": "nex:fluid",
             "stage": "lavaTrap",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
@@ -33,7 +34,7 @@
             "maxHeight": 124
         },
         {
-            "feature": "nex:scatter",
+            "featureType": "nex:scatter",
             "stage": "fire",
             "blockToSpawn": {
                 "block": "minecraft:fire"
@@ -50,7 +51,7 @@
             "maxHeight": 124
         },
         {
-            "feature": "nex:cluster",
+            "featureType": "nex:cluster",
             "stage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -66,7 +67,7 @@
             "maxHeight": 124
         },
         {
-            "feature": "nex:cluster",
+            "featureType": "nex:cluster",
             "stage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -82,7 +83,7 @@
             "maxHeight": 128
         },
         {
-            "feature": "nex:ore",
+            "featureType": "nex:ore",
             "stage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_quartz",
@@ -102,7 +103,7 @@
             "maxHeight": 108
         },
         {
-            "feature": "nex:ore",
+            "featureType": "nex:ore",
             "stage": "quartz",
             "blockToSpawn": {
                 "block": "nex:block_basalt",
@@ -122,7 +123,7 @@
             "maxHeight": 108
         },
         {
-            "feature": "nex:ore",
+            "featureType": "nex:ore",
             "stage": "quartz",
             "blockToSpawn": {
                 "block": "minecraft:magma"
@@ -139,7 +140,7 @@
             "maxHeight": 38
         },
         {
-            "feature": "nex:fluid",
+            "featureType": "nex:fluid",
             "stage": "lavaFall",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
@@ -156,7 +157,7 @@
             "maxHeight": 118
         },
         {
-            "feature": "nex:pool",
+            "featureType": "nex:pool",
             "stage": "lavaFall",
             "blockToSpawn": {
                 "block": "minecraft:lava"
