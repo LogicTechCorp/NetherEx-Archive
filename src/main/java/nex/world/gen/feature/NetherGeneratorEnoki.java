@@ -26,30 +26,28 @@ import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-public class BiomeFeatureEnoki extends BiomeFeatureNetherEx
+public class NetherGeneratorEnoki extends NetherGenerator
 {
-    public BiomeFeatureEnoki()
-    {
-        this(0.0F, 0, 0);
-    }
+    public static final NetherGeneratorEnoki INSTANCE = new NetherGeneratorEnoki(0, 0.0F, 0, 0);
 
-    private BiomeFeatureEnoki(float genAttempts, int minHeight, int maxHeight)
+    private NetherGeneratorEnoki(int generationAttempts, float generationProbability, int minHeight, int maxHeight)
     {
-        super("enoki", genAttempts, minHeight, maxHeight);
+        super(generationAttempts, generationProbability, minHeight, maxHeight);
     }
 
     @Override
-    public BiomeFeatureEnoki deserialize(JsonObject config)
+    public NetherGeneratorEnoki deserializeConfig(JsonObject config)
     {
-        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
+        float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
-        return new BiomeFeatureEnoki(genAttempts, minHeight, maxHeight);
+        return new NetherGeneratorEnoki(generationAttempts, generationProbability, minHeight, maxHeight);
     }
 
     @Override
-    public boolean generate(World world, BlockPos pos, Random rand)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 0)
         {

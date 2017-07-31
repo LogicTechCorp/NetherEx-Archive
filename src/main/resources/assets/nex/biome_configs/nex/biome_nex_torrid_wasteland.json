@@ -1,5 +1,4 @@
 {
-    "biomeType": "nex:basic",
     "biome": "nex:torrid_wasteland",
     "weight": 6,
     "climate": "hot",
@@ -15,10 +14,10 @@
             "type": "fiery"
         }
     },
-    "biomeFeatures": [
+    "generators": [
         {
-            "featureType": "nex:fluid",
-            "stage": "lavaTrap",
+            "generator": "fluid",
+            "generationStage": "lavaTrap",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -29,13 +28,14 @@
                 }
             },
             "hidden": false,
-            "genAttempts": 24.0,
+            "generationAttempts": 24,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:scatter",
-            "stage": "fire",
+            "generator": "scatter",
+            "generationStage": "fire",
             "blockToSpawn": {
                 "block": "minecraft:fire"
             },
@@ -46,13 +46,14 @@
                 }
             },
             "placement": "onGround",
-            "genAttempts": -30.0,
+            "generationAttempts": -30,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -62,13 +63,13 @@
                     "type": "fiery"
                 }
             },
-            "genAttempts": -10.0,
+            "generationAttempts": -10.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -78,13 +79,14 @@
                     "type": "fiery"
                 }
             },
-            "genAttempts": 10.0,
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_quartz",
                 "properties": {
@@ -98,13 +100,14 @@
                 }
             },
             "size": 14,
-            "genAttempts": 16.0,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "nex:block_basalt",
                 "properties": {
@@ -118,13 +121,14 @@
                 }
             },
             "size": 24,
-            "genAttempts": 14.0,
+            "generationAttempts": 14,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "minecraft:magma"
             },
@@ -135,13 +139,14 @@
                 }
             },
             "size": 32,
-            "genAttempts": 12.0,
+            "generationAttempts": 12,
+            "generationProbability": 1.0,
             "minHeight": 28,
             "maxHeight": 38
         },
         {
-            "featureType": "nex:fluid",
-            "stage": "lavaFall",
+            "generator": "fluid",
+            "generationStage": "lavaFall",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -152,13 +157,14 @@
                 }
             },
             "hidden": true,
-            "genAttempts": 48.0,
+            "generationAttempts": 48,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 118
         },
         {
-            "featureType": "nex:pool",
-            "stage": "lavaFall",
+            "generator": "pool",
+            "generationStage": "lavaFall",
             "blockToSpawn": {
                 "block": "minecraft:lava"
             },
@@ -168,7 +174,8 @@
                     "type": "fiery"
                 }
             },
-            "genAttempts": 8.0,
+            "generationAttempts": 8,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         }

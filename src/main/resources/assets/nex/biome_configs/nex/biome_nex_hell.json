@@ -1,5 +1,4 @@
 {
-    "biomeType": "nex:basic",
     "biome": "nex:hell",
     "weight": 10,
     "climate": "warm",
@@ -9,10 +8,10 @@
     "floorFillerBlock": {
         "block": "minecraft:netherrack"
     },
-    "biomeFeatures": [
+    "generators": [
         {
-            "featureType": "nex:fluid",
-            "stage": "lavaTrap",
+            "generator": "fluid",
+            "generationStage": "lavaTrap",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -20,13 +19,14 @@
                 "block": "minecraft:netherrack"
             },
             "hidden": false,
-            "genAttempts": 8.0,
+            "generationAttempts": 8,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:scatter",
-            "stage": "fire",
+            "generator": "scatter",
+            "generationStage": "fire",
             "blockToSpawn": {
                 "block": "minecraft:fire"
             },
@@ -34,39 +34,42 @@
                 "block": "minecraft:netherrack"
             },
             "placement": "onGround",
-            "genAttempts": -10.0,
+            "generationAttempts": -10,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
             "blockToHangFrom": {
                 "block": "minecraft:netherrack"
             },
-            "genAttempts": -10.0,
+            "generationAttempts": -10,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
             "blockToHangFrom": {
                 "block": "minecraft:netherrack"
             },
-            "genAttempts": 10.0,
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128
         },
         {
-            "featureType": "nex:scatter",
-            "stage": "mushroom",
+            "generator": "scatter",
+            "generationStage": "mushroom",
             "blockToSpawn": {
                 "block": "minecraft:red_mushroom"
             },
@@ -74,13 +77,14 @@
                 "block": "minecraft:netherrack"
             },
             "placement": "onGround",
-            "genAttempts": 1.25,
+            "generationAttempts": 1,
+            "generationProbability": 0.25,
             "minHeight": 1,
             "maxHeight": 128
         },
         {
-            "featureType": "nex:scatter",
-            "stage": "mushroom",
+            "generator": "scatter",
+            "generationStage": "mushroom",
             "blockToSpawn": {
                 "block": "minecraft:brown_mushroom"
             },
@@ -88,13 +92,14 @@
                 "block": "minecraft:netherrack"
             },
             "placement": "onGround",
-            "genAttempts": 1.25,
+            "generationAttempts": 1,
+            "generationProbability": 0.25,
             "minHeight": 1,
             "maxHeight": 128
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "minecraft:quartz_ore"
             },
@@ -102,13 +107,13 @@
                 "block": "minecraft:netherrack"
             },
             "size": 14,
-            "genAttempts": 16.0,
+            "generationAttempts": 16.0,
             "minHeight": 10,
             "maxHeight": 108
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_amethyst"
             },
@@ -116,13 +121,14 @@
                 "block": "minecraft:netherrack"
             },
             "size": 3,
-            "genAttempts": 16.0,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "minecraft:magma"
             },
@@ -130,13 +136,14 @@
                 "block": "minecraft:netherrack"
             },
             "size": 32,
-            "genAttempts": 4.0,
+            "generationAttempts": 4,
+            "generationProbability": 1.0,
             "minHeight": 28,
             "maxHeight": 38
         },
         {
-            "featureType": "nex:fluid",
-            "stage": "lavaFall",
+            "generator": "fluid",
+            "generationStage": "lavaFall",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -144,7 +151,8 @@
                 "block": "minecraft:netherrack"
             },
             "hidden": true,
-            "genAttempts": 16.0,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 118
         }

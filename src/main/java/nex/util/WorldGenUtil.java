@@ -53,7 +53,7 @@ import nex.entity.passive.EntityPigtificateLeader;
 import nex.tileentity.TileEntityUrnOfSorrow;
 import nex.world.biome.NetherBiomeManager;
 import nex.world.gen.GenerationStage;
-import nex.world.gen.feature.BiomeFeature;
+import nex.world.gen.feature.NetherGenerator;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -498,11 +498,11 @@ public class WorldGenUtil
         {
             Biome biome = world.getBiome(pos.add(16, 0, 16));
 
-            for(BiomeFeature feature : NetherBiomeManager.getBiomeFeatures(biome, generationStage))
+            for(NetherGenerator feature : NetherBiomeManager.getBiomeFeatures(biome, generationStage))
             {
                 for(int genAttempts = 0; genAttempts < feature.getGenAttempts(rand); genAttempts++)
                 {
-                    feature.generate(world, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
+                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
                 }
             }
         }

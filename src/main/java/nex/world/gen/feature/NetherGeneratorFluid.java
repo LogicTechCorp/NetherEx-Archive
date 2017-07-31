@@ -30,20 +30,17 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureFluid extends BiomeFeatureNetherEx
+public class NetherGeneratorFluid extends NetherGenerator
 {
     private IBlockState blockToSpawn;
     private IBlockState blockToTarget;
     private boolean hidden;
 
-    public BiomeFeatureFluid()
-    {
-        this(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-    }
+    public static final NetherGeneratorFluid INSTANCE = new NetherGeneratorFluid(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
-    private BiomeFeatureFluid(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
+    private NetherGeneratorFluid(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
     {
-        super("fluid", genAttemptsIn, minHeightIn, maxHeightIn);
+        super(generationAttempts, generationProbability, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToTarget = blockToTargetIn;
@@ -51,9 +48,10 @@ public class BiomeFeatureFluid extends BiomeFeatureNetherEx
     }
 
     @Override
-    public BiomeFeatureFluid deserialize(JsonObject config)
+    public NetherGeneratorFluid deserializeConfig(JsonObject config)
     {
-        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
+        float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -98,14 +96,14 @@ public class BiomeFeatureFluid extends BiomeFeatureNetherEx
 
         if(blockToSpawn != null && blockToTarget != null)
         {
-            return new BiomeFeatureFluid(genAttempts, minHeight, maxHeight, blockToSpawn, blockToTarget, hidden);
+            return new NetherGeneratorFluid(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToTarget, hidden);
         }
 
         return null;
     }
 
     @Override
-    public boolean generate(World world, BlockPos pos, Random rand)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         if(world.getBlockState(pos.up()) != blockToTarget)
         {

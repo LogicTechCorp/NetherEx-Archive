@@ -1,5 +1,4 @@
 {
-    "biomeType": "nex:basic",
     "biome": "nex:fungi_forest",
     "weight": 4,
     "climate": "cool",
@@ -12,10 +11,10 @@
             "type": "lively"
         }
     },
-    "biomeFeatures": [
+    "generators": [
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -25,13 +24,14 @@
                     "type": "lively"
                 }
             },
-            "genAttempts": -10.0,
+            "generationAttempts": -10,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -41,20 +41,22 @@
                     "type": "lively"
                 }
             },
-            "genAttempts": 10.0,
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128
         },
         {
-            "featureType": "nex:enoki",
-            "stage": "glowstone",
-            "genAttempts": 64.0,
+            "generator": "enoki",
+            "generationStage": "glowstone",
+            "generationAttempts": 64,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_quartz",
                 "properties": {
@@ -68,7 +70,8 @@
                 }
             },
             "size": 14,
-            "genAttempts": 16.0,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         }

@@ -1,5 +1,4 @@
 {
-    "biomeType": "nex:basic",
     "biome": "nex:arctic_abyss",
     "weight": 1,
     "climate": "cold",
@@ -18,10 +17,10 @@
     "oceanBlock": {
         "block": "minecraft:magma"
     },
-    "biomeFeatures": [
+    "generators": [
         {
-            "featureType": "nex:scatter",
-            "stage": "fire",
+            "generator": "scatter",
+            "generationStage": "fire",
             "blockToSpawn": {
                 "block": "nex:block_fire_blue"
             },
@@ -29,13 +28,14 @@
                 "block": "nex:block_ice_frostburn"
             },
             "placement": "onGround",
-            "genAttempts": -5.0,
+            "generationAttempts": -5,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -45,13 +45,14 @@
                     "type": "icy"
                 }
             },
-            "genAttempts": -10.0,
+            "generationAttempts": -10,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -61,13 +62,14 @@
                     "type": "icy"
                 }
             },
-            "genAttempts": 10.0,
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_quartz",
                 "properties": {
@@ -81,13 +83,14 @@
                 }
             },
             "size": 14,
-            "genAttempts": 16.0,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_rime"
             },
@@ -98,20 +101,22 @@
                 }
             },
             "size": 7,
-            "genAttempts": 16.0,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         },
         {
-            "featureType": "nex:pool",
-            "stage": "lavaFall",
+            "generator": "pool",
+            "generationStage": "lavaFall",
             "blockToSpawn": {
                 "block": "nex:fluid_ichor"
             },
             "blockToSurround": {
                 "block": "nex:block_ice_frostburn"
             },
-            "genAttempts": 1.125,
+            "generationAttempts": 1,
+            "generationProbability": 0.125,
             "minHeight": 36,
             "maxHeight": 96
         }

@@ -32,20 +32,17 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureOre extends BiomeFeatureNetherEx
+public class NetherGeneratorOre extends NetherGenerator
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToReplace;
     private final int size;
 
-    public BiomeFeatureOre()
-    {
-        this(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0);
-    }
+    public static final NetherGeneratorOre INSTANCE = new NetherGeneratorOre(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0);
 
-    private BiomeFeatureOre(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
+    private NetherGeneratorOre(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
     {
-        super("ore", genAttemptsIn, minHeightIn, maxHeightIn);
+        super(generationAttempts, generationProbability, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToReplace = blockToReplaceIn;
@@ -53,9 +50,10 @@ public class BiomeFeatureOre extends BiomeFeatureNetherEx
     }
 
     @Override
-    public BiomeFeatureOre deserialize(JsonObject config)
+    public NetherGeneratorOre deserializeConfig(JsonObject config)
     {
-        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
+        float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -100,14 +98,14 @@ public class BiomeFeatureOre extends BiomeFeatureNetherEx
 
         if(blockToSpawn != null && blockToReplace != null)
         {
-            return new BiomeFeatureOre(genAttempts, minHeight, maxHeight, blockToSpawn, blockToReplace, size);
+            return new NetherGeneratorOre(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToReplace, size);
         }
 
         return null;
     }
 
     @Override
-    public boolean generate(World world, BlockPos pos, Random rand)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         float f = rand.nextFloat() * (float) Math.PI;
         double d0 = (double) ((float) pos.getX() + MathHelper.sin(f) * (float) size / 8.0F);

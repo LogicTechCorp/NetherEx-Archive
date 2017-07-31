@@ -31,28 +31,26 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeaturePool extends BiomeFeatureNetherEx
+public class NetherGeneratorPool extends NetherGenerator
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToSurround;
 
-    public BiomeFeaturePool()
-    {
-        this(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
-    }
+    public static final NetherGeneratorPool INSTANCE = new NetherGeneratorPool(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
 
-    private BiomeFeaturePool(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
+    private NetherGeneratorPool(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
     {
-        super("pool", genAttemptsIn, minHeightIn, maxHeightIn);
+        super(generationAttempts, generationProbability, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToSurround = blockToSurroundIn;
     }
 
     @Override
-    public BiomeFeaturePool deserialize(JsonObject config)
+    public NetherGeneratorPool deserializeConfig(JsonObject config)
     {
-        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
+        float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -95,7 +93,7 @@ public class BiomeFeaturePool extends BiomeFeatureNetherEx
 
         if(blockToSpawn != null && blockToSurround != null)
         {
-            return new BiomeFeaturePool(genAttempts, minHeight, maxHeight, blockToSpawn, blockToSurround);
+            return new NetherGeneratorPool(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToSurround);
         }
 
         return null;
@@ -103,7 +101,7 @@ public class BiomeFeaturePool extends BiomeFeatureNetherEx
     }
 
     @Override
-    public boolean generate(World world, BlockPos pos, Random rand)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         for(pos = pos.add(-8, 0, -8); pos.getY() > getMinHeight() && world.isAirBlock(pos); pos = pos.down())
         {

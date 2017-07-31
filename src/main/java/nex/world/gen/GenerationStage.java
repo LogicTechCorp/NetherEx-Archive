@@ -22,7 +22,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.world.biome.Biome;
-import nex.world.gen.feature.BiomeFeature;
+import nex.world.gen.feature.NetherGenerator;
 
 import java.util.List;
 import java.util.Map;
@@ -43,9 +43,9 @@ public enum GenerationStage
     LAVA_TRAP,
     POST_DECORATE;
 
-    private final Map<Biome, List<BiomeFeature>> BIOME_FEATURE_MAP = Maps.newHashMap();
+    private final Map<Biome, List<NetherGenerator>> BIOME_FEATURE_MAP = Maps.newHashMap();
 
-    public void addBiomeFeature(Biome biome, BiomeFeature feature)
+    public void addBiomeFeature(Biome biome, NetherGenerator feature)
     {
         BIOME_FEATURE_MAP.computeIfAbsent(biome, k -> Lists.newArrayList()).add(feature);
     }
@@ -66,7 +66,7 @@ public enum GenerationStage
         return POST_DECORATE;
     }
 
-    public Map<Biome, List<BiomeFeature>> getBiomeFeatureMap()
+    public Map<Biome, List<NetherGenerator>> getBiomeFeatureMap()
     {
         return ImmutableMap.copyOf(BIOME_FEATURE_MAP);
     }

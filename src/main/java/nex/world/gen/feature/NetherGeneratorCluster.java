@@ -31,28 +31,26 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureCluster extends BiomeFeatureNetherEx
+public class NetherGeneratorCluster extends NetherGenerator
 {
     private IBlockState blockToSpawn;
     private IBlockState blockToHangFrom;
 
-    public BiomeFeatureCluster()
-    {
-        this(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
-    }
+    public static final NetherGeneratorCluster INSTANCE = new NetherGeneratorCluster(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
 
-    private BiomeFeatureCluster(float genAttemptsIn, int minHeightIn, int maxHeightIn, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
+    private NetherGeneratorCluster(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
     {
-        super("cluster", genAttemptsIn, minHeightIn, maxHeightIn);
+        super(generationAttempts, generationProbability, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToHangFrom = blockToHangFromIn;
     }
 
     @Override
-    public BiomeFeatureCluster deserialize(JsonObject config)
+    public NetherGeneratorCluster deserializeConfig(JsonObject config)
     {
-        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
+        float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -95,14 +93,14 @@ public class BiomeFeatureCluster extends BiomeFeatureNetherEx
 
         if(blockToSpawn != null && blockToHangFrom != null)
         {
-            return new BiomeFeatureCluster(genAttempts, minHeight, maxHeight, blockToSpawn, blockToHangFrom);
+            return new NetherGeneratorCluster(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToHangFrom);
         }
 
         return null;
     }
 
     @Override
-    public boolean generate(World world, BlockPos pos, Random rand)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         if(!world.isAirBlock(pos))
         {

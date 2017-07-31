@@ -1,5 +1,4 @@
 {
-    "biomeType": "nex:basic",
     "biome": "nex:ruthless_sands",
     "weight": 8,
     "climate": "temperate",
@@ -12,10 +11,10 @@
             "type": "gloomy"
         }
     },
-    "biomeFeatures": [
+    "generators": [
         {
-            "featureType": "nex:fluid",
-            "stage": "lavaTrap",
+            "generator": "fluid",
+            "generationStage": "lavaTrap",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -26,13 +25,14 @@
                 }
             },
             "hidden": false,
-            "genAttempts": 8.0,
+            "generationAttempts": 8,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -42,13 +42,14 @@
                     "type": "gloomy"
                 }
             },
-            "genAttempts": -10.0,
+            "generationAttempts": -10,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:cluster",
-            "stage": "glowstone",
+            "generator": "cluster",
+            "generationStage": "glowstone",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -58,20 +59,22 @@
                     "type": "gloomy"
                 }
             },
-            "genAttempts": 10.0,
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128
         },
         {
-            "featureType": "nex:thornstalk",
-            "stage": "mushroom",
-            "genAttempts": 10.0,
+            "generator": "thornstalk",
+            "generationStage": "mushroom",
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
         },
         {
-            "featureType": "nex:ore",
-            "stage": "quartz",
+            "generator": "ore",
+            "generationStage": "quartz",
             "blockToSpawn": {
                 "block": "nex:ore_quartz",
                 "properties": {
@@ -85,13 +88,14 @@
                 }
             },
             "size": 14,
-            "genAttempts": 32.0,
+            "generationAttempts": 32,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108
         },
         {
-            "featureType": "nex:fluid",
-            "stage": "lavaFall",
+            "generator": "fluid",
+            "generationStage": "lavaFall",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -102,7 +106,8 @@
                 }
             },
             "hidden": true,
-            "genAttempts": 48.0,
+            "generationAttempts": 48,
+            "generationProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 118
         }

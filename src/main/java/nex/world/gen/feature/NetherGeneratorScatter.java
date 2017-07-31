@@ -33,20 +33,17 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class BiomeFeatureScatter extends BiomeFeatureNetherEx
+public class NetherGeneratorScatter extends NetherGenerator
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToTarget;
     private final Placement placement;
 
-    public BiomeFeatureScatter()
-    {
-        this(0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), BiomeFeatureScatter.Placement.ON_GROUND);
-    }
+    public static final NetherGeneratorScatter INSTANCE = new NetherGeneratorScatter(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), NetherGeneratorScatter.Placement.ON_GROUND);
 
-    private BiomeFeatureScatter(float genAttempts, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
+    private NetherGeneratorScatter(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
     {
-        super("scatter", genAttempts, minHeight, maxHeight);
+        super(generationAttempts, generationProbability, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToTarget = blockToTargetIn;
@@ -54,9 +51,10 @@ public class BiomeFeatureScatter extends BiomeFeatureNetherEx
     }
 
     @Override
-    public BiomeFeatureScatter deserialize(JsonObject config)
+    public NetherGeneratorScatter deserializeConfig(JsonObject config)
     {
-        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
+        float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
@@ -101,14 +99,14 @@ public class BiomeFeatureScatter extends BiomeFeatureNetherEx
 
         if(blockToSpawn != null && blockToTarget != null)
         {
-            return new BiomeFeatureScatter(genAttempts, minHeight, maxHeight, blockToSpawn, blockToTarget, placement);
+            return new NetherGeneratorScatter(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToTarget, placement);
         }
 
         return null;
     }
 
     @Override
-    public boolean generate(World world, BlockPos pos, Random rand)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         for(int i = 0; i < 64; ++i)
         {

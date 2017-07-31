@@ -22,14 +22,12 @@ import com.google.gson.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
-import nex.init.NetherExRegistries;
 import nex.util.FileUtil;
 import nex.world.gen.GenerationStage;
-import nex.world.gen.feature.BiomeFeature;
+import nex.world.gen.feature.NetherGenerator;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -117,7 +115,7 @@ public class NetherBiomeManager
 
     private static void parseBiomeConfig(JsonObject config)
     {
-        NetherBiome netherBiome = deserializeBiome(config);
+        NetherBiome netherBiome = NetherBiome.deserialize(config);
         NetherBiomeClimate netherBiomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
 
         if(netherBiome != null)
@@ -125,46 +123,22 @@ public class NetherBiomeManager
             netherBiomeClimate.addBiome(netherBiome);
             LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
 
-            JsonArray biomeFeatureConfigs = JsonUtils.getJsonArray(config, "biomeFeatures", new JsonArray());
+            JsonArray netherGeneratorConfigs = JsonUtils.getJsonArray(config, "generators", new JsonArray());
 
-            if(biomeFeatureConfigs.size() > 0)
+            if(netherGeneratorConfigs.size() > 0)
             {
-                for(JsonElement biomeFeatureConfig : biomeFeatureConfigs)
+                for(JsonElement netherGeneratorConfig : netherGeneratorConfigs)
                 {
-                    BiomeFeature biomeFeature = deserializeFeature(biomeFeatureConfig.getAsJsonObject());
-                    GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(biomeFeatureConfig.getAsJsonObject(), "stage"));
+                    NetherGenerator netherGenerator = NetherGenerator.deserialize(netherGeneratorConfig.getAsJsonObject());
+                    GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(netherGeneratorConfig.getAsJsonObject(), "generationStage"));
 
-                    if(biomeFeature != null)
+                    if(netherGenerator != null)
                     {
-                        generationStage.addBiomeFeature(netherBiome.getBiome(), biomeFeature);
+                        generationStage.addBiomeFeature(netherBiome.getBiome(), netherGenerator);
                     }
                 }
             }
         }
-    }
-
-    private static NetherBiome deserializeBiome(JsonObject config)
-    {
-        NetherBiome netherBiome = NetherExRegistries.getNetherBiome(new ResourceLocation(JsonUtils.getString(config, "biomeType", "")));
-
-        if(netherBiome != null)
-        {
-            return netherBiome.deserialize(config);
-        }
-
-        return null;
-    }
-
-    private static BiomeFeature deserializeFeature(JsonObject config)
-    {
-        BiomeFeature feature = NetherExRegistries.getBiomeFeature(new ResourceLocation(JsonUtils.getString(config, "featureType", "")));
-
-        if(feature != null)
-        {
-            return feature.deserialize(config);
-        }
-
-        return null;
     }
 
     public static Biome getRandomBiome(GenLayerNetherEx layer)
@@ -179,9 +153,9 @@ public class NetherBiomeManager
         return WeightedRandom.getRandomItem(biomeEntryList, layer.nextInt(WeightedRandom.getTotalWeight(biomeEntryList))).getBiome();
     }
 
-    public static List<BiomeFeature> getBiomeFeatures(Biome biome, GenerationStage generationStage)
+    public static List<NetherGenerator> getBiomeFeatures(Biome biome, GenerationStage generationStage)
     {
-        Map<Biome, List<BiomeFeature>> biomeFeatureMap = generationStage.getBiomeFeatureMap();
+        Map<Biome, List<NetherGenerator>> biomeFeatureMap = generationStage.getBiomeFeatureMap();
 
         if(biomeFeatureMap.containsKey(biome))
         {

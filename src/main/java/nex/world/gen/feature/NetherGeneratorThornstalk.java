@@ -27,30 +27,28 @@ import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-public class BiomeFeatureThornstalk extends BiomeFeatureNetherEx
+public class NetherGeneratorThornstalk extends NetherGenerator
 {
-    public BiomeFeatureThornstalk()
-    {
-        this(0.0F, 0, 0);
-    }
+    public static final NetherGeneratorThornstalk INSTANCE = new NetherGeneratorThornstalk(0, 0.0F, 0, 0);
 
-    private BiomeFeatureThornstalk(float genAttempts, int minHeight, int maxHeight)
+    private NetherGeneratorThornstalk(int generationAttempts, float generationProbability, int minHeight, int maxHeight)
     {
-        super("thornstalk", genAttempts, minHeight, maxHeight);
+        super(generationAttempts, generationProbability, minHeight, maxHeight);
     }
 
     @Override
-    public BiomeFeatureThornstalk deserialize(JsonObject config)
+    public NetherGeneratorThornstalk deserializeConfig(JsonObject config)
     {
-        float genAttempts = JsonUtils.getFloat(config, "genAttempts", 10.0F);
+        int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
+        float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
-        return new BiomeFeatureThornstalk(genAttempts, minHeight, maxHeight);
+        return new NetherGeneratorThornstalk(generationAttempts, generationProbability, minHeight, maxHeight);
     }
 
     @Override
-    public boolean generate(World world, BlockPos pos, Random rand)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         for(int i = 0; i < 64; ++i)
         {
