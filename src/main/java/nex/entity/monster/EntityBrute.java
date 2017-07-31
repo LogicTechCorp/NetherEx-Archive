@@ -47,6 +47,7 @@ public class EntityBrute extends EntityMob
         super(world);
 
         setSize(1.25F, 2.25F);
+        isImmuneToFire = true;
     }
 
     @Override

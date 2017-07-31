@@ -48,6 +48,7 @@ public class EntitySpore extends EntityMob
         super(world);
 
         setRandomStage();
+        isImmuneToFire = true;
     }
 
     public EntitySpore(World world, int stage)

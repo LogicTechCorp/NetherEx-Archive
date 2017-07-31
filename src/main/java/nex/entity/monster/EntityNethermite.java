@@ -39,7 +39,6 @@ public class EntityNethermite extends EntityMob
         super(world);
 
         setSize(0.4F, 0.3F);
-
         isImmuneToFire = true;
     }
 

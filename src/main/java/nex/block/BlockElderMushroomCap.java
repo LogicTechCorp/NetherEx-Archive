@@ -27,6 +27,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import nex.init.NetherExItems;
 
@@ -56,6 +57,12 @@ public class BlockElderMushroomCap extends BlockNetherEx
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     {
         return player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_AXE_BONE;
+    }
+
+    @Override
+    public boolean canDropFromExplosion(Explosion explosionIn)
+    {
+        return false;
     }
 
     @Override

@@ -299,7 +299,20 @@ public class EntityObsidianBoat extends EntityBoat
         {
             if(getPaddleState(i))
             {
-                paddlePositions[i] = (float) ((double) paddlePositions[i] + 0.01D);
+                if(!isSilent() && (double) (paddlePositions[i] % ((float) Math.PI * 2F)) <= (Math.PI / 4D) && ((double) paddlePositions[i] + 0.39269909262657166D) % (Math.PI * 2D) >= (Math.PI / 4D))
+                {
+                    SoundEvent soundevent = getPaddleSound();
+
+                    if(soundevent != null)
+                    {
+                        Vec3d vec3d = getLook(1.0F);
+                        double d0 = i == 1 ? -vec3d.z : vec3d.z;
+                        double d1 = i == 1 ? vec3d.x : -vec3d.x;
+                        world.playSound(null, posX + d0, posY, posZ + d1, soundevent, getSoundCategory(), 1.0F, 0.8F + 0.4F * rand.nextFloat());
+                    }
+                }
+
+                paddlePositions[i] = (float) ((double) paddlePositions[i] + 0.39269909262657166D);
             }
             else
             {
@@ -365,9 +378,9 @@ public class EntityObsidianBoat extends EntityBoat
 
     @Override
     @SideOnly(Side.CLIENT)
-    public float getRowingTime(int state, float limbSwing)
+    public float getRowingTime(int side, float limbSwing)
     {
-        return getPaddleState(state) ? (float) MathHelper.clampedLerp((double) paddlePositions[state] - 0.01D, (double) paddlePositions[state], (double) limbSwing) : 0.0F;
+        return getPaddleState(side) ? (float) MathHelper.clampedLerp((double) paddlePositions[side] - 0.39269909262657166D, (double) paddlePositions[side], (double) limbSwing) : 0.0F;
     }
 
     private Status getBoatStatus()

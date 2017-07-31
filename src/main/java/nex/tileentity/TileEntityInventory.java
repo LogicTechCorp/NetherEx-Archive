@@ -88,7 +88,7 @@ public class TileEntityInventory extends TileEntity
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
-        return (T) inventory;
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T) inventory : null;
     }
 
     public void dropInventoryItems(World world, BlockPos pos)
