@@ -44,11 +44,12 @@ public abstract class NetherGenerator extends WorldGenerator
 
     public static NetherGenerator deserialize(JsonObject config)
     {
-        String identifier = JsonUtils.getString(config, "generator", "");
-        Type type = Type.getFromString(identifier);
+        GeneratorType generatorType = GeneratorType.getFromString(JsonUtils.getString(config, "generator", ""));
 
-        switch(type)
+        switch(generatorType)
         {
+            case STRUCTURE:
+                return NetherGeneratorStructure.INSTANCE.deserializeConfig(config);
             case FLUID:
                 return NetherGeneratorFluid.INSTANCE.deserializeConfig(config);
             case SCATTER:
@@ -111,8 +112,9 @@ public abstract class NetherGenerator extends WorldGenerator
         return maxHeight;
     }
 
-    private enum Type
+    private enum GeneratorType
     {
+        STRUCTURE,
         FLUID,
         SCATTER,
         CLUSTER,
@@ -122,15 +124,15 @@ public abstract class NetherGenerator extends WorldGenerator
         ENOKI,
         UNKNOWN;
 
-        public static Type getFromString(String string)
+        public static GeneratorType getFromString(String string)
         {
             if(!Strings.isNullOrEmpty(string))
             {
-                for(Type type : values())
+                for(GeneratorType generatorType : values())
                 {
-                    if(type.name().equalsIgnoreCase(string))
+                    if(generatorType.name().equalsIgnoreCase(string))
                     {
-                        return type;
+                        return generatorType;
                     }
                 }
             }

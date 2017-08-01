@@ -13,6 +13,114 @@
     },
     "generators": [
         {
+            "generator": "structure",
+            "generationStage": "prePopulate",
+            "structures": [
+                {
+                    "structure": "nex:crypt_ruthless_sands",
+                    "weight": 1,
+                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_ruthless_sands" ]
+                }
+            ],
+            "structureType": "ground",
+            "generationAttempts": 2,
+            "generationProbability": 0.125,
+            "minHeight": 32,
+            "maxHeight": 112
+        },
+        {
+            "generator": "structure",
+            "generationStage": "prePopulate",
+            "structures": [
+                {
+                    "structure": "nex:grave_ruthless_sands_chest",
+                    "weight": 1,
+                    "lootTables": [ "nex:chest/grave_base" ]
+                },
+                {
+                    "structure": "nex:grave_ruthless_sands_empty",
+                    "weight": 2
+                }
+            ],
+            "structureType": "ground",
+            "generationAttempts": 2,
+            "generationProbability": 0.75,
+            "minHeight": 32,
+            "maxHeight": 112
+        },
+        {
+            "generator": "structure",
+            "generationStage": "prePopulate",
+            "structures": [
+                {
+                    "structure": "nex:graveyard_ruthless_sands",
+                    "weight": 1,
+                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_ruthless_sands" ],
+                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                }
+            ],
+            "structureType": "ground",
+            "generationAttempts": 2,
+            "generationProbability": 0.125,
+            "minHeight": 32,
+            "maxHeight": 112
+        },
+        {
+            "generator": "structure",
+            "generationStage": "prePopulate",
+            "structures": [
+                {
+                    "structure": "nex:sarcophagus_ruthless_sands",
+                    "weight": 1,
+                    "lootTables": [ "nex:chest/grave_rare" ],
+                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                }
+            ],
+            "structureType": "ground",
+            "generationAttempts": 2,
+            "generationProbability": 0.0625,
+            "minHeight": 32,
+            "maxHeight": 112
+        },
+        {
+            "generator": "structure",
+            "generationStage": "prePopulate",
+            "structures": [
+                {
+                    "structure": "nex:altar_ruthless_sands_destroyed",
+                    "weight": 1
+                },
+                {
+                    "structure": "nex:altar_ruthless_sands_ruined",
+                    "weight": 2
+                },
+                {
+                    "structure": "nex:altar_ruthless_sands_intact",
+                    "weight": 3
+                }
+            ],
+            "structureType": "ground",
+            "generationAttempts": 2,
+            "generationProbability": 0.0625,
+            "minHeight": 32,
+            "maxHeight": 112
+        },
+        {
+            "generator": "structure",
+            "generationStage": "prePopulate",
+            "structures": [
+                {
+                    "structure": "nex:waypoint_ruthless_sands",
+                    "weight": 1
+                }
+            ],
+            "structureType": "ground",
+            "generationAttempts": 2,
+            "generationProbability": 0.125,
+            "minHeight": 32,
+            "maxHeight": 112
+        },
+        {
             "generator": "fluid",
             "generationStage": "lavaTrap",
             "blockToSpawn": {

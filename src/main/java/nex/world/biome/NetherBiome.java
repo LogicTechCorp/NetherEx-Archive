@@ -38,7 +38,7 @@ public class NetherBiome
     private final IBlockState roofFillerBlock;
     private final IBlockState oceanBlock;
 
-    protected NetherBiome(Biome biomeIn, int weightIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
+    private NetherBiome(Biome biomeIn, int weightIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
     {
         biome = biomeIn;
         weight = weightIn;
