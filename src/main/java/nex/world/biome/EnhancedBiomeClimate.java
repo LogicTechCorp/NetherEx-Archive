@@ -26,7 +26,7 @@ import net.minecraft.world.biome.Biome;
 import java.util.List;
 import java.util.Map;
 
-public enum NetherBiomeClimate
+public enum EnhancedBiomeClimate
 {
     HOT,
     WARM,
@@ -34,22 +34,22 @@ public enum NetherBiomeClimate
     COOL,
     COLD;
 
-    private static final Map<Biome, NetherBiomeEntry> BIOME_ENTRIES = Maps.newHashMap();
+    private final Map<Biome, EnhancedBiomeEntry> biomeEntries = Maps.newHashMap();
 
     public void addBiome(EnhancedBiome enhancedBiome)
     {
-        BIOME_ENTRIES.put(enhancedBiome.getBiome(), new NetherBiomeEntry(enhancedBiome));
+        biomeEntries.put(enhancedBiome.getBiome(), new EnhancedBiomeEntry(enhancedBiome));
     }
 
-    public static NetherBiomeClimate getFromBiome(Biome biome)
+    public static EnhancedBiomeClimate getFromBiome(Biome biome)
     {
-        for(NetherBiomeClimate biomeClimate : values())
+        for(EnhancedBiomeClimate enhancedBiomeClimate : values())
         {
-            for(NetherBiomeEntry biomeEntry : biomeClimate.getBiomeEntries())
+            for(EnhancedBiomeEntry biomeEntry : enhancedBiomeClimate.getBiomeEntryMap().values())
             {
                 if(biomeEntry.biome == biome)
                 {
-                    return biomeClimate;
+                    return enhancedBiomeClimate;
                 }
             }
         }
@@ -57,15 +57,15 @@ public enum NetherBiomeClimate
         return TEMPERATE;
     }
 
-    public static NetherBiomeClimate getFromString(String string)
+    public static EnhancedBiomeClimate getFromString(String string)
     {
         if(!Strings.isNullOrEmpty(string))
         {
-            for(NetherBiomeClimate biomeClimate : values())
+            for(EnhancedBiomeClimate enhancedBiomeClimate : values())
             {
-                if(biomeClimate.name().equalsIgnoreCase(string))
+                if(enhancedBiomeClimate.name().equalsIgnoreCase(string))
                 {
-                    return biomeClimate;
+                    return enhancedBiomeClimate;
                 }
             }
         }
@@ -73,13 +73,8 @@ public enum NetherBiomeClimate
         return TEMPERATE;
     }
 
-    public Map<Biome, NetherBiomeEntry> getBiomeEntryMap()
+    public Map<Biome, EnhancedBiomeEntry> getBiomeEntryMap()
     {
-        return ImmutableMap.copyOf(BIOME_ENTRIES);
-    }
-
-    public List<NetherBiomeEntry> getBiomeEntries()
-    {
-        return ImmutableList.copyOf(BIOME_ENTRIES.values());
+        return ImmutableMap.copyOf(biomeEntries);
     }
 }

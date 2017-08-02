@@ -238,11 +238,6 @@ public class BlockUtil
         return false;
     }
 
-    public static Block getBlock(String blockId, String fallback)
-    {
-        return Block.getBlockFromName(blockId == null || blockId.isEmpty() || Block.getBlockFromName(blockId) == null ? fallback : blockId);
-    }
-
     private static IProperty getProperty(IBlockState state, String propertyName)
     {
         for(IProperty property : state.getProperties().keySet())

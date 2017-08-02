@@ -21,43 +21,55 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.io.Files;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.JsonUtils;
 import nex.NetherEx;
 import nex.util.FileUtil;
 import nex.util.NBTUtil;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 @SuppressWarnings("ConstantConditions")
 public class TradeManager
 {
-    private static HashMap<Trade.Career.EnumType, HashMap<Integer, List<Trade>>> offerLists = Maps.newHashMap();
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeManager");
 
     public static void init(File directory)
     {
-        for(Trade.Career.EnumType career : Trade.Career.EnumType.values())
-        {
-            offerLists.put(career, Maps.newHashMap());
-        }
+        copyTradeConfigsToConfigDirectory(directory);
+        parseTradeConfigs(directory);
+    }
 
+    private static void copyTradeConfigsToConfigDirectory(File directory)
+    {
         try
         {
-            LOGGER.info("Copying the Trade. List Directory to the config folder.");
+            if(!directory.exists())
+            {
+                directory.mkdir();
+            }
+
+            LOGGER.info("Copying the Trade config directory to the config folder.");
 
             if(NetherEx.IS_DEV_ENV)
             {
@@ -70,142 +82,58 @@ public class TradeManager
         }
         catch(IOException e)
         {
-            LOGGER.fatal("The attempt to copy the Trade. List Directory to the config folder was unsuccessful.");
+            LOGGER.fatal("The attempt to copy the Trade config directory to the config folder was unsuccessful.");
             LOGGER.fatal(e);
         }
 
+    }
+
+    private static void parseTradeConfigs(File directory)
+    {
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        Path directoryPath = directory.toPath();
+
         try
         {
-            Gson gson = new Gson();
-            List<File> tradeFiles = Lists.newArrayList(directory.listFiles());
+            Iterator<Path> pathIter = Files.walk(directoryPath).iterator();
 
-            for(File tradeFile : tradeFiles)
+            while(pathIter.hasNext())
             {
-                String jsonText = Files.toString(tradeFile, Charsets.UTF_8);
-                Trade.TradeList tradeList = gson.fromJson(jsonText, Trade.TradeList.class);
+                Path configPath = pathIter.next();
 
-                LOGGER.info("Adding trades from the " + tradeList.getName() + ".");
-
-                for(Trade.Profession profession : tradeList.getProfessions())
+                if(FilenameUtils.getExtension(configPath.toString()).equals("json"))
                 {
-                    for(Trade.Career career : profession.getCareers())
-                    {
-                        for(Trade.Offer offer : career.getTrades())
-                        {
-                            ItemStack outputStack;
-                            Trade.Offer.Output output = offer.getOutput();
-                            String outputId = output.getId();
-                            int outputMeta = output.getMeta();
-                            List<Trade.Offer.Enchantment> outputEnchantments = output.getEnchantments();
-                            Trade.Offer.Display outputDisplay = output.getDisplay();
-
-                            if(Item.getByNameOrId(outputId) != null)
-                            {
-                                outputStack = new ItemStack(Item.getByNameOrId(outputId), 1, outputMeta);
-                            }
-                            else if(Block.getBlockFromName(outputId) != null)
-                            {
-                                outputStack = new ItemStack(Block.getBlockFromName(outputId), 1, outputMeta);
-                            }
-                            else
-                            {
-                                continue;
-                            }
-
-                            if(outputEnchantments == null)
-                            {
-                                outputEnchantments = Lists.newArrayList();
-                            }
-
-                            if(outputDisplay != null)
-                            {
-                                if(!Strings.isNullOrEmpty(outputDisplay.getName()))
-                                {
-                                    outputStack.setStackDisplayName(outputDisplay.getName());
-                                }
-                                if(outputDisplay.getLore().size() > 0)
-                                {
-                                    NBTUtil.setTag(outputStack);
-                                    NBTTagList loreList = new NBTTagList();
-
-                                    for(String lore : outputDisplay.getLore())
-                                    {
-                                        loreList.appendTag(new NBTTagString(lore));
-                                    }
-
-                                    NBTTagCompound displayCompound = new NBTTagCompound();
-                                    displayCompound.setTag("Lore", loreList);
-                                    NBTTagCompound compound = new NBTTagCompound();
-                                    compound.setTag("display", displayCompound);
-                                    NBTUtil.setTag(outputStack, compound);
-                                }
-                            }
-
-                            ItemStack inputStackA;
-                            Trade.Offer.Input inputA = offer.getInputA();
-                            String inputAId = inputA.getId();
-                            int inputAMeta = inputA.getMeta();
-
-                            if(Item.getByNameOrId(inputAId) != null)
-                            {
-                                inputStackA = new ItemStack(Item.getByNameOrId(inputAId), 1, inputAMeta);
-                            }
-                            else if(Block.getBlockFromName(inputAId) != null)
-                            {
-                                inputStackA = new ItemStack(Block.getBlockFromName(inputAId), 1, inputAMeta);
-                            }
-                            else
-                            {
-                                continue;
-                            }
-
-                            ItemStack inputStackB;
-                            Trade.Offer.Input inputB = offer.getInputB();
-
-                            if(inputB == null)
-                            {
-                                inputB = new Trade.Offer.Input();
-                            }
-
-                            String inputBId = inputB.getId();
-                            int inputBMeta = inputB.getMeta();
-
-                            if(Item.getByNameOrId(inputBId) != null)
-                            {
-                                inputStackB = new ItemStack(Item.getByNameOrId(inputBId), 1, inputBMeta);
-                            }
-                            else if(Block.getBlockFromName(inputBId) != null)
-                            {
-                                inputStackB = new ItemStack(Block.getBlockFromName(inputBId), 1, inputBMeta);
-                            }
-                            else
-                            {
-                                continue;
-                            }
-
-                            Trade trade = new Trade(outputStack, output.getMinStackSize(), output.getMaxStackSize(), inputStackA, inputA.getMinStackSize(), inputA.getMaxStackSize(), inputStackB, inputB.getMinStackSize(), inputB.getMaxStackSize(), offer.getMinTradesAvailable(), offer.getMaxTradesAvailable(), outputEnchantments);
-                            offerLists.get(Trade.Career.EnumType.fromCareer(career)).computeIfAbsent(offer.getLevel(), k -> Lists.newArrayList()).add(trade);
-                        }
-                    }
+                    BufferedReader reader = java.nio.file.Files.newBufferedReader(configPath);
+                    parseTradeConfig(JsonUtils.fromJson(gson, reader, JsonObject.class));
+                    IOUtils.closeQuietly(reader);
+                }
+                else if(!configPath.toFile().isDirectory())
+                {
+                    LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
                 }
             }
         }
         catch(IOException e)
         {
-            LOGGER.fatal("NetherEx was unable to read the Trade. lists.");
-            LOGGER.fatal(e);
+            e.printStackTrace();
         }
     }
 
-    public static List<Trade> getTrades(Trade.Career.EnumType type, int level)
+    private static void parseTradeConfig(JsonObject config)
     {
-        List<Trade> trades = Lists.newArrayList();
+        String careerIdentifier = JsonUtils.getString(config, "career", "");
+        Pigtificate.Career career = null;
 
-        if(offerLists.get(type).containsKey(level))
+        for(Enum value : Pigtificate.Career.class.getEnumConstants())
         {
-            trades.addAll(offerLists.get(type).get(level));
+            if(value.name().equalsIgnoreCase(careerIdentifier))
+            {
+                career = (Pigtificate.Career) value;
+            }
         }
-
-        return trades;
+        if(career != null)
+        {
+            career.addTrade(EnhancedTrade.deserialize(config));
+        }
     }
 }

@@ -31,12 +31,17 @@ public class WeightedUtil
 
     public static class NamedItem extends WeightedRandom.Item
     {
-        public String name;
+        private String name;
 
         public NamedItem(String nameIn, int weight)
         {
             super(weight);
             name = nameIn;
+        }
+
+        public String getName()
+        {
+            return name;
         }
     }
 }

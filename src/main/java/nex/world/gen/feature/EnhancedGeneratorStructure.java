@@ -117,27 +117,18 @@ public class EnhancedGeneratorStructure extends EnhancedGenerator
                     List<ResourceLocation> lootTables = Lists.newArrayList();
                     List<ResourceLocation> spawnerMobs = Lists.newArrayList();
 
-                    JsonArray lootTableConfigs = JsonUtils.getJsonArray(structureConfig.getAsJsonObject(), "lootTables", new JsonArray());
-                    JsonArray spawnerMobConfigs = JsonUtils.getJsonArray(structureConfig.getAsJsonObject(), "spawnerMobs", new JsonArray());
-
-                    if(lootTableConfigs.size() > 0)
+                    for(JsonElement lootTable : JsonUtils.getJsonArray(structureConfig.getAsJsonObject(), "lootTables", new JsonArray()))
                     {
-                        for(JsonElement lootTable : lootTableConfigs)
+                        if(lootTable.isJsonPrimitive() && lootTable.getAsJsonPrimitive().isString())
                         {
-                            if(lootTable.isJsonPrimitive())
-                            {
-                                lootTables.add(new ResourceLocation(lootTable.getAsJsonPrimitive().getAsString()));
-                            }
+                            lootTables.add(new ResourceLocation(lootTable.getAsJsonPrimitive().getAsString()));
                         }
                     }
-                    if(spawnerMobConfigs.size() > 0)
+                    for(JsonElement spawnerMob : JsonUtils.getJsonArray(structureConfig.getAsJsonObject(), "spawnerMobs", new JsonArray()))
                     {
-                        for(JsonElement spawnerMob : spawnerMobConfigs)
+                        if(spawnerMob.isJsonPrimitive() && spawnerMob.getAsJsonPrimitive().isString())
                         {
-                            if(spawnerMob.isJsonPrimitive())
-                            {
-                                spawnerMobs.add(new ResourceLocation(spawnerMob.getAsJsonPrimitive().getAsString()));
-                            }
+                            spawnerMobs.add(new ResourceLocation(spawnerMob.getAsJsonPrimitive().getAsString()));
                         }
                     }
 
@@ -161,7 +152,7 @@ public class EnhancedGeneratorStructure extends EnhancedGenerator
 
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(structure.name));
+        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(structure.getName()));
 
         PlacementSettings placementSettings = new PlacementSettings().setMirror(netherStructure.getMirror()).setRotation(netherStructure.getRotation()).setReplacedBlock(netherStructure.getReplacedBlock()).setRandom(rand);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());

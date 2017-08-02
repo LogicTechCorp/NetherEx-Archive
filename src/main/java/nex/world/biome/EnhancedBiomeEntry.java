@@ -21,7 +21,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 
-public class NetherBiomeEntry extends BiomeManager.BiomeEntry
+public class EnhancedBiomeEntry extends BiomeManager.BiomeEntry
 {
     private final IBlockState floorTopBlock;
     private final IBlockState floorFillerBlock;
@@ -30,7 +30,7 @@ public class NetherBiomeEntry extends BiomeManager.BiomeEntry
     private IBlockState roofFillerBlock;
     private final IBlockState oceanBlock;
 
-    public NetherBiomeEntry(EnhancedBiome enhancedBiome)
+    public EnhancedBiomeEntry(EnhancedBiome enhancedBiome)
     {
         super(enhancedBiome.getBiome(), enhancedBiome.getWeight());
 

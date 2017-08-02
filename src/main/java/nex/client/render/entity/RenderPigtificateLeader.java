@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.model.entity.ModelPigtificateLeader;
 import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
-import nex.village.Trade;
+import nex.village.Pigtificate;
 
 @SideOnly(Side.CLIENT)
 public class RenderPigtificateLeader extends RenderLiving<EntityPigtificateLeader>
@@ -56,6 +56,6 @@ public class RenderPigtificateLeader extends RenderLiving<EntityPigtificateLeade
     @Override
     protected ResourceLocation getEntityTexture(EntityPigtificateLeader pigtificate)
     {
-        return Trade.Career.EnumType.fromIndex(pigtificate.getCareer()).getTexture();
+        return Pigtificate.Career.getFromIndex(pigtificate.getCareer()).getTexture();
     }
 }

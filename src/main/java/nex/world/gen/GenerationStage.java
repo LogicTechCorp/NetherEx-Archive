@@ -43,11 +43,11 @@ public enum GenerationStage
     LAVA_TRAP,
     POST_DECORATE;
 
-    private final Map<Biome, List<EnhancedGenerator>> BIOME_GENERATOR_MAP = Maps.newHashMap();
+    private final Map<Biome, List<EnhancedGenerator>> biomeGenerators = Maps.newHashMap();
 
     public void addGenerator(Biome biome, EnhancedGenerator feature)
     {
-        BIOME_GENERATOR_MAP.computeIfAbsent(biome, k -> Lists.newArrayList()).add(feature);
+        biomeGenerators.computeIfAbsent(biome, k -> Lists.newArrayList()).add(feature);
     }
 
     public static GenerationStage getFromString(String string)
@@ -68,6 +68,6 @@ public enum GenerationStage
 
     public Map<Biome, List<EnhancedGenerator>> getBiomeGeneratorMap()
     {
-        return ImmutableMap.copyOf(BIOME_GENERATOR_MAP);
+        return ImmutableMap.copyOf(biomeGenerators);
     }
 }

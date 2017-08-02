@@ -49,10 +49,8 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
-import nex.village.PigtificateVillage;
-import nex.village.PigtificateVillageManager;
-import nex.village.Trade;
-import nex.village.TradeManager;
+import nex.util.WeightedUtil;
+import nex.village.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -477,14 +475,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         else
         {
             String entityName = EntityList.getEntityString(this);
-            return I18n.translateToLocal("entity." + entityName + "." + Trade.Career.EnumType.fromIndex(getCareer()).name().toLowerCase() + ".name");
+            return I18n.translateToLocal("entity." + entityName + "." + Pigtificate.Career.getFromIndex(getCareer()).name().toLowerCase() + ".name");
         }
     }
 
     @Override
     protected ResourceLocation getLootTable()
     {
-        return Trade.Career.EnumType.fromIndex(getCareer()).getLootTable();
+        return Pigtificate.Career.getFromIndex(getCareer()).getLootTable();
     }
 
     @Override
@@ -581,15 +579,15 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             tradeList = new MerchantRecipeList();
         }
 
-        List<Trade> trades = TradeManager.getTrades(Trade.Career.EnumType.fromIndex(getCareer()), getCareerLevel());
+        List<EnhancedTrade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTradeMap().get(getCareerLevel());
 
-        if(trades.size() > 0)
+        if(trades != null && trades.size() > 0)
         {
             Collections.shuffle(trades, rand);
 
             if(getCareerLevel() == 1 && trades.size() > 1)
             {
-                for(Trade trade : trades.subList(0, 2))
+                for(EnhancedTrade trade : trades.subList(0, 2))
                 {
                     tradeList.add(trade.getRandomTrade(rand));
                 }
@@ -708,24 +706,24 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     protected void setRandomProfession()
     {
-        setProfession(Trade.Profession.EnumType.getRandom(rand, false).ordinal());
+        setProfession(Pigtificate.Profession.getRandom(rand, false).ordinal());
         setRandomCareer();
     }
 
     protected void setRandomCareer()
     {
-        List<Trade.Career.Weighted> careers = Lists.newArrayList();
+        List<WeightedUtil.NamedItem> careers = Lists.newArrayList();
 
-        for(Trade.Career.EnumType type : Trade.Career.EnumType.values())
+        for(Pigtificate.Career career : Pigtificate.Career.values())
         {
-            if(type.getProfession() == Trade.Profession.EnumType.fromIndex(getProfession()))
+            if(career.getProfession() == Pigtificate.Profession.getFromIndex(getProfession()))
             {
-                careers.add(new Trade.Career.Weighted(type));
+                careers.add(new WeightedUtil.NamedItem(career.name(), career.getWeight()));
             }
         }
 
-        Trade.Career.Weighted career = WeightedRandom.getRandomItem(rand, careers);
-        setCareer(career.getType().ordinal());
+        Pigtificate.Career career = Pigtificate.Career.getFromString(WeightedRandom.getRandomItem(rand, careers).getName());
+        setCareer(career.ordinal());
     }
 
     public void setProfession(int i)
@@ -734,9 +732,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         {
             i = 0;
         }
-        else if(i > Trade.Profession.EnumType.values().length)
+        else if(i > Pigtificate.Profession.values().length)
         {
-            i = Trade.Profession.EnumType.values().length;
+            i = Pigtificate.Profession.values().length;
         }
 
         profession = i;

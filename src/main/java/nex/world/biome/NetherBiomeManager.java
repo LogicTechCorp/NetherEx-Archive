@@ -64,7 +64,7 @@ public class NetherBiomeManager
                 directory.mkdir();
             }
 
-            LOGGER.info("Copying the Biome Config Directory to the config folder.");
+            LOGGER.info("Copying the Biome config directory to the config folder.");
 
             if(NetherEx.IS_DEV_ENV)
             {
@@ -77,7 +77,7 @@ public class NetherBiomeManager
         }
         catch(IOException e)
         {
-            LOGGER.fatal("The attempt to copy the Biome Config Directory to the config folder was unsuccessful.");
+            LOGGER.fatal("The attempt to copy the Biome config directory to the config folder was unsuccessful.");
             LOGGER.fatal(e);
         }
     }
@@ -121,7 +121,7 @@ public class NetherBiomeManager
         {
             Biome biome = enhancedBiome.getBiome();
 
-            NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate")).addBiome(enhancedBiome);
+            EnhancedBiomeClimate.getFromString(JsonUtils.getString(config, "climate")).addBiome(enhancedBiome);
             LOGGER.info("Added the " + biome.getRegistryName().getResourcePath() + " biome, from " + biome.getRegistryName().getResourceDomain() + ", to the Nether.");
 
             JsonArray entityConfigs = JsonUtils.getJsonArray(config, "entities", new JsonArray());
@@ -154,11 +154,11 @@ public class NetherBiomeManager
 
     public static Biome getRandomBiome(GenLayerNetherEx layer)
     {
-        List<NetherBiomeEntry> biomeEntryList = Lists.newArrayList();
+        List<EnhancedBiomeEntry> biomeEntryList = Lists.newArrayList();
 
-        for(NetherBiomeClimate biomeClimate : NetherBiomeClimate.values())
+        for(EnhancedBiomeClimate enhancedBiomeClimate : EnhancedBiomeClimate.values())
         {
-            biomeEntryList.addAll(biomeClimate.getBiomeEntries());
+            biomeEntryList.addAll(enhancedBiomeClimate.getBiomeEntryMap().values());
         }
 
         return WeightedRandom.getRandomItem(biomeEntryList, layer.nextInt(WeightedRandom.getTotalWeight(biomeEntryList))).getBiome();
@@ -178,7 +178,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeFloorTopBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, EnhancedBiomeEntry> biomeEntryMap = EnhancedBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -190,7 +190,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeFloorFillerBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, EnhancedBiomeEntry> biomeEntryMap = EnhancedBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -202,7 +202,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeWallBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, EnhancedBiomeEntry> biomeEntryMap = EnhancedBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -214,7 +214,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeRoofBottomBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, EnhancedBiomeEntry> biomeEntryMap = EnhancedBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -226,7 +226,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeRoofFillerBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, EnhancedBiomeEntry> biomeEntryMap = EnhancedBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
@@ -238,7 +238,7 @@ public class NetherBiomeManager
 
     public static IBlockState getBiomeOceanBlock(Biome biome)
     {
-        Map<Biome, NetherBiomeEntry> biomeEntryMap = NetherBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
+        Map<Biome, EnhancedBiomeEntry> biomeEntryMap = EnhancedBiomeClimate.getFromBiome(biome).getBiomeEntryMap();
 
         if(biomeEntryMap.containsKey(biome))
         {
