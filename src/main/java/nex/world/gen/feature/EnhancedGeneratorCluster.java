@@ -62,20 +62,20 @@ public class EnhancedGeneratorCluster extends EnhancedGenerator
 
         if(blockToSpawnJson.entrySet().size() > 0)
         {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "block")));
+            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "block"));
 
-            if(block != null)
+            if(ForgeRegistries.BLOCKS.containsKey(block))
             {
-                blockToSpawn = block.getDefaultState();
+                blockToSpawn = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
             }
         }
         if(blockToHangFromJson.entrySet().size() > 0)
         {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(blockToHangFromJson, "block")));
+            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToHangFromJson, "block"));
 
-            if(block != null)
+            if(ForgeRegistries.BLOCKS.containsKey(block))
             {
-                blockToHangFrom = block.getDefaultState();
+                blockToHangFrom = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
             }
         }
 

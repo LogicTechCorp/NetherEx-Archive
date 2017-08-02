@@ -24,7 +24,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -38,7 +37,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.util.BlockUtil;
 import nex.util.NBTUtil;
 import nex.util.RandomUtil;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Random;
 
@@ -102,7 +100,7 @@ public class EnhancedTrade extends MerchantRecipe
                             outputStack.setStackDisplayName(name);
                         }
 
-                        JsonArray loreConfig = JsonUtils.getJsonArray(displayConfig.getAsJsonObject(), "lore",  new JsonArray());
+                        JsonArray loreConfig = JsonUtils.getJsonArray(displayConfig.getAsJsonObject(), "lore", new JsonArray());
 
                         if(loreConfig.size() > 0)
                         {
@@ -152,7 +150,7 @@ public class EnhancedTrade extends MerchantRecipe
                     int maxTrades = JsonUtils.getInt(tradeConfig.getAsJsonObject(), "maxTradesAvailable", 10);
                     int tradeLevel = JsonUtils.getInt(tradeConfig.getAsJsonObject(), "tradeLevel", 1);
 
-                    return new EnhancedTrade(outputStack, outputTuple.getFirst(), outputTuple.getSecond(), inputAStack, inputATuple.getFirst(), inputATuple.getSecond(), inputBStack, inputBTuple.getFirst(), inputBTuple.getSecond(), minTrades , maxTrades, tradeLevel);
+                    return new EnhancedTrade(outputStack, outputTuple.getFirst(), outputTuple.getSecond(), inputAStack, inputATuple.getFirst(), inputATuple.getSecond(), inputBStack, inputBTuple.getFirst(), inputBTuple.getSecond(), minTrades, maxTrades, tradeLevel);
                 }
             }
         }

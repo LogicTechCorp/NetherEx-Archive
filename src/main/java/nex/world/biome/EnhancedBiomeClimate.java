@@ -18,12 +18,10 @@
 package nex.world.biome;
 
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.world.biome.Biome;
 
-import java.util.List;
 import java.util.Map;
 
 public enum EnhancedBiomeClimate

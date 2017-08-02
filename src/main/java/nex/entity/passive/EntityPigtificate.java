@@ -50,7 +50,10 @@ import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
 import nex.util.WeightedUtil;
-import nex.village.*;
+import nex.village.EnhancedTrade;
+import nex.village.Pigtificate;
+import nex.village.PigtificateVillage;
+import nex.village.PigtificateVillageManager;
 
 import java.util.Collections;
 import java.util.List;

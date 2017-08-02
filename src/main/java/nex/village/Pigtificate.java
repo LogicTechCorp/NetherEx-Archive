@@ -77,7 +77,7 @@ public class Pigtificate
         }
 
     }
-    
+
     public enum Career
     {
         CHIEF(Profession.LEADER, 16, NetherExTextures.ENTITY_PIGTIFICATE_CHIEF, NetherExLootTables.ENTITY_PIGTIFICATE_CHIEF),

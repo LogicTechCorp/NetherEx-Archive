@@ -75,56 +75,56 @@ public class EnhancedBiome
 
             if(floorTopBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(floorTopBlockJson, "block")));
+                ResourceLocation block = new ResourceLocation(JsonUtils.getString(floorTopBlockJson, "block"));
 
-                if(block != null)
+                if(ForgeRegistries.BLOCKS.containsKey(block))
                 {
-                    floorTopBlock = block.getDefaultState();
+                    floorTopBlock = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
                 }
             }
             if(floorFillerBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(floorFillerBlockJson, "block")));
+                ResourceLocation block = new ResourceLocation(JsonUtils.getString(floorFillerBlockJson, "block"));
 
-                if(block != null)
+                if(ForgeRegistries.BLOCKS.containsKey(block))
                 {
-                    floorFillerBlock = block.getDefaultState();
+                    floorFillerBlock = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
                 }
             }
             if(wallBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(wallBlockJson, "block")));
+                ResourceLocation block = new ResourceLocation(JsonUtils.getString(wallBlockJson, "block"));
 
-                if(block != null)
+                if(ForgeRegistries.BLOCKS.containsKey(block))
                 {
-                    wallBlock = block.getDefaultState();
+                    wallBlock = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
                 }
             }
             if(roofBottomBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(roofBottomBlockJson, "block")));
+                ResourceLocation block = new ResourceLocation(JsonUtils.getString(roofBottomBlockJson, "block"));
 
-                if(block != null)
+                if(ForgeRegistries.BLOCKS.containsKey(block))
                 {
-                    roofBottomBlock = block.getDefaultState();
+                    roofBottomBlock = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
                 }
             }
             if(roofFillerBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(roofFillerBlockJson, "block")));
+                ResourceLocation block = new ResourceLocation(JsonUtils.getString(roofFillerBlockJson, "block"));
 
-                if(block != null)
+                if(ForgeRegistries.BLOCKS.containsKey(block))
                 {
-                    roofFillerBlock = block.getDefaultState();
+                    roofFillerBlock = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
                 }
             }
             if(oceanBlockJson.entrySet().size() > 0)
             {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(oceanBlockJson, "block")));
+                ResourceLocation block = new ResourceLocation(JsonUtils.getString(oceanBlockJson, "block"));
 
-                if(block != null)
+                if(ForgeRegistries.BLOCKS.containsKey(block))
                 {
-                    oceanBlock = block.getDefaultState();
+                    oceanBlock = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
                 }
             }
 

@@ -63,7 +63,7 @@ public class EnhancedGeneratorFluid extends EnhancedGenerator
 
         if(blockToSpawnJson.entrySet().size() > 0)
         {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "block")));
+            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "block"));
 
             if(block != null)
             {
@@ -72,7 +72,6 @@ public class EnhancedGeneratorFluid extends EnhancedGenerator
         }
         if(blockToTargetJson.entrySet().size() > 0)
         {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(blockToTargetJson, "block")));
 
             if(block != null)
             {
