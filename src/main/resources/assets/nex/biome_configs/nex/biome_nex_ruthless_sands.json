@@ -42,7 +42,10 @@
                 {
                     "structure": "nex:crypt_ruthless_sands",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_ruthless_sands" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_ruthless_sands"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -58,7 +61,9 @@
                 {
                     "structure": "nex:grave_ruthless_sands_chest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_base" ]
+                    "lootTables": [
+                        "nex:chest/grave_base"
+                    ]
                 },
                 {
                     "structure": "nex:grave_ruthless_sands_empty",
@@ -78,8 +83,15 @@
                 {
                     "structure": "nex:graveyard_ruthless_sands",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_ruthless_sands" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_rare",
+                        "nex:chest/grave_ruthless_sands"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -95,8 +107,13 @@
                 {
                     "structure": "nex:sarcophagus_ruthless_sands",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 }
             ],
             "structureType": "ground",

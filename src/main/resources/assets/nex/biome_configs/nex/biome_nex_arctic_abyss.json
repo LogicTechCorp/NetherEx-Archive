@@ -62,7 +62,10 @@
                 {
                     "structure": "nex:crypt_arctic_abyss",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_arctic_abyss" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_arctic_abyss"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -78,7 +81,9 @@
                 {
                     "structure": "nex:grave_arctic_abyss_chest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_base" ]
+                    "lootTables": [
+                        "nex:chest/grave_base"
+                    ]
                 },
                 {
                     "structure": "nex:grave_arctic_abyss_empty",
@@ -98,8 +103,15 @@
                 {
                     "structure": "nex:graveyard_arctic_abyss",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_arctic_abyss" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_rare",
+                        "nex:chest/grave_arctic_abyss"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -115,8 +127,13 @@
                 {
                     "structure": "nex:sarcophagus_arctic_abyss",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -228,26 +245,58 @@
                 {
                     "structure": "nex:prison_arctic_abyss_large",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare",
+                        "nex:chest/temple_arctic_abyss",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_wight",
+                        "nex:monster_bone_spider"
+                    ]
                 },
                 {
                     "structure": "nex:prison_arctic_abyss_medium_variant",
                     "weight": 2,
-                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare",
+                        "nex:chest/temple_arctic_abyss",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_wight",
+                        "nex:monster_bone_spider"
+                    ]
                 },
                 {
                     "structure": "nex:prison_arctic_abyss_medium",
                     "weight": 3,
-                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare",
+                        "nex:chest/temple_arctic_abyss",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_wight",
+                        "nex:monster_bone_spider"
+                    ]
                 },
                 {
                     "structure": "nex:prison_arctic_abyss_small",
                     "weight": 4,
-                    "lootTables": [ "nex:chest/grave_rare", "nex:chest/temple_arctic_abyss", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_wight", "nex:monster_bone_spider" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare",
+                        "nex:chest/temple_arctic_abyss",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_wight",
+                        "nex:monster_bone_spider"
+                    ]
                 }
             ],
             "structureType": "ground",

@@ -42,7 +42,10 @@
                 {
                     "structure": "nex:crypt_fungi_forest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_fungi_forest" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_fungi_forest"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -58,7 +61,9 @@
                 {
                     "structure": "nex:grave_fungi_forest_chest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_base" ]
+                    "lootTables": [
+                        "nex:chest/grave_base"
+                    ]
                 },
                 {
                     "structure": "nex:grave_fungi_forest_empty",
@@ -78,8 +83,14 @@
                 {
                     "structure": "nex:graveyard_fungi_forest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_fungi_forest" ],
-                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_rare",
+                        "nex:chest/grave_fungi_forest"
+                    ],
+                    "spawnerMobs": [
+                        "nex:monster_spore_creeper"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -95,8 +106,12 @@
                 {
                     "structure": "nex:sarcophagus_fungi_forest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_rare" ],
-                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare"
+                    ],
+                    "spawnerMobs": [
+                        "nex:monster_spore_creeper"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -112,20 +127,35 @@
                 {
                     "structure": "nex:temple_fungi_forest_hard",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/temple_fungi_forest", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
+                    "lootTables": [
+                        "nex:chest/temple_fungi_forest",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "nex:monster_spore_creeper"
+                    ]
                 },
                 {
                     "structure": "nex:temple_fungi_forest_medium",
                     "weight": 2,
-                    "lootTables": [ "nex:chest/temple_fungi_forest", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
+                    "lootTables": [
+                        "nex:chest/temple_fungi_forest",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "nex:monster_spore_creeper"
+                    ]
                 },
                 {
                     "structure": "nex:temple_fungi_forest_easy",
                     "weight": 3,
-                    "lootTables": [ "nex:chest/temple_fungi_forest", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "nex:monster_spore_creeper" ]
+                    "lootTables": [
+                        "nex:chest/temple_fungi_forest",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "nex:monster_spore_creeper"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -141,8 +171,12 @@
                 {
                     "structure": "nex:castle_fungi_forest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:ghast" ]
+                    "lootTables": [
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:ghast"
+                    ]
                 }
             ],
             "structureType": "air",

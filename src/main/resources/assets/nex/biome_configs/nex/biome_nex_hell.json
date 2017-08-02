@@ -60,7 +60,10 @@
                 {
                     "structure": "nex:crypt_hell",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_hell" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_hell"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -76,7 +79,9 @@
                 {
                     "structure": "nex:grave_hell_chest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_base" ]
+                    "lootTables": [
+                        "nex:chest/grave_base"
+                    ]
                 },
                 {
                     "structure": "nex:grave_hell_empty",
@@ -96,8 +101,15 @@
                 {
                     "structure": "nex:graveyard_hell",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_hell" ],
-                    "spawnerMobs": [ "minecraft:zombie_pigman", "minecraft:magma_cube" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_rare",
+                        "nex:chest/grave_hell"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:zombie_pigman",
+                        "minecraft:magma_cube"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -113,8 +125,13 @@
                 {
                     "structure": "nex:sarcophagus_hell",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_rare" ],
-                    "spawnerMobs": [ "minecraft:zombie_pigman", "minecraft:magma_cube" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:zombie_pigman",
+                        "minecraft:magma_cube"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -130,8 +147,13 @@
                 {
                     "structure": "nex:mausoleum_hell",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_rare" ],
-                    "spawnerMobs": [ "minecraft:zombie_pigman", "minecraft:magma_cube" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:zombie_pigman",
+                        "minecraft:magma_cube"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -148,79 +170,131 @@
                     "structure": "nex:village_pigtificate_hell_huge",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_large_variant",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 2,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_large",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 3,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_medium_variant_2",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 4,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_medium_variant",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 5,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_medium",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 6,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_small_variant_2",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 7,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_small_variant",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 8,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_small",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 9,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_tiny_variant_3",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 10,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_tiny_variant_2",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 11,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_tiny_variant",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 12,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 },
                 {
                     "structure": "nex:village_pigtificate_hell_tiny",
                     "replacedBlock": "minecraft:structure_void",
                     "weight": 13,
-                    "lootTables": [ "nex:chest/base_village", "nex:chest/base_temple", "nex:chest/temple_rare" ]
+                    "lootTables": [
+                        "nex:chest/base_village",
+                        "nex:chest/base_temple",
+                        "nex:chest/temple_rare"
+                    ]
                 }
             ],
             "structureType": "ground",

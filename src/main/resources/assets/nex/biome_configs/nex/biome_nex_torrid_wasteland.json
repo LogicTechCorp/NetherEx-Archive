@@ -45,7 +45,10 @@
                 {
                     "structure": "nex:crypt_torrid_wasteland",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_torrid_wasteland" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_torrid_wasteland"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -61,7 +64,9 @@
                 {
                     "structure": "nex:grave_torrid_wasteland_chest",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_base" ]
+                    "lootTables": [
+                        "nex:chest/grave_base"
+                    ]
                 },
                 {
                     "structure": "nex:grave_torrid_wasteland_empty",
@@ -81,8 +86,15 @@
                 {
                     "structure": "nex:graveyard_torrid_wasteland",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/base_grave", "nex:chest/grave_rare", "nex:chest/grave_torrid_wasteland" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/base_grave",
+                        "nex:chest/grave_rare",
+                        "nex:chest/grave_torrid_wasteland"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -98,8 +110,13 @@
                 {
                     "structure": "nex:sarcophagus_torrid_wasteland",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/grave_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/grave_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 }
             ],
             "structureType": "ground",
@@ -115,26 +132,50 @@
                 {
                     "structure": "nex:pyramid_torrid_wasteland_advanced",
                     "weight": 1,
-                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/temple_torrid_wasteland",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 },
                 {
                     "structure": "nex:pyramid_torrid_wasteland_hard",
                     "weight": 2,
-                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/temple_torrid_wasteland",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 },
                 {
                     "structure": "nex:pyramid_torrid_wasteland_medium",
                     "weight": 3,
-                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/temple_torrid_wasteland",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 },
                 {
                     "structure": "nex:pyramid_torrid_wasteland_easy",
                     "weight": 4,
-                    "lootTables": [ "nex:chest/temple_torrid_wasteland", "nex:chest/temple_rare" ],
-                    "spawnerMobs": [ "minecraft:blaze", "nex:monster_ember" ]
+                    "lootTables": [
+                        "nex:chest/temple_torrid_wasteland",
+                        "nex:chest/temple_rare"
+                    ],
+                    "spawnerMobs": [
+                        "minecraft:blaze",
+                        "nex:monster_ember"
+                    ]
                 }
             ],
             "structureType": "ground",
