@@ -8,6 +8,50 @@
     "floorFillerBlock": {
         "block": "minecraft:netherrack"
     },
+    "entities": [
+        {
+            "entity": "minecraft:zombie_pigman",
+            "creatureType": "monster",
+            "weight": 100,
+            "minGroupCount": 4,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "minecraft:ghast",
+            "creatureType": "monster",
+            "weight": 50,
+            "minGroupCount": 4,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "nex:monster_ember",
+            "creatureType": "monster",
+            "weight": 25,
+            "minGroupCount": 4,
+            "maxGroupCount": 6
+        },
+        {
+            "entity": "minecraft:blaze",
+            "creatureType": "monster",
+            "weight": 3,
+            "minGroupCount": 4,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "minecraft:magma_cube",
+            "creatureType": "monster",
+            "weight": 2,
+            "minGroupCount": 4,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "minecraft:enderman",
+            "creatureType": "monster",
+            "weight": 1,
+            "minGroupCount": 4,
+            "maxGroupCount": 4
+        }
+    ],
     "generators": [
         {
             "generator": "structure",

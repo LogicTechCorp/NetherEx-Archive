@@ -41,23 +41,23 @@ import nex.world.gen.structure.NetherStructure;
 import java.util.List;
 import java.util.Random;
 
-public class NetherGeneratorStructure extends NetherGenerator
+public class EnhancedGeneratorStructure extends EnhancedGenerator
 {
     private final StructureType structureType;
-    private final List<WeightedUtil.NamedItem> netherStructures;
+    private final List<WeightedUtil.NamedItem> structures;
 
-    public static final NetherGeneratorStructure INSTANCE = new NetherGeneratorStructure(0, 0.0F, 0, 0, StructureType.UNKNOWN, Lists.newArrayList());
+    public static final EnhancedGeneratorStructure INSTANCE = new EnhancedGeneratorStructure(0, 0.0F, 0, 0, StructureType.UNKNOWN, Lists.newArrayList());
 
-    private NetherGeneratorStructure(int generationAttempts, float generationProbability, int minHeight, int maxHeight, StructureType structureTypeIn, List<WeightedUtil.NamedItem> netherStructuresIn)
+    private EnhancedGeneratorStructure(int generationAttempts, float generationProbability, int minHeight, int maxHeight, StructureType structureTypeIn, List<WeightedUtil.NamedItem> structuresIn)
     {
         super(generationAttempts, generationProbability, minHeight, maxHeight);
 
         structureType = structureTypeIn;
-        netherStructures = netherStructuresIn;
+        structures = structuresIn;
     }
 
     @Override
-    public NetherGenerator deserializeConfig(JsonObject config)
+    public EnhancedGenerator deserializeConfig(JsonObject config)
     {
         JsonArray structureConfigs = JsonUtils.getJsonArray(config, "structures", new JsonArray());
 
@@ -70,7 +70,7 @@ public class NetherGeneratorStructure extends NetherGenerator
             int minHeight = JsonUtils.getInt(config, "minHeight", 32);
             int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
-            List<WeightedUtil.NamedItem> netherStructureList = Lists.newArrayList();
+            List<WeightedUtil.NamedItem> structureList = Lists.newArrayList();
             StructureType structureType = StructureType.getFromString(JsonUtils.getString(config, "structureType", ""));
 
             for(JsonElement structureConfig : structureConfigs)
@@ -80,42 +80,36 @@ public class NetherGeneratorStructure extends NetherGenerator
                 if(!structureIdentifier.equals(""))
                 {
                     int weight = JsonUtils.getInt(structureConfig.getAsJsonObject(), "weight", 1);
+                    String rotationIdentifier = JsonUtils.getString(structureConfig.getAsJsonObject(), "rotation", "");
 
-                    Rotation rotation;
-                    Mirror mirror;
+                    Rotation rotation = null;
 
-                    switch(JsonUtils.getString(structureConfig.getAsJsonObject(), "rotation", ""))
+                    for(Enum value : Rotation.class.getEnumConstants())
                     {
-                        case "rotate0":
-                            rotation = Rotation.NONE;
-                            break;
-                        case "rotate90":
-                            rotation = Rotation.CLOCKWISE_90;
-                            break;
-                        case "rotate180":
-                            rotation = Rotation.CLOCKWISE_180;
-                            break;
-                        case "rotate270":
-                            rotation = Rotation.COUNTERCLOCKWISE_90;
-                            break;
-                        default:
-                            rotation = Rotation.values()[rand.nextInt(Rotation.values().length)];
-                            break;
+                        if(value.name().equalsIgnoreCase(rotationIdentifier))
+                        {
+                            rotation = (Rotation) value;
+                        }
                     }
-                    switch(JsonUtils.getString(structureConfig.getAsJsonObject(), "mirror", ""))
+                    if(rotation == null)
                     {
-                        case "noMirror":
-                            mirror = Mirror.NONE;
-                            break;
-                        case "mirrorLeftRight":
-                            mirror = Mirror.LEFT_RIGHT;
-                            break;
-                        case "mirrorFrontBack":
-                            mirror = Mirror.FRONT_BACK;
-                            break;
-                        default:
-                            mirror = Mirror.values()[rand.nextInt(Mirror.values().length)];
-                            break;
+                        rotation = Rotation.values()[rand.nextInt(Rotation.values().length)];
+                    }
+
+                    String mirrorIdentifier = JsonUtils.getString(structureConfig.getAsJsonObject(), "rotation", "");
+
+                    Mirror mirror = null;
+
+                    for(Enum value : Mirror.class.getEnumConstants())
+                    {
+                        if(value.name().equalsIgnoreCase(mirrorIdentifier))
+                        {
+                            mirror = (Mirror) value;
+                        }
+                    }
+                    if(mirror == null)
+                    {
+                        mirror = Mirror.values()[rand.nextInt(Mirror.values().length)];
                     }
 
                     Block replacedBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(structureConfig.getAsJsonObject(), "replacedBlock", "")));
@@ -147,11 +141,11 @@ public class NetherGeneratorStructure extends NetherGenerator
                         }
                     }
 
-                    netherStructureList.add(new NetherStructure(structureIdentifier, weight, rotation, mirror, replacedBlock, lootTables, spawnerMobs));
+                    structureList.add(new NetherStructure(structureIdentifier, weight, rotation, mirror, replacedBlock, lootTables, spawnerMobs));
                 }
             }
 
-            return new NetherGeneratorStructure(generationAttempts, generationProbability, minHeight, maxHeight, structureType, netherStructureList);
+            return new EnhancedGeneratorStructure(generationAttempts, generationProbability, minHeight, maxHeight, structureType, structureList);
         }
 
         return null;
@@ -162,8 +156,8 @@ public class NetherGeneratorStructure extends NetherGenerator
     {
         rand = world.getChunkFromBlockCoords(pos).getRandomWithSeed(world.getSeed());
 
-        WeightedUtil.NamedItem structure = WeightedUtil.getRandomNamedItem(rand, netherStructures);
-        NetherStructure netherStructure = (NetherStructure) netherStructures.get(netherStructures.indexOf(structure));
+        WeightedUtil.NamedItem structure = WeightedUtil.getRandomNamedItem(rand, structures);
+        NetherStructure netherStructure = (NetherStructure) structures.get(structures.indexOf(structure));
 
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();

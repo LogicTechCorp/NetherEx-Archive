@@ -18,43 +18,49 @@
 package nex.world.gen.feature;
 
 import com.google.gson.JsonObject;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nex.block.BlockEnokiMushroomCap;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-public class NetherGeneratorEnoki extends NetherGenerator
+public class EnhancedGeneratorThornstalk extends EnhancedGenerator
 {
-    public static final NetherGeneratorEnoki INSTANCE = new NetherGeneratorEnoki(0, 0.0F, 0, 0);
+    public static final EnhancedGeneratorThornstalk INSTANCE = new EnhancedGeneratorThornstalk(0, 0.0F, 0, 0);
 
-    private NetherGeneratorEnoki(int generationAttempts, float generationProbability, int minHeight, int maxHeight)
+    private EnhancedGeneratorThornstalk(int generationAttempts, float generationProbability, int minHeight, int maxHeight)
     {
         super(generationAttempts, generationProbability, minHeight, maxHeight);
     }
 
     @Override
-    public NetherGeneratorEnoki deserializeConfig(JsonObject config)
+    public EnhancedGeneratorThornstalk deserializeConfig(JsonObject config)
     {
         int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
         float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
         int minHeight = JsonUtils.getInt(config, "minHeight", 32);
         int maxHeight = JsonUtils.getInt(config, "maxHeight", 128);
 
-        return new NetherGeneratorEnoki(generationAttempts, generationProbability, minHeight, maxHeight);
+        return new EnhancedGeneratorThornstalk(generationAttempts, generationProbability, minHeight, maxHeight);
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 0)
+        for(int i = 0; i < 64; ++i)
         {
-            BlockEnokiMushroomCap.generatePlant(world, pos, rand, 8);
-            return true;
+            BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+            Block blockDown = world.getBlockState(newPos.down()).getBlock();
+
+            if(blockDown == Blocks.SOUL_SAND && NetherExBlocks.PLANT_THORNSTALK.canPlaceBlockAt(world, newPos))
+            {
+                NetherExBlocks.PLANT_THORNSTALK.generate(world, rand, newPos);
+            }
         }
 
-        return false;
+        return true;
     }
 }

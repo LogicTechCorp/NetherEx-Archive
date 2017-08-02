@@ -36,9 +36,9 @@ public enum NetherBiomeClimate
 
     private static final Map<Biome, NetherBiomeEntry> BIOME_ENTRIES = Maps.newHashMap();
 
-    public void addBiome(NetherBiome netherBiome)
+    public void addBiome(EnhancedBiome enhancedBiome)
     {
-        BIOME_ENTRIES.put(netherBiome.getBiome(), new NetherBiomeEntry(netherBiome));
+        BIOME_ENTRIES.put(enhancedBiome.getBiome(), new NetherBiomeEntry(enhancedBiome));
     }
 
     public static NetherBiomeClimate getFromBiome(Biome biome)

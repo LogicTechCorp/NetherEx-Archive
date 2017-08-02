@@ -17,6 +17,43 @@
     "oceanBlock": {
         "block": "minecraft:magma"
     },
+    "entities": [
+        {
+            "entity": "nex:monster_wight",
+            "creatureType": "monster",
+            "weight": 100,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "minecraft:ghast",
+            "creatureType": "monster",
+            "weight": 50,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "nex:monster_bone_spider",
+            "creatureType": "monster",
+            "weight": 35,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "minecraft:zombie_pigman",
+            "creatureType": "monster",
+            "weight": 25,
+            "minGroupCount": 1,
+            "maxGroupCount": 1
+        },
+        {
+            "entity": "nex:monster_brute",
+            "creatureType": "monster",
+            "weight": 15,
+            "minGroupCount": 1,
+            "maxGroupCount": 1
+        }
+    ],
     "generators": [
         {
             "generator": "structure",

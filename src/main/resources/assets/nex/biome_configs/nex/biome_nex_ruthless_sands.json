@@ -11,6 +11,29 @@
             "type": "gloomy"
         }
     },
+    "entities": [
+        {
+            "entity": "nex:monster_spinout",
+            "creatureType": "monster",
+            "weight": 100,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "minecraft:wither_skeleton",
+            "creatureType": "monster",
+            "weight": 65,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "minecraft:zombie_pigman",
+            "creatureType": "monster",
+            "weight": 45,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        }
+    ],
     "generators": [
         {
             "generator": "structure",

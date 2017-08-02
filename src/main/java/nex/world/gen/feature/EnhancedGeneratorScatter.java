@@ -17,10 +17,13 @@
 
 package nex.world.gen.feature;
 
+import com.google.common.base.Strings;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -30,25 +33,25 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class NetherGeneratorFluid extends NetherGenerator
+public class EnhancedGeneratorScatter extends EnhancedGenerator
 {
-    private IBlockState blockToSpawn;
-    private IBlockState blockToTarget;
-    private boolean hidden;
+    private final IBlockState blockToSpawn;
+    private final IBlockState blockToTarget;
+    private final Placement placement;
 
-    public static final NetherGeneratorFluid INSTANCE = new NetherGeneratorFluid(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+    public static final EnhancedGeneratorScatter INSTANCE = new EnhancedGeneratorScatter(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), EnhancedGeneratorScatter.Placement.ON_GROUND);
 
-    private NetherGeneratorFluid(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, boolean hiddenIn)
+    private EnhancedGeneratorScatter(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToTargetIn, Placement placementIn)
     {
         super(generationAttempts, generationProbability, minHeight, maxHeight);
 
         blockToSpawn = blockToSpawnIn;
         blockToTarget = blockToTargetIn;
-        hidden = hiddenIn;
+        placement = placementIn;
     }
 
     @Override
-    public NetherGeneratorFluid deserializeConfig(JsonObject config)
+    public EnhancedGeneratorScatter deserializeConfig(JsonObject config)
     {
         int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
         float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
@@ -92,11 +95,11 @@ public class NetherGeneratorFluid extends NetherGenerator
             blockToTarget = BlockUtil.getBlockWithProperties(blockToTarget, JsonUtils.getJsonObject(blockToTargetJson, "properties"));
         }
 
-        boolean hidden = JsonUtils.getBoolean(config, "hidden", false);
+        Placement placement = Placement.getFromString(JsonUtils.getString(config, "placement"));
 
         if(blockToSpawn != null && blockToTarget != null)
         {
-            return new NetherGeneratorFluid(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToTarget, hidden);
+            return new EnhancedGeneratorScatter(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToTarget, placement);
         }
 
         return null;
@@ -105,77 +108,67 @@ public class NetherGeneratorFluid extends NetherGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.getBlockState(pos.up()) != blockToTarget)
+        for(int i = 0; i < 64; ++i)
         {
-            return false;
+            BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+
+            if(world.isAirBlock(newPos) && world.getBlockState(newPos.down()) == blockToTarget)
+            {
+                if(blockToSpawn instanceof BlockBush)
+                {
+                    if(((BlockBush) blockToSpawn).canBlockStay(world, placement.offsetPos(pos), blockToSpawn))
+                    {
+                        world.setBlockState(placement.offsetPos(newPos), blockToSpawn, 2);
+                    }
+                }
+                else
+                {
+                    world.setBlockState(placement.offsetPos(newPos), blockToSpawn, 2);
+                }
+            }
         }
-        else if(!world.isAirBlock(pos) && world.getBlockState(pos) != blockToTarget)
+
+        return true;
+    }
+
+    public enum Placement
+    {
+        ON_GROUND(null),
+        IN_GROUND(EnumFacing.DOWN);
+
+        EnumFacing offset;
+
+        Placement(EnumFacing offsetIn)
         {
-            return false;
+            offset = offsetIn;
         }
-        else
+
+        public BlockPos offsetPos(BlockPos pos)
         {
-            int i = 0;
-
-            if(world.getBlockState(pos.west()) == blockToTarget)
+            if(offset != null)
             {
-                ++i;
+                return pos.offset(offset);
+            }
+            else
+            {
+                return pos;
+            }
+        }
+
+        public static Placement getFromString(String string)
+        {
+            if(!Strings.isNullOrEmpty(string))
+            {
+                for(Placement placement : values())
+                {
+                    if(placement.name().replace("_", "").equalsIgnoreCase(string))
+                    {
+                        return placement;
+                    }
+                }
             }
 
-            if(world.getBlockState(pos.east()) == blockToTarget)
-            {
-                ++i;
-            }
-
-            if(world.getBlockState(pos.north()) == blockToTarget)
-            {
-                ++i;
-            }
-
-            if(world.getBlockState(pos.south()) == blockToTarget)
-            {
-                ++i;
-            }
-
-            if(world.getBlockState(pos.down()) == blockToTarget)
-            {
-                ++i;
-            }
-
-            int j = 0;
-
-            if(world.isAirBlock(pos.west()))
-            {
-                ++j;
-            }
-
-            if(world.isAirBlock(pos.east()))
-            {
-                ++j;
-            }
-
-            if(world.isAirBlock(pos.north()))
-            {
-                ++j;
-            }
-
-            if(world.isAirBlock(pos.south()))
-            {
-                ++j;
-            }
-
-            if(world.isAirBlock(pos.down()))
-            {
-                ++j;
-            }
-
-            if(!hidden && i == 4 && j == 1 || i == 5)
-            {
-                world.setBlockState(pos, blockToSpawn, 2);
-                world.immediateBlockTick(pos, blockToSpawn, rand);
-            }
-
-            return true;
+            return ON_GROUND;
         }
     }
 }

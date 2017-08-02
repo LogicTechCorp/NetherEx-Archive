@@ -11,6 +11,29 @@
             "type": "lively"
         }
     },
+    "entities": [
+        {
+            "entity": "nex:neutral_mogus",
+            "creatureType": "monster",
+            "weight": 100,
+            "minGroupCount": 4,
+            "maxGroupCount": 6
+        },
+        {
+            "entity": "nex:monster_spore_creeper",
+            "creatureType": "monster",
+            "weight": 50,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        {
+            "entity": "nex:monster_spore",
+            "creatureType": "monster",
+            "weight": 25,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        }
+    ],
     "generators": [
         {
             "generator": "structure",

@@ -27,7 +27,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.util.BlockUtil;
 
-public class NetherBiome
+public class EnhancedBiome
 {
     private final Biome biome;
     private final int weight;
@@ -38,7 +38,7 @@ public class NetherBiome
     private final IBlockState roofFillerBlock;
     private final IBlockState oceanBlock;
 
-    private NetherBiome(Biome biomeIn, int weightIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
+    private EnhancedBiome(Biome biomeIn, int weightIn, IBlockState floorTopBlockIn, IBlockState floorFillerBlockIn, IBlockState wallBlockIn, IBlockState roofBottomBlockIn, IBlockState roofFillerBlockIn, IBlockState oceanBlockIn)
     {
         biome = biomeIn;
         weight = weightIn;
@@ -50,7 +50,7 @@ public class NetherBiome
         oceanBlock = oceanBlockIn;
     }
 
-    public static NetherBiome deserialize(JsonObject config)
+    public static EnhancedBiome deserialize(JsonObject config)
     {
         Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(JsonUtils.getString(config, "biome")));
         int weight = JsonUtils.getInt(config, "weight", 10);
@@ -188,7 +188,7 @@ public class NetherBiome
                 roofFillerBlock = BlockUtil.getBlockWithProperties(floorFillerBlock, JsonUtils.getJsonObject(roofFillerBlockJson, "properties"));
             }
 
-            return new NetherBiome(biome, weight, floorTopBlock, floorFillerBlock, wallBlock, roofBottomBlock, roofFillerBlock, oceanBlock);
+            return new EnhancedBiome(biome, weight, floorTopBlock, floorFillerBlock, wallBlock, roofBottomBlock, roofFillerBlock, oceanBlock);
         }
 
         return null;

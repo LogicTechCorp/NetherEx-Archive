@@ -30,16 +30,16 @@ public class NetherBiomeEntry extends BiomeManager.BiomeEntry
     private IBlockState roofFillerBlock;
     private final IBlockState oceanBlock;
 
-    public NetherBiomeEntry(NetherBiome netherBiome)
+    public NetherBiomeEntry(EnhancedBiome enhancedBiome)
     {
-        super(netherBiome.getBiome(), netherBiome.getWeight());
+        super(enhancedBiome.getBiome(), enhancedBiome.getWeight());
 
-        floorTopBlock = netherBiome.getFloorTopBlock();
-        floorFillerBlock = netherBiome.getFloorFillerBlock();
-        wallBlock = netherBiome.getWallBlock();
-        roofBottomBlock = netherBiome.getRoofBottomBlock();
-        roofFillerBlock = netherBiome.getRoofFillerBlock();
-        oceanBlock = netherBiome.getOceanBlock();
+        floorTopBlock = enhancedBiome.getFloorTopBlock();
+        floorFillerBlock = enhancedBiome.getFloorFillerBlock();
+        wallBlock = enhancedBiome.getWallBlock();
+        roofBottomBlock = enhancedBiome.getRoofBottomBlock();
+        roofFillerBlock = enhancedBiome.getRoofFillerBlock();
+        oceanBlock = enhancedBiome.getOceanBlock();
     }
 
     public Biome getBiome()

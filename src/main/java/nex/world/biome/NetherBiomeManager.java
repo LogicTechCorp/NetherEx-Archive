@@ -27,7 +27,7 @@ import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
 import nex.util.FileUtil;
 import nex.world.gen.GenerationStage;
-import nex.world.gen.feature.NetherGenerator;
+import nex.world.gen.feature.EnhancedGenerator;
 import nex.world.gen.layer.GenLayerNetherEx;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -115,26 +115,37 @@ public class NetherBiomeManager
 
     private static void parseBiomeConfig(JsonObject config)
     {
-        NetherBiome netherBiome = NetherBiome.deserialize(config);
-        NetherBiomeClimate netherBiomeClimate = NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate"));
+        EnhancedBiome enhancedBiome = EnhancedBiome.deserialize(config);
 
-        if(netherBiome != null)
+        if(enhancedBiome != null)
         {
-            netherBiomeClimate.addBiome(netherBiome);
-            LOGGER.info("Added the " + netherBiome.getBiome().getRegistryName().getResourcePath() + " biome, from " + netherBiome.getBiome().getRegistryName().getResourceDomain() + ", to the Nether.");
+            Biome biome = enhancedBiome.getBiome();
 
-            JsonArray netherGeneratorConfigs = JsonUtils.getJsonArray(config, "generators", new JsonArray());
+            NetherBiomeClimate.getFromString(JsonUtils.getString(config, "climate")).addBiome(enhancedBiome);
+            LOGGER.info("Added the " + biome.getRegistryName().getResourcePath() + " biome, from " + biome.getRegistryName().getResourceDomain() + ", to the Nether.");
 
-            if(netherGeneratorConfigs.size() > 0)
+            JsonArray entityConfigs = JsonUtils.getJsonArray(config, "entities", new JsonArray());
+
+            if(entityConfigs.size() > 0)
             {
-                for(JsonElement netherGeneratorConfig : netherGeneratorConfigs)
+                for(JsonElement entityConfig : entityConfigs)
                 {
-                    NetherGenerator netherGenerator = NetherGenerator.deserialize(netherGeneratorConfig.getAsJsonObject());
-                    GenerationStage generationStage = GenerationStage.getFromString(JsonUtils.getString(netherGeneratorConfig.getAsJsonObject(), "generationStage"));
+                    BiomeEntity entity = BiomeEntity.deserialize(entityConfig.getAsJsonObject());
+                    biome.getSpawnableList(entity.getCreatureType()).add(entity.getSpawnListEntry());
+                }
+            }
 
-                    if(netherGenerator != null)
+            JsonArray generatorConfigs = JsonUtils.getJsonArray(config, "generators", new JsonArray());
+
+            if(generatorConfigs.size() > 0)
+            {
+                for(JsonElement generatorConfig : generatorConfigs)
+                {
+                    EnhancedGenerator generator = EnhancedGenerator.deserialize(generatorConfig.getAsJsonObject());
+
+                    if(generator != null)
                     {
-                        generationStage.addBiomeFeature(netherBiome.getBiome(), netherGenerator);
+                        GenerationStage.getFromString(JsonUtils.getString(generatorConfig.getAsJsonObject(), "generationStage")).addGenerator(biome, generator);
                     }
                 }
             }
@@ -153,13 +164,13 @@ public class NetherBiomeManager
         return WeightedRandom.getRandomItem(biomeEntryList, layer.nextInt(WeightedRandom.getTotalWeight(biomeEntryList))).getBiome();
     }
 
-    public static List<NetherGenerator> getBiomeFeatures(Biome biome, GenerationStage generationStage)
+    public static List<EnhancedGenerator> getBiomeGenerators(Biome biome, GenerationStage generationStage)
     {
-        Map<Biome, List<NetherGenerator>> biomeFeatureMap = generationStage.getBiomeFeatureMap();
+        Map<Biome, List<EnhancedGenerator>> biomeGeneratorMap = generationStage.getBiomeGeneratorMap();
 
-        if(biomeFeatureMap.containsKey(biome))
+        if(biomeGeneratorMap.containsKey(biome))
         {
-            return biomeFeatureMap.get(biome);
+            return biomeGeneratorMap.get(biome);
         }
 
         return Lists.newArrayList();

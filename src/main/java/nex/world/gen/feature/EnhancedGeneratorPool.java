@@ -31,14 +31,14 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class NetherGeneratorPool extends NetherGenerator
+public class EnhancedGeneratorPool extends EnhancedGenerator
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToSurround;
 
-    public static final NetherGeneratorPool INSTANCE = new NetherGeneratorPool(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
+    public static final EnhancedGeneratorPool INSTANCE = new EnhancedGeneratorPool(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
 
-    private NetherGeneratorPool(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
+    private EnhancedGeneratorPool(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToSurroundIn)
     {
         super(generationAttempts, generationProbability, minHeight, maxHeight);
 
@@ -47,7 +47,7 @@ public class NetherGeneratorPool extends NetherGenerator
     }
 
     @Override
-    public NetherGeneratorPool deserializeConfig(JsonObject config)
+    public EnhancedGeneratorPool deserializeConfig(JsonObject config)
     {
         int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
         float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
@@ -93,7 +93,7 @@ public class NetherGeneratorPool extends NetherGenerator
 
         if(blockToSpawn != null && blockToSurround != null)
         {
-            return new NetherGeneratorPool(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToSurround);
+            return new EnhancedGeneratorPool(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToSurround);
         }
 
         return null;

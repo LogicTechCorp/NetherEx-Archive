@@ -27,14 +27,14 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public abstract class NetherGenerator extends WorldGenerator
+public abstract class EnhancedGenerator extends WorldGenerator
 {
     private final int generationAttempts;
     private final float generationProbability;
     private final int minHeight;
     private final int maxHeight;
 
-    protected NetherGenerator(int generationAttemptsIn, float generationProbabilityIn, int minHeightIn, int maxHeightIn)
+    protected EnhancedGenerator(int generationAttemptsIn, float generationProbabilityIn, int minHeightIn, int maxHeightIn)
     {
         generationAttempts = generationAttemptsIn;
         generationProbability = generationProbabilityIn;
@@ -42,35 +42,35 @@ public abstract class NetherGenerator extends WorldGenerator
         maxHeight = maxHeightIn;
     }
 
-    public static NetherGenerator deserialize(JsonObject config)
+    public static EnhancedGenerator deserialize(JsonObject config)
     {
         GeneratorType generatorType = GeneratorType.getFromString(JsonUtils.getString(config, "generator", ""));
 
         switch(generatorType)
         {
             case STRUCTURE:
-                return NetherGeneratorStructure.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorStructure.INSTANCE.deserializeConfig(config);
             case FLUID:
-                return NetherGeneratorFluid.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorFluid.INSTANCE.deserializeConfig(config);
             case SCATTER:
-                return NetherGeneratorScatter.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorScatter.INSTANCE.deserializeConfig(config);
             case CLUSTER:
-                return NetherGeneratorCluster.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorCluster.INSTANCE.deserializeConfig(config);
             case ORE:
-                return NetherGeneratorOre.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorOre.INSTANCE.deserializeConfig(config);
             case POOL:
-                return NetherGeneratorPool.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorPool.INSTANCE.deserializeConfig(config);
             case THORNSTALK:
-                return NetherGeneratorThornstalk.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorThornstalk.INSTANCE.deserializeConfig(config);
             case ENOKI:
-                return NetherGeneratorEnoki.INSTANCE.deserializeConfig(config);
+                return EnhancedGeneratorEnoki.INSTANCE.deserializeConfig(config);
             case UNKNOWN:
             default:
                 return null;
         }
     }
 
-    public abstract NetherGenerator deserializeConfig(JsonObject config);
+    public abstract EnhancedGenerator deserializeConfig(JsonObject config);
 
     @Override
     public abstract boolean generate(World world, Random rand, BlockPos pos);

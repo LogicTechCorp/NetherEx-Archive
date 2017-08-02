@@ -14,6 +14,29 @@
             "type": "fiery"
         }
     },
+    "entities": [
+        {
+            "entity": "nex:neutral_salamander",
+            "creatureType": "monster",
+            "weight": 100,
+            "minGroupCount": 3,
+            "maxGroupCount": 6
+        },
+        {
+            "entity": "nex:monster_ember",
+            "creatureType": "monster",
+            "weight": 50,
+            "minGroupCount": 4,
+            "maxGroupCount": 6
+        },
+        {
+            "entity": "minecraft:magma_cube",
+            "creatureType": "monster",
+            "weight": 25,
+            "minGroupCount": 4,
+            "maxGroupCount": 4
+        }
+    ],
     "generators": [
         {
             "generator": "structure",

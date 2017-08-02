@@ -31,14 +31,14 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class NetherGeneratorCluster extends NetherGenerator
+public class EnhancedGeneratorCluster extends EnhancedGenerator
 {
     private IBlockState blockToSpawn;
     private IBlockState blockToHangFrom;
 
-    public static final NetherGeneratorCluster INSTANCE = new NetherGeneratorCluster(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
+    public static final EnhancedGeneratorCluster INSTANCE = new EnhancedGeneratorCluster(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState());
 
-    private NetherGeneratorCluster(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
+    private EnhancedGeneratorCluster(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToHangFromIn)
     {
         super(generationAttempts, generationProbability, minHeight, maxHeight);
 
@@ -47,7 +47,7 @@ public class NetherGeneratorCluster extends NetherGenerator
     }
 
     @Override
-    public NetherGeneratorCluster deserializeConfig(JsonObject config)
+    public EnhancedGeneratorCluster deserializeConfig(JsonObject config)
     {
         int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
         float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
@@ -93,7 +93,7 @@ public class NetherGeneratorCluster extends NetherGenerator
 
         if(blockToSpawn != null && blockToHangFrom != null)
         {
-            return new NetherGeneratorCluster(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToHangFrom);
+            return new EnhancedGeneratorCluster(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToHangFrom);
         }
 
         return null;

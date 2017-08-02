@@ -32,15 +32,15 @@ import nex.util.BlockUtil;
 
 import java.util.Random;
 
-public class NetherGeneratorOre extends NetherGenerator
+public class EnhancedGeneratorOre extends EnhancedGenerator
 {
     private final IBlockState blockToSpawn;
     private final IBlockState blockToReplace;
     private final int size;
 
-    public static final NetherGeneratorOre INSTANCE = new NetherGeneratorOre(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0);
+    public static final EnhancedGeneratorOre INSTANCE = new EnhancedGeneratorOre(0, 0.0F, 0, 0, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0);
 
-    private NetherGeneratorOre(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
+    private EnhancedGeneratorOre(int generationAttempts, float generationProbability, int minHeight, int maxHeight, IBlockState blockToSpawnIn, IBlockState blockToReplaceIn, int sizeIn)
     {
         super(generationAttempts, generationProbability, minHeight, maxHeight);
 
@@ -50,7 +50,7 @@ public class NetherGeneratorOre extends NetherGenerator
     }
 
     @Override
-    public NetherGeneratorOre deserializeConfig(JsonObject config)
+    public EnhancedGeneratorOre deserializeConfig(JsonObject config)
     {
         int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
         float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
@@ -98,7 +98,7 @@ public class NetherGeneratorOre extends NetherGenerator
 
         if(blockToSpawn != null && blockToReplace != null)
         {
-            return new NetherGeneratorOre(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToReplace, size);
+            return new EnhancedGeneratorOre(generationAttempts, generationProbability, minHeight, maxHeight, blockToSpawn, blockToReplace, size);
         }
 
         return null;
