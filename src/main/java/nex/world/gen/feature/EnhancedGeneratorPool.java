@@ -18,7 +18,6 @@
 package nex.world.gen.feature;
 
 import com.google.gson.JsonObject;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -62,20 +61,20 @@ public class EnhancedGeneratorPool extends EnhancedGenerator
 
         if(blockToSpawnJson.entrySet().size() > 0)
         {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "block")));
+            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "block"));
 
-            if(block != null)
+            if(ForgeRegistries.BLOCKS.containsKey(block))
             {
-                blockToSpawn = block.getDefaultState();
+                blockToSpawn = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
             }
         }
         if(blockToSurroundJson.entrySet().size() > 0)
         {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(blockToSurroundJson, "block")));
+            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSurroundJson, "block"));
 
-            if(block != null)
+            if(ForgeRegistries.BLOCKS.containsKey(block))
             {
-                blockToSurround = block.getDefaultState();
+                blockToSurround = ForgeRegistries.BLOCKS.getValue(block).getDefaultState();
             }
         }
 

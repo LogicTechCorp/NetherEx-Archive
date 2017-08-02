@@ -112,7 +112,13 @@ public class EnhancedGeneratorStructure extends EnhancedGenerator
                         mirror = Mirror.values()[rand.nextInt(Mirror.values().length)];
                     }
 
-                    Block replacedBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(JsonUtils.getString(structureConfig.getAsJsonObject(), "replacedBlock", "")));
+                    Block replacedBlock = null;
+                    ResourceLocation block = new ResourceLocation(JsonUtils.getString(structureConfig.getAsJsonObject(), "replacedBlock", ""));
+
+                    if(ForgeRegistries.BLOCKS.containsKey(block))
+                    {
+                        replacedBlock = ForgeRegistries.BLOCKS.getValue(block);
+                    }
 
                     List<ResourceLocation> lootTables = Lists.newArrayList();
                     List<ResourceLocation> spawnerMobs = Lists.newArrayList();

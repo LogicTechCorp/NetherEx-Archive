@@ -191,7 +191,7 @@ public class EnhancedTrade extends MerchantRecipe
 
                 if(block != null && state != null)
                 {
-                    stack = new ItemStack(ForgeRegistries.BLOCKS.getValue(item), 1, block.getMetaFromState(state));
+                    stack = new ItemStack(block, 1, block.getMetaFromState(state));
                 }
             }
         }
