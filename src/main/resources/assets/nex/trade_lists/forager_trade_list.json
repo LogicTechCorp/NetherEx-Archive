@@ -37,7 +37,7 @@
                         },
                         {
                             "output": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 2, "maxStackSize": 2 },
-                            "inputA": { "itemId": "nex:food_raw_ghast_meat", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
+                            "inputA": { "itemId": "nex:food_meat_ghast_raw", "meta": 0, "minStackSize": 1, "maxStackSize": 1 },
                             "minTradesAvailable": 2,
                             "maxTradesAvailable": 8,
                             "level": 2

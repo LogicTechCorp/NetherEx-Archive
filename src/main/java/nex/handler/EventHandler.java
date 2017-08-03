@@ -45,7 +45,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.util.FakePlayer;
@@ -54,12 +53,10 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
@@ -75,9 +72,7 @@ import nex.util.BlockUtil;
 import nex.util.EntityUtil;
 import nex.village.PigtificateVillageCollection;
 import nex.village.PigtificateVillageManager;
-import nex.world.TeleporterNether;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.ListIterator;
 import java.util.Random;
@@ -86,8 +81,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class EventHandler
 {
-    private static final Field FIELD_WORLD_TELEPORTER = ReflectionHelper.findField(WorldServer.class, "field_85177_Q", "worldTeleporter");
-
     @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event)
     {
@@ -95,21 +88,6 @@ public class EventHandler
 
         if(!world.isRemote)
         {
-            if(!Loader.isModLoaded("netherportalfix") && ConfigHandler.dimension.nether.enablePortalFix)
-            {
-                if(world.provider.getDimension() == DimensionType.OVERWORLD.getId() || world.provider.getDimension() == DimensionType.NETHER.getId())
-                {
-                    try
-                    {
-                        FIELD_WORLD_TELEPORTER.set(world, new TeleporterNether((WorldServer) world));
-                    }
-                    catch(IllegalAccessException e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
             PigtificateVillageManager.init(world);
         }
     }

@@ -17,11 +17,17 @@
 
 package nex.world.biome;
 
+import nex.block.BlockNetherrack;
+import nex.init.NetherExBlocks;
+
 @SuppressWarnings("ConstantConditions")
 public class BiomeArcticAbyss extends BiomeNetherEx
 {
     public BiomeArcticAbyss()
     {
         super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
+
+        topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
     }
 }

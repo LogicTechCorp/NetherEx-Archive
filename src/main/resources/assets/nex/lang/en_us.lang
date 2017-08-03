@@ -22,8 +22,6 @@ config.nex:dimension.nether.generateGravel=Generate Gravel
 config.nex:dimension.nether.generateGravel.tooltip=Do Gravel platforms generate in the Nether
 config.nex:dimension.nether.isLavaInfinite=Is Lava Infinite
 config.nex:dimension.nether.isLavaInfinite.tooltip=Is Lava Infinite in the Nether
-config.nex:dimension.nether.enablePortalFix=Enable Nether Portal Fix
-config.nex:dimension.nether.enablePortalFix.tooltip=Is Nether Portal teleportation fixed
 
 config.nex:block=Block Settings
 config.nex:block.tooltip=Settings that only affect Blocks

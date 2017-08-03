@@ -94,7 +94,7 @@
                             "level": 2
                         },
                         {
-                            "output": { "itemId": "minecraft:experiance_bottle", "meta": 0, "minStackSize": 1, "maxStackSize": 3 },
+                            "output": { "itemId": "minecraft:experience_bottle", "meta": 0, "minStackSize": 1, "maxStackSize": 3 },
                             "inputA": { "itemId": "nex:item_crystal_amethyst", "meta": 0, "minStackSize": 6, "maxStackSize": 16 },
                             "minTradesAvailable": 1,
                             "maxTradesAvailable": 2,
