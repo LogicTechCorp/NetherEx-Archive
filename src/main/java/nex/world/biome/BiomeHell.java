@@ -17,11 +17,16 @@
 
 package nex.world.biome;
 
+import net.minecraft.init.Blocks;
+
 @SuppressWarnings("ConstantConditions")
 public class BiomeHell extends BiomeNetherEx
 {
     public BiomeHell()
     {
         super(new BiomeProperties("Hell").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "hell");
+
+        topBlock = Blocks.NETHERRACK.getDefaultState();
+        fillerBlock = Blocks.NETHERRACK.getDefaultState();
     }
 }

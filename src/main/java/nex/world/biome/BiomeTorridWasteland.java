@@ -17,11 +17,17 @@
 
 package nex.world.biome;
 
+import nex.block.BlockNetherrack;
+import nex.init.NetherExBlocks;
+
 @SuppressWarnings("ConstantConditions")
 public class BiomeTorridWasteland extends BiomeNetherEx
 {
     public BiomeTorridWasteland()
     {
         super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
+
+        topBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
     }
 }
