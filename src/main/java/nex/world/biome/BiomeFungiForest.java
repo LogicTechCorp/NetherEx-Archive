@@ -22,7 +22,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import nex.block.BlockNetherrack;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBlocks;
 import nex.util.RandomUtil;
 import nex.world.gen.feature.WorldGenElderMushroom;
 
@@ -36,6 +38,9 @@ public class BiomeFungiForest extends BiomeNetherEx
     public BiomeFungiForest()
     {
         super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest");
+
+        topBlock = NetherExBlocks.BLOCK_HYPHAE.getDefaultState();
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
     }
 
     @Override

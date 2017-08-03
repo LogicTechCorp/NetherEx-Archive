@@ -17,11 +17,18 @@
 
 package nex.world.biome;
 
+import net.minecraft.init.Blocks;
+import nex.block.BlockNetherrack;
+import nex.init.NetherExBlocks;
+
 @SuppressWarnings("ConstantConditions")
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
     public BiomeRuthlessSands()
     {
         super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
+
+        topBlock = Blocks.SOUL_SAND.getDefaultState();
+        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY);
     }
 }

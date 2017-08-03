@@ -85,9 +85,6 @@ public class ConfigHandler
 
             @Config.LangKey("config.nex:dimension.nether.isLavaInfinite")
             public boolean isLavaInfinite = false;
-
-            @Config.LangKey("config.nex:dimension.nether.enablePortalFix")
-            public boolean enablePortalFix = true;
         }
     }
 
