@@ -70,89 +70,82 @@ public class EnhancedTrade extends MerchantRecipe
 
     public static EnhancedTrade deserialize(JsonObject config)
     {
-        JsonArray tradeConfigs = JsonUtils.getJsonArray(config, "trades", new JsonArray());
-        Random rand = new Random();
+        JsonObject outputConfig = JsonUtils.getJsonObject(config, "output", new JsonObject());
+        ItemStack outputStack = deserializeItemStack(outputConfig);
+        ItemStack inputAStack = deserializeItemStack(JsonUtils.getJsonObject(config, "inputA", new JsonObject()));
+        ItemStack inputBStack = deserializeItemStack(JsonUtils.getJsonObject(config, "inputB", new JsonObject()));
 
-        if(tradeConfigs.size() > 0)
+        if(outputStack != null && inputAStack != null)
         {
-            for(JsonElement tradeConfig : tradeConfigs)
+            Random rand = new Random();
+
+            if(inputBStack == null)
             {
-                JsonObject outputConfig = JsonUtils.getJsonObject(tradeConfig.getAsJsonObject(), "output", new JsonObject());
-                ItemStack outputStack = deserializeItemStack(outputConfig);
-                ItemStack inputAStack = deserializeItemStack(JsonUtils.getJsonObject(tradeConfig.getAsJsonObject(), "inputA", new JsonObject()));
-                ItemStack inputBStack = deserializeItemStack(JsonUtils.getJsonObject(tradeConfig.getAsJsonObject(), "inputB", new JsonObject()));
+                inputBStack = ItemStack.EMPTY;
+            }
 
-                if(outputStack != null && inputAStack != null)
+            JsonObject displayConfig = JsonUtils.getJsonObject(outputConfig, "display", new JsonObject());
+
+            if(displayConfig.size() > 0)
+            {
+                String name = JsonUtils.getString(displayConfig, "name", "");
+
+                if(!name.isEmpty())
                 {
-                    if(inputBStack == null)
+                    outputStack.setStackDisplayName(name);
+                }
+
+                JsonArray loreConfig = JsonUtils.getJsonArray(displayConfig.getAsJsonObject(), "lore", new JsonArray());
+
+                if(loreConfig.size() > 0)
+                {
+                    NBTUtil.setTag(outputStack);
+                    NBTTagList loreList = new NBTTagList();
+
+                    for(JsonElement lore : loreConfig)
                     {
-                        inputBStack = ItemStack.EMPTY;
-                    }
-
-                    JsonObject displayConfig = JsonUtils.getJsonObject(outputConfig, "display", new JsonObject());
-
-                    if(displayConfig.size() > 0)
-                    {
-                        String name = JsonUtils.getString(displayConfig, "name", "");
-
-                        if(!name.isEmpty())
+                        if(lore.isJsonPrimitive() && lore.getAsJsonPrimitive().isString())
                         {
-                            outputStack.setStackDisplayName(name);
-                        }
-
-                        JsonArray loreConfig = JsonUtils.getJsonArray(displayConfig.getAsJsonObject(), "lore", new JsonArray());
-
-                        if(loreConfig.size() > 0)
-                        {
-                            NBTUtil.setTag(outputStack);
-                            NBTTagList loreList = new NBTTagList();
-
-                            for(JsonElement lore : loreConfig)
-                            {
-                                if(lore.isJsonPrimitive() && lore.getAsJsonPrimitive().isString())
-                                {
-                                    loreList.appendTag(new NBTTagString(lore.getAsJsonPrimitive().getAsString()));
-                                }
-                            }
-
-                            NBTTagCompound displayCompound = new NBTTagCompound();
-                            displayCompound.setTag("Lore", loreList);
-                            NBTTagCompound compound = new NBTTagCompound();
-                            compound.setTag("display", displayCompound);
-                            NBTUtil.setTag(outputStack, compound);
+                            loreList.appendTag(new NBTTagString(lore.getAsJsonPrimitive().getAsString()));
                         }
                     }
 
-                    for(JsonElement enchantmentConfig : JsonUtils.getJsonArray(outputConfig, "enchantments", new JsonArray()))
-                    {
-                        Enchantment enchantment = Enchantment.getEnchantmentByLocation(JsonUtils.getString(enchantmentConfig.getAsJsonObject(), "enchantment", ""));
-
-                        if(enchantment != null)
-                        {
-                            int minEnchantmentLevel = JsonUtils.getInt(enchantmentConfig.getAsJsonObject(), "minEnchantmentLevel", 1);
-                            int maxEnchantmentLevel = JsonUtils.getInt(enchantmentConfig.getAsJsonObject(), "maxEnchantmentLevel", 1);
-
-                            if(outputStack.getItem() instanceof ItemEnchantedBook)
-                            {
-                                ((ItemEnchantedBook) outputStack.getItem()).addEnchantment(outputStack, new EnchantmentData(enchantment, RandomUtil.getNumberInRange(minEnchantmentLevel, maxEnchantmentLevel, rand)));
-                            }
-                            else
-                            {
-                                outputStack.addEnchantment(enchantment, RandomUtil.getNumberInRange(minEnchantmentLevel, maxEnchantmentLevel, rand));
-                            }
-                        }
-                    }
-
-                    Tuple<Integer, Integer> outputTuple = getItemStackSizes((JsonUtils.getJsonObject(tradeConfig.getAsJsonObject(), "output", new JsonObject())));
-                    Tuple<Integer, Integer> inputATuple = getItemStackSizes((JsonUtils.getJsonObject(tradeConfig.getAsJsonObject(), "inputA", new JsonObject())));
-                    Tuple<Integer, Integer> inputBTuple = getItemStackSizes((JsonUtils.getJsonObject(tradeConfig.getAsJsonObject(), "inputB", new JsonObject())));
-                    int minTrades = JsonUtils.getInt(tradeConfig.getAsJsonObject(), "minTradesAvailable", 1);
-                    int maxTrades = JsonUtils.getInt(tradeConfig.getAsJsonObject(), "maxTradesAvailable", 10);
-                    int tradeLevel = JsonUtils.getInt(tradeConfig.getAsJsonObject(), "tradeLevel", 1);
-
-                    return new EnhancedTrade(outputStack, outputTuple.getFirst(), outputTuple.getSecond(), inputAStack, inputATuple.getFirst(), inputATuple.getSecond(), inputBStack, inputBTuple.getFirst(), inputBTuple.getSecond(), minTrades, maxTrades, tradeLevel);
+                    NBTTagCompound displayCompound = new NBTTagCompound();
+                    displayCompound.setTag("Lore", loreList);
+                    NBTTagCompound compound = new NBTTagCompound();
+                    compound.setTag("display", displayCompound);
+                    NBTUtil.setTag(outputStack, compound);
                 }
             }
+
+            for(JsonElement enchantmentConfig : JsonUtils.getJsonArray(outputConfig, "enchantments", new JsonArray()))
+            {
+                Enchantment enchantment = Enchantment.getEnchantmentByLocation(JsonUtils.getString(enchantmentConfig.getAsJsonObject(), "enchantment", ""));
+
+                if(enchantment != null)
+                {
+                    int minEnchantmentLevel = JsonUtils.getInt(enchantmentConfig.getAsJsonObject(), "minEnchantmentLevel", 1);
+                    int maxEnchantmentLevel = JsonUtils.getInt(enchantmentConfig.getAsJsonObject(), "maxEnchantmentLevel", 1);
+
+                    if(outputStack.getItem() instanceof ItemEnchantedBook)
+                    {
+                        ItemEnchantedBook.addEnchantment(outputStack, new EnchantmentData(enchantment, RandomUtil.getNumberInRange(minEnchantmentLevel, maxEnchantmentLevel, rand)));
+                    }
+                    else
+                    {
+                        outputStack.addEnchantment(enchantment, RandomUtil.getNumberInRange(minEnchantmentLevel, maxEnchantmentLevel, rand));
+                    }
+                }
+            }
+
+            Tuple<Integer, Integer> outputTuple = getItemStackSizes((JsonUtils.getJsonObject(config, "output", new JsonObject())));
+            Tuple<Integer, Integer> inputATuple = getItemStackSizes((JsonUtils.getJsonObject(config, "inputA", new JsonObject())));
+            Tuple<Integer, Integer> inputBTuple = getItemStackSizes((JsonUtils.getJsonObject(config, "inputB", new JsonObject())));
+            int minTrades = JsonUtils.getInt(config, "minTradesAvailable", 1);
+            int maxTrades = JsonUtils.getInt(config, "maxTradesAvailable", 10);
+            int tradeLevel = JsonUtils.getInt(config, "tradeLevel", 1);
+
+            return new EnhancedTrade(outputStack, outputTuple.getFirst(), outputTuple.getSecond(), inputAStack, inputATuple.getFirst(), inputATuple.getSecond(), inputBStack, inputBTuple.getFirst(), inputBTuple.getSecond(), minTrades, maxTrades, tradeLevel);
         }
 
         return null;

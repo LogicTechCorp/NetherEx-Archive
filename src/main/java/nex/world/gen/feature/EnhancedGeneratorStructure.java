@@ -64,7 +64,6 @@ public class EnhancedGeneratorStructure extends EnhancedGenerator
         if(structureConfigs.size() > 0)
         {
             Random rand = new Random();
-
             int generationAttempts = JsonUtils.getInt(config, "generationAttempts", 10);
             float generationProbability = JsonUtils.getFloat(config, "generationProbability", 1.0F);
             int minHeight = JsonUtils.getInt(config, "minHeight", 32);

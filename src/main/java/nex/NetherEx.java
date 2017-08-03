@@ -84,7 +84,7 @@ public class NetherEx
 
         NetherExBiomes.init();
         NetherExEntities.init();
-        TradeManager.init(new File(configDirectory, "/NetherEx/Trade Lists"));
+        TradeManager.init(new File(configDirectory, "/NetherEx/Trade Configs"));
         NetherExRecipes.init();
         NetherExOreDict.init();
         proxy.init();

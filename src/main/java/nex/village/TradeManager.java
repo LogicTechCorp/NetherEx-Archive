@@ -17,9 +17,7 @@
 
 package nex.village;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import net.minecraft.util.JsonUtils;
 import nex.NetherEx;
 import nex.util.FileUtil;
@@ -60,11 +58,11 @@ public class TradeManager
 
             if(NetherEx.IS_DEV_ENV)
             {
-                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_lists").getFile()), directory);
+                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), directory);
             }
             else
             {
-                FileUtil.extractFromJar("/assets/nex/trade_lists", directory.getPath());
+                FileUtil.extractFromJar("/assets/nex/trade_configs", directory.getPath());
             }
         }
         catch(IOException e)
@@ -109,6 +107,7 @@ public class TradeManager
     private static void parseTradeConfig(JsonObject config)
     {
         String careerIdentifier = JsonUtils.getString(config, "career", "");
+        JsonArray tradeConfigs = JsonUtils.getJsonArray(config, "trades", new JsonArray());
         Pigtificate.Career career = null;
 
         for(Enum value : Pigtificate.Career.class.getEnumConstants())
@@ -118,9 +117,17 @@ public class TradeManager
                 career = (Pigtificate.Career) value;
             }
         }
-        if(career != null)
+        if(career != null && tradeConfigs.size() > 0)
         {
-            career.addTrade(EnhancedTrade.deserialize(config));
+            for(JsonElement tradeConfig : tradeConfigs)
+            {
+                EnhancedTrade trade = EnhancedTrade.deserialize(tradeConfig.getAsJsonObject());
+
+                if(trade != null)
+                {
+                    career.addTrade(trade);
+                }
+            }
         }
     }
 }
