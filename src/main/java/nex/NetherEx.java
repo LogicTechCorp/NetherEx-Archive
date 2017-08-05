@@ -19,24 +19,17 @@ package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.launchwrapper.Launch;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import nex.handler.ConfigHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
-import nex.util.FileUtil;
 import nex.village.TradeManager;
 import nex.world.biome.NetherBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.File;
 
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, updateJSON = NetherEx.UPDATE_JSON)
 public class NetherEx
@@ -103,39 +96,14 @@ public class NetherEx
     @Mod.EventHandler
     public void onFMLServerStarted(FMLServerStartedEvent event)
     {
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        World world = server.getEntityWorld();
-        File configDirectory = Loader.instance().getConfigDir();
-        String path = world.getSaveHandler().getWorldDirectory().getPath();
-        String worldName = path.substring(path.lastIndexOf('\\') + 1);
-
-        if(IS_DEV_ENV)
-        {
-            FileUtil.copyToDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), new File(configDirectory, "/NetherEx/Biome Configs/" + worldName));
-            FileUtil.copyToDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), new File(configDirectory, "/NetherEx/Trade Configs/" + worldName));
-        }
-        else
-        {
-            FileUtil.extractToDirectory(new File("/assets/nex/biome_configs"), new File(configDirectory, "/NetherEx/Biome Configs/" + worldName));
-            FileUtil.extractToDirectory(new File("/assets/nex/trade_configs"), new File(configDirectory, "/NetherEx/Trade Configs/" + worldName));
-        }
-
-        NetherBiomeManager.parseBiomeConfigs(new File(configDirectory, "/NetherEx/Biome Configs/" + worldName + "/nex"));
-        NetherBiomeManager.parseBiomeConfigs(new File(configDirectory, "/NetherEx/Biome Configs/" + worldName + "/custom"));
-
-        if(ConfigHandler.compat.biomesOPlenty.enableCompat)
-        {
-            NetherExCompat.enableBiomesOPlentyCompat(world, configDirectory);
-        }
-
-        TradeManager.parseTradeConfigs(new File(configDirectory, "/NetherEx/Trade Configs/" + worldName + "/nex"));
-        TradeManager.parseTradeConfigs(new File(configDirectory, "/NetherEx/Trade Configs/" + worldName + "/custom"));
+        ConfigHandler.loadConfigs();
     }
 
     @Mod.EventHandler
     public void onFMLServerStopped(FMLServerStoppedEvent event)
     {
-        NetherBiomeManager.removeAllBiomes();
-        NetherExCompat.disableCompat();
+        NetherBiomeManager.clearBiomes();
+        TradeManager.clearTrades();
+        NetherExCompat.resetCompat();
     }
 }

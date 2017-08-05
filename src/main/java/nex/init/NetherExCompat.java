@@ -27,7 +27,7 @@ public class NetherExCompat
 {
     private static boolean biomesOPlentyCompatEnabled = false;
 
-    public static void disableCompat()
+    public static void resetCompat()
     {
         biomesOPlentyCompatEnabled = false;
     }
@@ -40,10 +40,7 @@ public class NetherExCompat
 
             if(worldType.getName().equalsIgnoreCase("BIOMESOP") || worldType.getName().equalsIgnoreCase("lostcities_bop"))
             {
-                String path = world.getSaveHandler().getWorldDirectory().getPath();
-                String worldName = path.substring(path.lastIndexOf('\\') + 1);
-
-                NetherBiomeManager.parseBiomeConfigs(new File(directory, "/NetherEx/Biome Configs/" + worldName + "/biomesoplenty"));
+                NetherBiomeManager.parseBiomeConfigs(new File(directory, "/NetherEx/Biome Configs/biomesoplenty"));
                 biomesOPlentyCompatEnabled = true;
             }
         }

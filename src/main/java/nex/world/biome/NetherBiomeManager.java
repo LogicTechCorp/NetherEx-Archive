@@ -121,7 +121,7 @@ public class NetherBiomeManager
         }
     }
 
-    public static void removeAllBiomes()
+    public static void clearBiomes()
     {
         for(EnhancedBiomeClimate enhancedBiomeClimate : EnhancedBiomeClimate.values())
         {

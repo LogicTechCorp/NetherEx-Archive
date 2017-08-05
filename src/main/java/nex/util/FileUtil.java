@@ -18,7 +18,6 @@
 package nex.util;
 
 import nex.NetherEx;
-import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.net.JarURLConnection;
@@ -29,33 +28,7 @@ import java.util.zip.ZipFile;
 
 public class FileUtil
 {
-    public static void copyToDirectory(File sourcePath, File destinationPath)
-    {
-        try
-        {
-            if(!destinationPath.exists())
-            {
-                destinationPath.mkdir();
-            }
-
-            FileUtils.copyDirectory(sourcePath, destinationPath);
-        }
-        catch(IOException ignored)
-        {
-        }
-    }
-
-    public static void extractToDirectory(File sourcePath, File destinationPath)
-    {
-        if(!destinationPath.exists())
-        {
-            destinationPath.mkdir();
-        }
-
-        FileUtil.extractFromJar(sourcePath.getPath(), destinationPath.getPath());
-    }
-
-    private static void extractFromJar(String sourcePath, String destinationPath)
+    public static void extractFromJar(String sourcePath, String destinationPath)
     {
         URL sourceURL = NetherEx.class.getResource(sourcePath);
         String fromPath = sourcePath.substring(1);

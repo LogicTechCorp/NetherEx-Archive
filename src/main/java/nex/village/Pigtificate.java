@@ -22,8 +22,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.WeightedRandom;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExTextures;
+import nex.util.WeightedUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -93,7 +95,7 @@ public class Pigtificate
         private int weight;
         private ResourceLocation texture;
         private ResourceLocation lootTable;
-        private final Map<Integer, List<EnhancedTrade>> trades = Maps.newHashMap();
+        private final Map<Integer, List<EnhancedTrade>> tradeMap = Maps.newHashMap();
 
         Career(Profession professionIn, int weightIn, ResourceLocation textureIn, ResourceLocation lootTableIn)
         {
@@ -105,7 +107,12 @@ public class Pigtificate
 
         public void addTrade(EnhancedTrade trade)
         {
-            trades.computeIfAbsent(trade.getTradeLevel(), k -> Lists.newArrayList()).add(trade);
+            tradeMap.computeIfAbsent(trade.getTradeLevel(), k -> Lists.newArrayList()).add(trade);
+        }
+
+        public void clearTradeList(int index)
+        {
+            tradeMap.put(index, Lists.newArrayList());
         }
 
         public static Career getFromIndex(int index)
@@ -130,6 +137,21 @@ public class Pigtificate
             return HUNTER;
         }
 
+        public static Career getRandomCareer(Profession profession, Random rand)
+        {
+            List<WeightedUtil.NamedItem> careers = Lists.newArrayList();
+
+            for(Pigtificate.Career career : Pigtificate.Career.values())
+            {
+                if(profession == career.getProfession())
+                {
+                    careers.add(new WeightedUtil.NamedItem(career.name(), career.getWeight()));
+                }
+            }
+
+            return Pigtificate.Career.getFromString(WeightedRandom.getRandomItem(rand, careers).getName());
+        }
+
         public int getWeight()
         {
             return weight;
@@ -152,7 +174,7 @@ public class Pigtificate
 
         public Map<Integer, List<EnhancedTrade>> getTradeMap()
         {
-            return ImmutableMap.copyOf(trades);
+            return ImmutableMap.copyOf(tradeMap);
         }
     }
 }

@@ -17,14 +17,29 @@
 
 package nex.handler;
 
+import com.google.common.collect.Lists;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.World;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.NetherEx;
+import nex.init.NetherExCompat;
+import nex.util.FileUtil;
+import nex.village.TradeManager;
+import nex.world.biome.NetherBiomeManager;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 @Config.LangKey("config.nex:title")
 @Config(modid = NetherEx.MOD_ID, name = "NetherEx/NetherEx", category = "nex")
@@ -58,7 +73,69 @@ public class ConfigHandler
     @Config.LangKey("config.nex:biome")
     public static Biome biome = new Biome();
 
+    public static final File CONFIG_DIRECTORY = Loader.instance().getConfigDir();
+    private static final List<Tuple<String, String>> PACKED_CONFIGS = Lists.newArrayList();
+
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigHandler");
+
+    static
+    {
+        PACKED_CONFIGS.add(new Tuple<>("biome_configs", "Biome Configs"));
+        PACKED_CONFIGS.add(new Tuple<>("trade_configs", "Trade Configs"));
+
+        unpackConfigs();
+    }
+
+    private static void unpackConfigs()
+    {
+        try
+        {
+            File configDirectory = new File(CONFIG_DIRECTORY, "/NetherEx");
+
+            if(!configDirectory.exists())
+            {
+                configDirectory.mkdir();
+            }
+
+            for(Tuple<String, String> tuple : PACKED_CONFIGS)
+            {
+                if(NetherEx.IS_DEV_ENV)
+                {
+                    File outputDirectory = new File(configDirectory, tuple.getSecond());
+
+                    if(!outputDirectory.exists())
+                    {
+                        FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/" + tuple.getFirst()).getFile()), outputDirectory);
+                    }
+                }
+                else
+                {
+                    FileUtil.extractFromJar("/assets/nex/" + tuple.getFirst(), configDirectory.getPath() + tuple.getSecond());
+                }
+            }
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadConfigs()
+    {
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        World world = server.getEntityWorld();
+
+        NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/nex"));
+        NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/custom"));
+
+        if(ConfigHandler.compat.biomesOPlenty.enableCompat)
+        {
+            NetherExCompat.enableBiomesOPlentyCompat(world, CONFIG_DIRECTORY);
+        }
+
+        TradeManager.parseTradeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Trade Configs/nex"));
+        TradeManager.parseTradeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Trade Configs/custom"));
+    }
 
     public static class Client
     {

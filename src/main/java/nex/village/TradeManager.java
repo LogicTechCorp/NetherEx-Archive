@@ -74,19 +74,12 @@ public class TradeManager
 
     private static void parseTradeConfig(JsonObject config)
     {
-        String careerIdentifier = JsonUtils.getString(config, "career", "");
         JsonArray tradeConfigs = JsonUtils.getJsonArray(config, "trades", new JsonArray());
-        Pigtificate.Career career = null;
 
-        for(Enum value : Pigtificate.Career.class.getEnumConstants())
+        if(tradeConfigs.size() > 0)
         {
-            if(value.name().equalsIgnoreCase(careerIdentifier))
-            {
-                career = (Pigtificate.Career) value;
-            }
-        }
-        if(career != null && tradeConfigs.size() > 0)
-        {
+            Pigtificate.Career career = Pigtificate.Career.getFromString(JsonUtils.getString(config, "career", ""));
+
             for(JsonElement tradeConfig : tradeConfigs)
             {
                 EnhancedTrade trade = EnhancedTrade.deserialize(tradeConfig.getAsJsonObject());
@@ -95,6 +88,17 @@ public class TradeManager
                 {
                     career.addTrade(trade);
                 }
+            }
+        }
+    }
+
+    public static void clearTrades()
+    {
+        for(Pigtificate.Career career : Pigtificate.Career.values())
+        {
+            for(int i = 0; i < career.getTradeMap().keySet().size(); i++)
+            {
+                career.clearTradeList(i);
             }
         }
     }

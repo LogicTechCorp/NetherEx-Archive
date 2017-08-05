@@ -17,7 +17,6 @@
 
 package nex.entity.passive;
 
-import com.google.common.collect.Lists;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
@@ -49,7 +48,6 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
-import nex.util.WeightedUtil;
 import nex.village.EnhancedTrade;
 import nex.village.Pigtificate;
 import nex.village.PigtificateVillage;
@@ -715,18 +713,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     protected void setRandomCareer()
     {
-        List<WeightedUtil.NamedItem> careers = Lists.newArrayList();
-
-        for(Pigtificate.Career career : Pigtificate.Career.values())
-        {
-            if(career.getProfession() == Pigtificate.Profession.getFromIndex(getProfession()))
-            {
-                careers.add(new WeightedUtil.NamedItem(career.name(), career.getWeight()));
-            }
-        }
-
-        Pigtificate.Career career = Pigtificate.Career.getFromString(WeightedRandom.getRandomItem(rand, careers).getName());
-        setCareer(career.ordinal());
+        setCareer(Pigtificate.Career.getRandomCareer(Pigtificate.Profession.getFromIndex(getProfession()), rand).ordinal());
     }
 
     public void setProfession(int i)
