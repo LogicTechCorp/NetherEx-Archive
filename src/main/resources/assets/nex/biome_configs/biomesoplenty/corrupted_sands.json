@@ -1,0 +1,20 @@
+{
+    "biome": "biomesoplenty:corrupted_sands",
+    "weight": 8,
+    "climate": "temperate",
+    "floorTopBlock": {
+        "block": "minecraft:soul_sand"
+    },
+    "floorFillerBlock": {
+        "block": "minecraft:soul_sand"
+    },
+    "wallBlock": {
+        "block": "minecraft:soul_sand"
+    },
+    "roofBottomBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "roofFillerBlock": {
+        "block": "minecraft:netherrack"
+    }
+}

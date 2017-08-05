@@ -34,6 +34,10 @@ public class ConfigHandler
     @Config.LangKey("config.nex:client")
     public static Client client = new Client();
 
+    @Config.Name("compat")
+    @Config.LangKey("config.nex:compat")
+    public static Compat compat = new Compat();
+
     @Config.Name("dimension")
     @Config.LangKey("config.nex:dimension")
     public static Dimension dimension = new Dimension();
@@ -66,6 +70,19 @@ public class ConfigHandler
         {
             @Config.LangKey("config.nex:client.visual.disableNetherFog")
             public boolean disableNetherFog = true;
+        }
+    }
+
+    public static class Compat
+    {
+        @Config.Name("biomesoplenty")
+        @Config.LangKey("config.nex:compat.biomesoplenty")
+        public BiomesOPlenty biomesOPlenty = new BiomesOPlenty();
+
+        public class BiomesOPlenty
+        {
+            @Config.LangKey("config.nex:compat.biomesoplenty.enableCompat")
+            public boolean enableCompat = true;
         }
     }
 

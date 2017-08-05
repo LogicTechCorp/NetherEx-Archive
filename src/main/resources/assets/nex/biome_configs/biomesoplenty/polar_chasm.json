@@ -1,0 +1,20 @@
+{
+    "biome": "biomesoplenty:polar_chasm",
+    "weight": 1,
+    "climate": "cold",
+    "floorTopBlock": {
+        "block": "biomesoplenty:hard_ice"
+    },
+    "floorFillerBlock": {
+        "block": "biomesoplenty:hard_ice"
+    },
+    "wallBlock": {
+        "block": "biomesoplenty:hard_ice"
+    },
+    "roofBottomBlock": {
+        "block": "biomesoplenty:hard_ice"
+    },
+    "roofFillerBlock": {
+        "block": "biomesoplenty:hard_ice"
+    }
+}

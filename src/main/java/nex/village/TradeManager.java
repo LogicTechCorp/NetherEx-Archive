@@ -19,9 +19,6 @@ package nex.village;
 
 import com.google.gson.*;
 import net.minecraft.util.JsonUtils;
-import nex.NetherEx;
-import nex.util.FileUtil;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -39,42 +36,13 @@ public class TradeManager
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeManager");
 
-    public static void init(File directory)
+    public static void parseTradeConfigs(File directory)
     {
-        copyTradeConfigsToConfigDirectory(directory);
-        parseTradeConfigs(directory);
-    }
-
-    private static void copyTradeConfigsToConfigDirectory(File directory)
-    {
-        try
+        if(!directory.exists())
         {
-            if(!directory.exists())
-            {
-                directory.mkdir();
-            }
-
-            LOGGER.info("Copying the Trade config directory to the config folder.");
-
-            if(NetherEx.IS_DEV_ENV)
-            {
-                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), directory);
-            }
-            else
-            {
-                FileUtil.extractFromJar("/assets/nex/trade_configs", directory.getPath());
-            }
-        }
-        catch(IOException e)
-        {
-            LOGGER.fatal("The attempt to copy the Trade config directory to the config folder was unsuccessful.");
-            LOGGER.fatal(e);
+            directory.mkdir();
         }
 
-    }
-
-    private static void parseTradeConfigs(File directory)
-    {
         Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
         Path directoryPath = directory.toPath();
 

@@ -24,12 +24,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
-import nex.NetherEx;
-import nex.util.FileUtil;
 import nex.world.gen.GenerationStage;
 import nex.world.gen.feature.EnhancedGenerator;
 import nex.world.gen.layer.GenLayerNetherEx;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -49,41 +46,13 @@ public class NetherBiomeManager
 {
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherBiomeManager");
 
-    public static void postInit(File directory)
+    public static void parseBiomeConfigs(File directory)
     {
-        copyBiomeConfigsToConfigDirectory(directory);
-        parseBiomeConfigs(directory);
-    }
-
-    private static void copyBiomeConfigsToConfigDirectory(File directory)
-    {
-        try
+        if(!directory.exists())
         {
-            if(!directory.exists())
-            {
-                directory.mkdir();
-            }
-
-            LOGGER.info("Copying the Biome config directory to the config folder.");
-
-            if(NetherEx.IS_DEV_ENV)
-            {
-                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), directory);
-            }
-            else
-            {
-                FileUtil.extractFromJar("/assets/nex/biome_configs", directory.getPath());
-            }
+            directory.mkdir();
         }
-        catch(IOException e)
-        {
-            LOGGER.fatal("The attempt to copy the Biome config directory to the config folder was unsuccessful.");
-            LOGGER.fatal(e);
-        }
-    }
 
-    private static void parseBiomeConfigs(File directory)
-    {
         Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
         Path directoryPath = directory.toPath();
 
@@ -148,6 +117,17 @@ public class NetherBiomeManager
                         GenerationStage.getFromString(JsonUtils.getString(generatorConfig.getAsJsonObject(), "generationStage")).addGenerator(biome, generator);
                     }
                 }
+            }
+        }
+    }
+
+    public static void removeAllBiomes()
+    {
+        for(EnhancedBiomeClimate enhancedBiomeClimate : EnhancedBiomeClimate.values())
+        {
+            for(Biome biome : enhancedBiomeClimate.getBiomeEntryMap().keySet())
+            {
+                enhancedBiomeClimate.removeBiome(biome);
             }
         }
     }

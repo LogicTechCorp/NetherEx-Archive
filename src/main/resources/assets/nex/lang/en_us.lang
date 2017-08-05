@@ -12,6 +12,13 @@ config.nex:client.visual.tooltip=Settings that only affect Client Visuals
 config.nex:client.visual.disableNetherFog=Disable Nether Fog
 config.nex:client.visual.disableNetherFog.tooltip=Does Fog render in the Nether
 
+config.nex:compat=Compatibility Settings
+config.nex:compat.tooltip=Settings that only affect mod compatibility
+config.nex:compat.biomesoplenty=Biomes O' Plenty Compatibility Settings
+config.nex:compat.biomesoplenty.tooltip=Settings that only affect Biomes O' Plenty compatibility
+config.nex:compat.biomesoplenty.enableCompat=Enable Biome O' Plenty Compatibility
+config.nex:compat.biomesoplenty.enableCompat.tooltip=Is Biome O' Plenty compatibility enabled
+
 config.nex:dimension=Dimension Settings
 config.nex:dimension.tooltip=Settings that only affect Dimensions
 config.nex:dimension.nether=Nether Dimension Settings

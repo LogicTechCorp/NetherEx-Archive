@@ -1,0 +1,23 @@
+{
+    "biome": "biomesoplenty:fungi_forest",
+    "weight": 4,
+    "climate": "cool",
+    "floorTopBlock": {
+        "block": "biomesoplenty:grass",
+        "properties": {
+            "variant": "mycelial_netherrack"
+        }
+    },
+    "floorFillerBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "wallBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "roofBottomBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "roofFillerBlock": {
+        "block": "minecraft:netherrack"
+    }
+}

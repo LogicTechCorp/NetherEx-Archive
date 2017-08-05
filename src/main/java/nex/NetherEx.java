@@ -19,17 +19,18 @@ package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import nex.init.NetherExBiomes;
-import nex.init.NetherExEntities;
-import nex.init.NetherExOreDict;
-import nex.init.NetherExRecipes;
+import net.minecraftforge.fml.common.event.*;
+import nex.handler.ConfigHandler;
+import nex.init.*;
 import nex.proxy.IProxy;
+import nex.util.FileUtil;
 import nex.village.TradeManager;
 import nex.world.biome.NetherBiomeManager;
 import org.apache.logging.log4j.LogManager;
@@ -57,8 +58,6 @@ public class NetherEx
 
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
-    private File configDirectory;
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|Main");
 
     static
@@ -71,7 +70,6 @@ public class NetherEx
     {
         LOGGER.info("PreInitialization started.");
 
-        configDirectory = event.getModConfigurationDirectory();
         proxy.preInit();
 
         LOGGER.info("PreInitialization completed.");
@@ -84,7 +82,6 @@ public class NetherEx
 
         NetherExBiomes.init();
         NetherExEntities.init();
-        TradeManager.init(new File(configDirectory, "/NetherEx/Trade Configs"));
         NetherExRecipes.init();
         NetherExOreDict.init();
         proxy.init();
@@ -98,9 +95,47 @@ public class NetherEx
         LOGGER.info("PostInitialization started.");
 
         NetherExBiomes.postInit();
-        NetherBiomeManager.postInit(new File(configDirectory, "/NetherEx/Biome Configs"));
         proxy.postInit();
 
         LOGGER.info("PostInitialization completed.");
+    }
+
+    @Mod.EventHandler
+    public void onFMLServerStarted(FMLServerStartedEvent event)
+    {
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        World world = server.getEntityWorld();
+        File configDirectory = Loader.instance().getConfigDir();
+        String path = world.getSaveHandler().getWorldDirectory().getPath();
+        String worldName = path.substring(path.lastIndexOf('\\') + 1);
+
+        if(IS_DEV_ENV)
+        {
+            FileUtil.copyToDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), new File(configDirectory, "/NetherEx/Biome Configs/" + worldName));
+            FileUtil.copyToDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), new File(configDirectory, "/NetherEx/Trade Configs/" + worldName));
+        }
+        else
+        {
+            FileUtil.extractToDirectory(new File("/assets/nex/biome_configs"), new File(configDirectory, "/NetherEx/Biome Configs/" + worldName));
+            FileUtil.extractToDirectory(new File("/assets/nex/trade_configs"), new File(configDirectory, "/NetherEx/Trade Configs/" + worldName));
+        }
+
+        NetherBiomeManager.parseBiomeConfigs(new File(configDirectory, "/NetherEx/Biome Configs/" + worldName + "/nex"));
+        NetherBiomeManager.parseBiomeConfigs(new File(configDirectory, "/NetherEx/Biome Configs/" + worldName + "/custom"));
+
+        if(ConfigHandler.compat.biomesOPlenty.enableCompat)
+        {
+            NetherExCompat.enableBiomesOPlentyCompat(world, configDirectory);
+        }
+
+        TradeManager.parseTradeConfigs(new File(configDirectory, "/NetherEx/Trade Configs/" + worldName + "/nex"));
+        TradeManager.parseTradeConfigs(new File(configDirectory, "/NetherEx/Trade Configs/" + worldName + "/custom"));
+    }
+
+    @Mod.EventHandler
+    public void onFMLServerStopped(FMLServerStoppedEvent event)
+    {
+        NetherBiomeManager.removeAllBiomes();
+        NetherExCompat.disableCompat();
     }
 }

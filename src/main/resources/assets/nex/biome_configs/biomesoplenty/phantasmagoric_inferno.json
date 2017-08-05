@@ -1,0 +1,20 @@
+{
+    "biome": "biomesoplenty:phantasmagoric_inferno",
+    "weight": 6,
+    "climate": "hot",
+    "floorTopBlock": {
+        "block": "biomesoplenty:ash_block"
+    },
+    "floorFillerBlock": {
+        "block": "biomesoplenty:ash_block"
+    },
+    "wallBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "roofBottomBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "roofFillerBlock": {
+        "block": "minecraft:netherrack"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "biome": "biomesoplenty:undergarden",
+    "weight": 4,
+    "climate": "cool",
+    "floorTopBlock": {
+        "block": "biomesoplenty:grass",
+        "properties": {
+            "variant": "overgrown_netherrack"
+        }
+    },
+    "floorFillerBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "wallBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "roofBottomBlock": {
+        "block": "minecraft:netherrack"
+    },
+    "roofFillerBlock": {
+        "block": "minecraft:netherrack"
+    }
+}

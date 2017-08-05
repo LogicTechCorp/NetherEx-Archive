@@ -39,6 +39,11 @@ public enum EnhancedBiomeClimate
         biomeEntries.put(enhancedBiome.getBiome(), new EnhancedBiomeEntry(enhancedBiome));
     }
 
+    public void removeBiome(Biome biome)
+    {
+        biomeEntries.remove(biome);
+    }
+
     public static EnhancedBiomeClimate getFromBiome(Biome biome)
     {
         for(EnhancedBiomeClimate enhancedBiomeClimate : values())
