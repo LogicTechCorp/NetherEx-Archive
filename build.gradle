@@ -35,10 +35,10 @@ minecraft {
     def forgeVersion = forgePattern.matcher(configText)
     forgeVersion.find()
 
-    def forgeMajor = Integer.parseInt(forgeVersion.group(1))
-    def forgeMinor = Integer.parseInt(forgeVersion.group(2))
-    def forgePatch = Integer.parseInt(forgeVersion.group(3))
-    def forgeBuild = Integer.parseInt(forgeVersion.group(4))
+    def forgeMajorMod = Integer.parseInt(forgeVersion.group(1))
+    def forgeMajorAPI = Integer.parseInt(forgeVersion.group(2))
+    def forgeMinor = Integer.parseInt(forgeVersion.group(3))
+    def forgePatch = Integer.parseInt(forgeVersion.group(4))
 
     if(mcVersion.group(3) != null)
     {
@@ -46,14 +46,14 @@ minecraft {
         def mcMinor = Integer.parseInt(mcVersion.group(2))
         def mcBuild = Integer.parseInt(mcVersion.group(3).substring(1))
 
-        version = mcMajor + "." + mcMinor + "." + mcBuild + "-" + forgeMajor + "." + forgeMinor + "." + forgePatch + "." + forgeBuild
+        version = mcMajor + "." + mcMinor + "." + mcBuild + "-" + forgeMajorMod + "." + forgeMajorAPI + "." + forgeMinor + "." + forgePatch
     }
     else
     {
         def mcMajor = Integer.parseInt(mcVersion.group(1))
         def mcMinor = Integer.parseInt(mcVersion.group(2))
 
-        version = mcMajor + "." + mcMinor + "-" + forgeMajor + "." + forgeMinor + "." + forgePatch + "." + forgeBuild
+        version = mcMajor + "." + mcMinor + "-" + forgeMajorMod + "." + forgeMajorAPI + "." + forgeMinor + "." + forgePatch
     }
 
     def mcpPattern = Pattern.compile("<mcp_version>(\\w+)</mcp_version>")
@@ -75,13 +75,13 @@ minecraft {
         def modVersion = modPattern.matcher(configText)
         modVersion.find()
 
-        def major = Integer.parseInt(modVersion.group(1))
-        def minor = Integer.parseInt(modVersion.group(2))
-        def patch = Integer.parseInt(modVersion.group(3))
-        def build = Integer.parseInt(modVersion.group(4))
+        def majorMod = Integer.parseInt(modVersion.group(1))
+        def majorAPI = Integer.parseInt(modVersion.group(2))
+        def minor = Integer.parseInt(modVersion.group(3))
+        def patch = Integer.parseInt(modVersion.group(4))
         def dev = modVersion.group(5)
         def devVersion = Integer.parseInt(modVersion.group(6))
-        project.version = major + "." + minor + "." + patch + "." + build + "-" + dev + "." + devVersion
+        project.version = majorMod + "." + majorAPI + "." + minor + "." + patch + "-" + dev + "." + devVersion
     }
     else
     {
@@ -89,11 +89,11 @@ minecraft {
         def modVersion = modPattern.matcher(configText)
         modVersion.find()
 
-        def major = Integer.parseInt(modVersion.group(1))
-        def minor = Integer.parseInt(modVersion.group(2))
-        def patch = Integer.parseInt(modVersion.group(3))
-        def build = Integer.parseInt(modVersion.group(4))
-        project.version = major + "." + minor + "." + patch + "." + build
+        def majorMod = Integer.parseInt(modVersion.group(1))
+        def majorAPI = Integer.parseInt(modVersion.group(2))
+        def minor = Integer.parseInt(modVersion.group(3))
+        def patch = Integer.parseInt(modVersion.group(4))
+        project.version = majorMod + "." + majorAPI + "." + minor + "." + patch
     }
     
     replace "@MOD_VERSION@", project.version
@@ -121,188 +121,66 @@ processResources {
     }
 }
 
-task incrementMajorNumber << {
-    String newVersion
+task incrementMajorMod << {
     Matcher matcherVersion
 
     def configFile = file("public_properties.xml")
     def configText = configFile.getText()
-    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
-    def matcherDev = patternDev.matcher(configText)
-    matcherDev.find()
+    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+    matcherVersion = pattern.matcher(configText)
+    matcherVersion.find()
 
-    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+    def majorMod = Integer.parseInt(matcherVersion.group(1))
 
-    if(isDev)
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        def dev = matcherVersion.group(5)
-        def devVersion = Integer.parseInt(matcherVersion.group(6))
-        newVersion = (major + 1) + ".0.0.0" + "-" + dev + "." + devVersion
-    }
-    else
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        newVersion = (major + 1) + ".0.0.0"
-    }
-
-    project.version = newVersion
-
-    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
-    matcherDev = patternDev.matcher(modVersion)
-    matcherDev.find()
-    isDev = matcherDev.replaceAll("<is_dev>false</is_dev>")
-    configFile.write(isDev)
+    project.version = (majorMod + 1) + ".0.0.0"
 }
 
-task incrementMinorNumber << {
-    String newVersion
+task incrementMajorAPI << {
     Matcher matcherVersion
 
     def configFile = file("public_properties.xml")
     def configText = configFile.getText()
-    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
-    def matcherDev = patternDev.matcher(configText)
-    matcherDev.find()
+    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+    matcherVersion = pattern.matcher(configText)
+    matcherVersion.find()
 
-    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+    def majorMod = Integer.parseInt(matcherVersion.group(1))
+    def majorAPI = Integer.parseInt(matcherVersion.group(2))
 
-    if(isDev)
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        def minor = Integer.parseInt(matcherVersion.group(2))
-        def build = Integer.parseInt(matcherVersion.group(4))
-        def dev = matcherVersion.group(5)
-        def devVersion = Integer.parseInt(matcherVersion.group(6))
-        newVersion = major + "." + (minor + 1) + ".0." + (build + 1) + "-" + dev + "." + devVersion
-    }
-    else
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        def minor = Integer.parseInt(matcherVersion.group(2))
-        def build = Integer.parseInt(matcherVersion.group(4))
-        newVersion = major + "." + (minor + 1) + ".0." + (build + 1)
-    }
-
-    project.version = newVersion
-
-    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
-    matcherDev = patternDev.matcher(modVersion)
-    matcherDev.find()
-    isDev = matcherDev.replaceAll("<is_dev>false</is_dev>")
-    configFile.write(isDev)
+    project.version = majorMod + "." + (majorAPI + 1) + ".0.0"
 }
 
-task incrementPatchNumber << {
-    String newVersion
+task incrementMinor << {
     Matcher matcherVersion
 
     def configFile = file("public_properties.xml")
     def configText = configFile.getText()
-    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
-    def matcherDev = patternDev.matcher(configText)
-    matcherDev.find()
+    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+    matcherVersion = pattern.matcher(configText)
+    matcherVersion.find()
 
-    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+    def majorMod = Integer.parseInt(matcherVersion.group(1))
+    def majorAPI = Integer.parseInt(matcherVersion.group(2))
+    def minor = Integer.parseInt(matcherVersion.group(3))
 
-    if(isDev)
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        def minor = Integer.parseInt(matcherVersion.group(2))
-        def patch = Integer.parseInt(matcherVersion.group(3))
-        def build = Integer.parseInt(matcherVersion.group(4))
-        def dev = matcherVersion.group(5)
-        def devVersion = Integer.parseInt(matcherVersion.group(6))
-        newVersion = major + "." + minor + "." + (patch + 1) + "." + (build + 1) + "-" + dev + "." + devVersion
-    }
-    else
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        def minor = Integer.parseInt(matcherVersion.group(2))
-        def patch = Integer.parseInt(matcherVersion.group(3))
-        def build = Integer.parseInt(matcherVersion.group(4))
-        newVersion = major + "." + minor + "." + (patch + 1) + "." + (build + 1)
-    }
-
-    project.version = newVersion
-
-    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
-    matcherDev = patternDev.matcher(modVersion)
-    matcherDev.find()
-    isDev = matcherDev.replaceAll("<is_dev>false</is_dev>")
-    configFile.write(isDev)
+    project.version = majorMod + "." + majorAPI + "." + (minor + 1) + ".0"
 }
 
-task setDevVersion << {
-    String newVersion
+task incrementPatch << {
     Matcher matcherVersion
 
     def configFile = file("public_properties.xml")
     def configText = configFile.getText()
-    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
-    def matcherDev = patternDev.matcher(configText)
-    matcherDev.find()
+    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
+    matcherVersion = pattern.matcher(configText)
+    matcherVersion.find()
 
-    def isDev = Boolean.parseBoolean(matcherDev.group(1))
+    def majorMod = Integer.parseInt(matcherVersion.group(1))
+    def majorAPI = Integer.parseInt(matcherVersion.group(2))
+    def minor = Integer.parseInt(matcherVersion.group(3))
+    def patch = Integer.parseInt(matcherVersion.group(4))
 
-    if(isDev)
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        def minor = Integer.parseInt(matcherVersion.group(2))
-        def patch = Integer.parseInt(matcherVersion.group(3))
-        def build = Integer.parseInt(matcherVersion.group(4))
-        def dev = matcherVersion.group(5)
-        def devVersion = Integer.parseInt(matcherVersion.group(6))
-        newVersion = major + "." + minor + "." + patch + "." + build + "-" + dev + "." + (devVersion + 1)
-    }
-    else
-    {
-        def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-        matcherVersion = pattern.matcher(configText)
-        matcherVersion.find()
-
-        def major = Integer.parseInt(matcherVersion.group(1))
-        def minor = Integer.parseInt(matcherVersion.group(2))
-        def patch = Integer.parseInt(matcherVersion.group(3))
-        def build = Integer.parseInt(matcherVersion.group(4))
-        newVersion = major + "." + minor + "." + patch +  "." + build + "-dev.1"
-    }
-
-    project.version = newVersion
-
-    def modVersion = matcherVersion.replaceAll("<mod_version>" + newVersion + "</mod_version>")
-    matcherDev = patternDev.matcher(modVersion)
-    matcherDev.find()
-    isDev = matcherDev.replaceAll("<is_dev>true</is_dev>")
-    configFile.write(isDev)
+    project.version = majorMod + "." + majorAPI + "." + minor + "." + (patch + 1)
 }
 
 task getModData << {
