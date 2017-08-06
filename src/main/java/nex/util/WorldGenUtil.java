@@ -491,7 +491,7 @@ public class WorldGenUtil
         BlockPos solidPos;
         BlockPos newPos;
 
-        for(solidPos = new BlockPos(pos.getX(), height, pos.getZ()); solidPos.getY() >= 0; solidPos = newPos)
+        for(solidPos = new BlockPos(pos.getX(), height, pos.getZ()); solidPos.getY() > world.getSeaLevel(); solidPos = newPos)
         {
             newPos = solidPos.down();
             IBlockState state = world.getBlockState(newPos);

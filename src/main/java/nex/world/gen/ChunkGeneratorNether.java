@@ -42,7 +42,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
 import nex.util.WorldGenUtil;
 import nex.world.biome.NetherBiomeManager;
-import nex.world.gen.structure.MapGenNetherVillage;
+import nex.world.gen.structure.nethervillage.MapGenNetherVillage;
 
 import java.util.List;
 import java.util.Random;

@@ -18,14 +18,14 @@
 package nex.init;
 
 import net.minecraft.world.gen.structure.MapGenStructureIO;
-import nex.world.gen.structure.MapGenNetherVillage;
-import nex.world.gen.structure.StructureNetherVillagePieces;
+import nex.world.gen.structure.nethervillage.MapGenNetherVillage;
+import nex.world.gen.structure.nethervillage.StructureNetherVillage;
 
 public class NetherExStructures
 {
     public static void init()
     {
         MapGenStructureIO.registerStructure(MapGenNetherVillage.Start.class, "NetherVillage");
-        StructureNetherVillagePieces.registerVillagePieces();
+        StructureNetherVillage.registerVillagePieces();
     }
 }
