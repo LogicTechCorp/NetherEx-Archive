@@ -27,7 +27,6 @@ import java.util.List;
 
 public class NetherStructure extends WeightedUtil.NamedItem
 {
-    private final String identifier;
     private final int weight;
     private final Rotation rotation;
     private final Mirror mirror;
@@ -39,18 +38,12 @@ public class NetherStructure extends WeightedUtil.NamedItem
     {
         super(identifierIn, weightIn);
 
-        identifier = identifierIn;
         weight = weightIn;
         rotation = rotationIn;
         mirror = mirrorIn;
         replacedBlock = replacedBlockIn;
         lootTables = lootTablesIn;
         spawnerMobs = spawnerMobsIn;
-    }
-
-    public String getIdentifier()
-    {
-        return identifier;
     }
 
     public int getWeight()

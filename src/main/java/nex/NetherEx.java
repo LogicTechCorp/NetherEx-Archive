@@ -75,6 +75,7 @@ public class NetherEx
 
         NetherExBiomes.init();
         NetherExEntities.init();
+        NetherExStructures.init();
         NetherExRecipes.init();
         NetherExOreDict.init();
         proxy.init();

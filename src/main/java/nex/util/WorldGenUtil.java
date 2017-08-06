@@ -486,6 +486,25 @@ public class WorldGenUtil
         }
     }
 
+    public static BlockPos getSolidBlockBelow(World world, BlockPos pos, int height)
+    {
+        BlockPos solidPos;
+        BlockPos newPos;
+
+        for(solidPos = new BlockPos(pos.getX(), height, pos.getZ()); solidPos.getY() >= 0; solidPos = newPos)
+        {
+            newPos = solidPos.down();
+            IBlockState state = world.getBlockState(newPos);
+
+            if(state.getMaterial().blocksMovement() && !state.getBlock().isLeaves(state, world, newPos) && !state.getBlock().isFoliage(world, newPos))
+            {
+                break;
+            }
+        }
+
+        return solidPos;
+    }
+
     public static void generateFeature(World world, int chunkX, int chunkZ, Random rand, GenerationStage generationStage)
     {
         BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
@@ -498,11 +517,11 @@ public class WorldGenUtil
         {
             Biome biome = world.getBiome(pos.add(16, 0, 16));
 
-            for(EnhancedGenerator feature : NetherBiomeManager.getBiomeGenerators(biome, generationStage))
+            for(EnhancedGenerator generator : NetherBiomeManager.getBiomeGenerators(biome, generationStage))
             {
-                for(int genAttempts = 0; genAttempts < feature.getGenAttempts(rand); genAttempts++)
+                for(int genAttempts = 0; genAttempts < generator.getGenAttempts(rand); genAttempts++)
                 {
-                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
+                    generator.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(generator.getMinHeight(), generator.getMaxHeight(), rand), rand.nextInt(16) + 8));
                 }
             }
         }

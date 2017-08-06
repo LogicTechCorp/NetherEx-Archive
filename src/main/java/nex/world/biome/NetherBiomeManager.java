@@ -128,6 +128,11 @@ public class NetherBiomeManager
             for(Biome biome : enhancedBiomeClimate.getBiomeEntryMap().keySet())
             {
                 enhancedBiomeClimate.removeBiome(biome);
+
+                for(GenerationStage generationStage : GenerationStage.values())
+                {
+                    generationStage.clearGeneratorList(biome);
+                }
             }
         }
     }

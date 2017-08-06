@@ -112,7 +112,7 @@ public class Pigtificate
 
         public void clearTradeList(int index)
         {
-            tradeMap.put(index, Lists.newArrayList());
+            tradeMap.remove(index);
         }
 
         public static Career getFromIndex(int index)

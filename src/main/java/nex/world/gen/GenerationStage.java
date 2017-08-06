@@ -50,6 +50,11 @@ public enum GenerationStage
         biomeGenerators.computeIfAbsent(biome, k -> Lists.newArrayList()).add(feature);
     }
 
+    public void clearGeneratorList(Biome biome)
+    {
+        biomeGenerators.remove(biome);
+    }
+
     public static GenerationStage getFromString(String string)
     {
         if(!Strings.isNullOrEmpty(string))

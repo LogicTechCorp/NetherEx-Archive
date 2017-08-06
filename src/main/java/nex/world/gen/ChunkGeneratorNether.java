@@ -35,7 +35,6 @@ import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
-import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
@@ -43,6 +42,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
 import nex.util.WorldGenUtil;
 import nex.world.biome.NetherBiomeManager;
+import nex.world.gen.structure.MapGenNetherVillage;
 
 import java.util.List;
 import java.util.Random;
@@ -75,6 +75,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
+    private MapGenNetherVillage netherVillage = new MapGenNetherVillage();
 
     public ChunkGeneratorNether(World worldIn)
     {
@@ -371,6 +372,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);
+        netherVillage.generate(world, chunkX, chunkZ, primer);
 
         Chunk chunk = new Chunk(world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
@@ -387,31 +389,31 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     @Override
     public void populate(int chunkX, int chunkZ)
     {
-        boolean logCascadingWorldGeneration = ForgeModContainer.logCascadingWorldGeneration;
-        ForgeModContainer.logCascadingWorldGeneration = false;
-
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
         Biome biome = world.getBiome(blockPos.add(16, 0, 16));
 
         BlockFalling.fallInstantly = true;
-        ForgeEventFactory.onChunkPopulate(true, this, world, rand, chunkX, chunkZ, false);
-        netherBridge.generateStructure(world, rand, chunkPos);
+        boolean hasVillageGenerated = false;
 
-        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
+        ForgeEventFactory.onChunkPopulate(true, this, world, rand, chunkX, chunkZ, hasVillageGenerated);
+        netherBridge.generateStructure(world, rand, chunkPos);
+        hasVillageGenerated = netherVillage.generateStructure(world, rand, chunkPos);
+
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
         {
             WorldGenUtil.generateFeature(world, blockPos, rand, GenerationStage.LAVA_FALL);
         }
-        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.FIRE))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.FIRE))
         {
             WorldGenUtil.generateFeature(world, blockPos, rand, GenerationStage.FIRE);
         }
-        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.GLOWSTONE))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.GLOWSTONE))
         {
             WorldGenUtil.generateFeature(world, blockPos, rand, GenerationStage.GLOWSTONE);
         }
 
-        ForgeEventFactory.onChunkPopulate(false, this, world, rand, chunkX, chunkZ, false);
+        ForgeEventFactory.onChunkPopulate(false, this, world, rand, chunkX, chunkZ, hasVillageGenerated);
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
 
         if(TerrainGen.decorate(world, rand, blockPos, DecorateBiomeEvent.Decorate.EventType.SHROOM))
@@ -428,11 +430,11 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
 
-        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_MAGMA))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.NETHER_MAGMA))
         {
             WorldGenUtil.generateFeature(world, blockPos, rand, GenerationStage.MAGMA);
         }
-        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
+        if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
         {
             WorldGenUtil.generateFeature(world, blockPos, rand, GenerationStage.LAVA_TRAP);
         }
@@ -441,8 +443,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
         BlockFalling.fallInstantly = false;
-
-        ForgeModContainer.logCascadingWorldGeneration = logCascadingWorldGeneration;
     }
 
     @Override
@@ -478,14 +478,34 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         {
             return netherBridge != null ? netherBridge.getNearestStructurePos(world, pos, force) : null;
         }
+        else if("NetherVillage".equals(structureName))
+        {
+            return netherVillage != null ? netherVillage.getNearestStructurePos(world, pos, force) : null;
+        }
 
         return null;
+    }
+
+    @Override
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
+    {
+        if("Fortress".equals(structureName))
+        {
+            return netherBridge != null && netherBridge.isInsideStructure(pos);
+        }
+        else if("NetherVillage".equals(structureName))
+        {
+            return netherVillage != null && netherVillage.isInsideStructure(pos);
+        }
+
+        return false;
     }
 
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         netherBridge.generate(world, chunkX, chunkZ, null);
+        netherVillage.generate(world, chunkX, chunkZ, null);
     }
 
     /**
