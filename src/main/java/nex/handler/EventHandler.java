@@ -70,8 +70,8 @@ import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.util.BlockUtil;
 import nex.util.EntityUtil;
-import nex.village.NetherVillageManager;
 import nex.village.NetherVillageCollection;
+import nex.village.NetherVillageManager;
 
 import java.util.Arrays;
 import java.util.ListIterator;

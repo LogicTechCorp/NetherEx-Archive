@@ -46,8 +46,8 @@ import nex.entity.ai.EntityAIGoldGolemDefendVillage;
 import nex.entity.ai.EntityAIGoldGolemLookAtPigtificate;
 import nex.entity.monster.EntitySporeCreeper;
 import nex.init.NetherExLootTables;
-import nex.village.NetherVillageManager;
 import nex.village.NetherVillage;
+import nex.village.NetherVillageManager;
 
 public class EntityGoldGolem extends EntityGolem
 {

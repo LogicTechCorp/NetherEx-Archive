@@ -49,9 +49,9 @@ import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
 import nex.village.EnhancedTrade;
+import nex.village.NetherVillage;
 import nex.village.NetherVillageManager;
 import nex.village.Pigtificate;
-import nex.village.NetherVillage;
 
 import java.util.Collections;
 import java.util.List;

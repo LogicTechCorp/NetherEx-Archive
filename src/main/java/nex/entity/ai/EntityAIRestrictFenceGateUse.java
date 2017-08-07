@@ -21,9 +21,9 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.BlockPos;
-import nex.village.NetherVillageManager;
 import nex.village.NetherVillage;
 import nex.village.NetherVillageFenceGateInfo;
+import nex.village.NetherVillageManager;
 
 public class EntityAIRestrictFenceGateUse extends EntityAIBase
 {
