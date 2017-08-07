@@ -18,6 +18,7 @@
 package nex.world.gen.structure.nethervillage;
 
 import com.google.common.collect.Lists;
+import net.minecraft.init.Biomes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -32,15 +33,13 @@ import java.util.Random;
 
 public class MapGenNetherVillage extends MapGenStructure
 {
-    public static List<Biome> VILLAGE_SPAWN_BIOMES = Lists.newArrayList(NetherExBiomes.HELL);
+    private static List<Biome> SPAWN_BIOMES = Lists.newArrayList(NetherExBiomes.HELL);
 
     private int distance;
-    private final int minTownSeparation;
 
     public MapGenNetherVillage()
     {
         distance = 32;
-        minTownSeparation = 8;
     }
 
     @Override
@@ -75,7 +74,7 @@ public class MapGenNetherVillage extends MapGenStructure
 
         if(i == k && j == l)
         {
-            boolean flag = world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, VILLAGE_SPAWN_BIOMES);
+            boolean flag = world.getBiomeProvider().areBiomesViable(i * 16 + 8, j * 16 + 8, 0, SPAWN_BIOMES);
 
             if(flag)
             {
@@ -107,29 +106,29 @@ public class MapGenNetherVillage extends MapGenStructure
         {
         }
 
-        public Start(World worldIn, Random rand, int x, int z, int size)
+        public Start(World world, Random rand, int x, int z, int size)
         {
             super(x, z);
-            List<StructureNetherVillage.PieceWeight> list = StructureNetherVillage.getStructureVillageWeightedPieceList(rand, size);
-            StructureNetherVillageWell.Start structureNetherVillageWellStart = new StructureNetherVillageWell.Start(worldIn.getBiomeProvider(), rand, (x << 4) + 2, (z << 4) + 2, list, size);
-            components.add(structureNetherVillageWellStart);
-            structureNetherVillageWellStart.buildComponent(structureNetherVillageWellStart, components, rand);
-            List<StructureComponent> list1 = structureNetherVillageWellStart.pendingRoads;
-            List<StructureComponent> list2 = structureNetherVillageWellStart.pendingHouses;
+            List<StructureNetherVillage.Piece> list = StructureNetherVillage.getStructureVillageWeightedPieceList(rand, size);
+            StructureNetherVillageWell.Controller controller = new StructureNetherVillageWell.Controller(world.getBiomeProvider().getBiome(new BlockPos(x, 0, z), Biomes.DEFAULT), rand, (x << 4) + 2, (z << 4) + 2, list, size);
+            components.add(controller);
+            controller.buildComponent(controller, components, rand);
+            List<StructureComponent> pendingRoads = controller.getPendingRoads();
+            List<StructureComponent> pendingHouses = controller.getPendingHouses();
 
-            while(!list1.isEmpty() || !list2.isEmpty())
+            while(!pendingRoads.isEmpty() || !pendingHouses.isEmpty())
             {
-                if(list1.isEmpty())
+                if(pendingRoads.isEmpty())
                 {
-                    int i = rand.nextInt(list2.size());
-                    StructureComponent component = list2.remove(i);
-                    component.buildComponent(structureNetherVillageWellStart, components, rand);
+                    int i = rand.nextInt(pendingHouses.size());
+                    StructureComponent component = pendingHouses.remove(i);
+                    component.buildComponent(component, components, rand);
                 }
                 else
                 {
-                    int j = rand.nextInt(list1.size());
-                    StructureComponent component = list1.remove(j);
-                    component.buildComponent(structureNetherVillageWellStart, components, rand);
+                    int j = rand.nextInt(pendingRoads.size());
+                    StructureComponent component = pendingRoads.remove(j);
+                    component.buildComponent(controller, components, rand);
                 }
             }
 

@@ -19,12 +19,10 @@ package nex.world.gen.structure.nethervillage;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.*;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 
@@ -37,9 +35,9 @@ public class StructureNetherVillageWell extends StructureNetherVillage
     {
     }
 
-    public StructureNetherVillageWell(StructureNetherVillageWell.Start start, int type, Random rand, int x, int z)
+    public StructureNetherVillageWell(Controller controller, int type, Random rand, int x, int z)
     {
-        super(start, type);
+        super(controller, type);
         setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
 
         if(getCoordBaseMode().getAxis() == EnumFacing.Axis.Z)
@@ -53,12 +51,12 @@ public class StructureNetherVillageWell extends StructureNetherVillage
     }
 
     @Override
-    public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
+    public void buildComponent(StructureComponent component, List<StructureComponent> components, Random rand)
     {
-        generateAndAddRoadPiece((StructureNetherVillageWell.Start) componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1, EnumFacing.WEST, this.getComponentType());
-        generateAndAddRoadPiece((StructureNetherVillageWell.Start) componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1, EnumFacing.EAST, this.getComponentType());
-        generateAndAddRoadPiece((StructureNetherVillageWell.Start) componentIn, listIn, rand, this.boundingBox.minX + 1, this.boundingBox.maxY - 4, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
-        generateAndAddRoadPiece((StructureNetherVillageWell.Start) componentIn, listIn, rand, this.boundingBox.minX + 1, this.boundingBox.maxY - 4, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+        generateAndAddRoadPiece((Controller) component, components, rand, boundingBox.minX - 1, boundingBox.maxY - 4, boundingBox.minZ + 1, EnumFacing.WEST, getComponentType());
+        generateAndAddRoadPiece((Controller) component, components, rand, boundingBox.maxX + 1, boundingBox.maxY - 4, boundingBox.minZ + 1, EnumFacing.EAST, getComponentType());
+        generateAndAddRoadPiece((Controller) component, components, rand, boundingBox.minX + 1, boundingBox.maxY - 4, boundingBox.minZ - 1, EnumFacing.NORTH, getComponentType());
+        generateAndAddRoadPiece((Controller) component, components, rand, boundingBox.minX + 1, boundingBox.maxY - 4, boundingBox.maxZ + 1, EnumFacing.SOUTH, getComponentType());
     }
 
     @Override
@@ -78,20 +76,20 @@ public class StructureNetherVillageWell extends StructureNetherVillage
 
         IBlockState iblockstate = this.getBiomeSpecificBlockState(Blocks.COBBLESTONE.getDefaultState());
         IBlockState iblockstate1 = this.getBiomeSpecificBlockState(Blocks.OAK_FENCE.getDefaultState());
-        this.fillWithBlocks(world, boundingBox, 1, 0, 1, 4, 12, 4, iblockstate, Blocks.FLOWING_WATER.getDefaultState(), false);
-        this.setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 2, boundingBox);
-        this.setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 2, boundingBox);
-        this.setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 3, boundingBox);
-        this.setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 3, boundingBox);
-        this.setBlockState(world, iblockstate1, 1, 13, 1, boundingBox);
-        this.setBlockState(world, iblockstate1, 1, 14, 1, boundingBox);
-        this.setBlockState(world, iblockstate1, 4, 13, 1, boundingBox);
-        this.setBlockState(world, iblockstate1, 4, 14, 1, boundingBox);
-        this.setBlockState(world, iblockstate1, 1, 13, 4, boundingBox);
-        this.setBlockState(world, iblockstate1, 1, 14, 4, boundingBox);
-        this.setBlockState(world, iblockstate1, 4, 13, 4, boundingBox);
-        this.setBlockState(world, iblockstate1, 4, 14, 4, boundingBox);
-        this.fillWithBlocks(world, boundingBox, 1, 15, 1, 4, 15, 4, iblockstate, iblockstate, false);
+        fillWithBlocks(world, boundingBox, 1, 0, 1, 4, 12, 4, iblockstate, Blocks.FLOWING_WATER.getDefaultState(), false);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 2, boundingBox);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 2, boundingBox);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 3, boundingBox);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 3, boundingBox);
+        setBlockState(world, iblockstate1, 1, 13, 1, boundingBox);
+        setBlockState(world, iblockstate1, 1, 14, 1, boundingBox);
+        setBlockState(world, iblockstate1, 4, 13, 1, boundingBox);
+        setBlockState(world, iblockstate1, 4, 14, 1, boundingBox);
+        setBlockState(world, iblockstate1, 1, 13, 4, boundingBox);
+        setBlockState(world, iblockstate1, 1, 14, 4, boundingBox);
+        setBlockState(world, iblockstate1, 4, 13, 4, boundingBox);
+        setBlockState(world, iblockstate1, 4, 14, 4, boundingBox);
+        fillWithBlocks(world, boundingBox, 1, 15, 1, 4, 15, 4, iblockstate, iblockstate, false);
 
         for(int i = 0; i <= 5; ++i)
         {
@@ -99,8 +97,8 @@ public class StructureNetherVillageWell extends StructureNetherVillage
             {
                 if(j == 0 || j == 5 || i == 0 || i == 5)
                 {
-                    this.setBlockState(world, iblockstate, j, 11, i, boundingBox);
-                    this.clearCurrentPositionBlocksUpwards(world, j, 12, i, boundingBox);
+                    setBlockState(world, iblockstate, j, 11, i, boundingBox);
+                    clearCurrentPositionBlocksUpwards(world, j, 12, i, boundingBox);
                 }
             }
         }
@@ -108,44 +106,64 @@ public class StructureNetherVillageWell extends StructureNetherVillage
         return true;
     }
 
-    public static class Start extends StructureNetherVillageWell
+    public static class Controller extends StructureNetherVillageWell
     {
-        public BiomeProvider biomeProvider;
-        public int terrainType;
-        public StructureNetherVillage.PieceWeight structVillagePieceWeight;
-        public List<StructureNetherVillage.PieceWeight> pieceWeights;
-        public List<StructureComponent> pendingHouses = Lists.newArrayList();
-        public List<StructureComponent> pendingRoads = Lists.newArrayList();
-        public Biome biome;
+        private Biome biome;
+        private int terrainType;
+        private Piece piece;
+        private List<Piece> pieces;
+        private List<StructureComponent> pendingHouses = Lists.newArrayList();
+        private List<StructureComponent> pendingRoads = Lists.newArrayList();
 
-        public Start()
+        public Controller()
         {
         }
 
-        public Start(BiomeProvider biomeProviderIn, Random rand, int x, int z, List<StructureNetherVillage.PieceWeight> pieceWeightsIn, int terrainTypeIn)
+        public Controller(Biome biomeIn, Random rand, int x, int z, List<Piece> piecesIn, int terrainTypeIn)
         {
             super(null, 0, rand, x, z);
-            biomeProvider = biomeProviderIn;
-            pieceWeights = pieceWeightsIn;
+
+            biome = biomeIn;
             terrainType = terrainTypeIn;
-            biome = biomeProviderIn.getBiome(new BlockPos(x, 0, z), Biomes.DEFAULT);
-            startPiece = this;
-
-            if(biome instanceof BiomeDesert)
-            {
-                structureType = 1;
-            }
-            else if(biome instanceof BiomeSavanna)
-            {
-                structureType = 2;
-            }
-            else if(biome instanceof BiomeTaiga)
-            {
-                structureType = 3;
-            }
-
-            setStructureType(structureType);
+            pieces = piecesIn;
+            controller = this;
             isZombieInfested = rand.nextInt(50) == 0;
+            setStructureType(structureType);
+        }
+
+        public Biome getBiome()
+        {
+            return biome;
+        }
+
+        public int getTerrainType()
+        {
+            return terrainType;
+        }
+
+        public Piece getPiece()
+        {
+            return piece;
+        }
+
+        public List<Piece> getPieces()
+        {
+            return pieces;
+        }
+
+        public List<StructureComponent> getPendingHouses()
+        {
+            return pendingHouses;
+        }
+
+        public List<StructureComponent> getPendingRoads()
+        {
+            return pendingRoads;
+        }
+
+        public void setPiece(Piece pieceIn)
+        {
+            piece = pieceIn;
         }
     }
 }

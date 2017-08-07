@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import nex.init.NetherExBlocks;
 import nex.util.WorldGenUtil;
 
 import java.util.List;
@@ -40,26 +41,26 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
     {
     }
 
-    public StructureNetherVillagePath(StructureNetherVillageWell.Start start, int type, Random rand, StructureBoundingBox boundingBox, EnumFacing facing)
+    public StructureNetherVillagePath(StructureNetherVillageWell.Controller controller, int componentType, Random rand, StructureBoundingBox boundingBoxIn, EnumFacing facing)
     {
-        super(start, type);
-        this.setCoordBaseMode(facing);
-        this.boundingBox = boundingBox;
-        this.length = Math.max(boundingBox.getXSize(), boundingBox.getZSize());
+        super(controller, componentType);
+        setCoordBaseMode(facing);
+        boundingBox = boundingBoxIn;
+        length = Math.max(boundingBoxIn.getXSize(), boundingBoxIn.getZSize());
     }
 
     @Override
     protected void writeStructureToNBT(NBTTagCompound tagCompound)
     {
         super.writeStructureToNBT(tagCompound);
-        tagCompound.setInteger("Length", this.length);
+        tagCompound.setInteger("Length", length);
     }
 
     @Override
     protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager templateManager)
     {
         super.readStructureFromNBT(tagCompound, templateManager);
-        this.length = tagCompound.getInteger("Length");
+        length = tagCompound.getInteger("Length");
     }
 
     @Override
@@ -67,78 +68,78 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
     {
         boolean flag = false;
 
-        for(int i = rand.nextInt(5); i < this.length - 8; i += 2 + rand.nextInt(5))
+        for(int i = rand.nextInt(5); i < length - 8; i += 2 + rand.nextInt(5))
         {
-            StructureComponent structurecomponent = this.getNextComponentNN((StructureNetherVillageWell.Start) component, components, rand, 0, i);
+            StructureComponent structureComponent = getNextComponentNN((StructureNetherVillageWell.Controller) component, components, rand, 0, i);
 
-            if(structurecomponent != null)
+            if(structureComponent != null)
             {
-                i += Math.max(structurecomponent.getBoundingBox().getXSize(), structurecomponent.getBoundingBox().getZSize());
+                i += Math.max(structureComponent.getBoundingBox().getXSize(), structureComponent.getBoundingBox().getZSize());
                 flag = true;
             }
         }
 
-        for(int j = rand.nextInt(5); j < this.length - 8; j += 2 + rand.nextInt(5))
+        for(int j = rand.nextInt(5); j < length - 8; j += 2 + rand.nextInt(5))
         {
-            StructureComponent structurecomponent1 = this.getNextComponentPP((StructureNetherVillageWell.Start) component, components, rand, 0, j);
+            StructureComponent structureComponent = getNextComponentPP((StructureNetherVillageWell.Controller) component, components, rand, 0, j);
 
-            if(structurecomponent1 != null)
+            if(structureComponent != null)
             {
-                j += Math.max(structurecomponent1.getBoundingBox().getXSize(), structurecomponent1.getBoundingBox().getZSize());
+                j += Math.max(structureComponent.getBoundingBox().getXSize(), structureComponent.getBoundingBox().getZSize());
                 flag = true;
             }
         }
 
-        EnumFacing enumfacing = this.getCoordBaseMode();
+        EnumFacing facing = this.getCoordBaseMode();
 
-        if(flag && rand.nextInt(3) > 0 && enumfacing != null)
+        if(flag && rand.nextInt(3) > 0 && facing != null)
         {
-            switch(enumfacing)
+            switch(facing)
             {
                 case NORTH:
                 default:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.WEST, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX - 1, boundingBox.minY, boundingBox.minZ, EnumFacing.WEST, getComponentType());
                     break;
                 case SOUTH:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.WEST, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX - 1, boundingBox.minY, boundingBox.maxZ - 2, EnumFacing.WEST, getComponentType());
                     break;
                 case WEST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX, boundingBox.minY, boundingBox.minZ - 1, EnumFacing.NORTH, getComponentType());
                     break;
                 case EAST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX - 2, boundingBox.minY, boundingBox.minZ - 1, EnumFacing.NORTH, getComponentType());
             }
         }
 
-        if(flag && rand.nextInt(3) > 0 && enumfacing != null)
+        if(flag && rand.nextInt(3) > 0 && facing != null)
         {
-            switch(enumfacing)
+            switch(facing)
             {
                 case NORTH:
                 default:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX + 1, boundingBox.minY, boundingBox.minZ, EnumFacing.EAST, getComponentType());
                     break;
                 case SOUTH:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.EAST, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX + 1, boundingBox.minY, boundingBox.maxZ - 2, EnumFacing.EAST, getComponentType());
                     break;
                 case WEST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX, boundingBox.minY, boundingBox.maxZ + 1, EnumFacing.SOUTH, getComponentType());
                     break;
                 case EAST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Start) component, components, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX - 2, boundingBox.minY, boundingBox.maxZ + 1, EnumFacing.SOUTH, getComponentType());
             }
         }
     }
 
-    public static StructureBoundingBox findPieceBox(StructureNetherVillageWell.Start start, List<StructureComponent> p_175848_1_, Random rand, int p_175848_3_, int p_175848_4_, int p_175848_5_, EnumFacing facing)
+    public static StructureBoundingBox findPieceBox(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing)
     {
         for(int i = 7 * MathHelper.getInt(rand, 3, 5); i >= 7; i -= 7)
         {
-            StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p_175848_3_, p_175848_4_, p_175848_5_, 0, 0, 0, 3, 3, i, facing);
+            StructureBoundingBox boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(minX, minY, minZ, 0, 0, 0, 3, 3, i, facing);
 
-            if(StructureComponent.findIntersecting(p_175848_1_, structureboundingbox) == null)
+            if(StructureComponent.findIntersecting(components, boundingBox) == null)
             {
-                return structureboundingbox;
+                return boundingBox;
             }
         }
 
@@ -146,52 +147,41 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
     }
 
     @Override
-    public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
+    public boolean addComponentParts(World world, Random rand, StructureBoundingBox boundingBoxIn)
     {
-        IBlockState iblockstate = this.getBiomeSpecificBlockState(Blocks.GRASS_PATH.getDefaultState());
-        IBlockState iblockstate1 = this.getBiomeSpecificBlockState(Blocks.PLANKS.getDefaultState());
-        IBlockState iblockstate2 = this.getBiomeSpecificBlockState(Blocks.GRAVEL.getDefaultState());
-        IBlockState iblockstate3 = this.getBiomeSpecificBlockState(Blocks.COBBLESTONE.getDefaultState());
+        IBlockState netherrackPath = getBiomeSpecificBlockState(NetherExBlocks.BLOCK_NETHERRACK_PATH.getDefaultState());
+        IBlockState netherBrick = getBiomeSpecificBlockState(Blocks.NETHER_BRICK.getDefaultState());
 
-        for(int i = this.boundingBox.minX; i <= this.boundingBox.maxX; ++i)
+        for(int i = boundingBox.minX; i <= boundingBox.maxX; ++i)
         {
-            for(int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; ++j)
+            for(int j = boundingBox.minZ; j <= boundingBox.maxZ; ++j)
             {
-                BlockPos blockpos = new BlockPos(i, 32, j);
+                BlockPos pos = new BlockPos(i, 32, j);
 
-                if(structureBoundingBoxIn.isVecInside(blockpos))
+                if(boundingBoxIn.isVecInside(pos))
                 {
-                    blockpos = WorldGenUtil.getSolidBlockBelow(worldIn, blockpos, 80);
+                    pos = WorldGenUtil.getSolidBlockBelow(world, pos, 80);
 
-                    if(blockpos.getY() < worldIn.getSeaLevel())
+                    if(pos.getY() < world.getSeaLevel())
                     {
-                        blockpos = new BlockPos(blockpos.getX(), worldIn.getSeaLevel(), blockpos.getZ());
+                        pos = new BlockPos(pos.getX(), world.getSeaLevel(), pos.getZ());
                     }
-
-                    while(blockpos.getY() >= worldIn.getSeaLevel())
+                    while(pos.getY() >= world.getSeaLevel())
                     {
-                        IBlockState iblockstate4 = worldIn.getBlockState(blockpos);
+                        IBlockState checkState = world.getBlockState(pos);
 
-                        if(iblockstate4.getBlock() == Blocks.GRASS && worldIn.isAirBlock(blockpos.up()))
+                        if(checkState.getBlock() == Blocks.NETHERRACK && world.isAirBlock(pos.up()))
                         {
-                            worldIn.setBlockState(blockpos, iblockstate, 2);
+                            world.setBlockState(pos, netherrackPath, 2);
+                            break;
+                        }
+                        if(checkState.getMaterial().isLiquid())
+                        {
+                            world.setBlockState(pos, netherBrick, 2);
                             break;
                         }
 
-                        if(iblockstate4.getMaterial().isLiquid())
-                        {
-                            worldIn.setBlockState(blockpos, iblockstate1, 2);
-                            break;
-                        }
-
-                        if(iblockstate4.getBlock() == Blocks.SAND || iblockstate4.getBlock() == Blocks.SANDSTONE || iblockstate4.getBlock() == Blocks.RED_SANDSTONE)
-                        {
-                            worldIn.setBlockState(blockpos, iblockstate2, 2);
-                            worldIn.setBlockState(blockpos.down(), iblockstate3, 2);
-                            break;
-                        }
-
-                        blockpos = blockpos.down();
+                        pos = pos.down();
                     }
                 }
             }
