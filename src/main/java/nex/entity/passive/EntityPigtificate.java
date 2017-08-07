@@ -49,9 +49,9 @@ import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
 import nex.village.EnhancedTrade;
+import nex.village.NetherVillageManager;
 import nex.village.Pigtificate;
-import nex.village.PigtificateVillage;
-import nex.village.PigtificateVillageManager;
+import nex.village.NetherVillage;
 
 import java.util.Collections;
 import java.util.List;
@@ -67,7 +67,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private int randomTickDivider;
 
-    PigtificateVillage village;
+    NetherVillage village;
 
     private boolean needsInitialization;
     private boolean willingToMate;
@@ -193,9 +193,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            PigtificateVillageManager.getPigtificateVillages(getWorld()).addToVillagerPositionList(blockpos);
+            NetherVillageManager.getNetherVillages(getWorld()).addToVillagerPositionList(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getPigtificateVillages(getWorld()).getNearestVillage(blockpos, 32);
+            village = NetherVillageManager.getNetherVillages(getWorld()).getNearestVillage(blockpos, 32);
 
             if(village == null)
             {

@@ -21,7 +21,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
 import nex.entity.monster.EntitySporeCreeper;
 import nex.entity.neutral.EntityGoldGolem;
-import nex.village.PigtificateVillage;
+import nex.village.NetherVillage;
 
 public class EntityAIGoldGolemDefendVillage extends EntityAITarget
 {
@@ -38,7 +38,7 @@ public class EntityAIGoldGolemDefendVillage extends EntityAITarget
     @Override
     public boolean shouldExecute()
     {
-        PigtificateVillage village = goldgolem.getVillage();
+        NetherVillage village = goldgolem.getVillage();
 
         if(village == null)
         {

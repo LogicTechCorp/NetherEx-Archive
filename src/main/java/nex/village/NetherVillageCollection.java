@@ -32,20 +32,20 @@ import net.minecraft.world.storage.WorldSavedData;
 import java.util.Iterator;
 import java.util.List;
 
-public class PigtificateVillageCollection extends WorldSavedData
+public class NetherVillageCollection extends WorldSavedData
 {
     private World world;
     private final List<BlockPos> villagerPositionsList = Lists.newArrayList();
-    private final List<PigtificateVillageFenceGateInfo> newFenceGates = Lists.newArrayList();
-    private final List<PigtificateVillage> villageList = Lists.newArrayList();
+    private final List<NetherVillageFenceGateInfo> newFenceGates = Lists.newArrayList();
+    private final List<NetherVillage> villageList = Lists.newArrayList();
     private int tickCounter;
 
-    public PigtificateVillageCollection(String name)
+    public NetherVillageCollection(String name)
     {
         super(name);
     }
 
-    public PigtificateVillageCollection(World worldIn)
+    public NetherVillageCollection(World worldIn)
     {
         super(fileNameForProvider(worldIn.provider));
         world = worldIn;
@@ -56,7 +56,7 @@ public class PigtificateVillageCollection extends WorldSavedData
     {
         world = worldIn;
 
-        for(PigtificateVillage village : villageList)
+        for(NetherVillage village : villageList)
         {
             village.setWorld(worldIn);
         }
@@ -77,7 +77,7 @@ public class PigtificateVillageCollection extends WorldSavedData
     {
         tickCounter++;
 
-        for(PigtificateVillage village : villageList)
+        for(NetherVillage village : villageList)
         {
             village.tick(tickCounter);
         }
@@ -94,11 +94,11 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void removeAnnihilatedVillages()
     {
-        Iterator<PigtificateVillage> iterator = villageList.iterator();
+        Iterator<NetherVillage> iterator = villageList.iterator();
 
         while(iterator.hasNext())
         {
-            PigtificateVillage village = iterator.next();
+            NetherVillage village = iterator.next();
 
             if(village.isAnnihilated())
             {
@@ -108,17 +108,17 @@ public class PigtificateVillageCollection extends WorldSavedData
         }
     }
 
-    public List<PigtificateVillage> getVillageList()
+    public List<NetherVillage> getVillageList()
     {
         return villageList;
     }
 
-    public PigtificateVillage getNearestVillage(BlockPos fenceGateBlock, int radius)
+    public NetherVillage getNearestVillage(BlockPos fenceGateBlock, int radius)
     {
-        PigtificateVillage village = null;
+        NetherVillage village = null;
         double d0 = 3.4028234663852886E38D;
 
-        for(PigtificateVillage village1 : villageList)
+        for(NetherVillage village1 : villageList)
         {
             double d1 = village1.getCenter().distanceSq(fenceGateBlock);
 
@@ -147,13 +147,13 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void addNewFenceGatesToVillageOrCreateVillage()
     {
-        for(PigtificateVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(NetherVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
-            PigtificateVillage village = getNearestVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
+            NetherVillage village = getNearestVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
 
             if(village == null)
             {
-                village = new PigtificateVillage(world);
+                village = new NetherVillage(world);
                 villageList.add(village);
                 markDirty();
             }
@@ -178,7 +178,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
                     if(outside != null)
                     {
-                        PigtificateVillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
+                        NetherVillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
 
                         if(villagefenceGateinfo == null)
                         {
@@ -194,9 +194,9 @@ public class PigtificateVillageCollection extends WorldSavedData
         }
     }
 
-    private PigtificateVillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
+    private NetherVillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
     {
-        for(PigtificateVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(NetherVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
             if(villagefenceGateinfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && villagefenceGateinfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(villagefenceGateinfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
             {
@@ -204,9 +204,9 @@ public class PigtificateVillageCollection extends WorldSavedData
             }
         }
 
-        for(PigtificateVillage village : villageList)
+        for(NetherVillage village : villageList)
         {
-            PigtificateVillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
+            NetherVillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
 
             if(villagefenceGateinfo1 != null)
             {
@@ -219,7 +219,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void addToNewFenceGatesList(BlockPos fenceGateBlock, EnumFacing facing)
     {
-        newFenceGates.add(new PigtificateVillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
+        newFenceGates.add(new NetherVillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
     }
 
     private boolean positionInList(BlockPos pos)
@@ -267,7 +267,7 @@ public class PigtificateVillageCollection extends WorldSavedData
         for(int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-            PigtificateVillage village = new PigtificateVillage();
+            NetherVillage village = new NetherVillage();
             village.readVillageDataFromNBT(nbttagcompound);
             villageList.add(village);
         }
@@ -279,7 +279,7 @@ public class PigtificateVillageCollection extends WorldSavedData
         compound.setInteger("Tick", tickCounter);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for(PigtificateVillage village : villageList)
+        for(NetherVillage village : villageList)
         {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
             village.writeVillageDataToNBT(nbttagcompound);
@@ -292,6 +292,6 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     public static String fileNameForProvider(WorldProvider provider)
     {
-        return "villages.pigtificate" + provider.getDimensionType().getSuffix();
+        return "villages.nether" + provider.getDimensionType().getSuffix();
     }
 }

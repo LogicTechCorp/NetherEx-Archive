@@ -46,14 +46,14 @@ import nex.entity.ai.EntityAIGoldGolemDefendVillage;
 import nex.entity.ai.EntityAIGoldGolemLookAtPigtificate;
 import nex.entity.monster.EntitySporeCreeper;
 import nex.init.NetherExLootTables;
-import nex.village.PigtificateVillage;
-import nex.village.PigtificateVillageManager;
+import nex.village.NetherVillageManager;
+import nex.village.NetherVillage;
 
 public class EntityGoldGolem extends EntityGolem
 {
     protected static final DataParameter<Boolean> PLAYER_CREATED = EntityDataManager.createKey(EntityGoldGolem.class, DataSerializers.BOOLEAN);
 
-    PigtificateVillage village;
+    NetherVillage village;
 
     private int homeCheckTimer;
     private int attackTimer;
@@ -95,7 +95,7 @@ public class EntityGoldGolem extends EntityGolem
         if(--homeCheckTimer <= 0)
         {
             homeCheckTimer = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getPigtificateVillages(getEntityWorld()).getNearestVillage(new BlockPos(this), 32);
+            village = NetherVillageManager.getNetherVillages(getEntityWorld()).getNearestVillage(new BlockPos(this), 32);
 
             if(village == null)
             {
@@ -226,7 +226,7 @@ public class EntityGoldGolem extends EntityGolem
         }
     }
 
-    public PigtificateVillage getVillage()
+    public NetherVillage getVillage()
     {
         return village;
     }

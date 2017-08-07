@@ -70,8 +70,8 @@ import nex.init.*;
 import nex.util.ArmorUtil;
 import nex.util.BlockUtil;
 import nex.util.EntityUtil;
-import nex.village.PigtificateVillageCollection;
-import nex.village.PigtificateVillageManager;
+import nex.village.NetherVillageManager;
+import nex.village.NetherVillageCollection;
 
 import java.util.Arrays;
 import java.util.ListIterator;
@@ -88,7 +88,7 @@ public class EventHandler
 
         if(!world.isRemote)
         {
-            PigtificateVillageManager.init(world);
+            NetherVillageManager.init(world);
         }
     }
 
@@ -97,7 +97,7 @@ public class EventHandler
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            PigtificateVillageCollection villages = PigtificateVillageManager.getPigtificateVillages(event.world);
+            NetherVillageCollection villages = NetherVillageManager.getNetherVillages(event.world);
 
             if(villages != null)
             {

@@ -24,36 +24,36 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
-public class PigtificateVillageManager
+public class NetherVillageManager
 {
-    private static final Map<World, PigtificateVillageCollection> pigtificateVillages = Maps.newHashMap();
+    private static final Map<World, NetherVillageCollection> netherVillages = Maps.newHashMap();
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|PigtificateVillageManager");
+    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherVillageManager");
 
     public static void init(World world)
     {
         String dimension = world.provider.getDimensionType().name().toLowerCase();
-        String id = PigtificateVillageCollection.fileNameForProvider(world.provider);
-        PigtificateVillageCollection pigtificateVillageCollection = (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, id);
+        String id = NetherVillageCollection.fileNameForProvider(world.provider);
+        NetherVillageCollection netherVillageCollection = (NetherVillageCollection) world.getPerWorldStorage().getOrLoadData(NetherVillageCollection.class, id);
 
-        if(pigtificateVillageCollection == null)
+        if(netherVillageCollection == null)
         {
             LOGGER.info("The Pigtificate Village data for " + dimension + " was created successfully.");
 
-            pigtificateVillages.put(world, new PigtificateVillageCollection(world));
-            world.getPerWorldStorage().setData(id, pigtificateVillages.get(world));
+            netherVillages.put(world, new NetherVillageCollection(world));
+            world.getPerWorldStorage().setData(id, netherVillages.get(world));
         }
         else
         {
             LOGGER.info("The Pigtificate Village data for " + dimension + " was read successfully.");
 
-            pigtificateVillages.put(world, pigtificateVillageCollection);
-            pigtificateVillages.get(world).setWorldsForAll(world);
+            netherVillages.put(world, netherVillageCollection);
+            netherVillages.get(world).setWorldsForAll(world);
         }
     }
 
-    public static PigtificateVillageCollection getPigtificateVillages(World world)
+    public static NetherVillageCollection getNetherVillages(World world)
     {
-        return pigtificateVillages.get(world);
+        return netherVillages.get(world);
     }
 }
