@@ -25,9 +25,11 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -35,7 +37,9 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import nex.NetherEx;
 import nex.entity.passive.EntityPigtificate;
+import nex.init.NetherExBiomes;
 import nex.util.WorldGenUtil;
 
 import javax.annotation.Nullable;
@@ -71,30 +75,14 @@ public abstract class StructureNetherVillage extends StructureComponent
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageWell.Controller.class, "village_nether_controller");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageWell.class, "village_nether_well");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillagePath.class, "village_nether_path");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageSmallHouse.class, "village_nether_house_small");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageLargeHouse.class, "village_nether_house_large");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageWoodHut.class, "village_nether_hut_wood");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageBlacksmith.class, "village_nether_blacksmith");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageButcher.class, "village_nether_butcher");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageLibrary.class, "village_nether_library");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageChurch.class, "village_nether_church");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageSmallFarm.class, "village_nether_farm_small");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageLargeFarm.class, "village_nether_farm_large");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageLampPost.class, "village_nether_lamp_post");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageHut.class, "village_nether_hut");
     }
 
-    public static List<Piece> getStructureVillageWeightedPieceList(Random random, int size)
+    public static List<Piece> getStructureVillageWeightedPieceList(Random rand, int size)
     {
         List<Piece> list = Lists.newArrayList();
-        list.add(new Piece(StructureNetherVillageLibrary.class, 20, MathHelper.getInt(random, size, 2 + size)));
-        list.add(new Piece(StructureNetherVillageBlacksmith.class, 15, MathHelper.getInt(random, 0, 1 + size)));
-        list.add(new Piece(StructureNetherVillageLargeHouse.class, 8, MathHelper.getInt(random, size, 3 + size * 2)));
-        list.add(new Piece(StructureNetherVillageSmallHouse.class, 4, MathHelper.getInt(random, 2 + size, 4 + size * 2)));
-        list.add(new Piece(StructureNetherVillageWoodHut.class, 3, MathHelper.getInt(random, 2 + size, 5 + size * 3)));
-        list.add(new Piece(StructureNetherVillageButcher.class, 15, MathHelper.getInt(random, size, 2 + size)));
-        list.add(new Piece(StructureNetherVillageChurch.class, 20, MathHelper.getInt(random, size, 1 + size)));
-        list.add(new Piece(StructureNetherVillageLargeFarm.class, 3, MathHelper.getInt(random, 1 + size, 4 + size)));
-        list.add(new Piece(StructureNetherVillageSmallFarm.class, 3, MathHelper.getInt(random, 2 + size, 4 + size * 2)));
+        list.add(new Piece(StructureNetherVillageHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
         list.removeIf(piece -> (piece).getSpawnLimit() == 0);
         return list;
     }
@@ -122,41 +110,9 @@ public abstract class StructureNetherVillage extends StructureComponent
         Class<? extends StructureNetherVillage> structureNetherVillageCls = piece.getCls();
         StructureNetherVillage structureNetherVillage = null;
 
-        if(structureNetherVillageCls == StructureNetherVillageSmallHouse.class)
+        if(structureNetherVillageCls == StructureNetherVillageHut.class)
         {
-            structureNetherVillage = StructureNetherVillageSmallHouse.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageChurch.class)
-        {
-            structureNetherVillage = StructureNetherVillageChurch.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageLibrary.class)
-        {
-            structureNetherVillage = StructureNetherVillageLibrary.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageWoodHut.class)
-        {
-            structureNetherVillage = StructureNetherVillageWoodHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageButcher.class)
-        {
-            structureNetherVillage = StructureNetherVillageButcher.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageLargeFarm.class)
-        {
-            structureNetherVillage = StructureNetherVillageLargeFarm.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageSmallFarm.class)
-        {
-            structureNetherVillage = StructureNetherVillageSmallFarm.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageBlacksmith.class)
-        {
-            structureNetherVillage = StructureNetherVillageBlacksmith.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
-        }
-        else if(structureNetherVillageCls == StructureNetherVillageLargeHouse.class)
-        {
-            structureNetherVillage = StructureNetherVillageLargeHouse.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            structureNetherVillage = StructureNetherVillageHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
 
         return structureNetherVillage;
@@ -296,7 +252,7 @@ public abstract class StructureNetherVillage extends StructureComponent
     }
 
     @Override
-    public abstract boolean addComponentParts(World world, Random rand, StructureBoundingBox boundingBox);
+    public abstract boolean addComponentParts(World world, Random rand, StructureBoundingBox boundingBoxIn);
 
     protected StructureComponent getNextComponentNN(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minY, int minXZ)
     {
@@ -363,7 +319,7 @@ public abstract class StructureNetherVillage extends StructureComponent
 
                 if(boundingBoxIn.isVecInside(mutableBlockPos))
                 {
-                    i += Math.max(WorldGenUtil.getSolidBlockBelow(world, mutableBlockPos, 80).getY(), world.getSeaLevel() + 1);
+                    i += Math.max(WorldGenUtil.getSolidBlockBelow(world, mutableBlockPos, 80).getY(), world.getSeaLevel());
                     j++;
                 }
             }
@@ -424,7 +380,19 @@ public abstract class StructureNetherVillage extends StructureComponent
         return currentVillagerProfession;
     }
 
-    protected IBlockState getBiomeSpecificBlockState(IBlockState state)
+    protected ResourceLocation getBiomeSpecificStructure(Biome biome, String structureName)
+    {
+        String prefix = NetherEx.MOD_ID + ":village_nether";
+
+        if(biome == NetherExBiomes.HELL)
+        {
+            return new ResourceLocation(prefix + "hell" + structureName);
+        }
+
+        return new ResourceLocation(prefix + "hell" + structureName);
+    }
+
+    protected IBlockState getBiomeSpecificBlock(IBlockState state)
     {
         BiomeEvent.GetVillageBlockID event = new BiomeEvent.GetVillageBlockID(controller == null ? null : controller.getBiome(), state);
         MinecraftForge.TERRAIN_GEN_BUS.post(event);
@@ -464,7 +432,7 @@ public abstract class StructureNetherVillage extends StructureComponent
 
     protected void replaceAirAndLiquidDownwards(World world, IBlockState state, int x, int y, int z, StructureBoundingBox boundingBox)
     {
-        super.replaceAirAndLiquidDownwards(world, getBiomeSpecificBlockState(state), x, y, z, boundingBox);
+        super.replaceAirAndLiquidDownwards(world, getBiomeSpecificBlock(state), x, y, z, boundingBox);
     }
 
     protected void setStructureType(int structureTypeIn)

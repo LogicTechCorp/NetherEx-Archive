@@ -62,7 +62,7 @@ public class StructureNetherVillageLampPost extends StructureNetherVillage
             boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
         }
 
-        IBlockState iblockstate = getBiomeSpecificBlockState(Blocks.OAK_FENCE.getDefaultState());
+        IBlockState iblockstate = getBiomeSpecificBlock(Blocks.OAK_FENCE.getDefaultState());
         fillWithBlocks(world, boundingBoxIn, 0, 0, 0, 2, 3, 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
         setBlockState(world, iblockstate, 1, 0, 0, boundingBoxIn);
         setBlockState(world, iblockstate, 1, 1, 0, boundingBoxIn);

@@ -60,36 +60,36 @@ public class StructureNetherVillageWell extends StructureNetherVillage
     }
 
     @Override
-    public boolean addComponentParts(World world, Random rand, StructureBoundingBox boundingBox)
+    public boolean addComponentParts(World world, Random rand, StructureBoundingBox boundingBoxIn)
     {
-        if(this.averageGroundLvl < 0)
+        if(averageGroundLvl < 0)
         {
-            this.averageGroundLvl = this.getAverageGroundLevel(world, boundingBox);
+            averageGroundLvl = getAverageGroundLevel(world, boundingBoxIn);
 
-            if(this.averageGroundLvl < 0)
+            if(averageGroundLvl < 0)
             {
                 return true;
             }
 
-            this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 3, 0);
+            boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 3, 0);
         }
 
-        IBlockState iblockstate = this.getBiomeSpecificBlockState(Blocks.COBBLESTONE.getDefaultState());
-        IBlockState iblockstate1 = this.getBiomeSpecificBlockState(Blocks.OAK_FENCE.getDefaultState());
-        fillWithBlocks(world, boundingBox, 1, 0, 1, 4, 12, 4, iblockstate, Blocks.FLOWING_WATER.getDefaultState(), false);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 2, boundingBox);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 2, boundingBox);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 3, boundingBox);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 3, boundingBox);
-        setBlockState(world, iblockstate1, 1, 13, 1, boundingBox);
-        setBlockState(world, iblockstate1, 1, 14, 1, boundingBox);
-        setBlockState(world, iblockstate1, 4, 13, 1, boundingBox);
-        setBlockState(world, iblockstate1, 4, 14, 1, boundingBox);
-        setBlockState(world, iblockstate1, 1, 13, 4, boundingBox);
-        setBlockState(world, iblockstate1, 1, 14, 4, boundingBox);
-        setBlockState(world, iblockstate1, 4, 13, 4, boundingBox);
-        setBlockState(world, iblockstate1, 4, 14, 4, boundingBox);
-        fillWithBlocks(world, boundingBox, 1, 15, 1, 4, 15, 4, iblockstate, iblockstate, false);
+        IBlockState iblockstate = getBiomeSpecificBlock(Blocks.COBBLESTONE.getDefaultState());
+        IBlockState iblockstate1 = getBiomeSpecificBlock(Blocks.OAK_FENCE.getDefaultState());
+        fillWithBlocks(world, boundingBoxIn, 1, 0, 1, 4, 12, 4, iblockstate, Blocks.FLOWING_WATER.getDefaultState(), false);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 2, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 2, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 12, 3, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 3, 12, 3, boundingBoxIn);
+        setBlockState(world, iblockstate1, 1, 13, 1, boundingBoxIn);
+        setBlockState(world, iblockstate1, 1, 14, 1, boundingBoxIn);
+        setBlockState(world, iblockstate1, 4, 13, 1, boundingBoxIn);
+        setBlockState(world, iblockstate1, 4, 14, 1, boundingBoxIn);
+        setBlockState(world, iblockstate1, 1, 13, 4, boundingBoxIn);
+        setBlockState(world, iblockstate1, 1, 14, 4, boundingBoxIn);
+        setBlockState(world, iblockstate1, 4, 13, 4, boundingBoxIn);
+        setBlockState(world, iblockstate1, 4, 14, 4, boundingBoxIn);
+        fillWithBlocks(world, boundingBoxIn, 1, 15, 1, 4, 15, 4, iblockstate, iblockstate, false);
 
         for(int i = 0; i <= 5; ++i)
         {
@@ -97,8 +97,7 @@ public class StructureNetherVillageWell extends StructureNetherVillage
             {
                 if(j == 0 || j == 5 || i == 0 || i == 5)
                 {
-                    setBlockState(world, iblockstate, j, 11, i, boundingBox);
-                    clearCurrentPositionBlocksUpwards(world, j, 12, i, boundingBox);
+                    setBlockState(world, iblockstate, j, 11, i, boundingBoxIn);
                 }
             }
         }
