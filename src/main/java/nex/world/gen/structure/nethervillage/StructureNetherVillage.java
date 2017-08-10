@@ -19,17 +19,17 @@ package nex.world.gen.structure.nethervillage;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.BlockDoor;
-import net.minecraft.block.BlockTorch;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -37,10 +37,9 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import nex.NetherEx;
 import nex.entity.passive.EntityPigtificate;
-import nex.init.NetherExBiomes;
 import nex.util.WorldGenUtil;
+import nex.village.Pigtificate;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -76,13 +75,19 @@ public abstract class StructureNetherVillage extends StructureComponent
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageWell.class, "village_nether_well");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillagePath.class, "village_nether_path");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageLampPost.class, "village_nether_lamp_post");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageHut.class, "village_nether_hut");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageForagerHut.class, "village_nether_hut_forager");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageBlacksmithHut.class, "village_nether_hut_blacksmith");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageSorcererHut.class, "village_nether_hut_sorcerer");
     }
 
     public static List<Piece> getStructureVillageWeightedPieceList(Random rand, int size)
     {
         List<Piece> list = Lists.newArrayList();
-        list.add(new Piece(StructureNetherVillageHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureNetherVillageForagerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureNetherVillageForagerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureNetherVillageForagerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        //list.add(new Piece(StructureNetherVillageBlacksmithHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        //list.add(new Piece(StructureNetherVillageSorcererHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
         list.removeIf(piece -> (piece).getSpawnLimit() == 0);
         return list;
     }
@@ -108,14 +113,23 @@ public abstract class StructureNetherVillage extends StructureComponent
     private static StructureNetherVillage findAndCreateComponentFactory(StructureNetherVillageWell.Controller controller, Piece piece, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing, int componentType)
     {
         Class<? extends StructureNetherVillage> structureNetherVillageCls = piece.getCls();
-        StructureNetherVillage structureNetherVillage = null;
 
-        if(structureNetherVillageCls == StructureNetherVillageHut.class)
+        if(structureNetherVillageCls == StructureNetherVillageForagerHut.class)
         {
-            structureNetherVillage = StructureNetherVillageHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureNetherVillageForagerHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
-
-        return structureNetherVillage;
+        else if(structureNetherVillageCls == StructureNetherVillageBlacksmithHut.class)
+        {
+            return StructureNetherVillageBlacksmithHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+        }
+        else if(structureNetherVillageCls == StructureNetherVillageSorcererHut.class)
+        {
+            return StructureNetherVillageSorcererHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private static StructureNetherVillage generateComponent(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing, int componentType)
@@ -319,7 +333,7 @@ public abstract class StructureNetherVillage extends StructureComponent
 
                 if(boundingBoxIn.isVecInside(mutableBlockPos))
                 {
-                    i += Math.max(WorldGenUtil.getSolidBlockBelow(world, mutableBlockPos, 80).getY(), world.getSeaLevel());
+                    i += Math.max(WorldGenUtil.getSolidBlockBelow(world, mutableBlockPos, 125).getY(), world.getSeaLevel() + 1);
                     j++;
                 }
             }
@@ -340,56 +354,39 @@ public abstract class StructureNetherVillage extends StructureComponent
         return boundingBoxIn != null && boundingBoxIn.minY > 10;
     }
 
-    protected void spawnPigtificates(World world, StructureBoundingBox boundingBox, int x, int y, int z, int count)
+    protected void spawnPigtificates(World world, StructureBoundingBox boundingBox, int x, int y, int z, Pigtificate.Career career, int count, ItemStack heldStack)
     {
-        if(villagersSpawned < count)
+        for(int i = villagersSpawned; i < count; i++)
         {
-            for(int i = villagersSpawned; i < count; ++i)
+            int j = getXWithOffset(x + i, z);
+            int k = getYWithOffset(y);
+            int l = getZWithOffset(x + i, z);
+
+            if(!boundingBox.isVecInside(new BlockPos(j, k, l)))
             {
-                int j = getXWithOffset(x + i, z);
-                int k = getYWithOffset(y);
-                int l = getZWithOffset(x + i, z);
+                break;
+            }
 
-                if(!boundingBox.isVecInside(new BlockPos(j, k, l)))
-                {
-                    break;
-                }
+            villagersSpawned++;
 
-                villagersSpawned++;
-
-                if(isZombieInfested)
-                {
-                    EntityPigZombie pigZombie = new EntityPigZombie(world);
-                    pigZombie.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
-                    pigZombie.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(pigZombie)), null);
-                    pigZombie.enablePersistence();
-                    world.spawnEntity(pigZombie);
-                }
-                else
-                {
-                    EntityPigtificate pigtificate = new EntityPigtificate(world);
-                    pigtificate.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
-                    world.spawnEntity(pigtificate);
-                }
+            if(isZombieInfested)
+            {
+                EntityPigZombie pigZombie = new EntityPigZombie(world);
+                pigZombie.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
+                pigZombie.setHeldItem(EnumHand.MAIN_HAND, heldStack);
+                pigZombie.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(pigZombie)), null);
+                pigZombie.enablePersistence();
+                world.spawnEntity(pigZombie);
+            }
+            else
+            {
+                EntityPigtificate pigtificate = new EntityPigtificate(world, career);
+                pigtificate.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
+                pigtificate.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(pigtificate)), null);
+                pigtificate.setHeldItem(EnumHand.MAIN_HAND, heldStack);
+                world.spawnEntity(pigtificate);
             }
         }
-    }
-
-    protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
-    {
-        return currentVillagerProfession;
-    }
-
-    protected ResourceLocation getBiomeSpecificStructure(Biome biome, String structureName)
-    {
-        String prefix = NetherEx.MOD_ID + ":village_nether";
-
-        if(biome == NetherExBiomes.HELL)
-        {
-            return new ResourceLocation(prefix + "hell" + structureName);
-        }
-
-        return new ResourceLocation(prefix + "hell" + structureName);
     }
 
     protected IBlockState getBiomeSpecificBlock(IBlockState state)
@@ -422,14 +419,6 @@ public abstract class StructureNetherVillage extends StructureComponent
         }
     }
 
-    protected void placeTorch(World world, EnumFacing facing, int x, int y, int z, StructureBoundingBox boundingBox)
-    {
-        if(!isZombieInfested)
-        {
-            setBlockState(world, Blocks.TORCH.getDefaultState().withProperty(BlockTorch.FACING, facing), x, y, z, boundingBox);
-        }
-    }
-
     protected void replaceAirAndLiquidDownwards(World world, IBlockState state, int x, int y, int z, StructureBoundingBox boundingBox)
     {
         super.replaceAirAndLiquidDownwards(world, getBiomeSpecificBlock(state), x, y, z, boundingBox);
@@ -438,6 +427,30 @@ public abstract class StructureNetherVillage extends StructureComponent
     protected void setStructureType(int structureTypeIn)
     {
         structureType = structureTypeIn;
+    }
+
+    public Mirror getMirror()
+    {
+        EnumFacing facing = getCoordBaseMode();
+
+        if(facing == null)
+        {
+            return Mirror.NONE;
+        }
+        else
+        {
+            switch(facing)
+            {
+                case SOUTH:
+                    return Mirror.LEFT_RIGHT;
+                case WEST:
+                    return Mirror.LEFT_RIGHT;
+                case EAST:
+                    return Mirror.NONE;
+                default:
+                    return Mirror.NONE;
+            }
+        }
     }
 
     public static class Piece

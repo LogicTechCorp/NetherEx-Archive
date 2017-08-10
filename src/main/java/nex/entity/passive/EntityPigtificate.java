@@ -41,6 +41,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -96,6 +97,20 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         setRandomProfession();
     }
 
+    public EntityPigtificate(World world, Pigtificate.Career career)
+    {
+        super(world);
+
+        inventory = new InventoryBasic("Items", false, 8);
+        isImmuneToFire = true;
+        ((PathNavigateGround) getNavigator()).setBreakDoors(true);
+        setCanPickUpLoot(true);
+        setSize(0.6F, 1.95F);
+        setProfession(career.getProfession().ordinal());
+        setCareer(career.ordinal());
+    }
+
+
     @Override
     protected SoundEvent getAmbientSound()
     {
@@ -146,6 +161,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             double d2 = rand.nextGaussian() * 0.02D;
             world.spawnParticle(particleType, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + 1.0D + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d0, d1, d2, new int[0]);
         }
+    }
+
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData)
+    {
+        setAdditionalAITasks();
+        populateTradeList();
+        return super.onInitialSpawn(difficulty, livingData);
     }
 
     @Override
@@ -325,7 +348,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         }
 
         setCanPickUpLoot(true);
-        setAdditionalAITasks();
     }
 
     @Override

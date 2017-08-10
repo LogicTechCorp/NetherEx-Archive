@@ -160,7 +160,7 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
 
                 if(boundingBoxIn.isVecInside(pos))
                 {
-                    pos = WorldGenUtil.getSolidBlockBelow(world, pos, 80);
+                    pos = WorldGenUtil.getSolidBlockBelow(world, pos, 125);
 
                     if(pos.getY() < world.getSeaLevel())
                     {

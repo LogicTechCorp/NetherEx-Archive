@@ -494,9 +494,10 @@ public class WorldGenUtil
         for(solidPos = new BlockPos(pos.getX(), height, pos.getZ()); solidPos.getY() > world.getSeaLevel(); solidPos = newPos)
         {
             newPos = solidPos.down();
-            IBlockState state = world.getBlockState(newPos);
+            IBlockState topState = world.getBlockState(solidPos);
+            IBlockState bottomState = world.getBlockState(newPos);
 
-            if(state.getMaterial().blocksMovement() && !state.getBlock().isLeaves(state, world, newPos) && !state.getBlock().isFoliage(world, newPos))
+            if(bottomState.getMaterial().blocksMovement() && !topState.getMaterial().blocksMovement() && !bottomState.getBlock().isLeaves(bottomState, world, newPos) && !bottomState.getBlock().isFoliage(world, newPos))
             {
                 break;
             }

@@ -23,27 +23,25 @@ import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureComponent;
 import nex.init.NetherExBlocks;
 
-import java.util.List;
 import java.util.Random;
 
-public class StructureNetherVillageHut extends StructureNetherVillage
+public abstract class StructureNetherVillageHut extends StructureNetherVillage
 {
-    private StructureNetherVillageHut(StructureNetherVillageWell.Controller controller, int componentType, Random rand, StructureBoundingBox boundingBoxIn, EnumFacing facing)
+    public StructureNetherVillageHut()
+    {
+
+    }
+
+    protected StructureNetherVillageHut(StructureNetherVillageWell.Controller controller, int componentType, Random rand, StructureBoundingBox boundingBoxIn, EnumFacing facing)
     {
         super(controller, componentType);
         setCoordBaseMode(facing);
         boundingBox = boundingBoxIn;
-    }
-
-    public static StructureNetherVillageHut createPiece(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing, int componentType)
-    {
-        StructureBoundingBox boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(minX, minY, minZ, 0, 0, 0, 9, 5, 9, facing);
-        return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? new StructureNetherVillageHut(controller, componentType, rand, boundingBox, facing) : null;
     }
 
     @Override
@@ -58,6 +56,45 @@ public class StructureNetherVillageHut extends StructureNetherVillage
                 return true;
             }
 
+            for(int x = 0; x < 9; x++)
+            {
+                for(int z = 0; z < 9; z++)
+                {
+                    StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
+                    fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 5 - 1, 0);
+
+                    BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
+
+                    if(world.isAirBlock(pos))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            int solidBlocks = 0;
+
+            for(int x = 0; x < 9; x++)
+            {
+                for(int z = 0; z < 9; z++)
+                {
+                    StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
+                    fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 5 - 1, 0);
+
+                    BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
+
+                    if(world.isAirBlock(pos))
+                    {
+                        solidBlocks++;
+
+                        if(solidBlocks > 63)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
             boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 5 - 1, 0);
         }
 
@@ -68,53 +105,69 @@ public class StructureNetherVillageHut extends StructureNetherVillage
         IBlockState netherBrick = getBiomeSpecificBlock(Blocks.NETHER_BRICK.getDefaultState());
         IBlockState netherBrickSlab = getBiomeSpecificBlock(Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.NETHERBRICK));
 
-        fillWithAir(world, boundingBoxIn, 0, 0, 0, 8, 4, 8);
-        fillWithBlocks(world, boundingBoxIn, 3, 0, 1, 5, 2, 1, redNetherBrick, redNetherBrick, false);
-        setBlockState(world, netherBrickFenceGate.withProperty(BlockFenceGate.FACING, EnumFacing.NORTH), 4, 0, 1, boundingBoxIn);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 4, 1, 1, boundingBoxIn);
-        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 4, 2, 1, boundingBoxIn);
-        fillWithBlocks(world, boundingBoxIn, 3, 0, 7, 5, 2, 7, redNetherBrick, redNetherBrick, false);
-        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 4, 0, 7, boundingBoxIn);
-        setBlockState(world, netherBrickFence, 4, 1, 7, boundingBoxIn);
-        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 4, 2, 7, boundingBoxIn);
-        fillWithBlocks(world, boundingBoxIn, 1, 0, 3, 1, 2, 5, redNetherBrick, redNetherBrick, false);
-        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 1, 0, 4, boundingBoxIn);
-        setBlockState(world, netherBrickFence, 1, 1, 4, boundingBoxIn);
-        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 1, 2, 4, boundingBoxIn);
-        fillWithBlocks(world, boundingBoxIn, 7, 0, 3, 7, 2, 5, redNetherBrick, redNetherBrick, false);
-        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 7, 0, 4, boundingBoxIn);
-        setBlockState(world, netherBrickFence, 7, 1, 4, boundingBoxIn);
-        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.WEST), 7, 2, 4, boundingBoxIn);
-        fillWithBlocks(world, boundingBoxIn, 2, 0, 2, 2, 2, 2, redNetherBrick, redNetherBrick, false);
-        fillWithBlocks(world, boundingBoxIn, 6, 0, 2, 6, 2, 2, redNetherBrick, redNetherBrick, false);
-        fillWithBlocks(world, boundingBoxIn, 6, 0, 6, 6, 2, 6, redNetherBrick, redNetherBrick, false);
-        fillWithBlocks(world, boundingBoxIn, 2, 0, 6, 2, 2, 6, redNetherBrick, redNetherBrick, false);
-        fillWithBlocks(world, boundingBoxIn, 1, 3, 1, 7, 3, 7, netherBrick, netherBrick, false);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 1, 3, 1, boundingBoxIn);
-        setBlockState(world, netherBrickSlab, 2, 3, 1, boundingBoxIn);
-        setBlockState(world, netherBrickSlab, 1, 3, 2, boundingBoxIn);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 7, 3, 1, boundingBoxIn);
-        setBlockState(world, netherBrickSlab, 6, 3, 1, boundingBoxIn);
-        setBlockState(world, netherBrickSlab, 7, 3, 2, boundingBoxIn);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 7, 3, 7, boundingBoxIn);
-        setBlockState(world, netherBrickSlab, 6, 3, 7, boundingBoxIn);
-        setBlockState(world, netherBrickSlab, 7, 3, 6, boundingBoxIn);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 1, 3, 7, boundingBoxIn);
+        fillWithAir(world, boundingBoxIn, 0, 0, 0, 8, 7, 7);
+        fillWithBlocks(world, boundingBoxIn, 3, 0, 0, 5, 2, 0, redNetherBrick, redNetherBrick, false);
+        setBlockState(world, netherBrickFenceGate.withProperty(BlockFenceGate.FACING, EnumFacing.NORTH), 4, 0, 0, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 4, 1, 0, boundingBoxIn);
+        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 4, 2, 0, boundingBoxIn);
+        fillWithBlocks(world, boundingBoxIn, 3, 0, 6, 5, 2, 6, redNetherBrick, redNetherBrick, false);
+        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 4, 0, 6, boundingBoxIn);
+        setBlockState(world, netherBrickFence, 4, 1, 6, boundingBoxIn);
+        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 4, 2, 6, boundingBoxIn);
+        fillWithBlocks(world, boundingBoxIn, 1, 0, 2, 1, 2, 4, redNetherBrick, redNetherBrick, false);
+        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 1, 0, 3, boundingBoxIn);
+        setBlockState(world, netherBrickFence, 1, 1, 3, boundingBoxIn);
+        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 1, 2, 3, boundingBoxIn);
+        fillWithBlocks(world, boundingBoxIn, 7, 0, 2, 7, 2, 4, redNetherBrick, redNetherBrick, false);
+        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 7, 0, 3, boundingBoxIn);
+        setBlockState(world, netherBrickFence, 7, 1, 3, boundingBoxIn);
+        setBlockState(world, redNetherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.WEST), 7, 2, 3, boundingBoxIn);
+        fillWithBlocks(world, boundingBoxIn, 2, 0, 1, 2, 2, 1, redNetherBrick, redNetherBrick, false);
+        fillWithBlocks(world, boundingBoxIn, 6, 0, 1, 6, 2, 1, redNetherBrick, redNetherBrick, false);
+        fillWithBlocks(world, boundingBoxIn, 6, 0, 5, 6, 2, 5, redNetherBrick, redNetherBrick, false);
+        fillWithBlocks(world, boundingBoxIn, 2, 0, 5, 2, 2, 5, redNetherBrick, redNetherBrick, false);
+        fillWithBlocks(world, boundingBoxIn, 1, 3, 0, 7, 3, 6, netherBrick, netherBrick, false);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 1, 3, 0, boundingBoxIn);
+        setBlockState(world, netherBrickSlab, 2, 3, 0, boundingBoxIn);
+        setBlockState(world, netherBrickSlab, 1, 3, 1, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 7, 3, 0, boundingBoxIn);
+        setBlockState(world, netherBrickSlab, 6, 3, 0, boundingBoxIn);
+        setBlockState(world, netherBrickSlab, 7, 3, 1, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 7, 3, 6, boundingBoxIn);
+        setBlockState(world, netherBrickSlab, 6, 3, 6, boundingBoxIn);
+        setBlockState(world, netherBrickSlab, 7, 3, 5, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 1, 3, 6, boundingBoxIn);
         setBlockState(world, netherBrickSlab, 1, 3, 6, boundingBoxIn);
         setBlockState(world, netherBrickSlab, 2, 3, 7, boundingBoxIn);
-        fillWithBlocks(world, boundingBoxIn, 3, 3, 0, 5, 3, 0, netherBrickSlab, netherBrickSlab, false);
-        fillWithBlocks(world, boundingBoxIn, 8, 3, 3, 8, 3, 5, netherBrickSlab, netherBrickSlab, false);
-        fillWithBlocks(world, boundingBoxIn, 3, 3, 8, 5, 3, 8, netherBrickSlab, netherBrickSlab, false);
-        fillWithBlocks(world, boundingBoxIn, 0, 3, 3, 0, 3, 5, netherBrickSlab, netherBrickSlab, false);
-        fillWithBlocks(world, boundingBoxIn, 2, 4, 2, 6, 4, 6, netherBrickSlab, netherBrickSlab, false);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 4, 2, boundingBoxIn);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 6, 4, 2, boundingBoxIn);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 6, 4, 6, boundingBoxIn);
-        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 4, 6, boundingBoxIn);
+        fillWithBlocks(world, boundingBoxIn, 3, 3, -1, 5, 3, -1, netherBrickSlab, netherBrickSlab, false);
+        fillWithBlocks(world, boundingBoxIn, 8, 3, 2, 8, 3, 3, netherBrickSlab, netherBrickSlab, false);
+        fillWithBlocks(world, boundingBoxIn, 3, 3, 7, 5, 3, 7, netherBrickSlab, netherBrickSlab, false);
+        fillWithBlocks(world, boundingBoxIn, 0, 3, 2, 0, 3, 4, netherBrickSlab, netherBrickSlab, false);
+        fillWithBlocks(world, boundingBoxIn, 2, 4, 1, 6, 4, 5, netherBrickSlab, netherBrickSlab, false);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 4, 1, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 6, 4, 1, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 6, 4, 5, boundingBoxIn);
+        setBlockState(world, Blocks.AIR.getDefaultState(), 2, 4, 5, boundingBoxIn);
 
-        for(int x = 0; x < 9; x++)
+        for(int x = 2; x < 7; x++)
         {
-            for(int z = 0; z < 9; z++)
+            for(int z = 1; z < 6; z++)
+            {
+                replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
+            }
+        }
+
+        for(int x = 3; x < 6; x++)
+        {
+            for(int z = 0; z < 7; z++)
+            {
+                replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
+            }
+        }
+
+        for(int x = 1; x < 8; x++)
+        {
+            for(int z = 2; z < 5; z++)
             {
                 replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
             }

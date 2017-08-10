@@ -18,7 +18,7 @@
 package nex.client.render.entity;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,7 +28,7 @@ import nex.entity.passive.EntityPigtificate;
 import nex.village.Pigtificate;
 
 @SideOnly(Side.CLIENT)
-public class RenderPigtificate extends RenderLiving<EntityPigtificate>
+public class RenderPigtificate extends RenderBiped<EntityPigtificate>
 {
     public RenderPigtificate(RenderManager manager)
     {

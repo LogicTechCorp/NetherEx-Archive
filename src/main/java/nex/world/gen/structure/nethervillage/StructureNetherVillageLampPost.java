@@ -19,11 +19,14 @@ package nex.world.gen.structure.nethervillage;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import nex.block.BlockVanilla;
+import nex.block.BlockVanillaFence;
+import nex.init.NetherExBlocks;
 
 import java.util.List;
 import java.util.Random;
@@ -59,19 +62,39 @@ public class StructureNetherVillageLampPost extends StructureNetherVillage
                 return true;
             }
 
+            for(int x = 0; x < 3; x++)
+            {
+                for(int z = 0; z < 3; z++)
+                {
+                    StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
+                    fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
+
+                    BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
+
+                    if(world.isAirBlock(pos))
+                    {
+                        return false;
+                    }
+                }
+            }
+
             boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
         }
 
-        IBlockState iblockstate = getBiomeSpecificBlock(Blocks.OAK_FENCE.getDefaultState());
-        fillWithBlocks(world, boundingBoxIn, 0, 0, 0, 2, 3, 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-        setBlockState(world, iblockstate, 1, 0, 0, boundingBoxIn);
-        setBlockState(world, iblockstate, 1, 1, 0, boundingBoxIn);
-        setBlockState(world, iblockstate, 1, 2, 0, boundingBoxIn);
-        setBlockState(world, Blocks.WOOL.getStateFromMeta(EnumDyeColor.WHITE.getDyeDamage()), 1, 3, 0, boundingBoxIn);
-        placeTorch(world, EnumFacing.EAST, 2, 3, 0, boundingBoxIn);
-        placeTorch(world, EnumFacing.NORTH, 1, 3, 1, boundingBoxIn);
-        placeTorch(world, EnumFacing.WEST, 0, 3, 0, boundingBoxIn);
-        placeTorch(world, EnumFacing.SOUTH, 1, 3, -1, boundingBoxIn);
+        IBlockState redNetherBrickFence = getBiomeSpecificBlock(NetherExBlocks.FENCE_VANILLA.getDefaultState().withProperty(BlockVanillaFence.TYPE, BlockVanilla.EnumTypeFence.BRICK_NETHER_RED));
+
+        fillWithAir(world, boundingBoxIn, 0, 0, 0, 2, 5, 2);
+        fillWithBlocks(world, boundingBoxIn, 1, 0, 1, 1, 2, 1, redNetherBrickFence, redNetherBrickFence, false);
+        setBlockState(world, Blocks.GLOWSTONE.getDefaultState(), 1, 3, 1, boundingBoxIn);
+
+        for(int x = 0; x < 3; x++)
+        {
+            for(int z = 0; z < 3; z++)
+            {
+                replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
+            }
+        }
+
         return true;
     }
 }
