@@ -27,6 +27,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import nex.block.BlockElderMushroom;
+import nex.init.NetherExBlocks;
 import nex.village.Pigtificate;
 
 import java.util.List;
@@ -57,8 +59,10 @@ public class StructureNetherVillageForagerHut extends StructureNetherVillageHut
 
         if(generate)
         {
-            IBlockState netherBrick = getBiomeSpecificBlock(Blocks.NETHER_BRICK.getDefaultState());
-            IBlockState netherBrickStairs = getBiomeSpecificBlock(Blocks.NETHER_BRICK_STAIRS.getDefaultState());
+            IBlockState netherBrick = Blocks.NETHER_BRICK.getDefaultState();
+            IBlockState netherBrickStairs = Blocks.NETHER_BRICK_STAIRS.getDefaultState();
+            IBlockState quartzOre = Blocks.QUARTZ_ORE.getDefaultState();
+            IBlockState elderMushroom = NetherExBlocks.PLANT_MUSHROOM_ELDER.getDefaultState();
 
             Pigtificate.Career career = Pigtificate.Career.getRandomCareer(Pigtificate.Profession.FORAGER, rand);
 
@@ -68,26 +72,52 @@ public class StructureNetherVillageForagerHut extends StructureNetherVillageHut
 
                 if(variant == 0)
                 {
-                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 2, 0, 2, boundingBoxIn);
-                    setBlockState(world, netherBrick, 2, 0, 3, boundingBoxIn);
-                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 2, 0, 4, boundingBoxIn);
-                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 6, 0, 2, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 1, 0, 2, boundingBoxIn);
+                    setBlockState(world, netherBrick, 1, 0, 3, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 1, 0, 4, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 5, 0, 2, boundingBoxIn);
 
-                    spawnPigtificates(world, boundingBox, 4, 0, 3, career, 1, new ItemStack(Items.GOLDEN_SWORD, 1, 0));
+                    spawnPigtificates(world, boundingBoxIn, 3, 0, 3, career, 1, new ItemStack(Items.GOLDEN_SWORD, 1, 0));
                 }
                 else if(variant == 1)
                 {
-                    setBlockState(world, netherBrick, 6, 0, 2, boundingBoxIn);
-                    setBlockState(world, netherBrick, 6, 0, 3, boundingBoxIn);
-                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 5, 0, 5, boundingBoxIn);
-                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.WEST), 2, 0, 4, boundingBoxIn);
-                    setBlockState(world, Blocks.SKULL.getDefaultState().withProperty(BlockSkull.FACING, EnumFacing.UP), 2, 1, 4, boundingBoxIn);
+                    setBlockState(world, netherBrick, 5, 0, 2, boundingBoxIn);
+                    setBlockState(world, netherBrick, 5, 0, 3, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 4, 0, 5, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.WEST), 1, 0, 4, boundingBoxIn);
+                    setBlockState(world, Blocks.SKULL.getDefaultState().withProperty(BlockSkull.FACING, EnumFacing.UP), 1, 1, 4, boundingBoxIn);
 
-                    spawnPigtificates(world, boundingBox, 4, 0, 3, career, 1, new ItemStack(Items.GOLDEN_AXE, 1, 0));
+                    spawnPigtificates(world, boundingBoxIn, 3, 0, 3, career, 1, new ItemStack(Items.GOLDEN_AXE, 1, 0));
                 }
             }
             else if(career == Pigtificate.Career.GATHERER)
             {
+                int variant = rand.nextInt(2);
+
+                if(variant == 0)
+                {
+                    setBlockState(world, quartzOre, 1, 0, 3, boundingBoxIn);
+                    setBlockState(world, quartzOre, 1, 0, 4, boundingBoxIn);
+                    setBlockState(world, quartzOre, 1, 1, 4, boundingBoxIn);
+                    setBlockState(world, quartzOre, 2, 0, 4, boundingBoxIn);
+                    setBlockState(world, netherBrick, 2, 0, 5, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 5, 0, 2, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 5, 0, 3, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 5, 0, 4, boundingBoxIn);
+
+                    spawnPigtificates(world, boundingBox, 3, 0, 3, career, 1, new ItemStack(Items.GOLDEN_PICKAXE, 1, 0));
+                }
+                else if(variant == 1)
+                {
+                    setBlockState(world, netherBrick, 1, 0, 4, boundingBoxIn);
+                    setBlockState(world, elderMushroom.withProperty(BlockElderMushroom.TYPE, BlockElderMushroom.EnumType.getRandom(rand)), 1, 1, 4, boundingBoxIn);
+                    setBlockState(world, netherBrick, 5, 0, 2, boundingBoxIn);
+                    setBlockState(world, elderMushroom.withProperty(BlockElderMushroom.TYPE, BlockElderMushroom.EnumType.getRandom(rand)), 5, 1, 2, boundingBoxIn);
+                    setBlockState(world, netherBrick, 4, 0, 5, boundingBoxIn);
+                    setBlockState(world, elderMushroom.withProperty(BlockElderMushroom.TYPE, BlockElderMushroom.EnumType.getRandom(rand)), 4, 1, 5, boundingBoxIn);
+
+                    spawnPigtificates(world, boundingBox, 3, 0, 3, career, 1, new ItemStack(Items.GOLDEN_SHOVEL, 1, 0));
+                }
             }
             else if(career == Pigtificate.Career.SCAVENGER)
             {

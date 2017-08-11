@@ -81,7 +81,7 @@ public class StructureNetherVillageLampPost extends StructureNetherVillage
             boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
         }
 
-        IBlockState redNetherBrickFence = getBiomeSpecificBlock(NetherExBlocks.FENCE_VANILLA.getDefaultState().withProperty(BlockVanillaFence.TYPE, BlockVanilla.EnumTypeFence.BRICK_NETHER_RED));
+        IBlockState redNetherBrickFence = NetherExBlocks.FENCE_VANILLA.getDefaultState().withProperty(BlockVanillaFence.TYPE, BlockVanilla.EnumTypeFence.BRICK_NETHER_RED);
 
         fillWithAir(world, boundingBoxIn, 0, 0, 0, 2, 5, 2);
         fillWithBlocks(world, boundingBoxIn, 1, 0, 1, 1, 2, 1, redNetherBrickFence, redNetherBrickFence, false);

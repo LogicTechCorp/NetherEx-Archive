@@ -18,15 +18,13 @@
 package nex.world.gen.structure.nethervillage;
 
 import com.google.common.collect.Lists;
-import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -34,9 +32,6 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.BiomeEvent;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.entity.passive.EntityPigtificate;
 import nex.util.WorldGenUtil;
 import nex.village.Pigtificate;
@@ -389,68 +384,22 @@ public abstract class StructureNetherVillage extends StructureComponent
         }
     }
 
-    protected IBlockState getBiomeSpecificBlock(IBlockState state)
-    {
-        BiomeEvent.GetVillageBlockID event = new BiomeEvent.GetVillageBlockID(controller == null ? null : controller.getBiome(), state);
-        MinecraftForge.TERRAIN_GEN_BUS.post(event);
-
-        if(event.getResult() == Event.Result.DENY)
-        {
-            return event.getReplacement();
-        }
-
-        return state;
-    }
-
-    private BlockDoor biomeDoor()
-    {
-        switch(structureType)
-        {
-            default:
-                return Blocks.OAK_DOOR;
-        }
-    }
-
-    protected void createVillageDoor(World world, StructureBoundingBox boundingBox, Random rand, int x, int y, int z, EnumFacing facing)
+    protected void setFenceGate(World world, IBlockState state, int x, int y, int z, EnumFacing facing, StructureBoundingBox boundingBox)
     {
         if(!isZombieInfested)
         {
-            generateDoor(world, boundingBox, rand, x, y, z, EnumFacing.NORTH, biomeDoor());
+            setBlockState(world, state.withProperty(BlockFenceGate.FACING, facing), x, y, z, boundingBox);
         }
     }
 
     protected void replaceAirAndLiquidDownwards(World world, IBlockState state, int x, int y, int z, StructureBoundingBox boundingBox)
     {
-        super.replaceAirAndLiquidDownwards(world, getBiomeSpecificBlock(state), x, y, z, boundingBox);
+        super.replaceAirAndLiquidDownwards(world, state, x, y, z, boundingBox);
     }
 
     protected void setStructureType(int structureTypeIn)
     {
         structureType = structureTypeIn;
-    }
-
-    public Mirror getMirror()
-    {
-        EnumFacing facing = getCoordBaseMode();
-
-        if(facing == null)
-        {
-            return Mirror.NONE;
-        }
-        else
-        {
-            switch(facing)
-            {
-                case SOUTH:
-                    return Mirror.LEFT_RIGHT;
-                case WEST:
-                    return Mirror.LEFT_RIGHT;
-                case EAST:
-                    return Mirror.NONE;
-                default:
-                    return Mirror.NONE;
-            }
-        }
     }
 
     public static class Piece

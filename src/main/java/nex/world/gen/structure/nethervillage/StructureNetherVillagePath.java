@@ -149,8 +149,8 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox boundingBoxIn)
     {
-        IBlockState netherrackPath = getBiomeSpecificBlock(NetherExBlocks.BLOCK_NETHERRACK_PATH.getDefaultState());
-        IBlockState netherBrick = getBiomeSpecificBlock(Blocks.NETHER_BRICK.getDefaultState());
+        IBlockState netherrackPath = NetherExBlocks.BLOCK_NETHERRACK_PATH.getDefaultState();
+        IBlockState netherBrick = Blocks.NETHER_BRICK.getDefaultState();
 
         for(int i = boundingBox.minX; i <= boundingBox.maxX; ++i)
         {

@@ -100,8 +100,16 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        IBlockState soil = world.getBlockState(pos.down());
-        return super.canPlaceBlockAt(world, pos) && soil.getBlock().canSustainPlant(soil, world, pos.down(), EnumFacing.UP, this);
+        if(super.canPlaceBlockAt(world, pos))
+        {
+            if(pos.getY() >= 0 && pos.getY() < 256)
+            {
+                IBlockState soil = world.getBlockState(pos.down());
+                return soil.getBlock().canSustainPlant(soil, world, pos.down(), EnumFacing.UP, this) || world.getLight(pos) < 13;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -190,6 +198,11 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
         public String getName()
         {
             return toString().toLowerCase();
+        }
+
+        public static EnumType getRandom(Random rand)
+        {
+            return values()[rand.nextInt(values().length)];
         }
 
         public static EnumType fromMeta(int meta)

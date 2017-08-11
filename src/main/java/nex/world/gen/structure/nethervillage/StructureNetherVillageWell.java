@@ -77,8 +77,8 @@ public class StructureNetherVillageWell extends StructureNetherVillage
             boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 3, 0);
         }
 
-        IBlockState netherBrick = getBiomeSpecificBlock(Blocks.NETHER_BRICK.getDefaultState());
-        IBlockState redNetherBrickFence = getBiomeSpecificBlock(NetherExBlocks.FENCE_VANILLA.getDefaultState().withProperty(BlockVanillaFence.TYPE, BlockVanilla.EnumTypeFence.BRICK_NETHER_RED));
+        IBlockState netherBrick = Blocks.NETHER_BRICK.getDefaultState();
+        IBlockState redNetherBrickFence = NetherExBlocks.FENCE_VANILLA.getDefaultState().withProperty(BlockVanillaFence.TYPE, BlockVanilla.EnumTypeFence.BRICK_NETHER_RED);
 
         fillWithAir(world, boundingBoxIn, 1, 0, 1, 4, 18, 4);
         fillWithBlocks(world, boundingBoxIn, 1, 0, 1, 4, 12, 4, netherBrick, Blocks.FLOWING_LAVA.getDefaultState(), false);
