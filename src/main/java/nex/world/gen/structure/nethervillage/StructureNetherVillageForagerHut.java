@@ -29,6 +29,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import nex.block.BlockElderMushroom;
 import nex.init.NetherExBlocks;
+import nex.init.NetherExLootTables;
 import nex.village.Pigtificate;
 
 import java.util.List;
@@ -121,6 +122,28 @@ public class StructureNetherVillageForagerHut extends StructureNetherVillageHut
             }
             else if(career == Pigtificate.Career.SCAVENGER)
             {
+                int variant = rand.nextInt(2);
+
+                if(variant == 0)
+                {
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 1, 0, 4, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 1, 0, 3, boundingBoxIn);
+                    setBlockState(world, netherBrick, 2, 0, 5, boundingBoxIn);
+                    generateChest(world, boundingBoxIn, rand, 5, 0, 4, NetherExLootTables.CHEST_VILLAGE_BASE);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 5, 0, 2, boundingBoxIn);
+
+                    spawnPigtificates(world, boundingBox, 3, 0, 3, career, 1, new ItemStack(Items.GOLDEN_HOE, 1, 0));
+                }
+                else if(variant == 1)
+                {
+                    setBlockState(world, netherBrick, 1, 0, 4, boundingBoxIn);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 1, 0, 3, boundingBoxIn);
+                    setBlockState(world, netherBrick, 4, 0, 5, boundingBoxIn);
+                    generateChest(world, boundingBoxIn, rand, 2, 0, 5, NetherExLootTables.CHEST_VILLAGE_BASE);
+                    setBlockState(world, netherBrickStairs.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 5, 0, 2, boundingBoxIn);
+
+                    spawnPigtificates(world, boundingBox, 3, 0, 3, career, 1, new ItemStack(Items.AIR, 1, 0));
+                }
             }
         }
 
