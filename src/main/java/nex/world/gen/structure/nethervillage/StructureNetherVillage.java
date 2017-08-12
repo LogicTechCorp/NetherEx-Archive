@@ -70,19 +70,19 @@ public abstract class StructureNetherVillage extends StructureComponent
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageWell.class, "village_nether_well");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillagePath.class, "village_nether_path");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageLampPost.class, "village_nether_lamp_post");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageForagerHut.class, "village_nether_hut_forager");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageBlacksmithHut.class, "village_nether_hut_blacksmith");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageSorcererHut.class, "village_nether_hut_sorcerer");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageHunterHut.class, "village_nether_hut_hunter");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageGathererHut.class, "village_nether_hut_gatherer");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageScavengerHut.class, "village_nether_hut_scavenger");
+        MapGenStructureIO.registerStructureComponent(StructureNetherVillageBrewerHut.class, "village_nether_hut_brewer");
     }
 
     public static List<Piece> getStructureVillageWeightedPieceList(Random rand, int size)
     {
         List<Piece> list = Lists.newArrayList();
-        list.add(new Piece(StructureNetherVillageForagerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
-        list.add(new Piece(StructureNetherVillageForagerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
-        list.add(new Piece(StructureNetherVillageForagerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
-        //list.add(new Piece(StructureNetherVillageBlacksmithHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
-        //list.add(new Piece(StructureNetherVillageSorcererHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureNetherVillageHunterHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureNetherVillageGathererHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureNetherVillageScavengerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureNetherVillageBrewerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
         list.removeIf(piece -> (piece).getSpawnLimit() == 0);
         return list;
     }
@@ -109,17 +109,21 @@ public abstract class StructureNetherVillage extends StructureComponent
     {
         Class<? extends StructureNetherVillage> structureNetherVillageCls = piece.getCls();
 
-        if(structureNetherVillageCls == StructureNetherVillageForagerHut.class)
+        if(structureNetherVillageCls == StructureNetherVillageHunterHut.class)
         {
-            return StructureNetherVillageForagerHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureNetherVillageHunterHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
-        else if(structureNetherVillageCls == StructureNetherVillageBlacksmithHut.class)
+        else if(structureNetherVillageCls == StructureNetherVillageGathererHut.class)
         {
-            return StructureNetherVillageBlacksmithHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureNetherVillageGathererHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
-        else if(structureNetherVillageCls == StructureNetherVillageSorcererHut.class)
+        else if(structureNetherVillageCls == StructureNetherVillageScavengerHut.class)
         {
-            return StructureNetherVillageSorcererHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureNetherVillageScavengerHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+        }
+        else if(structureNetherVillageCls == StructureNetherVillageBrewerHut.class)
+        {
+            return StructureNetherVillageBrewerHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
         else
         {
