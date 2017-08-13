@@ -26,6 +26,6 @@ public class NetherExStructures
     public static void init()
     {
         MapGenStructureIO.registerStructure(MapGenNetherVillage.Start.class, "NetherVillage");
-        StructureNetherVillage.registerVillagePieces();
+        StructureNetherVillage.registerPieces();
     }
 }

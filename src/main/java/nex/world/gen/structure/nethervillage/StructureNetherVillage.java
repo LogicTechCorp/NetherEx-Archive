@@ -64,7 +64,7 @@ public abstract class StructureNetherVillage extends StructureComponent
         }
     }
 
-    public static void registerVillagePieces()
+    public static void registerPieces()
     {
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageWell.Controller.class, "village_nether_controller");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageWell.class, "village_nether_well");
@@ -76,7 +76,7 @@ public abstract class StructureNetherVillage extends StructureComponent
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageBrewerHut.class, "village_nether_hut_brewer");
     }
 
-    public static List<Piece> getStructureVillageWeightedPieceList(Random rand, int size)
+    public static List<Piece> getStructureVillagePieceList(Random rand, int size)
     {
         List<Piece> list = Lists.newArrayList();
         list.add(new Piece(StructureNetherVillageHunterHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
@@ -219,7 +219,7 @@ public abstract class StructureNetherVillage extends StructureComponent
 
     public static StructureComponent generateAndAddRoadPiece(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing, int componentType)
     {
-        if(componentType > 3 + controller.getTerrainType())
+        if(componentType > 3 + controller.getVillageSize())
         {
             return null;
         }
@@ -291,7 +291,6 @@ public abstract class StructureNetherVillage extends StructureComponent
         }
     }
 
-    @Nullable
     protected StructureComponent getNextComponentPP(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minY, int minXZ)
     {
         EnumFacing facing = getCoordBaseMode();
@@ -317,7 +316,7 @@ public abstract class StructureNetherVillage extends StructureComponent
         }
     }
 
-    protected int getAverageGroundLevel(World world, StructureBoundingBox boundingBoxIn)
+    protected int findAverageGroundLevel(World world, StructureBoundingBox boundingBoxIn)
     {
         int i = 0;
         int j = 0;

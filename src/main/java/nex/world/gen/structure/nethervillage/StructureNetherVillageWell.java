@@ -38,9 +38,9 @@ public class StructureNetherVillageWell extends StructureNetherVillage
     {
     }
 
-    public StructureNetherVillageWell(Controller controller, int type, Random rand, int x, int z)
+    public StructureNetherVillageWell(Controller controller, int componentType, Random rand, int x, int z)
     {
-        super(controller, type);
+        super(controller, componentType);
         setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
 
         if(getCoordBaseMode().getAxis() == EnumFacing.Axis.Z)
@@ -67,7 +67,7 @@ public class StructureNetherVillageWell extends StructureNetherVillage
     {
         if(averageGroundLvl < 0)
         {
-            averageGroundLvl = getAverageGroundLevel(world, boundingBoxIn);
+            averageGroundLvl = findAverageGroundLevel(world, boundingBoxIn);
 
             if(averageGroundLvl < 0)
             {
@@ -113,7 +113,7 @@ public class StructureNetherVillageWell extends StructureNetherVillage
     public static class Controller extends StructureNetherVillageWell
     {
         private Biome biome;
-        private int terrainType;
+        private int villageSize;
         private Piece piece;
         private List<Piece> pieces;
         private List<StructureComponent> pendingHouses = Lists.newArrayList();
@@ -123,12 +123,12 @@ public class StructureNetherVillageWell extends StructureNetherVillage
         {
         }
 
-        public Controller(Biome biomeIn, Random rand, int x, int z, List<Piece> piecesIn, int terrainTypeIn)
+        public Controller(Biome biomeIn, Random rand, int x, int z, List<Piece> piecesIn, int villageSizeIn)
         {
             super(null, 0, rand, x, z);
 
             biome = biomeIn;
-            terrainType = terrainTypeIn;
+            villageSize = villageSizeIn;
             pieces = piecesIn;
             controller = this;
             isZombieInfested = rand.nextInt(50) == 0;
@@ -140,9 +140,9 @@ public class StructureNetherVillageWell extends StructureNetherVillage
             return biome;
         }
 
-        public int getTerrainType()
+        public int getVillageSize()
         {
-            return terrainType;
+            return villageSize;
         }
 
         public Piece getPiece()

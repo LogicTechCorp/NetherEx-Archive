@@ -35,11 +35,11 @@ public class MapGenNetherVillage extends MapGenStructure
 {
     private static List<Biome> SPAWN_BIOMES = Lists.newArrayList(NetherExBiomes.HELL);
 
-    private int distance;
+    private int distanceBetweenVillages;
 
     public MapGenNetherVillage()
     {
-        distance = 32;
+        distanceBetweenVillages = 32;
     }
 
     @Override
@@ -56,21 +56,21 @@ public class MapGenNetherVillage extends MapGenStructure
 
         if(chunkX < 0)
         {
-            chunkX -= distance - 1;
+            chunkX -= distanceBetweenVillages - 1;
         }
 
         if(chunkZ < 0)
         {
-            chunkZ -= distance - 1;
+            chunkZ -= distanceBetweenVillages - 1;
         }
 
-        int k = chunkX / distance;
-        int l = chunkZ / distance;
+        int k = chunkX / distanceBetweenVillages;
+        int l = chunkZ / distanceBetweenVillages;
         Random random = world.setRandomSeed(k, l, 10387312);
-        k = k * distance;
-        l = l * distance;
-        k = k + random.nextInt(distance - 8);
-        l = l + random.nextInt(distance - 8);
+        k = k * distanceBetweenVillages;
+        l = l * distanceBetweenVillages;
+        k = k + random.nextInt(distanceBetweenVillages - 8);
+        l = l + random.nextInt(distanceBetweenVillages - 8);
 
         if(i == k && j == l)
         {
@@ -89,7 +89,7 @@ public class MapGenNetherVillage extends MapGenStructure
     public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
     {
         world = worldIn;
-        return findNearestStructurePosBySpacing(worldIn, this, pos, distance, 8, 10387312, false, 100, findUnexplored);
+        return findNearestStructurePosBySpacing(worldIn, this, pos, distanceBetweenVillages, 8, 10387312, false, 100, findUnexplored);
     }
 
     @Override
@@ -106,11 +106,11 @@ public class MapGenNetherVillage extends MapGenStructure
         {
         }
 
-        public Start(World world, Random rand, int x, int z, int size)
+        public Start(World world, Random rand, int x, int z, int villageSize)
         {
             super(x, z);
-            List<StructureNetherVillage.Piece> list = StructureNetherVillage.getStructureVillageWeightedPieceList(rand, size);
-            StructureNetherVillageWell.Controller controller = new StructureNetherVillageWell.Controller(world.getBiomeProvider().getBiome(new BlockPos(x, 0, z), Biomes.DEFAULT), rand, (x << 4) + 2, (z << 4) + 2, list, size);
+            List<StructureNetherVillage.Piece> pieces = StructureNetherVillage.getStructureVillagePieceList(rand, villageSize);
+            StructureNetherVillageWell.Controller controller = new StructureNetherVillageWell.Controller(world.getBiomeProvider().getBiome(new BlockPos(x, 0, z), Biomes.DEFAULT), rand, (x << 4) + 2, (z << 4) + 2, pieces, villageSize);
             components.add(controller);
             controller.buildComponent(controller, components, rand);
             List<StructureComponent> pendingRoads = controller.getPendingRoads();

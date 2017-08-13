@@ -55,7 +55,7 @@ public class StructureNetherVillageLampPost extends StructureNetherVillage
     {
         if(averageGroundLvl < 0)
         {
-            averageGroundLvl = getAverageGroundLevel(world, boundingBoxIn);
+            averageGroundLvl = findAverageGroundLevel(world, boundingBoxIn);
 
             if(averageGroundLvl < 0)
             {
