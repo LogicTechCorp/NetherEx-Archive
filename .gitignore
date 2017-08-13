@@ -4,5 +4,6 @@
 !gradlew*
 !/gradle/
 !/README.md
+!/CLA.txt
 !build.gradle
 !public_properties.xml
