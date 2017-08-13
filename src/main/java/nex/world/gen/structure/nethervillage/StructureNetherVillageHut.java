@@ -56,13 +56,13 @@ public abstract class StructureNetherVillageHut extends StructureNetherVillage
                 return true;
             }
 
-            for(int x = 0; x < 9; x++)
-            {
-                for(int z = 0; z < 9; z++)
-                {
-                    StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
-                    fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 5 - 1, 0);
+            StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
+            fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 5 - 1, 0);
 
+            for(int x = 0; x <= 6; x++)
+            {
+                for(int z = 0; z <= 6; z++)
+                {
                     BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
 
                     if(world.isAirBlock(pos))
@@ -74,22 +74,21 @@ public abstract class StructureNetherVillageHut extends StructureNetherVillage
 
             int solidBlocks = 0;
 
-            for(int x = 0; x < 9; x++)
+            for(int x = 0; x <= 6; x++)
             {
-                for(int z = 0; z < 9; z++)
+                for(int z = 0; z <= 6; z++)
                 {
-                    StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
-                    fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 5 - 1, 0);
-
-                    BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
-
-                    if(world.isAirBlock(pos))
+                    for(int y = 0; y <= 6; y++)
                     {
-                        solidBlocks++;
+                        BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY + y, getZWithOffset(x, z));
+                        IBlockState state = world.getBlockState(pos);
 
-                        if(solidBlocks > 63)
+                        if(state.getMaterial().isSolid())
                         {
-                            return false;
+                            if(solidBlocks++ > 98)
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
@@ -160,25 +159,25 @@ public abstract class StructureNetherVillageHut extends StructureNetherVillage
         setBlockState(world, netherBrickSlab.withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP), 5, 3, 2, boundingBoxIn);
         setBlockState(world, Blocks.GLOWSTONE.getDefaultState(), 3, 3, 3, boundingBoxIn);
 
-        for(int x = 1; x < 6; x++)
+        for(int x = 1; x <= 5; x++)
         {
-            for(int z = 1; z < 6; z++)
+            for(int z = 1; z <= 5; z++)
             {
                 replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
             }
         }
 
-        for(int x = 2; x < 5; x++)
+        for(int x = 2; x <= 4; x++)
         {
-            for(int z = 0; z < 7; z++)
+            for(int z = 0; z <= 6; z++)
             {
                 replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
             }
         }
 
-        for(int x = 0; x < 7; x++)
+        for(int x = 0; x <= 6; x++)
         {
-            for(int z = 2; z < 5; z++)
+            for(int z = 2; z <= 4; z++)
             {
                 replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
             }

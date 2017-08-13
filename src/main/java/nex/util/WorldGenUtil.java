@@ -497,7 +497,7 @@ public class WorldGenUtil
             IBlockState topState = world.getBlockState(solidPos);
             IBlockState bottomState = world.getBlockState(newPos);
 
-            if(bottomState.getMaterial().blocksMovement() && !topState.getMaterial().blocksMovement() && !bottomState.getBlock().isLeaves(bottomState, world, newPos) && !bottomState.getBlock().isFoliage(world, newPos))
+            if(bottomState.getMaterial().isSolid() && !topState.getMaterial().isSolid())
             {
                 break;
             }

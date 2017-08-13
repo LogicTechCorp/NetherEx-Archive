@@ -151,7 +151,6 @@ public abstract class StructureNetherVillage extends StructureComponent
                 for(Piece piece : controller.getPieces())
                 {
                     k -= piece.getWeight();
-                    ;
 
                     if(k < 0)
                     {
