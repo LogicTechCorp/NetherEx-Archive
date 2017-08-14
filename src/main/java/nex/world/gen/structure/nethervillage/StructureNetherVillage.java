@@ -35,12 +35,12 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import nex.entity.passive.EntityPigtificate;
 import nex.util.WorldGenUtil;
 import nex.village.Pigtificate;
+import nex.world.gen.structure.StructureNetherEx;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public abstract class StructureNetherVillage extends StructureComponent
+public abstract class StructureNetherVillage extends StructureNetherEx
 {
     protected int averageGroundLvl = -1;
     private int villagersSpawned;
@@ -70,19 +70,23 @@ public abstract class StructureNetherVillage extends StructureComponent
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageWell.class, "village_nether_well");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillagePath.class, "village_nether_path");
         MapGenStructureIO.registerStructureComponent(StructureNetherVillageLampPost.class, "village_nether_lamp_post");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageHunterHut.class, "village_nether_hut_hunter");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageGathererHut.class, "village_nether_hut_gatherer");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageScavengerHut.class, "village_nether_hut_scavenger");
-        MapGenStructureIO.registerStructureComponent(StructureNetherVillageBrewerHut.class, "village_nether_hut_brewer");
+        MapGenStructureIO.registerStructureComponent(StructureHunterHut.class, "village_nether_hut_hunter");
+        MapGenStructureIO.registerStructureComponent(StructureGathererHut.class, "village_nether_hut_gatherer");
+        MapGenStructureIO.registerStructureComponent(StructureScavengerHut.class, "village_nether_hut_scavenger");
+        MapGenStructureIO.registerStructureComponent(StructureArmorsmithHut.class, "village_nether_hut_armorsmith");
+        MapGenStructureIO.registerStructureComponent(StructureToolsmithHut.class, "village_nether_hut_toolsmith");
+        MapGenStructureIO.registerStructureComponent(StructureBrewerHut.class, "village_nether_hut_brewer");
     }
 
     public static List<Piece> getStructureVillagePieceList(Random rand, int size)
     {
         List<Piece> list = Lists.newArrayList();
-        list.add(new Piece(StructureNetherVillageHunterHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
-        list.add(new Piece(StructureNetherVillageGathererHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
-        list.add(new Piece(StructureNetherVillageScavengerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
-        list.add(new Piece(StructureNetherVillageBrewerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureHunterHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureGathererHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureScavengerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureArmorsmithHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureToolsmithHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
+        list.add(new Piece(StructureBrewerHut.class, 3, MathHelper.getInt(rand, size + 2, (size * 3) + 5)));
         list.removeIf(piece -> (piece).getSpawnLimit() == 0);
         return list;
     }
@@ -105,25 +109,33 @@ public abstract class StructureNetherVillage extends StructureComponent
         return flag ? i : -1;
     }
 
-    private static StructureNetherVillage findAndCreateComponentFactory(StructureNetherVillageWell.Controller controller, Piece piece, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing, int componentType)
+    private static StructureNetherVillage createComponent(StructureNetherVillageWell.Controller controller, Piece piece, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing, int componentType)
     {
         Class<? extends StructureNetherVillage> structureNetherVillageCls = piece.getCls();
 
-        if(structureNetherVillageCls == StructureNetherVillageHunterHut.class)
+        if(structureNetherVillageCls == StructureHunterHut.class)
         {
-            return StructureNetherVillageHunterHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureHunterHut.createComponent(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
-        else if(structureNetherVillageCls == StructureNetherVillageGathererHut.class)
+        else if(structureNetherVillageCls == StructureGathererHut.class)
         {
-            return StructureNetherVillageGathererHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureGathererHut.createComponent(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
-        else if(structureNetherVillageCls == StructureNetherVillageScavengerHut.class)
+        else if(structureNetherVillageCls == StructureScavengerHut.class)
         {
-            return StructureNetherVillageScavengerHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureScavengerHut.createComponent(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
-        else if(structureNetherVillageCls == StructureNetherVillageBrewerHut.class)
+        else if(structureNetherVillageCls == StructureArmorsmithHut.class)
         {
-            return StructureNetherVillageBrewerHut.createPiece(controller, components, rand, minX, minY, minZ, facing, componentType);
+            return StructureArmorsmithHut.createComponent(controller, components, rand, minX, minY, minZ, facing, componentType);
+        }
+        else if(structureNetherVillageCls == StructureToolsmithHut.class)
+        {
+            return StructureToolsmithHut.createComponent(controller, components, rand, minX, minY, minZ, facing, componentType);
+        }
+        else if(structureNetherVillageCls == StructureBrewerHut.class)
+        {
+            return StructureBrewerHut.createComponent(controller, components, rand, minX, minY, minZ, facing, componentType);
         }
         else
         {
@@ -159,7 +171,7 @@ public abstract class StructureNetherVillage extends StructureComponent
                             break;
                         }
 
-                        StructureNetherVillage structureNetherVillage = findAndCreateComponentFactory(controller, piece, components, rand, minX, minY, minZ, facing, componentType);
+                        StructureNetherVillage structureNetherVillage = createComponent(controller, piece, components, rand, minX, minY, minZ, facing, componentType);
 
                         if(structureNetherVillage != null)
                         {
