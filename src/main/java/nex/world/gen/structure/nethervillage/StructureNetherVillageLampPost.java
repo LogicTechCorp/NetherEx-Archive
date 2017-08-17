@@ -62,42 +62,19 @@ public class StructureNetherVillageLampPost extends StructureNetherVillage
                 return true;
             }
 
-            StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
-            fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
-
             for(int x = 0; x < 3; x++)
             {
                 for(int z = 0; z < 3; z++)
                 {
+                    StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
+                    fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
+
                     BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
 
                     if(world.isAirBlock(pos))
                     {
                         return false;
                     }
-                }
-            }
-
-            int solidBlocks = 0;
-
-            for(int x = 0; x < 3; x++)
-            {
-                for(int z = 0; z < 3; z++)
-                {
-                    for(int y = 0; y < 4; y++)
-                    {
-                        BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY + y, getZWithOffset(x, z));
-                        IBlockState state = world.getBlockState(pos);
-
-                        if(state.getMaterial().isSolid())
-                        {
-                            if(solidBlocks++ > 162)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-
                 }
             }
 
