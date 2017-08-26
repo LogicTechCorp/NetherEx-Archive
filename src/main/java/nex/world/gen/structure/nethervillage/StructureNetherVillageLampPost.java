@@ -62,20 +62,13 @@ public class StructureNetherVillageLampPost extends StructureNetherVillage
                 return true;
             }
 
-            for(int x = 0; x < 3; x++)
+            StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
+            fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
+            BlockPos pos = new BlockPos(getXWithOffset(1, 0), fakeBoundingBox.minY - 1, getZWithOffset(1, 0));
+
+            if(world.isAirBlock(pos) && world.isAirBlock(pos))
             {
-                for(int z = 0; z < 3; z++)
-                {
-                    StructureBoundingBox fakeBoundingBox = new StructureBoundingBox(boundingBox);
-                    fakeBoundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
-
-                    BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
-
-                    if(world.isAirBlock(pos))
-                    {
-                        return false;
-                    }
-                }
+                return false;
             }
 
             boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 4 - 1, 0);
@@ -83,17 +76,10 @@ public class StructureNetherVillageLampPost extends StructureNetherVillage
 
         IBlockState redNetherBrickFence = NetherExBlocks.FENCE_VANILLA.getDefaultState().withProperty(BlockVanillaFence.TYPE, BlockVanilla.EnumTypeFence.BRICK_NETHER_RED);
 
-        fillWithAir(world, boundingBoxIn, 0, 0, 0, 2, 5, 2);
-        fillWithBlocks(world, boundingBoxIn, 1, 0, 1, 1, 2, 1, redNetherBrickFence, redNetherBrickFence, false);
-        setBlockState(world, Blocks.GLOWSTONE.getDefaultState(), 1, 3, 1, boundingBoxIn);
-
-        for(int x = 0; x < 3; x++)
-        {
-            for(int z = 0; z < 3; z++)
-            {
-                replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), x, -1, z, boundingBoxIn);
-            }
-        }
+        fillWithAir(world, boundingBoxIn, 0, 0, 0, 2, 3, 1);
+        fillWithBlocks(world, boundingBoxIn, 1, 0, 0, 1, 2, 0, redNetherBrickFence, redNetherBrickFence, false);
+        setBlockState(world, Blocks.GLOWSTONE.getDefaultState(), 1, 3, 0, boundingBoxIn);
+        replaceAirAndLiquidDownwards(world, Blocks.NETHERRACK.getDefaultState(), 1, -1, 0, boundingBoxIn);
 
         return true;
     }

@@ -66,7 +66,7 @@ public abstract class StructureNetherVillageHut extends StructureNetherVillage
                 {
                     BlockPos pos = new BlockPos(getXWithOffset(x, z), fakeBoundingBox.minY - 1, getZWithOffset(x, z));
 
-                    if(world.isAirBlock(pos))
+                    if(world.isAirBlock(pos) && world.isAirBlock(pos.down()))
                     {
                         return false;
                     }
@@ -86,7 +86,7 @@ public abstract class StructureNetherVillageHut extends StructureNetherVillage
 
                         if(state.getMaterial().isSolid())
                         {
-                            if(solidBlocks++ > 98)
+                            if(solidBlocks++ > 162)
                             {
                                 return false;
                             }
