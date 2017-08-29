@@ -18,15 +18,11 @@
 package nex.world.gen.structure;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.gen.structure.template.PlacementSettings;
-import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 

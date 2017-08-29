@@ -40,7 +40,7 @@ public class StructureUtil
         BlockPos templateSize = template.transformedSize(rotation);
         StructureBoundingBox boundingBox = new StructureBoundingBox(0, 0, 0, templateSize.getX(), templateSize.getY(), templateSize.getZ());
 
-        switch (rotation)
+        switch(rotation)
         {
             case NONE:
             default:
@@ -55,7 +55,7 @@ public class StructureUtil
                 boundingBox.offset(-templateSize.getX(), 0, -templateSize.getZ());
         }
 
-        switch (mirror)
+        switch(mirror)
         {
             case NONE:
             default:
@@ -63,9 +63,9 @@ public class StructureUtil
             case FRONT_BACK:
                 BlockPos mirroredFrontBackPos = BlockPos.ORIGIN;
 
-                if (rotation != Rotation.CLOCKWISE_90 && rotation != Rotation.COUNTERCLOCKWISE_90)
+                if(rotation != Rotation.CLOCKWISE_90 && rotation != Rotation.COUNTERCLOCKWISE_90)
                 {
-                    if (rotation == Rotation.CLOCKWISE_180)
+                    if(rotation == Rotation.CLOCKWISE_180)
                     {
                         mirroredFrontBackPos = mirroredFrontBackPos.offset(EnumFacing.EAST, templateSize.getX());
                     }
@@ -84,9 +84,9 @@ public class StructureUtil
             case LEFT_RIGHT:
                 BlockPos mirroredLeftRightPos = BlockPos.ORIGIN;
 
-                if (rotation != Rotation.CLOCKWISE_90 && rotation != Rotation.COUNTERCLOCKWISE_90)
+                if(rotation != Rotation.CLOCKWISE_90 && rotation != Rotation.COUNTERCLOCKWISE_90)
                 {
-                    if (rotation == Rotation.CLOCKWISE_180)
+                    if(rotation == Rotation.CLOCKWISE_180)
                     {
                         mirroredLeftRightPos = mirroredLeftRightPos.offset(EnumFacing.SOUTH, templateSize.getZ());
                     }

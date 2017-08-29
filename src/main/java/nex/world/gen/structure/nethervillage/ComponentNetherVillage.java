@@ -121,43 +121,43 @@ public abstract class ComponentNetherVillage extends StructureComponentNetherEx
 
         if(componentCls == ComponentHunter.class)
         {
-            ComponentHunter componentHunter = new ComponentHunter(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.hunterStructureTemplates,structureMinX, structureMinY, structureMinZ, facing, rand);
+            ComponentHunter componentHunter = new ComponentHunter(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.hunterStructureTemplates, structureMinX, structureMinY, structureMinZ, facing, rand);
             StructureBoundingBox boundingBox = componentHunter.getBoundingBox();
             return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? componentHunter : null;
         }
         else if(componentCls == ComponentGatherer.class)
         {
-            ComponentGatherer componentGatherer = new ComponentGatherer(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.gathererStructureTemplates,structureMinX, structureMinY, structureMinZ, facing, rand);
+            ComponentGatherer componentGatherer = new ComponentGatherer(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.gathererStructureTemplates, structureMinX, structureMinY, structureMinZ, facing, rand);
             StructureBoundingBox boundingBox = componentGatherer.getBoundingBox();
             return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? componentGatherer : null;
         }
         else if(componentCls == ComponentScavenger.class)
         {
-            ComponentScavenger componentScavenger = new ComponentScavenger(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.scavengerStructureTemplates,structureMinX, structureMinY, structureMinZ, facing, rand);
+            ComponentScavenger componentScavenger = new ComponentScavenger(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.scavengerStructureTemplates, structureMinX, structureMinY, structureMinZ, facing, rand);
             StructureBoundingBox boundingBox = componentScavenger.getBoundingBox();
             return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? componentScavenger : null;
         }
         else if(componentCls == ComponentArmorsmith.class)
         {
-            ComponentArmorsmith componentArmorsmith = new ComponentArmorsmith(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.armorsmithStructureTemplates,structureMinX, structureMinY, structureMinZ, facing, rand);
+            ComponentArmorsmith componentArmorsmith = new ComponentArmorsmith(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.armorsmithStructureTemplates, structureMinX, structureMinY, structureMinZ, facing, rand);
             StructureBoundingBox boundingBox = componentArmorsmith.getBoundingBox();
             return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? componentArmorsmith : null;
         }
         else if(componentCls == ComponentToolsmith.class)
         {
-            ComponentToolsmith componentToolsmith = new ComponentToolsmith(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.toolsmithStructureTemplates,structureMinX, structureMinY, structureMinZ, facing, rand);
+            ComponentToolsmith componentToolsmith = new ComponentToolsmith(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.toolsmithStructureTemplates, structureMinX, structureMinY, structureMinZ, facing, rand);
             StructureBoundingBox boundingBox = componentToolsmith.getBoundingBox();
             return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? componentToolsmith : null;
         }
         else if(componentCls == ComponentEnchanter.class)
         {
-            ComponentEnchanter componentEnchanter = new ComponentEnchanter(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.enchanterStructureTemplates,structureMinX, structureMinY, structureMinZ, facing, rand);
+            ComponentEnchanter componentEnchanter = new ComponentEnchanter(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.enchanterStructureTemplates, structureMinX, structureMinY, structureMinZ, facing, rand);
             StructureBoundingBox boundingBox = componentEnchanter.getBoundingBox();
             return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? componentEnchanter : null;
         }
         else if(componentCls == ComponentBrewer.class)
         {
-            ComponentBrewer componentBrewer = new ComponentBrewer(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.brewerStructureTemplates,structureMinX, structureMinY, structureMinZ, facing, rand);
+            ComponentBrewer componentBrewer = new ComponentBrewer(controller, componentType, ConfigHandler.biome.hell.structure.netherVillage.brewerStructureTemplates, structureMinX, structureMinY, structureMinZ, facing, rand);
             StructureBoundingBox boundingBox = componentBrewer.getBoundingBox();
             return canVillageGoDeeper(boundingBox) && StructureComponent.findIntersecting(components, boundingBox) == null ? componentBrewer : null;
         }

@@ -18,8 +18,8 @@
 package nex.init;
 
 import net.minecraft.world.gen.structure.MapGenStructureIO;
-import nex.world.gen.structure.nethervillage.MapGenNetherVillage;
 import nex.world.gen.structure.nethervillage.ComponentNetherVillage;
+import nex.world.gen.structure.nethervillage.MapGenNetherVillage;
 
 public class NetherExStructures
 {
