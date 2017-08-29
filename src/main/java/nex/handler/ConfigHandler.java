@@ -49,9 +49,9 @@ public class ConfigHandler
     @Config.LangKey("config.nex:client")
     public static Client client = new Client();
 
-    @Config.Name("compat")
-    @Config.LangKey("config.nex:compat")
-    public static Compat compat = new Compat();
+    @Config.Name("compatibility")
+    @Config.LangKey("config.nex:compatibility")
+    public static Compatibility compatibility = new Compatibility();
 
     @Config.Name("dimension")
     @Config.LangKey("config.nex:dimension")
@@ -73,7 +73,7 @@ public class ConfigHandler
     @Config.LangKey("config.nex:biome")
     public static Biome biome = new Biome();
 
-    public static final File CONFIG_DIRECTORY = Loader.instance().getConfigDir();
+    private static final File CONFIG_DIRECTORY = Loader.instance().getConfigDir();
     private static final List<Tuple<String, String>> PACKED_CONFIGS = Lists.newArrayList();
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigHandler");
@@ -128,7 +128,7 @@ public class ConfigHandler
         NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/nex"));
         NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/custom"));
 
-        if(ConfigHandler.compat.biomesOPlenty.enableCompat)
+        if(ConfigHandler.compatibility.biomesOPlenty.enableCompat)
         {
             NetherExCompat.enableBiomesOPlentyCompat(world, CONFIG_DIRECTORY);
         }
@@ -150,15 +150,15 @@ public class ConfigHandler
         }
     }
 
-    public static class Compat
+    public static class Compatibility
     {
         @Config.Name("biomesoplenty")
-        @Config.LangKey("config.nex:compat.biomesoplenty")
+        @Config.LangKey("config.nex:compatibility.biomesoplenty")
         public BiomesOPlenty biomesOPlenty = new BiomesOPlenty();
 
         public class BiomesOPlenty
         {
-            @Config.LangKey("config.nex:compat.biomesoplenty.enableCompat")
+            @Config.LangKey("config.nex:compatibility.biomesoplenty.enableCompat")
             public boolean enableCompat = true;
         }
     }
@@ -508,6 +508,82 @@ public class ConfigHandler
 
         public class Hell
         {
+            @Config.Name("structure")
+            @Config.LangKey("config.nex:biome.hell.structure")
+            public Structure structure = new Structure();
+
+            public class Structure
+            {
+                @Config.Name("nether_village")
+                @Config.LangKey("config.nex:biome.hell.structure.netherVillage")
+                public NetherVillage netherVillage = new NetherVillage();
+
+                public class NetherVillage
+                {
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.netherVillageSize")
+                    @Config.Comment("The spawning size of Nether Villages")
+                    @Config.RangeInt(min = 0, max = 8)
+                    public int netherVillageSize = 0;
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.chiefStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Chief Structures")
+                    public String[] chiefStructureTemplates = new String[]{
+                    };
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.hunterStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Hunter Structures")
+                    public String[] hunterStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_hunter",
+                            "nex:village_nether_hell_hut_hunter_variant"
+                    };
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.gathererStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Gatherer Structures")
+                    public String[] gathererStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_gatherer",
+                            "nex:village_nether_hell_hut_gatherer_variant",
+                    };
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.scavengerStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Scavenger Structures")
+                    public String[] scavengerStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_scavenger",
+                            "nex:village_nether_hell_hut_scavenger_variant",
+                            "nex:village_nether_hell_hut_scavenger_variant_2",
+                            "nex:village_nether_hell_hut_scavenger_variant_3",
+                    };
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.armorsmithStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Armorsmith Structures")
+                    public String[] armorsmithStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_armorsmith",
+                            "nex:village_nether_hell_hut_armorsmith_variant"
+                    };
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.toolsmithStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Toolsmith Structures")
+                    public String[] toolsmithStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_toolsmith",
+                            "nex:village_nether_hell_hut_toolsmith_variant"
+                    };
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.hunterStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Enchanter Structures")
+                    public String[] enchanterStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_enchanter"
+                    };
+
+                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.hunterStructureTemplates")
+                    @Config.Comment("Resource Locations of template files that should be used to generate the Brewer Structures")
+                    public String[] brewerStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_brewer",
+                            "nex:village_nether_hell_hut_brewer_variant",
+                            "nex:village_nether_hell_hut_brewer_variant_2",
+                            "nex:village_nether_hell_hut_brewer_variant_3",
+                            "nex:village_nether_hell_hut_brewer_variant_4"
+                    };
+                }
+            }
         }
 
         public class RuthlessSands

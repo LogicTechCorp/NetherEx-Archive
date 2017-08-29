@@ -18,7 +18,6 @@
 package nex.world.gen.structure.nethervillage;
 
 import com.google.common.collect.Lists;
-import net.minecraft.init.Biomes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,6 +25,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
+import nex.handler.ConfigHandler;
 import nex.init.NetherExBiomes;
 
 import java.util.List;
@@ -95,7 +95,7 @@ public class MapGenNetherVillage extends MapGenStructure
     @Override
     protected StructureStart getStructureStart(int chunkX, int chunkZ)
     {
-        return new Start(world, rand, chunkX, chunkZ, 0);
+        return new Start(world, rand, chunkX, chunkZ, ConfigHandler.biome.hell.structure.netherVillage.netherVillageSize);
     }
 
     public static class Start extends StructureStart
@@ -109,8 +109,8 @@ public class MapGenNetherVillage extends MapGenStructure
         public Start(World world, Random rand, int x, int z, int villageSize)
         {
             super(x, z);
-            List<StructureNetherVillage.Piece> pieces = StructureNetherVillage.getStructureVillagePieceList(rand, villageSize);
-            StructureNetherVillageWell.Controller controller = new StructureNetherVillageWell.Controller(world.getBiomeProvider().getBiome(new BlockPos(x, 0, z), Biomes.DEFAULT), rand, (x << 4) + 2, (z << 4) + 2, pieces, villageSize);
+            List<ComponentNetherVillage.Piece> pieces = ComponentNetherVillage.getStructureVillagePieceList(rand, villageSize);
+            ComponentWell.Controller controller = new ComponentWell.Controller(world, rand, (x << 4) + 2, (z << 4) + 2, pieces, villageSize);
             components.add(controller);
             controller.buildComponent(controller, components, rand);
             List<StructureComponent> pendingRoads = controller.getPendingRoads();
@@ -137,7 +137,7 @@ public class MapGenNetherVillage extends MapGenStructure
 
             for(StructureComponent component : components)
             {
-                if(!(component instanceof StructureNetherVillage.Road))
+                if(!(component instanceof ComponentNetherVillage.Road))
                 {
                     ++k;
                 }

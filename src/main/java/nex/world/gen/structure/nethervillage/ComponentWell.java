@@ -19,12 +19,15 @@ package nex.world.gen.structure.nethervillage;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import nex.block.BlockVanilla;
 import nex.block.BlockVanillaFence;
 import nex.init.NetherExBlocks;
@@ -32,16 +35,15 @@ import nex.init.NetherExBlocks;
 import java.util.List;
 import java.util.Random;
 
-public class StructureNetherVillageWell extends StructureNetherVillage
+public class ComponentWell extends ComponentNetherVillage
 {
-    public StructureNetherVillageWell()
+    public ComponentWell()
     {
     }
 
-    public StructureNetherVillageWell(Controller controller, int componentType, Random rand, int x, int z)
+    public ComponentWell(Controller controller, int componentType, Random rand, int x, int z)
     {
-        super(controller, componentType);
-        setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
+        super(controller, componentType, EnumFacing.Plane.HORIZONTAL.random(rand));
 
         if(getCoordBaseMode().getAxis() == EnumFacing.Axis.Z)
         {
@@ -110,9 +112,11 @@ public class StructureNetherVillageWell extends StructureNetherVillage
         return true;
     }
 
-    public static class Controller extends StructureNetherVillageWell
+    public static class Controller extends ComponentWell
     {
+        private World world;
         private Biome biome;
+        private TemplateManager templateManager;
         private int villageSize;
         private Piece piece;
         private List<Piece> pieces;
@@ -123,21 +127,33 @@ public class StructureNetherVillageWell extends StructureNetherVillage
         {
         }
 
-        public Controller(Biome biomeIn, Random rand, int x, int z, List<Piece> piecesIn, int villageSizeIn)
+        public Controller(World worldIn, Random rand, int x, int z, List<Piece> piecesIn, int villageSizeIn)
         {
             super(null, 0, rand, x, z);
 
-            biome = biomeIn;
+            world = worldIn;
+            biome = world.getBiomeProvider().getBiome(new BlockPos(x, 0, z), Biomes.DEFAULT);
+            templateManager = world.getSaveHandler().getStructureTemplateManager();
             villageSize = villageSizeIn;
             pieces = piecesIn;
             controller = this;
             isZombieInfested = rand.nextInt(50) == 0;
-            setStructureType(structureType);
+            setStructureType(componentType);
+        }
+
+        public World getWorld()
+        {
+            return world;
         }
 
         public Biome getBiome()
         {
             return biome;
+        }
+
+        public TemplateManager getTemplateManager()
+        {
+            return templateManager;
         }
 
         public int getVillageSize()

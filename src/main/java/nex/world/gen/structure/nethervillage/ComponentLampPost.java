@@ -31,20 +31,19 @@ import nex.init.NetherExBlocks;
 import java.util.List;
 import java.util.Random;
 
-public class StructureNetherVillageLampPost extends StructureNetherVillage
+public class ComponentLampPost extends ComponentNetherVillage
 {
-    public StructureNetherVillageLampPost()
+    public ComponentLampPost()
     {
     }
 
-    public StructureNetherVillageLampPost(StructureNetherVillageWell.Controller controller, int componentType, Random rand, StructureBoundingBox boundingBoxIn, EnumFacing facing)
+    public ComponentLampPost(ComponentWell.Controller controller, int componentType, Random rand, StructureBoundingBox boundingBoxIn, EnumFacing facing)
     {
-        super(controller, componentType);
-        setCoordBaseMode(facing);
+        super(controller, componentType, facing);
         boundingBox = boundingBoxIn;
     }
 
-    public static StructureBoundingBox findPieceBox(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing)
+    public static StructureBoundingBox findPieceBox(ComponentWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing)
     {
         StructureBoundingBox boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(minX, minY, minZ, 0, 0, 0, 3, 4, 2, facing);
         return StructureComponent.findIntersecting(components, boundingBox) != null ? null : boundingBox;

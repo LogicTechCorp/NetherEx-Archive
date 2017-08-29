@@ -15,17 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.init;
+package nex.world.gen.structure.nethervillage;
 
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-import nex.world.gen.structure.nethervillage.MapGenNetherVillage;
-import nex.world.gen.structure.nethervillage.ComponentNetherVillage;
+import net.minecraft.util.EnumFacing;
 
-public class NetherExStructures
+import java.util.Random;
+
+public class ComponentEnchanter extends ComponentPigtificateStructure
 {
-    public static void init()
+    public ComponentEnchanter()
     {
-        MapGenStructureIO.registerStructure(MapGenNetherVillage.Start.class, "NetherVillage");
-        ComponentNetherVillage.registerPieces();
+
+    }
+
+    public ComponentEnchanter(ComponentWell.Controller controller, int componentType, String[] templates, int structureMinX, int structureMinY, int structureMinZ, EnumFacing facing, Random rand)
+    {
+        super(controller, componentType, templates, structureMinX, structureMinY, structureMinZ, facing, rand);
     }
 }

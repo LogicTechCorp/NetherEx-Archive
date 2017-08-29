@@ -33,18 +33,17 @@ import nex.util.WorldGenUtil;
 import java.util.List;
 import java.util.Random;
 
-public class StructureNetherVillagePath extends StructureNetherVillage.Road
+public class ComponentPath extends ComponentNetherVillage.Road
 {
     private int length;
 
-    public StructureNetherVillagePath()
+    public ComponentPath()
     {
     }
 
-    public StructureNetherVillagePath(StructureNetherVillageWell.Controller controller, int componentType, Random rand, StructureBoundingBox boundingBoxIn, EnumFacing facing)
+    public ComponentPath(ComponentWell.Controller controller, int componentType, Random rand, StructureBoundingBox boundingBoxIn, EnumFacing facing)
     {
-        super(controller, componentType);
-        setCoordBaseMode(facing);
+        super(controller, componentType, facing);
         boundingBox = boundingBoxIn;
         length = Math.max(boundingBoxIn.getXSize(), boundingBoxIn.getZSize());
     }
@@ -70,7 +69,7 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
 
         for(int i = rand.nextInt(5); i < length - 8; i += 2 + rand.nextInt(5))
         {
-            StructureComponent structureComponent = getNextComponentNN((StructureNetherVillageWell.Controller) component, components, rand, 0, i);
+            StructureComponent structureComponent = getNextComponentNN((ComponentWell.Controller) component, components, rand, 0, i);
 
             if(structureComponent != null)
             {
@@ -81,7 +80,7 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
 
         for(int j = rand.nextInt(5); j < length - 8; j += 2 + rand.nextInt(5))
         {
-            StructureComponent structureComponent = getNextComponentPP((StructureNetherVillageWell.Controller) component, components, rand, 0, j);
+            StructureComponent structureComponent = getNextComponentPP((ComponentWell.Controller) component, components, rand, 0, j);
 
             if(structureComponent != null)
             {
@@ -98,16 +97,16 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
             {
                 case NORTH:
                 default:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX - 1, boundingBox.minY, boundingBox.minZ, EnumFacing.WEST, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.minX - 1, boundingBox.minY, boundingBox.minZ, EnumFacing.WEST, getComponentType());
                     break;
                 case SOUTH:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX - 1, boundingBox.minY, boundingBox.maxZ - 2, EnumFacing.WEST, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.minX - 1, boundingBox.minY, boundingBox.maxZ - 2, EnumFacing.WEST, getComponentType());
                     break;
                 case WEST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX, boundingBox.minY, boundingBox.minZ - 1, EnumFacing.NORTH, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.minX, boundingBox.minY, boundingBox.minZ - 1, EnumFacing.NORTH, getComponentType());
                     break;
                 case EAST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX - 2, boundingBox.minY, boundingBox.minZ - 1, EnumFacing.NORTH, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.maxX - 2, boundingBox.minY, boundingBox.minZ - 1, EnumFacing.NORTH, getComponentType());
             }
         }
 
@@ -117,21 +116,21 @@ public class StructureNetherVillagePath extends StructureNetherVillage.Road
             {
                 case NORTH:
                 default:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX + 1, boundingBox.minY, boundingBox.minZ, EnumFacing.EAST, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.maxX + 1, boundingBox.minY, boundingBox.minZ, EnumFacing.EAST, getComponentType());
                     break;
                 case SOUTH:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX + 1, boundingBox.minY, boundingBox.maxZ - 2, EnumFacing.EAST, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.maxX + 1, boundingBox.minY, boundingBox.maxZ - 2, EnumFacing.EAST, getComponentType());
                     break;
                 case WEST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.minX, boundingBox.minY, boundingBox.maxZ + 1, EnumFacing.SOUTH, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.minX, boundingBox.minY, boundingBox.maxZ + 1, EnumFacing.SOUTH, getComponentType());
                     break;
                 case EAST:
-                    generateAndAddRoadPiece((StructureNetherVillageWell.Controller) component, components, rand, boundingBox.maxX - 2, boundingBox.minY, boundingBox.maxZ + 1, EnumFacing.SOUTH, getComponentType());
+                    generateAndAddRoadPiece((ComponentWell.Controller) component, components, rand, boundingBox.maxX - 2, boundingBox.minY, boundingBox.maxZ + 1, EnumFacing.SOUTH, getComponentType());
             }
         }
     }
 
-    public static StructureBoundingBox findPieceBox(StructureNetherVillageWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing)
+    public static StructureBoundingBox findPieceBox(ComponentWell.Controller controller, List<StructureComponent> components, Random rand, int minX, int minY, int minZ, EnumFacing facing)
     {
         for(int i = 7 * MathHelper.getInt(rand, 3, 5); i >= 7; i -= 7)
         {
