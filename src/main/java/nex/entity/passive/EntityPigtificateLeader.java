@@ -36,6 +36,11 @@ public class EntityPigtificateLeader extends EntityPigtificate
         super(world);
     }
 
+    public EntityPigtificateLeader(World world, Pigtificate.Career career)
+    {
+        super(world, career);
+    }
+
     @Override
     protected void initEntityAI()
     {

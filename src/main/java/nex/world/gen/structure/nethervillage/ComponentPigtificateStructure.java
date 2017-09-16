@@ -29,6 +29,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import nex.entity.passive.EntityPigtificate;
+import nex.entity.passive.EntityPigtificateLeader;
 import nex.init.NetherExLootTables;
 import nex.util.StructureUtil;
 import nex.village.Pigtificate;
@@ -121,8 +122,17 @@ public class ComponentPigtificateStructure extends ComponentNetherVillage
                 BlockPos dataPos = data.getKey();
                 String dataText = data.getValue();
 
-                if(dataText.startsWith("Pigtificate"))
+                if(dataText.startsWith("PigtificateLeader"))
                 {
+                    world.setBlockToAir(dataPos);
+                    Pigtificate.Career career = Pigtificate.Career.getFromString(dataText.split(":")[1]);
+                    EntityPigtificateLeader pigtificateLeader = new EntityPigtificateLeader(world, career);
+                    pigtificateLeader.setPosition(dataPos.getX() + 0.5F, dataPos.getY(), dataPos.getZ() + 0.5F);
+                    world.spawnEntity(pigtificateLeader);
+                }
+                else if(dataText.startsWith("Pigtificate"))
+                {
+                    world.setBlockToAir(dataPos);
                     Pigtificate.Career career = Pigtificate.Career.getFromString(dataText.split(":")[1]);
                     EntityPigtificate pigtificate = new EntityPigtificate(world, career);
                     pigtificate.setPosition(dataPos.getX() + 0.5F, dataPos.getY(), dataPos.getZ() + 0.5F);
@@ -130,11 +140,10 @@ public class ComponentPigtificateStructure extends ComponentNetherVillage
                 }
                 else if(dataText.startsWith("Chest"))
                 {
-                    BlockPos chestPos = templatePos.down();
-
-                    if(boundingBoxIn.isVecInside(chestPos))
+                    if(boundingBoxIn.isVecInside(dataPos))
                     {
-                        TileEntity tileentity = world.getTileEntity(chestPos);
+                        world.setBlockState(dataPos, Blocks.CHEST.correctFacing(world, dataPos, Blocks.CHEST.getDefaultState()));
+                        TileEntity tileentity = world.getTileEntity(dataPos);
 
                         if(tileentity instanceof TileEntityChest)
                         {
@@ -142,8 +151,6 @@ public class ComponentPigtificateStructure extends ComponentNetherVillage
                         }
                     }
                 }
-
-                world.setBlockToAir(dataPos);
             }
 
             for(int x = 0; x < templateSize.getX(); x++)

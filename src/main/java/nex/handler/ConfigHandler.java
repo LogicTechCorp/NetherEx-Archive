@@ -528,6 +528,9 @@ public class ConfigHandler
                     @Config.LangKey("config.nex:biome.hell.structure.netherVillage.chiefStructureTemplates")
                     @Config.Comment("Resource Locations of template files that should be used to generate the Chief Structures")
                     public String[] chiefStructureTemplates = new String[]{
+                            "nex:village_nether_hell_hut_chief",
+                            "nex:village_nether_hell_hut_chief_variant",
+                            "nex:village_nether_hell_hut_chief_variant_2"
                     };
 
                     @Config.LangKey("config.nex:biome.hell.structure.netherVillage.hunterStructureTemplates")
