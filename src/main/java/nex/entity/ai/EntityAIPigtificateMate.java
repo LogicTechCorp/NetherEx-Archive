@@ -110,7 +110,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         --matingTimeout;
         pigtificate.getLookHelper().setLookPositionWithEntity(mate, 10.0F, 30.0F);
 
-        if(pigtificate.getDistanceSqToEntity(mate) > 2.25D)
+        if(pigtificate.getDistanceSq(mate) > 2.25D)
         {
             pigtificate.getNavigator().tryMoveToEntityLiving(mate, 0.25D);
         }

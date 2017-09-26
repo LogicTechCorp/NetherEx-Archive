@@ -50,7 +50,7 @@ public class EntityAIGhastLookAround extends EntityAIBase
         {
             EntityLivingBase target = parentEntity.getAttackTarget();
 
-            if(target.getDistanceSqToEntity(parentEntity) < 4096.0D)
+            if(target.getDistanceSq(parentEntity) < 4096.0D)
             {
                 double d1 = target.posX - parentEntity.posX;
                 double d2 = target.posZ - parentEntity.posZ;

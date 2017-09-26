@@ -157,7 +157,7 @@ public class EntityObsidianBoat extends EntityBoat
                 setForwardDirection(-getForwardDirection());
                 setTimeSinceHit(10);
                 setDamageTaken(getDamageTaken() + amount * 10.0F);
-                setBeenAttacked();
+                markVelocityChanged();
                 boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) source.getTrueSource()).capabilities.isCreativeMode;
 
                 if(flag || getDamageTaken() > 40.0F)

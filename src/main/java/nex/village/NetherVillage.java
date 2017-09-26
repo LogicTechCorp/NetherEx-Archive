@@ -303,7 +303,7 @@ public class NetherVillage
         for(VillageAggressor villageAggressor : villageAggressors)
         {
             VillageAggressor aggressor1 = villageAggressor;
-            double d1 = aggressor1.aggressor.getDistanceSqToEntity(entitylivingbaseIn);
+            double d1 = aggressor1.aggressor.getDistanceSq(entitylivingbaseIn);
 
             if(d1 <= d0)
             {
@@ -328,7 +328,7 @@ public class NetherVillage
 
                 if(entityplayer1 != null)
                 {
-                    double d1 = entityplayer1.getDistanceSqToEntity(villageDefender);
+                    double d1 = entityplayer1.getDistanceSq(villageDefender);
 
                     if(d1 <= d0)
                     {

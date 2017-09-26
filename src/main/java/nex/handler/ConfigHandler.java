@@ -110,7 +110,7 @@ public class ConfigHandler
                 }
                 else
                 {
-                    FileUtil.extractFromJar("/assets/nex/" + tuple.getFirst(), configDirectory.getPath() + tuple.getSecond());
+                    FileUtil.extractFromJar("/assets/nex/" + tuple.getFirst(), configDirectory.getPath() + "/" + tuple.getSecond());
                 }
             }
         }

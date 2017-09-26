@@ -49,7 +49,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(!theEntity.isCollidedHorizontally)
+        if(!theEntity.collidedHorizontally)
         {
             return false;
         }

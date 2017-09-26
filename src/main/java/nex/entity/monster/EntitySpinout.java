@@ -137,7 +137,7 @@ public class EntitySpinout extends EntityMob
                 setSilent(true);
             }
 
-            getNavigator().clearPathEntity();
+            getNavigator().clearPath();
         }
     }
 

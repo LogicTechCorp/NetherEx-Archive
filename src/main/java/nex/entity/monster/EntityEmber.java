@@ -193,7 +193,7 @@ public class EntityEmber extends EntityMob
     @Override
     protected float getJumpUpwardsMotion()
     {
-        if(!isCollidedHorizontally && (!moveHelper.isUpdating() || moveHelper.getY() <= posY + 0.5D))
+        if(!collidedHorizontally && (!moveHelper.isUpdating() || moveHelper.getY() <= posY + 0.5D))
         {
             Path path = navigator.getPath();
 

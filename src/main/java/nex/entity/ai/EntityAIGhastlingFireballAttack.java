@@ -60,7 +60,7 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
     {
         EntityLivingBase target = parentEntity.getAttackTarget();
 
-        if(target.getDistanceSqToEntity(parentEntity) < 4096.0D && parentEntity.canEntityBeSeen(target))
+        if(target.getDistanceSq(parentEntity) < 4096.0D && parentEntity.canEntityBeSeen(target))
         {
             World world = parentEntity.world;
             attackTimer++;

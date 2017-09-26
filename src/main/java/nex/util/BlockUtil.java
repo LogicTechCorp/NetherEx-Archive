@@ -151,7 +151,7 @@ public class BlockUtil
         {
             return false;
         }
-        if(!(stack.getItem().getToolClasses(stack).contains(block.getHarvestTool(state)) || stack.getItem().getStrVsBlock(stack, state) > 1.0F))
+        if(!(stack.getItem().getToolClasses(stack).contains(block.getHarvestTool(state)) || stack.getItem().getDestroySpeed(stack, state) > 1.0F))
         {
             return false;
         }

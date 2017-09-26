@@ -59,7 +59,7 @@ public class EntityAIPigtificatePlay extends EntityAIBase
             {
                 if(entitypigtificate != pigtificateObj && !entitypigtificate.isPlaying() && entitypigtificate.getGrowingAge() < 0)
                 {
-                    double d1 = entitypigtificate.getDistanceSqToEntity(pigtificateObj);
+                    double d1 = entitypigtificate.getDistanceSq(pigtificateObj);
 
                     if(d1 <= d0)
                     {
@@ -114,7 +114,7 @@ public class EntityAIPigtificatePlay extends EntityAIBase
 
         if(targetPigtificate != null)
         {
-            if(pigtificateObj.getDistanceSqToEntity(targetPigtificate) > 4.0D)
+            if(pigtificateObj.getDistanceSq(targetPigtificate) > 4.0D)
             {
                 pigtificateObj.getNavigator().tryMoveToEntityLiving(targetPigtificate, speed);
             }

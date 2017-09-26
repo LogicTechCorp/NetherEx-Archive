@@ -53,14 +53,14 @@ public class EntityAIPigtificateTradePlayer extends EntityAIBase
         else
         {
             EntityPlayer customer = pigtificate.getCustomer();
-            return customer != null && (!(pigtificate.getDistanceSqToEntity(customer) > 16.0D) && customer.openContainer != null);
+            return customer != null && (!(pigtificate.getDistance(customer) > 16.0D) && customer.openContainer != null);
         }
     }
 
     @Override
     public void startExecuting()
     {
-        pigtificate.getNavigator().clearPathEntity();
+        pigtificate.getNavigator().clearPath();
     }
 
     @Override
