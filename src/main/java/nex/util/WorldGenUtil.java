@@ -486,26 +486,6 @@ public class WorldGenUtil
         }
     }
 
-    public static BlockPos getSolidBlockBelow(World world, BlockPos pos, int height)
-    {
-        BlockPos solidPos;
-        BlockPos newPos;
-
-        for(solidPos = new BlockPos(pos.getX(), height, pos.getZ()); solidPos.getY() > world.getSeaLevel(); solidPos = newPos)
-        {
-            newPos = solidPos.down();
-            IBlockState topState = world.getBlockState(solidPos);
-            IBlockState bottomState = world.getBlockState(newPos);
-
-            if(bottomState.getMaterial().isSolid() && !topState.getMaterial().isSolid())
-            {
-                break;
-            }
-        }
-
-        return solidPos;
-    }
-
     public static void generateFeature(World world, int chunkX, int chunkZ, Random rand, GenerationStage generationStage)
     {
         BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);

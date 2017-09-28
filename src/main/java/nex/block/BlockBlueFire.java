@@ -55,7 +55,7 @@ public class BlockBlueFire extends BlockNetherEx
 
         setLightLevel(1.0F);
         setTickRandomly(true);
-        setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
+        setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 
     @Override
@@ -354,17 +354,17 @@ public class BlockBlueFire extends BlockNetherEx
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if(!worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && !canCatchFire(worldIn, pos.down(), EnumFacing.UP))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canCatchFire(world, pos.down(), EnumFacing.UP))
         {
-            return state.withProperty(NORTH, canCatchFire(worldIn, pos.north(), EnumFacing.SOUTH))
-                    .withProperty(EAST, canCatchFire(worldIn, pos.east(), EnumFacing.WEST))
-                    .withProperty(SOUTH, canCatchFire(worldIn, pos.south(), EnumFacing.NORTH))
-                    .withProperty(WEST, canCatchFire(worldIn, pos.west(), EnumFacing.EAST))
-                    .withProperty(UPPER, canCatchFire(worldIn, pos.up(), EnumFacing.DOWN));
+            return state.withProperty(NORTH, canCatchFire(world, pos.north(), EnumFacing.SOUTH))
+                    .withProperty(EAST, canCatchFire(world, pos.east(), EnumFacing.WEST))
+                    .withProperty(SOUTH, canCatchFire(world, pos.south(), EnumFacing.NORTH))
+                    .withProperty(WEST, canCatchFire(world, pos.west(), EnumFacing.EAST))
+                    .withProperty(UPPER, canCatchFire(world, pos.up(), EnumFacing.DOWN));
         }
-        return this.getDefaultState();
+        return getDefaultState();
     }
 
     @Override
@@ -373,7 +373,7 @@ public class BlockBlueFire extends BlockNetherEx
         return new BlockStateContainer(this, AGE, NORTH, EAST, SOUTH, WEST, UPPER);
     }
 
-    public boolean canCatchFire(IBlockAccess world, BlockPos pos, EnumFacing face)
+    private boolean canCatchFire(IBlockAccess world, BlockPos pos, EnumFacing face)
     {
         return world.getBlockState(pos).getBlock().isFlammable(world, pos, face);
     }
@@ -427,7 +427,7 @@ public class BlockBlueFire extends BlockNetherEx
                     j = 15;
                 }
 
-                world.setBlockState(pos, getDefaultState().withProperty(AGE, Integer.valueOf(j)), 3);
+                world.setBlockState(pos, getDefaultState().withProperty(AGE, j), 3);
             }
             else
             {
@@ -436,12 +436,12 @@ public class BlockBlueFire extends BlockNetherEx
 
             if(iblockstate.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, Boolean.valueOf(true)));
+                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, Boolean.TRUE));
             }
         }
     }
 
-    protected boolean canDie(World world, BlockPos pos)
+    private boolean canDie(World world, BlockPos pos)
     {
         return world.isRainingAt(pos) || world.isRainingAt(pos.west()) || world.isRainingAt(pos.east()) || world.isRainingAt(pos.north()) || world.isRainingAt(pos.south());
     }

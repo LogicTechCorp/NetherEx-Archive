@@ -42,7 +42,6 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
 import nex.util.WorldGenUtil;
 import nex.world.biome.NetherBiomeManager;
-import nex.world.gen.structure.nethervillage.MapGenNetherVillage;
 
 import java.util.List;
 import java.util.Random;
@@ -75,7 +74,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
-    private MapGenNetherVillage netherVillage = new MapGenNetherVillage();
 
     public ChunkGeneratorNether(World worldIn)
     {
@@ -372,7 +370,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);
-        netherVillage.generate(world, chunkX, chunkZ, primer);
 
         Chunk chunk = new Chunk(world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
@@ -398,7 +395,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
         ForgeEventFactory.onChunkPopulate(true, this, world, rand, chunkX, chunkZ, hasVillageGenerated);
         netherBridge.generateStructure(world, rand, chunkPos);
-        hasVillageGenerated = netherVillage.generateStructure(world, rand, chunkPos);
 
         if(TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
         {
@@ -474,13 +470,9 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     @Override
     public BlockPos getNearestStructurePos(World world, String structureName, BlockPos pos, boolean force)
     {
-        if("Fortress".equals(structureName))
+        if("Fortress".equalsIgnoreCase(structureName))
         {
             return netherBridge != null ? netherBridge.getNearestStructurePos(world, pos, force) : null;
-        }
-        else if("NetherVillage".equals(structureName))
-        {
-            return netherVillage != null ? netherVillage.getNearestStructurePos(world, pos, force) : null;
         }
 
         return null;
@@ -489,13 +481,9 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     @Override
     public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
     {
-        if("Fortress".equals(structureName))
+        if("Fortress".equalsIgnoreCase(structureName))
         {
             return netherBridge != null && netherBridge.isInsideStructure(pos);
-        }
-        else if("NetherVillage".equals(structureName))
-        {
-            return netherVillage != null && netherVillage.isInsideStructure(pos);
         }
 
         return false;
@@ -505,7 +493,6 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         netherBridge.generate(world, chunkX, chunkZ, null);
-        netherVillage.generate(world, chunkX, chunkZ, null);
     }
 
     /**

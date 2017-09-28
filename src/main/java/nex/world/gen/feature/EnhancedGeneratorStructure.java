@@ -59,7 +59,7 @@ public class EnhancedGeneratorStructure extends EnhancedGenerator
     @Override
     public EnhancedGenerator deserializeConfig(JsonObject config)
     {
-        JsonArray structureConfigs = JsonUtils.getJsonArray(config, "structure", new JsonArray());
+        JsonArray structureConfigs = JsonUtils.getJsonArray(config, "structures", new JsonArray());
 
         if(structureConfigs.size() > 0)
         {

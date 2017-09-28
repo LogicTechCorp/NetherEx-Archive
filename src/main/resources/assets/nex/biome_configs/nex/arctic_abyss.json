@@ -147,11 +147,6 @@
             "generationStage": "prePopulate",
             "structures": [
                 {
-                    "structure": "nex:fossil_arctic_abyss_skull_huge_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 1
-                },
-                {
                     "structure": "nex:fossil_arctic_abyss_skull_creeper_variant",
                     "replacedBlock": "minecraft:air",
                     "weight": 2
@@ -177,19 +172,9 @@
                     "weight": 6
                 },
                 {
-                    "structure": "nex:fossil_arctic_abyss_rib_huge_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 7
-                },
-                {
                     "structure": "nex:fossil_arctic_abyss_rib_creeper",
                     "replacedBlock": "minecraft:air",
                     "weight": 8
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_rib_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 9
                 },
                 {
                     "structure": "nex:fossil_arctic_abyss_leg_creeper_variant_2",
@@ -217,19 +202,9 @@
                     "weight": 14
                 },
                 {
-                    "structure": "nex:fossil_arctic_abyss_tail_huge_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 15
-                },
-                {
                     "structure": "nex:fossil_arctic_abyss_tail_extinct",
                     "replacedBlock": "minecraft:air",
                     "weight": 16
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_fin_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 17
                 }
             ],
             "structureType": "wall",
@@ -242,81 +217,6 @@
             "generator": "structure",
             "generationStage": "prePopulate",
             "structures": [
-                {
-                    "structure": "nex:prison_arctic_abyss_large",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_rare",
-                        "nex:chest/temple_arctic_abyss",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_wight",
-                        "nex:monster_bone_spider"
-                    ]
-                },
-                {
-                    "structure": "nex:prison_arctic_abyss_medium_variant",
-                    "weight": 2,
-                    "lootTables": [
-                        "nex:chest/grave_rare",
-                        "nex:chest/temple_arctic_abyss",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_wight",
-                        "nex:monster_bone_spider"
-                    ]
-                },
-                {
-                    "structure": "nex:prison_arctic_abyss_medium",
-                    "weight": 3,
-                    "lootTables": [
-                        "nex:chest/grave_rare",
-                        "nex:chest/temple_arctic_abyss",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_wight",
-                        "nex:monster_bone_spider"
-                    ]
-                },
-                {
-                    "structure": "nex:prison_arctic_abyss_small",
-                    "weight": 4,
-                    "lootTables": [
-                        "nex:chest/grave_rare",
-                        "nex:chest/temple_arctic_abyss",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_wight",
-                        "nex:monster_bone_spider"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 1,
-            "generationProbability": 0.0625,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:chain_arctic_abyss_island_large",
-                    "weight": 1
-                },
-                {
-                    "structure": "nex:chain_arctic_abyss_island_medium",
-                    "weight": 2
-                },
                 {
                     "structure": "nex:chain_arctic_abyss_island_small",
                     "weight": 3
@@ -355,14 +255,6 @@
             "generator": "structure",
             "generationStage": "prePopulate",
             "structures": [
-                {
-                    "structure": "nex:chain_arctic_abyss_fallen_long",
-                    "weight": 1
-                },
-                {
-                    "structure": "nex:chain_arctic_abyss_fallen_medium",
-                    "weight": 2
-                },
                 {
                     "structure": "nex:chain_arctic_abyss_fallen_short_variant",
                     "weight": 3

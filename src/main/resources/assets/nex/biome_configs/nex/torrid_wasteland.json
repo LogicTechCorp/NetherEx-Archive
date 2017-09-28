@@ -126,65 +126,6 @@
             "maxHeight": 112
         },
         {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:pyramid_torrid_wasteland_advanced",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/temple_torrid_wasteland",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_ember"
-                    ]
-                },
-                {
-                    "structure": "nex:pyramid_torrid_wasteland_hard",
-                    "weight": 2,
-                    "lootTables": [
-                        "nex:chest/temple_torrid_wasteland",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_ember"
-                    ]
-                },
-                {
-                    "structure": "nex:pyramid_torrid_wasteland_medium",
-                    "weight": 3,
-                    "lootTables": [
-                        "nex:chest/temple_torrid_wasteland",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_ember"
-                    ]
-                },
-                {
-                    "structure": "nex:pyramid_torrid_wasteland_easy",
-                    "weight": 4,
-                    "lootTables": [
-                        "nex:chest/temple_torrid_wasteland",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:monster_ember"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 4,
-            "generationProbability": 1.0,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
             "generator": "fluid",
             "generationStage": "lavaTrap",
             "blockToSpawn": {

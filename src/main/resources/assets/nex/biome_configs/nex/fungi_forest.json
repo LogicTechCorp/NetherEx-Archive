@@ -125,50 +125,6 @@
             "generationStage": "prePopulate",
             "structures": [
                 {
-                    "structure": "nex:temple_fungi_forest_hard",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/temple_fungi_forest",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "nex:monster_spore_creeper"
-                    ]
-                },
-                {
-                    "structure": "nex:temple_fungi_forest_medium",
-                    "weight": 2,
-                    "lootTables": [
-                        "nex:chest/temple_fungi_forest",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "nex:monster_spore_creeper"
-                    ]
-                },
-                {
-                    "structure": "nex:temple_fungi_forest_easy",
-                    "weight": 3,
-                    "lootTables": [
-                        "nex:chest/temple_fungi_forest",
-                        "nex:chest/temple_rare"
-                    ],
-                    "spawnerMobs": [
-                        "nex:monster_spore_creeper"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 1.0,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
                     "structure": "nex:castle_fungi_forest",
                     "weight": 1,
                     "lootTables": [
