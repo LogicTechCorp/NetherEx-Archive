@@ -315,9 +315,9 @@ public class BlockNetherPortal extends BlockNetherEx
 
     public boolean trySpawnPortal(World world, BlockPos pos)
     {
-        for(EnumFacing facing : EnumFacing.values())
+        for(EnumFacing.Axis axis : EnumFacing.Axis.values())
         {
-            for(EnumFacing.Axis axis : EnumFacing.Axis.values())
+            for(EnumFacing facing : EnumFacing.values())
             {
                 Queue<BlockPos> portalBlocks = findPortalBlocks(world, pos.offset(facing), axis);
 

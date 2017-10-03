@@ -54,6 +54,7 @@ public class ItemRimeAndSteel extends ItemNetherEx
             {
                 world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
                 world.setBlockState(pos, NetherExBlocks.BLOCK_FIRE_BLUE.getDefaultState(), 11);
+                NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos);
             }
 
             stack.damageItem(1, player);

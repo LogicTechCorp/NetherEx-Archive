@@ -36,7 +36,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
@@ -67,7 +66,7 @@ public class BlockBlueFire extends BlockNetherEx
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if(rand.nextInt(24) == 0)
         {
@@ -297,7 +296,7 @@ public class BlockBlueFire extends BlockNetherEx
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        if(world.provider.getDimensionType().getId() > 0 || !NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos))
+        if(world.provider.getDimensionType().getId() > 0)
         {
             if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
             {
@@ -311,7 +310,7 @@ public class BlockBlueFire extends BlockNetherEx
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
         {
@@ -436,7 +435,7 @@ public class BlockBlueFire extends BlockNetherEx
 
             if(iblockstate.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, Boolean.TRUE));
+                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
             }
         }
     }
