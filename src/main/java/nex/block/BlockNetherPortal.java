@@ -28,20 +28,23 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.util.BlockUtil;
+import nex.world.TeleporterNetherEx;
 
 import java.util.Queue;
 import java.util.Random;
@@ -261,7 +264,33 @@ public class BlockNetherPortal extends BlockNetherEx
     {
         if(!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss())
         {
-            entity.setPortal(pos);
+            if(entity.timeUntilPortal > 0)
+            {
+                entity.timeUntilPortal = entity.getPortalCooldown();
+            }
+            else
+            {
+                if(!world.isRemote)
+                {
+                    WorldServer worldServer = (WorldServer) world;
+                    MinecraftServer minecraftServer = worldServer.getMinecraftServer();
+                    PlayerList playerList = minecraftServer.getPlayerList();
+                    int dimension = entity.dimension == DimensionType.NETHER.getId() ? DimensionType.OVERWORLD.getId() : DimensionType.NETHER.getId();
+                    Teleporter teleporter = TeleporterNetherEx.getTeleporterForWorld(minecraftServer, dimension);
+
+                    entity.setPortal(pos);
+                    entity.timeUntilPortal = entity.getPortalCooldown();
+
+                    if(entity instanceof EntityPlayerMP)
+                    {
+                        playerList.transferPlayerToDimension((EntityPlayerMP) entity, dimension, teleporter);
+                    }
+                    else
+                    {
+                        playerList.transferEntityToWorld(entity, entity.dimension, worldServer, minecraftServer.getWorld(dimension), teleporter);
+                    }
+                }
+            }
         }
     }
 

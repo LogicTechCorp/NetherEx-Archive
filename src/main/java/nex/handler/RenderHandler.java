@@ -17,29 +17,33 @@
 
 package nex.handler;
 
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
-import nex.world.TeleporterNetherEx;
+import nex.entity.item.EntityObsidianBoat;
+import nex.init.NetherExMaterials;
+import nex.util.ArmorUtil;
 
+@SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
-public class NetherPortalHandler
+public class RenderHandler
 {
     @SubscribeEvent
-    public static void onWorldLoad(WorldEvent.Load event)
+    @SideOnly(Side.CLIENT)
+    public static void onRenderBlockOverlay(RenderBlockOverlayEvent event)
     {
-        World world = event.getWorld();
+        RenderBlockOverlayEvent.OverlayType type = event.getOverlayType();
+        EntityPlayer player = event.getPlayer();
 
-        if(!world.isRemote)
+        if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
         {
-            if(world.provider.getDimension() == DimensionType.OVERWORLD.getId() || world.provider.getDimension() == DimensionType.NETHER.getId())
+            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_HIDE_SALAMANDER))
             {
-                ReflectionHelper.setPrivateValue(WorldServer.class, (WorldServer) world, new TeleporterNetherEx((WorldServer) world), "field_85177_Q", "worldTeleporter");
+                event.setCanceled(true);
             }
         }
     }

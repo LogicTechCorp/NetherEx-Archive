@@ -296,16 +296,13 @@ public class BlockBlueFire extends BlockNetherEx
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        if(world.provider.getDimensionType().getId() > 0)
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
         {
-            if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
-            {
-                world.setBlockToAir(pos);
-            }
-            else
-            {
-                world.scheduleUpdate(pos, this, tickRate(world) + world.rand.nextInt(10));
-            }
+            world.setBlockToAir(pos);
+        }
+        else
+        {
+            world.scheduleUpdate(pos, this, tickRate(world) + world.rand.nextInt(10));
         }
     }
 

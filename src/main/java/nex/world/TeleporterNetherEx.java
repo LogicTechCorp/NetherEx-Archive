@@ -17,32 +17,34 @@
 
 package nex.world;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
+import nex.block.BlockNetherPortal;
 import nex.init.NetherExBlocks;
 
+@SuppressWarnings("ConstantConditions")
 public class TeleporterNetherEx extends Teleporter
 {
-    public TeleporterNetherEx(WorldServer worldIn)
+    public TeleporterNetherEx(WorldServer world)
     {
-        super(worldIn);
+        super(world);
     }
 
     @Override
     public void placeInPortal(Entity entity, float rotationYaw)
     {
-        if(world.provider.getDimensionType().getId() != 1)
+        if(world.provider.getDimensionType().getId() != DimensionType.THE_END.getId())
         {
             if(!placeInExistingPortal(entity, rotationYaw))
             {
@@ -52,26 +54,26 @@ public class TeleporterNetherEx extends Teleporter
         }
         else
         {
-            int i = MathHelper.floor(entity.posX);
-            int j = MathHelper.floor(entity.posY) - 1;
-            int k = MathHelper.floor(entity.posZ);
+            int entityPosX = MathHelper.floor(entity.posX);
+            int entityPosY = MathHelper.floor(entity.posY) - 1;
+            int entityPosZ = MathHelper.floor(entity.posZ);
 
-            for(int j1 = -2; j1 <= 2; ++j1)
+            for(int z = -2; z <= 2; ++z)
             {
-                for(int k1 = -2; k1 <= 2; ++k1)
+                for(int x = -2; x <= 2; ++x)
                 {
-                    for(int l1 = -1; l1 < 3; ++l1)
+                    for(int y = -1; y < 3; ++y)
                     {
-                        int i2 = i + k1 * 1 + j1 * 0;
-                        int j2 = j + l1;
-                        int k2 = k + k1 * 0 - j1 * 1;
-                        boolean flag = l1 < 0;
-                        world.setBlockState(new BlockPos(i2, j2, k2), flag ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState());
+                        int posX = entityPosX + x;
+                        int posY = entityPosY + y;
+                        int posZ = entityPosZ - z;
+                        boolean beneathWorld = y < 0;
+                        world.setBlockState(new BlockPos(posX, posY, posZ), beneathWorld ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
 
-            entity.setLocationAndAngles((double) i, (double) j, (double) k, entity.rotationYaw, 0.0F);
+            entity.setLocationAndAngles((double) entityPosX, (double) entityPosY, (double) entityPosZ, entity.rotationYaw, 0.0F);
             entity.motionX = 0.0D;
             entity.motionY = 0.0D;
             entity.motionZ = 0.0D;
@@ -81,48 +83,48 @@ public class TeleporterNetherEx extends Teleporter
     @Override
     public boolean placeInExistingPortal(Entity entity, float rotationYaw)
     {
-        double d0 = -1.0D;
-        int j = MathHelper.floor(entity.posX);
-        int k = MathHelper.floor(entity.posZ);
-        boolean flag = true;
-        BlockPos originPos = BlockPos.ORIGIN;
-        long l = ChunkPos.asLong(j, k);
+        double portalDistance = -1.0D;
+        int entityPosX = MathHelper.floor(entity.posX);
+        int entityPosZ = MathHelper.floor(entity.posZ);
+        boolean newPortal = true;
+        BlockPos portalPos = BlockPos.ORIGIN;
+        long portalChunkPos = ChunkPos.asLong(entityPosX, entityPosZ);
 
-        if(destinationCoordinateCache.containsKey(l))
+        if(destinationCoordinateCache.containsKey(portalChunkPos))
         {
-            Teleporter.PortalPosition portalPosition = destinationCoordinateCache.get(l);
-            d0 = 0.0D;
-            originPos = portalPosition;
+            Teleporter.PortalPosition portalPosition = destinationCoordinateCache.get(portalChunkPos);
+            portalDistance = 0.0D;
+            portalPos = portalPosition;
             portalPosition.lastUpdateTime = world.getTotalWorldTime();
-            flag = false;
+            newPortal = false;
         }
         else
         {
             BlockPos entityPos = new BlockPos(entity);
 
-            for(int i1 = -128; i1 <= 128; ++i1)
+            for(int x = -128; x <= 128; ++x)
             {
-                BlockPos spawnPos;
+                BlockPos newPos;
 
-                for(int j1 = -128; j1 <= 128; ++j1)
+                for(int z = -128; z <= 128; ++z)
                 {
-                    for(BlockPos testPos = entityPos.add(i1, world.getActualHeight() - 1 - entityPos.getY(), j1); testPos.getY() >= 0; testPos = spawnPos)
+                    for(BlockPos checkPos = entityPos.add(x, world.getActualHeight() - 1 - entityPos.getY(), z); checkPos.getY() >= 0; checkPos = newPos)
                     {
-                        spawnPos = testPos.down();
+                        newPos = checkPos.down();
 
-                        if(isValidPortalBlock(world.getBlockState(testPos).getBlock()))
+                        if(world.getBlockState(checkPos).getBlock() == NetherExBlocks.BLOCK_PORTAL_NETHER)
                         {
-                            for(spawnPos = testPos.down(); isValidPortalBlock(world.getBlockState(spawnPos).getBlock()); spawnPos = spawnPos.down())
+                            for(newPos = checkPos.down(); world.getBlockState(newPos).getBlock() == NetherExBlocks.BLOCK_PORTAL_NETHER; newPos = newPos.down())
                             {
-                                testPos = spawnPos;
+                                checkPos = newPos;
                             }
 
-                            double d1 = testPos.distanceSq(entityPos);
+                            double distanceSqBetweenPosAndEntity = checkPos.distanceSq(entityPos);
 
-                            if(d0 < 0.0D || d1 < d0)
+                            if(portalDistance < 0.0D || distanceSqBetweenPosAndEntity < portalDistance)
                             {
-                                d0 = d1;
-                                originPos = testPos;
+                                portalDistance = distanceSqBetweenPosAndEntity;
+                                portalPos = checkPos;
                             }
                         }
                     }
@@ -130,32 +132,32 @@ public class TeleporterNetherEx extends Teleporter
             }
         }
 
-        if(d0 >= 0.0D)
+        if(portalDistance >= 0.0D)
         {
-            if(flag)
+            if(newPortal)
             {
-                destinationCoordinateCache.put(l, new Teleporter.PortalPosition(originPos, world.getTotalWorldTime()));
+                destinationCoordinateCache.put(portalChunkPos, new Teleporter.PortalPosition(portalPos, world.getTotalWorldTime()));
             }
 
-            double d5 = (double) originPos.getX() + 0.5D;
-            double d7 = (double) originPos.getZ() + 0.5D;
-            BlockPattern.PatternHelper patternHelper = Blocks.PORTAL.createPatternHelper(world, originPos);
-            boolean flag1 = patternHelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
-            double d2 = patternHelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) patternHelper.getFrontTopLeft().getZ() : (double) patternHelper.getFrontTopLeft().getX();
-            double d6 = (double) (patternHelper.getFrontTopLeft().getY() + 1) - entity.getLastPortalVec().y * (double) patternHelper.getHeight();
+            double adjustedPosX = (double) portalPos.getX() + 0.5D;
+            double adjustedPosZ = (double) portalPos.getZ() + 0.5D;
+            BlockPattern.PatternHelper patternHelper = Blocks.PORTAL.createPatternHelper(world, portalPos);
+            boolean facingNegative = patternHelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
+            double offset = patternHelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) patternHelper.getFrontTopLeft().getZ() : (double) patternHelper.getFrontTopLeft().getX();
+            double adjustedPosY = (double) (patternHelper.getFrontTopLeft().getY() + 1) - entity.getLastPortalVec().y * (double) patternHelper.getHeight();
 
-            if(flag1)
+            if(facingNegative)
             {
-                ++d2;
+                ++offset;
             }
 
             if(patternHelper.getForwards().getAxis() == EnumFacing.Axis.X)
             {
-                d7 = d2 + (1.0D - entity.getLastPortalVec().x) * (double) patternHelper.getWidth() * (double) patternHelper.getForwards().rotateY().getAxisDirection().getOffset();
+                adjustedPosZ = offset + (1.0D - entity.getLastPortalVec().x) * (double) patternHelper.getWidth() * (double) patternHelper.getForwards().rotateY().getAxisDirection().getOffset();
             }
             else
             {
-                d5 = d2 + (1.0D - entity.getLastPortalVec().x) * (double) patternHelper.getWidth() * (double) patternHelper.getForwards().rotateY().getAxisDirection().getOffset();
+                adjustedPosX = offset + (1.0D - entity.getLastPortalVec().x) * (double) patternHelper.getWidth() * (double) patternHelper.getForwards().rotateY().getAxisDirection().getOffset();
             }
 
             float f = 0.0F;
@@ -184,22 +186,23 @@ public class TeleporterNetherEx extends Teleporter
                 f3 = 1.0F;
             }
 
-            double d3 = entity.motionX;
-            double d4 = entity.motionZ;
-            entity.motionX = d3 * (double) f + d4 * (double) f3;
-            entity.motionZ = d3 * (double) f2 + d4 * (double) f1;
+            double motionX = entity.motionX;
+            double motionZ = entity.motionZ;
+            entity.motionX = motionX * (double) f + motionZ * (double) f3;
+            entity.motionZ = motionX * (double) f2 + motionZ * (double) f1;
             entity.rotationYaw = rotationYaw - (float) (entity.getTeleportDirection().getOpposite().getHorizontalIndex() * 90) + (float) (patternHelper.getForwards().getHorizontalIndex() * 90);
 
             if(entity instanceof EntityPlayerMP)
             {
-                ((EntityPlayerMP) entity).connection.setPlayerLocation(d5, d6, d7, entity.rotationYaw, entity.rotationPitch);
+                ((EntityPlayerMP) entity).connection.setPlayerLocation(adjustedPosX, adjustedPosY, adjustedPosZ, entity.rotationYaw, entity.rotationPitch);
             }
             else
             {
-                entity.setLocationAndAngles(d5, d6, d7, entity.rotationYaw, entity.rotationPitch);
+                entity.setLocationAndAngles(adjustedPosX, adjustedPosY, adjustedPosZ, entity.rotationYaw, entity.rotationPitch);
             }
 
             return true;
+
         }
         else
         {
@@ -207,35 +210,36 @@ public class TeleporterNetherEx extends Teleporter
         }
     }
 
-    public boolean makePortal(Entity entityIn)
+    @Override
+    public boolean makePortal(Entity entity)
     {
-        double d0 = -1.0D;
-        int j = MathHelper.floor(entityIn.posX);
-        int k = MathHelper.floor(entityIn.posY);
-        int l = MathHelper.floor(entityIn.posZ);
-        int i1 = j;
-        int j1 = k;
-        int k1 = l;
+        double portalDistance = -1.0D;
+        int entityPosX = MathHelper.floor(entity.posX);
+        int entityPosY = MathHelper.floor(entity.posY);
+        int entityPosZ = MathHelper.floor(entity.posZ);
+        int i1 = entityPosX;
+        int j1 = entityPosY;
+        int k1 = entityPosZ;
         int l1 = 0;
         int i2 = random.nextInt(4);
         BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
-        for(int j2 = j - 16; j2 <= j + 16; ++j2)
+        for(int x = entityPosX - 16; x <= entityPosX + 16; ++x)
         {
-            double d1 = (double) j2 + 0.5D - entityIn.posX;
+            double adjustedPosX = (double) x + 0.5D - entity.posX;
 
-            for(int l2 = l - 16; l2 <= l + 16; ++l2)
+            for(int z = entityPosZ - 16; z <= entityPosZ + 16; ++z)
             {
-                double d2 = (double) l2 + 0.5D - entityIn.posZ;
+                double adjustedPosZ = (double) z + 0.5D - entity.posZ;
                 label293:
 
-                for(int j3 = world.getActualHeight() - 1; j3 >= 0; --j3)
+                for(int y = world.getActualHeight() - 1; y >= 0; --y)
                 {
-                    if(world.isAirBlock(mutableBlockPos.setPos(j2, j3, l2)))
+                    if(world.isAirBlock(mutableBlockPos.setPos(x, y, z)))
                     {
-                        while(j3 > 0 && world.isAirBlock(mutableBlockPos.setPos(j2, j3 - 1, l2)))
+                        while(y > 0 && world.isAirBlock(mutableBlockPos.setPos(x, y - 1, z)))
                         {
-                            --j3;
+                            --y;
                         }
 
                         for(int k3 = i2; k3 < i2 + 4; ++k3)
@@ -249,18 +253,18 @@ public class TeleporterNetherEx extends Teleporter
                                 i4 = -i4;
                             }
 
-                            for(int j4 = 0; j4 < 3; ++j4)
+                            for(int offsetZ = 0; offsetZ < 3; ++offsetZ)
                             {
-                                for(int k4 = 0; k4 < 4; ++k4)
+                                for(int offsetX = 0; offsetX < 4; ++offsetX)
                                 {
-                                    for(int l4 = -1; l4 < 4; ++l4)
+                                    for(int offsetY = -1; offsetY < 4; ++offsetY)
                                     {
-                                        int i5 = j2 + (k4 - 1) * l3 + j4 * i4;
-                                        int j5 = j3 + l4;
-                                        int k5 = l2 + (k4 - 1) * i4 - j4 * l3;
-                                        mutableBlockPos.setPos(i5, j5, k5);
+                                        int posX = x + (offsetX - 1) * l3 + offsetZ * i4;
+                                        int posY = y + offsetY;
+                                        int posZ = z + (offsetX - 1) * i4 - offsetZ * l3;
+                                        mutableBlockPos.setPos(posX, posY, posZ);
 
-                                        if(l4 < 0 && !world.getBlockState(mutableBlockPos).getMaterial().isSolid() || l4 >= 0 && !world.isAirBlock(mutableBlockPos))
+                                        if(offsetY < 0 && !world.getBlockState(mutableBlockPos).getMaterial().isSolid() || offsetY >= 0 && !world.isAirBlock(mutableBlockPos))
                                         {
                                             continue label293;
                                         }
@@ -268,15 +272,15 @@ public class TeleporterNetherEx extends Teleporter
                                 }
                             }
 
-                            double d5 = (double) j3 + 0.5D - entityIn.posY;
-                            double d7 = d1 * d1 + d5 * d5 + d2 * d2;
+                            double adjustedPosY = (double) y + 0.5D - entity.posY;
+                            double adjustedPos = adjustedPosX * adjustedPosX + adjustedPosY * adjustedPosY + adjustedPosZ * adjustedPosZ;
 
-                            if(d0 < 0.0D || d7 < d0)
+                            if(portalDistance < 0.0D || adjustedPos < portalDistance)
                             {
-                                d0 = d7;
-                                i1 = j2;
-                                j1 = j3;
-                                k1 = l2;
+                                portalDistance = adjustedPos;
+                                i1 = x;
+                                j1 = y;
+                                k1 = z;
                                 l1 = k3 % 4;
                             }
                         }
@@ -285,57 +289,57 @@ public class TeleporterNetherEx extends Teleporter
             }
         }
 
-        if(d0 < 0.0D)
+        if(portalDistance < 0.0D)
         {
-            for(int l5 = j - 16; l5 <= j + 16; ++l5)
+            for(int x = entityPosX - 16; x <= entityPosX + 16; ++x)
             {
-                double d3 = (double) l5 + 0.5D - entityIn.posX;
+                double adjustedPosX = (double) x + 0.5D - entity.posX;
 
-                for(int j6 = l - 16; j6 <= l + 16; ++j6)
+                for(int z = entityPosZ - 16; z <= entityPosZ + 16; ++z)
                 {
-                    double d4 = (double) j6 + 0.5D - entityIn.posZ;
+                    double adjustedPosZ = (double) z + 0.5D - entity.posZ;
                     label231:
 
-                    for(int i7 = world.getActualHeight() - 1; i7 >= 0; --i7)
+                    for(int y = world.getActualHeight() - 1; y >= 0; --y)
                     {
-                        if(world.isAirBlock(mutableBlockPos.setPos(l5, i7, j6)))
+                        if(world.isAirBlock(mutableBlockPos.setPos(x, y, z)))
                         {
-                            while(i7 > 0 && world.isAirBlock(mutableBlockPos.setPos(l5, i7 - 1, j6)))
+                            while(y > 0 && world.isAirBlock(mutableBlockPos.setPos(x, y - 1, z)))
                             {
-                                --i7;
+                                --y;
                             }
 
-                            for(int k7 = i2; k7 < i2 + 2; ++k7)
+                            for(int offsetZ = i2; offsetZ < i2 + 2; ++offsetZ)
                             {
-                                int j8 = k7 % 2;
+                                int j8 = offsetZ % 2;
                                 int j9 = 1 - j8;
 
-                                for(int j10 = 0; j10 < 4; ++j10)
+                                for(int offsetX = 0; offsetX < 4; ++offsetX)
                                 {
-                                    for(int j11 = -1; j11 < 4; ++j11)
+                                    for(int offsetY = -1; offsetY < 4; ++offsetY)
                                     {
-                                        int j12 = l5 + (j10 - 1) * j8;
-                                        int i13 = i7 + j11;
-                                        int j13 = j6 + (j10 - 1) * j9;
-                                        mutableBlockPos.setPos(j12, i13, j13);
+                                        int posX = x + (offsetX - 1) * j8;
+                                        int posY = y + offsetY;
+                                        int posZ = z + (offsetX - 1) * j9;
+                                        mutableBlockPos.setPos(posX, posY, posZ);
 
-                                        if(j11 < 0 && !world.getBlockState(mutableBlockPos).getMaterial().isSolid() || j11 >= 0 && !world.isAirBlock(mutableBlockPos))
+                                        if(offsetY < 0 && !world.getBlockState(mutableBlockPos).getMaterial().isSolid() || offsetY >= 0 && !world.isAirBlock(mutableBlockPos))
                                         {
                                             continue label231;
                                         }
                                     }
                                 }
 
-                                double d6 = (double) i7 + 0.5D - entityIn.posY;
-                                double d8 = d3 * d3 + d6 * d6 + d4 * d4;
+                                double adjustedPosY = (double) y + 0.5D - entity.posY;
+                                double adjustedPos = adjustedPosX * adjustedPosX + adjustedPosY * adjustedPosY + adjustedPosZ * adjustedPosZ;
 
-                                if(d0 < 0.0D || d8 < d0)
+                                if(portalDistance < 0.0D || adjustedPos < portalDistance)
                                 {
-                                    d0 = d8;
-                                    i1 = l5;
-                                    j1 = i7;
-                                    k1 = j6;
-                                    l1 = k7 % 2;
+                                    portalDistance = adjustedPos;
+                                    i1 = x;
+                                    j1 = y;
+                                    k1 = z;
+                                    l1 = offsetZ % 2;
                                 }
                             }
                         }
@@ -356,28 +360,28 @@ public class TeleporterNetherEx extends Teleporter
             i3 = -i3;
         }
 
-        if(d0 < 0.0D)
+        if(portalDistance < 0.0D)
         {
             j1 = MathHelper.clamp(j1, 70, world.getActualHeight() - 10);
             k2 = j1;
 
-            for(int j7 = -1; j7 <= 1; ++j7)
+            for(int z = -1; z <= 1; ++z)
             {
-                for(int l7 = 1; l7 < 3; ++l7)
+                for(int x = 1; x < 3; ++x)
                 {
-                    for(int k8 = -1; k8 < 3; ++k8)
+                    for(int y = -1; y < 3; ++y)
                     {
-                        int k9 = i6 + (l7 - 1) * l6 + j7 * i3;
-                        int k10 = k2 + k8;
-                        int k11 = k6 + (l7 - 1) * i3 - j7 * l6;
-                        boolean flag = k8 < 0;
-                        world.setBlockState(new BlockPos(k9, k10, k11), flag ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState());
+                        int posX = i6 + (x - 1) * l6 + z * i3;
+                        int posY = k2 + y;
+                        int posZ = k6 + (x - 1) * i3 - z * l6;
+                        boolean beneathWorld = y < 0;
+                        world.setBlockState(new BlockPos(posX, posY, posZ), beneathWorld ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
         }
 
-        IBlockState iblockstate = Blocks.PORTAL.getDefaultState().withProperty(BlockPortal.AXIS, l6 == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
+        IBlockState iblockstate = NetherExBlocks.BLOCK_PORTAL_NETHER.getDefaultState().withProperty(BlockNetherPortal.AXIS, l6 == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
 
         for(int i8 = 0; i8 < 4; ++i8)
         {
@@ -388,19 +392,19 @@ public class TeleporterNetherEx extends Teleporter
                     int l10 = i6 + (l8 - 1) * l6;
                     int l11 = k2 + l9;
                     int k12 = k6 + (l8 - 1) * i3;
-                    boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
-                    world.setBlockState(new BlockPos(l10, l11, k12), flag1 ? Blocks.OBSIDIAN.getDefaultState() : iblockstate, 2);
+                    boolean beneathWorld = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
+                    world.setBlockState(new BlockPos(l10, l11, k12), beneathWorld ? Blocks.OBSIDIAN.getDefaultState() : iblockstate, 2);
                 }
             }
 
-            for(int i9 = 0; i9 < 4; ++i9)
+            for(int zx = 0; zx < 4; ++zx)
             {
-                for(int i10 = -1; i10 < 4; ++i10)
+                for(int y = -1; y < 4; ++y)
                 {
-                    int i11 = i6 + (i9 - 1) * l6;
-                    int i12 = k2 + i10;
-                    int l12 = k6 + (i9 - 1) * i3;
-                    BlockPos blockpos = new BlockPos(i11, i12, l12);
+                    int posX = i6 + (zx - 1) * l6;
+                    int posY = k2 + y;
+                    int posZ = k6 + (zx - 1) * i3;
+                    BlockPos blockpos = new BlockPos(posX, posY, posZ);
                     world.notifyNeighborsOfStateChange(blockpos, world.getBlockState(blockpos).getBlock(), false);
                 }
             }
@@ -414,14 +418,24 @@ public class TeleporterNetherEx extends Teleporter
     {
         if(worldTime % 100L == 0L)
         {
-            long i = worldTime - 300L;
-
-            destinationCoordinateCache.values().removeIf(portalPosition -> portalPosition == null || portalPosition.lastUpdateTime < i);
+            destinationCoordinateCache.values().removeIf(portalPosition -> portalPosition == null || portalPosition.lastUpdateTime < worldTime - 300L);
         }
     }
 
-    public boolean isValidPortalBlock(Block block)
+    public static TeleporterNetherEx getTeleporterForWorld(MinecraftServer minecraftServer, int dimension)
     {
-        return block == Blocks.PORTAL || block == NetherExBlocks.BLOCK_PORTAL_NETHER;
+        WorldServer worldServer = minecraftServer.getWorld(dimension);
+
+        for(Teleporter teleporter : worldServer.customTeleporters)
+        {
+            if(teleporter instanceof TeleporterNetherEx)
+            {
+                return (TeleporterNetherEx) teleporter;
+            }
+        }
+
+        TeleporterNetherEx teleporterNetherEx = new TeleporterNetherEx(worldServer);
+        worldServer.customTeleporters.add(teleporterNetherEx);
+        return teleporterNetherEx;
     }
 }

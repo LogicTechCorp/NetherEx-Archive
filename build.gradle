@@ -121,6 +121,14 @@ processResources {
     }
 }
 
+jar {
+
+    manifest {
+
+        attributes 'FMLAT': 'nex_at.cfg'
+    }
+}
+
 task incrementMajorMod << {
     Matcher matcherVersion
 
