@@ -560,7 +560,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
                         wasLastBlockSolid = true;
                     }
-                    else if(checkState.getMaterial() == Material.AIR)
+                    else if(checkState.getBlock() == Blocks.AIR)
                     {
                         if(wasLastBlockSolid)
                         {

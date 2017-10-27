@@ -30,9 +30,8 @@ public class WorldProviderNether extends WorldProviderHell
     @Override
     public void init()
     {
+        super.init();
         biomeProvider = new BiomeProviderNether(world);
-        doesWaterVaporize = true;
-        nether = true;
     }
 
     @Override

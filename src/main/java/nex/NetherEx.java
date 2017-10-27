@@ -94,9 +94,9 @@ public class NetherEx
     }
 
     @Mod.EventHandler
-    public void onFMLServerStarted(FMLServerStartedEvent event)
+    public void onFMLServerStartingEvent(FMLServerStartingEvent event)
     {
-        ConfigHandler.loadConfigs();
+        ConfigHandler.loadConfigs(event.getServer());
     }
 
     @Mod.EventHandler

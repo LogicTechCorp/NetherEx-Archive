@@ -24,7 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -120,9 +119,8 @@ public class ConfigHandler
         }
     }
 
-    public static void loadConfigs()
+    public static void loadConfigs(MinecraftServer server)
     {
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         World world = server.getEntityWorld();
 
         NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/nex"));
@@ -214,11 +212,11 @@ public class ConfigHandler
 
         public class NetherPortal
         {
-            @Config.LangKey("config.nex:block.netherrack.allowPigmanSpawning")
+            @Config.LangKey("config.nex:block.netherPortal.allowPigmanSpawning")
             public boolean allowPigmanSpawning = true;
 
             @Config.RangeInt(min = 4, max = 2048)
-            @Config.LangKey("config.nex:block.netherrack.pigmanSpawnRarity")
+            @Config.LangKey("config.nex:block.netherPortal.pigmanSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is for Pigman to spawn", "The lower the number, the more common it is for Pigman to spawn"})
             public int pigmanSpawnRarity = 2000;
         }
