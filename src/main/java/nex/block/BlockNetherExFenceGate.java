@@ -27,33 +27,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.NetherEx;
-import org.apache.commons.lang3.StringUtils;
 
 public class BlockNetherExFenceGate extends BlockFenceGate
 {
     public BlockNetherExFenceGate(String name, Material material)
     {
         super(BlockPlanks.EnumType.OAK);
-
         ReflectionHelper.setPrivateValue(Block.class, this, material, "field_149764_J", "blockMaterial");
         ReflectionHelper.setPrivateValue(Block.class, this, material.getMaterialMapColor(), "field_181083_K", "blockMapColor");
-
-        String[] nameParts = name.split("_");
-
-        String gateName = ":fenceGate" + StringUtils.capitalize(nameParts[0]) + ".";
-        String gateType = nameParts[1];
-
-        for(int i = 2; i < nameParts.length; i++)
-        {
-            gateType += StringUtils.capitalize(nameParts[i]);
-        }
-
         useNeighborBrightness = true;
-
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, NetherEx.MOD_ID + ":fence_gate_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name)));
-        setUnlocalizedName(NetherEx.MOD_ID + gateName + gateType);
+        setRegistryName(NetherEx.MOD_ID + ":" + name + "_fence_gate");
+        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 
     @Override

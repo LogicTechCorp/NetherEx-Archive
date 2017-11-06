@@ -38,8 +38,7 @@ public class BlockElderMushroomCap extends BlockNetherEx
 
     public BlockElderMushroomCap()
     {
-        super("plant_mushroom_elder_cap", Material.WOOD);
-
+        super("elder_mushroom_cap", Material.WOOD);
         setSoundType(SoundType.WOOD);
         setHardness(0.2F);
     }

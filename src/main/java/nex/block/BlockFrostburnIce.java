@@ -32,8 +32,7 @@ public class BlockFrostburnIce extends BlockNetherEx
 {
     public BlockFrostburnIce()
     {
-        super("block_ice_frostburn", Material.ICE);
-
+        super("frostburn_ice", Material.ICE);
         setSoundType(SoundType.GLASS);
         setLightOpacity(3);
         setHardness(0.5F);

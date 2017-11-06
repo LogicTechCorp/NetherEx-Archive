@@ -25,7 +25,6 @@ public class ItemBlockNetherEx extends ItemBlock
     public ItemBlockNetherEx(Block block)
     {
         super(block);
-
         setRegistryName(block.getRegistryName().toString());
     }
 

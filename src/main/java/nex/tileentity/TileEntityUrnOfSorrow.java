@@ -69,7 +69,7 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
                 }
 
                 getInventory().setStackInSlot(0, ItemStack.EMPTY);
-                getWorld().setBlockState(pos, NetherExBlocks.TILE_URN_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+                getWorld().setBlockState(pos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
                 setSummoningTime(0);
             }
         }

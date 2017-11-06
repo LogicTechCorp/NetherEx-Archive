@@ -27,8 +27,7 @@ public class ItemBlockBasaltFence extends ItemBlockNetherEx
 {
     public ItemBlockBasaltFence()
     {
-        super(NetherExBlocks.FENCE_BASALT);
-
+        super(NetherExBlocks.BASALT_FENCE);
         setHasSubtypes(true);
     }
 

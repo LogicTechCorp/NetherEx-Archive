@@ -47,8 +47,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 
     public BlockUrnOfSorrow()
     {
-        super("tile_urn_sorrow", Material.ROCK, TileEntityUrnOfSorrow.class);
-
+        super("urn_of_sorrow", Material.ROCK, TileEntityUrnOfSorrow.class);
         setHardness(0.5F);
     }
 

@@ -40,36 +40,36 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-@Config.LangKey("config.nex:title")
+@Config.LangKey("config." + NetherEx.MOD_ID + ":title")
 @Config(modid = NetherEx.MOD_ID, name = "NetherEx/NetherEx", category = "nex")
 public class ConfigHandler
 {
     @Config.Name("client")
-    @Config.LangKey("config.nex:client")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":client")
     public static Client client = new Client();
 
     @Config.Name("compatibility")
-    @Config.LangKey("config.nex:compatibility")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility")
     public static Compatibility compatibility = new Compatibility();
 
     @Config.Name("dimension")
-    @Config.LangKey("config.nex:dimension")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension")
     public static Dimension dimension = new Dimension();
 
     @Config.Name("block")
-    @Config.LangKey("config.nex:block")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":block")
     public static Block block = new Block();
 
     @Config.Name("potion_effect")
-    @Config.LangKey("config.nex:potionEffect")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect")
     public static PotionEffect potionEffect = new PotionEffect();
 
     @Config.Name("entity")
-    @Config.LangKey("config.nex:entity")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":entity")
     public static Entity entity = new Entity();
 
     @Config.Name("biome")
-    @Config.LangKey("config.nex:biome")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":biome")
     public static Biome biome = new Biome();
 
     private static final File CONFIG_DIRECTORY = Loader.instance().getConfigDir();
@@ -104,12 +104,13 @@ public class ConfigHandler
 
                     if(!outputDirectory.exists())
                     {
-                        FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/" + tuple.getFirst()).getFile()), outputDirectory);
+
+                        FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/" + NetherEx.MOD_ID + "/" + tuple.getFirst()).getFile()), outputDirectory);
                     }
                 }
                 else
                 {
-                    FileUtil.extractFromJar("/assets/nex/" + tuple.getFirst(), configDirectory.getPath() + "/" + tuple.getSecond());
+                    FileUtil.extractFromJar("/assets/" + NetherEx.MOD_ID + "/" + tuple.getFirst(), configDirectory.getPath() + "/" + tuple.getSecond());
                 }
             }
         }
@@ -123,7 +124,7 @@ public class ConfigHandler
     {
         World world = server.getEntityWorld();
 
-        NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/nex"));
+        NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/" + NetherEx.MOD_ID));
         NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/custom"));
 
         if(ConfigHandler.compatibility.biomesOPlenty.enableCompat)
@@ -131,19 +132,19 @@ public class ConfigHandler
             NetherExCompat.enableBiomesOPlentyCompat(world, CONFIG_DIRECTORY);
         }
 
-        TradeManager.parseTradeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Trade Configs/nex"));
+        TradeManager.parseTradeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Trade Configs/" + NetherEx.MOD_ID));
         TradeManager.parseTradeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Trade Configs/custom"));
     }
 
     public static class Client
     {
         @Config.Name("visual")
-        @Config.LangKey("config.nex:client.visual")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":client.visual")
         public Visual visual = new Visual();
 
         public class Visual
         {
-            @Config.LangKey("config.nex:client.visual.disableNetherFog")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":client.visual.disableNetherFog")
             public boolean disableNetherFog = true;
         }
     }
@@ -151,12 +152,12 @@ public class ConfigHandler
     public static class Compatibility
     {
         @Config.Name("biomesoplenty")
-        @Config.LangKey("config.nex:compatibility.biomesoplenty")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesoplenty")
         public BiomesOPlenty biomesOPlenty = new BiomesOPlenty();
 
         public class BiomesOPlenty
         {
-            @Config.LangKey("config.nex:compatibility.biomesoplenty.enableCompat")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesoplenty.enableCompat")
             public boolean enableCompat = true;
         }
     }
@@ -164,18 +165,18 @@ public class ConfigHandler
     public static class Dimension
     {
         @Config.Name("nether")
-        @Config.LangKey("config.nex:dimension.nether")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension.nether")
         public Nether nether = new Nether();
 
         public class Nether
         {
-            @Config.LangKey("config.nex:dimension.nether.generateSoulSand")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension.nether.generateSoulSand")
             public boolean generateSoulSand = false;
 
-            @Config.LangKey("config.nex:dimension.nether.generateGravel")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension.nether.generateGravel")
             public boolean generateGravel = false;
 
-            @Config.LangKey("config.nex:dimension.nether.isLavaInfinite")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension.nether.isLavaInfinite")
             public boolean isLavaInfinite = false;
         }
     }
@@ -183,97 +184,97 @@ public class ConfigHandler
     public static class Block
     {
         @Config.Name("nether_portal")
-        @Config.LangKey("config.nex:block.netherPortal")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal")
         public NetherPortal netherPortal = new NetherPortal();
 
         @Config.Name("netherrack")
-        @Config.LangKey("config.nex:block.netherrack")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherrack")
         public Netherrack netherrack = new Netherrack();
 
         @Config.Name("soul_sand")
-        @Config.LangKey("config.nex:block.soulSand")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand")
         public SoulSand soulSand = new SoulSand();
 
         @Config.Name("magma")
-        @Config.LangKey("config.nex:block.magma")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.magma")
         public Magma magma = new Magma();
 
         @Config.Name("rime")
-        @Config.LangKey("config.nex:block.rime")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.rime")
         public Rime rime = new Rime();
 
         @Config.Name("thornstalk")
-        @Config.LangKey("config.nex:block.thornstalk")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.thornstalk")
         public Thornstalk thornstalk = new Thornstalk();
 
         @Config.Name("hyphae")
-        @Config.LangKey("config.nex:block.hyphae")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.hyphae")
         public Hyphae hyphae = new Hyphae();
 
         public class NetherPortal
         {
-            @Config.LangKey("config.nex:block.netherPortal.allowPigmanSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal.allowPigmanSpawning")
             public boolean allowPigmanSpawning = true;
 
             @Config.RangeInt(min = 4, max = 2048)
-            @Config.LangKey("config.nex:block.netherPortal.pigmanSpawnRarity")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal.pigmanSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is for Pigman to spawn", "The lower the number, the more common it is for Pigman to spawn"})
             public int pigmanSpawnRarity = 2000;
         }
 
         public class Netherrack
         {
-            @Config.LangKey("config.nex:block.netherrack.allowAllShovelsToFlatten")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherrack.allowAllShovelsToFlatten")
             public boolean allowAllShovelsToFlatten = false;
         }
 
         public class SoulSand
         {
-            @Config.LangKey("config.nex:block.soulSand.doesNetherwartUseNewGrowthSystem")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.doesNetherwartUseNewGrowthSystem")
             public boolean doesNetherwartUseNewGrowthSystem = true;
 
-            @Config.LangKey("config.nex:block.soulSand.allowAllHoesToTill")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.allowAllHoesToTill")
             public boolean allowAllHoesToTill = false;
 
-            @Config.LangKey("config.nex:block.soulSand.doesRequireIchor")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.doesRequireIchor")
             public boolean doesRequireIchor = true;
         }
 
         public class Magma
         {
-            @Config.LangKey("config.nex:block.magma.turnIntoLava")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.magma.turnIntoLava")
             public boolean turnIntoLava = false;
         }
 
         public class Rime
         {
-            @Config.LangKey("config.nex:block.rime.canFreezeWater")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.rime.canFreezeWater")
             public boolean canFreezeWater = true;
 
-            @Config.LangKey("config.nex:block.rime.canFreezeLava")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.rime.canFreezeLava")
             public boolean canFreezeLava = true;
 
-            @Config.LangKey("config.nex:block.rime.canFreezeMobs")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.rime.canFreezeMobs")
             public boolean canFreezeMobs = true;
         }
 
         public class Thornstalk
         {
-            @Config.LangKey("config.nex:block.thornstalk.canDestroyItems")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.thornstalk.canDestroyItems")
             public boolean canDestroyItems = false;
 
-            @Config.LangKey("config.nex:block.thornstalk.blacklist")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.thornstalk.blacklist")
             @Config.Comment("Mobs the Thornstalk shouldn't hurt")
             public String[] blacklist = new String[]{
                     "minecraft:wither_skeleton",
                     "minecraft:zombie_pigman",
-                    "nex:monster_spinout"
+                    "" + NetherEx.MOD_ID + ":monster_spinout"
             };
         }
 
         public class Hyphae
         {
-            @Config.LangKey("config.nex:block.hyphae.doesSpread")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.hyphae.doesSpread")
             public boolean doesSpread = false;
         }
     }
@@ -281,58 +282,58 @@ public class ConfigHandler
     public static class PotionEffect
     {
         @Config.Name("freeze")
-        @Config.LangKey("config.nex:potionEffect.freeze")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze")
         public Freeze freeze = new Freeze();
 
         @Config.Name("spore")
-        @Config.LangKey("config.nex:potionEffect.spore")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore")
         public Spore spore = new Spore();
 
         @Config.Name("lost")
-        @Config.LangKey("config.nex:potionEffect.lost")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.lost")
         public Lost lost = new Lost();
 
         public class Freeze
         {
-            @Config.LangKey("config.nex:potionEffect.freeze.chanceOfThawing")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.chanceOfThawing")
             @Config.Comment({"The higher the number, the rarer it is to thaw", "The lower the number, the more common it is to thaw"})
             @Config.RangeInt(min = 1, max = 2048)
             public int chanceOfThawing = 1024;
 
-            @Config.LangKey("config.nex:potionEffect.freeze.blacklist")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.blacklist")
             @Config.Comment("Mobs that shouldn't freeze")
             public String[] blacklist = new String[]{
                     "minecraft:blaze",
                     "minecraft:ghast",
                     "minecraft:wither_skeleton",
                     "minecraft:polar_bear",
-                    "nex:monster_wight",
-                    "nex:monster_ember",
-                    "nex:monster_spinout",
-                    "nex:monster_bone_spider",
-                    "nex:monster_brute"
+                    NetherEx.MOD_ID + ":monster_wight",
+                    NetherEx.MOD_ID + ":monster_ember",
+                    NetherEx.MOD_ID + ":monster_spinout",
+                    NetherEx.MOD_ID + ":monster_bone_spider",
+                    NetherEx.MOD_ID + ":monster_brute"
             };
         }
 
         public class Spore
         {
-            @Config.LangKey("config.nex:potionEffect.spore.chanceOfSporeSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.chanceOfSporeSpawning")
             @Config.Comment({"The higher the number, the rarer it is to spawn a Spore", "The lower the number, the more common it is to spawn a Spore"})
             @Config.RangeInt(min = 1, max = 256)
             public int chanceOfSporeSpawning = 128;
 
-            @Config.LangKey("config.nex:potionEffect.spore.blacklist")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.blacklist")
             @Config.Comment("Mobs that shouldn't spawn Spores")
             public String[] blacklist = new String[]{
-                    "nex:monster_spore_creeper",
-                    "nex:monster_spore",
-                    "nex:neutral_mogus"
+                    NetherEx.MOD_ID + ":monster_spore_creeper",
+                    NetherEx.MOD_ID + ":monster_spore",
+                    NetherEx.MOD_ID + ":neutral_mogus"
             };
         }
 
         public class Lost
         {
-            @Config.LangKey("config.nex:potionEffect.lost.chanceOfGhastlingSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.lost.chanceOfGhastlingSpawning")
             @Config.Comment({"The higher the number, the rarer it is to spawn a Ghastling", "The lower the number, the more common it is to spawn a Ghastling"})
             @Config.RangeInt(min = 1, max = 256)
             public int chanceOfGhastlingSpawning = 256;
@@ -342,36 +343,36 @@ public class ConfigHandler
     public static class Entity
     {
         @Config.Name("ember")
-        @Config.LangKey("config.nex:entity.ember")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ember")
         public Ember ember = new Ember();
 
         @Config.Name("nethermite")
-        @Config.LangKey("config.nex:entity.nethermite")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.nethermite")
         public Nethermite nethermite = new Nethermite();
 
         @Config.Name("spinout")
-        @Config.LangKey("config.nex:entity.spinout")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spinout")
         public Spinout spinout = new Spinout();
 
         @Config.Name("spore_creeper")
-        @Config.LangKey("config.nex:entity.sporeCreeper")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.sporeCreeper")
         public SporeCreeper sporeCreeper = new SporeCreeper();
 
         @Config.Name("spore")
-        @Config.LangKey("config.nex:entity.spore")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spore")
         public Spore spore = new Spore();
 
         @Config.Name("brute")
-        @Config.LangKey("config.nex:entity.brute")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.brute")
         public Brute brute = new Brute();
 
         @Config.Name("ghast_queen")
-        @Config.LangKey("config.nex:entity.ghastQueen")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen")
         public GhastQueen ghastQueen = new GhastQueen();
 
         public class Ember
         {
-            @Config.LangKey("config.nex:entity.ember.chanceOfSettingPlayerOnFire")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ember.chanceOfSettingPlayerOnFire")
             @Config.Comment({"The higher the number, the rarer it is to set a player on fire", "The lower the number, the more common it is to set a player on fire"})
             @Config.RangeInt(min = 1, max = 256)
             public int chanceOfSettingPlayerOnFire = 1;
@@ -379,18 +380,18 @@ public class ConfigHandler
 
         public class Nethermite
         {
-            @Config.LangKey("config.nex:entity.nethermite.chanceOfSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.nethermite.chanceOfSpawning")
             @Config.Comment({"The higher the number, the rarer it is for a Nethermite to spawn", "The lower the number, the more common it is for a Nethermite to spawn"})
             @Config.RangeInt(min = 1, max = 256)
             public int chanceOfSpawning = 64;
 
-            @Config.LangKey("config.nex:entity.nethermite.whitelist")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.nethermite.whitelist")
             @Config.Comment("Blocks the Nethermite should spawn from")
             public String[] whitelist = new String[]{
                     "minecraft:quartz_ore",
-                    "nex:ore_quartz",
-                    "nex:ore_amethyst",
-                    "nex:ore_rime",
+                    NetherEx.MOD_ID + ":ore_quartz",
+                    NetherEx.MOD_ID + ":ore_amethyst",
+                    NetherEx.MOD_ID + ":ore_rime",
                     "tconstruct:ore",
                     "nethermetals:nether_coal_ore",
                     "nethermetals:nether_redstone_ore",
@@ -428,12 +429,12 @@ public class ConfigHandler
 
         public class Spinout
         {
-            @Config.LangKey("config.nex:entity.spinout.spinTime")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spinout.spinTime")
             @Config.Comment({"The lower the number, the less time a Spinout spins", "The higher the number, the more time a Spinout spins"})
             @Config.RangeInt(min = 1, max = 512)
             public int spinTime = 6;
 
-            @Config.LangKey("config.nex:entity.spinout.spinCooldown")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spinout.spinCooldown")
             @Config.Comment({"The lower the number, the less time a Spinout goes without spinning", "The higher the number, the more time a Spinout goes without spinning"})
             @Config.RangeInt(min = 1, max = 512)
             public int spinCooldown = 2;
@@ -441,7 +442,7 @@ public class ConfigHandler
 
         public class SporeCreeper
         {
-            @Config.LangKey("config.nex:entity.sporeCreeper.chanceOfSporeSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.sporeCreeper.chanceOfSporeSpawning")
             @Config.Comment({"The higher the number, the rarer it is for s Spore Creeper to spawn a Spore on death", "The lower the number, the more common it is for a Spore Creeper to spawn a Spore on death"})
             @Config.RangeInt(min = 1, max = 256)
             public int chanceOfSporeSpawning = 12;
@@ -449,12 +450,12 @@ public class ConfigHandler
 
         public class Spore
         {
-            @Config.LangKey("config.nex:entity.spore.growthTime")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spore.growthTime")
             @Config.Comment({"The lower the number, the less it takes a Spore to grow", "The higher the number, the more time it takes for a Spore to grow"})
             @Config.RangeInt(min = 1, max = 512)
             public int growthTime = 60;
 
-            @Config.LangKey("config.nex:entity.spore.creeperSpawns")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spore.creeperSpawns")
             @Config.Comment({"The lower the number, the less Spore Creeper spawn from a Spore", "The higher the number, the more Spore Creeper spawn from a Spore"})
             @Config.RangeInt(min = 1, max = 256)
             public int creeperSpawns = 3;
@@ -462,7 +463,7 @@ public class ConfigHandler
 
         public class Brute
         {
-            @Config.LangKey("config.nex:entity.brute.chargeCooldown")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.brute.chargeCooldown")
             @Config.Comment({"The lower the number, the less cooldown the Brute has after charging", "The higher the number, the more cooldown the Brute has after charging"})
             @Config.RangeInt(min = 1, max = 512)
             public int chargeCooldown = 2;
@@ -470,12 +471,12 @@ public class ConfigHandler
 
         public class GhastQueen
         {
-            @Config.LangKey("config.nex:entity.ghastQueen.ghastlingSpawnCooldown")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen.ghastlingSpawnCooldown")
             @Config.Comment({"The lower the number, the less cooldown the Ghast Queen has after spawning Ghastlings", "The higher the number, the more cooldown the Ghast Queen has after spawning Ghastlings"})
             @Config.RangeInt(min = 1, max = 512)
             public int ghastlingSpawnCooldown = 10;
 
-            @Config.LangKey("config.nex:entity.ghastQueen.ghastlingSpawns")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen.ghastlingSpawns")
             @Config.Comment({"The lower the number, the less Ghastling spawn", "The higher the number, the more Ghastling spawn"})
             @Config.RangeInt(min = 1, max = 256)
             public int ghastlingSpawns = 4;
@@ -485,106 +486,27 @@ public class ConfigHandler
     public static class Biome
     {
         @Config.Name("hell")
-        @Config.LangKey("config.nex:biome.hell")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.hell")
         public Hell hell = new Hell();
 
         @Config.Name("ruthless_sands")
-        @Config.LangKey("config.nex:biome.ruthlessSands")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.ruthlessSands")
         public RuthlessSands ruthlessSands = new RuthlessSands();
 
         @Config.Name("fungi_forest")
-        @Config.LangKey("config.nex:biome.fungiForest")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.fungiForest")
         public FungiForest fungiForest = new FungiForest();
 
         @Config.Name("torrid_wasteland")
-        @Config.LangKey("config.nex:biome.torridWasteland")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.torridWasteland")
         public TorridWasteland torridWasteland = new TorridWasteland();
 
         @Config.Name("arctic_abyss")
-        @Config.LangKey("config.nex:biome.arcticAbyss")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss")
         public ArcticAbyss arcticAbyss = new ArcticAbyss();
 
         public class Hell
         {
-            @Config.Name("structure")
-            @Config.LangKey("config.nex:biome.hell.structure")
-            public Structure structure = new Structure();
-
-            public class Structure
-            {
-                @Config.Name("nether_village")
-                @Config.LangKey("config.nex:biome.hell.structure.netherVillage")
-                public NetherVillage netherVillage = new NetherVillage();
-
-                public class NetherVillage
-                {
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.netherVillageSize")
-                    @Config.Comment("The spawning size of Nether Villages")
-                    @Config.RangeInt(min = 0, max = 8)
-                    public int netherVillageSize = 0;
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.chiefStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Chief Structures")
-                    public String[] chiefStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_chief",
-                            "nex:village_nether_hell_hut_chief_variant",
-                            "nex:village_nether_hell_hut_chief_variant_2"
-                    };
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.hunterStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Hunter Structures")
-                    public String[] hunterStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_hunter",
-                            "nex:village_nether_hell_hut_hunter_variant"
-                    };
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.gathererStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Gatherer Structures")
-                    public String[] gathererStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_gatherer",
-                            "nex:village_nether_hell_hut_gatherer_variant",
-                    };
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.scavengerStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Scavenger Structures")
-                    public String[] scavengerStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_scavenger",
-                            "nex:village_nether_hell_hut_scavenger_variant",
-                            "nex:village_nether_hell_hut_scavenger_variant_2",
-                            "nex:village_nether_hell_hut_scavenger_variant_3",
-                    };
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.armorsmithStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Armorsmith Structures")
-                    public String[] armorsmithStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_armorsmith",
-                            "nex:village_nether_hell_hut_armorsmith_variant"
-                    };
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.toolsmithStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Toolsmith Structures")
-                    public String[] toolsmithStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_toolsmith",
-                            "nex:village_nether_hell_hut_toolsmith_variant"
-                    };
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.hunterStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Enchanter Structures")
-                    public String[] enchanterStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_enchanter"
-                    };
-
-                    @Config.LangKey("config.nex:biome.hell.structure.netherVillage.hunterStructureTemplates")
-                    @Config.Comment("Resource Locations of template files that should be used to generate the Brewer Structures")
-                    public String[] brewerStructureTemplates = new String[]{
-                            "nex:village_nether_hell_hut_brewer",
-                            "nex:village_nether_hell_hut_brewer_variant",
-                            "nex:village_nether_hell_hut_brewer_variant_2",
-                            "nex:village_nether_hell_hut_brewer_variant_3",
-                            "nex:village_nether_hell_hut_brewer_variant_4"
-                    };
-                }
-            }
         }
 
         public class RuthlessSands
@@ -593,10 +515,10 @@ public class ConfigHandler
 
         public class FungiForest
         {
-            @Config.LangKey("config.nex:biome.fungiForest.generateElderMushrooms")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.fungiForest.generateElderMushrooms")
             public boolean generateElderMushrooms = true;
 
-            @Config.LangKey("config.nex:biome.fungiForest.elderMushroomRarity")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.fungiForest.elderMushroomRarity")
             @Config.Comment({"The lower the number, the rarer Elder Mushrooms are", "The higher the number, the more common Elder Mushrooms are"})
             @Config.RangeInt(min = 1, max = 256)
             public int elderMushroomRarity = 32;
@@ -608,7 +530,7 @@ public class ConfigHandler
 
         public class ArcticAbyss
         {
-            @Config.LangKey("config.nex:biome.arcticAbyss.chanceOfFreezing")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss.chanceOfFreezing")
             @Config.Comment({"The higher the number, the rarer it is for mobs to Freeze in the Arctic Abyss biome", "The lower the number, the more common it is for mobs to Freeze in the Arctic Abyss biome"})
             @Config.RangeInt(min = 1, max = 2048)
             public int chanceOfFreezing = 512;

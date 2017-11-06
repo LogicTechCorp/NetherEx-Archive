@@ -22,29 +22,16 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import nex.NetherEx;
-import org.apache.commons.lang3.StringUtils;
 
 public class BlockNetherExStairs extends BlockStairs
 {
     public BlockNetherExStairs(String name, IBlockState state)
     {
         super(state);
-
-        String[] nameParts = name.split("_");
-
-        String stairName = ":stairs" + StringUtils.capitalize(nameParts[0]) + ".";
-        String stairType = nameParts[1];
-
-        for(int i = 2; i < nameParts.length; i++)
-        {
-            stairType += StringUtils.capitalize(nameParts[i]);
-        }
-
         useNeighborBrightness = true;
-
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
-        setRegistryName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, NetherEx.MOD_ID + ":stairs_" + (name.contains("vanilla_") ? name.replace("vanilla_", "") : name)));
-        setUnlocalizedName(NetherEx.MOD_ID + stairName + stairType);
+        setRegistryName(NetherEx.MOD_ID + ":" + name + "_stairs");
+        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
     }
 }

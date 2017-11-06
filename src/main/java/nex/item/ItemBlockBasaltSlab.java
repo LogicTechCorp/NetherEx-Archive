@@ -24,6 +24,6 @@ public class ItemBlockBasaltSlab extends ItemBlockNetherExSlab
 {
     public ItemBlockBasaltSlab(boolean isDouble)
     {
-        super(!isDouble ? NetherExBlocks.SLAB_BASALT : NetherExBlocks.SLAB_BASALT_DOUBLE, NetherExBlocks.SLAB_BASALT, NetherExBlocks.SLAB_BASALT_DOUBLE);
+        super(!isDouble ? NetherExBlocks.BASALT_SLAB : NetherExBlocks.BASALT_SLAB_DOUBLE, NetherExBlocks.BASALT_SLAB, NetherExBlocks.BASALT_SLAB_DOUBLE);
     }
 }

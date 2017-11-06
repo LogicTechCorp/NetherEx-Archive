@@ -39,8 +39,8 @@ public class BiomeFungiForest extends BiomeNetherEx
     {
         super(new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest");
 
-        topBlock = NetherExBlocks.BLOCK_HYPHAE.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
+        topBlock = NetherExBlocks.HYPHAE.getDefaultState();
+        fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
     }
 
     @Override

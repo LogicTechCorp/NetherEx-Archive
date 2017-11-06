@@ -49,7 +49,7 @@ public class EnhancedGeneratorEnoki extends EnhancedGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        if(world.isAirBlock(pos.down()) && NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.canSurvive(world, pos) && rand.nextInt(8) == 0)
+        if(world.isAirBlock(pos.down()) && NetherExBlocks.ENOKI_MUSHROOM_CAP.canSurvive(world, pos) && rand.nextInt(8) == 0)
         {
             BlockEnokiMushroomCap.generatePlant(world, pos, rand, 8);
             return true;

@@ -79,7 +79,7 @@ public class ClickHandler
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
 
-            if(block == Blocks.NETHERRACK || block == NetherExBlocks.BLOCK_NETHERRACK || block == NetherExBlocks.BLOCK_HYPHAE)
+            if(block == Blocks.NETHERRACK || block == NetherExBlocks.NETHERRACK || block == NetherExBlocks.HYPHAE)
             {
                 for(EnumHand hand : EnumHand.values())
                 {
@@ -89,10 +89,10 @@ public class ClickHandler
                     }
                 }
 
-                int meta = block == Blocks.NETHERRACK ? 0 : block == NetherExBlocks.BLOCK_HYPHAE ? 3 : NetherExBlocks.BLOCK_NETHERRACK.getMetaFromState(state) + 1;
+                int meta = block == Blocks.NETHERRACK ? 0 : block == NetherExBlocks.HYPHAE ? 3 : NetherExBlocks.NETHERRACK.getMetaFromState(state) + 1;
 
                 world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK_PATH.getDefaultState().withProperty(BlockNetherrackPath.TYPE, BlockNetherrackPath.EnumType.fromMeta(meta)), 11);
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK_PATH.getDefaultState().withProperty(BlockNetherrackPath.TYPE, BlockNetherrackPath.EnumType.fromMeta(meta)), 11);
                 stack.damageItem(1, player);
             }
 
@@ -110,7 +110,7 @@ public class ClickHandler
                 }
 
                 world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState(), 11);
+                world.setBlockState(pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState(), 11);
                 stack.damageItem(1, player);
             }
         }
@@ -127,7 +127,7 @@ public class ClickHandler
         IBlockState offsetState = world.getBlockState(offsetPos);
         EntityPlayer player = event.getEntityPlayer();
 
-        if(offsetState.getBlock() == NetherExBlocks.BLOCK_FIRE_BLUE)
+        if(offsetState.getBlock() == NetherExBlocks.BLUE_FIRE)
         {
             world.playEvent(player, 1009, offsetPos, 0);
             world.setBlockToAir(offsetPos);

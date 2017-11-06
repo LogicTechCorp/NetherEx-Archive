@@ -6,7 +6,7 @@
         "block": "minecraft:soul_sand"
     },
     "floorFillerBlock": {
-        "block": "nex:block_netherrack",
+        "block": "nex:netherrack",
         "properties": {
             "type": "gloomy"
         }

@@ -53,8 +53,7 @@ public class BlockEnokiMushroomStem extends BlockNetherEx
 
     public BlockEnokiMushroomStem()
     {
-        super("plant_mushroom_enoki_stem", Material.PLANTS);
-
+        super("enoki_mushroom_stem", Material.PLANTS);
         setSoundType(SoundType.WOOD);
         setHardness(0.4F);
     }
@@ -78,12 +77,12 @@ public class BlockEnokiMushroomStem extends BlockNetherEx
         Block block4 = world.getBlockState(pos.south()).getBlock();
         Block block5 = world.getBlockState(pos.west()).getBlock();
 
-        return state.withProperty(DOWN, block == this || block == NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP)
-                .withProperty(UP, block1 == this || block1 == Blocks.NETHERRACK || block1 == NetherExBlocks.BLOCK_NETHERRACK || block1 == NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP)
-                .withProperty(NORTH, block2 == this || block2 == NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP)
-                .withProperty(EAST, block3 == this || block3 == NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP)
-                .withProperty(SOUTH, block4 == this || block4 == NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP)
-                .withProperty(WEST, block5 == this || block5 == NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP);
+        return state.withProperty(DOWN, block == this || block == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(UP, block1 == this || block1 == Blocks.NETHERRACK || block1 == NetherExBlocks.NETHERRACK || block1 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(NORTH, block2 == this || block2 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(EAST, block3 == this || block3 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(SOUTH, block4 == this || block4 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(WEST, block5 == this || block5 == NetherExBlocks.ENOKI_MUSHROOM_CAP);
     }
 
     @Override
@@ -231,7 +230,7 @@ public class BlockEnokiMushroomStem extends BlockNetherEx
 
                 IBlockState state1 = wordIn.getBlockState(blockpos.up());
 
-                if(state1.getBlock() == this || state1.getBlock() == Blocks.NETHERRACK || state1 == NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
+                if(state1.getBlock() == this || state1.getBlock() == Blocks.NETHERRACK || state1 == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
                 {
                     return true;
                 }
@@ -239,6 +238,6 @@ public class BlockEnokiMushroomStem extends BlockNetherEx
         }
 
         IBlockState state2 = wordIn.getBlockState(pos.up());
-        return state2.getBlock() == this || state2.getBlock() == Blocks.NETHERRACK || state2 == NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
+        return state2.getBlock() == this || state2.getBlock() == Blocks.NETHERRACK || state2 == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
     }
 }

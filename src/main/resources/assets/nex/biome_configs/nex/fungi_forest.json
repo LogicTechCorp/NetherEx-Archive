@@ -3,10 +3,10 @@
     "weight": 4,
     "climate": "cool",
     "floorTopBlock": {
-        "block": "nex:block_hyphae"
+        "block": "nex:hyphae"
     },
     "floorFillerBlock": {
-        "block": "nex:block_netherrack",
+        "block": "nex:netherrack",
         "properties": {
             "type": "lively"
         }

@@ -40,8 +40,7 @@ public class BlockBoneSliver extends BlockNetherEx
 
     public BlockBoneSliver()
     {
-        super("block_bone_sliver", Material.ROCK);
-
+        super("bone_sliver", Material.ROCK);
         setHardness(2.0F);
         setResistance(5.0F);
     }

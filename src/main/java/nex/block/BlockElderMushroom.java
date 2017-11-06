@@ -52,8 +52,7 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
 
     public BlockElderMushroom()
     {
-        super("plant_mushroom_elder", Material.PLANTS);
-
+        super("elder_mushroom", Material.PLANTS);
         setSoundType(SoundType.PLANT);
     }
 

@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "fiery": {
+                "textures": {
+                    "all": "nex:blocks/fiery_nether_brick"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "all": "nex:blocks/icy_nether_brick"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "all": "nex:blocks/lively_nether_brick"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "all": "nex:blocks/gloomy_nether_brick"
+                }
+            }
+        }
+    }
+}

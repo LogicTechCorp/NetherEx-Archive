@@ -66,8 +66,7 @@ public class BlockNetherPortal extends BlockNetherEx
 
     public BlockNetherPortal()
     {
-        super("block_portal_nether", Material.PORTAL);
-
+        super("nether_portal", Material.PORTAL);
         setSoundType(SoundType.GLASS);
         setLightLevel(0.75F);
         setTickRandomly(true);
@@ -379,7 +378,7 @@ public class BlockNetherPortal extends BlockNetherEx
 
             if(!portalBlocks.contains(newPos))
             {
-                if(world.isAirBlock(newPos) || world.getBlockState(newPos).getBlock() == NetherExBlocks.BLOCK_FIRE_BLUE)
+                if(world.isAirBlock(newPos) || world.getBlockState(newPos).getBlock() == NetherExBlocks.BLUE_FIRE)
                 {
                     int neighborBlocks = getNeighborBlocks(world, newPos, portalBlocks, axis);
 
@@ -457,6 +456,6 @@ public class BlockNetherPortal extends BlockNetherEx
     private boolean isPortalPart(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
-        return BlockUtil.isOreDict("obsidian", block) || block == NetherExBlocks.BLOCK_FIRE_BLUE || block == this;
+        return BlockUtil.isOreDict("obsidian", block) || block == NetherExBlocks.BLUE_FIRE || block == this;
     }
 }

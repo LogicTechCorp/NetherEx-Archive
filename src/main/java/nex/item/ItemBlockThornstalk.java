@@ -24,8 +24,7 @@ public class ItemBlockThornstalk extends ItemBlockNetherEx
 {
     public ItemBlockThornstalk()
     {
-        super(NetherExBlocks.PLANT_THORNSTALK);
-
+        super(NetherExBlocks.THORNSTALK);
         setHasSubtypes(true);
     }
 }

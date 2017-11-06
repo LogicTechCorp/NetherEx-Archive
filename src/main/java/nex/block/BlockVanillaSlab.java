@@ -37,8 +37,7 @@ public class BlockVanillaSlab extends BlockNetherExSlab
 
     public BlockVanillaSlab()
     {
-        super("slab_vanilla", Material.ROCK);
-
+        super("vanilla_slab", Material.ROCK);
         setHardness(2.0F);
         setResistance(10F);
     }
@@ -67,7 +66,7 @@ public class BlockVanillaSlab extends BlockNetherExSlab
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NetherExBlocks.SLAB_VANILLA);
+        return Item.getItemFromBlock(NetherExBlocks.VANILLA_SLAB);
     }
 
     @Override

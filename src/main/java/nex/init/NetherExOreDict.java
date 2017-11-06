@@ -25,7 +25,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static nex.init.NetherExBlocks.*;
-import static nex.init.NetherExItems.ITEM_BRICK_NETHER;
+import static nex.init.NetherExItems.*;
 
 @SuppressWarnings("ConstantConditions")
 public class NetherExOreDict
@@ -38,35 +38,36 @@ public class NetherExOreDict
 
         for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
         {
-            addOreDictEntry("stoneBasalt", new ItemStack(BLOCK_BASALT, 1, type.ordinal()));
+            addOreDictEntry("stoneBasalt", new ItemStack(BASALT, 1, type.ordinal()));
 
             if(type.ordinal() == 1)
             {
-                addOreDictEntry("stoneBasaltPolished", new ItemStack(BLOCK_BASALT, 1, type.ordinal()));
+                addOreDictEntry("stoneBasaltPolished", new ItemStack(BASALT, 1, type.ordinal()));
             }
             else if(type.ordinal() == 2 || type.ordinal() == 3)
             {
-                addOreDictEntry("stoneBasaltBrick", new ItemStack(BLOCK_BASALT, 1, type.ordinal()));
+                addOreDictEntry("stoneBasaltBrick", new ItemStack(BASALT, 1, type.ordinal()));
             }
         }
 
-        addOreDictEntry("blockGlass", new ItemStack(BLOCK_GLASS_SOUL, 1, 0));
-        addOreDictEntry("paneGlass", new ItemStack(BLOCK_GLASS_PANE_SOUL, 1, 0));
+        addOreDictEntry("blockGlass", new ItemStack(SOUL_GLASS, 1, 0));
+        addOreDictEntry("paneGlass", new ItemStack(SOUL_GLASS_PANE, 1, 0));
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
-            addOreDictEntry("netherrack", new ItemStack(BLOCK_NETHERRACK, 1, type.ordinal()));
+            addOreDictEntry("netherrack", new ItemStack(NETHERRACK, 1, type.ordinal()));
             addOreDictEntry("ingotBrickNether", new ItemStack(ITEM_BRICK_NETHER, 1, type.ordinal()));
-            addOreDictEntry("oreQuartz", new ItemStack(ORE_QUARTZ, 1, type.ordinal()));
+            addOreDictEntry("oreQuartz", new ItemStack(QUARTZ_ORE, 1, type.ordinal()));
         }
 
-        addOreDictEntry("oreAmethyst", new ItemStack(NetherExBlocks.ORE_AMETHYST, 1, 0));
-        addOreDictEntry("blockAmethyst", new ItemStack(NetherExBlocks.BLOCK_AMETHYST, 1, 0));
-        addOreDictEntry("gemAmethyst", new ItemStack(NetherExItems.ITEM_CRYSTAL_AMETHYST, 1, 0));
-        addOreDictEntry("oreRime", new ItemStack(NetherExBlocks.ORE_RIME, 1, 0));
-        addOreDictEntry("blockRime", new ItemStack(NetherExBlocks.BLOCK_RIME, 1, 0));
-        addOreDictEntry("gemRime", new ItemStack(NetherExItems.ITEM_CRYSTAL_RIME, 1, 0));
-        addOreDictEntry("dyeBlack", new ItemStack(NetherExItems.ITEM_DUST_WITHER, 1, 0));
+        addOreDictEntry("oreAmethyst", new ItemStack(GEM_ORE, 1, 0));
+        addOreDictEntry("blockAmethyst", new ItemStack(GEM_BLOCK, 1, 0));
+        addOreDictEntry("gemAmethyst", new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0));
+        addOreDictEntry("oreRime", new ItemStack(RIME_ORE, 1, 0));
+        addOreDictEntry("blockRime", new ItemStack(RIME_BLOCK, 1, 0));
+        addOreDictEntry("gemRime", new ItemStack(ITEM_CRYSTAL_RIME, 1, 0));
+        addOreDictEntry("boneWithered", new ItemStack(ITEM_BONE_WITHER, 1, 0));
+        addOreDictEntry("dyeBlack", new ItemStack(ITEM_DUST_WITHER, 1, 0));
 
         LOGGER.info("Ore Dictionary registration completed.");
     }

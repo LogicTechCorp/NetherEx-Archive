@@ -37,8 +37,7 @@ public class BlockBasaltSlab extends BlockNetherExSlab
 
     public BlockBasaltSlab()
     {
-        super("slab_basalt", Material.ROCK);
-
+        super("basalt_slab", Material.ROCK);
         setHardness(2.0F);
         setResistance(10F);
     }
@@ -67,7 +66,7 @@ public class BlockBasaltSlab extends BlockNetherExSlab
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NetherExBlocks.SLAB_BASALT);
+        return Item.getItemFromBlock(NetherExBlocks.BASALT_SLAB);
     }
 
     @Override

@@ -155,7 +155,7 @@ public class EntityGhastQueen extends EntityGhast
         if(getUrnPos() != BlockPos.ORIGIN)
         {
             getEntityWorld().setBlockToAir(getUrnPos());
-            getEntityWorld().setBlockState(getUrnPos(), NetherExBlocks.TILE_URN_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+            getEntityWorld().setBlockState(getUrnPos(), NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
         }
 
         super.onDeath(cause);

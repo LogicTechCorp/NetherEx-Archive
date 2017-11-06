@@ -1,3 +1,6 @@
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -71,7 +74,7 @@ minecraft {
 
     if(isDev)
     {
-        def modPattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)-(\\w+).(\\d+)</mod_version>")
+        def modPattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
         def modVersion = modPattern.matcher(configText)
         modVersion.find()
 
@@ -79,9 +82,8 @@ minecraft {
         def majorAPI = Integer.parseInt(modVersion.group(2))
         def minor = Integer.parseInt(modVersion.group(3))
         def patch = Integer.parseInt(modVersion.group(4))
-        def dev = modVersion.group(5)
-        def devVersion = Integer.parseInt(modVersion.group(6))
-        project.version = majorMod + "." + majorAPI + "." + minor + "." + patch + "-" + dev + "." + devVersion
+
+        project.version = majorMod + "." + majorAPI + "." + minor + "." + patch + "-DEV-" + buildDateTime()
     }
     else
     {
@@ -95,7 +97,7 @@ minecraft {
         def patch = Integer.parseInt(modVersion.group(4))
         project.version = majorMod + "." + majorAPI + "." + minor + "." + patch
     }
-    
+
     replace "@MOD_VERSION@", project.version
     makeObfSourceJar = false
 }
@@ -210,6 +212,11 @@ task getModData << {
 
     project.archivesBaseName = modName + "-" + mcVersion
     project.group = group
+}
+
+def buildDateTime() {
+    def formatter = DateTimeFormatter.ofPattern("'D'yyyyMMdd'T'HHmmss")
+    return formatter.format(LocalDateTime.now(ZoneId.of("GMT")))
 }
 
 build.dependsOn getModData

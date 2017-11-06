@@ -31,8 +31,7 @@ public class BlockVanillaFence extends BlockNetherExFence
 
     public BlockVanillaFence()
     {
-        super("fence_vanilla", Material.ROCK);
-
+        super("vanilla_fence", Material.ROCK);
         setHardness(1.5F);
         setResistance(10.0F);
     }

@@ -50,8 +50,7 @@ public class BlockThornstalk extends BlockNetherEx
 
     public BlockThornstalk()
     {
-        super("plant_thornstalk", Material.PLANTS);
-
+        super("thornstalk", Material.PLANTS);
         setSoundType(SoundType.PLANT);
         setHardness(0.0F);
     }

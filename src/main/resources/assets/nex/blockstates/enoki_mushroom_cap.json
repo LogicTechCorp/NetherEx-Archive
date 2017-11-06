@@ -1,0 +1,115 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "normal": [
+            {
+                "model": "nex:enoki_mushroom_cap0"
+            }
+        ],
+        "age=0": [
+            {
+                "model": "nex:enoki_mushroom_cap0"
+            },
+            {
+                "model": "nex:enoki_mushroom_cap0",
+                "y": 90
+            },
+            {
+                "model": "nex:enoki_mushroom_cap0",
+                "y": 180
+            },
+            {
+                "model": "nex:enoki_mushroom_cap0",
+                "y": 270
+            }
+        ],
+        "age=1": [
+            {
+                "model": "nex:enoki_mushroom_cap1"
+            },
+            {
+                "model": "nex:enoki_mushroom_cap1",
+                "y": 90
+            },
+            {
+                "model": "nex:enoki_mushroom_cap1",
+                "y": 180
+            },
+            {
+                "model": "nex:enoki_mushroom_cap1",
+                "y": 270
+            }
+        ],
+        "age=2": [
+            {
+                "model": "nex:enoki_mushroom_cap2"
+            },
+            {
+                "model": "nex:enoki_mushroom_cap2",
+                "y": 90
+            },
+            {
+                "model": "nex:enoki_mushroom_cap2",
+                "y": 180
+            },
+            {
+                "model": "nex:enoki_mushroom_cap2",
+                "y": 270
+            }
+        ],
+        "age=3": [
+            {
+                "model": "nex:enoki_mushroom_cap3"
+            },
+            {
+                "model": "nex:enoki_mushroom_cap3",
+                "y": 90
+            },
+            {
+                "model": "nex:enoki_mushroom_cap3",
+                "y": 180
+            },
+            {
+                "model": "nex:enoki_mushroom_cap3",
+                "y": 270
+            }
+        ],
+        "age=4": [
+            {
+                "model": "nex:enoki_mushroom_cap4"
+            },
+            {
+                "model": "nex:enoki_mushroom_cap4",
+                "y": 90
+            },
+            {
+                "model": "nex:enoki_mushroom_cap4",
+                "y": 180
+            },
+            {
+                "model": "nex:enoki_mushroom_cap4",
+                "y": 270
+            }
+        ],
+        "age=5": [
+            {
+                "model": "nex:enoki_mushroom_cap5"
+            },
+            {
+                "model": "nex:enoki_mushroom_cap5",
+                "y": 90
+            },
+            {
+                "model": "nex:enoki_mushroom_cap5",
+                "y": 180
+            },
+            {
+                "model": "nex:enoki_mushroom_cap5",
+                "y": 270
+            }
+        ]
+    }
+}

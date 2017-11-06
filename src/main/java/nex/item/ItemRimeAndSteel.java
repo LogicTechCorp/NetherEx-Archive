@@ -54,13 +54,13 @@ public class ItemRimeAndSteel extends ItemNetherEx
             if(world.isAirBlock(pos))
             {
                 world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-                world.setBlockState(pos, NetherExBlocks.BLOCK_FIRE_BLUE.getDefaultState(), 11);
+                world.setBlockState(pos, NetherExBlocks.BLUE_FIRE.getDefaultState(), 11);
 
                 for(EnumFacing checkFacing : EnumFacing.values())
                 {
                     if(BlockUtil.isOreDict("obsidian", world.getBlockState(pos.offset(checkFacing)).getBlock()))
                     {
-                        NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos);
+                        NetherExBlocks.NETHER_PORTAL.trySpawnPortal(world, pos);
                     }
                 }
             }

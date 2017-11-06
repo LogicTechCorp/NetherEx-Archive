@@ -105,7 +105,7 @@ public class ItemBoneHoe extends ItemNetherExHoe
 
                 if(block == Blocks.SOUL_SAND)
                 {
-                    setBlock(stack, player, world, pos, NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState());
+                    setBlock(stack, player, world, pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState());
                     return EnumActionResult.SUCCESS;
                 }
             }

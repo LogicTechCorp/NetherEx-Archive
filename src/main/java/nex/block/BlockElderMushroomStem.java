@@ -40,8 +40,7 @@ public class BlockElderMushroomStem extends BlockNetherEx
 
     public BlockElderMushroomStem()
     {
-        super("plant_mushroom_elder_stem", Material.WOOD);
-
+        super("elder_mushroom_stem", Material.WOOD);
         setSoundType(SoundType.WOOD);
         setHardness(0.2F);
     }

@@ -37,8 +37,7 @@ public class BlockNetherBrickSlab extends BlockNetherExSlab
 
     public BlockNetherBrickSlab()
     {
-        super("slab_brick_nether", Material.ROCK);
-
+        super("nether_brick_slab", Material.ROCK);
         setHardness(2.0F);
         setResistance(10F);
     }
@@ -67,7 +66,7 @@ public class BlockNetherBrickSlab extends BlockNetherExSlab
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NetherExBlocks.SLAB_BRICK_NETHER);
+        return Item.getItemFromBlock(NetherExBlocks.NETHER_BRICK_SLAB);
     }
 
     @Override

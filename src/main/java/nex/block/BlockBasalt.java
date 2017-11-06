@@ -32,8 +32,7 @@ public class BlockBasalt extends BlockNetherEx
 
     public BlockBasalt()
     {
-        super("block_basalt", Material.ROCK);
-
+        super("basalt", Material.ROCK);
         setHardness(1.5F);
         setResistance(10.0F);
     }

@@ -27,8 +27,7 @@ public class ItemBlockQuartzOre extends ItemBlockNetherEx
 {
     public ItemBlockQuartzOre()
     {
-        super(NetherExBlocks.ORE_QUARTZ);
-
+        super(NetherExBlocks.QUARTZ_ORE);
         setHasSubtypes(true);
     }
 

@@ -45,13 +45,13 @@ public class NetherExRecipes
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
-            addSmelting(new ItemStack(ITEM_BRICK_NETHER, 1, type.ordinal()), new ItemStack(BLOCK_NETHERRACK, 1, type.ordinal()), 0.5F);
+            addSmelting(new ItemStack(ITEM_BRICK_NETHER, 1, type.ordinal()), new ItemStack(NETHERRACK, 1, type.ordinal()), 0.5F);
         }
 
-        addSmelting(new ItemStack(BLOCK_GLASS_SOUL, 1, 0), new ItemStack(SOUL_SAND, 1, 0), 0.5F);
-        addSmelting(new ItemStack(QUARTZ, 1, 0), new ItemStack(ORE_QUARTZ, 1, 0), 0.0F);
-        addSmelting(new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0), new ItemStack(ORE_AMETHYST, 1, 0), 0.0F);
-        addSmelting(new ItemStack(ITEM_CRYSTAL_RIME, 1, 0), new ItemStack(ORE_RIME, 1, 0), 0.0F);
+        addSmelting(new ItemStack(SOUL_GLASS, 1, 0), new ItemStack(SOUL_SAND, 1, 0), 0.5F);
+        addSmelting(new ItemStack(QUARTZ, 1, 0), new ItemStack(QUARTZ_ORE, 1, 0), 0.0F);
+        addSmelting(new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0), new ItemStack(GEM_ORE, 1, 0), 0.0F);
+        addSmelting(new ItemStack(ITEM_CRYSTAL_RIME, 1, 0), new ItemStack(RIME_ORE, 1, 0), 0.0F);
         addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
         addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(MAGMA_CREAM, 1, 0), 0.5F);
 

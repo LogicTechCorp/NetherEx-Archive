@@ -33,8 +33,7 @@ public class BlockRimeOre extends BlockNetherEx
 {
     public BlockRimeOre()
     {
-        super("ore_rime", Material.ROCK);
-
+        super("rime_ore", Material.ROCK);
         setLightLevel(0.625F);
         setHardness(3.0F);
         setResistance(5.0F);

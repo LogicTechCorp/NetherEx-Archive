@@ -31,8 +31,7 @@ public class BlockBasaltFence extends BlockNetherExFence
 
     public BlockBasaltFence()
     {
-        super("fence_basalt", Material.ROCK);
-
+        super("basalt_fence", Material.ROCK);
         setHardness(1.5F);
         setResistance(10.0F);
     }

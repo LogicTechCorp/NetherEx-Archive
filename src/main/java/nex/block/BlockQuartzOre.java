@@ -41,8 +41,7 @@ public class BlockQuartzOre extends BlockNetherEx
 
     public BlockQuartzOre()
     {
-        super("ore_quartz", Material.ROCK);
-
+        super("quartz_ore", Material.ROCK);
         setHardness(3.0F);
         setResistance(5.0F);
     }

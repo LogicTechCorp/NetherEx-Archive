@@ -33,8 +33,7 @@ public class BlockSoulGlass extends BlockNetherEx
 {
     public BlockSoulGlass()
     {
-        super("block_glass_soul", Material.GLASS);
-
+        super("soul_glass", Material.GLASS);
         setSoundType(SoundType.GLASS);
         setLightOpacity(255);
         setHardness(0.3F);

@@ -1,0 +1,14 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "nex:items/salamander_hide_chestplate"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "variant": 1
+            },
+            "model": "nex:item/salamander_hide_chestplate_variant"
+        }
+    ]
+}

@@ -634,7 +634,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private boolean canPickupItem(Item itemIn)
     {
-        return itemIn == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) || itemIn == NetherExItems.FOOD_MUSHROOM_ENOKI;
+        return itemIn == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) || itemIn == NetherExItems.FOOD_MUSHROOM_ENOKI;
     }
 
     private boolean hasEnoughItems(int multiplier)
@@ -645,7 +645,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
             if(!stack.isEmpty())
             {
-                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 32 * multiplier))
+                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 32 * multiplier))
                 {
                     return true;
                 }
@@ -693,7 +693,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
                 if(!stack.isEmpty())
                 {
-                    if(stack.getItem() == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) && stack.getCount() >= 4)
+                    if(stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4)
                     {
                         flag = true;
                         inventory.decrStackSize(i, 3);

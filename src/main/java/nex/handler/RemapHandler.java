@@ -46,6 +46,65 @@ import java.util.function.Predicate;
 public class RemapHandler<T extends IForgeRegistryEntry<T>>
 {
     private static final Map<String, String> customNames = ImmutableMap.<String, String>builder()
+            .put("block_basalt", "basalt")
+            .put("block_netherrack", "netherrack")
+            .put("block_brick_nether", "nether_brick")
+            .put("block_netherrack_path", "netherrack_path")
+            .put("block_hyphae", "hyphae")
+            .put("block_sand_soul_tilled", "tilled_soul_sand")
+            .put("block_glass_soul", "soul_glass")
+            .put("block_glass_pane_soul", "soul_glass_pane")
+            .put("block_amethyst", "gem_block")
+            .put("block_rime", "rime_block")
+            .put("block_ice_frostburn", "frostburn_ice")
+            .put("block_bone_sliver", "bone_sliver")
+            .put("block_bone_chunk", "bone_chunk")
+            .put("block_iron_worn", "worn_iron")
+            .put("block_fire_blue", "blue_fire")
+            .put("block_portal_nether", "nether_portal")
+            .put("tile_urn_sorrow", "urn_of_sorrow")
+            .put("ore_quartz", "quartz_ore")
+            .put("ore_amethyst", "gem_ore")
+            .put("ore_rime", "rime_ore")
+            .put("plant_thornstalk", "thornstalk")
+            .put("plant_mushroom_elder", "elder_mushroom")
+            .put("plant_mushroom_elder_cap", "elder_mushroom_cap")
+            .put("plant_mushroom_elder_stem", "elder_mushroom_stem")
+            .put("plant_mushroom_enoki_stem", "enoki_mushroom_stem")
+            .put("plant_mushroom_enoki_cap", "enoki_mushroom_cap")
+            .put("fluid_ichor", "ichor")
+            .put("slab_vanilla", "vanilla_slab")
+            .put("slab_basalt", "basalt_slab")
+            .put("slab_brick_nether", "nether_brick_slab")
+            .put("slab_vanilla_double", "vanilla_slab_double")
+            .put("slab_basalt_double", "basalt_slab_double")
+            .put("slab_brick_nether_double", "nether_brick_slab_double")
+            .put("stairs_brick_nether_red", "red_nether_brick_stairs")
+            .put("stairs_basalt_normal", "basalt_stairs")
+            .put("stairs_basalt_smooth", "basalt_smooth_stairs")
+            .put("stairs_basalt_brick", "basalt_brick_stairs")
+            .put("stairs_basalt_pillar", "basalt_pillar_stairs")
+            .put("stairs_brick_nether_fiery", "fiery_nether_brick_stairs")
+            .put("stairs_brick_nether_icy", "icy_nether_brick_stairs")
+            .put("stairs_brick_nether_lively", "lively_nether_brick_stairs")
+            .put("stairs_brick_nether_gloomy", "gloomy_nether_brick_stairs")
+            .put("wall_vanilla", "vanilla_wall")
+            .put("wall_basalt", "basalt_wall")
+            .put("wall_brick_nether", "nether_brick_wall")
+            .put("fence_vanilla", "vanilla_fence")
+            .put("fence_basalt", "basalt_fence")
+            .put("fence_brick_nether", "nether_brick_fence")
+            .put("fence_gate_quartz", "quartz_fence_gate")
+            .put("fence_gate_brick_nether", "nether_brick_fence_gate")
+            .put("fence_gate_brick_nether_red", "red_nether_brick_fence_gate")
+            .put("fence_gate_basalt_normal", "basalt_fence_gate")
+            .put("fence_gate_basalt_smooth", "basalt_smooth_fence_gate")
+            .put("fence_gate_basalt_brick", "basalt_brick_fence_gate")
+            .put("fence_gate_basalt_pillar", "basalt_pillar_fence_gate")
+            .put("fence_gate_brick_nether_fiery", "fiery_nether_brick_fence_gate")
+            .put("fence_gate_brick_nether_icy", "icy_nether_brick_fence_gate")
+            .put("fence_gate_brick_nether_lively", "lively_nether_brick_fence_gate")
+            .put("fence_gate_brick_nether_gloomy", "gloomy_nether_brick_fence_gate")
             .build();
 
     private final List<Predicate<RegistryEvent.MissingMappings.Mapping<T>>> remappingFunctions = ImmutableList.of(this::remapRegistryName);
@@ -58,13 +117,13 @@ public class RemapHandler<T extends IForgeRegistryEntry<T>>
 
         for(RegistryEvent.MissingMappings.Mapping<T> missingMapping : missingMappings)
         {
-            LOGGER.info("Trying to remap %s", missingMapping.key);
+            LOGGER.info("Trying to remap {}", missingMapping.key);
 
             boolean remapped = remappingFunctions.stream().anyMatch(mappingPredicate -> mappingPredicate.test(missingMapping));
 
             if(!remapped)
             {
-                LOGGER.info("Couldn't remap %s", missingMapping.key);
+                LOGGER.info("Couldn't remap {}", missingMapping.key);
             }
         }
 
@@ -79,7 +138,7 @@ public class RemapHandler<T extends IForgeRegistryEntry<T>>
 
         if(registry.containsKey(registryName) && value != null)
         {
-            LOGGER.info("Remapped %s %s to %s", registry.getRegistrySuperType().getSimpleName(), missingMapping.key, registryName);
+            LOGGER.info("Remapped {} {} to {}", registry.getRegistrySuperType().getSimpleName(), missingMapping.key, registryName);
             missingMapping.remap(value);
             return true;
         }

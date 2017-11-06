@@ -30,9 +30,7 @@ public class ItemBlockNetherExSlab extends ItemSlab
     public ItemBlockNetherExSlab(Block block, BlockSlab singleSlab, BlockSlab doubleSlab)
     {
         super(block, singleSlab, doubleSlab);
-
         slab = (BlockNetherExSlab) block;
-
         setRegistryName(block.getRegistryName().toString());
     }
 

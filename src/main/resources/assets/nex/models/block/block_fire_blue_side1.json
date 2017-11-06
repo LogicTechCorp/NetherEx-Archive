@@ -1,7 +1,0 @@
-{
-    "parent": "block/fire_side",
-    "textures": {
-        "particle": "nex:blocks/block_fire_blue_layer_1",
-        "fire": "nex:blocks/block_fire_blue_layer_1"
-    }
-}

@@ -47,8 +47,7 @@ public class BlockBoneChunk extends BlockNetherEx
 
     public BlockBoneChunk()
     {
-        super("block_bone_chunk", Material.ROCK);
-
+        super("bone_chunk", Material.ROCK);
         setHardness(2.0F);
         setResistance(5.0F);
     }

@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "fiery": {
+                "textures": {
+                    "all": "nex:blocks/fiery_quartz_ore"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "all": "nex:blocks/icy_quartz_ore"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "all": "nex:blocks/lively_quartz_ore"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "all": "nex:blocks/gloomy_quartz_ore"
+                }
+            }
+        }
+    }
+}

@@ -33,8 +33,7 @@ public class ItemBlockElderMushroom extends ItemBlockFood
 {
     public ItemBlockElderMushroom()
     {
-        super(NetherExBlocks.PLANT_MUSHROOM_ELDER, 0, 0.0F, false);
-
+        super(NetherExBlocks.ELDER_MUSHROOM, 0, 0.0F, false);
         setHasSubtypes(true);
     }
 

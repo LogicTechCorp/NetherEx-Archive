@@ -50,8 +50,7 @@ public class BlockBlueFire extends BlockNetherEx
 
     public BlockBlueFire()
     {
-        super("block_fire_blue", Material.FIRE);
-
+        super("blue_fire", Material.FIRE);
         setLightLevel(1.0F);
         setTickRandomly(true);
         setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));

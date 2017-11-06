@@ -24,6 +24,6 @@ public class ItemBlockVanillaSlab extends ItemBlockNetherExSlab
 {
     public ItemBlockVanillaSlab(boolean isDouble)
     {
-        super(!isDouble ? NetherExBlocks.SLAB_VANILLA : NetherExBlocks.SLAB_VANILLA_DOUBLE, NetherExBlocks.SLAB_VANILLA, NetherExBlocks.SLAB_VANILLA_DOUBLE);
+        super(!isDouble ? NetherExBlocks.VANILLA_SLAB : NetherExBlocks.VANILLA_SLAB_DOUBLE, NetherExBlocks.VANILLA_SLAB, NetherExBlocks.VANILLA_SLAB_DOUBLE);
     }
 }

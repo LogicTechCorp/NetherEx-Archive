@@ -27,8 +27,7 @@ public class ItemBlockVanillaWall extends ItemBlockNetherEx
 {
     public ItemBlockVanillaWall()
     {
-        super(NetherExBlocks.WALL_VANILLA);
-
+        super(NetherExBlocks.VANILLA_WALL);
         setHasSubtypes(true);
     }
 

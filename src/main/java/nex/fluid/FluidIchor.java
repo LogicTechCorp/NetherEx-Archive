@@ -21,8 +21,7 @@ public class FluidIchor extends FluidNetherEx
 {
     public FluidIchor()
     {
-        super("ichor");
-
+        super("blood", "ichor");
         setViscosity(3500);
     }
 }

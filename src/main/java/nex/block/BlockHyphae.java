@@ -39,8 +39,7 @@ public class BlockHyphae extends BlockNetherEx
 {
     public BlockHyphae()
     {
-        super("block_hyphae", Material.ROCK);
-
+        super("hyphae", Material.ROCK);
         setHardness(0.6F);
 
         if(ConfigHandler.block.hyphae.doesSpread)
@@ -66,7 +65,7 @@ public class BlockHyphae extends BlockNetherEx
         {
             if(world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2)
             {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
             }
             else
             {
@@ -78,7 +77,7 @@ public class BlockHyphae extends BlockNetherEx
                         IBlockState blockState = world.getBlockState(newPos);
                         IBlockState blockState1 = world.getBlockState(newPos.up());
 
-                        if(blockState.getBlock() == NetherExBlocks.BLOCK_NETHERRACK && blockState.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && blockState1.getLightOpacity(world, newPos.up()) <= 2)
+                        if(blockState.getBlock() == NetherExBlocks.NETHERRACK && blockState.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && blockState1.getLightOpacity(world, newPos.up()) <= 2)
                         {
                             world.setBlockState(newPos, getDefaultState());
                         }
@@ -91,7 +90,7 @@ public class BlockHyphae extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NetherExBlocks.BLOCK_NETHERRACK);
+        return Item.getItemFromBlock(NetherExBlocks.NETHERRACK);
     }
 
     @Override

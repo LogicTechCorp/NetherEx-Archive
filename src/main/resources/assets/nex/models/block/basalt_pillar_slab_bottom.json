@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "nex:blocks/basalt_pillar_end",
+        "top": "nex:blocks/basalt_pillar_end",
+        "side": "nex:blocks/basalt_pillar_side"
+    }
+}

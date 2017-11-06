@@ -32,11 +32,9 @@ public class BlockBasaltWall extends BlockNetherExWall
 
     public BlockBasaltWall()
     {
-        super("wall_basalt", Material.ROCK);
-
+        super("basalt_wall", Material.ROCK);
         ((DualBlockStateContainer) blockState).destroySuper();
         setDefaultState(blockState.getBaseState());
-
         setHardness(1.5F);
         setResistance(10.0F);
     }

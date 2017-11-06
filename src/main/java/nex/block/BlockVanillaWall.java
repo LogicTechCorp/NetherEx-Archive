@@ -32,11 +32,9 @@ public class BlockVanillaWall extends BlockNetherExWall
 
     public BlockVanillaWall()
     {
-        super("wall_vanilla", Material.ROCK);
-
+        super("vanilla_wall", Material.ROCK);
         ((DualBlockStateContainer) blockState).destroySuper();
         setDefaultState(blockState.getBaseState());
-
         setHardness(1.5F);
         setResistance(10.0F);
     }

@@ -34,11 +34,8 @@ public class BlockNetherExWall extends BlockWall
     public BlockNetherExWall(String name, Material material)
     {
         super(Blocks.PLANKS);
-
         ReflectionHelper.setPrivateValue(Block.class, this, material.getMaterialMapColor(), "field_181083_K", "blockMapColor");
-
         useNeighborBrightness = true;
-
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setSoundType(SoundType.STONE);
         setRegistryName(NetherEx.MOD_ID + ":" + name);

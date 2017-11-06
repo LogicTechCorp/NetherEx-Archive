@@ -26,7 +26,12 @@ public class FluidNetherEx extends Fluid
 {
     public FluidNetherEx(String fluidName)
     {
-        super(fluidName, new ResourceLocation("nex:blocks/fluid_" + fluidName + "_still"), new ResourceLocation("nex:blocks/fluid_" + fluidName + "_flow"));
+        this(fluidName, fluidName);
+    }
+
+    public FluidNetherEx(String fluidName, String textureName)
+    {
+        super(fluidName, new ResourceLocation("nex:blocks/fluid_" + textureName + "_still"), new ResourceLocation("nex:blocks/fluid_" + textureName + "_flow"));
 
         FluidRegistry.registerFluid(this);
         FluidRegistry.addBucketForFluid(this);

@@ -27,8 +27,7 @@ public class ItemBlockElderMushroomCap extends ItemBlockNetherEx
 {
     public ItemBlockElderMushroomCap()
     {
-        super(NetherExBlocks.PLANT_MUSHROOM_ELDER_CAP);
-
+        super(NetherExBlocks.ELDER_MUSHROOM_CAP);
         setHasSubtypes(true);
     }
 

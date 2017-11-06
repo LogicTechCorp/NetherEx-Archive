@@ -111,7 +111,7 @@ public class WorldGenElderMushroom extends WorldGenerator
                 BlockPos newPos = pos.add(posX, 0, posZ);
                 IBlockState state = world.getBlockState(newPos);
 
-                if(!state.getBlock().canSustainPlant(state, world, newPos, EnumFacing.UP, NetherExBlocks.PLANT_MUSHROOM_ELDER) && state.getBlock() != Blocks.SOUL_SAND)
+                if(!state.getBlock().canSustainPlant(state, world, newPos, EnumFacing.UP, NetherExBlocks.ELDER_MUSHROOM) && state.getBlock() != Blocks.SOUL_SAND)
                 {
                     return false;
                 }
@@ -145,7 +145,7 @@ public class WorldGenElderMushroom extends WorldGenerator
                     {
                         airAmount += 1.0F;
                     }
-                    else if(block == Blocks.NETHERRACK || block == Blocks.GLOWSTONE || block == NetherExBlocks.BLOCK_NETHERRACK || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_CAP || block == NetherExBlocks.PLANT_MUSHROOM_ELDER_STEM)
+                    else if(block == Blocks.NETHERRACK || block == Blocks.GLOWSTONE || block == NetherExBlocks.NETHERRACK || block == NetherExBlocks.ELDER_MUSHROOM_CAP || block == NetherExBlocks.ELDER_MUSHROOM_STEM)
                     {
                         return false;
                     }

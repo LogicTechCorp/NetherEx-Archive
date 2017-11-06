@@ -45,8 +45,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
 
     public BlockEnokiMushroomCap()
     {
-        super("plant_mushroom_enoki_cap", Material.PLANTS);
-
+        super("enoki_mushroom_cap", Material.PLANTS);
         setSoundType(SoundType.WOOD);
         setHardness(0.4F);
         setTickRandomly(true);
@@ -73,11 +72,11 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
                     boolean flag1 = false;
                     Block block = world.getBlockState(pos.up()).getBlock();
 
-                    if(block == Blocks.NETHERRACK || block == NetherExBlocks.BLOCK_NETHERRACK)
+                    if(block == Blocks.NETHERRACK || block == NetherExBlocks.NETHERRACK)
                     {
                         flag = true;
                     }
-                    else if(block == NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM)
+                    else if(block == NetherExBlocks.ENOKI_MUSHROOM_STEM)
                     {
                         int j = 1;
 
@@ -85,9 +84,9 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
                         {
                             Block block1 = world.getBlockState(pos.up(j + 1)).getBlock();
 
-                            if(block1 != NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM)
+                            if(block1 != NetherExBlocks.ENOKI_MUSHROOM_STEM)
                             {
-                                if(block1 == Blocks.NETHERRACK || block1 == NetherExBlocks.BLOCK_NETHERRACK)
+                                if(block1 == Blocks.NETHERRACK || block1 == NetherExBlocks.NETHERRACK)
                                 {
                                     flag1 = true;
                                 }
@@ -117,7 +116,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
 
                     if(flag && areAllNeighborsEmpty(world, blockpos, null) && world.isAirBlock(pos.down(2)))
                     {
-                        world.setBlockState(pos, NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);
+                        world.setBlockState(pos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
                         placeGrownCap(world, blockpos, i);
                     }
                     else if(i < 4)
@@ -144,7 +143,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
 
                         if(flag2)
                         {
-                            world.setBlockState(pos, NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);
+                            world.setBlockState(pos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
                         }
                         else
                         {
@@ -223,7 +222,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
         IBlockState stateUp = world.getBlockState(pos.up());
         Block blockUp = stateUp.getBlock();
 
-        if(blockUp != NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM && stateUp != NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
+        if(blockUp != NetherExBlocks.ENOKI_MUSHROOM_STEM && stateUp != NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
         {
             if(stateUp.getMaterial() == Material.AIR)
             {
@@ -234,7 +233,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
                     IBlockState stateSide = world.getBlockState(pos.offset(facing));
                     Block blockSide = stateSide.getBlock();
 
-                    if(blockSide == NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM)
+                    if(blockSide == NetherExBlocks.ENOKI_MUSHROOM_STEM)
                     {
                         i++;
                     }
@@ -273,7 +272,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
     public static void generatePlant(World world, BlockPos pos, Random rand, int x)
     {
         BlockPos newPos = !world.isAirBlock(pos) ? pos.down() : pos;
-        world.setBlockState(newPos, NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);
+        world.setBlockState(newPos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
         growTreeRecursive(world, newPos, rand, newPos, x, 0);
     }
 
@@ -295,7 +294,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
                 return;
             }
 
-            world.setBlockState(blockpos, NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);
+            world.setBlockState(blockpos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
         }
 
         boolean flag = false;
@@ -317,7 +316,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
                 if(Math.abs(blockPos.getX() - pos1.getX()) < x && Math.abs(blockPos.getZ() - pos1.getZ()) < x && world.isAirBlock(blockPos) && world.isAirBlock(blockPos.up()) && areAllNeighborsEmpty(world, blockPos, facing.getOpposite()))
                 {
                     flag = true;
-                    world.setBlockState(blockPos, NetherExBlocks.PLANT_MUSHROOM_ENOKI_STEM.getDefaultState(), 2);
+                    world.setBlockState(blockPos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
                     growTreeRecursive(world, blockPos, rand, pos1, x, z + 1);
                 }
             }
@@ -325,7 +324,7 @@ public class BlockEnokiMushroomCap extends BlockNetherEx
 
         if(!flag)
         {
-            world.setBlockState(pos.down(i), NetherExBlocks.PLANT_MUSHROOM_ENOKI_CAP.getDefaultState().withProperty(AGE, 5), 2);
+            world.setBlockState(pos.down(i), NetherExBlocks.ENOKI_MUSHROOM_CAP.getDefaultState().withProperty(AGE, 5), 2);
         }
     }
 

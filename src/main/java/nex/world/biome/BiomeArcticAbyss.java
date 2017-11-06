@@ -27,7 +27,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     {
         super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
 
-        topBlock = NetherExBlocks.BLOCK_ICE_FROSTBURN.getDefaultState();
-        fillerBlock = NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
+        topBlock = NetherExBlocks.FROSTBURN_ICE.getDefaultState();
+        fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
     }
 }

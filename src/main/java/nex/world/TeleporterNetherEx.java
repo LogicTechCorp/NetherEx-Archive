@@ -112,9 +112,9 @@ public class TeleporterNetherEx extends Teleporter
                     {
                         newPos = checkPos.down();
 
-                        if(world.getBlockState(checkPos).getBlock() == NetherExBlocks.BLOCK_PORTAL_NETHER)
+                        if(world.getBlockState(checkPos).getBlock() == NetherExBlocks.NETHER_PORTAL)
                         {
-                            for(newPos = checkPos.down(); world.getBlockState(newPos).getBlock() == NetherExBlocks.BLOCK_PORTAL_NETHER; newPos = newPos.down())
+                            for(newPos = checkPos.down(); world.getBlockState(newPos).getBlock() == NetherExBlocks.NETHER_PORTAL; newPos = newPos.down())
                             {
                                 checkPos = newPos;
                             }
@@ -381,7 +381,7 @@ public class TeleporterNetherEx extends Teleporter
             }
         }
 
-        IBlockState iblockstate = NetherExBlocks.BLOCK_PORTAL_NETHER.getDefaultState().withProperty(BlockNetherPortal.AXIS, l6 == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
+        IBlockState iblockstate = NetherExBlocks.NETHER_PORTAL.getDefaultState().withProperty(BlockNetherPortal.AXIS, l6 == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
 
         for(int i8 = 0; i8 < 4; ++i8)
         {

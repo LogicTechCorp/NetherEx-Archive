@@ -35,8 +35,7 @@ public class BlockNetherrack extends BlockNetherEx
 
     public BlockNetherrack()
     {
-        super("block_netherrack", Material.ROCK);
-
+        super("netherrack", Material.ROCK);
         setHardness(0.4F);
     }
 

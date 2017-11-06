@@ -55,9 +55,9 @@ public class EnhancedGeneratorThornstalk extends EnhancedGenerator
             BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             Block blockDown = world.getBlockState(newPos.down()).getBlock();
 
-            if(blockDown == Blocks.SOUL_SAND && NetherExBlocks.PLANT_THORNSTALK.canPlaceBlockAt(world, newPos))
+            if(blockDown == Blocks.SOUL_SAND && NetherExBlocks.THORNSTALK.canPlaceBlockAt(world, newPos))
             {
-                NetherExBlocks.PLANT_THORNSTALK.generate(world, rand, newPos);
+                NetherExBlocks.THORNSTALK.generate(world, rand, newPos);
             }
         }
 

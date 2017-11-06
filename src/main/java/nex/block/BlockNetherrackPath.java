@@ -50,8 +50,7 @@ public class BlockNetherrackPath extends BlockNetherEx
 
     public BlockNetherrackPath()
     {
-        super("block_netherrack_path", Material.ROCK);
-
+        super("netherrack_path", Material.ROCK);
         setLightOpacity(255);
         setHardness(0.4F);
     }
@@ -88,7 +87,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             case EAST:
                 IBlockState testState = world.getBlockState(pos.offset(facing));
                 Block block = testState.getBlock();
-                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.BLOCK_NETHERRACK_PATH;
+                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.NETHERRACK_PATH;
             default:
                 return super.shouldSideBeRendered(state, world, pos, facing);
         }
@@ -120,7 +119,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             }
             else
             {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
             }
         }
     }
@@ -136,7 +135,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             }
             else
             {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
             }
         }
     }
@@ -144,7 +143,7 @@ public class BlockNetherrackPath extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return state.getValue(TYPE) == EnumType.NORMAL ? Item.getItemFromBlock(Blocks.NETHERRACK) : Item.getItemFromBlock(NetherExBlocks.BLOCK_NETHERRACK);
+        return state.getValue(TYPE) == EnumType.NORMAL ? Item.getItemFromBlock(Blocks.NETHERRACK) : Item.getItemFromBlock(NetherExBlocks.NETHERRACK);
     }
 
     @Override

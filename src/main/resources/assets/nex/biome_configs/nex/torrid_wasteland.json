@@ -3,13 +3,13 @@
     "weight": 6,
     "climate": "hot",
     "floorTopBlock": {
-        "block": "nex:block_netherrack",
+        "block": "nex:netherrack",
         "properties": {
             "type": "fiery"
         }
     },
     "floorFillerBlock": {
-        "block": "nex:block_netherrack",
+        "block": "nex:netherrack",
         "properties": {
             "type": "fiery"
         }

@@ -68,7 +68,7 @@ public class BlockHandler
 
         if(ConfigHandler.block.soulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
-            if(world.getBlockState(pos.down()) == NetherExBlocks.BLOCK_SAND_SOUL_TILLED.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
+            if(world.getBlockState(pos.down()) == NetherExBlocks.TILLED_SOUL_SAND.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
             {
                 event.setResult(Event.Result.ALLOW);
             }

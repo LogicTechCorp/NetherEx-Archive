@@ -29,8 +29,7 @@ public class BlockWornIron extends BlockNetherEx
 {
     public BlockWornIron()
     {
-        super("block_iron_worn", Material.IRON);
-
+        super("worn_iron", Material.IRON);
         setSoundType(SoundType.METAL);
         setHardness(5.0F);
         setResistance(10.0F);

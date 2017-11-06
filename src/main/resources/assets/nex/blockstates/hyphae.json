@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "normal": [
+            { "model": "nex:hyphae" },
+            { "model": "nex:hyphae", "y": 90 },
+            { "model": "nex:hyphae", "y": 180 },
+            { "model": "nex:hyphae", "y": 270 }
+        ]
+    }
+}

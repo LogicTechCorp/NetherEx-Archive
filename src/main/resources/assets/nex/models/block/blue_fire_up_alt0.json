@@ -1,0 +1,7 @@
+{
+    "parent": "block/fire_up_alt",
+    "textures": {
+        "particle": "nex:blocks/blue_fire_layer_0",
+        "fire": "nex:blocks/blue_fire_layer_0"
+    }
+}
