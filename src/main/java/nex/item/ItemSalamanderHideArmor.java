@@ -34,8 +34,7 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
 {
     public ItemSalamanderHideArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
-        super("armor_" + name + "_hide_salamander", NetherExMaterials.ARMOR_HIDE_SALAMANDER, renderIndex, equipmentSlot);
-
+        super("salamander_hide_" + name, NetherExMaterials.SALAMANDER_HIDE, renderIndex, equipmentSlot);
         addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entity) -> isVariant(stack) ? 1.0F : 0.0F);
     }
 
@@ -54,13 +53,13 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant") ? String.format(NetherEx.MOD_ID + ":textures/models/armor/hide_salamander_variant_layer_%d.png", this == NetherExItems.ARMOR_LEGGINGS_HIDE_SALAMANDER ? 2 : 1) : super.getArmorTexture(stack, entity, slot, type);
+        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant") ? String.format(NetherEx.MOD_ID + ":textures/models/armor/hide_salamander_variant_layer_%d.png", this == NetherExItems.SALAMANDER_HIDE_LEGGINGS ? 2 : 1) : super.getArmorTexture(stack, entity, slot, type);
     }
 
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        return !repair.isEmpty() && repair.getItem() == NetherExItems.ITEM_HIDE_SALAMANDER || super.getIsRepairable(toRepair, repair);
+        return !repair.isEmpty() && repair.getItem() == NetherExItems.SALAMANDER_HIDE || super.getIsRepairable(toRepair, repair);
 
     }
 

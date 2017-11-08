@@ -250,7 +250,7 @@ public class ExplosionSpore extends Explosion
             {
                 for(BlockPos pos : affectedBlockPositions)
                 {
-                    if(world.getBlockState(pos).getMaterial() == Material.AIR && world.getBlockState(pos.down()).isFullBlock() && explosionRNG.nextInt(ConfigHandler.entity.sporeCreeper.chanceOfSporeSpawning) == 0)
+                    if(world.getBlockState(pos).getMaterial() == Material.AIR && world.getBlockState(pos.down()).isFullBlock() && explosionRNG.nextInt(ConfigHandler.entityConfig.sporeCreeper.chanceOfSporeSpawning) == 0)
                     {
                         EntitySpore spore = new EntitySpore(world, 0);
                         spore.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);

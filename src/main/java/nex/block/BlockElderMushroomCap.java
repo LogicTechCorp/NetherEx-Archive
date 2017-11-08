@@ -55,7 +55,7 @@ public class BlockElderMushroomCap extends BlockNetherEx
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     {
-        return player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_AXE_BONE;
+        return player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_AXE;
     }
 
     @Override

@@ -21,6 +21,6 @@ public class ItemGhastQueenTear extends ItemNetherEx
 {
     public ItemGhastQueenTear()
     {
-        super("item_tear_ghast_queen");
+        super("ghast_queen_tear");
     }
 }

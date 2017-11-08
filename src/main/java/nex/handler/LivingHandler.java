@@ -82,7 +82,7 @@ public class LivingHandler
 
         if(world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(canEntityFreeze && !EntityUtil.isFrozen(entity) && world.rand.nextInt(ConfigHandler.biome.arcticAbyss.chanceOfFreezing) == 0)
+            if(canEntityFreeze && !EntityUtil.isFrozen(entity) && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.chanceOfFreezing) == 0)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
@@ -103,7 +103,7 @@ public class LivingHandler
                     entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
                 }
 
-                if(world.rand.nextInt(ConfigHandler.potionEffect.freeze.chanceOfThawing) == 0)
+                if(world.rand.nextInt(ConfigHandler.potionEffectConfig.freeze.chanceOfThawing) == 0)
                 {
                     entity.removePotionEffect(NetherExEffects.FREEZE);
                 }
@@ -121,7 +121,7 @@ public class LivingHandler
                 entity.setSilent(false);
             }
         }
-        if(EntityUtil.canSpreadSpores(entity) && EntityUtil.isSporeInfested(entity) && world.rand.nextInt(ConfigHandler.potionEffect.spore.chanceOfSporeSpawning) == 0)
+        if(EntityUtil.canSpreadSpores(entity) && EntityUtil.isSporeInfested(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.spore.chanceOfSporeSpawning) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
@@ -135,7 +135,7 @@ public class LivingHandler
                 }
             }
         }
-        if(EntityUtil.canSpawnGhastling(entity) && EntityUtil.isLostAfflicted(entity) && world.rand.nextInt(ConfigHandler.potionEffect.lost.chanceOfGhastlingSpawning) == 0)
+        if(EntityUtil.canSpawnGhastling(entity) && EntityUtil.isLostAfflicted(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.lost.chanceOfGhastlingSpawning) == 0)
         {
             BlockPos newPos = pos.add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
 
@@ -161,7 +161,7 @@ public class LivingHandler
 
             if(attacker instanceof AbstractSkeleton)
             {
-                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_BONE_WITHERED))
+                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.WITHER_BONE))
                 {
                     ((AbstractSkeleton) attacker).setAttackTarget(null);
                 }
@@ -188,7 +188,7 @@ public class LivingHandler
 
             if(source.isFireDamage())
             {
-                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_HIDE_SALAMANDER))
+                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
                 {
                     event.setCanceled(true);
                 }
@@ -220,7 +220,7 @@ public class LivingHandler
 
         if(event.getEntity() instanceof EntityGhast)
         {
-            event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.FOOD_MEAT_GHAST_RAW, rand.nextInt(3) + 1, 0)));
+            event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.GHAST_MEAT_RAW, rand.nextInt(3) + 1, 0)));
         }
         else if(event.getEntity() instanceof EntityWitherSkeleton)
         {
@@ -237,7 +237,7 @@ public class LivingHandler
                 }
             }
 
-            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.ITEM_BONE_WITHER, rand.nextInt(3), 0)));
+            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.WITHER_BONE, rand.nextInt(3), 0)));
         }
     }
 }

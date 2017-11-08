@@ -26,7 +26,6 @@ public class ItemNetherExAxe extends ItemAxe
     protected ItemNetherExAxe(String name, ToolMaterial material, float damage, float speed)
     {
         super(material, damage, speed);
-
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));

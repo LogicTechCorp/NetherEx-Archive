@@ -27,8 +27,7 @@ public class ItemSalamanderHide extends ItemNetherEx
 {
     public ItemSalamanderHide()
     {
-        super("item_hide_salamander");
-
+        super("salamander_hide");
         setHasSubtypes(true);
     }
 

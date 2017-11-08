@@ -22,16 +22,18 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
+import nex.util.BlockUtil;
 import nex.util.NBTUtil;
 
-public class ItemBoneShovel extends ItemNetherExShovel
+public class ItemGoldenWitherBoneHammer extends ItemNetherExPickaxe
 {
-    public ItemBoneShovel()
+    public ItemGoldenWitherBoneHammer()
     {
-        super("tool_shovel_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
+        super("golden_wither_bone_hammer", NetherExMaterials.GOLDEN_WITHER_BONE);
     }
 
     @Override
@@ -68,19 +70,29 @@ public class ItemBoneShovel extends ItemNetherExShovel
     @Override
     public void setDamage(ItemStack stack, int damage)
     {
+        boolean isNether = true;
+
         if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
         {
-            if(!stack.getTagCompound().getBoolean("Nether"))
-            {
-                damage += 15;
+            isNether = stack.getTagCompound().getBoolean("Nether");
 
-                if(getDamage(stack) - 16 == 0)
+            if(!isNether)
+            {
+                damage += 63;
+
+                if(getDamage(stack) - 64 == 0)
                 {
                     damage += 1;
                 }
             }
         }
 
-        super.setDamage(stack, damage);
+        super.setDamage(stack, isNether ? damage * 4 : damage);
+    }
+
+    @Override
+    public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player)
+    {
+        return BlockUtil.mine3x3(player.getEntityWorld(), stack, pos, player);
     }
 }

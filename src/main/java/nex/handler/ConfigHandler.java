@@ -46,31 +46,31 @@ public class ConfigHandler
 {
     @Config.Name("client")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":client")
-    public static Client client = new Client();
+    public static ClientConfig clientConfig = new ClientConfig();
 
     @Config.Name("compatibility")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility")
-    public static Compatibility compatibility = new Compatibility();
+    public static CompatibilityConfig compatibilityConfig = new CompatibilityConfig();
 
     @Config.Name("dimension")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension")
-    public static Dimension dimension = new Dimension();
+    public static DimensionConfig dimensionConfig = new DimensionConfig();
 
     @Config.Name("block")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":block")
-    public static Block block = new Block();
+    public static BlockConfig blockConfig = new BlockConfig();
 
     @Config.Name("potion_effect")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect")
-    public static PotionEffect potionEffect = new PotionEffect();
+    public static PotionEffectConfig potionEffectConfig = new PotionEffectConfig();
 
     @Config.Name("entity")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":entity")
-    public static Entity entity = new Entity();
+    public static EntityConfig entityConfig = new EntityConfig();
 
     @Config.Name("biome")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":biome")
-    public static Biome biome = new Biome();
+    public static BiomeConfig biomeConfig = new BiomeConfig();
 
     private static final File CONFIG_DIRECTORY = Loader.instance().getConfigDir();
     private static final List<Tuple<String, String>> PACKED_CONFIGS = Lists.newArrayList();
@@ -79,7 +79,7 @@ public class ConfigHandler
 
     static
     {
-        PACKED_CONFIGS.add(new Tuple<>("biome_configs", "Biome Configs"));
+        PACKED_CONFIGS.add(new Tuple<>("biome_configs", "BiomeConfig Configs"));
         PACKED_CONFIGS.add(new Tuple<>("trade_configs", "Trade Configs"));
 
         unpackConfigs();
@@ -127,7 +127,7 @@ public class ConfigHandler
         NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/" + NetherEx.MOD_ID));
         NetherBiomeManager.parseBiomeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Biome Configs/custom"));
 
-        if(ConfigHandler.compatibility.biomesOPlenty.enableCompat)
+        if(ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompat)
         {
             NetherExCompat.enableBiomesOPlentyCompat(world, CONFIG_DIRECTORY);
         }
@@ -136,7 +136,7 @@ public class ConfigHandler
         TradeManager.parseTradeConfigs(new File(CONFIG_DIRECTORY, "/NetherEx/Trade Configs/custom"));
     }
 
-    public static class Client
+    public static class ClientConfig
     {
         @Config.Name("visual")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":client.visual")
@@ -149,7 +149,7 @@ public class ConfigHandler
         }
     }
 
-    public static class Compatibility
+    public static class CompatibilityConfig
     {
         @Config.Name("biomesoplenty")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesoplenty")
@@ -162,7 +162,7 @@ public class ConfigHandler
         }
     }
 
-    public static class Dimension
+    public static class DimensionConfig
     {
         @Config.Name("nether")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension.nether")
@@ -181,7 +181,7 @@ public class ConfigHandler
         }
     }
 
-    public static class Block
+    public static class BlockConfig
     {
         @Config.Name("nether_portal")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal")
@@ -279,7 +279,7 @@ public class ConfigHandler
         }
     }
 
-    public static class PotionEffect
+    public static class PotionEffectConfig
     {
         @Config.Name("freeze")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze")
@@ -340,7 +340,7 @@ public class ConfigHandler
         }
     }
 
-    public static class Entity
+    public static class EntityConfig
     {
         @Config.Name("ember")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ember")
@@ -483,7 +483,7 @@ public class ConfigHandler
         }
     }
 
-    public static class Biome
+    public static class BiomeConfig
     {
         @Config.Name("hell")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.hell")

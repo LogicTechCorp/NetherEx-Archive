@@ -56,18 +56,18 @@ public class NetherExOreDict
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             addOreDictEntry("netherrack", new ItemStack(NETHERRACK, 1, type.ordinal()));
-            addOreDictEntry("ingotBrickNether", new ItemStack(ITEM_BRICK_NETHER, 1, type.ordinal()));
+            addOreDictEntry("ingotBrickNether", new ItemStack(NetherExItems.NETHERBRICK, 1, type.ordinal()));
             addOreDictEntry("oreQuartz", new ItemStack(QUARTZ_ORE, 1, type.ordinal()));
         }
 
         addOreDictEntry("oreAmethyst", new ItemStack(GEM_ORE, 1, 0));
         addOreDictEntry("blockAmethyst", new ItemStack(GEM_BLOCK, 1, 0));
-        addOreDictEntry("gemAmethyst", new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0));
-        addOreDictEntry("oreRime", new ItemStack(RIME_ORE, 1, 0));
-        addOreDictEntry("blockRime", new ItemStack(RIME_BLOCK, 1, 0));
-        addOreDictEntry("gemRime", new ItemStack(ITEM_CRYSTAL_RIME, 1, 0));
-        addOreDictEntry("boneWithered", new ItemStack(ITEM_BONE_WITHER, 1, 0));
-        addOreDictEntry("dyeBlack", new ItemStack(ITEM_DUST_WITHER, 1, 0));
+        addOreDictEntry("gemAmethyst", new ItemStack(GEM, 1, 0));
+        addOreDictEntry("oreRime", new ItemStack(GEM, 1, 1));
+        addOreDictEntry("blockRime", new ItemStack(GEM, 1, 1));
+        addOreDictEntry("gemRime", new ItemStack(GEM, 1, 1));
+        addOreDictEntry("boneWithered", new ItemStack(WITHER_BONE, 1, 0));
+        addOreDictEntry("dyeBlack", new ItemStack(WITHER_DUST, 1, 0));
 
         LOGGER.info("Ore Dictionary registration completed.");
     }

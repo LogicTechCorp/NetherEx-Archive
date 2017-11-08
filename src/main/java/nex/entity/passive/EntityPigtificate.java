@@ -498,7 +498,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         else
         {
             String entityName = EntityList.getEntityString(this);
-            return I18n.translateToLocal("entity." + entityName + "." + Pigtificate.Career.getFromIndex(getCareer()).name().toLowerCase() + ".name");
+            return I18n.translateToLocal("entityConfig." + entityName + "." + Pigtificate.Career.getFromIndex(getCareer()).name().toLowerCase() + ".name");
         }
     }
 
@@ -634,7 +634,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private boolean canPickupItem(Item itemIn)
     {
-        return itemIn == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) || itemIn == NetherExItems.FOOD_MUSHROOM_ENOKI;
+        return itemIn == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) || itemIn == NetherExItems.ENOKI_MUSHROOM;
     }
 
     private boolean hasEnoughItems(int multiplier)
@@ -645,7 +645,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
             if(!stack.isEmpty())
             {
-                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 32 * multiplier))
+                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.ENOKI_MUSHROOM && stack.getCount() >= 32 * multiplier))
                 {
                     return true;
                 }
@@ -698,7 +698,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
                         flag = true;
                         inventory.decrStackSize(i, 3);
                     }
-                    else if(stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 24)
+                    else if(stack.getItem() == NetherExItems.ENOKI_MUSHROOM && stack.getCount() >= 24)
                     {
                         flag = true;
                         inventory.decrStackSize(i, 12);

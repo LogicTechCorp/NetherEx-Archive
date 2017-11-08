@@ -61,7 +61,7 @@ public class EnhancedGeneratorPool extends EnhancedGenerator
 
         if(blockToSpawnJson.entrySet().size() > 0)
         {
-            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "block"));
+            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSpawnJson, "blockConfig"));
 
             if(ForgeRegistries.BLOCKS.containsKey(block))
             {
@@ -70,7 +70,7 @@ public class EnhancedGeneratorPool extends EnhancedGenerator
         }
         if(blockToSurroundJson.entrySet().size() > 0)
         {
-            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSurroundJson, "block"));
+            ResourceLocation block = new ResourceLocation(JsonUtils.getString(blockToSurroundJson, "blockConfig"));
 
             if(ForgeRegistries.BLOCKS.containsKey(block))
             {

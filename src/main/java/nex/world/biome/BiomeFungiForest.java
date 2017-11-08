@@ -48,9 +48,9 @@ public class BiomeFungiForest extends BiomeNetherEx
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, pos));
 
-        if(ConfigHandler.biome.fungiForest.generateElderMushrooms)
+        if(ConfigHandler.biomeConfig.fungiForest.generateElderMushrooms)
         {
-            for(int i = 0; i < ConfigHandler.biome.fungiForest.elderMushroomRarity * 16; i++)
+            for(int i = 0; i < ConfigHandler.biomeConfig.fungiForest.elderMushroomRarity * 16; i++)
             {
                 elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(32, 112, rand), rand.nextInt(16) + 8));
             }

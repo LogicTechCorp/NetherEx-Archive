@@ -27,11 +27,11 @@ import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
 import nex.util.NBTUtil;
 
-public class ItemBonePickaxe extends ItemNetherExPickaxe
+public class ItemGoldenWitherBonePickaxe extends ItemNetherExPickaxe
 {
-    public ItemBonePickaxe()
+    public ItemGoldenWitherBonePickaxe()
     {
-        super("tool_pickaxe_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
+        super("golden_wither_bone_pickaxe", NetherExMaterials.GOLDEN_WITHER_BONE);
     }
 
     @Override

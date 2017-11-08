@@ -33,17 +33,16 @@ import net.minecraft.world.World;
 
 public class ItemBlockFood extends ItemBlockNetherEx
 {
-    protected final int healAmount;
-    protected final float saturation;
-    protected final boolean isWolfFood;
-    protected boolean alwaysEdible;
-    protected PotionEffect potionId;
-    protected float potionEffectProbability;
+    private final int healAmount;
+    private final float saturation;
+    private final boolean isWolfFood;
+    private boolean alwaysEdible;
+    private PotionEffect potionId;
+    private float potionEffectProbability;
 
     public ItemBlockFood(Block block, int healAmountIn, float saturationIn, boolean isWolfFoodIn)
     {
         super(block);
-
         healAmount = healAmountIn;
         isWolfFood = isWolfFoodIn;
         saturation = saturationIn;
@@ -110,7 +109,6 @@ public class ItemBlockFood extends ItemBlockNetherEx
     {
         return saturation;
     }
-
 
     public boolean isWolfsFood()
     {

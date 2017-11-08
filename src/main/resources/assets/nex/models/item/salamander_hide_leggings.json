@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "nex:items/salamander_hide_leggings"
+        "layer0": "nex:items/orange_salamander_hide_leggings"
     },
     "overrides": [
         {

@@ -26,7 +26,6 @@ public class ItemNetherExPickaxe extends ItemPickaxe
     protected ItemNetherExPickaxe(String name, ToolMaterial material)
     {
         super(material);
-
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));

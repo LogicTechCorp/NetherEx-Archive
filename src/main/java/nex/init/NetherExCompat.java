@@ -40,7 +40,7 @@ public class NetherExCompat
 
             if(worldType.getName().equalsIgnoreCase("BIOMESOP") || worldType.getName().equalsIgnoreCase("lostcities_bop"))
             {
-                NetherBiomeManager.parseBiomeConfigs(new File(directory, "/NetherEx/Biome Configs/biomesoplenty"));
+                NetherBiomeManager.parseBiomeConfigs(new File(directory, "/NetherEx/BiomeConfig Configs/biomesoplenty"));
                 biomesOPlentyCompatEnabled = true;
             }
         }

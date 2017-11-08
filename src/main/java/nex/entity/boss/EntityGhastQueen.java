@@ -123,7 +123,7 @@ public class EntityGhastQueen extends EntityGhast
 
                 if(!getEntityWorld().isRemote && shouldSpawnGhastlings())
                 {
-                    for(int i = 0; i < ConfigHandler.entity.ghastQueen.ghastlingSpawns; i++)
+                    for(int i = 0; i < ConfigHandler.entityConfig.ghastQueen.ghastlingSpawns; i++)
                     {
                         EntityGhastling ghastling = new EntityGhastling(getEntityWorld());
                         ghastling.setPosition(getPosition().getX(), getPosition().getY() - 1, getPosition().getZ());
@@ -131,7 +131,7 @@ public class EntityGhastQueen extends EntityGhast
                     }
 
                     setStageStarted(getStage(), true);
-                    setCooldown(ConfigHandler.entity.ghastQueen.ghastlingSpawnCooldown * 20);
+                    setCooldown(ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnCooldown * 20);
                     setStage(getStage() + 1);
                     setShouldSpawnGhastlings(false);
                 }

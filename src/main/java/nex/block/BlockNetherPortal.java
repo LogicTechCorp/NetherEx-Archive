@@ -50,7 +50,7 @@ import java.util.Queue;
 import java.util.Random;
 
 /**
- * A Block that allows for Nether Portal teleportation
+ * A BlockConfig that allows for Nether Portal teleportation
  * <p>
  * Based on code written by Alz454 here:
  * https://github.com/enhancedportals/enhancedportals/blob/1647357d3cbed1289a653347e2107d92a2875a65/src/main/java/enhanced/portals/portal/PortalUtils.java
@@ -160,9 +160,9 @@ public class BlockNetherPortal extends BlockNetherEx
             }
         }
 
-        if(ConfigHandler.block.netherPortal.allowPigmanSpawning)
+        if(ConfigHandler.blockConfig.netherPortal.allowPigmanSpawning)
         {
-            if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && rand.nextInt(ConfigHandler.block.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
+            if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && rand.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
             {
                 int i = pos.getY();
                 BlockPos blockPos;

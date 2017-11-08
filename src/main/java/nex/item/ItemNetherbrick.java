@@ -23,12 +23,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import nex.block.BlockNetherrack;
 
-public class ItemNetherBrick extends ItemNetherEx
+public class ItemNetherbrick extends ItemNetherEx
 {
-    public ItemNetherBrick()
+    public ItemNetherbrick()
     {
-        super("item_brick_nether");
-
+        super("netherbrick");
         setHasSubtypes(true);
     }
 

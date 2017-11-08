@@ -27,11 +27,11 @@ import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
 import nex.util.NBTUtil;
 
-public class ItemBoneAxe extends ItemNetherExAxe
+public class ItemGoldenWitherBoneSword extends ItemNetherExSword
 {
-    public ItemBoneAxe()
+    public ItemGoldenWitherBoneSword()
     {
-        super("tool_axe_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD, 7.0F, -3.0F);
+        super("golden_wither_bone_sword", NetherExMaterials.GOLDEN_WITHER_BONE);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ItemBoneAxe extends ItemNetherExAxe
             }
         }
 
-        return NetherExMaterials.TOOL_BONE_WITHERED_GOLD.getHarvestLevel();
+        return ToolMaterial.GOLD.getHarvestLevel();
     }
 
     @Override
@@ -84,4 +84,3 @@ public class ItemBoneAxe extends ItemNetherExAxe
         super.setDamage(stack, damage);
     }
 }
-

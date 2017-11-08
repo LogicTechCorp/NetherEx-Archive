@@ -219,12 +219,12 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                                         floorTopBlock = Blocks.NETHERRACK.getDefaultState();
                                         floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
 
-                                        if(ConfigHandler.dimension.nether.generateGravel && genGravel)
+                                        if(ConfigHandler.dimensionConfig.nether.generateGravel && genGravel)
                                         {
                                             floorTopBlock = Blocks.GRAVEL.getDefaultState();
                                         }
 
-                                        if(ConfigHandler.dimension.nether.generateSoulSand && genSoulSand)
+                                        if(ConfigHandler.dimensionConfig.nether.generateSoulSand && genSoulSand)
                                         {
                                             floorTopBlock = Blocks.SOUL_SAND.getDefaultState();
                                             floorFillerBlock = Blocks.SOUL_SAND.getDefaultState();
@@ -496,7 +496,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     }
 
     /**
-     * A method that replaces the default Nether blocks with ones designated for each biome
+     * A method that replaces the default Nether blocks with ones designated for each biomeConfig
      * <p>
      * Written by the Biomes O' Plenty team here:
      * https://github.com/Glitchfiend/BiomesOPlenty/blob/9873b7ad56ab8f32e6073dea060c4b67aad8b77e/src/main/java/biomesoplenty/common/biome/nether/BOPHellBiome.java#L84

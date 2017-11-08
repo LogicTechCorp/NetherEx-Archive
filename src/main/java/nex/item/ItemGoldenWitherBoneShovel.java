@@ -27,11 +27,11 @@ import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
 import nex.util.NBTUtil;
 
-public class ItemBoneSword extends ItemNetherExSword
+public class ItemGoldenWitherBoneShovel extends ItemNetherExShovel
 {
-    public ItemBoneSword()
+    public ItemGoldenWitherBoneShovel()
     {
-        super("tool_sword_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
+        super("golden_wither_bone_shovel", NetherExMaterials.GOLDEN_WITHER_BONE);
     }
 
     @Override

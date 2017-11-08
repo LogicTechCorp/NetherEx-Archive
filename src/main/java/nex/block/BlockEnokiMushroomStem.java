@@ -170,7 +170,7 @@ public class BlockEnokiMushroomStem extends BlockNetherEx
     {
         if(rand.nextInt(4) == 0)
         {
-            return NetherExItems.FOOD_MUSHROOM_ENOKI;
+            return NetherExItems.ENOKI_MUSHROOM;
         }
         else
         {

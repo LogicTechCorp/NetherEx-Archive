@@ -89,9 +89,9 @@ public class BlockThornstalk extends BlockNetherEx
         }
         else
         {
-            boolean canHurt = !Arrays.asList(ConfigHandler.block.thornstalk.blacklist).contains(EntityList.getKey(entity).toString());
+            boolean canHurt = !Arrays.asList(ConfigHandler.blockConfig.thornstalk.blacklist).contains(EntityList.getKey(entity).toString());
 
-            if((entity instanceof EntityLivingBase || entity instanceof EntityItem && ConfigHandler.block.thornstalk.canDestroyItems) && canHurt)
+            if((entity instanceof EntityLivingBase || entity instanceof EntityItem && ConfigHandler.blockConfig.thornstalk.canDestroyItems) && canHurt)
             {
                 entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
             }

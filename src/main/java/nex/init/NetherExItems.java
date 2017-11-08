@@ -33,92 +33,34 @@ import org.apache.logging.log4j.Logger;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExItems
 {
-    @GameRegistry.ObjectHolder("item_brick_nether")
-    public static final ItemNetherBrick ITEM_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("item_bone_wither")
-    public static final ItemNetherEx ITEM_BONE_WITHER = null;
-
-    @GameRegistry.ObjectHolder("item_dust_wither")
-    public static final ItemWitherDust ITEM_DUST_WITHER = null;
-
-    @GameRegistry.ObjectHolder("item_hide_salamander")
-    public static final ItemSalamanderHide ITEM_HIDE_SALAMANDER = null;
-
-    @GameRegistry.ObjectHolder("item_crystal_amethyst")
-    public static final ItemNetherEx ITEM_CRYSTAL_AMETHYST = null;
-
-    @GameRegistry.ObjectHolder("item_crystal_rime")
-    public static final ItemNetherEx ITEM_CRYSTAL_RIME = null;
-
-    @GameRegistry.ObjectHolder("item_crystal_rime_steel")
-    public static final ItemNetherEx ITEM_CRYSTAL_RIME_STEEL = null;
-
-    @GameRegistry.ObjectHolder("item_spore")
-    public static final ItemNetherEx ITEM_SPORE = null;
-
-    @GameRegistry.ObjectHolder("item_fang_spider_bone")
-    public static final ItemNetherEx ITEM_FANG_SPIDER_BONE = null;
-
-    @GameRegistry.ObjectHolder("item_tear_ghast_queen")
-    public static final ItemNetherEx ITEM_TEAR_GHAST_QUEEN = null;
-
-    @GameRegistry.ObjectHolder("item_boat_obsidian")
-    public static final ItemObsidianBoat ITEM_BOAT_OBSIDIAN = null;
-
-    @GameRegistry.ObjectHolder("food_meat_ghast_raw")
-    public static final ItemNetherExFood FOOD_MEAT_GHAST_RAW = null;
-
-    @GameRegistry.ObjectHolder("food_meat_ghast_cooked")
-    public static final ItemNetherExFood FOOD_MEAT_GHAST_COOKED = null;
-
-    @GameRegistry.ObjectHolder("food_congealed_magma_cream")
-    public static final ItemNetherExFood FOOD_MAGMA_CREAM_CONGEALED = null;
-
-    @GameRegistry.ObjectHolder("food_mushroom_enoki")
-    public static final ItemNetherExFood FOOD_MUSHROOM_ENOKI = null;
-
-    @GameRegistry.ObjectHolder("tool_sword_bone")
-    public static final ItemBoneSword TOOL_SWORD_BONE = null;
-
-    @GameRegistry.ObjectHolder("tool_pickaxe_bone")
-    public static final ItemBonePickaxe TOOL_PICKAXE_BONE = null;
-
-    @GameRegistry.ObjectHolder("tool_shovel_bone")
-    public static final ItemBoneShovel TOOL_SHOVEL_BONE = null;
-
-    @GameRegistry.ObjectHolder("tool_axe_bone")
-    public static final ItemBoneAxe TOOL_AXE_BONE = null;
-
-    @GameRegistry.ObjectHolder("tool_hoe_bone")
-    public static final ItemBoneHoe TOOL_HOE_BONE = null;
-
-    @GameRegistry.ObjectHolder("tool_hammer_bone")
-    public static final ItemBoneHammer TOOL_HAMMER_BONE = null;
-
-    @GameRegistry.ObjectHolder("armor_helmet_bone")
-    public static final ItemBoneArmor ARMOR_HELMET_BONE = null;
-
-    @GameRegistry.ObjectHolder("armor_chestplate_bone")
-    public static final ItemBoneArmor ARMOR_CHESTPLATE_BONE = null;
-
-    @GameRegistry.ObjectHolder("armor_leggings_bone")
-    public static final ItemBoneArmor ARMOR_LEGGINGS_BONE = null;
-
-    @GameRegistry.ObjectHolder("armor_boots_bone")
-    public static final ItemBoneArmor ARMOR_BOOTS_BONE = null;
-
-    @GameRegistry.ObjectHolder("armor_helmet_hide_salamander")
-    public static final ItemSalamanderHideArmor ARMOR_HELMET_HIDE_SALAMANDER = null;
-
-    @GameRegistry.ObjectHolder("armor_chestplate_hide_salamander")
-    public static final ItemSalamanderHideArmor ARMOR_CHESTPLATE_HIDE_SALAMANDER = null;
-
-    @GameRegistry.ObjectHolder("armor_leggings_hide_salamander")
-    public static final ItemSalamanderHideArmor ARMOR_LEGGINGS_HIDE_SALAMANDER = null;
-
-    @GameRegistry.ObjectHolder("armor_boots_hide_salamander")
-    public static final ItemSalamanderHideArmor ARMOR_BOOTS_HIDE_SALAMANDER = null;
+    public static final ItemNetherbrick NETHERBRICK = null;
+    public static final ItemNetherEx WITHER_BONE = null;
+    public static final ItemWitherDust WITHER_DUST = null;
+    public static final ItemSalamanderHide SALAMANDER_HIDE = null;
+    public static final ItemGem GEM = null;
+    public static final ItemRimeAndSteel RIME_AND_STEEL = null;
+    public static final ItemNetherEx SPORE = null;
+    public static final ItemNetherEx BONE_SPIDER_FANG = null;
+    public static final ItemGhastQueenTear GHAST_QUEEN_TEAR = null;
+    public static final ItemObsidianBoat OBSIDIAN_BOAT = null;
+    public static final ItemNetherExFood GHAST_MEAT_RAW = null;
+    public static final ItemNetherExFood GHAST_MEAT_COOKED = null;
+    public static final ItemNetherExFood CONGEALED_MAGMA_CREAM = null;
+    public static final ItemNetherExFood ENOKI_MUSHROOM = null;
+    public static final ItemGoldenWitherBoneSword GOLDEN_WITHER_BONE_SWORD = null;
+    public static final ItemGoldenWitherBonePickaxe GOLDEN_WITHER_BONE_PICKAXE = null;
+    public static final ItemGoldenWitherBoneShovel GOLDEN_WITHER_BONE_SHOVEL = null;
+    public static final ItemGoldenWitherBoneAxe GOLDEN_WITHER_BONE_AXE = null;
+    public static final ItemGoldenWitherBoneHoe GOLDEN_WITHER_BONE_HOE = null;
+    public static final ItemGoldenWitherBoneHammer GOLDEN_WITHER_BONE_HAMMER = null;
+    public static final ItemWitherBoneArmor WITHER_BONE_HELMET = null;
+    public static final ItemWitherBoneArmor WITHER_BONE_CHESTPLATE = null;
+    public static final ItemWitherBoneArmor WITHER_BONE_LEGGINGS = null;
+    public static final ItemWitherBoneArmor WITHER_BONE_BOOTS = null;
+    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_HELMET = null;
+    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_CHESTPLATE = null;
+    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_LEGGINGS = null;
+    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_BOOTS = null;
 
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");
 
@@ -131,31 +73,30 @@ public class NetherExItems
             LOGGER.info("Item registration started.");
 
             event.getRegistry().registerAll(
-                    new ItemNetherBrick(),
-                    new ItemNetherEx("item_bone_wither"),
+                    new ItemNetherbrick(),
+                    new ItemNetherEx("wither_bone"),
                     new ItemWitherDust(),
                     new ItemSalamanderHide(),
-                    new ItemNetherEx("item_crystal_amethyst"),
-                    new ItemNetherEx("item_crystal_rime"),
+                    new ItemGem(),
                     new ItemRimeAndSteel(),
-                    new ItemNetherEx("item_spore"),
-                    new ItemNetherEx("item_fang_spider_bone"),
+                    new ItemNetherEx("spore"),
+                    new ItemNetherEx("bone_spider_fang"),
                     new ItemGhastQueenTear(),
                     new ItemObsidianBoat(),
-                    new ItemNetherExFood("food_meat_ghast_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
-                    new ItemNetherExFood("food_meat_ghast_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemNetherExFood("food_congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemNetherExFood("food_mushroom_enoki", 3, 0.7F, false),
-                    new ItemBoneSword(),
-                    new ItemBonePickaxe(),
-                    new ItemBoneShovel(),
-                    new ItemBoneAxe(),
-                    new ItemBoneHoe(),
-                    new ItemBoneHammer(),
-                    new ItemBoneArmor("helmet", 1, EntityEquipmentSlot.HEAD),
-                    new ItemBoneArmor("chestplate", 1, EntityEquipmentSlot.CHEST),
-                    new ItemBoneArmor("leggings", 2, EntityEquipmentSlot.LEGS),
-                    new ItemBoneArmor("boots", 1, EntityEquipmentSlot.FEET),
+                    new ItemNetherExFood("ghast_meat_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
+                    new ItemNetherExFood("ghast_meat_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
+                    new ItemNetherExFood("congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
+                    new ItemNetherExFood("enoki_mushroom", 3, 0.7F, false),
+                    new ItemGoldenWitherBoneSword(),
+                    new ItemGoldenWitherBonePickaxe(),
+                    new ItemGoldenWitherBoneShovel(),
+                    new ItemGoldenWitherBoneAxe(),
+                    new ItemGoldenWitherBoneHoe(),
+                    new ItemGoldenWitherBoneHammer(),
+                    new ItemWitherBoneArmor("helmet", 1, EntityEquipmentSlot.HEAD),
+                    new ItemWitherBoneArmor("chestplate", 1, EntityEquipmentSlot.CHEST),
+                    new ItemWitherBoneArmor("leggings", 2, EntityEquipmentSlot.LEGS),
+                    new ItemWitherBoneArmor("boots", 1, EntityEquipmentSlot.FEET),
                     new ItemSalamanderHideArmor("helmet", 1, EntityEquipmentSlot.HEAD),
                     new ItemSalamanderHideArmor("chestplate", 1, EntityEquipmentSlot.CHEST),
                     new ItemSalamanderHideArmor("leggings", 2, EntityEquipmentSlot.LEGS),

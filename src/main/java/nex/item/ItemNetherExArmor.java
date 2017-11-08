@@ -27,7 +27,6 @@ public class ItemNetherExArmor extends ItemArmor
     public ItemNetherExArmor(String name, ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
         super(material, renderIndex, equipmentSlot);
-
         setCreativeTab(NetherEx.CREATIVE_TAB);
         setRegistryName(NetherEx.MOD_ID + ":" + name);
         setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));

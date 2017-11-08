@@ -37,11 +37,11 @@ import nex.init.NetherExMaterials;
 import nex.util.NBTUtil;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBoneHoe extends ItemNetherExHoe
+public class ItemGoldenWitherBoneHoe extends ItemNetherExHoe
 {
-    public ItemBoneHoe()
+    public ItemGoldenWitherBoneHoe()
     {
-        super("tool_hoe_bone", NetherExMaterials.TOOL_BONE_WITHERED_GOLD);
+        super("golden_wither_bone_hoe", NetherExMaterials.GOLDEN_WITHER_BONE);
     }
 
     @Override

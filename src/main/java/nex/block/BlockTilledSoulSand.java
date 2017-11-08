@@ -135,7 +135,7 @@ public class BlockTilledSoulSand extends BlockNetherEx
 
     private boolean hasFluid(World world, BlockPos pos)
     {
-        net.minecraft.block.Block block = ConfigHandler.block.soulSand.doesRequireIchor ? NetherExBlocks.ICHOR : Blocks.LAVA;
+        net.minecraft.block.Block block = ConfigHandler.blockConfig.soulSand.doesRequireIchor ? NetherExBlocks.ICHOR : Blocks.LAVA;
 
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {

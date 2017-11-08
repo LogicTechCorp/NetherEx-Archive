@@ -20,6 +20,7 @@ package nex.init;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
 import nex.block.BlockNetherrack;
@@ -45,20 +46,20 @@ public class NetherExRecipes
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
-            addSmelting(new ItemStack(ITEM_BRICK_NETHER, 1, type.ordinal()), new ItemStack(NETHERRACK, 1, type.ordinal()), 0.5F);
+            addSmelting(new ItemStack(NetherExItems.NETHERBRICK, 1, type.ordinal()), new ItemStack(NETHERRACK, 1, type.ordinal()), 0.5F);
         }
 
         addSmelting(new ItemStack(SOUL_GLASS, 1, 0), new ItemStack(SOUL_SAND, 1, 0), 0.5F);
         addSmelting(new ItemStack(QUARTZ, 1, 0), new ItemStack(QUARTZ_ORE, 1, 0), 0.0F);
-        addSmelting(new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0), new ItemStack(GEM_ORE, 1, 0), 0.0F);
-        addSmelting(new ItemStack(ITEM_CRYSTAL_RIME, 1, 0), new ItemStack(RIME_ORE, 1, 0), 0.0F);
-        addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
-        addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(MAGMA_CREAM, 1, 0), 0.5F);
+        addSmelting(new ItemStack(GEM, 1, 0), new ItemStack(GEM_ORE, 1, 0), 0.0F);
+        addSmelting(new ItemStack(GEM, 1, 1), new ItemStack(GEM_ORE, 1, 1), 0.0F);
+        addSmelting(new ItemStack(GHAST_MEAT_COOKED, 1, 0), new ItemStack(GHAST_MEAT_RAW, 1, 0), 0.5F);
+        addSmelting(new ItemStack(CONGEALED_MAGMA_CREAM, 1, 0), new ItemStack(MAGMA_CREAM, 1, 0), 0.5F);
 
-        addBrewing(AWKWARD, ITEM_CRYSTAL_RIME, NORMAL_FREEZE);
-        addBrewing(AWKWARD, ITEM_FANG_SPIDER_BONE, NORMAL_FROSTBITE);
-        addBrewing(AWKWARD, ITEM_SPORE, NORMAL_SPORE);
-        addBrewing(AWKWARD, FOOD_MEAT_GHAST_RAW, NORMAL_LOST);
+        addBrewing(AWKWARD, Ingredient.fromStacks(new ItemStack(GEM, 1, 1)), NORMAL_FREEZE);
+        addBrewing(AWKWARD, BONE_SPIDER_FANG, NORMAL_FROSTBITE);
+        addBrewing(AWKWARD, SPORE, NORMAL_SPORE);
+        addBrewing(AWKWARD, GHAST_MEAT_RAW, NORMAL_LOST);
 
         LOGGER.info("Recipe registration completed.");
     }
@@ -71,5 +72,10 @@ public class NetherExRecipes
     private static void addBrewing(PotionType input, Item reagent, PotionType output)
     {
         PotionHelper.addMix(input, reagent, output);
+    }
+
+    private static void addBrewing(PotionType input, Ingredient ingredient, PotionType output)
+    {
+        PotionHelper.addMix(input, ingredient, output);
     }
 }

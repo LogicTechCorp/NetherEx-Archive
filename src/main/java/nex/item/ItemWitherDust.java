@@ -33,7 +33,7 @@ public class ItemWitherDust extends ItemNetherEx
 {
     public ItemWitherDust()
     {
-        super("item_dust_wither");
+        super("wither_dust");
     }
 
     @Override

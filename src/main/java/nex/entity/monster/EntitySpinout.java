@@ -117,11 +117,11 @@ public class EntitySpinout extends EntityMob
                 setSilent(false);
             }
         }
-        if(getCounter() >= ConfigHandler.entity.spinout.spinTime * 20)
+        if(getCounter() >= ConfigHandler.entityConfig.spinout.spinTime * 20)
         {
             setCounter(0);
             setSpinning(false);
-            setCooldown(ConfigHandler.entity.spinout.spinCooldown * 20);
+            setCooldown(ConfigHandler.entityConfig.spinout.spinCooldown * 20);
         }
         if(getCooldown() > 0)
         {

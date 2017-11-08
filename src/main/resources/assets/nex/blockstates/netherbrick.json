@@ -8,22 +8,22 @@
         "type": {
             "fiery": {
                 "textures": {
-                    "layer0": "nex:items/fiery_nether_brick"
+                    "layer0": "nex:items/fiery_netherbrick"
                 }
             },
             "icy": {
                 "textures": {
-                    "layer0": "nex:items/icy_nether_brick"
+                    "layer0": "nex:items/icy_netherbrick"
                 }
             },
             "lively": {
                 "textures": {
-                    "layer0": "nex:items/lively_nether_brick"
+                    "layer0": "nex:items/lively_netherbrick"
                 }
             },
             "gloomy": {
                 "textures": {
-                    "layer0": "nex:items/gloomy_nether_brick"
+                    "layer0": "nex:items/gloomy_netherbrick"
                 }
             }
         }

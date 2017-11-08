@@ -22,9 +22,25 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import nex.handler.ConfigHandler;
+import nex.init.NetherExEffects;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class BlockGem extends BlockNetherEx
 {
@@ -33,6 +49,7 @@ public class BlockGem extends BlockNetherEx
     public BlockGem()
     {
         super("gem_block", Material.ROCK);
+        setTickRandomly(true);
         setHardness(5.0F);
         setResistance(10.0F);
     }
@@ -43,6 +60,65 @@ public class BlockGem extends BlockNetherEx
         for(EnumType type : EnumType.values())
         {
             list.add(new ItemStack(this, 1, type.ordinal()));
+        }
+    }
+
+    @Override
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return getMetaFromState(state) == 1 ? 14 : 0;
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+        if(getMetaFromState(state) == 1)
+        {
+            for(int x = -1; x < 2; x++)
+            {
+                for(int z = -1; z < 2; z++)
+                {
+                    for(int y = -1; y < 2; y++)
+                    {
+                        freezeSurroundings(world, pos.add(x, y, z), world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + x, pos.getY() + y, pos.getZ() + z)));
+                    }
+                }
+            }
+
+            world.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
+        }
+    }
+
+    @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        if(getMetaFromState(state) == 1)
+        {
+            world.scheduleUpdate(pos, this, MathHelper.getInt(RANDOM, 20, 40));
+        }
+    }
+
+    private void freezeSurroundings(World world, BlockPos pos, List<EntityLivingBase> entities)
+    {
+        IBlockState state = world.getBlockState(pos);
+
+        if(state == Blocks.WATER.getDefaultState() && ConfigHandler.blockConfig.rime.canFreezeWater)
+        {
+            world.setBlockState(pos, Blocks.ICE.getDefaultState(), 3);
+        }
+        else if(state == Blocks.LAVA.getDefaultState() && ConfigHandler.blockConfig.rime.canFreezeLava)
+        {
+            world.setBlockState(pos, Blocks.MAGMA.getDefaultState(), 3);
+        }
+
+        for(EntityLivingBase entity : entities)
+        {
+            boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffectConfig.freeze.blacklist).contains(EntityList.getKey(entity).toString());
+
+            if(canFreeze && ConfigHandler.blockConfig.rime.canFreezeMobs)
+            {
+                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+            }
         }
     }
 
@@ -72,7 +148,8 @@ public class BlockGem extends BlockNetherEx
 
     public enum EnumType implements IStringSerializable
     {
-        AMETHYST;
+        AMETHYST,
+        RIME;
 
         @Override
         public String getName()

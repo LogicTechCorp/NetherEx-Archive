@@ -95,7 +95,7 @@ public class EntitySpore extends EntityMob
         {
             setCounter(getCounter() + 1);
 
-            if(getCounter() >= (ConfigHandler.entity.spore.growthTime / (getStage() + 1)) * 20)
+            if(getCounter() >= (ConfigHandler.entityConfig.spore.growthTime / (getStage() + 1)) * 20)
             {
                 setCounter(0);
                 setStage(getStage() + 1);
@@ -110,7 +110,7 @@ public class EntitySpore extends EntityMob
                 if(!world.isRemote)
                 {
 
-                    int creeperSpawns = rand.nextInt(ConfigHandler.entity.spore.creeperSpawns) + 1;
+                    int creeperSpawns = rand.nextInt(ConfigHandler.entityConfig.spore.creeperSpawns) + 1;
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {
@@ -142,7 +142,7 @@ public class EntitySpore extends EntityMob
     {
         if(source.getTrueSource() != null && source.getTrueSource() instanceof EntityLivingBase)
         {
-            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.TOOL_SWORD_BONE)
+            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_SWORD)
             {
                 amount *= 2.0F;
             }

@@ -32,13 +32,13 @@ public class EntityUtil
     public static boolean canFreeze(EntityLivingBase entity)
     {
         ResourceLocation entityRegistryName = EntityList.getKey(entity);
-        return !(entity instanceof EntityPlayer) && entityRegistryName != null && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(entityRegistryName.toString());
+        return !(entity instanceof EntityPlayer) && entityRegistryName != null && !Arrays.asList(ConfigHandler.potionEffectConfig.freeze.blacklist).contains(entityRegistryName.toString());
     }
 
     public static boolean canSpreadSpores(EntityLivingBase entity)
     {
         ResourceLocation entityRegistryName = EntityList.getKey(entity);
-        return entity instanceof EntityPlayer || (entityRegistryName != null && !Arrays.asList(ConfigHandler.potionEffect.spore.blacklist).contains(entityRegistryName.toString()));
+        return entity instanceof EntityPlayer || (entityRegistryName != null && !Arrays.asList(ConfigHandler.potionEffectConfig.spore.blacklist).contains(entityRegistryName.toString()));
     }
 
     public static boolean canSpawnGhastling(EntityLivingBase entity)

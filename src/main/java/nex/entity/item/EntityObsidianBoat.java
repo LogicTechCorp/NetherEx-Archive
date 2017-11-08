@@ -164,7 +164,7 @@ public class EntityObsidianBoat extends EntityBoat
                 {
                     if(!flag && world.getGameRules().getBoolean("doEntityDrops"))
                     {
-                        dropItemWithOffset(NetherExItems.ITEM_BOAT_OBSIDIAN, 1, 0.0F);
+                        dropItemWithOffset(NetherExItems.OBSIDIAN_BOAT, 1, 0.0F);
                     }
 
                     setDead();
@@ -348,7 +348,7 @@ public class EntityObsidianBoat extends EntityBoat
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(NetherExItems.ITEM_BOAT_OBSIDIAN, 1, 0);
+        return new ItemStack(NetherExItems.OBSIDIAN_BOAT, 1, 0);
     }
 
     private void tickLerp()

@@ -23,16 +23,16 @@ import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBoneArmor extends ItemNetherExArmor
+public class ItemWitherBoneArmor extends ItemNetherExArmor
 {
-    public ItemBoneArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
+    public ItemWitherBoneArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
-        super("armor_" + name + "_bone", NetherExMaterials.ARMOR_BONE_WITHERED, renderIndex, equipmentSlot);
+        super("wither_bone_" + name, NetherExMaterials.WITHER_BONE, renderIndex, equipmentSlot);
     }
 
     @Override
     public boolean getIsRepairable(ItemStack armor, ItemStack repair)
     {
-        return repair.getItem() == NetherExItems.ITEM_BONE_WITHER;
+        return repair.getItem() == NetherExItems.WITHER_BONE;
     }
 }

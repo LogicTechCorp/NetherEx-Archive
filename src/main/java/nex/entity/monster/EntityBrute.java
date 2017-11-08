@@ -101,7 +101,7 @@ public class EntityBrute extends EntityMob
                 {
                     setAddedOffset(false);
                     setCharging(false);
-                    setCooldown(ConfigHandler.entity.brute.chargeCooldown * 20);
+                    setCooldown(ConfigHandler.entityConfig.brute.chargeCooldown * 20);
                 }
             }
         }

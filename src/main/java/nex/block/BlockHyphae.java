@@ -42,7 +42,7 @@ public class BlockHyphae extends BlockNetherEx
         super("hyphae", Material.ROCK);
         setHardness(0.6F);
 
-        if(ConfigHandler.block.hyphae.doesSpread)
+        if(ConfigHandler.blockConfig.hyphae.doesSpread)
         {
             setTickRandomly(true);
         }
@@ -61,7 +61,7 @@ public class BlockHyphae extends BlockNetherEx
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if(!world.isRemote && ConfigHandler.block.hyphae.doesSpread)
+        if(!world.isRemote && ConfigHandler.blockConfig.hyphae.doesSpread)
         {
             if(world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2)
             {

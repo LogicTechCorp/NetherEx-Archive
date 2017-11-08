@@ -41,7 +41,7 @@ public class RenderHandler
 
         if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
         {
-            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.ARMOR_HIDE_SALAMANDER))
+            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
             {
                 event.setCanceled(true);
             }

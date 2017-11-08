@@ -21,7 +21,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -44,18 +43,15 @@ public class BlockGemOre extends BlockNetherEx
     }
 
     @Override
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return getMetaFromState(state) == 1 ? 9 : 0;
+    }
+
+    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        int meta = getMetaFromState(state);
-
-        if(meta == 0)
-        {
-            return NetherExItems.ITEM_CRYSTAL_AMETHYST;
-        }
-        else
-        {
-            return Items.AIR;
-        }
+        return NetherExItems.GEM;
     }
 
     @Override

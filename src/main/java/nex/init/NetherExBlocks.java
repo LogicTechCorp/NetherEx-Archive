@@ -44,7 +44,6 @@ public class NetherExBlocks
     public static final BlockSoulGlass SOUL_GLASS = null;
     public static final BlockSoulGlassPane SOUL_GLASS_PANE = null;
     public static final BlockGem GEM_BLOCK = null;
-    public static final BlockRime RIME_BLOCK = null;
     public static final BlockFrostburnIce FROSTBURN_ICE = null;
     public static final BlockBoneSliver BONE_SLIVER = null;
     public static final BlockBoneChunk BONE_CHUNK = null;
@@ -54,7 +53,6 @@ public class NetherExBlocks
     public static final BlockUrnOfSorrow URN_OF_SORROW = null;
     public static final BlockQuartzOre QUARTZ_ORE = null;
     public static final BlockGemOre GEM_ORE = null;
-    public static final BlockRimeOre RIME_ORE = null;
     public static final BlockThornstalk THORNSTALK = null;
     public static final BlockElderMushroom ELDER_MUSHROOM = null;
     public static final BlockElderMushroomCap ELDER_MUSHROOM_CAP = null;
@@ -124,7 +122,7 @@ public class NetherExBlocks
 
             NetherExLootTables.LOGGER.info("Loot Table registration completed.");
 
-            LOGGER.info("Block registration started.");
+            LOGGER.info("BlockConfig registration started.");
 
             event.getRegistry().registerAll(
                     new BlockBasalt(),
@@ -136,7 +134,6 @@ public class NetherExBlocks
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
                     new BlockGem(),
-                    new BlockRime(),
                     new BlockFrostburnIce(),
                     new BlockBoneSliver(),
                     new BlockBoneChunk(),
@@ -146,7 +143,6 @@ public class NetherExBlocks
                     new BlockUrnOfSorrow(),
                     new BlockQuartzOre(),
                     new BlockGemOre(),
-                    new BlockRimeOre(),
                     new BlockThornstalk(),
                     new BlockElderMushroom(),
                     new BlockElderMushroomCap(),
@@ -188,7 +184,7 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("gloomy_nether_brick", Material.ROCK)
             );
 
-            LOGGER.info("Block registration completed.");
+            LOGGER.info("BlockConfig registration completed.");
         }
 
         @SubscribeEvent
@@ -206,7 +202,6 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(SOUL_GLASS),
                     new ItemBlockNetherEx(SOUL_GLASS_PANE),
                     new ItemBlockGem(),
-                    new ItemBlockNetherEx(RIME_BLOCK),
                     new ItemBlockNetherEx(FROSTBURN_ICE),
                     new ItemBlockNetherEx(BONE_SLIVER),
                     new ItemBlockNetherEx(BONE_CHUNK),
@@ -214,7 +209,6 @@ public class NetherExBlocks
                     new ItemBlockUrnOfSorrow(),
                     new ItemBlockQuartzOre(),
                     new ItemBlockGemOre(),
-                    new ItemBlockNetherEx(RIME_ORE),
                     new ItemBlockElderMushroom(),
                     new ItemBlockElderMushroomCap(),
                     new ItemBlockNetherEx(ELDER_MUSHROOM_STEM),

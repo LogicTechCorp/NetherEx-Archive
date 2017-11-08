@@ -66,7 +66,7 @@ public class BlockHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(ConfigHandler.block.soulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
+        if(ConfigHandler.blockConfig.soulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
         {
             if(world.getBlockState(pos.down()) == NetherExBlocks.TILLED_SOUL_SAND.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
             {
@@ -92,7 +92,7 @@ public class BlockHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigHandler.block.magma.turnIntoLava)
+                if(ConfigHandler.blockConfig.magma.turnIntoLava)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {
@@ -104,9 +104,9 @@ public class BlockHandler
             }
             if(player.dimension == DimensionType.NETHER.getId())
             {
-                boolean canSpawn = Arrays.asList(ConfigHandler.entity.nethermite.whitelist).contains(state.getBlock().getRegistryName().toString());
+                boolean canSpawn = Arrays.asList(ConfigHandler.entityConfig.nethermite.whitelist).contains(state.getBlock().getRegistryName().toString());
 
-                if(canSpawn && world.rand.nextInt(ConfigHandler.entity.nethermite.chanceOfSpawning) == 0)
+                if(canSpawn && world.rand.nextInt(ConfigHandler.entityConfig.nethermite.chanceOfSpawning) == 0)
                 {
                     EntityNethermite nethermite = new EntityNethermite(world);
                     nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
@@ -126,7 +126,7 @@ public class BlockHandler
         {
             if(state.getBlock() == Blocks.BEDROCK)
             {
-                if(player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_HAMMER_BONE)
+                if(player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_HAMMER)
                 {
                     event.getDrops().add(new ItemStack(Blocks.BEDROCK, 1, 0));
                 }
@@ -144,7 +144,7 @@ public class BlockHandler
         {
             if(state.getBlock() == Blocks.LAVA || state.getBlock() == Blocks.FLOWING_LAVA)
             {
-                event.setResult(ConfigHandler.dimension.nether.isLavaInfinite ? Event.Result.ALLOW : Event.Result.DEFAULT);
+                event.setResult(ConfigHandler.dimensionConfig.nether.isLavaInfinite ? Event.Result.ALLOW : Event.Result.DEFAULT);
             }
         }
     }

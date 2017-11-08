@@ -131,7 +131,7 @@ public class EntitySalamander extends EntityMob
         {
             String entityName = EntityList.getEntityString(this);
             String type = getType() == 0 ? "orange" : "black";
-            return I18n.translateToLocal("entity." + entityName + "." + type + ".name");
+            return I18n.translateToLocal("entityConfig." + entityName + "." + type + ".name");
         }
     }
 

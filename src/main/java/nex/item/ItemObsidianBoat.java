@@ -39,8 +39,7 @@ public class ItemObsidianBoat extends ItemNetherEx
 {
     public ItemObsidianBoat()
     {
-        super("item_boat_obsidian");
-
+        super("obsidian_boat");
         setMaxStackSize(1);
     }
 

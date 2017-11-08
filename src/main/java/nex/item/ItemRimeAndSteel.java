@@ -33,8 +33,7 @@ public class ItemRimeAndSteel extends ItemNetherEx
 {
     public ItemRimeAndSteel()
     {
-        super("item_crystal_rime_steel");
-
+        super("rime_and_steel");
         setMaxStackSize(1);
         setMaxDamage(64);
     }

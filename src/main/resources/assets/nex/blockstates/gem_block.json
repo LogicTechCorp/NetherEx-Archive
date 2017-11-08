@@ -10,6 +10,11 @@
                 "textures": {
                     "all": "nex:blocks/amethyst_block"
                 }
+            },
+            "rime": {
+                "textures": {
+                    "all": "nex:blocks/rime_block"
+                }
             }
         }
     }
