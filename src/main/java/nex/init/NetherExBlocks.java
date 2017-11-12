@@ -122,7 +122,7 @@ public class NetherExBlocks
 
             NetherExLootTables.LOGGER.info("Loot Table registration completed.");
 
-            LOGGER.info("BlockConfig registration started.");
+            LOGGER.info("Block registration started.");
 
             event.getRegistry().registerAll(
                     new BlockBasalt(),
@@ -184,7 +184,7 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("gloomy_nether_brick", Material.ROCK)
             );
 
-            LOGGER.info("BlockConfig registration completed.");
+            LOGGER.info("Block registration completed.");
         }
 
         @SubscribeEvent

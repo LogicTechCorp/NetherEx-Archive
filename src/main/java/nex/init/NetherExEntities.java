@@ -42,7 +42,7 @@ public class NetherExEntities
 
     public static void init()
     {
-        LOGGER.info("EntityConfig registration started.");
+        LOGGER.info("Entity registration started.");
 
         registerEntity("projectile_ghast_queen_fireball", EntityGhastQueenFireball.class, entityId++);
         registerEntity("projectile_ghastling_fireball", EntityGhastlingFireball.class, entityId++);
@@ -68,7 +68,7 @@ public class NetherExEntities
 
         registerEntity("boss_ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
 
-        LOGGER.info("EntityConfig registration Ended.");
+        LOGGER.info("Entity registration completed.");
     }
 
     private static void registerEntity(String name, Class<? extends Entity> cls, int id)

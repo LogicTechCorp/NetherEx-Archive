@@ -60,7 +60,7 @@ public class NetherExBiomes
         @SubscribeEvent
         public static void onRegisterBiomes(RegistryEvent.Register<Biome> event)
         {
-            LOGGER.info("BiomeConfig registration started.");
+            LOGGER.info("Biome registration started.");
 
             event.getRegistry().registerAll(
                     new BiomeHell(),
@@ -70,7 +70,7 @@ public class NetherExBiomes
                     new BiomeArcticAbyss()
             );
 
-            LOGGER.info("BiomeConfig registration completed.");
+            LOGGER.info("Biome registration completed.");
         }
     }
 

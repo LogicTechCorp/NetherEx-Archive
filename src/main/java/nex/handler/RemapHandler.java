@@ -17,7 +17,6 @@
 
 package nex.handler;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -31,9 +30,7 @@ import nex.NetherEx;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 
 /**
  * Remaps this mod's {@link Block}s and {@link Item}s after registry names have been changed.
@@ -43,9 +40,11 @@ import java.util.function.Predicate;
  *
  * @author Choonster
  */
-public class RemapHandler<T extends IForgeRegistryEntry<T>>
+@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
+public class RemapHandler
 {
-    private static final Map<String, String> customNames = ImmutableMap.<String, String>builder()
+    private static final Map<String, String> MAPPINGS_TO_REPLACE = ImmutableMap.<String, String>builder()
+            //Blocks
             .put("block_basalt", "basalt")
             .put("block_netherrack", "netherrack")
             .put("block_brick_nether", "nether_brick")
@@ -106,6 +105,7 @@ public class RemapHandler<T extends IForgeRegistryEntry<T>>
             .put("fence_gate_brick_nether_lively", "lively_nether_brick_fence_gate")
             .put("fence_gate_brick_nether_gloomy", "gloomy_nether_brick_fence_gate")
 
+            //Items
             .put("item_brick_nether", "netherbrick")
             .put("item_bone_wither", "wither_bone")
             .put("item_dust_wither", "wither_dust")
@@ -137,75 +137,41 @@ public class RemapHandler<T extends IForgeRegistryEntry<T>>
             .put("armor_boots_hide_salamander", "salamander_hide_boots")
             .build();
 
-    private final List<Predicate<RegistryEvent.MissingMappings.Mapping<T>>> remappingFunctions = ImmutableList.of(this::remapRegistryName);
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|RemapHandler");
 
-    public void remapAll(List<RegistryEvent.MissingMappings.Mapping<T>> missingMappings)
+    @SubscribeEvent
+    public static void missingBlockMappings(RegistryEvent.MissingMappings<Block> event)
     {
-        LOGGER.info("Fix Missing Mappings started.");
+        LOGGER.info("Block remapping started.");
+        event.getAllMappings().forEach(RemapHandler::remapEntries);
+        LOGGER.info("Block remapping completed.");
+    }
 
-        for(RegistryEvent.MissingMappings.Mapping<T> missingMapping : missingMappings)
+    @SubscribeEvent
+    public static void missingItemMappings(RegistryEvent.MissingMappings<Item> event)
+    {
+        LOGGER.info("Item remapping started.");
+        event.getAllMappings().forEach(RemapHandler::remapEntries);
+        LOGGER.info("Item remapping completed.");
+    }
+
+    private static void remapEntries(RegistryEvent.MissingMappings.Mapping missingMapping)
+    {
+        String oldMapping = missingMapping.key.getResourcePath();
+
+        if(MAPPINGS_TO_REPLACE.containsKey(oldMapping))
         {
-            LOGGER.info("Trying to remap {}", missingMapping.key);
+            String newMapping = MAPPINGS_TO_REPLACE.get(oldMapping);
+            ResourceLocation replacementMapping = new ResourceLocation(missingMapping.key.getResourceDomain(), newMapping);
 
-            boolean remapped = remappingFunctions.stream().anyMatch(mappingPredicate -> mappingPredicate.test(missingMapping));
+            IForgeRegistry registry = missingMapping.registry;
+            IForgeRegistryEntry entry = registry.getValue(replacementMapping);
 
-            if(!remapped)
+            if(registry.containsKey(replacementMapping) && entry != null)
             {
-                LOGGER.info("Couldn't remap {}", missingMapping.key);
+                LOGGER.info("Remapped {} {} to {}.", registry.getRegistrySuperType().getSimpleName(), missingMapping.key, replacementMapping);
+                missingMapping.remap(entry);
             }
-        }
-
-        LOGGER.info("Fix Missing Mappings completed.");
-    }
-
-    private boolean attemptRemap(RegistryEvent.MissingMappings.Mapping<T> missingMapping, ResourceLocation registryName)
-    {
-        IForgeRegistry<T> registry = missingMapping.registry;
-
-        T value = registry.getValue(registryName);
-
-        if(registry.containsKey(registryName) && value != null)
-        {
-            LOGGER.info("Remapped {} {} to {}", registry.getRegistrySuperType().getSimpleName(), missingMapping.key, registryName);
-            missingMapping.remap(value);
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean remapRegistryName(RegistryEvent.MissingMappings.Mapping<T> missingMapping)
-    {
-        final String missingPath = missingMapping.key.getResourcePath();
-
-        if(!customNames.containsKey(missingPath))
-        {
-            return false;
-        }
-
-        String newPath = customNames.get(missingPath);
-        ResourceLocation newRegistryName = new ResourceLocation(missingMapping.key.getResourceDomain(), newPath);
-        return attemptRemap(missingMapping, newRegistryName);
-    }
-
-    @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
-    private static class EventHandler
-    {
-        private static final RemapHandler<Block> blockRemapper = new RemapHandler<>();
-        private static final RemapHandler<Item> itemRemapper = new RemapHandler<>();
-
-        @SubscribeEvent
-        public static void missingBlockMappings(RegistryEvent.MissingMappings<Block> event)
-        {
-            blockRemapper.remapAll(event.getMappings());
-        }
-
-        @SubscribeEvent
-        public static void missingItemMappings(RegistryEvent.MissingMappings<Item> event)
-        {
-            itemRemapper.remapAll(event.getMappings());
         }
     }
 }
