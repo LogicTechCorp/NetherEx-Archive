@@ -6,17 +6,16 @@
     ],
     "key": {
         "#": {
-            "item": "nex:nether_brick",
-            "data": 0
+            "item": "minecraft:red_nether_brick"
         },
         "X": {
-            "item": "minecraft:stone_slab",
-            "data": 6
+            "item": "nex:vanilla_slab",
+            "data": 0
         }
     },
     "result": {
-        "item": "nex:nether_brick_fence",
-        "data": 0,
+        "item": "nex:vanilla_fence",
+        "data": 1,
         "count": 4
     }
 }

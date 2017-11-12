@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        " X ",
+        " X "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:golden_sword"
+        },
+        "X": {
+            "item": "nex:wither_bone"
+        }
+    },
+    "result": {
+        "item": "nex:golden_wither_bone_sword"
+    }
+}

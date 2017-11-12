@@ -7,12 +7,12 @@
     "key": {
         "#": {
             "item": "nex:netherbrick",
-            "data": 0
+            "data": 1
         }
     },
     "result": {
         "item": "nex:nether_brick",
-        "data": 0,
+        "data": 1,
         "count": 4
     }
 }

@@ -5,12 +5,11 @@
     ],
     "key": {
         "#": {
-            "item": "nex:vanilla_wall",
-            "data": 2,
-            "count": 6
+            "item": "nex:wither_bone"
         }
     },
     "result": {
-        "item": "minecraft:red_nether_brick"
+        "item": "nex:wither_dust",
+        "count": 3
     }
 }

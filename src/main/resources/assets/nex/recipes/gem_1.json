@@ -5,12 +5,13 @@
     ],
     "key": {
         "#": {
-            "item": "nex:vanilla_wall",
-            "data": 2,
-            "count": 6
+            "item": "nex:gem_block",
+            "data": 1
         }
     },
     "result": {
-        "item": "minecraft:red_nether_brick"
+        "item": "nex:gem",
+        "data": 1,
+        "count": 9
     }
 }

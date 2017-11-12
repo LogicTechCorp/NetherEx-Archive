@@ -6,13 +6,13 @@
     ],
     "key": {
         "#": {
-            "item": "nex:netherbrick",
-            "data": 0
+            "item": "nex:fiery_nether_brick_stairs",
+            "count": 8
         }
     },
     "result": {
         "item": "nex:nether_brick",
         "data": 0,
-        "count": 4
+        "count": 3
     }
 }

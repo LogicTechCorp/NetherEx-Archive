@@ -6,13 +6,13 @@
     ],
     "key": {
         "#": {
-            "item": "nex:netherbrick",
-            "data": 0
+            "item": "nex:basalt_smooth_stairs",
+            "count": 8
         }
     },
     "result": {
-        "item": "nex:nether_brick",
-        "data": 0,
-        "count": 4
+        "item": "nex:basalt",
+        "data": 1,
+        "count": 3
     }
 }

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:gem",
+            "data": 1
+        }
+    },
+    "result": {
+        "item": "nex:gem_block",
+        "data": 1
+    }
+}

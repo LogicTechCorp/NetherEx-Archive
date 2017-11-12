@@ -10,8 +10,8 @@
             "data": 0
         },
         "X": {
-            "item": "minecraft:stone_slab",
-            "data": 6
+            "item": "nex:nether_brick_slab",
+            "data": 0
         }
     },
     "result": {

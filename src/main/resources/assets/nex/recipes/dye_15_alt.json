@@ -2,7 +2,7 @@
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
-            "item": "nex:block_bone_chunk"
+            "item": "nex:bone_chunk"
         }
     ],
     "result": {
