@@ -71,13 +71,13 @@ public class EntitySporeCreeper extends EntityMob
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_SPORE;
+        return NetherExSoundEvents.SPORE_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_SPORE;
+        return NetherExSoundEvents.SPORE_DEATH;
     }
 
     @Override
@@ -174,7 +174,7 @@ public class EntitySporeCreeper extends EntityMob
 
             if(i > 0 && timeSinceIgnited == 0)
             {
-                playSound(NetherExSoundEvents.ENTITY_WARN_SPORE, 1.0F, 0.5F);
+                playSound(NetherExSoundEvents.SPORE_WARN, 1.0F, 0.5F);
             }
 
             timeSinceIgnited += i;
@@ -216,7 +216,7 @@ public class EntitySporeCreeper extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_SPORE_CREEPER;
+        return NetherExLootTables.SPORE_CREEPER;
     }
 
     @SideOnly(Side.CLIENT)

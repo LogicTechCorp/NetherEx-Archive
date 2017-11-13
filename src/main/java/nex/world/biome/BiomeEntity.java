@@ -40,7 +40,7 @@ public class BiomeEntity
 
     public static BiomeEntity deserialize(JsonObject config)
     {
-        EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(JsonUtils.getString(config, "entityConfig", "")));
+        EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(JsonUtils.getString(config, "entity", "")));
 
         if(entityEntry != null)
         {

@@ -53,19 +53,19 @@ public class EntitySalamander extends EntityMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_SALAMANDER;
+        return NetherExSoundEvents.SALAMANDER_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_SALAMANDER;
+        return NetherExSoundEvents.SALAMANDER_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_SALAMANDER;
+        return NetherExSoundEvents.SALAMANDER_DEATH;
     }
 
     @Override
@@ -138,7 +138,7 @@ public class EntitySalamander extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return getType() == 0 ? NetherExLootTables.ENTITY_SALAMANDER_ORANGE : NetherExLootTables.ENTITY_SALAMANDER_BLACK;
+        return getType() == 0 ? NetherExLootTables.ORANGE_SALAMANDER : NetherExLootTables.BLACK_SALAMANDER;
     }
 
     public int getType()

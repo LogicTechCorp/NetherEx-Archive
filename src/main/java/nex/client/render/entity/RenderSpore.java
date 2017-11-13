@@ -37,6 +37,6 @@ public class RenderSpore extends RenderLiving<EntitySpore>
     @Override
     protected ResourceLocation getEntityTexture(EntitySpore spore)
     {
-        return NetherExTextures.ENTITY_SPORE;
+        return NetherExTextures.SPORE;
     }
 }

@@ -42,19 +42,19 @@ public class EntityGhastling extends EntityGhast
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_GHASTLING;
+        return NetherExSoundEvents.GHASTLING_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_GHASTLING;
+        return NetherExSoundEvents.GHASTLING_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_GHASTLING;
+        return NetherExSoundEvents.GHASTLING_DEATH;
     }
 
     @Override
@@ -88,6 +88,6 @@ public class EntityGhastling extends EntityGhast
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_GHASTLING;
+        return NetherExLootTables.GHASTLING;
     }
 }

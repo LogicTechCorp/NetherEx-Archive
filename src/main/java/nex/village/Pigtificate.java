@@ -82,14 +82,14 @@ public class Pigtificate
 
     public enum Career
     {
-        CHIEF(Profession.LEADER, 16, NetherExTextures.ENTITY_PIGTIFICATE_CHIEF, NetherExLootTables.ENTITY_PIGTIFICATE_CHIEF),
-        HUNTER(Profession.FORAGER, 5, NetherExTextures.ENTITY_PIGTIFICATE_HUNTER, NetherExLootTables.ENTITY_PIGTIFICATE_HUNTER),
-        GATHERER(Profession.FORAGER, 5, NetherExTextures.ENTITY_PIGTIFICATE_GATHERER, NetherExLootTables.ENTITY_PIGTIFICATE_GATHERER),
-        SCAVENGER(Profession.FORAGER, 5, NetherExTextures.ENTITY_PIGTIFICATE_SCAVENGER, NetherExLootTables.ENTITY_PIGTIFICATE_SCAVENGER),
-        ARMORSMITH(Profession.BLACKSMITH, 8, NetherExTextures.ENTITY_PIGTIFICATE_ARMORSMITH, NetherExLootTables.ENTITY_PIGTIFICATE_ARMORSMITH),
-        TOOLSMITH(Profession.BLACKSMITH, 8, NetherExTextures.ENTITY_PIGTIFICATE_TOOLSMITH, NetherExLootTables.ENTITY_PIGTIFICATE_TOOLSMITH),
-        ENCHANTER(Profession.SORCERER, 8, NetherExTextures.ENTITY_PIGTIFICATE_ENCHANTER, NetherExLootTables.ENTITY_PIGTIFICATE_ENCHANTER),
-        BREWER(Profession.SORCERER, 8, NetherExTextures.ENTITY_PIGTIFICATE_BREWER, NetherExLootTables.ENTITY_PIGTIFICATE_BREWER);
+        CHIEF(Profession.LEADER, 16, NetherExTextures.PIGTIFICATE_CHIEF, NetherExLootTables.PIGTIFICATE_CHIEF),
+        HUNTER(Profession.FORAGER, 5, NetherExTextures.PIGTIFICATE_HUNTER, NetherExLootTables.PIGTIFICATE_HUNTER),
+        GATHERER(Profession.FORAGER, 5, NetherExTextures.PIGTIFICATE_GATHERER, NetherExLootTables.PIGTIFICATE_GATHERER),
+        SCAVENGER(Profession.FORAGER, 5, NetherExTextures.PIGTIFICATE_SCAVENGER, NetherExLootTables.PIGTIFICATE_SCAVENGER),
+        ARMORSMITH(Profession.BLACKSMITH, 8, NetherExTextures.PIGTIFICATE_ARMORSMITH, NetherExLootTables.PIGTIFICATE_ARMORSMITH),
+        TOOLSMITH(Profession.BLACKSMITH, 8, NetherExTextures.PIGTIFICATE_TOOLSMITH, NetherExLootTables.PIGTIFICATE_TOOLSMITH),
+        ENCHANTER(Profession.SORCERER, 8, NetherExTextures.PIGTIFICATE_ENCHANTER, NetherExLootTables.PIGTIFICATE_ENCHANTER),
+        BREWER(Profession.SORCERER, 8, NetherExTextures.PIGTIFICATE_BREWER, NetherExLootTables.PIGTIFICATE_BREWER);
 
         private Profession profession;
         private int weight;

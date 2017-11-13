@@ -37,6 +37,6 @@ public class RenderSalamander extends RenderLiving<EntitySalamander>
     @Override
     protected ResourceLocation getEntityTexture(EntitySalamander salamander)
     {
-        return salamander.getType() == 0 ? NetherExTextures.ENTITY_SALAMANDER_ORANGE : NetherExTextures.ENTITY_SALAMANDER_BLACK;
+        return salamander.getType() == 0 ? NetherExTextures.ORANGE_SALAMANDER : NetherExTextures.BLACK_SALAMANDER;
     }
 }

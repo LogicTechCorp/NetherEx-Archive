@@ -37,6 +37,6 @@ public class RenderSpinout extends RenderLiving<EntitySpinout>
     @Override
     protected ResourceLocation getEntityTexture(EntitySpinout spinout)
     {
-        return NetherExTextures.ENTITY_SPINOUT;
+        return NetherExTextures.SPINOUT;
     }
 }

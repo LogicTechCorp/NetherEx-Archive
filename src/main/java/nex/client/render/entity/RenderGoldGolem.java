@@ -37,6 +37,6 @@ public class RenderGoldGolem extends RenderLiving<EntityGoldGolem>
     @Override
     protected ResourceLocation getEntityTexture(EntityGoldGolem mogus)
     {
-        return NetherExTextures.ENTITY_GOLEM_GOLD;
+        return NetherExTextures.GOLD_GOLEM;
     }
 }

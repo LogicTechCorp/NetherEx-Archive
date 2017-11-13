@@ -50,7 +50,7 @@ public class RenderBoneSpider extends RenderLiving<EntityBoneSpider>
     @Override
     protected ResourceLocation getEntityTexture(EntityBoneSpider boneSpider)
     {
-        return NetherExTextures.ENTITY_BONE_SPIDER;
+        return NetherExTextures.BONE_SPIDER;
     }
 
     public ModelBase getSpiderHead()

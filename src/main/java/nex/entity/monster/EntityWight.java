@@ -50,19 +50,19 @@ public class EntityWight extends EntityMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_WIGHT;
+        return NetherExSoundEvents.WIGHT_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_WIGHT;
+        return NetherExSoundEvents.WIGHT_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_WIGHT;
+        return NetherExSoundEvents.WIGHT_DEATH;
     }
 
     @Override
@@ -126,6 +126,6 @@ public class EntityWight extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_WIGHT;
+        return NetherExLootTables.WIGHT;
     }
 }

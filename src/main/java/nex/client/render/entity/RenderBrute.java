@@ -37,6 +37,6 @@ public class RenderBrute extends RenderLiving<EntityBrute>
     @Override
     protected ResourceLocation getEntityTexture(EntityBrute entity)
     {
-        return NetherExTextures.ENTITY_BRUTE;
+        return NetherExTextures.BRUTE;
     }
 }

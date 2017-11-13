@@ -59,6 +59,6 @@ public class EntityBoneSpider extends EntitySpider
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_BONE_SPIDER;
+        return NetherExLootTables.BONE_SPIDER;
     }
 }

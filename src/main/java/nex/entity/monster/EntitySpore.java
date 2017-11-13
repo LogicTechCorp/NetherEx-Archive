@@ -61,13 +61,13 @@ public class EntitySpore extends EntityMob
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_SPORE;
+        return NetherExSoundEvents.SPORE_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_SPORE;
+        return NetherExSoundEvents.SPORE_DEATH;
     }
 
     @Override
@@ -159,7 +159,7 @@ public class EntitySpore extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_SPORE;
+        return NetherExLootTables.SPORE;
     }
 
     public int getStage()

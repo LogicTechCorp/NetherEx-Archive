@@ -272,7 +272,7 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_GOLEM_GOLD;
+        return NetherExLootTables.GOLD_GOLEM;
     }
 
     public int getHoldFlowerTick()

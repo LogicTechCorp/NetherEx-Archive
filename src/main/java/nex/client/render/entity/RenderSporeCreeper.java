@@ -69,6 +69,6 @@ public class RenderSporeCreeper extends RenderLiving<EntitySporeCreeper>
     @Override
     protected ResourceLocation getEntityTexture(EntitySporeCreeper creeper)
     {
-        return NetherExTextures.ENTITY_SPORE_CREEPER;
+        return NetherExTextures.SPORE_CREEPER;
     }
 }

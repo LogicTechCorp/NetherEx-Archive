@@ -89,7 +89,7 @@ public class RenderObsidianBoat extends Render<EntityObsidianBoat>
     @Override
     protected ResourceLocation getEntityTexture(EntityObsidianBoat entity)
     {
-        return NetherExTextures.ENTITY_BOAT_OBSIDIAN;
+        return NetherExTextures.OBSIDIAN_BOAT;
     }
 
     @Override

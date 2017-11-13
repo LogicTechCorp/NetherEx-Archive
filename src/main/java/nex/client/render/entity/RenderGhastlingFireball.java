@@ -74,6 +74,6 @@ public class RenderGhastlingFireball extends Render<EntityGhastlingFireball>
     @Override
     protected ResourceLocation getEntityTexture(EntityGhastlingFireball fireball)
     {
-        return NetherExTextures.ENTITY_FIREBALL_GHASTLING;
+        return NetherExTextures.GHASTLING_FIREBALL;
     }
 }

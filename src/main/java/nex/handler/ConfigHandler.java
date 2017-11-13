@@ -79,7 +79,7 @@ public class ConfigHandler
 
     static
     {
-        PACKED_CONFIGS.add(new Tuple<>("biome_configs", "BiomeConfig Configs"));
+        PACKED_CONFIGS.add(new Tuple<>("biome_configs", "Biome Configs"));
         PACKED_CONFIGS.add(new Tuple<>("trade_configs", "Trade Configs"));
 
         unpackConfigs();

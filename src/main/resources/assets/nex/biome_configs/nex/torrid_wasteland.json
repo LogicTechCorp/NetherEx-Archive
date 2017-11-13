@@ -16,14 +16,14 @@
     },
     "entities": [
         {
-            "entity": "nex:neutral_salamander",
+            "entity": "nex:salamander",
             "creatureType": "monster",
             "weight": 100,
             "minGroupCount": 3,
             "maxGroupCount": 6
         },
         {
-            "entity": "nex:monster_ember",
+            "entity": "nex:ember",
             "creatureType": "monster",
             "weight": 50,
             "minGroupCount": 4,
@@ -93,7 +93,7 @@
                     ],
                     "spawnerMobs": [
                         "minecraft:blaze",
-                        "nex:monster_ember"
+                        "nex:ember"
                     ]
                 }
             ],
@@ -115,7 +115,7 @@
                     ],
                     "spawnerMobs": [
                         "minecraft:blaze",
-                        "nex:monster_ember"
+                        "nex:ember"
                     ]
                 }
             ],
@@ -132,7 +132,7 @@
                 "block": "minecraft:flowing_lava"
             },
             "blockToTarget": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -150,7 +150,7 @@
                 "block": "minecraft:fire"
             },
             "blockToTarget": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -168,7 +168,7 @@
                 "block": "minecraft:glowstone"
             },
             "blockToHangFrom": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -184,7 +184,7 @@
                 "block": "minecraft:glowstone"
             },
             "blockToHangFrom": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -198,13 +198,13 @@
             "generator": "ore",
             "generationStage": "quartz",
             "blockToSpawn": {
-                "block": "nex:ore_quartz",
+                "block": "nex:quartz_ore",
                 "properties": {
                     "type": "fiery"
                 }
             },
             "blockToReplace": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -219,13 +219,13 @@
             "generator": "ore",
             "generationStage": "quartz",
             "blockToSpawn": {
-                "block": "nex:block_basalt",
+                "block": "nex:basalt",
                 "properties": {
                     "type": "normal"
                 }
             },
             "blockToReplace": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -243,7 +243,7 @@
                 "block": "minecraft:magma"
             },
             "blockToReplace": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -261,7 +261,7 @@
                 "block": "minecraft:flowing_lava"
             },
             "blockToTarget": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }
@@ -279,7 +279,7 @@
                 "block": "minecraft:lava"
             },
             "blockToSurround": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "fiery"
                 }

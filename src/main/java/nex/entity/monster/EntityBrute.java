@@ -143,7 +143,7 @@ public class EntityBrute extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_BRUTE;
+        return NetherExLootTables.BRUTE;
     }
 
     private int getCooldown()

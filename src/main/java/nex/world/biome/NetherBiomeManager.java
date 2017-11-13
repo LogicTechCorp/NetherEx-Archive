@@ -91,7 +91,7 @@ public class NetherBiomeManager
             Biome biome = enhancedBiome.getBiome();
 
             EnhancedBiomeClimate.getFromString(JsonUtils.getString(config, "climate")).addBiome(enhancedBiome);
-            LOGGER.info("Added the " + biome.getRegistryName().getResourcePath() + " biomeConfig, from " + biome.getRegistryName().getResourceDomain() + ", to the Nether.");
+            LOGGER.info("Added the " + biome.getRegistryName().getResourcePath() + " biome from " + biome.getRegistryName().getResourceDomain() + ", to the Nether.");
 
             JsonArray entityConfigs = JsonUtils.getJsonArray(config, "entities", new JsonArray());
 

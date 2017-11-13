@@ -45,19 +45,19 @@ public class EntityNethermite extends EntityMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_NETHERMITE;
+        return NetherExSoundEvents.NETHERMITE_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_NETHERMITE;
+        return NetherExSoundEvents.NETHERMITE_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_NETHERMITE;
+        return NetherExSoundEvents.NETHERMITE_DEATH;
     }
 
     @Override
@@ -115,6 +115,6 @@ public class EntityNethermite extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_NETHERMITE;
+        return NetherExLootTables.NETHERMITE;
     }
 }

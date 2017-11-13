@@ -76,13 +76,13 @@ public class EntityEmber extends EntityMob
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_EMBER;
+        return NetherExSoundEvents.EMBER_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_EMBER;
+        return NetherExSoundEvents.EMBER_DEATH;
     }
 
     @Override
@@ -252,7 +252,7 @@ public class EntityEmber extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_EMBER;
+        return NetherExLootTables.EMBER;
     }
 
     public void setMovementSpeed(double newSpeed)

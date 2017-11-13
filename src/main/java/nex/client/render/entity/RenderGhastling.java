@@ -42,6 +42,6 @@ public class RenderGhastling extends RenderLiving<EntityGhastling>
     @Override
     protected ResourceLocation getEntityTexture(EntityGhastling ghastling)
     {
-        return ghastling.isAttacking() ? NetherExTextures.ENTITY_GHASTLING_SHOOTING : NetherExTextures.ENTITY_GHASTLING;
+        return ghastling.isAttacking() ? NetherExTextures.GHASTLING_SHOOTING : NetherExTextures.GHASTLING;
     }
 }

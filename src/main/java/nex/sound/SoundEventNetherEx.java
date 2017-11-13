@@ -25,7 +25,6 @@ public class SoundEventNetherEx extends SoundEvent
     public SoundEventNetherEx(ResourceLocation soundNameIn)
     {
         super(soundNameIn);
-
         setRegistryName(soundNameIn);
     }
 }

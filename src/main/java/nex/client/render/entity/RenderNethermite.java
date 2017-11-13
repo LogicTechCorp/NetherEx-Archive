@@ -37,6 +37,6 @@ public class RenderNethermite extends RenderLiving<EntityNethermite>
     @Override
     protected ResourceLocation getEntityTexture(EntityNethermite mite)
     {
-        return NetherExTextures.ENTITY_NETHERMITE;
+        return NetherExTextures.NETHERMITE;
     }
 }

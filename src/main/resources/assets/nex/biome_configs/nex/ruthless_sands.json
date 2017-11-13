@@ -13,7 +13,7 @@
     },
     "entities": [
         {
-            "entity": "nex:monster_spinout",
+            "entity": "nex:spinout",
             "creatureType": "monster",
             "weight": 100,
             "minGroupCount": 1,
@@ -90,7 +90,7 @@
                     ],
                     "spawnerMobs": [
                         "minecraft:blaze",
-                        "nex:monster_ember"
+                        "nex:ember"
                     ]
                 }
             ],
@@ -112,7 +112,7 @@
                     ],
                     "spawnerMobs": [
                         "minecraft:blaze",
-                        "nex:monster_ember"
+                        "nex:ember"
                     ]
                 }
             ],
@@ -167,7 +167,7 @@
                 "block": "minecraft:flowing_lava"
             },
             "blockToTarget": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "gloomy"
                 }
@@ -185,7 +185,7 @@
                 "block": "minecraft:glowstone"
             },
             "blockToHangFrom": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "gloomy"
                 }
@@ -202,7 +202,7 @@
                 "block": "minecraft:glowstone"
             },
             "blockToHangFrom": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "gloomy"
                 }
@@ -224,13 +224,13 @@
             "generator": "ore",
             "generationStage": "quartz",
             "blockToSpawn": {
-                "block": "nex:ore_quartz",
+                "block": "nex:quartz_ore",
                 "properties": {
                     "type": "gloomy"
                 }
             },
             "blockToReplace": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "gloomy"
                 }
@@ -248,7 +248,7 @@
                 "block": "minecraft:flowing_lava"
             },
             "blockToTarget": {
-                "block": "nex:block_netherrack",
+                "block": "nex:netherrack",
                 "properties": {
                     "type": "gloomy"
                 }

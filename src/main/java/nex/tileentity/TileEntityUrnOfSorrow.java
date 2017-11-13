@@ -50,7 +50,7 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
             {
                 if(getSummoningTime() == 0)
                 {
-                    getWorld().playSound(null, getPos(), NetherExSoundEvents.ENTITY_SUMMON_GHAST_QUEEN, SoundCategory.AMBIENT, 0.5F, 1.0F);
+                    getWorld().playSound(null, getPos(), NetherExSoundEvents.GHAST_QUEEN_SUMMON, SoundCategory.AMBIENT, 0.5F, 1.0F);
                 }
                 setSummoningTime(getSummoningTime() + 1);
                 setCanBreak(false);

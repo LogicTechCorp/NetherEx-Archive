@@ -53,25 +53,25 @@ public class EntitySpinout extends EntityMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_SPINOUT;
+        return NetherExSoundEvents.SPINOUT_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_SPINOUT;
+        return NetherExSoundEvents.SPINOUT_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_SPINOUT;
+        return NetherExSoundEvents.SPINOUT_DEATH;
     }
 
     @Override
     public void playSound(SoundEvent sound, float volume, float pitch)
     {
-        if(!isSilent() || isSilent() && sound != NetherExSoundEvents.ENTITY_AMBIENT_SPINOUT)
+        if(!isSilent() || isSilent() && sound != NetherExSoundEvents.SPINOUT_AMBIENT)
         {
             world.playSound(null, posX, posY, posZ, sound, getSoundCategory(), volume, pitch);
         }
@@ -180,7 +180,7 @@ public class EntitySpinout extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_SPINOUT;
+        return NetherExLootTables.SPINOUT;
     }
 
     public int getCounter()

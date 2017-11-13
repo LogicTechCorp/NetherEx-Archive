@@ -45,6 +45,6 @@ public class RenderGhastQueen extends RenderLiving<EntityGhastQueen>
     @Override
     protected ResourceLocation getEntityTexture(EntityGhastQueen ghastQueen)
     {
-        return ghastQueen.isAttacking() ? NetherExTextures.ENTITY_GHAST_QUEEN_SHOOTING : NetherExTextures.ENTITY_GHAST_QUEEN;
+        return ghastQueen.isAttacking() ? NetherExTextures.GHAST_QUEEN_SHOOTING : NetherExTextures.GHAST_QUEEN;
     }
 }

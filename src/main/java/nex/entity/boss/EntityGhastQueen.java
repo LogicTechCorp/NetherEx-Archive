@@ -65,19 +65,19 @@ public class EntityGhastQueen extends EntityGhast
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_GHAST_QUEEN;
+        return NetherExSoundEvents.GHAST_QUEEN_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_GHAST_QUEEN;
+        return NetherExSoundEvents.GHAST_QUEEN_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_GHAST_QUEEN;
+        return NetherExSoundEvents.GHAST_QUEEN_DEATH;
     }
 
     @Override
@@ -239,7 +239,7 @@ public class EntityGhastQueen extends EntityGhast
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_GHAST_QUEEN;
+        return NetherExLootTables.GHAST_QUEEN;
     }
 
     private BlockPos getUrnPos()

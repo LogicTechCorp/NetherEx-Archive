@@ -265,7 +265,7 @@ public class RecipeUtil
             return ret;
         }
 
-        throw new IllegalArgumentException("Not a blockConfig, item, stack, or od name");
+        throw new IllegalArgumentException("Not a block, item, stack, or od name");
     }
 
     private static void generateConstants()

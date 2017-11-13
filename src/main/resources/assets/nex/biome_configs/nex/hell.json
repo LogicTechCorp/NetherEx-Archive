@@ -24,7 +24,7 @@
             "maxGroupCount": 4
         },
         {
-            "entity": "nex:monster_ember",
+            "entity": "nex:ember",
             "creatureType": "monster",
             "weight": 25,
             "minGroupCount": 4,
@@ -409,7 +409,10 @@
             "generator": "ore",
             "generationStage": "quartz",
             "blockToSpawn": {
-                "block": "nex:ore_amethyst"
+                "block": "nex:gem_ore",
+                "properties": {
+                    "type": "amethyst"
+                }
             },
             "blockToReplace": {
                 "block": "minecraft:netherrack"

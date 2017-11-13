@@ -37,6 +37,6 @@ public class RenderWight extends RenderLiving<EntityWight>
     @Override
     protected ResourceLocation getEntityTexture(EntityWight entity)
     {
-        return NetherExTextures.ENTITY_WIGHT;
+        return NetherExTextures.WIGHT;
     }
 }

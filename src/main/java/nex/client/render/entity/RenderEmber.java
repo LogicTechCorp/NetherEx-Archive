@@ -37,6 +37,6 @@ public class RenderEmber extends RenderLiving<EntityEmber>
     @Override
     protected ResourceLocation getEntityTexture(EntityEmber ember)
     {
-        return NetherExTextures.ENTITY_EMBER;
+        return NetherExTextures.EMBER;
     }
 }
