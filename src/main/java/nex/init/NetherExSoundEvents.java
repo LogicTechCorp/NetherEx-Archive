@@ -51,7 +51,7 @@ public class NetherExSoundEvents
     public static final SoundEvent SPINOUT_AMBIENT = null;
     public static final SoundEvent SPINOUT_HURT = null;
     public static final SoundEvent SPINOUT_DEATH = null;
-    public static final SoundEvent SPORE_AMBIENT = null;
+    public static final SoundEvent SPORE_HURT = null;
     public static final SoundEvent SPORE_DEATH = null;
     public static final SoundEvent SPORE_WARN = null;
     public static final SoundEvent SPORE_EXPLODE = null;
@@ -97,7 +97,7 @@ public class NetherExSoundEvents
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spinout_ambient")),
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spinout_hurt")),
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spinout_death")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spore_ambient")),
+                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spore_hurt")),
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spore_death")),
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spore_warn")),
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":spore_explode")),

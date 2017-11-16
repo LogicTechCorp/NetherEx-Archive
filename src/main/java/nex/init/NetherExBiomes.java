@@ -17,16 +17,13 @@
 
 package nex.init;
 
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.world.WorldProviderNether;
 import nex.world.biome.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -81,14 +78,5 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, HOT, DRY, MUSHROOM);
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, WET, COLD);
-    }
-
-    public static void postInit()
-    {
-        DimensionManager.unregisterDimension(-1);
-        DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
-        DimensionManager.registerDimension(-1, nether);
-
-        LOGGER.info("The Nether has been overridden.");
     }
 }

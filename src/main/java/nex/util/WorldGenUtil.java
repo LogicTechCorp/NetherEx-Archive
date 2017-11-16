@@ -39,9 +39,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.BlockRotationProcessor;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -50,9 +48,6 @@ import nex.block.BlockUrnOfSorrow;
 import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
 import nex.tileentity.TileEntityUrnOfSorrow;
-import nex.world.biome.NetherBiomeManager;
-import nex.world.gen.GenerationStage;
-import nex.world.gen.feature.EnhancedGenerator;
 
 import java.util.List;
 import java.util.Random;
@@ -471,28 +466,6 @@ public class WorldGenUtil
                 return new Vec3d(1.0D - xCoord, yCoord, 1.0D - zCoord);
             default:
                 return flag ? new Vec3d(xCoord, yCoord, zCoord) : vec;
-        }
-    }
-
-    public static void generateFeature(World world, int chunkX, int chunkZ, Random rand, GenerationStage generationStage)
-    {
-        BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        generateFeature(world, pos, rand, generationStage);
-    }
-
-    public static void generateFeature(World world, BlockPos pos, Random rand, GenerationStage generationStage)
-    {
-        if(world.provider.getDimension() == DimensionType.NETHER.getId())
-        {
-            Biome biome = world.getBiome(pos.add(16, 0, 16));
-
-            for(EnhancedGenerator generator : NetherBiomeManager.getBiomeGenerators(biome, generationStage))
-            {
-                for(int genAttempts = 0; genAttempts < generator.getGenAttempts(rand); genAttempts++)
-                {
-                    generator.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(generator.getMinHeight(), generator.getMaxHeight(), rand), rand.nextInt(16) + 8));
-                }
-            }
         }
     }
 }

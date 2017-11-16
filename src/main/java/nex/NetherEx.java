@@ -18,16 +18,18 @@
 package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
-import nex.handler.ConfigHandler;
-import nex.init.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import nex.handler.NetherExBiomeManager;
+import nex.init.NetherExBiomes;
+import nex.init.NetherExEntities;
+import nex.init.NetherExOreDict;
+import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
-import nex.village.TradeManager;
-import nex.world.biome.NetherBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,7 +43,6 @@ public class NetherEx
     public static final String UPDATE_JSON = "https://raw.githubusercontent.com/LogicTechCorp/NetherEx/1.12.x/src/main/resources/assets/nex/version.json";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
-    public static final boolean IS_DEV_ENV = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;
@@ -62,9 +63,7 @@ public class NetherEx
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         LOGGER.info("PreInitialization started.");
-
         proxy.preInit();
-
         LOGGER.info("PreInitialization completed.");
     }
 
@@ -72,13 +71,12 @@ public class NetherEx
     public void onFMLInitialization(FMLInitializationEvent event)
     {
         LOGGER.info("Initialization started.");
-
         NetherExBiomes.init();
+        NetherExBiomeManager.init();
         NetherExEntities.init();
         NetherExRecipes.init();
         NetherExOreDict.init();
         proxy.init();
-
         LOGGER.info("Initialization completed.");
     }
 
@@ -86,24 +84,7 @@ public class NetherEx
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
         LOGGER.info("PostInitialization started.");
-
-        NetherExBiomes.postInit();
         proxy.postInit();
-
         LOGGER.info("PostInitialization completed.");
-    }
-
-    @Mod.EventHandler
-    public void onFMLServerStartingEvent(FMLServerStartingEvent event)
-    {
-        ConfigHandler.loadConfigs(event.getServer());
-    }
-
-    @Mod.EventHandler
-    public void onFMLServerStopped(FMLServerStoppedEvent event)
-    {
-        NetherBiomeManager.clearBiomes();
-        TradeManager.clearTrades();
-        NetherExCompat.resetCompat();
     }
 }

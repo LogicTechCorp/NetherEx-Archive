@@ -71,7 +71,7 @@ public class EntitySporeCreeper extends EntityMob
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.SPORE_AMBIENT;
+        return NetherExSoundEvents.SPORE_HURT;
     }
 
     @Override
