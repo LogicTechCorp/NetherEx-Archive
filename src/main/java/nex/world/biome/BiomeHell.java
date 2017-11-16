@@ -17,7 +17,10 @@
 
 package nex.world.biome;
 
+import net.minecraft.entity.monster.*;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.biome.Biome;
+import nex.entity.monster.EntityEmber;
 
 @SuppressWarnings("ConstantConditions")
 public class BiomeHell extends BiomeNetherEx
@@ -28,5 +31,11 @@ public class BiomeHell extends BiomeNetherEx
 
         topBlock = Blocks.NETHERRACK.getDefaultState();
         fillerBlock = Blocks.NETHERRACK.getDefaultState();
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 100, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 2, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 1, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBlaze.class, 3, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEmber.class, 25, 1, 4));
     }
 }

@@ -17,7 +17,11 @@
 
 package nex.world.biome;
 
+import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.world.biome.Biome;
 import nex.block.BlockNetherrack;
+import nex.entity.monster.EntityEmber;
+import nex.entity.neutral.EntitySalamander;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
@@ -29,5 +33,8 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
         topBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 25, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4));
     }
 }

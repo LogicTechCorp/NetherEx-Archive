@@ -26,12 +26,10 @@ public abstract class BiomeNetherEx extends Biome
     public BiomeNetherEx(BiomeProperties properties, String name)
     {
         super(properties);
-
         spawnableMonsterList.clear();
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
-
         setRegistryName(NetherEx.MOD_ID + ":" + name);
     }
 

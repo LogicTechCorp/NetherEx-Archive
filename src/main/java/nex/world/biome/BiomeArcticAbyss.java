@@ -17,7 +17,13 @@
 
 package nex.world.biome;
 
+import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.world.biome.Biome;
 import nex.block.BlockNetherrack;
+import nex.entity.monster.EntityBoneSpider;
+import nex.entity.monster.EntityBrute;
+import nex.entity.monster.EntityWight;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
@@ -29,5 +35,10 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
         topBlock = NetherExBlocks.FROSTBURN_ICE.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBoneSpider.class, 35, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1));
     }
 }

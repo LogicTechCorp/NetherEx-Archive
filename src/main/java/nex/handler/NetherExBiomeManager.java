@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import lex.LibEx;
-import lex.biome.BiomeType;
-import lex.biome.WrappedBiome;
 import lex.biome.WrappedBiomeManager;
 import lex.config.JsonConfig;
 import lex.util.JsonUtils;
@@ -16,7 +14,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class NetherExBiomeManager
 {
@@ -85,11 +82,8 @@ public class NetherExBiomeManager
         for(Biome biome : BIOMES)
         {
             ResourceLocation registryName = biome.getRegistryName();
-            WrappedBiomeManager.createWrappedBiome(biome, BiomeType.NETHER, new JsonConfig(registryName.toString(), new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/" + registryName.getResourceDomain() + "/" + registryName.getResourcePath())));
+            WrappedBiomeManager.createWrappedBiome(biome, new JsonConfig(registryName.toString(), new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/" + registryName.getResourceDomain() + "/" + registryName.getResourcePath())));
         }
-
-        Map<Biome, WrappedBiome> wrappedBiomes = WrappedBiomeManager.getWrappedBiomes();
-        int i = 0;
     }
 
     public static List<Biome> getBiomes()

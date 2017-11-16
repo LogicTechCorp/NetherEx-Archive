@@ -72,8 +72,8 @@ public class NetherEx
     {
         LOGGER.info("Initialization started.");
         NetherExBiomes.init();
-        NetherExBiomeManager.init();
         NetherExEntities.init();
+        NetherExBiomeManager.init();
         NetherExRecipes.init();
         NetherExOreDict.init();
         proxy.init();

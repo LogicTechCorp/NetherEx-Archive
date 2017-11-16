@@ -19,10 +19,14 @@ package nex.world.biome;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import nex.block.BlockNetherrack;
+import nex.entity.monster.EntitySpore;
+import nex.entity.monster.EntitySporeCreeper;
+import nex.entity.neutral.EntityMogus;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.util.RandomUtil;
@@ -41,6 +45,9 @@ public class BiomeFungiForest extends BiomeNetherEx
 
         topBlock = NetherExBlocks.HYPHAE.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpore.class, 25, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4));
     }
 
     @Override

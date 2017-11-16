@@ -17,8 +17,12 @@
 
 package nex.world.biome;
 
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.biome.Biome;
 import nex.block.BlockNetherrack;
+import nex.entity.monster.EntitySpinout;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
@@ -30,5 +34,8 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 
         topBlock = Blocks.SOUL_SAND.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY);
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitherSkeleton.class, 65, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 45, 1, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpinout.class, 100, 1, 4));
     }
 }
