@@ -1,23 +1,28 @@
 package nex.handler;
 
 import com.google.common.collect.ImmutableList;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import lex.LibEx;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import lex.biome.WrappedBiomeManager;
-import lex.config.JsonConfig;
-import lex.util.JsonUtils;
+import lex.config.Config;
+import lex.config.ConfigFactory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static lex.util.JsonUtils.isString;
 
 public class NetherExBiomeManager
 {
-    private static final List<Biome> BIOMES = new ArrayList<>();
+    private static final List<Biome> BIOME_LIST = new ArrayList<>();
+    private static final Map<Biome, Config> BIOME_CONFIG_MAP = new HashMap<>();
 
     public static void init()
     {
@@ -27,67 +32,58 @@ public class NetherExBiomeManager
 
     private static void readBiomeConfig()
     {
-        JsonConfig config = new JsonConfig("Nether Biomes", new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/biomes.json"));
-        JsonArray fallbackArray = new JsonArray();
-        fallbackArray.add("nex:hell");
-        fallbackArray.add("nex:ruthless_sands");
-        fallbackArray.add("nex:fungi_forest");
-        fallbackArray.add("nex:torrid_wasteland");
-        fallbackArray.add("nex:arctic_abyss");
+        Config config = ConfigFactory.parseFile(new File("~/NetherEx/Biomes/nether_biome_list.json"));
+        JsonObject defaultObject = new JsonObject();
+        defaultObject.add("nex:hell", new JsonPrimitive("~/NetherEx/Biomes/nex/hell.json"));
+        defaultObject.add("nex:ruthless_sands", new JsonPrimitive("~/NetherEx/Biomes/nex/ruthless_sands.json"));
+        defaultObject.add("nex:fungi_forest", new JsonPrimitive("~/NetherEx/Biomes/nex/fungi_forest.json"));
+        defaultObject.add("nex:torrid_wasteland", new JsonPrimitive("~/NetherEx/Biomes/nex/torrid_wasteland.json"));
+        defaultObject.add("nex:arctic_abyss", new JsonPrimitive("~/NetherEx/Biomes/nex/arctic_abyss.json"));
 
-        JsonArray array = config.getArray("biomes", fallbackArray);
+        Config biomeConfig = config.getInnerConfig("biomes");
 
-        for(JsonElement entry : array)
+        if(biomeConfig == null || biomeConfig.getElementMap().size() == 0)
         {
-            if(JsonUtils.isString(entry))
+            biomeConfig = config.getInnerConfig("biomes", defaultObject);
+        }
+
+        for(Map.Entry<String, JsonElement> entry : biomeConfig.getElementMap().entrySet())
+        {
+            if(isString(entry.getValue()))
             {
-                Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(entry.getAsJsonPrimitive().getAsString()));
+                Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(entry.getKey()));
 
                 if(biome != null)
                 {
-                    BIOMES.add(biome);
-                }
-                else
-                {
-                    config.getLogger().warn("The {} config contains the value, {}, which is not a registered biome name", config.getName(), entry.toString());
-                }
-            }
-            else
-            {
-                config.getLogger().warn("The {} config contains the value, {}, which is not a string", config.getName(), entry.toString());
-            }
-        }
-
-        if(BIOMES.size() == 0)
-        {
-            for(JsonElement entry : fallbackArray)
-            {
-                if(JsonUtils.isString(entry))
-                {
-                    Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(entry.getAsJsonPrimitive().getAsString()));
-
-                    if(biome != null)
-                    {
-                        BIOMES.add(biome);
-                    }
+                    BIOME_LIST.add(biome);
+                    BIOME_CONFIG_MAP.put(biome, ConfigFactory.parseFile(new File(entry.getValue().getAsJsonPrimitive().getAsString())));
                 }
             }
         }
 
-        config.save();
+        ConfigFactory.saveConfig(config);
     }
 
     private static void wrapBiomes()
     {
-        for(Biome biome : BIOMES)
+        for(Biome biome : BIOME_LIST)
         {
-            ResourceLocation registryName = biome.getRegistryName();
-            WrappedBiomeManager.createWrappedBiome(biome, new JsonConfig(registryName.toString(), new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/" + registryName.getResourceDomain() + "/" + registryName.getResourcePath())));
+            WrappedBiomeManager.createWrappedBiome(biome, BIOME_CONFIG_MAP.get(biome));
         }
     }
 
-    public static List<Biome> getBiomes()
+    public static List<Biome> getBiomeList()
     {
-        return ImmutableList.copyOf(BIOMES);
+        return ImmutableList.copyOf(BIOME_LIST);
+    }
+
+    public static Config getBiomeConfig(Biome key)
+    {
+        if(BIOME_CONFIG_MAP.containsKey(key))
+        {
+            return BIOME_CONFIG_MAP.get(key);
+        }
+
+        return null;
     }
 }
