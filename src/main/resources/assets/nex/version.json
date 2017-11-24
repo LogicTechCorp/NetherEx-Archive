@@ -12,10 +12,11 @@
         "1.1.8.9": "Fixed a crash with Animania",
         "1.1.9.10": "Fixed mob spawners displaying incorrect mobs\n Fixed terrain damage caused by Spore Creepers when mobGriefing is false\n Fixed mobs not being immune to fire",
         "1.1.10.11": "Fixed Elder Mushrooms dropping from explosions\n Fixed crash caused by missing capability check\n Fixed missing Ore Dictionary entries for Rime\n Fixed missing furnace recipes for ores",
-        "1.1.11.12": "Fixed some Pigtificate trades not registering\n Fixed incorrect top and filler blocks for NetherEx biomes when the values were removed from the config\n Fixed Nether Portal placing players in Lava by removing the Nether Portal Fix"
+        "1.1.11.12": "Fixed some Pigtificate trades not registering\n Fixed incorrect top and filler blocks for NetherEx biomes when the values were removed from the config\n Fixed Nether Portal placing players in Lava by removing the Nether Portal Fix",
+        "1.1.12.13": "Fixed a crash on servers cause by Netherrack Paths"
     },
     "promos": {
-        "1.11.2-latest": "1.1.11.12",
-        "1.11.2-recommended": "1.1.11.12"
+        "1.11.2-latest": "1.1.12.13",
+        "1.11.2-recommended": "1.1.12.13"
     }
 }
