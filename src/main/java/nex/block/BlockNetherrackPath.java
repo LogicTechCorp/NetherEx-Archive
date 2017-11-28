@@ -119,7 +119,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             }
             else
             {
-                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
             }
         }
     }
@@ -135,7 +135,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             }
             else
             {
-                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(TYPE, EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
             }
         }
     }

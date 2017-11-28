@@ -1,379 +1,65 @@
 {
-    "biome": "nex:arctic_abyss",
-    "weight": 1,
-    "climate": "cold",
-    "floorTopBlock": {
-        "block": "nex:frostburn_ice"
+    "surfaceBlock": {
+        "block": "nex:frostburn_ice",
+        "properties": { }
     },
-    "floorFillerBlock": {
+    "subsurfaceBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "icy"
         }
     },
-    "roofBottomBlock": {
-        "block": "nex:frostburn_ice"
+    "wallBlock": {
+        "block": "nex:netherrack",
+        "properties": {
+            "type": "icy"
+        }
     },
-    "oceanBlock": {
-        "block": "minecraft:magma"
+    "ceilingBlock": {
+        "block": "nex:netherrack",
+        "properties": {
+            "type": "icy"
+        }
     },
-    "entities": [
-        {
-            "entity": "nex:wight",
-            "creatureType": "monster",
-            "weight": 100,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        {
-            "entity": "minecraft:ghast",
+    "superCeilingBlock": {
+        "block": "nex:frostburn_ice",
+        "properties": { }
+    },
+    "fluidBlock": {
+        "block": "minecraft:magma",
+        "properties": { }
+    },
+    "weight": 1,
+    "entities": {
+        "minecraft:ghast": {
             "creatureType": "monster",
             "weight": 50,
             "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        {
-            "entity": "nex:bone_spider",
+        "minecraft:zombie_pigman": {
+            "creatureType": "monster",
+            "weight": 25,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        "nex:bone_spider": {
             "creatureType": "monster",
             "weight": 35,
             "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        {
-            "entity": "minecraft:zombie_pigman",
+        "nex:wight": {
             "creatureType": "monster",
-            "weight": 25,
+            "weight": 100,
             "minGroupCount": 1,
-            "maxGroupCount": 1
+            "maxGroupCount": 4
         },
-        {
-            "entity": "nex:brute",
+        "nex:brute": {
             "creatureType": "monster",
             "weight": 15,
             "minGroupCount": 1,
             "maxGroupCount": 1
         }
-    ],
-    "generators": [
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:crypt_arctic_abyss",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/base_grave",
-                        "nex:chest/grave_arctic_abyss"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:grave_arctic_abyss_chest",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_base"
-                    ]
-                },
-                {
-                    "structure": "nex:grave_arctic_abyss_empty",
-                    "weight": 2
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.75,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:graveyard_arctic_abyss",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/base_grave",
-                        "nex:chest/grave_rare",
-                        "nex:chest/grave_arctic_abyss"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:ember"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:sarcophagus_arctic_abyss",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:ember"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.0625,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:fossil_arctic_abyss_skull_creeper_variant",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 2
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_skull_creeper",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 3
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_skull_extinct_variant",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 4
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_skull_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 5
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_jaw_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 6
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_rib_creeper",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 8
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_leg_creeper_variant_2",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 10
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_leg_creeper_variant",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 11
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_leg_creeper",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 12
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_leg_extinct_variant",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 13
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_leg_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 14
-                },
-                {
-                    "structure": "nex:fossil_arctic_abyss_tail_extinct",
-                    "replacedBlock": "minecraft:air",
-                    "weight": 16
-                }
-            ],
-            "structureType": "wall",
-            "generationAttempts": 1,
-            "generationProbability": 0.0625,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:chain_arctic_abyss_island_small",
-                    "weight": 3
-                }
-            ],
-            "structureType": "hanging",
-            "generationAttempts": 1,
-            "generationProbability": 0.0625,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:chain_arctic_abyss_hanging_long",
-                    "weight": 1
-                },
-                {
-                    "structure": "nex:chain_arctic_abyss_hanging_medium",
-                    "weight": 2
-                },
-                {
-                    "structure": "nex:chain_arctic_abyss_hanging_short",
-                    "weight": 3
-                }
-            ],
-            "structureType": "hanging",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:chain_arctic_abyss_fallen_short_variant",
-                    "weight": 3
-                },
-                {
-                    "structure": "nex:chain_arctic_abyss_fallen_short",
-                    "weight": 4
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.0625,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "scatter",
-            "generationStage": "fire",
-            "blockToSpawn": {
-                "block": "nex:blue_fire"
-            },
-            "blockToTarget": {
-                "block": "nex:frostburn_ice"
-            },
-            "placement": "onGround",
-            "generationAttempts": -5,
-            "generationProbability": 1.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "cluster",
-            "generationStage": "glowstone",
-            "blockToSpawn": {
-                "block": "minecraft:glowstone"
-            },
-            "blockToHangFrom": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "icy"
-                }
-            },
-            "generationAttempts": -10,
-            "generationProbability": 1.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "cluster",
-            "generationStage": "glowstone",
-            "blockToSpawn": {
-                "block": "minecraft:glowstone"
-            },
-            "blockToHangFrom": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "icy"
-                }
-            },
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
-            "minHeight": 1,
-            "maxHeight": 128
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "nex:quartz_ore",
-                "properties": {
-                    "type": "icy"
-                }
-            },
-            "blockToReplace": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "icy"
-                }
-            },
-            "size": 14,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 108
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "nex:gem_ore",
-                "properties": {
-                    "type": "rime"
-                }
-            },
-            "blockToReplace": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "icy"
-                }
-            },
-            "size": 7,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 108
-        },
-        {
-            "generator": "pool",
-            "generationStage": "lavaFall",
-            "blockToSpawn": {
-                "block": "nex:ichor"
-            },
-            "blockToSurround": {
-                "block": "nex:frostburn_ice"
-            },
-            "generationAttempts": 1,
-            "generationProbability": 0.125,
-            "minHeight": 36,
-            "maxHeight": 96
-        }
-    ]
+    }
 }

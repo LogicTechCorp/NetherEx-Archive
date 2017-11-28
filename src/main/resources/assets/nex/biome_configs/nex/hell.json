@@ -1,458 +1,86 @@
 {
-    "biome": "nex:hell",
+    "surfaceBlock": {
+        "block": "minecraft:netherrack",
+        "properties": { }
+    },
+    "subsurfaceBlock": {
+        "block": "minecraft:netherrack",
+        "properties": { }
+    },
+    "wallBlock": {
+        "block": "minecraft:netherrack",
+        "properties": { }
+    },
+    "ceilingBlock": {
+        "block": "minecraft:netherrack",
+        "properties": { }
+    },
+    "superCeilingBlock": {
+        "block": "minecraft:netherrack",
+        "properties": { }
+    },
+    "fluidBlock": {
+        "block": "minecraft:lava",
+        "properties": { }
+    },
     "weight": 10,
-    "climate": "warm",
-    "floorTopBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "floorFillerBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "entities": [
-        {
-            "entity": "minecraft:zombie_pigman",
-            "creatureType": "monster",
-            "weight": 100,
-            "minGroupCount": 4,
-            "maxGroupCount": 4
-        },
-        {
-            "entity": "minecraft:ghast",
+    "entities": {
+        "minecraft:ghast": {
             "creatureType": "monster",
             "weight": 50,
-            "minGroupCount": 4,
+            "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        {
-            "entity": "nex:ember",
+        "minecraft:zombie_pigman": {
             "creatureType": "monster",
-            "weight": 25,
-            "minGroupCount": 4,
-            "maxGroupCount": 6
-        },
-        {
-            "entity": "minecraft:blaze",
-            "creatureType": "monster",
-            "weight": 3,
-            "minGroupCount": 4,
+            "weight": 100,
+            "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        {
-            "entity": "minecraft:magma_cube",
+        "minecraft:magma_cube": {
             "creatureType": "monster",
             "weight": 2,
-            "minGroupCount": 4,
+            "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        {
-            "entity": "minecraft:enderman",
+        "minecraft:enderman": {
             "creatureType": "monster",
             "weight": 1,
-            "minGroupCount": 4,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        "minecraft:blaze": {
+            "creatureType": "monster",
+            "weight": 3,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
+        },
+        "nex:ember": {
+            "creatureType": "monster",
+            "weight": 25,
+            "minGroupCount": 1,
             "maxGroupCount": 4
         }
-    ],
-    "generators": [
+    },
+    "features": [
         {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:crypt_hell",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/base_grave",
-                        "nex:chest/grave_hell"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:grave_hell_chest",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_base"
-                    ]
-                },
-                {
-                    "structure": "nex:grave_hell_empty",
-                    "weight": 2
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.75,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:graveyard_hell",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/base_grave",
-                        "nex:chest/grave_rare",
-                        "nex:chest/grave_hell"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:zombie_pigman",
-                        "minecraft:magma_cube"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:sarcophagus_hell",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:zombie_pigman",
-                        "minecraft:magma_cube"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.0625,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:mausoleum_hell",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:zombie_pigman",
-                        "minecraft:magma_cube"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:village_pigtificate_hell_huge",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_large_variant",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 2,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_large",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 3,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_medium_variant_2",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 4,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_medium_variant",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 5,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_medium",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 6,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_small_variant_2",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 7,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_small_variant",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 8,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_small",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 9,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_tiny_variant_3",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 10,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_tiny_variant_2",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 11,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_tiny_variant",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 12,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                },
-                {
-                    "structure": "nex:village_pigtificate_hell_tiny",
-                    "replacedBlock": "minecraft:structure_void",
-                    "weight": 13,
-                    "lootTables": [
-                        "nex:chest/base_village",
-                        "nex:chest/base_temple",
-                        "nex:chest/temple_rare"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 8,
-            "generationProbability": 0.5,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "fluid",
-            "generationStage": "lavaTrap",
+            "generator": "scattered",
+            "generationStage": "pre_populate",
+            "dimension": "nether",
             "blockToSpawn": {
-                "block": "minecraft:flowing_lava"
+                "block": "minecraft:fire",
+                "properties": { }
             },
             "blockToTarget": {
-                "block": "minecraft:netherrack"
+                "block": "minecraft:netherrack",
+                "properties": { }
             },
-            "hidden": false,
-            "generationAttempts": 8,
-            "generationProbability": 1.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "scatter",
-            "generationStage": "fire",
-            "blockToSpawn": {
-                "block": "minecraft:fire"
-            },
-            "blockToTarget": {
-                "block": "minecraft:netherrack"
-            },
-            "placement": "onGround",
-            "generationAttempts": -10,
-            "generationProbability": 1.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "cluster",
-            "generationStage": "glowstone",
-            "blockToSpawn": {
-                "block": "minecraft:glowstone"
-            },
-            "blockToHangFrom": {
-                "block": "minecraft:netherrack"
-            },
-            "generationAttempts": -10,
-            "generationProbability": 1.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "cluster",
-            "generationStage": "glowstone",
-            "blockToSpawn": {
-                "block": "minecraft:glowstone"
-            },
-            "blockToHangFrom": {
-                "block": "minecraft:netherrack"
-            },
+            "placement": "on_ground",
             "generationAttempts": 10,
+            "randomizeGenerationAttempts": true,
             "generationProbability": 1.0,
-            "minHeight": 1,
-            "maxHeight": 128
-        },
-        {
-            "generator": "scatter",
-            "generationStage": "mushroom",
-            "blockToSpawn": {
-                "block": "minecraft:red_mushroom"
-            },
-            "blockToTarget": {
-                "block": "minecraft:netherrack"
-            },
-            "placement": "onGround",
-            "generationAttempts": 1,
-            "generationProbability": 0.25,
-            "minHeight": 1,
-            "maxHeight": 128
-        },
-        {
-            "generator": "scatter",
-            "generationStage": "mushroom",
-            "blockToSpawn": {
-                "block": "minecraft:brown_mushroom"
-            },
-            "blockToTarget": {
-                "block": "minecraft:netherrack"
-            },
-            "placement": "onGround",
-            "generationAttempts": 1,
-            "generationProbability": 0.25,
-            "minHeight": 1,
-            "maxHeight": 128
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "minecraft:quartz_ore"
-            },
-            "blockToReplace": {
-                "block": "minecraft:netherrack"
-            },
-            "size": 14,
-            "generationAttempts": 16.0,
-            "minHeight": 10,
-            "maxHeight": 108
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "nex:gem_ore",
-                "properties": {
-                    "type": "amethyst"
-                }
-            },
-            "blockToReplace": {
-                "block": "minecraft:netherrack"
-            },
-            "size": 3,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 108
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "minecraft:magma"
-            },
-            "blockToReplace": {
-                "block": "minecraft:netherrack"
-            },
-            "size": 32,
-            "generationAttempts": 4,
-            "generationProbability": 1.0,
-            "minHeight": 28,
-            "maxHeight": 38
-        },
-        {
-            "generator": "fluid",
-            "generationStage": "lavaFall",
-            "blockToSpawn": {
-                "block": "minecraft:flowing_lava"
-            },
-            "blockToTarget": {
-                "block": "minecraft:netherrack"
-            },
-            "hidden": true,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 118
+            "minHeight": 4,
+            "maxHeight": 124
         }
     ]
 }
-

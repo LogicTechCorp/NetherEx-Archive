@@ -1,293 +1,57 @@
 {
-    "biome": "nex:torrid_wasteland",
+    "surfaceBlock": {
+        "block": "nex:netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "subsurfaceBlock": {
+        "block": "nex:netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "wallBlock": {
+        "block": "nex:netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "ceilingBlock": {
+        "block": "nex:netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "superCeilingBlock": {
+        "block": "nex:netherrack",
+        "properties": {
+            "type": "fiery"
+        }
+    },
+    "fluidBlock": {
+        "block": "minecraft:lava",
+        "properties": { }
+    },
     "weight": 6,
-    "climate": "hot",
-    "floorTopBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "fiery"
-        }
-    },
-    "floorFillerBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "fiery"
-        }
-    },
-    "entities": [
-        {
-            "entity": "nex:salamander",
+    "entities": {
+        "minecraft:magma_cube": {
             "creatureType": "monster",
-            "weight": 100,
-            "minGroupCount": 3,
-            "maxGroupCount": 6
+            "weight": 25,
+            "minGroupCount": 1,
+            "maxGroupCount": 4
         },
-        {
-            "entity": "nex:ember",
+        "nex:ember": {
             "creatureType": "monster",
             "weight": 50,
             "minGroupCount": 4,
             "maxGroupCount": 6
         },
-        {
-            "entity": "minecraft:magma_cube",
+        "nex:salamander": {
             "creatureType": "monster",
-            "weight": 25,
-            "minGroupCount": 4,
+            "weight": 100,
+            "minGroupCount": 1,
             "maxGroupCount": 4
         }
-    ],
-    "generators": [
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:crypt_torrid_wasteland",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/base_grave",
-                        "nex:chest/grave_torrid_wasteland"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:grave_torrid_wasteland_chest",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_base"
-                    ]
-                },
-                {
-                    "structure": "nex:grave_torrid_wasteland_empty",
-                    "weight": 2
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.75,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:graveyard_torrid_wasteland",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/base_grave",
-                        "nex:chest/grave_rare",
-                        "nex:chest/grave_torrid_wasteland"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:ember"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.125,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "structure",
-            "generationStage": "prePopulate",
-            "structures": [
-                {
-                    "structure": "nex:sarcophagus_torrid_wasteland",
-                    "weight": 1,
-                    "lootTables": [
-                        "nex:chest/grave_rare"
-                    ],
-                    "spawnerMobs": [
-                        "minecraft:blaze",
-                        "nex:ember"
-                    ]
-                }
-            ],
-            "structureType": "ground",
-            "generationAttempts": 2,
-            "generationProbability": 0.0625,
-            "minHeight": 32,
-            "maxHeight": 112
-        },
-        {
-            "generator": "fluid",
-            "generationStage": "lavaTrap",
-            "blockToSpawn": {
-                "block": "minecraft:flowing_lava"
-            },
-            "blockToTarget": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "hidden": false,
-            "generationAttempts": 24,
-            "generationProbability": 1.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "scatter",
-            "generationStage": "fire",
-            "blockToSpawn": {
-                "block": "minecraft:fire"
-            },
-            "blockToTarget": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "placement": "onGround",
-            "generationAttempts": -30,
-            "generationProbability": 1.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "cluster",
-            "generationStage": "glowstone",
-            "blockToSpawn": {
-                "block": "minecraft:glowstone"
-            },
-            "blockToHangFrom": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "generationAttempts": -10.0,
-            "minHeight": 4,
-            "maxHeight": 124
-        },
-        {
-            "generator": "cluster",
-            "generationStage": "glowstone",
-            "blockToSpawn": {
-                "block": "minecraft:glowstone"
-            },
-            "blockToHangFrom": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
-            "minHeight": 1,
-            "maxHeight": 128
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "nex:quartz_ore",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "blockToReplace": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "size": 14,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 108
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "nex:basalt",
-                "properties": {
-                    "type": "normal"
-                }
-            },
-            "blockToReplace": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "size": 24,
-            "generationAttempts": 14,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 108
-        },
-        {
-            "generator": "ore",
-            "generationStage": "quartz",
-            "blockToSpawn": {
-                "block": "minecraft:magma"
-            },
-            "blockToReplace": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "size": 32,
-            "generationAttempts": 12,
-            "generationProbability": 1.0,
-            "minHeight": 28,
-            "maxHeight": 38
-        },
-        {
-            "generator": "fluid",
-            "generationStage": "lavaFall",
-            "blockToSpawn": {
-                "block": "minecraft:flowing_lava"
-            },
-            "blockToTarget": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "hidden": true,
-            "generationAttempts": 48,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 118
-        },
-        {
-            "generator": "pool",
-            "generationStage": "lavaFall",
-            "blockToSpawn": {
-                "block": "minecraft:lava"
-            },
-            "blockToSurround": {
-                "block": "nex:netherrack",
-                "properties": {
-                    "type": "fiery"
-                }
-            },
-            "generationAttempts": 8,
-            "generationProbability": 1.0,
-            "minHeight": 10,
-            "maxHeight": 108
-        }
-    ]
+    }
 }

@@ -1,8 +1,4 @@
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+apply plugin: 'net.minecraftforge.gradle.forge'
 
 buildscript {
     repositories {
@@ -17,89 +13,21 @@ buildscript {
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
-
-version = "0.0.0.0"
-group = ""
-archivesBaseName = ""
+version = mod_version_major + "." + mod_version_minor + "." + mod_version_patch
+group = group_id
+archivesBaseName = mod_name + "-" + minecraft_version
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+ext.privateProperties = parseConfig(file('private.properties'))
+
 minecraft {
-    def configFile = file("public_properties.xml")
-    def configText = configFile.getText()
-
-    def mcPattern = Pattern.compile("<mc_version>(\\d+)\\.(\\d+)(\\.(\\d+))?</mc_version>")
-    def mcVersion = mcPattern.matcher(configText)
-    mcVersion.find()
-
-    def forgePattern = Pattern.compile("<forge_version>(\\d+)\\.(\\d+)\\.(\\d+).(\\d+)</forge_version>")
-    def forgeVersion = forgePattern.matcher(configText)
-    forgeVersion.find()
-
-    def forgeMajorMod = Integer.parseInt(forgeVersion.group(1))
-    def forgeMajorAPI = Integer.parseInt(forgeVersion.group(2))
-    def forgeMinor = Integer.parseInt(forgeVersion.group(3))
-    def forgePatch = Integer.parseInt(forgeVersion.group(4))
-
-    if(mcVersion.group(3) != null)
-    {
-        def mcMajor = Integer.parseInt(mcVersion.group(1))
-        def mcMinor = Integer.parseInt(mcVersion.group(2))
-        def mcBuild = Integer.parseInt(mcVersion.group(3).substring(1))
-
-        version = mcMajor + "." + mcMinor + "." + mcBuild + "-" + forgeMajorMod + "." + forgeMajorAPI + "." + forgeMinor + "." + forgePatch
-    }
-    else
-    {
-        def mcMajor = Integer.parseInt(mcVersion.group(1))
-        def mcMinor = Integer.parseInt(mcVersion.group(2))
-
-        version = mcMajor + "." + mcMinor + "-" + forgeMajorMod + "." + forgeMajorAPI + "." + forgeMinor + "." + forgePatch
-    }
-
-    def mcpPattern = Pattern.compile("<mcp_version>(\\w+)</mcp_version>")
-    def mcpVersion = mcpPattern.matcher(configText)
-    mcpVersion.find()
-
-    mappings = mcpVersion.group(1)
+    version = minecraft_version + "-" + forge_version
+    mappings = mappings_version
     runDir = "run"
-
-    def patternDev = Pattern.compile("<is_dev>(\\w+)</is_dev>")
-    def matcherDev = patternDev.matcher(configText)
-    matcherDev.find()
-
-    def isDev = Boolean.parseBoolean(matcherDev.group(1))
-
-    if(isDev)
-    {
-        def modPattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-        def modVersion = modPattern.matcher(configText)
-        modVersion.find()
-
-        def majorMod = Integer.parseInt(modVersion.group(1))
-        def majorAPI = Integer.parseInt(modVersion.group(2))
-        def minor = Integer.parseInt(modVersion.group(3))
-        def patch = Integer.parseInt(modVersion.group(4))
-
-        project.version = majorMod + "." + majorAPI + "." + minor + "." + patch + "-DEV-" + buildDateTime()
-    }
-    else
-    {
-        def modPattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-        def modVersion = modPattern.matcher(configText)
-        modVersion.find()
-
-        def majorMod = Integer.parseInt(modVersion.group(1))
-        def majorAPI = Integer.parseInt(modVersion.group(2))
-        def minor = Integer.parseInt(modVersion.group(3))
-        def patch = Integer.parseInt(modVersion.group(4))
-        project.version = majorMod + "." + majorAPI + "." + minor + "." + patch
-    }
-
-    replace "@MOD_VERSION@", project.version
     makeObfSourceJar = false
+    replace "@MOD_VERSION@", project.version
 }
 
 repositories {
@@ -123,101 +51,10 @@ processResources {
     }
 }
 
-jar {
-
-    manifest {
-
-        attributes 'FMLAT': 'nex_at.cfg'
+def static parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
     }
 }
-
-task incrementMajorMod << {
-    Matcher matcherVersion
-
-    def configFile = file("public_properties.xml")
-    def configText = configFile.getText()
-    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-    matcherVersion = pattern.matcher(configText)
-    matcherVersion.find()
-
-    def majorMod = Integer.parseInt(matcherVersion.group(1))
-
-    project.version = (majorMod + 1) + ".0.0.0"
-}
-
-task incrementMajorAPI << {
-    Matcher matcherVersion
-
-    def configFile = file("public_properties.xml")
-    def configText = configFile.getText()
-    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-    matcherVersion = pattern.matcher(configText)
-    matcherVersion.find()
-
-    def majorMod = Integer.parseInt(matcherVersion.group(1))
-    def majorAPI = Integer.parseInt(matcherVersion.group(2))
-
-    project.version = majorMod + "." + (majorAPI + 1) + ".0.0"
-}
-
-task incrementMinor << {
-    Matcher matcherVersion
-
-    def configFile = file("public_properties.xml")
-    def configText = configFile.getText()
-    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-    matcherVersion = pattern.matcher(configText)
-    matcherVersion.find()
-
-    def majorMod = Integer.parseInt(matcherVersion.group(1))
-    def majorAPI = Integer.parseInt(matcherVersion.group(2))
-    def minor = Integer.parseInt(matcherVersion.group(3))
-
-    project.version = majorMod + "." + majorAPI + "." + (minor + 1) + ".0"
-}
-
-task incrementPatch << {
-    Matcher matcherVersion
-
-    def configFile = file("public_properties.xml")
-    def configText = configFile.getText()
-    def pattern = Pattern.compile("<mod_version>(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)</mod_version>")
-    matcherVersion = pattern.matcher(configText)
-    matcherVersion.find()
-
-    def majorMod = Integer.parseInt(matcherVersion.group(1))
-    def majorAPI = Integer.parseInt(matcherVersion.group(2))
-    def minor = Integer.parseInt(matcherVersion.group(3))
-    def patch = Integer.parseInt(matcherVersion.group(4))
-
-    project.version = majorMod + "." + majorAPI + "." + minor + "." + (patch + 1)
-}
-
-task getModData << {
-    def configFile = file("public_properties.xml")
-    def configText = configFile.getText()
-    def patternModName = Pattern.compile("<mod_name>(\\p{Print}+)</mod_name>")
-    def patternMcVersion = Pattern.compile("<mc_version>(\\p{Print}+)</mc_version>")
-    def patternGroup = Pattern.compile("<mod_group>(\\p{Graph}+)</mod_group>")
-    def matcherModName = patternModName.matcher(configText)
-    def matcherMcVersion = patternMcVersion.matcher(configText)
-    def matcherGroup = patternGroup.matcher(configText)
-    matcherModName.find()
-    matcherMcVersion.find()
-    matcherGroup.find()
-
-    def modName = matcherModName.group(1)
-    def mcVersion = matcherMcVersion.group(1)
-    def group = matcherGroup.group(1)
-
-    project.archivesBaseName = modName + "-" + mcVersion
-    project.group = group
-}
-
-def buildDateTime() {
-    def formatter = DateTimeFormatter.ofPattern("'D'yyyyMMdd'T'HHmmss")
-    return formatter.format(LocalDateTime.now(ZoneId.of("GMT")))
-}
-
-build.dependsOn getModData
-build.mustRunAfter getModData

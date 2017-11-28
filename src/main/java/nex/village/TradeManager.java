@@ -56,7 +56,7 @@ public class TradeManager
 
                 if(FilenameUtils.getExtension(configPath.toString()).equals("json"))
                 {
-                    BufferedReader reader = java.nio.file.Files.newBufferedReader(configPath);
+                    BufferedReader reader = Files.newBufferedReader(configPath);
                     parseTradeConfig(JsonUtils.fromJson(gson, reader, JsonObject.class));
                     IOUtils.closeQuietly(reader);
                 }
