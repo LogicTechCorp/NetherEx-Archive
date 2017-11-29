@@ -393,19 +393,19 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         BlockFalling.fallInstantly = true;
         boolean hasVillageGenerated = false;
 
-        ForgeEventFactory.onChunkPopulate(true, this, world, rand, chunkX, chunkZ, hasVillageGenerated);
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, world, rand, chunkX, chunkZ, hasVillageGenerated));
         netherBridge.generateStructure(world, rand, chunkPos);
-        TerrainGen.populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        ForgeEventFactory.onChunkPopulate(false, this, world, rand, chunkX, chunkZ, hasVillageGenerated);
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, world, rand, chunkX, chunkZ, hasVillageGenerated));
 
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
-        TerrainGen.decorate(world, rand, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM);
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(world, rand, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
         biome.decorate(world, rand, blockPos);
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
 
-        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
-        TerrainGen.generateOre(world, rand, new WorldGenMinable(Blocks.AIR.getDefaultState(), 0, BlockMatcher.forBlock(Blocks.AIR)), blockPos, OreGenEvent.GenerateMinable.EventType.CUSTOM);
-        MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.GenerateMinable(world, rand, new WorldGenMinable(Blocks.AIR.getDefaultState(), 0, BlockMatcher.forBlock(Blocks.AIR)), blockPos, OreGenEvent.GenerateMinable.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
 
         BlockFalling.fallInstantly = false;
     }

@@ -1,27 +1,21 @@
 {
     "surfaceBlock": {
-        "block": "minecraft:netherrack",
-        "properties": { }
+        "block": "minecraft:netherrack"
     },
     "subsurfaceBlock": {
-        "block": "minecraft:netherrack",
-        "properties": { }
+        "block": "minecraft:netherrack"
     },
     "wallBlock": {
-        "block": "minecraft:netherrack",
-        "properties": { }
+        "block": "minecraft:netherrack"
     },
     "ceilingBlock": {
-        "block": "minecraft:netherrack",
-        "properties": { }
+        "block": "minecraft:netherrack"
     },
     "superCeilingBlock": {
-        "block": "minecraft:netherrack",
-        "properties": { }
+        "block": "minecraft:netherrack"
     },
     "fluidBlock": {
-        "block": "minecraft:lava",
-        "properties": { }
+        "block": "minecraft:lava"
     },
     "weight": 10,
     "entities": {
@@ -64,16 +58,29 @@
     },
     "features": [
         {
-            "generator": "scattered",
-            "generationStage": "pre_populate",
-            "dimension": "nether",
+            "generator": "fluid",
+            "generationStage": "populate",
             "blockToSpawn": {
-                "block": "minecraft:fire",
-                "properties": { }
+                "block": "minecraft:flowing_lava"
             },
             "blockToTarget": {
-                "block": "minecraft:netherrack",
-                "properties": { }
+                "block": "minecraft:netherrack"
+            },
+            "generationAttempts": 8,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "hidden": false
+        },
+        {
+            "generator": "scatter",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:fire"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
             },
             "placement": "on_ground",
             "generationAttempts": 10,
@@ -81,6 +88,137 @@
             "generationProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124
+        },
+        {
+            "generator": "cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToAttachTo": {
+                "block": "minecraft:netherrack"
+            },
+            "generationAttempts": 10,
+            "randomizeGenerationAttempts": true,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "direction": "down"
+        },
+        {
+            "generator": "cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToAttachTo": {
+                "block": "minecraft:netherrack"
+            },
+            "generationAttempts": 10,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 1.0,
+            "minHeight": 1,
+            "maxHeight": 128,
+            "direction": "down"
+        },
+        {
+            "generator": "scatter",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:red_mushroom"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "placement": "onGround",
+            "generationAttempts": 1,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 0.25,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "generator": "scatter",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:brown_mushroom"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "placement": "onGround",
+            "generationAttempts": 1,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 0.25,
+            "minHeight": 1,
+            "maxHeight": 128
+        },
+        {
+            "generator": "ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:quartz_ore"
+            },
+            "blockToReplace": {
+                "block": "minecraft:netherrack"
+            },
+            "generationAttempts": 16.0,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "veinSize": 14
+        },
+        {
+            "generator": "ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:gem_ore",
+                "properties": {
+                    "type": "amethyst"
+                }
+            },
+            "blockToReplace": {
+                "block": "minecraft:netherrack"
+            },
+            "generationAttempts": 16,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "veinSize": 3
+        },
+        {
+            "generator": "ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:magma"
+            },
+            "blockToReplace": {
+                "block": "minecraft:netherrack"
+            },
+            "generationAttempts": 4,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 1.0,
+            "minHeight": 28,
+            "maxHeight": 38,
+            "veinSize": 32
+        },
+        {
+            "generator": "fluid",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:flowing_lava"
+            },
+            "blockToTarget": {
+                "block": "minecraft:netherrack"
+            },
+            "generationAttempts": 16,
+            "randomizeGenerationAttempts": false,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 118,
+            "hidden": true
         }
     ]
 }
