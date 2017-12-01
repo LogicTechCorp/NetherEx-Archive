@@ -1,20 +1,22 @@
 {
-    "surfaceBlock": {
+    "biome": "nex:hell",
+    "wrapper": "nether",
+    "topBlock": {
         "block": "minecraft:netherrack"
     },
-    "subsurfaceBlock": {
+    "fillerBlock": {
         "block": "minecraft:netherrack"
     },
     "wallBlock": {
         "block": "minecraft:netherrack"
     },
-    "ceilingBlock": {
+    "ceilingBottomBlock": {
         "block": "minecraft:netherrack"
     },
-    "superCeilingBlock": {
+    "ceilingFillerBlock": {
         "block": "minecraft:netherrack"
     },
-    "fluidBlock": {
+    "oceanBlock": {
         "block": "minecraft:lava"
     },
     "weight": 10,
@@ -130,7 +132,7 @@
             "blockToTarget": {
                 "block": "minecraft:netherrack"
             },
-            "placement": "onGround",
+            "placement": "on_ground",
             "generationAttempts": 1,
             "randomizeGenerationAttempts": false,
             "generationProbability": 0.25,
@@ -146,7 +148,7 @@
             "blockToTarget": {
                 "block": "minecraft:netherrack"
             },
-            "placement": "onGround",
+            "placement": "on_ground",
             "generationAttempts": 1,
             "randomizeGenerationAttempts": false,
             "generationProbability": 0.25,

@@ -24,12 +24,12 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import nex.handler.NetherExBiomeManager;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
 import nex.init.NetherExOreDict;
 import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
+import nex.world.biome.NetherExBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

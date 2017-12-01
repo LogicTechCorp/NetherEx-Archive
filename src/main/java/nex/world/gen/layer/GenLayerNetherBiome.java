@@ -22,7 +22,7 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
-import nex.handler.NetherExBiomeManager;
+import nex.world.biome.NetherExBiomeManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +55,10 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
     {
         List<BiomeManager.BiomeEntry> biomeEntryList = new ArrayList<>();
 
-        for(Biome biome : NetherExBiomeManager.getBiomeList())
+        for(Biome biome : NetherExBiomeManager.getBiomes())
         {
             IConfig config = NetherExBiomeManager.getBiomeConfig(biome);
+
             if(config != null)
             {
                 biomeEntryList.add(new BiomeManager.BiomeEntry(biome, config.getInt("weight", 10)));

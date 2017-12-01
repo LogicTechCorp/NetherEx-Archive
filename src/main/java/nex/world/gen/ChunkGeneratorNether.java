@@ -17,13 +17,13 @@
 
 package nex.world.gen;
 
-import lex.world.biome.BiomeWrapper;
-import lex.world.biome.BiomeWrapperManager;
+import lex.world.biome.IBiomeWrapper;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -42,6 +42,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
+import nex.world.biome.NetherExBiomeManager;
 
 import java.util.List;
 import java.util.Random;
@@ -483,16 +484,23 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         {
             for(int z = 0; z < 16; ++z)
             {
-                BiomeWrapper wrapper = BiomeWrapperManager.getBiomeWrapper(biomes[x + z * 16]);
+                IBiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biomes[x + z * 16]);
 
                 if(wrapper != null)
                 {
-                    IBlockState surfaceBlock = wrapper.getSurfaceBlock();
-                    IBlockState subsurfaceBlock = wrapper.getSubsurfaceBlock();
-                    IBlockState wallBlock = wrapper.getWallBlock();
-                    IBlockState ceilingBlock = wrapper.getCeilingBlock();
-                    IBlockState superCeilingBlock = wrapper.getSuperCeilingBlock();
-                    IBlockState fluidBlock = wrapper.getFluidBlock();
+                    Biome biome = wrapper.getBiome();
+
+                    if(biome == null)
+                    {
+                        biome = Biomes.HELL;
+                    }
+
+                    IBlockState surfaceBlock = wrapper.getBlock("topBlock", biome.topBlock);
+                    IBlockState subsurfaceBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);
+                    IBlockState wallBlock = wrapper.getBlock("wallBlock", biome.fillerBlock);
+                    IBlockState ceilingBottomBlock = wrapper.getBlock("ceilingBottomBlock", biome.fillerBlock);
+                    IBlockState ceilingFillerBlock = wrapper.getBlock("ceilingFillerBlock", biome.fillerBlock);
+                    IBlockState oceanBlock = wrapper.getBlock("oceanBlock", Blocks.LAVA.getDefaultState());
 
                     int localX = ((chunkX * 16) + x) & 15;
                     int localZ = ((chunkZ * 16) + z) & 15;
@@ -535,7 +543,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                         {
                             if(wasLastBlockSolid)
                             {
-                                primer.setBlockState(localX, localY + 1, localZ, ceilingBlock);
+                                primer.setBlockState(localX, localY + 1, localZ, ceilingBottomBlock);
 
                                 for(int roofOffset = 2; roofOffset <= 4 && localY + roofOffset <= 127; roofOffset++)
                                 {
@@ -543,7 +551,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
                                     if(state.getBlock() == Blocks.NETHERRACK || state == wallBlock)
                                     {
-                                        primer.setBlockState(localX, localY + roofOffset, localZ, superCeilingBlock);
+                                        primer.setBlockState(localX, localY + roofOffset, localZ, ceilingFillerBlock);
                                     }
                                     else
                                     {
@@ -556,7 +564,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                         }
                         else if(checkState == Blocks.LAVA.getDefaultState())
                         {
-                            primer.setBlockState(localX, localY, localZ, fluidBlock);
+                            primer.setBlockState(localX, localY, localZ, oceanBlock);
                             wasLastBlockSolid = false;
                         }
 
