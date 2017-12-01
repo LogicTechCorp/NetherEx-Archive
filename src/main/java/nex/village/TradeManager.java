@@ -57,6 +57,11 @@ public class TradeManager
 
         try
         {
+            if(!directory.exists())
+            {
+                directory.mkdirs();
+            }
+
             LOGGER.info("Copying the Trade. List Directory to the config folder.");
 
             if(NetherEx.IS_DEV_ENV)

@@ -61,7 +61,7 @@ public class NetherBiomeManager
         {
             if(!directory.exists())
             {
-                directory.mkdir();
+                directory.mkdirs();
             }
 
             LOGGER.info("Copying the Biome List Directory to the config folder.");
