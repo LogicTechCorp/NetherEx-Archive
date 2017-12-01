@@ -13,10 +13,11 @@
         "2.1.9.10": "Fixed mob spawners displaying incorrect mobs\n Fixed terrain damage caused by Spore Creepers when mobGriefing is false\n Fixed mobs not being immune to fire",
         "2.1.10.11": "Fixed Elder Mushrooms dropping from explosions\n Fixed Obsidian Boat paddles rowing slowly\n Fixed crash caused by missing capability check\n Fixed missing Ore Dictionary entries for Rime\n Fixed missing furnace recipes for ores",
         "2.1.11.12": "Fixed some Pigtificate trades not registering\n Fixed incorrect top and filler blocks for NetherEx biomes when the values were removed from the config\n Fixed Nether Portal placing players in Lava by removing the Nether Portal Fix",
-        "2.1.12.13": "Fixed a crash on servers caused by Netherrack Paths"
+        "2.1.12.13": "Fixed a crash on servers caused by Netherrack Paths",
+        "2.1.13.14": "Fixed a crash caused by directories being non-existent"
     },
     "promos": {
-        "1.12-latest": "2.1.12.13",
-        "1.12-recommended": "2.1.12.13"
+        "1.12-latest": "2.1.13.14",
+        "1.12-recommended": "2.1.13.14"
     }
 }
