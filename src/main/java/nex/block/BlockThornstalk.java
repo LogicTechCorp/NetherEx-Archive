@@ -29,10 +29,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -90,11 +87,16 @@ public class BlockThornstalk extends BlockNetherEx
         }
         else
         {
-            boolean canHurt = !Arrays.asList(ConfigHandler.block.thornstalk.blacklist).contains(EntityList.getKey(entity).toString());
+            ResourceLocation registryName = EntityList.getKey(entity);
 
-            if((entity instanceof EntityLivingBase || entity instanceof EntityItem && ConfigHandler.block.thornstalk.canDestroyItems) && canHurt)
+            if(registryName != null)
             {
-                entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+                boolean canHurt = !Arrays.asList(ConfigHandler.block.thornstalk.blacklist).contains(registryName.toString());
+
+                if((entity instanceof EntityLivingBase || (entity instanceof EntityItem && ConfigHandler.block.thornstalk.canDestroyItems)) && canHurt)
+                {
+                    entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+                }
             }
         }
     }
