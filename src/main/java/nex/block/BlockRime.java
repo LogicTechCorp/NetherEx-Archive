@@ -19,11 +19,13 @@ package nex.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -84,11 +86,16 @@ public class BlockRime extends BlockNetherEx
 
         for(EntityLivingBase entity : entities)
         {
-            boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(EntityList.getKey(entity).toString());
+            ResourceLocation registryName = EntityList.getKey(entity);
 
-            if(canFreeze && ConfigHandler.block.rime.canFreezeMobs)
+            if(registryName != null)
             {
-                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(registryName.toString());
+
+                if(canFreeze && ConfigHandler.block.rime.canFreezeMobs)
+                {
+                    entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                }
             }
         }
     }
