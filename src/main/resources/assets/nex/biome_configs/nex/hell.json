@@ -1,6 +1,6 @@
 {
-    "biome": "nex:hell",
-    "wrapper": "nether",
+    "biome": "minecraft:hell",
+    "wrapper": "nex:nether",
     "topBlock": {
         "block": "minecraft:netherrack"
     },
@@ -20,47 +20,53 @@
         "block": "minecraft:lava"
     },
     "weight": 10,
-    "entities": {
-        "minecraft:ghast": {
+    "entities": [
+        {
+            "name": "minecraft:ghast",
             "creatureType": "monster",
             "weight": 50,
             "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        "minecraft:zombie_pigman": {
+        {
+            "name": "minecraft:zombie_pigman",
             "creatureType": "monster",
             "weight": 100,
             "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        "minecraft:magma_cube": {
+        {
+            "name": "minecraft:magma_cube",
             "creatureType": "monster",
             "weight": 2,
             "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        "minecraft:enderman": {
+        {
+            "name": "minecraft:enderman",
             "creatureType": "monster",
             "weight": 1,
             "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        "minecraft:blaze": {
+        {
+            "name": "minecraft:blaze",
             "creatureType": "monster",
             "weight": 3,
             "minGroupCount": 1,
             "maxGroupCount": 4
         },
-        "nex:ember": {
+        {
+            "name": "nex:ember",
             "creatureType": "monster",
             "weight": 25,
             "minGroupCount": 1,
             "maxGroupCount": 4
         }
-    },
+    ],
     "features": [
         {
-            "generator": "fluid",
+            "generator": "lex:fluid",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
@@ -76,7 +82,7 @@
             "hidden": false
         },
         {
-            "generator": "scatter",
+            "generator": "lex:scatter",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:fire"
@@ -92,7 +98,7 @@
             "maxHeight": 124
         },
         {
-            "generator": "cluster",
+            "generator": "lex:cluster",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -108,7 +114,7 @@
             "direction": "down"
         },
         {
-            "generator": "cluster",
+            "generator": "lex:cluster",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
@@ -124,7 +130,7 @@
             "direction": "down"
         },
         {
-            "generator": "scatter",
+            "generator": "lex:scatter",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:red_mushroom"
@@ -140,7 +146,7 @@
             "maxHeight": 128
         },
         {
-            "generator": "scatter",
+            "generator": "lex:scatter",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:brown_mushroom"
@@ -156,7 +162,7 @@
             "maxHeight": 128
         },
         {
-            "generator": "ore",
+            "generator": "lex:ore",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:quartz_ore"
@@ -172,7 +178,7 @@
             "veinSize": 14
         },
         {
-            "generator": "ore",
+            "generator": "lex:ore",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "nex:gem_ore",
@@ -191,7 +197,7 @@
             "veinSize": 3
         },
         {
-            "generator": "ore",
+            "generator": "lex:ore",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:magma"
@@ -207,7 +213,7 @@
             "veinSize": 32
         },
         {
-            "generator": "fluid",
+            "generator": "lex:fluid",
             "generationStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"

@@ -25,11 +25,4 @@ import org.apache.logging.log4j.Logger;
 public class NetherExFluids
 {
     public static final Fluid ICHOR = new FluidIchor();
-
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExFluids");
-
-    public static void init()
-    {
-
-    }
 }

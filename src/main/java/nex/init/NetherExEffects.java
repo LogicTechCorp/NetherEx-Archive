@@ -35,15 +35,13 @@ public class NetherExEffects
     public static final PotionNetherEx SPORE = new PotionNetherEx("spore", true, 142, 96, 40);
     public static final PotionNetherEx LOST = new PotionNetherEx("lost", true, 103, 62, 124);
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffects");
-
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent
         public static void onRegisterPotions(RegistryEvent.Register<Potion> event)
         {
-            LOGGER.info("Effect registration started.");
+            NetherEx.LOGGER.info("Effect registration started.");
 
             event.getRegistry().registerAll(
                     FREEZE,
@@ -52,7 +50,7 @@ public class NetherExEffects
                     LOST
             );
 
-            LOGGER.info("Effect registration completed.");
+            NetherEx.LOGGER.info("Effect registration completed.");
         }
     }
 }

@@ -37,9 +37,6 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBiomes
 {
-    @GameRegistry.ObjectHolder("hell")
-    public static final BiomeHell HELL = null;
-
     @GameRegistry.ObjectHolder("ruthless_sands")
     public static final BiomeRuthlessSands RUTHLESS_SANDS = null;
 
@@ -52,31 +49,27 @@ public class NetherExBiomes
     @GameRegistry.ObjectHolder("arctic_abyss")
     public static final BiomeArcticAbyss ARCTIC_ABYSS = null;
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBiomes");
-
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent
         public static void onRegisterBiomes(RegistryEvent.Register<Biome> event)
         {
-            LOGGER.info("Biome registration started.");
+            NetherEx.LOGGER.info("Biome registration started.");
 
             event.getRegistry().registerAll(
-                    new BiomeHell(),
                     new BiomeRuthlessSands(),
                     new BiomeFungiForest(),
                     new BiomeTorridWasteland(),
                     new BiomeArcticAbyss()
             );
 
-            LOGGER.info("Biome registration completed.");
+            NetherEx.LOGGER.info("Biome registration completed.");
         }
     }
 
     public static void init()
     {
-        BiomeDictionary.addTypes(HELL, NETHER, HOT, DRY);
         BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, HOT, DRY, MUSHROOM);
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
@@ -88,6 +81,6 @@ public class NetherExBiomes
         DimensionManager.unregisterDimension(-1);
         DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
         DimensionManager.registerDimension(-1, nether);
-        LOGGER.info("The Nether has been overridden.");
+        NetherEx.LOGGER.info("The Nether has been overridden.");
     }
 }

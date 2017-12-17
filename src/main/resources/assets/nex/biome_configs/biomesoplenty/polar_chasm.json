@@ -1,20 +1,22 @@
 {
     "biome": "biomesoplenty:polar_chasm",
-    "weight": 1,
-    "climate": "cold",
-    "floorTopBlock": {
+    "topBlock": {
         "block": "biomesoplenty:hard_ice"
     },
-    "floorFillerBlock": {
+    "fillerBlock": {
         "block": "biomesoplenty:hard_ice"
     },
     "wallBlock": {
         "block": "biomesoplenty:hard_ice"
     },
-    "roofBottomBlock": {
+    "ceilingBottomBlock": {
         "block": "biomesoplenty:hard_ice"
     },
-    "roofFillerBlock": {
+    "ceilingFillerBlock": {
         "block": "biomesoplenty:hard_ice"
-    }
+    },
+    "oceanBlock": {
+        "block": "minecraft:magma"
+    },
+    "weight": 1
 }

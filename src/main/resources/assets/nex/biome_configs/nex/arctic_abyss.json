@@ -1,9 +1,10 @@
 {
-    "surfaceBlock": {
-        "block": "nex:frostburn_ice",
-        "properties": { }
+    "biome": "nex:arctic_abyss",
+    "wrapper": "nex:nether",
+    "topBlock": {
+        "block": "nex:frostburn_ice"
     },
-    "subsurfaceBlock": {
+    "fillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "icy"
@@ -15,51 +16,17 @@
             "type": "icy"
         }
     },
-    "ceilingBlock": {
+    "ceilingBottomBlock": {
+        "block": "nex:frostburn_ice"
+    },
+    "ceilingFillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "icy"
         }
     },
-    "superCeilingBlock": {
-        "block": "nex:frostburn_ice",
-        "properties": { }
+    "oceanBlock": {
+        "block": "minecraft:magma"
     },
-    "fluidBlock": {
-        "block": "minecraft:magma",
-        "properties": { }
-    },
-    "weight": 1,
-    "entities": {
-        "minecraft:ghast": {
-            "creatureType": "monster",
-            "weight": 50,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "minecraft:zombie_pigman": {
-            "creatureType": "monster",
-            "weight": 25,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "nex:bone_spider": {
-            "creatureType": "monster",
-            "weight": 35,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "nex:wight": {
-            "creatureType": "monster",
-            "weight": 100,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "nex:brute": {
-            "creatureType": "monster",
-            "weight": 15,
-            "minGroupCount": 1,
-            "maxGroupCount": 1
-        }
-    }
+    "weight": 1
 }

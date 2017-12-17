@@ -19,6 +19,7 @@ package nex.village;
 
 import com.google.common.collect.Maps;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,8 +29,6 @@ public class NetherVillageManager
 {
     private static final Map<World, NetherVillageCollection> netherVillages = Maps.newHashMap();
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherVillageManager");
-
     public static void init(World world)
     {
         String dimension = world.provider.getDimensionType().name().toLowerCase();
@@ -38,14 +37,14 @@ public class NetherVillageManager
 
         if(netherVillageCollection == null)
         {
-            LOGGER.info("The Pigtificate Village data for " + dimension + " was created successfully.");
+            NetherEx.LOGGER.info("The Pigtificate Village data for " + dimension + " was created successfully.");
 
             netherVillages.put(world, new NetherVillageCollection(world));
             world.getPerWorldStorage().setData(id, netherVillages.get(world));
         }
         else
         {
-            LOGGER.info("The Pigtificate Village data for " + dimension + " was read successfully.");
+            NetherEx.LOGGER.info("The Pigtificate Village data for " + dimension + " was read successfully.");
 
             netherVillages.put(world, netherVillageCollection);
             netherVillages.get(world).setWorldsForAll(world);

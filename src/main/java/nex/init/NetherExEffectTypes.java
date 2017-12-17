@@ -44,15 +44,13 @@ public class NetherExEffectTypes
     @GameRegistry.ObjectHolder("normal_lost")
     public static final PotionType NORMAL_LOST = null;
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffectTypes");
-
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent
         public static void onRegisterPotionTypes(RegistryEvent.Register<PotionType> event)
         {
-            LOGGER.info("Effect Type registration started.");
+            NetherEx.LOGGER.info("Effect Type registration started.");
 
             event.getRegistry().registerAll(
                     new PotionTypeNetherEx("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
@@ -61,7 +59,7 @@ public class NetherExEffectTypes
                     new PotionTypeNetherEx("normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
             );
 
-            LOGGER.info("Effect Type registration completed.");
+            NetherEx.LOGGER.info("Effect Type registration completed.");
         }
     }
 }

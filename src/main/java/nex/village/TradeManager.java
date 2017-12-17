@@ -19,6 +19,7 @@ package nex.village;
 
 import com.google.gson.*;
 import net.minecraft.util.JsonUtils;
+import nex.NetherEx;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -34,8 +35,6 @@ import java.util.Iterator;
 @SuppressWarnings("ConstantConditions")
 public class TradeManager
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|TradeManager");
-
     public static void parseTradeConfigs(File directory)
     {
         if(!directory.exists())
@@ -62,7 +61,7 @@ public class TradeManager
                 }
                 else if(!configPath.toFile().isDirectory())
                 {
-                    LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
+                    NetherEx.LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
                 }
             }
         }

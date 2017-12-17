@@ -1,9 +1,10 @@
 {
-    "surfaceBlock": {
-        "block": "minecraft:soul_sand",
-        "properties": { }
+    "biome": "nex:ruthless_sands",
+    "wrapper": "nex:nether",
+    "topBlock": {
+        "block": "minecraft:soul_sand"
     },
-    "subsurfaceBlock": {
+    "fillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "gloomy"
@@ -15,41 +16,20 @@
             "type": "gloomy"
         }
     },
-    "ceilingBlock": {
+    "ceilingBottomBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "gloomy"
         }
     },
-    "superCeilingBlock": {
+    "ceilingFillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "gloomy"
         }
     },
-    "fluidBlock": {
-        "block": "minecraft:lava",
-        "properties": { }
+    "oceanBlock": {
+        "block": "minecraft:lava"
     },
-    "weight": 8,
-    "entities": {
-        "minecraft:wither_skeleton": {
-            "creatureType": "monster",
-            "weight": 65,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "minecraft:zombie_pigman": {
-            "creatureType": "monster",
-            "weight": 45,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "nex:spinout": {
-            "creatureType": "monster",
-            "weight": 100,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        }
-    }
+    "weight": 8
 }

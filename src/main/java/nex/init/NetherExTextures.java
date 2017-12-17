@@ -51,11 +51,4 @@ public class NetherExTextures
     public static final ResourceLocation BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/brute.png");
     public static final ResourceLocation GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen.png");
     public static final ResourceLocation GHAST_QUEEN_SHOOTING = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen_shooting.png");
-
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExTextures");
-
-    public static void init()
-    {
-
-    }
 }

@@ -1,9 +1,10 @@
 {
-    "surfaceBlock": {
-        "block": "nex:hyphae",
-        "properties": { }
+    "biome": "nex:fungi_forest",
+    "wrapper": "nex:nether",
+    "topBlock": {
+        "block": "nex:hyphae"
     },
-    "subsurfaceBlock": {
+    "fillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "lively"
@@ -15,41 +16,20 @@
             "type": "lively"
         }
     },
-    "ceilingBlock": {
+    "ceilingBottomBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "lively"
         }
     },
-    "superCeilingBlock": {
+    "ceilingFillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "lively"
         }
     },
-    "fluidBlock": {
-        "block": "minecraft:lava",
-        "properties": { }
+    "oceanBlock": {
+        "block": "minecraft:lava"
     },
-    "weight": 4,
-    "entities": {
-        "nex:mogus": {
-            "creatureType": "monster",
-            "weight": 100,
-            "minGroupCount": 4,
-            "maxGroupCount": 6
-        },
-        "nex:spore": {
-            "creatureType": "monster",
-            "weight": 25,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "nex:spore_creeper": {
-            "creatureType": "monster",
-            "weight": 50,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        }
-    }
+    "weight": 4
 }

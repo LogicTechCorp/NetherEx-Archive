@@ -1,20 +1,22 @@
 {
     "biome": "biomesoplenty:corrupted_sands",
-    "weight": 8,
-    "climate": "temperate",
-    "floorTopBlock": {
+    "topBlock": {
         "block": "minecraft:soul_sand"
     },
-    "floorFillerBlock": {
+    "fillerBlock": {
         "block": "minecraft:soul_sand"
     },
     "wallBlock": {
         "block": "minecraft:soul_sand"
     },
-    "roofBottomBlock": {
+    "ceilingBottomBlock": {
         "block": "minecraft:netherrack"
     },
-    "roofFillerBlock": {
+    "ceilingFillerBlock": {
         "block": "minecraft:netherrack"
-    }
+    },
+    "oceanBlock": {
+        "block": "minecraft:lava"
+    },
+    "weight": 8
 }

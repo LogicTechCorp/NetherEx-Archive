@@ -1,23 +1,25 @@
 {
     "biome": "biomesoplenty:fungi_forest",
-    "weight": 4,
-    "climate": "cool",
-    "floorTopBlock": {
+    "topBlock": {
         "block": "biomesoplenty:grass",
         "properties": {
             "variant": "mycelial_netherrack"
         }
     },
-    "floorFillerBlock": {
+    "fillerBlock": {
         "block": "minecraft:netherrack"
     },
     "wallBlock": {
         "block": "minecraft:netherrack"
     },
-    "roofBottomBlock": {
+    "ceilingBottomBlock": {
         "block": "minecraft:netherrack"
     },
-    "roofFillerBlock": {
+    "ceilingFillerBlock": {
         "block": "minecraft:netherrack"
-    }
+    },
+    "oceanBlock": {
+        "block": "minecraft:lava"
+    },
+    "weight": 4
 }

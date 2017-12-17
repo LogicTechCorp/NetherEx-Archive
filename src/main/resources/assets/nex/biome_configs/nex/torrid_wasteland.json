@@ -1,11 +1,13 @@
 {
-    "surfaceBlock": {
+    "biome": "nex:torrid_wasteland",
+    "wrapper": "nex:nether",
+    "topBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "fiery"
         }
     },
-    "subsurfaceBlock": {
+    "fillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "fiery"
@@ -17,41 +19,20 @@
             "type": "fiery"
         }
     },
-    "ceilingBlock": {
+    "ceilingBottomBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "fiery"
         }
     },
-    "superCeilingBlock": {
+    "ceilingFillerBlock": {
         "block": "nex:netherrack",
         "properties": {
             "type": "fiery"
         }
     },
-    "fluidBlock": {
-        "block": "minecraft:lava",
-        "properties": { }
+    "oceanBlock": {
+        "block": "minecraft:lava"
     },
-    "weight": 6,
-    "entities": {
-        "minecraft:magma_cube": {
-            "creatureType": "monster",
-            "weight": 25,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        },
-        "nex:ember": {
-            "creatureType": "monster",
-            "weight": 50,
-            "minGroupCount": 4,
-            "maxGroupCount": 6
-        },
-        "nex:salamander": {
-            "creatureType": "monster",
-            "weight": 100,
-            "minGroupCount": 1,
-            "maxGroupCount": 4
-        }
-    }
+    "weight": 6
 }

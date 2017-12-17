@@ -58,8 +58,6 @@ public class ConfigHandler
     @Config.LangKey("config." + NetherEx.MOD_ID + ":biome")
     public static BiomeConfig biomeConfig = new BiomeConfig();
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|ConfigHandler");
-
     public static class ClientConfig
     {
         @Config.Name("visual")
@@ -471,7 +469,7 @@ public class ConfigHandler
             if(event.getModID().equals(NetherEx.MOD_ID))
             {
                 ConfigManager.sync(NetherEx.MOD_ID, Config.Type.INSTANCE);
-                LOGGER.info("Configuration has been saved.");
+                NetherEx.LOGGER.info("Configuration has been saved.");
             }
         }
     }

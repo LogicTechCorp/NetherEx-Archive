@@ -66,15 +66,13 @@ public class NetherExSoundEvents
     public static final SoundEvent GHAST_QUEEN_SHOOT = null;
     public static final SoundEvent GHAST_QUEEN_SUMMON = null;
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExSoundEvents");
-
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent
         public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
         {
-            LOGGER.info("Sound registration started.");
+            NetherEx.LOGGER.info("Sound registration started.");
 
             event.getRegistry().registerAll(
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":pigtificate_ambient")),
@@ -113,7 +111,7 @@ public class NetherExSoundEvents
                     new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ghast_queen_summon"))
             );
 
-            LOGGER.info("Sound registration completed.");
+            NetherEx.LOGGER.info("Sound registration completed.");
         }
     }
 }

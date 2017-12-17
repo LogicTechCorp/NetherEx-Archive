@@ -1,20 +1,22 @@
 {
     "biome": "biomesoplenty:visceral_heap",
-    "weight": 4,
-    "climate": "cool",
-    "floorTopBlock": {
+    "topBlock": {
         "block": "biomesoplenty:flesh"
     },
-    "floorFillerBlock": {
+    "fillerBlock": {
         "block": "biomesoplenty:flesh"
     },
     "wallBlock": {
         "block": "biomesoplenty:flesh"
     },
-    "roofBottomBlock": {
+    "ceilingBottomBlock": {
         "block": "minecraft:netherrack"
     },
-    "roofFillerBlock": {
+    "ceilingFillerBlock": {
         "block": "minecraft:netherrack"
-    }
+    },
+    "oceanBlock": {
+        "block": "minecraft:lava"
+    },
+    "weight": 4
 }

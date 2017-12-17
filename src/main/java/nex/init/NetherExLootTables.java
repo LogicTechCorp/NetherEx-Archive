@@ -48,11 +48,4 @@ public class NetherExLootTables
     public static final ResourceLocation BONE_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/bone_spider");
     public static final ResourceLocation BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
     public static final ResourceLocation GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghast_queen");
-
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExLootTables");
-
-    public static void init()
-    {
-
-    }
 }

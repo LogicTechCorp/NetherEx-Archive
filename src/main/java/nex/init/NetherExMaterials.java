@@ -34,11 +34,4 @@ public class NetherExMaterials
 
     public static final ItemArmor.ArmorMaterial WITHER_BONE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":wither_bone", NetherEx.MOD_ID + ":wither_bone", 8, new int[]{2, 3, 4, 2}, 16, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.5F).setRepairItem(new ItemStack(NetherExItems.WITHER_BONE, 1, 0));
     public static final ItemArmor.ArmorMaterial SALAMANDER_HIDE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":salamander_hide", NetherEx.MOD_ID + ":salamander_hide", 10, new int[]{2, 4, 5, 2}, 21, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F).setRepairItem(new ItemStack(NetherExItems.SALAMANDER_HIDE, 1, OreDictionary.WILDCARD_VALUE));
-
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExMaterials");
-
-    public static void init()
-    {
-
-    }
 }

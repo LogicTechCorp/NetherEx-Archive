@@ -93,36 +93,13 @@ public class NetherExBlocks
     public static final BlockNetherExFenceGate LIVELY_NETHER_BRICK_FENCE_GATE = null;
     public static final BlockNetherExFenceGate GLOOMY_NETHER_BRICK_FENCE_GATE = null;
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
-
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
-            NetherExTextures.LOGGER.info("Texture registration started.");
-
-            NetherExTextures.init();
-
-            NetherExTextures.LOGGER.info("Texture registration completed.");
-            NetherExFluids.LOGGER.info("Fluid registration started.");
-
-            NetherExFluids.init();
-
-            NetherExFluids.LOGGER.info("Fluid registration completed.");
-            NetherExMaterials.LOGGER.info("Material registration started.");
-
-            NetherExMaterials.init();
-
-            NetherExMaterials.LOGGER.info("Material registration completed.");
-            NetherExLootTables.LOGGER.info("Loot Table registration started.");
-
-            NetherExLootTables.init();
-
-            NetherExLootTables.LOGGER.info("Loot Table registration completed.");
-
-            LOGGER.info("Block registration started.");
+            NetherEx.LOGGER.info("Block registration started.");
 
             event.getRegistry().registerAll(
                     new BlockBasalt(),
@@ -184,13 +161,13 @@ public class NetherExBlocks
                     new BlockNetherExFenceGate("gloomy_nether_brick", Material.ROCK)
             );
 
-            LOGGER.info("Block registration completed.");
+            NetherEx.LOGGER.info("Block registration completed.");
         }
 
         @SubscribeEvent
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
-            LOGGER.info("ItemBlock registration started.");
+            NetherEx.LOGGER.info("ItemBlock registration started.");
 
             event.getRegistry().registerAll(
                     new ItemBlockBasalt(),
@@ -250,7 +227,7 @@ public class NetherExBlocks
                     new ItemBlockNetherEx(GLOOMY_NETHER_BRICK_FENCE_GATE)
             );
 
-            LOGGER.info("ItemBlock registration completed.");
+            NetherEx.LOGGER.info("ItemBlock registration completed.");
         }
     }
 }

@@ -38,11 +38,9 @@ import org.apache.logging.log4j.Logger;
 public class NetherExEntities
 {
     private static int entityId = -1;
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEntities");
-
     public static void init()
     {
-        LOGGER.info("Entity registration started.");
+        NetherEx.LOGGER.info("Entity registration started.");
 
         registerEntity("ghast_queen_fireball", EntityGhastQueenFireball.class, entityId++);
         registerEntity("ghastling_fireball", EntityGhastlingFireball.class, entityId++);
@@ -68,7 +66,7 @@ public class NetherExEntities
 
         registerEntity("ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
 
-        LOGGER.info("Entity registration completed.");
+        NetherEx.LOGGER.info("Entity registration completed.");
     }
 
     private static void registerEntity(String name, Class<? extends Entity> cls, int id)

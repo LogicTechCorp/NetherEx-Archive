@@ -18,12 +18,11 @@
 package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
 import nex.init.NetherExOreDict;
@@ -52,7 +51,7 @@ public class NetherEx
 
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|Main");
+    public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 
     static
     {
@@ -63,6 +62,7 @@ public class NetherEx
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         LOGGER.info("PreInitialization started.");
+        NetherExBiomeManager.unpackBiomeConfigs();
         proxy.preInit();
         LOGGER.info("PreInitialization completed.");
     }
@@ -73,7 +73,6 @@ public class NetherEx
         LOGGER.info("Initialization started.");
         NetherExBiomes.init();
         NetherExEntities.init();
-        NetherExBiomeManager.init();
         NetherExRecipes.init();
         NetherExOreDict.init();
         proxy.init();
@@ -87,5 +86,13 @@ public class NetherEx
         NetherExBiomes.postInit();
         proxy.postInit();
         LOGGER.info("PostInitialization completed.");
+    }
+
+    @Mod.EventHandler
+    public void onFMLServerStarting(FMLServerStartingEvent  event)
+    {
+        NetherExBiomeManager.setupDefaultBiomes();
+        NetherExBiomeManager.setupCompatibleBiomes(event.getServer());
+        NetherExBiomeManager.setupCustomBiomes();
     }
 }

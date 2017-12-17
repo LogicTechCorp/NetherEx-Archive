@@ -19,6 +19,7 @@ package nex.init;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import nex.NetherEx;
 import nex.block.BlockBasalt;
 import nex.block.BlockNetherrack;
 import org.apache.logging.log4j.LogManager;
@@ -30,11 +31,9 @@ import static nex.init.NetherExItems.*;
 @SuppressWarnings("ConstantConditions")
 public class NetherExOreDict
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExOreDict");
-
     public static void init()
     {
-        LOGGER.info("Ore Dictionary registration started.");
+        NetherEx.LOGGER.info("Ore Dictionary registration started.");
 
         for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
         {
@@ -69,7 +68,7 @@ public class NetherExOreDict
         addOreDictEntry("boneWithered", new ItemStack(WITHER_BONE, 1, 0));
         addOreDictEntry("dyeBlack", new ItemStack(WITHER_DUST, 1, 0));
 
-        LOGGER.info("Ore Dictionary registration completed.");
+        NetherEx.LOGGER.info("Ore Dictionary registration completed.");
     }
 
     private static void addOreDictEntry(String name, ItemStack stack)

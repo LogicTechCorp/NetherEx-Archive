@@ -23,6 +23,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
+import nex.NetherEx;
 import nex.block.BlockNetherrack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,11 +39,9 @@ import static nex.init.NetherExItems.*;
 @SuppressWarnings("ConstantConditions")
 public class NetherExRecipes
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExRecipes");
-
     public static void init()
     {
-        LOGGER.info("Recipe registration started.");
+        NetherEx.LOGGER.info("Recipe registration started.");
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
@@ -61,7 +60,7 @@ public class NetherExRecipes
         addBrewing(AWKWARD, SPORE, NORMAL_SPORE);
         addBrewing(AWKWARD, GHAST_MEAT_RAW, NORMAL_LOST);
 
-        LOGGER.info("Recipe registration completed.");
+        NetherEx.LOGGER.info("Recipe registration completed.");
     }
 
     private static void addSmelting(ItemStack output, ItemStack input, float xp)

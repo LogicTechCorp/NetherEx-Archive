@@ -62,15 +62,13 @@ public class NetherExItems
     public static final ItemSalamanderHideArmor SALAMANDER_HIDE_LEGGINGS = null;
     public static final ItemSalamanderHideArmor SALAMANDER_HIDE_BOOTS = null;
 
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExItems");
-
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
         @SubscribeEvent
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
-            LOGGER.info("Item registration started.");
+            NetherEx.LOGGER.info("Item registration started.");
 
             event.getRegistry().registerAll(
                     new ItemNetherbrick(),
@@ -103,7 +101,7 @@ public class NetherExItems
                     new ItemSalamanderHideArmor("boots", 1, EntityEquipmentSlot.FEET)
             );
 
-            LOGGER.info("Item registration completed.");
+            NetherEx.LOGGER.info("Item registration completed.");
         }
     }
 }

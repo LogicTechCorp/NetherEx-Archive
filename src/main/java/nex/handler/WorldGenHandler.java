@@ -22,6 +22,7 @@ import lex.world.biome.IBiomeWrapper;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.IFeature;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -39,13 +40,16 @@ public class WorldGenHandler
     @SubscribeEvent
     public static void onPrePopulateChunk(PopulateChunkEvent.Pre event)
     {
-        generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.PRE_POPULATE);
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        {
+            generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.PRE_POPULATE);
+        }
     }
 
     @SubscribeEvent
     public static void onPopulateChunk(PopulateChunkEvent.Populate event)
     {
-        if(event.getType() == PopulateChunkEvent.Populate.EventType.CUSTOM)
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == PopulateChunkEvent.Populate.EventType.CUSTOM)
         {
             generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.POPULATE);
         }
@@ -54,19 +58,25 @@ public class WorldGenHandler
     @SubscribeEvent
     public static void onPostPopulateChunk(PopulateChunkEvent.Post event)
     {
-        generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.POST_POPULATE);
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        {
+            generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.POST_POPULATE);
+        }
     }
 
     @SubscribeEvent
     public static void onPreBiomeDecorate(DecorateBiomeEvent.Pre event)
     {
-        generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_DECORATE);
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        {
+            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_DECORATE);
+        }
     }
 
     @SubscribeEvent
     public static void onBiomeDecorate(DecorateBiomeEvent.Decorate event)
     {
-        if(event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
         {
             generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.DECORATE);
         }
@@ -75,19 +85,25 @@ public class WorldGenHandler
     @SubscribeEvent
     public static void onPostBiomeDecorate(DecorateBiomeEvent.Post event)
     {
-        generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_DECORATE);
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        {
+            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_DECORATE);
+        }
     }
 
     @SubscribeEvent
     public static void onPreGenerateOres(OreGenEvent.Pre event)
     {
-        generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_ORE);
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        {
+            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_ORE);
+        }
     }
 
     @SubscribeEvent
     public static void onGenerateOres(OreGenEvent.GenerateMinable event)
     {
-        if(event.getType() == OreGenEvent.GenerateMinable.EventType.CUSTOM)
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == OreGenEvent.GenerateMinable.EventType.CUSTOM)
         {
             generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.ORE);
         }
@@ -96,7 +112,10 @@ public class WorldGenHandler
     @SubscribeEvent
     public static void onPostGenerateOres(OreGenEvent.Post event)
     {
-        generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_ORE);
+        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        {
+            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_ORE);
+        }
     }
 
 
@@ -110,11 +129,14 @@ public class WorldGenHandler
     {
         IBiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos.add(16, 0, 16)));
 
-        for(IFeature feature : wrapper.getFeatureList(generationStage))
+        if(wrapper != null)
         {
-            for(int generationAttempts = 0; generationAttempts < feature.getGenerationAttempts(rand); generationAttempts++)
+            for(IFeature feature : wrapper.getFeatureList(generationStage))
             {
-                feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, NumberHelper.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
+                for(int generationAttempts = 0; generationAttempts < feature.getGenerationAttempts(rand); generationAttempts++)
+                {
+                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, NumberHelper.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
+                }
             }
         }
     }
