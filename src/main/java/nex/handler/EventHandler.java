@@ -36,6 +36,8 @@ import net.minecraft.init.*;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagByte;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -318,7 +320,9 @@ public class EventHandler
             {
                 if(player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_HAMMER_BONE)
                 {
-                    event.getDrops().add(new ItemStack(Blocks.BEDROCK, 1, 0));
+                    ItemStack stack = new ItemStack(Blocks.BEDROCK, 1, 0);
+                    stack.setTagInfo("NetherCeilingOnly", new NBTTagByte((byte)1));
+                    event.getDrops().add(stack);
                 }
             }
         }
@@ -332,7 +336,8 @@ public class EventHandler
         IBlockState state = event.getState();
         EntityPlayer player = event.getPlayer();
 
-        if(state.getBlock() == Blocks.BEDROCK)
+        NBTTagCompound tag = player.getHeldItem(event.getHand()).getTagCompound();
+        if(tag != null && tag.getBoolean("NetherCeilingOnly"))
         {
             if(player.dimension != DimensionType.NETHER.getId() || pos.getY() < 120)
             {
