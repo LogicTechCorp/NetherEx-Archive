@@ -1,35 +1,20 @@
 package nex.world.biome;
 
 import com.google.common.collect.ImmutableList;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import lex.LibEx;
 import lex.config.FileConfig;
 import lex.config.IConfig;
-import lex.init.LibExRegistries;
 import lex.util.ConfigHelper;
 import lex.util.FileHelper;
-import lex.world.biome.BiomeWrapperBuilder;
+import lex.world.biome.BiomeWrapper;
 import lex.world.biome.IBiomeWrapper;
-import net.minecraft.init.Biomes;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.dedicated.DedicatedServer;
-import net.minecraft.server.integrated.IntegratedServer;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
-import nex.init.NetherExBiomeWrapperBuilders;
-import nex.init.NetherExBiomes;
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
@@ -43,7 +28,6 @@ import java.util.*;
 public class NetherExBiomeManager
 {
     private static final List<Biome> BIOMES = new ArrayList<>();
-    private static final Map<Biome, IConfig> BIOME_CONFIGS = new HashMap<>();
     private static final Map<Biome, IBiomeWrapper> BIOME_WRAPPERS = new HashMap<>();
 
     public static void unpackBiomeConfigs()
@@ -119,7 +103,7 @@ public class NetherExBiomeManager
                 }
                 else if(!configFile.isDirectory())
                 {
-                    NetherEx.LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
+                    NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configPath.toString());
                 }
             }
         }
@@ -129,34 +113,21 @@ public class NetherExBiomeManager
         }
     }
 
-    private static void wrapBiome(IConfig biomeConfig, File biomeConfigFile)
+    private static void wrapBiome(IConfig config, File configFile)
     {
-        Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(biomeConfig.getString("biome")));
+        IBiomeWrapper wrapper = new BiomeWrapper(config);
 
-        if(biome != null)
+        if(wrapper.getBiome() != null)
         {
-            BIOMES.add(biome);
-            BIOME_CONFIGS.put(biome, biomeConfig);
-
-            BiomeWrapperBuilder builder = LibExRegistries.BIOME_WRAPPER_BUILDERS.getValue(biomeConfig.getResource("wrapper", NetherExBiomeWrapperBuilders.NETHER.getRegistryName()));
-
-            if(builder != null)
-            {
-                BIOME_WRAPPERS.put(biome, builder.configure(biomeConfig).create());
-            }
-
-            ConfigHelper.saveConfig(biomeConfig, biomeConfigFile);
+            BIOMES.add(wrapper.getBiome());
+            BIOME_WRAPPERS.put(wrapper.getBiome(), wrapper);
+            ConfigHelper.saveConfig(config, configFile);
         }
     }
 
     public static List<Biome> getBiomes()
     {
         return ImmutableList.copyOf(BIOMES);
-    }
-
-    public static IConfig getBiomeConfig(Biome key)
-    {
-        return BIOME_CONFIGS.get(key);
     }
 
     public static IBiomeWrapper getBiomeWrapper(Biome key)

@@ -32,12 +32,11 @@ import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
 import nex.entity.projectile.EntityGhastQueenFireball;
 import nex.entity.projectile.EntityGhastlingFireball;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class NetherExEntities
 {
     private static int entityId = -1;
+
     public static void init()
     {
         NetherEx.LOGGER.info("Entity registration started.");

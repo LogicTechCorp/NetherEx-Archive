@@ -41,8 +41,6 @@ import nex.block.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.item.ItemSalamanderHide;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @SideOnly(Side.CLIENT)
 @SuppressWarnings("ConstantConditions")

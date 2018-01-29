@@ -22,8 +22,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import nex.NetherEx;
 import nex.block.BlockBasalt;
 import nex.block.BlockNetherrack;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static nex.init.NetherExBlocks.*;
 import static nex.init.NetherExItems.*;

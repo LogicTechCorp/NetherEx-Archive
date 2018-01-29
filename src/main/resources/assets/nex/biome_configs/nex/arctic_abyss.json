@@ -1,32 +1,154 @@
 {
     "biome": "nex:arctic_abyss",
-    "wrapper": "nex:nether",
-    "topBlock": {
-        "block": "nex:frostburn_ice"
-    },
-    "fillerBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "icy"
+    "weight": 1,
+    "blocks": {
+        "topBlock": {
+            "block": "nex:frostburn_ice"
+        },
+        "fillerBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "icy"
+            }
+        },
+        "wallBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "icy"
+            }
+        },
+        "ceilingBottomBlock": {
+            "block": "nex:frostburn_ice"
+        },
+        "ceilingFillerBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "icy"
+            }
+        },
+        "oceanBlock": {
+            "block": "minecraft:magma"
         }
     },
-    "wallBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "icy"
+    "features": [
+        {
+            "feature": "lex:scatter",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:blue_fire"
+            },
+            "blockToTarget": {
+                "block": "nex:frostburn_ice"
+            },
+            "placement": "on_ground",
+            "generationAttempts": 5,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "randomizeGenerationAttempts": true,
+            "generate": true
+        },
+        {
+            "feature": "lex:cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToAttachTo": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "direction": "down",
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "randomizeGenerationAttempts": true,
+            "generate": true
+        },
+        {
+            "feature": "lex:cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToAttachTo": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "direction": "down",
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
+            "minHeight": 1,
+            "maxHeight": 128,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:quartz_ore",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "veinSize": 14,
+            "generationAttempts": 16.0,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:gem_ore",
+                "properties": {
+                    "type": "rime"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "icy"
+                }
+            },
+            "veinSize": 7,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:pool",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:ichor"
+            },
+            "blockToSurround": {
+                "block": "nex:frostburn_ice"
+            },
+            "generationAttempts": 1,
+            "generationProbability": 0.125,
+            "minHeight": 36,
+            "maxHeight": 96,
+            "randomizeGenerationAttempts": false,
+            "generate": true
         }
-    },
-    "ceilingBottomBlock": {
-        "block": "nex:frostburn_ice"
-    },
-    "ceilingFillerBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "icy"
-        }
-    },
-    "oceanBlock": {
-        "block": "minecraft:magma"
-    },
-    "weight": 1
+    ]
 }

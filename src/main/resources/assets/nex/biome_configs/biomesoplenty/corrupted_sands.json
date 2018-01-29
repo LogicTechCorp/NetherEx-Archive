@@ -1,22 +1,24 @@
 {
     "biome": "biomesoplenty:corrupted_sands",
-    "topBlock": {
-        "block": "minecraft:soul_sand"
-    },
-    "fillerBlock": {
-        "block": "minecraft:soul_sand"
-    },
-    "wallBlock": {
-        "block": "minecraft:soul_sand"
-    },
-    "ceilingBottomBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "ceilingFillerBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "oceanBlock": {
-        "block": "minecraft:lava"
-    },
-    "weight": 8
+    "weight": 8,
+    "blocks": {
+        "topBlock": {
+            "block": "minecraft:soul_sand"
+        },
+        "fillerBlock": {
+            "block": "minecraft:soul_sand"
+        },
+        "wallBlock": {
+            "block": "minecraft:soul_sand"
+        },
+        "ceilingBottomBlock": {
+            "block": "minecraft:netherrack"
+        },
+        "ceilingFillerBlock": {
+            "block": "minecraft:netherrack"
+        },
+        "oceanBlock": {
+            "block": "minecraft:lava"
+        }
+    }
 }

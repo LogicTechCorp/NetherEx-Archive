@@ -466,7 +466,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     }
 
     /**
-     * A method that replaces the default Nether blocks with ones designated for each biomeConfig
+     * A method that replaces the default Nether blocks with ones designated for each biome
      * <p>
      * Written by the Biomes O' Plenty team here:
      * https://github.com/Glitchfiend/BiomesOPlenty/blob/9873b7ad56ab8f32e6073dea060c4b67aad8b77e/src/main/java/biomesoplenty/common/biome/nether/BOPHellBiome.java#L84

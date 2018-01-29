@@ -19,8 +19,6 @@ package nex.init;
 
 import net.minecraftforge.fluids.Fluid;
 import nex.fluid.FluidIchor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class NetherExFluids
 {

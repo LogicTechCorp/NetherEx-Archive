@@ -1,35 +1,101 @@
 {
     "biome": "nex:fungi_forest",
-    "wrapper": "nex:nether",
-    "topBlock": {
-        "block": "nex:hyphae"
-    },
-    "fillerBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "lively"
+    "weight": 4,
+    "blocks": {
+        "topBlock": {
+            "block": "nex:hyphae"
+        },
+        "fillerBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "lively"
+            }
+        },
+        "wallBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "lively"
+            }
+        },
+        "ceilingBottomBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "lively"
+            }
+        },
+        "ceilingFillerBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "lively"
+            }
+        },
+        "oceanBlock": {
+            "block": "minecraft:lava"
         }
     },
-    "wallBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "lively"
+    "features": [
+        {
+            "feature": "lex:cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "netherrack": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "direction": "down",
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "randomizeGenerationAttempts": true,
+            "generate": true
+        },
+        {
+            "feature": "lex:cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "netherrack": {
+                "block": "nex:block_netherrack",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "direction": "down",
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
+            "minHeight": 1,
+            "maxHeight": 128,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:quartz_ore",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "lively"
+                }
+            },
+            "veinSize": 14,
+            "generationAttempts": 16.0,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "randomizeGenerationAttempts": false,
+            "generate": true
         }
-    },
-    "ceilingBottomBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "lively"
-        }
-    },
-    "ceilingFillerBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "lively"
-        }
-    },
-    "oceanBlock": {
-        "block": "minecraft:lava"
-    },
-    "weight": 4
+    ]
 }

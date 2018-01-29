@@ -25,8 +25,6 @@ import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
 import nex.NetherEx;
 import nex.block.BlockNetherrack;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static net.minecraft.init.Blocks.SOUL_SAND;
 import static net.minecraft.init.Items.MAGMA_CREAM;

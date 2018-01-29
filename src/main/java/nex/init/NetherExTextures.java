@@ -16,8 +16,6 @@ package nex.init;
 
 import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class NetherExTextures
 {

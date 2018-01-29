@@ -1,38 +1,226 @@
 {
     "biome": "nex:torrid_wasteland",
-    "wrapper": "nex:nether",
-    "topBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "fiery"
+    "weight": 6,
+    "blocks": {
+        "topBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "fiery"
+            }
+        },
+        "fillerBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "fiery"
+            }
+        },
+        "wallBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "fiery"
+            }
+        },
+        "ceilingBottomBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "fiery"
+            }
+        },
+        "ceilingFillerBlock": {
+            "block": "nex:netherrack",
+            "properties": {
+                "type": "fiery"
+            }
+        },
+        "oceanBlock": {
+            "block": "minecraft:lava"
         }
     },
-    "fillerBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "fiery"
+    "features": [
+        {
+            "feature": "lex:fluid",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:flowing_lava"
+            },
+            "blockToTarget": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "hidden": false,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:scatter",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:fire"
+            },
+            "blockToTarget": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "placement": "on_ground",
+            "generationAttempts": 20,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "randomizeGenerationAttempts": true,
+            "generate": true
+        },
+        {
+            "feature": "lex:cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToAttachTo": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "direction": "down",
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
+            "minHeight": 4,
+            "maxHeight": 124,
+            "randomizeGenerationAttempts": true,
+            "generate": true
+        },
+        {
+            "feature": "lex:cluster",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:glowstone"
+            },
+            "blockToAttachTo": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "direction": "down",
+            "generationAttempts": 10,
+            "generationProbability": 1.0,
+            "minHeight": 1,
+            "maxHeight": 128,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:quartz_ore",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "veinSize": 14,
+            "generationAttempts": 16.0,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "nex:basalt",
+                "properties": {
+                    "type": "normal"
+                }
+            },
+            "blockToReplace": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "veinSize": 24,
+            "generationAttempts": 14,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:ore",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:magma"
+            },
+            "blockToReplace": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "veinSize": 32,
+            "generationAttempts": 8,
+            "generationProbability": 1.0,
+            "minHeight": 28,
+            "maxHeight": 38,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:fluid",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:flowing_lava"
+            },
+            "blockToTarget": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "hidden": true,
+            "generationAttempts": 16,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 118,
+            "randomizeGenerationAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:pool",
+            "generationStage": "populate",
+            "blockToSpawn": {
+                "block": "minecraft:lava"
+            },
+            "blockToSurround": {
+                "block": "nex:netherrack",
+                "properties": {
+                    "type": "fiery"
+                }
+            },
+            "generationAttempts": 8,
+            "generationProbability": 1.0,
+            "minHeight": 10,
+            "maxHeight": 108,
+            "randomizeGenerationAttempts": false,
+            "generate": true
         }
-    },
-    "wallBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "fiery"
-        }
-    },
-    "ceilingBottomBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "fiery"
-        }
-    },
-    "ceilingFillerBlock": {
-        "block": "nex:netherrack",
-        "properties": {
-            "type": "fiery"
-        }
-    },
-    "oceanBlock": {
-        "block": "minecraft:lava"
-    },
-    "weight": 6
+    ]
 }

@@ -57,7 +57,7 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
 
         for(Biome biome : NetherExBiomeManager.getBiomes())
         {
-            IConfig config = NetherExBiomeManager.getBiomeConfig(biome);
+            IConfig config = NetherExBiomeManager.getBiomeWrapper(biome).getConfig();
 
             if(config != null)
             {

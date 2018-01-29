@@ -20,8 +20,6 @@ package nex.village;
 import com.google.common.collect.Maps;
 import net.minecraft.world.World;
 import nex.NetherEx;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 

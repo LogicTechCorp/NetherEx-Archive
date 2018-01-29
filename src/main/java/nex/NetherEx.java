@@ -18,11 +18,13 @@
 package nex;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
 import nex.init.NetherExOreDict;
@@ -89,7 +91,7 @@ public class NetherEx
     }
 
     @Mod.EventHandler
-    public void onFMLServerStarting(FMLServerStartingEvent  event)
+    public void onFMLServerStarting(FMLServerStartingEvent event)
     {
         NetherExBiomeManager.setupDefaultBiomes();
         NetherExBiomeManager.setupCompatibleBiomes(event.getServer());

@@ -1,25 +1,27 @@
 {
     "biome": "biomesoplenty:undergarden",
-    "topBlock": {
-        "block": "biomesoplenty:grass",
-        "properties": {
-            "variant": "overgrown_netherrack"
+    "weight": 4,
+    "blocks": {
+        "topBlock": {
+            "block": "biomesoplenty:grass",
+            "properties": {
+                "variant": "overgrown_netherrack"
+            }
+        },
+        "fillerBlock": {
+            "block": "minecraft:netherrack"
+        },
+        "wallBlock": {
+            "block": "minecraft:netherrack"
+        },
+        "ceilingBottomBlock": {
+            "block": "minecraft:netherrack"
+        },
+        "ceilingFillerBlock": {
+            "block": "minecraft:netherrack"
+        },
+        "oceanBlock": {
+            "block": "minecraft:lava"
         }
-    },
-    "fillerBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "wallBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "ceilingBottomBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "ceilingFillerBlock": {
-        "block": "minecraft:netherrack"
-    },
-    "oceanBlock": {
-        "block": "minecraft:lava"
-    },
-    "weight": 4
+    }
 }

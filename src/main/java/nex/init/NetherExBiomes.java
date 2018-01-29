@@ -27,9 +27,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.world.WorldProviderNether;
-import nex.world.biome.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import nex.world.biome.BiomeArcticAbyss;
+import nex.world.biome.BiomeFungiForest;
+import nex.world.biome.BiomeRuthlessSands;
+import nex.world.biome.BiomeTorridWasteland;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
