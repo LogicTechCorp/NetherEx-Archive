@@ -64,7 +64,7 @@ public class NetherEx
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         LOGGER.info("PreInitialization started.");
-        NetherExBiomeManager.unpackBiomeConfigs();
+        NetherExBiomeManager.preInit();
         proxy.preInit();
         LOGGER.info("PreInitialization completed.");
     }

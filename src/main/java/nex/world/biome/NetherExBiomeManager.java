@@ -15,7 +15,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.Loader;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
@@ -30,25 +29,9 @@ public class NetherExBiomeManager
     private static final List<Biome> BIOMES = new ArrayList<>();
     private static final Map<Biome, IBiomeWrapper> BIOME_WRAPPERS = new HashMap<>();
 
-    public static void unpackBiomeConfigs()
+    public static void preInit()
     {
-        File directory = new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes");
-
-        if(LibEx.IS_DEV_ENV)
-        {
-            try
-            {
-                FileUtils.copyDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), directory);
-            }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else
-        {
-            FileHelper.extractFromJar(NetherEx.class.getResource("/assets/nex/biome_configs"), directory.getPath());
-        }
+        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes"));
     }
 
     public static void setupDefaultBiomes()
@@ -86,11 +69,9 @@ public class NetherExBiomeManager
             directory.mkdirs();
         }
 
-        Path directoryPath = directory.toPath();
-
         try
         {
-            Iterator<Path> pathIter = Files.walk(directoryPath).iterator();
+            Iterator<Path> pathIter = Files.walk(directory.toPath()).iterator();
 
             while(pathIter.hasNext())
             {
