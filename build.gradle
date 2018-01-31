@@ -51,6 +51,12 @@ processResources {
     }
 }
 
+jar {
+    manifest {
+        attributes 'FMLAT': "nex_at.cfg"
+    }
+}
+
 def static parseConfig(File config) {
     config.withReader {
         def prop = new Properties()

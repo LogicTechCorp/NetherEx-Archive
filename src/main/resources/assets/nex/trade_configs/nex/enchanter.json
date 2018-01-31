@@ -8,8 +8,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 5,
                 "maxStackSize": 10
@@ -25,8 +25,8 @@
                 "minStackSize": 3,
                 "maxStackSize": 6
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -37,12 +37,12 @@
         },
         {
             "output": {
-                "item": "nex:item_crystal_amethyst",
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
+            "inputOne": {
                 "item": "minecraft:blaze_rod",
                 "meta": 0,
                 "minStackSize": 4,
@@ -66,8 +66,8 @@
                     }
                 ]
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 8,
                 "maxStackSize": 32
@@ -90,13 +90,13 @@
                     }
                 ]
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 8
             },
-            "inputB": {
+            "inputTwo": {
                 "item": "minecraft:book",
                 "meta": 0,
                 "minStackSize": 8,
@@ -120,13 +120,13 @@
                     }
                 ]
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 8
             },
-            "inputB": {
+            "inputTwo": {
                 "item": "minecraft:book",
                 "meta": 0,
                 "minStackSize": 8,
@@ -150,13 +150,13 @@
                     }
                 ]
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 8
             },
-            "inputB": {
+            "inputTwo": {
                 "item": "minecraft:book",
                 "meta": 0,
                 "minStackSize": 16,
@@ -180,13 +180,13 @@
                     }
                 ]
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 8
             },
-            "inputB": {
+            "inputTwo": {
                 "item": "minecraft:book",
                 "meta": 0,
                 "minStackSize": 24,
@@ -210,13 +210,13 @@
                     }
                 ]
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 8
             },
-            "inputB": {
+            "inputTwo": {
                 "item": "minecraft:book",
                 "meta": 0,
                 "minStackSize": 24,
@@ -233,8 +233,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 3
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 6,
                 "maxStackSize": 16

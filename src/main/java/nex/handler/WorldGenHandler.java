@@ -131,7 +131,7 @@ public class WorldGenHandler
 
         if(wrapper != null)
         {
-            for(IFeature feature : wrapper.getFeatureList(generationStage))
+            for(IFeature feature : wrapper.getFeatures(generationStage))
             {
                 for(int generationAttempts = 0; generationAttempts < feature.getGenerationAttempts(rand); generationAttempts++)
                 {

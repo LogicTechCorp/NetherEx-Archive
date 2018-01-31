@@ -21,15 +21,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEntities;
 import nex.init.NetherExOreDict;
 import nex.init.NetherExRecipes;
 import nex.proxy.IProxy;
+import nex.village.NetherExTradeManager;
 import nex.world.biome.NetherExBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -65,6 +63,7 @@ public class NetherEx
     {
         LOGGER.info("PreInitialization started.");
         NetherExBiomeManager.preInit();
+        NetherExTradeManager.preInit();
         proxy.preInit();
         LOGGER.info("PreInitialization completed.");
     }
@@ -96,5 +95,14 @@ public class NetherEx
         NetherExBiomeManager.setupDefaultBiomes();
         NetherExBiomeManager.setupCompatibleBiomes(event.getServer());
         NetherExBiomeManager.setupCustomBiomes();
+        NetherExTradeManager.setupDefaultTrades();
+        NetherExTradeManager.setupCustomTrades();
+    }
+
+    @Mod.EventHandler
+    public void onFMLServerStopping(FMLServerStoppingEvent event)
+    {
+        NetherExBiomeManager.clearBiomes();
+        NetherExTradeManager.clearTrades();
     }
 }

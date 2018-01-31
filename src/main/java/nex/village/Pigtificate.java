@@ -21,6 +21,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lex.village.ITrade;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import nex.init.NetherExLootTables;
@@ -95,7 +96,7 @@ public class Pigtificate
         private int weight;
         private ResourceLocation texture;
         private ResourceLocation lootTable;
-        private final Map<Integer, List<EnhancedTrade>> tradeMap = Maps.newHashMap();
+        private final Map<Integer, List<ITrade>> trades = Maps.newHashMap();
 
         Career(Profession professionIn, int weightIn, ResourceLocation textureIn, ResourceLocation lootTableIn)
         {
@@ -105,14 +106,9 @@ public class Pigtificate
             lootTable = lootTableIn;
         }
 
-        public void addTrade(EnhancedTrade trade)
+        public void addTrade(ITrade trade)
         {
-            tradeMap.computeIfAbsent(trade.getTradeLevel(), k -> Lists.newArrayList()).add(trade);
-        }
-
-        public void clearTradeList(int index)
-        {
-            tradeMap.remove(index);
+            trades.computeIfAbsent(trade.getTradeLevel(), k -> Lists.newArrayList()).add(trade);
         }
 
         public static Career getFromIndex(int index)
@@ -172,9 +168,9 @@ public class Pigtificate
             return profession;
         }
 
-        public Map<Integer, List<EnhancedTrade>> getTradeMap()
+        public Map<Integer, List<ITrade>> getTrades()
         {
-            return ImmutableMap.copyOf(tradeMap);
+            return ImmutableMap.copyOf(trades);
         }
     }
 }

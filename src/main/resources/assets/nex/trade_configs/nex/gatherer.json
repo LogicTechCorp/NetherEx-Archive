@@ -3,18 +3,18 @@
     "trades": [
         {
             "output": {
-                "item": "nex:food_congealed_magma_cream",
+                "item": "nex:congealed_magma_cream",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 2
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputB": {
+            "inputTwo": {
                 "item": "minecraft:magma_cream",
                 "meta": 0,
                 "minStackSize": 1,
@@ -31,8 +31,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -43,15 +43,15 @@
         },
         {
             "output": {
-                "item": "nex:plant_mushroom_elder",
+                "itemBlock": "nex:elder_mushroom",
                 "properties": {
                     "type": "red"
                 },
                 "minStackSize": 2,
                 "maxStackSize": 4
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 3
@@ -62,12 +62,12 @@
         },
         {
             "output": {
-                "item": "nex:item_crystal_amethyst",
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
+            "inputOne": {
                 "item": "minecraft:bone",
                 "meta": 0,
                 "minStackSize": 32,
@@ -84,8 +84,8 @@
                 "minStackSize": 5,
                 "maxStackSize": 16
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 2
@@ -96,15 +96,15 @@
         },
         {
             "output": {
-                "item": "nex:plant_mushroom_elder",
+                "itemBlock": "nex:elder_mushroom",
                 "properties": {
                     "type": "brown"
                 },
                 "minStackSize": 4,
                 "maxStackSize": 7
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 3,
                 "maxStackSize": 4
@@ -115,13 +115,13 @@
         },
         {
             "output": {
-                "item": "nex:food_mushroom_enoki",
+                "item": "nex:enoki_mushroom",
                 "meta": 0,
                 "minStackSize": 3,
                 "maxStackSize": 3
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 4
@@ -132,12 +132,12 @@
         },
         {
             "output": {
-                "item": "nex:item_crystal_amethyst",
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
+            "inputOne": {
                 "item": "minecraft:quartz_block",
                 "properties": {
                     "variant": "default"
@@ -155,8 +155,8 @@
                 "minStackSize": 3,
                 "maxStackSize": 5
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 3,
                 "maxStackSize": 4
@@ -171,8 +171,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 5,
                 "maxStackSize": 8

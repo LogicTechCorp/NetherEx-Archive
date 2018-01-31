@@ -17,6 +17,7 @@
 
 package nex.entity.passive;
 
+import lex.village.ITrade;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
@@ -49,7 +50,6 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
-import nex.village.EnhancedTrade;
 import nex.village.NetherVillage;
 import nex.village.NetherVillageManager;
 import nex.village.Pigtificate;
@@ -498,7 +498,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         else
         {
             String entityName = EntityList.getEntityString(this);
-            return I18n.translateToLocal("entityConfig." + entityName + "." + Pigtificate.Career.getFromIndex(getCareer()).name().toLowerCase() + ".name");
+            return I18n.translateToLocal("entity." + entityName + "." + Pigtificate.Career.getFromIndex(getCareer()).name().toLowerCase() + ".name");
         }
     }
 
@@ -602,7 +602,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             tradeList = new MerchantRecipeList();
         }
 
-        List<EnhancedTrade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTradeMap().get(getCareerLevel());
+        List<ITrade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTrades().get(getCareerLevel());
 
         if(trades != null && trades.size() > 0)
         {
@@ -610,14 +610,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
             if(getCareerLevel() == 1 && trades.size() > 1)
             {
-                for(EnhancedTrade trade : trades.subList(0, 2))
+                for(ITrade trade : trades.subList(0, 2))
                 {
-                    tradeList.add(trade.getRandomTrade(rand));
+                    tradeList.add(trade.randomize());
                 }
             }
             else
             {
-                tradeList.add(trades.get(0).getRandomTrade(rand));
+                tradeList.add(trades.get(0).randomize());
             }
         }
     }

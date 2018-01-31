@@ -3,13 +3,13 @@
     "trades": [
         {
             "output": {
-                "item": "nex:item_hide_salamander",
+                "item": "nex:salamander_hide",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 6
@@ -20,12 +20,12 @@
         },
         {
             "output": {
-                "item": "nex:item_crystal_amethyst",
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
+            "inputOne": {
                 "item": "minecraft:iron_ingot",
                 "meta": 0,
                 "minStackSize": 10,
@@ -42,8 +42,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 2
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 4
@@ -59,8 +59,8 @@
                 "minStackSize": 12,
                 "maxStackSize": 24
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -76,8 +76,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 12,
                 "maxStackSize": 20
@@ -93,8 +93,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 6,
                 "maxStackSize": 14
@@ -110,8 +110,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 6,
                 "maxStackSize": 14
@@ -127,8 +127,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 9,
                 "maxStackSize": 18
@@ -139,13 +139,16 @@
         },
         {
             "output": {
-                "item": "nex:armor_helmet_hide_salamander",
+                "item": "nex:salamander_hide_helmet",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:block_amethyst",
+            "inputOne": {
+                "itemBlock": "nex:gem",
+                "properties": {
+                    "type": "amethyst"
+                },
                 "minStackSize": 1,
                 "maxStackSize": 3
             },
@@ -155,13 +158,16 @@
         },
         {
             "output": {
-                "item": "nex:armor_chestplate_hide_salamander",
+                "item": "nex:salamander_hide_chestplate",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:block_amethyst",
+            "inputOne": {
+                "itemBlock": "nex:gem",
+                "properties": {
+                    "type": "amethyst"
+                },
                 "minStackSize": 3,
                 "maxStackSize": 4
             },
@@ -171,13 +177,16 @@
         },
         {
             "output": {
-                "item": "nex:armor_leggings_hide_salamander",
+                "item": "nex:salamander_hide_leggings",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:block_amethyst",
+            "inputOne": {
+                "itemBlock": "nex:gem",
+                "properties": {
+                    "type": "amethyst"
+                },
                 "minStackSize": 2,
                 "maxStackSize": 4
             },
@@ -187,13 +196,16 @@
         },
         {
             "output": {
-                "item": "nex:armor_boots_hide_salamander",
+                "item": "nex:salamander_hide_boots",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:block_amethyst",
+            "inputOne": {
+                "itemBlock": "nex:gem",
+                "properties": {
+                    "type": "amethyst"
+                },
                 "minStackSize": 1,
                 "maxStackSize": 3
             },

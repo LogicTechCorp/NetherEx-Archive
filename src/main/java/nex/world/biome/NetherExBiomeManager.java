@@ -15,7 +15,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.Loader;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
-import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,7 +77,7 @@ public class NetherExBiomeManager
                 Path configPath = pathIter.next();
                 File configFile = configPath.toFile();
 
-                if(FilenameUtils.getExtension(configPath.toString()).equals("json"))
+                if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
                     wrapBiome(new FileConfig(configFile), configFile);
                 }
@@ -104,6 +103,12 @@ public class NetherExBiomeManager
             BIOME_WRAPPERS.put(wrapper.getBiome(), wrapper);
             ConfigHelper.saveConfig(config, configFile);
         }
+    }
+
+    public static void clearBiomes()
+    {
+        BIOMES.clear();
+        BIOME_WRAPPERS.clear();
     }
 
     public static List<Biome> getBiomes()

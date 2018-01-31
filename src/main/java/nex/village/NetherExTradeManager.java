@@ -17,30 +17,50 @@
 
 package nex.village;
 
-import com.google.gson.*;
-import net.minecraft.util.JsonUtils;
+import lex.LibEx;
+import lex.config.FileConfig;
+import lex.config.IConfig;
+import lex.util.FileHelper;
+import lex.village.ITrade;
+import lex.village.Trade;
 import nex.NetherEx;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("ConstantConditions")
-public class TradeManager
+public class NetherExTradeManager
 {
-    public static void parseTradeConfigs(File directory)
+    public static void preInit()
+    {
+        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades"));
+    }
+
+    public static void setupDefaultTrades()
+    {
+        NetherEx.LOGGER.info("Setting up default trades.");
+        parseTradeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades/nex"));
+    }
+
+    public static void setupCustomTrades()
+    {
+        NetherEx.LOGGER.info("Setting up custom trades.");
+        parseTradeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades/custom"));
+    }
+
+    private static void parseTradeConfigs(File directory)
     {
         if(!directory.exists())
         {
             directory.mkdir();
         }
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
         Path directoryPath = directory.toPath();
 
         try
@@ -50,14 +70,13 @@ public class TradeManager
             while(pathIter.hasNext())
             {
                 Path configPath = pathIter.next();
+                File configFile = configPath.toFile();
 
-                if(FilenameUtils.getExtension(configPath.toString()).equals("json"))
+                if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
-                    BufferedReader reader = Files.newBufferedReader(configPath);
-                    parseTradeConfig(JsonUtils.fromJson(gson, reader, JsonObject.class));
-                    IOUtils.closeQuietly(reader);
+                    createTrade(new FileConfig(configFile));
                 }
-                else if(!configPath.toFile().isDirectory())
+                else if(!configFile.isDirectory())
                 {
                     NetherEx.LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
                 }
@@ -69,22 +88,17 @@ public class TradeManager
         }
     }
 
-    private static void parseTradeConfig(JsonObject config)
+    private static void createTrade(IConfig config)
     {
-        JsonArray tradeConfigs = JsonUtils.getJsonArray(config, "trades", new JsonArray());
+        Pigtificate.Career career = config.getEnum("career", Pigtificate.Career.class);
 
-        if(tradeConfigs.size() > 0)
+        if(career != null)
         {
-            Pigtificate.Career career = Pigtificate.Career.getFromString(JsonUtils.getString(config, "career", ""));
+            List<IConfig> tradeConfigs = config.getInnerConfigs("trades", new ArrayList<>());
 
-            for(JsonElement tradeConfig : tradeConfigs)
+            for(IConfig tradeConfig : tradeConfigs)
             {
-                EnhancedTrade trade = EnhancedTrade.deserialize(tradeConfig.getAsJsonObject());
-
-                if(trade != null)
-                {
-                    career.addTrade(trade);
-                }
+                career.addTrade(new Trade(tradeConfig));
             }
         }
     }
@@ -93,10 +107,7 @@ public class TradeManager
     {
         for(Pigtificate.Career career : Pigtificate.Career.values())
         {
-            for(int i = 0; i < career.getTradeMap().keySet().size(); i++)
-            {
-                career.clearTradeList(i);
-            }
+            career.getTrades().clear();
         }
     }
 }

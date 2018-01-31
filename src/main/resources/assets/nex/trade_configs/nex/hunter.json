@@ -8,8 +8,8 @@
                 "minStackSize": 9,
                 "maxStackSize": 15
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -25,8 +25,8 @@
                 "minStackSize": 4,
                 "maxStackSize": 6
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -42,8 +42,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 2
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -59,8 +59,8 @@
                 "minStackSize": 3,
                 "maxStackSize": 7
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 2
@@ -71,13 +71,13 @@
         },
         {
             "output": {
-                "item": "nex:item_crystal_amethyst",
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 2
             },
-            "inputA": {
-                "item": "nex:food_meat_ghast_raw",
+            "inputOne": {
+                "item": "nex:ghast_meat_raw",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -88,13 +88,13 @@
         },
         {
             "output": {
-                "item": "nex:food_meat_ghast_cooked",
+                "item": "nex:ghast_meat_cooked",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 4
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 6
@@ -110,8 +110,8 @@
                 "minStackSize": 1,
                 "maxStackSize": 1
             },
-            "inputA": {
-                "item": "nex:item_crystal_amethyst",
+            "inputOne": {
+                "item": "nex:gem",
                 "meta": 0,
                 "minStackSize": 5,
                 "maxStackSize": 7
