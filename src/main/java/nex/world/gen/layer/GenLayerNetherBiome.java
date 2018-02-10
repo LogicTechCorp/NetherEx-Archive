@@ -17,7 +17,7 @@
 
 package nex.world.gen.layer;
 
-import lex.config.IConfig;
+import lex.api.config.IConfig;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
@@ -57,7 +57,7 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
 
         for(Biome biome : NetherExBiomeManager.getBiomes())
         {
-            IConfig config = NetherExBiomeManager.getBiomeWrapper(biome).getConfig();
+            IConfig config = NetherExBiomeManager.getBiomeConfig(biome);
 
             if(config != null)
             {

@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
 import nex.init.NetherExMaterials;
-import nex.util.ArmorUtil;
+import nex.util.ArmorHelper;
 
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
@@ -41,7 +41,7 @@ public class RenderHandler
 
         if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
         {
-            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
+            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorHelper.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
             {
                 event.setCanceled(true);
             }

@@ -1,6 +1,7 @@
 {
     "biome": "nex:arctic_abyss",
     "weight": 1,
+    "enabled": true,
     "blocks": {
         "topBlock": {
             "block": "nex:frostburn_ice"

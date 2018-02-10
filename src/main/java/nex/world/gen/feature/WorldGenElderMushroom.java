@@ -34,7 +34,7 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import nex.init.NetherExBlocks;
-import nex.util.WeightedUtil;
+import nex.util.WeightedHelper;
 
 import java.util.List;
 import java.util.Random;
@@ -42,55 +42,55 @@ import java.util.Random;
 @SuppressWarnings("ConstantConditions")
 public class WorldGenElderMushroom extends WorldGenerator
 {
-    private final List<WeightedUtil.NamedItem> variants;
+    private final List<WeightedHelper.NamedItem> variants;
     private final boolean isWorldGen;
 
-    public static List<WeightedUtil.NamedItem> brownVariants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_tiny", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_tiny_variant", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_small", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_small_variant", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_medium", 4),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_medium_variant", 4),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_large", 3),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_huge", 2),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_gigantic", 1)
+    public static List<WeightedHelper.NamedItem> brownVariants = Lists.newArrayList(
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_tiny", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_tiny_variant", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_small", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_small_variant", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_medium", 4),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_medium_variant", 4),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_large", 3),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_huge", 2),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_gigantic", 1)
     );
 
-    public static List<WeightedUtil.NamedItem> redVariants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_tiny", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_tiny_variant", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_small", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_small_variant", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_small_variant_2", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_medium", 4),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_large", 3),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_huge", 2),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_gigantic", 1)
+    public static List<WeightedHelper.NamedItem> redVariants = Lists.newArrayList(
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_tiny", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_tiny_variant", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_small", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_small_variant", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_small_variant_2", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_medium", 4),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_large", 3),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_huge", 2),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_gigantic", 1)
     );
 
-    public static List<WeightedUtil.NamedItem> allVariants = Lists.newArrayList(
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_tiny", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_tiny_variant", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_small", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_small_variant", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_medium", 4),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_medium_variant", 4),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_large", 3),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_huge", 2),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_brown_gigantic", 1),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_tiny", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_tiny_variant", 6),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_small", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_small_variant", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_small_variant_2", 5),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_medium", 4),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_large", 3),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_huge", 2),
-            new WeightedUtil.NamedItem("nex:plant_mushroom_elder_red_gigantic", 1)
+    public static List<WeightedHelper.NamedItem> allVariants = Lists.newArrayList(
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_tiny", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_tiny_variant", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_small", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_small_variant", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_medium", 4),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_medium_variant", 4),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_large", 3),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_huge", 2),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_brown_gigantic", 1),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_tiny", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_tiny_variant", 6),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_small", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_small_variant", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_small_variant_2", 5),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_medium", 4),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_large", 3),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_huge", 2),
+            new WeightedHelper.NamedItem("nex:plant_mushroom_elder_red_gigantic", 1)
     );
 
-    public WorldGenElderMushroom(List<WeightedUtil.NamedItem> variantsIn, boolean isWorldGenIn)
+    public WorldGenElderMushroom(List<WeightedHelper.NamedItem> variantsIn, boolean isWorldGenIn)
     {
         variants = variantsIn;
         isWorldGen = isWorldGenIn;
@@ -126,7 +126,7 @@ public class WorldGenElderMushroom extends WorldGenerator
         Rotation rotation = rotations[rand.nextInt(rotations.length)];
         MinecraftServer minecraftServer = world.getMinecraftServer();
         TemplateManager templateManager = world.getSaveHandler().getStructureTemplateManager();
-        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(WeightedUtil.getRandomNamedItem(rand, variants).getName()));
+        Template template = templateManager.getTemplate(minecraftServer, new ResourceLocation(WeightedHelper.getRandomNamedItem(rand, variants).getName()));
         PlacementSettings placementSettings = new PlacementSettings().setMirror(mirror).setRotation(rotation).setReplacedBlock(Blocks.AIR);
         BlockPos structureSize = Template.transformedBlockPos(placementSettings.copy(), template.getSize());
         float airAmount = 0;

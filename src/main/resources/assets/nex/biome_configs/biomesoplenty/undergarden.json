@@ -1,6 +1,7 @@
 {
     "biome": "biomesoplenty:undergarden",
     "weight": 4,
+    "enabled": true,
     "blocks": {
         "topBlock": {
             "block": "biomesoplenty:grass",

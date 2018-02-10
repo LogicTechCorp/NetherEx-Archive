@@ -17,7 +17,7 @@
 
 package nex.entity.passive;
 
-import lex.village.ITrade;
+import lex.api.village.ITrade;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;

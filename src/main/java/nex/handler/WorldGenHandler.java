@@ -17,10 +17,10 @@
 
 package nex.handler;
 
+import lex.api.world.biome.IBiomeWrapper;
+import lex.api.world.gen.feature.IFeature;
 import lex.util.NumberHelper;
-import lex.world.biome.IBiomeWrapper;
 import lex.world.gen.GenerationStage;
-import lex.world.gen.feature.IFeature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -133,7 +133,7 @@ public class WorldGenHandler
         {
             for(IFeature feature : wrapper.getFeatures(generationStage))
             {
-                for(int generationAttempts = 0; generationAttempts < feature.getGenerationAttempts(rand); generationAttempts++)
+                for(int generationAttempts = 0; generationAttempts < feature.getGenAttempts(rand); generationAttempts++)
                 {
                     feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, NumberHelper.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
                 }

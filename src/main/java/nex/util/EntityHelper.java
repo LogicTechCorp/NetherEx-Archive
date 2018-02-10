@@ -27,7 +27,7 @@ import nex.init.NetherExEffects;
 
 import java.util.Arrays;
 
-public class EntityUtil
+public class EntityHelper
 {
     public static boolean canFreeze(EntityLivingBase entity)
     {

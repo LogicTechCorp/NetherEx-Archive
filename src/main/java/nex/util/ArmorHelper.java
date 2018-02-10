@@ -24,7 +24,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ArmorUtil
+public class ArmorHelper
 {
     public static boolean isWearingFullArmorSet(EntityPlayer player, ItemArmor.ArmorMaterial material)
     {

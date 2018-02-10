@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.util.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
-import nex.util.NBTUtil;
 
 public class ItemGoldenWitherBoneShovel extends ItemNetherExShovel
 {
@@ -48,7 +48,7 @@ public class ItemGoldenWitherBoneShovel extends ItemNetherExShovel
             compound.setBoolean("Nether", false);
         }
 
-        NBTUtil.setTag(stack, compound);
+        NBTHelper.setTag(stack, compound);
     }
 
     @Override

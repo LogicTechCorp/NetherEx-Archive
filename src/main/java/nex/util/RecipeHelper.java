@@ -32,12 +32,12 @@ import java.util.*;
 /**
  * Turns recipes into json form.
  * <p>
- * Written by the Botania Team here:
+ * Written by the Botania team here:
  * https://github.com/Vazkii/Botania/blob/209b52bb80a766b15eff3c48cd1cd581f4020e97/src/main/java/vazkii/botania/common/crafting/ModCraftingRecipes.java
  *
- * @author Choonster
+ * @author Botania team
  */
-public class RecipeUtil
+public class RecipeHelper
 {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static File RECIPE_DIR = null;

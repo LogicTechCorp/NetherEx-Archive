@@ -1,6 +1,7 @@
 {
     "biome": "minecraft:hell",
     "weight": 10,
+    "enabled": true,
     "blocks": {
         "topBlock": {
             "block": "minecraft:netherrack"

@@ -1,6 +1,7 @@
 {
     "biome": "biomesoplenty:phantasmagoric_inferno",
     "weight": 6,
+    "enabled": true,
     "blocks": {
         "topBlock": {
             "block": "biomesoplenty:ash_block"

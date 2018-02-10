@@ -45,8 +45,8 @@ import nex.init.NetherExBiomes;
 import nex.init.NetherExEffects;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
-import nex.util.ArmorUtil;
-import nex.util.EntityUtil;
+import nex.util.ArmorHelper;
+import nex.util.EntityHelper;
 
 import java.util.ListIterator;
 import java.util.Random;
@@ -64,7 +64,7 @@ public class LivingHandler
 
         if(world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(EntityUtil.canFreeze(entity))
+            if(EntityHelper.canFreeze(entity))
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
@@ -78,18 +78,18 @@ public class LivingHandler
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
 
-        boolean canEntityFreeze = EntityUtil.canFreeze(entity);
+        boolean canEntityFreeze = EntityHelper.canFreeze(entity);
 
         if(world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(canEntityFreeze && !EntityUtil.isFrozen(entity) && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.chanceOfFreezing) == 0)
+            if(canEntityFreeze && !EntityHelper.isFrozen(entity) && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.chanceOfFreezing) == 0)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
         }
         if(canEntityFreeze || entity instanceof EntityPlayer)
         {
-            if(EntityUtil.isFrozen(entity))
+            if(EntityHelper.isFrozen(entity))
             {
                 if(entity instanceof EntityLiving)
                 {
@@ -121,7 +121,7 @@ public class LivingHandler
                 entity.setSilent(false);
             }
         }
-        if(EntityUtil.canSpreadSpores(entity) && EntityUtil.isSporeInfested(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.spore.chanceOfSporeSpawning) == 0)
+        if(EntityHelper.canSpreadSpores(entity) && EntityHelper.isSporeInfested(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.spore.chanceOfSporeSpawning) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
@@ -135,7 +135,7 @@ public class LivingHandler
                 }
             }
         }
-        if(EntityUtil.canSpawnGhastling(entity) && EntityUtil.isLostAfflicted(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.lost.chanceOfGhastlingSpawning) == 0)
+        if(EntityHelper.canSpawnGhastling(entity) && EntityHelper.isLostAfflicted(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.lost.chanceOfGhastlingSpawning) == 0)
         {
             BlockPos newPos = pos.add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
 
@@ -161,7 +161,7 @@ public class LivingHandler
 
             if(attacker instanceof AbstractSkeleton)
             {
-                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.WITHER_BONE))
+                if(ArmorHelper.isWearingFullArmorSet(player, NetherExMaterials.WITHER_BONE))
                 {
                     ((AbstractSkeleton) attacker).setAttackTarget(null);
                 }
@@ -188,7 +188,7 @@ public class LivingHandler
 
             if(source.isFireDamage())
             {
-                if(ArmorUtil.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
+                if(ArmorHelper.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
                 {
                     event.setCanceled(true);
                 }

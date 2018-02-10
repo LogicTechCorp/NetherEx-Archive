@@ -1,6 +1,7 @@
 {
     "biome": "nex:fungi_forest",
     "weight": 4,
+    "enabled": true,
     "blocks": {
         "topBlock": {
             "block": "nex:hyphae"

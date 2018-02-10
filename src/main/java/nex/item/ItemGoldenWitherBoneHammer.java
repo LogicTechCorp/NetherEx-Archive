@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.util.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import nex.init.NetherExMaterials;
-import nex.util.BlockUtil;
-import nex.util.NBTUtil;
+import nex.util.BlockHelper;
 
 public class ItemGoldenWitherBoneHammer extends ItemNetherExPickaxe
 {
@@ -50,7 +50,7 @@ public class ItemGoldenWitherBoneHammer extends ItemNetherExPickaxe
             compound.setBoolean("Nether", false);
         }
 
-        NBTUtil.setTag(stack, compound);
+        NBTHelper.setTag(stack, compound);
     }
 
     @Override
@@ -93,6 +93,6 @@ public class ItemGoldenWitherBoneHammer extends ItemNetherExPickaxe
     @Override
     public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player)
     {
-        return BlockUtil.mine3x3(player.getEntityWorld(), stack, pos, player);
+        return BlockHelper.mine3x3(player.getEntityWorld(), stack, pos, player);
     }
 }

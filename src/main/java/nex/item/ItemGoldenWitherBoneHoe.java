@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
@@ -34,7 +35,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExMaterials;
-import nex.util.NBTUtil;
 
 @SuppressWarnings("ConstantConditions")
 public class ItemGoldenWitherBoneHoe extends ItemNetherExHoe
@@ -58,7 +58,7 @@ public class ItemGoldenWitherBoneHoe extends ItemNetherExHoe
             compound.setBoolean("Nether", false);
         }
 
-        NBTUtil.setTag(stack, compound);
+        NBTHelper.setTag(stack, compound);
     }
 
     @Override

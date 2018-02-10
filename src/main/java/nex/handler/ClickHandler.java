@@ -47,7 +47,7 @@ import nex.block.BlockNetherrackPath;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExEffects;
 import nex.init.NetherExItems;
-import nex.util.BlockUtil;
+import nex.util.BlockHelper;
 
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
@@ -136,7 +136,7 @@ public class ClickHandler
 
         if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_HAMMER)
         {
-            BlockUtil.mine3x3(world, player.getActiveItemStack(), originalPos, player);
+            BlockHelper.mine3x3(world, player.getActiveItemStack(), originalPos, player);
         }
     }
 

@@ -21,12 +21,12 @@ import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import lex.village.ITrade;
+import lex.api.village.ITrade;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExTextures;
-import nex.util.WeightedUtil;
+import nex.util.WeightedHelper;
 
 import java.util.Collections;
 import java.util.List;
@@ -135,13 +135,13 @@ public class Pigtificate
 
         public static Career getRandomCareer(Profession profession, Random rand)
         {
-            List<WeightedUtil.NamedItem> careers = Lists.newArrayList();
+            List<WeightedHelper.NamedItem> careers = Lists.newArrayList();
 
             for(Pigtificate.Career career : Pigtificate.Career.values())
             {
                 if(profession == career.getProfession())
                 {
-                    careers.add(new WeightedUtil.NamedItem(career.name(), career.getWeight()));
+                    careers.add(new WeightedHelper.NamedItem(career.name(), career.getWeight()));
                 }
             }
 

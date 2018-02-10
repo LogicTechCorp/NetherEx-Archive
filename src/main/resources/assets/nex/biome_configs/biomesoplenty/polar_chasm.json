@@ -1,6 +1,7 @@
 {
     "biome": "biomesoplenty:polar_chasm",
     "weight": 1,
+    "enabled": true,
     "blocks": {
         "topBlock": {
             "block": "biomesoplenty:hard_ice"

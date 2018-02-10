@@ -18,10 +18,9 @@
 package nex.village;
 
 import lex.LibEx;
-import lex.config.FileConfig;
-import lex.config.IConfig;
+import lex.api.config.IConfig;
+import lex.config.Config;
 import lex.util.FileHelper;
-import lex.village.ITrade;
 import lex.village.Trade;
 import nex.NetherEx;
 
@@ -32,14 +31,13 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 @SuppressWarnings("ConstantConditions")
 public class NetherExTradeManager
 {
     public static void preInit()
     {
-        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades"));
+        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/trades"));
     }
 
     public static void setupDefaultTrades()
@@ -74,7 +72,7 @@ public class NetherExTradeManager
 
                 if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
-                    createTrade(new FileConfig(configFile));
+                    createTrade(new Config(configFile));
                 }
                 else if(!configFile.isDirectory())
                 {
@@ -94,7 +92,7 @@ public class NetherExTradeManager
 
         if(career != null)
         {
-            List<IConfig> tradeConfigs = config.getInnerConfigs("trades", new ArrayList<>());
+            List<IConfig> tradeConfigs = config.getSubConfigs("trades", new ArrayList<>());
 
             for(IConfig tradeConfig : tradeConfigs)
             {

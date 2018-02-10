@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.NetherEx;
 
 @Config.LangKey("config." + NetherEx.MOD_ID + ":title")
-@Config(modid = NetherEx.MOD_ID, name = "NetherEx/NetherEx", category = "nex")
+@Config(modid = NetherEx.MOD_ID, name = "NetherEx/" + NetherEx.MOD_ID, category = "nex")
 public class ConfigHandler
 {
     @Config.Name("client")

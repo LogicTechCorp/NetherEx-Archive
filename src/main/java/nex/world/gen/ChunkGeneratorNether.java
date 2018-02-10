@@ -17,7 +17,7 @@
 
 package nex.world.gen;
 
-import lex.world.biome.IBiomeWrapper;
+import lex.api.world.biome.IBiomeWrapper;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

@@ -17,32 +17,31 @@
 
 package nex.util;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.WeightedRandom;
 
-public class NBTUtil
+import java.util.List;
+import java.util.Random;
+
+public class WeightedHelper
 {
-    public static ItemStack setTag(ItemStack stack)
+    public static NamedItem getRandomNamedItem(Random rand, List<NamedItem> variants)
     {
-        if(stack.getTagCompound() == null)
-        {
-            stack.setTagCompound(new NBTTagCompound());
-        }
-
-        return stack;
+        return WeightedRandom.getRandomItem(rand, variants);
     }
 
-    public static ItemStack setTag(ItemStack stack, NBTTagCompound compound)
+    public static class NamedItem extends WeightedRandom.Item
     {
-        if(stack.getTagCompound() == null)
+        private String name;
+
+        public NamedItem(String nameIn, int weight)
         {
-            stack.setTagCompound(compound);
-        }
-        else
-        {
-            stack.getTagCompound().merge(compound);
+            super(weight);
+            name = nameIn;
         }
 
-        return stack;
+        public String getName()
+        {
+            return name;
+        }
     }
 }

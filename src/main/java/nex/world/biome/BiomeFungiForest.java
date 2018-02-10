@@ -17,6 +17,7 @@
 
 package nex.world.biome;
 
+import lex.util.NumberHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -29,7 +30,6 @@ import nex.entity.monster.EntitySporeCreeper;
 import nex.entity.neutral.EntityMogus;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
-import nex.util.RandomUtil;
 import nex.world.gen.feature.WorldGenElderMushroom;
 
 import java.util.Random;
@@ -59,7 +59,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         {
             for(int i = 0; i < ConfigHandler.biomeConfig.fungiForest.elderMushroomRarity * 16; i++)
             {
-                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(32, 112, rand), rand.nextInt(16) + 8));
+                elderMushroom.generate(world, rand, pos.add(rand.nextInt(16) + 8, NumberHelper.getNumberInRange(32, 112, rand), rand.nextInt(16) + 8));
             }
         }
 

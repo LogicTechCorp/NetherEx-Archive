@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.util.NBTHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -27,7 +28,6 @@ import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
-import nex.util.NBTUtil;
 
 @SuppressWarnings("ConstantConditions")
 public class ItemSalamanderHideArmor extends ItemNetherExArmor
@@ -46,7 +46,7 @@ public class ItemSalamanderHideArmor extends ItemNetherExArmor
             NBTTagCompound compound = new NBTTagCompound();
             compound.setBoolean("Variant", true);
             list.add(new ItemStack(this, 1, 0));
-            list.add(NBTUtil.setTag(new ItemStack(this, 1, 0), compound));
+            list.add(NBTHelper.setTag(new ItemStack(this, 1, 0), compound));
         }
     }
 

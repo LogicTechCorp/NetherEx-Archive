@@ -27,7 +27,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nex.init.NetherExBlocks;
-import nex.util.BlockUtil;
+import nex.util.BlockHelper;
 
 public class ItemRimeAndSteel extends ItemNetherEx
 {
@@ -57,7 +57,7 @@ public class ItemRimeAndSteel extends ItemNetherEx
 
                 for(EnumFacing checkFacing : EnumFacing.values())
                 {
-                    if(BlockUtil.isOreDict("obsidian", world.getBlockState(pos.offset(checkFacing)).getBlock()))
+                    if(BlockHelper.isOreDict("obsidian", world.getBlockState(pos.offset(checkFacing)).getBlock()))
                     {
                         NetherExBlocks.NETHER_PORTAL.trySpawnPortal(world, pos);
                     }

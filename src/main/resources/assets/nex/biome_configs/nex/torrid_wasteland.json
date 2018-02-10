@@ -1,6 +1,7 @@
 {
     "biome": "nex:torrid_wasteland",
     "weight": 6,
+    "enabled": true,
     "blocks": {
         "topBlock": {
             "block": "nex:netherrack",

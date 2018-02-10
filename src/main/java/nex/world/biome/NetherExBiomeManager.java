@@ -2,12 +2,12 @@ package nex.world.biome;
 
 import com.google.common.collect.ImmutableList;
 import lex.LibEx;
-import lex.config.FileConfig;
-import lex.config.IConfig;
+import lex.api.config.IConfig;
+import lex.api.world.biome.IBiomeWrapper;
+import lex.config.Config;
 import lex.util.ConfigHelper;
 import lex.util.FileHelper;
 import lex.world.biome.BiomeWrapper;
-import lex.world.biome.IBiomeWrapper;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -27,10 +27,11 @@ public class NetherExBiomeManager
 {
     private static final List<Biome> BIOMES = new ArrayList<>();
     private static final Map<Biome, IBiomeWrapper> BIOME_WRAPPERS = new HashMap<>();
+    private static final Map<Biome, IConfig> BIOME_CONFIGS = new HashMap<>();
 
     public static void preInit()
     {
-        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes"));
+        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/biomes"));
     }
 
     public static void setupDefaultBiomes()
@@ -79,7 +80,7 @@ public class NetherExBiomeManager
 
                 if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
-                    wrapBiome(new FileConfig(configFile), configFile);
+                    wrapBiome(new Config(configFile), configFile);
                 }
                 else if(!configFile.isDirectory())
                 {
@@ -96,11 +97,13 @@ public class NetherExBiomeManager
     private static void wrapBiome(IConfig config, File configFile)
     {
         IBiomeWrapper wrapper = new BiomeWrapper(config);
+        Biome biome = wrapper.getBiome();
 
-        if(wrapper.getBiome() != null)
+        if(biome != null)
         {
-            BIOMES.add(wrapper.getBiome());
-            BIOME_WRAPPERS.put(wrapper.getBiome(), wrapper);
+            BIOMES.add(biome);
+            BIOME_WRAPPERS.put(biome, wrapper);
+            BIOME_CONFIGS.put(biome, config);
             ConfigHelper.saveConfig(config, configFile);
         }
     }
@@ -109,6 +112,7 @@ public class NetherExBiomeManager
     {
         BIOMES.clear();
         BIOME_WRAPPERS.clear();
+        BIOME_CONFIGS.clear();
     }
 
     public static List<Biome> getBiomes()
@@ -119,5 +123,10 @@ public class NetherExBiomeManager
     public static IBiomeWrapper getBiomeWrapper(Biome key)
     {
         return BIOME_WRAPPERS.get(key);
+    }
+
+    public static IConfig getBiomeConfig(Biome key)
+    {
+        return BIOME_CONFIGS.get(key);
     }
 }

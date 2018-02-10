@@ -43,7 +43,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
-import nex.util.BlockUtil;
+import nex.util.BlockHelper;
 import nex.world.TeleporterNetherEx;
 
 import java.util.Queue;
@@ -456,6 +456,6 @@ public class BlockNetherPortal extends BlockNetherEx
     private boolean isPortalPart(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
-        return BlockUtil.isOreDict("obsidian", block) || block == NetherExBlocks.BLUE_FIRE || block == this;
+        return BlockHelper.isOreDict("obsidian", block) || block == NetherExBlocks.BLUE_FIRE || block == this;
     }
 }

@@ -17,12 +17,7 @@
 
 package nex.util;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableSet;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,16 +35,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.Map;
-
-public class BlockUtil
+public class BlockHelper
 {
-    private static final Splitter COMMA_SPLITTER = Splitter.on(',');
-    private static final Splitter EQUAL_SPLITTER = Splitter.on('=').limit(2);
-
     public static boolean mine3x3(World world, ItemStack stack, BlockPos pos, EntityPlayer player)
     {
-        RayTraceResult traceResult = WorldUtil.rayTraceFromEntity(world, player, false, 4.5D);
+        RayTraceResult traceResult = WorldHelper.rayTraceFromEntity(world, player, false, 4.5D);
 
         if(traceResult == null)
         {
@@ -108,14 +98,14 @@ public class BlockUtil
             {
                 if(canBeHarvested && stack.canHarvestBlock(originalState) || canBeHarvested)
                 {
-                    BlockUtil.tryToHarvest(world, testState, testPos, player, sideHit);
+                    BlockHelper.tryToHarvest(world, testState, testPos, player, sideHit);
                 }
             }
         }
 
         if(canHarvestBedrock)
         {
-            BlockUtil.tryToHarvest(world, originalState, pos, player, sideHit);
+            BlockHelper.tryToHarvest(world, originalState, pos, player, sideHit);
         }
 
         return false;
@@ -236,51 +226,5 @@ public class BlockUtil
         }
 
         return false;
-    }
-
-    private static IProperty getProperty(IBlockState state, String propertyName)
-    {
-        for(IProperty property : state.getProperties().keySet())
-        {
-            if(property.getName().equalsIgnoreCase(propertyName))
-            {
-                return property;
-            }
-        }
-
-        return null;
-    }
-
-    private static Comparable getPropertyValue(IProperty property, String propertyValue)
-    {
-        for(Comparable value : (ImmutableSet<Comparable>) property.getAllowedValues())
-        {
-            if(value.toString().equalsIgnoreCase(propertyValue))
-            {
-                return value;
-            }
-        }
-
-        return null;
-    }
-
-    public static IBlockState getBlockWithProperties(IBlockState state, JsonObject json)
-    {
-        for(Map.Entry<String, JsonElement> entry : json.entrySet())
-        {
-            IProperty property = BlockUtil.getProperty(state, entry.getKey());
-
-            if(property != null)
-            {
-                Comparable value = BlockUtil.getPropertyValue(property, entry.getValue().getAsString());
-
-                if(value != null)
-                {
-                    return state.withProperty(property, value);
-                }
-            }
-        }
-
-        return state;
     }
 }
