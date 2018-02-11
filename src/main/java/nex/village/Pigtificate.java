@@ -111,6 +111,11 @@ public class Pigtificate
             trades.computeIfAbsent(trade.getTradeLevel(), k -> Lists.newArrayList()).add(trade);
         }
 
+        public void removeAllTrades()
+        {
+            trades.clear();
+        }
+
         public static Career getFromIndex(int index)
         {
             Career career = values()[index];

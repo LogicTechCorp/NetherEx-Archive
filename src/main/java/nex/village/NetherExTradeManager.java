@@ -105,7 +105,7 @@ public class NetherExTradeManager
     {
         for(Pigtificate.Career career : Pigtificate.Career.values())
         {
-            career.getTrades().clear();
+            career.removeAllTrades();
         }
     }
 }
