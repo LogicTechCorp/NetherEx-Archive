@@ -2,6 +2,7 @@
     "biome": "minecraft:hell",
     "weight": 10,
     "enabled": true,
+    "genDefaultFeatures": true,
     "blocks": {
         "topBlock": {
             "block": "minecraft:netherrack"
@@ -25,7 +26,7 @@
     "features": [
         {
             "feature": "lex:fluid",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -33,16 +34,16 @@
                 "block": "minecraft:netherrack"
             },
             "hidden": false,
-            "generationAttempts": 8,
-            "generationProbability": 1.0,
+            "genAttempts": 8,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:scatter",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:fire"
             },
@@ -50,16 +51,16 @@
                 "block": "minecraft:netherrack"
             },
             "placement": "on_ground",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": true,
+            "randomizeGenAttempts": true,
             "generate": true
         },
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -67,16 +68,16 @@
                 "block": "minecraft:netherrack"
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": true,
+            "randomizeGenAttempts": true,
             "generate": true
         },
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -84,16 +85,16 @@
                 "block": "minecraft:netherrack"
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:scatter",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:red_mushroom"
             },
@@ -101,16 +102,16 @@
                 "block": "minecraft:netherrack"
             },
             "placement": "on_ground",
-            "generationAttempts": 1,
-            "generationProbability": 0.25,
+            "genAttempts": 1,
+            "genProbability": 0.25,
             "minHeight": 1,
             "maxHeight": 128,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:scatter",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:brown_mushroom"
             },
@@ -118,16 +119,16 @@
                 "block": "minecraft:netherrack"
             },
             "placement": "on_ground",
-            "generationAttempts": 1,
-            "generationProbability": 0.25,
+            "genAttempts": 1,
+            "genProbability": 0.25,
             "minHeight": 1,
             "maxHeight": 128,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:quartz_ore"
             },
@@ -135,16 +136,16 @@
                 "block": "minecraft:netherrack"
             },
             "veinSize": 14,
-            "generationAttempts": 16.0,
-            "generationProbability": 1.0,
+            "genAttempts": 16.0,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:gem_ore",
                 "properties": {
@@ -155,16 +156,16 @@
                 "block": "minecraft:netherrack"
             },
             "veinSize": 3,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
+            "genAttempts": 16,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:magma"
             },
@@ -172,16 +173,16 @@
                 "block": "minecraft:netherrack"
             },
             "veinSize": 32,
-            "generationAttempts": 4,
-            "generationProbability": 1.0,
+            "genAttempts": 4,
+            "genProbability": 1.0,
             "minHeight": 28,
             "maxHeight": 38,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:fluid",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -189,11 +190,11 @@
                 "block": "minecraft:netherrack"
             },
             "hidden": true,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
+            "genAttempts": 16,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 118,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         }
     ]

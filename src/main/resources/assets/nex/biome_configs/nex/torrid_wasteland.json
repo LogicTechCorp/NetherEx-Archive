@@ -2,6 +2,7 @@
     "biome": "nex:torrid_wasteland",
     "weight": 6,
     "enabled": true,
+    "genDefaultFeatures": true,
     "blocks": {
         "topBlock": {
             "block": "nex:netherrack",
@@ -40,7 +41,7 @@
     "features": [
         {
             "feature": "lex:fluid",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -51,16 +52,16 @@
                 }
             },
             "hidden": false,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
+            "genAttempts": 16,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:scatter",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:fire"
             },
@@ -71,16 +72,16 @@
                 }
             },
             "placement": "on_ground",
-            "generationAttempts": 20,
-            "generationProbability": 1.0,
+            "genAttempts": 20,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": true,
+            "randomizeGenAttempts": true,
             "generate": true
         },
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -91,16 +92,16 @@
                 }
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": true,
+            "randomizeGenAttempts": true,
             "generate": true
         },
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -111,16 +112,16 @@
                 }
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:quartz_ore",
                 "properties": {
@@ -134,16 +135,16 @@
                 }
             },
             "veinSize": 14,
-            "generationAttempts": 16.0,
-            "generationProbability": 1.0,
+            "genAttempts": 16.0,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:basalt",
                 "properties": {
@@ -157,16 +158,16 @@
                 }
             },
             "veinSize": 24,
-            "generationAttempts": 14,
-            "generationProbability": 1.0,
+            "genAttempts": 14,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:magma"
             },
@@ -177,16 +178,16 @@
                 }
             },
             "veinSize": 32,
-            "generationAttempts": 8,
-            "generationProbability": 1.0,
+            "genAttempts": 8,
+            "genProbability": 1.0,
             "minHeight": 28,
             "maxHeight": 38,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:fluid",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:flowing_lava"
             },
@@ -197,16 +198,16 @@
                 }
             },
             "hidden": true,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
+            "genAttempts": 16,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 118,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:pool",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:lava"
             },
@@ -216,11 +217,11 @@
                     "type": "fiery"
                 }
             },
-            "generationAttempts": 8,
-            "generationProbability": 1.0,
+            "genAttempts": 8,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         }
     ]

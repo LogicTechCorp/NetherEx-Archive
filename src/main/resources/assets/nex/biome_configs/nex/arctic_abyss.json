@@ -2,6 +2,7 @@
     "biome": "nex:arctic_abyss",
     "weight": 1,
     "enabled": true,
+    "genDefaultFeatures": true,
     "blocks": {
         "topBlock": {
             "block": "nex:frostburn_ice"
@@ -34,7 +35,7 @@
     "features": [
         {
             "feature": "lex:scatter",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:blue_fire"
             },
@@ -42,16 +43,16 @@
                 "block": "nex:frostburn_ice"
             },
             "placement": "on_ground",
-            "generationAttempts": 5,
-            "generationProbability": 1.0,
+            "genAttempts": 5,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": true,
+            "randomizeGenAttempts": true,
             "generate": true
         },
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -62,16 +63,16 @@
                 }
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": true,
+            "randomizeGenAttempts": true,
             "generate": true
         },
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -82,16 +83,16 @@
                 }
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:quartz_ore",
                 "properties": {
@@ -105,16 +106,16 @@
                 }
             },
             "veinSize": 14,
-            "generationAttempts": 16.0,
-            "generationProbability": 1.0,
+            "genAttempts": 16.0,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:gem_ore",
                 "properties": {
@@ -128,27 +129,27 @@
                 }
             },
             "veinSize": 7,
-            "generationAttempts": 16,
-            "generationProbability": 1.0,
+            "genAttempts": 16,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:pool",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:ichor"
             },
             "blockToSurround": {
                 "block": "nex:frostburn_ice"
             },
-            "generationAttempts": 1,
-            "generationProbability": 0.125,
+            "genAttempts": 1,
+            "genProbability": 0.125,
             "minHeight": 36,
             "maxHeight": 96,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         }
     ]

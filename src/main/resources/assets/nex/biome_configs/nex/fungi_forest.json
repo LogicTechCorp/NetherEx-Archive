@@ -2,6 +2,7 @@
     "biome": "nex:fungi_forest",
     "weight": 4,
     "enabled": true,
+    "genDefaultFeatures": true,
     "blocks": {
         "topBlock": {
             "block": "nex:hyphae"
@@ -37,7 +38,7 @@
     "features": [
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -48,16 +49,16 @@
                 }
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 4,
             "maxHeight": 124,
-            "randomizeGenerationAttempts": true,
+            "randomizeGenAttempts": true,
             "generate": true
         },
         {
             "feature": "lex:cluster",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "minecraft:glowstone"
             },
@@ -68,16 +69,16 @@
                 }
             },
             "direction": "down",
-            "generationAttempts": 10,
-            "generationProbability": 1.0,
+            "genAttempts": 10,
+            "genProbability": 1.0,
             "minHeight": 1,
             "maxHeight": 128,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         },
         {
             "feature": "lex:ore",
-            "generationStage": "populate",
+            "genStage": "populate",
             "blockToSpawn": {
                 "block": "nex:quartz_ore",
                 "properties": {
@@ -91,11 +92,11 @@
                 }
             },
             "veinSize": 14,
-            "generationAttempts": 16.0,
-            "generationProbability": 1.0,
+            "genAttempts": 16.0,
+            "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
-            "randomizeGenerationAttempts": false,
+            "randomizeGenAttempts": false,
             "generate": true
         }
     ]

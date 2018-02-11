@@ -390,6 +390,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
         Biome biome = world.getBiome(blockPos.add(16, 0, 16));
+        IBiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biome);
 
         BlockFalling.fallInstantly = true;
         boolean hasVillageGenerated = false;
@@ -401,7 +402,12 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(world, rand, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
-        biome.decorate(world, rand, blockPos);
+
+        if(wrapper.shouldGenDefaultFeatures())
+        {
+            biome.decorate(world, rand, blockPos);
+        }
+
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
 
         MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
@@ -433,8 +439,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             }
         }
 
-        Biome biome = world.getBiome(pos);
-        return biome.getSpawnableList(creatureType);
+        return NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos)).getSpawnableMobs(creatureType);
     }
 
     @Override
