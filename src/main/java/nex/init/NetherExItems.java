@@ -17,6 +17,8 @@
 
 package nex.init;
 
+import lex.item.ItemEdibleLibEx;
+import lex.item.ItemLibEx;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -32,19 +34,19 @@ import nex.item.*;
 public class NetherExItems
 {
     public static final ItemNetherbrick NETHERBRICK = null;
-    public static final ItemNetherEx WITHER_BONE = null;
+    public static final ItemLibEx WITHER_BONE = null;
     public static final ItemWitherDust WITHER_DUST = null;
     public static final ItemSalamanderHide SALAMANDER_HIDE = null;
     public static final ItemGem GEM = null;
     public static final ItemRimeAndSteel RIME_AND_STEEL = null;
-    public static final ItemNetherEx SPORE = null;
-    public static final ItemNetherEx BONE_SPIDER_FANG = null;
-    public static final ItemGhastQueenTear GHAST_QUEEN_TEAR = null;
+    public static final ItemLibEx SPORE = null;
+    public static final ItemLibEx BONE_SPIDER_FANG = null;
+    public static final ItemLibEx GHAST_QUEEN_TEAR = null;
     public static final ItemObsidianBoat OBSIDIAN_BOAT = null;
-    public static final ItemNetherExFood GHAST_MEAT_RAW = null;
-    public static final ItemNetherExFood GHAST_MEAT_COOKED = null;
-    public static final ItemNetherExFood CONGEALED_MAGMA_CREAM = null;
-    public static final ItemNetherExFood ENOKI_MUSHROOM = null;
+    public static final ItemEdibleLibEx GHAST_MEAT_RAW = null;
+    public static final ItemEdibleLibEx GHAST_MEAT_COOKED = null;
+    public static final ItemEdibleLibEx CONGEALED_MAGMA_CREAM = null;
+    public static final ItemEdibleLibEx ENOKI_MUSHROOM = null;
     public static final ItemGoldenWitherBoneSword GOLDEN_WITHER_BONE_SWORD = null;
     public static final ItemGoldenWitherBonePickaxe GOLDEN_WITHER_BONE_PICKAXE = null;
     public static final ItemGoldenWitherBoneShovel GOLDEN_WITHER_BONE_SHOVEL = null;
@@ -70,19 +72,18 @@ public class NetherExItems
 
             event.getRegistry().registerAll(
                     new ItemNetherbrick(),
-                    new ItemNetherEx("wither_bone"),
+                    new ItemLibEx(NetherEx.instance, "wither_bone"),
                     new ItemWitherDust(),
                     new ItemSalamanderHide(),
                     new ItemGem(),
                     new ItemRimeAndSteel(),
-                    new ItemNetherEx("spore"),
-                    new ItemNetherEx("bone_spider_fang"),
-                    new ItemGhastQueenTear(),
-                    new ItemObsidianBoat(),
-                    new ItemNetherExFood("ghast_meat_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
-                    new ItemNetherExFood("ghast_meat_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemNetherExFood("congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemNetherExFood("enoki_mushroom", 3, 0.7F, false),
+                    new ItemLibEx(NetherEx.instance, "spore"),
+                    new ItemLibEx(NetherEx.instance, "bone_spider_fang"),
+                    new ItemLibEx(NetherEx.instance, "ghast_queen_tear"),                    new ItemObsidianBoat(),
+                    new ItemEdibleLibEx(NetherEx.instance, "ghast_meat_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
+                    new ItemEdibleLibEx(NetherEx.instance, "ghast_meat_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
+                    new ItemEdibleLibEx(NetherEx.instance, "congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
+                    new ItemEdibleLibEx(NetherEx.instance, "enoki_mushroom", 3, 0.7F, false),
                     new ItemGoldenWitherBoneSword(),
                     new ItemGoldenWitherBonePickaxe(),
                     new ItemGoldenWitherBoneShovel(),

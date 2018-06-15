@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -24,14 +25,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 
-public class BlockNetherBrick extends BlockNetherEx
+public class BlockNetherBrick extends BlockLibEx
 {
     public static final PropertyEnum<BlockNetherrack.EnumType> TYPE = PropertyEnum.create("type", BlockNetherrack.EnumType.class);
 
     public BlockNetherBrick()
     {
-        super("nether_brick", Material.ROCK);
+        super(NetherEx.instance, "nether_brick", Material.ROCK);
         setHardness(1.5F);
         setResistance(10.0F);
     }

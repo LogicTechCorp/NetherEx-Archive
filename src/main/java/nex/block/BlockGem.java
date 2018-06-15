@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -35,6 +36,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExEffects;
 
@@ -42,13 +44,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class BlockGem extends BlockNetherEx
+public class BlockGem extends BlockLibEx
 {
     public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
     public BlockGem()
     {
-        super("gem_block", Material.ROCK);
+        super(NetherEx.instance, "gem_block", Material.ROCK);
         setTickRandomly(true);
         setHardness(5.0F);
         setResistance(10.0F);

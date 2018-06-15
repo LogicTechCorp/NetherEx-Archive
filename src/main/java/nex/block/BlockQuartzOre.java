@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -32,16 +33,17 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nex.NetherEx;
 
 import java.util.Random;
 
-public class BlockQuartzOre extends BlockNetherEx
+public class BlockQuartzOre extends BlockLibEx
 {
     public static final PropertyEnum<BlockNetherrack.EnumType> TYPE = PropertyEnum.create("type", BlockNetherrack.EnumType.class);
 
     public BlockQuartzOre()
     {
-        super("quartz_ore", Material.ROCK);
+        super(NetherEx.instance, "quartz_ore", Material.ROCK);
         setHardness(3.0F);
         setResistance(5.0F);
     }

@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemPickaxeLibEx;
 import lex.util.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -26,14 +27,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.init.NetherExMaterials;
 import nex.util.BlockHelper;
 
-public class ItemGoldenWitherBoneHammer extends ItemNetherExPickaxe
+public class ItemGoldenWitherBoneHammer extends ItemPickaxeLibEx
 {
     public ItemGoldenWitherBoneHammer()
     {
-        super("golden_wither_bone_hammer", NetherExMaterials.GOLDEN_WITHER_BONE);
+        super(NetherEx.instance, "golden_wither_bone_hammer", NetherExMaterials.GOLDEN_WITHER_BONE);
     }
 
     @Override

@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.SoundType;
@@ -34,11 +35,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
 import java.util.List;
 
-public class BlockSoulGlassPane extends BlockNetherEx
+public class BlockSoulGlassPane extends BlockLibEx
 {
     public static final PropertyBool NORTH = PropertyBool.create("north");
     public static final PropertyBool EAST = PropertyBool.create("east");
@@ -48,7 +50,7 @@ public class BlockSoulGlassPane extends BlockNetherEx
 
     public BlockSoulGlassPane()
     {
-        super("soul_glass_pane", Material.GLASS);
+        super(NetherEx.instance, "soul_glass_pane", Material.GLASS);
         setSoundType(SoundType.GLASS);
         setLightOpacity(255);
         setHardness(0.3F);

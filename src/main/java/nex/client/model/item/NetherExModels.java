@@ -17,6 +17,7 @@
 
 package nex.client.model.item;
 
+import lex.client.model.item.MeshDefinitionFix;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockSlab;
@@ -114,7 +115,6 @@ public class NetherExModels
         registerModel(NetherExBlocks.BONE_SLIVER, "axis=y");
         registerModel(NetherExBlocks.BONE_CHUNK, "facing=up");
         registerModel(NetherExBlocks.WORN_IRON, "normal");
-        registerModel(NetherExBlocks.BLUE_FIRE, "normal");
 
         for(EnumFacing.Axis axis : EnumFacing.Axis.values())
         {

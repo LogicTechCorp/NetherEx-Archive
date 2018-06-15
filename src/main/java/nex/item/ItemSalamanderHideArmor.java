@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemArmorLibEx;
 import lex.util.NBTHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -30,11 +31,11 @@ import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemSalamanderHideArmor extends ItemNetherExArmor
+public class ItemSalamanderHideArmor extends ItemArmorLibEx
 {
     public ItemSalamanderHideArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
-        super("salamander_hide_" + name, NetherExMaterials.SALAMANDER_HIDE, renderIndex, equipmentSlot);
+        super(NetherEx.instance, "salamander_hide_" + name, NetherExMaterials.SALAMANDER_HIDE, renderIndex, equipmentSlot);
         addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entity) -> isVariant(stack) ? 1.0F : 0.0F);
     }
 

@@ -17,6 +17,8 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
+import lex.world.gen.feature.FeatureBigMushroom;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -40,11 +42,12 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.world.gen.feature.WorldGenElderMushroom;
+import nex.NetherEx;
+import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGrowable
+public class BlockElderMushroom extends BlockLibEx implements IPlantable, IGrowable
 {
     public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
@@ -52,7 +55,7 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
 
     public BlockElderMushroom()
     {
-        super("elder_mushroom", Material.PLANTS);
+        super(NetherEx.instance, "elder_mushroom", Material.PLANTS);
         setSoundType(SoundType.PLANT);
     }
 
@@ -150,18 +153,23 @@ public class BlockElderMushroom extends BlockNetherEx implements IPlantable, IGr
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state)
     {
+        world.setBlockToAir(pos);
+
         WorldGenerator elderMushroom;
 
         if(state.getValue(TYPE) == EnumType.BROWN)
         {
-            elderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.brownVariants, false);
+            elderMushroom = new FeatureBigMushroom(1, 1.0F, false, pos.getY(), pos.up(12).getY(), NetherExBlocks.ELDER_MUSHROOM_CAP.getDefaultState().withProperty(TYPE, EnumType.BROWN), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), FeatureBigMushroom.Shape.FLAT);
         }
         else
         {
-            elderMushroom = new WorldGenElderMushroom(WorldGenElderMushroom.redVariants, false);
+            elderMushroom = new FeatureBigMushroom(1, 1.0F, false, pos.getY(), pos.up(12).getY(), NetherExBlocks.ELDER_MUSHROOM_CAP.getDefaultState().withProperty(TYPE, EnumType.RED), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), FeatureBigMushroom.Shape.BULB);
         }
 
-        elderMushroom.generate(world, rand, pos.down());
+        if(!elderMushroom.generate(world, rand, pos))
+        {
+            world.setBlockState(pos, state);
+        }
     }
 
     @Override

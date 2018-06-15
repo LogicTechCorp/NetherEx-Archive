@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "nex:item_spore",
+                    "name": "nex:spore",
                     "functions": [
                         {
                             "function": "set_count",

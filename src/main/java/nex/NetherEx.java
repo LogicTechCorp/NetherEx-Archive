@@ -17,15 +17,13 @@
 
 package nex;
 
+import lex.api.IModData;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import nex.init.NetherExBiomes;
-import nex.init.NetherExEntities;
-import nex.init.NetherExOreDict;
-import nex.init.NetherExRecipes;
+import nex.init.*;
 import nex.proxy.IProxy;
 import nex.village.NetherExTradeManager;
 import nex.world.biome.NetherExBiomeManager;
@@ -33,7 +31,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, updateJSON = NetherEx.UPDATE_JSON)
-public class NetherEx
+public class NetherEx implements IModData
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
@@ -76,6 +74,7 @@ public class NetherEx
         NetherExEntities.init();
         NetherExRecipes.init();
         NetherExOreDict.init();
+        NetherExFeatures.init();
         proxy.init();
         LOGGER.info("Initialization completed.");
     }
@@ -104,5 +103,17 @@ public class NetherEx
     {
         NetherExBiomeManager.clearBiomes();
         NetherExTradeManager.clearTrades();
+    }
+
+    @Override
+    public String getModId()
+    {
+        return MOD_ID;
+    }
+
+    @Override
+    public CreativeTabs getCreativeTab()
+    {
+        return CREATIVE_TAB;
     }
 }

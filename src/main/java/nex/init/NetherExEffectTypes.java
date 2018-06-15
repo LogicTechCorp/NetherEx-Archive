@@ -17,6 +17,7 @@
 
 package nex.init;
 
+import lex.potion.PotionTypeLibEx;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,22 +25,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.potion.PotionTypeNetherEx;
 
 @SuppressWarnings("ConstantConditions")
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffectTypes
 {
-    @GameRegistry.ObjectHolder("normal_freeze")
     public static final PotionType NORMAL_FREEZE = null;
-
-    @GameRegistry.ObjectHolder("normal_frostbite")
     public static final PotionType NORMAL_FROSTBITE = null;
-
-    @GameRegistry.ObjectHolder("normal_spore")
     public static final PotionType NORMAL_SPORE = null;
-
-    @GameRegistry.ObjectHolder("normal_lost")
     public static final PotionType NORMAL_LOST = null;
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
@@ -51,10 +44,10 @@ public class NetherExEffectTypes
             NetherEx.LOGGER.info("Effect Type registration started.");
 
             event.getRegistry().registerAll(
-                    new PotionTypeNetherEx("normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
-                    new PotionTypeNetherEx("normal_frostbite", new PotionEffect(NetherExEffects.FROSTBITE, 600)),
-                    new PotionTypeNetherEx("normal_spore", new PotionEffect(NetherExEffects.SPORE, 600)),
-                    new PotionTypeNetherEx("normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
+                    new PotionTypeLibEx(NetherEx.instance, "normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
+                    new PotionTypeLibEx(NetherEx.instance, "normal_frostbite", new PotionEffect(NetherExEffects.FROSTBITE, 600)),
+                    new PotionTypeLibEx(NetherEx.instance, "normal_spore", new PotionEffect(NetherExEffects.SPORE, 600)),
+                    new PotionTypeLibEx(NetherEx.instance, "normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
             );
 
             NetherEx.LOGGER.info("Effect Type registration completed.");

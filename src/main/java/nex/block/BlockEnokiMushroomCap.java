@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -34,18 +35,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockEnokiMushroomCap extends BlockNetherEx
+public class BlockEnokiMushroomCap extends BlockLibEx
 {
     private static final PropertyInteger AGE = PropertyInteger.create("age", 0, 5);
 
     public BlockEnokiMushroomCap()
     {
-        super("enoki_mushroom_cap", Material.PLANTS);
+        super(NetherEx.instance, "enoki_mushroom_cap", Material.PLANTS);
         setSoundType(SoundType.WOOD);
         setHardness(0.4F);
         setTickRandomly(true);

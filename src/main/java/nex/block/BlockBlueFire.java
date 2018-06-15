@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
@@ -36,10 +37,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 
 import java.util.Random;
 
-public class BlockBlueFire extends BlockNetherEx
+public class BlockBlueFire extends BlockLibEx
 {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
     public static final PropertyBool NORTH = PropertyBool.create("north");
@@ -50,7 +52,7 @@ public class BlockBlueFire extends BlockNetherEx
 
     public BlockBlueFire()
     {
-        super("blue_fire", Material.FIRE);
+        super(NetherEx.instance, "blue_fire", Material.FIRE);
         setLightLevel(1.0F);
         setTickRandomly(true);
         setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));

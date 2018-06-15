@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemHoeLibEx;
 import lex.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
@@ -33,15 +34,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExMaterials;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemGoldenWitherBoneHoe extends ItemNetherExHoe
+public class ItemGoldenWitherBoneHoe extends ItemHoeLibEx
 {
     public ItemGoldenWitherBoneHoe()
     {
-        super("golden_wither_bone_hoe", NetherExMaterials.GOLDEN_WITHER_BONE);
+        super(NetherEx.instance, "golden_wither_bone_hoe", NetherExMaterials.GOLDEN_WITHER_BONE);
     }
 
     @Override

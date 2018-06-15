@@ -18,12 +18,13 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemBlockLibEx;
 import net.minecraft.item.ItemStack;
 import nex.block.BlockBasalt;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockBasaltWall extends ItemBlockNetherEx
+public class ItemBlockBasaltWall extends ItemBlockLibEx
 {
     public ItemBlockBasaltWall()
     {

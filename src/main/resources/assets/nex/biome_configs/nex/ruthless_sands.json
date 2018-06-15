@@ -112,7 +112,7 @@
                 }
             },
             "veinSize": 14,
-            "genAttempts": 16.0,
+            "genAttempts": 16,
             "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,
@@ -136,6 +136,16 @@
             "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 118,
+            "randomizeGenAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "nex:thornstalk",
+            "genStage": "populate",
+            "genAttempts": 16,
+            "genProbability": 1.0,
+            "minHeight": 32,
+            "maxHeight": 108,
             "randomizeGenAttempts": false,
             "generate": true
         }

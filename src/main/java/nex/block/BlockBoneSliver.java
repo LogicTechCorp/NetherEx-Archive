@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -29,8 +30,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nex.NetherEx;
 
-public class BlockBoneSliver extends BlockNetherEx
+public class BlockBoneSliver extends BlockLibEx
 {
     private static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
 
@@ -40,7 +42,7 @@ public class BlockBoneSliver extends BlockNetherEx
 
     public BlockBoneSliver()
     {
-        super("bone_sliver", Material.ROCK);
+        super(NetherEx.instance, "bone_sliver", Material.ROCK);
         setHardness(2.0F);
         setResistance(5.0F);
     }

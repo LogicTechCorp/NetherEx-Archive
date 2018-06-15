@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -34,20 +35,21 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockTilledSoulSand extends BlockNetherEx
+public class BlockTilledSoulSand extends BlockLibEx
 {
     public static final PropertyInteger MOISTURE = PropertyInteger.create("moisture", 0, 7);
     private static final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
 
     public BlockTilledSoulSand()
     {
-        super("tilled_soul_sand", Material.GROUND);
+        super(NetherEx.instance, "tilled_soul_sand", Material.GROUND);
         setSoundType(SoundType.SAND);
         setLightOpacity(255);
         setHardness(0.6F);

@@ -17,19 +17,21 @@
 
 package nex.world.biome;
 
+import lex.world.biome.BiomeLibEx;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.world.biome.Biome;
+import nex.NetherEx;
 import nex.block.BlockNetherrack;
 import nex.entity.monster.EntityEmber;
 import nex.entity.neutral.EntitySalamander;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class BiomeTorridWasteland extends BiomeNetherEx
+public class BiomeTorridWasteland extends BiomeLibEx
 {
     public BiomeTorridWasteland()
     {
-        super(new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
+        super(NetherEx.instance, new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
 
         topBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);

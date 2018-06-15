@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "nex:plant_mushroom_elder",
+                    "name": "nex:elder_mushroom",
                     "functions": [
                         {
                             "function": "minecraft:set_data",

@@ -92,7 +92,7 @@ public class NetherExTradeManager
 
         if(career != null)
         {
-            List<IConfig> tradeConfigs = config.getSubConfigs("trades", new ArrayList<>());
+            List<IConfig> tradeConfigs = config.getDataBranches("trades", new ArrayList<>());
 
             for(IConfig tradeConfig : tradeConfigs)
             {

@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockFenceLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -24,14 +25,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 
-public class BlockBasaltFence extends BlockNetherExFence
+public class BlockBasaltFence extends BlockFenceLibEx
 {
     public static final PropertyEnum<BlockBasalt.EnumType> TYPE = PropertyEnum.create("type", BlockBasalt.EnumType.class);
 
     public BlockBasaltFence()
     {
-        super("basalt_fence", Material.ROCK);
+        super(NetherEx.instance, "basalt_fence", Material.ROCK);
         setHardness(1.5F);
         setResistance(10.0F);
     }

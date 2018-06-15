@@ -18,12 +18,13 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemBlockLibEx;
 import net.minecraft.item.ItemStack;
 import nex.block.BlockElderMushroom;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockElderMushroomCap extends ItemBlockNetherEx
+public class ItemBlockElderMushroomCap extends ItemBlockLibEx
 {
     public ItemBlockElderMushroomCap()
     {

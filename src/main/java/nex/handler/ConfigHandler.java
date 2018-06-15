@@ -435,13 +435,6 @@ public class ConfigHandler
 
         public class FungiForest
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.fungiForest.generateElderMushrooms")
-            public boolean generateElderMushrooms = true;
-
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.fungiForest.elderMushroomRarity")
-            @Config.Comment({"The lower the number, the rarer Elder Mushrooms are", "The higher the number, the more common Elder Mushrooms are"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int elderMushroomRarity = 32;
         }
 
         public class TorridWasteland

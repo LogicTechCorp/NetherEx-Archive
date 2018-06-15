@@ -18,12 +18,13 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemBlockLibEx;
 import net.minecraft.item.ItemStack;
 import nex.block.BlockUrnOfSorrow;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockUrnOfSorrow extends ItemBlockNetherEx
+public class ItemBlockUrnOfSorrow extends ItemBlockLibEx
 {
     public ItemBlockUrnOfSorrow()
     {

@@ -17,10 +17,11 @@
 
 package nex.item;
 
+import lex.item.ItemBlockSlabLibEx;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockBasaltSlab extends ItemBlockNetherExSlab
+public class ItemBlockBasaltSlab extends ItemBlockSlabLibEx
 {
     public ItemBlockBasaltSlab(boolean isDouble)
     {

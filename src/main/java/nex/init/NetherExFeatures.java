@@ -15,19 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.item;
+package nex.init;
 
-import com.google.common.base.CaseFormat;
-import net.minecraft.item.Item;
+import lex.world.gen.feature.FeatureRegistry;
+import net.minecraft.util.ResourceLocation;
 import nex.NetherEx;
+import nex.world.gen.feature.FeatureEnoki;
+import nex.world.gen.feature.FeatureThornstalk;
 
-@SuppressWarnings("ConstantConditions")
-public class ItemNetherEx extends Item
+public class NetherExFeatures
 {
-    public ItemNetherEx(String name)
+    public static void init()
     {
-        setCreativeTab(NetherEx.CREATIVE_TAB);
-        setRegistryName(NetherEx.MOD_ID + ":" + name);
-        setUnlocalizedName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, getRegistryName().toString()));
+        FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":thornstalk"), FeatureThornstalk.class);
+        FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":enoki"), FeatureEnoki.class);
     }
 }

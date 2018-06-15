@@ -400,15 +400,15 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM));
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, world, rand, chunkX, chunkZ, hasVillageGenerated));
 
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(world, rand, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(world, rand, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
 
         if(wrapper.shouldGenDefaultFeatures())
         {
             biome.decorate(world, rand, blockPos);
         }
 
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, chunkPos));
 
         MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
         MinecraftForge.EVENT_BUS.post(new OreGenEvent.GenerateMinable(world, rand, new WorldGenMinable(Blocks.AIR.getDefaultState(), 0, BlockMatcher.forBlock(Blocks.AIR)), blockPos, OreGenEvent.GenerateMinable.EventType.CUSTOM));

@@ -54,6 +54,7 @@ public class NetherExBiomeManager
     public static void setupDefaultBiomes()
     {
         NetherEx.LOGGER.info("Setting up default biomes.");
+        parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/minecraft"));
         parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/nex"));
     }
 

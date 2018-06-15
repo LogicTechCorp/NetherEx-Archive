@@ -18,16 +18,18 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemLibEx;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 import nex.block.BlockNetherrack;
 
-public class ItemNetherbrick extends ItemNetherEx
+public class ItemNetherbrick extends ItemLibEx
 {
     public ItemNetherbrick()
     {
-        super("netherbrick");
+        super(NetherEx.instance, "netherbrick");
         setHasSubtypes(true);
     }
 

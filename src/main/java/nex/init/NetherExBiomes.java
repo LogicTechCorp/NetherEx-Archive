@@ -38,16 +38,9 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBiomes
 {
-    @GameRegistry.ObjectHolder("ruthless_sands")
     public static final BiomeRuthlessSands RUTHLESS_SANDS = null;
-
-    @GameRegistry.ObjectHolder("fungi_forest")
     public static final BiomeFungiForest FUNGI_FOREST = null;
-
-    @GameRegistry.ObjectHolder("torrid_wasteland")
     public static final BiomeTorridWasteland TORRID_WASTELAND = null;
-
-    @GameRegistry.ObjectHolder("arctic_abyss")
     public static final BiomeArcticAbyss ARCTIC_ABYSS = null;
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)

@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemLibEx;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,13 +28,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import nex.NetherEx;
 import nex.block.BlockElderMushroom;
 
-public class ItemWitherDust extends ItemNetherEx
+public class ItemWitherDust extends ItemLibEx
 {
     public ItemWitherDust()
     {
-        super("wither_dust");
+        super(NetherEx.instance, "wither_dust");
     }
 
     @Override

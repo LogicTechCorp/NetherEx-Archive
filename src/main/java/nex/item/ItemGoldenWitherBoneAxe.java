@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemAxeLibEx;
 import lex.util.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -25,13 +26,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.init.NetherExMaterials;
 
-public class ItemGoldenWitherBoneAxe extends ItemNetherExAxe
+public class ItemGoldenWitherBoneAxe extends ItemAxeLibEx
 {
     public ItemGoldenWitherBoneAxe()
     {
-        super("golden_wither_bone_axe", NetherExMaterials.GOLDEN_WITHER_BONE, 7.0F, -3.0F);
+        super(NetherEx.instance, "golden_wither_bone_axe", NetherExMaterials.GOLDEN_WITHER_BONE, 7.0F, -3.0F);
     }
 
     @Override

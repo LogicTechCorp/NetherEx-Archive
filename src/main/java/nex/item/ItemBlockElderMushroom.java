@@ -18,6 +18,7 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemBlockEdible;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -29,7 +30,7 @@ import nex.block.BlockElderMushroom;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockElderMushroom extends ItemBlockFood
+public class ItemBlockElderMushroom extends ItemBlockEdible
 {
     public ItemBlockElderMushroom()
     {

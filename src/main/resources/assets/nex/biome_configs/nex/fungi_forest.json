@@ -92,9 +92,65 @@
                 }
             },
             "veinSize": 14,
-            "genAttempts": 16.0,
+            "genAttempts": 16,
             "genProbability": 1.0,
             "minHeight": 10,
+            "maxHeight": 108,
+            "randomizeGenAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "lex:big_mushroom",
+            "genStage": "populate",
+            "mushroomCap": {
+                "block": "nex:elder_mushroom_cap",
+                "properties": {
+                    "type": "brown"
+                }
+            },
+            "mushroomStem": {
+                "block": "nex:elder_mushroom_stem"
+            },
+            "blockToPlaceOn": {
+                "block": "nex:hyphae"
+            },
+            "shape": "flat",
+            "genAttempts": 256,
+            "genProbability": 1.0,
+            "minHeight": 32,
+            "maxHeight": 108,
+            "randomizeGenAttempts": true,
+            "generate": true
+        },
+        {
+            "feature": "lex:big_mushroom",
+            "genStage": "populate",
+            "mushroomCap": {
+                "block": "nex:elder_mushroom_cap",
+                "properties": {
+                    "type": "red"
+                }
+            },
+            "mushroomStem": {
+                "block": "nex:elder_mushroom_stem"
+            },
+            "blockToPlaceOn": {
+                "block": "nex:hyphae"
+            },
+            "shape": "bulb",
+            "genAttempts": 256,
+            "genProbability": 1.0,
+            "minHeight": 32,
+            "maxHeight": 108,
+            "randomizeGenAttempts": false,
+            "generate": true
+        },
+        {
+            "feature": "nex:enoki",
+            "genStage": "populate",
+            "genAttempts": 16,
+            "genProbability": 1.0,
+            "minHeight": 64,
             "maxHeight": 108,
             "randomizeGenAttempts": false,
             "generate": true

@@ -18,12 +18,13 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemBlockLibEx;
 import net.minecraft.item.ItemStack;
 import nex.block.BlockNetherrack;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockQuartzOre extends ItemBlockNetherEx
+public class ItemBlockQuartzOre extends ItemBlockLibEx
 {
     public ItemBlockQuartzOre()
     {

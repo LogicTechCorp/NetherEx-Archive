@@ -160,10 +160,6 @@ config.nex:biome.ruthlessSands.tooltip=Settings that only affect the Ruthless Sa
 
 config.nex:biome.fungiForest=Fungi Forest Biome Settings
 config.nex:biome.fungiForest.tooltip=Settings that only affect the Fungi Forest biome
-config.nex:biome.fungiForest.generateElderMushrooms=Generate Elder Mushrooms
-config.nex:biome.fungiForest.generateElderMushrooms.tooltip=Do Elder Mushrooms generate in the Fungi Forest biome
-config.nex:biome.fungiForest.elderMushroomRarity=Elder Mushroom Rarity
-config.nex:biome.fungiForest.elderMushroomRarity.tooltip=How rare Elder Mushrooms are in the Fungi Forest biome
 
 config.nex:biome.torridWasteland=Torrid Wasteland Biome Settings
 config.nex:biome.torridWasteland.tooltip=Settings that only affect the Torrid Wasteland biome

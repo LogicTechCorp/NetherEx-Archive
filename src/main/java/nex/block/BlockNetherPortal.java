@@ -18,6 +18,7 @@
 package nex.block;
 
 import com.google.common.collect.Queues;
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -41,6 +42,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 import nex.util.BlockHelper;
@@ -50,13 +52,13 @@ import java.util.Queue;
 import java.util.Random;
 
 /**
- * A BlockConfig that allows for Nether Portal teleportation
+ * A block that allows for Nether Portal teleportation
  * <p>
  * Based on code written by Alz454 here:
  * https://github.com/enhancedportals/enhancedportals/blob/1647357d3cbed1289a653347e2107d92a2875a65/src/main/java/enhanced/portals/portal/PortalUtils.java
  */
 @SuppressWarnings("ConstantConditions")
-public class BlockNetherPortal extends BlockNetherEx
+public class BlockNetherPortal extends BlockLibEx
 {
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
 
@@ -66,7 +68,7 @@ public class BlockNetherPortal extends BlockNetherEx
 
     public BlockNetherPortal()
     {
-        super("nether_portal", Material.PORTAL);
+        super(NetherEx.instance, "nether_portal", Material.PORTAL);
         setSoundType(SoundType.GLASS);
         setLightLevel(0.75F);
         setTickRandomly(true);

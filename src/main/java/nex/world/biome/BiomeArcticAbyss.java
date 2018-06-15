@@ -17,9 +17,11 @@
 
 package nex.world.biome;
 
+import lex.world.biome.BiomeLibEx;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.world.biome.Biome;
+import nex.NetherEx;
 import nex.block.BlockNetherrack;
 import nex.entity.monster.EntityBoneSpider;
 import nex.entity.monster.EntityBrute;
@@ -27,11 +29,11 @@ import nex.entity.monster.EntityWight;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class BiomeArcticAbyss extends BiomeNetherEx
+public class BiomeArcticAbyss extends BiomeLibEx
 {
     public BiomeArcticAbyss()
     {
-        super(new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
+        super(NetherEx.instance, new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
 
         topBlock = NetherExBlocks.FROSTBURN_ICE.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);

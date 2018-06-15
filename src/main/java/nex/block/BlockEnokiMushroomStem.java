@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -35,6 +36,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 
@@ -42,7 +44,7 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockEnokiMushroomStem extends BlockNetherEx
+public class BlockEnokiMushroomStem extends BlockLibEx
 {
     private static final PropertyBool NORTH = PropertyBool.create("north");
     private static final PropertyBool EAST = PropertyBool.create("east");
@@ -53,7 +55,7 @@ public class BlockEnokiMushroomStem extends BlockNetherEx
 
     public BlockEnokiMushroomStem()
     {
-        super("enoki_mushroom_stem", Material.PLANTS);
+        super(NetherEx.instance, "enoki_mushroom_stem", Material.PLANTS);
         setSoundType(SoundType.WOOD);
         setHardness(0.4F);
     }

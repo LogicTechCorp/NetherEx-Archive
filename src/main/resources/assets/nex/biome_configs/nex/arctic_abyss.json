@@ -1,6 +1,6 @@
 {
     "biome": "nex:arctic_abyss",
-    "weight": 1,
+    "weight": 2,
     "enabled": true,
     "genDefaultFeatures": true,
     "blocks": {
@@ -106,7 +106,7 @@
                 }
             },
             "veinSize": 14,
-            "genAttempts": 16.0,
+            "genAttempts": 16,
             "genProbability": 1.0,
             "minHeight": 10,
             "maxHeight": 108,

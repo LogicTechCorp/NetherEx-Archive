@@ -18,16 +18,18 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemLibEx;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 
-public class ItemSalamanderHide extends ItemNetherEx
+public class ItemSalamanderHide extends ItemLibEx
 {
     public ItemSalamanderHide()
     {
-        super("salamander_hide");
+        super(NetherEx.instance, "salamander_hide");
         setHasSubtypes(true);
     }
 

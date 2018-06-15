@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -29,17 +30,18 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockHyphae extends BlockNetherEx
+public class BlockHyphae extends BlockLibEx
 {
     public BlockHyphae()
     {
-        super("hyphae", Material.ROCK);
+        super(NetherEx.instance, "hyphae", Material.ROCK);
         setHardness(0.6F);
 
         if(ConfigHandler.blockConfig.hyphae.doesSpread)

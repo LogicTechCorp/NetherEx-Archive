@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,16 +31,17 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
 
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class ItemObsidianBoat extends ItemNetherEx
+public class ItemObsidianBoat extends ItemLibEx
 {
     public ItemObsidianBoat()
     {
-        super("obsidian_boat");
+        super(NetherEx.instance, "obsidian_boat");
         setMaxStackSize(1);
     }
 

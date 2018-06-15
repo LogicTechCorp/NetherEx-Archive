@@ -23,6 +23,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagByte;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -50,7 +52,9 @@ public class BlockHandler
         IBlockState state = event.getState();
         EntityPlayer player = event.getPlayer();
 
-        if(state.getBlock() == Blocks.BEDROCK)
+        NBTTagCompound compound = player.getHeldItem(event.getHand()).getTagCompound();
+
+        if(compound != null && compound.getBoolean("AboveNether"))
         {
             if(player.dimension != DimensionType.NETHER.getId() || pos.getY() < 120)
             {
@@ -128,7 +132,9 @@ public class BlockHandler
             {
                 if(player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_HAMMER)
                 {
-                    event.getDrops().add(new ItemStack(Blocks.BEDROCK, 1, 0));
+                    ItemStack stack = new ItemStack(Blocks.BEDROCK, 1, 0);
+                    stack.setTagInfo("AboveNether", new NBTTagByte((byte) 1));
+                    event.getDrops().add(stack);
                 }
             }
         }

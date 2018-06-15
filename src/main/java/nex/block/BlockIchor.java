@@ -17,13 +17,15 @@
 
 package nex.block;
 
+import lex.block.BlockFluidLibEx;
 import net.minecraft.block.material.Material;
+import nex.NetherEx;
 import nex.init.NetherExFluids;
 
-public class BlockIchor extends BlockNetherExFluid
+public class BlockIchor extends BlockFluidLibEx
 {
     public BlockIchor()
     {
-        super("ichor", NetherExFluids.ICHOR, Material.WATER);
+        super(NetherEx.instance, "ichor", NetherExFluids.ICHOR, Material.WATER);
     }
 }

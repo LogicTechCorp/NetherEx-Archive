@@ -18,6 +18,7 @@
 package nex.block;
 
 import com.google.common.base.CaseFormat;
+import lex.block.BlockSlabLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -26,18 +27,19 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockVanillaSlab extends BlockNetherExSlab
+public class BlockVanillaSlab extends BlockSlabLibEx
 {
     public static final PropertyEnum<BlockVanilla.EnumTypeSlab> TYPE = PropertyEnum.create("type", BlockVanilla.EnumTypeSlab.class);
 
     public BlockVanillaSlab()
     {
-        super("vanilla_slab", Material.ROCK);
+        super(NetherEx.instance, "vanilla_slab", Material.ROCK);
         setHardness(2.0F);
         setResistance(10F);
     }

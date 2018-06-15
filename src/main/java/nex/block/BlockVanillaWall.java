@@ -17,23 +17,25 @@
 
 package nex.block;
 
-import net.minecraft.block.material.Material;
+import lex.block.BlockWallLibEx;
+import lex.block.state.VariableBlockStateContainer;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import nex.block.state.DualBlockStateContainer;
+import nex.NetherEx;
 
-public class BlockVanillaWall extends BlockNetherExWall
+public class BlockVanillaWall extends BlockWallLibEx
 {
     public static final PropertyEnum<BlockVanilla.EnumTypeWall> TYPE = PropertyEnum.create("type", BlockVanilla.EnumTypeWall.class);
 
     public BlockVanillaWall()
     {
-        super("vanilla_wall", Material.ROCK);
-        ((DualBlockStateContainer) blockState).destroySuper();
+        super(NetherEx.instance, "vanilla_wall", Blocks.STONE);
+        ((VariableBlockStateContainer) blockState).destroyContainer();
         setDefaultState(blockState.getBaseState());
         setHardness(1.5F);
         setResistance(10.0F);
@@ -69,6 +71,6 @@ public class BlockVanillaWall extends BlockNetherExWall
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new DualBlockStateContainer(super.createBlockState(), this, UP, NORTH, EAST, WEST, SOUTH, TYPE);
+        return new VariableBlockStateContainer(super.createBlockState(), this, UP, NORTH, EAST, WEST, SOUTH, TYPE);
     }
 }

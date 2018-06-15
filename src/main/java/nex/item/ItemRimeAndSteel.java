@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemLibEx;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -26,14 +27,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 import nex.util.BlockHelper;
 
-public class ItemRimeAndSteel extends ItemNetherEx
+public class ItemRimeAndSteel extends ItemLibEx
 {
     public ItemRimeAndSteel()
     {
-        super("rime_and_steel");
+        super(NetherEx.instance, "rime_and_steel");
         setMaxStackSize(1);
         setMaxDamage(64);
     }

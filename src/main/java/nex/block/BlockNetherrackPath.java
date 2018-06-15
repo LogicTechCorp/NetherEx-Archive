@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -37,12 +38,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockNetherrackPath extends BlockNetherEx
+public class BlockNetherrackPath extends BlockLibEx
 {
     public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
@@ -50,7 +52,7 @@ public class BlockNetherrackPath extends BlockNetherEx
 
     public BlockNetherrackPath()
     {
-        super("netherrack_path", Material.ROCK);
+        super(NetherEx.instance, "netherrack_path", Material.ROCK);
         setLightOpacity(255);
         setHardness(0.4F);
     }

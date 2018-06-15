@@ -17,6 +17,7 @@
 
 package nex.tileentity;
 
+import lex.tileentity.TileEntityInventory;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;

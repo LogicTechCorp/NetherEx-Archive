@@ -17,11 +17,21 @@
 
 package nex.fluid;
 
-public class FluidIchor extends FluidNetherEx
+import lex.fluid.FluidLibEx;
+import net.minecraftforge.fluids.FluidStack;
+import nex.NetherEx;
+
+public class FluidIchor extends FluidLibEx
 {
     public FluidIchor()
     {
-        super("blood", "ichor");
+        super(NetherEx.instance, "blood", "ichor");
         setViscosity(3500);
+    }
+
+    @Override
+    public boolean doesVaporize(FluidStack fluidStack)
+    {
+        return false;
     }
 }

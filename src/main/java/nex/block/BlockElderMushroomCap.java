@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -29,16 +30,17 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
+import nex.NetherEx;
 import nex.init.NetherExItems;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockElderMushroomCap extends BlockNetherEx
+public class BlockElderMushroomCap extends BlockLibEx
 {
     public static final PropertyEnum<BlockElderMushroom.EnumType> TYPE = PropertyEnum.create("type", BlockElderMushroom.EnumType.class);
 
     public BlockElderMushroomCap()
     {
-        super("elder_mushroom_cap", Material.WOOD);
+        super(NetherEx.instance, "elder_mushroom_cap", Material.WOOD);
         setSoundType(SoundType.WOOD);
         setHardness(0.2F);
     }

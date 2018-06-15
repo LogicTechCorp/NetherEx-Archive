@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -39,18 +40,19 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 
 import java.util.Arrays;
 import java.util.Random;
 
-public class BlockThornstalk extends BlockNetherEx
+public class BlockThornstalk extends BlockLibEx
 {
     public static final PropertyEnum<EnumPart> PART = PropertyEnum.create("part", EnumPart.class);
 
     public BlockThornstalk()
     {
-        super("thornstalk", Material.PLANTS);
+        super(NetherEx.instance, "thornstalk", Material.PLANTS);
         setSoundType(SoundType.PLANT);
         setHardness(0.0F);
     }

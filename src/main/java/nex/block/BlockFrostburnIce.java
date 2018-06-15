@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,13 +27,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockFrostburnIce extends BlockNetherEx
+public class BlockFrostburnIce extends BlockLibEx
 {
     public BlockFrostburnIce()
     {
-        super("frostburn_ice", Material.ICE);
+        super(NetherEx.instance, "frostburn_ice", Material.ICE);
         setSoundType(SoundType.GLASS);
         setLightOpacity(3);
         setHardness(0.5F);

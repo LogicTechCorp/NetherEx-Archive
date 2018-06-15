@@ -17,20 +17,22 @@
 
 package nex.world.biome;
 
+import lex.world.biome.BiomeLibEx;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
+import nex.NetherEx;
 import nex.block.BlockNetherrack;
 import nex.entity.monster.EntitySpinout;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class BiomeRuthlessSands extends BiomeNetherEx
+public class BiomeRuthlessSands extends BiomeLibEx
 {
     public BiomeRuthlessSands()
     {
-        super(new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
+        super(NetherEx.instance, new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
 
         topBlock = Blocks.SOUL_SAND.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY);

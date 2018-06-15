@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -28,16 +29,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.init.NetherExItems;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockGemOre extends BlockNetherEx
+public class BlockGemOre extends BlockLibEx
 {
     public BlockGemOre()
     {
-        super("gem_ore", Material.ROCK);
+        super(NetherEx.instance, "gem_ore", Material.ROCK);
         setHardness(3.0F);
         setResistance(5.0F);
     }

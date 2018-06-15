@@ -157,7 +157,7 @@ public class RemapHandler
             .put(NetherEx.MOD_ID + ":monster_bone_spider", NetherEx.MOD_ID + ":bone_spider")
             .put(NetherEx.MOD_ID + ":monster_brute", NetherEx.MOD_ID + ":brute")
             .put(NetherEx.MOD_ID + ":boss_ghast_queen", NetherEx.MOD_ID + ":ghast_queen")
-            
+
             //SoundEvents
             .put(NetherEx.MOD_ID + ":ambient_pigtificate", NetherEx.MOD_ID + ":pigtificate_ambient")
             .put(NetherEx.MOD_ID + ":hurt_pigtificate", NetherEx.MOD_ID + ":pigtificate_hurt")
