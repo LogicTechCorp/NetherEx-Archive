@@ -13,8 +13,8 @@ buildscript {
     }
 }
 
-version = mod_version_major + "." + mod_version_minor + "." + mod_version_patch
-group = group_id
+version = mod_version
+group = "com.github.mineex"
 archivesBaseName = mod_name + "-" + minecraft_version
 
 sourceCompatibility = 1.8
@@ -25,13 +25,13 @@ minecraft {
     mappings = mappings_version
     runDir = "run"
     makeObfSourceJar = false
-    replace "@MOD_VERSION@", project.version
 }
 
 repositories {
 }
 
 dependencies {
+    compile project(':LibEx')
 }
 
 processResources {
