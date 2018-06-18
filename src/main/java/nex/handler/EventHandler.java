@@ -380,50 +380,29 @@ public class EventHandler
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
 
-        boolean canEntityFreeze = EntityUtil.canFreeze(entity);
+        boolean canEntityFreeze = entity instanceof EntityPlayer || EntityUtil.canFreeze(entity);
 
-        if(world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
+        if(canEntityFreeze)
         {
-            if(canEntityFreeze && !EntityUtil.isFrozen(entity) && world.rand.nextInt(ConfigHandler.biome.arcticAbyss.chanceOfFreezing) == 0)
+            boolean entityFrozen = EntityUtil.isFrozen(entity);
+            if(!entityFrozen && world.rand.nextInt(ConfigHandler.biome.arcticAbyss.chanceOfFreezing) == 0 && world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
-        }
-        if(canEntityFreeze || entity instanceof EntityPlayer)
-        {
-            if(EntityUtil.isFrozen(entity))
+
+            if(entityFrozen)
             {
-                if(entity instanceof EntityLiving)
-                {
-                    ((EntityLiving) entity).setNoAI(true);
-                }
-
-                entity.setSilent(true);
-
                 if(entity instanceof EntityPlayer)
                 {
                     entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
                 }
-
                 if(world.rand.nextInt(ConfigHandler.potionEffect.freeze.chanceOfThawing) == 0)
                 {
                     entity.removePotionEffect(NetherExEffects.FREEZE);
                 }
             }
-            else
-            {
-                if(entity instanceof EntityLiving)
-                {
-                    if(((EntityLiving) entity).isAIDisabled())
-                    {
-                        ((EntityLiving) entity).setNoAI(false);
-                    }
-                }
-
-                entity.setSilent(false);
-            }
         }
-        if(EntityUtil.canSpreadSpores(entity) && EntityUtil.isSporeInfested(entity) && world.rand.nextInt(ConfigHandler.potionEffect.spore.chanceOfSporeSpawning) == 0)
+        if(EntityUtil.isSporeInfested(entity) && EntityUtil.canSpreadSpores(entity) && world.rand.nextInt(ConfigHandler.potionEffect.spore.chanceOfSporeSpawning) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
@@ -437,7 +416,7 @@ public class EventHandler
                 }
             }
         }
-        if(EntityUtil.canSpawnGhastling(entity) && EntityUtil.isLostAfflicted(entity) && world.rand.nextInt(ConfigHandler.potionEffect.lost.chanceOfGhastlingSpawning) == 0)
+        if(EntityUtil.isLostAfflicted(entity) && EntityUtil.canSpawnGhastling(entity) && world.rand.nextInt(ConfigHandler.potionEffect.lost.chanceOfGhastlingSpawning) == 0)
         {
             BlockPos newPos = pos.add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
 
