@@ -17,20 +17,15 @@
 
 package nex.village;
 
-import com.google.common.collect.Maps;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Map;
-
 public class PigtificateVillageManager
 {
-    private static final Map<World, PigtificateVillageCollection> pigtificateVillages = Maps.newHashMap();
-
     private static final Logger LOGGER = LogManager.getLogger("NetherEx|PigtificateVillageManager");
 
-    public static void init(World world)
+    private static PigtificateVillageCollection getOrCreate(World world)
     {
         String dimension = world.provider.getDimensionType().name().toLowerCase();
         String id = PigtificateVillageCollection.fileNameForProvider(world.provider);
@@ -40,20 +35,23 @@ public class PigtificateVillageManager
         {
             LOGGER.info("The Pigtificate Village data for " + dimension + " was created successfully.");
 
-            pigtificateVillages.put(world, new PigtificateVillageCollection(world));
-            world.getPerWorldStorage().setData(id, pigtificateVillages.get(world));
+            pigtificateVillageCollection = new PigtificateVillageCollection(world);
+            world.getPerWorldStorage().setData(id, pigtificateVillageCollection);
         }
         else
         {
-            LOGGER.info("The Pigtificate Village data for " + dimension + " was read successfully.");
-
-            pigtificateVillages.put(world, pigtificateVillageCollection);
-            pigtificateVillages.get(world).setWorldsForAll(world);
+            pigtificateVillageCollection.setWorldsForAll(world);
         }
+        return pigtificateVillageCollection;
     }
 
     public static PigtificateVillageCollection getPigtificateVillages(World world)
     {
-        return pigtificateVillages.get(world);
+        return getOrCreate(world);
+    }
+
+    public static PigtificateVillageCollection getPigtificateVillagesNoCreate(World world){
+        String id = PigtificateVillageCollection.fileNameForProvider(world.provider);
+        return (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, id);
     }
 }

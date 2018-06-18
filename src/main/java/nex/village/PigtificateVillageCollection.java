@@ -54,6 +54,9 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     public void setWorldsForAll(World worldIn)
     {
+        if (world == worldIn){
+            return;
+        }
         world = worldIn;
 
         for(PigtificateVillage village : villageList)
