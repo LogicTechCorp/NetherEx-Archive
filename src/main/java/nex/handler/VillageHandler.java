@@ -30,22 +30,11 @@ import nex.village.NetherVillageManager;
 public class VillageHandler
 {
     @SubscribeEvent
-    public static void onWorldLoad(WorldEvent.Load event)
-    {
-        World world = event.getWorld();
-
-        if(!world.isRemote)
-        {
-            NetherVillageManager.init(world);
-        }
-    }
-
-    @SubscribeEvent
     public static void onWorldTick(TickEvent.WorldTickEvent event)
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            NetherVillageCollection villages = NetherVillageManager.getNetherVillages(event.world);
+            NetherVillageCollection villages = NetherVillageManager.getNetherVillagesNoCreate(event.world);
 
             if(villages != null)
             {
