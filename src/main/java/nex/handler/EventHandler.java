@@ -81,23 +81,13 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class EventHandler
 {
-    @SubscribeEvent
-    public static void onWorldLoad(WorldEvent.Load event)
-    {
-        World world = event.getWorld();
-
-        if(!world.isRemote)
-        {
-            PigtificateVillageManager.init(world);
-        }
-    }
 
     @SubscribeEvent
     public static void onWorldTick(TickEvent.WorldTickEvent event)
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            PigtificateVillageCollection villages = PigtificateVillageManager.getPigtificateVillages(event.world);
+            PigtificateVillageCollection villages = PigtificateVillageManager.getPigtificateVillagesNoCreate(event.world);
 
             if(villages != null)
             {
