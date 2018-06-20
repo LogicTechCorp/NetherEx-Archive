@@ -37,7 +37,7 @@ public class NetherExTradeManager
 {
     public static void preInit()
     {
-        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/trade_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/trades"));
+        FileHelper.copyDirectoryToDirectory(NetherEx.class.getResource("/assets/nex/trade_configs"), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades"));
     }
 
     public static void setupDefaultTrades()
@@ -56,7 +56,7 @@ public class NetherExTradeManager
     {
         if(!directory.exists())
         {
-            directory.mkdir();
+            directory.mkdirs();
         }
 
         Path directoryPath = directory.toPath();

@@ -118,7 +118,6 @@ public class WorldGenHandler
         }
     }
 
-
     private static void generateFeature(World world, int chunkX, int chunkZ, Random rand, GenerationStage generationStage)
     {
         BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);

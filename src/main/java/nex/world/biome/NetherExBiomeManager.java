@@ -48,7 +48,7 @@ public class NetherExBiomeManager
 
     public static void preInit()
     {
-        FileHelper.copyDirectoryToDirectory(new File(NetherEx.class.getResource("/assets/nex/biome_configs").getFile()), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/biomes"));
+        FileHelper.copyDirectoryToDirectory(NetherEx.class.getResource("/assets/nex/biome_configs"), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes"));
     }
 
     public static void setupDefaultBiomes()

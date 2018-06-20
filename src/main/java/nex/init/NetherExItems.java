@@ -79,7 +79,7 @@ public class NetherExItems
                     new ItemRimeAndSteel(),
                     new ItemLibEx(NetherEx.instance, "spore"),
                     new ItemLibEx(NetherEx.instance, "bone_spider_fang"),
-                    new ItemLibEx(NetherEx.instance, "ghast_queen_tear"),                    new ItemObsidianBoat(),
+                    new ItemLibEx(NetherEx.instance, "ghast_queen_tear"), new ItemObsidianBoat(),
                     new ItemEdibleLibEx(NetherEx.instance, "ghast_meat_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
                     new ItemEdibleLibEx(NetherEx.instance, "ghast_meat_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemEdibleLibEx(NetherEx.instance, "congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
