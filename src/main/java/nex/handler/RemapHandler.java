@@ -216,66 +216,46 @@ public class RemapHandler
     @SubscribeEvent
     public static void onMissingBlockMappings(RegistryEvent.MissingMappings<Block> event)
     {
-        NetherEx.LOGGER.info("Block remapping started.");
-
         for(RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings())
         {
             remapEntries(mapping, ForgeRegistries.BLOCKS);
         }
-
-        NetherEx.LOGGER.info("Block remapping completed.");
     }
 
     @SubscribeEvent
     public static void onMissingItemMappings(RegistryEvent.MissingMappings<Item> event)
     {
-        NetherEx.LOGGER.info("Item remapping started.");
-
         for(RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings())
         {
             remapEntries(mapping, ForgeRegistries.ITEMS);
         }
-
-        NetherEx.LOGGER.info("Item remapping completed.");
     }
 
     @SubscribeEvent
     public static void onMissingBiomeMappings(RegistryEvent.MissingMappings<Biome> event)
     {
-        NetherEx.LOGGER.info("Biome remapping started.");
-
         for(RegistryEvent.MissingMappings.Mapping<Biome> mapping : event.getAllMappings())
         {
             remapEntries(mapping, ForgeRegistries.BIOMES);
         }
-
-        NetherEx.LOGGER.info("Biome remapping completed.");
     }
 
 
     @SubscribeEvent
     public static void onMissingEntityMappings(RegistryEvent.MissingMappings<EntityEntry> event)
     {
-        NetherEx.LOGGER.info("Entity remapping started.");
-
         for(RegistryEvent.MissingMappings.Mapping<EntityEntry> mapping : event.getAllMappings())
         {
             remapEntries(mapping, ForgeRegistries.ENTITIES);
         }
-
-        NetherEx.LOGGER.info("Entity remapping completed.");
     }
 
     @SubscribeEvent
     public static void onMissingSoundEventMappings(RegistryEvent.MissingMappings<SoundEvent> event)
     {
-        NetherEx.LOGGER.info("Sound Event remapping started.");
-
         for(RegistryEvent.MissingMappings.Mapping<SoundEvent> mapping : event.getAllMappings())
         {
             remapEntries(mapping, ForgeRegistries.SOUND_EVENTS);
         }
-
-        NetherEx.LOGGER.info("Sound Event remapping completed.");
     }
 }

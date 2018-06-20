@@ -19,7 +19,6 @@ package nex.init;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import nex.NetherEx;
 import nex.block.BlockBasalt;
 import nex.block.BlockNetherrack;
 
@@ -31,8 +30,6 @@ public class NetherExOreDict
 {
     public static void init()
     {
-        NetherEx.LOGGER.info("Ore Dictionary registration started.");
-
         for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
         {
             registerWithOreDictionary("stoneBasalt", new ItemStack(BASALT, 1, type.ordinal()));
@@ -65,8 +62,6 @@ public class NetherExOreDict
         registerWithOreDictionary("gemRime", new ItemStack(GEM, 1, 1));
         registerWithOreDictionary("boneWithered", new ItemStack(WITHER_BONE, 1, 0));
         registerWithOreDictionary("dyeBlack", new ItemStack(WITHER_DUST, 1, 0));
-
-        NetherEx.LOGGER.info("Ore Dictionary registration completed.");
     }
 
     private static void registerWithOreDictionary(String name, ItemStack stack)

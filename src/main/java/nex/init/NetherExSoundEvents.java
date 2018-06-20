@@ -69,8 +69,6 @@ public class NetherExSoundEvents
         @SubscribeEvent
         public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
         {
-            NetherEx.LOGGER.info("Sound registration started.");
-
             event.getRegistry().registerAll(
                     new SoundEventLibEx(NetherEx.instance, "pigtificate_ambient"),
                     new SoundEventLibEx(NetherEx.instance, "pigtificate_hurt"),
@@ -107,8 +105,6 @@ public class NetherExSoundEvents
                     new SoundEventLibEx(NetherEx.instance, "ghast_queen_shoot"),
                     new SoundEventLibEx(NetherEx.instance, "ghast_queen_summon")
             );
-
-            NetherEx.LOGGER.info("Sound registration completed.");
         }
     }
 }

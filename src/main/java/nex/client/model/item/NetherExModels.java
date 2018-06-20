@@ -51,8 +51,6 @@ public class NetherExModels
     @SubscribeEvent
     public static void onRegisterModels(ModelRegistryEvent event)
     {
-        NetherEx.LOGGER.info("Model registration started.");
-
         ModelLoader.setCustomStateMapper(NetherExBlocks.BLUE_FIRE, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.VANILLA_SLAB_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_SLAB_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
@@ -213,8 +211,6 @@ public class NetherExModels
         registerModel(NetherExItems.SALAMANDER_HIDE_CHESTPLATE, "normal");
         registerModel(NetherExItems.SALAMANDER_HIDE_LEGGINGS, "normal");
         registerModel(NetherExItems.SALAMANDER_HIDE_BOOTS, "normal");
-
-        NetherEx.LOGGER.info("Model registration completed.");
     }
 
     private static void registerModel(IFluidBlock block)

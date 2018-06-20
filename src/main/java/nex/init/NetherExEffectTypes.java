@@ -41,16 +41,12 @@ public class NetherExEffectTypes
         @SubscribeEvent
         public static void onRegisterPotionTypes(RegistryEvent.Register<PotionType> event)
         {
-            NetherEx.LOGGER.info("Effect Type registration started.");
-
             event.getRegistry().registerAll(
                     new PotionTypeLibEx(NetherEx.instance, "normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
                     new PotionTypeLibEx(NetherEx.instance, "normal_frostbite", new PotionEffect(NetherExEffects.FROSTBITE, 600)),
                     new PotionTypeLibEx(NetherEx.instance, "normal_spore", new PotionEffect(NetherExEffects.SPORE, 600)),
                     new PotionTypeLibEx(NetherEx.instance, "normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
             );
-
-            NetherEx.LOGGER.info("Effect Type registration completed.");
         }
     }
 }

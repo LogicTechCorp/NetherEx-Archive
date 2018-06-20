@@ -100,8 +100,6 @@ public class NetherExBlocks
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
-            NetherEx.LOGGER.info("Block registration started.");
-
             event.getRegistry().registerAll(
                     new BlockBasalt(),
                     new BlockNetherrack(),
@@ -161,15 +159,11 @@ public class NetherExBlocks
                     new BlockFenceGateLibEx(NetherEx.instance, "lively_nether_brick", Material.ROCK),
                     new BlockFenceGateLibEx(NetherEx.instance, "gloomy_nether_brick", Material.ROCK)
             );
-
-            NetherEx.LOGGER.info("Block registration completed.");
         }
 
         @SubscribeEvent
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
-            NetherEx.LOGGER.info("ItemBlock registration started.");
-
             event.getRegistry().registerAll(
                     new ItemBlockBasalt(),
                     new ItemBlockNetherrack(),
@@ -227,8 +221,6 @@ public class NetherExBlocks
                     new ItemBlockLibEx(LIVELY_NETHER_BRICK_FENCE_GATE),
                     new ItemBlockLibEx(GLOOMY_NETHER_BRICK_FENCE_GATE)
             );
-
-            NetherEx.LOGGER.info("ItemBlock registration completed.");
         }
     }
 }

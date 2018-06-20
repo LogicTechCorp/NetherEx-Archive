@@ -39,8 +39,6 @@ public class NetherExEntities
 
     public static void init()
     {
-        NetherEx.LOGGER.info("Entity registration started.");
-
         registerEntity("ghast_queen_fireball", EntityGhastQueenFireball.class, entityId++);
         registerEntity("ghastling_fireball", EntityGhastlingFireball.class, entityId++);
 
@@ -64,8 +62,6 @@ public class NetherExEntities
         registerEntity("brute", EntityBrute.class, entityId++, 11045525, 4793626);
 
         registerEntity("ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
-
-        NetherEx.LOGGER.info("Entity registration completed.");
     }
 
     private static void registerEntity(String name, Class<? extends Entity> cls, int id)

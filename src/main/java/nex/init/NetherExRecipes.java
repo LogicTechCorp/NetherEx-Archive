@@ -23,7 +23,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
-import nex.NetherEx;
 import nex.block.BlockNetherrack;
 
 import static net.minecraft.init.Blocks.SOUL_SAND;
@@ -39,8 +38,6 @@ public class NetherExRecipes
 {
     public static void init()
     {
-        NetherEx.LOGGER.info("Recipe registration started.");
-
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
             addSmelting(new ItemStack(NetherExItems.NETHERBRICK, 1, type.ordinal()), new ItemStack(NETHERRACK, 1, type.ordinal()), 0.5F);
@@ -57,8 +54,6 @@ public class NetherExRecipes
         addBrewing(AWKWARD, BONE_SPIDER_FANG, NORMAL_FROSTBITE);
         addBrewing(AWKWARD, SPORE, NORMAL_SPORE);
         addBrewing(AWKWARD, GHAST_MEAT_RAW, NORMAL_LOST);
-
-        NetherEx.LOGGER.info("Recipe registration completed.");
     }
 
     private static void addSmelting(ItemStack output, ItemStack input, float xp)

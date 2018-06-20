@@ -68,8 +68,6 @@ public class NetherExItems
         @SubscribeEvent
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
-            NetherEx.LOGGER.info("Item registration started.");
-
             event.getRegistry().registerAll(
                     new ItemNetherbrick(),
                     new ItemLibEx(NetherEx.instance, "wither_bone"),
@@ -99,8 +97,6 @@ public class NetherExItems
                     new ItemSalamanderHideArmor("leggings", 2, EntityEquipmentSlot.LEGS),
                     new ItemSalamanderHideArmor("boots", 1, EntityEquipmentSlot.FEET)
             );
-
-            NetherEx.LOGGER.info("Item registration completed.");
         }
     }
 }

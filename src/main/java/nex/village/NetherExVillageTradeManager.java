@@ -75,7 +75,7 @@ public class NetherExVillageTradeManager
                 }
                 else if(!configFile.isDirectory())
                 {
-                    NetherEx.LOGGER.warn("Skipping file located at, " + configPath.toString() + ", as it is not a json file.");
+                    NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
                 }
             }
         }

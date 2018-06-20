@@ -49,16 +49,12 @@ public class NetherExBiomes
         @SubscribeEvent
         public static void onRegisterBiomes(RegistryEvent.Register<Biome> event)
         {
-            NetherEx.LOGGER.info("Biome registration started.");
-
             event.getRegistry().registerAll(
                     new BiomeRuthlessSands(),
                     new BiomeFungiForest(),
                     new BiomeTorridWasteland(),
                     new BiomeArcticAbyss()
             );
-
-            NetherEx.LOGGER.info("Biome registration completed.");
         }
     }
 

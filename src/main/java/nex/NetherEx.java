@@ -58,33 +58,27 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        LOGGER.info("PreInitialization started.");
         NetherExBiomeManager.preInit();
         NetherExVillageTradeManager.preInit();
         proxy.preInit();
-        LOGGER.info("PreInitialization completed.");
     }
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        LOGGER.info("Initialization started.");
         NetherExBiomes.init();
         NetherExEntities.init();
         NetherExRecipes.init();
         NetherExOreDict.init();
         NetherExFeatures.init();
         proxy.init();
-        LOGGER.info("Initialization completed.");
     }
 
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        LOGGER.info("PostInitialization started.");
         NetherExBiomes.postInit();
         proxy.postInit();
-        LOGGER.info("PostInitialization completed.");
     }
 
     @Mod.EventHandler

@@ -40,16 +40,12 @@ public class NetherExEffects
         @SubscribeEvent
         public static void onRegisterPotions(RegistryEvent.Register<Potion> event)
         {
-            NetherEx.LOGGER.info("Effect registration started.");
-
             event.getRegistry().registerAll(
                     FREEZE,
                     FROSTBITE,
                     SPORE,
                     LOST
             );
-
-            NetherEx.LOGGER.info("Effect registration completed.");
         }
     }
 }
