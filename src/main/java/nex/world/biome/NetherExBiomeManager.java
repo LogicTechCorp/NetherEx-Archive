@@ -19,8 +19,6 @@ package nex.world.biome;
 
 import com.google.common.collect.ImmutableList;
 import lex.LibEx;
-import lex.api.config.IConfig;
-import lex.api.world.biome.IBiomeWrapper;
 import lex.config.Config;
 import lex.util.ConfigHelper;
 import lex.util.FileHelper;
@@ -43,8 +41,8 @@ import java.util.*;
 public class NetherExBiomeManager
 {
     private static final List<Biome> BIOMES = new ArrayList<>();
-    private static final Map<Biome, IBiomeWrapper> BIOME_WRAPPERS = new HashMap<>();
-    private static final Map<Biome, IConfig> BIOME_CONFIGS = new HashMap<>();
+    private static final Map<Biome, BiomeWrapper> BIOME_WRAPPERS = new HashMap<>();
+    private static final Map<Biome, Config> BIOME_CONFIGS = new HashMap<>();
 
     public static void preInit()
     {
@@ -112,9 +110,9 @@ public class NetherExBiomeManager
         }
     }
 
-    private static void wrapBiome(IConfig config, File configFile)
+    private static void wrapBiome(Config config, File configFile)
     {
-        IBiomeWrapper wrapper = new BiomeWrapper(config);
+        BiomeWrapper wrapper = new BiomeWrapper(config);
         Biome biome = wrapper.getBiome();
 
         if(biome != null)
@@ -138,12 +136,12 @@ public class NetherExBiomeManager
         return ImmutableList.copyOf(BIOMES);
     }
 
-    public static IBiomeWrapper getBiomeWrapper(Biome key)
+    public static BiomeWrapper getBiomeWrapper(Biome key)
     {
         return BIOME_WRAPPERS.get(key);
     }
 
-    public static IConfig getBiomeConfig(Biome key)
+    public static Config getBiomeConfig(Biome key)
     {
         return BIOME_CONFIGS.get(key);
     }

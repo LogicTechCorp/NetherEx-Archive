@@ -77,16 +77,19 @@ public class EntityHelper
     private static String getEntityLocation(EntityLivingBase entity)
     {
         Class<? extends EntityLivingBase> cls = entity.getClass();
-        return RESOURCE_LOCATION_CACHE.computeIfAbsent(cls, k -> {ResourceLocation location = EntityList.getKey(k); return location != null ? location.toString() : null;});
+        return RESOURCE_LOCATION_CACHE.computeIfAbsent(cls, k -> {
+            ResourceLocation location = EntityList.getKey(k);
+            return location != null ? location.toString() : null;
+        });
     }
 
     private static boolean contains(String[] haystack, String needle)
     {
-        if (needle == null)
+        if(needle == null)
         {
-            for (String hay : haystack)
+            for(String hay : haystack)
             {
-                if (hay == null)
+                if(hay == null)
                 {
                     return true;
                 }
@@ -94,9 +97,9 @@ public class EntityHelper
         }
         else
         {
-            for (String hay : haystack)
+            for(String hay : haystack)
             {
-                if (needle.equals(hay))
+                if(needle.equals(hay))
                 {
                     return true;
                 }

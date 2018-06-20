@@ -18,7 +18,6 @@
 package nex.village;
 
 import lex.LibEx;
-import lex.api.config.IConfig;
 import lex.config.Config;
 import lex.util.FileHelper;
 import lex.village.Trade;
@@ -86,15 +85,15 @@ public class NetherExVillageTradeManager
         }
     }
 
-    private static void createTrade(IConfig config)
+    private static void createTrade(Config config)
     {
         Pigtificate.Career career = config.getEnum("career", Pigtificate.Career.class);
 
         if(career != null)
         {
-            List<IConfig> tradeConfigs = config.getDataBranches("trades", new ArrayList<>());
+            List<Config> tradeConfigs = config.getDataBranches("trades", new ArrayList<>());
 
-            for(IConfig tradeConfig : tradeConfigs)
+            for(Config tradeConfig : tradeConfigs)
             {
                 career.addTrade(new Trade(tradeConfig));
             }

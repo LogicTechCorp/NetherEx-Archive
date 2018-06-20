@@ -54,7 +54,7 @@ public class NetherExVillageCollection extends WorldSavedData
 
     public void setWorldsForAll(World worldIn)
     {
-        if (world == worldIn)
+        if(world == worldIn)
         {
             return;
         }

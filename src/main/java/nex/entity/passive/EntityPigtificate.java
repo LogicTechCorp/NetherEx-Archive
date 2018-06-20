@@ -17,7 +17,7 @@
 
 package nex.entity.passive;
 
-import lex.api.village.ITrade;
+import lex.village.Trade;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
@@ -602,7 +602,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             tradeList = new MerchantRecipeList();
         }
 
-        List<ITrade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTrades().get(getCareerLevel());
+        List<Trade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTrades().get(getCareerLevel());
 
         if(trades != null && trades.size() > 0)
         {
@@ -610,7 +610,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
             if(getCareerLevel() == 1 && trades.size() > 1)
             {
-                for(ITrade trade : trades.subList(0, 2))
+                for(Trade trade : trades.subList(0, 2))
                 {
                     tradeList.add(trade.randomize());
                 }

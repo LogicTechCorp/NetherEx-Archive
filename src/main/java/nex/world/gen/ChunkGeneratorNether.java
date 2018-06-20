@@ -17,7 +17,7 @@
 
 package nex.world.gen;
 
-import lex.api.world.biome.IBiomeWrapper;
+import lex.world.biome.BiomeWrapper;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -390,7 +390,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
         Biome biome = world.getBiome(blockPos.add(16, 0, 16));
-        IBiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biome);
+        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biome);
 
         BlockFalling.fallInstantly = true;
         boolean hasVillageGenerated = false;
@@ -489,7 +489,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         {
             for(int z = 0; z < 16; ++z)
             {
-                IBiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biomes[x + z * 16]);
+                BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biomes[x + z * 16]);
 
                 if(wrapper != null)
                 {

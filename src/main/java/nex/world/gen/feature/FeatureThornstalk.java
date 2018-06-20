@@ -17,7 +17,7 @@
 
 package nex.world.gen.feature;
 
-import lex.api.config.IConfig;
+import lex.config.Config;
 import lex.world.gen.feature.Feature;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -30,7 +30,7 @@ import java.util.Random;
 public class FeatureThornstalk extends Feature
 {
 
-    public FeatureThornstalk(IConfig config)
+    public FeatureThornstalk(Config config)
     {
         super(config);
     }

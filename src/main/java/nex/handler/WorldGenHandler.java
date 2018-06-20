@@ -17,10 +17,10 @@
 
 package nex.handler;
 
-import lex.api.world.biome.IBiomeWrapper;
-import lex.api.world.gen.feature.IFeature;
 import lex.util.NumberHelper;
+import lex.world.biome.BiomeWrapper;
 import lex.world.gen.GenerationStage;
+import lex.world.gen.feature.Feature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -126,11 +126,11 @@ public class WorldGenHandler
 
     private static void generateFeature(World world, BlockPos pos, Random rand, GenerationStage generationStage)
     {
-        IBiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos.add(16, 0, 16)));
+        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos.add(16, 0, 16)));
 
         if(wrapper != null)
         {
-            for(IFeature feature : wrapper.getFeatures(generationStage))
+            for(Feature feature : wrapper.getFeatures(generationStage))
             {
                 for(int generationAttempts = 0; generationAttempts < feature.getGenAttempts(rand); generationAttempts++)
                 {

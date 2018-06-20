@@ -17,7 +17,7 @@
 
 package nex.world.gen.feature;
 
-import lex.api.config.IConfig;
+import lex.config.Config;
 import lex.world.gen.feature.Feature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,7 +29,7 @@ import java.util.Random;
 public class FeatureEnoki extends Feature
 {
 
-    public FeatureEnoki(IConfig config)
+    public FeatureEnoki(Config config)
     {
         super(config);
     }
