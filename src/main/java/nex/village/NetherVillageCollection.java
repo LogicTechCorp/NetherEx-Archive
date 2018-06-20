@@ -54,6 +54,9 @@ public class NetherVillageCollection extends WorldSavedData
 
     public void setWorldsForAll(World worldIn)
     {
+        if (world == worldIn){
+            return;
+        }
         world = worldIn;
 
         for(NetherVillage village : villageList)

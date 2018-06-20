@@ -24,27 +24,32 @@ import java.util.Map;
 
 public class NetherVillageManager
 {
-    private static final Map<World, NetherVillageCollection> netherVillages = Maps.newHashMap();
-
-    public static void init(World world)
+    private static NetherVillageCollection getOrCreate(World world)
     {
+        String dimension = world.provider.getDimensionType().name().toLowerCase();
         String id = NetherVillageCollection.fileNameForProvider(world.provider);
-        NetherVillageCollection netherVillageCollection = (NetherVillageCollection) world.getPerWorldStorage().getOrLoadData(NetherVillageCollection.class, id);
+        NetherVillageCollection NetherVillageCollection = (NetherVillageCollection) world.getPerWorldStorage().getOrLoadData(NetherVillageCollection.class, id);
 
-        if(netherVillageCollection == null)
+        if(NetherVillageCollection == null)
         {
-            netherVillages.put(world, new NetherVillageCollection(world));
-            world.getPerWorldStorage().setData(id, netherVillages.get(world));
+
+            NetherVillageCollection = new NetherVillageCollection(world);
+            world.getPerWorldStorage().setData(id, NetherVillageCollection);
         }
         else
         {
-            netherVillages.put(world, netherVillageCollection);
-            netherVillages.get(world).setWorldsForAll(world);
+            NetherVillageCollection.setWorldsForAll(world);
         }
+        return NetherVillageCollection;
     }
 
     public static NetherVillageCollection getNetherVillages(World world)
     {
-        return netherVillages.get(world);
+        return getOrCreate(world);
+    }
+
+    public static NetherVillageCollection getNetherVillagesNoCreate(World world){
+        String id = NetherVillageCollection.fileNameForProvider(world.provider);
+        return (NetherVillageCollection) world.getPerWorldStorage().getOrLoadData(NetherVillageCollection.class, id);
     }
 }

@@ -18,6 +18,9 @@
 package nex.init;
 
 import lex.potion.PotionLibEx;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -28,7 +31,32 @@ import nex.NetherEx;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffects
 {
-    public static final PotionLibEx FREEZE = new PotionLibEx(NetherEx.instance, "freeze", true, 93, 188, 210);
+    public static final PotionLibEx FREEZE = new PotionLibEx(NetherEx.instance, "freeze", true, 93, 188, 210){
+        @Override
+        public void applyAttributesModifiersToEntity(EntityLivingBase entity, AbstractAttributeMap attributeMapIn, int amplifier) {
+            super.applyAttributesModifiersToEntity(entity, attributeMapIn, amplifier);
+            if(entity instanceof EntityLiving)
+            {
+                ((EntityLiving) entity).setNoAI(true);
+            }
+
+            entity.setSilent(true);
+        }
+
+        @Override
+        public void removeAttributesModifiersFromEntity(EntityLivingBase entity, AbstractAttributeMap attributeMapIn, int amplifier) {
+            super.removeAttributesModifiersFromEntity(entity, attributeMapIn, amplifier);
+            if(entity instanceof EntityLiving)
+            {
+                if(((EntityLiving) entity).isAIDisabled())
+                {
+                    ((EntityLiving) entity).setNoAI(false);
+                }
+            }
+
+            entity.setSilent(false);
+        }
+    };
     public static final PotionLibEx FROSTBITE = new PotionLibEx(NetherEx.instance, "frostbite", true, 19, 226, 255);
     public static final PotionLibEx SPORE = new PotionLibEx(NetherEx.instance, "spore", true, 142, 96, 40);
     public static final PotionLibEx LOST = new PotionLibEx(NetherEx.instance, "lost", true, 103, 62, 124);
