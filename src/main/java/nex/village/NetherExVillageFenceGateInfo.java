@@ -20,7 +20,7 @@ package nex.village;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class NetherVillageFenceGateInfo
+public class NetherExVillageFenceGateInfo
 {
     private final BlockPos fenceGateBlockPos;
     private final BlockPos insideBlock;
@@ -29,7 +29,7 @@ public class NetherVillageFenceGateInfo
     private boolean isDetachedFromVillageFlag;
     private int fenceGateOpeningRestrictionCounter;
 
-    public NetherVillageFenceGateInfo(BlockPos pos, int deltaX, int deltaZ, int timestamp)
+    public NetherExVillageFenceGateInfo(BlockPos pos, int deltaX, int deltaZ, int timestamp)
     {
         this(pos, getFaceDirection(deltaX, deltaZ), timestamp);
     }
@@ -39,7 +39,7 @@ public class NetherVillageFenceGateInfo
         return deltaX < 0 ? EnumFacing.WEST : (deltaX > 0 ? EnumFacing.EAST : (deltaZ < 0 ? EnumFacing.NORTH : EnumFacing.SOUTH));
     }
 
-    public NetherVillageFenceGateInfo(BlockPos pos, EnumFacing facing, int timestamp)
+    public NetherExVillageFenceGateInfo(BlockPos pos, EnumFacing facing, int timestamp)
     {
         fenceGateBlockPos = pos;
         insideDirection = facing;

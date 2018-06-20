@@ -17,14 +17,12 @@
 
 package nex.handler;
 
-import net.minecraft.world.World;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import nex.NetherEx;
-import nex.village.NetherVillageCollection;
-import nex.village.NetherVillageManager;
+import nex.village.NetherExVillageCollection;
+import nex.village.NetherExVillageManager;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class VillageHandler
@@ -34,7 +32,7 @@ public class VillageHandler
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            NetherVillageCollection villages = NetherVillageManager.getNetherVillagesNoCreate(event.world);
+            NetherExVillageCollection villages = NetherExVillageManager.getNetherVillages(event.world, false);
 
             if(villages != null)
             {

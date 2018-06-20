@@ -22,14 +22,14 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import nex.village.NetherVillage;
-import nex.village.NetherVillageFenceGateInfo;
-import nex.village.NetherVillageManager;
+import nex.village.NetherExVillage;
+import nex.village.NetherExVillageFenceGateInfo;
+import nex.village.NetherExVillageManager;
 
 public class EntityAIMoveInFenceGates extends EntityAIBase
 {
     private final EntityCreature entityObj;
-    private NetherVillageFenceGateInfo doorInfo;
+    private NetherExVillageFenceGateInfo doorInfo;
     private int insidePosX = -1;
     private int insidePosZ = -1;
 
@@ -56,7 +56,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
             }
             else
             {
-                NetherVillage village = NetherVillageManager.getNetherVillages(entityObj.getEntityWorld()).getNearestVillage(blockpos, 14);
+                NetherExVillage village = NetherExVillageManager.getNetherVillages(entityObj.getEntityWorld(), true).getNearestVillage(blockpos, 14);
 
                 if(village == null)
                 {

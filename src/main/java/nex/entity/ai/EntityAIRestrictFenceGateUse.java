@@ -21,14 +21,14 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.BlockPos;
-import nex.village.NetherVillage;
-import nex.village.NetherVillageFenceGateInfo;
-import nex.village.NetherVillageManager;
+import nex.village.NetherExVillage;
+import nex.village.NetherExVillageFenceGateInfo;
+import nex.village.NetherExVillageManager;
 
 public class EntityAIRestrictFenceGateUse extends EntityAIBase
 {
     private final EntityCreature entityObj;
-    private NetherVillageFenceGateInfo fenceGate;
+    private NetherExVillageFenceGateInfo fenceGate;
 
     public EntityAIRestrictFenceGateUse(EntityCreature creatureIn)
     {
@@ -50,7 +50,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
         else
         {
             BlockPos blockpos = new BlockPos(entityObj);
-            NetherVillage village = NetherVillageManager.getNetherVillages(entityObj.getEntityWorld()).getNearestVillage(blockpos, 16);
+            NetherExVillage village = NetherExVillageManager.getNetherVillages(entityObj.getEntityWorld(), true).getNearestVillage(blockpos, 16);
 
             if(village == null)
             {

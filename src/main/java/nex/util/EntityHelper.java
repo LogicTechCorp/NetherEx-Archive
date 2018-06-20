@@ -31,43 +31,25 @@ import java.util.Map;
 public class EntityHelper
 {
     private static Map<Class<? extends EntityLivingBase>, String> RESOURCE_LOCATION_CACHE = new HashMap<>();
-    //cached version of EntityList.getKey
-    private static String getEntityLocation(EntityLivingBase entity)
-    {
-        Class<? extends EntityLivingBase> clazz = entity.getClass();
-        return RESOURCE_LOCATION_CACHE.computeIfAbsent(clazz, k->{
-            ResourceLocation loc = EntityList.getKey(k);
-            return loc != null ? loc.toString() : null;
-        });
-    }
-
-    private static boolean contains(String[] haystack, String needle)
-    {
-        if (needle == null) {
-            for (String hay : haystack)
-                if (hay == null)
-                    return true;
-        } else {
-            for (String hay : haystack)
-                if (needle.equals(hay))
-                    return true;
-        }
-        return false;
-    }
 
     public static boolean canFreeze(EntityLivingBase entity)
     {
-        if (entity instanceof EntityPlayer){
+        if(entity instanceof EntityPlayer)
+        {
             return false;
         }
+
         String entityRegistryName = getEntityLocation(entity);
         return entityRegistryName != null && !contains(ConfigHandler.potionEffectConfig.freeze.blacklist, entityRegistryName);
     }
 
     public static boolean canSpreadSpores(EntityLivingBase entity)
     {
-        if (entity instanceof EntityPlayer)
+        if(entity instanceof EntityPlayer)
+        {
             return true;
+        }
+
         String entityRegistryName = getEntityLocation(entity);
         return (entityRegistryName != null && !contains(ConfigHandler.potionEffectConfig.spore.blacklist, entityRegistryName));
     }
@@ -90,5 +72,37 @@ public class EntityHelper
     public static boolean isLostAfflicted(EntityLivingBase entity)
     {
         return entity.isPotionActive(NetherExEffects.LOST);
+    }
+
+    private static String getEntityLocation(EntityLivingBase entity)
+    {
+        Class<? extends EntityLivingBase> cls = entity.getClass();
+        return RESOURCE_LOCATION_CACHE.computeIfAbsent(cls, k -> {ResourceLocation location = EntityList.getKey(k); return location != null ? location.toString() : null;});
+    }
+
+    private static boolean contains(String[] haystack, String needle)
+    {
+        if (needle == null)
+        {
+            for (String hay : haystack)
+            {
+                if (hay == null)
+                {
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            for (String hay : haystack)
+            {
+                if (needle.equals(hay))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

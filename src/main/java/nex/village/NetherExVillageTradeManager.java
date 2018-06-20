@@ -33,7 +33,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @SuppressWarnings("ConstantConditions")
-public class NetherExTradeManager
+public class NetherExVillageTradeManager
 {
     public static void preInit()
     {

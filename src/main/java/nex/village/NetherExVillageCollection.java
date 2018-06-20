@@ -32,20 +32,20 @@ import net.minecraft.world.storage.WorldSavedData;
 import java.util.Iterator;
 import java.util.List;
 
-public class NetherVillageCollection extends WorldSavedData
+public class NetherExVillageCollection extends WorldSavedData
 {
     private World world;
-    private final List<BlockPos> villagerPositionsList = Lists.newArrayList();
-    private final List<NetherVillageFenceGateInfo> newFenceGates = Lists.newArrayList();
-    private final List<NetherVillage> villageList = Lists.newArrayList();
+    private final List<BlockPos> villagerPositions = Lists.newArrayList();
+    private final List<NetherExVillageFenceGateInfo> newFenceGates = Lists.newArrayList();
+    private final List<NetherExVillage> villageList = Lists.newArrayList();
     private int tickCounter;
 
-    public NetherVillageCollection(String name)
+    public NetherExVillageCollection(String name)
     {
         super(name);
     }
 
-    public NetherVillageCollection(World worldIn)
+    public NetherExVillageCollection(World worldIn)
     {
         super(fileNameForProvider(worldIn.provider));
         world = worldIn;
@@ -54,12 +54,14 @@ public class NetherVillageCollection extends WorldSavedData
 
     public void setWorldsForAll(World worldIn)
     {
-        if (world == worldIn){
+        if (world == worldIn)
+        {
             return;
         }
+
         world = worldIn;
 
-        for(NetherVillage village : villageList)
+        for(NetherExVillage village : villageList)
         {
             village.setWorld(worldIn);
         }
@@ -67,11 +69,11 @@ public class NetherVillageCollection extends WorldSavedData
 
     public void addToVillagerPositionList(BlockPos pos)
     {
-        if(villagerPositionsList.size() <= 64)
+        if(villagerPositions.size() <= 64)
         {
             if(!positionInList(pos))
             {
-                villagerPositionsList.add(pos);
+                villagerPositions.add(pos);
             }
         }
     }
@@ -80,7 +82,7 @@ public class NetherVillageCollection extends WorldSavedData
     {
         tickCounter++;
 
-        for(NetherVillage village : villageList)
+        for(NetherExVillage village : villageList)
         {
             village.tick(tickCounter);
         }
@@ -97,11 +99,11 @@ public class NetherVillageCollection extends WorldSavedData
 
     private void removeAnnihilatedVillages()
     {
-        Iterator<NetherVillage> iterator = villageList.iterator();
+        Iterator<NetherExVillage> iterator = villageList.iterator();
 
         while(iterator.hasNext())
         {
-            NetherVillage village = iterator.next();
+            NetherExVillage village = iterator.next();
 
             if(village.isAnnihilated())
             {
@@ -111,17 +113,17 @@ public class NetherVillageCollection extends WorldSavedData
         }
     }
 
-    public List<NetherVillage> getVillageList()
+    public List<NetherExVillage> getVillageList()
     {
         return villageList;
     }
 
-    public NetherVillage getNearestVillage(BlockPos fenceGateBlock, int radius)
+    public NetherExVillage getNearestVillage(BlockPos fenceGateBlock, int radius)
     {
-        NetherVillage village = null;
+        NetherExVillage village = null;
         double d0 = 3.4028234663852886E38D;
 
-        for(NetherVillage village1 : villageList)
+        for(NetherExVillage village1 : villageList)
         {
             double d1 = village1.getCenter().distanceSq(fenceGateBlock);
 
@@ -142,21 +144,21 @@ public class NetherVillageCollection extends WorldSavedData
 
     private void dropOldestVillagerPosition()
     {
-        if(!villagerPositionsList.isEmpty())
+        if(!villagerPositions.isEmpty())
         {
-            addFenceGatesAround(villagerPositionsList.remove(0));
+            addFenceGatesAround(villagerPositions.remove(0));
         }
     }
 
     private void addNewFenceGatesToVillageOrCreateVillage()
     {
-        for(NetherVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(NetherExVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
-            NetherVillage village = getNearestVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
+            NetherExVillage village = getNearestVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
 
             if(village == null)
             {
-                village = new NetherVillage(world);
+                village = new NetherExVillage(world);
                 villageList.add(village);
                 markDirty();
             }
@@ -181,7 +183,7 @@ public class NetherVillageCollection extends WorldSavedData
 
                     if(outside != null)
                     {
-                        NetherVillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
+                        NetherExVillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
 
                         if(villagefenceGateinfo == null)
                         {
@@ -197,9 +199,9 @@ public class NetherVillageCollection extends WorldSavedData
         }
     }
 
-    private NetherVillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
+    private NetherExVillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
     {
-        for(NetherVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(NetherExVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
         {
             if(villagefenceGateinfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && villagefenceGateinfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(villagefenceGateinfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
             {
@@ -207,9 +209,9 @@ public class NetherVillageCollection extends WorldSavedData
             }
         }
 
-        for(NetherVillage village : villageList)
+        for(NetherExVillage village : villageList)
         {
-            NetherVillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
+            NetherExVillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
 
             if(villagefenceGateinfo1 != null)
             {
@@ -222,12 +224,12 @@ public class NetherVillageCollection extends WorldSavedData
 
     private void addToNewFenceGatesList(BlockPos fenceGateBlock, EnumFacing facing)
     {
-        newFenceGates.add(new NetherVillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
+        newFenceGates.add(new NetherExVillageFenceGateInfo(fenceGateBlock, facing, tickCounter));
     }
 
     private boolean positionInList(BlockPos pos)
     {
-        for(BlockPos blockpos : villagerPositionsList)
+        for(BlockPos blockpos : villagerPositions)
         {
             if(blockpos.equals(pos))
             {
@@ -270,7 +272,7 @@ public class NetherVillageCollection extends WorldSavedData
         for(int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-            NetherVillage village = new NetherVillage();
+            NetherExVillage village = new NetherExVillage();
             village.readVillageDataFromNBT(nbttagcompound);
             villageList.add(village);
         }
@@ -282,7 +284,7 @@ public class NetherVillageCollection extends WorldSavedData
         compound.setInteger("Tick", tickCounter);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for(NetherVillage village : villageList)
+        for(NetherExVillage village : villageList)
         {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
             village.writeVillageDataToNBT(nbttagcompound);
@@ -295,6 +297,6 @@ public class NetherVillageCollection extends WorldSavedData
 
     public static String fileNameForProvider(WorldProvider provider)
     {
-        return "villages.nether" + provider.getDimensionType().getSuffix();
+        return "nex_villages" + provider.getDimensionType().getSuffix();
     }
 }
