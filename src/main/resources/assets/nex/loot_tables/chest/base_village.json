@@ -110,7 +110,7 @@
                 {
                     "type": "item",
                     "weight": 5,
-                    "name": "nex:block_basalt",
+                    "name": "nex:basalt",
                     "functions": [
                         {
                             "function": "set_count",

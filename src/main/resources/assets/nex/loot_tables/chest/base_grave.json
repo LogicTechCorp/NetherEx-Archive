@@ -70,7 +70,7 @@
                 {
                     "type": "item",
                     "weight": 10,
-                    "name": "nex:item_brick_nether",
+                    "name": "nex:nether_brick",
                     "functions": [
                         {
                             "function": "set_count",
@@ -103,7 +103,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:block_basalt",
+                    "name": "nex:basalt",
                     "functions": [
                         {
                             "function": "set_count",
@@ -154,7 +154,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:ore_quartz",
+                    "name": "nex:quartz_ore",
                     "functions": [
                         {
                             "function": "set_count",
@@ -208,12 +208,12 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:food_meat_ghast_raw"
+                    "name": "nex:ghast_meat_raw"
                 },
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:item_hide_salamander",
+                    "name": "nex:salamander_hide",
                     "functions": [
                         {
                             "function": "set_count",

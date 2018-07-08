@@ -17,19 +17,15 @@
 
 package nex.handler;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -145,16 +141,16 @@ public class LivingHandler
                 int conversionTime = entityData.getInteger("ConversionTime");
                 int conversionProgress = 1;
 
-                if (rand.nextFloat() < 0.01F)
+                if(rand.nextFloat() < 0.01F)
                 {
                     int conversionBoosters = 0;
                     BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
-                    for(int x = (int)zombiePigman.posX - 4; x < (int)zombiePigman.posX + 4 && conversionBoosters < 14; ++x)
+                    for(int x = (int) zombiePigman.posX - 4; x < (int) zombiePigman.posX + 4 && conversionBoosters < 14; ++x)
                     {
-                        for(int y = (int)zombiePigman.posY - 4; y < (int)zombiePigman.posY + 4 && conversionBoosters < 14; ++y)
+                        for(int y = (int) zombiePigman.posY - 4; y < (int) zombiePigman.posY + 4 && conversionBoosters < 14; ++y)
                         {
-                            for(int z = (int)zombiePigman.posZ - 4; z < (int)zombiePigman.posZ + 4 && conversionBoosters < 14; ++z)
+                            for(int z = (int) zombiePigman.posZ - 4; z < (int) zombiePigman.posZ + 4 && conversionBoosters < 14; ++z)
                             {
                                 Block block = world.getBlockState(mutableBlockPos.setPos(x, y, z)).getBlock();
 
@@ -196,7 +192,7 @@ public class LivingHandler
 
                     world.spawnEntity(pigtificate);
                     pigtificate.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200, 0));
-                    world.playEvent(null, 1027, new BlockPos((int)zombiePigman.posX, (int)zombiePigman.posY, (int)zombiePigman.posZ), 0);
+                    world.playEvent(null, 1027, new BlockPos((int) zombiePigman.posX, (int) zombiePigman.posY, (int) zombiePigman.posZ), 0);
                 }
                 else
                 {

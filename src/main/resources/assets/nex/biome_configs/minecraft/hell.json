@@ -200,7 +200,7 @@
         {
             "feature": "lex:structure",
             "genStage": "populate",
-            "structure": "nex:village/tiny_pigtificate_hell_village",
+            "structure": "nex:village/tiny_hell_pigtificate_village",
             "type": "grounded",
             "genAttempts": 8,
             "genProbability": 1.0,
@@ -211,7 +211,7 @@
             "rotation": "random",
             "ignoredBlock": {
                 "block": "minecraft:structure_void",
-                "properties": {}
+                "properties": { }
             },
             "clearancePercentage": 0.875,
             "generate": true

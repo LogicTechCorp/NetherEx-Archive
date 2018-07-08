@@ -10,7 +10,7 @@
                 {
                     "type": "item",
                     "weight": 10,
-                    "name": "nex:block_ice_frostburn",
+                    "name": "nex:frostburn_ice",
                     "functions": [
                         {
                             "function": "set_count",
@@ -29,7 +29,13 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:item_crystal_rime"
+                    "name": "nex:gem",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_data",
+                            "data": 1
+                        }
+                    ]
                 },
                 {
                     "type": "item",

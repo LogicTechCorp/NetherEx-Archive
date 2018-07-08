@@ -142,7 +142,7 @@ public class EntityGhastQueen extends EntityGhast
             {
                 tasks.removeTask(fireballAttack);
             }
-            
+
             cooldown -= 1;
         }
 

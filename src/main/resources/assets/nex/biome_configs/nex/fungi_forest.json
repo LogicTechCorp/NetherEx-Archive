@@ -169,7 +169,7 @@
             "rotation": "random",
             "ignoredBlock": {
                 "block": "minecraft:structure_void",
-                "properties": {}
+                "properties": { }
             },
             "clearancePercentage": 1.0,
             "generate": true

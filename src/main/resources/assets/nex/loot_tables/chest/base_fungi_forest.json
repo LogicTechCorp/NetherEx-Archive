@@ -10,32 +10,32 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:food_mushroom_enoki"
+                    "name": "nex:enoki_mushroom"
                 },
                 {
                     "type": "item",
                     "weight": 2,
-                    "name": "nex:plant_mushroom_elder"
+                    "name": "nex:elder_mushroom"
                 },
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:block_hyphae"
+                    "name": "nex:hyphae"
                 },
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:plant_mushroom_elder_cap"
+                    "name": "nex:elder_mushroom_cap"
                 },
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:plant_mushroom_elder_stem"
+                    "name": "nex:elder_mushroom_stem"
                 },
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:item_spore"
+                    "name": "nex:spore"
                 },
                 {
                     "type": "item",
