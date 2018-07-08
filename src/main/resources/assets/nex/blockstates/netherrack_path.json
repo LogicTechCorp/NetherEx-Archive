@@ -8,7 +8,7 @@
         "type": {
             "normal": {
                 "textures": {
-                    "top": "blocks/netherrack",
+                    "top": "nex:blocks/netherrack_path",
                     "side": "blocks/netherrack",
                     "bottom": "blocks/netherrack"
                 }

@@ -154,6 +154,25 @@
             "maxHeight": 108,
             "randomizeGenAttempts": false,
             "generate": true
+        },
+        {
+            "feature": "lex:structure",
+            "genStage": "populate",
+            "structure": "nex:ghast_queen_shrine",
+            "type": "floating",
+            "genAttempts": 1,
+            "genProbability": 0.00390625,
+            "randomizeGenAttempts": false,
+            "minHeight": 32,
+            "maxHeight": 116,
+            "mirror": "random",
+            "rotation": "random",
+            "ignoredBlock": {
+                "block": "minecraft:structure_void",
+                "properties": {}
+            },
+            "clearancePercentage": 1.0,
+            "generate": true
         }
     ]
 }

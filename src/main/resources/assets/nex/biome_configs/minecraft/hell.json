@@ -196,6 +196,25 @@
             "maxHeight": 118,
             "randomizeGenAttempts": false,
             "generate": true
+        },
+        {
+            "feature": "lex:structure",
+            "genStage": "populate",
+            "structure": "nex:village/tiny_pigtificate_hell_village",
+            "type": "grounded",
+            "genAttempts": 8,
+            "genProbability": 1.0,
+            "randomizeGenAttempts": false,
+            "minHeight": 32,
+            "maxHeight": 116,
+            "mirror": "random",
+            "rotation": "random",
+            "ignoredBlock": {
+                "block": "minecraft:structure_void",
+                "properties": {}
+            },
+            "clearancePercentage": 0.875,
+            "generate": true
         }
     ]
 }

@@ -87,16 +87,16 @@ public class LivingHandler
         EntityLivingBase entity = event.getEntityLiving();
         Random rand = world.rand;
 
-        boolean canEntityFreeze = entity instanceof EntityPlayer || EntityHelper.canFreeze(entity);
+        boolean canEntityFreeze = (entity instanceof EntityPlayer && !((EntityPlayer) entity).isCreative()) || EntityHelper.canFreeze(entity);
 
         if(canEntityFreeze)
         {
             boolean entityFrozen = EntityHelper.isFrozen(entity);
+
             if(!entityFrozen && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.chanceOfFreezing) == 0 && world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
-
             if(entityFrozen)
             {
                 if(entity instanceof EntityPlayer)
