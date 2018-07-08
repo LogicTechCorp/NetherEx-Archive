@@ -226,8 +226,8 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             }
             else
             {
-                BlockPos blockpos1 = village.getCenter();
-                setHomePosAndDistance(blockpos1, village.getVillageRadius());
+                BlockPos villagePos = village.getCenter();
+                setHomePosAndDistance(villagePos, village.getVillageRadius());
 
                 if(lookingForHome)
                 {
@@ -383,6 +383,11 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         {
             return super.processInteract(player, hand);
         }
+    }
+
+    public void setLookingForHome()
+    {
+        lookingForHome = true;
     }
 
     @Override

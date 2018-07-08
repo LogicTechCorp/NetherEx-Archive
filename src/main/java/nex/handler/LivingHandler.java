@@ -17,16 +17,24 @@
 
 package nex.handler;
 
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -40,6 +48,7 @@ import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
 import nex.entity.monster.EntityGhastling;
 import nex.entity.monster.EntitySpore;
+import nex.entity.passive.EntityPigtificate;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExEffects;
 import nex.init.NetherExItems;
@@ -76,6 +85,7 @@ public class LivingHandler
         World world = event.getEntityLiving().getEntityWorld();
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
+        Random rand = world.rand;
 
         boolean canEntityFreeze = entity instanceof EntityPlayer || EntityHelper.canFreeze(entity);
 
@@ -123,6 +133,75 @@ public class LivingHandler
                 ghastling.setPosition(newPos.getX(), newPos.getY(), newPos.getZ());
                 ghastling.setAttackTarget(entity);
                 world.spawnEntity(ghastling);
+            }
+        }
+        if(entity instanceof EntityPigZombie)
+        {
+            EntityPigZombie zombiePigman = (EntityPigZombie) entity;
+            NBTTagCompound entityData = zombiePigman.getEntityData();
+
+            if(entityData.hasKey("ConversionTime"))
+            {
+                int conversionTime = entityData.getInteger("ConversionTime");
+                int conversionProgress = 1;
+
+                if (rand.nextFloat() < 0.01F)
+                {
+                    int conversionBoosters = 0;
+                    BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+
+                    for(int x = (int)zombiePigman.posX - 4; x < (int)zombiePigman.posX + 4 && conversionBoosters < 14; ++x)
+                    {
+                        for(int y = (int)zombiePigman.posY - 4; y < (int)zombiePigman.posY + 4 && conversionBoosters < 14; ++y)
+                        {
+                            for(int z = (int)zombiePigman.posZ - 4; z < (int)zombiePigman.posZ + 4 && conversionBoosters < 14; ++z)
+                            {
+                                Block block = world.getBlockState(mutableBlockPos.setPos(x, y, z)).getBlock();
+
+                                if(block == Blocks.IRON_BARS)
+                                {
+                                    if(rand.nextFloat() < 0.3F)
+                                    {
+                                        conversionProgress++;
+                                    }
+
+                                    conversionBoosters++;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                conversionTime -= conversionProgress;
+
+                if(conversionTime <= 0)
+                {
+                    EntityPigtificate pigtificate = new EntityPigtificate(world);
+                    pigtificate.copyLocationAndAnglesFrom(zombiePigman);
+                    pigtificate.setLookingForHome();
+
+                    if(zombiePigman.isChild())
+                    {
+                        pigtificate.setGrowingAge(-24000);
+                    }
+
+                    world.removeEntity(zombiePigman);
+                    pigtificate.setNoAI(zombiePigman.isAIDisabled());
+
+                    if(zombiePigman.hasCustomName())
+                    {
+                        pigtificate.setCustomNameTag(zombiePigman.getCustomNameTag());
+                        pigtificate.setAlwaysRenderNameTag(zombiePigman.getAlwaysRenderNameTag());
+                    }
+
+                    world.spawnEntity(pigtificate);
+                    pigtificate.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200, 0));
+                    world.playEvent(null, 1027, new BlockPos((int)zombiePigman.posX, (int)zombiePigman.posY, (int)zombiePigman.posZ), 0);
+                }
+                else
+                {
+                    entityData.setInteger("ConversionTime", conversionTime);
+                }
             }
         }
     }

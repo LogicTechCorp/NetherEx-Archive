@@ -23,12 +23,17 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -48,6 +53,8 @@ import nex.init.NetherExBlocks;
 import nex.init.NetherExEffects;
 import nex.init.NetherExItems;
 import nex.util.BlockHelper;
+
+import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
@@ -173,6 +180,37 @@ public class ClickHandler
             else
             {
                 event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event)
+    {
+        World world = event.getWorld();
+        EntityPlayer player = event.getEntityPlayer();
+        Entity entity = event.getTarget();
+        Random rand = world.rand;
+
+        if(entity instanceof EntityPigZombie)
+        {
+            EntityPigZombie zombiePigman = (EntityPigZombie) entity;
+            ItemStack stack = player.getHeldItem(player.swingingHand);
+
+            if(stack.getItem() == NetherExItems.GHAST_QUEEN_TEAR && stack.getMetadata() == 0 && zombiePigman.isPotionActive(MobEffects.WEAKNESS))
+            {
+                if(!player.capabilities.isCreativeMode)
+                {
+                    stack.shrink(1);
+                }
+
+                if(!world.isRemote)
+                {
+                    int conversionTime = rand.nextInt(2401) + 3600;
+                    zombiePigman.getEntityData().setInteger("ConversionTime", conversionTime);
+                    zombiePigman.removePotionEffect(MobEffects.WEAKNESS);
+                    zombiePigman.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, conversionTime, Math.min(world.getDifficulty().getDifficultyId() - 1, 0)));
+                }
             }
         }
     }
