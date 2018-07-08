@@ -48,7 +48,7 @@ public class EntityGhastQueen extends EntityGhast
     private boolean[] stageStarted = new boolean[5];
     private boolean spawnGhastlings;
 
-    private BlockPos urnPos = BlockPos.ORIGIN;
+    private BlockPos urnPos;
 
     private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
 
@@ -57,7 +57,6 @@ public class EntityGhastQueen extends EntityGhast
     public EntityGhastQueen(World world)
     {
         super(world);
-
         setSize(9.5F, 9.5F);
         experienceValue = 100;
     }
@@ -107,33 +106,33 @@ public class EntityGhastQueen extends EntityGhast
     {
         super.onUpdate();
 
-        if(getCooldown() == 0)
+        if(cooldown == 0)
         {
             if(tasks.taskEntries.size() == 2)
             {
                 tasks.addTask(0, fireballAttack);
             }
 
-            if(getStage() < 4)
+            if(stage < 4)
             {
-                if(!getStageStarted(getStage()) && getHealth() < getMaxHealth() - getStage() * 35.0D)
+                if(!stageStarted[stage] && getHealth() < getMaxHealth() - stage * 35.0D)
                 {
-                    setShouldSpawnGhastlings(true);
+                    spawnGhastlings = true;
                 }
 
-                if(!getEntityWorld().isRemote && shouldSpawnGhastlings())
+                if(!world.isRemote && spawnGhastlings)
                 {
                     for(int i = 0; i < ConfigHandler.entityConfig.ghastQueen.ghastlingSpawns; i++)
                     {
-                        EntityGhastling ghastling = new EntityGhastling(getEntityWorld());
-                        ghastling.setPosition(getPosition().getX(), getPosition().getY() - 1, getPosition().getZ());
-                        getEntityWorld().spawnEntity(ghastling);
+                        EntityGhastling ghastling = new EntityGhastling(world);
+                        ghastling.setPosition(posX, posY - 1, posZ);
+                        world.spawnEntity(ghastling);
                     }
 
-                    setStageStarted(getStage(), true);
-                    setCooldown(ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnCooldown * 20);
-                    setStage(getStage() + 1);
-                    setShouldSpawnGhastlings(false);
+                    stageStarted[stage] = true;
+                    cooldown = ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnCooldown * 20;
+                    stage += 1;
+                    spawnGhastlings = false;
                 }
             }
         }
@@ -143,7 +142,8 @@ public class EntityGhastQueen extends EntityGhast
             {
                 tasks.removeTask(fireballAttack);
             }
-            setCooldown(getCooldown() - 1);
+            
+            cooldown -= 1;
         }
 
         bossInfo.setPercent(getHealth() / getMaxHealth());
@@ -152,10 +152,10 @@ public class EntityGhastQueen extends EntityGhast
     @Override
     public void onDeath(DamageSource cause)
     {
-        if(getUrnPos() != BlockPos.ORIGIN)
+        if(urnPos != null)
         {
-            getEntityWorld().setBlockToAir(getUrnPos());
-            getEntityWorld().setBlockState(getUrnPos(), NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+            world.setBlockToAir(urnPos);
+            world.setBlockState(urnPos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
         }
 
         super.onDeath(cause);
@@ -165,32 +165,34 @@ public class EntityGhastQueen extends EntityGhast
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setIntArray("UrnPos", new int[]{getUrnPos().getX(), getUrnPos().getY(), getUrnPos().getZ()});
-        compound.setInteger("Cooldown", getCooldown());
-        compound.setInteger("Stage", getStage());
+        compound.setInteger("UrnPosX", urnPos.getX());
+        compound.setInteger("UrnPosY", urnPos.getY());
+        compound.setInteger("UrnPosZ", urnPos.getZ());
+        compound.setInteger("Cooldown", cooldown);
+        compound.setInteger("Stage", stage);
 
         for(int i = 0; i < stageStarted.length; i++)
         {
-            compound.setBoolean("StageStarted" + i, getStageStarted(i));
+            compound.setBoolean("StageStarted" + i, stageStarted[i]);
         }
 
-        compound.setBoolean("SpawnGhast", shouldSpawnGhastlings());
+        compound.setBoolean("SpawnGhast", spawnGhastlings);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        setUrnPos(new BlockPos(compound.getIntArray("UrnPos")[0], compound.getIntArray("UrnPos")[1], compound.getIntArray("UrnPos")[2]));
-        setCooldown(compound.getInteger("Cooldown"));
-        setStage(compound.getInteger("Stage"));
+        urnPos = new BlockPos(compound.getInteger("UrnPosX"), compound.getInteger("UrnPosY"), compound.getInteger("UrnPosZ"));
+        cooldown = compound.getInteger("Cooldown");
+        stage = compound.getInteger("Stage");
 
         for(int i = 0; i < stageStarted.length; i++)
         {
-            setStageStarted(i, compound.getBoolean("StageStarted" + i));
+            stageStarted[i] = compound.getBoolean("StageStarted" + i);
         }
 
-        setShouldSpawnGhastlings(compound.getBoolean("SpawnGhast"));
+        spawnGhastlings = compound.getBoolean("SpawnGhast");
 
         if(hasCustomName())
         {
@@ -242,53 +244,8 @@ public class EntityGhastQueen extends EntityGhast
         return NetherExLootTables.GHAST_QUEEN;
     }
 
-    private BlockPos getUrnPos()
-    {
-        return urnPos;
-    }
-
-    private int getCooldown()
-    {
-        return cooldown;
-    }
-
-    private int getStage()
-    {
-        return stage;
-    }
-
-    private boolean shouldSpawnGhastlings()
-    {
-        return spawnGhastlings;
-    }
-
-    private boolean getStageStarted(int i)
-    {
-        return stageStarted[i];
-    }
-
     public void setUrnPos(BlockPos pos)
     {
         urnPos = pos;
-    }
-
-    private void setCooldown(int i)
-    {
-        cooldown = i;
-    }
-
-    private void setStage(int i)
-    {
-        stage = i;
-    }
-
-    private void setShouldSpawnGhastlings(boolean bool)
-    {
-        spawnGhastlings = bool;
-    }
-
-    private void setStageStarted(int i, boolean bool)
-    {
-        stageStarted[i] = bool;
     }
 }
