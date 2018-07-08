@@ -93,4 +93,14 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
         summoningTime = compound.getInteger("SummoningTime");
         canBreak = compound.getBoolean("CanBreak");
     }
+
+    public int getSummoningTime()
+    {
+        return summoningTime;
+    }
+
+    public boolean canBreak()
+    {
+        return canBreak;
+    }
 }
