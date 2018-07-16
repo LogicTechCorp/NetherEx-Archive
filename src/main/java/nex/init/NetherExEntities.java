@@ -37,7 +37,7 @@ public class NetherExEntities
 {
     private static int entityId = -1;
 
-    public static void init()
+    public static void preInit()
     {
         registerEntity("ghast_queen_fireball", EntityGhastQueenFireball.class, entityId++);
         registerEntity("ghastling_fireball", EntityGhastlingFireball.class, entityId++);

@@ -60,6 +60,7 @@ public class NetherEx implements IModData
     {
         NetherExBiomeManager.preInit();
         NetherExVillageTradeManager.preInit();
+        NetherExEntities.preInit();
         proxy.preInit();
     }
 
@@ -67,7 +68,6 @@ public class NetherEx implements IModData
     public void onFMLInitialization(FMLInitializationEvent event)
     {
         NetherExBiomes.init();
-        NetherExEntities.init();
         NetherExRecipes.init();
         NetherExOreDict.init();
         NetherExFeatures.init();
