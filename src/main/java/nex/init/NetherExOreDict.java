@@ -44,8 +44,8 @@ public class NetherExOreDict
             }
         }
 
-        registerWithOreDictionary("blockGlass", new ItemStack(SOUL_GLASS, 1, 0));
-        registerWithOreDictionary("paneGlass", new ItemStack(SOUL_GLASS_PANE, 1, 0));
+        registerWithOreDictionary("blockGlass", new ItemStack(SOUL_GLASS));
+        registerWithOreDictionary("paneGlass", new ItemStack(SOUL_GLASS_PANE));
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
@@ -54,14 +54,25 @@ public class NetherExOreDict
             registerWithOreDictionary("oreQuartz", new ItemStack(QUARTZ_ORE, 1, type.ordinal()));
         }
 
-        registerWithOreDictionary("oreAmethyst", new ItemStack(GEM_ORE, 1, 0));
-        registerWithOreDictionary("blockAmethyst", new ItemStack(GEM_BLOCK, 1, 0));
-        registerWithOreDictionary("gemAmethyst", new ItemStack(GEM, 1, 0));
+        registerWithOreDictionary("oreAmethyst", new ItemStack(GEM_ORE));
+        registerWithOreDictionary("blockAmethyst", new ItemStack(GEM_BLOCK));
+        registerWithOreDictionary("gemAmethyst", new ItemStack(GEM));
         registerWithOreDictionary("oreRime", new ItemStack(GEM, 1, 1));
         registerWithOreDictionary("blockRime", new ItemStack(GEM, 1, 1));
         registerWithOreDictionary("gemRime", new ItemStack(GEM, 1, 1));
-        registerWithOreDictionary("boneWithered", new ItemStack(WITHER_BONE, 1, 0));
-        registerWithOreDictionary("dyeBlack", new ItemStack(WITHER_DUST, 1, 0));
+        registerWithOreDictionary("boneWithered", new ItemStack(WITHER_BONE));
+        registerWithOreDictionary("dyeBlack", new ItemStack(WITHER_DUST));
+        registerWithOreDictionary("listAllmeatraw", new ItemStack(GHAST_MEAT_RAW));
+        registerWithOreDictionary("listAllghastraw", new ItemStack(GHAST_MEAT_RAW));
+        registerWithOreDictionary("foodMeats", new ItemStack(GHAST_MEAT_RAW));
+        registerWithOreDictionary("listAllmeatcooked", new ItemStack(GHAST_MEAT_COOKED));
+        registerWithOreDictionary("listAllghastcooked", new ItemStack(GHAST_MEAT_COOKED));
+        registerWithOreDictionary("foodMeats", new ItemStack(GHAST_MEAT_COOKED));
+        registerWithOreDictionary("foodCongealedmagmacream", new ItemStack(CONGEALED_MAGMA_CREAM));
+        registerWithOreDictionary("listAllmushroom", new ItemStack(ENOKI_MUSHROOM));
+        registerWithOreDictionary("mushroomAny", new ItemStack(ENOKI_MUSHROOM));
+        registerWithOreDictionary("cropEnokimushroom", new ItemStack(ENOKI_MUSHROOM));
+        registerWithOreDictionary("listAllveggie", new ItemStack(ENOKI_MUSHROOM));
     }
 
     private static void registerWithOreDictionary(String name, ItemStack stack)
