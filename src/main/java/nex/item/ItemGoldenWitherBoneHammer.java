@@ -72,13 +72,9 @@ public class ItemGoldenWitherBoneHammer extends ItemPickaxeLibEx
     @Override
     public void setDamage(ItemStack stack, int damage)
     {
-        boolean isNether = true;
-
         if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("Nether"))
         {
-            isNether = stack.getTagCompound().getBoolean("Nether");
-
-            if(!isNether)
+            if(!stack.getTagCompound().getBoolean("Nether"))
             {
                 damage += 63;
 
@@ -89,7 +85,7 @@ public class ItemGoldenWitherBoneHammer extends ItemPickaxeLibEx
             }
         }
 
-        super.setDamage(stack, isNether ? damage * 4 : damage);
+        super.setDamage(stack, damage);
     }
 
     @Override
