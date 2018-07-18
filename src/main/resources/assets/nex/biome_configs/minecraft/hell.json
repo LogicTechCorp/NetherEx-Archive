@@ -147,10 +147,7 @@
             "feature": "lex:ore",
             "genStage": "populate",
             "blockToSpawn": {
-                "block": "nex:gem_ore",
-                "properties": {
-                    "type": "amethyst"
-                }
+                "block": "nex:amethyst_ore"
             },
             "blockToReplace": {
                 "block": "minecraft:netherrack"

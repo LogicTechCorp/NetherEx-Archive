@@ -9,7 +9,7 @@
                 "maxStackSize": 24
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -20,7 +20,7 @@
         },
         {
             "output": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 1,
                 "maxStackSize": 1
@@ -43,7 +43,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 4
@@ -60,7 +60,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 5
@@ -77,7 +77,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 3
@@ -94,7 +94,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 2,
                 "maxStackSize": 4
@@ -111,7 +111,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 6
@@ -128,7 +128,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 5
@@ -145,7 +145,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 5,
                 "maxStackSize": 7
@@ -162,7 +162,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 4,
                 "maxStackSize": 5
@@ -179,7 +179,7 @@
                 "maxStackSize": 28
             },
             "inputOne": {
-                "item": "nex:gem",
+                "item": "nex:amethyst_crystal",
                 "meta": 0,
                 "minStackSize": 6,
                 "maxStackSize": 9

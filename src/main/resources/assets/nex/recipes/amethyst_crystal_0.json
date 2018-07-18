@@ -5,13 +5,11 @@
     ],
     "key": {
         "#": {
-            "item": "nex:gem_block",
-            "data": 1
+            "item": "nex:amethyst_block"
         }
     },
     "result": {
-        "item": "nex:gem",
-        "data": 1,
+        "item": "nex:amethyst_crystal",
         "count": 9
     }
 }

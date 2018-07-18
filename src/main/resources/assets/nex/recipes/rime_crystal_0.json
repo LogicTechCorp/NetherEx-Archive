@@ -5,13 +5,13 @@
     ],
     "key": {
         "#": {
-            "item": "nex:gem_block",
-            "data": 0
+            "item": "nex:rime_block",
+            "data": 1
         }
     },
     "result": {
-        "item": "nex:gem",
-        "data": 0,
+        "item": "nex:rime_crystal",
+        "data": 1,
         "count": 9
     }
 }

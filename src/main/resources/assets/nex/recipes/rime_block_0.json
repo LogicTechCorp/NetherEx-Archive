@@ -7,12 +7,10 @@
     ],
     "key": {
         "#": {
-            "item": "nex:gem",
-            "data": 1
+            "item": "nex:rime_crystal"
         }
     },
     "result": {
-        "item": "nex:gem_block",
-        "data": 1
+        "item": "nex:rime_block"
     }
 }

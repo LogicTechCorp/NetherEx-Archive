@@ -117,10 +117,7 @@
             "feature": "lex:ore",
             "genStage": "populate",
             "blockToSpawn": {
-                "block": "nex:gem_ore",
-                "properties": {
-                    "type": "rime"
-                }
+                "block": "nex:rime_ore"
             },
             "blockToReplace": {
                 "block": "nex:netherrack",
