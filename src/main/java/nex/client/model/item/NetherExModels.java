@@ -100,15 +100,8 @@ public class NetherExModels
         registerModel(NetherExBlocks.TILLED_SOUL_SAND, "moisture=0");
         registerModel(NetherExBlocks.SOUL_GLASS, "normal");
         registerModel(NetherExBlocks.SOUL_GLASS_PANE, "normal");
-
-        for(BlockGem.EnumType type : BlockGem.EnumType.values())
-        {
-            registerModel(NetherExBlocks.GEM_BLOCK, type.ordinal(), NetherExBlocks.GEM_BLOCK.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(NetherExBlocks.GEM_ORE, type.ordinal(), NetherExBlocks.GEM_ORE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(NetherExItems.GEM, type.ordinal(), NetherExItems.GEM.getRegistryName().toString(), String.format("type=%s", type.getName()));
-        }
-
-
+        registerModel(NetherExBlocks.AMETHYST_BLOCK, "normal");
+        registerModel(NetherExBlocks.RIME_BLOCK, "normal");
         registerModel(NetherExBlocks.FROSTBURN_ICE, "normal");
         registerModel(NetherExBlocks.BONE_SLIVER, "axis=y");
         registerModel(NetherExBlocks.BONE_CHUNK, "facing=up");
@@ -124,6 +117,8 @@ public class NetherExModels
             registerModel(NetherExBlocks.URN_OF_SORROW, type.ordinal(), NetherExBlocks.URN_OF_SORROW.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        registerModel(NetherExBlocks.AMETHYST_ORE, "normal");
+        registerModel(NetherExBlocks.RIME_ORE, "normal");
         registerModel(NetherExBlocks.THORNSTALK, "normal");
 
         for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
@@ -188,6 +183,8 @@ public class NetherExModels
             registerModel(NetherExItems.SALAMANDER_HIDE, type.ordinal(), NetherExItems.SALAMANDER_HIDE.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
+        registerModel(NetherExItems.AMETHYST_CRYSTAL, "normal");
+        registerModel(NetherExItems.RIME_CRYSTAL, "normal");
         registerModel(NetherExItems.RIME_AND_STEEL, "normal");
         registerModel(NetherExItems.SPORE, "normal");
         registerModel(NetherExItems.BONE_SPIDER_FANG, "normal");

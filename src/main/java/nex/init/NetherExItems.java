@@ -37,7 +37,8 @@ public class NetherExItems
     public static final ItemLibEx WITHER_BONE = null;
     public static final ItemWitherDust WITHER_DUST = null;
     public static final ItemSalamanderHide SALAMANDER_HIDE = null;
-    public static final ItemGem GEM = null;
+    public static final ItemLibEx AMETHYST_CRYSTAL = null;
+    public static final ItemLibEx RIME_CRYSTAL = null;
     public static final ItemRimeAndSteel RIME_AND_STEEL = null;
     public static final ItemLibEx SPORE = null;
     public static final ItemLibEx BONE_SPIDER_FANG = null;
@@ -73,7 +74,8 @@ public class NetherExItems
                     new ItemLibEx(NetherEx.instance, "wither_bone"),
                     new ItemWitherDust(),
                     new ItemSalamanderHide(),
-                    new ItemGem(),
+                    new ItemLibEx(NetherEx.instance, "amethyst_crystal"),
+                    new ItemLibEx(NetherEx.instance, "rime_crystal"),
                     new ItemRimeAndSteel(),
                     new ItemLibEx(NetherEx.instance, "spore"),
                     new ItemLibEx(NetherEx.instance, "bone_spider_fang"),

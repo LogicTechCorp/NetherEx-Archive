@@ -54,12 +54,12 @@ public class NetherExOreDict
             registerWithOreDictionary("oreQuartz", new ItemStack(QUARTZ_ORE, 1, type.ordinal()));
         }
 
-        registerWithOreDictionary("oreAmethyst", new ItemStack(GEM_ORE));
-        registerWithOreDictionary("blockAmethyst", new ItemStack(GEM_BLOCK));
-        registerWithOreDictionary("gemAmethyst", new ItemStack(GEM));
-        registerWithOreDictionary("oreRime", new ItemStack(GEM, 1, 1));
-        registerWithOreDictionary("blockRime", new ItemStack(GEM, 1, 1));
-        registerWithOreDictionary("gemRime", new ItemStack(GEM, 1, 1));
+        registerWithOreDictionary("oreAmethyst", new ItemStack(AMETHYST_ORE));
+        registerWithOreDictionary("blockAmethyst", new ItemStack(AMETHYST_BLOCK));
+        registerWithOreDictionary("gemAmethyst", new ItemStack(AMETHYST_CRYSTAL));
+        registerWithOreDictionary("oreRime", new ItemStack(RIME_ORE));
+        registerWithOreDictionary("blockRime", new ItemStack(RIME_BLOCK));
+        registerWithOreDictionary("gemRime", new ItemStack(RIME_CRYSTAL));
         registerWithOreDictionary("boneWithered", new ItemStack(WITHER_BONE));
         registerWithOreDictionary("dyeBlack", new ItemStack(WITHER_DUST));
         registerWithOreDictionary("listAllmeatraw", new ItemStack(GHAST_MEAT_RAW));

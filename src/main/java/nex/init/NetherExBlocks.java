@@ -44,7 +44,8 @@ public class NetherExBlocks
     public static final BlockTilledSoulSand TILLED_SOUL_SAND = null;
     public static final BlockSoulGlass SOUL_GLASS = null;
     public static final BlockSoulGlassPane SOUL_GLASS_PANE = null;
-    public static final BlockGem GEM_BLOCK = null;
+    public static final BlockAmethyst AMETHYST_BLOCK = null;
+    public static final BlockRime RIME_BLOCK = null;
     public static final BlockFrostburnIce FROSTBURN_ICE = null;
     public static final BlockBoneSliver BONE_SLIVER = null;
     public static final BlockBoneChunk BONE_CHUNK = null;
@@ -53,7 +54,8 @@ public class NetherExBlocks
     public static final BlockNetherPortal NETHER_PORTAL = null;
     public static final BlockUrnOfSorrow URN_OF_SORROW = null;
     public static final BlockQuartzOre QUARTZ_ORE = null;
-    public static final BlockGemOre GEM_ORE = null;
+    public static final BlockAmethystOre AMETHYST_ORE = null;
+    public static final BlockRimeOre RIME_ORE = null;
     public static final BlockThornstalk THORNSTALK = null;
     public static final BlockElderMushroom ELDER_MUSHROOM = null;
     public static final BlockElderMushroomCap ELDER_MUSHROOM_CAP = null;
@@ -109,7 +111,8 @@ public class NetherExBlocks
                     new BlockTilledSoulSand(),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
-                    new BlockGem(),
+                    new BlockAmethyst(),
+                    new BlockRime(),
                     new BlockFrostburnIce(),
                     new BlockBoneSliver(),
                     new BlockBoneChunk(),
@@ -118,7 +121,8 @@ public class NetherExBlocks
                     new BlockNetherPortal(),
                     new BlockUrnOfSorrow(),
                     new BlockQuartzOre(),
-                    new BlockGemOre(),
+                    new BlockAmethystOre(),
+                    new BlockRimeOre(),
                     new BlockThornstalk(),
                     new BlockElderMushroom(),
                     new BlockElderMushroomCap(),
@@ -173,14 +177,16 @@ public class NetherExBlocks
                     new ItemBlockLibEx(TILLED_SOUL_SAND),
                     new ItemBlockLibEx(SOUL_GLASS),
                     new ItemBlockLibEx(SOUL_GLASS_PANE),
-                    new ItemBlockGem(),
+                    new ItemBlockLibEx(AMETHYST_BLOCK),
+                    new ItemBlockLibEx(RIME_BLOCK),
                     new ItemBlockLibEx(FROSTBURN_ICE),
                     new ItemBlockLibEx(BONE_SLIVER),
                     new ItemBlockLibEx(BONE_CHUNK),
                     new ItemBlockLibEx(WORN_IRON),
                     new ItemBlockUrnOfSorrow(),
                     new ItemBlockQuartzOre(),
-                    new ItemBlockGemOre(),
+                    new ItemBlockLibEx(AMETHYST_ORE),
+                    new ItemBlockLibEx(RIME_ORE),
                     new ItemBlockElderMushroom(),
                     new ItemBlockElderMushroomCap(),
                     new ItemBlockLibEx(ELDER_MUSHROOM_STEM),

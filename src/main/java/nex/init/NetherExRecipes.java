@@ -43,14 +43,14 @@ public class NetherExRecipes
             addSmelting(new ItemStack(NetherExItems.NETHERBRICK, 1, type.ordinal()), new ItemStack(NETHERRACK, 1, type.ordinal()), 0.5F);
         }
 
-        addSmelting(new ItemStack(SOUL_GLASS, 1, 0), new ItemStack(SOUL_SAND, 1, 0), 0.5F);
-        addSmelting(new ItemStack(QUARTZ, 1, 0), new ItemStack(QUARTZ_ORE, 1, 0), 0.0F);
-        addSmelting(new ItemStack(GEM, 1, 0), new ItemStack(GEM_ORE, 1, 0), 0.0F);
-        addSmelting(new ItemStack(GEM, 1, 1), new ItemStack(GEM_ORE, 1, 1), 0.0F);
-        addSmelting(new ItemStack(GHAST_MEAT_COOKED, 1, 0), new ItemStack(GHAST_MEAT_RAW, 1, 0), 0.5F);
-        addSmelting(new ItemStack(CONGEALED_MAGMA_CREAM, 1, 0), new ItemStack(MAGMA_CREAM, 1, 0), 0.5F);
+        addSmelting(new ItemStack(SOUL_GLASS), new ItemStack(SOUL_SAND), 0.5F);
+        addSmelting(new ItemStack(QUARTZ), new ItemStack(QUARTZ_ORE), 0.0F);
+        addSmelting(new ItemStack(AMETHYST_CRYSTAL), new ItemStack(AMETHYST_ORE), 0.0F);
+        addSmelting(new ItemStack(RIME_CRYSTAL), new ItemStack(RIME_ORE), 0.0F);
+        addSmelting(new ItemStack(GHAST_MEAT_COOKED), new ItemStack(GHAST_MEAT_RAW), 0.5F);
+        addSmelting(new ItemStack(CONGEALED_MAGMA_CREAM), new ItemStack(MAGMA_CREAM), 0.5F);
 
-        addBrewing(AWKWARD, Ingredient.fromStacks(new ItemStack(GEM, 1, 1)), NORMAL_FREEZE);
+        addBrewing(AWKWARD, Ingredient.fromStacks(new ItemStack(RIME_CRYSTAL)), NORMAL_FREEZE);
         addBrewing(AWKWARD, BONE_SPIDER_FANG, NORMAL_FROSTBITE);
         addBrewing(AWKWARD, SPORE, NORMAL_SPORE);
         addBrewing(AWKWARD, GHAST_MEAT_RAW, NORMAL_LOST);

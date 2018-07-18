@@ -19,22 +19,15 @@ package nex.block;
 
 import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
@@ -44,60 +37,38 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class BlockGem extends BlockLibEx
+public class BlockRime extends BlockLibEx
 {
-    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
-
-    public BlockGem()
+    public BlockRime()
     {
-        super(NetherEx.instance, "gem_block", Material.ROCK);
-        setTickRandomly(true);
+        super(NetherEx.instance, "rime_block", Material.ROCK);
+
+        setLightLevel(0.9375F);
         setHardness(5.0F);
         setResistance(10.0F);
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        for(EnumType type : EnumType.values())
-        {
-            list.add(new ItemStack(this, 1, type.ordinal()));
-        }
-    }
-
-    @Override
-    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return getMetaFromState(state) == 1 ? 14 : 0;
-    }
-
-    @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if(getMetaFromState(state) == 1)
+        for(int x = -1; x < 2; x++)
         {
-            for(int x = -1; x < 2; x++)
+            for(int z = -1; z < 2; z++)
             {
-                for(int z = -1; z < 2; z++)
+                for(int y = -1; y < 2; y++)
                 {
-                    for(int y = -1; y < 2; y++)
-                    {
-                        freezeSurroundings(world, pos.add(x, y, z), world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + x, pos.getY() + y, pos.getZ() + z)));
-                    }
+                    freezeSurroundings(world, pos.add(x, y, z), world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + x, pos.getY() + y, pos.getZ() + z)));
                 }
             }
-
-            world.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
         }
+
+        world.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
     }
 
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        if(getMetaFromState(state) == 1)
-        {
-            world.scheduleUpdate(pos, this, MathHelper.getInt(RANDOM, 20, 40));
-        }
+        world.scheduleUpdate(pos, this, MathHelper.getInt(RANDOM, 20, 40));
     }
 
     private void freezeSurroundings(World world, BlockPos pos, List<EntityLivingBase> entities)
@@ -121,52 +92,6 @@ public class BlockGem extends BlockLibEx
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
-        }
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return state.getValue(TYPE).ordinal();
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(TYPE).ordinal();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, TYPE);
-    }
-
-    public enum EnumType implements IStringSerializable
-    {
-        AMETHYST,
-        RIME;
-
-        @Override
-        public String getName()
-        {
-            return toString().toLowerCase();
-        }
-
-        public static EnumType fromMeta(int meta)
-        {
-            if(meta < 0 || meta >= values().length)
-            {
-                meta = 0;
-            }
-
-            return values()[meta];
         }
     }
 }

@@ -15,26 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nex.item;
+package nex.block;
 
-import com.google.common.base.CaseFormat;
-import lex.item.ItemBlockLibEx;
-import net.minecraft.item.ItemStack;
-import nex.block.BlockGem;
-import nex.init.NetherExBlocks;
+import lex.block.BlockLibEx;
+import net.minecraft.block.material.Material;
+import nex.NetherEx;
 
-@SuppressWarnings("ConstantConditions")
-public class ItemBlockGemOre extends ItemBlockLibEx
+public class BlockAmethyst extends BlockLibEx
 {
-    public ItemBlockGemOre()
+    public BlockAmethyst()
     {
-        super(NetherExBlocks.GEM_ORE);
-        setHasSubtypes(true);
-    }
+        super(NetherEx.instance, "amethyst_block", Material.ROCK);
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockGem.EnumType.fromMeta(stack.getItemDamage()).getName());
+        setHardness(5.0F);
+        setResistance(10.0F);
     }
 }
