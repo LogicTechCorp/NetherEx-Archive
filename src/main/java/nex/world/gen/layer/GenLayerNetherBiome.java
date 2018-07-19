@@ -17,14 +17,13 @@
 
 package nex.world.gen.layer;
 
-import lex.config.Config;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
 import nex.world.biome.NetherExBiomeManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenLayerNetherBiome extends GenLayerNetherEx
@@ -53,18 +52,8 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
 
     public Biome getRandomBiome()
     {
-        List<BiomeManager.BiomeEntry> biomeEntryList = new ArrayList<>();
-
-        for(Biome biome : NetherExBiomeManager.getBiomes())
-        {
-            Config config = NetherExBiomeManager.getBiomeConfig(biome);
-
-            if(config != null)
-            {
-                biomeEntryList.add(new BiomeManager.BiomeEntry(biome, config.getInt("weight", 10)));
-            }
-        }
-
-        return WeightedRandom.getRandomItem(biomeEntryList, nextInt(WeightedRandom.getTotalWeight(biomeEntryList))).biome;
+        List<BiomeManager.BiomeEntry> biomeEntryList = NetherExBiomeManager.getBiomes();
+        int biomeWeights = WeightedRandom.getTotalWeight(biomeEntryList);
+        return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntryList, nextInt(biomeWeights)).biome;
     }
 }

@@ -20,13 +20,13 @@ package nex.world.biome;
 import com.google.common.collect.ImmutableList;
 import lex.LibEx;
 import lex.config.Config;
-import lex.util.ConfigHelper;
 import lex.util.FileHelper;
 import lex.world.biome.BiomeWrapper;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.Loader;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
@@ -40,7 +40,7 @@ import java.util.*;
 @SuppressWarnings("ConstantConditions")
 public class NetherExBiomeManager
 {
-    private static final List<Biome> BIOMES = new ArrayList<>();
+    private static final List<BiomeManager.BiomeEntry> BIOMES = new ArrayList<>();
     private static final Map<Biome, BiomeWrapper> BIOME_WRAPPERS = new HashMap<>();
     private static final Map<Biome, Config> BIOME_CONFIGS = new HashMap<>();
 
@@ -96,7 +96,7 @@ public class NetherExBiomeManager
 
                 if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
-                    wrapBiome(new Config(configFile), configFile);
+                    wrapBiome(new Config(configFile, true), configFile);
                 }
                 else if(!configFile.isDirectory())
                 {
@@ -117,21 +117,21 @@ public class NetherExBiomeManager
 
         if(biome != null)
         {
-            BIOMES.add(biome);
+            BIOMES.add(new BiomeManager.BiomeEntry(biome, config.getInt("weight", 10)));
             BIOME_WRAPPERS.put(biome, wrapper);
             BIOME_CONFIGS.put(biome, config);
-            ConfigHelper.saveConfig(config, configFile);
+            config.save(configFile);
         }
     }
 
-    public static void clearBiomes()
+    public static void resetBiomes()
     {
         BIOMES.clear();
         BIOME_WRAPPERS.clear();
         BIOME_CONFIGS.clear();
     }
 
-    public static List<Biome> getBiomes()
+    public static List<BiomeManager.BiomeEntry> getBiomes()
     {
         return ImmutableList.copyOf(BIOMES);
     }

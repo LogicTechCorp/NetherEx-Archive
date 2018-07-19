@@ -17,11 +17,10 @@
 
 package nex.world.gen.layer;
 
-import lex.world.gen.layer.GenLayerEx;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.layer.*;
 
-public abstract class GenLayerNetherEx extends GenLayerEx
+public abstract class GenLayerNetherEx extends GenLayer
 {
     public GenLayerNetherEx(long seed)
     {

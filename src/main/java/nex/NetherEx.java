@@ -94,8 +94,8 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
-        NetherExBiomeManager.clearBiomes();
-        NetherExVillageTradeManager.clearTrades();
+        NetherExBiomeManager.resetBiomes();
+        NetherExVillageTradeManager.resetTrades();
     }
 
     @Override

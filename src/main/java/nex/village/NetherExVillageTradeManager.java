@@ -71,7 +71,7 @@ public class NetherExVillageTradeManager
 
                 if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
-                    createTrade(new Config(configFile));
+                    createTrade(new Config(configFile, false));
                 }
                 else if(!configFile.isDirectory())
                 {
@@ -100,7 +100,7 @@ public class NetherExVillageTradeManager
         }
     }
 
-    public static void clearTrades()
+    public static void resetTrades()
     {
         for(Pigtificate.Career career : Pigtificate.Career.values())
         {
