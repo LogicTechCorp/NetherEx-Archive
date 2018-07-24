@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import nex.init.*;
 import nex.proxy.IProxy;
-import nex.village.NetherExVillageTradeManager;
+import nex.village.PigtificateTradeManager;
 import nex.world.biome.NetherExBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +59,7 @@ public class NetherEx implements IModData
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         NetherExBiomeManager.preInit();
-        NetherExVillageTradeManager.preInit();
+        PigtificateTradeManager.preInit();
         NetherExEntities.preInit();
         proxy.preInit();
     }
@@ -87,15 +87,15 @@ public class NetherEx implements IModData
         NetherExBiomeManager.setupDefaultBiomes();
         NetherExBiomeManager.setupCompatibleBiomes(event.getServer());
         NetherExBiomeManager.setupCustomBiomes();
-        NetherExVillageTradeManager.setupDefaultTrades();
-        NetherExVillageTradeManager.setupCustomTrades();
+        PigtificateTradeManager.setupDefaultTrades();
+        PigtificateTradeManager.setupCustomTrades();
     }
 
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
         NetherExBiomeManager.resetBiomes();
-        NetherExVillageTradeManager.resetTrades();
+        PigtificateTradeManager.resetTrades();
     }
 
     @Override

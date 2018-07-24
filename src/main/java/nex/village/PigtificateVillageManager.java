@@ -19,26 +19,26 @@ package nex.village;
 
 import net.minecraft.world.World;
 
-public class NetherExVillageManager
+public class PigtificateVillageManager
 {
-    public static NetherExVillageCollection getNetherVillages(World world, boolean create)
+    public static PigtificateVillageCollection getNetherVillages(World world, boolean create)
     {
-        String worldFile = NetherExVillageCollection.fileNameForProvider(world.provider);
-        NetherExVillageCollection netherExVillageCollection = (NetherExVillageCollection) world.getPerWorldStorage().getOrLoadData(NetherExVillageCollection.class, worldFile);
+        String worldFile = PigtificateVillageCollection.fileNameForProvider(world.provider);
+        PigtificateVillageCollection pigtificateVillageCollection = (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, worldFile);
 
         if(create)
         {
-            if(netherExVillageCollection == null)
+            if(pigtificateVillageCollection == null)
             {
-                netherExVillageCollection = new NetherExVillageCollection(world);
-                world.getPerWorldStorage().setData(worldFile, netherExVillageCollection);
+                pigtificateVillageCollection = new PigtificateVillageCollection(world);
+                world.getPerWorldStorage().setData(worldFile, pigtificateVillageCollection);
             }
             else
             {
-                netherExVillageCollection.setWorldsForAll(world);
+                pigtificateVillageCollection.setWorldsForAll(world);
             }
         }
 
-        return netherExVillageCollection;
+        return pigtificateVillageCollection;
     }
 }

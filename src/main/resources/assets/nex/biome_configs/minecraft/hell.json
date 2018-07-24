@@ -199,7 +199,7 @@
             "genStage": "populate",
             "structure": "nex:village/tiny_hell_pigtificate_village",
             "type": "grounded",
-            "genAttempts": 8,
+            "genAttempts": 16,
             "genProbability": 1.0,
             "randomizeGenAttempts": false,
             "minHeight": 32,

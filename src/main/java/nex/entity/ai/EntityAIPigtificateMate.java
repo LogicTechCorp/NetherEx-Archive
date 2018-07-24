@@ -25,8 +25,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import nex.entity.passive.EntityPigtificate;
-import nex.village.NetherExVillage;
-import nex.village.NetherExVillageManager;
+import nex.village.PigtificateVillage;
+import nex.village.PigtificateVillageManager;
 
 public class EntityAIPigtificateMate extends EntityAIBase
 {
@@ -34,7 +34,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
     private EntityPigtificate mate;
     private final World world;
     private int matingTimeout;
-    NetherExVillage village;
+    PigtificateVillage village;
 
     public EntityAIPigtificateMate(EntityPigtificate pigtificateIn)
     {
@@ -56,7 +56,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            village = NetherExVillageManager.getNetherVillages(world, true).getNearestVillage(new BlockPos(pigtificate), 0);
+            village = PigtificateVillageManager.getNetherVillages(world, true).getNearestVillage(new BlockPos(pigtificate), 0);
 
             if(village == null)
             {

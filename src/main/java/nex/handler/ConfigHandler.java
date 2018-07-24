@@ -188,7 +188,7 @@ public class ConfigHandler
             public String[] blacklist = new String[]{
                     "minecraft:wither_skeleton",
                     "minecraft:zombie_pigman",
-                    NetherEx.MOD_ID + ":monster_spinout"
+                    NetherEx.MOD_ID + ":spinout"
             };
         }
 
@@ -227,11 +227,11 @@ public class ConfigHandler
                     "minecraft:ghast",
                     "minecraft:wither_skeleton",
                     "minecraft:polar_bear",
-                    NetherEx.MOD_ID + ":monster_wight",
-                    NetherEx.MOD_ID + ":monster_ember",
-                    NetherEx.MOD_ID + ":monster_spinout",
-                    NetherEx.MOD_ID + ":monster_bone_spider",
-                    NetherEx.MOD_ID + ":monster_brute"
+                    NetherEx.MOD_ID + ":wight",
+                    NetherEx.MOD_ID + ":ember",
+                    NetherEx.MOD_ID + ":spinout",
+                    NetherEx.MOD_ID + ":bone_spider",
+                    NetherEx.MOD_ID + ":brute"
             };
         }
 
@@ -245,9 +245,9 @@ public class ConfigHandler
             @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.blacklist")
             @Config.Comment("Mobs that shouldn't spawn Spores")
             public String[] blacklist = new String[]{
-                    NetherEx.MOD_ID + ":monster_spore_creeper",
-                    NetherEx.MOD_ID + ":monster_spore",
-                    NetherEx.MOD_ID + ":neutral_mogus"
+                    NetherEx.MOD_ID + ":spore_creeper",
+                    NetherEx.MOD_ID + ":spore",
+                    NetherEx.MOD_ID + ":mogus"
             };
         }
 

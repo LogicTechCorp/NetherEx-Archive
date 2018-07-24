@@ -115,7 +115,7 @@ public class NetherExBiomeManager
         BiomeWrapper wrapper = new BiomeWrapper(config);
         Biome biome = wrapper.getBiome();
 
-        if(biome != null)
+        if(biome != null && wrapper.isEnabled())
         {
             BIOMES.add(new BiomeManager.BiomeEntry(biome, config.getInt("weight", 10)));
             BIOME_WRAPPERS.put(biome, wrapper);
