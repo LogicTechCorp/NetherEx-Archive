@@ -18,6 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -131,13 +132,13 @@ public class BlockTilledSoulSand extends BlockLibEx
 
     private boolean hasCrops(World world, BlockPos pos)
     {
-        net.minecraft.block.Block block = world.getBlockState(pos.up()).getBlock();
+        Block block = world.getBlockState(pos.up()).getBlock();
         return block instanceof IPlantable && canSustainPlant(world.getBlockState(pos), world, pos, EnumFacing.UP, (IPlantable) block);
     }
 
     private boolean hasFluid(World world, BlockPos pos)
     {
-        net.minecraft.block.Block block = ConfigHandler.blockConfig.soulSand.doesRequireIchor ? NetherExBlocks.ICHOR : Blocks.LAVA;
+        Block block = ConfigHandler.blockConfig.soulSand.doesRequireIchorInsteadOfLava ? NetherExBlocks.ICHOR : Blocks.LAVA;
 
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {

@@ -53,8 +53,8 @@ config.nex:block.soulSand.doesNetherwartUseNewGrowthSystem=Does Netherwart Use N
 config.nex:block.soulSand.doesNetherwartUseNewGrowthSystem.tooltip=Does Netherwart require Tilled Souls Sand and a fluid source
 config.nex:block.soulSand.allowAllHoesToTill=Allow All Hoes To Till
 config.nex:block.soulSand.allowAllHoesToTill.tooltip=Are all hoes allowed to till Soul Sand
-config.nex:block.soulSand.doesRequireIchor=Does Require Ichor
-config.nex:block.soulSand.doesRequireIchor.tooltip=Does Tilled Soul Sand require Ichor as a fluid source
+config.nex:block.soulSand.doesRequireIchorInsteadOfLava=Does Require Ichor Instead Of Lava
+config.nex:block.soulSand.doesRequireIchorInsteadOfLava.tooltip=Does Tilled Soul Sand require Ichor as a fluid source instead of Lava
 
 config.nex:block.magma=Magma Settings
 config.nex:block.magma.tooltip=Settings that only affect Magma
@@ -166,6 +166,8 @@ config.nex:biome.torridWasteland.tooltip=Settings that only affect the Torrid Wa
 
 config.nex:biome.arcticAbyss=Arctic Abyss Biome Settings
 config.nex:biome.arcticAbyss.tooltip=Settings that only affect the Arctic Abyss biome
+config.nex:biome.arcticAbyss.canPlayersFreeze=Can Players Freeze
+config.nex:biome.arcticAbyss.canPlayersFreeze.tooltip=Whether or not players can freeze in the Arctic Abyss biome
 config.nex:biome.arcticAbyss.chanceOfFreezing=Chance of Freezing
 config.nex:biome.arcticAbyss.chanceOfFreezing.tooltip=How rare it is for a mob to freeze in the Arctic Abyss biome
 

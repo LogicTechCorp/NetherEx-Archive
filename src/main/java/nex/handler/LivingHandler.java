@@ -83,7 +83,7 @@ public class LivingHandler
         EntityLivingBase entity = event.getEntityLiving();
         Random rand = world.rand;
 
-        boolean canEntityFreeze = (entity instanceof EntityPlayer && !((EntityPlayer) entity).isCreative()) || EntityHelper.canFreeze(entity);
+        boolean canEntityFreeze = (entity instanceof EntityPlayer && !((EntityPlayer) entity).isCreative() && ConfigHandler.biomeConfig.arcticAbyss.canPlayersFreeze) || EntityHelper.canFreeze(entity);
 
         if(canEntityFreeze)
         {

@@ -156,8 +156,8 @@ public class ConfigHandler
             @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.allowAllHoesToTill")
             public boolean allowAllHoesToTill = false;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.doesRequireIchor")
-            public boolean doesRequireIchor = true;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.doesRequireIchorInsteadOfLava")
+            public boolean doesRequireIchorInsteadOfLava = true;
         }
 
         public class Magma
@@ -188,7 +188,7 @@ public class ConfigHandler
             public String[] blacklist = new String[]{
                     "minecraft:wither_skeleton",
                     "minecraft:zombie_pigman",
-                    "" + NetherEx.MOD_ID + ":monster_spinout"
+                    NetherEx.MOD_ID + ":monster_spinout"
             };
         }
 
@@ -443,11 +443,14 @@ public class ConfigHandler
 
         public class ArcticAbyss
         {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss.canPlayersFreeze")
+            @Config.Comment({"Whether or not players can freeze in the Arctic Abyss"})
+            public boolean canPlayersFreeze = false;
+
             @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss.chanceOfFreezing")
             @Config.Comment({"The higher the number, the rarer it is for mobs to Freeze in the Arctic Abyss biome", "The lower the number, the more common it is for mobs to Freeze in the Arctic Abyss biome"})
             @Config.RangeInt(min = 1, max = 2048)
             public int chanceOfFreezing = 512;
-
         }
     }
 
