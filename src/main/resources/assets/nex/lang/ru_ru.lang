@@ -1,0 +1,112 @@
+# Lang Настройки Файла
+language.name=Russian
+language.region=Russian Federation
+language.code=ru_ru
+
+#Config
+config.nex=NetherEx Конфиг
+config.nex:client=Клиентские Настройки
+config.nex:client.tooltip=Настройки, которые влияют только на Клиент
+config.nex:client.visual=Визуальные Настройки
+config.nex:client.visual.tooltip=Настройки, которые влияют только на Визуальные Клиенты
+config.nex:client.visual.disableNetherFog=Отключить Туман в Нижнем Мире
+config.nex:client.visual.disableNetherFog.tooltip=Не отображать туман в Нижнем Мире
+
+config.nex:compatibility=Настройки Совместимости
+config.nex:compatibility.tooltip=Настройки, которые влияют только на совместимость мода
+
+config.nex:compatibility.biomesoplenty=Biomes O' Plenty Настройки Совместимости
+config.nex:compatibility.biomesoplenty.tooltip=Настройки которые только влияют на совместимость Biomes O' Plenty
+config.nex:compatibility.biomesoplenty.enableCompat=Включить Совместимость Biome O' Plenty
+config.nex:compatibility.biomesoplenty.enableCompat.tooltip=Включить Совместимость с Biome O' Plenty
+
+config.nex:dimension=Настройки Измерения
+config.nex:dimension.tooltip=Настройки, которые влияют только на Измерения
+
+config.nex:dimension.nether=Настройки Измерения Нижнего Мира
+config.nex:dimension.nether.tooltip=Настройки, которые влияют только на Измерения Нижнего Мира
+config.nex:dimension.nether.generateSoulSand=Генерировать Песок Душ
+config.nex:dimension.nether.generateSoulSand.tooltip=Сделать генерацию Площадки Песка Душ в Нижнем Мире
+config.nex:dimension.nether.generateGravel=Генерировать Гравий
+config.nex:dimension.nether.generateGravel.tooltip=Сделать генерацию Площадки Гравия в Нижнем Мире
+config.nex:dimension.nether.isLavaInfinite=Бесконечная Лава
+config.nex:dimension.nether.isLavaInfinite.tooltip=Бесконечная Лава в Нижнем Мире
+
+config.nex:block=Настройки Блоков
+config.nex:block.tooltip=Настройки, которые влияют только на Блоки
+
+config.nex:block.netherPortal=Настройки Портала в Нижний Мир
+config.nex:block.netherPortal.tooltip=Настройки, которые влияют только на блоки портала в Нижний Мир
+config.nex:block.netherPortal.allowPigmanSpawning=Позволять Свино-Человек возрождаться
+config.nex:block.netherPortal.allowPigmanSpawning.tooltip=Сделать случайное возрождение Свино-Зомби от блоков портала Нижнего Мира
+config.nex:block.netherPortal.pigmanSpawnRarity=Редко возрождать Свино-Человек
+config.nex:block.netherPortal.pigmanSpawnRarity.tooltip=Насколько редко возрождается Свино-Человек от блоков портала Нижнего Мира
+
+config.nex:block.netherrack=Настройки Адского Камня
+config.nex:block.netherrack.tooltip=Настройки, которые влияют только на Адский Камень
+config.nex:block.netherrack.allowAllShovelsToFlatten=Позволить всем Лопатам выравнивать
+config.nex:block.netherrack.allowAllShovelsToFlatten.tooltip=Всем лопатам разрешается выравнивать Адский Камень
+
+config.nex:block.soulSand=Настройки Песка Душ
+config.nex:block.soulSand.tooltip=Настройки, которые влияют только на Песок Душ
+config.nex:block.soulSand.doesNetherwartUseNewGrowthSystem=Сделать Адским Бородавкам использование новой системы роста
+config.nex:block.soulSand.doesNetherwartUseNewGrowthSystem.tooltip=Сделать требование Адским Бородавкам вспахивать Песок Душ и источник жидкости
+config.nex:block.soulSand.allowAllHoesToTill=Позволить всем Мотыгам вспахивать
+config.nex:block.soulSand.allowAllHoesToTill.tooltip=Всем мотыгам разрешается вспахивать Песок Душ
+config.nex:block.soulSand.doesRequireIchorInsteadOfLava=Требовать Ихор вместо Лавы
+config.nex:block.soulSand.doesRequireIchorInsteadOfLava.tooltip=Делать вспахивание Песка Душ, и требовать Ихор в качестве источника жидкости вместо Лавы
+
+config.nex:block.magma=Настройки Магмы
+config.nex:block.magma.tooltip=Настройки, которые влияют только на Магму
+config.nex:block.magma.turnIntoLava=Превратить в Лаву
+config.nex:block.magma.turnIntoLava.tooltip=Сделать превращение Магмы в Лаву, когда сломается
+
+config.nex:block.rime=Настройки блока Иней
+config.nex:block.rime.tooltip=Настройки, которые влияют только на Иней
+config.nex:block.rime.canFreezeWater=Может заморозить Воду
+config.nex:block.rime.canFreezeWater.tooltip=Блок Инея, может заморозить Воду
+config.nex:block.rime.canFreezeLava=Может заморозить Лаву
+config.nex:block.rime.canFreezeLava.tooltip=Блок Инея, может заморозить Лаву
+config.nex:block.rime.canFreezeMobs=Может заморозить Монстров
+config.nex:block.rime.canFreezeMobs.tooltip=Блок Инея, может заморозить Монстров
+
+config.nex:block.thornstalk=Настройки Ветки Колючки
+config.nex:block.thornstalk.tooltip=Настройки, которые влияют только на Ветки Колючки
+config.nex:block.thornstalk.canDestroyItems=Может уничтожить Предметы
+config.nex:block.thornstalk.canDestroyItems.tooltip=Ветка Колючки может уничтожить Предметы
+config.nex:block.thornstalk.blacklist=Черный список
+config.nex:block.thornstalk.blacklist.tooltip=Монстры не причиняют себе вред от Ветки Колючки
+
+config.nex:block.hyphae=Настройки Гифы
+config.nex:block.hyphae.tooltip=Настройки, которые влияют только на Гифы
+config.nex:block.hyphae.doesSpread=Сделать распространение Гифы
+config.nex:block.hyphae.doesSpread.tooltip=Сделать распространение Гифы на активный Адский Камень
+
+config.nex:potionEffect=Настройки Эффекта Зелья
+config.nex:potionEffect.tooltip=Настройки, которые влияют только на Эффекты Зелий
+config.nex:potionEffect.freeze=Настройки Эффекта Заморозки
+config.nex:potionEffect.freeze.tooltip=Настройки, которые влияют только на замораживающий эффект
+config.nex:potionEffect.freeze.chanceOfThawing=Шанс Таяния
+config.nex:potionEffect.freeze.chanceOfThawing.tooltip=Насколько редко монстр оттаивает от замораживающего эффекта
+config.nex:potionEffect.freeze.blacklist=Чёрный список
+config.nex:potionEffect.freeze.blacklist.tooltip=Монстры, которые не должны заморозиться
+
+config.nex:potionEffect.spore=Настройки Спорового Эффекта
+config.nex:potionEffect.spore.tooltip=Настройки, которые влияют только на Эффект Споров
+config.nex:potionEffect.spore.chanceOfSporeSpawning=Шанс появления Споров
+config.nex:potionEffect.spore.chanceOfSporeSpawning.tooltip=Насколько редко именно Спора появляется из существа от эффекта Споров
+config.nex:potionEffect.spore.blacklist=Чёрный список
+config.nex:potionEffect.spore.blacklist.tooltip=Монстры, которые не должны возрождать Споры
+
+config.nex:potionEffect.lost=Настройки Утерянного Эффекта
+config.nex:potionEffect.lost.tooltip=Настройки, которые влияют только на Утерянный Эффект
+config.nex:potionEffect.lost.chanceOfGhastlingSpawning=Шанс Появления Гаста
+config.nex:potionEffect.lost.chanceOfGhastlingSpawning.tooltip=Насколько редко именно Гаст появляется из существа от Утерянного Эффекта
+
+config.nex:entity=Настройки Существ
+config.nex:entity.tooltip=Настройки, которые влияют только на Существа
+
+config.nex:entity.ember=Настройки Уголька
+config.nex:entity.ember.tooltip=Настройки, которые влияют только на Уголёк
+config.nex:entity.ember.chanceOfSettingPlayerOnFire=Настроить шанс горение игрока
+config.nex:entity.ember.chanceOfSettingPlayerOnFire.tooltip=Насколько редко именно Уголёк зажгёт игрока в огне
