@@ -112,7 +112,7 @@ public class NetherExBiomeManager
 
     private static void wrapBiome(Config config, File configFile)
     {
-        BiomeWrapper wrapper = new BiomeWrapper(config);
+        BiomeWrapper wrapper = new BiomeWrapperNetherEx(config);
         Biome biome = wrapper.getBiome();
 
         if(biome != null && wrapper.isEnabled())

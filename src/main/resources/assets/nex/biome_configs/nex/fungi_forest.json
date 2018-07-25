@@ -78,7 +78,7 @@
         },
         {
             "feature": "lex:ore",
-            "genStage": "populate",
+            "genStage": "ore",
             "blockToSpawn": {
                 "block": "nex:quartz_ore",
                 "properties": {
@@ -101,7 +101,7 @@
         },
         {
             "feature": "lex:big_mushroom",
-            "genStage": "populate",
+            "genStage": "decorate",
             "mushroomCap": {
                 "block": "nex:elder_mushroom_cap",
                 "properties": {
@@ -124,7 +124,7 @@
         },
         {
             "feature": "lex:big_mushroom",
-            "genStage": "populate",
+            "genStage": "decorate",
             "mushroomCap": {
                 "block": "nex:elder_mushroom_cap",
                 "properties": {
@@ -147,7 +147,7 @@
         },
         {
             "feature": "nex:enoki",
-            "genStage": "populate",
+            "genStage": "decorate",
             "genAttempts": 16,
             "genProbability": 1.0,
             "minHeight": 64,

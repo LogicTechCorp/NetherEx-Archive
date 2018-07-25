@@ -23,8 +23,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -35,6 +35,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkGeneratorHell;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.MinecraftForge;
@@ -56,22 +57,24 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
-    private NoiseGeneratorOctaves noiseGenSoulSandGravel;
-    private NoiseGeneratorOctaves noiseGenNetherrack;
-    private NoiseGeneratorOctaves noiseGenScale;
-    private NoiseGeneratorOctaves noiseGenDepth;
+    private NoiseGeneratorOctaves soulSandGravelNoiseGen;
+    private NoiseGeneratorOctaves netherrackNoiseGen;
+    private NoiseGeneratorPerlin terrainNoiseGen;
+    private NoiseGeneratorOctaves scaleNoiseGen;
+    private NoiseGeneratorOctaves depthNoiseGen;
 
     private Biome[] biomesForGen;
 
     private double[] buffer;
-    private double[] depthBuffer = new double[256];
+    private double[] netherrackNoise = new double[256];
     private double[] soulSandNoise = new double[256];
     private double[] gravelNoise = new double[256];
     private double[] noiseData1;
     private double[] noiseData2;
     private double[] noiseData3;
-    private double[] noiseData4;
-    private double[] noiseData5;
+    private double[] terrainNoise = new double[256];
+    private double[] scaleNoise;
+    private double[] depthNoise;
 
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
@@ -84,21 +87,22 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         noiseGen1 = new NoiseGeneratorOctaves(rand, 16);
         noiseGen2 = new NoiseGeneratorOctaves(rand, 16);
         noiseGen3 = new NoiseGeneratorOctaves(rand, 8);
-        noiseGenSoulSandGravel = new NoiseGeneratorOctaves(rand, 4);
-        noiseGenNetherrack = new NoiseGeneratorOctaves(rand, 4);
-        noiseGenScale = new NoiseGeneratorOctaves(rand, 10);
-        noiseGenDepth = new NoiseGeneratorOctaves(rand, 16);
+        soulSandGravelNoiseGen = new NoiseGeneratorOctaves(rand, 4);
+        netherrackNoiseGen = new NoiseGeneratorOctaves(rand, 4);
+        scaleNoiseGen = new NoiseGeneratorOctaves(rand, 10);
+        depthNoiseGen = new NoiseGeneratorOctaves(rand, 16);
+        terrainNoiseGen = new NoiseGeneratorPerlin(rand, 4);
 
-        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, noiseGenSoulSandGravel, noiseGenNetherrack, noiseGenScale, noiseGenDepth);
+        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, soulSandGravelNoiseGen, netherrackNoiseGen, scaleNoiseGen, depthNoiseGen);
         ctx = TerrainGen.getModdedNoiseGenerators(world, rand, ctx);
 
         noiseGen1 = ctx.getLPerlin1();
         noiseGen2 = ctx.getLPerlin2();
         noiseGen3 = ctx.getPerlin();
-        noiseGenSoulSandGravel = ctx.getPerlin2();
-        noiseGenNetherrack = ctx.getPerlin3();
-        noiseGenScale = ctx.getScale();
-        noiseGenDepth = ctx.getDepth();
+        soulSandGravelNoiseGen = ctx.getPerlin2();
+        netherrackNoiseGen = ctx.getPerlin3();
+        scaleNoiseGen = ctx.getScale();
+        depthNoiseGen = ctx.getDepth();
 
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
         netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
@@ -182,15 +186,15 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             return;
         }
 
-        soulSandNoise = noiseGenSoulSandGravel.generateNoiseOctaves(soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
-        gravelNoise = noiseGenSoulSandGravel.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
-        depthBuffer = noiseGenNetherrack.generateNoiseOctaves(depthBuffer, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
+        soulSandNoise = soulSandGravelNoiseGen.generateNoiseOctaves(soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
+        gravelNoise = soulSandGravelNoiseGen.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
+        netherrackNoise = netherrackNoiseGen.generateNoiseOctaves(netherrackNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 
         for(int x = 0; x < 16; x++)
         {
             for(int z = 0; z < 16; z++)
             {
-                int l = (int) (depthBuffer[x + z * 16] / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+                int l = (int) (netherrackNoise[x + z * 16] / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
                 int i1 = -1;
                 boolean genSoulSand = soulSandNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
                 boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
@@ -284,8 +288,8 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             return event.getNoisefield();
         }
 
-        noiseData4 = noiseGenScale.generateNoiseOctaves(noiseData4, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
-        noiseData5 = noiseGenDepth.generateNoiseOctaves(noiseData5, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
+        scaleNoise = scaleNoiseGen.generateNoiseOctaves(scaleNoise, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
+        depthNoise = depthNoiseGen.generateNoiseOctaves(depthNoise, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
         noiseData1 = noiseGen3.generateNoiseOctaves(noiseData1, posX, posY, posZ, xSize, ySize, zSize, 8.555150000000001D, 34.2206D, 8.555150000000001D);
         noiseData2 = noiseGen1.generateNoiseOctaves(noiseData2, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
         noiseData3 = noiseGen2.generateNoiseOctaves(noiseData3, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
@@ -485,23 +489,20 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             return;
         }
 
+        terrainNoise = terrainNoiseGen.getRegion(terrainNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
+
         for(int x = 0; x < 16; ++x)
         {
             for(int z = 0; z < 16; ++z)
             {
                 BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biomes[x + z * 16]);
+                Biome biome = wrapper.getBiome();
+                ResourceLocation biomeName = biome.getRegistryName();
 
-                if(wrapper != null)
+                if(!biomeName.getResourceDomain().equalsIgnoreCase("biomesoplenty"))
                 {
-                    Biome biome = wrapper.getBiome();
-
-                    if(biome == null)
-                    {
-                        biome = Biomes.HELL;
-                    }
-
                     IBlockState surfaceBlock = wrapper.getBlock("topBlock", biome.topBlock);
-                    IBlockState subsurfaceBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);
+                    IBlockState fillerBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);
                     IBlockState wallBlock = wrapper.getBlock("wallBlock", biome.fillerBlock);
                     IBlockState ceilingBottomBlock = wrapper.getBlock("ceilingBottomBlock", biome.fillerBlock);
                     IBlockState ceilingFillerBlock = wrapper.getBlock("ceilingFillerBlock", biome.fillerBlock);
@@ -533,7 +534,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
                                     if(state.getBlock() == Blocks.NETHERRACK)
                                     {
-                                        primer.setBlockState(localX, localY - floorOffset, localZ, subsurfaceBlock);
+                                        primer.setBlockState(localX, localY - floorOffset, localZ, fillerBlock);
                                     }
                                     else
                                     {
@@ -575,6 +576,10 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
                         localY -= blocksToSkip;
                     }
+                }
+                else
+                {
+                    biome.genTerrainBlocks(world, rand, primer, chunkX * 16 + x, chunkZ * 16 + z, terrainNoise[x + z * 16]);
                 }
             }
         }

@@ -98,7 +98,7 @@
         },
         {
             "feature": "lex:ore",
-            "genStage": "populate",
+            "genStage": "ore",
             "blockToSpawn": {
                 "block": "nex:quartz_ore",
                 "properties": {
@@ -141,7 +141,7 @@
         },
         {
             "feature": "nex:thornstalk",
-            "genStage": "populate",
+            "genStage": "decorate",
             "genAttempts": 16,
             "genProbability": 1.0,
             "minHeight": 32,

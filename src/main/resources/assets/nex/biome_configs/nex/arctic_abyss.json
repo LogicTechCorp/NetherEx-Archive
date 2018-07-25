@@ -92,7 +92,7 @@
         },
         {
             "feature": "lex:ore",
-            "genStage": "populate",
+            "genStage": "ore",
             "blockToSpawn": {
                 "block": "nex:quartz_ore",
                 "properties": {
@@ -115,7 +115,7 @@
         },
         {
             "feature": "lex:ore",
-            "genStage": "populate",
+            "genStage": "ore",
             "blockToSpawn": {
                 "block": "nex:rime_ore"
             },

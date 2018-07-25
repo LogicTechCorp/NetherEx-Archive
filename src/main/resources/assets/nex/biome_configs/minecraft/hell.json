@@ -94,7 +94,7 @@
         },
         {
             "feature": "lex:scatter",
-            "genStage": "populate",
+            "genStage": "decorate",
             "blockToSpawn": {
                 "block": "minecraft:red_mushroom"
             },
@@ -111,7 +111,7 @@
         },
         {
             "feature": "lex:scatter",
-            "genStage": "populate",
+            "genStage": "decorate",
             "blockToSpawn": {
                 "block": "minecraft:brown_mushroom"
             },
@@ -128,7 +128,7 @@
         },
         {
             "feature": "lex:ore",
-            "genStage": "populate",
+            "genStage": "ore",
             "blockToSpawn": {
                 "block": "minecraft:quartz_ore"
             },
@@ -145,7 +145,7 @@
         },
         {
             "feature": "lex:ore",
-            "genStage": "populate",
+            "genStage": "ore",
             "blockToSpawn": {
                 "block": "nex:amethyst_ore"
             },
@@ -199,7 +199,7 @@
             "genStage": "populate",
             "structure": "nex:village/tiny_hell_pigtificate_village",
             "type": "grounded",
-            "genAttempts": 16,
+            "genAttempts": 1,
             "genProbability": 1.0,
             "randomizeGenAttempts": false,
             "minHeight": 32,
@@ -210,7 +210,7 @@
                 "block": "minecraft:structure_void",
                 "properties": { }
             },
-            "clearancePercentage": 0.875,
+            "clearancePercentage": 0.75,
             "generate": true
         }
     ]
