@@ -17,6 +17,7 @@
 
 package nex.handler;
 
+import lex.util.ArmorHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,7 +27,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
 import nex.init.NetherExMaterials;
-import nex.util.ArmorHelper;
 
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)

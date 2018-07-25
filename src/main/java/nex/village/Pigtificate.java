@@ -21,12 +21,12 @@ import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lex.util.WeightedHelper;
 import lex.village.Trade;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExTextures;
-import nex.util.WeightedHelper;
 
 import java.util.Collections;
 import java.util.List;

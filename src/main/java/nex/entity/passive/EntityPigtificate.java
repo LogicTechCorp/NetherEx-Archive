@@ -50,9 +50,9 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
+import nex.village.Pigtificate;
 import nex.village.PigtificateVillage;
 import nex.village.PigtificateVillageManager;
-import nex.village.Pigtificate;
 
 import java.util.Collections;
 import java.util.List;

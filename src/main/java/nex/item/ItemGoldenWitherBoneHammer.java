@@ -17,21 +17,19 @@
 
 package nex.item;
 
-import lex.item.ItemPickaxeLibEx;
+import lex.item.ItemHammerLibEx;
 import lex.util.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import nex.NetherEx;
 import nex.init.NetherExMaterials;
-import nex.util.BlockHelper;
 
-public class ItemGoldenWitherBoneHammer extends ItemPickaxeLibEx
+public class ItemGoldenWitherBoneHammer extends ItemHammerLibEx
 {
     public ItemGoldenWitherBoneHammer()
     {
@@ -86,11 +84,5 @@ public class ItemGoldenWitherBoneHammer extends ItemPickaxeLibEx
         }
 
         super.setDamage(stack, damage);
-    }
-
-    @Override
-    public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player)
-    {
-        return BlockHelper.mine3x3(player.getEntityWorld(), stack, pos, player);
     }
 }

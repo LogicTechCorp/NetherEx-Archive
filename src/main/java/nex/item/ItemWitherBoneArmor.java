@@ -19,9 +19,7 @@ package nex.item;
 
 import lex.item.ItemArmorLibEx;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
 import nex.NetherEx;
-import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
 
 @SuppressWarnings("ConstantConditions")
@@ -30,11 +28,5 @@ public class ItemWitherBoneArmor extends ItemArmorLibEx
     public ItemWitherBoneArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
         super(NetherEx.instance, "wither_bone_" + name, NetherExMaterials.WITHER_BONE, renderIndex, equipmentSlot);
-    }
-
-    @Override
-    public boolean getIsRepairable(ItemStack armor, ItemStack repair)
-    {
-        return repair.getItem() == NetherExItems.WITHER_BONE;
     }
 }

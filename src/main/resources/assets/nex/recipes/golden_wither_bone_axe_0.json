@@ -10,7 +10,8 @@
             "item": "minecraft:gold_ingot"
         },
         "X": {
-            "item": "nex:wither_bone"
+            "type": "forge:ore_dict",
+            "ore": "boneWithered"
         }
     },
     "result": {

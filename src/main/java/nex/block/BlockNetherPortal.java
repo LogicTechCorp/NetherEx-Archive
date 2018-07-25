@@ -19,6 +19,7 @@ package nex.block;
 
 import com.google.common.collect.Queues;
 import lex.block.BlockLibEx;
+import lex.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -45,7 +46,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
-import nex.util.BlockHelper;
 import nex.world.TeleporterNetherEx;
 
 import java.util.Queue;

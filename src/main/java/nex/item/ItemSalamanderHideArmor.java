@@ -54,7 +54,7 @@ public class ItemSalamanderHideArmor extends ItemArmorLibEx
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant") ? String.format(NetherEx.MOD_ID + ":textures/models/armor/hide_salamander_variant_layer_%d.png", this == NetherExItems.SALAMANDER_HIDE_LEGGINGS ? 2 : 1) : super.getArmorTexture(stack, entity, slot, type);
+        return stack.getTagCompound() != null && stack.getTagCompound().hasKey("Variant") ? String.format(NetherEx.MOD_ID + ":textures/models/armor/salamander_hide_variant_armor_layer_%d.png", this == NetherExItems.SALAMANDER_HIDE_LEGGINGS ? 2 : 1) : super.getArmorTexture(stack, entity, slot, type);
     }
 
     @Override

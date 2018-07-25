@@ -18,6 +18,7 @@
 package nex.item;
 
 import lex.item.ItemLibEx;
+import lex.util.BlockHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -29,7 +30,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nex.NetherEx;
 import nex.init.NetherExBlocks;
-import nex.util.BlockHelper;
 
 public class ItemRimeAndSteel extends ItemLibEx
 {

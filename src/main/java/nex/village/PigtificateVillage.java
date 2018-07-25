@@ -62,6 +62,11 @@ public class PigtificateVillage
         world = worldIn;
     }
 
+    public World getWorld()
+    {
+        return world;
+    }
+
     public void setWorld(World worldIn)
     {
         world = worldIn;

@@ -7,7 +7,8 @@
     ],
     "key": {
         "#": {
-            "item": "nex:wither_bone"
+            "item": "nex:salamander_hide",
+            "data": 0
         }
     },
     "result": {

@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import nex.NetherEx;
+import nex.village.PigtificateVillage;
 import nex.village.PigtificateVillageCollection;
 import nex.village.PigtificateVillageManager;
 
@@ -32,11 +33,19 @@ public class VillageHandler
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            PigtificateVillageCollection villages = PigtificateVillageManager.getNetherVillages(event.world, false);
+            PigtificateVillageCollection villageCollection = PigtificateVillageManager.getNetherVillages(event.world, false);
 
-            if(villages != null)
+            if(villageCollection != null)
             {
-                villages.tick();
+                for(PigtificateVillage village : villageCollection.getVillageList())
+                {
+                    if(village.getWorld() == null)
+                    {
+                        village.setWorld(event.world);
+                    }
+                }
+
+                villageCollection.tick();
             }
         }
     }

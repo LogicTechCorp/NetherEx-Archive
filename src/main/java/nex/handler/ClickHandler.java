@@ -17,6 +17,7 @@
 
 package nex.handler;
 
+import lex.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.IGrowable;
@@ -51,7 +52,6 @@ import nex.block.BlockNetherrackPath;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExEffects;
 import nex.init.NetherExItems;
-import nex.util.BlockHelper;
 
 import java.util.Random;
 

@@ -17,6 +17,8 @@
 
 package nex.handler;
 
+import lex.util.ArmorHelper;
+import lex.util.EntityHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,6 +38,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.fml.common.Mod;
@@ -49,8 +52,6 @@ import nex.init.NetherExBiomes;
 import nex.init.NetherExEffects;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
-import nex.util.ArmorHelper;
-import nex.util.EntityHelper;
 
 import java.util.ListIterator;
 import java.util.Random;
@@ -68,7 +69,7 @@ public class LivingHandler
 
         if(world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
         {
-            if(EntityHelper.canFreeze(entity))
+            if(canFreeze(entity))
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
@@ -83,11 +84,11 @@ public class LivingHandler
         EntityLivingBase entity = event.getEntityLiving();
         Random rand = world.rand;
 
-        boolean canEntityFreeze = (entity instanceof EntityPlayer && !((EntityPlayer) entity).isCreative() && ConfigHandler.biomeConfig.arcticAbyss.canPlayersFreeze) || EntityHelper.canFreeze(entity);
+        boolean canEntityFreeze = (entity instanceof EntityPlayer && !((EntityPlayer) entity).isCreative() && ConfigHandler.biomeConfig.arcticAbyss.canPlayersFreeze) || canFreeze(entity);
 
         if(canEntityFreeze)
         {
-            boolean entityFrozen = EntityHelper.isFrozen(entity);
+            boolean entityFrozen = isFrozen(entity);
 
             if(!entityFrozen && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.chanceOfFreezing) == 0 && world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
             {
@@ -105,7 +106,7 @@ public class LivingHandler
                 }
             }
         }
-        if(EntityHelper.isSporeInfested(entity) && EntityHelper.canSpreadSpores(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.spore.chanceOfSporeSpawning) == 0)
+        if(isSporeInfested(entity) && canSpreadSpores(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.spore.chanceOfSporeSpawning) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
@@ -119,7 +120,7 @@ public class LivingHandler
                 }
             }
         }
-        if(EntityHelper.isLostAfflicted(entity) && EntityHelper.canSpawnGhastling(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.lost.chanceOfGhastlingSpawning) == 0)
+        if(isLostAfflicted(entity) && canSpawnGhastling(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.lost.chanceOfGhastlingSpawning) == 0)
         {
             BlockPos newPos = pos.add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
 
@@ -292,5 +293,47 @@ public class LivingHandler
 
             event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.WITHER_BONE, rand.nextInt(3), 0)));
         }
+    }
+
+    public static boolean canFreeze(EntityLivingBase entity)
+    {
+        if(entity instanceof EntityPlayer)
+        {
+            return false;
+        }
+
+        String entityRegistryName = EntityHelper.getEntityLocation(entity);
+        return entityRegistryName != null && !EntityHelper.contains(ConfigHandler.potionEffectConfig.freeze.blacklist, entityRegistryName);
+    }
+
+    public static boolean canSpreadSpores(EntityLivingBase entity)
+    {
+        if(entity instanceof EntityPlayer)
+        {
+            return true;
+        }
+
+        String entityRegistryName = EntityHelper.getEntityLocation(entity);
+        return (entityRegistryName != null && !EntityHelper.contains(ConfigHandler.potionEffectConfig.spore.blacklist, entityRegistryName));
+    }
+
+    public static boolean canSpawnGhastling(EntityLivingBase entity)
+    {
+        return entity instanceof EntityPlayer && entity.getEntityWorld().provider.getDimensionType() == DimensionType.NETHER;
+    }
+
+    public static boolean isFrozen(EntityLivingBase entity)
+    {
+        return entity.isPotionActive(NetherExEffects.FREEZE);
+    }
+
+    public static boolean isSporeInfested(EntityLivingBase entity)
+    {
+        return entity.isPotionActive(NetherExEffects.SPORE);
+    }
+
+    public static boolean isLostAfflicted(EntityLivingBase entity)
+    {
+        return entity.isPotionActive(NetherExEffects.LOST);
     }
 }

@@ -10,7 +10,8 @@
             "item": "minecraft:golden_pickaxe"
         },
         "X": {
-            "item": "nex:wither_bone"
+            "type": "forge:ore_dict",
+            "ore": "boneWithered"
         }
     },
     "result": {
