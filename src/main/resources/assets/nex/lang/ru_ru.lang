@@ -1,4 +1,4 @@
-# Lang Настройки Файла
+# Lang File Settings
 language.name=Russian
 language.region=Russian Federation
 language.code=ru_ru
@@ -15,9 +15,9 @@ config.nex:client.visual.disableNetherFog.tooltip=Не отображать ту
 config.nex:compatibility=Настройки Совместимости
 config.nex:compatibility.tooltip=Настройки, которые влияют только на совместимость мода
 
-config.nex:compatibility.biomesoplenty=Biomes O' Plenty Настройки Совместимости
+config.nex:compatibility.biomesoplenty=Настройки Совместимости Biomes O' Plenty
 config.nex:compatibility.biomesoplenty.tooltip=Настройки которые только влияют на совместимость Biomes O' Plenty
-config.nex:compatibility.biomesoplenty.enableCompat=Включить Совместимость Biome O' Plenty
+config.nex:compatibility.biomesoplenty.enableCompat=Включить Совместимость для Biome O' Plenty
 config.nex:compatibility.biomesoplenty.enableCompat.tooltip=Включить Совместимость с Biome O' Plenty
 
 config.nex:dimension=Настройки Измерения
@@ -37,15 +37,15 @@ config.nex:block.tooltip=Настройки, которые влияют тол�
 
 config.nex:block.netherPortal=Настройки Портала в Нижний Мир
 config.nex:block.netherPortal.tooltip=Настройки, которые влияют только на блоки портала в Нижний Мир
-config.nex:block.netherPortal.allowPigmanSpawning=Позволять Свино-Человек возрождаться
-config.nex:block.netherPortal.allowPigmanSpawning.tooltip=Сделать случайное возрождение Свино-Зомби от блоков портала Нижнего Мира
-config.nex:block.netherPortal.pigmanSpawnRarity=Редко возрождать Свино-Человек
-config.nex:block.netherPortal.pigmanSpawnRarity.tooltip=Насколько редко возрождается Свино-Человек от блоков портала Нижнего Мира
+config.nex:block.netherPortal.allowPigmanSpawning=Позволять Свино-Человеку возрождаться
+config.nex:block.netherPortal.allowPigmanSpawning.tooltip=Сделать случайное появление Свино-Человека от блоков портала Нижнего Мира
+config.nex:block.netherPortal.pigmanSpawnRarity=Редко возрождать Свино-Человека
+config.nex:block.netherPortal.pigmanSpawnRarity.tooltip=Насколько редко появляется этот Свино-Человек от блоков портала Нижнего Мира
 
 config.nex:block.netherrack=Настройки Адского Камня
 config.nex:block.netherrack.tooltip=Настройки, которые влияют только на Адский Камень
-config.nex:block.netherrack.allowAllShovelsToFlatten=Позволить всем Лопатам выравнивать
-config.nex:block.netherrack.allowAllShovelsToFlatten.tooltip=Всем лопатам разрешается выравнивать Адский Камень
+config.nex:block.netherrack.allowAllShovelsToFlatten=Позволить всем Лопатам разрушать
+config.nex:block.netherrack.allowAllShovelsToFlatten.tooltip=Всем лопатам разрешается разрушать Адский Камень
 
 config.nex:block.soulSand=Настройки Песка Душ
 config.nex:block.soulSand.tooltip=Настройки, которые влияют только на Песок Душ
@@ -59,9 +59,9 @@ config.nex:block.soulSand.doesRequireIchorInsteadOfLava.tooltip=Делать в�
 config.nex:block.magma=Настройки Магмы
 config.nex:block.magma.tooltip=Настройки, которые влияют только на Магму
 config.nex:block.magma.turnIntoLava=Превратить в Лаву
-config.nex:block.magma.turnIntoLava.tooltip=Сделать превращение Магмы в Лаву, когда сломается
+config.nex:block.magma.turnIntoLava.tooltip=Сделать превращение Магмы в Лаву после разрушения
 
-config.nex:block.rime=Настройки блока Иней
+config.nex:block.rime=Настройки блока Инея
 config.nex:block.rime.tooltip=Настройки, которые влияют только на Иней
 config.nex:block.rime.canFreezeWater=Может заморозить Воду
 config.nex:block.rime.canFreezeWater.tooltip=Блок Инея, может заморозить Воду
@@ -73,8 +73,8 @@ config.nex:block.rime.canFreezeMobs.tooltip=Блок Инея, может зам
 config.nex:block.thornstalk=Настройки Ветки Колючки
 config.nex:block.thornstalk.tooltip=Настройки, которые влияют только на Ветки Колючки
 config.nex:block.thornstalk.canDestroyItems=Может уничтожить Предметы
-config.nex:block.thornstalk.canDestroyItems.tooltip=Ветка Колючки может уничтожить Предметы
-config.nex:block.thornstalk.blacklist=Черный список
+config.nex:block.thornstalk.canDestroyItems.tooltip=Ветка Колючка может уничтожить Предметы
+config.nex:block.thornstalk.blacklist=Чёрный список
 config.nex:block.thornstalk.blacklist.tooltip=Монстры не причиняют себе вред от Ветки Колючки
 
 config.nex:block.hyphae=Настройки Гифы
@@ -94,14 +94,14 @@ config.nex:potionEffect.freeze.blacklist.tooltip=Монстры, которые 
 config.nex:potionEffect.spore=Настройки Спорового Эффекта
 config.nex:potionEffect.spore.tooltip=Настройки, которые влияют только на Эффект Споров
 config.nex:potionEffect.spore.chanceOfSporeSpawning=Шанс появления Споров
-config.nex:potionEffect.spore.chanceOfSporeSpawning.tooltip=Насколько редко именно Спора появляется из существа от эффекта Споров
+config.nex:potionEffect.spore.chanceOfSporeSpawning.tooltip=Насколько редко эта Спора появляется из существа от эффектов Споров
 config.nex:potionEffect.spore.blacklist=Чёрный список
 config.nex:potionEffect.spore.blacklist.tooltip=Монстры, которые не должны возрождать Споры
 
 config.nex:potionEffect.lost=Настройки Утерянного Эффекта
 config.nex:potionEffect.lost.tooltip=Настройки, которые влияют только на Утерянный Эффект
 config.nex:potionEffect.lost.chanceOfGhastlingSpawning=Шанс Появления Гаста
-config.nex:potionEffect.lost.chanceOfGhastlingSpawning.tooltip=Насколько редко именно Гаст появляется из существа от Утерянного Эффекта
+config.nex:potionEffect.lost.chanceOfGhastlingSpawning.tooltip=Насколько редко этот Гаст появляется из существа от Утерянного Эффекта
 
 config.nex:entity=Настройки Существ
 config.nex:entity.tooltip=Настройки, которые влияют только на Существа
@@ -109,4 +109,67 @@ config.nex:entity.tooltip=Настройки, которые влияют тол
 config.nex:entity.ember=Настройки Уголька
 config.nex:entity.ember.tooltip=Настройки, которые влияют только на Уголёк
 config.nex:entity.ember.chanceOfSettingPlayerOnFire=Настроить шанс горение игрока
-config.nex:entity.ember.chanceOfSettingPlayerOnFire.tooltip=Насколько редко именно Уголёк зажгёт игрока в огне
+config.nex:entity.ember.chanceOfSettingPlayerOnFire.tooltip=Насколько редко этот Уголёк зажгёт игрока от огня
+
+config.nex:entity.nethermite=Настройки Адского Клеща
+config.nex:entity.nethermite.tooltip=Настройки, которые влияют только на Адского Клеща
+config.nex:entity.nethermite.chanceOfSpawning=Шанс Появления
+config.nex:entity.nethermite.chanceOfSpawning.tooltip=Насколько редко этот Адский Клещ появится в Нижнем Мире
+config.nex:entity.nethermite.whitelist=Белый список
+config.nex:entity.nethermite.whitelist.tooltip=Блоки Адского Клеща должны появляться из
+
+config.nex:entity.spinout=Настройки Занозы
+config.nex:entity.spinout.tooltip=Настройки, которые влияют только на Занозу
+config.nex:entity.spinout.spinTime=Время Вращения
+config.nex:entity.spinout.spinTime.tooltip=Сколько времени Заноза вращается
+config.nex:entity.spinout.spinCooldown=Время восстановления Вращения
+config.nex:entity.spinout.spinCooldown.tooltip=Сколько времени Заноза перестанет вращаться
+
+config.nex:entity.sporeCreeper=Настройки Спорового Крипера
+config.nex:entity.sporeCreeper.tooltip=Настройки, которые влияют только на Спорового Крипера
+config.nex:entity.sporeCreeper.chanceOfSporeSpawning=Шанс появления Спорового Крипера
+config.nex:entity.sporeCreeper.chanceOfSporeSpawning.tooltip=Насколько редко этот Споровый Крипер появляется после смерти
+
+config.nex:entity.spore=Настройки Споры
+config.nex:entity.spore.tooltip=Настройки, которые влияют только на Споры
+config.nex:entity.spore.growthTime=Время Роста
+config.nex:entity.spore.growthTime.tooltip=Сколько времени нужно для поста Споры
+config.nex:entity.spore.creeperSpawns=Появления Крипера
+config.nex:entity.spore.creeperSpawns.tooltip=Насколько много Споровый Крипер появляется от Споры
+
+config.nex:entity.brute=Настройки Зверя
+config.nex:entity.brute.tooltip=Настройки, которые влияют только на Зверя
+config.nex:entity.brute.chargeCooldown=Время восстановления Заряда
+config.nex:entity.brute.chargeCooldown.tooltip=Насколько долго длится время восстановления, после зарядки игроков
+
+config.nex:entity.ghastQueen=Настройки Гаст Королева
+config.nex:entity.ghastQueen.tooltip=Настройки, которые влияют только на Гаст Королеву
+config.nex:entity.ghastQueen.ghastlingSpawnCooldown=Время восстановления появления Гаст Королевы
+config.nex:entity.ghastQueen.ghastlingSpawnCooldown.tooltip=Насколько долго время восстановления после появления Гастов
+config.nex:entity.ghastQueen.ghastlingSpawns=Появления Гастов
+config.nex:entity.ghastQueen.ghastlingSpawns.tooltip=Насколько много появляются Гасты, когда Гаст Королева нападает
+
+config.nex:biome=Настройки Биома
+config.nex:biome.tooltip=Настройки, которые влияют только на Биомы
+
+config.nex:biome.hell=Настройки Адского Биома
+config.nex:biome.hell.tooltip=Настройки, которые влияют только на Адский Биом
+
+config.nex:biome.ruthlessSands=Настройки Биома Безжалостные Пески
+config.nex:biome.ruthlessSands.tooltip=Настройки, которые влияют только на Биом Безжалостных Песков
+
+config.nex:biome.fungiForest=Настройки Биома Грибной Лес
+config.nex:biome.fungiForest.tooltip=Настройки, которые влияют только на Биом Грибной Лес
+
+config.nex:biome.torridWasteland=Настройки Биома Жаркая Пустошь
+config.nex:biome.torridWasteland.tooltip=Настройки, которые влияют только на Биом Жаркая Пустошь
+
+config.nex:biome.arcticAbyss=Настройки Биома Арктическая Бездна
+config.nex:biome.arcticAbyss.tooltip=Настройки, которые влияют только на Биом Арктическая Бездна
+config.nex:biome.arcticAbyss.canPlayersFreeze=Может замораживать Игроков
+config.nex:biome.arcticAbyss.canPlayersFreeze.tooltip=Будь то или не смогут игроки заморозиться в Биоме Арктической Бездны
+config.nex:biome.arcticAbyss.chanceOfFreezing=Шанс Заморозки
+config.nex:biome.arcticAbyss.chanceOfFreezing.tooltip=Насколько редко этот монстр заморозится в Биоме Арктической Бездны
+
+# Creative Tabs
+itemGroup.nex=NetherEx
