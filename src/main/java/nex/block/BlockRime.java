@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityList;
@@ -24,11 +25,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExEffects;
 
@@ -36,11 +37,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class BlockRime extends BlockNetherEx
+public class BlockRime extends BlockLibEx
 {
     public BlockRime()
     {
-        super("block_rime", Material.ROCK);
+        super(NetherEx.instance, "rime_block", Material.ROCK);
 
         setLightLevel(0.9375F);
         setHardness(5.0F);
@@ -74,27 +75,22 @@ public class BlockRime extends BlockNetherEx
     {
         IBlockState state = world.getBlockState(pos);
 
-        if(state == Blocks.WATER.getDefaultState() && ConfigHandler.block.rime.canFreezeWater)
+        if(state == Blocks.WATER.getDefaultState() && ConfigHandler.blockConfig.rime.canFreezeWater)
         {
             world.setBlockState(pos, Blocks.ICE.getDefaultState(), 3);
         }
-        else if(state == Blocks.LAVA.getDefaultState() && ConfigHandler.block.rime.canFreezeLava)
+        else if(state == Blocks.LAVA.getDefaultState() && ConfigHandler.blockConfig.rime.canFreezeLava)
         {
             world.setBlockState(pos, Blocks.MAGMA.getDefaultState(), 3);
         }
 
         for(EntityLivingBase entity : entities)
         {
-            ResourceLocation registryName = EntityList.getKey(entity);
+            boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffectConfig.freeze.blacklist).contains(EntityList.getKey(entity).toString());
 
-            if(registryName != null)
+            if(canFreeze && ConfigHandler.blockConfig.rime.canFreezeMobs)
             {
-                boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffect.freeze.blacklist).contains(registryName.toString());
-
-                if(canFreeze && ConfigHandler.block.rime.canFreezeMobs)
-                {
-                    entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
-                }
+                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
         }
     }

@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_inventory",
+    "textures": {
+        "wall": "nex:blocks/icy_nether_brick"
+    }
+}

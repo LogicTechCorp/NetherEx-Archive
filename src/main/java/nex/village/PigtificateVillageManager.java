@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,43 +17,28 @@
 
 package nex.village;
 
-import com.google.common.collect.Maps;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.util.Map;
 
 public class PigtificateVillageManager
 {
-    private static final Map<World, PigtificateVillageCollection> pigtificateVillages = Maps.newHashMap();
-
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|PigtificateVillageManager");
-
-    public static void init(World world)
+    public static PigtificateVillageCollection getNetherVillages(World world, boolean create)
     {
-        String dimension = world.provider.getDimensionType().name().toLowerCase();
-        String id = PigtificateVillageCollection.fileNameForProvider(world.provider);
-        PigtificateVillageCollection pigtificateVillageCollection = (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, id);
+        String worldFile = PigtificateVillageCollection.fileNameForProvider(world.provider);
+        PigtificateVillageCollection pigtificateVillageCollection = (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, worldFile);
 
-        if(pigtificateVillageCollection == null)
+        if(create)
         {
-            LOGGER.info("The Pigtificate Village data for " + dimension + " was created successfully.");
-
-            pigtificateVillages.put(world, new PigtificateVillageCollection(world));
-            world.getPerWorldStorage().setData(id, pigtificateVillages.get(world));
+            if(pigtificateVillageCollection == null)
+            {
+                pigtificateVillageCollection = new PigtificateVillageCollection(world);
+                world.getPerWorldStorage().setData(worldFile, pigtificateVillageCollection);
+            }
+            else
+            {
+                pigtificateVillageCollection.setWorldsForAll(world);
+            }
         }
-        else
-        {
-            LOGGER.info("The Pigtificate Village data for " + dimension + " was read successfully.");
 
-            pigtificateVillages.put(world, pigtificateVillageCollection);
-            pigtificateVillages.get(world).setWorldsForAll(world);
-        }
-    }
-
-    public static PigtificateVillageCollection getPigtificateVillages(World world)
-    {
-        return pigtificateVillages.get(world);
+        return pigtificateVillageCollection;
     }
 }

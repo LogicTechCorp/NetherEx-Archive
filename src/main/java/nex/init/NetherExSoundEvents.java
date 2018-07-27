@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,123 +17,51 @@
 
 package nex.init;
 
-import net.minecraft.util.ResourceLocation;
+import lex.sound.SoundEventLibEx;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.sound.SoundEventNetherEx;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExSoundEvents
 {
-    @GameRegistry.ObjectHolder("ambient_pigtificate")
-    public static final SoundEvent ENTITY_AMBIENT_PIGTIFICATE = null;
-
-    @GameRegistry.ObjectHolder("hurt_pigtificate")
-    public static final SoundEvent ENTITY_HURT_PIGTIFICATE = null;
-
-    @GameRegistry.ObjectHolder("death_pigtificate")
-    public static final SoundEvent ENTITY_DEATH_PIGTIFICATE = null;
-
-    @GameRegistry.ObjectHolder("ambient_mogus")
-    public static final SoundEvent ENTITY_AMBIENT_MOGUS = null;
-
-    @GameRegistry.ObjectHolder("hurt_mogus")
-    public static final SoundEvent ENTITY_HURT_MOGUS = null;
-
-    @GameRegistry.ObjectHolder("death_mogus")
-    public static final SoundEvent ENTITY_DEATH_MOGUS = null;
-
-    @GameRegistry.ObjectHolder("ambient_salamander")
-    public static final SoundEvent ENTITY_AMBIENT_SALAMANDER = null;
-
-    @GameRegistry.ObjectHolder("hurt_salamander")
-    public static final SoundEvent ENTITY_HURT_SALAMANDER = null;
-
-    @GameRegistry.ObjectHolder("death_salamander")
-    public static final SoundEvent ENTITY_DEATH_SALAMANDER = null;
-
-    @GameRegistry.ObjectHolder("ambient_wight")
-    public static final SoundEvent ENTITY_AMBIENT_WIGHT = null;
-
-    @GameRegistry.ObjectHolder("hurt_wight")
-    public static final SoundEvent ENTITY_HURT_WIGHT = null;
-
-    @GameRegistry.ObjectHolder("death_wight")
-    public static final SoundEvent ENTITY_DEATH_WIGHT = null;
-
-    @GameRegistry.ObjectHolder("hurt_ember")
-    public static final SoundEvent ENTITY_HURT_EMBER = null;
-
-    @GameRegistry.ObjectHolder("death_ember")
-    public static final SoundEvent ENTITY_DEATH_EMBER = null;
-
-    @GameRegistry.ObjectHolder("ambient_nethermite")
-    public static final SoundEvent ENTITY_AMBIENT_NETHERMITE = null;
-
-    @GameRegistry.ObjectHolder("hurt_nethermite")
-    public static final SoundEvent ENTITY_HURT_NETHERMITE = null;
-
-    @GameRegistry.ObjectHolder("death_nethermite")
-    public static final SoundEvent ENTITY_DEATH_NETHERMITE = null;
-
-    @GameRegistry.ObjectHolder("ambient_spinout")
-    public static final SoundEvent ENTITY_AMBIENT_SPINOUT = null;
-
-    @GameRegistry.ObjectHolder("hurt_spinout")
-    public static final SoundEvent ENTITY_HURT_SPINOUT = null;
-
-    @GameRegistry.ObjectHolder("death_spinout")
-    public static final SoundEvent ENTITY_DEATH_SPINOUT = null;
-
-    @GameRegistry.ObjectHolder("hurt_spore")
-    public static final SoundEvent ENTITY_HURT_SPORE = null;
-
-    @GameRegistry.ObjectHolder("death_spore")
-    public static final SoundEvent ENTITY_DEATH_SPORE = null;
-
-    @GameRegistry.ObjectHolder("warn_spore")
-    public static final SoundEvent ENTITY_WARN_SPORE = null;
-
-    @GameRegistry.ObjectHolder("explode_spore")
-    public static final SoundEvent ENTITY_EXPLODE_SPORE = null;
-
-    @GameRegistry.ObjectHolder("ambient_ghastling")
-    public static final SoundEvent ENTITY_AMBIENT_GHASTLING = null;
-
-    @GameRegistry.ObjectHolder("hurt_ghastling")
-    public static final SoundEvent ENTITY_HURT_GHASTLING = null;
-
-    @GameRegistry.ObjectHolder("death_ghastling")
-    public static final SoundEvent ENTITY_DEATH_GHASTLING = null;
-
-    @GameRegistry.ObjectHolder("warn_ghastling")
-    public static final SoundEvent ENTITY_WARN_GHASTLING = null;
-
-    @GameRegistry.ObjectHolder("shoot_ghastling")
-    public static final SoundEvent ENTITY_SHOOT_GHASTLING = null;
-
-    @GameRegistry.ObjectHolder("ambient_ghast_queen")
-    public static final SoundEvent ENTITY_AMBIENT_GHAST_QUEEN = null;
-
-    @GameRegistry.ObjectHolder("hurt_ghast_queen")
-    public static final SoundEvent ENTITY_HURT_GHAST_QUEEN = null;
-
-    @GameRegistry.ObjectHolder("death_ghast_queen")
-    public static final SoundEvent ENTITY_DEATH_GHAST_QUEEN = null;
-
-    @GameRegistry.ObjectHolder("shoot_ghast_queen")
-    public static final SoundEvent ENTITY_SHOOT_GHAST_QUEEN = null;
-
-    @GameRegistry.ObjectHolder("summon_ghast_queen")
-    public static final SoundEvent ENTITY_SUMMON_GHAST_QUEEN = null;
-
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExSoundEvents");
+    public static final SoundEvent PIGTIFICATE_AMBIENT = null;
+    public static final SoundEvent PIGTIFICATE_HURT = null;
+    public static final SoundEvent PIGTIFICATE_DEATH = null;
+    public static final SoundEvent MOGUS_AMBIENT = null;
+    public static final SoundEvent MOGUS_HURT = null;
+    public static final SoundEvent MOGUS_DEATH = null;
+    public static final SoundEvent SALAMANDER_AMBIENT = null;
+    public static final SoundEvent SALAMANDER_HURT = null;
+    public static final SoundEvent SALAMANDER_DEATH = null;
+    public static final SoundEvent WIGHT_AMBIENT = null;
+    public static final SoundEvent WIGHT_HURT = null;
+    public static final SoundEvent WIGHT_DEATH = null;
+    public static final SoundEvent EMBER_HURT = null;
+    public static final SoundEvent EMBER_DEATH = null;
+    public static final SoundEvent NETHERMITE_AMBIENT = null;
+    public static final SoundEvent NETHERMITE_HURT = null;
+    public static final SoundEvent NETHERMITE_DEATH = null;
+    public static final SoundEvent SPINOUT_AMBIENT = null;
+    public static final SoundEvent SPINOUT_HURT = null;
+    public static final SoundEvent SPINOUT_DEATH = null;
+    public static final SoundEvent SPORE_HURT = null;
+    public static final SoundEvent SPORE_DEATH = null;
+    public static final SoundEvent SPORE_WARN = null;
+    public static final SoundEvent SPORE_EXPLODE = null;
+    public static final SoundEvent GHASTLING_AMBIENT = null;
+    public static final SoundEvent GHASTLING_HURT = null;
+    public static final SoundEvent GHASTLING_DEATH = null;
+    public static final SoundEvent GHASTLING_WARN = null;
+    public static final SoundEvent GHASTLING_SHOOT = null;
+    public static final SoundEvent GHAST_QUEEN_AMBIENT = null;
+    public static final SoundEvent GHAST_QUEEN_HURT = null;
+    public static final SoundEvent GHAST_QUEEN_DEATH = null;
+    public static final SoundEvent GHAST_QUEEN_SHOOT = null;
+    public static final SoundEvent GHAST_QUEEN_SUMMON = null;
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -141,46 +69,42 @@ public class NetherExSoundEvents
         @SubscribeEvent
         public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
         {
-            LOGGER.info("Sound registration started.");
-
             event.getRegistry().registerAll(
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_pigtificate")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_pigtificate")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_pigtificate")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_mogus")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_mogus")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_mogus")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_salamander")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_salamander")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_salamander")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_wight")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_wight")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_wight")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ember")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_ember")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_nethermite")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_nethermite")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_nethermite")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_spinout")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spinout")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_spinout")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_spore")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_spore")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":warn_spore")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":explode_spore")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghastling")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghastling")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_ghastling")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":warn_ghastling")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghastling")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":ambient_ghast_queen")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":hurt_ghast_queen")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":death_ghast_queen")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":shoot_ghast_queen")),
-                    new SoundEventNetherEx(new ResourceLocation(NetherEx.MOD_ID + ":summon_ghast_queen"))
+                    new SoundEventLibEx(NetherEx.instance, "pigtificate_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "pigtificate_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "pigtificate_death"),
+                    new SoundEventLibEx(NetherEx.instance, "mogus_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "mogus_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "mogus_death"),
+                    new SoundEventLibEx(NetherEx.instance, "salamander_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "salamander_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "salamander_death"),
+                    new SoundEventLibEx(NetherEx.instance, "wight_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "wight_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "wight_death"),
+                    new SoundEventLibEx(NetherEx.instance, "ember_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "ember_death"),
+                    new SoundEventLibEx(NetherEx.instance, "nethermite_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "nethermite_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "nethermite_death"),
+                    new SoundEventLibEx(NetherEx.instance, "spinout_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "spinout_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "spinout_death"),
+                    new SoundEventLibEx(NetherEx.instance, "spore_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "spore_death"),
+                    new SoundEventLibEx(NetherEx.instance, "spore_warn"),
+                    new SoundEventLibEx(NetherEx.instance, "spore_explode"),
+                    new SoundEventLibEx(NetherEx.instance, "ghastling_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "ghastling_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "ghastling_death"),
+                    new SoundEventLibEx(NetherEx.instance, "ghastling_warn"),
+                    new SoundEventLibEx(NetherEx.instance, "ghastling_shoot"),
+                    new SoundEventLibEx(NetherEx.instance, "ghast_queen_ambient"),
+                    new SoundEventLibEx(NetherEx.instance, "ghast_queen_hurt"),
+                    new SoundEventLibEx(NetherEx.instance, "ghast_queen_death"),
+                    new SoundEventLibEx(NetherEx.instance, "ghast_queen_shoot"),
+                    new SoundEventLibEx(NetherEx.instance, "ghast_queen_summon")
             );
-
-            LOGGER.info("Sound registration completed.");
         }
     }
 }

@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,26 +17,26 @@
 
 package nex.block;
 
-import net.minecraft.block.material.Material;
+import lex.block.BlockWallLibEx;
+import lex.block.state.VariableBlockStateContainer;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import nex.block.state.DualBlockStateContainer;
+import nex.NetherEx;
 
-public class BlockNetherBrickWall extends BlockNetherExWall
+public class BlockNetherBrickWall extends BlockWallLibEx
 {
     public static final PropertyEnum<BlockNetherrack.EnumType> TYPE = PropertyEnum.create("type", BlockNetherrack.EnumType.class);
 
     public BlockNetherBrickWall()
     {
-        super("wall_brick_nether", Material.ROCK);
-
-        ((DualBlockStateContainer) blockState).destroySuper();
+        super(NetherEx.instance, "nether_brick_wall", Blocks.STONE);
+        ((VariableBlockStateContainer) blockState).destroyContainer();
         setDefaultState(blockState.getBaseState());
-
         setHardness(1.5F);
         setResistance(10.0F);
     }
@@ -71,6 +71,6 @@ public class BlockNetherBrickWall extends BlockNetherExWall
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new DualBlockStateContainer(super.createBlockState(), this, UP, NORTH, EAST, SOUTH, WEST, TYPE);
+        return new VariableBlockStateContainer(super.createBlockState(), this, UP, NORTH, EAST, SOUTH, WEST, TYPE);
     }
 }

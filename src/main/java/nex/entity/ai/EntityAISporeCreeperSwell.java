@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,13 +36,13 @@ public class EntityAISporeCreeperSwell extends EntityAIBase
     public boolean shouldExecute()
     {
         EntityLivingBase entity = creeper.getAttackTarget();
-        return creeper.getCreeperState() > 0 || entity != null && creeper.getDistanceSqToEntity(entity) < 9.0D;
+        return creeper.getCreeperState() > 0 || entity != null && creeper.getDistanceSq(entity) < 9.0D;
     }
 
     @Override
     public void startExecuting()
     {
-        creeper.getNavigator().clearPathEntity();
+        creeper.getNavigator().clearPath();
         target = creeper.getAttackTarget();
     }
 
@@ -59,7 +59,7 @@ public class EntityAISporeCreeperSwell extends EntityAIBase
         {
             creeper.setCreeperState(-1);
         }
-        else if(creeper.getDistanceSqToEntity(target) > 49.0D)
+        else if(creeper.getDistanceSq(target) > 49.0D)
         {
             creeper.setCreeperState(-1);
         }

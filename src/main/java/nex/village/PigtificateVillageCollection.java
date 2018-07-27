@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ import java.util.List;
 public class PigtificateVillageCollection extends WorldSavedData
 {
     private World world;
-    private final List<BlockPos> villagerPositionsList = Lists.newArrayList();
+    private final List<BlockPos> pigtificatePositions = Lists.newArrayList();
     private final List<PigtificateVillageFenceGateInfo> newFenceGates = Lists.newArrayList();
     private final List<PigtificateVillage> villageList = Lists.newArrayList();
     private int tickCounter;
@@ -54,6 +54,11 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     public void setWorldsForAll(World worldIn)
     {
+        if(world == worldIn)
+        {
+            return;
+        }
+
         world = worldIn;
 
         for(PigtificateVillage village : villageList)
@@ -64,11 +69,11 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     public void addToVillagerPositionList(BlockPos pos)
     {
-        if(villagerPositionsList.size() <= 64)
+        if(pigtificatePositions.size() <= 64)
         {
             if(!positionInList(pos))
             {
-                villagerPositionsList.add(pos);
+                pigtificatePositions.add(pos);
             }
         }
     }
@@ -118,17 +123,17 @@ public class PigtificateVillageCollection extends WorldSavedData
         PigtificateVillage village = null;
         double d0 = 3.4028234663852886E38D;
 
-        for(PigtificateVillage village1 : villageList)
+        for(PigtificateVillage pigtificateVillage : villageList)
         {
-            double d1 = village1.getCenter().distanceSq(fenceGateBlock);
+            double d1 = pigtificateVillage.getCenter().distanceSq(fenceGateBlock);
 
             if(d1 < d0)
             {
-                float f = (float) (radius + village1.getVillageRadius());
+                float f = (float) (radius + pigtificateVillage.getVillageRadius());
 
                 if(d1 <= (double) (f * f))
                 {
-                    village = village1;
+                    village = pigtificateVillage;
                     d0 = d1;
                 }
             }
@@ -139,17 +144,17 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void dropOldestVillagerPosition()
     {
-        if(!villagerPositionsList.isEmpty())
+        if(!pigtificatePositions.isEmpty())
         {
-            addFenceGatesAround(villagerPositionsList.remove(0));
+            addFenceGatesAround(pigtificatePositions.remove(0));
         }
     }
 
     private void addNewFenceGatesToVillageOrCreateVillage()
     {
-        for(PigtificateVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(PigtificateVillageFenceGateInfo fenceGateInfo : newFenceGates)
         {
-            PigtificateVillage village = getNearestVillage(villagefenceGateinfo.getFenceGateBlockPos(), 32);
+            PigtificateVillage village = getNearestVillage(fenceGateInfo.getFenceGateBlockPos(), 32);
 
             if(village == null)
             {
@@ -158,7 +163,7 @@ public class PigtificateVillageCollection extends WorldSavedData
                 markDirty();
             }
 
-            village.addVillageFenceGateInfo(villagefenceGateinfo);
+            village.addVillageFenceGateInfo(fenceGateInfo);
         }
 
         newFenceGates.clear();
@@ -166,27 +171,26 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void addFenceGatesAround(BlockPos central)
     {
-        for(int l = -16; l < 16; ++l)
+        for(int x = -16; x < 16; ++x)
         {
-            for(int i1 = -4; i1 < 4; ++i1)
+            for(int y = -4; y < 4; ++y)
             {
-                for(int j1 = -16; j1 < 16; ++j1)
+                for(int z = -16; z < 16; ++z)
                 {
-                    BlockPos blockpos = central.add(l, i1, j1);
-
+                    BlockPos blockpos = central.add(x, y, z);
                     EnumFacing outside = getOutside(blockpos);
 
                     if(outside != null)
                     {
-                        PigtificateVillageFenceGateInfo villagefenceGateinfo = checkFenceGateExistence(blockpos);
+                        PigtificateVillageFenceGateInfo fenceGateInfo = checkFenceGateExistence(blockpos);
 
-                        if(villagefenceGateinfo == null)
+                        if(fenceGateInfo == null)
                         {
                             addToNewFenceGatesList(blockpos, outside);
                         }
                         else
                         {
-                            villagefenceGateinfo.setLastActivityTimestamp(tickCounter);
+                            fenceGateInfo.setLastActivityTimestamp(tickCounter);
                         }
                     }
                 }
@@ -196,21 +200,21 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private PigtificateVillageFenceGateInfo checkFenceGateExistence(BlockPos fenceGateBlock)
     {
-        for(PigtificateVillageFenceGateInfo villagefenceGateinfo : newFenceGates)
+        for(PigtificateVillageFenceGateInfo fenceGateInfo : newFenceGates)
         {
-            if(villagefenceGateinfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && villagefenceGateinfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(villagefenceGateinfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
+            if(fenceGateInfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && fenceGateInfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
             {
-                return villagefenceGateinfo;
+                return fenceGateInfo;
             }
         }
 
         for(PigtificateVillage village : villageList)
         {
-            PigtificateVillageFenceGateInfo villagefenceGateinfo1 = village.getExistedFenceGate(fenceGateBlock);
+            PigtificateVillageFenceGateInfo fenceGateInfo = village.getExistedFenceGate(fenceGateBlock);
 
-            if(villagefenceGateinfo1 != null)
+            if(fenceGateInfo != null)
             {
-                return villagefenceGateinfo1;
+                return fenceGateInfo;
             }
         }
 
@@ -224,9 +228,9 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private boolean positionInList(BlockPos pos)
     {
-        for(BlockPos blockpos : villagerPositionsList)
+        for(BlockPos blockPos : pigtificatePositions)
         {
-            if(blockpos.equals(pos))
+            if(blockPos.equals(pos))
             {
                 return true;
             }
@@ -262,13 +266,13 @@ public class PigtificateVillageCollection extends WorldSavedData
     public void readFromNBT(NBTTagCompound nbt)
     {
         tickCounter = nbt.getInteger("Tick");
-        NBTTagList nbttaglist = nbt.getTagList("NetherVillages", 10);
+        NBTTagList list = nbt.getTagList("PigtificateVillages", 10);
 
-        for(int i = 0; i < nbttaglist.tagCount(); ++i)
+        for(int i = 0; i < list.tagCount(); ++i)
         {
-            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
+            NBTTagCompound villageData = list.getCompoundTagAt(i);
             PigtificateVillage village = new PigtificateVillage();
-            village.readVillageDataFromNBT(nbttagcompound);
+            village.readVillageDataFromNBT(villageData);
             villageList.add(village);
         }
     }
@@ -277,21 +281,21 @@ public class PigtificateVillageCollection extends WorldSavedData
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
         compound.setInteger("Tick", tickCounter);
-        NBTTagList nbttaglist = new NBTTagList();
+        NBTTagList list = new NBTTagList();
 
         for(PigtificateVillage village : villageList)
         {
-            NBTTagCompound nbttagcompound = new NBTTagCompound();
-            village.writeVillageDataToNBT(nbttagcompound);
-            nbttaglist.appendTag(nbttagcompound);
+            NBTTagCompound villageData = new NBTTagCompound();
+            village.writeVillageDataToNBT(villageData);
+            list.appendTag(villageData);
         }
 
-        compound.setTag("NetherVillages", nbttaglist);
+        compound.setTag("PigtificateVillages", list);
         return compound;
     }
 
     public static String fileNameForProvider(WorldProvider provider)
     {
-        return "villages.pigtificate" + provider.getDimensionType().getSuffix();
+        return "pigtificate_villages" + provider.getDimensionType().getSuffix();
     }
 }

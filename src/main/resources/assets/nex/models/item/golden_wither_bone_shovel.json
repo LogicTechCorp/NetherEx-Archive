@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "nex:items/golden_wither_bone_shovel"
+    }
+}

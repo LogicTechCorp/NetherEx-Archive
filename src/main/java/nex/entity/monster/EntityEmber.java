@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,13 +76,13 @@ public class EntityEmber extends EntityMob
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_EMBER;
+        return NetherExSoundEvents.EMBER_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_EMBER;
+        return NetherExSoundEvents.EMBER_DEATH;
     }
 
     @Override
@@ -177,7 +177,7 @@ public class EntityEmber extends EntityMob
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        if(rand.nextInt(ConfigHandler.entity.ember.chanceOfSettingPlayerOnFire) == 0)
+        if(rand.nextInt(ConfigHandler.entityConfig.ember.chanceOfSettingPlayerOnFire) == 0)
         {
             entity.setFire(4);
         }
@@ -193,7 +193,7 @@ public class EntityEmber extends EntityMob
     @Override
     protected float getJumpUpwardsMotion()
     {
-        if(!isCollidedHorizontally && (!moveHelper.isUpdating() || moveHelper.getY() <= posY + 0.5D))
+        if(!collidedHorizontally && (!moveHelper.isUpdating() || moveHelper.getY() <= posY + 0.5D))
         {
             Path path = navigator.getPath();
 
@@ -252,7 +252,7 @@ public class EntityEmber extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_EMBER;
+        return NetherExLootTables.EMBER;
     }
 
     public void setMovementSpeed(double newSpeed)

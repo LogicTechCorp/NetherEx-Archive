@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemLibEx;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,13 +28,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import nex.NetherEx;
 import nex.block.BlockElderMushroom;
 
-public class ItemWitherDust extends ItemNetherEx
+public class ItemWitherDust extends ItemLibEx
 {
     public ItemWitherDust()
     {
-        super("item_dust_wither");
+        super(NetherEx.instance, "wither_dust");
     }
 
     @Override

@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockFenceLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -24,15 +25,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 
-public class BlockNetherBrickFence extends BlockNetherExFence
+public class BlockNetherBrickFence extends BlockFenceLibEx
 {
     public static final PropertyEnum<BlockNetherrack.EnumType> TYPE = PropertyEnum.create("type", BlockNetherrack.EnumType.class);
 
     public BlockNetherBrickFence()
     {
-        super("fence_brick_nether", Material.ROCK);
-
+        super(NetherEx.instance, "nether_brick_fence", Material.ROCK);
         setHardness(1.5F);
         setResistance(10.0F);
     }

@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(!theEntity.isCollidedHorizontally)
+        if(!theEntity.collidedHorizontally)
         {
             return false;
         }

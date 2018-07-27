@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,14 @@
 
 package nex.world.gen;
 
+import lex.world.biome.BiomeWrapper;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -32,16 +35,15 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkGeneratorHell;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
-import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
-import nex.util.RandomUtil;
-import nex.world.biome.NetherBiomeManager;
-import nex.world.gen.feature.Feature;
+import nex.world.biome.NetherExBiomeManager;
 
 import java.util.List;
 import java.util.Random;
@@ -55,22 +57,24 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
-    private NoiseGeneratorOctaves noiseGenSoulSandGravel;
-    private NoiseGeneratorOctaves noiseGenNetherrack;
-    private NoiseGeneratorOctaves noiseGenScale;
-    private NoiseGeneratorOctaves noiseGenDepth;
+    private NoiseGeneratorOctaves soulSandGravelNoiseGen;
+    private NoiseGeneratorOctaves netherrackNoiseGen;
+    private NoiseGeneratorPerlin terrainNoiseGen;
+    private NoiseGeneratorOctaves scaleNoiseGen;
+    private NoiseGeneratorOctaves depthNoiseGen;
 
     private Biome[] biomesForGen;
 
     private double[] buffer;
-    private double[] depthBuffer = new double[256];
+    private double[] netherrackNoise = new double[256];
     private double[] soulSandNoise = new double[256];
     private double[] gravelNoise = new double[256];
     private double[] noiseData1;
     private double[] noiseData2;
     private double[] noiseData3;
-    private double[] noiseData4;
-    private double[] noiseData5;
+    private double[] terrainNoise = new double[256];
+    private double[] scaleNoise;
+    private double[] depthNoise;
 
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
@@ -83,21 +87,22 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         noiseGen1 = new NoiseGeneratorOctaves(rand, 16);
         noiseGen2 = new NoiseGeneratorOctaves(rand, 16);
         noiseGen3 = new NoiseGeneratorOctaves(rand, 8);
-        noiseGenSoulSandGravel = new NoiseGeneratorOctaves(rand, 4);
-        noiseGenNetherrack = new NoiseGeneratorOctaves(rand, 4);
-        noiseGenScale = new NoiseGeneratorOctaves(rand, 10);
-        noiseGenDepth = new NoiseGeneratorOctaves(rand, 16);
+        soulSandGravelNoiseGen = new NoiseGeneratorOctaves(rand, 4);
+        netherrackNoiseGen = new NoiseGeneratorOctaves(rand, 4);
+        scaleNoiseGen = new NoiseGeneratorOctaves(rand, 10);
+        depthNoiseGen = new NoiseGeneratorOctaves(rand, 16);
+        terrainNoiseGen = new NoiseGeneratorPerlin(rand, 4);
 
-        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, noiseGenSoulSandGravel, noiseGenNetherrack, noiseGenScale, noiseGenDepth);
+        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, soulSandGravelNoiseGen, netherrackNoiseGen, scaleNoiseGen, depthNoiseGen);
         ctx = TerrainGen.getModdedNoiseGenerators(world, rand, ctx);
 
         noiseGen1 = ctx.getLPerlin1();
         noiseGen2 = ctx.getLPerlin2();
         noiseGen3 = ctx.getPerlin();
-        noiseGenSoulSandGravel = ctx.getPerlin2();
-        noiseGenNetherrack = ctx.getPerlin3();
-        noiseGenScale = ctx.getScale();
-        noiseGenDepth = ctx.getDepth();
+        soulSandGravelNoiseGen = ctx.getPerlin2();
+        netherrackNoiseGen = ctx.getPerlin3();
+        scaleNoiseGen = ctx.getScale();
+        depthNoiseGen = ctx.getDepth();
 
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
         netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
@@ -143,20 +148,16 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
                                 int posY = y2 + y * 8;
                                 int posZ = z2 + z * 4;
 
-                                Biome biome = biomesForGen[posX + posZ * 16];
-
                                 IBlockState state = null;
-                                IBlockState biomeFillerBlock = NetherBiomeManager.getBiomeFillerBlock(biome);
-                                IBlockState biomeOceanBlock = NetherBiomeManager.getBiomeOceanBlock(biome);
 
                                 if(posY < 32)
                                 {
-                                    state = biomeOceanBlock;
+                                    state = Blocks.LAVA.getDefaultState();
                                 }
 
                                 if(d15 > 0.0D)
                                 {
-                                    state = biomeFillerBlock;
+                                    state = Blocks.NETHERRACK.getDefaultState();
                                 }
 
                                 primer.setBlockState(posX, posY, posZ, state);
@@ -185,26 +186,21 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             return;
         }
 
-        soulSandNoise = noiseGenSoulSandGravel.generateNoiseOctaves(soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
-        gravelNoise = noiseGenSoulSandGravel.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
-        depthBuffer = noiseGenNetherrack.generateNoiseOctaves(depthBuffer, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
+        soulSandNoise = soulSandGravelNoiseGen.generateNoiseOctaves(soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
+        gravelNoise = soulSandGravelNoiseGen.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
+        netherrackNoise = netherrackNoiseGen.generateNoiseOctaves(netherrackNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 
         for(int x = 0; x < 16; x++)
         {
             for(int z = 0; z < 16; z++)
             {
-                int l = (int) (depthBuffer[x + z * 16] / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+                int l = (int) (netherrackNoise[x + z * 16] / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
                 int i1 = -1;
                 boolean genSoulSand = soulSandNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
                 boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
-                Biome biome = biomesForGen[x + z * 16];
 
-                final IBlockState biomeTopBlock = NetherBiomeManager.getBiomeTopBlock(biome);
-                final IBlockState biomeFillerBlock = NetherBiomeManager.getBiomeFillerBlock(biome);
-                final IBlockState biomeOceanBlock = NetherBiomeManager.getBiomeOceanBlock(biome);
-
-                IBlockState topBlock = biomeTopBlock;
-                IBlockState fillerBlock = biomeFillerBlock;
+                IBlockState floorTopBlock = Blocks.NETHERRACK.getDefaultState();
+                IBlockState floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
 
                 for(int y = 127; y >= 0; y--)
                 {
@@ -214,59 +210,52 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
                         if(checkBlock.getMaterial() != Material.AIR)
                         {
-                            if(checkBlock == biomeFillerBlock)
+                            if(checkBlock == Blocks.NETHERRACK.getDefaultState())
                             {
                                 if(i1 == -1)
                                 {
                                     if(l <= 0)
                                     {
-                                        topBlock = Blocks.AIR.getDefaultState();
-                                        fillerBlock = biomeTopBlock;
+                                        floorTopBlock = Blocks.AIR.getDefaultState();
+                                        floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
                                     }
                                     else if(y >= 62 && y <= 66)
                                     {
-                                        topBlock = biomeTopBlock;
-                                        fillerBlock = biomeFillerBlock;
+                                        floorTopBlock = Blocks.NETHERRACK.getDefaultState();
+                                        floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
 
-                                        if(ConfigHandler.dimension.nether.generateGravel && genGravel)
+                                        if(ConfigHandler.dimensionConfig.nether.generateGravel && genGravel)
                                         {
-                                            topBlock = Blocks.GRAVEL.getDefaultState();
+                                            floorTopBlock = Blocks.GRAVEL.getDefaultState();
                                         }
 
-                                        if(ConfigHandler.dimension.nether.generateSoulSand && genSoulSand)
+                                        if(ConfigHandler.dimensionConfig.nether.generateSoulSand && genSoulSand)
                                         {
-                                            topBlock = Blocks.SOUL_SAND.getDefaultState();
-                                            fillerBlock = Blocks.SOUL_SAND.getDefaultState();
+                                            floorTopBlock = Blocks.SOUL_SAND.getDefaultState();
+                                            floorFillerBlock = Blocks.SOUL_SAND.getDefaultState();
                                         }
                                     }
 
-                                    if(y <= 32 && (topBlock == null || topBlock.getMaterial() == Material.AIR))
+                                    if(y <= 32 && (floorTopBlock == null || floorTopBlock.getMaterial() == Material.AIR))
                                     {
-                                        topBlock = biomeOceanBlock;
+                                        floorTopBlock = Blocks.LAVA.getDefaultState();
                                     }
 
                                     i1 = l;
 
-                                    if(topBlock == biomeTopBlock && fillerBlock == biomeFillerBlock)
+                                    if(y >= 64)
                                     {
-                                        primer.setBlockState(x, y, z, topBlock);
+                                        primer.setBlockState(x, y, z, floorTopBlock);
                                     }
                                     else
                                     {
-                                        if(y > 64)
-                                        {
-                                            primer.setBlockState(x, y, z, topBlock);
-                                        }
-                                        else
-                                        {
-                                            primer.setBlockState(x, y, z, fillerBlock);
-                                        }
+                                        primer.setBlockState(x, y, z, floorFillerBlock);
                                     }
                                 }
                                 else if(i1 > 0)
                                 {
                                     i1--;
-                                    primer.setBlockState(x, y, z, fillerBlock);
+                                    primer.setBlockState(x, y, z, floorFillerBlock);
                                 }
                             }
                         }
@@ -299,8 +288,8 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             return event.getNoisefield();
         }
 
-        noiseData4 = noiseGenScale.generateNoiseOctaves(noiseData4, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
-        noiseData5 = noiseGenDepth.generateNoiseOctaves(noiseData5, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
+        scaleNoise = scaleNoiseGen.generateNoiseOctaves(scaleNoise, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
+        depthNoise = depthNoiseGen.generateNoiseOctaves(depthNoise, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
         noiseData1 = noiseGen3.generateNoiseOctaves(noiseData1, posX, posY, posZ, xSize, ySize, zSize, 8.555150000000001D, 34.2206D, 8.555150000000001D);
         noiseData2 = noiseGen1.generateNoiseOctaves(noiseData2, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
         noiseData3 = noiseGen2.generateNoiseOctaves(noiseData3, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
@@ -383,6 +372,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
         biomesForGen = world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
         prepareHeights(chunkX, chunkZ, primer);
         buildSurfaces(chunkX, chunkZ, primer);
+        replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
         netherCaves.generate(world, chunkX, chunkZ, primer);
         netherBridge.generate(world, chunkX, chunkZ, primer);
 
@@ -401,84 +391,34 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     @Override
     public void populate(int chunkX, int chunkZ)
     {
-        boolean logCascadingWorldGeneration = ForgeModContainer.logCascadingWorldGeneration;
-        ForgeModContainer.logCascadingWorldGeneration = false;
-
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
         Biome biome = world.getBiome(blockPos.add(16, 0, 16));
+        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biome);
 
         BlockFalling.fallInstantly = true;
+        boolean hasVillageGenerated = false;
 
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, world, rand, chunkX, chunkZ, hasVillageGenerated));
         netherBridge.generateStructure(world, rand, chunkPos);
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, world, rand, chunkX, chunkZ, hasVillageGenerated));
 
-        List<Feature> features = NetherBiomeManager.getBiomeFeatures(biome);
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(world, rand, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
 
-        if(features.size() > 0)
+        if(wrapper.shouldGenDefaultFeatures())
         {
-            for(Feature feature : features)
-            {
-                if(feature.getBiome() != biome)
-                {
-                    continue;
-                }
-                if(!feature.canGenerate())
-                {
-                    continue;
-                }
-
-                int featureRarity = feature.useRandomRarity() ? rand.nextInt(feature.getRarity()) + 1 : feature.getRarity();
-
-                if(feature.getType() == Feature.FeatureType.ORE)
-                {
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
-
-                    if(!feature.isSuperRare())
-                    {
-                        for(int i = 0; i < featureRarity; i++)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
-                        }
-                    }
-                    else
-                    {
-                        if(rand.nextInt(featureRarity) == 0)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16), RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16)), rand);
-                        }
-                    }
-
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
-                }
-                else
-                {
-                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, blockPos));
-
-                    if(!feature.isSuperRare())
-                    {
-                        for(int i = 0; i < featureRarity; i++)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
-                        }
-                    }
-                    else
-                    {
-                        if(rand.nextInt(featureRarity) == 0)
-                        {
-                            feature.generate(world, blockPos.add(rand.nextInt(16) + 8, RandomUtil.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8), rand);
-                        }
-                    }
-
-                    MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, blockPos));
-                }
-            }
+            biome.decorate(world, rand, blockPos);
         }
 
-        biome.decorate(world, rand, blockPos);
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, chunkPos));
+
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.GenerateMinable(world, rand, new WorldGenMinable(Blocks.AIR.getDefaultState(), 0, BlockMatcher.forBlock(Blocks.AIR)), blockPos, OreGenEvent.GenerateMinable.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
 
         BlockFalling.fallInstantly = false;
-
-        ForgeModContainer.logCascadingWorldGeneration = logCascadingWorldGeneration;
     }
 
     @Override
@@ -490,27 +430,22 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        if(creatureType == EnumCreatureType.MONSTER)
+        if(netherBridge.isInsideStructure(pos))
         {
-            if(netherBridge.isInsideStructure(pos))
-            {
-                return netherBridge.getSpawnList();
-            }
-
-            if(netherBridge.isPositionInStructure(world, pos) && world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
-            {
-                return netherBridge.getSpawnList();
-            }
+            return netherBridge.getSpawnList();
+        }
+        if(netherBridge.isPositionInStructure(world, pos) && world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
+        {
+            return netherBridge.getSpawnList();
         }
 
-        Biome biome = world.getBiome(pos);
-        return NetherBiomeManager.getBiomeEntitySpawnList(biome).get(creatureType);
+        return NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos)).getSpawnableMobs(creatureType);
     }
 
     @Override
     public BlockPos getNearestStructurePos(World world, String structureName, BlockPos pos, boolean force)
     {
-        if("Fortress".equals(structureName))
+        if("Fortress".equalsIgnoreCase(structureName))
         {
             return netherBridge != null ? netherBridge.getNearestStructurePos(world, pos, force) : null;
         }
@@ -519,8 +454,130 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     }
 
     @Override
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
+    {
+        if("Fortress".equalsIgnoreCase(structureName))
+        {
+            return netherBridge != null && netherBridge.isInsideStructure(pos);
+        }
+
+        return false;
+    }
+
+    @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         netherBridge.generate(world, chunkX, chunkZ, null);
+    }
+
+    /**
+     * A method that replaces the default Nether blocks with ones designated for each biome
+     * <p>
+     * Written by the Biomes O' Plenty team here:
+     * https://github.com/Glitchfiend/BiomesOPlenty/blob/9873b7ad56ab8f32e6073dea060c4b67aad8b77e/src/main/java/biomesoplenty/common/biome/nether/BOPHellBiome.java#L84
+     *
+     * @author Biomes O' Plenty team
+     */
+    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
+    {
+        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, world))
+        {
+            return;
+        }
+
+        terrainNoise = terrainNoiseGen.getRegion(terrainNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
+
+        for(int x = 0; x < 16; ++x)
+        {
+            for(int z = 0; z < 16; ++z)
+            {
+                BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biomes[x + z * 16]);
+                Biome biome = wrapper.getBiome();
+                ResourceLocation biomeName = biome.getRegistryName();
+
+                if(!biomeName.getResourceDomain().equalsIgnoreCase("biomesoplenty"))
+                {
+                    IBlockState surfaceBlock = wrapper.getBlock("topBlock", biome.topBlock);
+                    IBlockState fillerBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);
+                    IBlockState wallBlock = wrapper.getBlock("wallBlock", biome.fillerBlock);
+                    IBlockState ceilingBottomBlock = wrapper.getBlock("ceilingBottomBlock", biome.fillerBlock);
+                    IBlockState ceilingFillerBlock = wrapper.getBlock("ceilingFillerBlock", biome.fillerBlock);
+                    IBlockState oceanBlock = wrapper.getBlock("oceanBlock", Blocks.LAVA.getDefaultState());
+
+                    int localX = ((chunkX * 16) + x) & 15;
+                    int localZ = ((chunkZ * 16) + z) & 15;
+
+                    boolean wasLastBlockSolid = true;
+
+                    for(int localY = 127; localY >= 0; localY--)
+                    {
+                        int blocksToSkip = 0;
+
+                        IBlockState checkState = primer.getBlockState(localX, localY, localZ);
+
+                        if(checkState.getBlock() == Blocks.NETHERRACK)
+                        {
+                            primer.setBlockState(localX, localY, localZ, wallBlock);
+
+                            if(!wasLastBlockSolid)
+                            {
+                                primer.setBlockState(localX, localY, localZ, surfaceBlock);
+
+                                for(int floorOffset = 1; floorOffset <= 4 - 1 && localY - floorOffset >= 0; floorOffset++)
+                                {
+                                    IBlockState state = primer.getBlockState(localX, localY - floorOffset, localZ);
+                                    blocksToSkip = floorOffset;
+
+                                    if(state.getBlock() == Blocks.NETHERRACK)
+                                    {
+                                        primer.setBlockState(localX, localY - floorOffset, localZ, fillerBlock);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+
+                            wasLastBlockSolid = true;
+                        }
+                        else if(checkState.getBlock() == Blocks.AIR)
+                        {
+                            if(wasLastBlockSolid)
+                            {
+                                primer.setBlockState(localX, localY + 1, localZ, ceilingBottomBlock);
+
+                                for(int roofOffset = 2; roofOffset <= 4 && localY + roofOffset <= 127; roofOffset++)
+                                {
+                                    IBlockState state = primer.getBlockState(localX, localY + roofOffset, localZ);
+
+                                    if(state.getBlock() == Blocks.NETHERRACK || state == wallBlock)
+                                    {
+                                        primer.setBlockState(localX, localY + roofOffset, localZ, ceilingFillerBlock);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+
+                            wasLastBlockSolid = false;
+                        }
+                        else if(checkState == Blocks.LAVA.getDefaultState())
+                        {
+                            primer.setBlockState(localX, localY, localZ, oceanBlock);
+                            wasLastBlockSolid = false;
+                        }
+
+                        localY -= blocksToSkip;
+                    }
+                }
+                else
+                {
+                    biome.genTerrainBlocks(world, rand, primer, chunkX * 16 + x, chunkZ * 16 + z, terrainNoise[x + z * 16]);
+                }
+            }
+        }
     }
 }

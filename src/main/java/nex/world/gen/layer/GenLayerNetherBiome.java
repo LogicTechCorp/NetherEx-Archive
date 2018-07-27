@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,14 @@
 
 package nex.world.gen.layer;
 
+import net.minecraft.init.Biomes;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
-import nex.world.biome.NetherBiomeManager;
+import net.minecraftforge.common.BiomeManager;
+import nex.world.biome.NetherExBiomeManager;
+
+import java.util.List;
 
 public class GenLayerNetherBiome extends GenLayerNetherEx
 {
@@ -38,10 +43,17 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
             for(int x = 0; x < areaWidth; x++)
             {
                 initChunkSeed(x + areaX, z + areaZ);
-                outputs[x + z * areaWidth] = Biome.getIdForBiome(NetherBiomeManager.getRandomBiome(NetherBiomeManager.getAllBiomeEntries(), this));
+                outputs[x + z * areaWidth] = Biome.getIdForBiome(getRandomBiome());
             }
         }
 
         return outputs;
+    }
+
+    public Biome getRandomBiome()
+    {
+        List<BiomeManager.BiomeEntry> biomeEntryList = NetherExBiomeManager.getBiomes();
+        int biomeWeights = WeightedRandom.getTotalWeight(biomeEntryList);
+        return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntryList, nextInt(biomeWeights)).biome;
     }
 }

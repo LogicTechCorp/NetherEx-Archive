@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:flint_and_steel"
+        },
+        {
+            "item": "nex:rime_crystal"
+        }
+    ],
+    "result": {
+        "item": "nex:rime_and_steel"
+    }
+}

@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,21 @@
 
 package nex.fluid;
 
-public class FluidIchor extends FluidNetherEx
+import lex.fluid.FluidLibEx;
+import net.minecraftforge.fluids.FluidStack;
+import nex.NetherEx;
+
+public class FluidIchor extends FluidLibEx
 {
     public FluidIchor()
     {
-        super("ichor");
-
+        super(NetherEx.instance, "blood", "ichor");
         setViscosity(3500);
+    }
+
+    @Override
+    public boolean doesVaporize(FluidStack fluidStack)
+    {
+        return false;
     }
 }

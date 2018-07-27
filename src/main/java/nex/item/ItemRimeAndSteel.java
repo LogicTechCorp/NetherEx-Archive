@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 
 package nex.item;
 
+import lex.item.ItemLibEx;
+import lex.util.BlockHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -26,14 +28,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
-public class ItemRimeAndSteel extends ItemNetherEx
+public class ItemRimeAndSteel extends ItemLibEx
 {
     public ItemRimeAndSteel()
     {
-        super("item_crystal_rime_steel");
-
+        super(NetherEx.instance, "rime_and_steel");
         setMaxStackSize(1);
         setMaxDamage(64);
     }
@@ -53,7 +55,15 @@ public class ItemRimeAndSteel extends ItemNetherEx
             if(world.isAirBlock(pos))
             {
                 world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-                world.setBlockState(pos, NetherExBlocks.BLOCK_FIRE_BLUE.getDefaultState(), 11);
+                world.setBlockState(pos, NetherExBlocks.BLUE_FIRE.getDefaultState(), 11);
+
+                for(EnumFacing checkFacing : EnumFacing.values())
+                {
+                    if(BlockHelper.isOreDict("obsidian", world.getBlockState(pos.offset(checkFacing)).getBlock()))
+                    {
+                        NetherExBlocks.NETHER_PORTAL.trySpawnPortal(world, pos);
+                    }
+                }
             }
 
             stack.damageItem(1, player);

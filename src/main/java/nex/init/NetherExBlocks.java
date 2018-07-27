@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,9 @@
 
 package nex.init;
 
+import lex.block.BlockFenceGateLibEx;
+import lex.block.BlockStairsLibEx;
+import lex.item.ItemBlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -28,191 +31,70 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
 import nex.block.*;
 import nex.item.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("ConstantConditions")
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBlocks
 {
-    @GameRegistry.ObjectHolder("block_basalt")
-    public static final BlockBasalt BLOCK_BASALT = null;
-
-    @GameRegistry.ObjectHolder("block_netherrack")
-    public static final BlockNetherrack BLOCK_NETHERRACK = null;
-
-    @GameRegistry.ObjectHolder("block_brick_nether")
-    public static final BlockNetherBrick BLOCK_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("block_netherrack_path")
-    public static final BlockNetherrackPath BLOCK_NETHERRACK_PATH = null;
-
-    @GameRegistry.ObjectHolder("block_hyphae")
-    public static final BlockHyphae BLOCK_HYPHAE = null;
-
-    @GameRegistry.ObjectHolder("block_sand_soul_tilled")
-    public static final BlockTilledSoulSand BLOCK_SAND_SOUL_TILLED = null;
-
-    @GameRegistry.ObjectHolder("block_glass_soul")
-    public static final BlockSoulGlass BLOCK_GLASS_SOUL = null;
-
-    @GameRegistry.ObjectHolder("block_glass_pane_soul")
-    public static final BlockSoulGlassPane BLOCK_GLASS_PANE_SOUL = null;
-
-    @GameRegistry.ObjectHolder("block_amethyst")
-    public static final BlockAmethyst BLOCK_AMETHYST = null;
-
-    @GameRegistry.ObjectHolder("block_rime")
-    public static final BlockRime BLOCK_RIME = null;
-
-    @GameRegistry.ObjectHolder("block_ice_frostburn")
-    public static final BlockFrostburnIce BLOCK_ICE_FROSTBURN = null;
-
-    @GameRegistry.ObjectHolder("block_bone_sliver")
-    public static final BlockBoneSliver BLOCK_BONE_SLIVER = null;
-
-    @GameRegistry.ObjectHolder("block_bone_chunk")
-    public static final BlockBoneChunk BLOCK_BONE_CHUNK = null;
-
-    @GameRegistry.ObjectHolder("block_iron_worn")
-    public static final BlockWornIron BLOCK_IRON_WORN = null;
-
-    @GameRegistry.ObjectHolder("block_fire_blue")
-    public static final BlockBlueFire BLOCK_FIRE_BLUE = null;
-
-    @GameRegistry.ObjectHolder("block_portal_nether")
-    public static final BlockNetherPortal BLOCK_PORTAL_NETHER = null;
-
-    @GameRegistry.ObjectHolder("tile_urn_sorrow")
-    public static final BlockUrnOfSorrow TILE_URN_SORROW = null;
-
-    @GameRegistry.ObjectHolder("ore_quartz")
-    public static final BlockQuartzOre ORE_QUARTZ = null;
-
-    @GameRegistry.ObjectHolder("ore_amethyst")
-    public static final BlockAmethystOre ORE_AMETHYST = null;
-
-    @GameRegistry.ObjectHolder("ore_rime")
-    public static final BlockRimeOre ORE_RIME = null;
-
-    @GameRegistry.ObjectHolder("plant_thornstalk")
-    public static final BlockThornstalk PLANT_THORNSTALK = null;
-
-    @GameRegistry.ObjectHolder("plant_mushroom_elder")
-    public static final BlockElderMushroom PLANT_MUSHROOM_ELDER = null;
-
-    @GameRegistry.ObjectHolder("plant_mushroom_elder_cap")
-    public static final BlockElderMushroomCap PLANT_MUSHROOM_ELDER_CAP = null;
-
-    @GameRegistry.ObjectHolder("plant_mushroom_elder_stem")
-    public static final BlockElderMushroomStem PLANT_MUSHROOM_ELDER_STEM = null;
-
-    @GameRegistry.ObjectHolder("plant_mushroom_enoki_stem")
-    public static final BlockEnokiMushroomStem PLANT_MUSHROOM_ENOKI_STEM = null;
-
-    @GameRegistry.ObjectHolder("plant_mushroom_enoki_cap")
-    public static final BlockEnokiMushroomCap PLANT_MUSHROOM_ENOKI_CAP = null;
-
-    @GameRegistry.ObjectHolder("fluid_ichor")
-    public static final BlockIchor FLUID_ICHOR = null;
-
-    @GameRegistry.ObjectHolder("slab_vanilla")
-    public static final BlockVanillaSlab SLAB_VANILLA = null;
-
-    @GameRegistry.ObjectHolder("slab_basalt")
-    public static final BlockBasaltSlab SLAB_BASALT = null;
-
-    @GameRegistry.ObjectHolder("slab_brick_nether")
-    public static final BlockNetherBrickSlab SLAB_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("slab_vanilla_double")
-    public static final BlockVanillaSlab.Double SLAB_VANILLA_DOUBLE = null;
-
-    @GameRegistry.ObjectHolder("slab_basalt_double")
-    public static final BlockBasaltSlab.Double SLAB_BASALT_DOUBLE = null;
-
-    @GameRegistry.ObjectHolder("slab_brick_nether_double")
-    public static final BlockNetherBrickSlab.Double SLAB_BRICK_NETHER_DOUBLE = null;
-
-    @GameRegistry.ObjectHolder("stairs_brick_nether_red")
-    public static final BlockNetherExStairs STAIRS_RED_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("stairs_basalt_normal")
-    public static final BlockNetherExStairs STAIRS_BASALT_NORMAL = null;
-
-    @GameRegistry.ObjectHolder("stairs_basalt_smooth")
-    public static final BlockNetherExStairs STAIRS_BASALT_SMOOTH = null;
-
-    @GameRegistry.ObjectHolder("stairs_basalt_brick")
-    public static final BlockNetherExStairs STAIRS_BASALT_BRICK = null;
-
-    @GameRegistry.ObjectHolder("stairs_basalt_pillar")
-    public static final BlockNetherExStairs STAIRS_BASALT_PILLAR = null;
-
-    @GameRegistry.ObjectHolder("stairs_brick_nether_fiery")
-    public static final BlockNetherExStairs STAIRS_BRICK_NETHER_FIERY = null;
-
-    @GameRegistry.ObjectHolder("stairs_brick_nether_icy")
-    public static final BlockNetherExStairs STAIRS_BRICK_NETHER_ICY = null;
-
-    @GameRegistry.ObjectHolder("stairs_brick_nether_lively")
-    public static final BlockNetherExStairs STAIRS_BRICK_NETHER_LIVELY = null;
-
-    @GameRegistry.ObjectHolder("stairs_brick_nether_gloomy")
-    public static final BlockNetherExStairs STAIRS_BRICK_NETHER_GLOOMY = null;
-
-    @GameRegistry.ObjectHolder("wall_vanilla")
-    public static final BlockVanillaWall WALL_VANILLA = null;
-
-    @GameRegistry.ObjectHolder("wall_basalt")
-    public static final BlockBasaltWall WALL_BASALT = null;
-
-    @GameRegistry.ObjectHolder("wall_brick_nether")
-    public static final BlockNetherBrickWall WALL_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("fence_vanilla")
-    public static final BlockVanillaFence FENCE_VANILLA = null;
-
-    @GameRegistry.ObjectHolder("fence_basalt")
-    public static final BlockBasaltFence FENCE_BASALT = null;
-
-    @GameRegistry.ObjectHolder("fence_brick_nether")
-    public static final BlockNetherBrickFence FENCE_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_quartz")
-    public static final BlockNetherExFenceGate FENCE_GATE_QUARTZ = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_brick_nether")
-    public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_brick_nether_red")
-    public static final BlockNetherExFenceGate FENCE_GATE_RED_BRICK_NETHER = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_basalt_normal")
-    public static final BlockNetherExFenceGate FENCE_GATE_BASALT = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_basalt_smooth")
-    public static final BlockNetherExFenceGate FENCE_GATE_BASALT_SMOOTH = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_basalt_brick")
-    public static final BlockNetherExFenceGate FENCE_GATE_BASALT_BRICK = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_basalt_pillar")
-    public static final BlockNetherExFenceGate FENCE_GATE_BASALT_PILLAR = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_brick_nether_fiery")
-    public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_FIERY = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_brick_nether_icy")
-    public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_ICY = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_brick_nether_lively")
-    public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_LIVELY = null;
-
-    @GameRegistry.ObjectHolder("fence_gate_brick_nether_gloomy")
-    public static final BlockNetherExFenceGate FENCE_GATE_BRICK_NETHER_GLOOMY = null;
-
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExBlocks");
+    public static final BlockBasalt BASALT = null;
+    public static final BlockNetherrack NETHERRACK = null;
+    public static final BlockNetherBrick NETHER_BRICK = null;
+    public static final BlockNetherrackPath NETHERRACK_PATH = null;
+    public static final BlockHyphae HYPHAE = null;
+    public static final BlockTilledSoulSand TILLED_SOUL_SAND = null;
+    public static final BlockSoulGlass SOUL_GLASS = null;
+    public static final BlockSoulGlassPane SOUL_GLASS_PANE = null;
+    public static final BlockAmethyst AMETHYST_BLOCK = null;
+    public static final BlockRime RIME_BLOCK = null;
+    public static final BlockFrostburnIce FROSTBURN_ICE = null;
+    public static final BlockBoneSliver BONE_SLIVER = null;
+    public static final BlockBoneChunk BONE_CHUNK = null;
+    public static final BlockWornIron WORN_IRON = null;
+    public static final BlockBlueFire BLUE_FIRE = null;
+    public static final BlockNetherPortal NETHER_PORTAL = null;
+    public static final BlockUrnOfSorrow URN_OF_SORROW = null;
+    public static final BlockQuartzOre QUARTZ_ORE = null;
+    public static final BlockAmethystOre AMETHYST_ORE = null;
+    public static final BlockRimeOre RIME_ORE = null;
+    public static final BlockThornstalk THORNSTALK = null;
+    public static final BlockElderMushroom ELDER_MUSHROOM = null;
+    public static final BlockElderMushroomCap ELDER_MUSHROOM_CAP = null;
+    public static final BlockElderMushroomStem ELDER_MUSHROOM_STEM = null;
+    public static final BlockEnokiMushroomStem ENOKI_MUSHROOM_STEM = null;
+    public static final BlockEnokiMushroomCap ENOKI_MUSHROOM_CAP = null;
+    public static final BlockIchor ICHOR = null;
+    public static final BlockVanillaSlab VANILLA_SLAB = null;
+    public static final BlockBasaltSlab BASALT_SLAB = null;
+    public static final BlockNetherBrickSlab NETHER_BRICK_SLAB = null;
+    public static final BlockVanillaSlab.Double VANILLA_SLAB_DOUBLE = null;
+    public static final BlockBasaltSlab.Double BASALT_SLAB_DOUBLE = null;
+    public static final BlockNetherBrickSlab.Double NETHER_BRICK_SLAB_DOUBLE = null;
+    public static final BlockStairsLibEx RED_NETHER_BRICK_STAIRS = null;
+    public static final BlockStairsLibEx BASALT_STAIRS = null;
+    public static final BlockStairsLibEx BASALT_SMOOTH_STAIRS = null;
+    public static final BlockStairsLibEx BASALT_BRICK_STAIRS = null;
+    public static final BlockStairsLibEx BASALT_PILLAR_STAIRS = null;
+    public static final BlockStairsLibEx FIERY_NETHER_BRICK_STAIRS = null;
+    public static final BlockStairsLibEx ICY_NETHER_BRICK_STAIRS = null;
+    public static final BlockStairsLibEx LIVELY_NETHER_BRICK_STAIRS = null;
+    public static final BlockStairsLibEx GLOOMY_NETHER_BRICK_STAIRS = null;
+    public static final BlockVanillaWall VANILLA_WALL = null;
+    public static final BlockBasaltWall BASALT_WALL = null;
+    public static final BlockNetherBrickWall NETHER_BRICK_WALL = null;
+    public static final BlockVanillaFence VANILLA_FENCE = null;
+    public static final BlockBasaltFence BASALT_FENCE = null;
+    public static final BlockNetherBrickFence NETHER_BRICK_FENCE = null;
+    public static final BlockFenceGateLibEx QUARTZ_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx NETHER_BRICK_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx RED_NETHER_BRICK_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx BASALT_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx BASALT_SMOOTH_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx BASALT_BRICK_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx BASALT_PILLAR_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx FIERY_NETHER_BRICK_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx ICY_NETHER_BRICK_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx LIVELY_NETHER_BRICK_FENCE_GATE = null;
+    public static final BlockFenceGateLibEx GLOOMY_NETHER_BRICK_FENCE_GATE = null;
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -220,29 +102,6 @@ public class NetherExBlocks
         @SubscribeEvent
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
-            NetherExTextures.LOGGER.info("Texture registration started.");
-
-            NetherExTextures.init();
-
-            NetherExTextures.LOGGER.info("Texture registration completed.");
-            NetherExFluids.LOGGER.info("Fluid registration started.");
-
-            NetherExFluids.init();
-
-            NetherExFluids.LOGGER.info("Fluid registration completed.");
-            NetherExMaterials.LOGGER.info("Material registration started.");
-
-            NetherExMaterials.init();
-
-            NetherExMaterials.LOGGER.info("Material registration completed.");
-            NetherExLootTables.LOGGER.info("Loot Table registration started.");
-
-            NetherExLootTables.init();
-
-            NetherExLootTables.LOGGER.info("Loot Table registration completed.");
-
-            LOGGER.info("Block registration started.");
-
             event.getRegistry().registerAll(
                     new BlockBasalt(),
                     new BlockNetherrack(),
@@ -277,103 +136,97 @@ public class NetherExBlocks
                     new BlockVanillaSlab.Double(),
                     new BlockBasaltSlab.Double(),
                     new BlockNetherBrickSlab.Double(),
-                    new BlockNetherExStairs("vanilla_brick_nether_red", Blocks.RED_NETHER_BRICK.getDefaultState()),
-                    new BlockNetherExStairs("basalt_normal", Blocks.STONE.getDefaultState()),
-                    new BlockNetherExStairs("basalt_smooth", Blocks.STONE.getDefaultState()),
-                    new BlockNetherExStairs("basalt_brick", Blocks.STONE.getDefaultState()),
-                    new BlockNetherExStairs("basalt_pillar", Blocks.STONE.getDefaultState()),
-                    new BlockNetherExStairs("brickNether_fiery", Blocks.NETHER_BRICK.getDefaultState()),
-                    new BlockNetherExStairs("brickNether_icy", Blocks.NETHER_BRICK.getDefaultState()),
-                    new BlockNetherExStairs("brickNether_lively", Blocks.NETHER_BRICK.getDefaultState()),
-                    new BlockNetherExStairs("brickNether_gloomy", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "red_nether_brick", Blocks.RED_NETHER_BRICK.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "basalt", Blocks.STONE.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "basalt_smooth", Blocks.STONE.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "basalt_brick", Blocks.STONE.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "basalt_pillar", Blocks.STONE.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "fiery_nether_brick", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "icy_nether_brick", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "lively_nether_brick", Blocks.NETHER_BRICK.getDefaultState()),
+                    new BlockStairsLibEx(NetherEx.instance, "gloomy_nether_brick", Blocks.NETHER_BRICK.getDefaultState()),
                     new BlockVanillaWall(),
                     new BlockBasaltWall(),
                     new BlockNetherBrickWall(),
                     new BlockVanillaFence(),
                     new BlockBasaltFence(),
                     new BlockNetherBrickFence(),
-                    new BlockNetherExFenceGate("vanilla_quartz", Material.ROCK),
-                    new BlockNetherExFenceGate("vanilla_brick_nether", Material.ROCK),
-                    new BlockNetherExFenceGate("vanilla_brick_nether_red", Material.ROCK),
-                    new BlockNetherExFenceGate("basalt_normal", Material.ROCK),
-                    new BlockNetherExFenceGate("basalt_smooth", Material.ROCK),
-                    new BlockNetherExFenceGate("basalt_brick", Material.ROCK),
-                    new BlockNetherExFenceGate("basalt_pillar", Material.ROCK),
-                    new BlockNetherExFenceGate("brickNether_fiery", Material.ROCK),
-                    new BlockNetherExFenceGate("brickNether_icy", Material.ROCK),
-                    new BlockNetherExFenceGate("brickNether_lively", Material.ROCK),
-                    new BlockNetherExFenceGate("brickNether_gloomy", Material.ROCK)
+                    new BlockFenceGateLibEx(NetherEx.instance, "quartz", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "nether_brick", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "red_nether_brick", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "basalt", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "basalt_smooth", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "basalt_brick", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "basalt_pillar", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "fiery_nether_brick", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "icy_nether_brick", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "lively_nether_brick", Material.ROCK),
+                    new BlockFenceGateLibEx(NetherEx.instance, "gloomy_nether_brick", Material.ROCK)
             );
-
-            LOGGER.info("Block registration completed.");
         }
 
         @SubscribeEvent
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
-            LOGGER.info("ItemBlock registration started.");
-
             event.getRegistry().registerAll(
                     new ItemBlockBasalt(),
                     new ItemBlockNetherrack(),
                     new ItemBlockNetherBrick(),
                     new ItemBlockNetherrackPath(),
-                    new ItemBlockNetherEx(BLOCK_HYPHAE),
-                    new ItemBlockNetherEx(BLOCK_SAND_SOUL_TILLED),
-                    new ItemBlockNetherEx(BLOCK_GLASS_SOUL),
-                    new ItemBlockNetherEx(BLOCK_GLASS_PANE_SOUL),
-                    new ItemBlockNetherEx(BLOCK_AMETHYST),
-                    new ItemBlockNetherEx(BLOCK_RIME),
-                    new ItemBlockNetherEx(BLOCK_ICE_FROSTBURN),
-                    new ItemBlockNetherEx(BLOCK_BONE_SLIVER),
-                    new ItemBlockNetherEx(BLOCK_BONE_CHUNK),
-                    new ItemBlockNetherEx(BLOCK_IRON_WORN),
+                    new ItemBlockLibEx(HYPHAE),
+                    new ItemBlockLibEx(TILLED_SOUL_SAND),
+                    new ItemBlockLibEx(SOUL_GLASS),
+                    new ItemBlockLibEx(SOUL_GLASS_PANE),
+                    new ItemBlockLibEx(AMETHYST_BLOCK),
+                    new ItemBlockLibEx(RIME_BLOCK),
+                    new ItemBlockLibEx(FROSTBURN_ICE),
+                    new ItemBlockLibEx(BONE_SLIVER),
+                    new ItemBlockLibEx(BONE_CHUNK),
+                    new ItemBlockLibEx(WORN_IRON),
                     new ItemBlockUrnOfSorrow(),
                     new ItemBlockQuartzOre(),
-                    new ItemBlockNetherEx(ORE_AMETHYST),
-                    new ItemBlockNetherEx(ORE_RIME),
+                    new ItemBlockLibEx(AMETHYST_ORE),
+                    new ItemBlockLibEx(RIME_ORE),
                     new ItemBlockElderMushroom(),
                     new ItemBlockElderMushroomCap(),
-                    new ItemBlockNetherEx(PLANT_MUSHROOM_ELDER_STEM),
-                    new ItemBlockNetherEx(PLANT_MUSHROOM_ENOKI_STEM),
-                    new ItemBlockNetherEx(PLANT_MUSHROOM_ENOKI_CAP),
+                    new ItemBlockLibEx(ELDER_MUSHROOM_STEM),
+                    new ItemBlockLibEx(ENOKI_MUSHROOM_STEM),
+                    new ItemBlockLibEx(ENOKI_MUSHROOM_CAP),
                     new ItemBlockThornstalk(),
-                    new ItemBlockNetherEx(FLUID_ICHOR),
+                    new ItemBlockLibEx(ICHOR),
                     new ItemBlockVanillaSlab(false),
                     new ItemBlockBasaltSlab(false),
                     new ItemBlockNetherBrickSlab(false),
                     new ItemBlockVanillaSlab(true),
                     new ItemBlockBasaltSlab(true),
                     new ItemBlockNetherBrickSlab(true),
-                    new ItemBlockNetherEx(STAIRS_RED_BRICK_NETHER),
-                    new ItemBlockNetherEx(STAIRS_BRICK_NETHER_FIERY),
-                    new ItemBlockNetherEx(STAIRS_BRICK_NETHER_ICY),
-                    new ItemBlockNetherEx(STAIRS_BRICK_NETHER_LIVELY),
-                    new ItemBlockNetherEx(STAIRS_BRICK_NETHER_GLOOMY),
-                    new ItemBlockNetherEx(STAIRS_BASALT_NORMAL),
-                    new ItemBlockNetherEx(STAIRS_BASALT_SMOOTH),
-                    new ItemBlockNetherEx(STAIRS_BASALT_BRICK),
-                    new ItemBlockNetherEx(STAIRS_BASALT_PILLAR),
+                    new ItemBlockLibEx(RED_NETHER_BRICK_STAIRS),
+                    new ItemBlockLibEx(FIERY_NETHER_BRICK_STAIRS),
+                    new ItemBlockLibEx(ICY_NETHER_BRICK_STAIRS),
+                    new ItemBlockLibEx(LIVELY_NETHER_BRICK_STAIRS),
+                    new ItemBlockLibEx(GLOOMY_NETHER_BRICK_STAIRS),
+                    new ItemBlockLibEx(BASALT_STAIRS),
+                    new ItemBlockLibEx(BASALT_SMOOTH_STAIRS),
+                    new ItemBlockLibEx(BASALT_BRICK_STAIRS),
+                    new ItemBlockLibEx(BASALT_PILLAR_STAIRS),
                     new ItemBlockVanillaWall(),
                     new ItemBlockBasaltWall(),
                     new ItemBlockNetherBrickWall(),
                     new ItemBlockVanillaFence(),
                     new ItemBlockBasaltFence(),
                     new ItemBlockNetherBrickFence(),
-                    new ItemBlockNetherEx(FENCE_GATE_QUARTZ),
-                    new ItemBlockNetherEx(FENCE_GATE_BRICK_NETHER),
-                    new ItemBlockNetherEx(FENCE_GATE_RED_BRICK_NETHER),
-                    new ItemBlockNetherEx(FENCE_GATE_BASALT),
-                    new ItemBlockNetherEx(FENCE_GATE_BASALT_SMOOTH),
-                    new ItemBlockNetherEx(FENCE_GATE_BASALT_BRICK),
-                    new ItemBlockNetherEx(FENCE_GATE_BASALT_PILLAR),
-                    new ItemBlockNetherEx(FENCE_GATE_BRICK_NETHER_FIERY),
-                    new ItemBlockNetherEx(FENCE_GATE_BRICK_NETHER_ICY),
-                    new ItemBlockNetherEx(FENCE_GATE_BRICK_NETHER_LIVELY),
-                    new ItemBlockNetherEx(FENCE_GATE_BRICK_NETHER_GLOOMY)
+                    new ItemBlockLibEx(QUARTZ_FENCE_GATE),
+                    new ItemBlockLibEx(NETHER_BRICK_FENCE_GATE),
+                    new ItemBlockLibEx(RED_NETHER_BRICK_FENCE_GATE),
+                    new ItemBlockLibEx(BASALT_FENCE_GATE),
+                    new ItemBlockLibEx(BASALT_SMOOTH_FENCE_GATE),
+                    new ItemBlockLibEx(BASALT_BRICK_FENCE_GATE),
+                    new ItemBlockLibEx(BASALT_PILLAR_FENCE_GATE),
+                    new ItemBlockLibEx(FIERY_NETHER_BRICK_FENCE_GATE),
+                    new ItemBlockLibEx(ICY_NETHER_BRICK_FENCE_GATE),
+                    new ItemBlockLibEx(LIVELY_NETHER_BRICK_FENCE_GATE),
+                    new ItemBlockLibEx(GLOOMY_NETHER_BRICK_FENCE_GATE)
             );
-
-            LOGGER.info("ItemBlock registration completed.");
         }
     }
 }

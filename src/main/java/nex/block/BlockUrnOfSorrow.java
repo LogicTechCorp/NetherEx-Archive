@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockTileEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -36,6 +37,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+import nex.NetherEx;
 import nex.init.NetherExEffects;
 import nex.tileentity.TileEntityUrnOfSorrow;
 
@@ -47,8 +49,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 
     public BlockUrnOfSorrow()
     {
-        super("tile_urn_sorrow", Material.ROCK, TileEntityUrnOfSorrow.class);
-
+        super(NetherEx.instance, "urn_of_sorrow", Material.ROCK, TileEntityUrnOfSorrow.class);
         setHardness(0.5F);
     }
 

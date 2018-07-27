@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 package nex.block;
 
 import com.google.common.base.CaseFormat;
+import lex.block.BlockSlabLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -26,19 +27,19 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockBasaltSlab extends BlockNetherExSlab
+public class BlockBasaltSlab extends BlockSlabLibEx
 {
     public static final PropertyEnum<BlockBasalt.EnumType> TYPE = PropertyEnum.create("type", BlockBasalt.EnumType.class);
 
     public BlockBasaltSlab()
     {
-        super("slab_basalt", Material.ROCK);
-
+        super(NetherEx.instance, "basalt_slab", Material.ROCK);
         setHardness(2.0F);
         setResistance(10F);
     }
@@ -67,7 +68,7 @@ public class BlockBasaltSlab extends BlockNetherExSlab
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NetherExBlocks.SLAB_BASALT);
+        return Item.getItemFromBlock(NetherExBlocks.BASALT_SLAB);
     }
 
     @Override

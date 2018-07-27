@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:basalt",
+            "data": 2
+        }
+    },
+    "result": {
+        "item": "nex:basalt",
+        "data": 3,
+        "count": 4
+    }
+}

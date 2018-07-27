@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -95,7 +95,7 @@ public class EntityGoldGolem extends EntityGolem
         if(--homeCheckTimer <= 0)
         {
             homeCheckTimer = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getPigtificateVillages(getEntityWorld()).getNearestVillage(new BlockPos(this), 32);
+            village = PigtificateVillageManager.getNetherVillages(getEntityWorld(), true).getNearestVillage(new BlockPos(this), 32);
 
             if(village == null)
             {
@@ -272,7 +272,7 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_GOLEM_GOLD;
+        return NetherExLootTables.GOLD_GOLEM;
     }
 
     public int getHoldFlowerTick()

@@ -5,4 +5,4 @@
 !/gradle/
 !/README.md
 !build.gradle
-!public_properties.xml
+!gradle.properties

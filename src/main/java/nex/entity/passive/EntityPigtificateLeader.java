@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,13 +27,18 @@ import net.minecraft.world.World;
 import nex.entity.ai.EntityAIPigtificateInteract;
 import nex.entity.ai.EntityAIPigtificateLookAtTradePlayer;
 import nex.entity.ai.EntityAIPigtificateTradePlayer;
-import nex.village.Trade;
+import nex.village.Pigtificate;
 
 public class EntityPigtificateLeader extends EntityPigtificate
 {
     public EntityPigtificateLeader(World world)
     {
         super(world);
+    }
+
+    public EntityPigtificateLeader(World world, Pigtificate.Career career)
+    {
+        super(world, career);
     }
 
     @Override
@@ -58,7 +63,7 @@ public class EntityPigtificateLeader extends EntityPigtificate
     @Override
     protected void setRandomProfession()
     {
-        setProfession(Trade.Profession.EnumType.getRandom(rand, true).ordinal());
+        setProfession(Pigtificate.Profession.getRandom(rand, true).ordinal());
         setRandomCareer();
     }
 

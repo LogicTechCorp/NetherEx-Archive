@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,25 +53,25 @@ public class EntitySpinout extends EntityMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_SPINOUT;
+        return NetherExSoundEvents.SPINOUT_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_SPINOUT;
+        return NetherExSoundEvents.SPINOUT_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_SPINOUT;
+        return NetherExSoundEvents.SPINOUT_DEATH;
     }
 
     @Override
     public void playSound(SoundEvent sound, float volume, float pitch)
     {
-        if(!isSilent() || isSilent() && sound != NetherExSoundEvents.ENTITY_AMBIENT_SPINOUT)
+        if(!isSilent() || isSilent() && sound != NetherExSoundEvents.SPINOUT_AMBIENT)
         {
             world.playSound(null, posX, posY, posZ, sound, getSoundCategory(), volume, pitch);
         }
@@ -117,11 +117,11 @@ public class EntitySpinout extends EntityMob
                 setSilent(false);
             }
         }
-        if(getCounter() >= ConfigHandler.entity.spinout.spinTime * 20)
+        if(getCounter() >= ConfigHandler.entityConfig.spinout.spinTime * 20)
         {
             setCounter(0);
             setSpinning(false);
-            setCooldown(ConfigHandler.entity.spinout.spinCooldown * 20);
+            setCooldown(ConfigHandler.entityConfig.spinout.spinCooldown * 20);
         }
         if(getCooldown() > 0)
         {
@@ -137,7 +137,7 @@ public class EntitySpinout extends EntityMob
                 setSilent(true);
             }
 
-            getNavigator().clearPathEntity();
+            getNavigator().clearPath();
         }
     }
 
@@ -180,7 +180,7 @@ public class EntitySpinout extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_SPINOUT;
+        return NetherExLootTables.SPINOUT;
     }
 
     public int getCounter()

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#X#",
+        "#X#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:stone_slab",
+            "data": 7
+        },
+        "X": {
+            "item": "minecraft:quartz_block",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "nex:quartz_fence_gate",
+        "count": 4
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "facing": {
+            "down": {
+                "model": "nex:bone_chunk", "x": 180
+            },
+            "up": {
+                "model": "nex:bone_chunk"
+            },
+            "north": {
+                "model": "nex:bone_chunk", "y": 0, "x": 90
+            },
+            "south": {
+                "model": "nex:bone_chunk", "y": 180, "x": 90
+            },
+            "west": {
+                "model": "nex:bone_chunk", "y": 270, "x": 90
+            },
+            "east": {
+                "model": "nex:bone_chunk", "y": 90, "x": 90
+            }
+        }
+    }
+}

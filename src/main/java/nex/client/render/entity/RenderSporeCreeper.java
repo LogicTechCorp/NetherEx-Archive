@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,6 +69,6 @@ public class RenderSporeCreeper extends RenderLiving<EntitySporeCreeper>
     @Override
     protected ResourceLocation getEntityTexture(EntitySporeCreeper creeper)
     {
-        return NetherExTextures.ENTITY_SPORE_CREEPER;
+        return NetherExTextures.SPORE_CREEPER;
     }
 }

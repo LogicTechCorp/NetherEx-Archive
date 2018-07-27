@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
@@ -36,11 +37,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.init.NetherExBlocks;
+import nex.NetherEx;
 
 import java.util.Random;
 
-public class BlockBlueFire extends BlockNetherEx
+public class BlockBlueFire extends BlockLibEx
 {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
     public static final PropertyBool NORTH = PropertyBool.create("north");
@@ -51,11 +52,10 @@ public class BlockBlueFire extends BlockNetherEx
 
     public BlockBlueFire()
     {
-        super("block_fire_blue", Material.FIRE);
-
+        super(NetherEx.instance, "blue_fire", Material.FIRE);
         setLightLevel(1.0F);
         setTickRandomly(true);
-        setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
+        setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class BlockBlueFire extends BlockNetherEx
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         if(rand.nextInt(24) == 0)
         {
@@ -297,21 +297,18 @@ public class BlockBlueFire extends BlockNetherEx
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        if(world.provider.getDimensionType().getId() > 0 || !NetherExBlocks.BLOCK_PORTAL_NETHER.trySpawnPortal(world, pos))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
         {
-            if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
-            {
-                world.setBlockToAir(pos);
-            }
-            else
-            {
-                world.scheduleUpdate(pos, this, tickRate(world) + world.rand.nextInt(10));
-            }
+            world.setBlockToAir(pos);
+        }
+        else
+        {
+            world.scheduleUpdate(pos, this, tickRate(world) + world.rand.nextInt(10));
         }
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
         if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
         {
@@ -354,17 +351,17 @@ public class BlockBlueFire extends BlockNetherEx
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if(!worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && !canCatchFire(worldIn, pos.down(), EnumFacing.UP))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canCatchFire(world, pos.down(), EnumFacing.UP))
         {
-            return state.withProperty(NORTH, canCatchFire(worldIn, pos.north(), EnumFacing.SOUTH))
-                    .withProperty(EAST, canCatchFire(worldIn, pos.east(), EnumFacing.WEST))
-                    .withProperty(SOUTH, canCatchFire(worldIn, pos.south(), EnumFacing.NORTH))
-                    .withProperty(WEST, canCatchFire(worldIn, pos.west(), EnumFacing.EAST))
-                    .withProperty(UPPER, canCatchFire(worldIn, pos.up(), EnumFacing.DOWN));
+            return state.withProperty(NORTH, canCatchFire(world, pos.north(), EnumFacing.SOUTH))
+                    .withProperty(EAST, canCatchFire(world, pos.east(), EnumFacing.WEST))
+                    .withProperty(SOUTH, canCatchFire(world, pos.south(), EnumFacing.NORTH))
+                    .withProperty(WEST, canCatchFire(world, pos.west(), EnumFacing.EAST))
+                    .withProperty(UPPER, canCatchFire(world, pos.up(), EnumFacing.DOWN));
         }
-        return this.getDefaultState();
+        return getDefaultState();
     }
 
     @Override
@@ -373,7 +370,7 @@ public class BlockBlueFire extends BlockNetherEx
         return new BlockStateContainer(this, AGE, NORTH, EAST, SOUTH, WEST, UPPER);
     }
 
-    public boolean canCatchFire(IBlockAccess world, BlockPos pos, EnumFacing face)
+    private boolean canCatchFire(IBlockAccess world, BlockPos pos, EnumFacing face)
     {
         return world.getBlockState(pos).getBlock().isFlammable(world, pos, face);
     }
@@ -427,7 +424,7 @@ public class BlockBlueFire extends BlockNetherEx
                     j = 15;
                 }
 
-                world.setBlockState(pos, getDefaultState().withProperty(AGE, Integer.valueOf(j)), 3);
+                world.setBlockState(pos, getDefaultState().withProperty(AGE, j), 3);
             }
             else
             {
@@ -436,12 +433,12 @@ public class BlockBlueFire extends BlockNetherEx
 
             if(iblockstate.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, Boolean.valueOf(true)));
+                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
             }
         }
     }
 
-    protected boolean canDie(World world, BlockPos pos)
+    private boolean canDie(World world, BlockPos pos)
     {
         return world.isRainingAt(pos) || world.isRainingAt(pos.west()) || world.isRainingAt(pos.east()) || world.isRainingAt(pos.north()) || world.isRainingAt(pos.south());
     }

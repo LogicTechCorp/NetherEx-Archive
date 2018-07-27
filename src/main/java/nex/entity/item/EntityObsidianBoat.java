@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -157,14 +157,14 @@ public class EntityObsidianBoat extends EntityBoat
                 setForwardDirection(-getForwardDirection());
                 setTimeSinceHit(10);
                 setDamageTaken(getDamageTaken() + amount * 10.0F);
-                setBeenAttacked();
+                markVelocityChanged();
                 boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) source.getTrueSource()).capabilities.isCreativeMode;
 
                 if(flag || getDamageTaken() > 40.0F)
                 {
                     if(!flag && world.getGameRules().getBoolean("doEntityDrops"))
                     {
-                        dropItemWithOffset(NetherExItems.ITEM_BOAT_OBSIDIAN, 1, 0.0F);
+                        dropItemWithOffset(NetherExItems.OBSIDIAN_BOAT, 1, 0.0F);
                     }
 
                     setDead();
@@ -348,7 +348,7 @@ public class EntityObsidianBoat extends EntityBoat
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(NetherExItems.ITEM_BOAT_OBSIDIAN, 1, 0);
+        return new ItemStack(NetherExItems.OBSIDIAN_BOAT, 1, 0);
     }
 
     private void tickLerp()

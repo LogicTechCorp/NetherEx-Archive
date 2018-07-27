@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,17 @@
 package nex.client.render.entity;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.model.entity.ModelPigtificate;
 import nex.entity.passive.EntityPigtificate;
-import nex.village.Trade;
+import nex.village.Pigtificate;
 
 @SideOnly(Side.CLIENT)
-public class RenderPigtificate extends RenderLiving<EntityPigtificate>
+public class RenderPigtificate extends RenderBiped<EntityPigtificate>
 {
     public RenderPigtificate(RenderManager manager)
     {
@@ -55,6 +55,6 @@ public class RenderPigtificate extends RenderLiving<EntityPigtificate>
     @Override
     protected ResourceLocation getEntityTexture(EntityPigtificate pigtificate)
     {
-        return Trade.Career.EnumType.fromIndex(pigtificate.getCareer()).getTexture();
+        return Pigtificate.Career.getFromIndex(pigtificate.getCareer()).getTexture();
     }
 }

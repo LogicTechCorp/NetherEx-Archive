@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,14 +60,14 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
     {
         EntityLivingBase target = parentEntity.getAttackTarget();
 
-        if(target.getDistanceSqToEntity(parentEntity) < 4096.0D && parentEntity.canEntityBeSeen(target))
+        if(target.getDistanceSq(parentEntity) < 4096.0D && parentEntity.canEntityBeSeen(target))
         {
             World world = parentEntity.world;
             attackTimer++;
 
             if(attackTimer == 10)
             {
-                parentEntity.playSound(NetherExSoundEvents.ENTITY_WARN_GHASTLING, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
+                parentEntity.playSound(NetherExSoundEvents.GHASTLING_WARN, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
             }
 
             if(attackTimer == 20)
@@ -76,7 +76,7 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
                 double d2 = target.posX - (parentEntity.posX + vec3d.x * 4.0D);
                 double d3 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + parentEntity.posY + (double) (parentEntity.height / 2.0F));
                 double d4 = target.posZ - (parentEntity.posZ + vec3d.z * 4.0D);
-                parentEntity.playSound(NetherExSoundEvents.ENTITY_SHOOT_GHASTLING, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
+                parentEntity.playSound(NetherExSoundEvents.GHASTLING_SHOOT, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
                 EntityGhastlingFireball fireball = new EntityGhastlingFireball(world, parentEntity, d2, d3, d4);
                 fireball.explosionPower = parentEntity.getFireballStrength();
                 fireball.posX = parentEntity.posX + vec3d.x * 4.0D;

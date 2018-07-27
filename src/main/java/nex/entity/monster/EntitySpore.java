@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,13 +61,13 @@ public class EntitySpore extends EntityMob
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_SPORE;
+        return NetherExSoundEvents.SPORE_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_SPORE;
+        return NetherExSoundEvents.SPORE_DEATH;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class EntitySpore extends EntityMob
         {
             setCounter(getCounter() + 1);
 
-            if(getCounter() >= (ConfigHandler.entity.spore.growthTime / (getStage() + 1)) * 20)
+            if(getCounter() >= (ConfigHandler.entityConfig.spore.growthTime / (getStage() + 1)) * 20)
             {
                 setCounter(0);
                 setStage(getStage() + 1);
@@ -110,7 +110,7 @@ public class EntitySpore extends EntityMob
                 if(!world.isRemote)
                 {
 
-                    int creeperSpawns = rand.nextInt(ConfigHandler.entity.spore.creeperSpawns) + 1;
+                    int creeperSpawns = rand.nextInt(ConfigHandler.entityConfig.spore.creeperSpawns) + 1;
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {
@@ -142,7 +142,7 @@ public class EntitySpore extends EntityMob
     {
         if(source.getTrueSource() != null && source.getTrueSource() instanceof EntityLivingBase)
         {
-            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.TOOL_SWORD_BONE)
+            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_SWORD)
             {
                 amount *= 2.0F;
             }
@@ -159,7 +159,7 @@ public class EntitySpore extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return NetherExLootTables.ENTITY_SPORE;
+        return NetherExLootTables.SPORE;
     }
 
     public int getStage()

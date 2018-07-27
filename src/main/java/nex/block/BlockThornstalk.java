@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -29,26 +30,29 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 
 import java.util.Arrays;
 import java.util.Random;
 
-public class BlockThornstalk extends BlockNetherEx
+public class BlockThornstalk extends BlockLibEx
 {
     public static final PropertyEnum<EnumPart> PART = PropertyEnum.create("part", EnumPart.class);
 
     public BlockThornstalk()
     {
-        super("plant_thornstalk", Material.PLANTS);
-
+        super(NetherEx.instance, "thornstalk", Material.PLANTS);
         setSoundType(SoundType.PLANT);
         setHardness(0.0F);
     }
@@ -87,16 +91,11 @@ public class BlockThornstalk extends BlockNetherEx
         }
         else
         {
-            ResourceLocation registryName = EntityList.getKey(entity);
+            boolean canHurt = !Arrays.asList(ConfigHandler.blockConfig.thornstalk.blacklist).contains(EntityList.getKey(entity).toString());
 
-            if(registryName != null)
+            if((entity instanceof EntityLivingBase || entity instanceof EntityItem && ConfigHandler.blockConfig.thornstalk.canDestroyItems) && canHurt)
             {
-                boolean canHurt = !Arrays.asList(ConfigHandler.block.thornstalk.blacklist).contains(registryName.toString());
-
-                if((entity instanceof EntityLivingBase || (entity instanceof EntityItem && ConfigHandler.block.thornstalk.canDestroyItems)) && canHurt)
-                {
-                    entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
-                }
+                entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
             }
         }
     }

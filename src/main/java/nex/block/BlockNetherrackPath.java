@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -37,12 +38,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockNetherrackPath extends BlockNetherEx
+public class BlockNetherrackPath extends BlockLibEx
 {
     public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
@@ -50,8 +52,7 @@ public class BlockNetherrackPath extends BlockNetherEx
 
     public BlockNetherrackPath()
     {
-        super("block_netherrack_path", Material.ROCK);
-
+        super(NetherEx.instance, "netherrack_path", Material.ROCK);
         setLightOpacity(255);
         setHardness(0.4F);
     }
@@ -88,7 +89,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             case EAST:
                 IBlockState testState = world.getBlockState(pos.offset(facing));
                 Block block = testState.getBlock();
-                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.BLOCK_NETHERRACK_PATH;
+                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.NETHERRACK_PATH;
             default:
                 return super.shouldSideBeRendered(state, world, pos, facing);
         }
@@ -120,7 +121,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             }
             else
             {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
             }
         }
     }
@@ -136,7 +137,7 @@ public class BlockNetherrackPath extends BlockNetherEx
             }
             else
             {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.fromMeta(state.getValue(TYPE).ordinal() - 1)));
             }
         }
     }
@@ -144,7 +145,7 @@ public class BlockNetherrackPath extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return state.getValue(TYPE) == EnumType.NORMAL ? Item.getItemFromBlock(Blocks.NETHERRACK) : Item.getItemFromBlock(NetherExBlocks.BLOCK_NETHERRACK);
+        return state.getValue(TYPE) == EnumType.NORMAL ? Item.getItemFromBlock(Blocks.NETHERRACK) : Item.getItemFromBlock(NetherExBlocks.NETHERRACK);
     }
 
     @Override

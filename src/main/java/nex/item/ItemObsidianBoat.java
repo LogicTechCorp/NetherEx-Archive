@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.item.ItemLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,17 +31,17 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
 
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class ItemObsidianBoat extends ItemNetherEx
+public class ItemObsidianBoat extends ItemLibEx
 {
     public ItemObsidianBoat()
     {
-        super("item_boat_obsidian");
-
+        super(NetherEx.instance, "obsidian_boat");
         setMaxStackSize(1);
     }
 

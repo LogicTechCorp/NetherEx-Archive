@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-            "name": "gold_dolem_loot_pool",
+            "name": "gold_golem_loot_pool",
             "rolls": 1,
             "entries": [
                 {

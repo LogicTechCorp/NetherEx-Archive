@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -29,21 +30,21 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockHyphae extends BlockNetherEx
+public class BlockHyphae extends BlockLibEx
 {
     public BlockHyphae()
     {
-        super("block_hyphae", Material.ROCK);
-
+        super(NetherEx.instance, "hyphae", Material.ROCK);
         setHardness(0.6F);
 
-        if(ConfigHandler.block.hyphae.doesSpread)
+        if(ConfigHandler.blockConfig.hyphae.doesSpread)
         {
             setTickRandomly(true);
         }
@@ -62,11 +63,11 @@ public class BlockHyphae extends BlockNetherEx
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if(!world.isRemote && ConfigHandler.block.hyphae.doesSpread)
+        if(!world.isRemote && ConfigHandler.blockConfig.hyphae.doesSpread)
         {
             if(world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2)
             {
-                world.setBlockState(pos, NetherExBlocks.BLOCK_NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
             }
             else
             {
@@ -78,7 +79,7 @@ public class BlockHyphae extends BlockNetherEx
                         IBlockState blockState = world.getBlockState(newPos);
                         IBlockState blockState1 = world.getBlockState(newPos.up());
 
-                        if(blockState.getBlock() == NetherExBlocks.BLOCK_NETHERRACK && blockState.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && blockState1.getLightOpacity(world, newPos.up()) <= 2)
+                        if(blockState.getBlock() == NetherExBlocks.NETHERRACK && blockState.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && blockState1.getLightOpacity(world, newPos.up()) <= 2)
                         {
                             world.setBlockState(newPos, getDefaultState());
                         }
@@ -91,7 +92,7 @@ public class BlockHyphae extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NetherExBlocks.BLOCK_NETHERRACK);
+        return Item.getItemFromBlock(NetherExBlocks.NETHERRACK);
     }
 
     @Override

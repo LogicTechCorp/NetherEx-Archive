@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,13 +17,14 @@
 
 package nex.item;
 
+import lex.item.ItemBlockSlabLibEx;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockBasaltSlab extends ItemBlockNetherExSlab
+public class ItemBlockBasaltSlab extends ItemBlockSlabLibEx
 {
     public ItemBlockBasaltSlab(boolean isDouble)
     {
-        super(!isDouble ? NetherExBlocks.SLAB_BASALT : NetherExBlocks.SLAB_BASALT_DOUBLE, NetherExBlocks.SLAB_BASALT, NetherExBlocks.SLAB_BASALT_DOUBLE);
+        super(!isDouble ? NetherExBlocks.BASALT_SLAB : NetherExBlocks.BASALT_SLAB_DOUBLE, NetherExBlocks.BASALT_SLAB, NetherExBlocks.BASALT_SLAB_DOUBLE);
     }
 }

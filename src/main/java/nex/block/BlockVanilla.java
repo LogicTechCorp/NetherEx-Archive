@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ public class BlockVanilla
 {
     public enum EnumTypeSlab implements IStringSerializable
     {
-        BRICK_NETHER_RED;
+        RED_NETHER_BRICK;
 
         @Override
         public String getName()
@@ -45,8 +45,8 @@ public class BlockVanilla
     public enum EnumTypeWall implements IStringSerializable
     {
         QUARTZ,
-        BRICK_NETHER,
-        BRICK_NETHER_RED;
+        NETHER_BRICK,
+        RED_NETHER_BRICK;
 
         @Override
         public String getName()
@@ -68,7 +68,7 @@ public class BlockVanilla
     public enum EnumTypeFence implements IStringSerializable
     {
         QUARTZ,
-        BRICK_NETHER_RED;
+        RED_NETHER_BRICK;
 
         @Override
         public String getName()

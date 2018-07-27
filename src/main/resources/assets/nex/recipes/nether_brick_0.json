@@ -1,16 +1,18 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "#"
+        "##",
+        "##"
     ],
     "key": {
         "#": {
-            "item": "nex:wall_vanilla",
-            "data": 1,
-            "count": 6
+            "item": "nex:netherbrick",
+            "data": 0
         }
     },
     "result": {
-        "item": "minecraft:nether_brick"
+        "item": "nex:nether_brick",
+        "data": 0,
+        "count": 4
     }
 }

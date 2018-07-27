@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,14 +82,14 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     {
         takeGolemRoseTick = thePigtificate.getRNG().nextInt(320);
         tookGolemRose = false;
-        theGolem.getNavigator().clearPathEntity();
+        theGolem.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
         theGolem = null;
-        thePigtificate.getNavigator().clearPathEntity();
+        thePigtificate.getNavigator().clearPath();
     }
 
     @Override
@@ -103,10 +103,10 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
             tookGolemRose = true;
         }
 
-        if(tookGolemRose && thePigtificate.getDistanceSqToEntity(theGolem) < 4.0D)
+        if(tookGolemRose && thePigtificate.getDistanceSq(theGolem) < 4.0D)
         {
             theGolem.setHoldingFlower(false);
-            thePigtificate.getNavigator().clearPathEntity();
+            thePigtificate.getNavigator().clearPath();
         }
     }
 }

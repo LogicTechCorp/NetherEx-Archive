@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.client.model.item;
 
+import lex.client.model.item.MeshDefinitionFix;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockSlab;
@@ -38,191 +39,175 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.block.*;
+import nex.init.NetherExBlocks;
+import nex.init.NetherExItems;
 import nex.item.ItemSalamanderHide;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import static nex.init.NetherExBlocks.*;
-import static nex.init.NetherExItems.*;
 
 @SideOnly(Side.CLIENT)
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class NetherExModels
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExModels");
-
     @SubscribeEvent
     public static void onRegisterModels(ModelRegistryEvent event)
     {
-        LOGGER.info("Model registration started.");
-
-        ModelLoader.setCustomStateMapper(BLOCK_FIRE_BLUE, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());
-        ModelLoader.setCustomStateMapper(SLAB_VANILLA_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
-        ModelLoader.setCustomStateMapper(SLAB_BASALT_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
-        ModelLoader.setCustomStateMapper(SLAB_BRICK_NETHER_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
-        ModelLoader.setCustomStateMapper(WALL_VANILLA, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
-        ModelLoader.setCustomStateMapper(WALL_BASALT, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
-        ModelLoader.setCustomStateMapper(WALL_BRICK_NETHER, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_QUARTZ, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_RED_BRICK_NETHER, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT_SMOOTH, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT_BRICK, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BASALT_PILLAR, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_FIERY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_ICY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_LIVELY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
-        ModelLoader.setCustomStateMapper(FENCE_GATE_BRICK_NETHER_GLOOMY, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.BLUE_FIRE, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.VANILLA_SLAB_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_SLAB_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.NETHER_BRICK_SLAB_DOUBLE, new StateMap.Builder().ignore(BlockSlab.HALF).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.VANILLA_WALL, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_WALL, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.NETHER_BRICK_WALL, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.QUARTZ_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.NETHER_BRICK_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.RED_NETHER_BRICK_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_SMOOTH_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_BRICK_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_PILLAR_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.FIERY_NETHER_BRICK_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.ICY_NETHER_BRICK_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.LIVELY_NETHER_BRICK_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+        ModelLoader.setCustomStateMapper(NetherExBlocks.GLOOMY_NETHER_BRICK_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
 
         for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
         {
-            registerModel(BLOCK_BASALT, type.ordinal(), BLOCK_BASALT.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(SLAB_BASALT, type.ordinal(), SLAB_BASALT.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
-            registerModel(SLAB_BASALT_DOUBLE, type.ordinal(), SLAB_BASALT_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(WALL_BASALT, type.ordinal(), String.format(WALL_BASALT.getRegistryName().toString() + "_%s", type.getName()), "inventory");
-            registerModel(FENCE_BASALT, type.ordinal(), String.format(FENCE_BASALT.getRegistryName().toString() + "_%s", type.getName()), "inventory");
+            registerModel(NetherExBlocks.BASALT, type.ordinal(), NetherExBlocks.BASALT.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.BASALT_SLAB, type.ordinal(), NetherExBlocks.BASALT_SLAB.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
+            registerModel(NetherExBlocks.BASALT_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.BASALT_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.BASALT_WALL, type.ordinal(), String.format(NetherExBlocks.BASALT_WALL.getRegistryName().toString().replace("fence", "%s_wall"), type.getName()), "inventory");
+            registerModel(NetherExBlocks.BASALT_FENCE, type.ordinal(), String.format(NetherExBlocks.BASALT_FENCE.getRegistryName().toString().replace("fence", "%s_fence"), type.getName()).replace("normal_", ""), "inventory");
         }
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
-            registerModel(BLOCK_NETHERRACK, type.ordinal(), String.format(BLOCK_NETHERRACK.getRegistryName().toString() + "_%s", type.getName()), "inventory");
-            registerModel(ORE_QUARTZ, type.ordinal(), ORE_QUARTZ.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(BLOCK_BRICK_NETHER, type.ordinal(), BLOCK_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(SLAB_BRICK_NETHER, type.ordinal(), SLAB_BRICK_NETHER.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
-            registerModel(SLAB_BRICK_NETHER_DOUBLE, type.ordinal(), SLAB_BRICK_NETHER_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(WALL_BRICK_NETHER, type.ordinal(), String.format(WALL_BRICK_NETHER.getRegistryName().toString() + "_%s", type.getName()), "inventory");
-            registerModel(FENCE_BRICK_NETHER, type.ordinal(), String.format(FENCE_BRICK_NETHER.getRegistryName().toString() + "_%s", type.getName()), "inventory");
-            registerModel(ITEM_BRICK_NETHER, type.ordinal(), ITEM_BRICK_NETHER.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.NETHERRACK, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHERRACK.getRegistryName().getResourcePath(), type.getName()), "inventory");
+            registerModel(NetherExBlocks.QUARTZ_ORE, type.ordinal(), NetherExBlocks.QUARTZ_ORE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.NETHER_BRICK, type.ordinal(), NetherExBlocks.NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.NETHER_BRICK_SLAB, type.ordinal(), NetherExBlocks.NETHER_BRICK_SLAB.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
+            registerModel(NetherExBlocks.NETHER_BRICK_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.NETHER_BRICK_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.NETHER_BRICK_WALL, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHER_BRICK_WALL.getRegistryName().getResourcePath(), type.getName()), "inventory");
+            registerModel(NetherExBlocks.NETHER_BRICK_FENCE, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHER_BRICK_FENCE.getRegistryName().getResourcePath(), type.getName()), "inventory");
+            registerModel(NetherExItems.NETHERBRICK, type.ordinal(), NetherExItems.NETHERBRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         for(BlockNetherrackPath.EnumType type : BlockNetherrackPath.EnumType.values())
         {
-            registerModel(BLOCK_NETHERRACK_PATH, type.ordinal(), BLOCK_NETHERRACK_PATH.getRegistryName().toString(), String.format("type=%s", type.getName()));
-
+            registerModel(NetherExBlocks.NETHERRACK_PATH, type.ordinal(), NetherExBlocks.NETHERRACK_PATH.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
-        registerModel(BLOCK_HYPHAE, "normal");
-        registerModel(BLOCK_SAND_SOUL_TILLED, "moisture=0");
-        registerModel(BLOCK_GLASS_SOUL, "normal");
-        registerModel(BLOCK_GLASS_PANE_SOUL, "normal");
-        registerModel(BLOCK_AMETHYST, "normal");
-        registerModel(BLOCK_RIME, "normal");
-        registerModel(BLOCK_ICE_FROSTBURN, "normal");
-        registerModel(BLOCK_BONE_SLIVER, "axis=y");
-        registerModel(BLOCK_BONE_CHUNK, "facing=up");
-
-        registerModel(BLOCK_IRON_WORN, "normal");
-        registerModel(BLOCK_FIRE_BLUE, "normal");
+        registerModel(NetherExBlocks.HYPHAE, "normal");
+        registerModel(NetherExBlocks.TILLED_SOUL_SAND, "moisture=0");
+        registerModel(NetherExBlocks.SOUL_GLASS, "normal");
+        registerModel(NetherExBlocks.SOUL_GLASS_PANE, "normal");
+        registerModel(NetherExBlocks.AMETHYST_BLOCK, "normal");
+        registerModel(NetherExBlocks.RIME_BLOCK, "normal");
+        registerModel(NetherExBlocks.FROSTBURN_ICE, "normal");
+        registerModel(NetherExBlocks.BONE_SLIVER, "axis=y");
+        registerModel(NetherExBlocks.BONE_CHUNK, "facing=up");
+        registerModel(NetherExBlocks.WORN_IRON, "normal");
 
         for(EnumFacing.Axis axis : EnumFacing.Axis.values())
         {
-            registerModel(BLOCK_PORTAL_NETHER, axis.ordinal(), BLOCK_PORTAL_NETHER.getRegistryName().toString(), String.format("axis=%s", axis.getName()));
+            registerModel(NetherExBlocks.NETHER_PORTAL, axis.ordinal(), NetherExBlocks.NETHER_PORTAL.getRegistryName().toString(), String.format("axis=%s", axis.getName()));
         }
 
         for(BlockUrnOfSorrow.EnumType type : BlockUrnOfSorrow.EnumType.values())
         {
-            registerModel(TILE_URN_SORROW, type.ordinal(), TILE_URN_SORROW.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.URN_OF_SORROW, type.ordinal(), NetherExBlocks.URN_OF_SORROW.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
-        registerModel(ORE_AMETHYST, "normal");
-        registerModel(ORE_RIME, "normal");
-
-        registerModel(PLANT_THORNSTALK, "normal");
+        registerModel(NetherExBlocks.AMETHYST_ORE, "normal");
+        registerModel(NetherExBlocks.RIME_ORE, "normal");
+        registerModel(NetherExBlocks.THORNSTALK, "normal");
 
         for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
         {
-            registerModel(PLANT_MUSHROOM_ELDER, type.ordinal(), String.format(PLANT_MUSHROOM_ELDER.getRegistryName().toString() + "_%s", type.getName()), "inventory");
-            registerModel(PLANT_MUSHROOM_ELDER_CAP, type.ordinal(), PLANT_MUSHROOM_ELDER_CAP.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.ELDER_MUSHROOM, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.ELDER_MUSHROOM.getRegistryName().getResourcePath(), type.getName()), "inventory");
+            registerModel(NetherExBlocks.ELDER_MUSHROOM_CAP, type.ordinal(), NetherExBlocks.ELDER_MUSHROOM_CAP.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
         for(BlockElderMushroomStem.EnumType type : BlockElderMushroomStem.EnumType.values())
         {
-            registerModel(PLANT_MUSHROOM_ELDER_STEM, type.ordinal(), PLANT_MUSHROOM_ELDER_STEM.getRegistryName().toString(), String.format("axis=%s", type.getName()));
+            registerModel(NetherExBlocks.ELDER_MUSHROOM_STEM, type.ordinal(), NetherExBlocks.ELDER_MUSHROOM_STEM.getRegistryName().toString(), String.format("axis=%s", type.getName()));
         }
 
-        registerModel(PLANT_MUSHROOM_ENOKI_STEM, "normal");
-        registerModel(PLANT_MUSHROOM_ENOKI_CAP, "normal");
+        registerModel(NetherExBlocks.ENOKI_MUSHROOM_STEM, "normal");
+        registerModel(NetherExBlocks.ENOKI_MUSHROOM_CAP, "normal");
 
-        registerModel(FLUID_ICHOR);
+        registerModel(NetherExBlocks.ICHOR);
 
         for(BlockVanilla.EnumTypeSlab type : BlockVanilla.EnumTypeSlab.values())
         {
-            registerModel(SLAB_VANILLA, type.ordinal(), SLAB_VANILLA.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
-            registerModel(SLAB_VANILLA_DOUBLE, type.ordinal(), SLAB_VANILLA_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExBlocks.VANILLA_SLAB, type.ordinal(), NetherExBlocks.VANILLA_SLAB.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
+            registerModel(NetherExBlocks.VANILLA_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.VANILLA_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
-        registerModel(STAIRS_RED_BRICK_NETHER, "normal");
-        registerModel(STAIRS_BASALT_NORMAL, "normal");
-        registerModel(STAIRS_BASALT_SMOOTH, "normal");
-        registerModel(STAIRS_BASALT_BRICK, "normal");
-        registerModel(STAIRS_BASALT_PILLAR, "normal");
-        registerModel(STAIRS_BRICK_NETHER_FIERY, "normal");
-        registerModel(STAIRS_BRICK_NETHER_ICY, "normal");
-        registerModel(STAIRS_BRICK_NETHER_LIVELY, "normal");
-        registerModel(STAIRS_BRICK_NETHER_GLOOMY, "normal");
+        registerModel(NetherExBlocks.RED_NETHER_BRICK_STAIRS, "normal");
+        registerModel(NetherExBlocks.BASALT_STAIRS, "normal");
+        registerModel(NetherExBlocks.BASALT_SMOOTH_STAIRS, "normal");
+        registerModel(NetherExBlocks.BASALT_BRICK_STAIRS, "normal");
+        registerModel(NetherExBlocks.BASALT_PILLAR_STAIRS, "normal");
+        registerModel(NetherExBlocks.FIERY_NETHER_BRICK_STAIRS, "normal");
+        registerModel(NetherExBlocks.ICY_NETHER_BRICK_STAIRS, "normal");
+        registerModel(NetherExBlocks.LIVELY_NETHER_BRICK_STAIRS, "normal");
+        registerModel(NetherExBlocks.GLOOMY_NETHER_BRICK_STAIRS, "normal");
 
         for(BlockVanilla.EnumTypeWall type : BlockVanilla.EnumTypeWall.values())
         {
-            registerModel(WALL_VANILLA, type.ordinal(), String.format("nex:wall_%s", type.getName()), "inventory");
+            registerModel(NetherExBlocks.VANILLA_WALL, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_wall", type.getName()), "inventory");
         }
 
         for(BlockVanilla.EnumTypeFence type : BlockVanilla.EnumTypeFence.values())
         {
-            registerModel(FENCE_VANILLA, type.ordinal(), String.format("nex:fence_%s", type.getName()), "inventory");
+            registerModel(NetherExBlocks.VANILLA_FENCE, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_fence", type.getName()), "inventory");
         }
 
-        registerModel(FENCE_GATE_QUARTZ, "normal");
-        registerModel(FENCE_GATE_BRICK_NETHER, "normal");
-        registerModel(FENCE_GATE_RED_BRICK_NETHER, "normal");
-        registerModel(FENCE_GATE_BASALT, "normal");
-        registerModel(FENCE_GATE_BASALT_SMOOTH, "normal");
-        registerModel(FENCE_GATE_BASALT_BRICK, "normal");
-        registerModel(FENCE_GATE_BASALT_PILLAR, "normal");
-        registerModel(FENCE_GATE_BRICK_NETHER_FIERY, "normal");
-        registerModel(FENCE_GATE_BRICK_NETHER_ICY, "normal");
-        registerModel(FENCE_GATE_BRICK_NETHER_LIVELY, "normal");
-        registerModel(FENCE_GATE_BRICK_NETHER_GLOOMY, "normal");
+        registerModel(NetherExBlocks.QUARTZ_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.NETHER_BRICK_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.RED_NETHER_BRICK_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.BASALT_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.BASALT_SMOOTH_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.BASALT_BRICK_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.BASALT_PILLAR_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.FIERY_NETHER_BRICK_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.ICY_NETHER_BRICK_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.LIVELY_NETHER_BRICK_FENCE_GATE, "normal");
+        registerModel(NetherExBlocks.GLOOMY_NETHER_BRICK_FENCE_GATE, "normal");
 
-        registerModel(ITEM_BONE_WITHER, "normal");
-        registerModel(ITEM_DUST_WITHER, "normal");
+        registerModel(NetherExItems.WITHER_BONE, "normal");
+        registerModel(NetherExItems.WITHER_DUST, "normal");
 
         for(ItemSalamanderHide.EnumType type : ItemSalamanderHide.EnumType.values())
         {
-            registerModel(ITEM_HIDE_SALAMANDER, type.ordinal(), ITEM_HIDE_SALAMANDER.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            registerModel(NetherExItems.SALAMANDER_HIDE, type.ordinal(), NetherExItems.SALAMANDER_HIDE.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
-        registerModel(ITEM_CRYSTAL_AMETHYST, "normal");
-        registerModel(ITEM_CRYSTAL_RIME, "normal");
-        registerModel(ITEM_CRYSTAL_RIME_STEEL, "normal");
-        registerModel(ITEM_SPORE, "normal");
-        registerModel(ITEM_FANG_SPIDER_BONE, "normal");
-        registerModel(ITEM_TEAR_GHAST_QUEEN, "normal");
-        registerModel(ITEM_BOAT_OBSIDIAN, "normal");
-
-        registerModel(FOOD_MEAT_GHAST_RAW, "normal");
-        registerModel(FOOD_MEAT_GHAST_COOKED, "normal");
-        registerModel(FOOD_MAGMA_CREAM_CONGEALED, "normal");
-        registerModel(FOOD_MUSHROOM_ENOKI, "normal");
-
-        registerModel(TOOL_SWORD_BONE, "normal");
-        registerModel(TOOL_PICKAXE_BONE, "normal");
-        registerModel(TOOL_SHOVEL_BONE, "normal");
-        registerModel(TOOL_AXE_BONE, "normal");
-        registerModel(TOOL_HOE_BONE, "normal");
-        registerModel(TOOL_HAMMER_BONE, "normal");
-
-        registerModel(ARMOR_HELMET_BONE, "normal");
-        registerModel(ARMOR_CHESTPLATE_BONE, "normal");
-        registerModel(ARMOR_LEGGINGS_BONE, "normal");
-        registerModel(ARMOR_BOOTS_BONE, "normal");
-        registerModel(ARMOR_HELMET_HIDE_SALAMANDER, "normal");
-        registerModel(ARMOR_CHESTPLATE_HIDE_SALAMANDER, "normal");
-        registerModel(ARMOR_LEGGINGS_HIDE_SALAMANDER, "normal");
-        registerModel(ARMOR_BOOTS_HIDE_SALAMANDER, "normal");
-
-        LOGGER.info("Model registration completed.");
+        registerModel(NetherExItems.AMETHYST_CRYSTAL, "normal");
+        registerModel(NetherExItems.RIME_CRYSTAL, "normal");
+        registerModel(NetherExItems.RIME_AND_STEEL, "normal");
+        registerModel(NetherExItems.SPORE, "normal");
+        registerModel(NetherExItems.BONE_SPIDER_FANG, "normal");
+        registerModel(NetherExItems.GHAST_QUEEN_TEAR, "normal");
+        registerModel(NetherExItems.OBSIDIAN_BOAT, "normal");
+        registerModel(NetherExItems.GHAST_MEAT_RAW, "normal");
+        registerModel(NetherExItems.GHAST_MEAT_COOKED, "normal");
+        registerModel(NetherExItems.CONGEALED_MAGMA_CREAM, "normal");
+        registerModel(NetherExItems.ENOKI_MUSHROOM, "normal");
+        registerModel(NetherExItems.GOLDEN_WITHER_BONE_SWORD, "normal");
+        registerModel(NetherExItems.GOLDEN_WITHER_BONE_PICKAXE, "normal");
+        registerModel(NetherExItems.GOLDEN_WITHER_BONE_SHOVEL, "normal");
+        registerModel(NetherExItems.GOLDEN_WITHER_BONE_AXE, "normal");
+        registerModel(NetherExItems.GOLDEN_WITHER_BONE_HOE, "normal");
+        registerModel(NetherExItems.GOLDEN_WITHER_BONE_HAMMER, "normal");
+        registerModel(NetherExItems.WITHER_BONE_HELMET, "normal");
+        registerModel(NetherExItems.WITHER_BONE_CHESTPLATE, "normal");
+        registerModel(NetherExItems.WITHER_BONE_LEGGINGS, "normal");
+        registerModel(NetherExItems.WITHER_BONE_BOOTS, "normal");
+        registerModel(NetherExItems.SALAMANDER_HIDE_HELMET, "normal");
+        registerModel(NetherExItems.SALAMANDER_HIDE_CHESTPLATE, "normal");
+        registerModel(NetherExItems.SALAMANDER_HIDE_LEGGINGS, "normal");
+        registerModel(NetherExItems.SALAMANDER_HIDE_BOOTS, "normal");
     }
 
     private static void registerModel(IFluidBlock block)

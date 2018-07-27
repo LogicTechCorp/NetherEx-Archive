@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -34,21 +36,21 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockTilledSoulSand extends BlockNetherEx
+public class BlockTilledSoulSand extends BlockLibEx
 {
     public static final PropertyInteger MOISTURE = PropertyInteger.create("moisture", 0, 7);
     private static final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
 
     public BlockTilledSoulSand()
     {
-        super("block_sand_soul_tilled", Material.GROUND);
-
+        super(NetherEx.instance, "tilled_soul_sand", Material.GROUND);
         setSoundType(SoundType.SAND);
         setLightOpacity(255);
         setHardness(0.6F);
@@ -130,13 +132,13 @@ public class BlockTilledSoulSand extends BlockNetherEx
 
     private boolean hasCrops(World world, BlockPos pos)
     {
-        net.minecraft.block.Block block = world.getBlockState(pos.up()).getBlock();
+        Block block = world.getBlockState(pos.up()).getBlock();
         return block instanceof IPlantable && canSustainPlant(world.getBlockState(pos), world, pos, EnumFacing.UP, (IPlantable) block);
     }
 
     private boolean hasFluid(World world, BlockPos pos)
     {
-        net.minecraft.block.Block block = ConfigHandler.block.soulSand.doesRequireIchor ? NetherExBlocks.FLUID_ICHOR : Blocks.LAVA;
+        Block block = ConfigHandler.blockConfig.soulSand.doesRequireIchorInsteadOfLava ? NetherExBlocks.ICHOR : Blocks.LAVA;
 
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {
@@ -173,7 +175,7 @@ public class BlockTilledSoulSand extends BlockNetherEx
             case EAST:
                 IBlockState testState = blockAccess.getBlockState(pos.offset(side));
                 net.minecraft.block.Block block = testState.getBlock();
-                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.BLOCK_SAND_SOUL_TILLED;
+                return !testState.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != NetherExBlocks.TILLED_SOUL_SAND;
             default:
                 return super.shouldSideBeRendered(state, blockAccess, pos, side);
         }

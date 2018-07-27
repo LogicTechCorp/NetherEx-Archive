@@ -1,0 +1,65 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "fence_post"
+    },
+    "variants": {
+        "type": {
+            "fiery": {
+                "textures": {
+                    "texture": "nex:blocks/fiery_nether_brick"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "texture": "nex:blocks/icy_nether_brick"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "texture": "nex:blocks/lively_nether_brick"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "texture": "nex:blocks/gloomy_nether_brick"
+                }
+            }
+        },
+        "north": {
+            "true": {
+                "submodel": "fence_side",
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "east": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 90,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "south": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 180,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "west": {
+            "true": {
+                "submodel": "fence_side",
+                "y": 270,
+                "uvlock": true
+            },
+            "false": {
+            }
+        }
+    }
+}

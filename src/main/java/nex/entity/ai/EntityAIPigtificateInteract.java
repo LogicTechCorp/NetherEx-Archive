@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
                     {
                         Item item = itemstack.getItem();
 
-                        if((item == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) && itemstack.getCount() > 7) || (item == NetherExItems.FOOD_MUSHROOM_ENOKI && itemstack.getCount() > 63))
+                        if((item == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && itemstack.getCount() > 7) || (item == NetherExItems.ENOKI_MUSHROOM && itemstack.getCount() > 63))
                         {
                             int l = itemstack.getCount() / 2;
                             itemstack.shrink(l);

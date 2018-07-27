@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,37 +17,28 @@
 
 package nex;
 
+import lex.IModData;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import nex.init.NetherExBiomes;
-import nex.init.NetherExEntities;
-import nex.init.NetherExOreDict;
-import nex.init.NetherExRecipes;
+import net.minecraftforge.fml.common.event.*;
+import nex.init.*;
 import nex.proxy.IProxy;
-import nex.village.TradeManager;
-import nex.world.biome.NetherBiomeManager;
+import nex.village.PigtificateTradeManager;
+import nex.world.biome.NetherExBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES, updateJSON = NetherEx.UPDATE_JSON)
-public class NetherEx
+@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
+public class NetherEx implements IModData
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "@MOD_VERSION@";
-    public static final String DEPENDENCIES = "required-after:forge@[1.12-14.21.1.2387,);after:natura;";
-    public static final String UPDATE_JSON = "https://raw.githubusercontent.com/LogicTechCorp/NetherEx/1.12.x/src/main/resources/assets/nex/version.json";
+    public static final String VERSION = "2.0.2";
+    public static final String DEPENDENCIES = "required-after:lex@[1.0.2,);";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
-    public static final boolean IS_DEV_ENV = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;
@@ -57,9 +48,7 @@ public class NetherEx
 
     public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
 
-    private File configDirectory;
-
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|Main");
+    public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 
     static
     {
@@ -69,38 +58,55 @@ public class NetherEx
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        LOGGER.info("PreInitialization started.");
-
-        configDirectory = event.getModConfigurationDirectory();
+        NetherExBiomeManager.preInit();
+        PigtificateTradeManager.preInit();
+        NetherExEntities.preInit();
         proxy.preInit();
-
-        LOGGER.info("PreInitialization completed.");
     }
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        LOGGER.info("Initialization started.");
-
         NetherExBiomes.init();
-        NetherExEntities.init();
-        TradeManager.init(new File(configDirectory, "/NetherEx/Trade Lists"));
         NetherExRecipes.init();
-        NetherExOreDict.init();
+        NetherExOreDictionary.init();
+        NetherExFeatures.init();
         proxy.init();
-
-        LOGGER.info("Initialization completed.");
     }
 
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        LOGGER.info("PostInitialization started.");
-
         NetherExBiomes.postInit();
-        NetherBiomeManager.postInit(new File(configDirectory, "/NetherEx/Biome Lists"));
         proxy.postInit();
+    }
 
-        LOGGER.info("PostInitialization completed.");
+    @Mod.EventHandler
+    public void onFMLServerStarting(FMLServerStartingEvent event)
+    {
+        NetherExBiomeManager.setupDefaultBiomes();
+        NetherExBiomeManager.setupCompatibleBiomes(event.getServer());
+        NetherExBiomeManager.setupCustomBiomes();
+        PigtificateTradeManager.setupDefaultTrades();
+        PigtificateTradeManager.setupCustomTrades();
+    }
+
+    @Mod.EventHandler
+    public void onFMLServerStopping(FMLServerStoppingEvent event)
+    {
+        NetherExBiomeManager.resetBiomes();
+        PigtificateTradeManager.resetTrades();
+    }
+
+    @Override
+    public String getModId()
+    {
+        return MOD_ID;
+    }
+
+    @Override
+    public CreativeTabs getCreativeTab()
+    {
+        return CREATIVE_TAB;
     }
 }

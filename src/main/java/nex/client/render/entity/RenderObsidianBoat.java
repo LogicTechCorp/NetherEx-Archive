@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ public class RenderObsidianBoat extends Render<EntityObsidianBoat>
     @Override
     protected ResourceLocation getEntityTexture(EntityObsidianBoat entity)
     {
-        return NetherExTextures.ENTITY_BOAT_OBSIDIAN;
+        return NetherExTextures.OBSIDIAN_BOAT;
     }
 
     @Override

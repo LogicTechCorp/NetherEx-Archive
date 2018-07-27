@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            village = PigtificateVillageManager.getPigtificateVillages(world).getNearestVillage(new BlockPos(pigtificate), 0);
+            village = PigtificateVillageManager.getNetherVillages(world, true).getNearestVillage(new BlockPos(pigtificate), 0);
 
             if(village == null)
             {
@@ -110,7 +110,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         --matingTimeout;
         pigtificate.getLookHelper().setLookPositionWithEntity(mate, 10.0F, 30.0F);
 
-        if(pigtificate.getDistanceSqToEntity(mate) > 2.25D)
+        if(pigtificate.getDistanceSq(mate) > 2.25D)
         {
             pigtificate.getNavigator().tryMoveToEntityLiving(mate, 0.25D);
         }
@@ -134,7 +134,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         else
         {
             int i = (int) ((double) ((float) village.getNumVillageFenceGates()) * 0.35D);
-            return village.getNumPigtificates() < i;
+            return village.getPigtificates() < i;
         }
     }
 

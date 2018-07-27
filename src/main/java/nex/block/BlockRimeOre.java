@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -24,16 +25,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.init.NetherExItems;
 
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockRimeOre extends BlockNetherEx
+public class BlockRimeOre extends BlockLibEx
 {
     public BlockRimeOre()
     {
-        super("ore_rime", Material.ROCK);
+        super(NetherEx.instance, "rime_ore", Material.ROCK);
 
         setLightLevel(0.625F);
         setHardness(3.0F);
@@ -43,7 +45,7 @@ public class BlockRimeOre extends BlockNetherEx
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return NetherExItems.ITEM_CRYSTAL_RIME;
+        return NetherExItems.RIME_CRYSTAL;
     }
 
     @Override

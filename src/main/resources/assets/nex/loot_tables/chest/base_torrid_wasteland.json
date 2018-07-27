@@ -29,12 +29,12 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:food_congealed_magma_cream"
+                    "name": "nex:congealed_magma_cream"
                 },
                 {
                     "type": "item",
                     "weight": 2,
-                    "name": "nex:item_hide_salamander",
+                    "name": "nex:salamander_hide",
                     "functions": [
                         {
                             "function": "set_count",
@@ -48,7 +48,7 @@
                 {
                     "type": "item",
                     "weight": 10,
-                    "name": "nex:block_basalt",
+                    "name": "nex:basalt",
                     "functions": [
                         {
                             "function": "set_count",

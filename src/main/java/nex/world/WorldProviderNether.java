@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +30,8 @@ public class WorldProviderNether extends WorldProviderHell
     @Override
     public void init()
     {
+        super.init();
         biomeProvider = new BiomeProviderNether(world);
-        doesWaterVaporize = true;
-        nether = true;
     }
 
     @Override
@@ -45,6 +44,6 @@ public class WorldProviderNether extends WorldProviderHell
     @SideOnly(Side.CLIENT)
     public boolean doesXZShowFog(int chunkX, int chunkZ)
     {
-        return !ConfigHandler.client.visual.disableNetherFog;
+        return !ConfigHandler.clientConfig.visual.disableNetherFog;
     }
 }

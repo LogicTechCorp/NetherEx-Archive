@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,18 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemLibEx;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import nex.NetherEx;
 
-public class ItemSalamanderHide extends ItemNetherEx
+public class ItemSalamanderHide extends ItemLibEx
 {
     public ItemSalamanderHide()
     {
-        super("item_hide_salamander");
-
+        super(NetherEx.instance, "salamander_hide");
         setHasSubtypes(true);
     }
 

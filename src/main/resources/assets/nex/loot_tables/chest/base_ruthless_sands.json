@@ -10,12 +10,12 @@
                 {
                     "type": "item",
                     "weight": 10,
-                    "name": "nex:plant_thornstalk"
+                    "name": "nex:thornstalk"
                 },
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:item_bone_wither"
+                    "name": "nex:wither_bone"
                 },
                 {
                     "type": "item",
@@ -34,7 +34,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "nex:ore_quartz",
+                    "name": "nex:quartz_ore",
                     "functions": [
                         {
                             "function": "set_count",

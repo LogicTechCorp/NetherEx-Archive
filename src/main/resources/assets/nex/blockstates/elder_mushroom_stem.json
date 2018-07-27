@@ -1,0 +1,29 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_column",
+        "textures": {
+            "side": "nex:blocks/elder_mushroom_stem",
+            "end": "nex:blocks/elder_mushroom_stem_flesh"
+        },
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "axis": {
+            "y": {
+            },
+            "x": {
+                "x": 90, "y": 90
+            },
+            "z": {
+                "x": 90
+            },
+            "none": {
+                "model": "cube_all",
+                "textures": {
+                    "all": "nex:blocks/elder_mushroom_stem"
+                }
+            }
+        }
+    }
+}

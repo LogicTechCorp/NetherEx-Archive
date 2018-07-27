@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "nex:item_hide_salamander",
+                    "name": "nex:salamander_hide",
                     "functions": [
                         {
                             "function": "minecraft:set_data",

@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 package nex.entity.passive;
 
-import com.google.common.collect.Lists;
+import lex.village.Trade;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
@@ -42,6 +42,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,10 +50,9 @@ import nex.entity.ai.*;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 import nex.init.NetherExSoundEvents;
+import nex.village.Pigtificate;
 import nex.village.PigtificateVillage;
 import nex.village.PigtificateVillageManager;
-import nex.village.Trade;
-import nex.village.TradeManager;
 
 import java.util.Collections;
 import java.util.List;
@@ -97,22 +97,36 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         setRandomProfession();
     }
 
+    public EntityPigtificate(World world, Pigtificate.Career career)
+    {
+        super(world);
+
+        inventory = new InventoryBasic("Items", false, 8);
+        isImmuneToFire = true;
+        ((PathNavigateGround) getNavigator()).setBreakDoors(true);
+        setCanPickUpLoot(true);
+        setSize(0.6F, 1.95F);
+        setProfession(career.getProfession().ordinal());
+        setCareer(career.ordinal());
+    }
+
+
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_PIGTIFICATE;
+        return NetherExSoundEvents.PIGTIFICATE_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_PIGTIFICATE;
+        return NetherExSoundEvents.PIGTIFICATE_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_PIGTIFICATE;
+        return NetherExSoundEvents.PIGTIFICATE_DEATH;
     }
 
     @Override
@@ -147,6 +161,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             double d2 = rand.nextGaussian() * 0.02D;
             world.spawnParticle(particleType, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + 1.0D + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d0, d1, d2, new int[0]);
         }
+    }
+
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData)
+    {
+        setAdditionalAITasks();
+        populateTradeList();
+        return super.onInitialSpawn(difficulty, livingData);
     }
 
     @Override
@@ -194,9 +216,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            PigtificateVillageManager.getPigtificateVillages(getWorld()).addToVillagerPositionList(blockpos);
+            PigtificateVillageManager.getNetherVillages(getWorld(), true).addToVillagerPositionList(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getPigtificateVillages(getWorld()).getNearestVillage(blockpos, 32);
+            village = PigtificateVillageManager.getNetherVillages(getWorld(), true).getNearestVillage(blockpos, 32);
 
             if(village == null)
             {
@@ -204,8 +226,8 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             }
             else
             {
-                BlockPos blockpos1 = village.getCenter();
-                setHomePosAndDistance(blockpos1, village.getVillageRadius());
+                BlockPos villagePos = village.getCenter();
+                setHomePosAndDistance(villagePos, village.getVillageRadius());
 
                 if(lookingForHome)
                 {
@@ -326,7 +348,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         }
 
         setCanPickUpLoot(true);
-        setAdditionalAITasks();
     }
 
     @Override
@@ -362,6 +383,11 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         {
             return super.processInteract(player, hand);
         }
+    }
+
+    public void setLookingForHome()
+    {
+        lookingForHome = true;
     }
 
     @Override
@@ -477,14 +503,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         else
         {
             String entityName = EntityList.getEntityString(this);
-            return I18n.translateToLocal("entity." + entityName + "." + Trade.Career.EnumType.fromIndex(getCareer()).name().toLowerCase() + ".name");
+            return I18n.translateToLocal("entity." + entityName + "." + Pigtificate.Career.getFromIndex(getCareer()).name().toLowerCase() + ".name");
         }
     }
 
     @Override
     protected ResourceLocation getLootTable()
     {
-        return Trade.Career.EnumType.fromIndex(getCareer()).getLootTable();
+        return Pigtificate.Career.getFromIndex(getCareer()).getLootTable();
     }
 
     @Override
@@ -581,9 +607,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             tradeList = new MerchantRecipeList();
         }
 
-        List<Trade> trades = TradeManager.getTrades(Trade.Career.EnumType.fromIndex(getCareer()), getCareerLevel());
+        List<Trade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTrades().get(getCareerLevel());
 
-        if(trades.size() > 0)
+        if(trades != null && trades.size() > 0)
         {
             Collections.shuffle(trades, rand);
 
@@ -591,12 +617,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             {
                 for(Trade trade : trades.subList(0, 2))
                 {
-                    tradeList.add(trade.getRandomTrade(rand));
+                    tradeList.add(trade.randomize());
                 }
             }
             else
             {
-                tradeList.add(trades.get(0).getRandomTrade(rand));
+                tradeList.add(trades.get(0).randomize());
             }
         }
     }
@@ -613,7 +639,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private boolean canPickupItem(Item itemIn)
     {
-        return itemIn == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) || itemIn == NetherExItems.FOOD_MUSHROOM_ENOKI;
+        return itemIn == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) || itemIn == NetherExItems.ENOKI_MUSHROOM;
     }
 
     private boolean hasEnoughItems(int multiplier)
@@ -624,7 +650,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
             if(!stack.isEmpty())
             {
-                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 32 * multiplier))
+                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.ENOKI_MUSHROOM && stack.getCount() >= 32 * multiplier))
                 {
                     return true;
                 }
@@ -672,12 +698,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
                 if(!stack.isEmpty())
                 {
-                    if(stack.getItem() == Item.getItemFromBlock(NetherExBlocks.PLANT_MUSHROOM_ELDER) && stack.getCount() >= 4)
+                    if(stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4)
                     {
                         flag = true;
                         inventory.decrStackSize(i, 3);
                     }
-                    else if(stack.getItem() == NetherExItems.FOOD_MUSHROOM_ENOKI && stack.getCount() >= 24)
+                    else if(stack.getItem() == NetherExItems.ENOKI_MUSHROOM && stack.getCount() >= 24)
                     {
                         flag = true;
                         inventory.decrStackSize(i, 12);
@@ -708,24 +734,13 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     protected void setRandomProfession()
     {
-        setProfession(Trade.Profession.EnumType.getRandom(rand, false).ordinal());
+        setProfession(Pigtificate.Profession.getRandom(rand, false).ordinal());
         setRandomCareer();
     }
 
     protected void setRandomCareer()
     {
-        List<Trade.Career.Weighted> careers = Lists.newArrayList();
-
-        for(Trade.Career.EnumType type : Trade.Career.EnumType.values())
-        {
-            if(type.getProfession() == Trade.Profession.EnumType.fromIndex(getProfession()))
-            {
-                careers.add(new Trade.Career.Weighted(type));
-            }
-        }
-
-        Trade.Career.Weighted career = WeightedRandom.getRandomItem(rand, careers);
-        setCareer(career.getType().ordinal());
+        setCareer(Pigtificate.Career.getRandomCareer(Pigtificate.Profession.getFromIndex(getProfession()), rand).ordinal());
     }
 
     public void setProfession(int i)
@@ -734,9 +749,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         {
             i = 0;
         }
-        else if(i > Trade.Profession.EnumType.values().length)
+        else if(i > Pigtificate.Profession.values().length)
         {
-            i = Trade.Profession.EnumType.values().length;
+            i = Pigtificate.Profession.values().length;
         }
 
         profession = i;

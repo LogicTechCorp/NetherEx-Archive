@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,15 +27,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 
 import java.util.Random;
 
-public class BlockSoulGlass extends BlockNetherEx
+public class BlockSoulGlass extends BlockLibEx
 {
     public BlockSoulGlass()
     {
-        super("block_glass_soul", Material.GLASS);
-
+        super(NetherEx.instance, "soul_glass", Material.GLASS);
         setSoundType(SoundType.GLASS);
         setLightOpacity(255);
         setHardness(0.3F);

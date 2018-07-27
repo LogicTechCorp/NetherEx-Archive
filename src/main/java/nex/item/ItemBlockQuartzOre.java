@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,17 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemBlockLibEx;
 import net.minecraft.item.ItemStack;
 import nex.block.BlockNetherrack;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockQuartzOre extends ItemBlockNetherEx
+public class ItemBlockQuartzOre extends ItemBlockLibEx
 {
     public ItemBlockQuartzOre()
     {
-        super(NetherExBlocks.ORE_QUARTZ);
-
+        super(NetherExBlocks.QUARTZ_ORE);
         setHasSubtypes(true);
     }
 

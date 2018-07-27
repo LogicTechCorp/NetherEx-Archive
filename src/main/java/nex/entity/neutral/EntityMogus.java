@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,19 +53,19 @@ public class EntityMogus extends EntityMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSoundEvents.ENTITY_AMBIENT_MOGUS;
+        return NetherExSoundEvents.MOGUS_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSoundEvents.ENTITY_HURT_MOGUS;
+        return NetherExSoundEvents.MOGUS_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSoundEvents.ENTITY_DEATH_MOGUS;
+        return NetherExSoundEvents.MOGUS_DEATH;
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EntityMogus extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return getType() == 0 ? NetherExLootTables.ENTITY_MOGUS_BROWN : getType() == 1 ? NetherExLootTables.ENTITY_MOGUS_RED : NetherExLootTables.ENTITY_MOGUS_WHITE;
+        return getType() == 0 ? NetherExLootTables.BROWN_MOGUS : getType() == 1 ? NetherExLootTables.RED_MOGUS : NetherExLootTables.WHITE_MOGUS;
     }
 
     public int getType()

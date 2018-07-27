@@ -4,10 +4,10 @@
         "model": "forge:fluid"
     },
     "variants": {
-        "ichor": [
+        "blood": [
             {
                 "custom": {
-                    "fluid": "ichor"
+                    "fluid": "blood"
                 }
             }
         ]

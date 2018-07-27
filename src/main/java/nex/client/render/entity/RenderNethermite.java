@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,6 @@ public class RenderNethermite extends RenderLiving<EntityNethermite>
     @Override
     protected ResourceLocation getEntityTexture(EntityNethermite mite)
     {
-        return NetherExTextures.ENTITY_NETHERMITE;
+        return NetherExTextures.NETHERMITE;
     }
 }

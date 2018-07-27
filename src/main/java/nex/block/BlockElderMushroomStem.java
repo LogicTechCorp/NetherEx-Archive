@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.block;
 
+import lex.block.BlockLibEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -31,17 +32,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nex.NetherEx;
 import nex.init.NetherExItems;
 
 @SuppressWarnings("ConstantConditions")
-public class BlockElderMushroomStem extends BlockNetherEx
+public class BlockElderMushroomStem extends BlockLibEx
 {
     public static final PropertyEnum<EnumType> AXIS = PropertyEnum.create("axis", EnumType.class);
 
     public BlockElderMushroomStem()
     {
-        super("plant_mushroom_elder_stem", Material.WOOD);
-
+        super(NetherEx.instance, "elder_mushroom_stem", Material.WOOD);
         setSoundType(SoundType.WOOD);
         setHardness(0.2F);
     }
@@ -55,7 +56,13 @@ public class BlockElderMushroomStem extends BlockNetherEx
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     {
-        return player.getHeldItemMainhand().getItem() == NetherExItems.TOOL_AXE_BONE;
+        return player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_AXE;
+    }
+
+    @Override
+    public boolean canDropFromExplosion(Explosion explosionIn)
+    {
+        return false;
     }
 
     @Override

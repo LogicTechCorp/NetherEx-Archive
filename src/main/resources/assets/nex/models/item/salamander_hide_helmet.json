@@ -1,0 +1,14 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "nex:items/orange_salamander_hide_helmet"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "variant": 1
+            },
+            "model": "nex:item/salamander_hide_helmet_variant"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,15 +17,15 @@
 
 package nex.item;
 
+import lex.item.ItemBlockLibEx;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockThornstalk extends ItemBlockNetherEx
+public class ItemBlockThornstalk extends ItemBlockLibEx
 {
     public ItemBlockThornstalk()
     {
-        super(NetherExBlocks.PLANT_THORNSTALK);
-
+        super(NetherExBlocks.THORNSTALK);
         setHasSubtypes(true);
     }
 }

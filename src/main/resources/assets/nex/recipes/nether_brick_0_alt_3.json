@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "nex:fiery_nether_brick_stairs",
+            "count": 8
+        }
+    },
+    "result": {
+        "item": "nex:nether_brick",
+        "data": 0,
+        "count": 3
+    }
+}

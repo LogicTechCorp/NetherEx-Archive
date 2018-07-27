@@ -1,0 +1,69 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "type": {
+            "normal": {
+                "textures": {
+                    "wall": "nex:blocks/basalt"
+                }
+            },
+            "smooth": {
+                "textures": {
+                    "wall": "nex:blocks/basalt_smooth"
+                }
+            },
+            "brick": {
+                "textures": {
+                    "wall": "nex:blocks/basalt_brick"
+                }
+            },
+            "pillar": {
+                "textures": {
+                    "wall": "nex:blocks/basalt_pillar_side"
+                }
+            }
+        },
+        "up": {
+            "true": {
+                "submodel": "wall_post"
+            },
+            "false": {
+            }
+        },
+        "north": {
+            "true": {
+                "submodel": "wall_side",
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "east": {
+            "true": {
+                "submodel": "wall_side",
+                "y": 90,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "south": {
+            "true": {
+                "submodel": "wall_side",
+                "y": 180,
+                "uvlock": true
+            },
+            "false": {
+            }
+        },
+        "west": {
+            "true": {
+                "submodel": "wall_side",
+                "y": 270,
+                "uvlock": true
+            },
+            "false": {
+            }
+        }
+    }
+}

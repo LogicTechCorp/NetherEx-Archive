@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -214,7 +214,7 @@ public class ExplosionSpore extends Explosion
     @Override
     public void doExplosionB(boolean spawnParticles)
     {
-        world.playSound(null, explosionX, explosionY, explosionZ, NetherExSoundEvents.ENTITY_EXPLODE_SPORE, SoundCategory.HOSTILE, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
+        world.playSound(null, explosionX, explosionY, explosionZ, NetherExSoundEvents.SPORE_EXPLODE, SoundCategory.HOSTILE, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 
         if(explosionSize >= 2.0F && isSmoking)
         {
@@ -250,7 +250,7 @@ public class ExplosionSpore extends Explosion
             {
                 for(BlockPos pos : affectedBlockPositions)
                 {
-                    if(world.getBlockState(pos).getMaterial() == Material.AIR && world.getBlockState(pos.down()).isFullBlock() && explosionRNG.nextInt(ConfigHandler.entity.sporeCreeper.chanceOfSporeSpawning) == 0)
+                    if(world.getBlockState(pos).getMaterial() == Material.AIR && world.getBlockState(pos.down()).isFullBlock() && explosionRNG.nextInt(ConfigHandler.entityConfig.sporeCreeper.chanceOfSporeSpawning) == 0)
                     {
                         EntitySpore spore = new EntitySpore(world, 0);
                         spore.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);

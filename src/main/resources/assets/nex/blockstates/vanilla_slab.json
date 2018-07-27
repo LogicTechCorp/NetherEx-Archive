@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "half=top,type=red_nether_brick": {
+            "model": "nex:red_nether_brick_slab_top"
+        },
+        "half=bottom,type=red_nether_brick": {
+            "model": "nex:red_nether_brick_slab_bottom"
+        }
+    }
+}

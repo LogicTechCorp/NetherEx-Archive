@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,25 +17,22 @@
 
 package nex.init;
 
+import lex.potion.PotionLibEx;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.potion.PotionNetherEx;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import nex.potion.PotionFreeze;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffects
 {
-    public static final PotionNetherEx FREEZE = new PotionNetherEx("freeze", true, 93, 188, 210);
-    public static final PotionNetherEx FROSTBITE = new PotionNetherEx("frostbite", true, 19, 226, 255);
-    public static final PotionNetherEx SPORE = new PotionNetherEx("spore", true, 142, 96, 40);
-    public static final PotionNetherEx LOST = new PotionNetherEx("lost", true, 103, 62, 124);
-
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExEffects");
+    public static final PotionLibEx FREEZE = new PotionFreeze();
+    public static final PotionLibEx FROSTBITE = new PotionLibEx(NetherEx.instance, "frostbite", true, 19, 226, 255);
+    public static final PotionLibEx SPORE = new PotionLibEx(NetherEx.instance, "spore", true, 142, 96, 40);
+    public static final PotionLibEx LOST = new PotionLibEx(NetherEx.instance, "lost", true, 103, 62, 124);
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -43,16 +40,12 @@ public class NetherExEffects
         @SubscribeEvent
         public static void onRegisterPotions(RegistryEvent.Register<Potion> event)
         {
-            LOGGER.info("Effect registration started.");
-
             event.getRegistry().registerAll(
                     FREEZE,
                     FROSTBITE,
                     SPORE,
                     LOST
             );
-
-            LOGGER.info("Effect registration completed.");
         }
     }
 }

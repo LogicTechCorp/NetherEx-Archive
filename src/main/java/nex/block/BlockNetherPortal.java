@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
 package nex.block;
 
 import com.google.common.collect.Queues;
+import lex.block.BlockLibEx;
+import lex.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -28,32 +30,35 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExBlocks;
-import nex.util.BlockUtil;
+import nex.world.TeleporterNetherEx;
 
 import java.util.Queue;
 import java.util.Random;
 
 /**
- * A Block that allows for Nether Portal teleportation
+ * A block that allows for Nether Portal teleportation
  * <p>
  * Based on code written by Alz454 here:
  * https://github.com/enhancedportals/enhancedportals/blob/1647357d3cbed1289a653347e2107d92a2875a65/src/main/java/enhanced/portals/portal/PortalUtils.java
  */
 @SuppressWarnings("ConstantConditions")
-public class BlockNetherPortal extends BlockNetherEx
+public class BlockNetherPortal extends BlockLibEx
 {
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
 
@@ -63,8 +68,7 @@ public class BlockNetherPortal extends BlockNetherEx
 
     public BlockNetherPortal()
     {
-        super("block_portal_nether", Material.PORTAL);
-
+        super(NetherEx.instance, "nether_portal", Material.PORTAL);
         setSoundType(SoundType.GLASS);
         setLightLevel(0.75F);
         setTickRandomly(true);
@@ -158,9 +162,9 @@ public class BlockNetherPortal extends BlockNetherEx
             }
         }
 
-        if(ConfigHandler.block.netherPortal.allowPigmanSpawning)
+        if(ConfigHandler.blockConfig.netherPortal.allowPigmanSpawning)
         {
-            if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && rand.nextInt(ConfigHandler.block.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
+            if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && rand.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
             {
                 int i = pos.getY();
                 BlockPos blockPos;
@@ -261,7 +265,33 @@ public class BlockNetherPortal extends BlockNetherEx
     {
         if(!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss())
         {
-            entity.setPortal(pos);
+            if(entity.timeUntilPortal > 0)
+            {
+                entity.timeUntilPortal = entity.getPortalCooldown();
+            }
+            else
+            {
+                if(!world.isRemote)
+                {
+                    WorldServer worldServer = (WorldServer) world;
+                    MinecraftServer minecraftServer = worldServer.getMinecraftServer();
+                    PlayerList playerList = minecraftServer.getPlayerList();
+                    int dimension = entity.dimension == DimensionType.NETHER.getId() ? DimensionType.OVERWORLD.getId() : DimensionType.NETHER.getId();
+                    Teleporter teleporter = TeleporterNetherEx.getTeleporterForWorld(minecraftServer, dimension);
+
+                    entity.setPortal(pos);
+                    entity.timeUntilPortal = entity.getPortalCooldown();
+
+                    if(entity instanceof EntityPlayerMP)
+                    {
+                        playerList.transferPlayerToDimension((EntityPlayerMP) entity, dimension, teleporter);
+                    }
+                    else
+                    {
+                        playerList.transferEntityToWorld(entity, entity.dimension, worldServer, minecraftServer.getWorld(dimension), teleporter);
+                    }
+                }
+            }
         }
     }
 
@@ -315,9 +345,9 @@ public class BlockNetherPortal extends BlockNetherEx
 
     public boolean trySpawnPortal(World world, BlockPos pos)
     {
-        for(EnumFacing facing : EnumFacing.values())
+        for(EnumFacing.Axis axis : EnumFacing.Axis.values())
         {
-            for(EnumFacing.Axis axis : EnumFacing.Axis.values())
+            for(EnumFacing facing : EnumFacing.values())
             {
                 Queue<BlockPos> portalBlocks = findPortalBlocks(world, pos.offset(facing), axis);
 
@@ -350,7 +380,7 @@ public class BlockNetherPortal extends BlockNetherEx
 
             if(!portalBlocks.contains(newPos))
             {
-                if(world.isAirBlock(newPos) || world.getBlockState(newPos).getBlock() == NetherExBlocks.BLOCK_FIRE_BLUE)
+                if(world.isAirBlock(newPos) || world.getBlockState(newPos).getBlock() == NetherExBlocks.BLUE_FIRE)
                 {
                     int neighborBlocks = getNeighborBlocks(world, newPos, portalBlocks, axis);
 
@@ -428,6 +458,6 @@ public class BlockNetherPortal extends BlockNetherEx
     private boolean isPortalPart(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
-        return BlockUtil.isOreDict("obsidian", block) || block == NetherExBlocks.BLOCK_FIRE_BLUE || block == this;
+        return BlockHelper.isOreDict("obsidian", block) || block == NetherExBlocks.BLUE_FIRE || block == this;
     }
 }

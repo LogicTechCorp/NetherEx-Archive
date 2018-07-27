@@ -1,0 +1,46 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "nex:path",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "normal": {
+                "textures": {
+                    "top": "nex:blocks/netherrack_path",
+                    "side": "blocks/netherrack",
+                    "bottom": "blocks/netherrack"
+                }
+            },
+            "fiery": {
+                "textures": {
+                    "top": "nex:blocks/fiery_netherrack_path",
+                    "side": "nex:blocks/fiery_netherrack",
+                    "bottom": "nex:blocks/fiery_netherrack"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "top": "nex:blocks/icy_netherrack_path",
+                    "side": "nex:blocks/icy_netherrack",
+                    "bottom": "nex:blocks/icy_netherrack"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "top": "nex:blocks/lively_netherrack_path",
+                    "side": "nex:blocks/lively_netherrack",
+                    "bottom": "nex:blocks/lively_netherrack"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "top": "nex:blocks/gloomy_netherrack_path",
+                    "side": "nex:blocks/gloomy_netherrack",
+                    "bottom": "nex:blocks/gloomy_netherrack"
+                }
+            }
+        }
+    }
+}

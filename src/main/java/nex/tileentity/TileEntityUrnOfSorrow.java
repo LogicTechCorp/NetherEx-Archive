@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package nex.tileentity;
 
+import lex.tileentity.TileEntityInventory;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -48,29 +49,30 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
 
             if(stack.getItem() == Items.GHAST_TEAR)
             {
-                if(getSummoningTime() == 0)
+                if(summoningTime == 0)
                 {
-                    getWorld().playSound(null, getPos(), NetherExSoundEvents.ENTITY_SUMMON_GHAST_QUEEN, SoundCategory.AMBIENT, 0.5F, 1.0F);
+                    world.playSound(null, pos, NetherExSoundEvents.GHAST_QUEEN_SUMMON, SoundCategory.AMBIENT, 0.5F, 1.0F);
                 }
-                setSummoningTime(getSummoningTime() + 1);
-                setCanBreak(false);
+
+                summoningTime += 1;
+                canBreak = false;
             }
-            if(getSummoningTime() / 20.0F >= 6.8F)
+            if(summoningTime / 20.0F >= 6.8F)
             {
                 EntityGhastQueen ghastQueen = new EntityGhastQueen(getWorld());
-                ghastQueen.setPosition(getPos().getX(), getPos().getY() + 7, getPos().getZ());
-                ghastQueen.setUrnPos(getPos());
+                ghastQueen.setPosition(pos.getX(), pos.getY() + 7, pos.getZ());
+                ghastQueen.setUrnPos(pos);
 
-                world.playSound(null, getPos().getX(), getPos().getY() + 7, getPos().getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
+                world.playSound(null, pos.getX(), pos.getY() + 7, pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 
-                if(!getWorld().isRemote)
+                if(!world.isRemote)
                 {
-                    getWorld().spawnEntity(ghastQueen);
+                    world.spawnEntity(ghastQueen);
                 }
 
                 getInventory().setStackInSlot(0, ItemStack.EMPTY);
-                getWorld().setBlockState(pos, NetherExBlocks.TILE_URN_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
-                setSummoningTime(0);
+                world.setBlockState(pos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+                summoningTime = 0;
             }
         }
     }
@@ -79,8 +81,8 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        compound.setInteger("SummoningTime", getSummoningTime());
-        compound.setBoolean("CanBreak", canBreak());
+        compound.setInteger("SummoningTime", summoningTime);
+        compound.setBoolean("CanBreak", canBreak);
         return compound;
     }
 
@@ -88,8 +90,8 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        setSummoningTime(compound.getInteger("SummoningTime"));
-        setCanBreak(compound.getBoolean("CanBreak"));
+        summoningTime = compound.getInteger("SummoningTime");
+        canBreak = compound.getBoolean("CanBreak");
     }
 
     public int getSummoningTime()
@@ -100,15 +102,5 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     public boolean canBreak()
     {
         return canBreak;
-    }
-
-    private void setSummoningTime(int summoningTimeIn)
-    {
-        summoningTime = summoningTimeIn;
-    }
-
-    public void setCanBreak(boolean canBreakIn)
-    {
-        canBreak = canBreakIn;
     }
 }

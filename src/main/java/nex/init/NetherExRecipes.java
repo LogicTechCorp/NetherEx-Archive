@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,10 @@ package nex.init;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
 import nex.block.BlockNetherrack;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static net.minecraft.init.Blocks.SOUL_SAND;
 import static net.minecraft.init.Items.MAGMA_CREAM;
@@ -37,30 +36,24 @@ import static nex.init.NetherExItems.*;
 @SuppressWarnings("ConstantConditions")
 public class NetherExRecipes
 {
-    private static final Logger LOGGER = LogManager.getLogger("NetherEx|NetherExRecipes");
-
     public static void init()
     {
-        LOGGER.info("Recipe registration started.");
-
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
-            addSmelting(new ItemStack(ITEM_BRICK_NETHER, 1, type.ordinal()), new ItemStack(BLOCK_NETHERRACK, 1, type.ordinal()), 0.5F);
+            addSmelting(new ItemStack(NetherExItems.NETHERBRICK, 1, type.ordinal()), new ItemStack(NETHERRACK, 1, type.ordinal()), 0.5F);
         }
 
-        addSmelting(new ItemStack(BLOCK_GLASS_SOUL, 1, 0), new ItemStack(SOUL_SAND, 1, 0), 0.5F);
-        addSmelting(new ItemStack(QUARTZ, 1, 0), new ItemStack(ORE_QUARTZ, 1, 0), 0.0F);
-        addSmelting(new ItemStack(ITEM_CRYSTAL_AMETHYST, 1, 0), new ItemStack(ORE_AMETHYST, 1, 0), 0.0F);
-        addSmelting(new ItemStack(ITEM_CRYSTAL_RIME, 1, 0), new ItemStack(ORE_RIME, 1, 0), 0.0F);
-        addSmelting(new ItemStack(FOOD_MEAT_GHAST_COOKED, 1, 0), new ItemStack(FOOD_MEAT_GHAST_RAW, 1, 0), 0.5F);
-        addSmelting(new ItemStack(FOOD_MAGMA_CREAM_CONGEALED, 1, 0), new ItemStack(MAGMA_CREAM, 1, 0), 0.5F);
+        addSmelting(new ItemStack(SOUL_GLASS), new ItemStack(SOUL_SAND), 0.5F);
+        addSmelting(new ItemStack(QUARTZ), new ItemStack(QUARTZ_ORE), 0.0F);
+        addSmelting(new ItemStack(AMETHYST_CRYSTAL), new ItemStack(AMETHYST_ORE), 0.0F);
+        addSmelting(new ItemStack(RIME_CRYSTAL), new ItemStack(RIME_ORE), 0.0F);
+        addSmelting(new ItemStack(GHAST_MEAT_COOKED), new ItemStack(GHAST_MEAT_RAW), 0.5F);
+        addSmelting(new ItemStack(CONGEALED_MAGMA_CREAM), new ItemStack(MAGMA_CREAM), 0.5F);
 
-        addBrewing(AWKWARD, ITEM_CRYSTAL_RIME, NORMAL_FREEZE);
-        addBrewing(AWKWARD, ITEM_FANG_SPIDER_BONE, NORMAL_FROSTBITE);
-        addBrewing(AWKWARD, ITEM_SPORE, NORMAL_SPORE);
-        addBrewing(AWKWARD, FOOD_MEAT_GHAST_RAW, NORMAL_LOST);
-
-        LOGGER.info("Recipe registration completed.");
+        addBrewing(AWKWARD, Ingredient.fromStacks(new ItemStack(RIME_CRYSTAL)), NORMAL_FREEZE);
+        addBrewing(AWKWARD, BONE_SPIDER_FANG, NORMAL_FROSTBITE);
+        addBrewing(AWKWARD, SPORE, NORMAL_SPORE);
+        addBrewing(AWKWARD, GHAST_MEAT_RAW, NORMAL_LOST);
     }
 
     private static void addSmelting(ItemStack output, ItemStack input, float xp)
@@ -71,5 +64,10 @@ public class NetherExRecipes
     private static void addBrewing(PotionType input, Item reagent, PotionType output)
     {
         PotionHelper.addMix(input, reagent, output);
+    }
+
+    private static void addBrewing(PotionType input, Ingredient ingredient, PotionType output)
+    {
+        PotionHelper.addMix(input, ingredient, output);
     }
 }

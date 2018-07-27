@@ -32,7 +32,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "nex:item_fang_spider_bone",
+                    "name": "nex:bone_spider_fang",
                     "functions": [
                         {
                             "function": "set_count",

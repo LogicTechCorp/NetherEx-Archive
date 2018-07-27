@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,6 @@ public class RenderSalamander extends RenderLiving<EntitySalamander>
     @Override
     protected ResourceLocation getEntityTexture(EntitySalamander salamander)
     {
-        return salamander.getType() == 0 ? NetherExTextures.ENTITY_SALAMANDER_ORANGE : NetherExTextures.ENTITY_SALAMANDER_BLACK;
+        return salamander.getType() == 0 ? NetherExTextures.ORANGE_SALAMANDER : NetherExTextures.BLACK_SALAMANDER;
     }
 }

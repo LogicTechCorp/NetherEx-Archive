@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2017 by LogicTechCorp
+ * Copyright (c) 2016-2018 by MineEx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.item.ItemBlockEdible;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -29,12 +30,11 @@ import nex.block.BlockElderMushroom;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class ItemBlockElderMushroom extends ItemBlockFood
+public class ItemBlockElderMushroom extends ItemBlockEdible
 {
     public ItemBlockElderMushroom()
     {
-        super(NetherExBlocks.PLANT_MUSHROOM_ELDER, 0, 0.0F, false);
-
+        super(NetherExBlocks.ELDER_MUSHROOM, 0, 0.0F, false);
         setHasSubtypes(true);
     }
 
