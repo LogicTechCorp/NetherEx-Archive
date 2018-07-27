@@ -27,12 +27,11 @@ import nex.entity.neutral.EntityMogus;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class BiomeFungiForest extends BiomeLibEx
+public class BiomeFungiForest extends BiomeNetherEx
 {
     public BiomeFungiForest()
     {
         super(NetherEx.instance, new BiomeProperties("Fungi Forest").setTemperature(1.1F).setRainfall(0.0F).setRainDisabled(), "fungi_forest");
-
         topBlock = NetherExBlocks.HYPHAE.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6));

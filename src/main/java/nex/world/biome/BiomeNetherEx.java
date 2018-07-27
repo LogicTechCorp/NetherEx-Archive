@@ -17,19 +17,20 @@
 
 package nex.world.biome;
 
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import nex.world.gen.layer.GenLayerNetherEx;
+import lex.IModData;
+import lex.world.biome.BiomeLibEx;
+import net.minecraft.world.biome.BiomeDecorator;
 
-public class BiomeProviderNether extends BiomeProvider
+public class BiomeNetherEx extends BiomeLibEx
 {
-    public BiomeProviderNether(World world)
+    public BiomeNetherEx(IModData data, BiomeProperties properties, String name)
     {
-        super();
-        GenLayer[] genLayers = GenLayerNetherEx.initializeAllBiomeGenerators(world.getSeed(), world.getWorldType());
-        ReflectionHelper.setPrivateValue(BiomeProvider.class, this, genLayers[0], "field_76944_d", "genBiomes");
-        ReflectionHelper.setPrivateValue(BiomeProvider.class, this, genLayers[1], "field_76945_e", "biomeIndexLayer");
+        super(data, properties, name);
+    }
+
+    @Override
+    public BiomeDecorator createBiomeDecorator()
+    {
+        return getModdedBiomeDecorator(new BiomeDecoratorNetherEx());
     }
 }

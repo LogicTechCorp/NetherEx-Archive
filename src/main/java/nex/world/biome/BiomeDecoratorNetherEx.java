@@ -24,7 +24,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 
 import java.util.Random;
 
-public class BiomeDecoratorNether extends BiomeDecorator
+public class BiomeDecoratorNetherEx extends BiomeDecorator
 {
     @Override
     public void decorate(World world, Random rand, Biome biome, BlockPos pos)

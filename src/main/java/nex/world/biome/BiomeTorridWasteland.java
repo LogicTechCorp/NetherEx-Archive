@@ -27,12 +27,11 @@ import nex.entity.neutral.EntitySalamander;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class BiomeTorridWasteland extends BiomeLibEx
+public class BiomeTorridWasteland extends BiomeNetherEx
 {
     public BiomeTorridWasteland()
     {
         super(NetherEx.instance, new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
-
         topBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 25, 1, 4));

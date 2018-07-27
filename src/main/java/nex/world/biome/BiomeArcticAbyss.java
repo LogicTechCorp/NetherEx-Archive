@@ -29,12 +29,11 @@ import nex.entity.monster.EntityWight;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class BiomeArcticAbyss extends BiomeLibEx
+public class BiomeArcticAbyss extends BiomeNetherEx
 {
     public BiomeArcticAbyss()
     {
         super(NetherEx.instance, new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
-
         topBlock = NetherExBlocks.FROSTBURN_ICE.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4));

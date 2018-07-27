@@ -28,12 +28,11 @@ import nex.entity.monster.EntitySpinout;
 import nex.init.NetherExBlocks;
 
 @SuppressWarnings("ConstantConditions")
-public class BiomeRuthlessSands extends BiomeLibEx
+public class BiomeRuthlessSands extends BiomeNetherEx
 {
     public BiomeRuthlessSands()
     {
         super(NetherEx.instance, new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
-
         topBlock = Blocks.SOUL_SAND.getDefaultState();
         fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY);
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitherSkeleton.class, 65, 1, 4));
