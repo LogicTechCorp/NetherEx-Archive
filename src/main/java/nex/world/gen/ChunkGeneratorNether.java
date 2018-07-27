@@ -430,13 +430,16 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        if(netherBridge.isInsideStructure(pos))
+        if(creatureType == EnumCreatureType.MONSTER)
         {
-            return netherBridge.getSpawnList();
-        }
-        if(netherBridge.isPositionInStructure(world, pos) && world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
-        {
-            return netherBridge.getSpawnList();
+            if(netherBridge.isInsideStructure(pos))
+            {
+                return netherBridge.getSpawnList();
+            }
+            if(netherBridge.isPositionInStructure(world, pos) && world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
+            {
+                return netherBridge.getSpawnList();
+            }
         }
 
         return NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos)).getSpawnableMobs(creatureType);
