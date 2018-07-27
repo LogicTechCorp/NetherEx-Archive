@@ -67,12 +67,6 @@ public class BlockElderMushroomCap extends BlockLibEx
     }
 
     @Override
-    public boolean canDropFromExplosion(Explosion explosionIn)
-    {
-        return false;
-    }
-
-    @Override
     public int damageDropped(IBlockState state)
     {
         return getMetaFromState(state);

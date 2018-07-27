@@ -66,12 +66,6 @@ public class BlockElderMushroomStem extends BlockLibEx
     }
 
     @Override
-    public boolean canDropFromExplosion(Explosion explosionIn)
-    {
-        return false;
-    }
-
-    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return getDefaultState().withProperty(AXIS, EnumType.fromMeta(meta));
