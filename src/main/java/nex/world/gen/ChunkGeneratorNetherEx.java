@@ -50,7 +50,7 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("ConstantConditions")
-public class ChunkGeneratorNether extends ChunkGeneratorHell
+public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 {
     private final World world;
     private final Random rand;
@@ -80,7 +80,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
 
-    public ChunkGeneratorNether(World worldIn)
+    public ChunkGeneratorNetherEx(World worldIn)
     {
         super(worldIn, true, worldIn.getSeed());
         world = worldIn;
@@ -394,8 +394,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        Biome biome = world.getBiome(blockPos.add(16, 0, 16));
-        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biome);
+        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
         boolean hasVillageGenerated = false;
@@ -410,7 +409,7 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
 
         if(wrapper.shouldGenDefaultFeatures())
         {
-            biome.decorate(world, rand, blockPos);
+            wrapper.getBiome().decorate(world, rand, blockPos);
         }
 
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, chunkPos));
@@ -497,90 +496,97 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             for(int z = 0; z < 16; ++z)
             {
                 BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biomes[x + z * 16]);
-                Biome biome = wrapper.getBiome();
-                ResourceLocation biomeName = biome.getRegistryName();
 
-                if(!biomeName.getResourceDomain().equalsIgnoreCase("biomesoplenty"))
+                if(wrapper != null)
                 {
-                    IBlockState surfaceBlock = wrapper.getBlock("topBlock", biome.topBlock);
-                    IBlockState fillerBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);
-                    IBlockState wallBlock = wrapper.getBlock("wallBlock", biome.fillerBlock);
-                    IBlockState ceilingBottomBlock = wrapper.getBlock("ceilingBottomBlock", biome.fillerBlock);
-                    IBlockState ceilingFillerBlock = wrapper.getBlock("ceilingFillerBlock", biome.fillerBlock);
-                    IBlockState oceanBlock = wrapper.getBlock("oceanBlock", Blocks.LAVA.getDefaultState());
+                    Biome biome = wrapper.getBiome();
+                    ResourceLocation biomeName = biome.getRegistryName();
 
-                    int localX = ((chunkX * 16) + x) & 15;
-                    int localZ = ((chunkZ * 16) + z) & 15;
-
-                    boolean wasLastBlockSolid = true;
-
-                    for(int localY = 127; localY >= 0; localY--)
+                    if(!biomeName.getResourceDomain().equalsIgnoreCase("biomesoplenty"))
                     {
-                        int blocksToSkip = 0;
+                        IBlockState surfaceBlock = wrapper.getBlock("topBlock", biome.topBlock);
+                        IBlockState fillerBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);
+                        IBlockState wallBlock = wrapper.getBlock("wallBlock", biome.fillerBlock);
+                        IBlockState ceilingBottomBlock = wrapper.getBlock("ceilingBottomBlock", biome.fillerBlock);
+                        IBlockState ceilingFillerBlock = wrapper.getBlock("ceilingFillerBlock", biome.fillerBlock);
+                        IBlockState oceanBlock = wrapper.getBlock("oceanBlock", Blocks.LAVA.getDefaultState());
 
-                        IBlockState checkState = primer.getBlockState(localX, localY, localZ);
+                        int localX = ((chunkX * 16) + x) & 15;
+                        int localZ = ((chunkZ * 16) + z) & 15;
 
-                        if(checkState.getBlock() == Blocks.NETHERRACK)
+                        boolean wasLastBlockSolid = true;
+
+                        for(int localY = 127; localY >= 0; localY--)
                         {
-                            primer.setBlockState(localX, localY, localZ, wallBlock);
+                            int blocksToSkip = 0;
 
-                            if(!wasLastBlockSolid)
+                            IBlockState checkState = primer.getBlockState(localX, localY, localZ);
+
+                            if(checkState.getBlock() == Blocks.NETHERRACK)
                             {
-                                primer.setBlockState(localX, localY, localZ, surfaceBlock);
+                                primer.setBlockState(localX, localY, localZ, wallBlock);
 
-                                for(int floorOffset = 1; floorOffset <= 4 - 1 && localY - floorOffset >= 0; floorOffset++)
+                                if(!wasLastBlockSolid)
                                 {
-                                    IBlockState state = primer.getBlockState(localX, localY - floorOffset, localZ);
-                                    blocksToSkip = floorOffset;
+                                    primer.setBlockState(localX, localY, localZ, surfaceBlock);
 
-                                    if(state.getBlock() == Blocks.NETHERRACK)
+                                    for(int floorOffset = 1; floorOffset <= 4 - 1 && localY - floorOffset >= 0; floorOffset++)
                                     {
-                                        primer.setBlockState(localX, localY - floorOffset, localZ, fillerBlock);
-                                    }
-                                    else
-                                    {
-                                        break;
+                                        IBlockState state = primer.getBlockState(localX, localY - floorOffset, localZ);
+                                        blocksToSkip = floorOffset;
+
+                                        if(state.getBlock() == Blocks.NETHERRACK)
+                                        {
+                                            primer.setBlockState(localX, localY - floorOffset, localZ, fillerBlock);
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
                                     }
                                 }
+
+                                wasLastBlockSolid = true;
                             }
-
-                            wasLastBlockSolid = true;
-                        }
-                        else if(checkState.getBlock() == Blocks.AIR)
-                        {
-                            if(wasLastBlockSolid)
+                            else if(checkState.getBlock() == Blocks.AIR)
                             {
-                                primer.setBlockState(localX, localY + 1, localZ, ceilingBottomBlock);
-
-                                for(int roofOffset = 2; roofOffset <= 4 && localY + roofOffset <= 127; roofOffset++)
+                                if(wasLastBlockSolid)
                                 {
-                                    IBlockState state = primer.getBlockState(localX, localY + roofOffset, localZ);
-
-                                    if(state.getBlock() == Blocks.NETHERRACK || state == wallBlock)
+                                    if(localY + 1 < 128)
                                     {
-                                        primer.setBlockState(localX, localY + roofOffset, localZ, ceilingFillerBlock);
+                                        primer.setBlockState(localX, localY + 1, localZ, ceilingBottomBlock);
                                     }
-                                    else
+
+                                    for(int roofOffset = 2; roofOffset <= 4 && localY + roofOffset <= 127; roofOffset++)
                                     {
-                                        break;
+                                        IBlockState state = primer.getBlockState(localX, localY + roofOffset, localZ);
+
+                                        if(state.getBlock() == Blocks.NETHERRACK || state == wallBlock)
+                                        {
+                                            primer.setBlockState(localX, localY + roofOffset, localZ, ceilingFillerBlock);
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
                                     }
                                 }
+
+                                wasLastBlockSolid = false;
+                            }
+                            else if(checkState == Blocks.LAVA.getDefaultState())
+                            {
+                                primer.setBlockState(localX, localY, localZ, oceanBlock);
+                                wasLastBlockSolid = false;
                             }
 
-                            wasLastBlockSolid = false;
+                            localY -= blocksToSkip;
                         }
-                        else if(checkState == Blocks.LAVA.getDefaultState())
-                        {
-                            primer.setBlockState(localX, localY, localZ, oceanBlock);
-                            wasLastBlockSolid = false;
-                        }
-
-                        localY -= blocksToSkip;
                     }
-                }
-                else
-                {
-                    biome.genTerrainBlocks(world, rand, primer, chunkX * 16 + x, chunkZ * 16 + z, terrainNoise[x + z * 16]);
+                    else
+                    {
+                        biome.genTerrainBlocks(world, rand, primer, chunkX * 16 + x, chunkZ * 16 + z, terrainNoise[x + z * 16]);
+                    }
                 }
             }
         }

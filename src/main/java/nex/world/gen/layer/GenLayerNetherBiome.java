@@ -50,7 +50,7 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
         return outputs;
     }
 
-    public Biome getRandomBiome()
+    private Biome getRandomBiome()
     {
         List<BiomeManager.BiomeEntry> biomeEntryList = NetherExBiomeManager.getBiomes();
         int biomeWeights = WeightedRandom.getTotalWeight(biomeEntryList);

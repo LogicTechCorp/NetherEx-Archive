@@ -23,9 +23,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
 import nex.world.biome.BiomeProviderNether;
-import nex.world.gen.ChunkGeneratorNether;
+import nex.world.gen.ChunkGeneratorNetherEx;
 
-public class WorldProviderNether extends WorldProviderHell
+public class WorldProviderNetherEx extends WorldProviderHell
 {
     @Override
     public void init()
@@ -37,7 +37,7 @@ public class WorldProviderNether extends WorldProviderHell
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorNether(world);
+        return new ChunkGeneratorNetherEx(world);
     }
 
     @Override

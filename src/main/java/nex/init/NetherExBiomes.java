@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.world.WorldProviderNether;
+import nex.world.WorldProviderNetherEx;
 import nex.world.biome.BiomeArcticAbyss;
 import nex.world.biome.BiomeFungiForest;
 import nex.world.biome.BiomeRuthlessSands;
@@ -69,7 +69,7 @@ public class NetherExBiomes
     public static void postInit()
     {
         DimensionManager.unregisterDimension(-1);
-        DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNether.class, false);
+        DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNetherEx.class, false);
         DimensionManager.registerDimension(-1, nether);
         NetherEx.LOGGER.info("The Nether has been overridden.");
     }

@@ -35,7 +35,7 @@ import nex.world.biome.NetherExBiomeManager;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
-public class WorldGenHandler
+public class FeatureGenHandler
 {
     @SubscribeEvent
     public static void onPrePopulateChunk(PopulateChunkEvent.Pre event)
