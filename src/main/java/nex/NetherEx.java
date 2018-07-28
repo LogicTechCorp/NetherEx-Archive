@@ -35,8 +35,8 @@ public class NetherEx implements IModData
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.0.3";
-    public static final String DEPENDENCIES = "required-after:lex@[1.0.3,);";
+    public static final String VERSION = "2.0.4";
+    public static final String DEPENDENCIES = "required-after:lex@[1.0.4,);";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
 

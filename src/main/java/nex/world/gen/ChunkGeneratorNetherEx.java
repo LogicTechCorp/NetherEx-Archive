@@ -407,7 +407,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, chunkPos));
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(world, rand, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
 
-        if(wrapper.shouldGenDefaultFeatures())
+        if(wrapper != null && wrapper.shouldGenDefaultFeatures())
         {
             wrapper.getBiome().decorate(world, rand, blockPos);
         }
