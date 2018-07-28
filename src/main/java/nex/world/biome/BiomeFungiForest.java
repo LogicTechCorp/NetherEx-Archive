@@ -17,7 +17,6 @@
 
 package nex.world.biome;
 
-import lex.world.biome.BiomeLibEx;
 import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
 import nex.block.BlockNetherrack;

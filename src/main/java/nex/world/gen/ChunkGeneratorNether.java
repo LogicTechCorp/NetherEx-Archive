@@ -45,6 +45,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import nex.handler.ConfigHandler;
 import nex.world.biome.NetherExBiomeManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -442,7 +443,8 @@ public class ChunkGeneratorNether extends ChunkGeneratorHell
             }
         }
 
-        return NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos)).getSpawnableMobs(creatureType);
+        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos));
+        return creatureType == null || wrapper == null ? new ArrayList<>() : wrapper.getSpawnableMobs(creatureType);
     }
 
     @Override

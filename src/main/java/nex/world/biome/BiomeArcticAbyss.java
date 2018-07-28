@@ -17,7 +17,6 @@
 
 package nex.world.biome;
 
-import lex.world.biome.BiomeLibEx;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.world.biome.Biome;
