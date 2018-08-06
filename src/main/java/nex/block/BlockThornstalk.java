@@ -18,6 +18,8 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.util.CollectionHelper;
+import lex.util.EntityHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -25,7 +27,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +44,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class BlockThornstalk extends BlockLibEx
@@ -89,14 +89,13 @@ public class BlockThornstalk extends BlockLibEx
         {
             entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }
-        else
+        else if(entity instanceof EntityLivingBase && CollectionHelper.contains(ConfigHandler.blockConfig.thornstalk.blacklist, EntityHelper.getEntityLocation((EntityLivingBase) entity)))
         {
-            boolean canHurt = !Arrays.asList(ConfigHandler.blockConfig.thornstalk.blacklist).contains(EntityList.getKey(entity).toString());
-
-            if((entity instanceof EntityLivingBase || entity instanceof EntityItem && ConfigHandler.blockConfig.thornstalk.canDestroyItems) && canHurt)
-            {
-                entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
-            }
+            entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+        }
+        else if(entity instanceof EntityItem && ConfigHandler.blockConfig.thornstalk.canDestroyItems)
+        {
+            entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }
     }
 

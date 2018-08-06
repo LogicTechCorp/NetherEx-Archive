@@ -18,9 +18,10 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.util.CollectionHelper;
+import lex.util.EntityHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -33,7 +34,6 @@ import nex.NetherEx;
 import nex.handler.ConfigHandler;
 import nex.init.NetherExEffects;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -86,7 +86,7 @@ public class BlockRime extends BlockLibEx
 
         for(EntityLivingBase entity : entities)
         {
-            boolean canFreeze = !(entity instanceof EntityPlayer) && !Arrays.asList(ConfigHandler.potionEffectConfig.freeze.blacklist).contains(EntityList.getKey(entity).toString());
+            boolean canFreeze = !(entity instanceof EntityPlayer) && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.freeze.blacklist, EntityHelper.getEntityLocation(entity));
 
             if(canFreeze && ConfigHandler.blockConfig.rime.canFreezeMobs)
             {

@@ -17,6 +17,7 @@
 
 package nex.handler;
 
+import lex.util.CollectionHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,8 +39,6 @@ import nex.block.BlockTilledSoulSand;
 import nex.entity.monster.EntityNethermite;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
-
-import java.util.Arrays;
 
 @SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
@@ -108,7 +107,7 @@ public class BlockHandler
             }
             if(player.dimension == DimensionType.NETHER.getId())
             {
-                boolean canSpawn = Arrays.asList(ConfigHandler.entityConfig.nethermite.whitelist).contains(state.getBlock().getRegistryName().toString());
+                boolean canSpawn = CollectionHelper.contains(ConfigHandler.entityConfig.nethermite.whitelist, state.getBlock().getRegistryName().toString());
 
                 if(canSpawn && world.rand.nextInt(ConfigHandler.entityConfig.nethermite.chanceOfSpawning) == 0)
                 {

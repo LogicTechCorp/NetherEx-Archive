@@ -18,6 +18,7 @@
 package nex.handler;
 
 import lex.util.ArmorHelper;
+import lex.util.CollectionHelper;
 import lex.util.EntityHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -303,7 +304,7 @@ public class LivingHandler
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);
-        return entityRegistryName != null && !EntityHelper.contains(ConfigHandler.potionEffectConfig.freeze.blacklist, entityRegistryName);
+        return entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.freeze.blacklist, entityRegistryName);
     }
 
     public static boolean canSpreadSpores(EntityLivingBase entity)
@@ -314,7 +315,7 @@ public class LivingHandler
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);
-        return (entityRegistryName != null && !EntityHelper.contains(ConfigHandler.potionEffectConfig.spore.blacklist, entityRegistryName));
+        return (entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.spore.blacklist, entityRegistryName));
     }
 
     public static boolean canSpawnGhastling(EntityLivingBase entity)
