@@ -110,7 +110,7 @@ public class EntitySpore extends EntityMob
                 if(!world.isRemote)
                 {
 
-                    int creeperSpawns = rand.nextInt(ConfigHandler.entityConfig.spore.creeperSpawns) + 1;
+                    int creeperSpawns = rand.nextInt(ConfigHandler.entityConfig.spore.creeperSpawnAmount) + 1;
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {

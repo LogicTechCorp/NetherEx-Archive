@@ -65,12 +65,4 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, WET, COLD);
     }
-
-    public static void postInit()
-    {
-        DimensionManager.unregisterDimension(-1);
-        DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNetherEx.class, false);
-        DimensionManager.registerDimension(-1, nether);
-        NetherEx.LOGGER.info("The Nether has been overridden.");
-    }
 }

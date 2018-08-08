@@ -91,7 +91,7 @@ public class LivingHandler
         {
             boolean entityFrozen = isFrozen(entity);
 
-            if(!entityFrozen && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.chanceOfFreezing) == 0 && world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
+            if(!entityFrozen && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0 && world.getBiome(pos) == NetherExBiomes.ARCTIC_ABYSS)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
             }
@@ -107,7 +107,7 @@ public class LivingHandler
                 }
             }
         }
-        if(isSporeInfested(entity) && canSpreadSpores(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.spore.chanceOfSporeSpawning) == 0)
+        if(isSporeInfested(entity) && canSpreadSpores(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.spore.sporeSpawnRarity) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
@@ -121,7 +121,7 @@ public class LivingHandler
                 }
             }
         }
-        if(isLostAfflicted(entity) && canSpawnGhastling(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.lost.chanceOfGhastlingSpawning) == 0)
+        if(isLostAfflicted(entity) && canSpawnGhastling(entity) && world.rand.nextInt(ConfigHandler.potionEffectConfig.lost.ghastlingSpawnRarity) == 0)
         {
             BlockPos newPos = pos.add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
 
@@ -304,7 +304,7 @@ public class LivingHandler
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);
-        return entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.freeze.blacklist, entityRegistryName);
+        return entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.freeze.mobBlacklist, entityRegistryName);
     }
 
     public static boolean canSpreadSpores(EntityLivingBase entity)
@@ -315,7 +315,7 @@ public class LivingHandler
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);
-        return (entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.spore.blacklist, entityRegistryName));
+        return (entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.spore.mobBlacklist, entityRegistryName));
     }
 
     public static boolean canSpawnGhastling(EntityLivingBase entity)

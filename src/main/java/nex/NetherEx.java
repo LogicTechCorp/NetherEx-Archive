@@ -23,6 +23,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import nex.handler.ConfigHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
 import nex.village.PigtificateTradeManager;
@@ -61,6 +62,7 @@ public class NetherEx implements IModData
         NetherExBiomeManager.preInit();
         PigtificateTradeManager.preInit();
         NetherExEntities.preInit();
+        NetherExVanillaOverrides.preInit();
         proxy.preInit();
     }
 
@@ -77,7 +79,7 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        NetherExBiomes.postInit();
+        NetherExVanillaOverrides.postInit();
         proxy.postInit();
     }
 

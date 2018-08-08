@@ -47,15 +47,23 @@ public class BlockHandler
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.PlaceEvent event)
     {
+        World world = event.getWorld();
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
         EntityPlayer player = event.getPlayer();
 
         NBTTagCompound compound = player.getHeldItem(event.getHand()).getTagCompound();
 
-        if(compound != null && compound.getBoolean("AboveNether"))
+        if(state.getBlock() == Blocks.BEDROCK && compound != null && compound.getBoolean("AboveNether"))
         {
             if(player.dimension != DimensionType.NETHER.getId() || pos.getY() < 120)
+            {
+                event.setCanceled(true);
+            }
+        }
+        if(state.getBlock() == Blocks.NETHER_WART && ConfigHandler.blockConfig.netherWart.growLikeCrops)
+        {
+            if(world.getBlockState(pos.down()).getBlock() == Blocks.SOUL_SAND)
             {
                 event.setCanceled(true);
             }
@@ -69,15 +77,22 @@ public class BlockHandler
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
 
-        if(ConfigHandler.blockConfig.soulSand.doesNetherwartUseNewGrowthSystem && state.getBlock() == Blocks.NETHER_WART)
+        if(state.getBlock() == Blocks.NETHER_WART)
         {
-            if(world.getBlockState(pos.down()) == NetherExBlocks.TILLED_SOUL_SAND.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
+            if(ConfigHandler.blockConfig.netherWart.growLikeCrops)
             {
-                event.setResult(Event.Result.ALLOW);
+                if(world.getBlockState(pos.down()) == NetherExBlocks.TILLED_SOUL_SAND.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
+                {
+                    event.setResult(Event.Result.ALLOW);
+                }
+                else
+                {
+                    event.setResult(Event.Result.DENY);
+                }
             }
-            else
+            if(ConfigHandler.blockConfig.netherWart.growthTickSpeed > 0)
             {
-                event.setResult(Event.Result.DENY);
+                world.scheduleUpdate(pos, state.getBlock(), ConfigHandler.blockConfig.netherWart.growthTickSpeed);
             }
         }
     }
@@ -95,7 +110,7 @@ public class BlockHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigHandler.blockConfig.magma.turnIntoLava)
+                if(ConfigHandler.blockConfig.magma.turnIntoLavaWhenBroken)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {
@@ -107,9 +122,9 @@ public class BlockHandler
             }
             if(player.dimension == DimensionType.NETHER.getId())
             {
-                boolean canSpawn = CollectionHelper.contains(ConfigHandler.entityConfig.nethermite.whitelist, state.getBlock().getRegistryName().toString());
+                boolean canSpawnNethermites = CollectionHelper.contains(ConfigHandler.entityConfig.nethermite.blockWhitelist, state.getBlock().getRegistryName().toString());
 
-                if(canSpawn && world.rand.nextInt(ConfigHandler.entityConfig.nethermite.chanceOfSpawning) == 0)
+                if(canSpawnNethermites && ConfigHandler.entityConfig.nethermite.spawnRarity > 0 && world.rand.nextInt(ConfigHandler.entityConfig.nethermite.spawnRarity) == 0)
                 {
                     EntityNethermite nethermite = new EntityNethermite(world);
                     nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);

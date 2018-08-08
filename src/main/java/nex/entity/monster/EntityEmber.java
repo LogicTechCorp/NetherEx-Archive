@@ -177,7 +177,7 @@ public class EntityEmber extends EntityMob
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        if(rand.nextInt(ConfigHandler.entityConfig.ember.chanceOfSettingPlayerOnFire) == 0)
+        if(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity > 0 && rand.nextInt(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity) == 0)
         {
             entity.setFire(4);
         }

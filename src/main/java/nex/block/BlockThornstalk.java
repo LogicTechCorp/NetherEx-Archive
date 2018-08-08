@@ -89,7 +89,7 @@ public class BlockThornstalk extends BlockLibEx
         {
             entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }
-        else if(entity instanceof EntityLivingBase && !CollectionHelper.contains(ConfigHandler.blockConfig.thornstalk.blacklist, EntityHelper.getEntityLocation((EntityLivingBase) entity)))
+        else if(entity instanceof EntityLivingBase && !CollectionHelper.contains(ConfigHandler.blockConfig.thornstalk.mobBlacklist, EntityHelper.getEntityLocation((EntityLivingBase) entity)))
         {
             entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }

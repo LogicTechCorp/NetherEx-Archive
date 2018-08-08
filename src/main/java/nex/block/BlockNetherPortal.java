@@ -162,9 +162,9 @@ public class BlockNetherPortal extends BlockLibEx
             }
         }
 
-        if(ConfigHandler.blockConfig.netherPortal.allowPigmanSpawning)
+        if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity > 0)
         {
-            if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && rand.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
+            if(rand.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
             {
                 int i = pos.getY();
                 BlockPos blockPos;

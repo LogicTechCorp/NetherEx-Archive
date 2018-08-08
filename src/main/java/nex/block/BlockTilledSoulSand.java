@@ -19,6 +19,7 @@ package nex.block;
 
 import lex.block.BlockLibEx;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -34,6 +35,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
@@ -97,8 +100,17 @@ public class BlockTilledSoulSand extends BlockLibEx
         }
         else if(moisture == 7)
         {
-            world.scheduleUpdate(pos.up(), world.getBlockState(pos.up()).getBlock(), 600);
-            world.scheduleUpdate(pos, this, 600);
+            IBlockState checkState = world.getBlockState(pos.up());
+
+            if(checkState.getBlock() == Blocks.NETHER_WART && ConfigHandler.blockConfig.netherWart.growthTickSpeed > 0)
+            {
+                if(checkState.getValue(BlockNetherWart.AGE) < 3)
+                {
+                    world.scheduleUpdate(pos.up(), checkState.getBlock(), ConfigHandler.blockConfig.netherWart.growthTickSpeed);
+                }
+
+                world.scheduleUpdate(pos, this, ConfigHandler.blockConfig.netherWart.growthTickSpeed);
+            }
         }
     }
 
@@ -121,8 +133,8 @@ public class BlockTilledSoulSand extends BlockLibEx
 
     private void turnToSoulSand(World world, BlockPos pos)
     {
-        world.setBlockState(pos, Blocks.SOUL_SAND.getDefaultState());
         AxisAlignedBB boundingBox = Blocks.SOUL_SAND.getDefaultState().getCollisionBoundingBox(world, pos).offset(pos);
+        world.setBlockState(pos, Blocks.SOUL_SAND.getDefaultState());
 
         for(Entity entity : world.getEntitiesWithinAABBExcludingEntity(null, boundingBox))
         {
@@ -138,11 +150,11 @@ public class BlockTilledSoulSand extends BlockLibEx
 
     private boolean hasFluid(World world, BlockPos pos)
     {
-        Block block = ConfigHandler.blockConfig.soulSand.doesRequireIchorInsteadOfLava ? NetherExBlocks.ICHOR : Blocks.LAVA;
+        Fluid fluid = ConfigHandler.blockConfig.soulSand.useLavaInsteadOfIchorToMoisten ? FluidRegistry.lookupFluidForBlock(Blocks.LAVA) : FluidRegistry.lookupFluidForBlock(NetherExBlocks.ICHOR);
 
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {
-            if(world.getBlockState(mutablePos).getBlock() == block)
+            if(FluidRegistry.lookupFluidForBlock(world.getBlockState(mutablePos).getBlock()) == fluid)
             {
                 return true;
             }

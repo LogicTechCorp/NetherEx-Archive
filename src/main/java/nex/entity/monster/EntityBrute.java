@@ -35,7 +35,7 @@ import nex.init.NetherExLootTables;
 
 public class EntityBrute extends EntityMob
 {
-    private int cooldown;
+    private int chargeCooldown;
 
     private boolean charging;
     private boolean addedOffset;
@@ -76,38 +76,38 @@ public class EntityBrute extends EntityMob
     {
         super.onUpdate();
 
-        if(isCharging() && (getAttackTarget() == null || (prevPosX == posX && prevPosY == posY && prevPosZ == posZ)))
+        if(charging && (getAttackTarget() == null || (prevPosX == posX && prevPosY == posY && prevPosZ == posZ)))
         {
-            setCharging(false);
+            charging = false;
         }
 
-        if(getCooldown() == 0)
+        if(chargeCooldown == 0)
         {
-            if(getAttackTarget() != null && !isCharging())
+            if(getAttackTarget() != null && !charging)
             {
-                setDestination(getAttackTarget().getPosition());
-                setCharging(true);
+                destination = getAttackTarget().getPosition();
+                charging = true;
             }
-            if(isCharging())
+            if(charging)
             {
-                getNavigator().tryMoveToXYZ(getDestination().getX(), getDestination().getY(), getDestination().getZ(), 2.5F);
+                getNavigator().tryMoveToXYZ(destination.getX(), destination.getY(), destination.getZ(), 2.5F);
 
-                if(!addedOffset() && getDistanceSq(getDestination()) <= 4.0D)
+                if(!addedOffset && getDistanceSq(destination) <= 4.0D)
                 {
-                    setDestination(getDestination().offset(getHorizontalFacing(), 4));
-                    setAddedOffset(true);
+                    destination = destination.offset(getHorizontalFacing(), 4);
+                    addedOffset = true;
                 }
-                if(getPosition().equals(getDestination()))
+                if(getPosition().equals(destination))
                 {
-                    setAddedOffset(false);
-                    setCharging(false);
-                    setCooldown(ConfigHandler.entityConfig.brute.chargeCooldown * 20);
+                    addedOffset = false;
+                    charging = false;
+                    chargeCooldown = ConfigHandler.entityConfig.brute.chargeCooldown * 20;
                 }
             }
         }
-        if(getCooldown() > 0)
+        if(chargeCooldown > 0)
         {
-            setCooldown(getCooldown() - 1);
+            chargeCooldown--;
         }
     }
 
@@ -115,18 +115,18 @@ public class EntityBrute extends EntityMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("ChargeCooldown", getCooldown());
-        compound.setBoolean("Charging", isCharging());
-        compound.setBoolean("AddedOffset", addedOffset());
+        compound.setInteger("ChargeCooldown", chargeCooldown);
+        compound.setBoolean("Charging", charging);
+        compound.setBoolean("AddedOffset", addedOffset);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        setCooldown(compound.getInteger("ChargeCooldown"));
-        setCharging(compound.getBoolean("Charging"));
-        setAddedOffset(compound.getBoolean("AddedOffset"));
+        chargeCooldown = compound.getInteger("ChargeCooldown");
+        charging = compound.getBoolean("Charging");
+        addedOffset = compound.getBoolean("AddedOffset");
     }
 
     @Override
@@ -134,7 +134,7 @@ public class EntityBrute extends EntityMob
     {
         super.collideWithEntity(entity);
 
-        if(isCharging() && !(entity instanceof EntityBrute) && entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + rand.nextInt((int) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() / 2)))
+        if(charging && !(entity instanceof EntityBrute) && entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + rand.nextInt((int) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() / 2)))
         {
             entity.motionY += 0.45D;
         }
@@ -144,45 +144,5 @@ public class EntityBrute extends EntityMob
     protected ResourceLocation getLootTable()
     {
         return NetherExLootTables.BRUTE;
-    }
-
-    private int getCooldown()
-    {
-        return cooldown;
-    }
-
-    private boolean isCharging()
-    {
-        return charging;
-    }
-
-    private boolean addedOffset()
-    {
-        return addedOffset;
-    }
-
-    private BlockPos getDestination()
-    {
-        return destination;
-    }
-
-    private void setCooldown(int i)
-    {
-        cooldown = i;
-    }
-
-    private void setCharging(boolean bool)
-    {
-        charging = bool;
-    }
-
-    private void setAddedOffset(boolean bool)
-    {
-        addedOffset = bool;
-    }
-
-    private void setDestination(BlockPos pos)
-    {
-        destination = pos;
     }
 }

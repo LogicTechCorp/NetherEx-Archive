@@ -71,13 +71,13 @@ public class ConfigHandler
 
     public static class CompatibilityConfig
     {
-        @Config.Name("biomesoplenty")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesoplenty")
+        @Config.Name("biomes_o_plenty")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesOPlenty")
         public BiomesOPlenty biomesOPlenty = new BiomesOPlenty();
 
         public class BiomesOPlenty
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesoplenty.enableCompat")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesOPlenty.enableCompat")
             public boolean enableCompat = true;
         }
     }
@@ -115,6 +115,10 @@ public class ConfigHandler
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand")
         public SoulSand soulSand = new SoulSand();
 
+        @Config.Name("nether_wart")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherWart")
+        public NetherWart netherWart = new NetherWart();
+
         @Config.Name("magma")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.magma")
         public Magma magma = new Magma();
@@ -133,12 +137,9 @@ public class ConfigHandler
 
         public class NetherPortal
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal.allowPigmanSpawning")
-            public boolean allowPigmanSpawning = true;
-
-            @Config.RangeInt(min = 4, max = 2048)
+            @Config.RangeInt(min = 0)
             @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal.pigmanSpawnRarity")
-            @Config.Comment({"The higher the number, the rarer it is for Pigman to spawn", "The lower the number, the more common it is for Pigman to spawn"})
+            @Config.Comment({"The higher the number, the rarer it is for Pigman to spawn", "The lower the number, the more common it is for Pigman to spawn", "If set to 0, Pigman won't spawn"})
             public int pigmanSpawnRarity = 2000;
         }
 
@@ -150,20 +151,29 @@ public class ConfigHandler
 
         public class SoulSand
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.doesNetherwartUseNewGrowthSystem")
-            public boolean doesNetherwartUseNewGrowthSystem = true;
-
             @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.allowAllHoesToTill")
             public boolean allowAllHoesToTill = false;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.doesRequireIchorInsteadOfLava")
-            public boolean doesRequireIchorInsteadOfLava = true;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.useLavaInsteadOfIchorToMoisten")
+            public boolean useLavaInsteadOfIchorToMoisten = false;
+        }
+
+        public class NetherWart
+        {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherWart.growLikeCrops")
+            public boolean growLikeCrops = true;
+
+            @Config.RequiresMcRestart
+            @Config.RangeInt(min = 0)
+            @Config.Comment({"The higher the number, the slower Nether Wart grows", "The lower the number, the faster Nether Wart grows", "If set to 0, Nether Wart growth will default to Vanilla speed"})
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherWart.growthTickSpeed")
+            public int growthTickSpeed = 0;
         }
 
         public class Magma
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.magma.turnIntoLava")
-            public boolean turnIntoLava = false;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.magma.turnIntoLavaWhenBroken")
+            public boolean turnIntoLavaWhenBroken = false;
         }
 
         public class Rime
@@ -183,9 +193,9 @@ public class ConfigHandler
             @Config.LangKey("config." + NetherEx.MOD_ID + ":block.thornstalk.canDestroyItems")
             public boolean canDestroyItems = false;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.thornstalk.blacklist")
-            @Config.Comment("Mobs the Thornstalk shouldn't hurt")
-            public String[] blacklist = new String[]{
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.thornstalk.mobBlacklist")
+            @Config.Comment("Mobs Thornstalk won't hurt")
+            public String[] mobBlacklist = new String[]{
                     "minecraft:wither_skeleton",
                     "minecraft:zombie_pigman",
                     NetherEx.MOD_ID + ":spinout"
@@ -194,8 +204,8 @@ public class ConfigHandler
 
         public class Hyphae
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.hyphae.doesSpread")
-            public boolean doesSpread = false;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.hyphae.shouldSpread")
+            public boolean shouldSpread = false;
         }
     }
 
@@ -217,12 +227,12 @@ public class ConfigHandler
         {
             @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.chanceOfThawing")
             @Config.Comment({"The higher the number, the rarer it is to thaw", "The lower the number, the more common it is to thaw"})
-            @Config.RangeInt(min = 1, max = 2048)
+            @Config.RangeInt(min = 1)
             public int chanceOfThawing = 1024;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.blacklist")
-            @Config.Comment("Mobs that shouldn't freeze")
-            public String[] blacklist = new String[]{
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.mobBlacklist")
+            @Config.Comment("Mobs that won't freeze")
+            public String[] mobBlacklist = new String[]{
                     "minecraft:blaze",
                     "minecraft:ghast",
                     "minecraft:wither_skeleton",
@@ -237,14 +247,14 @@ public class ConfigHandler
 
         public class Spore
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.chanceOfSporeSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.sporeSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is to spawn a Spore", "The lower the number, the more common it is to spawn a Spore"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int chanceOfSporeSpawning = 128;
+            @Config.RangeInt(min = 1)
+            public int sporeSpawnRarity = 128;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.blacklist")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.mobBlacklist")
             @Config.Comment("Mobs that shouldn't spawn Spores")
-            public String[] blacklist = new String[]{
+            public String[] mobBlacklist = new String[]{
                     NetherEx.MOD_ID + ":spore_creeper",
                     NetherEx.MOD_ID + ":spore",
                     NetherEx.MOD_ID + ":mogus"
@@ -253,10 +263,10 @@ public class ConfigHandler
 
         public class Lost
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.lost.chanceOfGhastlingSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.lost.ghastlingSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is to spawn a Ghastling", "The lower the number, the more common it is to spawn a Ghastling"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int chanceOfGhastlingSpawning = 256;
+            @Config.RangeInt(min = 1)
+            public int ghastlingSpawnRarity = 256;
         }
     }
 
@@ -292,22 +302,22 @@ public class ConfigHandler
 
         public class Ember
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ember.chanceOfSettingPlayerOnFire")
-            @Config.Comment({"The higher the number, the rarer it is to set a player on fire", "The lower the number, the more common it is to set a player on fire"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int chanceOfSettingPlayerOnFire = 1;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ember.setPlayerOnFireRarity")
+            @Config.Comment({"The higher the number, the rarer it is to set a player on fire", "The lower the number, the more common it is to set a player on fire", "If set to 0, Embers won't set Players on fire"})
+            @Config.RangeInt(min = 0)
+            public int setPlayerOnFireRarity = 2;
         }
 
         public class Nethermite
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.nethermite.chanceOfSpawning")
-            @Config.Comment({"The higher the number, the rarer it is for a Nethermite to spawn", "The lower the number, the more common it is for a Nethermite to spawn"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int chanceOfSpawning = 64;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.nethermite.spawnRarity")
+            @Config.Comment({"The higher the number, the rarer it is for a Nethermite to spawn", "The lower the number, the more common it is for a Nethermite to spawn", "If set to 0, Nethermites won't spawn"})
+            @Config.RangeInt(min = 0)
+            public int spawnRarity = 64;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.nethermite.whitelist")
-            @Config.Comment("Blocks the Nethermite should spawn from")
-            public String[] whitelist = new String[]{
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.nethermite.blockWhitelist")
+            @Config.Comment("Blocks the Nethermite will spawn from")
+            public String[] blockWhitelist = new String[]{
                     "minecraft:quartz_ore",
                     NetherEx.MOD_ID + ":ore_quartz",
                     NetherEx.MOD_ID + ":ore_amethyst",
@@ -351,41 +361,41 @@ public class ConfigHandler
         {
             @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spinout.spinTime")
             @Config.Comment({"The lower the number, the less time a Spinout spins", "The higher the number, the more time a Spinout spins"})
-            @Config.RangeInt(min = 1, max = 512)
+            @Config.RangeInt(min = 1)
             public int spinTime = 6;
 
             @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spinout.spinCooldown")
             @Config.Comment({"The lower the number, the less time a Spinout goes without spinning", "The higher the number, the more time a Spinout goes without spinning"})
-            @Config.RangeInt(min = 1, max = 512)
+            @Config.RangeInt(min = 1)
             public int spinCooldown = 2;
         }
 
         public class SporeCreeper
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.sporeCreeper.chanceOfSporeSpawning")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.sporeCreeper.sporeSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is for s Spore Creeper to spawn a Spore on death", "The lower the number, the more common it is for a Spore Creeper to spawn a Spore on death"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int chanceOfSporeSpawning = 12;
+            @Config.RangeInt(min = 1)
+            public int sporeSpawnRarity = 12;
         }
 
         public class Spore
         {
             @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spore.growthTime")
             @Config.Comment({"The lower the number, the less it takes a Spore to grow", "The higher the number, the more time it takes for a Spore to grow"})
-            @Config.RangeInt(min = 1, max = 512)
+            @Config.RangeInt(min = 1)
             public int growthTime = 60;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spore.creeperSpawns")
-            @Config.Comment({"The lower the number, the less Spore Creeper spawn from a Spore", "The higher the number, the more Spore Creeper spawn from a Spore"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int creeperSpawns = 3;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.spore.creeperSpawnAmount")
+            @Config.Comment({"The lower the number, the less Spore Creepers spawn from a Spore", "The higher the number, the more Spore Creepers spawn from a Spore"})
+            @Config.RangeInt(min = 1)
+            public int creeperSpawnAmount = 3;
         }
 
         public class Brute
         {
             @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.brute.chargeCooldown")
             @Config.Comment({"The lower the number, the less cooldown the Brute has after charging", "The higher the number, the more cooldown the Brute has after charging"})
-            @Config.RangeInt(min = 1, max = 512)
+            @Config.RangeInt(min = 1)
             public int chargeCooldown = 2;
         }
 
@@ -393,13 +403,13 @@ public class ConfigHandler
         {
             @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen.ghastlingSpawnCooldown")
             @Config.Comment({"The lower the number, the less cooldown the Ghast Queen has after spawning Ghastlings", "The higher the number, the more cooldown the Ghast Queen has after spawning Ghastlings"})
-            @Config.RangeInt(min = 1, max = 512)
+            @Config.RangeInt(min = 1)
             public int ghastlingSpawnCooldown = 10;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen.ghastlingSpawns")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen.ghastlingSpawnAmount")
             @Config.Comment({"The lower the number, the less Ghastling spawn", "The higher the number, the more Ghastling spawn"})
-            @Config.RangeInt(min = 1, max = 256)
-            public int ghastlingSpawns = 4;
+            @Config.RangeInt(min = 1)
+            public int ghastlingSpawnAmount = 4;
         }
     }
 
@@ -447,10 +457,10 @@ public class ConfigHandler
             @Config.Comment({"Whether or not players can freeze in the Arctic Abyss"})
             public boolean canPlayersFreeze = false;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss.chanceOfFreezing")
-            @Config.Comment({"The higher the number, the rarer it is for mobs to Freeze in the Arctic Abyss biome", "The lower the number, the more common it is for mobs to Freeze in the Arctic Abyss biome"})
-            @Config.RangeInt(min = 1, max = 2048)
-            public int chanceOfFreezing = 512;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss.mobFreezeRarity")
+            @Config.Comment({"The higher the number, the rarer it is for mobs to freeze in the Arctic Abyss biome", "The lower the number, the more common it is for mobs to freeze in the Arctic Abyss biome"})
+            @Config.RangeInt(min = 1)
+            public int mobFreezeRarity = 512;
         }
     }
 

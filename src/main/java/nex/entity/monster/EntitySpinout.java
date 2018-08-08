@@ -34,8 +34,8 @@ import nex.init.NetherExSoundEvents;
 @SuppressWarnings("ConstantConditions")
 public class EntitySpinout extends EntityMob
 {
-    private int counter;
-    private int cooldown;
+    private int spinCounter;
+    private int spinCooldown;
 
     private boolean spinning;
 
@@ -99,13 +99,13 @@ public class EntitySpinout extends EntityMob
     {
         super.onUpdate();
 
-        if(getCooldown() == 0)
+        if(spinCooldown == 0)
         {
-            setCounter(getCounter() + 1);
+            spinCounter++;
 
-            if(!isSpinning())
+            if(!spinning)
             {
-                setSpinning(true);
+                spinning = true;
             }
             if(tasks.taskEntries.size() == 1)
             {
@@ -117,15 +117,15 @@ public class EntitySpinout extends EntityMob
                 setSilent(false);
             }
         }
-        if(getCounter() >= ConfigHandler.entityConfig.spinout.spinTime * 20)
+        if(spinCounter >= ConfigHandler.entityConfig.spinout.spinTime * 20)
         {
-            setCounter(0);
-            setSpinning(false);
-            setCooldown(ConfigHandler.entityConfig.spinout.spinCooldown * 20);
+            spinCounter = 0;
+            spinning = false;
+            spinCooldown = ConfigHandler.entityConfig.spinout.spinCooldown * 20;
         }
-        if(getCooldown() > 0)
+        if(spinCooldown > 0)
         {
-            setCooldown(getCooldown() - 1);
+            spinCooldown--;
 
             if(tasks.taskEntries.size() == 3)
             {
@@ -145,18 +145,18 @@ public class EntitySpinout extends EntityMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("SpinCounter", getCounter());
-        compound.setInteger("SpinCooldown", getCooldown());
-        compound.setBoolean("Spinning", isSpinning());
+        compound.setInteger("SpinCounter", spinCounter);
+        compound.setInteger("SpinCooldown", spinCooldown);
+        compound.setBoolean("Spinning", spinning);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        setCounter(compound.getInteger("SpinCounter"));
-        setCooldown(compound.getInteger("SpinCooldown"));
-        setSpinning(compound.getBoolean("Spinning"));
+        spinCounter = compound.getInteger("SpinCounter");
+        spinCooldown = compound.getInteger("SpinCooldown");
+        spinning = compound.getBoolean("Spinning");
     }
 
     @Override
@@ -183,33 +183,8 @@ public class EntitySpinout extends EntityMob
         return NetherExLootTables.SPINOUT;
     }
 
-    public int getCounter()
-    {
-        return counter;
-    }
-
-    private int getCooldown()
-    {
-        return cooldown;
-    }
-
     public boolean isSpinning()
     {
         return spinning;
-    }
-
-    private void setCounter(int i)
-    {
-        counter = i;
-    }
-
-    private void setCooldown(int i)
-    {
-        cooldown = i;
-    }
-
-    private void setSpinning(boolean bool)
-    {
-        spinning = bool;
     }
 }

@@ -122,7 +122,7 @@ public class EntityGhastQueen extends EntityGhast
 
                 if(!world.isRemote && spawnGhastlings)
                 {
-                    for(int i = 0; i < ConfigHandler.entityConfig.ghastQueen.ghastlingSpawns; i++)
+                    for(int i = 0; i < ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnAmount; i++)
                     {
                         EntityGhastling ghastling = new EntityGhastling(world);
                         ghastling.setPosition(posX, posY - 1, posZ);
@@ -165,9 +165,14 @@ public class EntityGhastQueen extends EntityGhast
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("UrnPosX", urnPos.getX());
-        compound.setInteger("UrnPosY", urnPos.getY());
-        compound.setInteger("UrnPosZ", urnPos.getZ());
+
+        if(urnPos != null)
+        {
+            compound.setInteger("UrnPosX", urnPos.getX());
+            compound.setInteger("UrnPosY", urnPos.getY());
+            compound.setInteger("UrnPosZ", urnPos.getZ());
+        }
+
         compound.setInteger("Cooldown", cooldown);
         compound.setInteger("Stage", stage);
 

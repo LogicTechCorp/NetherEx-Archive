@@ -26,7 +26,7 @@ import nex.village.PigtificateVillageCollection;
 import nex.village.PigtificateVillageManager;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
-public class VillageHandler
+public class WorldHandler
 {
     @SubscribeEvent
     public static void onWorldTick(TickEvent.WorldTickEvent event)
