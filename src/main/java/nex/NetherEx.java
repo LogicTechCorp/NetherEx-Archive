@@ -23,7 +23,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import nex.handler.ConfigHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
 import nex.village.PigtificateTradeManager;

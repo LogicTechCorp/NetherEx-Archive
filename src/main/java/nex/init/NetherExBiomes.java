@@ -17,16 +17,13 @@
 
 package nex.init;
 
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.world.WorldProviderNetherEx;
 import nex.world.biome.BiomeArcticAbyss;
 import nex.world.biome.BiomeFungiForest;
 import nex.world.biome.BiomeRuthlessSands;
