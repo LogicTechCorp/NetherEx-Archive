@@ -81,13 +81,13 @@ public class NetherExModels
 
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {
-            registerModel(NetherExBlocks.NETHERRACK, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHERRACK.getRegistryName().getResourcePath(), type.getName()), "inventory");
+            registerModel(NetherExBlocks.NETHERRACK, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHERRACK.getRegistryName().getPath(), type.getName()), "inventory");
             registerModel(NetherExBlocks.QUARTZ_ORE, type.ordinal(), NetherExBlocks.QUARTZ_ORE.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(NetherExBlocks.NETHER_BRICK, type.ordinal(), NetherExBlocks.NETHER_BRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
             registerModel(NetherExBlocks.NETHER_BRICK_SLAB, type.ordinal(), NetherExBlocks.NETHER_BRICK_SLAB.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
             registerModel(NetherExBlocks.NETHER_BRICK_SLAB_DOUBLE, type.ordinal(), NetherExBlocks.NETHER_BRICK_SLAB_DOUBLE.getRegistryName().toString(), String.format("type=%s", type.getName()));
-            registerModel(NetherExBlocks.NETHER_BRICK_WALL, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHER_BRICK_WALL.getRegistryName().getResourcePath(), type.getName()), "inventory");
-            registerModel(NetherExBlocks.NETHER_BRICK_FENCE, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHER_BRICK_FENCE.getRegistryName().getResourcePath(), type.getName()), "inventory");
+            registerModel(NetherExBlocks.NETHER_BRICK_WALL, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHER_BRICK_WALL.getRegistryName().getPath(), type.getName()), "inventory");
+            registerModel(NetherExBlocks.NETHER_BRICK_FENCE, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.NETHER_BRICK_FENCE.getRegistryName().getPath(), type.getName()), "inventory");
             registerModel(NetherExItems.NETHERBRICK, type.ordinal(), NetherExItems.NETHERBRICK.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 
@@ -123,7 +123,7 @@ public class NetherExModels
 
         for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
         {
-            registerModel(NetherExBlocks.ELDER_MUSHROOM, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.ELDER_MUSHROOM.getRegistryName().getResourcePath(), type.getName()), "inventory");
+            registerModel(NetherExBlocks.ELDER_MUSHROOM, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + NetherExBlocks.ELDER_MUSHROOM.getRegistryName().getPath(), type.getName()), "inventory");
             registerModel(NetherExBlocks.ELDER_MUSHROOM_CAP, type.ordinal(), NetherExBlocks.ELDER_MUSHROOM_CAP.getRegistryName().toString(), String.format("type=%s", type.getName()));
         }
 

@@ -54,9 +54,9 @@ public class BlockVanillaSlab extends BlockSlabLibEx
     }
 
     @Override
-    public String getUnlocalizedName(int meta)
+    public String getTranslationKey(int meta)
     {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanilla.EnumTypeSlab.fromMeta(meta).getName());
+        return super.getTranslationKey() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockVanilla.EnumTypeSlab.fromMeta(meta).getName());
     }
 
     @Override

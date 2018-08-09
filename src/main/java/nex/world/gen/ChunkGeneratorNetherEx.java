@@ -502,7 +502,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
                     Biome biome = wrapper.getBiome();
                     ResourceLocation biomeName = biome.getRegistryName();
 
-                    if(!biomeName.getResourceDomain().equalsIgnoreCase("biomesoplenty"))
+                    if(!biomeName.getNamespace().equalsIgnoreCase("biomesoplenty"))
                     {
                         IBlockState surfaceBlock = wrapper.getBlock("topBlock", biome.topBlock);
                         IBlockState fillerBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);

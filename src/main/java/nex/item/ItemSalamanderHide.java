@@ -46,9 +46,9 @@ public class ItemSalamanderHide extends ItemLibEx
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
-        return super.getUnlocalizedName() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, EnumType.fromMeta(stack.getItemDamage()).getName());
+        return super.getTranslationKey() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, EnumType.fromMeta(stack.getItemDamage()).getName());
     }
 
     public enum EnumType implements IStringSerializable

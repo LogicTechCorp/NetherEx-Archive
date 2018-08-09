@@ -196,7 +196,7 @@ public class BlockEnokiMushroomCap extends BlockLibEx
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

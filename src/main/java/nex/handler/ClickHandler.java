@@ -208,7 +208,7 @@ public class ClickHandler
                     int conversionTime = rand.nextInt(2401) + 3600;
                     zombiePigman.getEntityData().setInteger("ConversionTime", conversionTime);
                     zombiePigman.removePotionEffect(MobEffects.WEAKNESS);
-                    zombiePigman.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, conversionTime, Math.min(world.getDifficulty().getDifficultyId() - 1, 0)));
+                    zombiePigman.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, conversionTime, Math.min(world.getDifficulty().getId() - 1, 0)));
                 }
             }
         }

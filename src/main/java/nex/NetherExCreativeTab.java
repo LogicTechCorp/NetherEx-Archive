@@ -32,7 +32,7 @@ public class NetherExCreativeTab extends CreativeTabs
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ItemStack getTabIconItem()
+    public ItemStack createIcon()
     {
         return new ItemStack(Blocks.NETHERRACK);
     }

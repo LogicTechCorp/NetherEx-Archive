@@ -66,7 +66,7 @@ public class PigtificateVillageFenceGateInfo
     {
         int i = pos.getX() - fenceGateBlockPos.getX();
         int j = pos.getZ() - fenceGateBlockPos.getY();
-        return i * insideDirection.getFrontOffsetX() + j * insideDirection.getFrontOffsetZ() >= 0;
+        return i * insideDirection.getXOffset() + j * insideDirection.getZOffset() >= 0;
     }
 
     public void resetFenceGateOpeningRestrictionCounter()
@@ -96,12 +96,12 @@ public class PigtificateVillageFenceGateInfo
 
     public int getInsideOffsetX()
     {
-        return insideDirection.getFrontOffsetX() * 2;
+        return insideDirection.getXOffset() * 2;
     }
 
     public int getInsideOffsetZ()
     {
-        return insideDirection.getFrontOffsetZ() * 2;
+        return insideDirection.getZOffset() * 2;
     }
 
     public int getLastActivityTimestamp()

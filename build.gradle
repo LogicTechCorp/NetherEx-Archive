@@ -22,7 +22,7 @@ targetCompatibility = 1.8
 
 minecraft {
     version = minecraft_version + "-" + forge_version
-    mappings = mappings_version
+    mappings = mcp_version
     runDir = "run"
     makeObfSourceJar = false
 }

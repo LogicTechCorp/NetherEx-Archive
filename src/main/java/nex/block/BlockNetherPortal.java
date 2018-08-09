@@ -77,7 +77,7 @@ public class BlockNetherPortal extends BlockLibEx
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }
@@ -164,7 +164,7 @@ public class BlockNetherPortal extends BlockLibEx
 
         if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity > 0)
         {
-            if(rand.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getDifficultyId())
+            if(rand.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getId())
             {
                 int i = pos.getY();
                 BlockPos blockPos;
@@ -261,7 +261,7 @@ public class BlockNetherPortal extends BlockLibEx
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if(!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss())
         {

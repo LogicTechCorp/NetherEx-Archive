@@ -55,7 +55,7 @@ public class BiomeWrapperNetherEx extends BiomeWrapper
             ResourceLocation biomeName = biome.getRegistryName();
             weight = config.getInt("weight", 10);
 
-            if(!biomeName.getResourceDomain().equalsIgnoreCase("biomesoplenty"))
+            if(!biomeName.getNamespace().equalsIgnoreCase("biomesoplenty"))
             {
                 Config blockConfig = config.getDataBranch("blocks", new JsonObject());
                 blockConfig.getBlock("topBlock", biome.topBlock);

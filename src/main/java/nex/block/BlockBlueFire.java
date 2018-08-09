@@ -60,7 +60,7 @@ public class BlockBlueFire extends BlockLibEx
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -261,7 +261,7 @@ public class BlockBlueFire extends BlockLibEx
 
                                 if(k1 > 0)
                                 {
-                                    int l1 = (k1 + 40 + world.getDifficulty().getDifficultyId() * 7) / (i + 30);
+                                    int l1 = (k1 + 40 + world.getDifficulty().getId() * 7) / (i + 30);
 
                                     if(flag1)
                                     {
@@ -317,7 +317,7 @@ public class BlockBlueFire extends BlockLibEx
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if(entity instanceof EntityItem)
         {
@@ -433,7 +433,7 @@ public class BlockBlueFire extends BlockLibEx
 
             if(iblockstate.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onBlockDestroyedByPlayer(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
+                Blocks.TNT.onPlayerDestroy(world, pos, iblockstate.withProperty(BlockTNT.EXPLODE, true));
             }
         }
     }
