@@ -163,7 +163,6 @@ public class BlockThornstalk extends BlockLibEx
         return new BlockStateContainer(this, PART);
     }
 
-
     public void generate(World world, Random rand, BlockPos pos)
     {
         int height = rand.nextInt(3) + 1;

@@ -45,7 +45,6 @@ public class EntityBrute extends EntityMob
     public EntityBrute(World world)
     {
         super(world);
-
         setSize(1.25F, 2.25F);
         isImmuneToFire = true;
     }

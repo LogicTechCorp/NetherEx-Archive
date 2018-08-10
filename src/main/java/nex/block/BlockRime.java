@@ -42,7 +42,6 @@ public class BlockRime extends BlockLibEx
     public BlockRime()
     {
         super(NetherEx.instance, "rime_block", Material.ROCK);
-
         setLightLevel(0.9375F);
         setHardness(5.0F);
         setResistance(10.0F);

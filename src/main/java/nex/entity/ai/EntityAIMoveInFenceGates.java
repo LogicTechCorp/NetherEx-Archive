@@ -28,35 +28,35 @@ import nex.village.PigtificateVillageManager;
 
 public class EntityAIMoveInFenceGates extends EntityAIBase
 {
-    private final EntityCreature entityObj;
+    private final EntityCreature creature;
     private PigtificateVillageFenceGateInfo doorInfo;
     private int insidePosX = -1;
     private int insidePosZ = -1;
 
-    public EntityAIMoveInFenceGates(EntityCreature entityObjIn)
+    public EntityAIMoveInFenceGates(EntityCreature creature)
     {
-        entityObj = entityObjIn;
+        this.creature = creature;
         setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        BlockPos blockpos = new BlockPos(entityObj);
+        BlockPos blockpos = new BlockPos(creature);
 
-        if((!entityObj.world.isDaytime() || entityObj.world.isRaining() && !entityObj.world.getBiome(blockpos).canRain()) && entityObj.world.provider.hasSkyLight())
+        if((!creature.world.isDaytime() || creature.world.isRaining() && !creature.world.getBiome(blockpos).canRain()) && creature.world.provider.hasSkyLight())
         {
-            if(entityObj.getRNG().nextInt(50) != 0)
+            if(creature.getRNG().nextInt(50) != 0)
             {
                 return false;
             }
-            else if(insidePosX != -1 && entityObj.getDistanceSq((double) insidePosX, entityObj.posY, (double) insidePosZ) < 4.0D)
+            else if(insidePosX != -1 && creature.getDistanceSq((double) insidePosX, creature.posY, (double) insidePosZ) < 4.0D)
             {
                 return false;
             }
             else
             {
-                PigtificateVillage village = PigtificateVillageManager.getNetherVillages(entityObj.getEntityWorld(), true).getNearestVillage(blockpos, 14);
+                PigtificateVillage village = PigtificateVillageManager.getNetherVillages(creature.getEntityWorld(), true).getNearestVillage(blockpos, 14);
 
                 if(village == null)
                 {
@@ -78,7 +78,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !entityObj.getNavigator().noPath();
+        return !creature.getNavigator().noPath();
     }
 
     @Override
@@ -90,18 +90,18 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
         int j = blockpos.getY();
         int k = blockpos.getZ();
 
-        if(entityObj.getDistanceSq(blockpos) > 256.0D)
+        if(creature.getDistanceSq(blockpos) > 256.0D)
         {
-            Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(entityObj, 14, 3, new Vec3d((double) i + 0.5D, (double) j, (double) k + 0.5D));
+            Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(creature, 14, 3, new Vec3d((double) i + 0.5D, (double) j, (double) k + 0.5D));
 
             if(vec3d != null)
             {
-                entityObj.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, 1.0D);
+                creature.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, 1.0D);
             }
         }
         else
         {
-            entityObj.getNavigator().tryMoveToXYZ((double) i + 0.5D, (double) j, (double) k + 0.5D, 1.0D);
+            creature.getNavigator().tryMoveToXYZ((double) i + 0.5D, (double) j, (double) k + 0.5D, 1.0D);
         }
     }
 

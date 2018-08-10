@@ -57,7 +57,7 @@ import java.util.Random;
  * Based on code written by Alz454 here:
  * https://github.com/enhancedportals/enhancedportals/blob/1647357d3cbed1289a653347e2107d92a2875a65/src/main/java/enhanced/portals/portal/PortalUtils.java
  */
-@SuppressWarnings("ConstantConditions")
+
 public class BlockNetherPortal extends BlockLibEx
 {
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);

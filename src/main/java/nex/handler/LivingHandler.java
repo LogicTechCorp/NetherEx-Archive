@@ -57,7 +57,6 @@ import nex.init.NetherExMaterials;
 import java.util.ListIterator;
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class LivingHandler
 {

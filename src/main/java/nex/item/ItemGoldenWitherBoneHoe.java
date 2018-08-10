@@ -38,7 +38,6 @@ import nex.NetherEx;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExMaterials;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemGoldenWitherBoneHoe extends ItemHoeLibEx
 {
     public ItemGoldenWitherBoneHoe()

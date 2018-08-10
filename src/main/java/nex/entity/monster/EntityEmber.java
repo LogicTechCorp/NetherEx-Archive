@@ -48,7 +48,6 @@ public class EntityEmber extends EntityMob
     public EntityEmber(World world)
     {
         super(world);
-
         setSize(0.35F, 0.65F);
         setMovementSpeed(0.0D);
         setPathPriority(PathNodeType.WATER, -1.0F);
@@ -136,7 +135,7 @@ public class EntityEmber extends EntityMob
 
         if(currentMoveTypeDuration > 0)
         {
-            --currentMoveTypeDuration;
+            currentMoveTypeDuration--;
         }
 
         if(onGround)
@@ -154,14 +153,14 @@ public class EntityEmber extends EntityMob
                 if(moveHelper.isUpdating() && currentMoveTypeDuration == 0)
                 {
                     Path path = navigator.getPath();
-                    Vec3d vec3d = new Vec3d(moveHelper.getX(), moveHelper.getY(), moveHelper.getZ());
+                    Vec3d movePos = new Vec3d(moveHelper.getX(), moveHelper.getY(), moveHelper.getZ());
 
                     if(path != null && path.getCurrentPathIndex() < path.getCurrentPathLength())
                     {
-                        vec3d = path.getPosition(this);
+                        movePos = path.getPosition(this);
                     }
 
-                    calculateRotationYaw(vec3d.x, vec3d.z);
+                    calculateRotationYaw(movePos.x, movePos.z);
                     startJumping();
                 }
             }
@@ -181,6 +180,7 @@ public class EntityEmber extends EntityMob
         {
             entity.setFire(4);
         }
+
         return super.attackEntityAsMob(entity);
     }
 
@@ -303,13 +303,13 @@ public class EntityEmber extends EntityMob
 
     public class JumpHelper extends EntityJumpHelper
     {
-        private final EntityEmber theEntity;
+        private final EntityEmber ember;
         private boolean canJump;
 
         public JumpHelper(EntityEmber ember)
         {
             super(ember);
-            theEntity = ember;
+            this.ember = ember;
         }
 
         public boolean getIsJumping()
@@ -331,7 +331,7 @@ public class EntityEmber extends EntityMob
         {
             if(isJumping)
             {
-                theEntity.startJumping();
+                ember.startJumping();
                 isJumping = false;
             }
         }

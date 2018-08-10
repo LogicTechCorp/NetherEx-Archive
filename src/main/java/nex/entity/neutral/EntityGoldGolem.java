@@ -92,7 +92,7 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected void updateAITasks()
     {
-        if(--homeCheckTimer <= 0)
+        if(homeCheckTimer-- <= 0)
         {
             homeCheckTimer = 70 + rand.nextInt(50);
             village = PigtificateVillageManager.getNetherVillages(getEntityWorld(), true).getNearestVillage(new BlockPos(this), 32);
@@ -144,24 +144,24 @@ public class EntityGoldGolem extends EntityGolem
 
         if(attackTimer > 0)
         {
-            --attackTimer;
+            attackTimer--;
         }
 
         if(holdFlowerTick > 0)
         {
-            --holdFlowerTick;
+            holdFlowerTick--;
         }
 
         if(motionX * motionX + motionZ * motionZ > 2.500000277905201E-7D && rand.nextInt(5) == 0)
         {
-            int i = MathHelper.floor(posX);
-            int j = MathHelper.floor(posY - 0.20000000298023224D);
-            int k = MathHelper.floor(posZ);
-            IBlockState iblockstate = world.getBlockState(new BlockPos(i, j, k));
+            int posX = MathHelper.floor(this.posX);
+            int posY = MathHelper.floor(this.posY - 0.20000000298023224D);
+            int posZ = MathHelper.floor(this.posZ);
+            IBlockState state = world.getBlockState(new BlockPos(posX, posY, posZ));
 
-            if(iblockstate.getMaterial() != Material.AIR)
+            if(state.getMaterial() != Material.AIR)
             {
-                world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, posX + ((double) rand.nextFloat() - 0.5D) * (double) width, getEntityBoundingBox().minY + 0.1D, posZ + ((double) rand.nextFloat() - 0.5D) * (double) width, 4.0D * ((double) rand.nextFloat() - 0.5D), 0.5D, ((double) rand.nextFloat() - 0.5D) * 4.0D, new int[]{Block.getStateId(iblockstate)});
+                world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double) rand.nextFloat() - 0.5D) * (double) width, getEntityBoundingBox().minY + 0.1D, this.posZ + ((double) rand.nextFloat() - 0.5D) * (double) width, 4.0D * ((double) rand.nextFloat() - 0.5D), 0.5D, ((double) rand.nextFloat() - 0.5D) * 4.0D, new int[]{Block.getStateId(state)});
             }
         }
     }

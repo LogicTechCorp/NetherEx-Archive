@@ -27,7 +27,6 @@ import nex.entity.monster.EntityBrute;
 import nex.entity.monster.EntityWight;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class BiomeArcticAbyss extends BiomeNetherEx
 {
     public BiomeArcticAbyss()

@@ -33,7 +33,6 @@ import net.minecraft.world.IBlockAccess;
 import nex.NetherEx;
 import nex.init.NetherExItems;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockElderMushroomCap extends BlockLibEx
 {
     public static final PropertyEnum<BlockElderMushroom.EnumType> TYPE = PropertyEnum.create("type", BlockElderMushroom.EnumType.class);

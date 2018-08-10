@@ -44,7 +44,7 @@ import nex.init.NetherExItems;
 import nex.item.ItemSalamanderHide;
 
 @SideOnly(Side.CLIENT)
-@SuppressWarnings("ConstantConditions")
+
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class NetherExModels
 {

@@ -36,7 +36,6 @@ import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockHyphae extends BlockLibEx
 {
     public BlockHyphae()

@@ -33,7 +33,6 @@ import static nex.init.NetherExBlocks.*;
 import static nex.init.NetherExEffectTypes.*;
 import static nex.init.NetherExItems.*;
 
-@SuppressWarnings("ConstantConditions")
 public class NetherExRecipes
 {
     public static void init()

@@ -29,7 +29,6 @@ import net.minecraft.world.World;
 import nex.block.BlockElderMushroom;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockElderMushroom extends ItemBlockEdible
 {
     public ItemBlockElderMushroom()
@@ -56,7 +55,6 @@ public class ItemBlockElderMushroom extends ItemBlockEdible
                 player.heal(player.getMaxHealth());
                 player.getFoodStats().setFoodLevel(0);
             }
-
 
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
             onFoodEaten(stack, world, player);

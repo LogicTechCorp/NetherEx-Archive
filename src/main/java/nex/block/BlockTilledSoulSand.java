@@ -45,7 +45,6 @@ import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockTilledSoulSand extends BlockLibEx
 {
     public static final PropertyInteger MOISTURE = PropertyInteger.create("moisture", 0, 7);

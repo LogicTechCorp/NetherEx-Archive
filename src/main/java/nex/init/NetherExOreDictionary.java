@@ -25,7 +25,6 @@ import nex.block.BlockNetherrack;
 import static nex.init.NetherExBlocks.*;
 import static nex.init.NetherExItems.*;
 
-@SuppressWarnings("ConstantConditions")
 public class NetherExOreDictionary
 {
     public static void init()

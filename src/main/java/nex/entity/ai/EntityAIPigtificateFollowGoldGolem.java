@@ -25,31 +25,31 @@ import java.util.List;
 
 public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
 {
-    private final EntityPigtificate thePigtificate;
-    private EntityGoldGolem theGolem;
-    private int takeGolemRoseTick;
-    private boolean tookGolemRose;
+    private final EntityPigtificate pigtificate;
+    private EntityGoldGolem golem;
+    private int takeGolemFlowerTick;
+    private boolean tookGolemFlower;
 
-    public EntityAIPigtificateFollowGoldGolem(EntityPigtificate thePigtificateIn)
+    public EntityAIPigtificateFollowGoldGolem(EntityPigtificate pigtificate)
     {
-        thePigtificate = thePigtificateIn;
+        this.pigtificate = pigtificate;
         setMutexBits(3);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if(thePigtificate.getGrowingAge() >= 0)
+        if(pigtificate.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if(!thePigtificate.world.isDaytime())
+        else if(!pigtificate.world.isDaytime())
         {
             return false;
         }
         else
         {
-            List<EntityGoldGolem> list = thePigtificate.world.getEntitiesWithinAABB(EntityGoldGolem.class, thePigtificate.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
+            List<EntityGoldGolem> list = pigtificate.world.getEntitiesWithinAABB(EntityGoldGolem.class, pigtificate.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
 
             if(list.isEmpty())
             {
@@ -61,12 +61,12 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
                 {
                     if(goldGolem.getHoldFlowerTick() > 0)
                     {
-                        theGolem = goldGolem;
+                        golem = goldGolem;
                         break;
                     }
                 }
 
-                return theGolem != null;
+                return golem != null;
             }
         }
     }
@@ -74,39 +74,39 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return theGolem.getHoldFlowerTick() > 0;
+        return golem.getHoldFlowerTick() > 0;
     }
 
     @Override
     public void startExecuting()
     {
-        takeGolemRoseTick = thePigtificate.getRNG().nextInt(320);
-        tookGolemRose = false;
-        theGolem.getNavigator().clearPath();
+        takeGolemFlowerTick = pigtificate.getRNG().nextInt(320);
+        tookGolemFlower = false;
+        golem.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
-        theGolem = null;
-        thePigtificate.getNavigator().clearPath();
+        golem = null;
+        pigtificate.getNavigator().clearPath();
     }
 
     @Override
     public void updateTask()
     {
-        thePigtificate.getLookHelper().setLookPositionWithEntity(theGolem, 30.0F, 30.0F);
+        pigtificate.getLookHelper().setLookPositionWithEntity(golem, 30.0F, 30.0F);
 
-        if(theGolem.getHoldFlowerTick() == takeGolemRoseTick)
+        if(golem.getHoldFlowerTick() == takeGolemFlowerTick)
         {
-            thePigtificate.getNavigator().tryMoveToEntityLiving(theGolem, 0.5D);
-            tookGolemRose = true;
+            pigtificate.getNavigator().tryMoveToEntityLiving(golem, 0.5D);
+            tookGolemFlower = true;
         }
 
-        if(tookGolemRose && thePigtificate.getDistanceSq(theGolem) < 4.0D)
+        if(tookGolemFlower && pigtificate.getDistanceSq(golem) < 4.0D)
         {
-            theGolem.setHoldingFlower(false);
-            thePigtificate.getNavigator().clearPath();
+            golem.setHoldingFlower(false);
+            pigtificate.getNavigator().clearPath();
         }
     }
 }

@@ -55,7 +55,6 @@ import nex.init.NetherExItems;
 
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class ClickHandler
 {

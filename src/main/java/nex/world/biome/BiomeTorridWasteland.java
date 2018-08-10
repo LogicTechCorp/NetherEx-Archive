@@ -25,7 +25,6 @@ import nex.entity.monster.EntityEmber;
 import nex.entity.neutral.EntitySalamander;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class BiomeTorridWasteland extends BiomeNetherEx
 {
     public BiomeTorridWasteland()

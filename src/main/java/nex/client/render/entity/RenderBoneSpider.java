@@ -37,7 +37,6 @@ public class RenderBoneSpider extends RenderLiving<EntityBoneSpider>
     public RenderBoneSpider(RenderManager manager)
     {
         super(manager, new ModelBoneSpider(), 0.5F);
-
         addLayer(new LayerBoneSpiderEyes(this));
     }
 

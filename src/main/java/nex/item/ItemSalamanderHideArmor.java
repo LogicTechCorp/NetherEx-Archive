@@ -30,7 +30,6 @@ import nex.NetherEx;
 import nex.init.NetherExItems;
 import nex.init.NetherExMaterials;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemSalamanderHideArmor extends ItemArmorLibEx
 {
     public ItemSalamanderHideArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
@@ -61,7 +60,6 @@ public class ItemSalamanderHideArmor extends ItemArmorLibEx
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
         return !repair.isEmpty() && repair.getItem() == NetherExItems.SALAMANDER_HIDE || super.getIsRepairable(toRepair, repair);
-
     }
 
     private static boolean isVariant(ItemStack stack)

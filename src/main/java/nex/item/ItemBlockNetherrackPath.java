@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockNetherrackPath;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockNetherrackPath extends ItemBlockLibEx
 {
     public ItemBlockNetherrackPath()

@@ -36,7 +36,6 @@ import nex.init.NetherExEffects;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
-@SuppressWarnings("ConstantConditions")
 public class EntityWight extends EntityMob
 {
     public EntityWight(World world)

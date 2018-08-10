@@ -28,7 +28,6 @@ import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
 import nex.init.NetherExMaterials;
 
-@SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class RenderHandler
 {

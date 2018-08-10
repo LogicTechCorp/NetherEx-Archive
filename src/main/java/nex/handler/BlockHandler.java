@@ -40,7 +40,6 @@ import nex.entity.monster.EntityNethermite;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
 
-@SuppressWarnings("ConstantConditions")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class BlockHandler
 {

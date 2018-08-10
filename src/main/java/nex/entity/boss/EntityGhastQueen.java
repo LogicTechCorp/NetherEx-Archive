@@ -52,7 +52,7 @@ public class EntityGhastQueen extends EntityGhast
 
     private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
 
-    private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
+    private final BossInfoServer bossInfo = new BossInfoServer(getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS);
 
     public EntityGhastQueen(World world)
     {

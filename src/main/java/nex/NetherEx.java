@@ -19,10 +19,14 @@ package nex;
 
 import lex.IModData;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.init.*;
 import nex.proxy.IProxy;
 import nex.village.PigtificateTradeManager;
@@ -46,7 +50,15 @@ public class NetherEx implements IModData
     @SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
     public static IProxy proxy;
 
-    public static final CreativeTabs CREATIVE_TAB = new NetherExCreativeTab();
+    private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)
+    {
+        @Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack createIcon()
+        {
+            return new ItemStack(Blocks.NETHERRACK);
+        }
+    };
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 

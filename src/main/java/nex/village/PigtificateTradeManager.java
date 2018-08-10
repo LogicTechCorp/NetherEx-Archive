@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@SuppressWarnings("ConstantConditions")
 public class PigtificateTradeManager
 {
     public static void preInit()

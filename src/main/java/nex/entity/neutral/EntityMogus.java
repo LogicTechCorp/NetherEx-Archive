@@ -36,7 +36,6 @@ import net.minecraft.world.World;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
-@SuppressWarnings("ConstantConditions")
 public class EntityMogus extends EntityMob
 {
     private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityMogus.class, DataSerializers.VARINT);

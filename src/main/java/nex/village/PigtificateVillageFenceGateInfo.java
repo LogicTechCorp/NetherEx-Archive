@@ -22,11 +22,11 @@ import net.minecraft.util.math.BlockPos;
 
 public class PigtificateVillageFenceGateInfo
 {
-    private final BlockPos fenceGateBlockPos;
-    private final BlockPos insideBlock;
+    private final BlockPos fenceGatePos;
+    private final BlockPos insideBlockPos;
     private final EnumFacing insideDirection;
     private int lastActivityTimestamp;
-    private boolean isDetachedFromVillageFlag;
+    private boolean isDetachedFromVillage;
     private int fenceGateOpeningRestrictionCounter;
 
     public PigtificateVillageFenceGateInfo(BlockPos pos, int deltaX, int deltaZ, int timestamp)
@@ -41,31 +41,31 @@ public class PigtificateVillageFenceGateInfo
 
     public PigtificateVillageFenceGateInfo(BlockPos pos, EnumFacing facing, int timestamp)
     {
-        fenceGateBlockPos = pos;
+        fenceGatePos = pos;
         insideDirection = facing;
-        insideBlock = pos.offset(facing, 3);
+        insideBlockPos = pos.offset(facing, 3);
         lastActivityTimestamp = timestamp;
     }
 
     public int getDistanceSquared(int x, int y, int z)
     {
-        return (int) fenceGateBlockPos.distanceSq((double) x, (double) y, (double) z);
+        return (int) fenceGatePos.distanceSq((double) x, (double) y, (double) z);
     }
 
     public int getDistanceToFenceGateBlockSq(BlockPos pos)
     {
-        return (int) pos.distanceSq(getFenceGateBlockPos());
+        return (int) pos.distanceSq(getFenceGatePos());
     }
 
     public int getDistanceToInsideBlockSq(BlockPos pos)
     {
-        return (int) insideBlock.distanceSq(pos);
+        return (int) insideBlockPos.distanceSq(pos);
     }
 
     public boolean isInsideSide(BlockPos pos)
     {
-        int i = pos.getX() - fenceGateBlockPos.getX();
-        int j = pos.getZ() - fenceGateBlockPos.getY();
+        int i = pos.getX() - fenceGatePos.getX();
+        int j = pos.getZ() - fenceGatePos.getY();
         return i * insideDirection.getXOffset() + j * insideDirection.getZOffset() >= 0;
     }
 
@@ -84,14 +84,14 @@ public class PigtificateVillageFenceGateInfo
         return fenceGateOpeningRestrictionCounter;
     }
 
-    public BlockPos getFenceGateBlockPos()
+    public BlockPos getFenceGatePos()
     {
-        return fenceGateBlockPos;
+        return fenceGatePos;
     }
 
     public BlockPos getInsideBlockPos()
     {
-        return insideBlock;
+        return insideBlockPos;
     }
 
     public int getInsideOffsetX()
@@ -116,12 +116,12 @@ public class PigtificateVillageFenceGateInfo
 
     public boolean getIsDetachedFromVillageFlag()
     {
-        return isDetachedFromVillageFlag;
+        return isDetachedFromVillage;
     }
 
     public void setIsDetachedFromVillageFlag(boolean detached)
     {
-        isDetachedFromVillageFlag = detached;
+        isDetachedFromVillage = detached;
     }
 
     public EnumFacing getInsideDirection()

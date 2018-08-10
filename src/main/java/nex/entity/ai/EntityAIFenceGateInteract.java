@@ -29,18 +29,18 @@ import net.minecraft.util.math.BlockPos;
 
 public abstract class EntityAIFenceGateInteract extends EntityAIBase
 {
-    protected EntityLiving theEntity;
+    protected EntityLiving entity;
     protected BlockPos fenceGatePos = BlockPos.ORIGIN;
     protected BlockFenceGate fenceGate;
     boolean hasStoppedFenceGateInteraction;
     float entityPositionX;
     float entityPositionZ;
 
-    public EntityAIFenceGateInteract(EntityLiving entityIn)
+    public EntityAIFenceGateInteract(EntityLiving entity)
     {
-        theEntity = entityIn;
+        this.entity = entity;
 
-        if(!(entityIn.getNavigator() instanceof PathNavigateGround))
+        if(!(entity.getNavigator() instanceof PathNavigateGround))
         {
             throw new IllegalArgumentException("Unsupported mob type for FenceGateInteractGoal");
         }
@@ -49,13 +49,13 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(!theEntity.collidedHorizontally)
+        if(!entity.collidedHorizontally)
         {
             return false;
         }
         else
         {
-            PathNavigateGround pathnavigateground = (PathNavigateGround) theEntity.getNavigator();
+            PathNavigateGround pathnavigateground = (PathNavigateGround) entity.getNavigator();
             Path path = pathnavigateground.getPath();
 
             if(path != null && !path.isFinished() && pathnavigateground.getEnterDoors())
@@ -65,7 +65,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
                     PathPoint pathpoint = path.getPathPointFromIndex(i);
                     fenceGatePos = new BlockPos(pathpoint.x, pathpoint.y, pathpoint.z);
 
-                    if(theEntity.getDistanceSq((double) fenceGatePos.getX(), theEntity.posY, (double) fenceGatePos.getZ()) <= 2.25D)
+                    if(entity.getDistanceSq((double) fenceGatePos.getX(), entity.posY, (double) fenceGatePos.getZ()) <= 2.25D)
                     {
                         fenceGate = getFenceGate(fenceGatePos);
 
@@ -76,7 +76,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
                     }
                 }
 
-                fenceGatePos = (new BlockPos(theEntity));
+                fenceGatePos = (new BlockPos(entity));
                 fenceGate = getFenceGate(fenceGatePos);
                 return fenceGate != null;
             }
@@ -97,15 +97,15 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     public void startExecuting()
     {
         hasStoppedFenceGateInteraction = false;
-        entityPositionX = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - theEntity.posX);
-        entityPositionZ = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - theEntity.posZ);
+        entityPositionX = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
+        entityPositionZ = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
     }
 
     @Override
     public void updateTask()
     {
-        float f = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - theEntity.posX);
-        float f1 = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - theEntity.posZ);
+        float f = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
+        float f1 = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
         float f2 = entityPositionX * f + entityPositionZ * f1;
 
         if(f2 < 0.0F)
@@ -116,7 +116,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
 
     private BlockFenceGate getFenceGate(BlockPos pos)
     {
-        IBlockState iblockstate = theEntity.world.getBlockState(pos);
+        IBlockState iblockstate = entity.world.getBlockState(pos);
         Block block = iblockstate.getBlock();
         return block instanceof BlockFenceGate ? (BlockFenceGate) block : null;
     }

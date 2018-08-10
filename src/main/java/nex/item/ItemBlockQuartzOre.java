@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockNetherrack;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockQuartzOre extends ItemBlockLibEx
 {
     public ItemBlockQuartzOre()

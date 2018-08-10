@@ -49,7 +49,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 {
     private final World world;
@@ -80,11 +79,11 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private MapGenCavesHell netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
 
-    public ChunkGeneratorNetherEx(World worldIn)
+    public ChunkGeneratorNetherEx(World world)
     {
-        super(worldIn, true, worldIn.getSeed());
-        world = worldIn;
-        rand = new Random(world.getSeed());
+        super(world, true, world.getSeed());
+        this.world = world;
+        rand = new Random(this.world.getSeed());
         noiseGen1 = new NoiseGeneratorOctaves(rand, 16);
         noiseGen2 = new NoiseGeneratorOctaves(rand, 16);
         noiseGen3 = new NoiseGeneratorOctaves(rand, 8);
@@ -95,7 +94,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         terrainNoiseGen = new NoiseGeneratorPerlin(rand, 4);
 
         InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, soulSandGravelNoiseGen, netherrackNoiseGen, scaleNoiseGen, depthNoiseGen);
-        ctx = TerrainGen.getModdedNoiseGenerators(world, rand, ctx);
+        ctx = TerrainGen.getModdedNoiseGenerators(this.world, rand, ctx);
 
         noiseGen1 = ctx.getLPerlin1();
         noiseGen2 = ctx.getLPerlin2();
@@ -108,7 +107,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
         netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
 
-        worldIn.setSeaLevel(31);
+        world.setSeaLevel(31);
     }
 
     @Override

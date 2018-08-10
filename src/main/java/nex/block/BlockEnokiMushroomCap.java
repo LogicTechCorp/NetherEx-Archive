@@ -40,7 +40,6 @@ import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockEnokiMushroomCap extends BlockLibEx
 {
     private static final PropertyInteger AGE = PropertyInteger.create("age", 0, 5);

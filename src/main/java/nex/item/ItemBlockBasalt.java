@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockBasalt;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockBasalt extends ItemBlockLibEx
 {
     public ItemBlockBasalt()

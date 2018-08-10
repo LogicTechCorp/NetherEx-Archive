@@ -35,7 +35,6 @@ import net.minecraft.world.World;
 import nex.NetherEx;
 import nex.init.NetherExItems;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockElderMushroomStem extends BlockLibEx
 {
     public static final PropertyEnum<EnumType> AXIS = PropertyEnum.create("axis", EnumType.class);

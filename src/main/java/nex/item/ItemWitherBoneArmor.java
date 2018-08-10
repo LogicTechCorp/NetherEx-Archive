@@ -22,7 +22,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import nex.NetherEx;
 import nex.init.NetherExMaterials;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemWitherBoneArmor extends ItemArmorLibEx
 {
     public ItemWitherBoneArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)

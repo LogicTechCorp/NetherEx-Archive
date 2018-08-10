@@ -34,9 +34,9 @@ public class FeatureEnoki extends Feature
         super(config);
     }
 
-    public FeatureEnoki(int genAttemptsIn, float genProbabilityIn, boolean randomizeGenAttemptsIn, int minGenHeightIn, int maxGenHeightIn)
+    public FeatureEnoki(int genAttempts, float genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
     {
-        super(genAttemptsIn, genProbabilityIn, randomizeGenAttemptsIn, minGenHeightIn, maxGenHeightIn);
+        super(genAttempts, genProbability, randomizeGenAttempts, minGenHeight, maxGenHeight);
     }
 
     @Override

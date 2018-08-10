@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockVanilla;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockVanillaWall extends ItemBlockLibEx
 {
     public ItemBlockVanillaWall()

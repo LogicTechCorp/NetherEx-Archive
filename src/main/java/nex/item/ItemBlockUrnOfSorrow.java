@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockUrnOfSorrow;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockUrnOfSorrow extends ItemBlockLibEx
 {
     public ItemBlockUrnOfSorrow()

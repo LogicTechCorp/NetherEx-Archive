@@ -25,7 +25,6 @@ import nex.entity.monster.EntitySporeCreeper;
 import nex.entity.neutral.EntityMogus;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class BiomeFungiForest extends BiomeNetherEx
 {
     public BiomeFungiForest()

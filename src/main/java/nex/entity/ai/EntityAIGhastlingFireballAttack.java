@@ -26,21 +26,20 @@ import nex.entity.monster.EntityGhastling;
 import nex.entity.projectile.EntityGhastlingFireball;
 import nex.init.NetherExSoundEvents;
 
-@SuppressWarnings("ConstantConditions")
 public class EntityAIGhastlingFireballAttack extends EntityAIBase
 {
-    private final EntityGhast parentEntity;
+    private final EntityGhast ghast;
     public int attackTimer;
 
     public EntityAIGhastlingFireballAttack(EntityGhastling ghast)
     {
-        parentEntity = ghast;
+        this.ghast = ghast;
     }
 
     @Override
     public boolean shouldExecute()
     {
-        return parentEntity.getAttackTarget() != null;
+        return ghast.getAttackTarget() != null;
     }
 
     @Override
@@ -52,36 +51,36 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
     @Override
     public void resetTask()
     {
-        parentEntity.setAttacking(false);
+        ghast.setAttacking(false);
     }
 
     @Override
     public void updateTask()
     {
-        EntityLivingBase target = parentEntity.getAttackTarget();
+        EntityLivingBase target = ghast.getAttackTarget();
 
-        if(target.getDistanceSq(parentEntity) < 4096.0D && parentEntity.canEntityBeSeen(target))
+        if(target.getDistanceSq(ghast) < 4096.0D && ghast.canEntityBeSeen(target))
         {
-            World world = parentEntity.world;
+            World world = ghast.world;
             attackTimer++;
 
             if(attackTimer == 10)
             {
-                parentEntity.playSound(NetherExSoundEvents.GHASTLING_WARN, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
+                ghast.playSound(NetherExSoundEvents.GHASTLING_WARN, 10.0F, (ghast.getRNG().nextFloat() - ghast.getRNG().nextFloat()) * 0.2F + 1.0F);
             }
 
             if(attackTimer == 20)
             {
-                Vec3d vec3d = parentEntity.getLook(1.0F);
-                double d2 = target.posX - (parentEntity.posX + vec3d.x * 4.0D);
-                double d3 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + parentEntity.posY + (double) (parentEntity.height / 2.0F));
-                double d4 = target.posZ - (parentEntity.posZ + vec3d.z * 4.0D);
-                parentEntity.playSound(NetherExSoundEvents.GHASTLING_SHOOT, 10.0F, (parentEntity.getRNG().nextFloat() - parentEntity.getRNG().nextFloat()) * 0.2F + 1.0F);
-                EntityGhastlingFireball fireball = new EntityGhastlingFireball(world, parentEntity, d2, d3, d4);
-                fireball.explosionPower = parentEntity.getFireballStrength();
-                fireball.posX = parentEntity.posX + vec3d.x * 4.0D;
-                fireball.posY = parentEntity.posY + (double) (parentEntity.height / 2.0F) + 0.5D;
-                fireball.posZ = parentEntity.posZ + vec3d.z * 4.0D;
+                Vec3d vec3d = ghast.getLook(1.0F);
+                double d2 = target.posX - (ghast.posX + vec3d.x * 4.0D);
+                double d3 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + ghast.posY + (double) (ghast.height / 2.0F));
+                double d4 = target.posZ - (ghast.posZ + vec3d.z * 4.0D);
+                ghast.playSound(NetherExSoundEvents.GHASTLING_SHOOT, 10.0F, (ghast.getRNG().nextFloat() - ghast.getRNG().nextFloat()) * 0.2F + 1.0F);
+                EntityGhastlingFireball fireball = new EntityGhastlingFireball(world, ghast, d2, d3, d4);
+                fireball.explosionPower = ghast.getFireballStrength();
+                fireball.posX = ghast.posX + vec3d.x * 4.0D;
+                fireball.posY = ghast.posY + (double) (ghast.height / 2.0F) + 0.5D;
+                fireball.posZ = ghast.posZ + vec3d.z * 4.0D;
                 world.spawnEntity(fireball);
                 attackTimer = -40;
             }
@@ -91,6 +90,6 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
             --attackTimer;
         }
 
-        parentEntity.setAttacking(attackTimer > 10);
+        ghast.setAttacking(attackTimer > 10);
     }
 }

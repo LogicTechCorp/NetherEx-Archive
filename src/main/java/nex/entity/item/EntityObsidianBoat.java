@@ -75,7 +75,6 @@ public class EntityObsidianBoat extends EntityBoat
     public EntityObsidianBoat(World world)
     {
         super(world);
-
         setSize(1.375F, 0.5625F);
         isImmuneToFire = true;
         paddlePositions = new float[2];
@@ -86,7 +85,6 @@ public class EntityObsidianBoat extends EntityBoat
     public EntityObsidianBoat(World world, double x, double y, double z)
     {
         this(world);
-
         setPosition(x, y, z);
         motionX = 0.0D;
         motionY = 0.0D;
@@ -240,7 +238,7 @@ public class EntityObsidianBoat extends EntityBoat
         }
         else
         {
-            ++outOfControlTicks;
+            outOfControlTicks++;
         }
 
         if(!world.isRemote && outOfControlTicks >= 60.0F)
@@ -295,7 +293,7 @@ public class EntityObsidianBoat extends EntityBoat
             motionZ = 0.0D;
         }
 
-        for(int i = 0; i <= 1; ++i)
+        for(int i = 0; i <= 1; i++)
         {
             if(getPaddleState(i))
             {
@@ -362,7 +360,7 @@ public class EntityObsidianBoat extends EntityBoat
 
             rotationYaw = (float) ((double) rotationYaw + d3 / (double) lerpSteps);
             rotationPitch = (float) ((double) rotationPitch + (lerpXRot - (double) rotationPitch) / (double) lerpSteps);
-            --lerpSteps;
+            lerpSteps--;
 
             setPosition(d0, d1, d2);
             setRotation(rotationYaw, rotationPitch);
@@ -385,7 +383,7 @@ public class EntityObsidianBoat extends EntityBoat
 
     private Status getBoatStatus()
     {
-        Status status = getUnderlavaStatus();
+        Status status = getUnderLavaStatus();
 
         if(status != null)
         {
@@ -414,57 +412,57 @@ public class EntityObsidianBoat extends EntityBoat
 
     private float getLavaLevelAbove()
     {
-        AxisAlignedBB axisalignedbb = getEntityBoundingBox();
-        int i = MathHelper.floor(axisalignedbb.minX);
-        int j = MathHelper.ceil(axisalignedbb.maxX);
-        int k = MathHelper.floor(axisalignedbb.maxY);
-        int l = MathHelper.ceil(axisalignedbb.maxY - lastYd);
-        int i1 = MathHelper.floor(axisalignedbb.minZ);
-        int j1 = MathHelper.ceil(axisalignedbb.maxZ);
+        AxisAlignedBB boundingBox = getEntityBoundingBox();
+        int minX = MathHelper.floor(boundingBox.minX);
+        int maxX = MathHelper.ceil(boundingBox.maxX);
+        int minY = MathHelper.floor(boundingBox.maxY);
+        int maxY = MathHelper.ceil(boundingBox.maxY - lastYd);
+        int minZ = MathHelper.floor(boundingBox.minZ);
+        int maxZ = MathHelper.ceil(boundingBox.maxZ);
         BlockPos.PooledMutableBlockPos mutableBlockPos = BlockPos.PooledMutableBlockPos.retain();
 
         try
         {
             label78:
 
-            for(int k1 = k; k1 < l; ++k1)
+            for(int y = minY; y < maxY; y++)
             {
-                float f = 0.0F;
-                int l1 = i;
+                float liquidHeight = 0.0F;
+                int x = minX;
 
                 while(true)
                 {
-                    if(l1 >= j)
+                    if(x >= maxX)
                     {
-                        if(f < 1.0F)
+                        if(liquidHeight < 1.0F)
                         {
-                            return (float) mutableBlockPos.getY() + f;
+                            return (float) mutableBlockPos.getY() + liquidHeight;
                         }
 
                         break;
                     }
 
-                    for(int i2 = i1; i2 < j1; ++i2)
+                    for(int z = minZ; z < maxZ; ++z)
                     {
-                        mutableBlockPos.setPos(l1, k1, i2);
+                        mutableBlockPos.setPos(x, y, z);
                         IBlockState state = world.getBlockState(mutableBlockPos);
 
                         if(state.getMaterial() == Material.LAVA)
                         {
-                            f = Math.max(f, BlockLiquid.getBlockLiquidHeight(state, world, mutableBlockPos));
+                            liquidHeight = Math.max(liquidHeight, BlockLiquid.getBlockLiquidHeight(state, world, mutableBlockPos));
                         }
 
-                        if(f >= 1.0F)
+                        if(liquidHeight >= 1.0F)
                         {
                             continue label78;
                         }
                     }
 
-                    ++l1;
+                    x++;
                 }
             }
 
-            return (float) (l + 1);
+            return (float) (maxY + 1);
         }
         finally
         {
@@ -477,41 +475,41 @@ public class EntityObsidianBoat extends EntityBoat
     {
         AxisAlignedBB entityBoundingBox = getEntityBoundingBox();
         AxisAlignedBB boundingBox = new AxisAlignedBB(entityBoundingBox.minX, entityBoundingBox.minY - 0.001D, entityBoundingBox.minZ, entityBoundingBox.maxX, entityBoundingBox.minY, entityBoundingBox.maxZ);
-        int i = MathHelper.floor(boundingBox.minX) - 1;
-        int j = MathHelper.ceil(boundingBox.maxX) + 1;
-        int k = MathHelper.floor(boundingBox.minY) - 1;
-        int l = MathHelper.ceil(boundingBox.maxY) + 1;
-        int i1 = MathHelper.floor(boundingBox.minZ) - 1;
-        int j1 = MathHelper.ceil(boundingBox.maxZ) + 1;
+        int minX = MathHelper.floor(boundingBox.minX) - 1;
+        int maxX = MathHelper.ceil(boundingBox.maxX) + 1;
+        int minY = MathHelper.floor(boundingBox.minY) - 1;
+        int maxY = MathHelper.ceil(boundingBox.maxY) + 1;
+        int minZ = MathHelper.floor(boundingBox.minZ) - 1;
+        int maxZ = MathHelper.ceil(boundingBox.maxZ) + 1;
 
         List<AxisAlignedBB> list = Lists.newArrayList();
 
-        float f = 0.0F;
-        int k1 = 0;
+        float slipperiness = 0.0F;
+        int friction = 0;
         BlockPos.PooledMutableBlockPos mutableBlockPos = BlockPos.PooledMutableBlockPos.retain();
 
         try
         {
-            for(int l1 = i; l1 < j; ++l1)
+            for(int x = minX; x < maxX; x++)
             {
-                for(int i2 = i1; i2 < j1; ++i2)
+                for(int z = minZ; z < maxZ; z++)
                 {
-                    int j2 = (l1 != i && l1 != j - 1 ? 0 : 1) + (i2 != i1 && i2 != j1 - 1 ? 0 : 1);
+                    int offset = (x != minX && x != maxX - 1 ? 0 : 1) + (z != minZ && z != maxZ - 1 ? 0 : 1);
 
-                    if(j2 != 2)
+                    if(offset != 2)
                     {
-                        for(int k2 = k; k2 < l; ++k2)
+                        for(int y = minY; y < maxY; y++)
                         {
-                            if(j2 <= 0 || k2 != k && k2 != l - 1)
+                            if(offset <= 0 || y != minY && y != maxY - 1)
                             {
-                                mutableBlockPos.setPos(l1, k2, i2);
+                                mutableBlockPos.setPos(x, y, z);
                                 IBlockState state = world.getBlockState(mutableBlockPos);
                                 state.addCollisionBoxToList(world, mutableBlockPos, boundingBox, list, this, false);
 
                                 if(!list.isEmpty())
                                 {
-                                    f += state.getBlock().slipperiness;
-                                    ++k1;
+                                    slipperiness += state.getBlock().getSlipperiness(state, world, mutableBlockPos, this);
+                                    friction++;
                                 }
 
                                 list.clear();
@@ -526,38 +524,38 @@ public class EntityObsidianBoat extends EntityBoat
             mutableBlockPos.release();
         }
 
-        return f / (float) k1;
+        return slipperiness / (float) friction;
     }
 
     private boolean checkInLava()
     {
         AxisAlignedBB entityBoundingBox = getEntityBoundingBox();
-        int i = MathHelper.floor(entityBoundingBox.minX);
-        int j = MathHelper.ceil(entityBoundingBox.maxX);
-        int k = MathHelper.floor(entityBoundingBox.minY);
-        int l = MathHelper.ceil(entityBoundingBox.minY + 0.001D);
-        int i1 = MathHelper.floor(entityBoundingBox.minZ);
-        int j1 = MathHelper.ceil(entityBoundingBox.maxZ);
+        int minX = MathHelper.floor(entityBoundingBox.minX);
+        int maxX = MathHelper.ceil(entityBoundingBox.maxX);
+        int minY = MathHelper.floor(entityBoundingBox.minY);
+        int maxY = MathHelper.ceil(entityBoundingBox.minY + 0.001D);
+        int minZ = MathHelper.floor(entityBoundingBox.minZ);
+        int maxZ = MathHelper.ceil(entityBoundingBox.maxZ);
         boolean flag = false;
         lavaLevel = Double.MIN_VALUE;
         BlockPos.PooledMutableBlockPos mutableBlockPos = BlockPos.PooledMutableBlockPos.retain();
 
         try
         {
-            for(int k1 = i; k1 < j; ++k1)
+            for(int x = minX; x < maxX; x++)
             {
-                for(int l1 = k; l1 < l; ++l1)
+                for(int y = minY; y < maxY; y++)
                 {
-                    for(int i2 = i1; i2 < j1; ++i2)
+                    for(int z = minZ; z < maxZ; z++)
                     {
-                        mutableBlockPos.setPos(k1, l1, i2);
+                        mutableBlockPos.setPos(x, y, z);
                         IBlockState state = world.getBlockState(mutableBlockPos);
 
                         if(state.getMaterial() == Material.LAVA)
                         {
-                            float f = BlockLiquid.getLiquidHeight(state, world, mutableBlockPos);
-                            lavaLevel = Math.max((double) f, lavaLevel);
-                            flag |= entityBoundingBox.minY < (double) f;
+                            float liquidHeight = BlockLiquid.getLiquidHeight(state, world, mutableBlockPos);
+                            lavaLevel = Math.max((double) liquidHeight, lavaLevel);
+                            flag |= entityBoundingBox.minY < (double) liquidHeight;
                         }
                     }
                 }
@@ -571,31 +569,31 @@ public class EntityObsidianBoat extends EntityBoat
         return flag;
     }
 
-    private Status getUnderlavaStatus()
+    private Status getUnderLavaStatus()
     {
         AxisAlignedBB entityBoundingBox = getEntityBoundingBox();
-        double d0 = entityBoundingBox.maxY + 0.001D;
-        int i = MathHelper.floor(entityBoundingBox.minX);
-        int j = MathHelper.ceil(entityBoundingBox.maxX);
-        int k = MathHelper.floor(entityBoundingBox.maxY);
-        int l = MathHelper.ceil(d0);
-        int i1 = MathHelper.floor(entityBoundingBox.minZ);
-        int j1 = MathHelper.ceil(entityBoundingBox.maxZ);
+        double entityHeight = entityBoundingBox.maxY + 0.001D;
+        int minX = MathHelper.floor(entityBoundingBox.minX);
+        int maxX = MathHelper.ceil(entityBoundingBox.maxX);
+        int minY = MathHelper.floor(entityBoundingBox.maxY);
+        int maxY = MathHelper.ceil(entityHeight);
+        int minZ = MathHelper.floor(entityBoundingBox.minZ);
+        int maxZ = MathHelper.ceil(entityBoundingBox.maxZ);
         boolean flag = false;
         BlockPos.PooledMutableBlockPos mutableBlockPos = BlockPos.PooledMutableBlockPos.retain();
 
         try
         {
-            for(int k1 = i; k1 < j; ++k1)
+            for(int x = minX; x < maxX; x++)
             {
-                for(int l1 = k; l1 < l; ++l1)
+                for(int y = minY; y < maxY; y++)
                 {
-                    for(int i2 = i1; i2 < j1; ++i2)
+                    for(int z = minZ; z < maxZ; z++)
                     {
-                        mutableBlockPos.setPos(k1, l1, i2);
+                        mutableBlockPos.setPos(x, y, z);
                         IBlockState state = world.getBlockState(mutableBlockPos);
 
-                        if(state.getMaterial() == Material.LAVA && d0 < (double) BlockLiquid.getLiquidHeight(state, world, mutableBlockPos))
+                        if(state.getMaterial() == Material.LAVA && entityHeight < (double) BlockLiquid.getLiquidHeight(state, world, mutableBlockPos))
                         {
                             if(state.getValue(BlockLiquid.LEVEL) != 0)
                             {
@@ -618,8 +616,8 @@ public class EntityObsidianBoat extends EntityBoat
 
     private void updateMotion()
     {
-        double d1 = hasNoGravity() ? 0.0D : -0.03999999910593033D;
-        double d2 = 0.0D;
+        double gravity = hasNoGravity() ? 0.0D : -0.03999999910593033D;
+        double position = 0.0D;
         float momentum = 0.05F;
 
         if(previousStatus == Status.IN_AIR && status != Status.IN_AIR && status != Status.ON_LAND)
@@ -634,17 +632,17 @@ public class EntityObsidianBoat extends EntityBoat
         {
             if(status == Status.IN_LAVA)
             {
-                d2 = (lavaLevel - getEntityBoundingBox().minY) / (double) height;
+                position = (lavaLevel - getEntityBoundingBox().minY) / (double) height;
                 momentum = 0.9F;
             }
             else if(status == Status.UNDER_FLOWING_LAVA)
             {
-                d1 = -7.0E-4D;
+                gravity = -7.0E-4D;
                 momentum = 0.9F;
             }
             else if(status == Status.UNDER_LAVA)
             {
-                d2 = 0.009999999776482582D;
+                position = 0.009999999776482582D;
                 momentum = 0.45F;
             }
             else if(status == Status.IN_AIR)
@@ -664,11 +662,11 @@ public class EntityObsidianBoat extends EntityBoat
             motionX *= (double) momentum;
             motionZ *= (double) momentum;
             deltaRotation *= momentum;
-            motionY += d1;
+            motionY += gravity;
 
-            if(d2 > 0.0D)
+            if(position > 0.0D)
             {
-                motionY += d2 * 0.06153846016296973D;
+                motionY += position * 0.06153846016296973D;
                 motionY *= 0.75D;
             }
         }
@@ -687,7 +685,7 @@ public class EntityObsidianBoat extends EntityBoat
 
             if(rightInputDown)
             {
-                ++deltaRotation;
+                deltaRotation++;
             }
 
             if(rightInputDown != leftInputDown && !forwardInputDown && !backInputDown)
@@ -828,7 +826,7 @@ public class EntityObsidianBoat extends EntityBoat
 
                         if(world.getGameRules().getBoolean("doEntityDrops"))
                         {
-                            for(int i = 0; i < 3; ++i)
+                            for(int i = 0; i < 3; i++)
                             {
                                 entityDropItem(new ItemStack(Blocks.OBSIDIAN, 1, 0), 0.0F);
                             }

@@ -49,7 +49,6 @@ import nex.world.ExplosionSpore;
 
 import java.util.Collection;
 
-@SuppressWarnings("ConstantConditions")
 public class EntitySporeCreeper extends EntityMob
 {
     private static final DataParameter<Integer> STATE = EntityDataManager.createKey(EntitySporeCreeper.class, DataSerializers.VARINT);

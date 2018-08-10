@@ -31,7 +31,6 @@ import nex.handler.ConfigHandler;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
-@SuppressWarnings("ConstantConditions")
 public class EntitySpinout extends EntityMob
 {
     private int spinCounter;

@@ -20,7 +20,6 @@ package nex.item;
 import lex.item.ItemBlockLibEx;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockThornstalk extends ItemBlockLibEx
 {
     public ItemBlockThornstalk()

@@ -43,7 +43,6 @@ import nex.init.NetherExItems;
 import java.util.List;
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockEnokiMushroomStem extends BlockLibEx
 {
     private static final PropertyBool NORTH = PropertyBool.create("north");

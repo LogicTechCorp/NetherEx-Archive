@@ -29,7 +29,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockFrostburnIce extends BlockLibEx
 {
     public BlockFrostburnIce()

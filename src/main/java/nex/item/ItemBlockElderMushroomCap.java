@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import nex.block.BlockElderMushroom;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockElderMushroomCap extends ItemBlockLibEx
 {
     public ItemBlockElderMushroomCap()

@@ -35,14 +35,14 @@ public class FeatureThornstalk extends Feature
         super(config);
     }
 
-    public FeatureThornstalk(int genAttemptsIn, float genProbabilityIn, boolean randomizeGenAttemptsIn, int minGenHeightIn, int maxGenHeightIn)
+    public FeatureThornstalk(int genAttempts, float genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
     {
-        super(genAttemptsIn, genProbabilityIn, randomizeGenAttemptsIn, minGenHeightIn, maxGenHeightIn);
+        super(genAttempts, genProbability, randomizeGenAttempts, minGenHeight, maxGenHeight);
     }
 
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        for(int i = 0; i < 64; ++i)
+        for(int i = 0; i < 64; i++)
         {
             BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             Block blockDown = world.getBlockState(newPos.down()).getBlock();

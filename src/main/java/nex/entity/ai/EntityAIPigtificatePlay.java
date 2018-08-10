@@ -27,51 +27,51 @@ import java.util.List;
 
 public class EntityAIPigtificatePlay extends EntityAIBase
 {
-    private final EntityPigtificate pigtificateObj;
-    private EntityLivingBase targetPigtificate;
+    private final EntityPigtificate pigtificate;
+    private EntityLivingBase target;
     private final double speed;
     private int playTime;
 
-    public EntityAIPigtificatePlay(EntityPigtificate pigtificateObjIn, double speedIn)
+    public EntityAIPigtificatePlay(EntityPigtificate pigtificate, double speed)
     {
-        pigtificateObj = pigtificateObjIn;
-        speed = speedIn;
+        this.pigtificate = pigtificate;
+        this.speed = speed;
         setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if(pigtificateObj.getGrowingAge() >= 0)
+        if(pigtificate.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if(pigtificateObj.getRNG().nextInt(400) != 0)
+        else if(pigtificate.getRNG().nextInt(400) != 0)
         {
             return false;
         }
         else
         {
-            List<EntityPigtificate> list = pigtificateObj.world.getEntitiesWithinAABB(EntityPigtificate.class, pigtificateObj.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<EntityPigtificate> list = pigtificate.world.getEntitiesWithinAABB(EntityPigtificate.class, pigtificate.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
 
             for(EntityPigtificate entitypigtificate : list)
             {
-                if(entitypigtificate != pigtificateObj && !entitypigtificate.isPlaying() && entitypigtificate.getGrowingAge() < 0)
+                if(entitypigtificate != pigtificate && !entitypigtificate.isPlaying() && entitypigtificate.getGrowingAge() < 0)
                 {
-                    double d1 = entitypigtificate.getDistanceSq(pigtificateObj);
+                    double d1 = entitypigtificate.getDistanceSq(pigtificate);
 
                     if(d1 <= d0)
                     {
                         d0 = d1;
-                        targetPigtificate = entitypigtificate;
+                        target = entitypigtificate;
                     }
                 }
             }
 
-            if(targetPigtificate == null)
+            if(target == null)
             {
-                Vec3d vec3d = RandomPositionGenerator.findRandomTarget(pigtificateObj, 16, 3);
+                Vec3d vec3d = RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3);
 
                 if(vec3d == null)
                 {
@@ -92,9 +92,9 @@ public class EntityAIPigtificatePlay extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        if(targetPigtificate != null)
+        if(target != null)
         {
-            pigtificateObj.setPlaying(true);
+            pigtificate.setPlaying(true);
         }
 
         playTime = 1000;
@@ -103,8 +103,8 @@ public class EntityAIPigtificatePlay extends EntityAIBase
     @Override
     public void resetTask()
     {
-        pigtificateObj.setPlaying(false);
-        targetPigtificate = null;
+        pigtificate.setPlaying(false);
+        target = null;
     }
 
     @Override
@@ -112,23 +112,23 @@ public class EntityAIPigtificatePlay extends EntityAIBase
     {
         --playTime;
 
-        if(targetPigtificate != null)
+        if(target != null)
         {
-            if(pigtificateObj.getDistanceSq(targetPigtificate) > 4.0D)
+            if(pigtificate.getDistanceSq(target) > 4.0D)
             {
-                pigtificateObj.getNavigator().tryMoveToEntityLiving(targetPigtificate, speed);
+                pigtificate.getNavigator().tryMoveToEntityLiving(target, speed);
             }
         }
-        else if(pigtificateObj.getNavigator().noPath())
+        else if(pigtificate.getNavigator().noPath())
         {
-            Vec3d vec3d = RandomPositionGenerator.findRandomTarget(pigtificateObj, 16, 3);
+            Vec3d vec3d = RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3);
 
             if(vec3d == null)
             {
                 return;
             }
 
-            pigtificateObj.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, speed);
+            pigtificate.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, speed);
         }
     }
 }

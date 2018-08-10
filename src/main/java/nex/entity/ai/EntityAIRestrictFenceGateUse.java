@@ -27,14 +27,14 @@ import nex.village.PigtificateVillageManager;
 
 public class EntityAIRestrictFenceGateUse extends EntityAIBase
 {
-    private final EntityCreature entityObj;
+    private final EntityCreature creature;
     private PigtificateVillageFenceGateInfo fenceGate;
 
-    public EntityAIRestrictFenceGateUse(EntityCreature creatureIn)
+    public EntityAIRestrictFenceGateUse(EntityCreature creature)
     {
-        entityObj = creatureIn;
+        this.creature = creature;
 
-        if(!(creatureIn.getNavigator() instanceof PathNavigateGround))
+        if(!(creature.getNavigator() instanceof PathNavigateGround))
         {
             throw new IllegalArgumentException("Unsupported mob type for RestrictOpenDoorGoal");
         }
@@ -43,14 +43,14 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(entityObj.world.isDaytime())
+        if(creature.world.isDaytime())
         {
             return false;
         }
         else
         {
-            BlockPos blockpos = new BlockPos(entityObj);
-            PigtificateVillage village = PigtificateVillageManager.getNetherVillages(entityObj.getEntityWorld(), true).getNearestVillage(blockpos, 16);
+            BlockPos blockpos = new BlockPos(creature);
+            PigtificateVillage village = PigtificateVillageManager.getNetherVillages(creature.getEntityWorld(), true).getNearestVillage(blockpos, 16);
 
             if(village == null)
             {
@@ -67,21 +67,21 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !entityObj.world.isDaytime() && (!fenceGate.getIsDetachedFromVillageFlag() && fenceGate.isInsideSide(new BlockPos(entityObj)));
+        return !creature.world.isDaytime() && (!fenceGate.getIsDetachedFromVillageFlag() && fenceGate.isInsideSide(new BlockPos(creature)));
     }
 
     @Override
     public void startExecuting()
     {
-        ((PathNavigateGround) entityObj.getNavigator()).setBreakDoors(false);
-        ((PathNavigateGround) entityObj.getNavigator()).setEnterDoors(false);
+        ((PathNavigateGround) creature.getNavigator()).setBreakDoors(false);
+        ((PathNavigateGround) creature.getNavigator()).setEnterDoors(false);
     }
 
     @Override
     public void resetTask()
     {
-        ((PathNavigateGround) entityObj.getNavigator()).setBreakDoors(true);
-        ((PathNavigateGround) entityObj.getNavigator()).setEnterDoors(true);
+        ((PathNavigateGround) creature.getNavigator()).setBreakDoors(true);
+        ((PathNavigateGround) creature.getNavigator()).setEnterDoors(true);
         fenceGate = null;
     }
 

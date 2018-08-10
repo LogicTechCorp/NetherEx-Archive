@@ -37,7 +37,6 @@ public abstract class GenLayerNetherEx extends GenLayer
         genLayer = GenLayerZoom.magnify(1000L, genLayer, biomeSize);
         genLayer = new GenLayerSmooth(1000L, genLayer);
         GenLayer genLayerVoronoiZoom = new GenLayerVoronoiZoom(10L, genLayer);
-
         genLayer.initWorldGenSeed(seed);
         genLayerVoronoiZoom.initWorldGenSeed(seed);
 

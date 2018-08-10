@@ -35,7 +35,6 @@ public class EntityGhastling extends EntityGhast
     public EntityGhastling(World world)
     {
         super(world);
-
         setSize(2.0F, 2.0F);
     }
 

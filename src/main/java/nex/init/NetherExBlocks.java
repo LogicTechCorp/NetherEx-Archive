@@ -32,7 +32,6 @@ import nex.NetherEx;
 import nex.block.*;
 import nex.item.*;
 
-@SuppressWarnings("ConstantConditions")
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBlocks
 {

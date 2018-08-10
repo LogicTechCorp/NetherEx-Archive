@@ -37,7 +37,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-@SuppressWarnings("ConstantConditions")
 public class NetherExBiomeManager
 {
     private static final List<BiomeManager.BiomeEntry> BIOMES = new ArrayList<>();

@@ -50,22 +50,22 @@ public class ItemObsidianBoat extends ItemLibEx
     {
         ItemStack stack = player.getHeldItem(hand);
 
-        float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * 1.0F;
-        float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * 1.0F;
-        double d0 = player.prevPosX + (player.posX - player.prevPosX) * 1.0D;
-        double d1 = player.prevPosY + (player.posY - player.prevPosY) * 1.0D + (double) player.getEyeHeight();
-        double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * 1.0D;
-        Vec3d vec3d = new Vec3d(d0, d1, d2);
-        float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
-        float f4 = MathHelper.sin(-f2 * 0.017453292F - (float) Math.PI);
-        float f5 = -MathHelper.cos(-f1 * 0.017453292F);
-        float f6 = MathHelper.sin(-f1 * 0.017453292F);
+        float pitch = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * 1.0F;
+        float yaw = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * 1.0F;
+        double posX = player.prevPosX + (player.posX - player.prevPosX) * 1.0D;
+        double posY = player.prevPosY + (player.posY - player.prevPosY) * 1.0D + (double) player.getEyeHeight();
+        double posZ = player.prevPosZ + (player.posZ - player.prevPosZ) * 1.0D;
+        Vec3d pos = new Vec3d(posX, posY, posZ);
+        float f3 = MathHelper.cos(-yaw * 0.017453292F - (float) Math.PI);
+        float f4 = MathHelper.sin(-yaw * 0.017453292F - (float) Math.PI);
+        float f5 = -MathHelper.cos(-pitch * 0.017453292F);
+        float f6 = MathHelper.sin(-pitch * 0.017453292F);
         float f7 = f4 * f5;
         float f8 = f3 * f5;
-        Vec3d vec3d1 = vec3d.add((double) f7 * 5.0D, (double) f6 * 5.0D, (double) f8 * 5.0D);
-        RayTraceResult raytraceresult = world.rayTraceBlocks(vec3d, vec3d1, true);
+        Vec3d vec3d1 = pos.add((double) f7 * 5.0D, (double) f6 * 5.0D, (double) f8 * 5.0D);
+        RayTraceResult rayTraceResult = world.rayTraceBlocks(pos, vec3d1, true);
 
-        if(raytraceresult == null)
+        if(rayTraceResult == null)
         {
             return new ActionResult(EnumActionResult.PASS, stack);
         }
@@ -81,7 +81,7 @@ public class ItemObsidianBoat extends ItemLibEx
                 {
                     AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().grow((double) entity.getCollisionBorderSize());
 
-                    if(axisalignedbb.contains(vec3d))
+                    if(axisalignedbb.contains(pos))
                     {
                         flag = true;
                     }
@@ -92,15 +92,15 @@ public class ItemObsidianBoat extends ItemLibEx
             {
                 return new ActionResult(EnumActionResult.PASS, stack);
             }
-            else if(raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK)
+            else if(rayTraceResult.typeOfHit != RayTraceResult.Type.BLOCK)
             {
                 return new ActionResult(EnumActionResult.PASS, stack);
             }
             else
             {
-                Block block = world.getBlockState(raytraceresult.getBlockPos()).getBlock();
+                Block block = world.getBlockState(rayTraceResult.getBlockPos()).getBlock();
                 boolean flag1 = block == Blocks.WATER || block == Blocks.FLOWING_WATER;
-                EntityObsidianBoat boat = new EntityObsidianBoat(world, raytraceresult.hitVec.x, flag1 ? raytraceresult.hitVec.y - 0.12D : raytraceresult.hitVec.y, raytraceresult.hitVec.z);
+                EntityObsidianBoat boat = new EntityObsidianBoat(world, rayTraceResult.hitVec.x, flag1 ? rayTraceResult.hitVec.y - 0.12D : rayTraceResult.hitVec.y, rayTraceResult.hitVec.z);
                 boat.rotationYaw = player.rotationYaw;
 
                 if(!world.getCollisionBoxes(boat, boat.getEntityBoundingBox().grow(-0.1D)).isEmpty())

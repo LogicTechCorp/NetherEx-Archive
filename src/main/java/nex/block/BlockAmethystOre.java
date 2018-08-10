@@ -30,13 +30,11 @@ import nex.init.NetherExItems;
 
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockAmethystOre extends BlockLibEx
 {
     public BlockAmethystOre()
     {
         super(NetherEx.instance, "amethyst_ore", Material.ROCK);
-
         setHardness(3.0F);
         setResistance(5.0F);
     }

@@ -243,7 +243,6 @@ public class RemapHandler
         }
     }
 
-
     @SubscribeEvent
     public static void onMissingEntityMappings(RegistryEvent.MissingMappings<EntityEntry> event)
     {

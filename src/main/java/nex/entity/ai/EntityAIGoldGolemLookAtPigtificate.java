@@ -23,30 +23,30 @@ import nex.entity.passive.EntityPigtificate;
 
 public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
 {
-    private final EntityGoldGolem theGolem;
+    private final EntityGoldGolem golem;
     private EntityPigtificate thePigtificate;
     private int lookTime;
 
-    public EntityAIGoldGolemLookAtPigtificate(EntityGoldGolem theGolemIn)
+    public EntityAIGoldGolemLookAtPigtificate(EntityGoldGolem golem)
     {
-        theGolem = theGolemIn;
+        this.golem = golem;
         setMutexBits(3);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if(!theGolem.world.isDaytime())
+        if(!golem.world.isDaytime())
         {
             return false;
         }
-        else if(theGolem.getRNG().nextInt(8000) != 0)
+        else if(golem.getRNG().nextInt(8000) != 0)
         {
             return false;
         }
         else
         {
-            thePigtificate = (EntityPigtificate) theGolem.world.findNearestEntityWithinAABB(EntityPigtificate.class, theGolem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), theGolem);
+            thePigtificate = (EntityPigtificate) golem.world.findNearestEntityWithinAABB(EntityPigtificate.class, golem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), golem);
             return thePigtificate != null;
         }
     }
@@ -72,7 +72,7 @@ public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
     @Override
     public void updateTask()
     {
-        theGolem.getLookHelper().setLookPositionWithEntity(thePigtificate, 30.0F, 30.0F);
+        golem.getLookHelper().setLookPositionWithEntity(thePigtificate, 30.0F, 30.0F);
         --lookTime;
     }
 }

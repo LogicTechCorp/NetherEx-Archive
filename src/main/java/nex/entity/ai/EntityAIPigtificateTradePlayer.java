@@ -25,9 +25,9 @@ public class EntityAIPigtificateTradePlayer extends EntityAIBase
 {
     private final EntityPigtificate pigtificate;
 
-    public EntityAIPigtificateTradePlayer(EntityPigtificate pigtificateIn)
+    public EntityAIPigtificateTradePlayer(EntityPigtificate pigtificate)
     {
-        pigtificate = pigtificateIn;
+        this.pigtificate = pigtificate;
         setMutexBits(5);
     }
 

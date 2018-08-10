@@ -23,20 +23,20 @@ import nex.entity.passive.EntityPigtificate;
 
 public class EntityAIPigtificateLookAtTradePlayer extends EntityAIWatchClosest
 {
-    private final EntityPigtificate theMerchant;
+    private final EntityPigtificate pigtificate;
 
-    public EntityAIPigtificateLookAtTradePlayer(EntityPigtificate theMerchantIn)
+    public EntityAIPigtificateLookAtTradePlayer(EntityPigtificate pigtificate)
     {
-        super(theMerchantIn, EntityPlayer.class, 8.0F);
-        theMerchant = theMerchantIn;
+        super(pigtificate, EntityPlayer.class, 8.0F);
+        this.pigtificate = pigtificate;
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if(theMerchant.isTrading())
+        if(pigtificate.isTrading())
         {
-            closestEntity = theMerchant.getCustomer();
+            closestEntity = pigtificate.getCustomer();
             return true;
         }
         else

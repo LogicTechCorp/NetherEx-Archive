@@ -71,11 +71,11 @@ public class ExplosionSpore extends Explosion
     private final Map<EntityPlayer, Vec3d> playerKnockbackMap;
     private final Vec3d position;
 
-    public ExplosionSpore(World worldIn, Entity entity, double x, double y, double z, float size, boolean flaming, boolean smoking)
+    public ExplosionSpore(World world, Entity entity, double x, double y, double z, float size, boolean flaming, boolean smoking)
     {
-        super(worldIn, entity, x, y, z, size, flaming, smoking);
+        super(world, entity, x, y, z, size, flaming, smoking);
 
-        world = worldIn;
+        this.world = world;
         exploder = entity;
         explosionX = x;
         explosionY = y;
@@ -84,7 +84,7 @@ public class ExplosionSpore extends Explosion
         isFlaming = flaming;
         isSmoking = smoking;
 
-        explosionRNG = new Random(worldIn.getSeed());
+        explosionRNG = new Random(world.getSeed());
         affectedBlockPositions = Lists.newArrayList();
         playerKnockbackMap = Maps.newHashMap();
         position = new Vec3d(explosionX, explosionY, explosionZ);
@@ -97,45 +97,45 @@ public class ExplosionSpore extends Explosion
         {
             Set<BlockPos> set = Sets.newHashSet();
 
-            for(int j = 0; j < 16; ++j)
+            for(int x = 0; x < 16; x++)
             {
-                for(int k = 0; k < 16; ++k)
+                for(int y = 0; y < 16; y++)
                 {
-                    for(int l = 0; l < 16; ++l)
+                    for(int z = 0; z < 16; z++)
                     {
-                        if(j == 0 || j == 15 || k == 0 || k == 15 || l == 0 || l == 15)
+                        if(x == 0 || x == 15 || y == 0 || y == 15 || z == 0 || z == 15)
                         {
-                            double d0 = (double) ((float) j / 15.0F * 2.0F - 1.0F);
-                            double d1 = (double) ((float) k / 15.0F * 2.0F - 1.0F);
-                            double d2 = (double) ((float) l / 15.0F * 2.0F - 1.0F);
-                            double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
-                            d0 = d0 / d3;
-                            d1 = d1 / d3;
-                            d2 = d2 / d3;
-                            float f = explosionSize * (0.7F + world.rand.nextFloat() * 0.6F);
-                            double d4 = explosionX;
-                            double d6 = explosionY;
-                            double d8 = explosionZ;
+                            double posX = (double) ((float) x / 15.0F * 2.0F - 1.0F);
+                            double posY = (double) ((float) y / 15.0F * 2.0F - 1.0F);
+                            double posZ = (double) ((float) z / 15.0F * 2.0F - 1.0F);
+                            double d3 = Math.sqrt(posX * posX + posY * posY + posZ * posZ);
+                            posX = posX / d3;
+                            posY = posY / d3;
+                            posZ = posZ / d3;
+                            float explosionSize = this.explosionSize * (0.7F + world.rand.nextFloat() * 0.6F);
+                            double explosionX = this.explosionX;
+                            double explosionY = this.explosionY;
+                            double explosionZ = this.explosionZ;
 
-                            for(float f1 = 0.3F; f > 0.0F; f -= 0.22500001F)
+                            for(float size = 0.3F; explosionSize > 0.0F; explosionSize -= 0.22500001F)
                             {
-                                BlockPos blockpos = new BlockPos(d4, d6, d8);
-                                IBlockState iblockstate = world.getBlockState(blockpos);
+                                BlockPos explosionPos = new BlockPos(explosionX, explosionY, explosionZ);
+                                IBlockState explodedBlock = world.getBlockState(explosionPos);
 
-                                if(iblockstate.getMaterial() != Material.AIR)
+                                if(explodedBlock.getMaterial() != Material.AIR)
                                 {
-                                    float f2 = exploder != null ? exploder.getExplosionResistance(this, world, blockpos, iblockstate) : iblockstate.getBlock().getExplosionResistance(world, blockpos, (Entity) null, this);
-                                    f -= (f2 + 0.3F) * 0.3F;
+                                    float f2 = exploder != null ? exploder.getExplosionResistance(this, world, explosionPos, explodedBlock) : explodedBlock.getBlock().getExplosionResistance(world, explosionPos, (Entity) null, this);
+                                    explosionSize -= (f2 + 0.3F) * 0.3F;
                                 }
 
-                                if(f > 0.0F && (exploder == null || exploder.canExplosionDestroyBlock(this, world, blockpos, iblockstate, f)))
+                                if(explosionSize > 0.0F && (exploder == null || exploder.canExplosionDestroyBlock(this, world, explosionPos, explodedBlock, explosionSize)))
                                 {
-                                    set.add(blockpos);
+                                    set.add(explosionPos);
                                 }
 
-                                d4 += d0 * 0.30000001192092896D;
-                                d6 += d1 * 0.30000001192092896D;
-                                d8 += d2 * 0.30000001192092896D;
+                                explosionX += posX * 0.30000001192092896D;
+                                explosionY += posY * 0.30000001192092896D;
+                                explosionZ += posZ * 0.30000001192092896D;
                             }
                         }
                     }
@@ -144,13 +144,13 @@ public class ExplosionSpore extends Explosion
 
             affectedBlockPositions.addAll(set);
             float f3 = explosionSize * 2.0F;
-            int k1 = MathHelper.floor(explosionX - (double) f3 - 1.0D);
-            int l1 = MathHelper.floor(explosionX + (double) f3 + 1.0D);
-            int i2 = MathHelper.floor(explosionY - (double) f3 - 1.0D);
-            int i1 = MathHelper.floor(explosionY + (double) f3 + 1.0D);
-            int j2 = MathHelper.floor(explosionZ - (double) f3 - 1.0D);
-            int j1 = MathHelper.floor(explosionZ + (double) f3 + 1.0D);
-            List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(exploder, new AxisAlignedBB((double) k1, (double) i2, (double) j2, (double) l1, (double) i1, (double) j1));
+            int minX = MathHelper.floor(explosionX - (double) f3 - 1.0D);
+            int maxX = MathHelper.floor(explosionX + (double) f3 + 1.0D);
+            int minY = MathHelper.floor(explosionY - (double) f3 - 1.0D);
+            int maxY = MathHelper.floor(explosionY + (double) f3 + 1.0D);
+            int minZ = MathHelper.floor(explosionZ - (double) f3 - 1.0D);
+            int maxZ = MathHelper.floor(explosionZ + (double) f3 + 1.0D);
+            List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(exploder, new AxisAlignedBB((double) minX, (double) minY, (double) minZ, (double) maxX, (double) maxY, (double) maxZ));
             ForgeEventFactory.onExplosionDetonate(world, this, list, f3);
             Vec3d vec3d = new Vec3d(explosionX, explosionY, explosionZ);
 

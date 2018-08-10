@@ -25,18 +25,18 @@ import java.util.Random;
 
 public class EntityAIGhastFly extends EntityAIBase
 {
-    private final EntityGhast parentEntity;
+    private final EntityGhast ghast;
 
     public EntityAIGhastFly(EntityGhast ghast)
     {
-        parentEntity = ghast;
+        this.ghast = ghast;
         setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        EntityMoveHelper moveHelper = parentEntity.getMoveHelper();
+        EntityMoveHelper moveHelper = ghast.getMoveHelper();
 
         if(!moveHelper.isUpdating())
         {
@@ -44,9 +44,9 @@ public class EntityAIGhastFly extends EntityAIBase
         }
         else
         {
-            double d0 = moveHelper.getX() - parentEntity.posX;
-            double d1 = moveHelper.getY() - parentEntity.posY;
-            double d2 = moveHelper.getZ() - parentEntity.posZ;
+            double d0 = moveHelper.getX() - ghast.posX;
+            double d1 = moveHelper.getY() - ghast.posY;
+            double d2 = moveHelper.getZ() - ghast.posZ;
             double d3 = d0 * d0 + d1 * d1 + d2 * d2;
             return d3 < 1.0D || d3 > 3600.0D;
         }
@@ -61,10 +61,10 @@ public class EntityAIGhastFly extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        Random rand = parentEntity.getRNG();
-        double d0 = parentEntity.posX + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double d1 = parentEntity.posY + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double d2 = parentEntity.posZ + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
+        Random rand = ghast.getRNG();
+        double d0 = ghast.posX + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double d1 = ghast.posY + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double d2 = ghast.posZ + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        ghast.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
     }
 }

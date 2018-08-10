@@ -36,7 +36,6 @@ import nex.init.NetherExItems;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExSoundEvents;
 
-@SuppressWarnings("ConstantConditions")
 public class EntitySpore extends EntityMob
 {
     private static final DataParameter<Integer> STAGE = EntityDataManager.createKey(EntitySpore.class, DataSerializers.VARINT);

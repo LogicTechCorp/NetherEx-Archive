@@ -34,6 +34,7 @@ public class PotionFreeze extends PotionLibEx
     public void applyAttributesModifiersToEntity(EntityLivingBase entity, AbstractAttributeMap attributeMapIn, int amplifier)
     {
         super.applyAttributesModifiersToEntity(entity, attributeMapIn, amplifier);
+
         if(entity instanceof EntityLiving)
         {
             ((EntityLiving) entity).setNoAI(true);

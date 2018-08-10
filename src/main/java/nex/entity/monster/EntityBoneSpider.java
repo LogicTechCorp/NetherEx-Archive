@@ -32,7 +32,6 @@ public class EntityBoneSpider extends EntitySpider
     public EntityBoneSpider(World world)
     {
         super(world);
-
         setSize(1.5F, 1.0F);
         isImmuneToFire = true;
     }

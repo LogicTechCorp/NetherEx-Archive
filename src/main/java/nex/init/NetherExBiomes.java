@@ -31,7 +31,6 @@ import nex.world.biome.BiomeTorridWasteland;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
-@SuppressWarnings("ConstantConditions")
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBiomes
 {

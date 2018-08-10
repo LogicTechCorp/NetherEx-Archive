@@ -45,29 +45,29 @@ public class PigtificateVillageCollection extends WorldSavedData
         super(name);
     }
 
-    public PigtificateVillageCollection(World worldIn)
+    public PigtificateVillageCollection(World world)
     {
-        super(fileNameForProvider(worldIn.provider));
-        world = worldIn;
+        super(fileNameForProvider(world.provider));
+        this.world = world;
         markDirty();
     }
 
-    public void setWorldsForAll(World worldIn)
+    public void setWorldsForAll(World world)
     {
-        if(world == worldIn)
+        if(this.world == world)
         {
             return;
         }
 
-        world = worldIn;
+        this.world = world;
 
         for(PigtificateVillage village : villageList)
         {
-            village.setWorld(worldIn);
+            village.setWorld(world);
         }
     }
 
-    public void addToVillagerPositionList(BlockPos pos)
+    public void addPigtificate(BlockPos pos)
     {
         if(pigtificatePositions.size() <= 64)
         {
@@ -89,7 +89,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
         removeAnnihilatedVillages();
         dropOldestVillagerPosition();
-        addNewFenceGatesToVillageOrCreateVillage();
+        updateVillages();
 
         if(tickCounter % 400 == 0)
         {
@@ -150,11 +150,11 @@ public class PigtificateVillageCollection extends WorldSavedData
         }
     }
 
-    private void addNewFenceGatesToVillageOrCreateVillage()
+    private void updateVillages()
     {
         for(PigtificateVillageFenceGateInfo fenceGateInfo : newFenceGates)
         {
-            PigtificateVillage village = getNearestVillage(fenceGateInfo.getFenceGateBlockPos(), 32);
+            PigtificateVillage village = getNearestVillage(fenceGateInfo.getFenceGatePos(), 32);
 
             if(village == null)
             {
@@ -163,7 +163,7 @@ public class PigtificateVillageCollection extends WorldSavedData
                 markDirty();
             }
 
-            village.addVillageFenceGateInfo(fenceGateInfo);
+            village.addFenceGateInfo(fenceGateInfo);
         }
 
         newFenceGates.clear();
@@ -171,11 +171,11 @@ public class PigtificateVillageCollection extends WorldSavedData
 
     private void addFenceGatesAround(BlockPos central)
     {
-        for(int x = -16; x < 16; ++x)
+        for(int x = -16; x < 16; x++)
         {
-            for(int y = -4; y < 4; ++y)
+            for(int y = -4; y < 4; y++)
             {
-                for(int z = -16; z < 16; ++z)
+                for(int z = -16; z < 16; z++)
                 {
                     BlockPos blockpos = central.add(x, y, z);
                     EnumFacing outside = getOutside(blockpos);
@@ -202,7 +202,7 @@ public class PigtificateVillageCollection extends WorldSavedData
     {
         for(PigtificateVillageFenceGateInfo fenceGateInfo : newFenceGates)
         {
-            if(fenceGateInfo.getFenceGateBlockPos().getX() == fenceGateBlock.getX() && fenceGateInfo.getFenceGateBlockPos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getFenceGateBlockPos().getY() - fenceGateBlock.getY()) <= 1)
+            if(fenceGateInfo.getFenceGatePos().getX() == fenceGateBlock.getX() && fenceGateInfo.getFenceGatePos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getFenceGatePos().getY() - fenceGateBlock.getY()) <= 1)
             {
                 return fenceGateInfo;
             }
@@ -210,7 +210,7 @@ public class PigtificateVillageCollection extends WorldSavedData
 
         for(PigtificateVillage village : villageList)
         {
-            PigtificateVillageFenceGateInfo fenceGateInfo = village.getExistedFenceGate(fenceGateBlock);
+            PigtificateVillageFenceGateInfo fenceGateInfo = village.getExistingFenceGate(fenceGateBlock);
 
             if(fenceGateInfo != null)
             {
@@ -268,7 +268,7 @@ public class PigtificateVillageCollection extends WorldSavedData
         tickCounter = nbt.getInteger("Tick");
         NBTTagList list = nbt.getTagList("PigtificateVillages", 10);
 
-        for(int i = 0; i < list.tagCount(); ++i)
+        for(int i = 0; i < list.tagCount(); i++)
         {
             NBTTagCompound villageData = list.getCompoundTagAt(i);
             PigtificateVillage village = new PigtificateVillage();

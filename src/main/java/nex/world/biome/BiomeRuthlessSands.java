@@ -26,7 +26,6 @@ import nex.block.BlockNetherrack;
 import nex.entity.monster.EntitySpinout;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
     public BiomeRuthlessSands()

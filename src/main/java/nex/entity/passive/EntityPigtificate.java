@@ -58,7 +58,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-@SuppressWarnings("ConstantConditions")
 public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 {
     private static final DataParameter<Integer> CAREER = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
@@ -88,7 +87,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     public EntityPigtificate(World world)
     {
         super(world);
-
         inventory = new InventoryBasic("Items", false, 8);
         isImmuneToFire = true;
         ((PathNavigateGround) getNavigator()).setBreakDoors(true);
@@ -100,7 +98,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     public EntityPigtificate(World world, Pigtificate.Career career)
     {
         super(world);
-
         inventory = new InventoryBasic("Items", false, 8);
         isImmuneToFire = true;
         ((PathNavigateGround) getNavigator()).setBreakDoors(true);
@@ -109,7 +106,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         setProfession(career.getProfession().ordinal());
         setCareer(career.ordinal());
     }
-
 
     @Override
     protected SoundEvent getAmbientSound()
@@ -154,12 +150,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     @SideOnly(Side.CLIENT)
     private void spawnParticles(EnumParticleTypes particleType)
     {
-        for(int i = 0; i < 5; ++i)
+        for(int i = 0; i < 5; i++)
         {
-            double d0 = rand.nextGaussian() * 0.02D;
-            double d1 = rand.nextGaussian() * 0.02D;
-            double d2 = rand.nextGaussian() * 0.02D;
-            world.spawnParticle(particleType, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + 1.0D + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d0, d1, d2, new int[0]);
+            double x = rand.nextGaussian() * 0.02D;
+            double y = rand.nextGaussian() * 0.02D;
+            double z = rand.nextGaussian() * 0.02D;
+            world.spawnParticle(particleType, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + 1.0D + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, x, y, z, new int[0]);
         }
     }
 
@@ -216,7 +212,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            PigtificateVillageManager.getNetherVillages(getWorld(), true).addToVillagerPositionList(blockpos);
+            PigtificateVillageManager.getNetherVillages(getWorld(), true).addPigtificate(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
             village = PigtificateVillageManager.getNetherVillages(getWorld(), true).getNearestVillage(blockpos, 32);
 
@@ -239,7 +235,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
         if(!isTrading() && timeUntilRestock > 0)
         {
-            --timeUntilRestock;
+            timeUntilRestock--;
 
             if(timeUntilRestock <= 0)
             {
@@ -337,7 +333,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
         NBTTagList list = compound.getTagList("Inventory", 10);
 
-        for(int i = 0; i < list.tagCount(); ++i)
+        for(int i = 0; i < list.tagCount(); i++)
         {
             ItemStack stack = new ItemStack(list.getCompoundTagAt(i));
 
@@ -405,7 +401,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
         if(village != null && livingBase != null)
         {
-            village.addOrRenewAggressor(livingBase);
+            village.setAggressor(livingBase);
 
             if(livingBase instanceof EntityPlayer)
             {
@@ -692,7 +688,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         {
             boolean flag = false;
 
-            for(int i = 0; i < inventory.getSizeInventory(); ++i)
+            for(int i = 0; i < inventory.getSizeInventory(); i++)
             {
                 ItemStack stack = inventory.getStackInSlot(i);
 

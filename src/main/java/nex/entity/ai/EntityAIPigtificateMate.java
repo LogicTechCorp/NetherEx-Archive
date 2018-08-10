@@ -36,10 +36,10 @@ public class EntityAIPigtificateMate extends EntityAIBase
     private int matingTimeout;
     PigtificateVillage village;
 
-    public EntityAIPigtificateMate(EntityPigtificate pigtificateIn)
+    public EntityAIPigtificateMate(EntityPigtificate pigtificate)
     {
-        pigtificate = pigtificateIn;
-        world = pigtificateIn.getEntityWorld();
+        this.pigtificate = pigtificate;
+        world = pigtificate.getEntityWorld();
         setMutexBits(3);
     }
 
@@ -133,7 +133,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            int i = (int) ((double) ((float) village.getNumVillageFenceGates()) * 0.35D);
+            int i = (int) ((double) ((float) village.getVillageFenceGateAmount()) * 0.35D);
             return village.getPigtificates() < i;
         }
     }

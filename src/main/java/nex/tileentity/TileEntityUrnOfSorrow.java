@@ -29,7 +29,6 @@ import nex.entity.boss.EntityGhastQueen;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExSoundEvents;
 
-@SuppressWarnings("ConstantConditions")
 public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITickable
 {
     private int summoningTime = 0;

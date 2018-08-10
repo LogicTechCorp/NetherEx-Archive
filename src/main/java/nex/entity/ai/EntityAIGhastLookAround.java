@@ -24,11 +24,11 @@ import net.minecraft.util.math.MathHelper;
 
 public class EntityAIGhastLookAround extends EntityAIBase
 {
-    private final EntityGhast parentEntity;
+    private final EntityGhast ghast;
 
     public EntityAIGhastLookAround(EntityGhast ghast)
     {
-        parentEntity = ghast;
+        this.ghast = ghast;
         setMutexBits(2);
     }
 
@@ -41,21 +41,21 @@ public class EntityAIGhastLookAround extends EntityAIBase
     @Override
     public void updateTask()
     {
-        if(parentEntity.getAttackTarget() == null)
+        if(ghast.getAttackTarget() == null)
         {
-            parentEntity.rotationYaw = -((float) MathHelper.atan2(parentEntity.motionX, parentEntity.motionZ)) * (180F / (float) Math.PI);
-            parentEntity.renderYawOffset = parentEntity.rotationYaw;
+            ghast.rotationYaw = -((float) MathHelper.atan2(ghast.motionX, ghast.motionZ)) * (180F / (float) Math.PI);
+            ghast.renderYawOffset = ghast.rotationYaw;
         }
         else
         {
-            EntityLivingBase target = parentEntity.getAttackTarget();
+            EntityLivingBase target = ghast.getAttackTarget();
 
-            if(target.getDistanceSq(parentEntity) < 4096.0D)
+            if(target.getDistanceSq(ghast) < 4096.0D)
             {
-                double d1 = target.posX - parentEntity.posX;
-                double d2 = target.posZ - parentEntity.posZ;
-                parentEntity.rotationYaw = -((float) MathHelper.atan2(d1, d2)) * (180F / (float) Math.PI);
-                parentEntity.renderYawOffset = parentEntity.rotationYaw;
+                double d1 = target.posX - ghast.posX;
+                double d2 = target.posZ - ghast.posZ;
+                ghast.rotationYaw = -((float) MathHelper.atan2(d1, d2)) * (180F / (float) Math.PI);
+                ghast.renderYawOffset = ghast.rotationYaw;
             }
         }
     }

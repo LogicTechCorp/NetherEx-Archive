@@ -20,7 +20,6 @@ package nex.item;
 import lex.item.ItemBlockSlabLibEx;
 import nex.init.NetherExBlocks;
 
-@SuppressWarnings("ConstantConditions")
 public class ItemBlockNetherBrickSlab extends ItemBlockSlabLibEx
 {
     public ItemBlockNetherBrickSlab(boolean isDouble)

@@ -37,7 +37,6 @@ public class EntityNethermite extends EntityMob
     public EntityNethermite(World world)
     {
         super(world);
-
         setSize(0.4F, 0.3F);
         isImmuneToFire = true;
     }

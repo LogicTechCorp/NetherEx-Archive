@@ -32,10 +32,10 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
     private int interactionDelay;
     private final EntityPigtificate pigtificate;
 
-    public EntityAIPigtificateInteract(EntityPigtificate pigtificateIn)
+    public EntityAIPigtificateInteract(EntityPigtificate pigtificate)
     {
-        super(pigtificateIn, EntityPigtificate.class, 3.0F, 0.02F);
-        pigtificate = pigtificateIn;
+        super(pigtificate, EntityPigtificate.class, 3.0F, 0.02F);
+        this.pigtificate = pigtificate;
     }
 
     @Override

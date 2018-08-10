@@ -43,7 +43,6 @@ import nex.init.NetherExBlocks;
 
 import java.util.Random;
 
-@SuppressWarnings("ConstantConditions")
 public class BlockNetherrackPath extends BlockLibEx
 {
     public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
