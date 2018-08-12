@@ -281,20 +281,23 @@ public class LivingHandler
         }
         else if(event.getEntity() instanceof EntityWitherSkeleton)
         {
-            ListIterator<EntityItem> iter = event.getDrops().listIterator();
-
-            while(iter.hasNext())
+            if(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity > 0 && rand.nextInt(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity) == 0)
             {
-                EntityItem entityItem = iter.next();
-                ItemStack stack = entityItem.getItem();
+                ListIterator<EntityItem> iter = event.getDrops().listIterator();
 
-                if(stack.getItem() == Items.BONE || stack.getItem() == Items.COAL)
+                while(iter.hasNext())
                 {
-                    iter.remove();
-                }
-            }
+                    EntityItem entityItem = iter.next();
+                    ItemStack stack = entityItem.getItem();
 
-            event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.WITHER_BONE, rand.nextInt(3), 0)));
+                    if(stack.getItem() == Items.BONE || stack.getItem() == Items.COAL)
+                    {
+                        iter.remove();
+                    }
+                }
+
+                event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.WITHER_BONE, rand.nextInt(3), 0)));
+            }
         }
     }
 

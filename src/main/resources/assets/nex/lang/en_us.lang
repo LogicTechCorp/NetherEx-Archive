@@ -17,14 +17,16 @@ config.nex:compatibility.tooltip=Settings that only affect mod compatibility
 
 config.nex:compatibility.biomesOPlenty=Biomes O' Plenty Compatibility Settings
 config.nex:compatibility.biomesOPlenty.tooltip=Settings that only affect Biomes O' Plenty compatibility
-config.nex:compatibility.biomesOPlenty.enableCompat=Enable Biome O' Plenty Compatibility
-config.nex:compatibility.biomesOPlenty.enableCompat.tooltip=Is Biome O' Plenty compatibility enabled
+config.nex:compatibility.biomesOPlenty.enableCompat=Enable Biomes O' Plenty Compatibility
+config.nex:compatibility.biomesOPlenty.enableCompat.tooltip=Is Biomes O' Plenty compatibility enabled
 
 config.nex:dimension=Dimension Settings
 config.nex:dimension.tooltip=Settings that only affect Dimensions
 
 config.nex:dimension.nether=Nether Dimension Settings
 config.nex:dimension.nether.tooltip=Settings that only affect the Nether Dimension
+config.nex:dimension.nether.overrideNether=Override Nether
+config.nex:dimension.nether.overrideNether.tooltip=Whether or not NetherEx overrides the Nether
 config.nex:dimension.nether.generateSoulSand=Generate Soul Sand
 config.nex:dimension.nether.generateSoulSand.tooltip=Do Soul Sand platforms generate in the Nether
 config.nex:dimension.nether.generateGravel=Generate Gravel
@@ -156,6 +158,11 @@ config.nex:entity.ghastQueen.ghastlingSpawnCooldown=Ghastling Spawn Cooldown
 config.nex:entity.ghastQueen.ghastlingSpawnCooldown.tooltip=How long is the cooldown after spawning Ghastlings
 config.nex:entity.ghastQueen.ghastlingSpawnAmount=Ghastling Spawn Amount
 config.nex:entity.ghastQueen.ghastlingSpawnAmount.tooltip=How many Ghastlings spawn when the Ghast Queen is attacked
+
+config.nex:entity.witherSkeleton=Wither Skeleton Settings
+config.nex:entity.witherSkeleton.tooltip=Settings that only affect the Wither Skeleton
+config.nex:entity.witherSkeleton.boneDropRarity=Bone Drop Rarity
+config.nex:entity.witherSkeleton.boneDropRarity.tooltip=How rare it is for a Wither Bone to drop
 
 config.nex:biome=Biome Settings
 config.nex:biome.tooltip=Settings that only affect Biomes
