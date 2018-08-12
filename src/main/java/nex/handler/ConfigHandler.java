@@ -18,11 +18,20 @@
 package nex.handler;
 
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import nex.NetherEx;
+
+import java.io.File;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.util.Map;
+import java.util.Optional;
 
 @Config.LangKey("config." + NetherEx.MOD_ID + ":title")
 @Config(modid = NetherEx.MOD_ID, name = "NetherEx/" + NetherEx.MOD_ID, category = "nex")
@@ -56,6 +65,60 @@ public class ConfigHandler
     @Config.LangKey("config." + NetherEx.MOD_ID + ":biome")
     public static BiomeConfig biomeConfig = new BiomeConfig();
 
+    private static Configuration config;
+
+    public static void preInit()
+    {
+        config = getConfig();
+
+        if(config != null)
+        {
+            ConfigCategory soulSandCategory = config.getCategory("nex.block.soul_sand");
+            soulSandCategory.remove("doesNetherwartUseNewGrowthSystem");
+            soulSandCategory.remove("doesRequireIchorInsteadOfLava");
+            config.getCategory("nex.block.nether_portal").remove("allowPigmanSpawning");
+            config.renameProperty("nex.block.thornstalk", "blacklist", "mobBlacklist");
+            config.renameProperty("nex.block.hyphae", "doesSpread", "shouldSpread");
+            config.renameProperty("nex.potion_effect.freeze", "blacklist", "mobBlacklist");
+            config.renameProperty("nex.potion_effect.freeze", "chanceOfThawing", "thawRarity");
+            config.renameProperty("nex.potion_effect.spore", "blacklist", "mobBlacklist");
+            config.renameProperty("nex.potion_effect.spore", "chanceOfSporeSpawning", "sporeSpawnRarity");
+            config.renameProperty("nex.potion_effect.lost", "chanceOfGhastlingSpawning", "ghastlingSpawnRarity");
+            config.renameProperty("nex.entity.ember", "chanceOfSettingPlayerOnFire", "setPlayerOnFireRarity");
+            config.renameProperty("nex.entity.nethermite", "chanceOfSpawning", "spawnRarity");
+            config.renameProperty("nex.entity.nethermite", "whitelist", "blockWhitelist");
+            config.renameProperty("nex.entity.spore_creeper", "chanceOfSporeSpawning", "sporeSpawnRarity");
+            config.renameProperty("nex.entity.spore", "creeperSpawns", "creeperSpawnAmount");
+            config.renameProperty("nex.entity.ghast_queen", "ghastlingSpawns", "ghastlingSpawnAmount");
+            config.renameProperty("nex.biome.arctic_abyss", "chanceOfFreezing", "mobFreezeRarity");
+            config.save();
+        }
+    }
+
+    private static Configuration getConfig()
+    {
+        if(config == null)
+        {
+            try
+            {
+                MethodHandle CONFIGS_GETTER = MethodHandles.lookup().unreflectGetter(ReflectionHelper.findField(ConfigManager.class, "CONFIGS", null));
+                String fileName = NetherEx.MOD_ID + ".cfg";
+                Map<String, Configuration> configsMap = (Map<String, Configuration>) CONFIGS_GETTER.invokeExact();
+
+                Optional<Map.Entry<String, Configuration>> entryOptional = configsMap.entrySet().stream()
+                        .filter(entry -> fileName.equals(new File(entry.getKey()).getName()))
+                        .findFirst();
+
+                entryOptional.ifPresent(configEntry -> config = configEntry.getValue());
+            }
+            catch(Throwable ignored)
+            {
+            }
+        }
+
+        return config;
+    }
+
     public static class ClientConfig
     {
         @Config.Name("visual")
@@ -71,7 +134,7 @@ public class ConfigHandler
 
     public static class CompatibilityConfig
     {
-        @Config.Name("biomes_o_plenty")
+        @Config.Name("biomesoplenty")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesOPlenty")
         public BiomesOPlenty biomesOPlenty = new BiomesOPlenty();
 
@@ -225,10 +288,10 @@ public class ConfigHandler
 
         public class Freeze
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.chanceOfThawing")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.thawRarity")
             @Config.Comment({"The higher the number, the rarer it is to thaw", "The lower the number, the more common it is to thaw"})
             @Config.RangeInt(min = 1)
-            public int chanceOfThawing = 1024;
+            public int thawRarity = 1024;
 
             @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.mobBlacklist")
             @Config.Comment("Mobs that won't freeze")
@@ -295,6 +358,10 @@ public class ConfigHandler
         @Config.Name("brute")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.brute")
         public Brute brute = new Brute();
+
+        @Config.Name("ghast")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen")
+        public Ghast ghast = new Ghast();
 
         @Config.Name("ghast_queen")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen")
@@ -397,6 +464,14 @@ public class ConfigHandler
             @Config.Comment({"The lower the number, the less cooldown the Brute has after charging", "The higher the number, the more cooldown the Brute has after charging"})
             @Config.RangeInt(min = 1)
             public int chargeCooldown = 2;
+        }
+
+        public class Ghast
+        {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghast.meatDropRarity")
+            @Config.Comment({"The lower the number, the more common it is for Ghast Meat to drop", "The higher the number, the rarer it is for Ghast Meat to drop", "If set to 0, Ghast Meat does not drop"})
+            @Config.RangeInt(min = 0)
+            public int meatDropRarity = 1;
         }
 
         public class GhastQueen

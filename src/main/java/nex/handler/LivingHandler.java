@@ -100,7 +100,7 @@ public class LivingHandler
                 {
                     entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
                 }
-                if(world.rand.nextInt(ConfigHandler.potionEffectConfig.freeze.chanceOfThawing) == 0)
+                if(world.rand.nextInt(ConfigHandler.potionEffectConfig.freeze.thawRarity) == 0)
                 {
                     entity.removePotionEffect(NetherExEffects.FREEZE);
                 }
@@ -274,7 +274,10 @@ public class LivingHandler
 
         if(event.getEntity() instanceof EntityGhast)
         {
-            event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.GHAST_MEAT_RAW, rand.nextInt(3) + 1, 0)));
+            if(ConfigHandler.entityConfig.ghast.meatDropRarity > 0 && rand.nextInt(ConfigHandler.entityConfig.ghast.meatDropRarity) == 0)
+            {
+                event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.GHAST_MEAT_RAW, rand.nextInt(3) + 1, 0)));
+            }
         }
         else if(event.getEntity() instanceof EntityWitherSkeleton)
         {

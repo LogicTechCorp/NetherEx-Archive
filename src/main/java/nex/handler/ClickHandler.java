@@ -193,7 +193,7 @@ public class ClickHandler
         if(entity instanceof EntityPigZombie)
         {
             EntityPigZombie zombiePigman = (EntityPigZombie) entity;
-            ItemStack stack = player.getHeldItem(player.swingingHand);
+            ItemStack stack = player.getHeldItemMainhand();
 
             if(stack.getItem() == NetherExItems.GHAST_QUEEN_TEAR && stack.getMetadata() == 0 && zombiePigman.isPotionActive(MobEffects.WEAKNESS))
             {

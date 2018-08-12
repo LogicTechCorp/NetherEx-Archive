@@ -89,8 +89,8 @@ config.nex:potionEffect=Potion Effect Settings
 config.nex:potionEffect.tooltip=Settings that only affect Potion Effects
 config.nex:potionEffect.freeze=Freeze Effect Settings
 config.nex:potionEffect.freeze.tooltip=Settings that only affect the Freeze Effect
-config.nex:potionEffect.freeze.chanceOfThawing=Chance Of Thawing
-config.nex:potionEffect.freeze.chanceOfThawing.tooltip=How rare it is for a mob to Thaw from the Freeze Effect
+config.nex:potionEffect.freeze.thawRarity=Thaw Rarity
+config.nex:potionEffect.freeze.thawRarity.tooltip=How rare it is for a mob to Thaw from the Freeze Effect when ticked
 config.nex:potionEffect.freeze.mobBlacklist=Mob Blacklist
 config.nex:potionEffect.freeze.mobBlacklist.tooltip=Mobs that won't freeze
 
@@ -144,6 +144,11 @@ config.nex:entity.brute=Brute Settings
 config.nex:entity.brute.tooltip=Settings that only affect the Brute
 config.nex:entity.brute.chargeCooldown=Charge Cooldown
 config.nex:entity.brute.chargeCooldown.tooltip=How long is the cooldown after charging players
+
+config.nex:entity.ghast=Ghast Settings
+config.nex:entity.ghast.tooltip=Settings that affect most Ghasts
+config.nex:entity.ghast.meatDropRarity=Meat Drop Rarity
+config.nex:entity.ghast.meatDropRarity.tooltip=How rare it is for Ghast Meat to drop
 
 config.nex:entity.ghastQueen=Ghast Queen Settings
 config.nex:entity.ghastQueen.tooltip=Settings that only affect the Ghast Queen

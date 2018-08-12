@@ -27,6 +27,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.handler.ConfigHandler;
 import nex.init.*;
 import nex.proxy.IProxy;
 import nex.village.PigtificateTradeManager;
@@ -39,8 +40,8 @@ public class NetherEx implements IModData
 {
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.0.5";
-    public static final String DEPENDENCIES = "required-after:lex@[1.0.5,);";
+    public static final String VERSION = "2.0.6";
+    public static final String DEPENDENCIES = "required-after:lex@[1.0.6,);";
     private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
 
@@ -70,6 +71,7 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
+        ConfigHandler.preInit();
         NetherExBiomeManager.preInit();
         PigtificateTradeManager.preInit();
         NetherExEntities.preInit();
