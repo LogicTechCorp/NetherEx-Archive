@@ -18,15 +18,20 @@
 package nex.item;
 
 import lex.item.ItemLibEx;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Bootstrap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.event.ForgeEventFactory;
 import nex.NetherEx;
 import nex.block.BlockElderMushroom;
@@ -36,6 +41,38 @@ public class ItemWitherDust extends ItemLibEx
     public ItemWitherDust()
     {
         super(NetherEx.instance, "wither_dust");
+
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new Bootstrap.BehaviorDispenseOptional()
+        {
+            protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
+            {
+                successful = true;
+
+                World world = source.getWorld();
+                BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
+
+                if(world instanceof WorldServer)
+                {
+                    if(apply(stack, world, blockpos, FakePlayerFactory.getMinecraft((WorldServer) world), null))
+                    {
+                        if(!world.isRemote)
+                        {
+                            world.playEvent(2005, blockpos, 0);
+                        }
+                    }
+                    else
+                    {
+                        successful = false;
+                    }
+
+                    return stack;
+                }
+                else
+                {
+                    return ItemStack.EMPTY;
+                }
+            }
+        });
     }
 
     @Override
@@ -49,7 +86,7 @@ public class ItemWitherDust extends ItemLibEx
         }
         else
         {
-            if(applyBoneMeal(stack, world, pos, player, hand))
+            if(apply(stack, world, pos, player, hand))
             {
                 if(!world.isRemote)
                 {
@@ -62,10 +99,9 @@ public class ItemWitherDust extends ItemLibEx
         }
     }
 
-    private static boolean applyBoneMeal(ItemStack stack, World world, BlockPos pos, EntityPlayer player, EnumHand hand)
+    private static boolean apply(ItemStack stack, World world, BlockPos pos, EntityPlayer player, EnumHand hand)
     {
         IBlockState state = world.getBlockState(pos);
-
         int hook = ForgeEventFactory.onApplyBonemeal(player, world, pos, state, stack, hand);
 
         if(hook != 0)

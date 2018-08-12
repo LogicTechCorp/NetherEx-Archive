@@ -19,7 +19,12 @@ package nex.item;
 
 import lex.item.ItemLibEx;
 import lex.util.BlockHelper;
+import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.BlockTNT;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Bootstrap;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -38,6 +43,39 @@ public class ItemRimeAndSteel extends ItemLibEx
         super(NetherEx.instance, "rime_and_steel");
         setMaxStackSize(1);
         setMaxDamage(64);
+
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new Bootstrap.BehaviorDispenseOptional()
+        {
+            @Override
+            protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
+            {
+                successful = true;
+
+                World world = source.getWorld();
+                BlockPos pos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
+
+                if(world.isAirBlock(pos))
+                {
+                    world.setBlockState(pos, NetherExBlocks.BLUE_FIRE.getDefaultState());
+
+                    if(stack.attemptDamageItem(1, world.rand, null))
+                    {
+                        stack.setCount(0);
+                    }
+                }
+                else if(world.getBlockState(pos).getBlock() == Blocks.TNT)
+                {
+                    Blocks.TNT.onPlayerDestroy(world, pos, Blocks.TNT.getDefaultState().withProperty(BlockTNT.EXPLODE, true));
+                    world.setBlockToAir(pos);
+                }
+                else
+                {
+                    successful = false;
+                }
+
+                return stack;
+            }
+        });
     }
 
     @Override
