@@ -153,6 +153,7 @@ public class ConfigHandler
 
         public class Nether
         {
+            @Config.RequiresMcRestart
             @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension.nether.overrideNether")
             public boolean overrideNether = true;
 
