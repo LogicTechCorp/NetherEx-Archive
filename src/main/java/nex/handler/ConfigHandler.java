@@ -363,7 +363,7 @@ public class ConfigHandler
         public Brute brute = new Brute();
 
         @Config.Name("ghast")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghast")
         public Ghast ghast = new Ghast();
 
         @Config.Name("ghast_queen")
