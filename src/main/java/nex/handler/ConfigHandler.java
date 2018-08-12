@@ -499,7 +499,7 @@ public class ConfigHandler
             @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.witherSkeleton.boneDropRarity")
             @Config.Comment({"The lower the number, the more common it is for a Bone to drop", "The higher the number, the rarer it is for a Bone drop", "If set to 0, Bones do not drop"})
             @Config.RangeInt(min = 0)
-            public int boneDropRarity = 12;
+            public int boneDropRarity = 4;
         }
     }
 
