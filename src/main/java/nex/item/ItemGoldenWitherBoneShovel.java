@@ -50,7 +50,7 @@ public class ItemGoldenWitherBoneShovel extends ItemShovelLibEx
             compound.setBoolean("Nether", false);
         }
 
-        NBTHelper.setTag(stack, compound);
+        NBTHelper.setTagCompound(stack, compound);
     }
 
     @Override

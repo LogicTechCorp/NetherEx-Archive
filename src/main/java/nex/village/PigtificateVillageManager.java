@@ -19,26 +19,58 @@ package nex.village;
 
 import net.minecraft.world.World;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PigtificateVillageManager
 {
-    public static PigtificateVillageCollection getNetherVillages(World world, boolean create)
-    {
-        String worldFile = PigtificateVillageCollection.fileNameForProvider(world.provider);
-        PigtificateVillageCollection pigtificateVillageCollection = (PigtificateVillageCollection) world.getPerWorldStorage().getOrLoadData(PigtificateVillageCollection.class, worldFile);
+    private static final Map<Integer, PigtificateVillageData> PIGTIFICATE_VILLAGE_DATA = new HashMap<>();
 
-        if(create)
+    public static void loadVillageData(World world)
+    {
+        if(!hasData(world))
         {
-            if(pigtificateVillageCollection == null)
+            getVillageData(world, false);
+        }
+    }
+
+    public static void unloadVillageData(World world)
+    {
+        PIGTIFICATE_VILLAGE_DATA.remove(world.provider.getDimension());
+    }
+
+    public static boolean hasData(World world)
+    {
+        return PIGTIFICATE_VILLAGE_DATA.containsKey(world.provider.getDimension());
+    }
+
+    public static PigtificateVillageData getVillageData(World world, boolean createData)
+    {
+        PigtificateVillageData data;
+        int dimensionId = world.provider.getDimension();
+
+        if(hasData(world))
+        {
+            data = PIGTIFICATE_VILLAGE_DATA.get(dimensionId);
+        }
+        else
+        {
+            String worldFile = PigtificateVillageData.getFileName(world);
+            data = (PigtificateVillageData) world.getPerWorldStorage().getOrLoadData(PigtificateVillageData.class, worldFile);
+
+            if(data == null && createData)
             {
-                pigtificateVillageCollection = new PigtificateVillageCollection(world);
-                world.getPerWorldStorage().setData(worldFile, pigtificateVillageCollection);
-            }
-            else
-            {
-                pigtificateVillageCollection.setWorldsForAll(world);
+                data = new PigtificateVillageData(world);
+                world.getPerWorldStorage().setData(worldFile, data);
             }
         }
 
-        return pigtificateVillageCollection;
+        if(data != null)
+        {
+            data.setWorld(world);
+            PIGTIFICATE_VILLAGE_DATA.put(dimensionId, data);
+        }
+
+        return data;
     }
 }

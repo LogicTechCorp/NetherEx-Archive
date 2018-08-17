@@ -17,16 +17,33 @@
 
 package nex.proxy;
 
+import lex.proxy.IProxy;
+import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.world.World;
-import nex.init.NetherExParticleTypes;
 
-public interface IProxy
+public class ServerProxy implements IProxy
 {
-    void preInit();
+    @Override
+    public void preInit()
+    {
 
-    void init();
+    }
 
-    void postInit();
+    @Override
+    public void init()
+    {
 
-    void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, NetherExParticleTypes type);
+    }
+
+    @Override
+    public void postInit()
+    {
+
+    }
+
+    @Override
+    public void spawnParticle(World world, IParticleFactory factory, double posX, double posY, double posZ, double speedX, double speedY, double speedZ)
+    {
+
+    }
 }

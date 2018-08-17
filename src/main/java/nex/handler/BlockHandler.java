@@ -123,7 +123,7 @@ public class BlockHandler
             {
                 boolean canSpawnNethermites = CollectionHelper.contains(ConfigHandler.entityConfig.nethermite.blockWhitelist, state.getBlock().getRegistryName().toString());
 
-                if(canSpawnNethermites && ConfigHandler.entityConfig.nethermite.spawnRarity > 0 && world.rand.nextInt(ConfigHandler.entityConfig.nethermite.spawnRarity) == 0)
+                if(ConfigHandler.entityConfig.nethermite.spawnRarity > 0 && canSpawnNethermites && world.rand.nextInt(ConfigHandler.entityConfig.nethermite.spawnRarity) == 0)
                 {
                     EntityNethermite nethermite = new EntityNethermite(world);
                     nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);

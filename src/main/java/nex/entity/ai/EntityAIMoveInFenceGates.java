@@ -56,7 +56,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
             }
             else
             {
-                PigtificateVillage village = PigtificateVillageManager.getNetherVillages(creature.getEntityWorld(), true).getNearestVillage(blockpos, 14);
+                PigtificateVillage village = PigtificateVillageManager.getVillageData(creature.getEntityWorld(), true).getNearestVillage(blockpos, 14);
 
                 if(village == null)
                 {

@@ -17,9 +17,6 @@
 
 package nex.world;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -45,10 +42,7 @@ import nex.init.NetherExEffects;
 import nex.init.NetherExParticleTypes;
 import nex.init.NetherExSoundEvents;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class ExplosionSpore extends Explosion
 {
@@ -85,8 +79,8 @@ public class ExplosionSpore extends Explosion
         isSmoking = smoking;
 
         explosionRNG = new Random(world.getSeed());
-        affectedBlockPositions = Lists.newArrayList();
-        playerKnockbackMap = Maps.newHashMap();
+        affectedBlockPositions = new ArrayList<>();
+        playerKnockbackMap = new HashMap<>();
         position = new Vec3d(explosionX, explosionY, explosionZ);
     }
 
@@ -95,7 +89,7 @@ public class ExplosionSpore extends Explosion
     {
         if(!world.isRemote)
         {
-            Set<BlockPos> set = Sets.newHashSet();
+            Set<BlockPos> set = new HashSet<>();
 
             for(int x = 0; x < 16; x++)
             {
@@ -218,11 +212,11 @@ public class ExplosionSpore extends Explosion
 
         if(explosionSize >= 2.0F && isSmoking)
         {
-            NetherEx.proxy.spawnParticle(world, explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D, NetherExParticleTypes.SPORE_EXPLOSION_HUGE);
+            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_HUGE.getFactory(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
         }
         else
         {
-            NetherEx.proxy.spawnParticle(world, explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D, NetherExParticleTypes.SPORE_EXPLOSION_LARGE);
+            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.getFactory(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
         }
 
         if(!world.isRemote)

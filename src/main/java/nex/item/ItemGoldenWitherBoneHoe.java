@@ -59,7 +59,7 @@ public class ItemGoldenWitherBoneHoe extends ItemHoeLibEx
             compound.setBoolean("Nether", false);
         }
 
-        NBTHelper.setTag(stack, compound);
+        NBTHelper.setTagCompound(stack, compound);
     }
 
     @Override

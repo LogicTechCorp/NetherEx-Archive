@@ -43,10 +43,12 @@ public class ItemSalamanderHideArmor extends ItemArmorLibEx
     {
         if(isInCreativeTab(tab))
         {
+            ItemStack stack = new ItemStack(this);
             NBTTagCompound compound = new NBTTagCompound();
             compound.setBoolean("Variant", true);
+            NBTHelper.setTagCompound(new ItemStack(this), compound);
             list.add(new ItemStack(this));
-            list.add(NBTHelper.setTag(new ItemStack(this), compound));
+            list.add(stack);
         }
     }
 

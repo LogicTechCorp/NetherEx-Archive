@@ -52,7 +52,7 @@ public class PigtificateVillageFenceGateInfo
         return (int) fenceGatePos.distanceSq((double) x, (double) y, (double) z);
     }
 
-    public int getDistanceToFenceGateBlockSq(BlockPos pos)
+    public int getDistanceToFenceGateSq(BlockPos pos)
     {
         return (int) pos.distanceSq(getFenceGatePos());
     }

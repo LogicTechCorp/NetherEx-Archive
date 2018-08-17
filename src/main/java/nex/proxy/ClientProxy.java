@@ -17,7 +17,9 @@
 
 package nex.proxy;
 
+import lex.proxy.IProxy;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -35,11 +37,10 @@ import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
 import nex.entity.projectile.EntityGhastQueenFireball;
 import nex.entity.projectile.EntityGhastlingFireball;
-import nex.init.NetherExParticleTypes;
 import nex.tileentity.TileEntityUrnOfSorrow;
 
 @SideOnly(Side.CLIENT)
-public class CombinedClientProxy implements IProxy
+public class ClientProxy implements IProxy
 {
     @Override
     public void preInit()
@@ -79,8 +80,8 @@ public class CombinedClientProxy implements IProxy
     }
 
     @Override
-    public void spawnParticle(World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, NetherExParticleTypes type)
+    public void spawnParticle(World world, IParticleFactory factory, double posX, double posY, double posZ, double speedX, double speedY, double speedZ)
     {
-        Minecraft.getMinecraft().effectRenderer.addEffect(NetherExParticleTypes.get(type).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
+        Minecraft.getMinecraft().effectRenderer.addEffect(factory.createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
     }
 }

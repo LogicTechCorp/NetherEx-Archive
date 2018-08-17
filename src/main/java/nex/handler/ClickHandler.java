@@ -141,7 +141,7 @@ public class ClickHandler
 
         if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_HAMMER)
         {
-            BlockHelper.mine3x3(world, player.getActiveItemStack(), originalPos, player);
+            BlockHelper.mine3x3(world, player.getHeldItemMainhand(), originalPos, player);
         }
     }
 
@@ -153,7 +153,7 @@ public class ClickHandler
         IBlockState state = event.getBlock();
         EntityPlayer player = event.getEntityPlayer();
 
-        if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() == NetherExItems.WITHER_DUST)
+        if(player.getHeldItemMainhand().getItem() == NetherExItems.WITHER_DUST)
         {
             if(state.getBlock() == Blocks.NETHER_WART)
             {

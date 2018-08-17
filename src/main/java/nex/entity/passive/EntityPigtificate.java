@@ -212,9 +212,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(randomTickDivider-- <= 0)
         {
             BlockPos blockpos = new BlockPos(this);
-            PigtificateVillageManager.getNetherVillages(getWorld(), true).addPigtificate(blockpos);
+            PigtificateVillageManager.getVillageData(getWorld(), true).addPigtificate(blockpos);
             randomTickDivider = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getNetherVillages(getWorld(), true).getNearestVillage(blockpos, 32);
+            village = PigtificateVillageManager.getVillageData(getWorld(), true).getNearestVillage(blockpos, 32);
 
             if(village == null)
             {

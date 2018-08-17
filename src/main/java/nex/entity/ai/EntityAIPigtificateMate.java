@@ -56,7 +56,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            village = PigtificateVillageManager.getNetherVillages(world, true).getNearestVillage(new BlockPos(pigtificate), 0);
+            village = PigtificateVillageManager.getVillageData(world, true).getNearestVillage(new BlockPos(pigtificate), 0);
 
             if(village == null)
             {

@@ -17,36 +17,56 @@
 
 package nex.handler;
 
+import net.minecraft.world.World;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import nex.NetherEx;
-import nex.village.PigtificateVillage;
-import nex.village.PigtificateVillageCollection;
+import nex.village.PigtificateVillageData;
 import nex.village.PigtificateVillageManager;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class WorldHandler
 {
     @SubscribeEvent
+    public static void onWorldLoad(WorldEvent.Load event)
+    {
+        World world = event.getWorld();
+
+        if(!world.isRemote)
+        {
+            PigtificateVillageManager.loadVillageData(world);
+        }
+    }
+
+    @SubscribeEvent
     public static void onWorldTick(TickEvent.WorldTickEvent event)
     {
         if(event.phase == TickEvent.Phase.START)
         {
-            PigtificateVillageCollection villageCollection = PigtificateVillageManager.getNetherVillages(event.world, false);
+            World world = event.world;
 
-            if(villageCollection != null)
+            if(!world.isRemote)
             {
-                for(PigtificateVillage village : villageCollection.getVillageList())
-                {
-                    if(village.getWorld() == null)
-                    {
-                        village.setWorld(event.world);
-                    }
-                }
+                PigtificateVillageData data = PigtificateVillageManager.getVillageData(world, false);
 
-                villageCollection.tick();
+                if(data != null)
+                {
+                    data.tick();
+                }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onWorldUnload(WorldEvent.Unload event)
+    {
+        World world = event.getWorld();
+
+        if(!world.isRemote)
+        {
+            PigtificateVillageManager.unloadVillageData(world);
         }
     }
 }

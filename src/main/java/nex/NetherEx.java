@@ -18,6 +18,7 @@
 package nex;
 
 import lex.IModData;
+import lex.proxy.IProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -29,7 +30,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
 import nex.init.*;
-import nex.proxy.IProxy;
 import nex.village.PigtificateTradeManager;
 import nex.world.biome.NetherExBiomeManager;
 import org.apache.logging.log4j.LogManager;
@@ -42,8 +42,8 @@ public class NetherEx implements IModData
     public static final String NAME = "NetherEx";
     public static final String VERSION = "2.0.6";
     public static final String DEPENDENCIES = "required-after:lex@[1.0.6,);";
-    private static final String CLIENT_PROXY = "nex.proxy.CombinedClientProxy";
-    private static final String SERVER_PROXY = "nex.proxy.DedicatedServerProxy";
+    private static final String CLIENT_PROXY = "nex.proxy.ClientProxy";
+    private static final String SERVER_PROXY = "nex.proxy.ServerProxy";
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;

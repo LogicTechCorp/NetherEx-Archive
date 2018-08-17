@@ -17,7 +17,6 @@
 
 package nex.entity.item;
 
-import com.google.common.collect.Lists;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -42,6 +41,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.init.NetherExItems;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("ConstantConditions,unchecked")
@@ -482,7 +482,7 @@ public class EntityObsidianBoat extends EntityBoat
         int minZ = MathHelper.floor(boundingBox.minZ) - 1;
         int maxZ = MathHelper.ceil(boundingBox.maxZ) + 1;
 
-        List<AxisAlignedBB> list = Lists.newArrayList();
+        List<AxisAlignedBB> list = new ArrayList<>();
 
         float slipperiness = 0.0F;
         int friction = 0;

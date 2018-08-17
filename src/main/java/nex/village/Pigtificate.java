@@ -19,8 +19,6 @@ package nex.village;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import lex.util.WeightedHelper;
 import lex.village.Trade;
 import net.minecraft.util.ResourceLocation;
@@ -28,10 +26,7 @@ import net.minecraft.util.WeightedRandom;
 import nex.init.NetherExLootTables;
 import nex.init.NetherExTextures;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Pigtificate
 {
@@ -50,7 +45,7 @@ public class Pigtificate
             }
             else
             {
-                List<Profession> types = Lists.newArrayList();
+                List<Profession> types = new ArrayList<>();
                 Collections.addAll(types, values());
                 types.remove(LEADER);
                 return types.get(rand.nextInt(types.size()));
@@ -96,7 +91,7 @@ public class Pigtificate
         private int weight;
         private ResourceLocation texture;
         private ResourceLocation lootTable;
-        private final Map<Integer, List<Trade>> trades = Maps.newHashMap();
+        private final Map<Integer, List<Trade>> trades = new HashMap<>();
 
         Career(Profession professionIn, int weightIn, ResourceLocation textureIn, ResourceLocation lootTableIn)
         {
@@ -108,7 +103,7 @@ public class Pigtificate
 
         public void addTrade(Trade trade)
         {
-            trades.computeIfAbsent(trade.getTradeLevel(), k -> Lists.newArrayList()).add(trade);
+            trades.computeIfAbsent(trade.getTradeLevel(), k -> new ArrayList<>()).add(trade);
         }
 
         public void removeAllTrades()
@@ -140,7 +135,7 @@ public class Pigtificate
 
         public static Career getRandomCareer(Profession profession, Random rand)
         {
-            List<WeightedHelper.NamedItem> careers = Lists.newArrayList();
+            List<WeightedHelper.NamedItem> careers = new ArrayList<>();
 
             for(Pigtificate.Career career : Pigtificate.Career.values())
             {
