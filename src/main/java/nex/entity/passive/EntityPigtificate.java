@@ -18,13 +18,16 @@
 package nex.entity.passive;
 
 import lex.village.Trade;
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.InventoryBasic;
@@ -35,7 +38,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.pathfinding.*;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -43,6 +46,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -64,10 +68,10 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private int profession;
     private int careerLevel;
-
     private int randomTickDivider;
+    private int timeUntilRestock;
 
-    PigtificateVillage village;
+    private PigtificateVillage village;
 
     private boolean needsInitialization;
     private boolean willingToMate;
@@ -76,10 +80,8 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     private boolean additionalTasksSet;
     private boolean lookingForHome;
 
-    private int timeUntilRestock;
-
     private EntityPlayer customer;
-    private MerchantRecipeList tradeList;
+    private MerchantRecipeList trades;
     private UUID lastCustomer;
 
     private final InventoryBasic inventory;
@@ -89,10 +91,10 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         super(world);
         inventory = new InventoryBasic("Items", false, 8);
         isImmuneToFire = true;
-        ((PathNavigateGround) getNavigator()).setBreakDoors(true);
         setCanPickUpLoot(true);
         setSize(0.6F, 1.95F);
         setRandomProfession();
+        setRandomCareer();
     }
 
     public EntityPigtificate(World world, Pigtificate.Career career)
@@ -100,7 +102,6 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         super(world);
         inventory = new InventoryBasic("Items", false, 8);
         isImmuneToFire = true;
-        ((PathNavigateGround) getNavigator()).setBreakDoors(true);
         setCanPickUpLoot(true);
         setSize(0.6F, 1.95F);
         setProfession(career.getProfession().ordinal());
@@ -211,10 +212,10 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     {
         if(randomTickDivider-- <= 0)
         {
-            BlockPos blockpos = new BlockPos(this);
-            PigtificateVillageManager.getVillageData(getWorld(), true).addPigtificate(blockpos);
+            BlockPos blockPos = new BlockPos(this);
+            PigtificateVillageManager.getVillageData(world, true).addPigtificate(blockPos);
             randomTickDivider = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getVillageData(getWorld(), true).getNearestVillage(blockpos, 32);
+            village = PigtificateVillageManager.getVillageData(world, true).getNearestVillage(blockPos, 32);
 
             if(village == null)
             {
@@ -241,11 +242,11 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             {
                 if(needsInitialization)
                 {
-                    for(MerchantRecipe merchantrecipe : tradeList)
+                    for(MerchantRecipe trade : trades)
                     {
-                        if(merchantrecipe.isRecipeDisabled())
+                        if(trade.isRecipeDisabled())
                         {
-                            merchantrecipe.increaseMaxTradeUses(rand.nextInt(6) + rand.nextInt(6) + 2);
+                            trade.increaseMaxTradeUses(rand.nextInt(6) + rand.nextInt(6) + 2);
                         }
                     }
 
@@ -267,22 +268,21 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
-    protected void updateEquipmentIfNeeded(EntityItem itemEntity)
+    protected void updateEquipmentIfNeeded(EntityItem item)
     {
-        ItemStack stack = itemEntity.getItem();
-        Item item = stack.getItem();
+        ItemStack stack = item.getItem();
 
-        if(canPickupItem(item))
+        if(canPickupItem(stack.getItem()))
         {
-            ItemStack stack1 = inventory.addItem(stack);
+            ItemStack modifiedStack = inventory.addItem(stack);
 
-            if(stack1.isEmpty())
+            if(modifiedStack.isEmpty())
             {
-                itemEntity.setDead();
+                item.setDead();
             }
             else
             {
-                stack.setCount(stack1.getCount());
+                stack.setCount(modifiedStack.getCount());
             }
         }
     }
@@ -291,14 +291,14 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("Profession", getProfession());
+        compound.setInteger("Profession", profession);
         compound.setInteger("Career", getCareer());
-        compound.setInteger("CareerLevel", getCareerLevel());
+        compound.setInteger("CareerLevel", careerLevel);
         compound.setBoolean("Willing", willingToMate);
 
-        if(tradeList != null)
+        if(trades != null)
         {
-            compound.setTag("Trades", tradeList.getRecipiesAsTags());
+            compound.setTag("Trades", trades.getRecipiesAsTags());
         }
 
         NBTTagList list = new NBTTagList();
@@ -328,7 +328,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         if(compound.hasKey("Trades", 10))
         {
             NBTTagCompound trades = compound.getCompoundTag("Trades");
-            tradeList = new MerchantRecipeList(trades);
+            this.trades = new MerchantRecipeList(trades);
         }
 
         NBTTagList list = compound.getTagList("Inventory", 10);
@@ -347,6 +347,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
+    protected PathNavigate createNavigator(World world)
+    {
+        return new PathNavigatePigtificate(this, world);
+    }
+
+    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack stack = player.getHeldItem(hand);
@@ -358,17 +364,17 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         }
         else if(!holdingSpawnEggOfClass(stack, getClass()) && isEntityAlive() && !isTrading() && !isChild())
         {
-            if(tradeList == null)
+            if(trades == null)
             {
                 populateTradeList();
             }
 
-            if(!world.isRemote && !tradeList.isEmpty())
+            if(!world.isRemote && !trades.isEmpty())
             {
                 setCustomer(player);
                 player.displayVillagerTradeGui(this);
             }
-            else if(tradeList.isEmpty())
+            else if(trades.isEmpty())
             {
                 return super.processInteract(player, hand);
             }
@@ -395,15 +401,15 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
-    public void setRevengeTarget(EntityLivingBase livingBase)
+    public void setRevengeTarget(EntityLivingBase entity)
     {
-        super.setRevengeTarget(livingBase);
+        super.setRevengeTarget(entity);
 
-        if(village != null && livingBase != null)
+        if(village != null && entity != null)
         {
-            village.setAggressor(livingBase);
+            village.setAggressor(entity);
 
-            if(livingBase instanceof EntityPlayer)
+            if(entity instanceof EntityPlayer)
             {
                 int i = -1;
 
@@ -412,7 +418,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
                     i = -3;
                 }
 
-                village.modifyPlayerReputation(livingBase.getUniqueID(), i);
+                village.modifyPlayerReputation(entity.getUniqueID(), i);
 
                 if(isEntityAlive())
                 {
@@ -423,11 +429,11 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
-    public void onDeath(DamageSource cause)
+    public void onDeath(DamageSource source)
     {
         if(village != null)
         {
-            Entity entity = cause.getTrueSource();
+            Entity entity = source.getTrueSource();
 
             if(entity != null)
             {
@@ -451,7 +457,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             }
         }
 
-        super.onDeath(cause);
+        super.onDeath(source);
     }
 
     @Override
@@ -467,15 +473,15 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     }
 
     @Override
-    public boolean replaceItemInInventory(int inventorySlot, ItemStack stack)
+    public boolean replaceItemInInventory(int slot, ItemStack stack)
     {
-        if(super.replaceItemInInventory(inventorySlot, stack))
+        if(super.replaceItemInInventory(slot, stack))
         {
             return true;
         }
         else
         {
-            int i = inventorySlot - 300;
+            int i = slot - 300;
 
             if(i >= 0 && i < inventory.getSizeInventory())
             {
@@ -524,12 +530,12 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     @Override
     public MerchantRecipeList getRecipes(EntityPlayer player)
     {
-        if(tradeList == null)
+        if(trades == null)
         {
             populateTradeList();
         }
 
-        return tradeList;
+        return trades;
     }
 
     @Override
@@ -589,36 +595,36 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     private void populateTradeList()
     {
-        if(getCareerLevel() != 0)
+        if(careerLevel != 0)
         {
-            setCareerLevel(getCareerLevel() + 1);
+            setCareerLevel(careerLevel + 1);
         }
         else
         {
             setCareerLevel(1);
         }
 
-        if(tradeList == null)
+        if(trades == null)
         {
-            tradeList = new MerchantRecipeList();
+            trades = new MerchantRecipeList();
         }
 
-        List<Trade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTrades().get(getCareerLevel());
+        List<Trade> trades = Pigtificate.Career.getFromIndex(getCareer()).getTrades().get(careerLevel);
 
         if(trades != null && trades.size() > 0)
         {
             Collections.shuffle(trades, rand);
 
-            if(getCareerLevel() == 1 && trades.size() > 1)
+            if(careerLevel == 1 && trades.size() > 1)
             {
                 for(Trade trade : trades.subList(0, 2))
                 {
-                    tradeList.add(trade.randomize());
+                    this.trades.add(trade.randomize());
                 }
             }
             else
             {
-                tradeList.add(trades.get(0).randomize());
+                this.trades.add(trades.get(0).randomize());
             }
         }
     }
@@ -633,9 +639,9 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         return mating;
     }
 
-    private boolean canPickupItem(Item itemIn)
+    private boolean canPickupItem(Item item)
     {
-        return itemIn == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) || itemIn == NetherExItems.ENOKI_MUSHROOM;
+        return item == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) || item == NetherExItems.ENOKI_MUSHROOM;
     }
 
     private boolean hasEnoughItems(int multiplier)
@@ -663,23 +669,13 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
 
     public boolean wantsMoreFood()
     {
-        boolean flag = getProfession() == 0;
-        return flag ? !hasEnoughItems(5) : !hasEnoughItems(1);
-    }
-
-    public int getProfession()
-    {
-        return profession;
+        boolean wantsMore = profession == 0;
+        return wantsMore ? !hasEnoughItems(5) : !hasEnoughItems(1);
     }
 
     public int getCareer()
     {
         return dataManager.get(CAREER);
-    }
-
-    public int getCareerLevel()
-    {
-        return careerLevel;
     }
 
     public boolean getWillingToMate(boolean updateFirst)
@@ -731,12 +727,11 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
     protected void setRandomProfession()
     {
         setProfession(Pigtificate.Profession.getRandom(rand, false).ordinal());
-        setRandomCareer();
     }
 
     protected void setRandomCareer()
     {
-        setCareer(Pigtificate.Career.getRandomCareer(Pigtificate.Profession.getFromIndex(getProfession()), rand).ordinal());
+        setCareer(Pigtificate.Career.getRandom(Pigtificate.Profession.getFromIndex(profession), rand).ordinal());
     }
 
     public void setProfession(int i)
@@ -786,18 +781,109 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
         }
     }
 
-    public void setWillingToMate(boolean willingToMateIn)
+    public void setWillingToMate(boolean willingToMate)
     {
-        willingToMate = willingToMateIn;
+        this.willingToMate = willingToMate;
     }
 
-    public void setMating(boolean matingIn)
+    public void setMating(boolean mating)
     {
-        mating = matingIn;
+        this.mating = mating;
     }
 
-    public void setPlaying(boolean playingIn)
+    public void setPlaying(boolean playing)
     {
-        playing = playingIn;
+        this.playing = playing;
+    }
+
+    private class PathNavigatePigtificate extends PathNavigateGround
+    {
+        private PathNavigatePigtificate(EntityLiving entity, World world)
+        {
+            super(entity, world);
+        }
+
+        @Override
+        protected PathFinder getPathFinder()
+        {
+            nodeProcessor = new NodeProcessorPigtificate();
+            nodeProcessor.setCanOpenDoors(true);
+            nodeProcessor.setCanEnterDoors(true);
+            return new PathFinder(nodeProcessor);
+        }
+
+        private class NodeProcessorPigtificate extends WalkNodeProcessor
+        {
+            @Override
+            protected PathNodeType getPathNodeTypeRaw(IBlockAccess world, int posX, int posY, int posZ)
+            {
+                BlockPos pos = new BlockPos(posX, posY, posZ);
+                IBlockState state = world.getBlockState(pos);
+                Block block = state.getBlock();
+                Material material = state.getMaterial();
+
+                PathNodeType type = block.getAiPathNodeType(state, world, pos);
+
+                if(type != null)
+                {
+                    return type;
+                }
+
+                if(material == Material.AIR)
+                {
+                    return PathNodeType.OPEN;
+                }
+                else if (block != Blocks.TRAPDOOR && block != Blocks.IRON_TRAPDOOR && block != Blocks.WATERLILY)
+                {
+                    if (block == Blocks.FIRE)
+                    {
+                        return PathNodeType.DAMAGE_FIRE;
+                    }
+                    else if (block == Blocks.CACTUS)
+                    {
+                        return PathNodeType.DAMAGE_CACTUS;
+                    }
+                    else if (block instanceof BlockDoor && material == Material.WOOD && !state.getValue(BlockDoor.OPEN) || block instanceof BlockFenceGate && !state.getValue(BlockFenceGate.OPEN))
+                    {
+                        return PathNodeType.DOOR_WOOD_CLOSED;
+                    }
+                    else if (block instanceof BlockDoor && material == Material.IRON && !state.getValue(BlockDoor.OPEN))
+                    {
+                        return PathNodeType.DOOR_IRON_CLOSED;
+                    }
+                    else if (block instanceof BlockDoor && state.getValue(BlockDoor.OPEN) || block instanceof BlockFenceGate && state.getValue(BlockFenceGate.OPEN))
+                    {
+                        return PathNodeType.DOOR_OPEN;
+                    }
+                    else if (block instanceof BlockRailBase)
+                    {
+                        return PathNodeType.RAIL;
+                    }
+                    else if (!(block instanceof BlockFence) && !(block instanceof BlockWall))
+                    {
+                        if (material == Material.WATER)
+                        {
+                            return PathNodeType.WATER;
+                        }
+                        else if (material == Material.LAVA)
+                        {
+                            return PathNodeType.LAVA;
+                        }
+                        else
+                        {
+                            return block.isPassable(world, pos) ? PathNodeType.OPEN : PathNodeType.BLOCKED;
+                        }
+                    }
+                    else
+                    {
+                        return PathNodeType.FENCE;
+                    }
+                }
+                else
+                {
+                    return PathNodeType.TRAPDOOR;
+                }
+            }
+        }
     }
 }

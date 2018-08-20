@@ -57,8 +57,8 @@ public class EntityGhastQueen extends EntityGhast
     public EntityGhastQueen(World world)
     {
         super(world);
-        setSize(9.5F, 9.5F);
         experienceValue = 100;
+        setSize(9.5F, 9.5F);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class EntityGhastQueen extends EntityGhast
     }
 
     @Override
-    public void onDeath(DamageSource cause)
+    public void onDeath(DamageSource source)
     {
         if(urnPos != null)
         {
@@ -158,7 +158,7 @@ public class EntityGhastQueen extends EntityGhast
             world.setBlockState(urnPos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
         }
 
-        super.onDeath(cause);
+        super.onDeath(source);
     }
 
     @Override

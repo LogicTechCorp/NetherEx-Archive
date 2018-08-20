@@ -18,14 +18,15 @@
 package nex.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.world.World;
 import nex.entity.neutral.EntityGoldGolem;
 import nex.entity.passive.EntityPigtificate;
 
 public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
 {
     private final EntityGoldGolem golem;
-    private EntityPigtificate thePigtificate;
-    private int lookTime;
+    private EntityPigtificate pigtificate;
+    private int lookCounter;
 
     public EntityAIGoldGolemLookAtPigtificate(EntityGoldGolem golem)
     {
@@ -36,7 +37,9 @@ public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(!golem.world.isDaytime())
+        World world = golem.getEntityWorld();
+
+        if(!world.isDaytime())
         {
             return false;
         }
@@ -46,33 +49,33 @@ public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
         }
         else
         {
-            thePigtificate = (EntityPigtificate) golem.world.findNearestEntityWithinAABB(EntityPigtificate.class, golem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), golem);
-            return thePigtificate != null;
+            pigtificate = (EntityPigtificate) world.findNearestEntityWithinAABB(EntityPigtificate.class, golem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), golem);
+            return pigtificate != null;
         }
     }
 
     @Override
     public boolean shouldContinueExecuting()
     {
-        return lookTime > 0;
+        return lookCounter > 0;
     }
 
     @Override
     public void startExecuting()
     {
-        lookTime = 400;
+        lookCounter = 400;
     }
 
     @Override
     public void resetTask()
     {
-        thePigtificate = null;
+        pigtificate = null;
     }
 
     @Override
     public void updateTask()
     {
-        golem.getLookHelper().setLookPositionWithEntity(thePigtificate, 30.0F, 30.0F);
-        --lookTime;
+        golem.getLookHelper().setLookPositionWithEntity(pigtificate, 30.0F, 30.0F);
+        lookCounter--;
     }
 }

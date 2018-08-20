@@ -23,6 +23,7 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import nex.entity.passive.EntityPigtificate;
 import nex.init.NetherExBlocks;
 import nex.init.NetherExItems;
@@ -60,44 +61,45 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
 
         if(interactionDelay > 0)
         {
-            --interactionDelay;
+            interactionDelay--;
 
             if(interactionDelay == 0)
             {
-                InventoryBasic inventorybasic = pigtificate.getInventory();
+                InventoryBasic inventory = pigtificate.getInventory();
 
-                for(int i = 0; i < inventorybasic.getSizeInventory(); ++i)
+                for(int i = 0; i < inventory.getSizeInventory(); i++)
                 {
-                    ItemStack itemstack = inventorybasic.getStackInSlot(i);
-                    ItemStack itemstack1 = ItemStack.EMPTY;
+                    ItemStack stackInSlot = inventory.getStackInSlot(i);
+                    ItemStack stack = ItemStack.EMPTY;
 
-                    if(!itemstack.isEmpty())
+                    if(!stackInSlot.isEmpty())
                     {
-                        Item item = itemstack.getItem();
+                        Item item = stackInSlot.getItem();
 
-                        if((item == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && itemstack.getCount() > 7) || (item == NetherExItems.ENOKI_MUSHROOM && itemstack.getCount() > 63))
+                        if((item == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stackInSlot.getCount() > 7) || (item == NetherExItems.ENOKI_MUSHROOM && stackInSlot.getCount() > 63))
                         {
-                            int l = itemstack.getCount() / 2;
-                            itemstack.shrink(l);
-                            itemstack1 = new ItemStack(item, l, itemstack.getMetadata());
+                            int amount = stackInSlot.getCount() / 2;
+                            stackInSlot.shrink(amount);
+                            stack = new ItemStack(item, amount, stackInSlot.getMetadata());
                         }
-                        if(itemstack.isEmpty())
+                        if(stackInSlot.isEmpty())
                         {
-                            inventorybasic.setInventorySlotContents(i, ItemStack.EMPTY);
+                            inventory.setInventorySlotContents(i, ItemStack.EMPTY);
                         }
                     }
 
-                    if(!itemstack1.isEmpty())
+                    if(!stack.isEmpty())
                     {
-                        double d0 = pigtificate.posY - 0.30000001192092896D + (double) pigtificate.getEyeHeight();
-                        EntityItem entityitem = new EntityItem(pigtificate.world, pigtificate.posX, d0, pigtificate.posZ, itemstack1);
-                        float f1 = pigtificate.rotationYawHead;
-                        float f2 = pigtificate.rotationPitch;
-                        entityitem.motionX = (double) (-MathHelper.sin(f1 * 0.017453292F) * MathHelper.cos(f2 * 0.017453292F) * 0.3F);
-                        entityitem.motionZ = (double) (MathHelper.cos(f1 * 0.017453292F) * MathHelper.cos(f2 * 0.017453292F) * 0.3F);
-                        entityitem.motionY = (double) (-MathHelper.sin(f2 * 0.017453292F) * 0.3F + 0.1F);
-                        entityitem.setDefaultPickupDelay();
-                        pigtificate.world.spawnEntity(entityitem);
+                        World world = pigtificate.getEntityWorld();
+                        double height = pigtificate.posY - 0.30000001192092896D + (double) pigtificate.getEyeHeight();
+                        EntityItem item = new EntityItem(world, pigtificate.posX, height, pigtificate.posZ, stack);
+                        float yaw = pigtificate.rotationYawHead;
+                        float pitch = pigtificate.rotationPitch;
+                        item.motionX = (double) (-MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F);
+                        item.motionZ = (double) (MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F);
+                        item.motionY = (double) (-MathHelper.sin(pitch * 0.017453292F) * 0.3F + 0.1F);
+                        item.setDefaultPickupDelay();
+                        world.spawnEntity(item);
                         break;
                     }
                 }

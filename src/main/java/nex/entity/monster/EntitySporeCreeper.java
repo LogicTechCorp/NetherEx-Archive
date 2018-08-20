@@ -54,7 +54,7 @@ public class EntitySporeCreeper extends EntityMob
     private static final DataParameter<Integer> STATE = EntityDataManager.createKey(EntitySporeCreeper.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(EntitySporeCreeper.class, DataSerializers.BOOLEAN);
 
-    private int lastActiveTime;
+    private int lastIgnitionTime;
     private int timeSinceIgnited;
     private int fuseTime = 30;
     private int explosionRadius = 2;
@@ -62,9 +62,8 @@ public class EntitySporeCreeper extends EntityMob
     public EntitySporeCreeper(World world)
     {
         super(world);
-
-        setSize(0.6F, 1.7F);
         isImmuneToFire = true;
+        setSize(0.6F, 1.7F);
     }
 
     @Override
@@ -130,7 +129,6 @@ public class EntitySporeCreeper extends EntityMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-
         compound.setShort("Fuse", (short) fuseTime);
         compound.setByte("ExplosionRadius", (byte) explosionRadius);
         compound.setBoolean("ignited", hasIgnited());
@@ -162,7 +160,7 @@ public class EntitySporeCreeper extends EntityMob
     {
         if(isEntityAlive())
         {
-            lastActiveTime = timeSinceIgnited;
+            lastIgnitionTime = timeSinceIgnited;
 
             if(hasIgnited())
             {
@@ -221,7 +219,7 @@ public class EntitySporeCreeper extends EntityMob
     @SideOnly(Side.CLIENT)
     public float getFlashIntensity(float partialTicks)
     {
-        return ((float) lastActiveTime + (float) (timeSinceIgnited - lastActiveTime) * partialTicks) / (float) (fuseTime - 2);
+        return ((float) lastIgnitionTime + (float) (timeSinceIgnited - lastIgnitionTime) * partialTicks) / (float) (fuseTime - 2);
     }
 
     public int getCreeperState()
@@ -267,9 +265,9 @@ public class EntitySporeCreeper extends EntityMob
 
     private void spawnLingeringCloud()
     {
-        Collection<PotionEffect> collection = getActivePotionEffects();
+        Collection<PotionEffect> effects = getActivePotionEffects();
 
-        if(!collection.isEmpty())
+        if(!effects.isEmpty())
         {
             EntityAreaEffectCloud cloud = new EntityAreaEffectCloud(world, posX, posY, posZ);
             cloud.setRadius(2.5F);
@@ -278,7 +276,7 @@ public class EntitySporeCreeper extends EntityMob
             cloud.setDuration(cloud.getDuration() / 2);
             cloud.setRadiusPerTick(-cloud.getRadius() / (float) cloud.getDuration());
 
-            for(PotionEffect effect : collection)
+            for(PotionEffect effect : effects)
             {
                 cloud.addEffect(new PotionEffect(effect));
             }

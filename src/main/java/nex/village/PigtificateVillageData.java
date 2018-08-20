@@ -18,7 +18,6 @@
 package nex.village;
 
 import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -241,24 +240,13 @@ public class PigtificateVillageData extends WorldSavedData
     private EnumFacing getOutside(BlockPos fenceGatePos)
     {
         IBlockState fenceGateState = world.getBlockState(fenceGatePos);
-        IBlockState stairState = world.getBlockState(fenceGatePos.up(2));
 
-        if(fenceGateState.getBlock() instanceof BlockFenceGate && stairState.getBlock() instanceof BlockStairs)
+        if(fenceGateState.getBlock() instanceof BlockFenceGate)
         {
-            EnumFacing fenceGateFacing = fenceGateState.getValue(BlockFenceGate.FACING);
-            EnumFacing stairFacing = stairState.getValue(BlockStairs.FACING);
-
-            if(stairFacing == fenceGateFacing || stairFacing == fenceGateFacing.getOpposite())
-            {
-                return stairFacing;
-            }
-
-            return null;
+            return fenceGateState.getValue(BlockFenceGate.FACING).getOpposite();
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 
     @Override

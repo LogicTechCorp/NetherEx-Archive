@@ -44,9 +44,9 @@ public class EntitySalamander extends EntityMob
     public EntitySalamander(World world)
     {
         super(world);
+        isImmuneToFire = true;
         setSize(0.95F, 0.45F);
         setRandomType();
-        isImmuneToFire = true;
     }
 
     @Override
@@ -82,7 +82,6 @@ public class EntitySalamander extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.2D);

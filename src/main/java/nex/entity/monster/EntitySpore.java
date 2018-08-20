@@ -45,15 +45,13 @@ public class EntitySpore extends EntityMob
     public EntitySpore(World world)
     {
         super(world);
-
-        setRandomStage();
         isImmuneToFire = true;
+        setRandomStage();
     }
 
     public EntitySpore(World world, int stage)
     {
         this(world);
-
         setStage(stage);
     }
 

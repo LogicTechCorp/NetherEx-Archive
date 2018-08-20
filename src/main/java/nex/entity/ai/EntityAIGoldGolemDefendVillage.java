@@ -25,8 +25,8 @@ import nex.village.PigtificateVillage;
 
 public class EntityAIGoldGolemDefendVillage extends EntityAITarget
 {
-    EntityGoldGolem golem;
-    EntityLivingBase villageAgressorTarget;
+    private EntityGoldGolem golem;
+    private EntityLivingBase villageAggressor;
 
     public EntityAIGoldGolemDefendVillage(EntityGoldGolem golem)
     {
@@ -46,20 +46,20 @@ public class EntityAIGoldGolemDefendVillage extends EntityAITarget
         }
         else
         {
-            villageAgressorTarget = village.findNearestVillageAggressor(golem);
+            villageAggressor = village.findNearestVillageAggressor(golem);
 
-            if(villageAgressorTarget instanceof EntitySporeCreeper)
+            if(villageAggressor instanceof EntitySporeCreeper)
             {
                 return false;
             }
-            else if(isSuitableTarget(villageAgressorTarget, false))
+            else if(isSuitableTarget(villageAggressor, false))
             {
                 return true;
             }
             else if(taskOwner.getRNG().nextInt(20) == 0)
             {
-                villageAgressorTarget = village.getNearestTargetPlayer(golem);
-                return isSuitableTarget(villageAgressorTarget, false);
+                villageAggressor = village.getNearestTargetPlayer(golem);
+                return isSuitableTarget(villageAggressor, false);
             }
             else
             {
@@ -71,7 +71,7 @@ public class EntityAIGoldGolemDefendVillage extends EntityAITarget
     @Override
     public void startExecuting()
     {
-        golem.setAttackTarget(villageAgressorTarget);
+        golem.setAttackTarget(villageAggressor);
         super.startExecuting();
     }
 }

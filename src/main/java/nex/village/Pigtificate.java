@@ -93,12 +93,12 @@ public class Pigtificate
         private ResourceLocation lootTable;
         private final Map<Integer, List<Trade>> trades = new HashMap<>();
 
-        Career(Profession professionIn, int weightIn, ResourceLocation textureIn, ResourceLocation lootTableIn)
+        Career(Profession profession, int weight, ResourceLocation texture, ResourceLocation lootTable)
         {
-            profession = professionIn;
-            weight = weightIn;
-            texture = textureIn;
-            lootTable = lootTableIn;
+            this.profession = profession;
+            this.weight = weight;
+            this.texture = texture;
+            this.lootTable = lootTable;
         }
 
         public void addTrade(Trade trade)
@@ -133,7 +133,7 @@ public class Pigtificate
             return HUNTER;
         }
 
-        public static Career getRandomCareer(Profession profession, Random rand)
+        public static Career getRandom(Profession profession, Random rand)
         {
             List<WeightedHelper.NamedItem> careers = new ArrayList<>();
 

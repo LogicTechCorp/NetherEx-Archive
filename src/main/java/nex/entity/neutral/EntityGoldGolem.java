@@ -57,13 +57,13 @@ public class EntityGoldGolem extends EntityGolem
 
     private int homeCheckTimer;
     private int attackTimer;
-    private int holdFlowerTick;
+    private int flowerHeldCounter;
 
     public EntityGoldGolem(World world)
     {
         super(world);
-        setSize(1.4F, 3.0F);
         isImmuneToFire = true;
+        setSize(1.4F, 3.0F);
     }
 
     @Override
@@ -147,9 +147,9 @@ public class EntityGoldGolem extends EntityGolem
             attackTimer--;
         }
 
-        if(holdFlowerTick > 0)
+        if(flowerHeldCounter > 0)
         {
-            holdFlowerTick--;
+            flowerHeldCounter--;
         }
 
         if(motionX * motionX + motionZ * motionZ > 2.500000277905201E-7D && rand.nextInt(5) == 0)
@@ -187,20 +187,20 @@ public class EntityGoldGolem extends EntityGolem
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entityIn)
+    public boolean attackEntityAsMob(Entity entity)
     {
         attackTimer = 10;
         world.setEntityState(this, (byte) 4);
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (7 + rand.nextInt(15)));
+        boolean attack = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (7 + rand.nextInt(15)));
 
-        if(flag)
+        if(attack)
         {
-            entityIn.motionY += 0.4000000059604645D;
-            applyEnchantments(this, entityIn);
+            entity.motionY += 0.4000000059604645D;
+            applyEnchantments(this, entity);
         }
 
         playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
-        return flag;
+        return attack;
     }
 
     @Override
@@ -214,11 +214,11 @@ public class EntityGoldGolem extends EntityGolem
         }
         else if(id == 11)
         {
-            holdFlowerTick = 400;
+            flowerHeldCounter = 400;
         }
         else if(id == 34)
         {
-            holdFlowerTick = 0;
+            flowerHeldCounter = 0;
         }
         else
         {
@@ -241,12 +241,12 @@ public class EntityGoldGolem extends EntityGolem
     {
         if(holding)
         {
-            holdFlowerTick = 400;
+            flowerHeldCounter = 400;
             world.setEntityState(this, (byte) 11);
         }
         else
         {
-            holdFlowerTick = 0;
+            flowerHeldCounter = 0;
             world.setEntityState(this, (byte) 34);
         }
     }
@@ -275,9 +275,9 @@ public class EntityGoldGolem extends EntityGolem
         return NetherExLootTables.GOLD_GOLEM;
     }
 
-    public int getHoldFlowerTick()
+    public int getFlowerHeldCounter()
     {
-        return holdFlowerTick;
+        return flowerHeldCounter;
     }
 
     public boolean isPlayerCreated()

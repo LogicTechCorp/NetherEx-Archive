@@ -40,23 +40,23 @@ import nex.init.NetherExSoundEvents;
 
 public class EntityEmber extends EntityMob
 {
-    private int jumpTicks;
+    private int jumpCounter;
     private int jumpDuration;
-    private int currentMoveTypeDuration;
+    private int moveDuration;
     private boolean wasOnGround;
 
     public EntityEmber(World world)
     {
         super(world);
+        isImmuneToFire = true;
+        jumpHelper = new JumpHelper(this);
+        moveHelper = new MoveHelper(this);
         setSize(0.35F, 0.65F);
         setMovementSpeed(0.0D);
         setPathPriority(PathNodeType.WATER, -1.0F);
         setPathPriority(PathNodeType.LAVA, 1.0F);
         setPathPriority(PathNodeType.DANGER_FIRE, 1.0F);
         setPathPriority(PathNodeType.DAMAGE_FIRE, 1.0F);
-        isImmuneToFire = true;
-        jumpHelper = new JumpHelper(this);
-        moveHelper = new MoveHelper(this);
     }
 
     @Override
@@ -113,13 +113,13 @@ public class EntityEmber extends EntityMob
 
         world.spawnParticle(EnumParticleTypes.FLAME, posX + (rand.nextDouble() - 0.5D) * (double) width, posY + rand.nextDouble() * (double) height, posZ + (rand.nextDouble() - 0.5D) * (double) width, 0.0D, 0.0D, 0.0D);
 
-        if(jumpTicks != jumpDuration)
+        if(jumpCounter != jumpDuration)
         {
-            jumpTicks++;
+            jumpCounter++;
         }
         else if(jumpDuration != 0)
         {
-            jumpTicks = 0;
+            jumpCounter = 0;
             jumpDuration = 0;
             setJumping(false);
         }
@@ -133,9 +133,9 @@ public class EntityEmber extends EntityMob
             attackEntityFrom(DamageSource.DROWN, 1.0F);
         }
 
-        if(currentMoveTypeDuration > 0)
+        if(moveDuration > 0)
         {
-            currentMoveTypeDuration--;
+            moveDuration--;
         }
 
         if(onGround)
@@ -150,7 +150,7 @@ public class EntityEmber extends EntityMob
 
             if(!helper.getIsJumping())
             {
-                if(moveHelper.isUpdating() && currentMoveTypeDuration == 0)
+                if(moveHelper.isUpdating() && moveDuration == 0)
                 {
                     Path path = navigator.getPath();
                     Vec3d movePos = new Vec3d(moveHelper.getX(), moveHelper.getY(), moveHelper.getZ());
@@ -199,9 +199,9 @@ public class EntityEmber extends EntityMob
 
             if(path != null && path.getCurrentPathIndex() < path.getCurrentPathLength())
             {
-                Vec3d vec3d = path.getPosition(this);
+                Vec3d pos = path.getPosition(this);
 
-                if(vec3d.y > posY + 0.5D)
+                if(pos.y > posY + 0.5D)
                 {
                     return 0.5F;
                 }
@@ -219,13 +219,13 @@ public class EntityEmber extends EntityMob
     protected void jump()
     {
         super.jump();
-        double d0 = moveHelper.getSpeed();
+        double speed = moveHelper.getSpeed();
 
-        if(d0 > 0.0D)
+        if(speed > 0.0D)
         {
-            double d1 = motionX * motionX + motionZ * motionZ;
+            double motionSq = motionX * motionX + motionZ * motionZ;
 
-            if(d1 < 0.010000000000000002D)
+            if(motionSq < 0.010000000000000002D)
             {
                 moveRelative(0.0F, 0.0F, 1.0F, 0.1F);
             }
@@ -265,7 +265,7 @@ public class EntityEmber extends EntityMob
     {
         setJumping(true);
         jumpDuration = 10;
-        jumpTicks = 0;
+        jumpCounter = 0;
     }
 
     private void calculateRotationYaw(double x, double z)
@@ -287,11 +287,11 @@ public class EntityEmber extends EntityMob
     {
         if(moveHelper.getSpeed() < 2.2D)
         {
-            currentMoveTypeDuration = 10;
+            moveDuration = 10;
         }
         else
         {
-            currentMoveTypeDuration = 1;
+            moveDuration = 1;
         }
     }
 
@@ -339,24 +339,24 @@ public class EntityEmber extends EntityMob
 
     static class MoveHelper extends EntityMoveHelper
     {
-        private final EntityEmber theEntity;
-        private double nextJumpSpeed;
+        private final EntityEmber ember;
+        private double jumpSpeed;
 
         public MoveHelper(EntityEmber ember)
         {
             super(ember);
-            theEntity = ember;
+            this.ember = ember;
         }
 
         public void onUpdateMoveHelper()
         {
-            if(theEntity.onGround && !theEntity.isJumping && !((JumpHelper) theEntity.jumpHelper).getIsJumping())
+            if(ember.onGround && !ember.isJumping && !((JumpHelper) ember.jumpHelper).getIsJumping())
             {
-                theEntity.setMovementSpeed(0.0D);
+                ember.setMovementSpeed(0.0D);
             }
             else if(isUpdating())
             {
-                theEntity.setMovementSpeed(nextJumpSpeed);
+                ember.setMovementSpeed(jumpSpeed);
             }
 
             super.onUpdateMoveHelper();
@@ -364,7 +364,7 @@ public class EntityEmber extends EntityMob
 
         public void setMoveTo(double x, double y, double z, double speedIn)
         {
-            if(theEntity.isInWater())
+            if(ember.isInWater())
             {
                 speedIn = 1.5D;
             }
@@ -373,7 +373,7 @@ public class EntityEmber extends EntityMob
 
             if(speedIn > 0.0D)
             {
-                nextJumpSpeed = speedIn;
+                jumpSpeed = speedIn;
             }
         }
     }

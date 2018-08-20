@@ -44,9 +44,8 @@ public class EntitySpinout extends EntityMob
     public EntitySpinout(World world)
     {
         super(world);
-
-        setSize(0.55F, 1.95F);
         isImmuneToFire = true;
+        setSize(0.55F, 1.95F);
     }
 
     @Override

@@ -22,6 +22,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import nex.village.PigtificateVillage;
 import nex.village.PigtificateVillageFenceGateInfo;
 import nex.village.PigtificateVillageManager;
@@ -29,7 +30,7 @@ import nex.village.PigtificateVillageManager;
 public class EntityAIMoveInFenceGates extends EntityAIBase
 {
     private final EntityCreature creature;
-    private PigtificateVillageFenceGateInfo doorInfo;
+    private PigtificateVillageFenceGateInfo fenceGate;
     private int insidePosX = -1;
     private int insidePosZ = -1;
 
@@ -42,9 +43,10 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        BlockPos blockpos = new BlockPos(creature);
+        World world = creature.getEntityWorld();
+        BlockPos pos = new BlockPos(creature);
 
-        if((!creature.world.isDaytime() || creature.world.isRaining() && !creature.world.getBiome(blockpos).canRain()) && creature.world.provider.hasSkyLight())
+        if((!world.isDaytime() || world.isRaining() && !world.getBiome(pos).canRain()) && world.provider.hasSkyLight())
         {
             if(creature.getRNG().nextInt(50) != 0)
             {
@@ -56,7 +58,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
             }
             else
             {
-                PigtificateVillage village = PigtificateVillageManager.getVillageData(creature.getEntityWorld(), true).getNearestVillage(blockpos, 14);
+                PigtificateVillage village = PigtificateVillageManager.getVillageData(world, true).getNearestVillage(pos, 14);
 
                 if(village == null)
                 {
@@ -64,8 +66,8 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
                 }
                 else
                 {
-                    doorInfo = village.getFenceGateInfo(blockpos);
-                    return doorInfo != null;
+                    fenceGate = village.getFenceGateInfo(pos);
+                    return fenceGate != null;
                 }
             }
         }
@@ -85,31 +87,31 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     public void startExecuting()
     {
         insidePosX = -1;
-        BlockPos blockpos = doorInfo.getInsideBlockPos();
-        int i = blockpos.getX();
-        int j = blockpos.getY();
-        int k = blockpos.getZ();
+        BlockPos pos = fenceGate.getInsideBlockPos();
+        int posX = pos.getX();
+        int posY = pos.getY();
+        int posZ = pos.getZ();
 
-        if(creature.getDistanceSq(blockpos) > 256.0D)
+        if(creature.getDistanceSq(pos) > 256.0D)
         {
-            Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(creature, 14, 3, new Vec3d((double) i + 0.5D, (double) j, (double) k + 0.5D));
+            Vec3d randomPos = RandomPositionGenerator.findRandomTargetBlockTowards(creature, 14, 3, new Vec3d((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D));
 
-            if(vec3d != null)
+            if(randomPos != null)
             {
-                creature.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, 1.0D);
+                creature.getNavigator().tryMoveToXYZ(randomPos.x, randomPos.y, randomPos.z, 1.0D);
             }
         }
         else
         {
-            creature.getNavigator().tryMoveToXYZ((double) i + 0.5D, (double) j, (double) k + 0.5D, 1.0D);
+            creature.getNavigator().tryMoveToXYZ((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D, 1.0D);
         }
     }
 
     @Override
     public void resetTask()
     {
-        insidePosX = doorInfo.getInsideBlockPos().getX();
-        insidePosZ = doorInfo.getInsideBlockPos().getZ();
-        doorInfo = null;
+        insidePosX = fenceGate.getInsideBlockPos().getX();
+        insidePosZ = fenceGate.getInsideBlockPos().getZ();
+        fenceGate = null;
     }
 }

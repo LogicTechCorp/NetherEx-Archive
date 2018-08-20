@@ -43,10 +43,10 @@ public class WorldHandler
     @SubscribeEvent
     public static void onWorldTick(TickEvent.WorldTickEvent event)
     {
+        World world = event.world;
+
         if(event.phase == TickEvent.Phase.START)
         {
-            World world = event.world;
-
             if(!world.isRemote)
             {
                 PigtificateVillageData data = PigtificateVillageManager.getVillageData(world, false);

@@ -31,6 +31,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -182,6 +183,12 @@ public class BlockThornstalk extends BlockLibEx
             world.setBlockState(pos.up(), getDefaultState().withProperty(PART, EnumPart.MIDDLE), 2);
             world.setBlockState(pos, getDefaultState().withProperty(PART, EnumPart.BOTTOM), 2);
         }
+    }
+
+    @Override
+    public PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return PathNodeType.DAMAGE_CACTUS;
     }
 
     public enum EnumPart implements IStringSerializable

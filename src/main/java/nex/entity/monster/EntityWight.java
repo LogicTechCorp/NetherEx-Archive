@@ -41,9 +41,8 @@ public class EntityWight extends EntityMob
     public EntityWight(World world)
     {
         super(world);
-
-        setSize(0.55F, 1.5F);
         isImmuneToFire = true;
+        setSize(0.55F, 1.5F);
     }
 
     @Override

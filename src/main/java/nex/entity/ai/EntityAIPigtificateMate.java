@@ -34,12 +34,12 @@ public class EntityAIPigtificateMate extends EntityAIBase
     private EntityPigtificate mate;
     private final World world;
     private int matingTimeout;
-    PigtificateVillage village;
+    private PigtificateVillage village;
 
     public EntityAIPigtificateMate(EntityPigtificate pigtificate)
     {
         this.pigtificate = pigtificate;
-        world = pigtificate.getEntityWorld();
+        this.world = pigtificate.getEntityWorld();
         setMutexBits(3);
     }
 
@@ -62,7 +62,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
             {
                 return false;
             }
-            else if(checkSufficientDoorsPresentForNewVillager() && pigtificate.getWillingToMate(true))
+            else if(doesVillageHaveRoom() && pigtificate.getWillingToMate(true))
             {
                 Entity entity = world.findNearestEntityWithinAABB(EntityPigtificate.class, pigtificate.getEntityBoundingBox().expand(8.0D, 3.0D, 8.0D), pigtificate);
 
@@ -101,13 +101,13 @@ public class EntityAIPigtificateMate extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return matingTimeout >= 0 && checkSufficientDoorsPresentForNewVillager() && pigtificate.getGrowingAge() == 0 && pigtificate.getWillingToMate(false);
+        return matingTimeout >= 0 && doesVillageHaveRoom() && pigtificate.getGrowingAge() == 0 && pigtificate.getWillingToMate(false);
     }
 
     @Override
     public void updateTask()
     {
-        --matingTimeout;
+        matingTimeout--;
         pigtificate.getLookHelper().setLookPositionWithEntity(mate, 10.0F, 30.0F);
 
         if(pigtificate.getDistanceSq(mate) > 2.25D)
@@ -125,7 +125,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
     }
 
-    private boolean checkSufficientDoorsPresentForNewVillager()
+    private boolean doesVillageHaveRoom()
     {
         if(!village.isMatingSeason())
         {
@@ -133,8 +133,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            int i = (int) ((double) ((float) village.getVillageFenceGateAmount()) * 0.35D);
-            return village.getPigtificates() < i;
+            return village.getPigtificates() < (village.getVillageFenceGateAmount() * 0.35D);
         }
     }
 
@@ -146,11 +145,13 @@ public class EntityAIPigtificateMate extends EntityAIBase
         mate.setWillingToMate(false);
         pigtificate.setWillingToMate(false);
 
-        final BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(pigtificate, mate, baby);
+        BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(pigtificate, mate, baby);
+
         if(MinecraftForge.EVENT_BUS.post(event) || event.getChild() == null)
         {
             return;
         }
+
         baby = event.getChild();
         baby.setGrowingAge(-24000);
         baby.setLocationAndAngles(pigtificate.posX, pigtificate.posY, pigtificate.posZ, 0.0F, 0.0F);

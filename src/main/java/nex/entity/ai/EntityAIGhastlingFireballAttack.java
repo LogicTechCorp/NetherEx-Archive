@@ -29,7 +29,7 @@ import nex.init.NetherExSoundEvents;
 public class EntityAIGhastlingFireballAttack extends EntityAIBase
 {
     private final EntityGhast ghast;
-    public int attackTimer;
+    public int attackCounter;
 
     public EntityAIGhastlingFireballAttack(EntityGhastling ghast)
     {
@@ -45,7 +45,7 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        attackTimer = 0;
+        attackCounter = 0;
     }
 
     @Override
@@ -61,35 +61,35 @@ public class EntityAIGhastlingFireballAttack extends EntityAIBase
 
         if(target.getDistanceSq(ghast) < 4096.0D && ghast.canEntityBeSeen(target))
         {
-            World world = ghast.world;
-            attackTimer++;
+            World world = ghast.getEntityWorld();
+            attackCounter++;
 
-            if(attackTimer == 10)
+            if(attackCounter == 10)
             {
                 ghast.playSound(NetherExSoundEvents.GHASTLING_WARN, 10.0F, (ghast.getRNG().nextFloat() - ghast.getRNG().nextFloat()) * 0.2F + 1.0F);
             }
 
-            if(attackTimer == 20)
+            if(attackCounter == 20)
             {
-                Vec3d vec3d = ghast.getLook(1.0F);
-                double d2 = target.posX - (ghast.posX + vec3d.x * 4.0D);
-                double d3 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + ghast.posY + (double) (ghast.height / 2.0F));
-                double d4 = target.posZ - (ghast.posZ + vec3d.z * 4.0D);
+                Vec3d look = ghast.getLook(1.0F);
+                double distanceX = target.posX - (ghast.posX + look.x * 4.0D);
+                double distanceY = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + ghast.posY + (double) (ghast.height / 2.0F));
+                double distanceZ = target.posZ - (ghast.posZ + look.z * 4.0D);
                 ghast.playSound(NetherExSoundEvents.GHASTLING_SHOOT, 10.0F, (ghast.getRNG().nextFloat() - ghast.getRNG().nextFloat()) * 0.2F + 1.0F);
-                EntityGhastlingFireball fireball = new EntityGhastlingFireball(world, ghast, d2, d3, d4);
+                EntityGhastlingFireball fireball = new EntityGhastlingFireball(world, ghast, distanceX, distanceY, distanceZ);
                 fireball.explosionPower = ghast.getFireballStrength();
-                fireball.posX = ghast.posX + vec3d.x * 4.0D;
+                fireball.posX = ghast.posX + look.x * 4.0D;
                 fireball.posY = ghast.posY + (double) (ghast.height / 2.0F) + 0.5D;
-                fireball.posZ = ghast.posZ + vec3d.z * 4.0D;
+                fireball.posZ = ghast.posZ + look.z * 4.0D;
                 world.spawnEntity(fireball);
-                attackTimer = -40;
+                attackCounter = -40;
             }
         }
-        else if(attackTimer > 0)
+        else if(attackCounter > 0)
         {
-            --attackTimer;
+            attackCounter--;
         }
 
-        ghast.setAttacking(attackTimer > 10);
+        ghast.setAttacking(attackCounter > 10);
     }
 }

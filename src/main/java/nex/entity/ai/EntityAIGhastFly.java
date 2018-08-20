@@ -44,11 +44,11 @@ public class EntityAIGhastFly extends EntityAIBase
         }
         else
         {
-            double d0 = moveHelper.getX() - ghast.posX;
-            double d1 = moveHelper.getY() - ghast.posY;
-            double d2 = moveHelper.getZ() - ghast.posZ;
-            double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-            return d3 < 1.0D || d3 > 3600.0D;
+            double distanceX = moveHelper.getX() - ghast.posX;
+            double distanceY = moveHelper.getY() - ghast.posY;
+            double distanceZ = moveHelper.getZ() - ghast.posZ;
+            double distanceSq = distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ;
+            return distanceSq < 1.0D || distanceSq > 3600.0D;
         }
     }
 
@@ -62,9 +62,9 @@ public class EntityAIGhastFly extends EntityAIBase
     public void startExecuting()
     {
         Random rand = ghast.getRNG();
-        double d0 = ghast.posX + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double d1 = ghast.posY + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double d2 = ghast.posZ + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        ghast.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
+        double posX = ghast.posX + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posY = ghast.posY + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posZ = ghast.posZ + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        ghast.getMoveHelper().setMoveTo(posX, posY, posZ, 1.0D);
     }
 }

@@ -24,46 +24,46 @@ import net.minecraft.world.World;
 
 public class EntityAIUseFenceGate extends EntityAIFenceGateInteract
 {
-    boolean shouldCloseGate;
-    int closeFenceGateTemporisation;
+    private boolean closeAfterUse;
+    private int closeCounter;
 
-    public EntityAIUseFenceGate(EntityLiving entity, boolean shouldCloseGate)
+    public EntityAIUseFenceGate(EntityLiving entity, boolean closeAfterUse)
     {
         super(entity);
         this.entity = entity;
-        this.shouldCloseGate = shouldCloseGate;
+        this.closeAfterUse = closeAfterUse;
     }
 
     @Override
     public boolean shouldContinueExecuting()
     {
-        return shouldCloseGate && closeFenceGateTemporisation > 0 && super.shouldContinueExecuting();
+        return closeAfterUse && closeCounter > 0 && super.shouldContinueExecuting();
     }
 
     @Override
     public void startExecuting()
     {
-        closeFenceGateTemporisation = 20;
-        openFenceGate(true);
+        closeCounter = 20;
+        useFenceGate(true);
     }
 
     @Override
     public void resetTask()
     {
-        if(shouldCloseGate)
+        if(closeAfterUse)
         {
-            openFenceGate(false);
+            useFenceGate(false);
         }
     }
 
     @Override
     public void updateTask()
     {
-        closeFenceGateTemporisation--;
+        closeCounter--;
         super.updateTask();
     }
 
-    private void openFenceGate(boolean open)
+    private void useFenceGate(boolean open)
     {
         World world = entity.getEntityWorld();
         IBlockState state = world.getBlockState(fenceGatePos);

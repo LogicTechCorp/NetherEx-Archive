@@ -27,8 +27,8 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
 {
     private final EntityPigtificate pigtificate;
     private EntityGoldGolem golem;
-    private int takeGolemFlowerTick;
-    private boolean tookGolemFlower;
+    private int flowerHeldCounter;
+    private boolean hasFlower;
 
     public EntityAIPigtificateFollowGoldGolem(EntityPigtificate pigtificate)
     {
@@ -59,7 +59,7 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
             {
                 for(EntityGoldGolem goldGolem : list)
                 {
-                    if(goldGolem.getHoldFlowerTick() > 0)
+                    if(goldGolem.getFlowerHeldCounter() > 0)
                     {
                         golem = goldGolem;
                         break;
@@ -74,14 +74,14 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return golem.getHoldFlowerTick() > 0;
+        return golem.getFlowerHeldCounter() > 0;
     }
 
     @Override
     public void startExecuting()
     {
-        takeGolemFlowerTick = pigtificate.getRNG().nextInt(320);
-        tookGolemFlower = false;
+        flowerHeldCounter = pigtificate.getRNG().nextInt(320);
+        hasFlower = false;
         golem.getNavigator().clearPath();
     }
 
@@ -97,13 +97,13 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     {
         pigtificate.getLookHelper().setLookPositionWithEntity(golem, 30.0F, 30.0F);
 
-        if(golem.getHoldFlowerTick() == takeGolemFlowerTick)
+        if(golem.getFlowerHeldCounter() == flowerHeldCounter)
         {
             pigtificate.getNavigator().tryMoveToEntityLiving(golem, 0.5D);
-            tookGolemFlower = true;
+            hasFlower = true;
         }
 
-        if(tookGolemFlower && pigtificate.getDistanceSq(golem) < 4.0D)
+        if(hasFlower && pigtificate.getDistanceSq(golem) < 4.0D)
         {
             golem.setHoldingFlower(false);
             pigtificate.getNavigator().clearPath();

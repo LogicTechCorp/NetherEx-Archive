@@ -48,8 +48,8 @@ public class EntityGhastQueenFireball extends EntityFireball
                 applyEnchantments(shootingEntity, result.entityHit);
             }
 
-            boolean flag = world.getGameRules().getBoolean("mobGriefing");
-            world.newExplosion(null, posX, posY, posZ, (float) explosionPower, flag, flag);
+            boolean grief = world.getGameRules().getBoolean("mobGriefing");
+            world.newExplosion(null, posX, posY, posZ, (float) explosionPower, grief, grief);
             setDead();
         }
     }

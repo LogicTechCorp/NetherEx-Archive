@@ -52,31 +52,26 @@ public class EntityAIPigtificatePlay extends EntityAIBase
         }
         else
         {
-            List<EntityPigtificate> list = pigtificate.world.getEntitiesWithinAABB(EntityPigtificate.class, pigtificate.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
-            double d0 = Double.MAX_VALUE;
+            List<EntityPigtificate> pigtificates = pigtificate.world.getEntitiesWithinAABB(EntityPigtificate.class, pigtificate.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            double maxDistance = Double.MAX_VALUE;
 
-            for(EntityPigtificate entitypigtificate : list)
+            for(EntityPigtificate testPigtificate : pigtificates)
             {
-                if(entitypigtificate != pigtificate && !entitypigtificate.isPlaying() && entitypigtificate.getGrowingAge() < 0)
+                if(testPigtificate != pigtificate && !testPigtificate.isPlaying() && testPigtificate.getGrowingAge() < 0)
                 {
-                    double d1 = entitypigtificate.getDistanceSq(pigtificate);
+                    double distance = testPigtificate.getDistanceSq(pigtificate);
 
-                    if(d1 <= d0)
+                    if(distance <= maxDistance)
                     {
-                        d0 = d1;
-                        target = entitypigtificate;
+                        maxDistance = distance;
+                        target = testPigtificate;
                     }
                 }
             }
 
             if(target == null)
             {
-                Vec3d vec3d = RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3);
-
-                if(vec3d == null)
-                {
-                    return false;
-                }
+                return RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3) != null;
             }
 
             return true;
@@ -110,7 +105,7 @@ public class EntityAIPigtificatePlay extends EntityAIBase
     @Override
     public void updateTask()
     {
-        --playTime;
+        playTime--;
 
         if(target != null)
         {
@@ -121,14 +116,14 @@ public class EntityAIPigtificatePlay extends EntityAIBase
         }
         else if(pigtificate.getNavigator().noPath())
         {
-            Vec3d vec3d = RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3);
+            Vec3d pos = RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3);
 
-            if(vec3d == null)
+            if(pos == null)
             {
                 return;
             }
 
-            pigtificate.getNavigator().tryMoveToXYZ(vec3d.x, vec3d.y, vec3d.z, speed);
+            pigtificate.getNavigator().tryMoveToXYZ(pos.x, pos.y, pos.z, speed);
         }
     }
 }

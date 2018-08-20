@@ -43,7 +43,7 @@ public class PigtificateVillageFenceGateInfo
     {
         fenceGatePos = pos;
         insideDirection = facing;
-        insideBlockPos = pos.offset(facing, 3);
+        insideBlockPos = pos.offset(facing, 2);
         lastActivityTimestamp = timestamp;
     }
 

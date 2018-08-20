@@ -52,9 +52,9 @@ public class EntityAIGhastLookAround extends EntityAIBase
 
             if(target.getDistanceSq(ghast) < 4096.0D)
             {
-                double d1 = target.posX - ghast.posX;
-                double d2 = target.posZ - ghast.posZ;
-                ghast.rotationYaw = -((float) MathHelper.atan2(d1, d2)) * (180F / (float) Math.PI);
+                double distanceX = target.posX - ghast.posX;
+                double distanceZ = target.posZ - ghast.posZ;
+                ghast.rotationYaw = -((float) MathHelper.atan2(distanceX, distanceZ)) * (180F / (float) Math.PI);
                 ghast.renderYawOffset = ghast.rotationYaw;
             }
         }

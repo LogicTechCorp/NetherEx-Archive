@@ -63,7 +63,7 @@ public class EntityPigtificateLeader extends EntityPigtificate
     @Override
     protected void setRandomProfession()
     {
-        setProfession(Pigtificate.Profession.getRandom(rand, true).ordinal());
+        setProfession(Pigtificate.Profession.LEADER.ordinal());
         setRandomCareer();
     }
 

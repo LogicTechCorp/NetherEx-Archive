@@ -32,9 +32,9 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     protected EntityLiving entity;
     protected BlockPos fenceGatePos = BlockPos.ORIGIN;
     protected BlockFenceGate fenceGate;
-    boolean hasStoppedFenceGateInteraction;
-    float entityPositionX;
-    float entityPositionZ;
+    protected boolean stopInteraction;
+    protected float entityPosX;
+    protected float entityPosZ;
 
     public EntityAIFenceGateInteract(EntityLiving entity)
     {
@@ -42,7 +42,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
 
         if(!(entity.getNavigator() instanceof PathNavigateGround))
         {
-            throw new IllegalArgumentException("Unsupported mob type for FenceGateInteractGoal");
+            throw new IllegalArgumentException("Unsupported mob type for EntityAIFenceGateInteract");
         }
     }
 
@@ -55,15 +55,15 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
         }
         else
         {
-            PathNavigateGround pathnavigateground = (PathNavigateGround) entity.getNavigator();
-            Path path = pathnavigateground.getPath();
+            PathNavigateGround navigator = (PathNavigateGround) entity.getNavigator();
+            Path path = navigator.getPath();
 
-            if(path != null && !path.isFinished() && pathnavigateground.getEnterDoors())
+            if(path != null && !path.isFinished() && navigator.getEnterDoors())
             {
-                for(int i = 0; i < Math.min(path.getCurrentPathIndex() + 2, path.getCurrentPathLength()); ++i)
+                for(int i = 0; i < Math.min(path.getCurrentPathIndex() + 2, path.getCurrentPathLength()); i++)
                 {
-                    PathPoint pathpoint = path.getPathPointFromIndex(i);
-                    fenceGatePos = new BlockPos(pathpoint.x, pathpoint.y, pathpoint.z);
+                    PathPoint point = path.getPathPointFromIndex(i);
+                    fenceGatePos = new BlockPos(point.x, point.y, point.z);
 
                     if(entity.getDistanceSq((double) fenceGatePos.getX(), entity.posY, (double) fenceGatePos.getZ()) <= 2.25D)
                     {
@@ -90,34 +90,34 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !hasStoppedFenceGateInteraction;
+        return !stopInteraction;
     }
 
     @Override
     public void startExecuting()
     {
-        hasStoppedFenceGateInteraction = false;
-        entityPositionX = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
-        entityPositionZ = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
+        stopInteraction = false;
+        entityPosX = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
+        entityPosZ = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
     }
 
     @Override
     public void updateTask()
     {
-        float f = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
-        float f1 = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
-        float f2 = entityPositionX * f + entityPositionZ * f1;
+        float distanceX = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
+        float distanceZ = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
+        float distance = entityPosX * distanceX + entityPosZ * distanceZ;
 
-        if(f2 < 0.0F)
+        if(distance < 0.0F)
         {
-            hasStoppedFenceGateInteraction = true;
+            stopInteraction = true;
         }
     }
 
     private BlockFenceGate getFenceGate(BlockPos pos)
     {
-        IBlockState iblockstate = entity.world.getBlockState(pos);
-        Block block = iblockstate.getBlock();
+        IBlockState state = entity.world.getBlockState(pos);
+        Block block = state.getBlock();
         return block instanceof BlockFenceGate ? (BlockFenceGate) block : null;
     }
 }

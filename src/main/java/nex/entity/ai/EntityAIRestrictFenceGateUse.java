@@ -36,7 +36,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
 
         if(!(creature.getNavigator() instanceof PathNavigateGround))
         {
-            throw new IllegalArgumentException("Unsupported mob type for RestrictOpenDoorGoal");
+            throw new IllegalArgumentException("Unsupported mob type for EntityAIRestrictFenceGateUse");
         }
     }
 
@@ -49,8 +49,8 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
         }
         else
         {
-            BlockPos blockpos = new BlockPos(creature);
-            PigtificateVillage village = PigtificateVillageManager.getVillageData(creature.getEntityWorld(), true).getNearestVillage(blockpos, 16);
+            BlockPos pos = new BlockPos(creature);
+            PigtificateVillage village = PigtificateVillageManager.getVillageData(creature.getEntityWorld(), true).getNearestVillage(pos, 16);
 
             if(village == null)
             {
@@ -58,8 +58,8 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
             }
             else
             {
-                fenceGate = village.getNearestFenceGate(blockpos);
-                return fenceGate != null && (double) fenceGate.getDistanceToInsideBlockSq(blockpos) < 2.25D;
+                fenceGate = village.getNearestFenceGate(pos);
+                return fenceGate != null && (double) fenceGate.getDistanceToInsideBlockSq(pos) < 2.25D;
             }
         }
     }
