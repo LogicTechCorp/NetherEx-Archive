@@ -40,7 +40,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockBlueFire extends BlockLibEx

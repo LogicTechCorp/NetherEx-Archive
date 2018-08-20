@@ -25,7 +25,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -833,39 +834,39 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
                 {
                     return PathNodeType.OPEN;
                 }
-                else if (block != Blocks.TRAPDOOR && block != Blocks.IRON_TRAPDOOR && block != Blocks.WATERLILY)
+                else if(block != Blocks.TRAPDOOR && block != Blocks.IRON_TRAPDOOR && block != Blocks.WATERLILY)
                 {
-                    if (block == Blocks.FIRE)
+                    if(block == Blocks.FIRE)
                     {
                         return PathNodeType.DAMAGE_FIRE;
                     }
-                    else if (block == Blocks.CACTUS)
+                    else if(block == Blocks.CACTUS)
                     {
                         return PathNodeType.DAMAGE_CACTUS;
                     }
-                    else if (block instanceof BlockDoor && material == Material.WOOD && !state.getValue(BlockDoor.OPEN) || block instanceof BlockFenceGate && !state.getValue(BlockFenceGate.OPEN))
+                    else if(block instanceof BlockDoor && material == Material.WOOD && !state.getValue(BlockDoor.OPEN) || block instanceof BlockFenceGate && !state.getValue(BlockFenceGate.OPEN))
                     {
                         return PathNodeType.DOOR_WOOD_CLOSED;
                     }
-                    else if (block instanceof BlockDoor && material == Material.IRON && !state.getValue(BlockDoor.OPEN))
+                    else if(block instanceof BlockDoor && material == Material.IRON && !state.getValue(BlockDoor.OPEN))
                     {
                         return PathNodeType.DOOR_IRON_CLOSED;
                     }
-                    else if (block instanceof BlockDoor && state.getValue(BlockDoor.OPEN) || block instanceof BlockFenceGate && state.getValue(BlockFenceGate.OPEN))
+                    else if(block instanceof BlockDoor && state.getValue(BlockDoor.OPEN) || block instanceof BlockFenceGate && state.getValue(BlockFenceGate.OPEN))
                     {
                         return PathNodeType.DOOR_OPEN;
                     }
-                    else if (block instanceof BlockRailBase)
+                    else if(block instanceof BlockRailBase)
                     {
                         return PathNodeType.RAIL;
                     }
-                    else if (!(block instanceof BlockFence) && !(block instanceof BlockWall))
+                    else if(!(block instanceof BlockFence) && !(block instanceof BlockWall))
                     {
-                        if (material == Material.WATER)
+                        if(material == Material.WATER)
                         {
                             return PathNodeType.WATER;
                         }
-                        else if (material == Material.LAVA)
+                        else if(material == Material.LAVA)
                         {
                             return PathNodeType.LAVA;
                         }
