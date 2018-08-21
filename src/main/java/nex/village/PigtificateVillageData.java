@@ -26,13 +26,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class PigtificateVillageData extends WorldSavedData
 {
-    private World world;
+    private WeakReference<World> world;
     private final List<BlockPos> pigtificatePositions = new ArrayList<>();
     private final List<PigtificateVillageFenceGateInfo> newFenceGates = new ArrayList<>();
     private final List<PigtificateVillage> villages = new ArrayList<>();
@@ -46,18 +47,18 @@ public class PigtificateVillageData extends WorldSavedData
     public PigtificateVillageData(World world)
     {
         super(getFileName(world));
-        this.world = world;
+        this.world = new WeakReference<>(world);
         markDirty();
     }
 
     public void setWorld(World world)
     {
-        if(this.world == world)
+        if(this.world != null && this.world.get() == world)
         {
             return;
         }
 
-        this.world = world;
+        this.world = new WeakReference<>(world);
 
         for(PigtificateVillage village : villages)
         {
@@ -156,7 +157,7 @@ public class PigtificateVillageData extends WorldSavedData
 
             if(village == null)
             {
-                village = new PigtificateVillage(world);
+                village = new PigtificateVillage(this.world.get());
                 villages.add(village);
                 markDirty();
             }
@@ -239,13 +240,17 @@ public class PigtificateVillageData extends WorldSavedData
 
     private EnumFacing getOutside(BlockPos fenceGatePos)
     {
-        IBlockState fenceGateState = world.getBlockState(fenceGatePos);
+        World world = this.world.get();
 
-        if(fenceGateState.getBlock() instanceof BlockFenceGate)
+        if(world!= null)
         {
-            return fenceGateState.getValue(BlockFenceGate.FACING).getOpposite();
-        }
+            IBlockState fenceGateState = world.getBlockState(fenceGatePos);
 
+            if(fenceGateState.getBlock() instanceof BlockFenceGate)
+            {
+                return fenceGateState.getValue(BlockFenceGate.FACING).getOpposite();
+            }
+        }
         return null;
     }
 
