@@ -120,7 +120,7 @@ public class PigtificateVillage
                     return new Vec3d((double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ());
                 }
             }
-    }
+        }
 
         return null;
     }

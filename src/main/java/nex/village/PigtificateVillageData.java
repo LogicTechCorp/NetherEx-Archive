@@ -242,7 +242,7 @@ public class PigtificateVillageData extends WorldSavedData
     {
         World world = this.world.get();
 
-        if(world!= null)
+        if(world != null)
         {
             IBlockState fenceGateState = world.getBlockState(fenceGatePos);
 
