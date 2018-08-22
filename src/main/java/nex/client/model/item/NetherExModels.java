@@ -17,7 +17,6 @@
 
 package nex.client.model.item;
 
-import lex.client.model.item.MeshDefinitionFix;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockSlab;
@@ -217,7 +216,7 @@ public class NetherExModels
 
         ModelResourceLocation modelLocation = new ModelResourceLocation(NetherEx.MOD_ID + ":fluid", block.getFluid().getName());
 
-        ModelLoader.setCustomMeshDefinition(item, MeshDefinitionFix.create(stack -> modelLocation));
+        ModelLoader.setCustomMeshDefinition(item, stack -> modelLocation);
 
         ModelLoader.setCustomStateMapper((Block) block, new StateMapperBase()
         {
@@ -233,14 +232,14 @@ public class NetherExModels
     {
         ModelResourceLocation modelLocation = new ModelResourceLocation(block.getRegistryName(), location);
         ModelBakery.registerItemVariants(Item.getItemFromBlock(block), modelLocation);
-        registerModel(block, MeshDefinitionFix.create(stack -> modelLocation));
+        registerModel(block, stack -> modelLocation);
     }
 
     private static void registerModel(Item item, String location)
     {
         ModelResourceLocation modelLocation = new ModelResourceLocation(item.getRegistryName(), location);
         ModelBakery.registerItemVariants(item, modelLocation);
-        registerModel(item, MeshDefinitionFix.create(stack -> modelLocation));
+        registerModel(item, stack -> modelLocation);
     }
 
     private static void registerModel(Block block, int metadata, String location, String variant)
