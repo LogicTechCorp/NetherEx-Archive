@@ -133,7 +133,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            return village.getPigtificates() < (village.getVillageFenceGateAmount() * 0.35D);
+            return village.getPigtificateAmount() < (village.getVillageFenceGateAmount() * 0.35D);
         }
     }
 

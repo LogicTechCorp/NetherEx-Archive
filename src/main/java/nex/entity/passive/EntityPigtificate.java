@@ -225,7 +225,7 @@ public class EntityPigtificate extends EntityAgeable implements INpc, IMerchant
             else
             {
                 BlockPos villagePos = village.getCenter();
-                setHomePosAndDistance(villagePos, village.getVillageRadius());
+                setHomePosAndDistance(villagePos, village.getRadius());
 
                 if(lookingForHome)
                 {

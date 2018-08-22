@@ -128,7 +128,7 @@ public class PigtificateVillageData extends WorldSavedData
 
             if(fenceGateDistance < maxDistance)
             {
-                float f = (float) (radius + pigtificateVillage.getVillageRadius());
+                float f = (float) (radius + pigtificateVillage.getRadius());
 
                 if(fenceGateDistance <= (double) (f * f))
                 {
@@ -153,7 +153,7 @@ public class PigtificateVillageData extends WorldSavedData
     {
         for(PigtificateVillageFenceGateInfo fenceGateInfo : newFenceGates)
         {
-            PigtificateVillage village = getNearestVillage(fenceGateInfo.getFenceGatePos(), 32);
+            PigtificateVillage village = getNearestVillage(fenceGateInfo.getPos(), 32);
 
             if(village == null)
             {
@@ -177,19 +177,19 @@ public class PigtificateVillageData extends WorldSavedData
                 for(int z = -16; z < 16; z++)
                 {
                     BlockPos blockpos = central.add(x, y, z);
-                    EnumFacing outside = getOutside(blockpos);
+                    EnumFacing inside = getInside(blockpos);
 
-                    if(outside != null)
+                    if(inside != null)
                     {
                         PigtificateVillageFenceGateInfo fenceGateInfo = checkFenceGateExistence(blockpos);
 
                         if(fenceGateInfo == null)
                         {
-                            addNewFenceGateInfo(blockpos, outside);
+                            addNewFenceGateInfo(blockpos, inside);
                         }
                         else
                         {
-                            fenceGateInfo.setLastActivityTimestamp(tickCounter);
+                            fenceGateInfo.setLastActivityTime(tickCounter);
                         }
                     }
                 }
@@ -201,7 +201,7 @@ public class PigtificateVillageData extends WorldSavedData
     {
         for(PigtificateVillageFenceGateInfo fenceGateInfo : newFenceGates)
         {
-            if(fenceGateInfo.getFenceGatePos().getX() == fenceGateBlock.getX() && fenceGateInfo.getFenceGatePos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getFenceGatePos().getY() - fenceGateBlock.getY()) <= 1)
+            if(fenceGateInfo.getPos().getX() == fenceGateBlock.getX() && fenceGateInfo.getPos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getPos().getY() - fenceGateBlock.getY()) <= 1)
             {
                 return fenceGateInfo;
             }
@@ -238,7 +238,7 @@ public class PigtificateVillageData extends WorldSavedData
         return false;
     }
 
-    private EnumFacing getOutside(BlockPos fenceGatePos)
+    private EnumFacing getInside(BlockPos fenceGatePos)
     {
         World world = this.world.get();
 
@@ -248,7 +248,7 @@ public class PigtificateVillageData extends WorldSavedData
 
             if(fenceGateState.getBlock() instanceof BlockFenceGate)
             {
-                return fenceGateState.getValue(BlockFenceGate.FACING).getOpposite();
+                return fenceGateState.getValue(BlockFenceGate.FACING);
             }
         }
         return null;

@@ -17,6 +17,7 @@
 
 package nex.entity.ai;
 
+import lex.util.WorldHelper;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -46,7 +47,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
         World world = creature.getEntityWorld();
         BlockPos pos = new BlockPos(creature);
 
-        if((!world.isDaytime() || world.isRaining() && !world.getBiome(pos).canRain()) && world.provider.hasSkyLight())
+        if(!WorldHelper.isDaytime(world) || world.isRaining())
         {
             if(creature.getRNG().nextInt(50) != 0)
             {
@@ -87,7 +88,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     public void startExecuting()
     {
         insidePosX = -1;
-        BlockPos pos = fenceGate.getInsideBlockPos();
+        BlockPos pos = fenceGate.getInsidePos();
         int posX = pos.getX();
         int posY = pos.getY();
         int posZ = pos.getZ();
@@ -110,8 +111,8 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     @Override
     public void resetTask()
     {
-        insidePosX = fenceGate.getInsideBlockPos().getX();
-        insidePosZ = fenceGate.getInsideBlockPos().getZ();
+        insidePosX = fenceGate.getInsidePos().getX();
+        insidePosZ = fenceGate.getInsidePos().getZ();
         fenceGate = null;
     }
 }

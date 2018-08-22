@@ -17,10 +17,12 @@
 
 package nex.entity.ai;
 
+import lex.util.WorldHelper;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import nex.village.PigtificateVillage;
 import nex.village.PigtificateVillageFenceGateInfo;
 import nex.village.PigtificateVillageManager;
@@ -43,14 +45,16 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(creature.world.isDaytime())
+        World world = creature.getEntityWorld();
+
+        if(WorldHelper.isDaytime(world))
         {
             return false;
         }
         else
         {
             BlockPos pos = new BlockPos(creature);
-            PigtificateVillage village = PigtificateVillageManager.getVillageData(creature.getEntityWorld(), true).getNearestVillage(pos, 16);
+            PigtificateVillage village = PigtificateVillageManager.getVillageData(world, true).getNearestVillage(pos, 16);
 
             if(village == null)
             {
@@ -67,7 +71,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !creature.world.isDaytime() && (!fenceGate.getIsDetachedFromVillageFlag() && fenceGate.isInsideSide(new BlockPos(creature)));
+        return !WorldHelper.isDaytime(creature.getEntityWorld()) && (!fenceGate.isDetachedFromVillageFlag() && fenceGate.isInside(new BlockPos(creature)));
     }
 
     @Override
@@ -88,6 +92,6 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public void updateTask()
     {
-        fenceGate.incrementFenceGateOpeningRestrictionCounter();
+        fenceGate.incrementOpenRestrictionCounter();
     }
 }

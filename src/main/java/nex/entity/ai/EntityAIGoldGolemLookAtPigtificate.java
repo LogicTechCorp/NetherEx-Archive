@@ -17,6 +17,7 @@
 
 package nex.entity.ai;
 
+import lex.util.WorldHelper;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.world.World;
 import nex.entity.neutral.EntityGoldGolem;
@@ -39,7 +40,7 @@ public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
     {
         World world = golem.getEntityWorld();
 
-        if(!world.isDaytime())
+        if(!WorldHelper.isDaytime(world))
         {
             return false;
         }

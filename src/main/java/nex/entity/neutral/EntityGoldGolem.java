@@ -104,7 +104,7 @@ public class EntityGoldGolem extends EntityGolem
             else
             {
                 BlockPos blockpos = village.getCenter();
-                setHomePosAndDistance(blockpos, (int) ((float) village.getVillageRadius() * 0.6F));
+                setHomePosAndDistance(blockpos, (int) ((float) village.getRadius() * 0.6F));
             }
         }
 

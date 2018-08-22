@@ -22,16 +22,24 @@ import net.minecraft.util.math.BlockPos;
 
 public class PigtificateVillageFenceGateInfo
 {
-    private final BlockPos fenceGatePos;
-    private final BlockPos insideBlockPos;
-    private final EnumFacing insideDirection;
-    private int lastActivityTimestamp;
+    private final BlockPos pos;
+    private final BlockPos insidePos;
+    private final EnumFacing inside;
+    private int lastActivityTime;
     private boolean isDetachedFromVillage;
-    private int fenceGateOpeningRestrictionCounter;
+    private int openRestrictionCounter;
 
-    public PigtificateVillageFenceGateInfo(BlockPos pos, int deltaX, int deltaZ, int timestamp)
+    public PigtificateVillageFenceGateInfo(BlockPos pos, int deltaX, int deltaZ, int time)
     {
-        this(pos, getFaceDirection(deltaX, deltaZ), timestamp);
+        this(pos, getFaceDirection(deltaX, deltaZ), time);
+    }
+
+    public PigtificateVillageFenceGateInfo(BlockPos pos, EnumFacing facing, int time)
+    {
+        this.pos = pos;
+        inside = facing;
+        insidePos = pos.offset(facing, 2);
+        lastActivityTime = time;
     }
 
     private static EnumFacing getFaceDirection(int deltaX, int deltaZ)
@@ -39,93 +47,85 @@ public class PigtificateVillageFenceGateInfo
         return deltaX < 0 ? EnumFacing.WEST : (deltaX > 0 ? EnumFacing.EAST : (deltaZ < 0 ? EnumFacing.NORTH : EnumFacing.SOUTH));
     }
 
-    public PigtificateVillageFenceGateInfo(BlockPos pos, EnumFacing facing, int timestamp)
-    {
-        fenceGatePos = pos;
-        insideDirection = facing;
-        insideBlockPos = pos.offset(facing, 2);
-        lastActivityTimestamp = timestamp;
-    }
-
     public int getDistanceSquared(int x, int y, int z)
     {
-        return (int) fenceGatePos.distanceSq((double) x, (double) y, (double) z);
+        return (int) pos.distanceSq((double) x, (double) y, (double) z);
     }
 
     public int getDistanceToFenceGateSq(BlockPos pos)
     {
-        return (int) pos.distanceSq(getFenceGatePos());
+        return (int) pos.distanceSq(getPos());
     }
 
     public int getDistanceToInsideBlockSq(BlockPos pos)
     {
-        return (int) insideBlockPos.distanceSq(pos);
+        return (int) insidePos.distanceSq(pos);
     }
 
-    public boolean isInsideSide(BlockPos pos)
+    public boolean isInside(BlockPos pos)
     {
-        int i = pos.getX() - fenceGatePos.getX();
-        int j = pos.getZ() - fenceGatePos.getY();
-        return i * insideDirection.getXOffset() + j * insideDirection.getZOffset() >= 0;
+        int x = pos.getX() - this.pos.getX();
+        int z = pos.getZ() - this.pos.getY();
+        return x * inside.getXOffset() + z * inside.getZOffset() >= 0;
     }
 
-    public void resetFenceGateOpeningRestrictionCounter()
+    public void resetOpenRestrictionCounter()
     {
-        fenceGateOpeningRestrictionCounter = 0;
+        openRestrictionCounter = 0;
     }
 
-    public void incrementFenceGateOpeningRestrictionCounter()
+    public void incrementOpenRestrictionCounter()
     {
-        fenceGateOpeningRestrictionCounter++;
+        openRestrictionCounter++;
     }
 
-    public int getFenceGateOpeningRestrictionCounter()
+    public int getOpenRestrictionCounter()
     {
-        return fenceGateOpeningRestrictionCounter;
+        return openRestrictionCounter;
     }
 
-    public BlockPos getFenceGatePos()
+    public BlockPos getPos()
     {
-        return fenceGatePos;
+        return pos;
     }
 
-    public BlockPos getInsideBlockPos()
+    public BlockPos getInsidePos()
     {
-        return insideBlockPos;
+        return insidePos;
     }
 
     public int getInsideOffsetX()
     {
-        return insideDirection.getXOffset() * 2;
+        return inside.getXOffset() * 2;
     }
 
     public int getInsideOffsetZ()
     {
-        return insideDirection.getZOffset() * 2;
+        return inside.getZOffset() * 2;
     }
 
-    public int getLastActivityTimestamp()
+    public int getLastActivityTime()
     {
-        return lastActivityTimestamp;
+        return lastActivityTime;
     }
 
-    public void setLastActivityTimestamp(int timestamp)
+    public void setLastActivityTime(int time)
     {
-        lastActivityTimestamp = timestamp;
+        lastActivityTime = time;
     }
 
-    public boolean getIsDetachedFromVillageFlag()
+    public boolean isDetachedFromVillageFlag()
     {
         return isDetachedFromVillage;
     }
 
-    public void setIsDetachedFromVillageFlag(boolean detached)
+    public void setDetachedFromVillageFlag(boolean detached)
     {
         isDetachedFromVillage = detached;
     }
 
-    public EnumFacing getInsideDirection()
+    public EnumFacing getInside()
     {
-        return insideDirection;
+        return inside;
     }
 }
