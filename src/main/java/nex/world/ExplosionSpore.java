@@ -212,11 +212,11 @@ public class ExplosionSpore extends Explosion
 
         if(explosionSize >= 2.0F && isSmoking)
         {
-            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_HUGE.getFactory(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_HUGE.ordinal(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
         }
         else
         {
-            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.getFactory(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.ordinal(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
         }
 
         if(!world.isRemote)

@@ -23,21 +23,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.client.particle.ParticleSporeExplosionHuge;
 import nex.client.particle.ParticleSporeExplosionLarge;
 
-@SideOnly(Side.CLIENT)
 public enum NetherExParticleTypes
 {
-    SPORE_EXPLOSION_LARGE(new ParticleSporeExplosionLarge.Factory()),
-    SPORE_EXPLOSION_HUGE(new ParticleSporeExplosionHuge.Factory());
+    SPORE_EXPLOSION_LARGE,
+    SPORE_EXPLOSION_HUGE;
 
-    private IParticleFactory factory;
-
-    NetherExParticleTypes(IParticleFactory factory)
+    @SideOnly(Side.CLIENT)
+    public static IParticleFactory getFactory(int particleId)
     {
-        this.factory = factory;
-    }
-
-    public IParticleFactory getFactory()
-    {
-        return factory;
+        switch(particleId)
+        {
+            default:
+            case 0:
+                return new ParticleSporeExplosionLarge.Factory();
+            case 1:
+                return new ParticleSporeExplosionHuge.Factory();
+        }
     }
 }

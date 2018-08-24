@@ -52,7 +52,7 @@ public class ParticleSporeExplosionHuge extends Particle
             double d0 = posX + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
             double d1 = posY + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
             double d2 = posZ + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
-            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.getFactory(), d0, d1, d2, (double) ((float) timeSinceStart / (float) maximumTime), 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.ordinal(), d0, d1, d2, (double) ((float) timeSinceStart / (float) maximumTime), 0.0D, 0.0D);
         }
 
         timeSinceStart++;
