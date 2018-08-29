@@ -28,7 +28,7 @@ public class ItemBlockBasaltWall extends ItemBlockLibEx
     public ItemBlockBasaltWall()
     {
         super(NetherExBlocks.BASALT_WALL);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

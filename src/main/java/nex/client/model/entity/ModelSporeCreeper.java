@@ -33,48 +33,48 @@ public class ModelSporeCreeper extends ModelBase
 
     public ModelSporeCreeper()
     {
-        textureHeight = 64;
+        this.textureHeight = 64;
 
-        head = new ModelRenderer(this, 0, 0);
-        head.setRotationPoint(0.0F, 4.0F, 0.0F);
-        head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8);
-        body = new ModelRenderer(this, 0, 16);
-        body.setRotationPoint(0.0F, 4.0F, 0.0F);
-        body.addBox(-4.0F, 0.0F, -2.0F, 8, 14, 4);
-        frontRightLeg = new ModelRenderer(this, 0, 34);
-        frontRightLeg.setRotationPoint(2.0F, 18.0F, -4.0F);
-        frontRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
-        frontLeftLeg = new ModelRenderer(this, 16, 34);
-        frontLeftLeg.setRotationPoint(-2.0F, 18.0F, -4.0F);
-        frontLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
-        backRightLeg = new ModelRenderer(this, 0, 44);
-        backRightLeg.setRotationPoint(2.0F, 18.0F, 4.0F);
-        backRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
-        backLeftLeg = new ModelRenderer(this, 16, 44);
-        backLeftLeg.setRotationPoint(-2.0F, 18.0F, 4.0F);
-        backLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setRotationPoint(0.0F, 4.0F, 0.0F);
+        this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8);
+        this.body = new ModelRenderer(this, 0, 16);
+        this.body.setRotationPoint(0.0F, 4.0F, 0.0F);
+        this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 14, 4);
+        this.frontRightLeg = new ModelRenderer(this, 0, 34);
+        this.frontRightLeg.setRotationPoint(2.0F, 18.0F, -4.0F);
+        this.frontRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
+        this.frontLeftLeg = new ModelRenderer(this, 16, 34);
+        this.frontLeftLeg.setRotationPoint(-2.0F, 18.0F, -4.0F);
+        this.frontLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
+        this.backRightLeg = new ModelRenderer(this, 0, 44);
+        this.backRightLeg.setRotationPoint(2.0F, 18.0F, 4.0F);
+        this.backRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
+        this.backLeftLeg = new ModelRenderer(this, 16, 44);
+        this.backLeftLeg.setRotationPoint(-2.0F, 18.0F, 4.0F);
+        this.backLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
-        head.render(scale);
-        body.render(scale);
-        frontRightLeg.render(scale);
-        frontLeftLeg.render(scale);
-        backRightLeg.render(scale);
-        backLeftLeg.render(scale);
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
+        this.head.render(scale);
+        this.body.render(scale);
+        this.frontRightLeg.render(scale);
+        this.frontLeftLeg.render(scale);
+        this.backRightLeg.render(scale);
+        this.backLeftLeg.render(scale);
     }
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity)
     {
-        head.rotateAngleY = netHeadYaw * 0.017453292F;
-        head.rotateAngleX = headPitch * 0.017453292F;
-        frontRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        frontLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        backRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        backLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.head.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.head.rotateAngleX = headPitch * 0.017453292F;
+        this.frontRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.frontLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.backRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.backLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 }

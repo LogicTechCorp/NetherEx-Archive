@@ -28,7 +28,7 @@ public class ItemBlockUrnOfSorrow extends ItemBlockLibEx
     public ItemBlockUrnOfSorrow()
     {
         super(NetherExBlocks.URN_OF_SORROW);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

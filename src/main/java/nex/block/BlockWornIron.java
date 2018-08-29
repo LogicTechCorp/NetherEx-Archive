@@ -32,9 +32,9 @@ public class BlockWornIron extends BlockLibEx
     public BlockWornIron()
     {
         super(NetherEx.instance, "worn_iron", Material.IRON);
-        setSoundType(SoundType.METAL);
-        setHardness(5.0F);
-        setResistance(10.0F);
+        this.setSoundType(SoundType.METAL);
+        this.setHardness(5.0F);
+        this.setResistance(10.0F);
     }
 
     @Override

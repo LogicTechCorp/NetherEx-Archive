@@ -46,7 +46,7 @@ public class ItemWitherDust extends ItemLibEx
         {
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
-                successful = true;
+                this.successful = true;
 
                 World world = source.getWorld();
                 BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
@@ -62,7 +62,7 @@ public class ItemWitherDust extends ItemLibEx
                     }
                     else
                     {
-                        successful = false;
+                        this.successful = false;
                     }
 
                     return stack;

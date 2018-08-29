@@ -42,9 +42,9 @@ public class BlockRime extends BlockLibEx
     public BlockRime()
     {
         super(NetherEx.instance, "rime_block", Material.ROCK);
-        setLightLevel(0.9375F);
-        setHardness(5.0F);
-        setResistance(10.0F);
+        this.setLightLevel(0.9375F);
+        this.setHardness(5.0F);
+        this.setResistance(10.0F);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class BlockRime extends BlockLibEx
             {
                 for(int y = -1; y < 2; y++)
                 {
-                    freezeSurroundings(world, pos.add(x, y, z), world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + x, pos.getY() + y, pos.getZ() + z)));
+                    this.freezeSurroundings(world, pos.add(x, y, z), world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + x, pos.getY() + y, pos.getZ() + z)));
                 }
             }
         }

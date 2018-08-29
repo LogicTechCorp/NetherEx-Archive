@@ -36,9 +36,9 @@ public class BlockSoulGlass extends BlockLibEx
     public BlockSoulGlass()
     {
         super(NetherEx.instance, "soul_glass", Material.GLASS);
-        setSoundType(SoundType.GLASS);
-        setLightOpacity(255);
-        setHardness(0.3F);
+        this.setSoundType(SoundType.GLASS);
+        this.setLightOpacity(255);
+        this.setHardness(0.3F);
     }
 
     @Override

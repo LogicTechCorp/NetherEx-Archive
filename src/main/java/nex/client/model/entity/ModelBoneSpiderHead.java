@@ -30,26 +30,26 @@ public class ModelBoneSpiderHead extends ModelBase
 
     public ModelBoneSpiderHead()
     {
-        textureHeight = 64;
+        this.textureHeight = 64;
 
-        head = new ModelRenderer(this, 0, 0);
-        head.setRotationPoint(0.0F, 14.0F, 0.0F);
-        head.addBox(-2.5F, -2.5F, -5.0F, 5, 5, 5);
-        setRotationAngles(head, 0.1308996938995747F, 0.0F, 0.0F);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setRotationPoint(0.0F, 14.0F, 0.0F);
+        this.head.addBox(-2.5F, -2.5F, -5.0F, 5, 5, 5);
+        this.setRotationAngles(this.head, 0.1308996938995747F, 0.0F, 0.0F);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
-        head.render(scale);
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
+        this.head.render(scale);
     }
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        head.rotateAngleX = headPitch * 0.017453292F + 0.1308996938995747F;
-        head.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.head.rotateAngleX = headPitch * 0.017453292F + 0.1308996938995747F;
+        this.head.rotateAngleY = netHeadYaw * 0.017453292F;
     }
 
     private void setRotationAngles(ModelRenderer modelRenderer, float x, float y, float z)

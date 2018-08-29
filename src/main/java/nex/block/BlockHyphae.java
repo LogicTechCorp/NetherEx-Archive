@@ -41,11 +41,11 @@ public class BlockHyphae extends BlockLibEx
     public BlockHyphae()
     {
         super(NetherEx.instance, "hyphae", Material.ROCK);
-        setHardness(0.6F);
+        this.setHardness(0.6F);
 
         if(ConfigHandler.blockConfig.hyphae.shouldSpread)
         {
-            setTickRandomly(true);
+            this.setTickRandomly(true);
         }
     }
 
@@ -80,7 +80,7 @@ public class BlockHyphae extends BlockLibEx
 
                         if(blockState.getBlock() == NetherExBlocks.NETHERRACK && blockState.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && blockState1.getLightOpacity(world, newPos.up()) <= 2)
                         {
-                            world.setBlockState(newPos, getDefaultState());
+                            world.setBlockState(newPos, this.getDefaultState());
                         }
                     }
                 }

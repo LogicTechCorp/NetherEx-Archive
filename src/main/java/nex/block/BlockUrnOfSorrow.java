@@ -50,7 +50,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
     public BlockUrnOfSorrow()
     {
         super(NetherEx.instance, "urn_of_sorrow", Material.ROCK, TileEntityUrnOfSorrow.class);
-        setHardness(0.5F);
+        this.setHardness(0.5F);
     }
 
     @Override
@@ -152,7 +152,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
     }
 
     @Override
@@ -175,7 +175,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumType fromMeta(int meta)

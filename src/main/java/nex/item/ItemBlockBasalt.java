@@ -28,7 +28,7 @@ public class ItemBlockBasalt extends ItemBlockLibEx
     public ItemBlockBasalt()
     {
         super(NetherExBlocks.BASALT);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

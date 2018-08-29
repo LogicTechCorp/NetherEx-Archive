@@ -35,9 +35,9 @@ public class BlockRimeOre extends BlockLibEx
     public BlockRimeOre()
     {
         super(NetherEx.instance, "rime_ore", Material.ROCK);
-        setLightLevel(0.625F);
-        setHardness(3.0F);
-        setResistance(5.0F);
+        this.setLightLevel(0.625F);
+        this.setHardness(3.0F);
+        this.setResistance(5.0F);
     }
 
     @Override
@@ -58,11 +58,11 @@ public class BlockRimeOre extends BlockLibEx
                 i = 0;
             }
 
-            return quantityDropped(rand) * (i + 1);
+            return this.quantityDropped(rand) * (i + 1);
         }
         else
         {
-            return quantityDropped(rand);
+            return this.quantityDropped(rand);
         }
     }
 

@@ -28,44 +28,44 @@ public class EntityAIPigtificateTradePlayer extends EntityAIBase
     public EntityAIPigtificateTradePlayer(EntityPigtificate pigtificate)
     {
         this.pigtificate = pigtificate;
-        setMutexBits(5);
+        this.setMutexBits(5);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if(!pigtificate.isEntityAlive())
+        if(!this.pigtificate.isEntityAlive())
         {
             return false;
         }
-        else if(pigtificate.isInWater())
+        else if(this.pigtificate.isInWater())
         {
             return false;
         }
-        else if(!pigtificate.onGround)
+        else if(!this.pigtificate.onGround)
         {
             return false;
         }
-        else if(pigtificate.velocityChanged)
+        else if(this.pigtificate.velocityChanged)
         {
             return false;
         }
         else
         {
-            EntityPlayer customer = pigtificate.getCustomer();
-            return customer != null && (!(pigtificate.getDistance(customer) > 16.0D) && customer.openContainer != null);
+            EntityPlayer customer = this.pigtificate.getCustomer();
+            return customer != null && (!(this.pigtificate.getDistance(customer) > 16.0D) && customer.openContainer != null);
         }
     }
 
     @Override
     public void startExecuting()
     {
-        pigtificate.getNavigator().clearPath();
+        this.pigtificate.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
-        pigtificate.setCustomer(null);
+        this.pigtificate.setCustomer(null);
     }
 }

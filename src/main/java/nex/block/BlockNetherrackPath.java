@@ -52,8 +52,8 @@ public class BlockNetherrackPath extends BlockLibEx
     public BlockNetherrackPath()
     {
         super(NetherEx.instance, "netherrack_path", Material.ROCK);
-        setLightOpacity(255);
-        setHardness(0.4F);
+        this.setLightOpacity(255);
+        this.setHardness(0.4F);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class BlockNetherrackPath extends BlockLibEx
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(getItemDropped(state, player.getRNG(), 0), 1, damageDropped(state));
+        return new ItemStack(this.getItemDropped(state, player.getRNG(), 0), 1, this.damageDropped(state));
     }
 
     @Override
@@ -156,7 +156,7 @@ public class BlockNetherrackPath extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
     }
 
     @Override
@@ -182,7 +182,7 @@ public class BlockNetherrackPath extends BlockLibEx
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumType fromMeta(int meta)

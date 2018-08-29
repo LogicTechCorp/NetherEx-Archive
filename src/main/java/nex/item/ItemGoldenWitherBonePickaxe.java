@@ -76,7 +76,7 @@ public class ItemGoldenWitherBonePickaxe extends ItemPickaxeLibEx
             {
                 damage += 15;
 
-                if(getDamage(stack) - 16 == 0)
+                if(this.getDamage(stack) - 16 == 0)
                 {
                     damage += 1;
                 }

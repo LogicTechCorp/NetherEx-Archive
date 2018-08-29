@@ -44,27 +44,27 @@ public class EntityPigtificateLeader extends EntityPigtificate
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIPigtificateTradePlayer(this));
-        tasks.addTask(1, new EntityAIPigtificateLookAtTradePlayer(this));
-        tasks.addTask(2, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-        tasks.addTask(2, new EntityAIPigtificateInteract(this));
-        tasks.addTask(3, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAIPigtificateTradePlayer(this));
+        this.tasks.addTask(1, new EntityAIPigtificateLookAtTradePlayer(this));
+        this.tasks.addTask(2, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
+        this.tasks.addTask(2, new EntityAIPigtificateInteract(this));
+        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
-        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
     }
 
     @Override
     protected void setRandomProfession()
     {
-        setProfession(Pigtificate.Profession.LEADER.ordinal());
-        setRandomCareer();
+        this.setProfession(Pigtificate.Profession.LEADER.ordinal());
+        this.setRandomCareer();
     }
 
     @Override

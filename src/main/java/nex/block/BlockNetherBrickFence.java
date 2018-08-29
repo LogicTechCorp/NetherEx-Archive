@@ -34,8 +34,8 @@ public class BlockNetherBrickFence extends BlockFenceLibEx
     public BlockNetherBrickFence()
     {
         super(NetherEx.instance, "nether_brick_fence", Material.ROCK);
-        setHardness(1.5F);
-        setResistance(10.0F);
+        this.setHardness(1.5F);
+        this.setResistance(10.0F);
     }
 
     @Override
@@ -50,13 +50,13 @@ public class BlockNetherBrickFence extends BlockFenceLibEx
     @Override
     public int damageDropped(IBlockState state)
     {
-        return getMetaFromState(state);
+        return this.getMetaFromState(state);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.fromMeta(meta));
     }
 
     @Override

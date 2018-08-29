@@ -34,13 +34,13 @@ public class LayerBoneSpiderEyes implements LayerRenderer<EntityBoneSpider>
 
     public LayerBoneSpiderEyes(RenderBoneSpider renderer)
     {
-        spiderRenderer = renderer;
+        this.spiderRenderer = renderer;
     }
 
     @Override
     public void doRenderLayer(EntityBoneSpider boneSpider, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        spiderRenderer.bindTexture(NetherExTextures.BONE_SPIDER_EYES);
+        this.spiderRenderer.bindTexture(NetherExTextures.BONE_SPIDER_EYES);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
@@ -60,13 +60,13 @@ public class LayerBoneSpiderEyes implements LayerRenderer<EntityBoneSpider>
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
-        spiderRenderer.getSpiderHead().render(boneSpider, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        this.spiderRenderer.getSpiderHead().render(boneSpider, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
         Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         i = boneSpider.getBrightnessForRender();
         j = i % 65536;
         k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
-        spiderRenderer.setLightmap(boneSpider);
+        this.spiderRenderer.setLightmap(boneSpider);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
     }

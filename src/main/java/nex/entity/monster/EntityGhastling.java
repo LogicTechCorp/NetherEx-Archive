@@ -35,7 +35,7 @@ public class EntityGhastling extends EntityGhast
     public EntityGhastling(World world)
     {
         super(world);
-        setSize(2.0F, 2.0F);
+        this.setSize(2.0F, 2.0F);
     }
 
     @Override
@@ -59,17 +59,17 @@ public class EntityGhastling extends EntityGhast
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAIGhastlingFireballAttack(this));
-        tasks.addTask(1, new EntityAIGhastLookAround(this));
-        tasks.addTask(2, new EntityAIGhastFly(this));
-        targetTasks.addTask(0, new EntityAIFindEntityNearestPlayer(this));
+        this.tasks.addTask(0, new EntityAIGhastlingFireballAttack(this));
+        this.tasks.addTask(1, new EntityAIGhastLookAround(this));
+        this.tasks.addTask(2, new EntityAIGhastFly(this));
+        this.targetTasks.addTask(0, new EntityAIFindEntityNearestPlayer(this));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
     @Override

@@ -37,8 +37,8 @@ public class EntityNethermite extends EntityMob
     public EntityNethermite(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(0.4F, 0.3F);
+        this.isImmuneToFire = true;
+        this.setSize(0.4F, 0.3F);
     }
 
     @Override
@@ -62,40 +62,40 @@ public class EntityNethermite extends EntityMob
     @Override
     protected void playStepSound(BlockPos pos, Block block)
     {
-        playSound(SoundEvents.ENTITY_SILVERFISH_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_SILVERFISH_STEP, 0.15F, 1.0F);
     }
 
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
-        tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        tasks.addTask(4, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(4, new EntityAILookIdle(this));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(7.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(7.5D);
     }
 
     @Override
     public void onUpdate()
     {
-        renderYawOffset = rotationYaw;
+        this.renderYawOffset = this.rotationYaw;
         super.onUpdate();
     }
 
     @Override
     public void setRenderYawOffset(float offset)
     {
-        rotationYaw = offset;
+        this.rotationYaw = offset;
         super.setRenderYawOffset(offset);
     }
 

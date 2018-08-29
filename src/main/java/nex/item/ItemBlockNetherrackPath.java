@@ -28,7 +28,7 @@ public class ItemBlockNetherrackPath extends ItemBlockLibEx
     public ItemBlockNetherrackPath()
     {
         super(NetherExBlocks.NETHERRACK_PATH);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

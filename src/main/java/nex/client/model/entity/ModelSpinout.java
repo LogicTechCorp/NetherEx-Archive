@@ -34,42 +34,42 @@ public class ModelSpinout extends ModelBase
 
     public ModelSpinout()
     {
-        textureWidth = 128;
-        textureHeight = 128;
+        this.textureWidth = 128;
+        this.textureHeight = 128;
 
-        head = new ModelRenderer(this, 0, 0);
-        head.setRotationPoint(0.0F, -7.0F, 0.0F);
-        head.addBox(-4.0F, 0.0F, -4.0F, 8, 8, 8);
-        upperBody = new ModelRenderer(this, 0, 16);
-        upperBody.setRotationPoint(0.0F, 1.0F, 0.0F);
-        upperBody.addBox(-2.5F, 0.0F, -2.5F, 5, 15, 5);
-        middleBody = new ModelRenderer(this, 0, 36);
-        middleBody.setRotationPoint(0.0F, 16.0F, 0.0F);
-        middleBody.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
-        lowerBody = new ModelRenderer(this, 0, 44);
-        lowerBody.setRotationPoint(0.0F, 20.0F, 0.0F);
-        lowerBody.addBox(-1.0F, 0.0F, -1.0F, 2, 4, 2);
-        upperSpinner = new ModelRenderer(this, 32, 0);
-        upperSpinner.setRotationPoint(0.0F, 4.0F, 0.0F);
-        upperSpinner.addBox(-12.0F, 0.0F, -12.0F, 24, 0, 24);
-        middleSpinner = new ModelRenderer(this, 20, 24);
-        middleSpinner.setRotationPoint(0.0F, 11.0F, 0.0F);
-        middleSpinner.addBox(-13.5F, 0.0F, -13.5F, 27, 0, 27);
-        lowerSpinner = new ModelRenderer(this, 60, 51);
-        lowerSpinner.setRotationPoint(0.0F, 18.0F, 0.0F);
-        lowerSpinner.addBox(-9.0F, 0.0F, -9.0F, 17, 0, 17);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setRotationPoint(0.0F, -7.0F, 0.0F);
+        this.head.addBox(-4.0F, 0.0F, -4.0F, 8, 8, 8);
+        this.upperBody = new ModelRenderer(this, 0, 16);
+        this.upperBody.setRotationPoint(0.0F, 1.0F, 0.0F);
+        this.upperBody.addBox(-2.5F, 0.0F, -2.5F, 5, 15, 5);
+        this.middleBody = new ModelRenderer(this, 0, 36);
+        this.middleBody.setRotationPoint(0.0F, 16.0F, 0.0F);
+        this.middleBody.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
+        this.lowerBody = new ModelRenderer(this, 0, 44);
+        this.lowerBody.setRotationPoint(0.0F, 20.0F, 0.0F);
+        this.lowerBody.addBox(-1.0F, 0.0F, -1.0F, 2, 4, 2);
+        this.upperSpinner = new ModelRenderer(this, 32, 0);
+        this.upperSpinner.setRotationPoint(0.0F, 4.0F, 0.0F);
+        this.upperSpinner.addBox(-12.0F, 0.0F, -12.0F, 24, 0, 24);
+        this.middleSpinner = new ModelRenderer(this, 20, 24);
+        this.middleSpinner.setRotationPoint(0.0F, 11.0F, 0.0F);
+        this.middleSpinner.addBox(-13.5F, 0.0F, -13.5F, 27, 0, 27);
+        this.lowerSpinner = new ModelRenderer(this, 60, 51);
+        this.lowerSpinner.setRotationPoint(0.0F, 18.0F, 0.0F);
+        this.lowerSpinner.addBox(-9.0F, 0.0F, -9.0F, 17, 0, 17);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        head.render(scale);
-        upperBody.render(scale);
-        middleBody.render(scale);
-        lowerBody.render(scale);
-        upperSpinner.render(scale);
-        middleSpinner.render(scale);
-        lowerSpinner.render(scale);
+        this.head.render(scale);
+        this.upperBody.render(scale);
+        this.middleBody.render(scale);
+        this.lowerBody.render(scale);
+        this.upperSpinner.render(scale);
+        this.middleSpinner.render(scale);
+        this.lowerSpinner.render(scale);
     }
 
     @Override
@@ -79,11 +79,11 @@ public class ModelSpinout extends ModelBase
 
         float spin = spinout.isSpinning() ? ageInTicks : 0;
 
-        upperBody.rotateAngleY = -(((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F);
-        middleBody.rotateAngleY = (((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F;
-        lowerBody.rotateAngleY = -(((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F);
-        upperSpinner.rotateAngleY = ((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F;
-        middleSpinner.rotateAngleY = -((((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F);
-        lowerSpinner.rotateAngleY = ((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F;
+        this.upperBody.rotateAngleY = -(((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F);
+        this.middleBody.rotateAngleY = (((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F;
+        this.lowerBody.rotateAngleY = -(((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F);
+        this.upperSpinner.rotateAngleY = ((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F;
+        this.middleSpinner.rotateAngleY = -((((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F) + 0.7853981633974483F);
+        this.lowerSpinner.rotateAngleY = ((float) Math.PI / 4F) + spin * (float) Math.PI * 0.03F * 7.0F;
     }
 }

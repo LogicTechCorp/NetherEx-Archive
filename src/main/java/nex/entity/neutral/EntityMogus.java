@@ -43,9 +43,9 @@ public class EntityMogus extends EntityMob
     public EntityMogus(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(0.35F, 0.45F);
-        setRandomType();
+        this.isImmuneToFire = true;
+        this.setSize(0.35F, 0.45F);
+        this.setRandomType();
     }
 
     @Override
@@ -69,13 +69,13 @@ public class EntityMogus extends EntityMob
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIAttackMelee(this, 1.45D, true));
-        tasks.addTask(1, new EntityAIPanic(this, 1.45D));
-        tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        tasks.addTask(4, new EntityAILookIdle(this));
-        targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.45D, true));
+        this.tasks.addTask(1, new EntityAIPanic(this, 1.45D));
+        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(4, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
     }
 
     @Override
@@ -83,24 +83,24 @@ public class EntityMogus extends EntityMob
     {
         super.applyEntityAttributes();
 
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
     }
 
     @Override
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(TYPE, 0);
+        this.dataManager.register(TYPE, 0);
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return world.getDifficulty() != EnumDifficulty.PEACEFUL;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override
@@ -112,14 +112,14 @@ public class EntityMogus extends EntityMob
     @Override
     public String getName()
     {
-        if(hasCustomName())
+        if(this.hasCustomName())
         {
-            return getCustomNameTag();
+            return this.getCustomNameTag();
         }
         else
         {
             String entityName = EntityList.getEntityString(this);
-            String type = getType() == 0 ? "brown" : getType() == 1 ? "red" : "white";
+            String type = this.getType() == 0 ? "brown" : this.getType() == 1 ? "red" : "white";
             return I18n.translateToLocal("entity." + entityName + "." + type + ".name");
         }
     }
@@ -127,12 +127,12 @@ public class EntityMogus extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return getType() == 0 ? NetherExLootTables.BROWN_MOGUS : getType() == 1 ? NetherExLootTables.RED_MOGUS : NetherExLootTables.WHITE_MOGUS;
+        return this.getType() == 0 ? NetherExLootTables.BROWN_MOGUS : this.getType() == 1 ? NetherExLootTables.RED_MOGUS : NetherExLootTables.WHITE_MOGUS;
     }
 
     public int getType()
     {
-        return dataManager.get(TYPE);
+        return this.dataManager.get(TYPE);
     }
 
     private void setRandomType()
@@ -140,8 +140,8 @@ public class EntityMogus extends EntityMob
         WeightedRandom.Item brown = new WeightedRandom.Item(10);
         WeightedRandom.Item red = new WeightedRandom.Item(10);
         WeightedRandom.Item white = new WeightedRandom.Item(2);
-        WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(brown, red, white));
-        setType(item == brown ? 0 : item == red ? 1 : 2);
+        WeightedRandom.Item item = WeightedRandom.getRandomItem(this.rand, Lists.newArrayList(brown, red, white));
+        this.setType(item == brown ? 0 : item == red ? 1 : 2);
     }
 
     public void setType(int id)
@@ -155,6 +155,6 @@ public class EntityMogus extends EntityMob
             id = 2;
         }
 
-        dataManager.set(TYPE, id);
+        this.dataManager.set(TYPE, id);
     }
 }

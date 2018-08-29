@@ -39,8 +39,8 @@ public class BlockBasaltSlab extends BlockSlabLibEx
     public BlockBasaltSlab()
     {
         super(NetherEx.instance, "basalt_slab", Material.ROCK);
-        setHardness(2.0F);
-        setResistance(10F);
+        this.setHardness(2.0F);
+        this.setResistance(10F);
     }
 
     @Override
@@ -91,9 +91,9 @@ public class BlockBasaltSlab extends BlockSlabLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState state = getDefaultState().withProperty(TYPE, BlockBasalt.EnumType.fromMeta(meta & 7));
+        IBlockState state = this.getDefaultState().withProperty(TYPE, BlockBasalt.EnumType.fromMeta(meta & 7));
 
-        if(!isDouble())
+        if(!this.isDouble())
         {
             state = state.withProperty(HALF, (meta & 8) == 0 ? EnumBlockHalf.BOTTOM : EnumBlockHalf.TOP);
         }
@@ -106,7 +106,7 @@ public class BlockBasaltSlab extends BlockSlabLibEx
     {
         int meta = state.getValue(TYPE).ordinal();
 
-        if(!isDouble() && state.getValue(HALF) == EnumBlockHalf.TOP)
+        if(!this.isDouble() && state.getValue(HALF) == EnumBlockHalf.TOP)
         {
             meta |= 8;
         }

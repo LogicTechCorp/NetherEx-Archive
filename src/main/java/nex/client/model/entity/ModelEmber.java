@@ -34,30 +34,30 @@ public class ModelEmber extends ModelBase
 
     public ModelEmber()
     {
-        base = new ModelRenderer(this, 2, 27);
-        base.setRotationPoint(-2.0F, 23.0F, -2.0F);
-        base.addBox(0.0F, 0.0F, 0.0F, 4, 1, 4);
-        body = new ModelRenderer(this, 0, 17);
-        body.setRotationPoint(-2.5F, 18.0F, -2.5F);
-        body.addBox(0.0F, 0.0F, 0.0F, 5, 5, 5);
-        headBottom = new ModelRenderer(this, 2, 11);
-        headBottom.setRotationPoint(-2.0F, 16.0F, -2.0F);
-        headBottom.addBox(0.0F, 0.0F, 0.0F, 4, 2, 4);
-        headMiddle = new ModelRenderer(this, 4, 6);
-        headMiddle.setRotationPoint(-1.5F, 14.5F, -1.5F);
-        headMiddle.addBox(0.0F, 0.0F, 0.0F, 3, 2, 3);
-        headTop = new ModelRenderer(this, 6, 2);
-        headTop.setRotationPoint(-1.0F, 13.5F, -1.0F);
-        headTop.addBox(0.0F, 0.0F, 0.0F, 2, 2, 2);
+        this.base = new ModelRenderer(this, 2, 27);
+        this.base.setRotationPoint(-2.0F, 23.0F, -2.0F);
+        this.base.addBox(0.0F, 0.0F, 0.0F, 4, 1, 4);
+        this.body = new ModelRenderer(this, 0, 17);
+        this.body.setRotationPoint(-2.5F, 18.0F, -2.5F);
+        this.body.addBox(0.0F, 0.0F, 0.0F, 5, 5, 5);
+        this.headBottom = new ModelRenderer(this, 2, 11);
+        this.headBottom.setRotationPoint(-2.0F, 16.0F, -2.0F);
+        this.headBottom.addBox(0.0F, 0.0F, 0.0F, 4, 2, 4);
+        this.headMiddle = new ModelRenderer(this, 4, 6);
+        this.headMiddle.setRotationPoint(-1.5F, 14.5F, -1.5F);
+        this.headMiddle.addBox(0.0F, 0.0F, 0.0F, 3, 2, 3);
+        this.headTop = new ModelRenderer(this, 6, 2);
+        this.headTop.setRotationPoint(-1.0F, 13.5F, -1.0F);
+        this.headTop.addBox(0.0F, 0.0F, 0.0F, 2, 2, 2);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        base.render(scale);
-        body.render(scale);
-        headBottom.render(scale);
-        headMiddle.render(scale);
-        headTop.render(scale);
+        this.base.render(scale);
+        this.body.render(scale);
+        this.headBottom.render(scale);
+        this.headMiddle.render(scale);
+        this.headTop.render(scale);
     }
 }

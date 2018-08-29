@@ -41,8 +41,8 @@ public class EntityWight extends EntityMob
     public EntityWight(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(0.55F, 1.5F);
+        this.isImmuneToFire = true;
+        this.setSize(0.55F, 1.5F);
     }
 
     @Override
@@ -66,11 +66,11 @@ public class EntityWight extends EntityMob
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
-        tasks.addTask(2, new EntityAIWander(this, 1.0D, 5));
-        tasks.addTask(3, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIWander(this, 1.0D, 5));
+        this.tasks.addTask(3, new EntityAILookIdle(this));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     @Override
@@ -78,10 +78,10 @@ public class EntityWight extends EntityMob
     {
         super.applyEntityAttributes();
 
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
     }
 
     @Override
@@ -89,11 +89,11 @@ public class EntityWight extends EntityMob
     {
         super.onUpdate();
 
-        if(getAttackTarget() != null)
+        if(this.getAttackTarget() != null)
         {
-            if(getAttackTarget().isPotionActive(NetherExEffects.FREEZE))
+            if(this.getAttackTarget().isPotionActive(NetherExEffects.FREEZE))
             {
-                setAttackTarget(null);
+                this.setAttackTarget(null);
             }
         }
     }
@@ -111,8 +111,8 @@ public class EntityWight extends EntityMob
     @Override
     public boolean getCanSpawnHere()
     {
-        Block block = world.getBlockState((new BlockPos(this)).down()).getBlock();
-        return world.getDifficulty() != EnumDifficulty.PEACEFUL && block != Blocks.MAGMA;
+        Block block = this.world.getBlockState((new BlockPos(this)).down()).getBlock();
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && block != Blocks.MAGMA;
     }
 
     @Override

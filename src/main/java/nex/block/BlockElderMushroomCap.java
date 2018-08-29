@@ -40,8 +40,8 @@ public class BlockElderMushroomCap extends BlockLibEx
     public BlockElderMushroomCap()
     {
         super(NetherEx.instance, "elder_mushroom_cap", Material.WOOD);
-        setSoundType(SoundType.WOOD);
-        setHardness(0.2F);
+        this.setSoundType(SoundType.WOOD);
+        this.setHardness(0.2F);
     }
 
     @Override
@@ -68,13 +68,13 @@ public class BlockElderMushroomCap extends BlockLibEx
     @Override
     public int damageDropped(IBlockState state)
     {
-        return getMetaFromState(state);
+        return this.getMetaFromState(state);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockElderMushroom.EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, BlockElderMushroom.EnumType.fromMeta(meta));
     }
 
     @Override

@@ -38,22 +38,22 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     public EntityAIMoveInFenceGates(EntityCreature creature)
     {
         this.creature = creature;
-        setMutexBits(1);
+        this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        World world = creature.getEntityWorld();
-        BlockPos pos = new BlockPos(creature);
+        World world = this.creature.getEntityWorld();
+        BlockPos pos = new BlockPos(this.creature);
 
         if(!WorldHelper.isDaytime(world) || world.isRaining())
         {
-            if(creature.getRNG().nextInt(50) != 0)
+            if(this.creature.getRNG().nextInt(50) != 0)
             {
                 return false;
             }
-            else if(insidePosX != -1 && creature.getDistanceSq((double) insidePosX, creature.posY, (double) insidePosZ) < 4.0D)
+            else if(this.insidePosX != -1 && this.creature.getDistanceSq((double) this.insidePosX, this.creature.posY, (double) this.insidePosZ) < 4.0D)
             {
                 return false;
             }
@@ -67,8 +67,8 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
                 }
                 else
                 {
-                    fenceGate = village.getFenceGateInfo(pos);
-                    return fenceGate != null;
+                    this.fenceGate = village.getFenceGateInfo(pos);
+                    return this.fenceGate != null;
                 }
             }
         }
@@ -81,38 +81,38 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !creature.getNavigator().noPath();
+        return !this.creature.getNavigator().noPath();
     }
 
     @Override
     public void startExecuting()
     {
-        insidePosX = -1;
-        BlockPos pos = fenceGate.getInsidePos();
+        this.insidePosX = -1;
+        BlockPos pos = this.fenceGate.getInsidePos();
         int posX = pos.getX();
         int posY = pos.getY();
         int posZ = pos.getZ();
 
-        if(creature.getDistanceSq(pos) > 256.0D)
+        if(this.creature.getDistanceSq(pos) > 256.0D)
         {
-            Vec3d randomPos = RandomPositionGenerator.findRandomTargetBlockTowards(creature, 14, 3, new Vec3d((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D));
+            Vec3d randomPos = RandomPositionGenerator.findRandomTargetBlockTowards(this.creature, 14, 3, new Vec3d((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D));
 
             if(randomPos != null)
             {
-                creature.getNavigator().tryMoveToXYZ(randomPos.x, randomPos.y, randomPos.z, 1.0D);
+                this.creature.getNavigator().tryMoveToXYZ(randomPos.x, randomPos.y, randomPos.z, 1.0D);
             }
         }
         else
         {
-            creature.getNavigator().tryMoveToXYZ((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D, 1.0D);
+            this.creature.getNavigator().tryMoveToXYZ((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D, 1.0D);
         }
     }
 
     @Override
     public void resetTask()
     {
-        insidePosX = fenceGate.getInsidePos().getX();
-        insidePosZ = fenceGate.getInsidePos().getZ();
-        fenceGate = null;
+        this.insidePosX = this.fenceGate.getInsidePos().getX();
+        this.insidePosZ = this.fenceGate.getInsidePos().getZ();
+        this.fenceGate = null;
     }
 }

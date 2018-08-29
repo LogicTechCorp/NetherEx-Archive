@@ -35,10 +35,10 @@ public class BlockNetherBrickWall extends BlockWallLibEx
     public BlockNetherBrickWall()
     {
         super(NetherEx.instance, "nether_brick_wall", Blocks.STONE);
-        ((VariableBlockStateContainer) blockState).destroyContainer();
-        setDefaultState(blockState.getBaseState());
-        setHardness(1.5F);
-        setResistance(10.0F);
+        ((VariableBlockStateContainer) this.blockState).destroyContainer();
+        this.setDefaultState(this.blockState.getBaseState());
+        this.setHardness(1.5F);
+        this.setResistance(10.0F);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class BlockNetherBrickWall extends BlockWallLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.fromMeta(meta));
     }
 
     @Override

@@ -30,13 +30,13 @@ public class EntityAIGhastFly extends EntityAIBase
     public EntityAIGhastFly(EntityGhast ghast)
     {
         this.ghast = ghast;
-        setMutexBits(1);
+        this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        EntityMoveHelper moveHelper = ghast.getMoveHelper();
+        EntityMoveHelper moveHelper = this.ghast.getMoveHelper();
 
         if(!moveHelper.isUpdating())
         {
@@ -44,9 +44,9 @@ public class EntityAIGhastFly extends EntityAIBase
         }
         else
         {
-            double distanceX = moveHelper.getX() - ghast.posX;
-            double distanceY = moveHelper.getY() - ghast.posY;
-            double distanceZ = moveHelper.getZ() - ghast.posZ;
+            double distanceX = moveHelper.getX() - this.ghast.posX;
+            double distanceY = moveHelper.getY() - this.ghast.posY;
+            double distanceZ = moveHelper.getZ() - this.ghast.posZ;
             double distanceSq = distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ;
             return distanceSq < 1.0D || distanceSq > 3600.0D;
         }
@@ -61,10 +61,10 @@ public class EntityAIGhastFly extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        Random rand = ghast.getRNG();
-        double posX = ghast.posX + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double posY = ghast.posY + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double posZ = ghast.posZ + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        ghast.getMoveHelper().setMoveTo(posX, posY, posZ, 1.0D);
+        Random rand = this.ghast.getRNG();
+        double posX = this.ghast.posX + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posY = this.ghast.posY + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posZ = this.ghast.posZ + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        this.ghast.getMoveHelper().setMoveTo(posX, posY, posZ, 1.0D);
     }
 }

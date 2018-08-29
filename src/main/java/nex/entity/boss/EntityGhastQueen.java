@@ -52,13 +52,13 @@ public class EntityGhastQueen extends EntityGhast
 
     private final EntityAIBase fireballAttack = new EntityAIGhastQueenFireballAttack(this);
 
-    private final BossInfoServer bossInfo = new BossInfoServer(getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS);
+    private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS);
 
     public EntityGhastQueen(World world)
     {
         super(world);
-        experienceValue = 100;
-        setSize(9.5F, 9.5F);
+        this.experienceValue = 100;
+        this.setSize(9.5F, 9.5F);
     }
 
     @Override
@@ -82,17 +82,17 @@ public class EntityGhastQueen extends EntityGhast
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(1, new EntityAIGhastLookAround(this));
-        tasks.addTask(2, new EntityAIGhastFly(this));
-        targetTasks.addTask(0, new EntityAIFindEntityNearestPlayer(this));
+        this.tasks.addTask(1, new EntityAIGhastLookAround(this));
+        this.tasks.addTask(2, new EntityAIGhastFly(this));
+        this.targetTasks.addTask(0, new EntityAIFindEntityNearestPlayer(this));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(256.0D);
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(140.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(256.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(140.0D);
     }
 
     @Override
@@ -106,56 +106,56 @@ public class EntityGhastQueen extends EntityGhast
     {
         super.onUpdate();
 
-        if(cooldown == 0)
+        if(this.cooldown == 0)
         {
-            if(tasks.taskEntries.size() == 2)
+            if(this.tasks.taskEntries.size() == 2)
             {
-                tasks.addTask(0, fireballAttack);
+                this.tasks.addTask(0, this.fireballAttack);
             }
 
-            if(stage < 4)
+            if(this.stage < 4)
             {
-                if(!stageStarted[stage] && getHealth() < getMaxHealth() - stage * 35.0D)
+                if(!this.stageStarted[this.stage] && this.getHealth() < this.getMaxHealth() - this.stage * 35.0D)
                 {
-                    spawnGhastlings = true;
+                    this.spawnGhastlings = true;
                 }
 
-                if(!world.isRemote && spawnGhastlings)
+                if(!this.world.isRemote && this.spawnGhastlings)
                 {
                     for(int i = 0; i < ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnAmount; i++)
                     {
-                        EntityGhastling ghastling = new EntityGhastling(world);
-                        ghastling.setPosition(posX, posY - 1, posZ);
-                        world.spawnEntity(ghastling);
+                        EntityGhastling ghastling = new EntityGhastling(this.world);
+                        ghastling.setPosition(this.posX, this.posY - 1, this.posZ);
+                        this.world.spawnEntity(ghastling);
                     }
 
-                    stageStarted[stage] = true;
-                    cooldown = ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnCooldown * 20;
-                    stage += 1;
-                    spawnGhastlings = false;
+                    this.stageStarted[this.stage] = true;
+                    this.cooldown = ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnCooldown * 20;
+                    this.stage += 1;
+                    this.spawnGhastlings = false;
                 }
             }
         }
         else
         {
-            if(tasks.taskEntries.size() == 3)
+            if(this.tasks.taskEntries.size() == 3)
             {
-                tasks.removeTask(fireballAttack);
+                this.tasks.removeTask(this.fireballAttack);
             }
 
-            cooldown -= 1;
+            this.cooldown -= 1;
         }
 
-        bossInfo.setPercent(getHealth() / getMaxHealth());
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
     public void onDeath(DamageSource source)
     {
-        if(urnPos != null)
+        if(this.urnPos != null)
         {
-            world.setBlockToAir(urnPos);
-            world.setBlockState(urnPos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+            this.world.setBlockToAir(this.urnPos);
+            this.world.setBlockState(this.urnPos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
         }
 
         super.onDeath(source);
@@ -166,42 +166,42 @@ public class EntityGhastQueen extends EntityGhast
     {
         super.writeEntityToNBT(compound);
 
-        if(urnPos != null)
+        if(this.urnPos != null)
         {
-            compound.setInteger("UrnPosX", urnPos.getX());
-            compound.setInteger("UrnPosY", urnPos.getY());
-            compound.setInteger("UrnPosZ", urnPos.getZ());
+            compound.setInteger("UrnPosX", this.urnPos.getX());
+            compound.setInteger("UrnPosY", this.urnPos.getY());
+            compound.setInteger("UrnPosZ", this.urnPos.getZ());
         }
 
-        compound.setInteger("Cooldown", cooldown);
-        compound.setInteger("Stage", stage);
+        compound.setInteger("Cooldown", this.cooldown);
+        compound.setInteger("Stage", this.stage);
 
-        for(int i = 0; i < stageStarted.length; i++)
+        for(int i = 0; i < this.stageStarted.length; i++)
         {
-            compound.setBoolean("StageStarted" + i, stageStarted[i]);
+            compound.setBoolean("StageStarted" + i, this.stageStarted[i]);
         }
 
-        compound.setBoolean("SpawnGhast", spawnGhastlings);
+        compound.setBoolean("SpawnGhast", this.spawnGhastlings);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        urnPos = new BlockPos(compound.getInteger("UrnPosX"), compound.getInteger("UrnPosY"), compound.getInteger("UrnPosZ"));
-        cooldown = compound.getInteger("Cooldown");
-        stage = compound.getInteger("Stage");
+        this.urnPos = new BlockPos(compound.getInteger("UrnPosX"), compound.getInteger("UrnPosY"), compound.getInteger("UrnPosZ"));
+        this.cooldown = compound.getInteger("Cooldown");
+        this.stage = compound.getInteger("Stage");
 
-        for(int i = 0; i < stageStarted.length; i++)
+        for(int i = 0; i < this.stageStarted.length; i++)
         {
-            stageStarted[i] = compound.getBoolean("StageStarted" + i);
+            this.stageStarted[i] = compound.getBoolean("StageStarted" + i);
         }
 
-        spawnGhastlings = compound.getBoolean("SpawnGhast");
+        this.spawnGhastlings = compound.getBoolean("SpawnGhast");
 
-        if(hasCustomName())
+        if(this.hasCustomName())
         {
-            bossInfo.setName(getDisplayName());
+            this.bossInfo.setName(this.getDisplayName());
         }
     }
 
@@ -226,21 +226,21 @@ public class EntityGhastQueen extends EntityGhast
     public void addTrackingPlayer(EntityPlayerMP player)
     {
         super.addTrackingPlayer(player);
-        bossInfo.addPlayer(player);
+        this.bossInfo.addPlayer(player);
     }
 
     @Override
     public void removeTrackingPlayer(EntityPlayerMP player)
     {
         super.removeTrackingPlayer(player);
-        bossInfo.removePlayer(player);
+        this.bossInfo.removePlayer(player);
     }
 
     @Override
     public void setCustomNameTag(String name)
     {
         super.setCustomNameTag(name);
-        bossInfo.setName(getDisplayName());
+        this.bossInfo.setName(this.getDisplayName());
     }
 
     @Override
@@ -251,6 +251,6 @@ public class EntityGhastQueen extends EntityGhast
 
     public void setUrnPos(BlockPos pos)
     {
-        urnPos = pos;
+        this.urnPos = pos;
     }
 }

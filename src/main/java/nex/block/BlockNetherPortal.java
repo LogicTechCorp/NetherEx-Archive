@@ -69,10 +69,10 @@ public class BlockNetherPortal extends BlockLibEx
     public BlockNetherPortal()
     {
         super(NetherEx.instance, "nether_portal", Material.PORTAL);
-        setSoundType(SoundType.GLASS);
-        setLightLevel(0.75F);
-        setTickRandomly(true);
-        setHardness(-1F);
+        this.setSoundType(SoundType.GLASS);
+        this.setLightLevel(0.75F);
+        this.setTickRandomly(true);
+        this.setHardness(-1F);
     }
 
     @Override
@@ -349,13 +349,13 @@ public class BlockNetherPortal extends BlockLibEx
         {
             for(EnumFacing facing : EnumFacing.values())
             {
-                Queue<BlockPos> portalBlocks = findPortalBlocks(world, pos.offset(facing), axis);
+                Queue<BlockPos> portalBlocks = this.findPortalBlocks(world, pos.offset(facing), axis);
 
                 if(portalBlocks.size() > 0)
                 {
                     for(BlockPos newPos : portalBlocks)
                     {
-                        world.setBlockState(newPos, getDefaultState().withProperty(AXIS, axis));
+                        world.setBlockState(newPos, this.getDefaultState().withProperty(AXIS, axis));
                     }
 
                     return true;
@@ -382,7 +382,7 @@ public class BlockNetherPortal extends BlockLibEx
             {
                 if(world.isAirBlock(newPos) || world.getBlockState(newPos).getBlock() == NetherExBlocks.BLUE_FIRE)
                 {
-                    int neighborBlocks = getNeighborBlocks(world, newPos, portalBlocks, axis);
+                    int neighborBlocks = this.getNeighborBlocks(world, newPos, portalBlocks, axis);
 
                     if(neighborBlocks < 2)
                     {
@@ -399,14 +399,14 @@ public class BlockNetherPortal extends BlockLibEx
                     if(neighborBlocks >= 2)
                     {
                         portalBlocks.add(newPos);
-                        addNeighborBlocks(newPos, axis, toProcess);
+                        this.addNeighborBlocks(newPos, axis, toProcess);
                     }
-                    else if(!isPortalPart(world, newPos))
+                    else if(!this.isPortalPart(world, newPos))
                     {
                         return Queues.newArrayDeque();
                     }
                 }
-                else if(!isPortalPart(world, newPos))
+                else if(!this.isPortalPart(world, newPos))
                 {
                     return Queues.newArrayDeque();
                 }
@@ -421,11 +421,11 @@ public class BlockNetherPortal extends BlockLibEx
         int sides = 0;
         Queue<BlockPos> neighbors = Queues.newArrayDeque();
 
-        addNeighborBlocks(pos, axis, neighbors);
+        this.addNeighborBlocks(pos, axis, neighbors);
 
         for(BlockPos newPos : neighbors)
         {
-            if(portalBlocks.contains(newPos) || isPortalPart(world, newPos))
+            if(portalBlocks.contains(newPos) || this.isPortalPart(world, newPos))
             {
                 sides++;
             }

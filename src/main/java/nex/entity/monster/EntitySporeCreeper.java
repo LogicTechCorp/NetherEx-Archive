@@ -62,8 +62,8 @@ public class EntitySporeCreeper extends EntityMob
     public EntitySporeCreeper(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(0.6F, 1.7F);
+        this.isImmuneToFire = true;
+        this.setSize(0.6F, 1.7F);
     }
 
     @Override
@@ -81,39 +81,39 @@ public class EntitySporeCreeper extends EntityMob
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAISporeCreeperSwell(this));
-        tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
-        tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.8D));
-        tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        tasks.addTask(5, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPigZombie.class, true));
-        targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAISporeCreeperSwell(this));
+        this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.8D));
+        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(5, new EntityAILookIdle(this));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPigZombie.class, true));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     @Override
     public int getMaxFallHeight()
     {
-        return getAttackTarget() == null ? 3 : 3 + (int) (getHealth() - 1.0F);
+        return this.getAttackTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
     }
 
     @Override
     public void fall(float distance, float damageMultiplier)
     {
         super.fall(distance, damageMultiplier);
-        timeSinceIgnited = (int) ((float) timeSinceIgnited + distance * 1.5F);
+        this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
 
-        if(timeSinceIgnited > fuseTime - 5)
+        if(this.timeSinceIgnited > this.fuseTime - 5)
         {
-            timeSinceIgnited = fuseTime - 5;
+            this.timeSinceIgnited = this.fuseTime - 5;
         }
     }
 
@@ -121,17 +121,17 @@ public class EntitySporeCreeper extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(STATE, -1);
-        dataManager.register(IGNITED, false);
+        this.dataManager.register(STATE, -1);
+        this.dataManager.register(IGNITED, false);
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setShort("Fuse", (short) fuseTime);
-        compound.setByte("ExplosionRadius", (byte) explosionRadius);
-        compound.setBoolean("ignited", hasIgnited());
+        compound.setShort("Fuse", (short) this.fuseTime);
+        compound.setByte("ExplosionRadius", (byte) this.explosionRadius);
+        compound.setBoolean("ignited", this.hasIgnited());
     }
 
     @Override
@@ -141,50 +141,50 @@ public class EntitySporeCreeper extends EntityMob
 
         if(compound.hasKey("Fuse", 99))
         {
-            fuseTime = compound.getShort("Fuse");
+            this.fuseTime = compound.getShort("Fuse");
         }
 
         if(compound.hasKey("ExplosionRadius", 99))
         {
-            explosionRadius = compound.getByte("ExplosionRadius");
+            this.explosionRadius = compound.getByte("ExplosionRadius");
         }
 
         if(compound.getBoolean("ignited"))
         {
-            ignite();
+            this.ignite();
         }
     }
 
     @Override
     public void onUpdate()
     {
-        if(isEntityAlive())
+        if(this.isEntityAlive())
         {
-            lastIgnitionTime = timeSinceIgnited;
+            this.lastIgnitionTime = this.timeSinceIgnited;
 
-            if(hasIgnited())
+            if(this.hasIgnited())
             {
-                setCreeperState(1);
+                this.setCreeperState(1);
             }
 
-            int i = getCreeperState();
+            int i = this.getCreeperState();
 
-            if(i > 0 && timeSinceIgnited == 0)
+            if(i > 0 && this.timeSinceIgnited == 0)
             {
-                playSound(NetherExSoundEvents.SPORE_WARN, 1.0F, 0.5F);
+                this.playSound(NetherExSoundEvents.SPORE_WARN, 1.0F, 0.5F);
             }
 
-            timeSinceIgnited += i;
+            this.timeSinceIgnited += i;
 
-            if(timeSinceIgnited < 0)
+            if(this.timeSinceIgnited < 0)
             {
-                timeSinceIgnited = 0;
+                this.timeSinceIgnited = 0;
             }
 
-            if(timeSinceIgnited >= fuseTime)
+            if(this.timeSinceIgnited >= this.fuseTime)
             {
-                timeSinceIgnited = fuseTime;
-                explode();
+                this.timeSinceIgnited = this.fuseTime;
+                this.explode();
             }
         }
 
@@ -219,17 +219,17 @@ public class EntitySporeCreeper extends EntityMob
     @SideOnly(Side.CLIENT)
     public float getFlashIntensity(float partialTicks)
     {
-        return ((float) lastIgnitionTime + (float) (timeSinceIgnited - lastIgnitionTime) * partialTicks) / (float) (fuseTime - 2);
+        return ((float) this.lastIgnitionTime + (float) (this.timeSinceIgnited - this.lastIgnitionTime) * partialTicks) / (float) (this.fuseTime - 2);
     }
 
     public int getCreeperState()
     {
-        return dataManager.get(STATE);
+        return this.dataManager.get(STATE);
     }
 
     public void setCreeperState(int state)
     {
-        dataManager.set(STATE, state);
+        this.dataManager.set(STATE, state);
     }
 
     @Override
@@ -239,12 +239,12 @@ public class EntitySporeCreeper extends EntityMob
 
         if(stack.getItem() == Items.FLINT_AND_STEEL)
         {
-            world.playSound(player, posX, posY, posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, getSoundCategory(), 1.0F, rand.nextFloat() * 0.4F + 0.8F);
+            this.world.playSound(player, this.posX, this.posY, this.posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
             player.swingArm(hand);
 
-            if(!world.isRemote)
+            if(!this.world.isRemote)
             {
-                ignite();
+                this.ignite();
                 stack.damageItem(1, player);
                 return true;
             }
@@ -255,21 +255,21 @@ public class EntitySporeCreeper extends EntityMob
 
     private void explode()
     {
-        dead = true;
-        Explosion explosion = new ExplosionSpore(world, this, posX, posY, posZ, (float) explosionRadius, true, world.getGameRules().getBoolean("mobGriefing"));
+        this.dead = true;
+        Explosion explosion = new ExplosionSpore(this.world, this, this.posX, this.posY, this.posZ, (float) this.explosionRadius, true, this.world.getGameRules().getBoolean("mobGriefing"));
         explosion.doExplosionA();
         explosion.doExplosionB(true);
-        setDead();
-        spawnLingeringCloud();
+        this.setDead();
+        this.spawnLingeringCloud();
     }
 
     private void spawnLingeringCloud()
     {
-        Collection<PotionEffect> effects = getActivePotionEffects();
+        Collection<PotionEffect> effects = this.getActivePotionEffects();
 
         if(!effects.isEmpty())
         {
-            EntityAreaEffectCloud cloud = new EntityAreaEffectCloud(world, posX, posY, posZ);
+            EntityAreaEffectCloud cloud = new EntityAreaEffectCloud(this.world, this.posX, this.posY, this.posZ);
             cloud.setRadius(2.5F);
             cloud.setRadiusOnUse(-0.5F);
             cloud.setWaitTime(10);
@@ -281,17 +281,17 @@ public class EntitySporeCreeper extends EntityMob
                 cloud.addEffect(new PotionEffect(effect));
             }
 
-            world.spawnEntity(cloud);
+            this.world.spawnEntity(cloud);
         }
     }
 
     private boolean hasIgnited()
     {
-        return dataManager.get(IGNITED);
+        return this.dataManager.get(IGNITED);
     }
 
     private void ignite()
     {
-        dataManager.set(IGNITED, true);
+        this.dataManager.set(IGNITED, true);
     }
 }

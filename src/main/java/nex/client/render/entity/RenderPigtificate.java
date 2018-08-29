@@ -42,11 +42,11 @@ public class RenderPigtificate extends RenderBiped<EntityPigtificate>
         if(pigtificate.getGrowingAge() < 0)
         {
             f = (float) ((double) f * 0.5D);
-            shadowSize = 0.25F;
+            this.shadowSize = 0.25F;
         }
         else
         {
-            shadowSize = 0.5F;
+            this.shadowSize = 0.5F;
         }
 
         GlStateManager.scale(f, f, f);

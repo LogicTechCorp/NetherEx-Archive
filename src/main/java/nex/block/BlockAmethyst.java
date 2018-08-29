@@ -26,7 +26,7 @@ public class BlockAmethyst extends BlockLibEx
     public BlockAmethyst()
     {
         super(NetherEx.instance, "amethyst_block", Material.ROCK);
-        setHardness(5.0F);
-        setResistance(10.0F);
+        this.setHardness(5.0F);
+        this.setResistance(10.0F);
     }
 }

@@ -87,7 +87,7 @@ public class ItemGoldenWitherBoneHoe extends ItemHoeLibEx
             {
                 if(block == Blocks.GRASS || block == Blocks.GRASS_PATH)
                 {
-                    setBlock(stack, player, world, pos, Blocks.FARMLAND.getDefaultState());
+                    this.setBlock(stack, player, world, pos, Blocks.FARMLAND.getDefaultState());
                     return EnumActionResult.SUCCESS;
                 }
 
@@ -96,17 +96,17 @@ public class ItemGoldenWitherBoneHoe extends ItemHoeLibEx
                     switch(state.getValue(BlockDirt.VARIANT))
                     {
                         case DIRT:
-                            setBlock(stack, player, world, pos, Blocks.FARMLAND.getDefaultState());
+                            this.setBlock(stack, player, world, pos, Blocks.FARMLAND.getDefaultState());
                             return EnumActionResult.SUCCESS;
                         case COARSE_DIRT:
-                            setBlock(stack, player, world, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+                            this.setBlock(stack, player, world, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
                             return EnumActionResult.SUCCESS;
                     }
                 }
 
                 if(block == Blocks.SOUL_SAND)
                 {
-                    setBlock(stack, player, world, pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState());
+                    this.setBlock(stack, player, world, pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState());
                     return EnumActionResult.SUCCESS;
                 }
             }
@@ -138,7 +138,7 @@ public class ItemGoldenWitherBoneHoe extends ItemHoeLibEx
             {
                 damage += 15;
 
-                if(getDamage(stack) - 16 == 0)
+                if(this.getDamage(stack) - 16 == 0)
                 {
                     damage += 1;
                 }

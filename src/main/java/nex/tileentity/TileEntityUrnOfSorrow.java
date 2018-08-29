@@ -42,36 +42,36 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     @Override
     public void update()
     {
-        if(BlockUrnOfSorrow.EnumType.fromMeta(getBlockMetadata()) == BlockUrnOfSorrow.EnumType.FULL)
+        if(BlockUrnOfSorrow.EnumType.fromMeta(this.getBlockMetadata()) == BlockUrnOfSorrow.EnumType.FULL)
         {
-            ItemStack stack = getInventory().getStackInSlot(0);
+            ItemStack stack = this.getInventory().getStackInSlot(0);
 
             if(stack.getItem() == Items.GHAST_TEAR)
             {
-                if(summoningTime == 0)
+                if(this.summoningTime == 0)
                 {
-                    world.playSound(null, pos, NetherExSoundEvents.GHAST_QUEEN_SUMMON, SoundCategory.AMBIENT, 0.5F, 1.0F);
+                    this.world.playSound(null, this.pos, NetherExSoundEvents.GHAST_QUEEN_SUMMON, SoundCategory.AMBIENT, 0.5F, 1.0F);
                 }
 
-                summoningTime += 1;
-                canBreak = false;
+                this.summoningTime += 1;
+                this.canBreak = false;
             }
-            if(summoningTime / 20.0F >= 6.8F)
+            if(this.summoningTime / 20.0F >= 6.8F)
             {
-                EntityGhastQueen ghastQueen = new EntityGhastQueen(getWorld());
-                ghastQueen.setPosition(pos.getX(), pos.getY() + 7, pos.getZ());
-                ghastQueen.setUrnPos(pos);
+                EntityGhastQueen ghastQueen = new EntityGhastQueen(this.getWorld());
+                ghastQueen.setPosition(this.pos.getX(), this.pos.getY() + 7, this.pos.getZ());
+                ghastQueen.setUrnPos(this.pos);
 
-                world.playSound(null, pos.getX(), pos.getY() + 7, pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
+                this.world.playSound(null, this.pos.getX(), this.pos.getY() + 7, this.pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
 
-                if(!world.isRemote)
+                if(!this.world.isRemote)
                 {
-                    world.spawnEntity(ghastQueen);
+                    this.world.spawnEntity(ghastQueen);
                 }
 
-                getInventory().setStackInSlot(0, ItemStack.EMPTY);
-                world.setBlockState(pos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
-                summoningTime = 0;
+                this.getInventory().setStackInSlot(0, ItemStack.EMPTY);
+                this.world.setBlockState(this.pos, NetherExBlocks.URN_OF_SORROW.getDefaultState().withProperty(BlockUrnOfSorrow.TYPE, BlockUrnOfSorrow.EnumType.EMPTY));
+                this.summoningTime = 0;
             }
         }
     }
@@ -80,8 +80,8 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        compound.setInteger("SummoningTime", summoningTime);
-        compound.setBoolean("CanBreak", canBreak);
+        compound.setInteger("SummoningTime", this.summoningTime);
+        compound.setBoolean("CanBreak", this.canBreak);
         return compound;
     }
 
@@ -89,17 +89,17 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        summoningTime = compound.getInteger("SummoningTime");
-        canBreak = compound.getBoolean("CanBreak");
+        this.summoningTime = compound.getInteger("SummoningTime");
+        this.canBreak = compound.getBoolean("CanBreak");
     }
 
     public int getSummoningTime()
     {
-        return summoningTime;
+        return this.summoningTime;
     }
 
     public boolean canBreak()
     {
-        return canBreak;
+        return this.canBreak;
     }
 }

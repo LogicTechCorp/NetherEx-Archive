@@ -30,13 +30,13 @@ public class ItemSalamanderHide extends ItemLibEx
     public ItemSalamanderHide()
     {
         super(NetherEx.instance, "salamander_hide");
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        if(isInCreativeTab(tab))
+        if(this.isInCreativeTab(tab))
         {
             for(EnumType type : EnumType.values())
             {
@@ -59,7 +59,7 @@ public class ItemSalamanderHide extends ItemLibEx
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumType fromMeta(int meta)

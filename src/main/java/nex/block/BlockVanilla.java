@@ -28,7 +28,7 @@ public class BlockVanilla
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumTypeSlab fromMeta(int meta)
@@ -51,7 +51,7 @@ public class BlockVanilla
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumTypeWall fromMeta(int meta)
@@ -73,7 +73,7 @@ public class BlockVanilla
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumTypeFence fromMeta(int meta)

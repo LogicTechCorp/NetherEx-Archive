@@ -54,8 +54,8 @@ public class BlockThornstalk extends BlockLibEx
     public BlockThornstalk()
     {
         super(NetherEx.instance, "thornstalk", Material.PLANTS);
-        setSoundType(SoundType.PLANT);
-        setHardness(0.0F);
+        this.setSoundType(SoundType.PLANT);
+        this.setHardness(0.0F);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class BlockThornstalk extends BlockLibEx
         }
         else
         {
-            world.setBlockState(pos, getActualState(state, world, pos), 2);
+            world.setBlockState(pos, this.getActualState(state, world, pos), 2);
         }
     }
 
@@ -149,7 +149,7 @@ public class BlockThornstalk extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(PART, EnumPart.fromMeta(meta));
+        return this.getDefaultState().withProperty(PART, EnumPart.fromMeta(meta));
     }
 
     @Override
@@ -170,18 +170,18 @@ public class BlockThornstalk extends BlockLibEx
 
         if(height == 1)
         {
-            world.setBlockState(pos, getDefaultState().withProperty(PART, EnumPart.TOP), 2);
+            world.setBlockState(pos, this.getDefaultState().withProperty(PART, EnumPart.TOP), 2);
         }
         else if(height == 2)
         {
-            world.setBlockState(pos.up(), getDefaultState().withProperty(PART, EnumPart.TOP), 2);
-            world.setBlockState(pos, getDefaultState().withProperty(PART, EnumPart.MIDDLE), 2);
+            world.setBlockState(pos.up(), this.getDefaultState().withProperty(PART, EnumPart.TOP), 2);
+            world.setBlockState(pos, this.getDefaultState().withProperty(PART, EnumPart.MIDDLE), 2);
         }
         else
         {
-            world.setBlockState(pos.up(2), getDefaultState().withProperty(PART, EnumPart.TOP), 2);
-            world.setBlockState(pos.up(), getDefaultState().withProperty(PART, EnumPart.MIDDLE), 2);
-            world.setBlockState(pos, getDefaultState().withProperty(PART, EnumPart.BOTTOM), 2);
+            world.setBlockState(pos.up(2), this.getDefaultState().withProperty(PART, EnumPart.TOP), 2);
+            world.setBlockState(pos.up(), this.getDefaultState().withProperty(PART, EnumPart.MIDDLE), 2);
+            world.setBlockState(pos, this.getDefaultState().withProperty(PART, EnumPart.BOTTOM), 2);
         }
     }
 
@@ -200,7 +200,7 @@ public class BlockThornstalk extends BlockLibEx
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumPart fromMeta(int meta)

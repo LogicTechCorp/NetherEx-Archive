@@ -51,9 +51,9 @@ public class BlockSoulGlassPane extends BlockLibEx
     public BlockSoulGlassPane()
     {
         super(NetherEx.instance, "soul_glass_pane", Material.GLASS);
-        setSoundType(SoundType.GLASS);
-        setLightOpacity(255);
-        setHardness(0.3F);
+        this.setSoundType(SoundType.GLASS);
+        this.setLightOpacity(255);
+        this.setHardness(0.3F);
     }
 
     @SideOnly(Side.CLIENT)
@@ -83,7 +83,7 @@ public class BlockSoulGlassPane extends BlockLibEx
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean bool)
     {
-        state = getActualState(state, worldIn, pos);
+        state = this.getActualState(state, worldIn, pos);
         addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BY_INDEX[0]);
 
         if(state.getValue(NORTH))
@@ -107,14 +107,14 @@ public class BlockSoulGlassPane extends BlockLibEx
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        state = getActualState(state, source, pos);
+        state = this.getActualState(state, source, pos);
         return AABB_BY_INDEX[getBoundingBoxIndex(state)];
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        return state.withProperty(NORTH, canPaneConnectTo(worldIn, pos, EnumFacing.NORTH)).withProperty(SOUTH, canPaneConnectTo(worldIn, pos, EnumFacing.SOUTH)).withProperty(WEST, canPaneConnectTo(worldIn, pos, EnumFacing.WEST)).withProperty(EAST, canPaneConnectTo(worldIn, pos, EnumFacing.EAST));
+        return state.withProperty(NORTH, this.canPaneConnectTo(worldIn, pos, EnumFacing.NORTH)).withProperty(SOUTH, this.canPaneConnectTo(worldIn, pos, EnumFacing.SOUTH)).withProperty(WEST, this.canPaneConnectTo(worldIn, pos, EnumFacing.WEST)).withProperty(EAST, this.canPaneConnectTo(worldIn, pos, EnumFacing.EAST));
     }
 
     @Override
@@ -145,7 +145,7 @@ public class BlockSoulGlassPane extends BlockLibEx
     private boolean canPaneConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
     {
         IBlockState state = world.getBlockState(pos.offset(facing));
-        return state.getBlock().canBeConnectedTo(world, pos.offset(facing), facing.getOpposite()) || canPaneConnectToBlock(state.getBlock()) || state.isSideSolid(world, pos.offset(facing), facing.getOpposite());
+        return state.getBlock().canBeConnectedTo(world, pos.offset(facing), facing.getOpposite()) || this.canPaneConnectToBlock(state.getBlock()) || state.isSideSolid(world, pos.offset(facing), facing.getOpposite());
     }
 
     private boolean canPaneConnectToBlock(Block block)

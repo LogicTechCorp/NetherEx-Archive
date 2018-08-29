@@ -28,7 +28,7 @@ public class ItemBlockNetherBrickWall extends ItemBlockLibEx
     public ItemBlockNetherBrickWall()
     {
         super(NetherExBlocks.NETHER_BRICK_WALL);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

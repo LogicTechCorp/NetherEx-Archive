@@ -37,42 +37,42 @@ public class EntityAIUseFenceGate extends EntityAIFenceGateInteract
     @Override
     public boolean shouldContinueExecuting()
     {
-        return closeAfterUse && closeCounter > 0 && super.shouldContinueExecuting();
+        return this.closeAfterUse && this.closeCounter > 0 && super.shouldContinueExecuting();
     }
 
     @Override
     public void startExecuting()
     {
-        closeCounter = 20;
-        useFenceGate(true);
+        this.closeCounter = 20;
+        this.useFenceGate(true);
     }
 
     @Override
     public void resetTask()
     {
-        if(closeAfterUse)
+        if(this.closeAfterUse)
         {
-            useFenceGate(false);
+            this.useFenceGate(false);
         }
     }
 
     @Override
     public void updateTask()
     {
-        closeCounter--;
+        this.closeCounter--;
         super.updateTask();
     }
 
     private void useFenceGate(boolean open)
     {
-        World world = entity.getEntityWorld();
-        IBlockState state = world.getBlockState(fenceGatePos);
+        World world = this.entity.getEntityWorld();
+        IBlockState state = world.getBlockState(this.fenceGatePos);
 
         if(state.getBlock() instanceof BlockFenceGate)
         {
-            world.setBlockState(fenceGatePos, state.withProperty(BlockFenceGate.OPEN, open), 10);
-            world.markBlockRangeForRenderUpdate(fenceGatePos, fenceGatePos);
-            world.playEvent(null, open ? 1008 : 1014, fenceGatePos, 0);
+            world.setBlockState(this.fenceGatePos, state.withProperty(BlockFenceGate.OPEN, open), 10);
+            world.markBlockRangeForRenderUpdate(this.fenceGatePos, this.fenceGatePos);
+            world.playEvent(null, open ? 1008 : 1014, this.fenceGatePos, 0);
         }
     }
 }

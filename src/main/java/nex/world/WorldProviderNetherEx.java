@@ -31,13 +31,13 @@ public class WorldProviderNetherEx extends WorldProviderHell
     public void init()
     {
         super.init();
-        biomeProvider = new BiomeProviderNether(world);
+        this.biomeProvider = new BiomeProviderNether(this.world);
     }
 
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorNetherEx(world);
+        return new ChunkGeneratorNetherEx(this.world);
     }
 
     @Override

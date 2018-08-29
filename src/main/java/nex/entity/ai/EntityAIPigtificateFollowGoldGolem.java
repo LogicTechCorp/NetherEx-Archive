@@ -34,23 +34,23 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     public EntityAIPigtificateFollowGoldGolem(EntityPigtificate pigtificate)
     {
         this.pigtificate = pigtificate;
-        setMutexBits(3);
+        this.setMutexBits(3);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if(pigtificate.getGrowingAge() >= 0)
+        if(this.pigtificate.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if(!WorldHelper.isDaytime(pigtificate.getEntityWorld()))
+        else if(!WorldHelper.isDaytime(this.pigtificate.getEntityWorld()))
         {
             return false;
         }
         else
         {
-            List<EntityGoldGolem> list = pigtificate.world.getEntitiesWithinAABB(EntityGoldGolem.class, pigtificate.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
+            List<EntityGoldGolem> list = this.pigtificate.world.getEntitiesWithinAABB(EntityGoldGolem.class, this.pigtificate.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D));
 
             if(list.isEmpty())
             {
@@ -62,12 +62,12 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
                 {
                     if(goldGolem.getFlowerHeldCounter() > 0)
                     {
-                        golem = goldGolem;
+                        this.golem = goldGolem;
                         break;
                     }
                 }
 
-                return golem != null;
+                return this.golem != null;
             }
         }
     }
@@ -75,39 +75,39 @@ public class EntityAIPigtificateFollowGoldGolem extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return golem.getFlowerHeldCounter() > 0;
+        return this.golem.getFlowerHeldCounter() > 0;
     }
 
     @Override
     public void startExecuting()
     {
-        flowerHeldCounter = pigtificate.getRNG().nextInt(320);
-        hasFlower = false;
-        golem.getNavigator().clearPath();
+        this.flowerHeldCounter = this.pigtificate.getRNG().nextInt(320);
+        this.hasFlower = false;
+        this.golem.getNavigator().clearPath();
     }
 
     @Override
     public void resetTask()
     {
-        golem = null;
-        pigtificate.getNavigator().clearPath();
+        this.golem = null;
+        this.pigtificate.getNavigator().clearPath();
     }
 
     @Override
     public void updateTask()
     {
-        pigtificate.getLookHelper().setLookPositionWithEntity(golem, 30.0F, 30.0F);
+        this.pigtificate.getLookHelper().setLookPositionWithEntity(this.golem, 30.0F, 30.0F);
 
-        if(golem.getFlowerHeldCounter() == flowerHeldCounter)
+        if(this.golem.getFlowerHeldCounter() == this.flowerHeldCounter)
         {
-            pigtificate.getNavigator().tryMoveToEntityLiving(golem, 0.5D);
-            hasFlower = true;
+            this.pigtificate.getNavigator().tryMoveToEntityLiving(this.golem, 0.5D);
+            this.hasFlower = true;
         }
 
-        if(hasFlower && pigtificate.getDistanceSq(golem) < 4.0D)
+        if(this.hasFlower && this.pigtificate.getDistanceSq(this.golem) < 4.0D)
         {
-            golem.setHoldingFlower(false);
-            pigtificate.getNavigator().clearPath();
+            this.golem.setHoldingFlower(false);
+            this.pigtificate.getNavigator().clearPath();
         }
     }
 }

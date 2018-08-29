@@ -28,7 +28,7 @@ public class ItemBlockVanillaWall extends ItemBlockLibEx
     public ItemBlockVanillaWall()
     {
         super(NetherExBlocks.VANILLA_WALL);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class EntityAIGhastLookAround extends EntityAIBase
     public EntityAIGhastLookAround(EntityGhast ghast)
     {
         this.ghast = ghast;
-        setMutexBits(2);
+        this.setMutexBits(2);
     }
 
     @Override
@@ -41,21 +41,21 @@ public class EntityAIGhastLookAround extends EntityAIBase
     @Override
     public void updateTask()
     {
-        if(ghast.getAttackTarget() == null)
+        if(this.ghast.getAttackTarget() == null)
         {
-            ghast.rotationYaw = -((float) MathHelper.atan2(ghast.motionX, ghast.motionZ)) * (180F / (float) Math.PI);
-            ghast.renderYawOffset = ghast.rotationYaw;
+            this.ghast.rotationYaw = -((float) MathHelper.atan2(this.ghast.motionX, this.ghast.motionZ)) * (180F / (float) Math.PI);
+            this.ghast.renderYawOffset = this.ghast.rotationYaw;
         }
         else
         {
-            EntityLivingBase target = ghast.getAttackTarget();
+            EntityLivingBase target = this.ghast.getAttackTarget();
 
-            if(target.getDistanceSq(ghast) < 4096.0D)
+            if(target.getDistanceSq(this.ghast) < 4096.0D)
             {
-                double distanceX = target.posX - ghast.posX;
-                double distanceZ = target.posZ - ghast.posZ;
-                ghast.rotationYaw = -((float) MathHelper.atan2(distanceX, distanceZ)) * (180F / (float) Math.PI);
-                ghast.renderYawOffset = ghast.rotationYaw;
+                double distanceX = target.posX - this.ghast.posX;
+                double distanceZ = target.posZ - this.ghast.posZ;
+                this.ghast.rotationYaw = -((float) MathHelper.atan2(distanceX, distanceZ)) * (180F / (float) Math.PI);
+                this.ghast.renderYawOffset = this.ghast.rotationYaw;
             }
         }
     }

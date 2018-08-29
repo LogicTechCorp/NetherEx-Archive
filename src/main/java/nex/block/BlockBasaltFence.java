@@ -34,8 +34,8 @@ public class BlockBasaltFence extends BlockFenceLibEx
     public BlockBasaltFence()
     {
         super(NetherEx.instance, "basalt_fence", Material.ROCK);
-        setHardness(1.5F);
-        setResistance(10.0F);
+        this.setHardness(1.5F);
+        this.setResistance(10.0F);
     }
 
     @Override
@@ -50,13 +50,13 @@ public class BlockBasaltFence extends BlockFenceLibEx
     @Override
     public int damageDropped(IBlockState state)
     {
-        return getMetaFromState(state);
+        return this.getMetaFromState(state);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockBasalt.EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, BlockBasalt.EnumType.fromMeta(meta));
     }
 
     @Override

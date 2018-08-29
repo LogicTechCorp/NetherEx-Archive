@@ -50,8 +50,8 @@ public class BlockBoneChunk extends BlockLibEx
     public BlockBoneChunk()
     {
         super(NetherEx.instance, "bone_chunk", Material.ROCK);
-        setHardness(2.0F);
-        setResistance(5.0F);
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
     }
 
     @Override
@@ -105,11 +105,11 @@ public class BlockBoneChunk extends BlockLibEx
 
             if(enumfacing == facing)
             {
-                return getDefaultState().withProperty(FACING, facing.getOpposite());
+                return this.getDefaultState().withProperty(FACING, facing.getOpposite());
             }
         }
 
-        return getDefaultState().withProperty(FACING, facing);
+        return this.getDefaultState().withProperty(FACING, facing);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class BlockBoneChunk extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
     }
 
     @Override

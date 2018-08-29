@@ -47,39 +47,39 @@ public class ParticleSporeExplosionLarge extends Particle
     protected ParticleSporeExplosionLarge(TextureManager renderEngine, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double speed)
     {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
-        theRenderEngine = renderEngine;
-        lifeTime = 6 + rand.nextInt(4);
-        float f = rand.nextFloat() * 0.6F + 0.4F;
-        particleRed = f;
-        particleGreen = f;
-        particleBlue = f;
-        size = 1.0F - (float) speed * 0.5F;
+        this.theRenderEngine = renderEngine;
+        this.lifeTime = 6 + this.rand.nextInt(4);
+        float f = this.rand.nextFloat() * 0.6F + 0.4F;
+        this.particleRed = f;
+        this.particleGreen = f;
+        this.particleBlue = f;
+        this.size = 1.0F - (float) speed * 0.5F;
     }
 
     @Override
     public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
-        int i = (int) (((float) life + partialTicks) * 15.0F / (float) lifeTime);
+        int i = (int) (((float) this.life + partialTicks) * 15.0F / (float) this.lifeTime);
 
         if(i <= 15)
         {
-            theRenderEngine.bindTexture(EXPLOSION_TEXTURE);
+            this.theRenderEngine.bindTexture(EXPLOSION_TEXTURE);
             float f = (float) (i % 4) / 4.0F;
             float f1 = f + 0.24975F;
             float f2 = (float) (i / 4) / 4.0F;
             float f3 = f2 + 0.24975F;
-            float f4 = 2.0F * size;
-            float f5 = (float) (prevPosX + (posX - prevPosX) * (double) partialTicks - interpPosX);
-            float f6 = (float) (prevPosY + (posY - prevPosY) * (double) partialTicks - interpPosY);
-            float f7 = (float) (prevPosZ + (posZ - prevPosZ) * (double) partialTicks - interpPosZ);
+            float f4 = 2.0F * this.size;
+            float f5 = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);
+            float f6 = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) partialTicks - interpPosY);
+            float f7 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double) partialTicks - interpPosZ);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.disableLighting();
             RenderHelper.disableStandardItemLighting();
             buffer.begin(7, VERTEX_FORMAT);
-            buffer.pos((double) (f5 - rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 - rotationYZ * f4 - rotationXZ * f4)).tex((double) f1, (double) f3).color(particleRed, particleGreen, particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
-            buffer.pos((double) (f5 - rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 - rotationYZ * f4 + rotationXZ * f4)).tex((double) f1, (double) f2).color(particleRed, particleGreen, particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
-            buffer.pos((double) (f5 + rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 + rotationYZ * f4 + rotationXZ * f4)).tex((double) f, (double) f2).color(particleRed, particleGreen, particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
-            buffer.pos((double) (f5 + rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 + rotationYZ * f4 - rotationXZ * f4)).tex((double) f, (double) f3).color(particleRed, particleGreen, particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((double) (f5 - rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 - rotationYZ * f4 - rotationXZ * f4)).tex((double) f1, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((double) (f5 - rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 - rotationYZ * f4 + rotationXZ * f4)).tex((double) f1, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((double) (f5 + rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 + rotationYZ * f4 + rotationXZ * f4)).tex((double) f, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((double) (f5 + rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 + rotationYZ * f4 - rotationXZ * f4)).tex((double) f, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
             Tessellator.getInstance().draw();
             GlStateManager.enableLighting();
         }
@@ -94,14 +94,14 @@ public class ParticleSporeExplosionLarge extends Particle
     @Override
     public void onUpdate()
     {
-        prevPosX = posX;
-        prevPosY = posY;
-        prevPosZ = posZ;
-        life++;
+        this.prevPosX = this.posX;
+        this.prevPosY = this.posY;
+        this.prevPosZ = this.posZ;
+        this.life++;
 
-        if(life == lifeTime)
+        if(this.life == this.lifeTime)
         {
-            setExpired();
+            this.setExpired();
         }
     }
 

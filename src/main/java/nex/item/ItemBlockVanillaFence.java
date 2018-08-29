@@ -28,7 +28,7 @@ public class ItemBlockVanillaFence extends ItemBlockLibEx
     public ItemBlockVanillaFence()
     {
         super(NetherExBlocks.VANILLA_FENCE);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

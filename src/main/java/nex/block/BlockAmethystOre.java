@@ -35,8 +35,8 @@ public class BlockAmethystOre extends BlockLibEx
     public BlockAmethystOre()
     {
         super(NetherEx.instance, "amethyst_ore", Material.ROCK);
-        setHardness(3.0F);
-        setResistance(5.0F);
+        this.setHardness(3.0F);
+        this.setResistance(5.0F);
     }
 
     @Override
@@ -57,11 +57,11 @@ public class BlockAmethystOre extends BlockLibEx
                 i = 0;
             }
 
-            return quantityDropped(rand) * (i + 1);
+            return this.quantityDropped(rand) * (i + 1);
         }
         else
         {
-            return quantityDropped(rand);
+            return this.quantityDropped(rand);
         }
     }
 

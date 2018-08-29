@@ -36,42 +36,42 @@ public class EntityAIPigtificatePlay extends EntityAIBase
     {
         this.pigtificate = pigtificate;
         this.speed = speed;
-        setMutexBits(1);
+        this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        if(pigtificate.getGrowingAge() >= 0)
+        if(this.pigtificate.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if(pigtificate.getRNG().nextInt(400) != 0)
+        else if(this.pigtificate.getRNG().nextInt(400) != 0)
         {
             return false;
         }
         else
         {
-            List<EntityPigtificate> pigtificates = pigtificate.world.getEntitiesWithinAABB(EntityPigtificate.class, pigtificate.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<EntityPigtificate> pigtificates = this.pigtificate.world.getEntitiesWithinAABB(EntityPigtificate.class, this.pigtificate.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double maxDistance = Double.MAX_VALUE;
 
             for(EntityPigtificate testPigtificate : pigtificates)
             {
-                if(testPigtificate != pigtificate && !testPigtificate.isPlaying() && testPigtificate.getGrowingAge() < 0)
+                if(testPigtificate != this.pigtificate && !testPigtificate.isPlaying() && testPigtificate.getGrowingAge() < 0)
                 {
-                    double distance = testPigtificate.getDistanceSq(pigtificate);
+                    double distance = testPigtificate.getDistanceSq(this.pigtificate);
 
                     if(distance <= maxDistance)
                     {
                         maxDistance = distance;
-                        target = testPigtificate;
+                        this.target = testPigtificate;
                     }
                 }
             }
 
-            if(target == null)
+            if(this.target == null)
             {
-                return RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3) != null;
+                return RandomPositionGenerator.findRandomTarget(this.pigtificate, 16, 3) != null;
             }
 
             return true;
@@ -81,49 +81,49 @@ public class EntityAIPigtificatePlay extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return playTime > 0;
+        return this.playTime > 0;
     }
 
     @Override
     public void startExecuting()
     {
-        if(target != null)
+        if(this.target != null)
         {
-            pigtificate.setPlaying(true);
+            this.pigtificate.setPlaying(true);
         }
 
-        playTime = 1000;
+        this.playTime = 1000;
     }
 
     @Override
     public void resetTask()
     {
-        pigtificate.setPlaying(false);
-        target = null;
+        this.pigtificate.setPlaying(false);
+        this.target = null;
     }
 
     @Override
     public void updateTask()
     {
-        playTime--;
+        this.playTime--;
 
-        if(target != null)
+        if(this.target != null)
         {
-            if(pigtificate.getDistanceSq(target) > 4.0D)
+            if(this.pigtificate.getDistanceSq(this.target) > 4.0D)
             {
-                pigtificate.getNavigator().tryMoveToEntityLiving(target, speed);
+                this.pigtificate.getNavigator().tryMoveToEntityLiving(this.target, this.speed);
             }
         }
-        else if(pigtificate.getNavigator().noPath())
+        else if(this.pigtificate.getNavigator().noPath())
         {
-            Vec3d pos = RandomPositionGenerator.findRandomTarget(pigtificate, 16, 3);
+            Vec3d pos = RandomPositionGenerator.findRandomTarget(this.pigtificate, 16, 3);
 
             if(pos == null)
             {
                 return;
             }
 
-            pigtificate.getNavigator().tryMoveToXYZ(pos.x, pos.y, pos.z, speed);
+            this.pigtificate.getNavigator().tryMoveToXYZ(pos.x, pos.y, pos.z, this.speed);
         }
     }
 }

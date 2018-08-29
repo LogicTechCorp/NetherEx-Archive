@@ -45,7 +45,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        World world = creature.getEntityWorld();
+        World world = this.creature.getEntityWorld();
 
         if(WorldHelper.isDaytime(world))
         {
@@ -53,7 +53,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
         }
         else
         {
-            BlockPos pos = new BlockPos(creature);
+            BlockPos pos = new BlockPos(this.creature);
             PigtificateVillage village = PigtificateVillageManager.getVillageData(world, true).getNearestVillage(pos, 16);
 
             if(village == null)
@@ -62,8 +62,8 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
             }
             else
             {
-                fenceGate = village.getNearestFenceGate(pos);
-                return fenceGate != null && (double) fenceGate.getDistanceToInsideBlockSq(pos) < 2.25D;
+                this.fenceGate = village.getNearestFenceGate(pos);
+                return this.fenceGate != null && (double) this.fenceGate.getDistanceToInsideBlockSq(pos) < 2.25D;
             }
         }
     }
@@ -71,27 +71,27 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !WorldHelper.isDaytime(creature.getEntityWorld()) && (!fenceGate.isDetachedFromVillageFlag() && fenceGate.isInside(new BlockPos(creature)));
+        return !WorldHelper.isDaytime(this.creature.getEntityWorld()) && (!this.fenceGate.isDetachedFromVillageFlag() && this.fenceGate.isInside(new BlockPos(this.creature)));
     }
 
     @Override
     public void startExecuting()
     {
-        ((PathNavigateGround) creature.getNavigator()).setBreakDoors(false);
-        ((PathNavigateGround) creature.getNavigator()).setEnterDoors(false);
+        ((PathNavigateGround) this.creature.getNavigator()).setBreakDoors(false);
+        ((PathNavigateGround) this.creature.getNavigator()).setEnterDoors(false);
     }
 
     @Override
     public void resetTask()
     {
-        ((PathNavigateGround) creature.getNavigator()).setBreakDoors(true);
-        ((PathNavigateGround) creature.getNavigator()).setEnterDoors(true);
-        fenceGate = null;
+        ((PathNavigateGround) this.creature.getNavigator()).setBreakDoors(true);
+        ((PathNavigateGround) this.creature.getNavigator()).setEnterDoors(true);
+        this.fenceGate = null;
     }
 
     @Override
     public void updateTask()
     {
-        fenceGate.incrementOpenRestrictionCounter();
+        this.fenceGate.incrementOpenRestrictionCounter();
     }
 }

@@ -56,7 +56,7 @@ public class BlockElderMushroom extends BlockLibEx implements IPlantable, IGrowa
     public BlockElderMushroom()
     {
         super(NetherEx.instance, "elder_mushroom", Material.PLANTS);
-        setSoundType(SoundType.PLANT);
+        this.setSoundType(SoundType.PLANT);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class BlockElderMushroom extends BlockLibEx implements IPlantable, IGrowa
         IBlockState soil = world.getBlockState(pos.down());
         if(!soil.getBlock().canSustainPlant(soil, world, pos.down(), EnumFacing.UP, this))
         {
-            dropBlockAsItem(world, pos, state, 0);
+            this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
@@ -134,7 +134,7 @@ public class BlockElderMushroom extends BlockLibEx implements IPlantable, IGrowa
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
-        return getDefaultState();
+        return this.getDefaultState();
     }
 
     @Override
@@ -175,13 +175,13 @@ public class BlockElderMushroom extends BlockLibEx implements IPlantable, IGrowa
     @Override
     public int damageDropped(IBlockState state)
     {
-        return getMetaFromState(state);
+        return this.getMetaFromState(state);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
     }
 
     @Override
@@ -204,7 +204,7 @@ public class BlockElderMushroom extends BlockLibEx implements IPlantable, IGrowa
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumType getRandom(Random rand)

@@ -44,9 +44,9 @@ public class EntitySalamander extends EntityMob
     public EntitySalamander(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(0.95F, 0.45F);
-        setRandomType();
+        this.isImmuneToFire = true;
+        this.setSize(0.95F, 0.45F);
+        this.setRandomType();
     }
 
     @Override
@@ -70,36 +70,36 @@ public class EntitySalamander extends EntityMob
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAILeapAtTarget(this, 0.3F));
-        tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
-        tasks.addTask(3, new EntityAIWander(this, 1.0D));
-        tasks.addTask(4, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.3F));
+        this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(4, new EntityAILookIdle(this));
+        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.2D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.2D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
     }
 
     @Override
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(TYPE, 0);
+        this.dataManager.register(TYPE, 0);
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return world.getDifficulty() != EnumDifficulty.PEACEFUL;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override
@@ -111,7 +111,7 @@ public class EntitySalamander extends EntityMob
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        if(getType() == 1 && entity instanceof EntityLivingBase)
+        if(this.getType() == 1 && entity instanceof EntityLivingBase)
         {
             entity.setFire(8);
         }
@@ -121,14 +121,14 @@ public class EntitySalamander extends EntityMob
     @Override
     public String getName()
     {
-        if(hasCustomName())
+        if(this.hasCustomName())
         {
-            return getCustomNameTag();
+            return this.getCustomNameTag();
         }
         else
         {
             String entityName = EntityList.getEntityString(this);
-            String type = getType() == 0 ? "orange" : "black";
+            String type = this.getType() == 0 ? "orange" : "black";
             return I18n.translateToLocal("entity." + entityName + "." + type + ".name");
         }
     }
@@ -136,20 +136,20 @@ public class EntitySalamander extends EntityMob
     @Override
     protected ResourceLocation getLootTable()
     {
-        return getType() == 0 ? NetherExLootTables.ORANGE_SALAMANDER : NetherExLootTables.BLACK_SALAMANDER;
+        return this.getType() == 0 ? NetherExLootTables.ORANGE_SALAMANDER : NetherExLootTables.BLACK_SALAMANDER;
     }
 
     public int getType()
     {
-        return dataManager.get(TYPE);
+        return this.dataManager.get(TYPE);
     }
 
     private void setRandomType()
     {
         WeightedRandom.Item orange = new WeightedRandom.Item(10);
         WeightedRandom.Item black = new WeightedRandom.Item(1);
-        WeightedRandom.Item item = WeightedRandom.getRandomItem(rand, Lists.newArrayList(orange, black));
-        setType(item == orange ? 0 : 1);
+        WeightedRandom.Item item = WeightedRandom.getRandomItem(this.rand, Lists.newArrayList(orange, black));
+        this.setType(item == orange ? 0 : 1);
     }
 
     public void setType(int id)
@@ -163,6 +163,6 @@ public class EntitySalamander extends EntityMob
             id = 1;
         }
 
-        dataManager.set(TYPE, id);
+        this.dataManager.set(TYPE, id);
     }
 }

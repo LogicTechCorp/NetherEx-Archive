@@ -31,6 +31,6 @@ public class BiomeNetherEx extends BiomeLibEx
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
-        return getModdedBiomeDecorator(new BiomeDecoratorNetherEx());
+        return this.getModdedBiomeDecorator(new BiomeDecoratorNetherEx());
     }
 }

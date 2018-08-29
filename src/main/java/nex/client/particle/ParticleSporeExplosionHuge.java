@@ -49,17 +49,17 @@ public class ParticleSporeExplosionHuge extends Particle
 
         for(int i = 0; i < 6; i++)
         {
-            double d0 = posX + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
-            double d1 = posY + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
-            double d2 = posZ + (rand.nextDouble() - rand.nextDouble()) * 4.0D;
-            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.ordinal(), d0, d1, d2, (double) ((float) timeSinceStart / (float) maximumTime), 0.0D, 0.0D);
+            double d0 = this.posX + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
+            double d1 = this.posY + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
+            double d2 = this.posZ + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
+            NetherEx.proxy.spawnParticle(this.world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.ordinal(), d0, d1, d2, (double) ((float) this.timeSinceStart / (float) maximumTime), 0.0D, 0.0D);
         }
 
-        timeSinceStart++;
+        this.timeSinceStart++;
 
-        if(timeSinceStart == maximumTime)
+        if(this.timeSinceStart == maximumTime)
         {
-            setExpired();
+            this.setExpired();
         }
     }
 

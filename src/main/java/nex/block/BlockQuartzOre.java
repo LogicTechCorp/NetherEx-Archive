@@ -44,8 +44,8 @@ public class BlockQuartzOre extends BlockLibEx
     public BlockQuartzOre()
     {
         super(NetherEx.instance, "quartz_ore", Material.ROCK);
-        setHardness(3.0F);
-        setResistance(5.0F);
+        this.setHardness(3.0F);
+        this.setResistance(5.0F);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BlockQuartzOre extends BlockLibEx
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(state));
+        return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
     }
 
     @Override
@@ -87,11 +87,11 @@ public class BlockQuartzOre extends BlockLibEx
                 i = 0;
             }
 
-            return quantityDropped(rand) * (i + 1);
+            return this.quantityDropped(rand) * (i + 1);
         }
         else
         {
-            return quantityDropped(rand);
+            return this.quantityDropped(rand);
         }
     }
 
@@ -105,7 +105,7 @@ public class BlockQuartzOre extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, BlockNetherrack.EnumType.fromMeta(meta));
     }
 
     @Override

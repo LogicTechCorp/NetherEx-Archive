@@ -43,8 +43,8 @@ public class BlockBoneSliver extends BlockLibEx
     public BlockBoneSliver()
     {
         super(NetherEx.instance, "bone_sliver", Material.ROCK);
-        setHardness(2.0F);
-        setResistance(5.0F);
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class BlockBoneSliver extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(AXIS, EnumFacing.Axis.values()[meta]);
+        return this.getDefaultState().withProperty(AXIS, EnumFacing.Axis.values()[meta]);
     }
 
     @Override

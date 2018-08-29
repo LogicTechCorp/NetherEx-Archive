@@ -42,8 +42,8 @@ public class BlockElderMushroomStem extends BlockLibEx
     public BlockElderMushroomStem()
     {
         super(NetherEx.instance, "elder_mushroom_stem", Material.WOOD);
-        setSoundType(SoundType.WOOD);
-        setHardness(0.2F);
+        this.setSoundType(SoundType.WOOD);
+        this.setHardness(0.2F);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class BlockElderMushroomStem extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(AXIS, EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(AXIS, EnumType.fromMeta(meta));
     }
 
     @Override
@@ -92,7 +92,7 @@ public class BlockElderMushroomStem extends BlockLibEx
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumType fromMeta(int meta)

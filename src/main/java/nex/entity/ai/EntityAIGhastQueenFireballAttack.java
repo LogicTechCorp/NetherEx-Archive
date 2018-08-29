@@ -40,57 +40,57 @@ public class EntityAIGhastQueenFireballAttack extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return ghast.getAttackTarget() != null;
+        return this.ghast.getAttackTarget() != null;
     }
 
     @Override
     public void startExecuting()
     {
-        attackCounter = 0;
+        this.attackCounter = 0;
     }
 
     @Override
     public void resetTask()
     {
-        ghast.setAttacking(false);
+        this.ghast.setAttacking(false);
     }
 
     @Override
     public void updateTask()
     {
-        EntityLivingBase target = ghast.getAttackTarget();
+        EntityLivingBase target = this.ghast.getAttackTarget();
 
-        if(target.getDistanceSq(ghast) < 4096.0D && ghast.canEntityBeSeen(target))
+        if(target.getDistanceSq(this.ghast) < 4096.0D && this.ghast.canEntityBeSeen(target))
         {
-            World world = ghast.world;
-            attackCounter++;
+            World world = this.ghast.world;
+            this.attackCounter++;
 
-            if(attackCounter == 10)
+            if(this.attackCounter == 10)
             {
-                world.playEvent(null, 1015, new BlockPos(ghast), 0);
+                world.playEvent(null, 1015, new BlockPos(this.ghast), 0);
             }
 
-            if(attackCounter == 20)
+            if(this.attackCounter == 20)
             {
-                Vec3d look = ghast.getLook(1.0F);
-                double distanceX = target.posX - (ghast.posX + look.x * 4.0D);
-                double distanceY = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + ghast.posY + (double) (ghast.height / 2.0F));
-                double distanceZ = target.posZ - (ghast.posZ + look.z * 4.0D);
-                ghast.playSound(NetherExSoundEvents.GHAST_QUEEN_SHOOT, 10.0F, (ghast.getRNG().nextFloat() - ghast.getRNG().nextFloat()) * 0.2F + 1.0F);
-                EntityGhastQueenFireball fireball = new EntityGhastQueenFireball(world, ghast, distanceX, distanceY, distanceZ);
-                fireball.explosionPower = ghast.getFireballStrength();
-                fireball.posX = ghast.posX + look.x * 4.0D;
-                fireball.posY = ghast.posY + (double) (ghast.height / 2.0F) + 0.5D;
-                fireball.posZ = ghast.posZ + look.z * 4.0D;
+                Vec3d look = this.ghast.getLook(1.0F);
+                double distanceX = target.posX - (this.ghast.posX + look.x * 4.0D);
+                double distanceY = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (0.5D + this.ghast.posY + (double) (this.ghast.height / 2.0F));
+                double distanceZ = target.posZ - (this.ghast.posZ + look.z * 4.0D);
+                this.ghast.playSound(NetherExSoundEvents.GHAST_QUEEN_SHOOT, 10.0F, (this.ghast.getRNG().nextFloat() - this.ghast.getRNG().nextFloat()) * 0.2F + 1.0F);
+                EntityGhastQueenFireball fireball = new EntityGhastQueenFireball(world, this.ghast, distanceX, distanceY, distanceZ);
+                fireball.explosionPower = this.ghast.getFireballStrength();
+                fireball.posX = this.ghast.posX + look.x * 4.0D;
+                fireball.posY = this.ghast.posY + (double) (this.ghast.height / 2.0F) + 0.5D;
+                fireball.posZ = this.ghast.posZ + look.z * 4.0D;
                 world.spawnEntity(fireball);
-                attackCounter = -40;
+                this.attackCounter = -40;
             }
         }
-        else if(attackCounter > 0)
+        else if(this.attackCounter > 0)
         {
-            attackCounter--;
+            this.attackCounter--;
         }
 
-        ghast.setAttacking(attackCounter > 10);
+        this.ghast.setAttacking(this.attackCounter > 10);
     }
 }

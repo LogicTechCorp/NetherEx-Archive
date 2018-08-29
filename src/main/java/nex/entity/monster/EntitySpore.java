@@ -45,14 +45,14 @@ public class EntitySpore extends EntityMob
     public EntitySpore(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setRandomStage();
+        this.isImmuneToFire = true;
+        this.setRandomStage();
     }
 
     public EntitySpore(World world, int stage)
     {
         this(world);
-        setStage(stage);
+        this.setStage(stage);
     }
 
     @Override
@@ -71,14 +71,14 @@ public class EntitySpore extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
     }
 
     @Override
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(STAGE, 0);
+        this.dataManager.register(STAGE, 0);
     }
 
     @Override
@@ -86,34 +86,34 @@ public class EntitySpore extends EntityMob
     {
         super.onUpdate();
 
-        updateSize();
+        this.updateSize();
 
-        if(getStage() < 4)
+        if(this.getStage() < 4)
         {
-            setCounter(getCounter() + 1);
+            this.setCounter(this.getCounter() + 1);
 
-            if(getCounter() >= (ConfigHandler.entityConfig.spore.growthTime / (getStage() + 1)) * 20)
+            if(this.getCounter() >= (ConfigHandler.entityConfig.spore.growthTime / (this.getStage() + 1)) * 20)
             {
-                setCounter(0);
-                setStage(getStage() + 1);
+                this.setCounter(0);
+                this.setStage(this.getStage() + 1);
             }
         }
         else
         {
-            if(world.getEntitiesWithinAABB(EntityPlayer.class, getEntityBoundingBox().expand(2, 2, 2)).size() > 0)
+            if(this.world.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().expand(2, 2, 2)).size() > 0)
             {
-                setDead();
+                this.setDead();
 
-                if(!world.isRemote)
+                if(!this.world.isRemote)
                 {
 
-                    int creeperSpawns = rand.nextInt(ConfigHandler.entityConfig.spore.creeperSpawnAmount) + 1;
+                    int creeperSpawns = this.rand.nextInt(ConfigHandler.entityConfig.spore.creeperSpawnAmount) + 1;
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {
-                        EntitySporeCreeper creeper = new EntitySporeCreeper(world);
-                        creeper.setPosition(posX, posY, posZ);
-                        world.spawnEntity(creeper);
+                        EntitySporeCreeper creeper = new EntitySporeCreeper(this.world);
+                        creeper.setPosition(this.posX, this.posY, this.posZ);
+                        this.world.spawnEntity(creeper);
                     }
                 }
             }
@@ -124,14 +124,14 @@ public class EntitySpore extends EntityMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("Counter", getCounter());
+        compound.setInteger("Counter", this.getCounter());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        setCounter(compound.getInteger("Counter"));
+        this.setCounter(compound.getInteger("Counter"));
     }
 
     @Override
@@ -161,12 +161,12 @@ public class EntitySpore extends EntityMob
 
     public int getStage()
     {
-        return dataManager.get(STAGE);
+        return this.dataManager.get(STAGE);
     }
 
     private int getCounter()
     {
-        return counter;
+        return this.counter;
     }
 
     private void setRandomStage()
@@ -176,8 +176,8 @@ public class EntitySpore extends EntityMob
         WeightedRandom.Item three = new WeightedRandom.Item(6);
         WeightedRandom.Item four = new WeightedRandom.Item(4);
         WeightedRandom.Item five = new WeightedRandom.Item(2);
-        WeightedRandom.Item stage = WeightedRandom.getRandomItem(rand, Lists.newArrayList(one, two, three, four, five));
-        setStage(stage == one ? 0 : stage == two ? 1 : stage == three ? 2 : stage == four ? 3 : 4);
+        WeightedRandom.Item stage = WeightedRandom.getRandomItem(this.rand, Lists.newArrayList(one, two, three, four, five));
+        this.setStage(stage == one ? 0 : stage == two ? 1 : stage == three ? 2 : stage == four ? 3 : 4);
     }
 
     private void setStage(int stage)
@@ -191,27 +191,27 @@ public class EntitySpore extends EntityMob
             stage = 4;
         }
 
-        dataManager.set(STAGE, stage);
+        this.dataManager.set(STAGE, stage);
     }
 
     private void setCounter(int i)
     {
-        counter = i;
+        this.counter = i;
     }
 
     private void updateSize()
     {
-        if(getStage() == 0 || getStage() == 1 && (width != 0.65F || height != 0.75F))
+        if(this.getStage() == 0 || this.getStage() == 1 && (this.width != 0.65F || this.height != 0.75F))
         {
-            setSize(0.65F, 0.75F);
+            this.setSize(0.65F, 0.75F);
         }
-        else if(getStage() == 2 && (width != 0.78F || height != 0.88F))
+        else if(this.getStage() == 2 && (this.width != 0.78F || this.height != 0.88F))
         {
-            setSize(0.78F, 0.88F);
+            this.setSize(0.78F, 0.88F);
         }
-        else if(getStage() == 3 || getStage() == 4 && (width != 0.8F || height != 1.48F))
+        else if(this.getStage() == 3 || this.getStage() == 4 && (this.width != 0.8F || this.height != 1.48F))
         {
-            setSize(0.8F, 1.48F);
+            this.setSize(0.8F, 1.48F);
         }
     }
 }

@@ -42,7 +42,7 @@ public class ItemObsidianBoat extends ItemLibEx
     public ItemObsidianBoat()
     {
         super(NetherEx.instance, "obsidian_boat");
-        setMaxStackSize(1);
+        this.setMaxStackSize(1);
     }
 
     @Override

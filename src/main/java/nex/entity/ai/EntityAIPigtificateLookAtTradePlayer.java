@@ -34,9 +34,9 @@ public class EntityAIPigtificateLookAtTradePlayer extends EntityAIWatchClosest
     @Override
     public boolean shouldExecute()
     {
-        if(pigtificate.isTrading())
+        if(this.pigtificate.isTrading())
         {
-            closestEntity = pigtificate.getCustomer();
+            this.closestEntity = this.pigtificate.getCustomer();
             return true;
         }
         else

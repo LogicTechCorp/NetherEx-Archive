@@ -38,66 +38,66 @@ public class ModelGoldGolem extends ModelBase
 
     public ModelGoldGolem()
     {
-        textureWidth = 128;
-        textureHeight = 128;
+        this.textureWidth = 128;
+        this.textureHeight = 128;
 
-        head = new ModelRenderer(this, 0, 0);
-        head.setRotationPoint(0.0F, -14.0F, -4.0F);
-        head.addBox(-4.0F, -9.0F, -4.0F, 8, 9, 8);
-        nose = new ModelRenderer(this, 24, 0);
-        nose.setRotationPoint(0.0F, -1.0F, -4.0F);
-        nose.addBox(-2.0F, -3.0F, -1.0F, 4, 3, 1);
-        head.addChild(this.nose);
-        body = new ModelRenderer(this, 0, 17);
-        body.setRotationPoint(0.0F, -18.0F, 0.0F);
-        body.addBox(-9.0F, 0.0F, -5.0F, 18, 20, 10);
-        waist = new ModelRenderer(this, 0, 47);
-        waist.setRotationPoint(0.0F, 2.0F, 0.0F);
-        waist.addBox(-5.0F, 0.0F, -4.0F, 10, 5, 8);
-        loinClothFront = new ModelRenderer(this, 36, 47);
-        loinClothFront.setRotationPoint(0.0F, 5.0F, -4.0F);
-        loinClothFront.addBox(-3.0F, 0.0F, 0.0F, 6, 10, 0);
-        waist.addChild(this.loinClothFront);
-        loinClothBack = new ModelRenderer(this, 36, 47);
-        loinClothBack.setRotationPoint(0.0F, 5.0F, 4.0F);
-        loinClothBack.addBox(-3.0F, 0.0F, 0.0F, 6, 10, 0);
-        waist.addChild(this.loinClothBack);
-        rightLeg = new ModelRenderer(this, 0, 60);
-        rightLeg.setRotationPoint(5.0F, 7.0F, 0.0F);
-        rightLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6);
-        leftLeg = new ModelRenderer(this, 0, 60);
-        leftLeg.setRotationPoint(-5.0F, 7.0F, 0.0F);
-        leftLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6);
-        rightArm = new ModelRenderer(this, 0, 83);
-        rightArm.setRotationPoint(11.5F, -17.0F, 0.0F);
-        rightArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5);
-        leftArm = new ModelRenderer(this, 0, 83);
-        leftArm.setRotationPoint(-11.5F, -17.0F, 0.0F);
-        leftArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setRotationPoint(0.0F, -14.0F, -4.0F);
+        this.head.addBox(-4.0F, -9.0F, -4.0F, 8, 9, 8);
+        this.nose = new ModelRenderer(this, 24, 0);
+        this.nose.setRotationPoint(0.0F, -1.0F, -4.0F);
+        this.nose.addBox(-2.0F, -3.0F, -1.0F, 4, 3, 1);
+        this.head.addChild(this.nose);
+        this.body = new ModelRenderer(this, 0, 17);
+        this.body.setRotationPoint(0.0F, -18.0F, 0.0F);
+        this.body.addBox(-9.0F, 0.0F, -5.0F, 18, 20, 10);
+        this.waist = new ModelRenderer(this, 0, 47);
+        this.waist.setRotationPoint(0.0F, 2.0F, 0.0F);
+        this.waist.addBox(-5.0F, 0.0F, -4.0F, 10, 5, 8);
+        this.loinClothFront = new ModelRenderer(this, 36, 47);
+        this.loinClothFront.setRotationPoint(0.0F, 5.0F, -4.0F);
+        this.loinClothFront.addBox(-3.0F, 0.0F, 0.0F, 6, 10, 0);
+        this.waist.addChild(this.loinClothFront);
+        this.loinClothBack = new ModelRenderer(this, 36, 47);
+        this.loinClothBack.setRotationPoint(0.0F, 5.0F, 4.0F);
+        this.loinClothBack.addBox(-3.0F, 0.0F, 0.0F, 6, 10, 0);
+        this.waist.addChild(this.loinClothBack);
+        this.rightLeg = new ModelRenderer(this, 0, 60);
+        this.rightLeg.setRotationPoint(5.0F, 7.0F, 0.0F);
+        this.rightLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6);
+        this.leftLeg = new ModelRenderer(this, 0, 60);
+        this.leftLeg.setRotationPoint(-5.0F, 7.0F, 0.0F);
+        this.leftLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6);
+        this.rightArm = new ModelRenderer(this, 0, 83);
+        this.rightArm.setRotationPoint(11.5F, -17.0F, 0.0F);
+        this.rightArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5);
+        this.leftArm = new ModelRenderer(this, 0, 83);
+        this.leftArm.setRotationPoint(-11.5F, -17.0F, 0.0F);
+        this.leftArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
-        head.render(scale);
-        body.render(scale);
-        waist.render(scale);
-        rightLeg.render(scale);
-        leftLeg.render(scale);
-        rightArm.render(scale);
-        leftArm.render(scale);
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
+        this.head.render(scale);
+        this.body.render(scale);
+        this.waist.render(scale);
+        this.rightLeg.render(scale);
+        this.leftLeg.render(scale);
+        this.rightArm.render(scale);
+        this.leftArm.render(scale);
     }
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity)
     {
-        head.rotateAngleY = netHeadYaw * 0.017453292F;
-        head.rotateAngleX = headPitch * 0.017453292F;
-        leftLeg.rotateAngleX = -1.5F * triangleWave(limbSwing, 13.0F) * limbSwingAmount;
-        rightLeg.rotateAngleX = 1.5F * triangleWave(limbSwing, 13.0F) * limbSwingAmount;
-        leftLeg.rotateAngleY = 0.0F;
-        rightLeg.rotateAngleY = 0.0F;
+        this.head.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.head.rotateAngleX = headPitch * 0.017453292F;
+        this.leftLeg.rotateAngleX = -1.5F * this.triangleWave(limbSwing, 13.0F) * limbSwingAmount;
+        this.rightLeg.rotateAngleX = 1.5F * this.triangleWave(limbSwing, 13.0F) * limbSwingAmount;
+        this.leftLeg.rotateAngleY = 0.0F;
+        this.rightLeg.rotateAngleY = 0.0F;
     }
 
     @Override
@@ -108,13 +108,13 @@ public class ModelGoldGolem extends ModelBase
 
         if(i > 0)
         {
-            rightArm.rotateAngleX = -2.0F + 1.5F * triangleWave((float) i - partialTickTime, 10.0F);
-            leftArm.rotateAngleX = -2.0F + 1.5F * triangleWave((float) i - partialTickTime, 10.0F);
+            this.rightArm.rotateAngleX = -2.0F + 1.5F * this.triangleWave((float) i - partialTickTime, 10.0F);
+            this.leftArm.rotateAngleX = -2.0F + 1.5F * this.triangleWave((float) i - partialTickTime, 10.0F);
         }
         else
         {
-            rightArm.rotateAngleX = (-0.2F + 1.5F * triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
-            leftArm.rotateAngleX = (-0.2F - 1.5F * triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
+            this.rightArm.rotateAngleX = (-0.2F + 1.5F * this.triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
+            this.leftArm.rotateAngleX = (-0.2F - 1.5F * this.triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
         }
     }
 

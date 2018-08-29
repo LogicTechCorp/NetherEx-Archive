@@ -28,7 +28,7 @@ public class ItemBlockQuartzOre extends ItemBlockLibEx
     public ItemBlockQuartzOre()
     {
         super(NetherExBlocks.QUARTZ_ORE);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override

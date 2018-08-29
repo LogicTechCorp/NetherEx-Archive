@@ -34,9 +34,9 @@ public class BlockFrostburnIce extends BlockLibEx
     public BlockFrostburnIce()
     {
         super(NetherEx.instance, "frostburn_ice", Material.ICE);
-        setSoundType(SoundType.GLASS);
-        setLightOpacity(3);
-        setHardness(0.5F);
+        this.setSoundType(SoundType.GLASS);
+        this.setLightOpacity(3);
+        this.setHardness(0.5F);
     }
 
     @Override

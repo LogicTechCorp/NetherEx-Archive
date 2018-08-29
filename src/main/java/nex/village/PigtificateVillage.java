@@ -75,31 +75,31 @@ public class PigtificateVillage
         if(world != null)
         {
             this.tickCounter = tickCounter;
-            updateFenceGates();
-            updateAggressors();
+            this.updateFenceGates();
+            this.updateAggressors();
 
             if(tickCounter % 20 == 0)
             {
-                updatePigtificates();
+                this.updatePigtificates();
             }
 
             if(tickCounter % 30 == 0)
             {
-                updateGolems();
+                this.updateGolems();
             }
 
-            int i = pigtificateAmount / 10;
+            int i = this.pigtificateAmount / 10;
 
-            if(golemAmount < i && fenceGates.size() > 20 && world.rand.nextInt(7000) == 0)
+            if(this.golemAmount < i && this.fenceGates.size() > 20 && world.rand.nextInt(7000) == 0)
             {
-                Vec3d randomPos = findRandomSpawnPos(center, 2, 4, 2);
+                Vec3d randomPos = this.findRandomSpawnPos(this.center, 2, 4, 2);
 
                 if(randomPos != null)
                 {
                     EntityGoldGolem golem = new EntityGoldGolem(world);
                     golem.setPosition(randomPos.x, randomPos.y, randomPos.z);
                     world.spawnEntity(golem);
-                    golemAmount++;
+                    this.golemAmount++;
                 }
             }
         }
@@ -115,7 +115,7 @@ public class PigtificateVillage
             {
                 BlockPos blockPos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(6) - 3, world.rand.nextInt(16) - 8);
 
-                if(isBlockPosWithinSqVillageRadius(blockPos) && isAreaClearAround(new BlockPos(x, y, z), blockPos))
+                if(this.isBlockPosWithinSqVillageRadius(blockPos) && this.isAreaClearAround(new BlockPos(x, y, z), blockPos))
                 {
                     return new Vec3d((double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ());
                 }
@@ -177,7 +177,7 @@ public class PigtificateVillage
 
         if(world != null)
         {
-            List<EntityGoldGolem> golems = world.getEntitiesWithinAABB(EntityGoldGolem.class, new AxisAlignedBB((double) (center.getX() - radius), (double) (center.getY() - 4), (double) (center.getZ() - radius), (double) (center.getX() + radius), (double) (center.getY() + 4), (double) (center.getZ() + radius)));
+            List<EntityGoldGolem> golems = world.getEntitiesWithinAABB(EntityGoldGolem.class, new AxisAlignedBB((double) (this.center.getX() - this.radius), (double) (this.center.getY() - 4), (double) (this.center.getZ() - this.radius), (double) (this.center.getX() + this.radius), (double) (this.center.getY() + 4), (double) (this.center.getZ() + this.radius)));
             this.golemAmount = golems.size();
         }
     }
@@ -189,49 +189,49 @@ public class PigtificateVillage
         if(world != null)
         {
 
-            List<EntityPigtificate> pigtificates = world.getEntitiesWithinAABB(EntityPigtificate.class, new AxisAlignedBB((double) (center.getX() - radius), (double) (center.getY() - 4), (double) (center.getZ() - radius), (double) (center.getX() + radius), (double) (center.getY() + 4), (double) (center.getZ() + radius)));
+            List<EntityPigtificate> pigtificates = world.getEntitiesWithinAABB(EntityPigtificate.class, new AxisAlignedBB((double) (this.center.getX() - this.radius), (double) (this.center.getY() - 4), (double) (this.center.getZ() - this.radius), (double) (this.center.getX() + this.radius), (double) (this.center.getY() + 4), (double) (this.center.getZ() + this.radius)));
             this.pigtificateAmount = pigtificates.size();
 
             if(this.pigtificateAmount == 0)
             {
-                playerReputations.clear();
+                this.playerReputations.clear();
             }
         }
     }
 
     public BlockPos getCenter()
     {
-        return center;
+        return this.center;
     }
 
     public int getRadius()
     {
-        return radius;
+        return this.radius;
     }
 
     public int getVillageFenceGateAmount()
     {
-        return fenceGates.size();
+        return this.fenceGates.size();
     }
 
     public int getTicksSinceLastFenceGateAdded()
     {
-        return tickCounter - lastAddedFenceGateTime;
+        return this.tickCounter - this.lastAddedFenceGateTime;
     }
 
     public int getPigtificateAmount()
     {
-        return pigtificateAmount;
+        return this.pigtificateAmount;
     }
 
     public boolean isBlockPosWithinSqVillageRadius(BlockPos pos)
     {
-        return center.distanceSq(pos) < (double) (radius * radius);
+        return this.center.distanceSq(pos) < (double) (this.radius * this.radius);
     }
 
     public List<PigtificateVillageFenceGateInfo> getFenceGates()
     {
-        return fenceGates;
+        return this.fenceGates;
     }
 
     public PigtificateVillageFenceGateInfo getNearestFenceGate(BlockPos pos)
@@ -239,7 +239,7 @@ public class PigtificateVillage
         PigtificateVillageFenceGateInfo fenceGateInfo = null;
         int maxDistance = Integer.MAX_VALUE;
 
-        for(PigtificateVillageFenceGateInfo testFenceGate : fenceGates)
+        for(PigtificateVillageFenceGateInfo testFenceGate : this.fenceGates)
         {
             int distanceToFenceGate = testFenceGate.getDistanceToFenceGateSq(pos);
 
@@ -263,7 +263,7 @@ public class PigtificateVillage
             PigtificateVillageFenceGateInfo fenceGateInfo = null;
             int maxDistance = Integer.MAX_VALUE;
 
-            for(PigtificateVillageFenceGateInfo testFenceGate : fenceGates)
+            for(PigtificateVillageFenceGateInfo testFenceGate : this.fenceGates)
             {
                 int distanceToFenceGate = testFenceGate.getDistanceToFenceGateSq(pos);
 
@@ -297,13 +297,13 @@ public class PigtificateVillage
 
     public PigtificateVillageFenceGateInfo getExistingFenceGate(BlockPos fenceGateBlock)
     {
-        if(center.distanceSq(fenceGateBlock) > (double) (radius * radius))
+        if(this.center.distanceSq(fenceGateBlock) > (double) (this.radius * this.radius))
         {
             return null;
         }
         else
         {
-            for(PigtificateVillageFenceGateInfo fenceGateInfo : fenceGates)
+            for(PigtificateVillageFenceGateInfo fenceGateInfo : this.fenceGates)
             {
                 if(fenceGateInfo.getPos().getX() == fenceGateBlock.getX() && fenceGateInfo.getPos().getZ() == fenceGateBlock.getZ() && Math.abs(fenceGateInfo.getPos().getY() - fenceGateBlock.getY()) <= 1)
                 {
@@ -317,29 +317,29 @@ public class PigtificateVillage
 
     public void addFenceGateInfo(PigtificateVillageFenceGateInfo fenceGateInfo)
     {
-        fenceGates.add(fenceGateInfo);
-        adjustedCenter = adjustedCenter.add(fenceGateInfo.getPos());
-        lastAddedFenceGateTime = fenceGateInfo.getLastActivityTime();
-        updateVillage();
+        this.fenceGates.add(fenceGateInfo);
+        this.adjustedCenter = this.adjustedCenter.add(fenceGateInfo.getPos());
+        this.lastAddedFenceGateTime = fenceGateInfo.getLastActivityTime();
+        this.updateVillage();
     }
 
     public boolean isAnnihilated()
     {
-        return fenceGates.isEmpty();
+        return this.fenceGates.isEmpty();
     }
 
     public void setAggressor(EntityLivingBase entity)
     {
-        for(VillageAggressor aggressor : aggressors)
+        for(VillageAggressor aggressor : this.aggressors)
         {
             if(aggressor.aggressor == entity)
             {
-                aggressor.aggressionTime = tickCounter;
+                aggressor.aggressionTime = this.tickCounter;
                 return;
             }
         }
 
-        aggressors.add(new VillageAggressor(entity, tickCounter));
+        this.aggressors.add(new VillageAggressor(entity, this.tickCounter));
     }
 
     public EntityLivingBase findNearestVillageAggressor(EntityLivingBase livingEntity)
@@ -347,7 +347,7 @@ public class PigtificateVillage
         double maxDistance = Double.MAX_VALUE;
         VillageAggressor aggressor = null;
 
-        for(VillageAggressor villageAggressor : aggressors)
+        for(VillageAggressor villageAggressor : this.aggressors)
         {
             double distanceToAggressor = villageAggressor.aggressor.getDistanceSq(livingEntity);
 
@@ -371,9 +371,9 @@ public class PigtificateVillage
             double maxDistance = Double.MAX_VALUE;
             EntityPlayer player = null;
 
-            for(UUID s : playerReputations.keySet())
+            for(UUID s : this.playerReputations.keySet())
             {
-                if(isPlayerReputationTooLow(s))
+                if(this.isPlayerReputationTooLow(s))
                 {
                     EntityPlayer entityPlayer = world.getPlayerEntityByUUID(s);
 
@@ -398,7 +398,7 @@ public class PigtificateVillage
 
     private void updateAggressors()
     {
-        aggressors.removeIf(aggressor -> !aggressor.aggressor.isEntityAlive() || Math.abs(tickCounter - aggressor.aggressionTime) > 300);
+        this.aggressors.removeIf(aggressor -> !aggressor.aggressor.isEntityAlive() || Math.abs(this.tickCounter - aggressor.aggressionTime) > 300);
     }
 
     private void updateFenceGates()
@@ -410,7 +410,7 @@ public class PigtificateVillage
 
             boolean update = false;
             boolean resetFenceGateTimer = world.rand.nextInt(50) == 0;
-            Iterator<PigtificateVillageFenceGateInfo> iter = fenceGates.iterator();
+            Iterator<PigtificateVillageFenceGateInfo> iter = this.fenceGates.iterator();
 
             while(iter.hasNext())
             {
@@ -421,9 +421,9 @@ public class PigtificateVillage
                     fenceGateInfo.resetOpenRestrictionCounter();
                 }
 
-                if(Math.abs(tickCounter - fenceGateInfo.getLastActivityTime()) > 1200)
+                if(Math.abs(this.tickCounter - fenceGateInfo.getLastActivityTime()) > 1200)
                 {
-                    adjustedCenter = adjustedCenter.subtract(fenceGateInfo.getPos());
+                    this.adjustedCenter = this.adjustedCenter.subtract(fenceGateInfo.getPos());
                     update = true;
                     fenceGateInfo.setDetachedFromVillageFlag(true);
                     iter.remove();
@@ -432,7 +432,7 @@ public class PigtificateVillage
 
             if(update)
             {
-                updateVillage();
+                this.updateVillage();
             }
         }
     }
@@ -443,26 +443,26 @@ public class PigtificateVillage
 
         if(fenceGates == 0)
         {
-            center = BlockPos.ORIGIN;
-            radius = 0;
+            this.center = BlockPos.ORIGIN;
+            this.radius = 0;
         }
         else
         {
-            center = new BlockPos(adjustedCenter.getX() / fenceGates, adjustedCenter.getY() / fenceGates, adjustedCenter.getZ() / fenceGates);
+            this.center = new BlockPos(this.adjustedCenter.getX() / fenceGates, this.adjustedCenter.getY() / fenceGates, this.adjustedCenter.getZ() / fenceGates);
             int distanceToFenceGate = 0;
 
             for(PigtificateVillageFenceGateInfo fenceGateInfo : this.fenceGates)
             {
-                distanceToFenceGate = Math.max(fenceGateInfo.getDistanceToFenceGateSq(center), distanceToFenceGate);
+                distanceToFenceGate = Math.max(fenceGateInfo.getDistanceToFenceGateSq(this.center), distanceToFenceGate);
             }
 
-            radius = Math.max(32, (int) Math.sqrt((double) distanceToFenceGate) + 1);
+            this.radius = Math.max(32, (int) Math.sqrt((double) distanceToFenceGate) + 1);
         }
     }
 
     public int getPlayerReputation(UUID playerName)
     {
-        Integer reputation = playerReputations.get(playerName);
+        Integer reputation = this.playerReputations.get(playerName);
         return reputation == null ? 0 : reputation;
     }
 
@@ -486,27 +486,27 @@ public class PigtificateVillage
 
     public int modifyPlayerReputation(UUID playerName, int amount)
     {
-        int reputation = getPlayerReputation(playerName);
+        int reputation = this.getPlayerReputation(playerName);
         int modifiedReputation = MathHelper.clamp(reputation + amount, -30, 10);
-        playerReputations.put(playerName, modifiedReputation);
+        this.playerReputations.put(playerName, modifiedReputation);
         return modifiedReputation;
     }
 
     public boolean isPlayerReputationTooLow(UUID uuid)
     {
-        return getPlayerReputation(uuid) <= -15;
+        return this.getPlayerReputation(uuid) <= -15;
     }
 
     public void readVillageDataFromNBT(NBTTagCompound compound)
     {
-        pigtificateAmount = compound.getInteger("PopSize");
-        radius = compound.getInteger("Radius");
-        golemAmount = compound.getInteger("Golems");
-        lastAddedFenceGateTime = compound.getInteger("Stable");
-        tickCounter = compound.getInteger("Tick");
-        matingCounter = compound.getInteger("MTick");
-        center = new BlockPos(compound.getInteger("CX"), compound.getInteger("CY"), compound.getInteger("CZ"));
-        adjustedCenter = new BlockPos(compound.getInteger("ACX"), compound.getInteger("ACY"), compound.getInteger("ACZ"));
+        this.pigtificateAmount = compound.getInteger("PopSize");
+        this.radius = compound.getInteger("Radius");
+        this.golemAmount = compound.getInteger("Golems");
+        this.lastAddedFenceGateTime = compound.getInteger("Stable");
+        this.tickCounter = compound.getInteger("Tick");
+        this.matingCounter = compound.getInteger("MTick");
+        this.center = new BlockPos(compound.getInteger("CX"), compound.getInteger("CY"), compound.getInteger("CZ"));
+        this.adjustedCenter = new BlockPos(compound.getInteger("ACX"), compound.getInteger("ACY"), compound.getInteger("ACZ"));
         NBTTagList fenceGates = compound.getTagList("FenceGates", 10);
 
         for(int i = 0; i < fenceGates.tagCount(); i++)
@@ -524,29 +524,29 @@ public class PigtificateVillage
 
             if(player.hasKey("UUID"))
             {
-                playerReputations.put(UUID.fromString(player.getString("UUID")), player.getInteger("S"));
+                this.playerReputations.put(UUID.fromString(player.getString("UUID")), player.getInteger("S"));
             }
             else
             {
-                playerReputations.put(findUUID(player.getString("Name")), player.getInteger("S"));
+                this.playerReputations.put(this.findUUID(player.getString("Name")), player.getInteger("S"));
             }
         }
     }
 
     public void writeVillageDataToNBT(NBTTagCompound compound)
     {
-        compound.setInteger("PopSize", pigtificateAmount);
-        compound.setInteger("Radius", radius);
-        compound.setInteger("Golems", golemAmount);
-        compound.setInteger("Stable", lastAddedFenceGateTime);
-        compound.setInteger("Tick", tickCounter);
-        compound.setInteger("MTick", matingCounter);
-        compound.setInteger("CX", center.getX());
-        compound.setInteger("CY", center.getY());
-        compound.setInteger("CZ", center.getZ());
-        compound.setInteger("ACX", adjustedCenter.getX());
-        compound.setInteger("ACY", adjustedCenter.getY());
-        compound.setInteger("ACZ", adjustedCenter.getZ());
+        compound.setInteger("PopSize", this.pigtificateAmount);
+        compound.setInteger("Radius", this.radius);
+        compound.setInteger("Golems", this.golemAmount);
+        compound.setInteger("Stable", this.lastAddedFenceGateTime);
+        compound.setInteger("Tick", this.tickCounter);
+        compound.setInteger("MTick", this.matingCounter);
+        compound.setInteger("CX", this.center.getX());
+        compound.setInteger("CY", this.center.getY());
+        compound.setInteger("CZ", this.center.getZ());
+        compound.setInteger("ACX", this.adjustedCenter.getX());
+        compound.setInteger("ACY", this.adjustedCenter.getY());
+        compound.setInteger("ACZ", this.adjustedCenter.getZ());
         NBTTagList fenceGates = new NBTTagList();
 
         for(PigtificateVillageFenceGateInfo fenceGateInfo : this.fenceGates)
@@ -564,14 +564,14 @@ public class PigtificateVillage
         compound.setTag("FenceGates", fenceGates);
         NBTTagList players = new NBTTagList();
 
-        for(UUID s : playerReputations.keySet())
+        for(UUID s : this.playerReputations.keySet())
         {
             NBTTagCompound player = new NBTTagCompound();
 
             try
             {
                 player.setString("UUID", s.toString());
-                player.setInteger("S", playerReputations.get(s));
+                player.setInteger("S", this.playerReputations.get(s));
                 players.appendTag(player);
             }
             catch(RuntimeException ignored)
@@ -585,19 +585,19 @@ public class PigtificateVillage
 
     public void endMatingSeason()
     {
-        matingCounter = tickCounter;
+        this.matingCounter = this.tickCounter;
     }
 
     public boolean isMatingSeason()
     {
-        return matingCounter == 0 || tickCounter - matingCounter >= 3600;
+        return this.matingCounter == 0 || this.tickCounter - this.matingCounter >= 3600;
     }
 
     public void setDefaultPlayerReputation(int defaultReputation)
     {
-        for(UUID uuid : playerReputations.keySet())
+        for(UUID uuid : this.playerReputations.keySet())
         {
-            modifyPlayerReputation(uuid, defaultReputation);
+            this.modifyPlayerReputation(uuid, defaultReputation);
         }
     }
 

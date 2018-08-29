@@ -83,29 +83,29 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         super(world, true, world.getSeed());
         this.world = world;
-        rand = new Random(this.world.getSeed());
-        noiseGen1 = new NoiseGeneratorOctaves(rand, 16);
-        noiseGen2 = new NoiseGeneratorOctaves(rand, 16);
-        noiseGen3 = new NoiseGeneratorOctaves(rand, 8);
-        soulSandGravelNoiseGen = new NoiseGeneratorOctaves(rand, 4);
-        netherrackNoiseGen = new NoiseGeneratorOctaves(rand, 4);
-        scaleNoiseGen = new NoiseGeneratorOctaves(rand, 10);
-        depthNoiseGen = new NoiseGeneratorOctaves(rand, 16);
-        terrainNoiseGen = new NoiseGeneratorPerlin(rand, 4);
+        this.rand = new Random(this.world.getSeed());
+        this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
+        this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
+        this.noiseGen3 = new NoiseGeneratorOctaves(this.rand, 8);
+        this.soulSandGravelNoiseGen = new NoiseGeneratorOctaves(this.rand, 4);
+        this.netherrackNoiseGen = new NoiseGeneratorOctaves(this.rand, 4);
+        this.scaleNoiseGen = new NoiseGeneratorOctaves(this.rand, 10);
+        this.depthNoiseGen = new NoiseGeneratorOctaves(this.rand, 16);
+        this.terrainNoiseGen = new NoiseGeneratorPerlin(this.rand, 4);
 
-        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(noiseGen1, noiseGen2, noiseGen3, soulSandGravelNoiseGen, netherrackNoiseGen, scaleNoiseGen, depthNoiseGen);
-        ctx = TerrainGen.getModdedNoiseGenerators(this.world, rand, ctx);
+        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(this.noiseGen1, this.noiseGen2, this.noiseGen3, this.soulSandGravelNoiseGen, this.netherrackNoiseGen, this.scaleNoiseGen, this.depthNoiseGen);
+        ctx = TerrainGen.getModdedNoiseGenerators(this.world, this.rand, ctx);
 
-        noiseGen1 = ctx.getLPerlin1();
-        noiseGen2 = ctx.getLPerlin2();
-        noiseGen3 = ctx.getPerlin();
-        soulSandGravelNoiseGen = ctx.getPerlin2();
-        netherrackNoiseGen = ctx.getPerlin3();
-        scaleNoiseGen = ctx.getScale();
-        depthNoiseGen = ctx.getDepth();
+        this.noiseGen1 = ctx.getLPerlin1();
+        this.noiseGen2 = ctx.getLPerlin2();
+        this.noiseGen3 = ctx.getPerlin();
+        this.soulSandGravelNoiseGen = ctx.getPerlin2();
+        this.netherrackNoiseGen = ctx.getPerlin3();
+        this.scaleNoiseGen = ctx.getScale();
+        this.depthNoiseGen = ctx.getDepth();
 
-        netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
-        netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
+        this.netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(this.netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
+        this.netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(this.netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
 
         world.setSeaLevel(31);
     }
@@ -113,7 +113,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     @Override
     public void prepareHeights(int chunkX, int chunkZ, ChunkPrimer primer)
     {
-        buffer = generateHeightMap(buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
+        this.buffer = this.generateHeightMap(this.buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
         for(int x = 0; x < 4; x++)
         {
@@ -121,14 +121,14 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             {
                 for(int y = 0; y < 16; y++)
                 {
-                    double d1 = buffer[(x * 5 + z) * 17 + y];
-                    double d2 = buffer[(((x * 5) + z + 1) * 17) + y];
-                    double d3 = buffer[((((x + 1) * 5) + z) * 17) + y];
-                    double d4 = buffer[((x + 1) * 5 + z + 1) * 17 + y];
-                    double d5 = (buffer[(x * 5 + z) * 17 + y + 1] - d1) * 0.125D;
-                    double d6 = (buffer[(x * 5 + z + 1) * 17 + y + 1] - d2) * 0.125D;
-                    double d7 = (buffer[((x + 1) * 5 + z) * 17 + y + 1] - d3) * 0.125D;
-                    double d8 = (buffer[((x + 1) * 5 + z + 1) * 17 + y + 1] - d4) * 0.125D;
+                    double d1 = this.buffer[(x * 5 + z) * 17 + y];
+                    double d2 = this.buffer[(((x * 5) + z + 1) * 17) + y];
+                    double d3 = this.buffer[((((x + 1) * 5) + z) * 17) + y];
+                    double d4 = this.buffer[((x + 1) * 5 + z + 1) * 17 + y];
+                    double d5 = (this.buffer[(x * 5 + z) * 17 + y + 1] - d1) * 0.125D;
+                    double d6 = (this.buffer[(x * 5 + z + 1) * 17 + y + 1] - d2) * 0.125D;
+                    double d7 = (this.buffer[((x + 1) * 5 + z) * 17 + y + 1] - d3) * 0.125D;
+                    double d8 = (this.buffer[((x + 1) * 5 + z + 1) * 17 + y + 1] - d4) * 0.125D;
 
                     for(int y2 = 0; y2 < 8; y2++)
                     {
@@ -181,23 +181,23 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     @Override
     public void buildSurfaces(int chunkX, int chunkZ, ChunkPrimer primer)
     {
-        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, world))
+        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world))
         {
             return;
         }
 
-        soulSandNoise = soulSandGravelNoiseGen.generateNoiseOctaves(soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
-        gravelNoise = soulSandGravelNoiseGen.generateNoiseOctaves(gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
-        netherrackNoise = netherrackNoiseGen.generateNoiseOctaves(netherrackNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
+        this.soulSandNoise = this.soulSandGravelNoiseGen.generateNoiseOctaves(this.soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
+        this.gravelNoise = this.soulSandGravelNoiseGen.generateNoiseOctaves(this.gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
+        this.netherrackNoise = this.netherrackNoiseGen.generateNoiseOctaves(this.netherrackNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 
         for(int x = 0; x < 16; x++)
         {
             for(int z = 0; z < 16; z++)
             {
-                int l = (int) (netherrackNoise[x + z * 16] / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+                int l = (int) (this.netherrackNoise[x + z * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int i1 = -1;
-                boolean genSoulSand = soulSandNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
-                boolean genGravel = gravelNoise[x + z * 16] + rand.nextDouble() * 0.2D > 0.0D;
+                boolean genSoulSand = this.soulSandNoise[x + z * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
+                boolean genGravel = this.gravelNoise[x + z * 16] + this.rand.nextDouble() * 0.2D > 0.0D;
 
                 IBlockState floorTopBlock = Blocks.NETHERRACK.getDefaultState();
                 IBlockState floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
@@ -288,11 +288,11 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             return event.getNoisefield();
         }
 
-        scaleNoise = scaleNoiseGen.generateNoiseOctaves(scaleNoise, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
-        depthNoise = depthNoiseGen.generateNoiseOctaves(depthNoise, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
-        noiseData1 = noiseGen3.generateNoiseOctaves(noiseData1, posX, posY, posZ, xSize, ySize, zSize, 8.555150000000001D, 34.2206D, 8.555150000000001D);
-        noiseData2 = noiseGen1.generateNoiseOctaves(noiseData2, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
-        noiseData3 = noiseGen2.generateNoiseOctaves(noiseData3, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
+        this.scaleNoise = this.scaleNoiseGen.generateNoiseOctaves(this.scaleNoise, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
+        this.depthNoise = this.depthNoiseGen.generateNoiseOctaves(this.depthNoise, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
+        this.noiseData1 = this.noiseGen3.generateNoiseOctaves(this.noiseData1, posX, posY, posZ, xSize, ySize, zSize, 8.555150000000001D, 34.2206D, 8.555150000000001D);
+        this.noiseData2 = this.noiseGen1.generateNoiseOctaves(this.noiseData2, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
+        this.noiseData3 = this.noiseGen2.generateNoiseOctaves(this.noiseData3, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
 
         double[] newYSize = new double[ySize];
 
@@ -322,9 +322,9 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
                 for(int k = 0; k < ySize; ++k)
                 {
                     double d4 = newYSize[k];
-                    double d5 = noiseData2[index] / 512.0D;
-                    double d6 = noiseData3[index] / 512.0D;
-                    double d7 = (noiseData1[index] / 10.0D + 1.0D) / 2.0D;
+                    double d5 = this.noiseData2[index] / 512.0D;
+                    double d6 = this.noiseData3[index] / 512.0D;
+                    double d7 = (this.noiseData1[index] / 10.0D + 1.0D) / 2.0D;
                     double d8;
 
                     if(d7 < 0.0D)
@@ -368,20 +368,20 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     public Chunk generateChunk(int chunkX, int chunkZ)
     {
         ChunkPrimer primer = new ChunkPrimer();
-        rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
-        biomesForGen = world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
-        prepareHeights(chunkX, chunkZ, primer);
-        buildSurfaces(chunkX, chunkZ, primer);
-        replaceBiomeBlocks(chunkX, chunkZ, primer, biomesForGen);
-        netherCaves.generate(world, chunkX, chunkZ, primer);
-        netherBridge.generate(world, chunkX, chunkZ, primer);
+        this.rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
+        this.biomesForGen = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
+        this.prepareHeights(chunkX, chunkZ, primer);
+        this.buildSurfaces(chunkX, chunkZ, primer);
+        this.replaceBiomeBlocks(chunkX, chunkZ, primer, this.biomesForGen);
+        this.netherCaves.generate(this.world, chunkX, chunkZ, primer);
+        this.netherBridge.generate(this.world, chunkX, chunkZ, primer);
 
-        Chunk chunk = new Chunk(world, primer, chunkX, chunkZ);
+        Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
 
         for(int i = 0; i < biomeArray.length; ++i)
         {
-            biomeArray[i] = (byte) Biome.getIdForBiome(biomesForGen[i]);
+            biomeArray[i] = (byte) Biome.getIdForBiome(this.biomesForGen[i]);
         }
 
         chunk.resetRelightChecks();
@@ -393,29 +393,29 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
         boolean hasVillageGenerated = false;
 
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, world, rand, chunkX, chunkZ, hasVillageGenerated));
-        netherBridge.generateStructure(world, rand, chunkPos);
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Populate(this, world, rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM));
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, world, rand, chunkX, chunkZ, hasVillageGenerated));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, this.world, this.rand, chunkX, chunkZ, hasVillageGenerated));
+        this.netherBridge.generateStructure(this.world, this.rand, chunkPos);
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Populate(this, this.world, this.rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, this.world, this.rand, chunkX, chunkZ, hasVillageGenerated));
 
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, chunkPos));
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(world, rand, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(this.world, this.rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(this.world, this.rand, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
 
         if(wrapper != null && wrapper.shouldGenDefaultFeatures())
         {
-            wrapper.getBiome().decorate(world, rand, blockPos);
+            wrapper.getBiome().decorate(this.world, this.rand, blockPos);
         }
 
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(this.world, this.rand, chunkPos));
 
-        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(world, rand, blockPos));
-        MinecraftForge.EVENT_BUS.post(new OreGenEvent.GenerateMinable(world, rand, new WorldGenMinable(Blocks.AIR.getDefaultState(), 0, BlockMatcher.forBlock(Blocks.AIR)), blockPos, OreGenEvent.GenerateMinable.EventType.CUSTOM));
-        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Post(world, rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(this.world, this.rand, blockPos));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.GenerateMinable(this.world, this.rand, new WorldGenMinable(Blocks.AIR.getDefaultState(), 0, BlockMatcher.forBlock(Blocks.AIR)), blockPos, OreGenEvent.GenerateMinable.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new OreGenEvent.Post(this.world, this.rand, blockPos));
 
         BlockFalling.fallInstantly = false;
     }
@@ -431,17 +431,17 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         if(creatureType == EnumCreatureType.MONSTER)
         {
-            if(netherBridge.isInsideStructure(pos))
+            if(this.netherBridge.isInsideStructure(pos))
             {
-                return netherBridge.getSpawnList();
+                return this.netherBridge.getSpawnList();
             }
-            if(netherBridge.isPositionInStructure(world, pos) && world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
+            if(this.netherBridge.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
             {
-                return netherBridge.getSpawnList();
+                return this.netherBridge.getSpawnList();
             }
         }
 
-        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos));
+        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(this.world.getBiome(pos));
         return creatureType == null || wrapper == null ? new ArrayList<>() : wrapper.getSpawnableMobs(creatureType);
     }
 
@@ -450,7 +450,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         if("Fortress".equalsIgnoreCase(structureName))
         {
-            return netherBridge != null ? netherBridge.getNearestStructurePos(world, pos, force) : null;
+            return this.netherBridge != null ? this.netherBridge.getNearestStructurePos(world, pos, force) : null;
         }
 
         return null;
@@ -461,7 +461,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         if("Fortress".equalsIgnoreCase(structureName))
         {
-            return netherBridge != null && netherBridge.isInsideStructure(pos);
+            return this.netherBridge != null && this.netherBridge.isInsideStructure(pos);
         }
 
         return false;
@@ -470,7 +470,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        netherBridge.generate(world, chunkX, chunkZ, null);
+        this.netherBridge.generate(this.world, chunkX, chunkZ, null);
     }
 
     /**
@@ -483,12 +483,12 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
      */
     private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
-        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, world))
+        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world))
         {
             return;
         }
 
-        terrainNoise = terrainNoiseGen.getRegion(terrainNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
+        this.terrainNoise = this.terrainNoiseGen.getRegion(this.terrainNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
 
         for(int x = 0; x < 16; ++x)
         {
@@ -584,7 +584,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
                     }
                     else
                     {
-                        biome.genTerrainBlocks(world, rand, primer, chunkX * 16 + x, chunkZ * 16 + z, terrainNoise[x + z * 16]);
+                        biome.genTerrainBlocks(this.world, this.rand, primer, chunkX * 16 + x, chunkZ * 16 + z, this.terrainNoise[x + z * 16]);
                     }
                 }
             }

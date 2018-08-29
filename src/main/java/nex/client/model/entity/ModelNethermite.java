@@ -40,77 +40,77 @@ public class ModelNethermite extends ModelBase
 
     public ModelNethermite()
     {
-        head = new ModelRenderer(this, 0, 0);
-        head.setRotationPoint(0.0F, 21.0F, -4.0F);
-        head.addBox(-1.5F, 0.0F, -1.0F, 3, 3, 2);
-        frontBody = new ModelRenderer(this, 0, 5);
-        frontBody.setRotationPoint(0.0F, 20.0F, 0.0F);
-        frontBody.addBox(-2.0F, 0.0F, -3.0F, 4, 4, 6);
-        middleBody = new ModelRenderer(this, 0, 15);
-        middleBody.setRotationPoint(0.0F, 21.0F, 4.0F);
-        middleBody.addBox(-1.5F, 0.0F, -1.5F, 3, 3, 3);
-        backBody = new ModelRenderer(this, 0, 21);
-        backBody.setRotationPoint(0.0F, 22.0F, 6.0F);
-        backBody.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2);
-        tail = new ModelRenderer(this, 0, 25);
-        tail.setRotationPoint(0.0F, 23.0F, 8.0F);
-        tail.addBox(-0.5F, 0.0F, -1.0F, 1, 1, 2);
-        headSpine = new ModelRenderer(this, 10, 2);
-        headSpine.setRotationPoint(0.0F, 20.0F, -4.0F);
-        headSpine.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
-        frontBodySpine = new ModelRenderer(this, 20, 5);
-        frontBodySpine.setRotationPoint(0.0F, 19.0F, 0.0F);
-        frontBodySpine.addBox(0.0F, 0.0F, -3.0F, 0, 1, 6);
-        middleBodySpine = new ModelRenderer(this, 12, 17);
-        middleBodySpine.setRotationPoint(0.0F, 20.0F, 4.0F);
-        middleBodySpine.addBox(0.0F, 0.0F, -1.5F, 0, 1, 3);
-        backBodySpine = new ModelRenderer(this, 8, 22);
-        backBodySpine.setRotationPoint(0.0F, 21.0F, 6.0F);
-        backBodySpine.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
-        tailSpine = new ModelRenderer(this, 6, 25);
-        tailSpine.setRotationPoint(0.0F, 22.0F, 8.0F);
-        tailSpine.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setRotationPoint(0.0F, 21.0F, -4.0F);
+        this.head.addBox(-1.5F, 0.0F, -1.0F, 3, 3, 2);
+        this.frontBody = new ModelRenderer(this, 0, 5);
+        this.frontBody.setRotationPoint(0.0F, 20.0F, 0.0F);
+        this.frontBody.addBox(-2.0F, 0.0F, -3.0F, 4, 4, 6);
+        this.middleBody = new ModelRenderer(this, 0, 15);
+        this.middleBody.setRotationPoint(0.0F, 21.0F, 4.0F);
+        this.middleBody.addBox(-1.5F, 0.0F, -1.5F, 3, 3, 3);
+        this.backBody = new ModelRenderer(this, 0, 21);
+        this.backBody.setRotationPoint(0.0F, 22.0F, 6.0F);
+        this.backBody.addBox(-1.0F, 0.0F, -1.0F, 2, 2, 2);
+        this.tail = new ModelRenderer(this, 0, 25);
+        this.tail.setRotationPoint(0.0F, 23.0F, 8.0F);
+        this.tail.addBox(-0.5F, 0.0F, -1.0F, 1, 1, 2);
+        this.headSpine = new ModelRenderer(this, 10, 2);
+        this.headSpine.setRotationPoint(0.0F, 20.0F, -4.0F);
+        this.headSpine.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
+        this.frontBodySpine = new ModelRenderer(this, 20, 5);
+        this.frontBodySpine.setRotationPoint(0.0F, 19.0F, 0.0F);
+        this.frontBodySpine.addBox(0.0F, 0.0F, -3.0F, 0, 1, 6);
+        this.middleBodySpine = new ModelRenderer(this, 12, 17);
+        this.middleBodySpine.setRotationPoint(0.0F, 20.0F, 4.0F);
+        this.middleBodySpine.addBox(0.0F, 0.0F, -1.5F, 0, 1, 3);
+        this.backBodySpine = new ModelRenderer(this, 8, 22);
+        this.backBodySpine.setRotationPoint(0.0F, 21.0F, 6.0F);
+        this.backBodySpine.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
+        this.tailSpine = new ModelRenderer(this, 6, 25);
+        this.tailSpine.setRotationPoint(0.0F, 22.0F, 8.0F);
+        this.tailSpine.addBox(0.0F, 0.0F, -1.0F, 0, 1, 2);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
-        head.render(scale);
-        frontBody.render(scale);
-        middleBody.render(scale);
-        backBody.render(scale);
-        tail.render(scale);
-        headSpine.render(scale);
-        frontBodySpine.render(scale);
-        middleBodySpine.render(scale);
-        backBodySpine.render(scale);
-        tailSpine.render(scale);
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
+        this.head.render(scale);
+        this.frontBody.render(scale);
+        this.middleBody.render(scale);
+        this.backBody.render(scale);
+        this.tail.render(scale);
+        this.headSpine.render(scale);
+        this.frontBodySpine.render(scale);
+        this.middleBodySpine.render(scale);
+        this.backBodySpine.render(scale);
+        this.tailSpine.render(scale);
     }
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scaleFactor, Entity entityIn)
     {
-        head.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 0 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(0 - 2));
-        head.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 0 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(0 - 2);
-        frontBody.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 1 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(1 - 2));
-        frontBody.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 1 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(1 - 2);
-        middleBody.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 2 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(2 - 2));
-        middleBody.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 2 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(2 - 2);
-        backBody.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(3 - 2));
-        backBody.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(3 - 2);
-        tail.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(4 - 2));
-        tail.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(4 - 2);
+        this.head.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 0 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(0 - 2));
+        this.head.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 0 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(0 - 2);
+        this.frontBody.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 1 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(1 - 2));
+        this.frontBody.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 1 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(1 - 2);
+        this.middleBody.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 2 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(0));
+        this.middleBody.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 2 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(0);
+        this.backBody.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(3 - 2));
+        this.backBody.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(3 - 2);
+        this.tail.rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.01F * (float) (1 + Math.abs(4 - 2));
+        this.tail.rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float) 3 * 0.15F * (float) Math.PI) * (float) Math.PI * 0.1F * (float) Math.abs(4 - 2);
 
-        headSpine.rotateAngleY = head.rotateAngleY;
-        headSpine.rotationPointX = head.rotationPointX;
-        frontBodySpine.rotateAngleY = frontBody.rotateAngleY;
-        frontBodySpine.rotationPointX = frontBody.rotationPointX;
-        middleBodySpine.rotateAngleY = middleBody.rotateAngleY;
-        middleBodySpine.rotationPointX = middleBody.rotationPointX;
-        backBodySpine.rotateAngleY = backBody.rotateAngleY;
-        backBodySpine.rotationPointX = backBody.rotationPointX;
-        tailSpine.rotateAngleY = tail.rotateAngleY;
-        tailSpine.rotationPointX = tail.rotationPointX;
+        this.headSpine.rotateAngleY = this.head.rotateAngleY;
+        this.headSpine.rotationPointX = this.head.rotationPointX;
+        this.frontBodySpine.rotateAngleY = this.frontBody.rotateAngleY;
+        this.frontBodySpine.rotationPointX = this.frontBody.rotationPointX;
+        this.middleBodySpine.rotateAngleY = this.middleBody.rotateAngleY;
+        this.middleBodySpine.rotationPointX = this.middleBody.rotationPointX;
+        this.backBodySpine.rotateAngleY = this.backBody.rotateAngleY;
+        this.backBodySpine.rotationPointX = this.backBody.rotationPointX;
+        this.tailSpine.rotateAngleY = this.tail.rotateAngleY;
+        this.tailSpine.rotationPointX = this.tail.rotationPointX;
     }
 }

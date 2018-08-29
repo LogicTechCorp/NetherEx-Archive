@@ -53,10 +53,10 @@ public class BlockTilledSoulSand extends BlockLibEx
     public BlockTilledSoulSand()
     {
         super(NetherEx.instance, "tilled_soul_sand", Material.GROUND);
-        setSoundType(SoundType.SAND);
-        setLightOpacity(255);
-        setHardness(0.6F);
-        setTickRandomly(true);
+        this.setSoundType(SoundType.SAND);
+        this.setLightOpacity(255);
+        this.setHardness(0.6F);
+        this.setTickRandomly(true);
     }
 
     @Override
@@ -82,15 +82,15 @@ public class BlockTilledSoulSand extends BlockLibEx
     {
         int moisture = state.getValue(MOISTURE);
 
-        if(!hasFluid(world, pos))
+        if(!this.hasFluid(world, pos))
         {
             if(moisture > 0)
             {
                 world.setBlockState(pos, state.withProperty(MOISTURE, moisture - 1), 2);
             }
-            else if(!hasCrops(world, pos))
+            else if(!this.hasCrops(world, pos))
             {
-                turnToSoulSand(world, pos);
+                this.turnToSoulSand(world, pos);
             }
         }
         else if(moisture < 7)
@@ -124,7 +124,7 @@ public class BlockTilledSoulSand extends BlockLibEx
     {
         if(!world.isRemote && entity.canTrample(world, this, pos, fallDistance))
         {
-            turnToSoulSand(world, pos);
+            this.turnToSoulSand(world, pos);
         }
 
         super.onFallenUpon(world, pos, entity, fallDistance);
@@ -144,7 +144,7 @@ public class BlockTilledSoulSand extends BlockLibEx
     private boolean hasCrops(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos.up()).getBlock();
-        return block instanceof IPlantable && canSustainPlant(world.getBlockState(pos), world, pos, EnumFacing.UP, (IPlantable) block);
+        return block instanceof IPlantable && this.canSustainPlant(world.getBlockState(pos), world, pos, EnumFacing.UP, (IPlantable) block);
     }
 
     private boolean hasFluid(World world, BlockPos pos)
@@ -169,7 +169,7 @@ public class BlockTilledSoulSand extends BlockLibEx
 
         if(world.getBlockState(pos.up()).getMaterial().isSolid())
         {
-            turnToSoulSand(world, pos);
+            this.turnToSoulSand(world, pos);
         }
     }
 
@@ -201,7 +201,7 @@ public class BlockTilledSoulSand extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(MOISTURE, meta & 7);
+        return this.getDefaultState().withProperty(MOISTURE, meta & 7);
     }
 
     @Override

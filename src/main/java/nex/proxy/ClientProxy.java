@@ -81,6 +81,6 @@ public class ClientProxy implements IProxy
     @Override
     public void spawnParticle(World world, int particleId, double posX, double posY, double posZ, double speedX, double speedY, double speedZ)
     {
-        minecraft.effectRenderer.addEffect(NetherExParticleTypes.getFactory(particleId).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
+        this.minecraft.effectRenderer.addEffect(NetherExParticleTypes.getFactory(particleId).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
     }
 }

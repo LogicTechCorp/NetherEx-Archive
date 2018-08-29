@@ -48,15 +48,15 @@ public class EntityEmber extends EntityMob
     public EntityEmber(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        jumpHelper = new JumpHelper(this);
-        moveHelper = new MoveHelper(this);
-        setSize(0.35F, 0.65F);
-        setMovementSpeed(0.0D);
-        setPathPriority(PathNodeType.WATER, -1.0F);
-        setPathPriority(PathNodeType.LAVA, 1.0F);
-        setPathPriority(PathNodeType.DANGER_FIRE, 1.0F);
-        setPathPriority(PathNodeType.DAMAGE_FIRE, 1.0F);
+        this.isImmuneToFire = true;
+        this.jumpHelper = new JumpHelper(this);
+        this.moveHelper = new MoveHelper(this);
+        this.setSize(0.35F, 0.65F);
+        this.setMovementSpeed(0.0D);
+        this.setPathPriority(PathNodeType.WATER, -1.0F);
+        this.setPathPriority(PathNodeType.LAVA, 1.0F);
+        this.setPathPriority(PathNodeType.DANGER_FIRE, 1.0F);
+        this.setPathPriority(PathNodeType.DAMAGE_FIRE, 1.0F);
     }
 
     @Override
@@ -87,11 +87,11 @@ public class EntityEmber extends EntityMob
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAILeapAtTarget(this, 0.45F));
-        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
-        tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        tasks.addTask(3, new EntityAILookIdle(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+        this.tasks.addTask(0, new EntityAILeapAtTarget(this, 0.45F));
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(3, new EntityAILookIdle(this));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
     }
 
     @Override
@@ -99,11 +99,11 @@ public class EntityEmber extends EntityMob
     {
         super.applyEntityAttributes();
 
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
-        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.5D);
     }
 
     @Override
@@ -111,72 +111,72 @@ public class EntityEmber extends EntityMob
     {
         super.onLivingUpdate();
 
-        world.spawnParticle(EnumParticleTypes.FLAME, posX + (rand.nextDouble() - 0.5D) * (double) width, posY + rand.nextDouble() * (double) height, posZ + (rand.nextDouble() - 0.5D) * (double) width, 0.0D, 0.0D, 0.0D);
+        this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, 0.0D, 0.0D, 0.0D);
 
-        if(jumpCounter != jumpDuration)
+        if(this.jumpCounter != this.jumpDuration)
         {
-            jumpCounter++;
+            this.jumpCounter++;
         }
-        else if(jumpDuration != 0)
+        else if(this.jumpDuration != 0)
         {
-            jumpCounter = 0;
-            jumpDuration = 0;
-            setJumping(false);
+            this.jumpCounter = 0;
+            this.jumpDuration = 0;
+            this.setJumping(false);
         }
     }
 
     @Override
     public void updateAITasks()
     {
-        if(isWet())
+        if(this.isWet())
         {
-            attackEntityFrom(DamageSource.DROWN, 1.0F);
+            this.attackEntityFrom(DamageSource.DROWN, 1.0F);
         }
 
-        if(moveDuration > 0)
+        if(this.moveDuration > 0)
         {
-            moveDuration--;
+            this.moveDuration--;
         }
 
-        if(onGround)
+        if(this.onGround)
         {
-            if(!wasOnGround)
+            if(!this.wasOnGround)
             {
-                setJumping(false);
-                checkLandingDelay();
+                this.setJumping(false);
+                this.checkLandingDelay();
             }
 
-            JumpHelper helper = (JumpHelper) jumpHelper;
+            JumpHelper helper = (JumpHelper) this.jumpHelper;
 
-            if(!helper.getIsJumping())
+            if(!helper.isJumping())
             {
-                if(moveHelper.isUpdating() && moveDuration == 0)
+                if(this.moveHelper.isUpdating() && this.moveDuration == 0)
                 {
-                    Path path = navigator.getPath();
-                    Vec3d movePos = new Vec3d(moveHelper.getX(), moveHelper.getY(), moveHelper.getZ());
+                    Path path = this.navigator.getPath();
+                    Vec3d movePos = new Vec3d(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ());
 
                     if(path != null && path.getCurrentPathIndex() < path.getCurrentPathLength())
                     {
                         movePos = path.getPosition(this);
                     }
 
-                    calculateRotationYaw(movePos.x, movePos.z);
-                    startJumping();
+                    this.calculateRotationYaw(movePos.x, movePos.z);
+                    this.startJumping();
                 }
             }
             else if(!helper.canJump())
             {
-                enableJumpControl();
+                this.enableJumpControl();
             }
         }
 
-        wasOnGround = onGround;
+        this.wasOnGround = this.onGround;
     }
 
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        if(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity > 0 && rand.nextInt(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity) == 0)
+        if(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity > 0 && this.rand.nextInt(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity) == 0)
         {
             entity.setFire(4);
         }
@@ -193,21 +193,21 @@ public class EntityEmber extends EntityMob
     @Override
     protected float getJumpUpwardsMotion()
     {
-        if(!collidedHorizontally && (!moveHelper.isUpdating() || moveHelper.getY() <= posY + 0.5D))
+        if(!this.collidedHorizontally && (!this.moveHelper.isUpdating() || this.moveHelper.getY() <= this.posY + 0.5D))
         {
-            Path path = navigator.getPath();
+            Path path = this.navigator.getPath();
 
             if(path != null && path.getCurrentPathIndex() < path.getCurrentPathLength())
             {
                 Vec3d pos = path.getPosition(this);
 
-                if(pos.y > posY + 0.5D)
+                if(pos.y > this.posY + 0.5D)
                 {
                     return 0.5F;
                 }
             }
 
-            return moveHelper.getSpeed() <= 0.6D ? 0.2F : 0.3F;
+            return this.moveHelper.getSpeed() <= 0.6D ? 0.2F : 0.3F;
         }
         else
         {
@@ -219,34 +219,34 @@ public class EntityEmber extends EntityMob
     protected void jump()
     {
         super.jump();
-        double speed = moveHelper.getSpeed();
+        double speed = this.moveHelper.getSpeed();
 
         if(speed > 0.0D)
         {
-            double motionSq = motionX * motionX + motionZ * motionZ;
+            double motionSq = this.motionX * this.motionX + this.motionZ * this.motionZ;
 
             if(motionSq < 0.010000000000000002D)
             {
-                moveRelative(0.0F, 0.0F, 1.0F, 0.1F);
+                this.moveRelative(0.0F, 0.0F, 1.0F, 0.1F);
             }
         }
 
-        if(!world.isRemote)
+        if(!this.world.isRemote)
         {
-            world.setEntityState(this, (byte) 1);
+            this.world.setEntityState(this, (byte) 1);
         }
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return world.getDifficulty() != EnumDifficulty.PEACEFUL;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override
     public boolean isNotColliding()
     {
-        return world.checkNoEntityCollision(getEntityBoundingBox(), this) && world.getCollisionBoxes(this, getEntityBoundingBox()).isEmpty();
+        return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty();
     }
 
     @Override
@@ -257,48 +257,48 @@ public class EntityEmber extends EntityMob
 
     public void setMovementSpeed(double newSpeed)
     {
-        getNavigator().setSpeed(newSpeed);
-        moveHelper.setMoveTo(moveHelper.getX(), moveHelper.getY(), moveHelper.getZ(), newSpeed);
+        this.getNavigator().setSpeed(newSpeed);
+        this.moveHelper.setMoveTo(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ(), newSpeed);
     }
 
     private void startJumping()
     {
-        setJumping(true);
-        jumpDuration = 10;
-        jumpCounter = 0;
+        this.setJumping(true);
+        this.jumpDuration = 10;
+        this.jumpCounter = 0;
     }
 
     private void calculateRotationYaw(double x, double z)
     {
-        rotationYaw = (float) (MathHelper.atan2(z - posZ, x - posX) * (180D / Math.PI)) - 90.0F;
+        this.rotationYaw = (float) (MathHelper.atan2(z - this.posZ, x - this.posX) * (180D / Math.PI)) - 90.0F;
     }
 
     private void enableJumpControl()
     {
-        ((JumpHelper) jumpHelper).setCanJump(true);
+        ((JumpHelper) this.jumpHelper).setCanJump(true);
     }
 
     private void disableJumpControl()
     {
-        ((JumpHelper) jumpHelper).setCanJump(false);
+        ((JumpHelper) this.jumpHelper).setCanJump(false);
     }
 
     private void updateMoveTypeDuration()
     {
-        if(moveHelper.getSpeed() < 2.2D)
+        if(this.moveHelper.getSpeed() < 2.2D)
         {
-            moveDuration = 10;
+            this.moveDuration = 10;
         }
         else
         {
-            moveDuration = 1;
+            this.moveDuration = 1;
         }
     }
 
     private void checkLandingDelay()
     {
-        updateMoveTypeDuration();
-        disableJumpControl();
+        this.updateMoveTypeDuration();
+        this.disableJumpControl();
     }
 
     public class JumpHelper extends EntityJumpHelper
@@ -312,27 +312,28 @@ public class EntityEmber extends EntityMob
             this.ember = ember;
         }
 
-        public boolean getIsJumping()
+        public boolean isJumping()
         {
-            return isJumping;
+            return this.isJumping;
         }
 
         public boolean canJump()
         {
-            return canJump;
+            return this.canJump;
         }
 
         public void setCanJump(boolean canJumpIn)
         {
-            canJump = canJumpIn;
+            this.canJump = canJumpIn;
         }
 
+        @Override
         public void doJump()
         {
-            if(isJumping)
+            if(this.isJumping)
             {
-                ember.startJumping();
-                isJumping = false;
+                this.ember.startJumping();
+                this.isJumping = false;
             }
         }
     }
@@ -348,23 +349,25 @@ public class EntityEmber extends EntityMob
             this.ember = ember;
         }
 
+        @Override
         public void onUpdateMoveHelper()
         {
-            if(ember.onGround && !ember.isJumping && !((JumpHelper) ember.jumpHelper).getIsJumping())
+            if(this.ember.onGround && !this.ember.isJumping && !((JumpHelper) this.ember.jumpHelper).isJumping())
             {
-                ember.setMovementSpeed(0.0D);
+                this.ember.setMovementSpeed(0.0D);
             }
-            else if(isUpdating())
+            else if(this.isUpdating())
             {
-                ember.setMovementSpeed(jumpSpeed);
+                this.ember.setMovementSpeed(this.jumpSpeed);
             }
 
             super.onUpdateMoveHelper();
         }
 
+        @Override
         public void setMoveTo(double x, double y, double z, double speedIn)
         {
-            if(ember.isInWater())
+            if(this.ember.isInWater())
             {
                 speedIn = 1.5D;
             }
@@ -373,7 +376,7 @@ public class EntityEmber extends EntityMob
 
             if(speedIn > 0.0D)
             {
-                jumpSpeed = speedIn;
+                this.jumpSpeed = speedIn;
             }
         }
     }

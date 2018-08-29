@@ -42,8 +42,8 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
         {
             for(int x = 0; x < areaWidth; x++)
             {
-                initChunkSeed(x + areaX, z + areaZ);
-                outputs[x + z * areaWidth] = Biome.getIdForBiome(getRandomBiome());
+                this.initChunkSeed(x + areaX, z + areaZ);
+                outputs[x + z * areaWidth] = Biome.getIdForBiome(this.getRandomBiome());
             }
         }
 
@@ -54,6 +54,6 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
     {
         List<BiomeManager.BiomeEntry> biomeEntryList = NetherExBiomeManager.getBiomes();
         int biomeWeights = WeightedRandom.getTotalWeight(biomeEntryList);
-        return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntryList, nextInt(biomeWeights)).biome;
+        return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntryList, this.nextInt(biomeWeights)).biome;
     }
 }

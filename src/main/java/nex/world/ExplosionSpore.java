@@ -70,24 +70,24 @@ public class ExplosionSpore extends Explosion
         super(world, entity, x, y, z, size, flaming, smoking);
 
         this.world = world;
-        exploder = entity;
-        explosionX = x;
-        explosionY = y;
-        explosionZ = z;
-        explosionSize = size;
-        isFlaming = flaming;
-        isSmoking = smoking;
+        this.exploder = entity;
+        this.explosionX = x;
+        this.explosionY = y;
+        this.explosionZ = z;
+        this.explosionSize = size;
+        this.isFlaming = flaming;
+        this.isSmoking = smoking;
 
-        explosionRNG = new Random(world.getSeed());
-        affectedBlockPositions = new ArrayList<>();
-        playerKnockbackMap = new HashMap<>();
-        position = new Vec3d(explosionX, explosionY, explosionZ);
+        this.explosionRNG = new Random(world.getSeed());
+        this.affectedBlockPositions = new ArrayList<>();
+        this.playerKnockbackMap = new HashMap<>();
+        this.position = new Vec3d(this.explosionX, this.explosionY, this.explosionZ);
     }
 
     @Override
     public void doExplosionA()
     {
-        if(!world.isRemote)
+        if(!this.world.isRemote)
         {
             Set<BlockPos> set = new HashSet<>();
 
@@ -106,7 +106,7 @@ public class ExplosionSpore extends Explosion
                             posX = posX / d3;
                             posY = posY / d3;
                             posZ = posZ / d3;
-                            float explosionSize = this.explosionSize * (0.7F + world.rand.nextFloat() * 0.6F);
+                            float explosionSize = this.explosionSize * (0.7F + this.world.rand.nextFloat() * 0.6F);
                             double explosionX = this.explosionX;
                             double explosionY = this.explosionY;
                             double explosionZ = this.explosionZ;
@@ -114,15 +114,15 @@ public class ExplosionSpore extends Explosion
                             for(float size = 0.3F; explosionSize > 0.0F; explosionSize -= 0.22500001F)
                             {
                                 BlockPos explosionPos = new BlockPos(explosionX, explosionY, explosionZ);
-                                IBlockState explodedBlock = world.getBlockState(explosionPos);
+                                IBlockState explodedBlock = this.world.getBlockState(explosionPos);
 
                                 if(explodedBlock.getMaterial() != Material.AIR)
                                 {
-                                    float f2 = exploder != null ? exploder.getExplosionResistance(this, world, explosionPos, explodedBlock) : explodedBlock.getBlock().getExplosionResistance(world, explosionPos, (Entity) null, this);
+                                    float f2 = this.exploder != null ? this.exploder.getExplosionResistance(this, this.world, explosionPos, explodedBlock) : explodedBlock.getBlock().getExplosionResistance(this.world, explosionPos, null, this);
                                     explosionSize -= (f2 + 0.3F) * 0.3F;
                                 }
 
-                                if(explosionSize > 0.0F && (exploder == null || exploder.canExplosionDestroyBlock(this, world, explosionPos, explodedBlock, explosionSize)))
+                                if(explosionSize > 0.0F && (this.exploder == null || this.exploder.canExplosionDestroyBlock(this, this.world, explosionPos, explodedBlock, explosionSize)))
                                 {
                                     set.add(explosionPos);
                                 }
@@ -136,29 +136,29 @@ public class ExplosionSpore extends Explosion
                 }
             }
 
-            affectedBlockPositions.addAll(set);
-            float f3 = explosionSize * 2.0F;
-            int minX = MathHelper.floor(explosionX - (double) f3 - 1.0D);
-            int maxX = MathHelper.floor(explosionX + (double) f3 + 1.0D);
-            int minY = MathHelper.floor(explosionY - (double) f3 - 1.0D);
-            int maxY = MathHelper.floor(explosionY + (double) f3 + 1.0D);
-            int minZ = MathHelper.floor(explosionZ - (double) f3 - 1.0D);
-            int maxZ = MathHelper.floor(explosionZ + (double) f3 + 1.0D);
-            List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(exploder, new AxisAlignedBB((double) minX, (double) minY, (double) minZ, (double) maxX, (double) maxY, (double) maxZ));
-            ForgeEventFactory.onExplosionDetonate(world, this, list, f3);
-            Vec3d vec3d = new Vec3d(explosionX, explosionY, explosionZ);
+            this.affectedBlockPositions.addAll(set);
+            float f3 = this.explosionSize * 2.0F;
+            int minX = MathHelper.floor(this.explosionX - (double) f3 - 1.0D);
+            int maxX = MathHelper.floor(this.explosionX + (double) f3 + 1.0D);
+            int minY = MathHelper.floor(this.explosionY - (double) f3 - 1.0D);
+            int maxY = MathHelper.floor(this.explosionY + (double) f3 + 1.0D);
+            int minZ = MathHelper.floor(this.explosionZ - (double) f3 - 1.0D);
+            int maxZ = MathHelper.floor(this.explosionZ + (double) f3 + 1.0D);
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB((double) minX, (double) minY, (double) minZ, (double) maxX, (double) maxY, (double) maxZ));
+            ForgeEventFactory.onExplosionDetonate(this.world, this, list, f3);
+            Vec3d vec3d = new Vec3d(this.explosionX, this.explosionY, this.explosionZ);
 
             for(Entity entity : list)
             {
                 if(!entity.isImmuneToExplosions())
                 {
-                    double d12 = entity.getDistance(explosionX, explosionY, explosionZ) / (double) f3;
+                    double d12 = entity.getDistance(this.explosionX, this.explosionY, this.explosionZ) / (double) f3;
 
                     if(d12 <= 1.0D)
                     {
-                        double d5 = entity.posX - explosionX;
-                        double d7 = entity.posY + (double) entity.getEyeHeight() - explosionY;
-                        double d9 = entity.posZ - explosionZ;
+                        double d5 = entity.posX - this.explosionX;
+                        double d7 = entity.posY + (double) entity.getEyeHeight() - this.explosionY;
+                        double d9 = entity.posZ - this.explosionZ;
                         double d13 = (double) MathHelper.sqrt(d5 * d5 + d7 * d7 + d9 * d9);
 
                         if(d13 != 0.0D)
@@ -166,7 +166,7 @@ public class ExplosionSpore extends Explosion
                             d5 = d5 / d13;
                             d7 = d7 / d13;
                             d9 = d9 / d13;
-                            double d14 = (double) world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
+                            double d14 = (double) this.world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
                             double d10 = (1.0D - d12) * d14;
 
                             if(!(entity instanceof EntitySporeCreeper) && !(entity instanceof EntitySpore))
@@ -195,7 +195,7 @@ public class ExplosionSpore extends Explosion
 
                                 if(!entityplayer.isSpectator() && (!entityplayer.isCreative() || !entityplayer.capabilities.isFlying))
                                 {
-                                    playerKnockbackMap.put(entityplayer, new Vec3d(d5 * d10, d7 * d10, d9 * d10));
+                                    this.playerKnockbackMap.put(entityplayer, new Vec3d(d5 * d10, d7 * d10, d9 * d10));
                                 }
                             }
                         }
@@ -208,47 +208,47 @@ public class ExplosionSpore extends Explosion
     @Override
     public void doExplosionB(boolean spawnParticles)
     {
-        world.playSound(null, explosionX, explosionY, explosionZ, NetherExSoundEvents.SPORE_EXPLODE, SoundCategory.HOSTILE, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
+        this.world.playSound(null, this.explosionX, this.explosionY, this.explosionZ, NetherExSoundEvents.SPORE_EXPLODE, SoundCategory.HOSTILE, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
 
-        if(explosionSize >= 2.0F && isSmoking)
+        if(this.explosionSize >= 2.0F && this.isSmoking)
         {
-            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_HUGE.ordinal(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(this.world, NetherExParticleTypes.SPORE_EXPLOSION_HUGE.ordinal(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
         }
         else
         {
-            NetherEx.proxy.spawnParticle(world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.ordinal(), explosionX, explosionY, explosionZ, 1.0D, 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(this.world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.ordinal(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
         }
 
-        if(!world.isRemote)
+        if(!this.world.isRemote)
         {
-            if(isSmoking)
+            if(this.isSmoking)
             {
-                for(BlockPos pos : affectedBlockPositions)
+                for(BlockPos pos : this.affectedBlockPositions)
                 {
-                    IBlockState iblockstate = world.getBlockState(pos);
+                    IBlockState iblockstate = this.world.getBlockState(pos);
                     Block block = iblockstate.getBlock();
 
                     if(iblockstate.getMaterial() != Material.AIR)
                     {
                         if(block.canDropFromExplosion(this))
                         {
-                            block.dropBlockAsItemWithChance(world, pos, world.getBlockState(pos), 1.0F / explosionSize, 0);
+                            block.dropBlockAsItemWithChance(this.world, pos, this.world.getBlockState(pos), 1.0F / this.explosionSize, 0);
                         }
 
-                        block.onBlockExploded(world, pos, this);
+                        block.onBlockExploded(this.world, pos, this);
                     }
                 }
             }
 
-            if(isFlaming)
+            if(this.isFlaming)
             {
-                for(BlockPos pos : affectedBlockPositions)
+                for(BlockPos pos : this.affectedBlockPositions)
                 {
-                    if(world.getBlockState(pos).getMaterial() == Material.AIR && world.getBlockState(pos.down()).isFullBlock() && explosionRNG.nextInt(ConfigHandler.entityConfig.sporeCreeper.sporeSpawnRarity) == 0)
+                    if(this.world.getBlockState(pos).getMaterial() == Material.AIR && this.world.getBlockState(pos.down()).isFullBlock() && this.explosionRNG.nextInt(ConfigHandler.entityConfig.sporeCreeper.sporeSpawnRarity) == 0)
                     {
-                        EntitySpore spore = new EntitySpore(world, 0);
+                        EntitySpore spore = new EntitySpore(this.world, 0);
                         spore.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
-                        world.spawnEntity(spore);
+                        this.world.spawnEntity(spore);
                     }
                 }
             }
@@ -258,30 +258,30 @@ public class ExplosionSpore extends Explosion
     @Override
     public Map<EntityPlayer, Vec3d> getPlayerKnockbackMap()
     {
-        return playerKnockbackMap;
+        return this.playerKnockbackMap;
     }
 
     @Override
     public EntityLivingBase getExplosivePlacedBy()
     {
-        return exploder == null ? null : (exploder instanceof EntityLivingBase ? (EntityLivingBase) exploder : null);
+        return this.exploder == null ? null : (this.exploder instanceof EntityLivingBase ? (EntityLivingBase) this.exploder : null);
     }
 
     @Override
     public void clearAffectedBlockPositions()
     {
-        affectedBlockPositions.clear();
+        this.affectedBlockPositions.clear();
     }
 
     @Override
     public List<BlockPos> getAffectedBlockPositions()
     {
-        return affectedBlockPositions;
+        return this.affectedBlockPositions;
     }
 
     @Override
     public Vec3d getPosition()
     {
-        return position;
+        return this.position;
     }
 }

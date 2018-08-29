@@ -32,51 +32,51 @@ public class EntityAIGoldGolemLookAtPigtificate extends EntityAIBase
     public EntityAIGoldGolemLookAtPigtificate(EntityGoldGolem golem)
     {
         this.golem = golem;
-        setMutexBits(3);
+        this.setMutexBits(3);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        World world = golem.getEntityWorld();
+        World world = this.golem.getEntityWorld();
 
         if(!WorldHelper.isDaytime(world))
         {
             return false;
         }
-        else if(golem.getRNG().nextInt(8000) != 0)
+        else if(this.golem.getRNG().nextInt(8000) != 0)
         {
             return false;
         }
         else
         {
-            pigtificate = (EntityPigtificate) world.findNearestEntityWithinAABB(EntityPigtificate.class, golem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), golem);
-            return pigtificate != null;
+            this.pigtificate = (EntityPigtificate) world.findNearestEntityWithinAABB(EntityPigtificate.class, this.golem.getEntityBoundingBox().expand(6.0D, 2.0D, 6.0D), this.golem);
+            return this.pigtificate != null;
         }
     }
 
     @Override
     public boolean shouldContinueExecuting()
     {
-        return lookCounter > 0;
+        return this.lookCounter > 0;
     }
 
     @Override
     public void startExecuting()
     {
-        lookCounter = 400;
+        this.lookCounter = 400;
     }
 
     @Override
     public void resetTask()
     {
-        pigtificate = null;
+        this.pigtificate = null;
     }
 
     @Override
     public void updateTask()
     {
-        golem.getLookHelper().setLookPositionWithEntity(pigtificate, 30.0F, 30.0F);
-        lookCounter--;
+        this.golem.getLookHelper().setLookPositionWithEntity(this.pigtificate, 30.0F, 30.0F);
+        this.lookCounter--;
     }
 }

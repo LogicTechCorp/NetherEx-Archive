@@ -76,7 +76,7 @@ public class ItemGoldenWitherBoneHammer extends ItemHammerLibEx
             {
                 damage += 63;
 
-                if(getDamage(stack) - 64 == 0)
+                if(this.getDamage(stack) - 64 == 0)
                 {
                     damage += 1;
                 }

@@ -45,29 +45,29 @@ public class EntityBrute extends EntityMob
     public EntityBrute(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(1.25F, 2.25F);
+        this.isImmuneToFire = true;
+        this.setSize(1.25F, 2.25F);
     }
 
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 64.0F));
-        tasks.addTask(2, new EntityAIWander(this, 1.0D, 360));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 64.0F));
+        this.tasks.addTask(2, new EntityAIWander(this, 1.0D, 360));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(16.0D);
-        getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.5D);
-        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(32.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
     }
 
     @Override
@@ -75,38 +75,38 @@ public class EntityBrute extends EntityMob
     {
         super.onUpdate();
 
-        if(charging && (getAttackTarget() == null || (prevPosX == posX && prevPosY == posY && prevPosZ == posZ)))
+        if(this.charging && (this.getAttackTarget() == null || (this.prevPosX == this.posX && this.prevPosY == this.posY && this.prevPosZ == this.posZ)))
         {
-            charging = false;
+            this.charging = false;
         }
 
-        if(chargeCooldown == 0)
+        if(this.chargeCooldown == 0)
         {
-            if(getAttackTarget() != null && !charging)
+            if(this.getAttackTarget() != null && !this.charging)
             {
-                destination = getAttackTarget().getPosition();
-                charging = true;
+                this.destination = this.getAttackTarget().getPosition();
+                this.charging = true;
             }
-            if(charging)
+            if(this.charging)
             {
-                getNavigator().tryMoveToXYZ(destination.getX(), destination.getY(), destination.getZ(), 2.5F);
+                this.getNavigator().tryMoveToXYZ(this.destination.getX(), this.destination.getY(), this.destination.getZ(), 2.5F);
 
-                if(!addedOffset && getDistanceSq(destination) <= 4.0D)
+                if(!this.addedOffset && this.getDistanceSq(this.destination) <= 4.0D)
                 {
-                    destination = destination.offset(getHorizontalFacing(), 4);
-                    addedOffset = true;
+                    this.destination = this.destination.offset(this.getHorizontalFacing(), 4);
+                    this.addedOffset = true;
                 }
-                if(getPosition().equals(destination))
+                if(this.getPosition().equals(this.destination))
                 {
-                    addedOffset = false;
-                    charging = false;
-                    chargeCooldown = ConfigHandler.entityConfig.brute.chargeCooldown * 20;
+                    this.addedOffset = false;
+                    this.charging = false;
+                    this.chargeCooldown = ConfigHandler.entityConfig.brute.chargeCooldown * 20;
                 }
             }
         }
-        if(chargeCooldown > 0)
+        if(this.chargeCooldown > 0)
         {
-            chargeCooldown--;
+            this.chargeCooldown--;
         }
     }
 
@@ -114,18 +114,18 @@ public class EntityBrute extends EntityMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("ChargeCooldown", chargeCooldown);
-        compound.setBoolean("Charging", charging);
-        compound.setBoolean("AddedOffset", addedOffset);
+        compound.setInteger("ChargeCooldown", this.chargeCooldown);
+        compound.setBoolean("Charging", this.charging);
+        compound.setBoolean("AddedOffset", this.addedOffset);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        chargeCooldown = compound.getInteger("ChargeCooldown");
-        charging = compound.getBoolean("Charging");
-        addedOffset = compound.getBoolean("AddedOffset");
+        this.chargeCooldown = compound.getInteger("ChargeCooldown");
+        this.charging = compound.getBoolean("Charging");
+        this.addedOffset = compound.getBoolean("AddedOffset");
     }
 
     @Override
@@ -133,7 +133,7 @@ public class EntityBrute extends EntityMob
     {
         super.collideWithEntity(entity);
 
-        if(charging && !(entity instanceof EntityBrute) && entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + rand.nextInt((int) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() / 2)))
+        if(this.charging && !(entity instanceof EntityBrute) && entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + this.rand.nextInt((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() / 2)))
         {
             entity.motionY += 0.45D;
         }

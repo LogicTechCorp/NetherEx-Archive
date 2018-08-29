@@ -41,15 +41,15 @@ public class ItemRimeAndSteel extends ItemLibEx
     public ItemRimeAndSteel()
     {
         super(NetherEx.instance, "rime_and_steel");
-        setMaxStackSize(1);
-        setMaxDamage(64);
+        this.setMaxStackSize(1);
+        this.setMaxDamage(64);
 
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new Bootstrap.BehaviorDispenseOptional()
         {
             @Override
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
-                successful = true;
+                this.successful = true;
 
                 World world = source.getWorld();
                 BlockPos pos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
@@ -70,7 +70,7 @@ public class ItemRimeAndSteel extends ItemLibEx
                 }
                 else
                 {
-                    successful = false;
+                    this.successful = false;
                 }
 
                 return stack;

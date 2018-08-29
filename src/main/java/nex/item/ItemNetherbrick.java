@@ -30,13 +30,13 @@ public class ItemNetherbrick extends ItemLibEx
     public ItemNetherbrick()
     {
         super(NetherEx.instance, "netherbrick");
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        if(isInCreativeTab(tab))
+        if(this.isInCreativeTab(tab))
         {
             for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
             {

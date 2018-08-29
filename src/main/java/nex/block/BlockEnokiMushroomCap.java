@@ -47,15 +47,15 @@ public class BlockEnokiMushroomCap extends BlockLibEx
     public BlockEnokiMushroomCap()
     {
         super(NetherEx.instance, "enoki_mushroom_cap", Material.PLANTS);
-        setSoundType(SoundType.WOOD);
-        setHardness(0.4F);
-        setTickRandomly(true);
+        this.setSoundType(SoundType.WOOD);
+        this.setHardness(0.4F);
+        this.setTickRandomly(true);
     }
 
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if(!canSurvive(world, pos))
+        if(!this.canSurvive(world, pos))
         {
             world.destroyBlock(pos, true);
         }
@@ -118,7 +118,7 @@ public class BlockEnokiMushroomCap extends BlockLibEx
                     if(flag && areAllNeighborsEmpty(world, blockpos, null) && world.isAirBlock(pos.down(2)))
                     {
                         world.setBlockState(pos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
-                        placeGrownCap(world, blockpos, i);
+                        this.placeGrownCap(world, blockpos, i);
                     }
                     else if(i < 4)
                     {
@@ -137,7 +137,7 @@ public class BlockEnokiMushroomCap extends BlockLibEx
 
                             if(world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && areAllNeighborsEmpty(world, blockpos1, facing.getOpposite()))
                             {
-                                placeGrownCap(world, blockpos1, i + 1);
+                                this.placeGrownCap(world, blockpos1, i + 1);
                                 flag2 = true;
                             }
                         }
@@ -148,12 +148,12 @@ public class BlockEnokiMushroomCap extends BlockLibEx
                         }
                         else
                         {
-                            placeDeadCap(world, pos);
+                            this.placeDeadCap(world, pos);
                         }
                     }
                     else if(i == 4)
                     {
-                        placeDeadCap(world, pos);
+                        this.placeDeadCap(world, pos);
                     }
                 }
             }
@@ -175,13 +175,13 @@ public class BlockEnokiMushroomCap extends BlockLibEx
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        return super.canPlaceBlockAt(world, pos) && canSurvive(world, pos);
+        return super.canPlaceBlockAt(world, pos) && this.canSurvive(world, pos);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        if(!canSurvive(world, pos))
+        if(!this.canSurvive(world, pos))
         {
             world.scheduleUpdate(pos, this, 1);
         }
@@ -209,7 +209,7 @@ public class BlockEnokiMushroomCap extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(AGE, meta);
+        return this.getDefaultState().withProperty(AGE, meta);
     }
 
     @Override
@@ -331,13 +331,13 @@ public class BlockEnokiMushroomCap extends BlockLibEx
 
     private void placeGrownCap(World world, BlockPos pos, int age)
     {
-        world.setBlockState(pos, getDefaultState().withProperty(AGE, age), 2);
+        world.setBlockState(pos, this.getDefaultState().withProperty(AGE, age), 2);
         world.playEvent(1033, pos, 0);
     }
 
     private void placeDeadCap(World world, BlockPos pos)
     {
-        world.setBlockState(pos, getDefaultState().withProperty(AGE, 5), 2);
+        world.setBlockState(pos, this.getDefaultState().withProperty(AGE, 5), 2);
         world.playEvent(1034, pos, 0);
     }
 }

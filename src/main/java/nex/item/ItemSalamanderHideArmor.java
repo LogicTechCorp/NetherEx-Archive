@@ -35,13 +35,13 @@ public class ItemSalamanderHideArmor extends ItemArmorLibEx
     public ItemSalamanderHideArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
         super(NetherEx.instance, "salamander_hide_" + name, NetherExMaterials.SALAMANDER_HIDE, renderIndex, equipmentSlot);
-        addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entity) -> isVariant(stack) ? 1.0F : 0.0F);
+        this.addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entity) -> isVariant(stack) ? 1.0F : 0.0F);
     }
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        if(isInCreativeTab(tab))
+        if(this.isInCreativeTab(tab))
         {
             ItemStack stack = new ItemStack(this);
             NBTTagCompound compound = new NBTTagCompound();

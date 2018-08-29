@@ -34,7 +34,7 @@ public class ItemBlockElderMushroom extends ItemBlockEdible
     public ItemBlockElderMushroom()
     {
         super(NetherExBlocks.ELDER_MUSHROOM, 0, 0.0F, false);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ItemBlockElderMushroom extends ItemBlockEdible
             }
 
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-            onFoodEaten(stack, world, player);
+            this.onFoodEaten(stack, world, player);
             player.addStat(StatList.getObjectUseStats(this));
         }
 

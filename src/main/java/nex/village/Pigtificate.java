@@ -103,12 +103,12 @@ public class Pigtificate
 
         public void addTrade(Trade trade)
         {
-            trades.computeIfAbsent(trade.getTradeLevel(), k -> new ArrayList<>()).add(trade);
+            this.trades.computeIfAbsent(trade.getTradeLevel(), k -> new ArrayList<>()).add(trade);
         }
 
         public void removeAllTrades()
         {
-            trades.clear();
+            this.trades.clear();
         }
 
         public static Career getFromIndex(int index)
@@ -150,27 +150,27 @@ public class Pigtificate
 
         public int getWeight()
         {
-            return weight;
+            return this.weight;
         }
 
         public ResourceLocation getTexture()
         {
-            return texture;
+            return this.texture;
         }
 
         public ResourceLocation getLootTable()
         {
-            return lootTable;
+            return this.lootTable;
         }
 
         public Profession getProfession()
         {
-            return profession;
+            return this.profession;
         }
 
         public Map<Integer, List<Trade>> getTrades()
         {
-            return ImmutableMap.copyOf(trades);
+            return ImmutableMap.copyOf(this.trades);
         }
     }
 }

@@ -49,13 +49,13 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        if(!entity.collidedHorizontally)
+        if(!this.entity.collidedHorizontally)
         {
             return false;
         }
         else
         {
-            PathNavigateGround navigator = (PathNavigateGround) entity.getNavigator();
+            PathNavigateGround navigator = (PathNavigateGround) this.entity.getNavigator();
             Path path = navigator.getPath();
 
             if(path != null && !path.isFinished() && navigator.getEnterDoors())
@@ -63,22 +63,22 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
                 for(int i = 0; i < Math.min(path.getCurrentPathIndex() + 2, path.getCurrentPathLength()); i++)
                 {
                     PathPoint point = path.getPathPointFromIndex(i);
-                    fenceGatePos = new BlockPos(point.x, point.y, point.z);
+                    this.fenceGatePos = new BlockPos(point.x, point.y, point.z);
 
-                    if(entity.getDistanceSq((double) fenceGatePos.getX(), entity.posY, (double) fenceGatePos.getZ()) <= 2.25D)
+                    if(this.entity.getDistanceSq((double) this.fenceGatePos.getX(), this.entity.posY, (double) this.fenceGatePos.getZ()) <= 2.25D)
                     {
-                        fenceGate = getFenceGate(fenceGatePos);
+                        this.fenceGate = this.getFenceGate(this.fenceGatePos);
 
-                        if(fenceGate != null)
+                        if(this.fenceGate != null)
                         {
                             return true;
                         }
                     }
                 }
 
-                fenceGatePos = (new BlockPos(entity));
-                fenceGate = getFenceGate(fenceGatePos);
-                return fenceGate != null;
+                this.fenceGatePos = (new BlockPos(this.entity));
+                this.fenceGate = this.getFenceGate(this.fenceGatePos);
+                return this.fenceGate != null;
             }
             else
             {
@@ -90,33 +90,33 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
     @Override
     public boolean shouldContinueExecuting()
     {
-        return !stopInteraction;
+        return !this.stopInteraction;
     }
 
     @Override
     public void startExecuting()
     {
-        stopInteraction = false;
-        entityPosX = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
-        entityPosZ = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
+        this.stopInteraction = false;
+        this.entityPosX = (float) ((double) ((float) this.fenceGatePos.getX() + 0.5F) - this.entity.posX);
+        this.entityPosZ = (float) ((double) ((float) this.fenceGatePos.getZ() + 0.5F) - this.entity.posZ);
     }
 
     @Override
     public void updateTask()
     {
-        float distanceX = (float) ((double) ((float) fenceGatePos.getX() + 0.5F) - entity.posX);
-        float distanceZ = (float) ((double) ((float) fenceGatePos.getZ() + 0.5F) - entity.posZ);
-        float distance = entityPosX * distanceX + entityPosZ * distanceZ;
+        float distanceX = (float) ((double) ((float) this.fenceGatePos.getX() + 0.5F) - this.entity.posX);
+        float distanceZ = (float) ((double) ((float) this.fenceGatePos.getZ() + 0.5F) - this.entity.posZ);
+        float distance = this.entityPosX * distanceX + this.entityPosZ * distanceZ;
 
         if(distance < 0.0F)
         {
-            stopInteraction = true;
+            this.stopInteraction = true;
         }
     }
 
     private BlockFenceGate getFenceGate(BlockPos pos)
     {
-        IBlockState state = entity.world.getBlockState(pos);
+        IBlockState state = this.entity.world.getBlockState(pos);
         Block block = state.getBlock();
         return block instanceof BlockFenceGate ? (BlockFenceGate) block : null;
     }

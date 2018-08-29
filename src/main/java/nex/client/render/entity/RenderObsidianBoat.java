@@ -38,7 +38,7 @@ public class RenderObsidianBoat extends Render<EntityObsidianBoat>
     public RenderObsidianBoat(RenderManager renderManagerIn)
     {
         super(renderManagerIn);
-        shadowSize = 0.5F;
+        this.shadowSize = 0.5F;
     }
 
     @Override
@@ -46,18 +46,18 @@ public class RenderObsidianBoat extends Render<EntityObsidianBoat>
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x, (float) y + 0.375F, (float) z);
-        setupRotation(entity, entityYaw, partialTicks);
-        bindEntityTexture(entity);
+        this.setupRotation(entity, entityYaw, partialTicks);
+        this.bindEntityTexture(entity);
 
-        if(renderOutlines)
+        if(this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(getTeamColor(entity));
+            GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
 
-        modelBoat.render(entity, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        this.modelBoat.render(entity, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
-        if(renderOutlines)
+        if(this.renderOutlines)
         {
             GlStateManager.disableOutlineMode();
             GlStateManager.disableColorMaterial();
@@ -103,9 +103,9 @@ public class RenderObsidianBoat extends Render<EntityObsidianBoat>
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x, (float) y + 0.375F, (float) z);
-        setupRotation(entity, p_188300_8_, p_188300_9_);
-        bindEntityTexture(entity);
-        ((IMultipassModel) modelBoat).renderMultipass(entity, p_188300_9_, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        this.setupRotation(entity, p_188300_8_, p_188300_9_);
+        this.bindEntityTexture(entity);
+        ((IMultipassModel) this.modelBoat).renderMultipass(entity, p_188300_9_, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GlStateManager.popMatrix();
     }
 }

@@ -44,8 +44,8 @@ public class EntitySpinout extends EntityMob
     public EntitySpinout(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(0.55F, 1.95F);
+        this.isImmuneToFire = true;
+        this.setSize(0.55F, 1.95F);
     }
 
     @Override
@@ -69,27 +69,27 @@ public class EntitySpinout extends EntityMob
     @Override
     public void playSound(SoundEvent sound, float volume, float pitch)
     {
-        if(!isSilent() || isSilent() && sound != NetherExSoundEvents.SPINOUT_AMBIENT)
+        if(!this.isSilent() || this.isSilent() && sound != NetherExSoundEvents.SPINOUT_AMBIENT)
         {
-            world.playSound(null, posX, posY, posZ, sound, getSoundCategory(), volume, pitch);
+            this.world.playSound(null, this.posX, this.posY, this.posZ, sound, this.getSoundCategory(), volume, pitch);
         }
     }
 
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(0, new EntityAISwimming(this));
-        targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
     }
 
     @Override
@@ -97,45 +97,45 @@ public class EntitySpinout extends EntityMob
     {
         super.onUpdate();
 
-        if(spinCooldown == 0)
+        if(this.spinCooldown == 0)
         {
-            spinCounter++;
+            this.spinCounter++;
 
-            if(!spinning)
+            if(!this.spinning)
             {
-                spinning = true;
+                this.spinning = true;
             }
-            if(tasks.taskEntries.size() == 1)
+            if(this.tasks.taskEntries.size() == 1)
             {
-                tasks.addTask(1, attackMelee);
-                tasks.addTask(2, wander);
+                this.tasks.addTask(1, this.attackMelee);
+                this.tasks.addTask(2, this.wander);
             }
-            if(isSilent())
+            if(this.isSilent())
             {
-                setSilent(false);
+                this.setSilent(false);
             }
         }
-        if(spinCounter >= ConfigHandler.entityConfig.spinout.spinTime * 20)
+        if(this.spinCounter >= ConfigHandler.entityConfig.spinout.spinTime * 20)
         {
-            spinCounter = 0;
-            spinning = false;
-            spinCooldown = ConfigHandler.entityConfig.spinout.spinCooldown * 20;
+            this.spinCounter = 0;
+            this.spinning = false;
+            this.spinCooldown = ConfigHandler.entityConfig.spinout.spinCooldown * 20;
         }
-        if(spinCooldown > 0)
+        if(this.spinCooldown > 0)
         {
-            spinCooldown--;
+            this.spinCooldown--;
 
-            if(tasks.taskEntries.size() == 3)
+            if(this.tasks.taskEntries.size() == 3)
             {
-                tasks.removeTask(attackMelee);
-                tasks.removeTask(wander);
+                this.tasks.removeTask(this.attackMelee);
+                this.tasks.removeTask(this.wander);
             }
-            if(!isSilent())
+            if(!this.isSilent())
             {
-                setSilent(true);
+                this.setSilent(true);
             }
 
-            getNavigator().clearPath();
+            this.getNavigator().clearPath();
         }
     }
 
@@ -143,30 +143,30 @@ public class EntitySpinout extends EntityMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("SpinCounter", spinCounter);
-        compound.setInteger("SpinCooldown", spinCooldown);
-        compound.setBoolean("Spinning", spinning);
+        compound.setInteger("SpinCounter", this.spinCounter);
+        compound.setInteger("SpinCooldown", this.spinCooldown);
+        compound.setBoolean("Spinning", this.spinning);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        spinCounter = compound.getInteger("SpinCounter");
-        spinCooldown = compound.getInteger("SpinCooldown");
-        spinning = compound.getBoolean("Spinning");
+        this.spinCounter = compound.getInteger("SpinCounter");
+        this.spinCooldown = compound.getInteger("SpinCooldown");
+        this.spinning = compound.getBoolean("Spinning");
     }
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        return !(source.isProjectile() && isSpinning()) && super.attackEntityFrom(source, amount);
+        return !(source.isProjectile() && this.isSpinning()) && super.attackEntityFrom(source, amount);
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return world.getDifficulty() != EnumDifficulty.PEACEFUL;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override
@@ -183,6 +183,6 @@ public class EntitySpinout extends EntityMob
 
     public boolean isSpinning()
     {
-        return spinning;
+        return this.spinning;
     }
 }

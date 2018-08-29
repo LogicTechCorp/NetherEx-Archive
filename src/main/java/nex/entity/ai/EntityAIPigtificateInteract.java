@@ -44,13 +44,13 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
     {
         super.startExecuting();
 
-        if(pigtificate.canAbandonItems() && closestEntity instanceof EntityPigtificate && ((EntityPigtificate) closestEntity).wantsMoreFood())
+        if(this.pigtificate.canAbandonItems() && this.closestEntity instanceof EntityPigtificate && ((EntityPigtificate) this.closestEntity).wantsMoreFood())
         {
-            interactionDelay = 10;
+            this.interactionDelay = 10;
         }
         else
         {
-            interactionDelay = 0;
+            this.interactionDelay = 0;
         }
     }
 
@@ -59,13 +59,13 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
     {
         super.updateTask();
 
-        if(interactionDelay > 0)
+        if(this.interactionDelay > 0)
         {
-            interactionDelay--;
+            this.interactionDelay--;
 
-            if(interactionDelay == 0)
+            if(this.interactionDelay == 0)
             {
-                InventoryBasic inventory = pigtificate.getInventory();
+                InventoryBasic inventory = this.pigtificate.getInventory();
 
                 for(int i = 0; i < inventory.getSizeInventory(); i++)
                 {
@@ -90,11 +90,11 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
 
                     if(!stack.isEmpty())
                     {
-                        World world = pigtificate.getEntityWorld();
-                        double height = pigtificate.posY - 0.30000001192092896D + (double) pigtificate.getEyeHeight();
-                        EntityItem item = new EntityItem(world, pigtificate.posX, height, pigtificate.posZ, stack);
-                        float yaw = pigtificate.rotationYawHead;
-                        float pitch = pigtificate.rotationPitch;
+                        World world = this.pigtificate.getEntityWorld();
+                        double height = this.pigtificate.posY - 0.30000001192092896D + (double) this.pigtificate.getEyeHeight();
+                        EntityItem item = new EntityItem(world, this.pigtificate.posX, height, this.pigtificate.posZ, stack);
+                        float yaw = this.pigtificate.rotationYawHead;
+                        float pitch = this.pigtificate.rotationPitch;
                         item.motionX = (double) (-MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F);
                         item.motionZ = (double) (MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F);
                         item.motionY = (double) (-MathHelper.sin(pitch * 0.017453292F) * 0.3F + 0.1F);

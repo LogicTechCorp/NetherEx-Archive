@@ -38,7 +38,7 @@ public class BlockNetherrack extends BlockLibEx
     public BlockNetherrack()
     {
         super(NetherEx.instance, "netherrack", Material.ROCK);
-        setHardness(0.4F);
+        this.setHardness(0.4F);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class BlockNetherrack extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class BlockNetherrack extends BlockLibEx
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return this.toString().toLowerCase();
         }
 
         public static EnumType fromMeta(int meta)

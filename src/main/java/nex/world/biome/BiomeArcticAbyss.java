@@ -32,12 +32,12 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     public BiomeArcticAbyss()
     {
         super(NetherEx.instance, new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
-        topBlock = NetherExBlocks.FROSTBURN_ICE.getDefaultState();
-        fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
-        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4));
-        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4));
-        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBoneSpider.class, 35, 1, 4));
-        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4));
-        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1));
+        this.topBlock = NetherExBlocks.FROSTBURN_ICE.getDefaultState();
+        this.fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBoneSpider.class, 35, 1, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1));
     }
 }

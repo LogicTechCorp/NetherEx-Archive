@@ -34,8 +34,8 @@ public class BlockVanillaFence extends BlockFenceLibEx
     public BlockVanillaFence()
     {
         super(NetherEx.instance, "vanilla_fence", Material.ROCK);
-        setHardness(1.5F);
-        setResistance(10.0F);
+        this.setHardness(1.5F);
+        this.setResistance(10.0F);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class BlockVanillaFence extends BlockFenceLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, BlockVanilla.EnumTypeFence.fromMeta(meta));
+        return this.getDefaultState().withProperty(TYPE, BlockVanilla.EnumTypeFence.fromMeta(meta));
     }
 
     @Override

@@ -37,9 +37,9 @@ public class PigtificateVillageFenceGateInfo
     public PigtificateVillageFenceGateInfo(BlockPos pos, EnumFacing facing, int time)
     {
         this.pos = pos;
-        inside = facing;
-        insidePos = pos.offset(facing, 2);
-        lastActivityTime = time;
+        this.inside = facing;
+        this.insidePos = pos.offset(facing, 2);
+        this.lastActivityTime = time;
     }
 
     private static EnumFacing getFaceDirection(int deltaX, int deltaZ)
@@ -49,83 +49,83 @@ public class PigtificateVillageFenceGateInfo
 
     public int getDistanceSquared(int x, int y, int z)
     {
-        return (int) pos.distanceSq((double) x, (double) y, (double) z);
+        return (int) this.pos.distanceSq((double) x, (double) y, (double) z);
     }
 
     public int getDistanceToFenceGateSq(BlockPos pos)
     {
-        return (int) pos.distanceSq(getPos());
+        return (int) pos.distanceSq(this.getPos());
     }
 
     public int getDistanceToInsideBlockSq(BlockPos pos)
     {
-        return (int) insidePos.distanceSq(pos);
+        return (int) this.insidePos.distanceSq(pos);
     }
 
     public boolean isInside(BlockPos pos)
     {
         int x = pos.getX() - this.pos.getX();
         int z = pos.getZ() - this.pos.getY();
-        return x * inside.getXOffset() + z * inside.getZOffset() >= 0;
+        return x * this.inside.getXOffset() + z * this.inside.getZOffset() >= 0;
     }
 
     public void resetOpenRestrictionCounter()
     {
-        openRestrictionCounter = 0;
+        this.openRestrictionCounter = 0;
     }
 
     public void incrementOpenRestrictionCounter()
     {
-        openRestrictionCounter++;
+        this.openRestrictionCounter++;
     }
 
     public int getOpenRestrictionCounter()
     {
-        return openRestrictionCounter;
+        return this.openRestrictionCounter;
     }
 
     public BlockPos getPos()
     {
-        return pos;
+        return this.pos;
     }
 
     public BlockPos getInsidePos()
     {
-        return insidePos;
+        return this.insidePos;
     }
 
     public int getInsideOffsetX()
     {
-        return inside.getXOffset() * 2;
+        return this.inside.getXOffset() * 2;
     }
 
     public int getInsideOffsetZ()
     {
-        return inside.getZOffset() * 2;
+        return this.inside.getZOffset() * 2;
     }
 
     public int getLastActivityTime()
     {
-        return lastActivityTime;
+        return this.lastActivityTime;
     }
 
     public void setLastActivityTime(int time)
     {
-        lastActivityTime = time;
+        this.lastActivityTime = time;
     }
 
     public boolean isDetachedFromVillageFlag()
     {
-        return isDetachedFromVillage;
+        return this.isDetachedFromVillage;
     }
 
     public void setDetachedFromVillageFlag(boolean detached)
     {
-        isDetachedFromVillage = detached;
+        this.isDetachedFromVillage = detached;
     }
 
     public EnumFacing getInside()
     {
-        return inside;
+        return this.inside;
     }
 }

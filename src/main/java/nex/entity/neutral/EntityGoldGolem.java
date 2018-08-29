@@ -62,49 +62,49 @@ public class EntityGoldGolem extends EntityGolem
     public EntityGoldGolem(World world)
     {
         super(world);
-        isImmuneToFire = true;
-        setSize(1.4F, 3.0F);
+        this.isImmuneToFire = true;
+        this.setSize(1.4F, 3.0F);
     }
 
     @Override
     protected void initEntityAI()
     {
-        tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
-        tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.9D, 32.0F));
-        tasks.addTask(3, new EntityAIMoveThroughVillage(this, 0.6D, true));
-        tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        tasks.addTask(5, new EntityAIGoldGolemLookAtPigtificate(this));
-        tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
-        tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        tasks.addTask(8, new EntityAILookIdle(this));
-        targetTasks.addTask(1, new EntityAIGoldGolemDefendVillage(this));
-        targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
-        targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, false, true, entity -> entity != null && IMob.VISIBLE_MOB_SELECTOR.apply((EntityLiving) entity) && !(entity instanceof EntitySporeCreeper)));
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.9D, 32.0F));
+        this.tasks.addTask(3, new EntityAIMoveThroughVillage(this, 0.6D, true));
+        this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
+        this.tasks.addTask(5, new EntityAIGoldGolemLookAtPigtificate(this));
+        this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIGoldGolemDefendVillage(this));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, false, true, entity -> entity != null && IMob.VISIBLE_MOB_SELECTOR.apply((EntityLiving) entity) && !(entity instanceof EntitySporeCreeper)));
     }
 
     @Override
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(PLAYER_CREATED, false);
+        this.dataManager.register(PLAYER_CREATED, false);
     }
 
     @Override
     protected void updateAITasks()
     {
-        if(homeCheckTimer-- <= 0)
+        if(this.homeCheckTimer-- <= 0)
         {
-            homeCheckTimer = 70 + rand.nextInt(50);
-            village = PigtificateVillageManager.getVillageData(getEntityWorld(), true).getNearestVillage(new BlockPos(this), 32);
+            this.homeCheckTimer = 70 + this.rand.nextInt(50);
+            this.village = PigtificateVillageManager.getVillageData(this.getEntityWorld(), true).getNearestVillage(new BlockPos(this), 32);
 
-            if(village == null)
+            if(this.village == null)
             {
-                detachHome();
+                this.detachHome();
             }
             else
             {
-                BlockPos blockpos = village.getCenter();
-                setHomePosAndDistance(blockpos, (int) ((float) village.getRadius() * 0.6F));
+                BlockPos blockpos = this.village.getCenter();
+                this.setHomePosAndDistance(blockpos, (int) ((float) this.village.getRadius() * 0.6F));
             }
         }
 
@@ -115,9 +115,9 @@ public class EntityGoldGolem extends EntityGolem
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
     }
 
     @Override
@@ -129,9 +129,9 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected void collideWithEntity(Entity entityIn)
     {
-        if(entityIn instanceof IMob && !(entityIn instanceof EntitySporeCreeper) && getRNG().nextInt(20) == 0)
+        if(entityIn instanceof IMob && !(entityIn instanceof EntitySporeCreeper) && this.getRNG().nextInt(20) == 0)
         {
-            setAttackTarget((EntityLivingBase) entityIn);
+            this.setAttackTarget((EntityLivingBase) entityIn);
         }
 
         super.collideWithEntity(entityIn);
@@ -142,26 +142,26 @@ public class EntityGoldGolem extends EntityGolem
     {
         super.onLivingUpdate();
 
-        if(attackTimer > 0)
+        if(this.attackTimer > 0)
         {
-            attackTimer--;
+            this.attackTimer--;
         }
 
-        if(flowerHeldCounter > 0)
+        if(this.flowerHeldCounter > 0)
         {
-            flowerHeldCounter--;
+            this.flowerHeldCounter--;
         }
 
-        if(motionX * motionX + motionZ * motionZ > 2.500000277905201E-7D && rand.nextInt(5) == 0)
+        if(this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.rand.nextInt(5) == 0)
         {
             int posX = MathHelper.floor(this.posX);
             int posY = MathHelper.floor(this.posY - 0.20000000298023224D);
             int posZ = MathHelper.floor(this.posZ);
-            IBlockState state = world.getBlockState(new BlockPos(posX, posY, posZ));
+            IBlockState state = this.world.getBlockState(new BlockPos(posX, posY, posZ));
 
             if(state.getMaterial() != Material.AIR)
             {
-                world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double) rand.nextFloat() - 0.5D) * (double) width, getEntityBoundingBox().minY + 0.1D, this.posZ + ((double) rand.nextFloat() - 0.5D) * (double) width, 4.0D * ((double) rand.nextFloat() - 0.5D), 0.5D, ((double) rand.nextFloat() - 0.5D) * 4.0D, new int[]{Block.getStateId(state)});
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width, 4.0D * ((double) this.rand.nextFloat() - 0.5D), 0.5D, ((double) this.rand.nextFloat() - 0.5D) * 4.0D, Block.getStateId(state));
             }
         }
     }
@@ -169,37 +169,37 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     public boolean canAttackClass(Class<? extends EntityLivingBase> cls)
     {
-        return isPlayerCreated() && EntityPlayer.class.isAssignableFrom(cls) ? false : (cls == EntitySporeCreeper.class ? false : super.canAttackClass(cls));
+        return (!this.isPlayerCreated() || !EntityPlayer.class.isAssignableFrom(cls)) && (cls != EntitySporeCreeper.class && super.canAttackClass(cls));
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setBoolean("PlayerCreated", isPlayerCreated());
+        compound.setBoolean("PlayerCreated", this.isPlayerCreated());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        setPlayerCreated(compound.getBoolean("PlayerCreated"));
+        this.setPlayerCreated(compound.getBoolean("PlayerCreated"));
     }
 
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        attackTimer = 10;
-        world.setEntityState(this, (byte) 4);
-        boolean attack = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (7 + rand.nextInt(15)));
+        this.attackTimer = 10;
+        this.world.setEntityState(this, (byte) 4);
+        boolean attack = entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (7 + this.rand.nextInt(15)));
 
         if(attack)
         {
             entity.motionY += 0.4000000059604645D;
-            applyEnchantments(this, entity);
+            this.applyEnchantments(this, entity);
         }
 
-        playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
         return attack;
     }
 
@@ -209,16 +209,16 @@ public class EntityGoldGolem extends EntityGolem
     {
         if(id == 4)
         {
-            attackTimer = 10;
-            playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
+            this.attackTimer = 10;
+            this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
         }
         else if(id == 11)
         {
-            flowerHeldCounter = 400;
+            this.flowerHeldCounter = 400;
         }
         else if(id == 34)
         {
-            flowerHeldCounter = 0;
+            this.flowerHeldCounter = 0;
         }
         else
         {
@@ -228,26 +228,26 @@ public class EntityGoldGolem extends EntityGolem
 
     public PigtificateVillage getVillage()
     {
-        return village;
+        return this.village;
     }
 
     @SideOnly(Side.CLIENT)
     public int getAttackTimer()
     {
-        return attackTimer;
+        return this.attackTimer;
     }
 
     public void setHoldingFlower(boolean holding)
     {
         if(holding)
         {
-            flowerHeldCounter = 400;
-            world.setEntityState(this, (byte) 11);
+            this.flowerHeldCounter = 400;
+            this.world.setEntityState(this, (byte) 11);
         }
         else
         {
-            flowerHeldCounter = 0;
-            world.setEntityState(this, (byte) 34);
+            this.flowerHeldCounter = 0;
+            this.world.setEntityState(this, (byte) 34);
         }
     }
 
@@ -266,7 +266,7 @@ public class EntityGoldGolem extends EntityGolem
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
-        playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
     }
 
     @Override
@@ -277,25 +277,25 @@ public class EntityGoldGolem extends EntityGolem
 
     public int getFlowerHeldCounter()
     {
-        return flowerHeldCounter;
+        return this.flowerHeldCounter;
     }
 
     public boolean isPlayerCreated()
     {
-        return dataManager.get(PLAYER_CREATED);
+        return this.dataManager.get(PLAYER_CREATED);
     }
 
     public void setPlayerCreated(boolean playerCreated)
     {
-        dataManager.set(PLAYER_CREATED, playerCreated);
+        this.dataManager.set(PLAYER_CREATED, playerCreated);
     }
 
     @Override
     public void onDeath(DamageSource cause)
     {
-        if(!isPlayerCreated() && attackingPlayer != null && village != null)
+        if(!this.isPlayerCreated() && this.attackingPlayer != null && this.village != null)
         {
-            village.modifyPlayerReputation(attackingPlayer.getUniqueID(), -5);
+            this.village.modifyPlayerReputation(this.attackingPlayer.getUniqueID(), -5);
         }
 
         super.onDeath(cause);

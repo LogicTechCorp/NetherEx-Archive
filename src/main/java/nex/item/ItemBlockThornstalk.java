@@ -25,6 +25,6 @@ public class ItemBlockThornstalk extends ItemBlockLibEx
     public ItemBlockThornstalk()
     {
         super(NetherExBlocks.THORNSTALK);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
     }
 }

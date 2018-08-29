@@ -29,47 +29,47 @@ public class EntityAISporeCreeperSwell extends EntityAIBase
     public EntityAISporeCreeperSwell(EntitySporeCreeper creeper)
     {
         this.creeper = creeper;
-        setMutexBits(1);
+        this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        EntityLivingBase entity = creeper.getAttackTarget();
-        return creeper.getCreeperState() > 0 || entity != null && creeper.getDistanceSq(entity) < 9.0D;
+        EntityLivingBase entity = this.creeper.getAttackTarget();
+        return this.creeper.getCreeperState() > 0 || entity != null && this.creeper.getDistanceSq(entity) < 9.0D;
     }
 
     @Override
     public void startExecuting()
     {
-        creeper.getNavigator().clearPath();
-        target = creeper.getAttackTarget();
+        this.creeper.getNavigator().clearPath();
+        this.target = this.creeper.getAttackTarget();
     }
 
     @Override
     public void resetTask()
     {
-        target = null;
+        this.target = null;
     }
 
     @Override
     public void updateTask()
     {
-        if(target == null)
+        if(this.target == null)
         {
-            creeper.setCreeperState(-1);
+            this.creeper.setCreeperState(-1);
         }
-        else if(creeper.getDistanceSq(target) > 49.0D)
+        else if(this.creeper.getDistanceSq(this.target) > 49.0D)
         {
-            creeper.setCreeperState(-1);
+            this.creeper.setCreeperState(-1);
         }
-        else if(!creeper.getEntitySenses().canSee(target))
+        else if(!this.creeper.getEntitySenses().canSee(this.target))
         {
-            creeper.setCreeperState(-1);
+            this.creeper.setCreeperState(-1);
         }
         else
         {
-            creeper.setCreeperState(1);
+            this.creeper.setCreeperState(1);
         }
     }
 

@@ -55,14 +55,14 @@ public class BlockEnokiMushroomStem extends BlockLibEx
     public BlockEnokiMushroomStem()
     {
         super(NetherEx.instance, "enoki_mushroom_stem", Material.PLANTS);
-        setSoundType(SoundType.WOOD);
-        setHardness(0.4F);
+        this.setSoundType(SoundType.WOOD);
+        this.setHardness(0.4F);
     }
 
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if(!canSurviveAt(world, pos))
+        if(!this.canSurviveAt(world, pos))
         {
             world.destroyBlock(pos, true);
         }
@@ -154,13 +154,13 @@ public class BlockEnokiMushroomStem extends BlockLibEx
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        return super.canPlaceBlockAt(world, pos) && canSurviveAt(world, pos);
+        return super.canPlaceBlockAt(world, pos) && this.canSurviveAt(world, pos);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        if(!canSurviveAt(world, pos))
+        if(!this.canSurviveAt(world, pos))
         {
             world.scheduleUpdate(pos, this, 1);
         }

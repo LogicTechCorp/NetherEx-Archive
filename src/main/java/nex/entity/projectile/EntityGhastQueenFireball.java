@@ -40,17 +40,17 @@ public class EntityGhastQueenFireball extends EntityFireball
     @Override
     protected void onImpact(RayTraceResult result)
     {
-        if(!world.isRemote)
+        if(!this.world.isRemote)
         {
             if(result.entityHit != null)
             {
-                result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("ghastQueenFireball", this, shootingEntity).setFireDamage().setProjectile(), 24.0F);
-                applyEnchantments(shootingEntity, result.entityHit);
+                result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("ghastQueenFireball", this, this.shootingEntity).setFireDamage().setProjectile(), 24.0F);
+                this.applyEnchantments(this.shootingEntity, result.entityHit);
             }
 
-            boolean grief = world.getGameRules().getBoolean("mobGriefing");
-            world.newExplosion(null, posX, posY, posZ, (float) explosionPower, grief, grief);
-            setDead();
+            boolean grief = this.world.getGameRules().getBoolean("mobGriefing");
+            this.world.newExplosion(null, this.posX, this.posY, this.posZ, (float) this.explosionPower, grief, grief);
+            this.setDead();
         }
     }
 }

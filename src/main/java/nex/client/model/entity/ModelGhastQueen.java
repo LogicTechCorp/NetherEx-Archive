@@ -44,99 +44,99 @@ public class ModelGhastQueen extends ModelBase
 
     public ModelGhastQueen()
     {
-        textureWidth = 128;
-        textureHeight = 128;
+        this.textureWidth = 128;
+        this.textureHeight = 128;
 
-        face = new ModelRenderer(this, 0, 0);
-        face.setRotationPoint(0.0F, -5.0F, -13.0F);
-        face.addBox(-8.0F, 0.0F, -2.0F, 16, 16, 4);
-        body = new ModelRenderer(this, 0, 20);
-        body.setRotationPoint(0.0F, -7.0F, -3.0F);
-        body.addBox(-10.0F, 0.0F, -8.0F, 20, 20, 16);
-        back = new ModelRenderer(this, 0, 56);
-        back.setRotationPoint(0.0F, -5.0F, 9.0F);
-        back.addBox(-8.0F, 0.0F, -4.0F, 16, 13, 8);
-        eggSack = new ModelRenderer(this, 0, 77);
-        eggSack.setRotationPoint(0.0F, 8.0F, 6.0F);
-        eggSack.addBox(-6.0F, 0.0F, -5.5F, 12, 7, 11);
-        frontRightJoint = new ModelRenderer(this, 88, 36);
-        frontRightJoint.setRotationPoint(9.0F, 10.0F, -7.0F);
-        frontRightJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
-        middleRightJoint = new ModelRenderer(this, 88, 57);
-        middleRightJoint.setRotationPoint(9.0F, 10.0F, 1.0F);
-        middleRightJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
-        backRightJoint = new ModelRenderer(this, 88, 78);
-        backRightJoint.setRotationPoint(7.0F, 5.0F, 9.0F);
-        backRightJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
-        frontLeftJoint = new ModelRenderer(this, 72, 36);
-        frontLeftJoint.setRotationPoint(-9.0F, 10.0F, -7.0F);
-        frontLeftJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
-        middleLeftJoint = new ModelRenderer(this, 72, 57);
-        middleLeftJoint.setRotationPoint(-9.0F, 10.0F, 1.0F);
-        middleLeftJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
-        backLeftJoint = new ModelRenderer(this, 72, 78);
-        backLeftJoint.setRotationPoint(-7.0F, 5.0F, 9.0F);
-        backLeftJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
-        frontRightTentacle = new ModelRenderer(this, 92, 44);
-        frontRightTentacle.setRotationPoint(9.0F, 13.0F, -7.5F);
-        frontRightTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
-        setRotationAngles(frontRightTentacle, 0.39269908169872414F, 0.0F, 0.0F);
-        middleRightTentacle = new ModelRenderer(this, 92, 65);
-        middleRightTentacle.setRotationPoint(9.0F, 13.0F, 0.5F);
-        middleRightTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
-        setRotationAngles(middleRightTentacle, 0.39269908169872414F, 0.0F, 0.0F);
-        backRightTentacle = new ModelRenderer(this, 92, 86);
-        backRightTentacle.setRotationPoint(7.0F, 7.0F, 9.5F);
-        backRightTentacle.addBox(-1.0F, 0.0F, -2.0F, 2, 17, 2);
-        setRotationAngles(backRightTentacle, 0.19634954084936207F, 0.0F, 0.0F);
-        frontLeftTentacle = new ModelRenderer(this, 76, 44);
-        frontLeftTentacle.setRotationPoint(-9.0F, 13.0F, -7.5F);
-        frontLeftTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
-        setRotationAngles(frontLeftTentacle, 0.39269908169872414F, 0.0F, 0.0F);
-        middleLeftTentacle = new ModelRenderer(this, 76, 65);
-        middleLeftTentacle.setRotationPoint(-9.0F, 13.0F, 0.5F);
-        middleLeftTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
-        setRotationAngles(middleLeftTentacle, 0.39269908169872414F, 0.0F, 0.0F);
-        backLeftTentacle = new ModelRenderer(this, 76, 86);
-        backLeftTentacle.setRotationPoint(-7.0F, 7.0F, 8.5F);
-        backLeftTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 17, 2);
-        setRotationAngles(backLeftTentacle, 0.19634954084936207F, 0.0F, 0.0F);
+        this.face = new ModelRenderer(this, 0, 0);
+        this.face.setRotationPoint(0.0F, -5.0F, -13.0F);
+        this.face.addBox(-8.0F, 0.0F, -2.0F, 16, 16, 4);
+        this.body = new ModelRenderer(this, 0, 20);
+        this.body.setRotationPoint(0.0F, -7.0F, -3.0F);
+        this.body.addBox(-10.0F, 0.0F, -8.0F, 20, 20, 16);
+        this.back = new ModelRenderer(this, 0, 56);
+        this.back.setRotationPoint(0.0F, -5.0F, 9.0F);
+        this.back.addBox(-8.0F, 0.0F, -4.0F, 16, 13, 8);
+        this.eggSack = new ModelRenderer(this, 0, 77);
+        this.eggSack.setRotationPoint(0.0F, 8.0F, 6.0F);
+        this.eggSack.addBox(-6.0F, 0.0F, -5.5F, 12, 7, 11);
+        this.frontRightJoint = new ModelRenderer(this, 88, 36);
+        this.frontRightJoint.setRotationPoint(9.0F, 10.0F, -7.0F);
+        this.frontRightJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
+        this.middleRightJoint = new ModelRenderer(this, 88, 57);
+        this.middleRightJoint.setRotationPoint(9.0F, 10.0F, 1.0F);
+        this.middleRightJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
+        this.backRightJoint = new ModelRenderer(this, 88, 78);
+        this.backRightJoint.setRotationPoint(7.0F, 5.0F, 9.0F);
+        this.backRightJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
+        this.frontLeftJoint = new ModelRenderer(this, 72, 36);
+        this.frontLeftJoint.setRotationPoint(-9.0F, 10.0F, -7.0F);
+        this.frontLeftJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
+        this.middleLeftJoint = new ModelRenderer(this, 72, 57);
+        this.middleLeftJoint.setRotationPoint(-9.0F, 10.0F, 1.0F);
+        this.middleLeftJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
+        this.backLeftJoint = new ModelRenderer(this, 72, 78);
+        this.backLeftJoint.setRotationPoint(-7.0F, 5.0F, 9.0F);
+        this.backLeftJoint.addBox(-2.0F, 0.0F, -2.0F, 4, 4, 4);
+        this.frontRightTentacle = new ModelRenderer(this, 92, 44);
+        this.frontRightTentacle.setRotationPoint(9.0F, 13.0F, -7.5F);
+        this.frontRightTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
+        this.setRotationAngles(this.frontRightTentacle, 0.39269908169872414F, 0.0F, 0.0F);
+        this.middleRightTentacle = new ModelRenderer(this, 92, 65);
+        this.middleRightTentacle.setRotationPoint(9.0F, 13.0F, 0.5F);
+        this.middleRightTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
+        this.setRotationAngles(this.middleRightTentacle, 0.39269908169872414F, 0.0F, 0.0F);
+        this.backRightTentacle = new ModelRenderer(this, 92, 86);
+        this.backRightTentacle.setRotationPoint(7.0F, 7.0F, 9.5F);
+        this.backRightTentacle.addBox(-1.0F, 0.0F, -2.0F, 2, 17, 2);
+        this.setRotationAngles(this.backRightTentacle, 0.19634954084936207F, 0.0F, 0.0F);
+        this.frontLeftTentacle = new ModelRenderer(this, 76, 44);
+        this.frontLeftTentacle.setRotationPoint(-9.0F, 13.0F, -7.5F);
+        this.frontLeftTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
+        this.setRotationAngles(this.frontLeftTentacle, 0.39269908169872414F, 0.0F, 0.0F);
+        this.middleLeftTentacle = new ModelRenderer(this, 76, 65);
+        this.middleLeftTentacle.setRotationPoint(-9.0F, 13.0F, 0.5F);
+        this.middleLeftTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 11, 2);
+        this.setRotationAngles(this.middleLeftTentacle, 0.39269908169872414F, 0.0F, 0.0F);
+        this.backLeftTentacle = new ModelRenderer(this, 76, 86);
+        this.backLeftTentacle.setRotationPoint(-7.0F, 7.0F, 8.5F);
+        this.backLeftTentacle.addBox(-1.0F, 0.0F, -1.0F, 2, 17, 2);
+        this.setRotationAngles(this.backLeftTentacle, 0.19634954084936207F, 0.0F, 0.0F);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
-        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.0F, 0.6F, 0.0F);
-        face.render(scale);
-        body.render(scale);
-        back.render(scale);
-        eggSack.render(scale);
-        frontRightJoint.render(scale);
-        middleRightJoint.render(scale);
-        backRightJoint.render(scale);
-        frontLeftJoint.render(scale);
-        middleLeftJoint.render(scale);
-        backLeftJoint.render(scale);
-        frontRightTentacle.render(scale);
-        middleRightTentacle.render(scale);
-        backRightTentacle.render(scale);
-        frontLeftTentacle.render(scale);
-        middleLeftTentacle.render(scale);
-        backLeftTentacle.render(scale);
+        this.face.render(scale);
+        this.body.render(scale);
+        this.back.render(scale);
+        this.eggSack.render(scale);
+        this.frontRightJoint.render(scale);
+        this.middleRightJoint.render(scale);
+        this.backRightJoint.render(scale);
+        this.frontLeftJoint.render(scale);
+        this.middleLeftJoint.render(scale);
+        this.backLeftJoint.render(scale);
+        this.frontRightTentacle.render(scale);
+        this.middleRightTentacle.render(scale);
+        this.backRightTentacle.render(scale);
+        this.frontLeftTentacle.render(scale);
+        this.middleLeftTentacle.render(scale);
+        this.backLeftTentacle.render(scale);
         GlStateManager.popMatrix();
     }
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        frontRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 0) + 0.4F;
-        middleRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 1) + 0.4F;
-        backRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 2) + 0.4F;
-        frontLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 3) + 0.4F;
-        middleLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 4) + 0.4F;
-        backLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 5) + 0.4F;
+        this.frontRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 0) + 0.4F;
+        this.middleRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 1) + 0.4F;
+        this.backRightTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 2) + 0.4F;
+        this.frontLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 3) + 0.4F;
+        this.middleLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 4) + 0.4F;
+        this.backLeftTentacle.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 5) + 0.4F;
     }
 
     private void setRotationAngles(ModelRenderer model, float x, float y, float z)

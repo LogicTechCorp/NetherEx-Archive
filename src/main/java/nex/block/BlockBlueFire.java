@@ -54,9 +54,9 @@ public class BlockBlueFire extends BlockLibEx
     public BlockBlueFire()
     {
         super(NetherEx.instance, "blue_fire", Material.FIRE);
-        setLightLevel(1.0F);
-        setTickRandomly(true);
-        setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
+        this.setLightLevel(1.0F);
+        this.setTickRandomly(true);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 
     @Override
@@ -75,9 +75,9 @@ public class BlockBlueFire extends BlockLibEx
             world.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
         }
 
-        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canCatchFire(world, pos.down(), EnumFacing.UP))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !this.canCatchFire(world, pos.down(), EnumFacing.UP))
         {
-            if(canCatchFire(world, pos.west(), EnumFacing.EAST))
+            if(this.canCatchFire(world, pos.west(), EnumFacing.EAST))
             {
                 for(int j = 0; j < 2; ++j)
                 {
@@ -88,7 +88,7 @@ public class BlockBlueFire extends BlockLibEx
                 }
             }
 
-            if(canCatchFire(world, pos.east(), EnumFacing.WEST))
+            if(this.canCatchFire(world, pos.east(), EnumFacing.WEST))
             {
                 for(int k = 0; k < 2; ++k)
                 {
@@ -99,7 +99,7 @@ public class BlockBlueFire extends BlockLibEx
                 }
             }
 
-            if(canCatchFire(world, pos.north(), EnumFacing.SOUTH))
+            if(this.canCatchFire(world, pos.north(), EnumFacing.SOUTH))
             {
                 for(int l = 0; l < 2; ++l)
                 {
@@ -110,7 +110,7 @@ public class BlockBlueFire extends BlockLibEx
                 }
             }
 
-            if(canCatchFire(world, pos.south(), EnumFacing.NORTH))
+            if(this.canCatchFire(world, pos.south(), EnumFacing.NORTH))
             {
                 for(int i1 = 0; i1 < 2; ++i1)
                 {
@@ -121,7 +121,7 @@ public class BlockBlueFire extends BlockLibEx
                 }
             }
 
-            if(canCatchFire(world, pos.up(), EnumFacing.DOWN))
+            if(this.canCatchFire(world, pos.up(), EnumFacing.DOWN))
             {
                 for(int j1 = 0; j1 < 2; ++j1)
                 {
@@ -185,7 +185,7 @@ public class BlockBlueFire extends BlockLibEx
     {
         if(world.getGameRules().getBoolean("doFireTick"))
         {
-            if(!canPlaceBlockAt(world, pos))
+            if(!this.canPlaceBlockAt(world, pos))
             {
                 world.setBlockToAir(pos);
             }
@@ -194,7 +194,7 @@ public class BlockBlueFire extends BlockLibEx
 
             int i = state.getValue(AGE);
 
-            if(!flag && world.isRaining() && canDie(world, pos) && rand.nextFloat() < 0.2F + (float) i * 0.03F)
+            if(!flag && world.isRaining() && this.canDie(world, pos) && rand.nextFloat() < 0.2F + (float) i * 0.03F)
             {
                 world.setBlockToAir(pos);
             }
@@ -206,11 +206,11 @@ public class BlockBlueFire extends BlockLibEx
                     world.setBlockState(pos, state, 4);
                 }
 
-                world.scheduleUpdate(pos, this, tickRate(world) + rand.nextInt(10));
+                world.scheduleUpdate(pos, this, this.tickRate(world) + rand.nextInt(10));
 
                 if(!flag)
                 {
-                    if(!canNeighborCatchFire(world, pos))
+                    if(!this.canNeighborCatchFire(world, pos))
                     {
                         if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || i > 3)
                         {
@@ -220,7 +220,7 @@ public class BlockBlueFire extends BlockLibEx
                         return;
                     }
 
-                    if(!canCatchFire(world, pos.down(), EnumFacing.UP) && i == 15 && rand.nextInt(4) == 0)
+                    if(!this.canCatchFire(world, pos.down(), EnumFacing.UP) && i == 15 && rand.nextInt(4) == 0)
                     {
                         world.setBlockToAir(pos);
                         return;
@@ -235,12 +235,12 @@ public class BlockBlueFire extends BlockLibEx
                     j = -50;
                 }
 
-                tryCatchFire(world, pos.east(), 300 + j, rand, i, EnumFacing.WEST);
-                tryCatchFire(world, pos.west(), 300 + j, rand, i, EnumFacing.EAST);
-                tryCatchFire(world, pos.down(), 250 + j, rand, i, EnumFacing.UP);
-                tryCatchFire(world, pos.up(), 250 + j, rand, i, EnumFacing.DOWN);
-                tryCatchFire(world, pos.north(), 300 + j, rand, i, EnumFacing.SOUTH);
-                tryCatchFire(world, pos.south(), 300 + j, rand, i, EnumFacing.NORTH);
+                this.tryCatchFire(world, pos.east(), 300 + j, rand, i, EnumFacing.WEST);
+                this.tryCatchFire(world, pos.west(), 300 + j, rand, i, EnumFacing.EAST);
+                this.tryCatchFire(world, pos.down(), 250 + j, rand, i, EnumFacing.UP);
+                this.tryCatchFire(world, pos.up(), 250 + j, rand, i, EnumFacing.DOWN);
+                this.tryCatchFire(world, pos.north(), 300 + j, rand, i, EnumFacing.SOUTH);
+                this.tryCatchFire(world, pos.south(), 300 + j, rand, i, EnumFacing.NORTH);
 
                 for(int k = -1; k <= 1; ++k)
                 {
@@ -258,7 +258,7 @@ public class BlockBlueFire extends BlockLibEx
                                 }
 
                                 BlockPos blockpos = pos.add(k, i1, l);
-                                int k1 = getNeighborEncouragement(world, blockpos);
+                                int k1 = this.getNeighborEncouragement(world, blockpos);
 
                                 if(k1 > 0)
                                 {
@@ -269,7 +269,7 @@ public class BlockBlueFire extends BlockLibEx
                                         l1 /= 2;
                                     }
 
-                                    if(l1 > 0 && rand.nextInt(j1) <= l1 && (!world.isRaining() || !canDie(world, blockpos)))
+                                    if(l1 > 0 && rand.nextInt(j1) <= l1 && (!world.isRaining() || !this.canDie(world, blockpos)))
                                     {
                                         int i2 = i + rand.nextInt(5) / 4;
 
@@ -292,26 +292,26 @@ public class BlockBlueFire extends BlockLibEx
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        return world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || canNeighborCatchFire(world, pos);
+        return world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || this.canNeighborCatchFire(world, pos);
     }
 
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !this.canNeighborCatchFire(world, pos))
         {
             world.setBlockToAir(pos);
         }
         else
         {
-            world.scheduleUpdate(pos, this, tickRate(world) + world.rand.nextInt(10));
+            world.scheduleUpdate(pos, this, this.tickRate(world) + world.rand.nextInt(10));
         }
     }
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canNeighborCatchFire(world, pos))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !this.canNeighborCatchFire(world, pos))
         {
             world.setBlockToAir(pos);
         }
@@ -342,7 +342,7 @@ public class BlockBlueFire extends BlockLibEx
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(AGE, meta);
+        return this.getDefaultState().withProperty(AGE, meta);
     }
 
     @Override
@@ -354,15 +354,15 @@ public class BlockBlueFire extends BlockLibEx
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !canCatchFire(world, pos.down(), EnumFacing.UP))
+        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !this.canCatchFire(world, pos.down(), EnumFacing.UP))
         {
-            return state.withProperty(NORTH, canCatchFire(world, pos.north(), EnumFacing.SOUTH))
-                    .withProperty(EAST, canCatchFire(world, pos.east(), EnumFacing.WEST))
-                    .withProperty(SOUTH, canCatchFire(world, pos.south(), EnumFacing.NORTH))
-                    .withProperty(WEST, canCatchFire(world, pos.west(), EnumFacing.EAST))
-                    .withProperty(UPPER, canCatchFire(world, pos.up(), EnumFacing.DOWN));
+            return state.withProperty(NORTH, this.canCatchFire(world, pos.north(), EnumFacing.SOUTH))
+                    .withProperty(EAST, this.canCatchFire(world, pos.east(), EnumFacing.WEST))
+                    .withProperty(SOUTH, this.canCatchFire(world, pos.south(), EnumFacing.NORTH))
+                    .withProperty(WEST, this.canCatchFire(world, pos.west(), EnumFacing.EAST))
+                    .withProperty(UPPER, this.canCatchFire(world, pos.up(), EnumFacing.DOWN));
         }
-        return getDefaultState();
+        return this.getDefaultState();
     }
 
     @Override
@@ -380,7 +380,7 @@ public class BlockBlueFire extends BlockLibEx
     {
         for(EnumFacing enumfacing : EnumFacing.values())
         {
-            if(canCatchFire(world, pos.offset(enumfacing), enumfacing.getOpposite()))
+            if(this.canCatchFire(world, pos.offset(enumfacing), enumfacing.getOpposite()))
             {
                 return true;
             }
@@ -425,7 +425,7 @@ public class BlockBlueFire extends BlockLibEx
                     j = 15;
                 }
 
-                world.setBlockState(pos, getDefaultState().withProperty(AGE, j), 3);
+                world.setBlockState(pos, this.getDefaultState().withProperty(AGE, j), 3);
             }
             else
             {

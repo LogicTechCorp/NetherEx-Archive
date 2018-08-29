@@ -26,7 +26,7 @@ public class FluidIchor extends FluidLibEx
     public FluidIchor()
     {
         super(NetherEx.instance, "blood", "ichor");
-        setViscosity(3500);
+        this.setViscosity(3500);
     }
 
     @Override
