@@ -83,14 +83,14 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        TileEntityUrnOfSorrow altar = (TileEntityUrnOfSorrow) world.getTileEntity(pos);
+        TileEntityUrnOfSorrow urn = (TileEntityUrnOfSorrow) world.getTileEntity(pos);
 
-        if(altar == null)
+        if(urn == null)
         {
             return false;
         }
 
-        ItemStackHandler inventory = altar.getInventory();
+        ItemStackHandler inventory = urn.getInventory();
         ItemStack inventoryStack = inventory.getStackInSlot(0);
         ItemStack heldStack = player.getHeldItemMainhand();
 
@@ -117,11 +117,11 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
         }
         else
         {
-            if(!inventoryStack.isEmpty() && altar.getSummoningTime() == 0)
+            if(!inventoryStack.isEmpty() && urn.getSummoningTime() == 0)
             {
                 if(!world.isRemote)
                 {
-                    altar.spawnItemStack(world, pos.up(), inventory.getStackInSlot(0));
+                    urn.spawnItemStack(world, pos.up(), inventory.getStackInSlot(0));
                 }
                 inventory.setStackInSlot(0, ItemStack.EMPTY);
             }
@@ -133,14 +133,14 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
-        TileEntityUrnOfSorrow altar = (TileEntityUrnOfSorrow) world.getTileEntity(pos);
+        TileEntityUrnOfSorrow urn = (TileEntityUrnOfSorrow) world.getTileEntity(pos);
 
-        if(altar == null)
+        if(urn == null)
         {
             return 0.5F;
         }
 
-        return altar.canBreak() ? 0.5F : -1.0F;
+        return urn.canBreak() ? 0.5F : -1.0F;
     }
 
     @Override

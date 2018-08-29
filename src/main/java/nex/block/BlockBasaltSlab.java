@@ -65,18 +65,6 @@ public class BlockBasaltSlab extends BlockSlabLibEx
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return Item.getItemFromBlock(NetherExBlocks.BASALT_SLAB);
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return state.getValue(TYPE).ordinal();
-    }
-
-    @Override
     public Comparable<?> getTypeForItem(ItemStack stack)
     {
         return BlockBasalt.EnumType.fromMeta(stack.getMetadata() & 7);
@@ -86,6 +74,18 @@ public class BlockBasaltSlab extends BlockSlabLibEx
     public IProperty<?> getVariantProperty()
     {
         return TYPE;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Item.getItemFromBlock(NetherExBlocks.BASALT_SLAB);
+    }
+
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return state.getValue(TYPE).ordinal();
     }
 
     @Override

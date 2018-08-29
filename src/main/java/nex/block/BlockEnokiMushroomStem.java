@@ -60,6 +60,21 @@ public class BlockEnokiMushroomStem extends BlockLibEx
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        Block block = blockAccess.getBlockState(pos.offset(side)).getBlock();
+        return block != this && (side != EnumFacing.UP);
+    }
+
+    @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
         if(!this.canSurviveAt(world, pos))
@@ -71,19 +86,19 @@ public class BlockEnokiMushroomStem extends BlockLibEx
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        Block block = world.getBlockState(pos.down()).getBlock();
-        Block block1 = world.getBlockState(pos.up()).getBlock();
-        Block block2 = world.getBlockState(pos.north()).getBlock();
-        Block block3 = world.getBlockState(pos.east()).getBlock();
-        Block block4 = world.getBlockState(pos.south()).getBlock();
-        Block block5 = world.getBlockState(pos.west()).getBlock();
+        Block blockDown = world.getBlockState(pos.down()).getBlock();
+        Block blockUp = world.getBlockState(pos.up()).getBlock();
+        Block blockNorth = world.getBlockState(pos.north()).getBlock();
+        Block blockEast = world.getBlockState(pos.east()).getBlock();
+        Block blockSouth = world.getBlockState(pos.south()).getBlock();
+        Block blockWest = world.getBlockState(pos.west()).getBlock();
 
-        return state.withProperty(DOWN, block == this || block == NetherExBlocks.ENOKI_MUSHROOM_CAP)
-                .withProperty(UP, block1 == this || block1 == Blocks.NETHERRACK || block1 == NetherExBlocks.NETHERRACK || block1 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
-                .withProperty(NORTH, block2 == this || block2 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
-                .withProperty(EAST, block3 == this || block3 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
-                .withProperty(SOUTH, block4 == this || block4 == NetherExBlocks.ENOKI_MUSHROOM_CAP)
-                .withProperty(WEST, block5 == this || block5 == NetherExBlocks.ENOKI_MUSHROOM_CAP);
+        return state.withProperty(DOWN, blockDown == this || blockDown == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(UP, blockUp == this || blockUp == Blocks.NETHERRACK || blockUp == NetherExBlocks.NETHERRACK || blockUp == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(NORTH, blockNorth == this || blockNorth == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(EAST, blockEast == this || blockEast == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(SOUTH, blockSouth == this || blockSouth == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(WEST, blockWest == this || blockWest == NetherExBlocks.ENOKI_MUSHROOM_CAP);
     }
 
     @Override
@@ -91,14 +106,14 @@ public class BlockEnokiMushroomStem extends BlockLibEx
     {
         state = state.getActualState(source, pos);
 
-        float f1 = state.getValue(WEST) ? 0.0F : 0.1875F;
-        float f2 = state.getValue(DOWN) ? 0.0F : 0.1875F;
-        float f3 = state.getValue(NORTH) ? 0.0F : 0.1875F;
-        float f4 = state.getValue(EAST) ? 1.0F : 0.8125F;
-        float f5 = state.getValue(UP) ? 1.0F : 0.8125F;
-        float f6 = state.getValue(SOUTH) ? 1.0F : 0.8125F;
+        float minX = state.getValue(WEST) ? 0.0F : 0.1875F;
+        float minY = state.getValue(DOWN) ? 0.0F : 0.1875F;
+        float minZ = state.getValue(NORTH) ? 0.0F : 0.1875F;
+        float maxX = state.getValue(EAST) ? 1.0F : 0.8125F;
+        float maxY = state.getValue(UP) ? 1.0F : 0.8125F;
+        float maxZ = state.getValue(SOUTH) ? 1.0F : 0.8125F;
 
-        return new AxisAlignedBB((double) f1, (double) f2, (double) f3, (double) f4, (double) f5, (double) f6);
+        return new AxisAlignedBB((double) minX, (double) minY, (double) minZ, (double) maxX, (double) maxY, (double) maxZ);
     }
 
     @Override
@@ -197,48 +212,33 @@ public class BlockEnokiMushroomStem extends BlockLibEx
         return false;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer()
+    private boolean canSurviveAt(World world, BlockPos pos)
     {
-        return BlockRenderLayer.CUTOUT;
-    }
+        boolean airOnTop = world.isAirBlock(pos.up());
+        boolean airOnBottom = world.isAirBlock(pos.down());
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        Block block = blockAccess.getBlockState(pos.offset(side)).getBlock();
-        return block != this && (side != EnumFacing.UP);
-    }
-
-    private boolean canSurviveAt(World wordIn, BlockPos pos)
-    {
-        boolean flag = wordIn.isAirBlock(pos.up());
-        boolean flag1 = wordIn.isAirBlock(pos.down());
-
-        for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+        for(EnumFacing facing : EnumFacing.Plane.HORIZONTAL)
         {
-            BlockPos blockpos = pos.offset(enumfacing);
-            Block block = wordIn.getBlockState(blockpos).getBlock();
+            BlockPos offsetPos = pos.offset(facing);
+            Block block = world.getBlockState(offsetPos).getBlock();
 
             if(block == this)
             {
-                if(!flag && !flag1)
+                if(!airOnTop && !airOnBottom)
                 {
                     return false;
                 }
 
-                IBlockState state1 = wordIn.getBlockState(blockpos.up());
+                IBlockState stateUp = world.getBlockState(offsetPos.up());
 
-                if(state1.getBlock() == this || state1.getBlock() == Blocks.NETHERRACK || state1 == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
+                if(stateUp.getBlock() == this || stateUp.getBlock() == Blocks.NETHERRACK || stateUp == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
                 {
                     return true;
                 }
             }
         }
 
-        IBlockState state2 = wordIn.getBlockState(pos.up());
-        return state2.getBlock() == this || state2.getBlock() == Blocks.NETHERRACK || state2 == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
+        IBlockState stateUp = world.getBlockState(pos.up());
+        return stateUp.getBlock() == this || stateUp.getBlock() == Blocks.NETHERRACK || stateUp == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
     }
 }

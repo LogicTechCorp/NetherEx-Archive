@@ -80,14 +80,14 @@ public class BlockQuartzOre extends BlockLibEx
     {
         if(fortune > 0)
         {
-            int i = rand.nextInt(fortune + 2) - 1;
+            int bonus = rand.nextInt(fortune + 2) - 1;
 
-            if(i < 0)
+            if(bonus < 0)
             {
-                i = 0;
+                bonus = 0;
             }
 
-            return this.quantityDropped(rand) * (i + 1);
+            return this.quantityDropped(rand) * (bonus + 1);
         }
         else
         {

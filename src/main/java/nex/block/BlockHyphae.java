@@ -72,13 +72,13 @@ public class BlockHyphae extends BlockLibEx
             {
                 if(world.getLightFromNeighbors(pos.up()) >= 9)
                 {
-                    for(int i = 0; i < 4; ++i)
+                    for(int i = 0; i < 4; i++)
                     {
                         BlockPos newPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
-                        IBlockState blockState = world.getBlockState(newPos);
-                        IBlockState blockState1 = world.getBlockState(newPos.up());
+                        IBlockState stateNew = world.getBlockState(newPos);
+                        IBlockState stateUp = world.getBlockState(newPos.up());
 
-                        if(blockState.getBlock() == NetherExBlocks.NETHERRACK && blockState.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && blockState1.getLightOpacity(world, newPos.up()) <= 2)
+                        if(stateNew.getBlock() == NetherExBlocks.NETHERRACK && stateNew.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && stateUp.getLightOpacity(world, newPos.up()) <= 2)
                         {
                             world.setBlockState(newPos, this.getDefaultState());
                         }

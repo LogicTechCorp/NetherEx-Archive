@@ -59,6 +59,13 @@ public class BlockThornstalk extends BlockLibEx
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
@@ -68,13 +75,6 @@ public class BlockThornstalk extends BlockLibEx
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
