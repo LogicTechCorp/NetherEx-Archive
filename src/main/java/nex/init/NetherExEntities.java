@@ -30,6 +30,7 @@ import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
+import nex.entity.projectile.EntityBlueFireball;
 import nex.entity.projectile.EntityGhastQueenFireball;
 import nex.entity.projectile.EntityGhastlingFireball;
 
@@ -41,6 +42,7 @@ public class NetherExEntities
     {
         registerEntity("ghast_queen_fireball", EntityGhastQueenFireball.class, entityId++);
         registerEntity("ghastling_fireball", EntityGhastlingFireball.class, entityId++);
+        registerEntity("blue_fireball", EntityBlueFireball.class, entityId++);
 
         registerEntity("obsidian_boat", EntityObsidianBoat.class, entityId++);
 
@@ -60,6 +62,7 @@ public class NetherExEntities
         registerEntity("ghastling", EntityGhastling.class, entityId++, 16447992, 14077883);
         registerEntity("bone_spider", EntityBoneSpider.class, entityId++, 13750221, 13369344);
         registerEntity("brute", EntityBrute.class, entityId++, 11045525, 4793626);
+        registerEntity("frost", EntityFrost.class, entityId++, 16382457, 6143186);
 
         registerEntity("ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
     }

@@ -217,6 +217,7 @@ tipped_arrow.effect.nex:normalLost=Arrow of The Lost
 #Entities (Mobs)
 entity.nex:ghastQueenFireball.name=Ghast Queen Fireball
 entity.nex:ghastlingFireball.name=Ghastling Fireball
+entity.nex:blueFireball.name=Blue Fireball
 entity.nex:obsidianBoat.name=Obsidian Boat
 entity.nex:pigtificateLeader.name=Pigtificate Leader
 entity.nex:pigtificateLeader.chief.name=Pigtificate Chief
@@ -250,6 +251,7 @@ entity.nex:spore.five.name=Spore Stage Five
 entity.nex:ghastling.name=Ghastling
 entity.nex:boneSpider.name=Bone Spider
 entity.nex:brute.name=Brute
+entity.nex:frost.name=Frost
 entity.nex:ghastQueen.name=Ghast Queen
 
 #Fluids

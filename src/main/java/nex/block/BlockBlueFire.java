@@ -31,7 +31,11 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.util.*;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -39,6 +43,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
+import nex.init.NetherExEffects;
 
 import java.util.Random;
 
@@ -326,10 +331,7 @@ public class BlockBlueFire extends BlockLibEx
         }
         else if(entity instanceof EntityLivingBase)
         {
-            if(!entity.isImmuneToFire())
-            {
-                entity.attackEntityFrom(DamageSource.IN_FIRE, 4.0F);
-            }
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, 1));
         }
     }
 

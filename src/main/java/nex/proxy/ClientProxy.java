@@ -19,6 +19,7 @@ package nex.proxy;
 
 import lex.proxy.IProxy;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -32,6 +33,7 @@ import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
 import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
+import nex.entity.projectile.EntityBlueFireball;
 import nex.entity.projectile.EntityGhastQueenFireball;
 import nex.entity.projectile.EntityGhastlingFireball;
 import nex.init.NetherExParticleTypes;
@@ -48,6 +50,7 @@ public class ClientProxy implements IProxy
 
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueenFireball.class, RenderGhastQueenFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastlingFireball.class, RenderGhastlingFireball::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityBlueFireball.class, (RenderManager renderManager) -> new RenderBlueFireball(renderManager, 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigtificateLeader.class, RenderPigtificateLeader::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigtificate.class, RenderPigtificate::new);
@@ -63,6 +66,7 @@ public class ClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastling.class, RenderGhastling::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBoneSpider.class, RenderBoneSpider::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBrute.class, RenderBrute::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFrost.class, RenderFrost::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueen.class, RenderGhastQueen::new);
     }
 

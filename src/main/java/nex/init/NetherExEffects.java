@@ -24,15 +24,19 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
+import nex.potion.PotionBlueFire;
 import nex.potion.PotionFreeze;
+import nex.potion.PotionLost;
+import nex.potion.PotionSpore;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffects
 {
     public static final PotionLibEx FREEZE = new PotionFreeze();
     public static final PotionLibEx FROSTBITE = new PotionLibEx(NetherEx.instance, "frostbite", true, 19, 226, 255);
-    public static final PotionLibEx SPORE = new PotionLibEx(NetherEx.instance, "spore", true, 142, 96, 40);
-    public static final PotionLibEx LOST = new PotionLibEx(NetherEx.instance, "lost", true, 103, 62, 124);
+    public static final PotionLibEx SPORE = new PotionSpore();
+    public static final PotionLibEx LOST = new PotionLost();
+    public static final PotionLibEx BLUE_FIRE = new PotionBlueFire();
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -44,7 +48,8 @@ public class NetherExEffects
                     FREEZE,
                     FROSTBITE,
                     SPORE,
-                    LOST
+                    LOST,
+                    BLUE_FIRE
             );
         }
     }

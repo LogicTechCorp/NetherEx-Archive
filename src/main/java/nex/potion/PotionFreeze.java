@@ -18,10 +18,18 @@
 package nex.potion;
 
 import lex.potion.PotionLibEx;
+import lex.util.CollectionHelper;
+import lex.util.EntityHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 import nex.NetherEx;
+import nex.handler.ConfigHandler;
+import nex.init.NetherExBiomes;
+import nex.init.NetherExEffects;
 
 public class PotionFreeze extends PotionLibEx
 {
@@ -31,9 +39,9 @@ public class PotionFreeze extends PotionLibEx
     }
 
     @Override
-    public void applyAttributesModifiersToEntity(EntityLivingBase entity, AbstractAttributeMap attributeMapIn, int amplifier)
+    public void applyAttributesModifiersToEntity(EntityLivingBase entity, AbstractAttributeMap attributeMap, int amplifier)
     {
-        super.applyAttributesModifiersToEntity(entity, attributeMapIn, amplifier);
+        super.applyAttributesModifiersToEntity(entity, attributeMap, amplifier);
 
         if(entity instanceof EntityLiving)
         {
@@ -44,9 +52,36 @@ public class PotionFreeze extends PotionLibEx
     }
 
     @Override
-    public void removeAttributesModifiersFromEntity(EntityLivingBase entity, AbstractAttributeMap attributeMapIn, int amplifier)
+    public void performEffect(EntityLivingBase entity, int amplifier)
     {
-        super.removeAttributesModifiersFromEntity(entity, attributeMapIn, amplifier);
+        World world = entity.getEntityWorld();
+
+        if(this.canFreeze(entity))
+        {
+            boolean frozen = entity.isPotionActive(NetherExEffects.FREEZE);
+
+            if(!frozen && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0 && world.getBiome(entity.getPosition()) == NetherExBiomes.ARCTIC_ABYSS)
+            {
+                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+            }
+            if(frozen)
+            {
+                if(entity instanceof EntityPlayer)
+                {
+                    entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
+                }
+                if(world.rand.nextInt(ConfigHandler.potionEffectConfig.freeze.thawRarity) == 0)
+                {
+                    entity.removePotionEffect(NetherExEffects.FREEZE);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void removeAttributesModifiersFromEntity(EntityLivingBase entity, AbstractAttributeMap attributeMap, int amplifier)
+    {
+        super.removeAttributesModifiersFromEntity(entity, attributeMap, amplifier);
 
         if(entity instanceof EntityLiving)
         {
@@ -57,5 +92,22 @@ public class PotionFreeze extends PotionLibEx
         }
 
         entity.setSilent(false);
+    }
+
+    @Override
+    public boolean isReady(int duration, int amplifier)
+    {
+        return true;
+    }
+
+    public boolean canFreeze(EntityLivingBase entity)
+    {
+        if(entity instanceof EntityPlayer && ConfigHandler.biomeConfig.arcticAbyss.canPlayersFreeze && !((EntityPlayer) entity).isCreative())
+        {
+            return true;
+        }
+
+        String entityRegistryName = EntityHelper.getEntityLocation(entity);
+        return entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.freeze.mobBlacklist, entityRegistryName);
     }
 }

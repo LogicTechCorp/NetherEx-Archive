@@ -22,8 +22,9 @@ import nex.NetherEx;
 
 public class NetherExTextures
 {
-    public static final ResourceLocation GHASTLING_FIREBALL = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling_fireball.png");
-    public static final ResourceLocation GHAST_QUEEN_FIREBALL = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen_fireball.png");
+    public static final ResourceLocation GHASTLING_FIREBALL = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/projectile/ghastling_fireball.png");
+    public static final ResourceLocation GHAST_QUEEN_FIREBALL = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/projectile/ghast_queen_fireball.png");
+    public static final ResourceLocation BLUE_FIREBALL = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/projectile/blue_fireball.png");
     public static final ResourceLocation OBSIDIAN_BOAT = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/obsidian_boat.png");
     public static final ResourceLocation PIGTIFICATE_CHIEF = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_chief.png");
     public static final ResourceLocation PIGTIFICATE_HUNTER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_hunter.png");
@@ -50,6 +51,7 @@ public class NetherExTextures
     public static final ResourceLocation BONE_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bone_spider/bone_spider.png");
     public static final ResourceLocation BONE_SPIDER_EYES = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bone_spider/bone_spider_eyes.png");
     public static final ResourceLocation BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/brute.png");
+    public static final ResourceLocation FROST = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/frost.png");
     public static final ResourceLocation GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen.png");
     public static final ResourceLocation GHAST_QUEEN_SHOOTING = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen_shooting.png");
 }
