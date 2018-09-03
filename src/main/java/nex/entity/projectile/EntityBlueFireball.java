@@ -82,6 +82,12 @@ public class EntityBlueFireball extends EntityFireball
     }
 
     @Override
+    protected boolean isFireballFiery()
+    {
+        return false;
+    }
+
+    @Override
     public boolean canBeCollidedWith()
     {
         return false;

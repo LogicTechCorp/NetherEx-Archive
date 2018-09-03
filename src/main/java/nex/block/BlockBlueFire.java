@@ -18,6 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.util.NumberHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
@@ -43,6 +44,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
+import nex.handler.ConfigHandler;
 import nex.init.NetherExEffects;
 
 import java.util.Random;
@@ -331,7 +333,16 @@ public class BlockBlueFire extends BlockLibEx
         }
         else if(entity instanceof EntityLivingBase)
         {
-            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, 1));
+            if(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight > ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight)
+            {
+                int temp = ConfigHandler.blockConfig.blueFire.minEntityTicksAlight;
+                ConfigHandler.blockConfig.blueFire.minEntityTicksAlight = ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight;
+                ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
+            }
+
+            int ticks = NumberHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
+
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, ticks));
         }
     }
 

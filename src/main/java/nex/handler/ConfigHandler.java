@@ -170,6 +170,10 @@ public class ConfigHandler
 
     public static class BlockConfig
     {
+        @Config.Name("blue_fire")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.blueFire")
+        public BlueFire blueFire = new BlueFire();
+
         @Config.Name("nether_portal")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal")
         public NetherPortal netherPortal = new NetherPortal();
@@ -201,6 +205,19 @@ public class ConfigHandler
         @Config.Name("hyphae")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.hyphae")
         public Hyphae hyphae = new Hyphae();
+
+        public class BlueFire
+        {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.blueFire.minEntityTicksAlight")
+            @Config.Comment({"The minimum amount of ticks Blue Fire can set entities alight", "A number is randomly chosen from minEntityTicksAlight to maxEntityTicksAlight"})
+            @Config.RangeInt(min = 0)
+            public int minEntityTicksAlight = 0;
+
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.blueFire.maxEntityTicksAlight")
+            @Config.Comment({"The maximum amount of ticks Blue Fire can set entities alight", "A number is randomly chosen from minEntityTicksAlight to maxEntityTicksAlight"})
+            @Config.RangeInt(min = 1)
+            public int maxEntityTicksAlight = 70;
+        }
 
         public class NetherPortal
         {

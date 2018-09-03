@@ -37,6 +37,13 @@ config.nex:dimension.nether.isLavaInfinite.tooltip=Is Lava Infinite in the Nethe
 config.nex:block=Block Settings
 config.nex:block.tooltip=Settings that only affect Blocks
 
+config.nex:block.blueFire=Blue Fire Settings
+config.nex:block.blueFire.tooltip=Settings that only affect Blue Fire blocks
+config.nex:block.blueFire.minEntityTicksAlight=Min Entity Ticks Alight
+config.nex:block.blueFire.minEntityTicksAlight.tooltip=The minimum amount of ticks Blue Fire can set entities alight
+config.nex:block.blueFire.maxEntityTicksAlight=Max Entity Ticks Alight
+config.nex:block.blueFire.maxEntityTicksAlight.tooltip=The maximum amount of ticks Blue Fire can set entities alight
+
 config.nex:block.netherPortal=Nether Portal Settings
 config.nex:block.netherPortal.tooltip=Settings that only affect Nether Portal blocks
 config.nex:block.netherPortal.pigmanSpawnRarity=Pigman Spawn Rarity
@@ -256,6 +263,12 @@ entity.nex:ghastQueen.name=Ghast Queen
 
 #Fluids
 fluid.ichor=Ichor
+
+#Guis
+gui.nex:selectWorld.reset=Reset
+gui.nex:selectWorld.resetNether=Reset Nether
+gui.nex:selectWorld.resetNetherQuestion=Are you sure you want to reset the Nether for %s?
+gui.nex:selectWorld.resetNetherWarning=The Nether for %s will be reset back to how it was when %s was first created!
 
 # Items
 item.nex:netherbrick.fiery.name=Fiery Nether Brick

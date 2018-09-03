@@ -33,11 +33,13 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.entity.item.EntityObsidianBoat;
 import nex.init.NetherExEffects;
 import nex.init.NetherExMaterials;
 
+@SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class RenderHandler
 {
@@ -110,7 +112,7 @@ public class RenderHandler
         GlStateManager.depthFunc(515);
     }
 
-    private static void renderEntityOnBlueFire(Entity entity, double posX, double posY, double posZ)
+    public static void renderEntityOnBlueFire(Entity entity, double posX, double posY, double posZ)
     {
         GlStateManager.disableLighting();
         TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();

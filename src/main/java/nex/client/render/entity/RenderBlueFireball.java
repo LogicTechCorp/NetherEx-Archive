@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.projectile.EntityBlueFireball;
+import nex.handler.RenderHandler;
 import nex.init.NetherExTextures;
 
 @SideOnly(Side.CLIENT)
@@ -57,6 +58,7 @@ public class RenderBlueFireball extends Render<EntityBlueFireball>
 
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
+        RenderHandler.renderEntityOnBlueFire(fireball, x, y, z);
         super.doRender(fireball, x, y, z, entityYaw, partialTicks);
     }
 

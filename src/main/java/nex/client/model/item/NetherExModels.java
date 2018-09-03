@@ -43,7 +43,6 @@ import nex.init.NetherExItems;
 import nex.item.ItemSalamanderHide;
 
 @SideOnly(Side.CLIENT)
-
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class NetherExModels
 {

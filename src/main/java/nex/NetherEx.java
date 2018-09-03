@@ -38,10 +38,11 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData
 {
+    //TODO: Figure out how to render the Blue Fire in first person
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.0.8";
-    public static final String DEPENDENCIES = "required-after:lex@[1.0.8,);";
+    public static final String VERSION = "2.0.9";
+    public static final String DEPENDENCIES = "required-after:lex@[1.0.9,);";
     private static final String CLIENT_PROXY = "nex.proxy.ClientProxy";
     private static final String SERVER_PROXY = "nex.proxy.ServerProxy";
 
