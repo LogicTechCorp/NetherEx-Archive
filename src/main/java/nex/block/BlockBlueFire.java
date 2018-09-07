@@ -341,7 +341,6 @@ public class BlockBlueFire extends BlockLibEx
             }
 
             int ticks = NumberHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
-
             ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, ticks));
         }
     }
