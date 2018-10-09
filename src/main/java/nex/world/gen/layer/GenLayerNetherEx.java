@@ -32,14 +32,20 @@ public abstract class GenLayerNetherEx extends GenLayer
         int biomeSize = type == WorldType.LARGE_BIOMES ? 6 : 4;
         biomeSize = getModdedBiomeSize(type, biomeSize);
 
-        GenLayer genLayer = new GenLayerNetherBiome(1L);
-        genLayer = new GenLayerFuzzyZoom(1000L, genLayer);
-        genLayer = GenLayerZoom.magnify(1000L, genLayer, biomeSize);
-        genLayer = new GenLayerSmooth(1000L, genLayer);
-        GenLayer genLayerVoronoiZoom = new GenLayerVoronoiZoom(10L, genLayer);
-        genLayer.initWorldGenSeed(seed);
-        genLayerVoronoiZoom.initWorldGenSeed(seed);
+        GenLayer genBiomesLayer = new GenLayerIsland(1L);
+        genBiomesLayer = new GenLayerNetherBiome(200L, genBiomesLayer);
+        genBiomesLayer = new GenLayerZoom(1000L, genBiomesLayer);
+        genBiomesLayer = new GenLayerZoom(1000L, genBiomesLayer);
 
-        return new GenLayer[]{genLayer, genLayerVoronoiZoom};
+        for(int i = 0; i < biomeSize; i++)
+        {
+            genBiomesLayer = new GenLayerZoom(1000L + i, genBiomesLayer);
+        }
+
+        genBiomesLayer = new GenLayerSmooth(1000L, genBiomesLayer);
+        GenLayer biomeIndexLayer = new GenLayerVoronoiZoom(10L, genBiomesLayer);
+        genBiomesLayer.initWorldGenSeed(seed);
+        biomeIndexLayer.initWorldGenSeed(seed);
+        return new GenLayer[]{genBiomesLayer, biomeIndexLayer};
     }
 }

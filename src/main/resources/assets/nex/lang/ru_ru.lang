@@ -248,7 +248,7 @@ entity.nex:spore.three.name=Третья стадия Споры
 entity.nex:spore.four.name=Четвёртая стадия Споры
 entity.nex:spore.five.name=Пятая стадия Споры
 entity.nex:ghastling.name=Гаст
-entity.nex:boneSpider.name=Паук-скелет
+entity.nex:coolmarSpider.name=Паук-скелет
 entity.nex:brute.name=Зверь
 entity.nex:ghastQueen.name=Королева гастов
 

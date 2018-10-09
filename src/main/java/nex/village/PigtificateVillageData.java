@@ -288,6 +288,6 @@ public class PigtificateVillageData extends WorldSavedData
 
     public static String getFileName(World world)
     {
-        return "pigtificate_villages" + world.provider.getDimensionType().getSuffix();
+        return "nex_pigtificate_villages" + world.provider.getDimensionType().getSuffix();
     }
 }

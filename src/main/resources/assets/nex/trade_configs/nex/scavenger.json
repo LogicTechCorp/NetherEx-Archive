@@ -25,7 +25,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "minecraft:stone",
+                "itemBlock": "minecraft:stone",
                 "properties": {
                     "variant": "stone"
                 },
@@ -38,7 +38,7 @@
         },
         {
             "output": {
-                "item": "minecraft:dirt",
+                "itemBlock": "minecraft:dirt",
                 "properties": {
                     "variant": "dirt"
                 },
@@ -73,7 +73,7 @@
         },
         {
             "output": {
-                "item": "minecraft:log",
+                "itemBlock": "minecraft:log",
                 "properties": {
                     "variant": "oak"
                 },

@@ -18,7 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
-import lex.util.NumberHelper;
+import lex.util.RandomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
@@ -340,7 +340,7 @@ public class BlockBlueFire extends BlockLibEx
                 ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
             }
 
-            int ticks = NumberHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
+            int ticks = RandomHelper.getRandomNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
             ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, ticks));
         }
     }

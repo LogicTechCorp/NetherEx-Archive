@@ -22,7 +22,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
-import nex.world.biome.BiomeProviderNether;
+import nex.world.biome.BiomeProviderNetherEx;
 import nex.world.gen.ChunkGeneratorNetherEx;
 
 public class WorldProviderNetherEx extends WorldProviderHell
@@ -30,8 +30,9 @@ public class WorldProviderNetherEx extends WorldProviderHell
     @Override
     public void init()
     {
-        super.init();
-        this.biomeProvider = new BiomeProviderNether(this.world);
+        this.biomeProvider = new BiomeProviderNetherEx(this.world);
+        this.doesWaterVaporize = true;
+        this.nether = true;
     }
 
     @Override

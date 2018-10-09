@@ -49,9 +49,7 @@ public class BlockBoneChunk extends BlockLibEx
 
     public BlockBoneChunk()
     {
-        super(NetherEx.instance, "bone_chunk", Material.ROCK);
-        this.setHardness(2.0F);
-        this.setResistance(5.0F);
+        super(NetherEx.instance, "bone_chunk", "pickaxe", 1, 2.0F, 5.0F, Material.ROCK);
     }
 
     @Override

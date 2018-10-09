@@ -41,10 +41,8 @@ public class BlockRime extends BlockLibEx
 {
     public BlockRime()
     {
-        super(NetherEx.instance, "rime_block", Material.ROCK);
+        super(NetherEx.instance, "rime_block", "pickaxe", 0, 5.0F, 10.0F, Material.ROCK);
         this.setLightLevel(0.9375F);
-        this.setHardness(5.0F);
-        this.setResistance(10.0F);
     }
 
     @Override

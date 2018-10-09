@@ -19,10 +19,22 @@ package nex.world.biome;
 
 import lex.IModData;
 import lex.world.biome.BiomeLibEx;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeDecorator;
+import nex.init.NetherExBlocks;
 
-public class BiomeNetherEx extends BiomeLibEx
+public abstract class BiomeNetherEx extends BiomeLibEx
 {
+    protected static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
+    protected static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
+    protected static final IBlockState GLOWSTONE = Blocks.GLOWSTONE.getDefaultState();
+    protected static final IBlockState FIRE = Blocks.FIRE.getDefaultState();
+    protected static final IBlockState LAVA = Blocks.LAVA.getDefaultState();
+    protected static final IBlockState FLOWING_LAVA = Blocks.FLOWING_LAVA.getDefaultState();
+    protected static final IBlockState MAGMA = Blocks.MAGMA.getDefaultState();
+    protected static final IBlockState NEX_NETHERRACK = NetherExBlocks.NETHERRACK.getDefaultState();
+
     public BiomeNetherEx(IModData data, BiomeProperties properties, String name)
     {
         super(data, properties, name);

@@ -17,19 +17,21 @@
 
 package nex.world.biome;
 
-import com.google.common.collect.ImmutableList;
+import com.electronwill.nightconfig.core.file.FileConfig;
 import lex.LibEx;
-import lex.config.Config;
+import lex.util.ConfigHelper;
 import lex.util.FileHelper;
-import lex.world.biome.BiomeWrapper;
+import lex.world.biome.BiomeConfigurations;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.fml.common.Loader;
 import nex.NetherEx;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBiomes;
+import nex.world.biome.vanilla.BiomeConfigurationsHell;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,26 +42,42 @@ import java.util.*;
 public class NetherExBiomeManager
 {
     private static final List<BiomeManager.BiomeEntry> BIOMES = new ArrayList<>();
-    private static final Map<Biome, BiomeWrapper> BIOME_WRAPPERS = new HashMap<>();
-    private static final Map<Biome, Config> BIOME_CONFIGS = new HashMap<>();
+    private static final Map<Biome, BiomeConfigurations> BIOME_CONFIGURATIONS = new HashMap<>();
 
-    public static void preInit()
+    public static void createBiomeConfigs()
     {
-        FileHelper.copyDirectoryToDirectory(NetherEx.class.getResource("/assets/nex/biome_configs"), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes"));
+        List<FileConfig> biomeConfigs = new ArrayList<>(Arrays.asList(
+                new BiomeConfigurationsHell().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/minecraft/hell.json")),
+                NetherExBiomes.RUTHLESS_SANDS.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/ruthless_sands.json")),
+                NetherExBiomes.FUNGI_FOREST.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/fungi_forest.json")),
+                NetherExBiomes.TORRID_WASTELAND.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/torrid_wasteland.json")),
+                NetherExBiomes.ARCTIC_ABYSS.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/arctic_abyss.json"))
+        ));
+
+        if(NetherEx.IS_BOP_LOADED)
+        {
+            biomeConfigs.addAll(Arrays.asList(
+                    new BiomeConfigurations(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>()).serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/biomesoplenty/corrupted_sands.json")),
+                    new BiomeConfigurations(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>()).serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/biomesoplenty/fungi_forest.json")),
+                    new BiomeConfigurations(new ResourceLocation("biomesoplenty:phantasmagoric_inferno"), 6, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>()).serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/biomesoplenty/phantasmagoric_inferno.json")),
+                    new BiomeConfigurations(new ResourceLocation("biomesoplenty:undergarden"), 4, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>()).serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/biomesoplenty/undergarden.json")),
+                    new BiomeConfigurations(new ResourceLocation("biomesoplenty:visceral_heap"), 4, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>()).serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/biomesoplenty/visceral_heap.json"))
+            ));
+        }
+
+        biomeConfigs.forEach(FileConfig::save);
+        biomeConfigs.forEach(FileConfig::close);
     }
 
-    public static void setupDefaultBiomes()
-    {
-        NetherEx.LOGGER.info("Setting up default biomes.");
-        parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/minecraft"));
-        parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/nex"));
-    }
-
-    public static void setupCompatibleBiomes(MinecraftServer server)
+    public static void readBiomeConfigs(MinecraftServer server)
     {
         World world = server.getEntityWorld();
 
-        if(Loader.isModLoaded("biomesoplenty") && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompat)
+        NetherEx.LOGGER.info("Setting up NetherEx biomes.");
+        parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/minecraft"));
+        parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/nex"));
+
+        if(NetherEx.IS_BOP_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {
             WorldType worldType = world.getWorldType();
 
@@ -69,37 +87,35 @@ public class NetherExBiomeManager
                 parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/biomesoplenty"));
             }
         }
-    }
 
-    public static void setupCustomBiomes()
-    {
         NetherEx.LOGGER.info("Setting up custom biomes.");
         parseBiomeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Biomes/custom"));
     }
 
     private static void parseBiomeConfigs(File directory)
     {
-        if(!directory.exists())
-        {
-            directory.mkdirs();
-        }
-
         try
         {
-            Iterator<Path> pathIter = Files.walk(directory.toPath()).iterator();
+            Path directoryPath = directory.toPath();
+            Files.createDirectories(directoryPath);
+            Iterator<Path> pathIter = Files.walk(directoryPath).iterator();
 
             while(pathIter.hasNext())
             {
                 Path configPath = pathIter.next();
                 File configFile = configPath.toFile();
 
-                if(FileHelper.getFileExtension(configFile).equals("json"))
+                String extension = FileHelper.getFileExtension(configFile);
+
+                if(extension.equals("json") || extension.equals("toml"))
                 {
-                    wrapBiome(new Config(configFile, true), configFile);
+                    FileConfig config = ConfigHelper.newConfig(configFile, false, true, true, true);
+                    config.load();
+                    createBiomeConfigurations(config);
                 }
                 else if(!configFile.isDirectory())
                 {
-                    NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configPath.toString());
+                    NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json or toml file.", configPath.toString());
                 }
             }
         }
@@ -109,39 +125,33 @@ public class NetherExBiomeManager
         }
     }
 
-    private static void wrapBiome(Config config, File configFile)
+    private static void createBiomeConfigurations(FileConfig config)
     {
-        BiomeWrapper wrapper = new BiomeWrapperNetherEx(config);
+        BiomeConfigurations wrapper = new BiomeConfigurations(config);
         Biome biome = wrapper.getBiome();
 
         if(biome != null && wrapper.isEnabled())
         {
-            BIOMES.add(new BiomeManager.BiomeEntry(biome, config.getInt("weight", 10)));
-            BIOME_WRAPPERS.put(biome, wrapper);
-            BIOME_CONFIGS.put(biome, config);
-            config.save(configFile);
+            BIOMES.add(new BiomeManager.BiomeEntry(biome, ConfigHelper.getOrSet(config, "weight", 10)));
+            BIOME_CONFIGURATIONS.put(biome, wrapper);
         }
+
+        config.close();
     }
 
-    public static void resetBiomes()
+    public static void clearBiomes()
     {
         BIOMES.clear();
-        BIOME_WRAPPERS.clear();
-        BIOME_CONFIGS.clear();
+        BIOME_CONFIGURATIONS.clear();
     }
 
     public static List<BiomeManager.BiomeEntry> getBiomes()
     {
-        return ImmutableList.copyOf(BIOMES);
+        return BIOMES;
     }
 
-    public static BiomeWrapper getBiomeWrapper(Biome key)
+    public static BiomeConfigurations getBiomeConfigurations(Biome key)
     {
-        return BIOME_WRAPPERS.get(key);
-    }
-
-    public static Config getBiomeConfig(Biome key)
-    {
-        return BIOME_CONFIGS.get(key);
+        return BIOME_CONFIGURATIONS.get(key);
     }
 }

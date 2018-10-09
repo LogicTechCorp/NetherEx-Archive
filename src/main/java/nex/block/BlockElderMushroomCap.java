@@ -39,9 +39,8 @@ public class BlockElderMushroomCap extends BlockLibEx
 
     public BlockElderMushroomCap()
     {
-        super(NetherEx.instance, "elder_mushroom_cap", Material.WOOD);
+        super(NetherEx.instance, "elder_mushroom_cap", "axe", 0, 0.5F, 2.0F, Material.WOOD);
         this.setSoundType(SoundType.WOOD);
-        this.setHardness(0.2F);
     }
 
     @Override

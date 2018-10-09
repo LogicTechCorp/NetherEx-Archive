@@ -17,8 +17,10 @@
 
 package nex.village;
 
+import com.electronwill.nightconfig.core.Config;
+import com.electronwill.nightconfig.core.file.FileConfig;
 import lex.LibEx;
-import lex.config.Config;
+import lex.util.ConfigHelper;
 import lex.util.FileHelper;
 import lex.village.Trade;
 import nex.NetherEx;
@@ -33,34 +35,26 @@ import java.util.List;
 
 public class PigtificateTradeManager
 {
-    public static void preInit()
+    public static void copyTradeConfigs()
     {
         FileHelper.copyDirectoryToDirectory(NetherEx.class.getResource("/assets/nex/trade_configs"), new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades"));
     }
 
-    public static void setupDefaultTrades()
+    public static void readTradeConfigs()
     {
         NetherEx.LOGGER.info("Setting up default trades.");
         parseTradeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades/nex"));
-    }
 
-    public static void setupCustomTrades()
-    {
         NetherEx.LOGGER.info("Setting up custom trades.");
         parseTradeConfigs(new File(LibEx.CONFIG_DIRECTORY, "NetherEx/Trades/custom"));
     }
 
     private static void parseTradeConfigs(File directory)
     {
-        if(!directory.exists())
-        {
-            directory.mkdirs();
-        }
-
-        Path directoryPath = directory.toPath();
-
         try
         {
+            Path directoryPath = directory.toPath();
+            Files.createDirectories(directoryPath);
             Iterator<Path> pathIter = Files.walk(directoryPath).iterator();
 
             while(pathIter.hasNext())
@@ -68,13 +62,17 @@ public class PigtificateTradeManager
                 Path configPath = pathIter.next();
                 File configFile = configPath.toFile();
 
-                if(FileHelper.getFileExtension(configFile).equals("json"))
+                String extension = FileHelper.getFileExtension(configFile);
+
+                if(extension.equals("json") || extension.equals("toml"))
                 {
-                    createTrade(new Config(configFile, false));
+                    FileConfig config = ConfigHelper.newConfig(configFile, false, true, true, true);
+                    config.load();
+                    createTrade(config);
                 }
                 else if(!configFile.isDirectory())
                 {
-                    NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
+                    NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json or toml file.", configPath.toString());
                 }
             }
         }
@@ -86,11 +84,11 @@ public class PigtificateTradeManager
 
     private static void createTrade(Config config)
     {
-        Pigtificate.Career career = config.getEnum("career", Pigtificate.Career.class);
+        Pigtificate.Career career = ConfigHelper.getOrSetEnum(config, "career", Pigtificate.Career.class, null);
 
         if(career != null)
         {
-            List<Config> tradeConfigs = config.getDataBranches("trades", new ArrayList<>());
+            List<Config> tradeConfigs = ConfigHelper.getOrSet(config, "trades", new ArrayList<>());
 
             for(Config tradeConfig : tradeConfigs)
             {
@@ -99,7 +97,7 @@ public class PigtificateTradeManager
         }
     }
 
-    public static void resetTrades()
+    public static void clearTrades()
     {
         for(Pigtificate.Career career : Pigtificate.Career.values())
         {

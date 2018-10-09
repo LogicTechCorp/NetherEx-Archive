@@ -17,7 +17,7 @@
 
 package nex.world.gen.feature;
 
-import lex.config.Config;
+import com.electronwill.nightconfig.core.Config;
 import lex.world.gen.feature.Feature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -34,7 +34,7 @@ public class FeatureEnoki extends Feature
         super(config);
     }
 
-    public FeatureEnoki(int genAttempts, float genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
+    public FeatureEnoki(int genAttempts, double genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
     {
         super(genAttempts, genProbability, randomizeGenAttempts, minGenHeight, maxGenHeight);
     }

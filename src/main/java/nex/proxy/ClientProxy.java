@@ -31,6 +31,7 @@ import nex.entity.monster.*;
 import nex.entity.neutral.EntityGoldGolem;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
+import nex.entity.passive.EntityBonspider;
 import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
 import nex.entity.projectile.EntityBlueFireball;
@@ -54,6 +55,7 @@ public class ClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigtificateLeader.class, RenderPigtificateLeader::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigtificate.class, RenderPigtificate::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityBonspider.class, RenderBonspider::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGoldGolem.class, RenderGoldGolem::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityMogus.class, RenderMogus::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySalamander.class, RenderSalamander::new);
@@ -64,9 +66,10 @@ public class ClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntitySporeCreeper.class, RenderSporeCreeper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, RenderSpore::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastling.class, RenderGhastling::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityBoneSpider.class, RenderBoneSpider::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityCoolmarSpider.class, RenderCoolmarSpider::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBrute.class, RenderBrute::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityFrost.class, RenderFrost::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityHellhound.class, RenderHellhound::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueen.class, RenderGhastQueen::new);
     }
 

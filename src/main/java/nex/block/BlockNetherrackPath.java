@@ -51,9 +51,8 @@ public class BlockNetherrackPath extends BlockLibEx
 
     public BlockNetherrackPath()
     {
-        super(NetherEx.instance, "netherrack_path", Material.ROCK);
+        super(NetherEx.instance, "netherrack_path", "pickaxe", 0, 0.5F, 2.0F, Material.ROCK);
         this.setLightOpacity(255);
-        this.setHardness(0.4F);
     }
 
     @Override

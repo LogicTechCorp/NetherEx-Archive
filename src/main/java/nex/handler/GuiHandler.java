@@ -1,108 +1,75 @@
 package nex.handler;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.world.storage.ISaveFormat;
-import net.minecraft.world.storage.WorldSummary;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import lex.util.PlayerHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.AbstractHorse;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import nex.NetherEx;
+import nex.client.gui.inventory.GuiScreenRideableInventory;
+import nex.inventory.ContainerRideableInventory;
 
-import java.util.Comparator;
-import java.util.List;
-
-@SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
-public class GuiHandler
+public class GuiHandler implements IGuiHandler
 {
-    private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
-    private static GuiButton resetNetherButton;
+    public static final int BONSPIDER_GUI_ID = 0;
 
-    @SubscribeEvent
-    public static void onInitGuiPost(GuiScreenEvent.InitGuiEvent.Post event)
+    @Override
+    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
-        GuiScreen guiScreen = event.getGui();
-        List<GuiButton> buttons = event.getButtonList();
-
-        if(guiScreen instanceof GuiWorldSelection)
-        {
-            resetNetherButton = new GuiButton(getButtonId(buttons), guiScreen.width / 2 - 154, 6, 90, 20, I18n.format("gui." + NetherEx.MOD_ID + ":selectWorld.resetNether"));
-            resetNetherButton.enabled = false;
-            buttons.add(resetNetherButton);
-        }
+        return this.getGuiElement(id, player, world, x, y, x, Side.SERVER);
     }
 
-    @SubscribeEvent
-    public static void onMousePressed(GuiScreenEvent.MouseInputEvent.Post event)
+    @Override
+    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
-        GuiScreen guiScreen = event.getGui();
-
-        if(guiScreen instanceof GuiWorldSelection)
-        {
-            GuiListWorldSelection guiWorldList = ReflectionHelper.getPrivateValue(GuiWorldSelection.class, (GuiWorldSelection) guiScreen, "field_184866_u", "selectionList");
-
-            if(guiWorldList.getSelectedWorld() != null)
-            {
-                resetNetherButton.enabled = true;
-            }
-        }
+        return this.getGuiElement(id, player, world, x, y, x, Side.CLIENT);
     }
 
-    @SubscribeEvent
-    public static void onActionPerformed(GuiScreenEvent.ActionPerformedEvent.Post event)
+    private Object getGuiElement(int id, EntityPlayer player, World world, int x, int y, int z, Side side)
     {
-        GuiScreen guiScreen = event.getGui();
-        GuiButton guiButton = event.getButton();
-
-        if(guiScreen instanceof GuiWorldSelection)
+        switch(id)
         {
-            if(guiButton == resetNetherButton)
-            {
-                GuiListWorldSelection guiWorldList = ReflectionHelper.getPrivateValue(GuiWorldSelection.class, (GuiWorldSelection) guiScreen, "field_184866_u", "selectionList");
-                GuiListWorldSelectionEntry guiWorld = guiWorldList.getSelectedWorld();
+            default:
+                return null;
+            case BONSPIDER_GUI_ID:
+                RayTraceResult result = PlayerHelper.getRayTracedEntity(player, world, 1.0F);
 
-                if(guiWorld != null)
+                if(result != null)
                 {
-                    WorldSummary worldSummary = ReflectionHelper.getPrivateValue(GuiListWorldSelectionEntry.class, guiWorld, "field_186786_g", "worldSummary");
-                    String worldDisplayName = worldSummary.getDisplayName();
+                    Entity entity = result.entityHit;
 
-                    MINECRAFT.displayGuiScreen(new GuiYesNo((result, id) ->
+                    if(entity instanceof AbstractHorse)
                     {
-                        if(result)
+                        AbstractHorse rideable = (AbstractHorse) entity;
+                        IInventory rideableInventory = ReflectionHelper.getPrivateValue(AbstractHorse.class, rideable, "field_110296_bG", "horseChest");
+                        Container container = new ContainerRideableInventory(player.inventory, rideableInventory, rideable, player, new ItemStack(Items.SADDLE));
+
+                        if(side.isClient())
                         {
-                            MINECRAFT.displayGuiScreen(new GuiScreenWorking());
-                            ISaveFormat saveFormat = MINECRAFT.getSaveLoader();
-                            saveFormat.flushCache();
-                            saveFormat.deleteWorldDirectory(worldSummary.getFileName() + "/DIM-1");
-                            guiWorldList.refreshList();
+                            return new GuiScreenRideableInventory(container, player.inventory, rideableInventory, rideable, new ResourceLocation("textures/gui/container/horse.png"));
                         }
-
-                        MINECRAFT.displayGuiScreen(guiWorldList.getGuiWorldSelection());
-                    }, I18n.format("gui." + NetherEx.MOD_ID + ":selectWorld.resetNetherQuestion", worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":selectWorld.resetNetherWarning", worldDisplayName, worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":selectWorld.reset"), I18n.format("gui.cancel"), 0));
+                        else
+                        {
+                            return container;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-            }
+                else
+                {
+                    return null;
+                }
         }
-    }
-
-    private static int getButtonId(List<GuiButton> buttons)
-    {
-        int buttonId = 0;
-
-        buttons.sort(Comparator.comparingInt(button -> button.id));
-
-        for(GuiButton button : buttons)
-        {
-            if(buttonId == button.id)
-            {
-                buttonId++;
-            }
-        }
-
-        return buttonId;
     }
 }

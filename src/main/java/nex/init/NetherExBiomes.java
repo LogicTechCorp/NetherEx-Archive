@@ -24,10 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nex.NetherEx;
-import nex.world.biome.BiomeArcticAbyss;
-import nex.world.biome.BiomeFungiForest;
-import nex.world.biome.BiomeRuthlessSands;
-import nex.world.biome.BiomeTorridWasteland;
+import nex.world.biome.*;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
@@ -38,6 +35,8 @@ public class NetherExBiomes
     public static final BiomeFungiForest FUNGI_FOREST = null;
     public static final BiomeTorridWasteland TORRID_WASTELAND = null;
     public static final BiomeArcticAbyss ARCTIC_ABYSS = null;
+    public static final BiomeRegrowthsCollapse REGROWTHS_COLLAPSE = null;
+    public static final BiomeBlightsAscension BLIGHTS_ASCENSION = null;
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -49,16 +48,20 @@ public class NetherExBiomes
                     new BiomeRuthlessSands(),
                     new BiomeFungiForest(),
                     new BiomeTorridWasteland(),
-                    new BiomeArcticAbyss()
+                    new BiomeArcticAbyss(),
+                    new BiomeRegrowthsCollapse(),
+                    new BiomeBlightsAscension()
             );
         }
     }
 
-    public static void init()
+    public static void registerBiomeTypes()
     {
         BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, HOT, DRY, MUSHROOM);
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, WET, COLD);
+        BiomeDictionary.addTypes(REGROWTHS_COLLAPSE, NETHER, DEAD);
+        BiomeDictionary.addTypes(BLIGHTS_ASCENSION, NETHER, SPOOKY);
     }
 }

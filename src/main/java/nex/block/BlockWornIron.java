@@ -21,8 +21,11 @@ import lex.block.BlockLibEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import nex.NetherEx;
 
 import java.util.Random;
@@ -31,10 +34,8 @@ public class BlockWornIron extends BlockLibEx
 {
     public BlockWornIron()
     {
-        super(NetherEx.instance, "worn_iron", Material.IRON);
+        super(NetherEx.instance, "worn_iron", "pickaxe", 1, 5.0F, 10.0F, Material.IRON);
         this.setSoundType(SoundType.METAL);
-        this.setHardness(5.0F);
-        this.setResistance(10.0F);
     }
 
     @Override
@@ -46,6 +47,12 @@ public class BlockWornIron extends BlockLibEx
     @Override
     public int quantityDropped(Random rand)
     {
-        return rand.nextInt(4);
+        return rand.nextInt(4) + 1;
+    }
+
+    @Override
+    public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        return true;
     }
 }

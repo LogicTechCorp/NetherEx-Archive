@@ -17,13 +17,13 @@
 
 package nex.init;
 
-import lex.block.BlockFenceGateLibEx;
-import lex.block.BlockStairsLibEx;
+import lex.block.*;
 import lex.item.ItemBlockLibEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -37,14 +37,18 @@ public class NetherExBlocks
 {
     public static final BlockBasalt BASALT = null;
     public static final BlockNetherrack NETHERRACK = null;
+    public static final BlockMutatedObsidian CRYING_OBSIDIAN = null;
+    public static final BlockMutatedObsidian GLOWING_OBSIDIAN = null;
     public static final BlockNetherBrick NETHER_BRICK = null;
     public static final BlockNetherrackPath NETHERRACK_PATH = null;
     public static final BlockHyphae HYPHAE = null;
     public static final BlockTilledSoulSand TILLED_SOUL_SAND = null;
     public static final BlockSoulGlass SOUL_GLASS = null;
     public static final BlockSoulGlassPane SOUL_GLASS_PANE = null;
-    public static final BlockAmethyst AMETHYST_BLOCK = null;
+    public static final BlockLibEx AMETHYST_BLOCK = null;
     public static final BlockRime RIME_BLOCK = null;
+    public static final BlockLibEx COBALT_BLOCK = null;
+    public static final BlockLibEx ARDITE_BLOCK = null;
     public static final BlockFrostburnIce FROSTBURN_ICE = null;
     public static final BlockBoneSliver BONE_SLIVER = null;
     public static final BlockBoneChunk BONE_CHUNK = null;
@@ -52,9 +56,11 @@ public class NetherExBlocks
     public static final BlockBlueFire BLUE_FIRE = null;
     public static final BlockNetherPortal NETHER_PORTAL = null;
     public static final BlockUrnOfSorrow URN_OF_SORROW = null;
-    public static final BlockQuartzOre QUARTZ_ORE = null;
-    public static final BlockAmethystOre AMETHYST_ORE = null;
-    public static final BlockRimeOre RIME_ORE = null;
+    public static final BlockDynamicNetherOre QUARTZ_ORE = null;
+    public static final BlockOreLibEx AMETHYST_ORE = null;
+    public static final BlockOreLibEx RIME_ORE = null;
+    public static final BlockOreLibEx COBALT_ORE = null;
+    public static final BlockOreLibEx ARDITE_ORE = null;
     public static final BlockThornstalk THORNSTALK = null;
     public static final BlockElderMushroom ELDER_MUSHROOM = null;
     public static final BlockElderMushroomCap ELDER_MUSHROOM_CAP = null;
@@ -104,14 +110,18 @@ public class NetherExBlocks
             event.getRegistry().registerAll(
                     new BlockBasalt(),
                     new BlockNetherrack(),
+                    new BlockMutatedObsidian("crying_obsidian", 0.50F),
+                    new BlockMutatedObsidian("glowing_obsidian", 1.0F),
                     new BlockNetherBrick(),
                     new BlockNetherrackPath(),
                     new BlockHyphae(),
                     new BlockTilledSoulSand(),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
-                    new BlockAmethyst(),
+                    new BlockLibEx(NetherEx.instance, "amethyst_block", "pickaxe", 2, 5.0F, 10.0F, Material.ROCK),
                     new BlockRime(),
+                    new BlockLibEx(NetherEx.instance, "cobalt_block", "pickaxe", 4, 5.0F, 3.0F, Material.IRON),
+                    new BlockLibEx(NetherEx.instance, "ardite_block", "pickaxe", 4, 5.0F, 3.0F, Material.IRON),
                     new BlockFrostburnIce(),
                     new BlockBoneSliver(),
                     new BlockBoneChunk(),
@@ -119,9 +129,11 @@ public class NetherExBlocks
                     new BlockBlueFire(),
                     new BlockNetherPortal(),
                     new BlockUrnOfSorrow(),
-                    new BlockQuartzOre(),
-                    new BlockAmethystOre(),
-                    new BlockRimeOre(),
+                    new BlockDynamicNetherOre("quartz_ore", 2, 3.0F, 5.0F, 0.0F, BlockDynamic.TexturePlacement.UNDER),
+                    new BlockOreLibEx(NetherEx.instance, "amethyst_ore", 2, new ResourceLocation(NetherEx.MOD_ID + ":amethyst_crystal"), 3.0F, 5.0F, 0.0F),
+                    new BlockOreLibEx(NetherEx.instance, "rime_ore", 2, new ResourceLocation(NetherEx.MOD_ID + ":rime_crystal"), 3.0F, 5.0F, 0.0F),
+                    new BlockOreLibEx(NetherEx.instance, "cobalt_ore", 4, 10.0F, 5.0F, 0.0F),
+                    new BlockOreLibEx(NetherEx.instance, "ardite_ore", 4, 10.0F, 5.0F, 0.0F),
                     new BlockThornstalk(),
                     new BlockElderMushroom(),
                     new BlockElderMushroomCap(),
@@ -170,6 +182,8 @@ public class NetherExBlocks
             event.getRegistry().registerAll(
                     new ItemBlockBasalt(),
                     new ItemBlockNetherrack(),
+                    new ItemBlockLibEx(CRYING_OBSIDIAN),
+                    new ItemBlockLibEx(GLOWING_OBSIDIAN),
                     new ItemBlockNetherBrick(),
                     new ItemBlockNetherrackPath(),
                     new ItemBlockLibEx(HYPHAE),
@@ -178,14 +192,18 @@ public class NetherExBlocks
                     new ItemBlockLibEx(SOUL_GLASS_PANE),
                     new ItemBlockLibEx(AMETHYST_BLOCK),
                     new ItemBlockLibEx(RIME_BLOCK),
+                    new ItemBlockLibEx(COBALT_BLOCK),
+                    new ItemBlockLibEx(ARDITE_BLOCK),
                     new ItemBlockLibEx(FROSTBURN_ICE),
                     new ItemBlockLibEx(BONE_SLIVER),
                     new ItemBlockLibEx(BONE_CHUNK),
                     new ItemBlockLibEx(WORN_IRON),
                     new ItemBlockUrnOfSorrow(),
-                    new ItemBlockQuartzOre(),
+                    new ItemBlockLibEx(QUARTZ_ORE),
                     new ItemBlockLibEx(AMETHYST_ORE),
                     new ItemBlockLibEx(RIME_ORE),
+                    new ItemBlockLibEx(COBALT_ORE),
+                    new ItemBlockLibEx(ARDITE_ORE),
                     new ItemBlockElderMushroom(),
                     new ItemBlockElderMushroomCap(),
                     new ItemBlockLibEx(ELDER_MUSHROOM_STEM),

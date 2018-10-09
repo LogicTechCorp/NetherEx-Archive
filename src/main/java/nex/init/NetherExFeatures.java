@@ -25,7 +25,7 @@ import nex.world.gen.feature.FeatureThornstalk;
 
 public class NetherExFeatures
 {
-    public static void init()
+    public static void registerFeatures()
     {
         FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":thornstalk"), FeatureThornstalk.class);
         FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":enoki"), FeatureEnoki.class);

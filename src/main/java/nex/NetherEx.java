@@ -23,12 +23,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.handler.ConfigHandler;
+import nex.handler.GuiHandler;
 import nex.init.*;
 import nex.village.PigtificateTradeManager;
 import nex.world.biome.NetherExBiomeManager;
@@ -38,7 +41,6 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData
 {
-    //TODO: Figure out how to render the Blue Fire in first person
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "2.0.9";
@@ -62,6 +64,8 @@ public class NetherEx implements IModData
         }
     };
 
+    public static final boolean IS_BOP_LOADED = Loader.isModLoaded("biomesoplenty");
+
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 
     static
@@ -72,46 +76,44 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        ConfigHandler.preInit();
-        NetherExBiomeManager.preInit();
-        PigtificateTradeManager.preInit();
-        NetherExEntities.preInit();
-        NetherExVanillaOverrides.preInit();
+        ConfigHandler.updateConfigEntries();
+        PigtificateTradeManager.copyTradeConfigs();
+        NetherExEntities.registerEntities();
+        NetherExOverrides.overrideObjects();
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         proxy.preInit();
     }
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        NetherExBiomes.init();
-        NetherExRecipes.init();
-        NetherExOreDictionary.init();
-        NetherExFeatures.init();
+        NetherExBiomes.registerBiomeTypes();
+        NetherExRecipes.registerRecipes();
+        NetherExOreDictionary.registerOres();
+        NetherExFeatures.registerFeatures();
         proxy.init();
     }
 
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        NetherExVanillaOverrides.postInit();
+        NetherExBiomeManager.createBiomeConfigs();
+        NetherExOverrides.overrideNether();
         proxy.postInit();
     }
 
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
-        NetherExBiomeManager.setupDefaultBiomes();
-        NetherExBiomeManager.setupCompatibleBiomes(event.getServer());
-        NetherExBiomeManager.setupCustomBiomes();
-        PigtificateTradeManager.setupDefaultTrades();
-        PigtificateTradeManager.setupCustomTrades();
+        NetherExBiomeManager.readBiomeConfigs(event.getServer());
+        PigtificateTradeManager.readTradeConfigs();
     }
 
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
-        NetherExBiomeManager.resetBiomes();
-        PigtificateTradeManager.resetTrades();
+        NetherExBiomeManager.clearBiomes();
+        PigtificateTradeManager.clearTrades();
     }
 
     @Override

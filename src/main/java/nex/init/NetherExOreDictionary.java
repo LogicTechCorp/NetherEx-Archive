@@ -27,7 +27,7 @@ import static nex.init.NetherExItems.*;
 
 public class NetherExOreDictionary
 {
-    public static void init()
+    public static void registerOres()
     {
         for(BlockBasalt.EnumType type : BlockBasalt.EnumType.values())
         {
@@ -53,12 +53,20 @@ public class NetherExOreDictionary
             OreDictionary.registerOre("oreQuartz", new ItemStack(QUARTZ_ORE, 1, type.ordinal()));
         }
 
+        OreDictionary.registerOre("obsidian", new ItemStack(GLOWING_OBSIDIAN));
+        OreDictionary.registerOre("obsidian", new ItemStack(CRYING_OBSIDIAN));
         OreDictionary.registerOre("oreAmethyst", new ItemStack(AMETHYST_ORE));
         OreDictionary.registerOre("blockAmethyst", new ItemStack(AMETHYST_BLOCK));
         OreDictionary.registerOre("gemAmethyst", new ItemStack(AMETHYST_CRYSTAL));
         OreDictionary.registerOre("oreRime", new ItemStack(RIME_ORE));
         OreDictionary.registerOre("blockRime", new ItemStack(RIME_BLOCK));
         OreDictionary.registerOre("gemRime", new ItemStack(RIME_CRYSTAL));
+        OreDictionary.registerOre("oreCobalt", new ItemStack(COBALT_ORE));
+        OreDictionary.registerOre("blockCobalt", new ItemStack(COBALT_BLOCK));
+        OreDictionary.registerOre("ingotCobalt", new ItemStack(COBALT_INGOT));
+        OreDictionary.registerOre("oreArdite", new ItemStack(ARDITE_ORE));
+        OreDictionary.registerOre("blockArdite", new ItemStack(ARDITE_BLOCK));
+        OreDictionary.registerOre("ingotArdite", new ItemStack(ARDITE_INGOT));
         OreDictionary.registerOre("boneWithered", new ItemStack(WITHER_BONE));
         OreDictionary.registerOre("dyeBlack", new ItemStack(WITHER_DUST));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(GHAST_MEAT_RAW));

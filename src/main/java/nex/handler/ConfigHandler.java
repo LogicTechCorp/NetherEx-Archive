@@ -67,7 +67,7 @@ public class ConfigHandler
 
     private static Configuration config;
 
-    public static void preInit()
+    public static void updateConfigEntries()
     {
         config = getConfig();
 
@@ -79,6 +79,7 @@ public class ConfigHandler
             config.getCategory("nex.block.nether_portal").remove("allowPigmanSpawning");
             config.renameProperty("nex.block.thornstalk", "blacklist", "mobBlacklist");
             config.renameProperty("nex.block.hyphae", "doesSpread", "shouldSpread");
+            config.renameProperty("nex.block.soul_sand", "useLavaInsteadOfIchorToMoisten", "useLavaAndIchorToHydrate");
             config.renameProperty("nex.potion_effect.freeze", "blacklist", "mobBlacklist");
             config.renameProperty("nex.potion_effect.freeze", "chanceOfThawing", "thawRarity");
             config.renameProperty("nex.potion_effect.spore", "blacklist", "mobBlacklist");
@@ -140,8 +141,8 @@ public class ConfigHandler
 
         public class BiomesOPlenty
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesOPlenty.enableCompat")
-            public boolean enableCompat = true;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesOPlenty.enableCompatibility")
+            public boolean enableCompatibility = true;
         }
     }
 
@@ -238,8 +239,8 @@ public class ConfigHandler
             @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.allowAllHoesToTill")
             public boolean allowAllHoesToTill = false;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.useLavaInsteadOfIchorToMoisten")
-            public boolean useLavaInsteadOfIchorToMoisten = false;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.useLavaAndIchorToHydrate")
+            public boolean useLavaAndIchorToHydrate = false;
         }
 
         public class NetherWart

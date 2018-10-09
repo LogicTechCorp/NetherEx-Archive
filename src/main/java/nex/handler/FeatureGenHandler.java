@@ -17,8 +17,8 @@
 
 package nex.handler;
 
-import lex.util.NumberHelper;
-import lex.world.biome.BiomeWrapper;
+import lex.util.RandomHelper;
+import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.Feature;
 import net.minecraft.util.math.BlockPos;
@@ -126,15 +126,15 @@ public class FeatureGenHandler
 
     private static void generateFeature(World world, BlockPos pos, Random rand, GenerationStage generationStage)
     {
-        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(world.getBiome(pos.add(16, 0, 16)));
+        BiomeConfigurations configurations = NetherExBiomeManager.getBiomeConfigurations(world.getBiome(pos.add(16, 0, 16)));
 
-        if(wrapper != null)
+        if(configurations != null)
         {
-            for(Feature feature : wrapper.getFeatures(generationStage))
+            for(Feature feature : configurations.getFeatures(generationStage))
             {
                 for(int generationAttempts = 0; generationAttempts < feature.getGenAttempts(rand); generationAttempts++)
                 {
-                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, NumberHelper.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
+                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomHelper.getRandomNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
                 }
             }
         }

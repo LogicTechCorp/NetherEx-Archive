@@ -34,6 +34,8 @@ public class NetherExTextures
     public static final ResourceLocation PIGTIFICATE_TOOLSMITH = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_toolsmith.png");
     public static final ResourceLocation PIGTIFICATE_ENCHANTER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_enchanter.png");
     public static final ResourceLocation PIGTIFICATE_BREWER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/pigtificate/pigtificate_brewer.png");
+    public static final ResourceLocation BONSPIDER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bonspider/bonspider.png");
+    public static final ResourceLocation BONSPIDER_LAYER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bonspider/bonspider_layer.png");
     public static final ResourceLocation GOLD_GOLEM = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/gold_golem.png");
     public static final ResourceLocation MOGUS_BROWN = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/brown_mogus.png");
     public static final ResourceLocation MOGUS_RED = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/mogus/red_mogus.png");
@@ -48,10 +50,12 @@ public class NetherExTextures
     public static final ResourceLocation SPORE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/spore.png");
     public static final ResourceLocation GHASTLING = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling.png");
     public static final ResourceLocation GHASTLING_SHOOTING = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghastling_shooting.png");
-    public static final ResourceLocation BONE_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bone_spider/bone_spider.png");
-    public static final ResourceLocation BONE_SPIDER_EYES = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/bone_spider/bone_spider_eyes.png");
+    public static final ResourceLocation COOLMAR_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/coolmar_spider/coolmar_spider.png");
+    public static final ResourceLocation COOLMAR_SPIDER_LAYER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/coolmar_spider/coolmar_spider_layer.png");
     public static final ResourceLocation BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/brute.png");
     public static final ResourceLocation FROST = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/frost.png");
+    public static final ResourceLocation HELLHOUND = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/hellhound/hellhound.png");
+    public static final ResourceLocation HELLHOUND_LAYER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/hellhound/hellhound_layer.png");
     public static final ResourceLocation GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen.png");
     public static final ResourceLocation GHAST_QUEEN_SHOOTING = new ResourceLocation(NetherEx.MOD_ID + ":textures/entities/ghast/ghast_queen_shooting.png");
 }

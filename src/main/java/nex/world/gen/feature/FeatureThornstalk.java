@@ -17,7 +17,7 @@
 
 package nex.world.gen.feature;
 
-import lex.config.Config;
+import com.electronwill.nightconfig.core.Config;
 import lex.world.gen.feature.Feature;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -35,11 +35,12 @@ public class FeatureThornstalk extends Feature
         super(config);
     }
 
-    public FeatureThornstalk(int genAttempts, float genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
+    public FeatureThornstalk(int genAttempts, double genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
     {
         super(genAttempts, genProbability, randomizeGenAttempts, minGenHeight, maxGenHeight);
     }
 
+    @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
         for(int i = 0; i < 64; i++)

@@ -41,9 +41,8 @@ public class BlockElderMushroomStem extends BlockLibEx
 
     public BlockElderMushroomStem()
     {
-        super(NetherEx.instance, "elder_mushroom_stem", Material.WOOD);
+        super(NetherEx.instance, "elder_mushroom_stem", "axe", 0, 0.5F, 2.0F, Material.WOOD);
         this.setSoundType(SoundType.WOOD);
-        this.setHardness(0.2F);
     }
 
     @Override

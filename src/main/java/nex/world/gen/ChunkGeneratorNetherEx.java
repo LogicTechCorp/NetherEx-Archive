@@ -17,7 +17,7 @@
 
 package nex.world.gen;
 
-import lex.world.biome.BiomeWrapper;
+import lex.world.biome.BiomeConfigurations;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -63,9 +63,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private NoiseGeneratorOctaves scaleNoiseGen;
     private NoiseGeneratorOctaves depthNoiseGen;
 
-    private Biome[] biomesForGen;
-
-    private double[] buffer;
+    private double[] heightmap;
     private double[] netherrackNoise = new double[256];
     private double[] soulSandNoise = new double[256];
     private double[] gravelNoise = new double[256];
@@ -113,7 +111,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     @Override
     public void prepareHeights(int chunkX, int chunkZ, ChunkPrimer primer)
     {
-        this.buffer = this.generateHeightMap(this.buffer, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
+        this.heightmap = this.generateHeightMap(this.heightmap, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
         for(int x = 0; x < 4; x++)
         {
@@ -121,14 +119,14 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             {
                 for(int y = 0; y < 16; y++)
                 {
-                    double d1 = this.buffer[(x * 5 + z) * 17 + y];
-                    double d2 = this.buffer[(((x * 5) + z + 1) * 17) + y];
-                    double d3 = this.buffer[((((x + 1) * 5) + z) * 17) + y];
-                    double d4 = this.buffer[((x + 1) * 5 + z + 1) * 17 + y];
-                    double d5 = (this.buffer[(x * 5 + z) * 17 + y + 1] - d1) * 0.125D;
-                    double d6 = (this.buffer[(x * 5 + z + 1) * 17 + y + 1] - d2) * 0.125D;
-                    double d7 = (this.buffer[((x + 1) * 5 + z) * 17 + y + 1] - d3) * 0.125D;
-                    double d8 = (this.buffer[((x + 1) * 5 + z + 1) * 17 + y + 1] - d4) * 0.125D;
+                    double d1 = this.heightmap[(x * 5 + z) * 17 + y];
+                    double d2 = this.heightmap[(((x * 5) + z + 1) * 17) + y];
+                    double d3 = this.heightmap[((((x + 1) * 5) + z) * 17) + y];
+                    double d4 = this.heightmap[((x + 1) * 5 + z + 1) * 17 + y];
+                    double d5 = (this.heightmap[(x * 5 + z) * 17 + y + 1] - d1) * 0.125D;
+                    double d6 = (this.heightmap[(x * 5 + z + 1) * 17 + y + 1] - d2) * 0.125D;
+                    double d7 = (this.heightmap[((x + 1) * 5 + z) * 17 + y + 1] - d3) * 0.125D;
+                    double d8 = (this.heightmap[((x + 1) * 5 + z + 1) * 17 + y + 1] - d4) * 0.125D;
 
                     for(int y2 = 0; y2 < 8; y2++)
                     {
@@ -204,7 +202,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
                 for(int y = 127; y >= 0; y--)
                 {
-                    if(y < 127 && y > 0)
+                    if(y < 124 && y > 3)
                     {
                         IBlockState checkBlock = primer.getBlockState(x, y, z);
 
@@ -369,19 +367,20 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPrimer primer = new ChunkPrimer();
         this.rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
-        this.biomesForGen = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
         this.prepareHeights(chunkX, chunkZ, primer);
         this.buildSurfaces(chunkX, chunkZ, primer);
-        this.replaceBiomeBlocks(chunkX, chunkZ, primer, this.biomesForGen);
         this.netherCaves.generate(this.world, chunkX, chunkZ, primer);
         this.netherBridge.generate(this.world, chunkX, chunkZ, primer);
+
+        Biome[] biomes = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
+        this.replaceBiomeBlocks(chunkX, chunkZ, primer, biomes);
 
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
 
         for(int i = 0; i < biomeArray.length; ++i)
         {
-            biomeArray[i] = (byte) Biome.getIdForBiome(this.biomesForGen[i]);
+            biomeArray[i] = (byte) Biome.getIdForBiome(biomes[i]);
         }
 
         chunk.resetRelightChecks();
@@ -393,7 +392,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeConfigurations wrapper = NetherExBiomeManager.getBiomeConfigurations(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
         boolean hasVillageGenerated = false;
@@ -441,8 +440,8 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             }
         }
 
-        BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(this.world.getBiome(pos));
-        return creatureType == null || wrapper == null ? new ArrayList<>() : wrapper.getSpawnableMobs(creatureType);
+        BiomeConfigurations wrapper = NetherExBiomeManager.getBiomeConfigurations(this.world.getBiome(pos));
+        return creatureType == null || wrapper == null ? new ArrayList<>() : wrapper.getEntities(creatureType);
     }
 
     @Override
@@ -490,11 +489,11 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
         this.terrainNoise = this.terrainNoiseGen.getRegion(this.terrainNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
 
-        for(int x = 0; x < 16; ++x)
+        for(int x = 0; x < 16; x++)
         {
-            for(int z = 0; z < 16; ++z)
+            for(int z = 0; z < 16; z++)
             {
-                BiomeWrapper wrapper = NetherExBiomeManager.getBiomeWrapper(biomes[x + z * 16]);
+                BiomeConfigurations wrapper = NetherExBiomeManager.getBiomeConfigurations(biomes[x + z * 16]);
 
                 if(wrapper != null)
                 {

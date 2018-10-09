@@ -34,9 +34,7 @@ public class BlockBasalt extends BlockLibEx
 
     public BlockBasalt()
     {
-        super(NetherEx.instance, "basalt", Material.ROCK);
-        this.setHardness(1.5F);
-        this.setResistance(10.0F);
+        super(NetherEx.instance, "basalt", "pickaxe", 0, 1.5F, 10.0F, Material.ROCK);
     }
 
     @Override

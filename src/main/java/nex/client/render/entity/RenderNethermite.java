@@ -35,6 +35,12 @@ public class RenderNethermite extends RenderLiving<EntityNethermite>
     }
 
     @Override
+    protected float getDeathMaxRotation(EntityNethermite nethermite)
+    {
+        return 180.0F;
+    }
+
+    @Override
     protected ResourceLocation getEntityTexture(EntityNethermite mite)
     {
         return NetherExTextures.NETHERMITE;

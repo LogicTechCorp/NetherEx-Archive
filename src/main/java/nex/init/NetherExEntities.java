@@ -28,6 +28,7 @@ import nex.entity.monster.*;
 import nex.entity.neutral.EntityGoldGolem;
 import nex.entity.neutral.EntityMogus;
 import nex.entity.neutral.EntitySalamander;
+import nex.entity.passive.EntityBonspider;
 import nex.entity.passive.EntityPigtificate;
 import nex.entity.passive.EntityPigtificateLeader;
 import nex.entity.projectile.EntityBlueFireball;
@@ -38,7 +39,7 @@ public class NetherExEntities
 {
     private static int entityId = -1;
 
-    public static void preInit()
+    public static void registerEntities()
     {
         registerEntity("ghast_queen_fireball", EntityGhastQueenFireball.class, entityId++);
         registerEntity("ghastling_fireball", EntityGhastlingFireball.class, entityId++);
@@ -48,6 +49,7 @@ public class NetherExEntities
 
         registerEntity("pigtificate_leader", EntityPigtificateLeader.class, entityId++, 12422002, 15771042);
         registerEntity("pigtificate", EntityPigtificate.class, entityId++, 15771042, 12422002);
+        registerEntity("bonspider", EntityBonspider.class, entityId++, 394758, 16711680);
 
         registerEntity("gold_golem", EntityGoldGolem.class, entityId++, 16773448, 14520344);
         registerEntity("mogus", EntityMogus.class, entityId++, 6770482, 5114119);
@@ -60,9 +62,10 @@ public class NetherExEntities
         registerEntity("spore_creeper", EntitySporeCreeper.class, entityId++, 5576214, 15721297);
         registerEntity("spore", EntitySpore.class, entityId++, 15721297, 5576214);
         registerEntity("ghastling", EntityGhastling.class, entityId++, 16447992, 14077883);
-        registerEntity("bone_spider", EntityBoneSpider.class, entityId++, 13750221, 13369344);
+        registerEntity("coolmar_spider", EntityCoolmarSpider.class, entityId++, 13750221, 13369344);
         registerEntity("brute", EntityBrute.class, entityId++, 11045525, 4793626);
         registerEntity("frost", EntityFrost.class, entityId++, 16382457, 6143186);
+        registerEntity("hellhound", EntityHellhound.class, entityId++, 15724527, 5576214);
 
         registerEntity("ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
     }

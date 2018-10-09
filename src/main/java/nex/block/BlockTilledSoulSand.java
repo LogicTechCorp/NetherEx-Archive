@@ -149,13 +149,18 @@ public class BlockTilledSoulSand extends BlockLibEx
 
     private boolean hasFluid(World world, BlockPos pos)
     {
-        Fluid fluid = ConfigHandler.blockConfig.soulSand.useLavaInsteadOfIchorToMoisten ? FluidRegistry.lookupFluidForBlock(Blocks.LAVA) : FluidRegistry.lookupFluidForBlock(NetherExBlocks.ICHOR);
-
         for(BlockPos.MutableBlockPos mutablePos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4)))
         {
-            if(FluidRegistry.lookupFluidForBlock(world.getBlockState(mutablePos).getBlock()) == fluid)
+            Fluid fluid = FluidRegistry.lookupFluidForBlock(world.getBlockState(mutablePos).getBlock());
+
+            if(fluid != null)
             {
-                return true;
+                if(ConfigHandler.blockConfig.soulSand.useLavaAndIchorToHydrate && fluid == FluidRegistry.lookupFluidForBlock(Blocks.LAVA))
+                {
+                    return true;
+                }
+
+                return fluid == FluidRegistry.lookupFluidForBlock(NetherExBlocks.ICHOR);
             }
         }
 

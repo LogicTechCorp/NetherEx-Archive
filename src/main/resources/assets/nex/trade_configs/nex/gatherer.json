@@ -138,7 +138,7 @@
                 "maxStackSize": 1
             },
             "inputOne": {
-                "item": "minecraft:quartz_block",
+                "itemBlock": "minecraft:quartz_block",
                 "properties": {
                     "variant": "default"
                 },

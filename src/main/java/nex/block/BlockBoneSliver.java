@@ -42,9 +42,7 @@ public class BlockBoneSliver extends BlockLibEx
 
     public BlockBoneSliver()
     {
-        super(NetherEx.instance, "bone_sliver", Material.ROCK);
-        this.setHardness(2.0F);
-        this.setResistance(5.0F);
+        super(NetherEx.instance, "bone_sliver", "pickaxe", 1, 2.0F, 5.0F, Material.ROCK);
     }
 
     @Override

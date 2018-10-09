@@ -33,9 +33,7 @@ public class BlockNetherBrick extends BlockLibEx
 
     public BlockNetherBrick()
     {
-        super(NetherEx.instance, "nether_brick", Material.ROCK);
-        this.setHardness(1.5F);
-        this.setResistance(10.0F);
+        super(NetherEx.instance, "nether_brick", "pickaxe", 0, 1.5F, 10.0F, Material.ROCK);
     }
 
     @Override

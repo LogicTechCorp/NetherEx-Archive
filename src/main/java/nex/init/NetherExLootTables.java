@@ -30,6 +30,7 @@ public class NetherExLootTables
     public static final ResourceLocation PIGTIFICATE_TOOLSMITH = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_toolsmith");
     public static final ResourceLocation PIGTIFICATE_ENCHANTER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_enchanter");
     public static final ResourceLocation PIGTIFICATE_BREWER = new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_brewer");
+    public static final ResourceLocation BONSPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/bonspider");
     public static final ResourceLocation GOLD_GOLEM = new ResourceLocation(NetherEx.MOD_ID + ":entity/gold_golem");
     public static final ResourceLocation BROWN_MOGUS = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_brown");
     public static final ResourceLocation RED_MOGUS = new ResourceLocation(NetherEx.MOD_ID + ":entity/mogus/mogus_red");
@@ -43,7 +44,7 @@ public class NetherExLootTables
     public static final ResourceLocation SPORE_CREEPER = new ResourceLocation(NetherEx.MOD_ID + ":entity/spore_creeper");
     public static final ResourceLocation SPORE = new ResourceLocation(NetherEx.MOD_ID + ":entity/spore");
     public static final ResourceLocation GHASTLING = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghastling");
-    public static final ResourceLocation BONE_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/bone_spider");
+    public static final ResourceLocation COOLMAR_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/bone_spider");
     public static final ResourceLocation BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
     public static final ResourceLocation GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghast_queen");
 }

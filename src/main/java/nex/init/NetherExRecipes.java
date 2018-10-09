@@ -35,7 +35,7 @@ import static nex.init.NetherExItems.*;
 
 public class NetherExRecipes
 {
-    public static void init()
+    public static void registerRecipes()
     {
         for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
         {

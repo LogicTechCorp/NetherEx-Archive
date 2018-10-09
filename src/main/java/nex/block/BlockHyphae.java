@@ -40,8 +40,7 @@ public class BlockHyphae extends BlockLibEx
 {
     public BlockHyphae()
     {
-        super(NetherEx.instance, "hyphae", Material.ROCK);
-        this.setHardness(0.6F);
+        super(NetherEx.instance, "hyphae", "pickaxe", 0, 0.5F, 2.0F, Material.ROCK);
 
         if(ConfigHandler.blockConfig.hyphae.shouldSpread)
         {

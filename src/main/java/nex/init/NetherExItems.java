@@ -39,6 +39,8 @@ public class NetherExItems
     public static final ItemSalamanderHide SALAMANDER_HIDE = null;
     public static final ItemLibEx AMETHYST_CRYSTAL = null;
     public static final ItemLibEx RIME_CRYSTAL = null;
+    public static final ItemLibEx COBALT_INGOT = null;
+    public static final ItemLibEx ARDITE_INGOT = null;
     public static final ItemRimeAndSteel RIME_AND_STEEL = null;
     public static final ItemLibEx SPORE = null;
     public static final ItemLibEx BONE_SPIDER_FANG = null;
@@ -76,6 +78,8 @@ public class NetherExItems
                     new ItemSalamanderHide(),
                     new ItemLibEx(NetherEx.instance, "amethyst_crystal"),
                     new ItemLibEx(NetherEx.instance, "rime_crystal"),
+                    new ItemLibEx(NetherEx.instance, "cobalt_ingot"),
+                    new ItemLibEx(NetherEx.instance, "ardite_ingot"),
                     new ItemRimeAndSteel(),
                     new ItemLibEx(NetherEx.instance, "spore"),
                     new ItemLibEx(NetherEx.instance, "bone_spider_fang"),

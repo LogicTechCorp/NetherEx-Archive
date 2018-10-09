@@ -20,6 +20,7 @@ package nex.world.gen.layer;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
 import nex.world.biome.NetherExBiomeManager;
@@ -28,9 +29,10 @@ import java.util.List;
 
 public class GenLayerNetherBiome extends GenLayerNetherEx
 {
-    public GenLayerNetherBiome(long seed)
+    public GenLayerNetherBiome(long seed, GenLayer parent)
     {
         super(seed);
+        this.parent = parent;
     }
 
     @Override
