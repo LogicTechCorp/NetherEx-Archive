@@ -398,7 +398,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
         World overworld = DimensionManager.getWorld(DimensionType.OVERWORLD.getId());
 
-        if(overworld != null)
+        if(overworld != null && collapsed)
         {
             IBlightChunkData data = overworld.getCapability(CapabilityBlightChunkData.INSTANCE, null);
 
