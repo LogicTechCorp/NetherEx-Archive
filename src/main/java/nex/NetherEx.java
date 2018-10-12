@@ -22,6 +22,7 @@ import lex.proxy.IProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -30,6 +31,8 @@ import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nex.capability.CapabilityBlightChunkData;
+import nex.capability.IBlightChunkData;
 import nex.handler.ConfigHandler;
 import nex.handler.GuiHandler;
 import nex.init.*;
@@ -81,6 +84,7 @@ public class NetherEx implements IModData
         NetherExEntities.registerEntities();
         NetherExOverrides.overrideObjects();
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+        CapabilityManager.INSTANCE.register(IBlightChunkData.class, new CapabilityBlightChunkData.Storage(), new CapabilityBlightChunkData.Factory());
         proxy.preInit();
     }
 

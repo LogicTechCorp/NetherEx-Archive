@@ -28,6 +28,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -38,11 +39,15 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.*;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import nex.capability.CapabilityBlightChunkData;
+import nex.capability.IBlightChunkData;
 import nex.handler.ConfigHandler;
+import nex.init.NetherExBiomes;
 import nex.world.biome.NetherExBiomeManager;
 
 import java.util.ArrayList;
@@ -378,9 +383,29 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
 
-        for(int i = 0; i < biomeArray.length; ++i)
+        boolean collapsed = false;
+
+        for(int i = 0; i < biomeArray.length; i++)
         {
-            biomeArray[i] = (byte) Biome.getIdForBiome(biomes[i]);
+            Biome biome = biomes[i];
+            biomeArray[i] = (byte) Biome.getIdForBiome(biome);
+
+            if(!collapsed && biome == NetherExBiomes.REGROWTHS_COLLAPSE)
+            {
+                collapsed = true;
+            }
+        }
+
+        World overworld = DimensionManager.getWorld(DimensionType.OVERWORLD.getId());
+
+        if(overworld != null)
+        {
+            IBlightChunkData data = overworld.getCapability(CapabilityBlightChunkData.INSTANCE, null);
+
+            if(data != null)
+            {
+                data.addChunk(new ChunkPos((chunkX * 8), (chunkZ * 8)));
+            }
         }
 
         chunk.resetRelightChecks();
@@ -392,30 +417,25 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        BiomeConfigurations wrapper = NetherExBiomeManager.getBiomeConfigurations(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeConfigurations configurations = NetherExBiomeManager.getBiomeConfigurations(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
-        boolean hasVillageGenerated = false;
-
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, this.world, this.rand, chunkX, chunkZ, hasVillageGenerated));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, this.world, this.rand, chunkX, chunkZ, false));
         this.netherBridge.generateStructure(this.world, this.rand, chunkPos);
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Populate(this, this.world, this.rand, chunkX, chunkZ, hasVillageGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM));
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, this.world, this.rand, chunkX, chunkZ, hasVillageGenerated));
-
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Populate(this, this.world, this.rand, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.CUSTOM));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, this.world, this.rand, chunkX, chunkZ, false));
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(this.world, this.rand, chunkPos));
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Decorate(this.world, this.rand, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM));
 
-        if(wrapper != null && wrapper.shouldGenDefaultFeatures())
+        if(configurations != null && configurations.shouldGenDefaultFeatures())
         {
-            wrapper.getBiome().decorate(this.world, this.rand, blockPos);
+            configurations.getBiome().decorate(this.world, this.rand, blockPos);
         }
 
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(this.world, this.rand, chunkPos));
-
         MinecraftForge.EVENT_BUS.post(new OreGenEvent.Pre(this.world, this.rand, blockPos));
         MinecraftForge.EVENT_BUS.post(new OreGenEvent.GenerateMinable(this.world, this.rand, new WorldGenMinable(Blocks.AIR.getDefaultState(), 0, BlockMatcher.forBlock(Blocks.AIR)), blockPos, OreGenEvent.GenerateMinable.EventType.CUSTOM));
         MinecraftForge.EVENT_BUS.post(new OreGenEvent.Post(this.world, this.rand, blockPos));
-
         BlockFalling.fallInstantly = false;
     }
 

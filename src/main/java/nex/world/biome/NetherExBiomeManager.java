@@ -51,7 +51,8 @@ public class NetherExBiomeManager
                 NetherExBiomes.RUTHLESS_SANDS.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/ruthless_sands.json")),
                 NetherExBiomes.FUNGI_FOREST.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/fungi_forest.json")),
                 NetherExBiomes.TORRID_WASTELAND.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/torrid_wasteland.json")),
-                NetherExBiomes.ARCTIC_ABYSS.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/arctic_abyss.json"))
+                NetherExBiomes.ARCTIC_ABYSS.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/arctic_abyss.json")),
+                NetherExBiomes.REGROWTHS_COLLAPSE.getConfigurations().serialize(new File(LibEx.CONFIG_DIRECTORY, "/NetherEx/Biomes/nex/regrowths_collapse.json"))
         ));
 
         if(NetherEx.IS_BOP_LOADED)

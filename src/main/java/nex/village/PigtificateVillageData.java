@@ -46,7 +46,7 @@ public class PigtificateVillageData extends WorldSavedData
 
     public PigtificateVillageData(World world)
     {
-        super(getFileName(world));
+        super(getDataId(world));
         this.world = new WeakReference<>(world);
         this.markDirty();
     }
@@ -286,7 +286,7 @@ public class PigtificateVillageData extends WorldSavedData
         return compound;
     }
 
-    public static String getFileName(World world)
+    public static String getDataId(World world)
     {
         return "nex_pigtificate_villages" + world.provider.getDimensionType().getSuffix();
     }

@@ -55,7 +55,7 @@ public class PigtificateVillageManager
         }
         else
         {
-            String worldFile = PigtificateVillageData.getFileName(world);
+            String worldFile = PigtificateVillageData.getDataId(world);
             data = (PigtificateVillageData) world.loadData(PigtificateVillageData.class, worldFile);
 
             if(data == null && createData)

@@ -17,12 +17,15 @@
 
 package nex.handler;
 
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import nex.NetherEx;
+import nex.capability.CapabilityBlightChunkData;
+import nex.capability.IBlightChunkData;
 import nex.village.PigtificateVillageData;
 import nex.village.PigtificateVillageManager;
 
@@ -54,6 +57,21 @@ public class WorldHandler
                 if(data != null)
                 {
                     data.tick();
+                }
+            }
+        }
+        else
+        {
+            if(!world.isRemote)
+            {
+                if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
+                {
+                    IBlightChunkData data = world.getCapability(CapabilityBlightChunkData.INSTANCE, null);
+
+                    if(data != null)
+                    {
+                        data.tick(world);
+                    }
                 }
             }
         }
