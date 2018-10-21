@@ -36,6 +36,10 @@ public class NetherExItems
     public static final ItemNetherbrick NETHERBRICK = null;
     public static final ItemLibEx WITHER_BONE = null;
     public static final ItemWitherDust WITHER_DUST = null;
+    public static final ItemLibEx FROST_ROD = null;
+    public static final ItemLibEx FROST_POWDER = null;
+    public static final ItemLibEx BLAZED_WITHER_BONE = null;
+    public static final ItemLibEx FROSTED_WITHER_BONE = null;
     public static final ItemSalamanderHide SALAMANDER_HIDE = null;
     public static final ItemLibEx AMETHYST_CRYSTAL = null;
     public static final ItemLibEx RIME_CRYSTAL = null;
@@ -50,12 +54,12 @@ public class NetherExItems
     public static final ItemEdibleLibEx GHAST_MEAT_COOKED = null;
     public static final ItemEdibleLibEx CONGEALED_MAGMA_CREAM = null;
     public static final ItemEdibleLibEx ENOKI_MUSHROOM = null;
-    public static final ItemGoldenWitherBoneSword GOLDEN_WITHER_BONE_SWORD = null;
-    public static final ItemGoldenWitherBonePickaxe GOLDEN_WITHER_BONE_PICKAXE = null;
-    public static final ItemGoldenWitherBoneShovel GOLDEN_WITHER_BONE_SHOVEL = null;
-    public static final ItemGoldenWitherBoneAxe GOLDEN_WITHER_BONE_AXE = null;
-    public static final ItemGoldenWitherBoneHoe GOLDEN_WITHER_BONE_HOE = null;
-    public static final ItemGoldenWitherBoneHammer GOLDEN_WITHER_BONE_HAMMER = null;
+    public static final ItemAmedianSword AMEDIAN_SWORD = null;
+    public static final ItemAmedianPickaxe AMEDIAN_PICKAXE = null;
+    public static final ItemAmedianShovel AMEDIAN_SHOVEL = null;
+    public static final ItemAmedianAxe AMEDIAN_AXE = null;
+    public static final ItemAmedianHoe AMEDIAN_HOE = null;
+    public static final ItemAmedianHammer AMEDIAN_HAMMER = null;
     public static final ItemWitherBoneArmor WITHER_BONE_HELMET = null;
     public static final ItemWitherBoneArmor WITHER_BONE_CHESTPLATE = null;
     public static final ItemWitherBoneArmor WITHER_BONE_LEGGINGS = null;
@@ -75,6 +79,10 @@ public class NetherExItems
                     new ItemNetherbrick(),
                     new ItemLibEx(NetherEx.instance, "wither_bone"),
                     new ItemWitherDust(),
+                    new ItemLibEx(NetherEx.instance, "frost_rod"),
+                    new ItemLibEx(NetherEx.instance, "frost_powder"),
+                    new ItemLibEx(NetherEx.instance, "blazed_wither_bone"),
+                    new ItemLibEx(NetherEx.instance, "frosted_wither_bone"),
                     new ItemSalamanderHide(),
                     new ItemLibEx(NetherEx.instance, "amethyst_crystal"),
                     new ItemLibEx(NetherEx.instance, "rime_crystal"),
@@ -88,12 +96,12 @@ public class NetherExItems
                     new ItemEdibleLibEx(NetherEx.instance, "ghast_meat_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemEdibleLibEx(NetherEx.instance, "congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemEdibleLibEx(NetherEx.instance, "enoki_mushroom", 3, 0.7F, false),
-                    new ItemGoldenWitherBoneSword(),
-                    new ItemGoldenWitherBonePickaxe(),
-                    new ItemGoldenWitherBoneShovel(),
-                    new ItemGoldenWitherBoneAxe(),
-                    new ItemGoldenWitherBoneHoe(),
-                    new ItemGoldenWitherBoneHammer(),
+                    new ItemAmedianSword(),
+                    new ItemAmedianPickaxe(),
+                    new ItemAmedianShovel(),
+                    new ItemAmedianAxe(),
+                    new ItemAmedianHoe(),
+                    new ItemAmedianHammer(),
                     new ItemWitherBoneArmor("helmet", 1, EntityEquipmentSlot.HEAD),
                     new ItemWitherBoneArmor("chestplate", 1, EntityEquipmentSlot.CHEST),
                     new ItemWitherBoneArmor("leggings", 2, EntityEquipmentSlot.LEGS),

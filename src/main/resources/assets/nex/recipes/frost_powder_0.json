@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "nex:frost_rod"
+        }
+    ],
+    "result": {
+        "item": "nex:frost_powder",
+        "count": 2
+    }
+}

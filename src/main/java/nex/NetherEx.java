@@ -18,6 +18,7 @@
 package nex;
 
 import lex.IModData;
+import lex.client.model.item.IModelContainer;
 import lex.proxy.IProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -41,9 +42,14 @@ import nex.world.biome.NetherExBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Mod.EventBusSubscriber
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData
 {
+    //TODO: Fix models, add in other wither armor, add in new recipes
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "2.0.9";
@@ -66,6 +72,8 @@ public class NetherEx implements IModData
             return new ItemStack(Blocks.NETHERRACK);
         }
     };
+
+    private static final List<IModelContainer> MODEL_CONTAINERS = new ArrayList<>();
 
     public static final boolean IS_BOP_LOADED = Loader.isModLoaded("biomesoplenty");
 
@@ -130,5 +138,11 @@ public class NetherEx implements IModData
     public CreativeTabs getCreativeTab()
     {
         return CREATIVE_TAB;
+    }
+
+    @Override
+    public List<IModelContainer> getModelContainers()
+    {
+        return MODEL_CONTAINERS;
     }
 }

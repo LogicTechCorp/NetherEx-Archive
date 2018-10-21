@@ -18,6 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.client.model.item.ItemModelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -168,6 +169,16 @@ public class BlockNetherrackPath extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        for(BlockNetherrackPath.EnumType type : BlockNetherrackPath.EnumType.values())
+        {
+            ItemModelHandler.registerBlockModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
     }
 
     public enum EnumType implements IStringSerializable

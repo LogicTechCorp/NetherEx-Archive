@@ -18,6 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.client.model.item.ItemModelHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -30,6 +31,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 
 public class BlockBoneSliver extends BlockLibEx
@@ -117,5 +120,12 @@ public class BlockBoneSliver extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, AXIS);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        ItemModelHandler.registerBlockModel(this, "axis=y");
     }
 }

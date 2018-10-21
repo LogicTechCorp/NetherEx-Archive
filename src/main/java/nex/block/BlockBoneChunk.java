@@ -18,6 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.client.model.item.ItemModelHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -138,5 +139,12 @@ public class BlockBoneChunk extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        ItemModelHandler.registerBlockModel(this, "facing=up");
     }
 }

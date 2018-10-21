@@ -73,9 +73,14 @@ public class ConfigHandler
 
         if(config != null)
         {
+            ConfigCategory netherrackCategory = config.getCategory("nex.block.netherrack");
+            netherrackCategory.remove("allowAllShovelsToFlatten");
+
             ConfigCategory soulSandCategory = config.getCategory("nex.block.soul_sand");
             soulSandCategory.remove("doesNetherwartUseNewGrowthSystem");
             soulSandCategory.remove("doesRequireIchorInsteadOfLava");
+            soulSandCategory.remove("allowAllHoesToTill");
+
             config.getCategory("nex.block.nether_portal").remove("allowPigmanSpawning");
             config.renameProperty("nex.block.thornstalk", "blacklist", "mobBlacklist");
             config.renameProperty("nex.block.hyphae", "doesSpread", "shouldSpread");
@@ -179,10 +184,6 @@ public class ConfigHandler
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal")
         public NetherPortal netherPortal = new NetherPortal();
 
-        @Config.Name("netherrack")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherrack")
-        public Netherrack netherrack = new Netherrack();
-
         @Config.Name("soul_sand")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand")
         public SoulSand soulSand = new SoulSand();
@@ -228,17 +229,8 @@ public class ConfigHandler
             public int pigmanSpawnRarity = 2000;
         }
 
-        public class Netherrack
-        {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherrack.allowAllShovelsToFlatten")
-            public boolean allowAllShovelsToFlatten = false;
-        }
-
         public class SoulSand
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.allowAllHoesToTill")
-            public boolean allowAllHoesToTill = false;
-
             @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.useLavaAndIchorToHydrate")
             public boolean useLavaAndIchorToHydrate = false;
         }

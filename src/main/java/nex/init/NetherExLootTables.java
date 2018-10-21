@@ -45,6 +45,7 @@ public class NetherExLootTables
     public static final ResourceLocation SPORE = new ResourceLocation(NetherEx.MOD_ID + ":entity/spore");
     public static final ResourceLocation GHASTLING = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghastling");
     public static final ResourceLocation COOLMAR_SPIDER = new ResourceLocation(NetherEx.MOD_ID + ":entity/bone_spider");
+    public static final ResourceLocation FROST = new ResourceLocation(NetherEx.MOD_ID + ":entity/frost");
     public static final ResourceLocation BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
     public static final ResourceLocation GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghast_queen");
 }

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "nex:items/frosted_amedian_hoe"
+    }
+}

@@ -19,14 +19,20 @@ package nex.block;
 
 import com.google.common.base.CaseFormat;
 import lex.block.BlockSlabLibEx;
+import lex.client.model.item.ItemModelHandler;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
@@ -114,12 +120,34 @@ public class BlockNetherBrickSlab extends BlockSlabLibEx
         return meta;
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        {
+            ItemModelHandler.registerBlockModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("half=bottom,type=%s", type.getName()));
+        }
+    }
+
     public static class Double extends BlockNetherBrickSlab
     {
         @Override
         public boolean isDouble()
         {
             return true;
+        }
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public void registerModel()
+        {
+            ModelLoader.setCustomStateMapper(this, new StateMap.Builder().ignore(BlockSlab.HALF).build());
+
+            for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+            {
+                ItemModelHandler.registerBlockModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("type=%s", type.getName()));
+            }
         }
     }
 }

@@ -79,7 +79,7 @@ public class ClickHandler
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = event.getItemStack();
 
-        if(stack.getItem() == NetherExItems.GOLDEN_WITHER_BONE_SHOVEL || ConfigHandler.blockConfig.netherrack.allowAllShovelsToFlatten && stack.getItem() instanceof ItemHoe)
+        if(stack.getItem() instanceof ItemSpade)
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
@@ -102,7 +102,7 @@ public class ClickHandler
             }
 
         }
-        if(stack.getItem() == NetherExItems.GOLDEN_WITHER_BONE_HOE || ConfigHandler.blockConfig.soulSand.allowAllHoesToTill && stack.getItem() instanceof ItemHoe)
+        if(stack.getItem() instanceof ItemHoe)
         {
             if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
             {
@@ -139,7 +139,7 @@ public class ClickHandler
             event.setCanceled(true);
         }
 
-        if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_HAMMER)
+        if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_HAMMER)
         {
             BlockHelper.mine3x3(world, player.getHeldItemMainhand(), originalPos, player);
         }

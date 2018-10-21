@@ -19,13 +19,19 @@ package nex.block;
 
 import lex.block.BlockWallLibEx;
 import lex.block.state.VariableBlockStateContainer;
+import lex.client.model.item.ItemModelHandler;
+import net.minecraft.block.BlockWall;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 
 public class BlockNetherBrickWall extends BlockWallLibEx
@@ -72,5 +78,17 @@ public class BlockNetherBrickWall extends BlockWallLibEx
     protected BlockStateContainer createBlockState()
     {
         return new VariableBlockStateContainer(super.createBlockState(), this, UP, NORTH, EAST, SOUTH, WEST, TYPE);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        ModelLoader.setCustomStateMapper(this, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        {
+            ItemModelHandler.registerBlockModel(this, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + this.getRegistryName().getPath(), type.getName()), "inventory");
+        }
     }
 }

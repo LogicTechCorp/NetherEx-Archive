@@ -68,6 +68,8 @@ public class NetherExOreDictionary
         OreDictionary.registerOre("blockArdite", new ItemStack(ARDITE_BLOCK));
         OreDictionary.registerOre("ingotArdite", new ItemStack(ARDITE_INGOT));
         OreDictionary.registerOre("boneWithered", new ItemStack(WITHER_BONE));
+        OreDictionary.registerOre("boneWitheredBlazed", new ItemStack(BLAZED_WITHER_BONE));
+        OreDictionary.registerOre("boneWitheredFrosted", new ItemStack(FROSTED_WITHER_BONE));
         OreDictionary.registerOre("dyeBlack", new ItemStack(WITHER_DUST));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(GHAST_MEAT_RAW));
         OreDictionary.registerOre("listAllghastraw", new ItemStack(GHAST_MEAT_RAW));

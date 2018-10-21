@@ -460,8 +460,8 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             }
         }
 
-        BiomeConfigurations wrapper = NetherExBiomeManager.getBiomeConfigurations(this.world.getBiome(pos));
-        return creatureType == null || wrapper == null ? new ArrayList<>() : wrapper.getEntities(creatureType);
+        BiomeConfigurations configurations = NetherExBiomeManager.getBiomeConfigurations(this.world.getBiome(pos));
+        return creatureType == null || configurations == null ? new ArrayList<>() : configurations.getEntities(creatureType);
     }
 
     @Override
@@ -513,21 +513,21 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         {
             for(int z = 0; z < 16; z++)
             {
-                BiomeConfigurations wrapper = NetherExBiomeManager.getBiomeConfigurations(biomes[x + z * 16]);
+                BiomeConfigurations configurations = NetherExBiomeManager.getBiomeConfigurations(biomes[x + z * 16]);
 
-                if(wrapper != null)
+                if(configurations != null)
                 {
-                    Biome biome = wrapper.getBiome();
+                    Biome biome = configurations.getBiome();
                     ResourceLocation biomeName = biome.getRegistryName();
 
                     if(!biomeName.getNamespace().equalsIgnoreCase("biomesoplenty"))
                     {
-                        IBlockState surfaceBlock = wrapper.getBlock("topBlock", biome.topBlock);
-                        IBlockState fillerBlock = wrapper.getBlock("fillerBlock", biome.fillerBlock);
-                        IBlockState wallBlock = wrapper.getBlock("wallBlock", biome.fillerBlock);
-                        IBlockState ceilingBottomBlock = wrapper.getBlock("ceilingBottomBlock", biome.fillerBlock);
-                        IBlockState ceilingFillerBlock = wrapper.getBlock("ceilingFillerBlock", biome.fillerBlock);
-                        IBlockState oceanBlock = wrapper.getBlock("oceanBlock", Blocks.LAVA.getDefaultState());
+                        IBlockState surfaceBlock = configurations.getBlock("topBlock", biome.topBlock);
+                        IBlockState fillerBlock = configurations.getBlock("fillerBlock", biome.fillerBlock);
+                        IBlockState wallBlock = configurations.getBlock("wallBlock", biome.fillerBlock);
+                        IBlockState ceilingBottomBlock = configurations.getBlock("ceilingBottomBlock", biome.fillerBlock);
+                        IBlockState ceilingFillerBlock = configurations.getBlock("ceilingFillerBlock", biome.fillerBlock);
+                        IBlockState oceanBlock = configurations.getBlock("oceanBlock", Blocks.LAVA.getDefaultState());
 
                         int localX = ((chunkX * 16) + x) & 15;
                         int localZ = ((chunkZ * 16) + z) & 15;

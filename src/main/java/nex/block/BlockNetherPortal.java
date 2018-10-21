@@ -19,6 +19,7 @@ package nex.block;
 
 import com.google.common.collect.Queues;
 import lex.block.BlockLibEx;
+import lex.client.model.item.ItemModelHandler;
 import lex.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -348,6 +349,16 @@ public class BlockNetherPortal extends BlockLibEx
     public static int getMetaForAxis(EnumFacing.Axis axis)
     {
         return axis == EnumFacing.Axis.X ? 0 : axis == EnumFacing.Axis.Y ? 1 : 2;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        for(EnumFacing.Axis axis : EnumFacing.Axis.values())
+        {
+            ItemModelHandler.registerBlockModel(this, axis.ordinal(), this.getRegistryName().toString(), String.format("axis=%s", axis.getName()));
+        }
     }
 
     public boolean trySpawnPortal(World world, BlockPos pos)

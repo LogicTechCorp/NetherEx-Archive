@@ -25,6 +25,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.entity.projectile.EntityBlueFireball;
+import nex.init.NetherExLootTables;
 
 import javax.annotation.Nullable;
 
@@ -73,7 +74,7 @@ public class EntityFrost extends EntityMob
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_BLAZE;
+        return NetherExLootTables.FROST;
     }
 
     @Override

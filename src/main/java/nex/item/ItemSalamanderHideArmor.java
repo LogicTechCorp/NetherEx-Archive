@@ -17,6 +17,7 @@
 
 package nex.item;
 
+import lex.client.model.item.ItemModelHandler;
 import lex.item.ItemArmorLibEx;
 import lex.util.NBTHelper;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,7 +36,7 @@ public class ItemSalamanderHideArmor extends ItemArmorLibEx
     public ItemSalamanderHideArmor(String name, int renderIndex, EntityEquipmentSlot equipmentSlot)
     {
         super(NetherEx.instance, "salamander_hide_" + name, NetherExMaterials.SALAMANDER_HIDE, renderIndex, equipmentSlot);
-        this.addPropertyOverride(new ResourceLocation("variant"), (stack, worldIn, entity) -> isVariant(stack) ? 1.0F : 0.0F);
+        this.addPropertyOverride(new ResourceLocation("variant"), (stack, world, entity) -> isVariant(stack) ? 1.0F : 0.0F);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class ItemSalamanderHideArmor extends ItemArmorLibEx
             ItemStack stack = new ItemStack(this);
             NBTTagCompound compound = new NBTTagCompound();
             compound.setBoolean("Variant", true);
-            NBTHelper.setTagCompound(new ItemStack(this), compound);
+            NBTHelper.setTagCompound(stack, compound);
             list.add(new ItemStack(this));
             list.add(stack);
         }
@@ -62,6 +63,15 @@ public class ItemSalamanderHideArmor extends ItemArmorLibEx
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
         return !repair.isEmpty() && repair.getItem() == NetherExItems.SALAMANDER_HIDE || super.getIsRepairable(toRepair, repair);
+    }
+
+    @Override
+    public void registerModel()
+    {
+        for(ItemSalamanderHide.EnumType type : ItemSalamanderHide.EnumType.values())
+        {
+            ItemModelHandler.registerItemModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
     }
 
     private static boolean isVariant(ItemStack stack)

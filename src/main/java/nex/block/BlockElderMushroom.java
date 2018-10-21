@@ -18,6 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.client.model.item.ItemModelHandler;
 import lex.world.gen.feature.FeatureBigMushroom;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -194,6 +195,16 @@ public class BlockElderMushroom extends BlockLibEx implements IPlantable, IGrowa
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
+        {
+            ItemModelHandler.registerBlockModel(this, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + this.getRegistryName().getPath(), type.getName()), "inventory");
+        }
     }
 
     public enum EnumType implements IStringSerializable

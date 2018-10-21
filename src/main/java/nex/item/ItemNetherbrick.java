@@ -18,10 +18,13 @@
 package nex.item;
 
 import com.google.common.base.CaseFormat;
+import lex.client.model.item.ItemModelHandler;
 import lex.item.ItemLibEx;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.block.BlockNetherrack;
 
@@ -49,5 +52,15 @@ public class ItemNetherbrick extends ItemLibEx
     public String getTranslationKey(ItemStack stack)
     {
         return super.getTranslationKey() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockNetherrack.EnumType.fromMeta(stack.getItemDamage()).getName());
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        {
+            ItemModelHandler.registerItemModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
     }
 }

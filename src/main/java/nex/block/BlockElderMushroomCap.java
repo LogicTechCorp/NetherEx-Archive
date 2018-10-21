@@ -18,6 +18,7 @@
 package nex.block;
 
 import lex.block.BlockLibEx;
+import lex.client.model.item.ItemModelHandler;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -30,6 +31,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nex.NetherEx;
 import nex.init.NetherExItems;
 
@@ -55,7 +58,7 @@ public class BlockElderMushroomCap extends BlockLibEx
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     {
-        return player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_AXE;
+        return player.getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_AXE;
     }
 
     @Override
@@ -86,5 +89,15 @@ public class BlockElderMushroomCap extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel()
+    {
+        for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
+        {
+            ItemModelHandler.registerBlockModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("type=%s", type.getName()));
+        }
     }
 }

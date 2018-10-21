@@ -143,7 +143,7 @@ public class BlockHandler
         {
             if(state.getBlock() == Blocks.BEDROCK)
             {
-                if(player.getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_HAMMER)
+                if(player.getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_HAMMER)
                 {
                     ItemStack stack = new ItemStack(Blocks.BEDROCK, 1, 0);
                     stack.setTagInfo("AboveNether", new NBTTagByte((byte) 1));

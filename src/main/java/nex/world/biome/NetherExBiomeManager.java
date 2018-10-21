@@ -128,13 +128,13 @@ public class NetherExBiomeManager
 
     private static void createBiomeConfigurations(FileConfig config)
     {
-        BiomeConfigurations wrapper = new BiomeConfigurations(config);
-        Biome biome = wrapper.getBiome();
+        BiomeConfigurations configurations = new BiomeConfigurations(config);
+        Biome biome = configurations.getBiome();
 
-        if(biome != null && wrapper.isEnabled())
+        if(biome != null && configurations.isEnabled())
         {
             BIOMES.add(new BiomeManager.BiomeEntry(biome, ConfigHelper.getOrSet(config, "weight", 10)));
-            BIOME_CONFIGURATIONS.put(biome, wrapper);
+            BIOME_CONFIGURATIONS.put(biome, configurations);
         }
 
         config.close();

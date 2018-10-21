@@ -1,0 +1,20 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "nex:items/amedian_sword"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "type": 0.5
+            },
+            "model": "nex:item/blazed_amedian_sword"
+        },
+        {
+            "predicate": {
+                "type": 1.0
+            },
+            "model": "nex:item/frosted_amedian_sword"
+        }
+    ]
+}

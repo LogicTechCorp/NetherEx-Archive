@@ -1,8 +1,12 @@
 package nex.block;
 
+import lex.block.BlockDynamic;
+import lex.client.model.item.ItemModelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
@@ -10,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -102,5 +107,21 @@ public class BlockDynamicNetherOre extends BlockDynamicNetherBiome
     {
         Random rand = world instanceof World ? ((World) world).rand : new Random();
         return MathHelper.getInt(rand, 2, 5);
+    }
+
+    @Override
+    public void registerModel()
+    {
+        BlockDynamic dynamic = this;
+        ModelLoader.setCustomStateMapper(this, new StateMapperBase()
+        {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            {
+                return dynamic.getModelLocation();
+            }
+        });
+
+        ItemModelHandler.registerBlockModel(this, 0, this.getRegistryName().toString(), "inventory");
     }
 }

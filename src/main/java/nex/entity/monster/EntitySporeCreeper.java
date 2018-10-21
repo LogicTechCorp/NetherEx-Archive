@@ -196,7 +196,7 @@ public class EntitySporeCreeper extends EntityMob
     {
         if(source.getTrueSource() != null && source.getTrueSource() instanceof EntityLivingBase)
         {
-            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.GOLDEN_WITHER_BONE_SWORD)
+            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_SWORD)
             {
                 amount *= 2.0F;
             }

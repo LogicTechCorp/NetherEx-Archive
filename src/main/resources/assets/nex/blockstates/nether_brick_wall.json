@@ -1,5 +1,8 @@
 {
     "forge_marker": 1,
+    "defaults": {
+        "model": "builtin/generated"
+    },
     "variants": {
         "type": {
             "fiery": {
