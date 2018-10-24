@@ -24,7 +24,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeDecorator;
 import nex.init.NetherExBlocks;
 
-public abstract class BiomeNetherEx extends BiomeLibEx
+public abstract class BiomeNetherEx extends BiomeLibEx<INetherBiomeWrapper>
 {
     protected static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
     protected static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
@@ -44,5 +44,11 @@ public abstract class BiomeNetherEx extends BiomeLibEx
     public BiomeDecorator createBiomeDecorator()
     {
         return this.getModdedBiomeDecorator(new BiomeDecoratorNetherEx());
+    }
+
+    @Override
+    public INetherBiomeWrapper getWrapper()
+    {
+        return null;
     }
 }

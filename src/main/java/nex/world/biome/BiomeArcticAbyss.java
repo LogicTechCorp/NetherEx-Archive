@@ -18,7 +18,6 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureCluster;
 import lex.world.gen.feature.FeatureOre;
@@ -39,10 +38,8 @@ import nex.entity.monster.EntityWight;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class BiomeArcticAbyss extends BiomeNetherEx
 {
@@ -62,35 +59,35 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     }
 
     @Override
-    public BiomeConfigurations getConfigurations()
+    public INetherBiomeWrapper getWrapper()
     {
-        return new Configurations();
+        return new Wrapper();
     }
 
-    private class Configurations extends BiomeConfigurations
+    private class Wrapper extends NetherBiomeWrapper
     {
-        public Configurations()
+        public Wrapper()
         {
-            super(NetherExBiomes.ARCTIC_ABYSS.getRegistryName(), 2, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>());
+            super(NetherExBiomes.ARCTIC_ABYSS.getRegistryName(), 2, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public FileConfig serialize()
         {
-            this.getBlock("topBlock", FROSTBURN_ICE);
-            this.getBlock("fillerBlock", ICY_NETHERRACK);
-            this.getBlock("wallBlock", ICY_NETHERRACK);
-            this.getBlock("ceilingBottomBlock", ICY_NETHERRACK);
-            this.getBlock("ceilingFillerBlock", ICY_NETHERRACK);
-            this.getBlock("oceanBlock", MAGMA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock("topBlock", FROSTBURN_ICE);
+            this.getBiomeBlock("fillerBlock", ICY_NETHERRACK);
+            this.getBiomeBlock("wallBlock", ICY_NETHERRACK);
+            this.getBiomeBlock("ceilingBottomBlock", ICY_NETHERRACK);
+            this.getBiomeBlock("ceilingFillerBlock", ICY_NETHERRACK);
+            this.getBiomeBlock("oceanBlock", MAGMA);
+            this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4),
                     new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1)
             )));
-            this.getFeatures(GenerationStage.POPULATE).addAll(new ArrayList<>(Arrays.asList(
+            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureScatter(5, 1.0D, true, 4, 124, NetherExBlocks.BLUE_FIRE.getDefaultState(), ICY_NETHERRACK, FeatureScatter.Placement.ON_GROUND),
                     new FeatureCluster(10, 1.0D, true, 4, 124, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
                     new FeatureCluster(10, 1.0D, false, 1, 128, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
@@ -100,7 +97,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
             )));
-            return super.serialize(configFile);
+            return super.serialize();
         }
     }
 }

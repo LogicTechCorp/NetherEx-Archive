@@ -342,7 +342,7 @@ public class BlockBlueFire extends BlockLibEx
                 ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
             }
 
-            int ticks = RandomHelper.getRandomNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
+            int ticks = RandomHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
             ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, ticks));
         }
     }

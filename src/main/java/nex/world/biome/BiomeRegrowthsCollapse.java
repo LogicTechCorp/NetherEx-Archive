@@ -1,7 +1,6 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureCluster;
 import lex.world.gen.feature.FeatureFluid;
@@ -15,10 +14,8 @@ import nex.entity.passive.EntityBonspider;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class BiomeRegrowthsCollapse extends BiomeNetherEx
 {
@@ -32,31 +29,31 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
     }
 
     @Override
-    public BiomeConfigurations getConfigurations()
+    public INetherBiomeWrapper getWrapper()
     {
-        return new Configurations();
+        return new Wrapper();
     }
 
-    private class Configurations extends BiomeConfigurations
+    private class Wrapper extends NetherBiomeWrapper
     {
-        public Configurations()
+        public Wrapper()
         {
-            super(NetherExBiomes.REGROWTHS_COLLAPSE.getRegistryName(), 1, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>());
+            super(NetherExBiomes.REGROWTHS_COLLAPSE.getRegistryName(), 1, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public FileConfig serialize()
         {
-            this.getBlock("topBlock", Blocks.GRASS.getDefaultState());
-            this.getBlock("fillerBlock", Blocks.DIRT.getDefaultState());
-            this.getBlock("wallBlock", Blocks.STONE.getDefaultState());
-            this.getBlock("ceilingBottomBlock", Blocks.STONE.getDefaultState());
-            this.getBlock("ceilingFillerBlock", Blocks.STONE.getDefaultState());
-            this.getBlock("oceanBlock", Blocks.WATER.getDefaultState());
-            this.getEntities(EnumCreatureType.CREATURE).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock("topBlock", Blocks.GRASS.getDefaultState());
+            this.getBiomeBlock("fillerBlock", Blocks.DIRT.getDefaultState());
+            this.getBiomeBlock("wallBlock", Blocks.STONE.getDefaultState());
+            this.getBiomeBlock("ceilingBottomBlock", Blocks.STONE.getDefaultState());
+            this.getBiomeBlock("ceilingFillerBlock", Blocks.STONE.getDefaultState());
+            this.getBiomeBlock("oceanBlock", Blocks.WATER.getDefaultState());
+            this.getEntitySpawnEntries(EnumCreatureType.CREATURE).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityBonspider.class, 65, 2, 4)
             )));
-            this.getFeatures(GenerationStage.POPULATE).addAll(new ArrayList<>(Arrays.asList(
+            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureFluid(8, 1.0D, false, 4, 124, Blocks.WATER.getDefaultState(), Blocks.STONE.getDefaultState(), false),
                     new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, Blocks.STONE.getDefaultState(), EnumFacing.DOWN),
                     new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, Blocks.STONE.getDefaultState(), EnumFacing.DOWN),
@@ -65,7 +62,7 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(1, 0.125D, false, 10, 108, NetherExBlocks.COBALT_ORE.getDefaultState(), Blocks.STONE.getDefaultState(), 8)
             )));
-            return super.serialize(configFile);
+            return super.serialize();
         }
     }
 }

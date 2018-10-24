@@ -1,7 +1,6 @@
-package nex.world.biome.vanilla;
+package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.*;
 import net.minecraft.entity.EnumCreatureType;
@@ -14,34 +13,32 @@ import net.minecraft.world.biome.Biome;
 import nex.NetherEx;
 import nex.init.NetherExBlocks;
 
-import java.io.File;
 import java.util.Arrays;
-import java.util.HashMap;
 
-public class BiomeConfigurationsHell extends BiomeConfigurations
+public class BiomeWrapperHell extends NetherBiomeWrapper
 {
-    public BiomeConfigurationsHell()
+    public BiomeWrapperHell()
     {
-        super(Biomes.HELL.getRegistryName(), 10, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>());
+        super(Biomes.HELL.getRegistryName(), 10, true, true);
     }
 
     @Override
-    public FileConfig serialize(File configFile)
+    public FileConfig serialize()
     {
-        this.getBlock("topBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBlock("fillerBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBlock("wallBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBlock("ceilingBottomBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBlock("ceilingFillerBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBlock("oceanBlock", Blocks.LAVA.getDefaultState());
-        this.getEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
+        this.getBiomeBlock("topBlock", Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock("fillerBlock", Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock("wallBlock", Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock("ceilingBottomBlock", Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock("ceilingFillerBlock", Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock("oceanBlock", Blocks.LAVA.getDefaultState());
+        this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(Arrays.asList(
                 new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                 new Biome.SpawnListEntry(EntityPigZombie.class, 100, 1, 4),
                 new Biome.SpawnListEntry(EntityMagmaCube.class, 3, 1, 4),
                 new Biome.SpawnListEntry(EntityEnderman.class, 1, 1, 4),
                 new Biome.SpawnListEntry(EntityBlaze.class, 2, 1, 4)
         ));
-        this.getFeatures(GenerationStage.POPULATE).addAll(Arrays.asList(
+        this.getFeatures(GenerationStage.PRE_DECORATE).addAll(Arrays.asList(
                 new FeatureFluid(8, 1.0D, false, 4, 124, Blocks.FLOWING_LAVA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), false),
                 new FeatureScatter(10, 1.0D, true, 4, 124, Blocks.FIRE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), FeatureScatter.Placement.ON_GROUND),
                 new FeatureCluster(10, 1.0D, true, 4, 124, Blocks.GLOWSTONE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), EnumFacing.DOWN),
@@ -58,6 +55,6 @@ public class BiomeConfigurationsHell extends BiomeConfigurations
                 new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3),
                 new FeatureOre(4, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 32)
         ));
-        return super.serialize(configFile);
+        return super.serialize();
     }
 }

@@ -23,7 +23,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
-import nex.world.biome.NetherExBiomeManager;
+import nex.world.biome.NetherBiomeManager;
 
 import java.util.List;
 
@@ -54,8 +54,8 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
 
     private Biome getRandomBiome()
     {
-        List<BiomeManager.BiomeEntry> biomeEntryList = NetherExBiomeManager.getBiomes();
-        int biomeWeights = WeightedRandom.getTotalWeight(biomeEntryList);
-        return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntryList, this.nextInt(biomeWeights)).biome;
+        List<BiomeManager.BiomeEntry> biomeEntries = NetherBiomeManager.INSTANCE.getBiomeEntries();
+        int biomeWeights = WeightedRandom.getTotalWeight(biomeEntries);
+        return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntries, this.nextInt(biomeWeights)).biome;
     }
 }

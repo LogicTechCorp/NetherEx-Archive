@@ -38,7 +38,7 @@ import nex.handler.ConfigHandler;
 import nex.handler.GuiHandler;
 import nex.init.*;
 import nex.village.PigtificateTradeManager;
-import nex.world.biome.NetherExBiomeManager;
+import nex.world.biome.NetherBiomeManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,7 +49,6 @@ import java.util.List;
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData
 {
-    //TODO: Fix models, add in other wither armor, add in new recipes
     public static final String MOD_ID = "nex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "2.0.9";
@@ -109,7 +108,6 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        NetherExBiomeManager.createBiomeConfigs();
         NetherExOverrides.overrideNether();
         proxy.postInit();
     }
@@ -117,14 +115,14 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
-        NetherExBiomeManager.readBiomeConfigs(event.getServer());
+        NetherBiomeManager.INSTANCE.readBiomeConfigs();
         PigtificateTradeManager.readTradeConfigs();
     }
 
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
-        NetherExBiomeManager.clearBiomes();
+        NetherBiomeManager.INSTANCE.writeBiomeConfigs();
         PigtificateTradeManager.clearTrades();
     }
 

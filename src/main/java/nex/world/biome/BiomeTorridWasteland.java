@@ -18,7 +18,6 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.*;
 import net.minecraft.block.state.IBlockState;
@@ -35,10 +34,8 @@ import nex.entity.neutral.EntitySalamander;
 import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class BiomeTorridWasteland extends BiomeNetherEx
 {
@@ -55,34 +52,34 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     }
 
     @Override
-    public BiomeConfigurations getConfigurations()
+    public INetherBiomeWrapper getWrapper()
     {
-        return new Configurations();
+        return new Wrapper();
     }
 
-    private class Configurations extends BiomeConfigurations
+    private class Wrapper extends NetherBiomeWrapper
     {
-        public Configurations()
+        public Wrapper()
         {
-            super(NetherExBiomes.TORRID_WASTELAND.getRegistryName(), 6, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>());
+            super(NetherExBiomes.TORRID_WASTELAND.getRegistryName(), 6, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public FileConfig serialize()
         {
-            this.getBlock("topBlock", FIERY_NETHERRACK);
-            this.getBlock("fillerBlock", FIERY_NETHERRACK);
-            this.getBlock("wallBlock", FIERY_NETHERRACK);
-            this.getBlock("ceilingBottomBlock", FIERY_NETHERRACK);
-            this.getBlock("ceilingFillerBlock", FIERY_NETHERRACK);
-            this.getBlock("oceanBlock", LAVA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock("topBlock", FIERY_NETHERRACK);
+            this.getBiomeBlock("fillerBlock", FIERY_NETHERRACK);
+            this.getBiomeBlock("wallBlock", FIERY_NETHERRACK);
+            this.getBiomeBlock("ceilingBottomBlock", FIERY_NETHERRACK);
+            this.getBiomeBlock("ceilingFillerBlock", FIERY_NETHERRACK);
+            this.getBiomeBlock("oceanBlock", LAVA);
+            this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6),
                     new Biome.SpawnListEntry(EntityMagmaCube.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntityBlaze.class, 3, 1, 4)
             )));
-            this.getFeatures(GenerationStage.POPULATE).addAll(new ArrayList<>(Arrays.asList(
+            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureFluid(16, 1.0D, false, 4, 124, FLOWING_LAVA, FIERY_NETHERRACK, false),
                     new FeatureScatter(20, 1.0D, true, 4, 124, FIRE, FIERY_NETHERRACK, FeatureScatter.Placement.ON_GROUND),
                     new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
@@ -95,7 +92,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
                     new FeatureOre(14, 1.0D, false, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
                     new FeatureOre(8, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
             )));
-            return super.serialize(configFile);
+            return super.serialize();
         }
     }
 }

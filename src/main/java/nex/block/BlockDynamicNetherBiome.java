@@ -2,14 +2,14 @@ package nex.block;
 
 import lex.IModData;
 import lex.block.BlockDynamic;
-import lex.world.biome.BiomeConfigurations;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.Biome;
-import nex.world.biome.NetherExBiomeManager;
+import nex.world.biome.INetherBiomeWrapper;
+import nex.world.biome.NetherBiomeManager;
 
 public abstract class BlockDynamicNetherBiome extends BlockDynamic
 {
@@ -22,12 +22,12 @@ public abstract class BlockDynamicNetherBiome extends BlockDynamic
     public IBlockState getDynamicState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         Biome biome = world.getBiome(pos);
-        BiomeConfigurations configurations = NetherExBiomeManager.getBiomeConfigurations(biome);
+        INetherBiomeWrapper wrapper = NetherBiomeManager.INSTANCE.getBiomeWrapper(biome);
 
-        if(configurations != null)
+        if(wrapper != null)
         {
-            IBlockState fillerBlock = configurations.getBlock("fillerBlock", null);
-            IBlockState wallBlock = configurations.getBlock("wallBlock", null);
+            IBlockState fillerBlock = wrapper.getBiomeBlock("fillerBlock", null);
+            IBlockState wallBlock = wrapper.getBiomeBlock("wallBlock", null);
 
             if(fillerBlock == wallBlock)
             {

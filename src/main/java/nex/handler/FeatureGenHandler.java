@@ -18,7 +18,6 @@
 package nex.handler;
 
 import lex.util.RandomHelper;
-import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.Feature;
 import net.minecraft.util.math.BlockPos;
@@ -26,11 +25,11 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nex.NetherEx;
-import nex.world.biome.NetherExBiomeManager;
+import nex.world.biome.INetherBiomeWrapper;
+import nex.world.biome.NetherBiomeManager;
 
 import java.util.Random;
 
@@ -38,38 +37,11 @@ import java.util.Random;
 public class FeatureGenHandler
 {
     @SubscribeEvent
-    public static void onPrePopulateChunk(PopulateChunkEvent.Pre event)
-    {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
-        {
-            generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.PRE_POPULATE);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPopulateChunk(PopulateChunkEvent.Populate event)
-    {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == PopulateChunkEvent.Populate.EventType.CUSTOM)
-        {
-            generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.POPULATE);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPostPopulateChunk(PopulateChunkEvent.Post event)
-    {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
-        {
-            generateFeature(event.getWorld(), event.getChunkX(), event.getChunkZ(), event.getRand(), GenerationStage.POST_POPULATE);
-        }
-    }
-
-    @SubscribeEvent
     public static void onPreBiomeDecorate(DecorateBiomeEvent.Pre event)
     {
         if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_DECORATE);
+            generateFeature(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.PRE_DECORATE);
         }
     }
 
@@ -78,7 +50,7 @@ public class FeatureGenHandler
     {
         if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
         {
-            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.DECORATE);
+            generateFeature(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.DECORATE);
         }
     }
 
@@ -87,7 +59,7 @@ public class FeatureGenHandler
     {
         if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_DECORATE);
+            generateFeature(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.POST_DECORATE);
         }
     }
 
@@ -118,23 +90,17 @@ public class FeatureGenHandler
         }
     }
 
-    private static void generateFeature(World world, int chunkX, int chunkZ, Random rand, GenerationStage generationStage)
-    {
-        BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        generateFeature(world, pos, rand, generationStage);
-    }
-
     private static void generateFeature(World world, BlockPos pos, Random rand, GenerationStage generationStage)
     {
-        BiomeConfigurations configurations = NetherExBiomeManager.getBiomeConfigurations(world.getBiome(pos.add(16, 0, 16)));
+        INetherBiomeWrapper wrapper = NetherBiomeManager.INSTANCE.getBiomeWrapper(world.getBiome(pos.add(16, 0, 16)));
 
-        if(configurations != null)
+        if(wrapper != null)
         {
-            for(Feature feature : configurations.getFeatures(generationStage))
+            for(Feature feature : wrapper.getFeatures(generationStage))
             {
                 for(int generationAttempts = 0; generationAttempts < feature.getGenAttempts(rand); generationAttempts++)
                 {
-                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomHelper.getRandomNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
+                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomHelper.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
                 }
             }
         }

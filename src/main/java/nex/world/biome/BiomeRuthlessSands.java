@@ -18,7 +18,6 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureCluster;
 import lex.world.gen.feature.FeatureFluid;
@@ -36,10 +35,8 @@ import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.FeatureThornstalk;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
@@ -56,33 +53,33 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     }
 
     @Override
-    public BiomeConfigurations getConfigurations()
+    public INetherBiomeWrapper getWrapper()
     {
-        return new Configurations();
+        return new Wrapper();
     }
 
-    private class Configurations extends BiomeConfigurations
+    private class Wrapper extends NetherBiomeWrapper
     {
-        public Configurations()
+        public Wrapper()
         {
-            super(NetherExBiomes.RUTHLESS_SANDS.getRegistryName(), 8, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>());
+            super(NetherExBiomes.RUTHLESS_SANDS.getRegistryName(), 8, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public FileConfig serialize()
         {
-            this.getBlock("topBlock", SOUL_SAND);
-            this.getBlock("fillerBlock", GLOOMY_NETHERRACK);
-            this.getBlock("wallBlock", GLOOMY_NETHERRACK);
-            this.getBlock("ceilingBottomBlock", GLOOMY_NETHERRACK);
-            this.getBlock("ceilingFillerBlock", GLOOMY_NETHERRACK);
-            this.getBlock("oceanBlock", LAVA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock("topBlock", SOUL_SAND);
+            this.getBiomeBlock("fillerBlock", GLOOMY_NETHERRACK);
+            this.getBiomeBlock("wallBlock", GLOOMY_NETHERRACK);
+            this.getBiomeBlock("ceilingBottomBlock", GLOOMY_NETHERRACK);
+            this.getBiomeBlock("ceilingFillerBlock", GLOOMY_NETHERRACK);
+            this.getBiomeBlock("oceanBlock", LAVA);
+            this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityWitherSkeleton.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 3, 1, 4),
                     new Biome.SpawnListEntry(EntitySpinout.class, 100, 1, 4)
             )));
-            this.getFeatures(GenerationStage.POPULATE).addAll(new ArrayList<>(Arrays.asList(
+            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureFluid(8, 1.0D, false, 4, 124, FLOWING_LAVA, GLOOMY_NETHERRACK, false),
                     new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
                     new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
@@ -94,7 +91,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
             )));
-            return super.serialize(configFile);
+            return super.serialize();
         }
     }
 }

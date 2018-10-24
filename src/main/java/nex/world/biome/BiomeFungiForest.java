@@ -18,7 +18,6 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import lex.world.biome.BiomeConfigurations;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureBigMushroom;
 import lex.world.gen.feature.FeatureCluster;
@@ -41,10 +40,8 @@ import nex.init.NetherExBiomes;
 import nex.init.NetherExBlocks;
 import nex.world.gen.feature.FeatureEnoki;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class BiomeFungiForest extends BiomeNetherEx
 {
@@ -62,33 +59,33 @@ public class BiomeFungiForest extends BiomeNetherEx
     }
 
     @Override
-    public BiomeConfigurations getConfigurations()
+    public INetherBiomeWrapper getWrapper()
     {
-        return new Configurations();
+        return new Wrapper();
     }
 
-    private class Configurations extends BiomeConfigurations
+    private class Wrapper extends NetherBiomeWrapper
     {
-        public Configurations()
+        public Wrapper()
         {
-            super(NetherExBiomes.FUNGI_FOREST.getRegistryName(), 4, true, true, new HashMap<>(), new HashMap<>(), new HashMap<>());
+            super(NetherExBiomes.FUNGI_FOREST.getRegistryName(), 4, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public FileConfig serialize()
         {
-            this.getBlock("topBlock", NetherExBlocks.HYPHAE.getDefaultState());
-            this.getBlock("fillerBlock", LIVELY_NETHERRACK);
-            this.getBlock("wallBlock", LIVELY_NETHERRACK);
-            this.getBlock("ceilingBottomBlock", LIVELY_NETHERRACK);
-            this.getBlock("ceilingFillerBlock", LIVELY_NETHERRACK);
-            this.getBlock("oceanBlock", LAVA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock("topBlock", NetherExBlocks.HYPHAE.getDefaultState());
+            this.getBiomeBlock("fillerBlock", LIVELY_NETHERRACK);
+            this.getBiomeBlock("wallBlock", LIVELY_NETHERRACK);
+            this.getBiomeBlock("ceilingBottomBlock", LIVELY_NETHERRACK);
+            this.getBiomeBlock("ceilingFillerBlock", LIVELY_NETHERRACK);
+            this.getBiomeBlock("oceanBlock", LAVA);
+            this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6),
                     new Biome.SpawnListEntry(EntitySpore.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4)
             )));
-            this.getFeatures(GenerationStage.POPULATE).addAll(new ArrayList<>(Arrays.asList(
+            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
                     new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
                     new FeatureStructure(1, 0.0125D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":ghast_queen_shrine"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
@@ -101,7 +98,7 @@ public class BiomeFungiForest extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
             )));
-            return super.serialize(configFile);
+            return super.serialize();
         }
     }
 }

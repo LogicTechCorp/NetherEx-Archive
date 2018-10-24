@@ -1,6 +1,5 @@
 package nex.world.biome;
 
-import lex.world.biome.BiomeConfigurations;
 import nex.NetherEx;
 
 public class BiomeBlightsAscension extends BiomeNetherEx
@@ -11,7 +10,7 @@ public class BiomeBlightsAscension extends BiomeNetherEx
     }
 
     @Override
-    public BiomeConfigurations getConfigurations()
+    public INetherBiomeWrapper getWrapper()
     {
         return null;
     }
