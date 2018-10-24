@@ -59,11 +59,11 @@ public class NetherBiomeManager extends BiomeRegistry<INetherBiomeWrapper>
 
         if(NetherEx.IS_BOP_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {
-            this.addBiome(new NetherBiomeWrapper(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, true));
-            this.addBiome(new NetherBiomeWrapper(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, true));
-            this.addBiome(new NetherBiomeWrapper(new ResourceLocation("biomesoplenty:phantasmagoric_inferno"), 6, true, true));
-            this.addBiome(new NetherBiomeWrapper(new ResourceLocation("biomesoplenty:undergarden"), 4, true, true));
-            this.addBiome(new NetherBiomeWrapper(new ResourceLocation("biomesoplenty:visceral_heap"), 4, true, true));
+            this.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, true));
+            this.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, true));
+            this.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:phantasmagoric_inferno"), 6, true, true));
+            this.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:undergarden"), 4, true, true));
+            this.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:visceral_heap"), 4, true, true));
         }
     }
 
@@ -142,20 +142,11 @@ public class NetherBiomeManager extends BiomeRegistry<INetherBiomeWrapper>
         {
             if(entry.getValue() instanceof ISerializableBiomeWrapper)
             {
-                FileConfig config = ((ISerializableBiomeWrapper) entry.getValue()).serialize();
+                ISerializableBiomeWrapper wrapper = (ISerializableBiomeWrapper) entry.getValue();
+                FileConfig config = wrapper.serialize();
                 config.save();
                 config.close();
-            }
-
-            INetherBiomeWrapper wrapper = entry.getValue();
-
-            for(EnumCreatureType type : EnumCreatureType.values())
-            {
-                wrapper.getEntitySpawnEntries(type).clear();
-            }
-            for(GenerationStage stage : GenerationStage.values())
-            {
-                wrapper.getFeatures(stage).clear();
+                wrapper.reset();
             }
         }
 
@@ -163,20 +154,11 @@ public class NetherBiomeManager extends BiomeRegistry<INetherBiomeWrapper>
         {
             if(entry.getValue() instanceof ISerializableBiomeWrapper)
             {
-                FileConfig config = ((ISerializableBiomeWrapper) entry.getValue()).serialize();
+                ISerializableBiomeWrapper wrapper = (ISerializableBiomeWrapper) entry.getValue();
+                FileConfig config = wrapper.serialize();
                 config.save();
                 config.close();
-            }
-
-            INetherBiomeWrapper wrapper = entry.getValue();
-
-            for(EnumCreatureType type : EnumCreatureType.values())
-            {
-                wrapper.getEntitySpawnEntries(type).clear();
-            }
-            for(GenerationStage stage : GenerationStage.values())
-            {
-                wrapper.getFeatures(stage).clear();
+                wrapper.reset();
             }
         }
     }
