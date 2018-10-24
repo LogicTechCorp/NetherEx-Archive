@@ -23,8 +23,6 @@ import lex.util.ConfigHelper;
 import lex.util.FileHelper;
 import lex.world.biome.BiomeRegistry;
 import lex.world.biome.ISerializableBiomeWrapper;
-import lex.world.gen.GenerationStage;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
