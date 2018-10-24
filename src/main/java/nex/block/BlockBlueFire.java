@@ -465,6 +465,7 @@ public class BlockBlueFire extends BlockLibEx
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerModel()
     {
         ModelLoader.setCustomStateMapper(this, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());

@@ -110,6 +110,7 @@ public class BlockDynamicNetherOre extends BlockDynamicNetherBiome
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerModel()
     {
         BlockDynamic dynamic = this;
