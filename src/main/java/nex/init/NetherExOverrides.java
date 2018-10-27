@@ -17,6 +17,7 @@
 
 package nex.init;
 
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
@@ -34,6 +35,8 @@ public class NetherExOverrides
         }
 
         Blocks.OBSIDIAN.setTickRandomly(true);
+        Biomes.HELL.topBlock = Blocks.NETHERRACK.getDefaultState();
+        Biomes.HELL.fillerBlock = Blocks.NETHERRACK.getDefaultState();
     }
 
     public static void overrideNether()

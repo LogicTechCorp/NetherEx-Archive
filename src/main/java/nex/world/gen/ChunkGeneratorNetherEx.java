@@ -17,6 +17,7 @@
 
 package nex.world.gen;
 
+import lex.world.biome.BiomeBlockType;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -519,12 +520,12 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
                     if(!biomeName.getNamespace().equalsIgnoreCase("biomesoplenty"))
                     {
-                        IBlockState surfaceBlock = wrapper.getBiomeBlock("topBlock", biome.topBlock);
-                        IBlockState fillerBlock = wrapper.getBiomeBlock("fillerBlock", biome.fillerBlock);
-                        IBlockState wallBlock = wrapper.getBiomeBlock("wallBlock", biome.fillerBlock);
-                        IBlockState ceilingBottomBlock = wrapper.getBiomeBlock("ceilingBottomBlock", biome.fillerBlock);
-                        IBlockState ceilingFillerBlock = wrapper.getBiomeBlock("ceilingFillerBlock", biome.fillerBlock);
-                        IBlockState oceanBlock = wrapper.getBiomeBlock("oceanBlock", Blocks.LAVA.getDefaultState());
+                        IBlockState surfaceBlock = wrapper.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, biome.topBlock);
+                        IBlockState fillerBlock = wrapper.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, biome.fillerBlock);
+                        IBlockState wallBlock = wrapper.getBiomeBlock(BiomeBlockType.WALL_BLOCK, biome.fillerBlock);
+                        IBlockState ceilingFillerBlock = wrapper.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, biome.fillerBlock);
+                        IBlockState ceilingBottomBlock = wrapper.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, biome.fillerBlock);
+                        IBlockState oceanBlock = wrapper.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
 
                         int localX = ((chunkX * 16) + x) & 15;
                         int localZ = ((chunkZ * 16) + z) & 15;

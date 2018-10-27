@@ -2,6 +2,7 @@ package nex.block;
 
 import lex.IModData;
 import lex.block.BlockDynamic;
+import lex.world.biome.BiomeBlockType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -26,15 +27,7 @@ public abstract class BlockDynamicNetherBiome extends BlockDynamic
 
         if(wrapper != null)
         {
-            IBlockState fillerBlock = wrapper.getBiomeBlock("fillerBlock", null);
-            IBlockState wallBlock = wrapper.getBiomeBlock("wallBlock", null);
-
-            if(fillerBlock == wallBlock)
-            {
-                return fillerBlock;
-            }
-
-            return wallBlock;
+            return wrapper.getBiomeBlock(BiomeBlockType.WALL_BLOCK, null);
         }
 
         return Blocks.NETHERRACK.getDefaultState();

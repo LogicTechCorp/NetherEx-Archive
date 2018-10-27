@@ -1,6 +1,7 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import lex.world.biome.BiomeBlockType;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureCluster;
 import lex.world.gen.feature.FeatureFluid;
@@ -44,12 +45,12 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
         @Override
         public FileConfig serialize()
         {
-            this.getBiomeBlock("topBlock", Blocks.GRASS.getDefaultState());
-            this.getBiomeBlock("fillerBlock", Blocks.DIRT.getDefaultState());
-            this.getBiomeBlock("wallBlock", Blocks.STONE.getDefaultState());
-            this.getBiomeBlock("ceilingBottomBlock", Blocks.STONE.getDefaultState());
-            this.getBiomeBlock("ceilingFillerBlock", Blocks.STONE.getDefaultState());
-            this.getBiomeBlock("oceanBlock", Blocks.WATER.getDefaultState());
+            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, Blocks.GRASS.getDefaultState());
+            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, Blocks.DIRT.getDefaultState());
+            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, Blocks.STONE.getDefaultState());
+            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, Blocks.STONE.getDefaultState());
+            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, Blocks.STONE.getDefaultState());
+            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.WATER.getDefaultState());
             this.getEntitySpawnEntries(EnumCreatureType.CREATURE).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityBonspider.class, 65, 2, 4)
             )));

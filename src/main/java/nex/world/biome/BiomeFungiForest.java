@@ -18,6 +18,7 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import lex.world.biome.BiomeBlockType;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureBigMushroom;
 import lex.world.gen.feature.FeatureCluster;
@@ -74,12 +75,12 @@ public class BiomeFungiForest extends BiomeNetherEx
         @Override
         public FileConfig serialize()
         {
-            this.getBiomeBlock("topBlock", NetherExBlocks.HYPHAE.getDefaultState());
-            this.getBiomeBlock("fillerBlock", LIVELY_NETHERRACK);
-            this.getBiomeBlock("wallBlock", LIVELY_NETHERRACK);
-            this.getBiomeBlock("ceilingBottomBlock", LIVELY_NETHERRACK);
-            this.getBiomeBlock("ceilingFillerBlock", LIVELY_NETHERRACK);
-            this.getBiomeBlock("oceanBlock", LAVA);
+            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
+            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, LAVA);
             this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6),
                     new Biome.SpawnListEntry(EntitySpore.class, 25, 1, 4),

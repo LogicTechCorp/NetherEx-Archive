@@ -54,6 +54,7 @@ public class NetherBiomeManager extends BiomeRegistry<INetherBiomeWrapper>
         this.addBiome(NetherExBiomes.FUNGI_FOREST.getWrapper());
         this.addBiome(NetherExBiomes.TORRID_WASTELAND.getWrapper());
         this.addBiome(NetherExBiomes.ARCTIC_ABYSS.getWrapper());
+        this.addBiome(NetherExBiomes.REGROWTHS_COLLAPSE.getWrapper());
 
         if(NetherEx.IS_BOP_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {
@@ -140,11 +141,9 @@ public class NetherBiomeManager extends BiomeRegistry<INetherBiomeWrapper>
         {
             if(entry.getValue() instanceof ISerializableBiomeWrapper)
             {
-                ISerializableBiomeWrapper wrapper = (ISerializableBiomeWrapper) entry.getValue();
-                FileConfig config = wrapper.serialize();
+                FileConfig config = ((ISerializableBiomeWrapper) entry.getValue()).serialize();
                 config.save();
                 config.close();
-                wrapper.reset();
             }
         }
 
@@ -152,11 +151,9 @@ public class NetherBiomeManager extends BiomeRegistry<INetherBiomeWrapper>
         {
             if(entry.getValue() instanceof ISerializableBiomeWrapper)
             {
-                ISerializableBiomeWrapper wrapper = (ISerializableBiomeWrapper) entry.getValue();
-                FileConfig config = wrapper.serialize();
+                FileConfig config = ((ISerializableBiomeWrapper) entry.getValue()).serialize();
                 config.save();
                 config.close();
-                wrapper.reset();
             }
         }
     }

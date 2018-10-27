@@ -18,6 +18,7 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import lex.world.biome.BiomeBlockType;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureCluster;
 import lex.world.gen.feature.FeatureFluid;
@@ -68,12 +69,12 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         @Override
         public FileConfig serialize()
         {
-            this.getBiomeBlock("topBlock", SOUL_SAND);
-            this.getBiomeBlock("fillerBlock", GLOOMY_NETHERRACK);
-            this.getBiomeBlock("wallBlock", GLOOMY_NETHERRACK);
-            this.getBiomeBlock("ceilingBottomBlock", GLOOMY_NETHERRACK);
-            this.getBiomeBlock("ceilingFillerBlock", GLOOMY_NETHERRACK);
-            this.getBiomeBlock("oceanBlock", LAVA);
+            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, SOUL_SAND);
+            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, LAVA);
             this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityWitherSkeleton.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 3, 1, 4),

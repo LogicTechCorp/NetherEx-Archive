@@ -19,7 +19,7 @@ public class BOPNetherBiomeWrapper extends NetherBiomeWrapper
 
         if(server != null)
         {
-            WorldType worldType = FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld().getWorldType();
+            WorldType worldType = server.getEntityWorld().getWorldType();
             return worldType.getName().equalsIgnoreCase("BIOMESOP") || worldType.getName().equalsIgnoreCase("lostcities_bop");
         }
 

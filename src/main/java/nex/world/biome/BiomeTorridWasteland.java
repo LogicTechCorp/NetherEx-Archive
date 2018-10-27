@@ -18,6 +18,7 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import lex.world.biome.BiomeBlockType;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.*;
 import net.minecraft.block.state.IBlockState;
@@ -44,8 +45,8 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     public BiomeTorridWasteland()
     {
         super(NetherEx.instance, new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
-        this.topBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
-        this.fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
+        this.topBlock = FIERY_NETHERRACK;
+        this.fillerBlock = FIERY_NETHERRACK;
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 25, 1, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4));
@@ -67,12 +68,12 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         @Override
         public FileConfig serialize()
         {
-            this.getBiomeBlock("topBlock", FIERY_NETHERRACK);
-            this.getBiomeBlock("fillerBlock", FIERY_NETHERRACK);
-            this.getBiomeBlock("wallBlock", FIERY_NETHERRACK);
-            this.getBiomeBlock("ceilingBottomBlock", FIERY_NETHERRACK);
-            this.getBiomeBlock("ceilingFillerBlock", FIERY_NETHERRACK);
-            this.getBiomeBlock("oceanBlock", LAVA);
+            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, LAVA);
             this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6),

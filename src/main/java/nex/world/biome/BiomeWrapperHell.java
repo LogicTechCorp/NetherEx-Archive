@@ -1,6 +1,7 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import lex.world.biome.BiomeBlockType;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.*;
 import net.minecraft.entity.EnumCreatureType;
@@ -25,12 +26,12 @@ public class BiomeWrapperHell extends NetherBiomeWrapper
     @Override
     public FileConfig serialize()
     {
-        this.getBiomeBlock("topBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock("fillerBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock("wallBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock("ceilingBottomBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock("ceilingFillerBlock", Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock("oceanBlock", Blocks.LAVA.getDefaultState());
+        this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
         this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(Arrays.asList(
                 new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                 new Biome.SpawnListEntry(EntityPigZombie.class, 100, 1, 4),

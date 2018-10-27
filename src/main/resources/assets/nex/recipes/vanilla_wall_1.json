@@ -6,8 +6,7 @@
     ],
     "key": {
         "#": {
-            "item": "nex:nether_brick",
-            "data": 0
+            "item": "minecraft:nether_brick"
         }
     },
     "result": {

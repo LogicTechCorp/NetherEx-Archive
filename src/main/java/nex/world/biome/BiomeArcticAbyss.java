@@ -18,6 +18,7 @@
 package nex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import lex.world.biome.BiomeBlockType;
 import lex.world.gen.GenerationStage;
 import lex.world.gen.feature.FeatureCluster;
 import lex.world.gen.feature.FeatureOre;
@@ -50,7 +51,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     {
         super(NetherEx.instance, new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
         this.topBlock = FROSTBURN_ICE;
-        this.fillerBlock = NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
+        this.fillerBlock = ICY_NETHERRACK;
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4));
@@ -74,12 +75,12 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         @Override
         public FileConfig serialize()
         {
-            this.getBiomeBlock("topBlock", FROSTBURN_ICE);
-            this.getBiomeBlock("fillerBlock", ICY_NETHERRACK);
-            this.getBiomeBlock("wallBlock", ICY_NETHERRACK);
-            this.getBiomeBlock("ceilingBottomBlock", ICY_NETHERRACK);
-            this.getBiomeBlock("ceilingFillerBlock", ICY_NETHERRACK);
-            this.getBiomeBlock("oceanBlock", MAGMA);
+            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
+            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, MAGMA);
             this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),
