@@ -38,13 +38,13 @@ public class PigtificateTradeManager
 {
     public static void copyTradeConfigs()
     {
-        FileHelper.copyDirectoryToDirectory(NetherEx.class.getResource("/assets/nex/trade_configs"), new File(LibraryEx.CONFIG_DIRECTORY, "NetherEx/Trades"));
+        FileHelper.copyDirectoryToDirectory(NetherEx.class.getResource("/assets/netherex/trade_configs"), new File(LibraryEx.CONFIG_DIRECTORY, "NetherEx/Trades"));
     }
 
     public static void readTradeConfigs()
     {
         NetherEx.LOGGER.info("Setting up default trades.");
-        parseTradeConfigs(new File(LibraryEx.CONFIG_DIRECTORY, "NetherEx/Trades/logictechcorp.nex"));
+        parseTradeConfigs(new File(LibraryEx.CONFIG_DIRECTORY, "NetherEx/Trades/logictechcorp.netherex"));
 
         NetherEx.LOGGER.info("Setting up custom trades.");
         parseTradeConfigs(new File(LibraryEx.CONFIG_DIRECTORY, "NetherEx/Trades/custom"));

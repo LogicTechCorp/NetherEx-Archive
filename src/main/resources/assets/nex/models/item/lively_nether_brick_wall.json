@@ -1,6 +1,0 @@
-{
-    "parent": "block/wall_inventory",
-    "textures": {
-        "wall": "nex:blocks/lively_nether_brick"
-    }
-}

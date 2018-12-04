@@ -1,0 +1,17 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "texture": "netherex:blocks/enoki_mushroom_w3",
+        "inside": "netherex:blocks/enoki_mushroom_stem2",
+        "particle": "netherex:blocks/enoki_mushroom_stem1"
+    },
+    "elements": [
+        {
+            "from": [ 4, 4, 4 ],
+            "to": [ 12, 12, 12 ],
+            "faces": {
+                "north": { "texture": "#inside" }
+            }
+        }
+    ]
+}

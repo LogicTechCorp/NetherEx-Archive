@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "netherex:blocks/lively_netherrack",
+        "top": "netherex:blocks/hyphae_top",
+        "side": "netherex:blocks/hyphae_side"
+    }
+}

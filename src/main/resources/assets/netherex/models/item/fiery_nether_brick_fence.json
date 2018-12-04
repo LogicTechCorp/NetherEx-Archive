@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_inventory",
+    "textures": {
+        "texture": "netherex:blocks/fiery_nether_brick"
+    }
+}

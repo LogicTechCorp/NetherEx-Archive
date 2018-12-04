@@ -1,0 +1,23 @@
+{
+    "pools": [
+        {
+            "name": "spore_creeper_loot_pool",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "netherex:spore",
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

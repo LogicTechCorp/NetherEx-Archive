@@ -73,30 +73,30 @@ public class ConfigHandler
 
         if(config != null)
         {
-            ConfigCategory netherrackCategory = config.getCategory("logictechcorp.nex.block.netherrack");
+            ConfigCategory netherrackCategory = config.getCategory("logictechcorp.netherex.block.netherrack");
             netherrackCategory.remove("allowAllShovelsToFlatten");
 
-            ConfigCategory soulSandCategory = config.getCategory("logictechcorp.nex.block.soul_sand");
+            ConfigCategory soulSandCategory = config.getCategory("logictechcorp.netherex.block.soul_sand");
             soulSandCategory.remove("doesNetherwartUseNewGrowthSystem");
             soulSandCategory.remove("doesRequireIchorInsteadOfLava");
             soulSandCategory.remove("allowAllHoesToTill");
 
-            config.getCategory("logictechcorp.nex.block.nether_portal").remove("allowPigmanSpawning");
-            config.renameProperty("logictechcorp.nex.block.thornstalk", "blacklist", "mobBlacklist");
-            config.renameProperty("logictechcorp.nex.block.hyphae", "doesSpread", "shouldSpread");
-            config.renameProperty("logictechcorp.nex.block.soul_sand", "useLavaInsteadOfIchorToMoisten", "useLavaAndIchorToHydrate");
-            config.renameProperty("logictechcorp.nex.potion_effect.freeze", "blacklist", "mobBlacklist");
-            config.renameProperty("logictechcorp.nex.potion_effect.freeze", "chanceOfThawing", "thawRarity");
-            config.renameProperty("logictechcorp.nex.potion_effect.spore", "blacklist", "mobBlacklist");
-            config.renameProperty("logictechcorp.nex.potion_effect.spore", "chanceOfSporeSpawning", "sporeSpawnRarity");
-            config.renameProperty("logictechcorp.nex.potion_effect.lost", "chanceOfGhastlingSpawning", "ghastlingSpawnRarity");
-            config.renameProperty("logictechcorp.nex.entity.ember", "chanceOfSettingPlayerOnFire", "setPlayerOnFireRarity");
-            config.renameProperty("logictechcorp.nex.entity.nethermite", "chanceOfSpawning", "spawnRarity");
-            config.renameProperty("logictechcorp.nex.entity.nethermite", "whitelist", "blockWhitelist");
-            config.renameProperty("logictechcorp.nex.entity.spore_creeper", "chanceOfSporeSpawning", "sporeSpawnRarity");
-            config.renameProperty("logictechcorp.nex.entity.spore", "creeperSpawns", "creeperSpawnAmount");
-            config.renameProperty("logictechcorp.nex.entity.ghast_queen", "ghastlingSpawns", "ghastlingSpawnAmount");
-            config.renameProperty("logictechcorp.nex.biome.arctic_abyss", "chanceOfFreezing", "mobFreezeRarity");
+            config.getCategory("logictechcorp.netherex.block.nether_portal").remove("allowPigmanSpawning");
+            config.renameProperty("logictechcorp.netherex.block.thornstalk", "blacklist", "mobBlacklist");
+            config.renameProperty("logictechcorp.netherex.block.hyphae", "doesSpread", "shouldSpread");
+            config.renameProperty("logictechcorp.netherex.block.soul_sand", "useLavaInsteadOfIchorToMoisten", "useLavaAndIchorToHydrate");
+            config.renameProperty("logictechcorp.netherex.potion_effect.freeze", "blacklist", "mobBlacklist");
+            config.renameProperty("logictechcorp.netherex.potion_effect.freeze", "chanceOfThawing", "thawRarity");
+            config.renameProperty("logictechcorp.netherex.potion_effect.spore", "blacklist", "mobBlacklist");
+            config.renameProperty("logictechcorp.netherex.potion_effect.spore", "chanceOfSporeSpawning", "sporeSpawnRarity");
+            config.renameProperty("logictechcorp.netherex.potion_effect.lost", "chanceOfGhastlingSpawning", "ghastlingSpawnRarity");
+            config.renameProperty("logictechcorp.netherex.entity.ember", "chanceOfSettingPlayerOnFire", "setPlayerOnFireRarity");
+            config.renameProperty("logictechcorp.netherex.entity.nethermite", "chanceOfSpawning", "spawnRarity");
+            config.renameProperty("logictechcorp.netherex.entity.nethermite", "whitelist", "blockWhitelist");
+            config.renameProperty("logictechcorp.netherex.entity.spore_creeper", "chanceOfSporeSpawning", "sporeSpawnRarity");
+            config.renameProperty("logictechcorp.netherex.entity.spore", "creeperSpawns", "creeperSpawnAmount");
+            config.renameProperty("logictechcorp.netherex.entity.ghast_queen", "ghastlingSpawns", "ghastlingSpawnAmount");
+            config.renameProperty("logictechcorp.netherex.biome.arctic_abyss", "chanceOfFreezing", "mobFreezeRarity");
             config.save();
         }
     }

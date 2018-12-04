@@ -48,15 +48,15 @@ import java.util.List;
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData
 {
-    public static final String MOD_ID = "nex";
+    public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "2.0.9";
-    public static final String DEPENDENCIES = "required-after:logictechcorp.lex@[1.0.9,);";
+    public static final String DEPENDENCIES = "required-after:libraryex@[1.0.9,);";
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;
 
-    @SidedProxy(clientSide = "logictechcorp.nex.proxy.ClientProxy", serverSide = "logictechcorp.nex.proxy.ServerProxy")
+    @SidedProxy(clientSide = "logictechcorp.netherex.proxy.ClientProxy", serverSide = "logictechcorp.netherex.proxy.ServerProxy")
     public static IProxy proxy;
 
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)

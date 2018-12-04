@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        " XO",
+        "X  "
+    ],
+    "key": {
+        "O": {
+            "type": "forge:ore_dict",
+            "ore": "obsidian"
+        },
+        "#": {
+            "type": "forge:ore_dict",
+            "ore": "blockAmethyst"
+        },
+        "X": {
+            "item": "netherex:frosted_wither_bone"
+        }
+    },
+    "result": {
+        "nbt": "{Type:1}",
+        "item": "netherex:amedian_axe"
+    }
+}

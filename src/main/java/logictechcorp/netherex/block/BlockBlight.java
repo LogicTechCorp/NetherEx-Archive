@@ -3,6 +3,8 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockFiniteFluidLibEx;
 import logictechcorp.libraryex.util.BlockHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.capability.CapabilityBlightChunkData;
+import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExFluids;
@@ -15,9 +17,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
@@ -44,14 +47,14 @@ public class BlockBlight extends BlockFiniteFluidLibEx
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
-        this.takeBiome(world, pos);
+        this.takeChunk(world, pos);
         super.onBlockAdded(world, pos, state);
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        this.takeBiome(world, pos);
+        this.takeChunk(world, pos);
         super.onBlockPlacedBy(world, pos, state, placer, stack);
     }
 
@@ -120,59 +123,58 @@ public class BlockBlight extends BlockFiniteFluidLibEx
         {
             if(BlockHelper.isOreDict("grass", blockTest))
             {
-                this.takeBiome(world, pos);
+                this.takeChunk(world, pos);
             }
             else if(BlockHelper.isOreDict("dirt", blockTest))
             {
-                this.takeBiome(world, pos);
+                this.takeChunk(world, pos);
             }
             else if(BlockHelper.isOreDict("stone", blockTest))
             {
-                this.takeBiome(world, pos);
+                this.takeChunk(world, pos);
             }
-            else if(blockTest instanceof BlockOre)
+            else if(BlockHelper.oreDictNameContains(stateTest, "ore") || blockTest instanceof BlockOre)
             {
                 world.setBlockState(posTest, NetherExBlocks.ARDITE_ORE.getDefaultState());
-                this.takeBiome(world, pos);
-            }
-            else if(BlockHelper.isOreDict("gravel", blockTest))
-            {
-                this.takeBiome(world, pos);
-            }
-            else if(BlockHelper.isOreDict("sand", blockTest))
-            {
-                this.takeBiome(world, pos);
-            }
-            else if(BlockHelper.isOreDict("sandstone", blockTest))
-            {
-                this.takeBiome(world, pos);
+                this.takeChunk(world, pos);
             }
             else if(BlockHelper.isOreDict("logWood", blockTest))
             {
-                this.takeBiome(world, pos);
+                this.takeChunk(world, pos);
             }
             else if(BlockHelper.isOreDict("treeLeaves", blockTest))
             {
-                this.takeBiome(world, pos);
+                this.takeChunk(world, pos);
             }
             else if(BlockHelper.isOreDict("vine", blockTest))
             {
-                this.takeBiome(world, pos);
+                this.takeChunk(world, pos);
+            }
+            else if(BlockHelper.isOreDict("sand", blockTest))
+            {
+                this.takeChunk(world, pos);
+            }
+            else if(BlockHelper.isOreDict("sandstone", blockTest))
+            {
+                this.takeChunk(world, pos);
             }
         }
     }
 
-    private void takeBiome(World world, BlockPos pos)
+    private void takeChunk(World world, BlockPos pos)
     {
-        if(world.getBiome(pos) != NetherExBiomes.BLIGHTS_ASCENSION)
+        if(!world.isRemote)
         {
-            int localChunkX = pos.getX() & 15;
-            int localChunkZ = pos.getZ() & 15;
-            Chunk chunk = world.getChunk(pos);
-            byte[] biomeArray = chunk.getBiomeArray();
-            biomeArray[localChunkZ << 4 | localChunkX] = (byte) Biome.getIdForBiome(NetherExBiomes.BLIGHTS_ASCENSION);
-            chunk.setBiomeArray(biomeArray);
-            chunk.markDirty();
+            if(world.provider.getDimension() == DimensionType.OVERWORLD.getId() && world.getBiome(pos) != NetherExBiomes.BLIGHTS_ASCENSION)
+            {
+                IBlightChunkData data = world.getCapability(CapabilityBlightChunkData.INSTANCE, null);
+
+                if(data != null)
+                {
+                    Chunk chunk = world.getChunk(pos);
+                    data.addChunk(new ChunkPos((chunk.x * 8), (chunk.z * 8)));
+                }
+            }
         }
     }
 }

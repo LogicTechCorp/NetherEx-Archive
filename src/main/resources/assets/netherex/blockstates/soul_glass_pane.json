@@ -1,0 +1,80 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "pane_post",
+        "textures": {
+            "edge": "netherex:blocks/soul_glass_pane_side",
+            "pane": "netherex:blocks/soul_glass"
+        }
+    },
+    "variants": {
+        "north": {
+            "true": {
+                "submodel": {
+                    "north_side": {
+                        "model": "pane_side"
+                    }
+                }
+            },
+            "false": {
+                "submodel": {
+                    "north_side": {
+                        "model": "pane_noside"
+                    }
+                }
+            }
+        },
+        "south": {
+            "true": {
+                "submodel": {
+                    "south_side": {
+                        "model": "pane_side_alt"
+                    }
+                }
+            },
+            "false": {
+                "submodel": {
+                    "south_side": {
+                        "model": "pane_noside_alt",
+                        "y": 90
+                    }
+                }
+            }
+        },
+        "west": {
+            "true": {
+                "submodel": {
+                    "west_side": {
+                        "model": "pane_side_alt",
+                        "y": 90
+                    }
+                }
+            },
+            "false": {
+                "submodel": {
+                    "west_side": {
+                        "model": "pane_noside",
+                        "y": 270
+                    }
+                }
+            }
+        },
+        "east": {
+            "true": {
+                "submodel": {
+                    "east_side": {
+                        "model": "pane_side",
+                        "y": 90
+                    }
+                }
+            },
+            "false": {
+                "submodel": {
+                    "east_side": {
+                        "model": "pane_noside_alt"
+                    }
+                }
+            }
+        }
+    }
+}

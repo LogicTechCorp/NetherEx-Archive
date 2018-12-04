@@ -1,0 +1,24 @@
+{
+    "pools": [
+        {
+            "name": "fungi_forest_grave_pool1",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_fungi_forest"
+                }
+            ]
+        },
+        {
+            "name": "fungi_forest_grave_pool2",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_grave"
+                }
+            ]
+        }
+    ]
+}

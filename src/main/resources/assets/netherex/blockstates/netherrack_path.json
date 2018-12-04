@@ -1,0 +1,46 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "netherex:path",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "normal": {
+                "textures": {
+                    "top": "netherex:blocks/netherrack_path",
+                    "side": "blocks/netherrack",
+                    "bottom": "blocks/netherrack"
+                }
+            },
+            "fiery": {
+                "textures": {
+                    "top": "netherex:blocks/fiery_netherrack_path",
+                    "side": "netherex:blocks/fiery_netherrack",
+                    "bottom": "netherex:blocks/fiery_netherrack"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "top": "netherex:blocks/icy_netherrack_path",
+                    "side": "netherex:blocks/icy_netherrack",
+                    "bottom": "netherex:blocks/icy_netherrack"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "top": "netherex:blocks/lively_netherrack_path",
+                    "side": "netherex:blocks/lively_netherrack",
+                    "bottom": "netherex:blocks/lively_netherrack"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "top": "netherex:blocks/gloomy_netherrack_path",
+                    "side": "netherex:blocks/gloomy_netherrack",
+                    "bottom": "netherex:blocks/gloomy_netherrack"
+                }
+            }
+        }
+    }
+}

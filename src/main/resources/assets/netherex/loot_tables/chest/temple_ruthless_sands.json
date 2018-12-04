@@ -1,0 +1,24 @@
+{
+    "pools": [
+        {
+            "name": "ruthless_sands_temple_pool1",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_ruthless_sands"
+                }
+            ]
+        },
+        {
+            "name": "ruthless_sands_temple_pool2",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_temple"
+                }
+            ]
+        }
+    ]
+}

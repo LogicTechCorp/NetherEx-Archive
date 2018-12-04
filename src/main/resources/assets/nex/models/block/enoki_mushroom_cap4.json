@@ -1,8 +1,0 @@
-{
-    "parent": "nex:block/enoki_mushroom_cap0",
-    "textures": {
-        "side": "nex:blocks/enoki_mushroom_cap4",
-        "bottom": "nex:blocks/enoki_mushroom_w2",
-        "particle": "nex:blocks/enoki_mushroom_stem1"
-    }
-}

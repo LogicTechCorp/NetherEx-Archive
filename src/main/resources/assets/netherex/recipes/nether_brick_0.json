@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:netherbrick",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "netherex:nether_brick",
+        "data": 0,
+        "count": 4
+    }
+}

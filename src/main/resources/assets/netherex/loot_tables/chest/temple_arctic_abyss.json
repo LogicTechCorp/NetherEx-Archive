@@ -1,0 +1,24 @@
+{
+    "pools": [
+        {
+            "name": "arctic_abyss_temple_pool1",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_arctic_abyss"
+                }
+            ]
+        },
+        {
+            "name": "arctic_abyss_temple_pool2",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_temple"
+                }
+            ]
+        }
+    ]
+}

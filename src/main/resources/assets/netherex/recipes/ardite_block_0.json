@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:ardite_ingot"
+        }
+    },
+    "result": {
+        "item": "netherex:ardite_block"
+    }
+}

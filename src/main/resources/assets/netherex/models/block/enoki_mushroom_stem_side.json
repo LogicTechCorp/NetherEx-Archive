@@ -1,0 +1,41 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "a": "netherex:blocks/enoki_mushroom_w1",
+        "b": "netherex:blocks/enoki_mushroom_w2",
+        "c": "netherex:blocks/enoki_mushroom_w3",
+        "particle": "netherex:blocks/enoki_mushroom_stem1"
+    },
+    "elements": [
+        {
+            "from": [
+                4,
+                4,
+                0
+            ],
+            "to": [
+                12,
+                12,
+                4
+            ],
+            "faces": {
+                "down": {
+                    "texture": "#a"
+                },
+                "up": {
+                    "texture": "#c"
+                },
+                "north": {
+                    "texture": "#b",
+                    "cullface": "north"
+                },
+                "west": {
+                    "texture": "#c"
+                },
+                "east": {
+                    "texture": "#a"
+                }
+            }
+        }
+    ]
+}

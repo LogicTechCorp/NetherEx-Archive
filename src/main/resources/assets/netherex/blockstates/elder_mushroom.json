@@ -1,0 +1,20 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cross"
+    },
+    "variants": {
+        "type": {
+            "brown": {
+                "textures": {
+                    "cross": "netherex:blocks/brown_elder_mushroom"
+                }
+            },
+            "red": {
+                "textures": {
+                    "cross": "netherex:blocks/red_elder_mushroom"
+                }
+            }
+        }
+    }
+}

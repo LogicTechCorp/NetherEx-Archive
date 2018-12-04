@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "builtin/generated",
+        "transform": "forge:default-item"
+    },
+    "variants": {
+        "type": {
+            "fiery": {
+                "textures": {
+                    "layer0": "netherex:items/fiery_netherbrick"
+                }
+            },
+            "icy": {
+                "textures": {
+                    "layer0": "netherex:items/icy_netherbrick"
+                }
+            },
+            "lively": {
+                "textures": {
+                    "layer0": "netherex:items/lively_netherbrick"
+                }
+            },
+            "gloomy": {
+                "textures": {
+                    "layer0": "netherex:items/gloomy_netherbrick"
+                }
+            }
+        }
+    }
+}

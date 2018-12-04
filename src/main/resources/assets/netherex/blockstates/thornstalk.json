@@ -1,0 +1,25 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cross"
+    },
+    "variants": {
+        "part": {
+            "top": {
+                "textures": {
+                    "cross": "netherex:blocks/thornstalk_top"
+                }
+            },
+            "middle": {
+                "textures": {
+                    "cross": "netherex:blocks/thornstalk_middle"
+                }
+            },
+            "bottom": {
+                "textures": {
+                    "cross": "netherex:blocks/thornstalk_bottom"
+                }
+            }
+        }
+    }
+}

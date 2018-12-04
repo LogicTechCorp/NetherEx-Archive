@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#X#",
+        "#X#"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:basalt",
+            "data": 3
+        },
+        "X": {
+            "item": "netherex:basalt_slab",
+            "data": 3
+        }
+    },
+    "result": {
+        "item": "netherex:basalt_fence",
+        "data": 3,
+        "count": 4
+    }
+}

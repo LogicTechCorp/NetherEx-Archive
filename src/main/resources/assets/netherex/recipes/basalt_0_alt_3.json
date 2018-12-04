@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:basalt_stairs",
+            "count": 8
+        }
+    },
+    "result": {
+        "item": "netherex:basalt",
+        "data": 0,
+        "count": 3
+    }
+}

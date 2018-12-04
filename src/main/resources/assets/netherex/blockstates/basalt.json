@@ -1,0 +1,29 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "normal": {
+                "textures": {
+                    "all": "netherex:blocks/basalt"
+                }
+            },
+            "smooth": {
+                "textures": {
+                    "all": "netherex:blocks/basalt_smooth"
+                }
+            },
+            "brick": {
+                "textures": {
+                    "all": "netherex:blocks/basalt_brick"
+                }
+            },
+            "pillar": {
+                "model": "netherex:basalt_pillar"
+            }
+        }
+    }
+}

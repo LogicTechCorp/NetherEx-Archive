@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "axis": {
+            "x": {
+                "model": "portal_ew"
+            },
+            "y": {
+                "model": "netherex:portal_du"
+            },
+            "z": {
+                "model": "portal_ns"
+            }
+        }
+    }
+}

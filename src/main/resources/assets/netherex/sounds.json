@@ -1,0 +1,172 @@
+{
+    "pigtificate_ambient": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/pigtificate/pigtificate_ambient_1", "netherex:mob/pigtificate/pigtificate_ambient_2", "netherex:mob/pigtificate/pigtificate_ambient_3", "netherex:mob/pigtificate/pigtificate_ambient_4", "netherex:mob/pigtificate/pigtificate_ambient_5" ],
+        "subtitle": "subtitle.netherex:sound.pigtificate.ambient"
+    },
+    "pigtificate_hurt": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/pigtificate/pigtificate_hurt" ],
+        "subtitle": "subtitle.netherex:sound.pigtificate.hurt"
+    },
+    "pigtificate_death": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/pigtificate/pigtificate_death" ],
+        "subtitle": "subtitle.netherex:sound.pigtificate.death"
+    },
+    "mogus_ambient": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/mogus/mogus_ambient_1", "netherex:mob/mogus/mogus_ambient_2" ],
+        "subtitle": "subtitle.netherex:sound.mogus.ambient"
+    },
+    "mogus_hurt": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/mogus/mogus_hurt_1", "netherex:mob/mogus/mogus_hurt_2", "netherex:mob/mogus/mogus_hurt_3" ],
+        "subtitle": "subtitle.netherex:sound.mogus.hurt"
+    },
+    "mogus_death": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/mogus/mogus_death" ],
+        "subtitle": "subtitle.netherex:sound.mogus.death"
+    },
+    "salamander_ambient": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/salamander/salamander_ambient_1", "netherex:mob/salamander/salamander_ambient_2", "netherex:mob/salamander/salamander_ambient_3", "netherex:mob/salamander/salamander_ambient_4" ],
+        "subtitle": "subtitle.netherex:sound.salamander.ambient"
+    },
+    "salamander_hurt": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/salamander/salamander_hurt" ],
+        "subtitle": "subtitle.netherex:sound.salamander.hurt"
+    },
+    "salamander_death": {
+        "category": "neutral",
+        "sounds": [ "netherex:mob/salamander/salamander_death" ],
+        "subtitle": "subtitle.netherex:sound.salamander.death"
+    },
+    "wight_ambient": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/wight/wight_ambient_1", "netherex:mob/wight/wight_ambient_2", "netherex:mob/wight/wight_ambient_3" ],
+        "subtitle": "subtitle.netherex:sound.wight.ambient"
+    },
+    "wight_hurt": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/wight/wight_hurt" ],
+        "subtitle": "subtitle.netherex:sound.wight.hurt"
+    },
+    "wight_death": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/wight/wight_death" ],
+        "subtitle": "subtitle.netherex:sound.wight.death"
+    },
+    "ember_hurt": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ember/ember_hurt_1", "netherex:mob/ember/ember_hurt_2", "netherex:mob/ember/ember_hurt_3" ],
+        "subtitle": "subtitle.netherex:sound.ember.hurt"
+    },
+    "ember_death": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ember/ember_death" ],
+        "subtitle": "subtitle.netherex:sound.ember.death"
+    },
+    "nethermite_ambient": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/nethermite/nethermite_ambient" ],
+        "subtitle": "subtitle.netherex:sound.nethermite.ambient"
+    },
+    "nethermite_hurt": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/nethermite/nethermite_hurt" ],
+        "subtitle": "subtitle.netherex:sound.nethermite.hurt"
+    },
+    "nethermite_death": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/nethermite/nethermite_death" ],
+        "subtitle": "subtitle.netherex:sound.nethermite.death"
+    },
+    "spinout_ambient": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/spinout/spinout_ambient_1", "netherex:mob/spinout/spinout_ambient_2", "netherex:mob/spinout/spinout_ambient_3" ],
+        "subtitle": "subtitle.netherex:sound.spinout.ambient"
+    },
+    "spinout_hurt": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/spinout/spinout_hurt" ],
+        "subtitle": "subtitle.netherex:sound.spinout.hurt"
+    },
+    "spinout_death": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/spinout/spinout_death" ],
+        "subtitle": "subtitle.netherex:sound.spinout.death"
+    },
+    "spore_hurt": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/spore/spore_hurt_1", "netherex:mob/spore/spore_hurt_2", "netherex:mob/spore/spore_hurt_3", "netherex:mob/spore/spore_hurt_4" ],
+        "subtitle": "subtitle.netherex:sound.spore.hurt"
+    },
+    "spore_death": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/spore/spore_death" ],
+        "subtitle": "subtitle.netherex:sound.spore.death"
+    },
+    "spore_warn": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/spore/spore_warn" ],
+        "subtitle": "subtitle.netherex:sound.spore.warn"
+    },
+    "spore_explode": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/spore/spore_explode" ],
+        "subtitle": "subtitle.netherex:sound.spore.explode"
+    },
+    "ghastling_ambient": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghastling_ambient_1", "netherex:mob/ghast/ghastling_ambient_2", "netherex:mob/ghast/ghastling_ambient_3", "netherex:mob/ghast/ghastling_ambient_4", "netherex:mob/ghast/ghastling_ambient_5", "netherex:mob/ghast/ghastling_ambient_6", "netherex:mob/ghast/ghastling_ambient_7" ],
+        "subtitle": "subtitle.netherex:sound.ghast.ambientGhastling"
+    },
+    "ghastling_hurt": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghastling_hurt_1", "netherex:mob/ghast/ghastling_hurt_2", "netherex:mob/ghast/ghastling_hurt_3", "netherex:mob/ghast/ghastling_hurt_4", "netherex:mob/ghast/ghastling_hurt_5" ],
+        "subtitle": "subtitle.netherex:sound.ghast.hurt"
+    },
+    "ghastling_death": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghastling_death" ],
+        "subtitle": "subtitle.netherex:sound.ghast.death"
+    },
+    "ghastling_warn": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghastling_warn" ],
+        "subtitle": "subtitle.netherex:sound.ghast.warn"
+    },
+    "ghastling_shoot": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghastling_shoot" ],
+        "subtitle": "subtitle.netherex:sound.ghast.shoot"
+    },
+    "ghast_queen_ambient": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghast_queen_ambient_1", "netherex:mob/ghast/ghast_queen_ambient_2", "netherex:mob/ghast/ghast_queen_ambient_3", "netherex:mob/ghast/ghast_queen_ambient_4", "netherex:mob/ghast/ghast_queen_ambient_5" ],
+        "subtitle": "subtitle.netherex:sound.ghastQueen.ambient"
+    },
+    "ghast_queen_hurt": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghast_queen_hurt_1", "netherex:mob/ghast/ghast_queen_hurt_2", "netherex:mob/ghast/ghast_queen_hurt_3", "netherex:mob/ghast/ghast_queen_hurt_4", "netherex:mob/ghast/ghast_queen_hurt_5" ],
+        "subtitle": "subtitle.netherex:sound.ghastQueen.hurt"
+    },
+    "ghast_queen_death": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghast_queen_death" ],
+        "subtitle": "subtitle.netherex:sound.ghastQueen.death"
+    },
+    "ghast_queen_shoot": {
+        "category": "hostile",
+        "sounds": [ "netherex:mob/ghast/ghast_queen_shoot" ],
+        "subtitle": "subtitle.netherex:sound.ghastQueen.shoot"
+    },
+    "ghast_queen_summon": {
+        "category": "ambient",
+        "sounds": [ "netherex:mob/ghast/ghast_queen_summon" ],
+        "subtitle": "subtitle.netherex:sound.ghastQueen.summon"
+    }
+}

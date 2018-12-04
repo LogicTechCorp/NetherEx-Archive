@@ -1,0 +1,458 @@
+# Lang File Settings
+language.name=English
+language.region=United States
+language.code=en_us
+
+#Config
+config.netherex=NetherEx Config
+config.netherex:client=Client Settings
+config.netherex:client.tooltip=Settings that only affect the Client
+config.netherex:client.visual=Visual Settings
+config.netherex:client.visual.tooltip=Settings that only affect Client Visuals
+config.netherex:client.visual.disableNetherFog=Disable Nether Fog
+config.netherex:client.visual.disableNetherFog.tooltip=Does Fog render in the Nether
+
+config.netherex:compatibility=Compatibility Settings
+config.netherex:compatibility.tooltip=Settings that only affect mod compatibility
+
+config.netherex:compatibility.biomesOPlenty=Biomes O' Plenty Compatibility Settings
+config.netherex:compatibility.biomesOPlenty.tooltip=Settings that only affect Biomes O' Plenty compatibility
+config.netherex:compatibility.biomesOPlenty.enableCompatibility=Enable Biomes O' Plenty Compatibility
+config.netherex:compatibility.biomesOPlenty.enableCompatibility.tooltip=Is Biomes O' Plenty compatibility enabled
+
+config.netherex:dimension=Dimension Settings
+config.netherex:dimension.tooltip=Settings that only affect Dimensions
+
+config.netherex:dimension.nether=Nether Dimension Settings
+config.netherex:dimension.nether.tooltip=Settings that only affect the Nether Dimension
+config.netherex:dimension.nether.overrideNether=Override Nether
+config.netherex:dimension.nether.overrideNether.tooltip=Whether or not NetherEx overrides the Nether
+config.netherex:dimension.nether.generateSoulSand=Generate Soul Sand
+config.netherex:dimension.nether.generateSoulSand.tooltip=Do Soul Sand platforms generate in the Nether
+config.netherex:dimension.nether.generateGravel=Generate Gravel
+config.netherex:dimension.nether.generateGravel.tooltip=Do Gravel platforms generate in the Nether
+config.netherex:dimension.nether.isLavaInfinite=Is Lava Infinite
+config.netherex:dimension.nether.isLavaInfinite.tooltip=Is Lava Infinite in the Nether
+
+config.netherex:block=Block Settings
+config.netherex:block.tooltip=Settings that only affect Blocks
+
+config.netherex:block.blueFire=Blue Fire Settings
+config.netherex:block.blueFire.tooltip=Settings that only affect Blue Fire blocks
+config.netherex:block.blueFire.minEntityTicksAlight=Min Entity Ticks Alight
+config.netherex:block.blueFire.minEntityTicksAlight.tooltip=The minimum amount of ticks Blue Fire can set entities alight
+config.netherex:block.blueFire.maxEntityTicksAlight=Max Entity Ticks Alight
+config.netherex:block.blueFire.maxEntityTicksAlight.tooltip=The maximum amount of ticks Blue Fire can set entities alight
+
+config.netherex:block.netherPortal=Nether Portal Settings
+config.netherex:block.netherPortal.tooltip=Settings that only affect Nether Portal blocks
+config.netherex:block.netherPortal.pigmanSpawnRarity=Pigman Spawn Rarity
+config.netherex:block.netherPortal.pigmanSpawnRarity.tooltip=How rare Pigman spawns are from Nether Portal blocks
+
+config.netherex:block.soulSand=Soul Sand Settings
+config.netherex:block.soulSand.tooltip=Settings that only affect Soul Sand
+config.netherex:block.soulSand.useLavaAndIchorToHydrate=Does Tilled Soul Sand Hydrate With Lava And Ichor Or Just Ichor
+config.netherex:block.soulSand.useLavaAndIchorToHydrate.tooltip=Does Tilled Soul Sand Hydrate with Lava and Ichor or just Ichor
+
+config.netherex:block.netherWart=Nether Wart Settings
+config.netherex:block.netherWart.tooltip=Settings that only affect Nether Wart
+config.netherex:block.netherWart.growLikeCrops=Does Nether Wart Grow Like Crops
+config.netherex:block.netherWart.growLikeCrops.tooltip=Does Nether Wart require Tilled Soul Sand and a fluid source to grow
+config.netherex:block.netherWart.growthTickSpeed=Nether Wart Growth Tick Speed
+config.netherex:block.netherWart.growthTickSpeed.tooltip=The tick speed at which Nether Wart grows
+
+config.netherex:block.magma=Magma Settings
+config.netherex:block.magma.tooltip=Settings that only affect Magma
+config.netherex:block.magma.turnIntoLavaWhenBroken=Turn Into Lava When Broken
+config.netherex:block.magma.turnIntoLavaWhenBroken.tooltip=Does Magma turn into Lava when broken
+
+config.netherex:block.rime=Rime Block Settings
+config.netherex:block.rime.tooltip=Settings that only affect Rime
+config.netherex:block.rime.canFreezeWater=Can Freeze Water
+config.netherex:block.rime.canFreezeWater.tooltip=Can a Rime Block freeze Water
+config.netherex:block.rime.canFreezeLava=Can Freeze Lava
+config.netherex:block.rime.canFreezeLava.tooltip=Can a Rime Block freeze Lava
+config.netherex:block.rime.canFreezeMobs=Can Freeze Mobs
+config.netherex:block.rime.canFreezeMobs.tooltip=Can a Rime Block freeze Mobs
+
+config.netherex:block.thornstalk=Thornstalk Settings
+config.netherex:block.thornstalk.tooltip=Settings that only affect Thornstalk
+config.netherex:block.thornstalk.canDestroyItems=Can Destroy Items
+config.netherex:block.thornstalk.canDestroyItems.tooltip=Can Thornstalk destroy Items
+config.netherex:block.thornstalk.mobBlacklist=Mob Blacklist
+config.netherex:block.thornstalk.mobBlacklist.tooltip=Mobs Thornstalk won't hurt
+
+config.netherex:block.hyphae=Hyphae Settings
+config.netherex:block.hyphae.tooltip=Settings that only affect Hyphae
+config.netherex:block.hyphae.shouldSpread=Should Hyphae Spread
+config.netherex:block.hyphae.shouldSpread.tooltip=Should Hyphae spread to Lively Netherrack
+
+config.netherex:potionEffect=Potion Effect Settings
+config.netherex:potionEffect.tooltip=Settings that only affect Potion Effects
+config.netherex:potionEffect.freeze=Freeze Effect Settings
+config.netherex:potionEffect.freeze.tooltip=Settings that only affect the Freeze Effect
+config.netherex:potionEffect.freeze.thawRarity=Thaw Rarity
+config.netherex:potionEffect.freeze.thawRarity.tooltip=How rare it is for a mob to Thaw from the Freeze Effect when ticked
+config.netherex:potionEffect.freeze.mobBlacklist=Mob Blacklist
+config.netherex:potionEffect.freeze.mobBlacklist.tooltip=Mobs that won't freeze
+
+config.netherex:potionEffect.spore=Spore Effect Settings
+config.netherex:potionEffect.spore.tooltip=Settings that only affect the Spore Effect
+config.netherex:potionEffect.spore.sporeSpawnRarity=Spore Spawn Rarity
+config.netherex:potionEffect.spore.sporeSpawnRarity.tooltip=How rare it is for a Spore to spawn from an entity with the Spore Effect
+config.netherex:potionEffect.spore.mobBlacklist=Mob Blacklist
+config.netherex:potionEffect.spore.mobBlacklist.tooltip=Mobs that won't spawn Spores
+
+config.netherex:potionEffect.lost=Lost Effect Settings
+config.netherex:potionEffect.lost.tooltip=Settings that only affect the Lost Effect
+config.netherex:potionEffect.lost.ghastlingSpawnRarity=Ghastling Spawn Rarity
+config.netherex:potionEffect.lost.ghastlingSpawnRarity.tooltip=How rare it is for a Ghastling to spawn from an entity with the Lost Effect
+
+config.netherex:entity=Entity Settings
+config.netherex:entity.tooltip=Settings that only affect Entities
+
+config.netherex:entity.ember=Ember Settings
+config.netherex:entity.ember.tooltip=Settings that only affect the Ember
+config.netherex:entity.ember.setPlayerOnFireRarity=Set Player On Fire Rarity
+config.netherex:entity.ember.setPlayerOnFireRarity.tooltip=How rare it is for an Ember to set a Player on fire
+
+config.netherex:entity.nethermite=Nethermite Settings
+config.netherex:entity.nethermite.tooltip=Settings that only affect the Nethermite
+config.netherex:entity.nethermite.spawnRarity=Spawn Rarity
+config.netherex:entity.nethermite.spawnRarity.tooltip=How rare it is for a Nethermite to spawn from an ore in the Nether
+config.netherex:entity.nethermite.blockWhitelist=Block Whitelist
+config.netherex:entity.nethermite.blockWhitelist.tooltip=Blocks the Nethermite will spawn from
+
+config.netherex:entity.spinout=Spinout Settings
+config.netherex:entity.spinout.tooltip=Settings that only affect the Spinout
+config.netherex:entity.spinout.spinTime=Spin Time
+config.netherex:entity.spinout.spinTime.tooltip=How long does the Spinout spin
+config.netherex:entity.spinout.spinCooldown=Spin Cooldown
+config.netherex:entity.spinout.spinCooldown.tooltip=How long does the Spinout stay stopped between spins
+
+config.netherex:entity.sporeCreeper=Spore Creeper Settings
+config.netherex:entity.sporeCreeper.tooltip=Settings that only affect the Spore Creeper
+config.netherex:entity.sporeCreeper.sporeSpawnRarity=Spore Spawn Rarity
+config.netherex:entity.sporeCreeper.sporeSpawnRarity.tooltip=How rare it is to spawn a Spore upon death
+
+config.netherex:entity.spore=Spore Settings
+config.netherex:entity.spore.tooltip=Settings that only affect the Spore
+config.netherex:entity.spore.growthTime=Growth Time
+config.netherex:entity.spore.growthTime.tooltip=How long does it take for a Spore to grow
+config.netherex:entity.spore.creeperSpawnAmount=Creeper Spawn Amount
+config.netherex:entity.spore.creeperSpawnAmount.tooltip=How many Spore Creepers Spawn from a Spore
+
+config.netherex:entity.brute=Brute Settings
+config.netherex:entity.brute.tooltip=Settings that only affect the Brute
+config.netherex:entity.brute.chargeCooldown=Charge Cooldown
+config.netherex:entity.brute.chargeCooldown.tooltip=How long is the cooldown after charging players
+
+config.netherex:entity.ghast=Ghast Settings
+config.netherex:entity.ghast.tooltip=Settings that affect most Ghasts
+config.netherex:entity.ghast.meatDropRarity=Meat Drop Rarity
+config.netherex:entity.ghast.meatDropRarity.tooltip=How rare it is for Ghast Meat to drop
+
+config.netherex:entity.ghastQueen=Ghast Queen Settings
+config.netherex:entity.ghastQueen.tooltip=Settings that only affect the Ghast Queen
+config.netherex:entity.ghastQueen.ghastlingSpawnCooldown=Ghastling Spawn Cooldown
+config.netherex:entity.ghastQueen.ghastlingSpawnCooldown.tooltip=How long is the cooldown after spawning Ghastlings
+config.netherex:entity.ghastQueen.ghastlingSpawnAmount=Ghastling Spawn Amount
+config.netherex:entity.ghastQueen.ghastlingSpawnAmount.tooltip=How many Ghastlings spawn when the Ghast Queen is attacked
+
+config.netherex:entity.witherSkeleton=Wither Skeleton Settings
+config.netherex:entity.witherSkeleton.tooltip=Settings that only affect the Wither Skeleton
+config.netherex:entity.witherSkeleton.boneDropRarity=Bone Drop Rarity
+config.netherex:entity.witherSkeleton.boneDropRarity.tooltip=How rare it is for a Wither Bone to drop
+
+config.netherex:biome=Biome Settings
+config.netherex:biome.tooltip=Settings that only affect Biomes
+
+config.netherex:biome.hell=Hell Biome Settings
+config.netherex:biome.hell.tooltip=Settings that only affect the Hell biome
+
+config.netherex:biome.ruthlessSands=Ruthless Sands Biome Settings
+config.netherex:biome.ruthlessSands.tooltip=Settings that only affect the Ruthless Sands biome
+
+config.netherex:biome.fungiForest=Fungi Forest Biome Settings
+config.netherex:biome.fungiForest.tooltip=Settings that only affect the Fungi Forest biome
+
+config.netherex:biome.torridWasteland=Torrid Wasteland Biome Settings
+config.netherex:biome.torridWasteland.tooltip=Settings that only affect the Torrid Wasteland biome
+
+config.netherex:biome.arcticAbyss=Arctic Abyss Biome Settings
+config.netherex:biome.arcticAbyss.tooltip=Settings that only affect the Arctic Abyss biome
+config.netherex:biome.arcticAbyss.canPlayersFreeze=Can Players Freeze
+config.netherex:biome.arcticAbyss.canPlayersFreeze.tooltip=Whether or not Players can freeze in the Arctic Abyss biome
+config.netherex:biome.arcticAbyss.mobFreezeRarity=Mob Freeze Rarity
+config.netherex:biome.arcticAbyss.mobFreezeRarity.tooltip=How rare it is for a mob to freeze in the Arctic Abyss biome
+
+# Creative Tabs
+itemGroup.netherex=NetherEx
+
+# Effects
+potion.effect.netherex:freeze=Freeze
+potion.effect.netherex:normalFreeze=Potion of Freezing
+splash_potion.effect.netherex:normalFreeze=Splash Potion of Freezing
+lingering_potion.effect.netherex:normalFreeze=Lingering Potion of Freezing
+tipped_arrow.effect.netherex:normalFreeze=Arrow of Freezing
+
+potion.effect.netherex:frostbite=Frostbite
+potion.effect.netherex:normalFrostbite=Potion of Frostbite
+splash_potion.effect.netherex:normalFrostbite=Splash Potion of Frostbite
+lingering_potion.effect.netherex:normalFrostbite=Lingering Potion of Frostbite
+tipped_arrow.effect.netherex:normalFrostbite=Arrow of Frostbite
+
+potion.effect.netherex:spore=Spore
+potion.effect.netherex:normalSpore=Potion of Dispersal
+splash_potion.effect.netherex:normalSpore=Splash Potion of Dispersal
+lingering_potion.effect.netherex:normalSpore=Lingering Potion of Dispersal
+tipped_arrow.effect.netherex:normalSpore=Arrow of Dispersal
+
+potion.effect.netherex:lost=The Lost
+potion.effect.netherex:normalLost=Potion of The Lost
+splash_potion.effect.netherex:normalLost=Splash Potion of The Lost
+lingering_potion.effect.netherex:normalLost=Lingering Potion of The Lost
+tipped_arrow.effect.netherex:normalLost=Arrow of The Lost
+
+#Entities (Mobs)
+entity.netherex:ghastQueenFireball.name=Ghast Queen Fireball
+entity.netherex:ghastlingFireball.name=Ghastling Fireball
+entity.netherex:blueFireball.name=Blue Fireball
+entity.netherex:obsidianBoat.name=Obsidian Boat
+entity.netherex:pigtificateLeader.name=Pigtificate Leader
+entity.netherex:pigtificateLeader.chief.name=Pigtificate Chief
+entity.netherex:pigtificate.name=Pigtificate
+entity.netherex:pigtificate.hunter.name=Pigtificate Hunter
+entity.netherex:pigtificate.gatherer.name=Pigtificate Gatherer
+entity.netherex:pigtificate.scavenger.name=Pigtificate Scavenger
+entity.netherex:pigtificate.armorsmith.name=Pigtificate Armorsmith
+entity.netherex:pigtificate.toolsmith.name=Pigtificate Toolsmith
+entity.netherex:pigtificate.enchanter.name=Pigtificate Enchanter
+entity.netherex:pigtificate.brewer.name=Pigtificate Brewer
+entity.netherex:bonspider.name=Bonspider
+entity.netherex:goldGolem.name=Gold Golem
+entity.netherex:mogus.name=Mogus
+entity.netherex:mogus.brown.name=Brown Mogus
+entity.netherex:mogus.red.name=Red Mogus
+entity.netherex:mogus.white.name=White Mogus
+entity.netherex:salamander.name=Salamander
+entity.netherex:salamander.orange.name=Salamander
+entity.netherex:salamander.black.name=Salamander
+entity.netherex:wight.name=Wight
+entity.netherex:ember.name=Ember
+entity.netherex:nethermite.name=Nethermite
+entity.netherex:spinout.name=Spinout
+entity.netherex:sporeCreeper.name=Spore Creeper
+entity.netherex:spore.name=Spore
+entity.netherex:spore.one.name=Spore Stage One
+entity.netherex:spore.two.name=Spore Stage Two
+entity.netherex:spore.three.name=Spore Stage Three
+entity.netherex:spore.four.name=Spore Stage Four
+entity.netherex:spore.five.name=Spore Stage Five
+entity.netherex:ghastling.name=Ghastling
+entity.netherex:coolmarSpider.name=Coolmar Spider
+entity.netherex:brute.name=Brute
+entity.netherex:frost.name=Frost
+entity.netherex:hellhound.name=Hellhound
+entity.netherex:ghastQueen.name=Ghast Queen
+
+#Fluids
+fluid.netherex:ichor.name=Ichor
+fluid.netherex:bligt.name=Blight
+
+#Guis
+gui.netherex:selectWorld.reset=Reset
+gui.netherex:selectWorld.resetNether=Reset Nether
+gui.netherex:selectWorld.resetNetherQuestion=Are you sure you want to reset the Nether for %s?
+gui.netherex:selectWorld.resetNetherWarning=The Nether for %s will be reset back to how it was when %s was first created!
+
+# Items
+item.netherex:netherbrick.fiery.name=Fiery Nether Brick
+item.netherex:netherbrick.icy.name=Icy Nether Brick
+item.netherex:netherbrick.lively.name=Lively Nether Brick
+item.netherex:netherbrick.gloomy.name=Gloomy Nether Brick
+item.netherex:witherBone.name=Wither Bone
+item.netherex:witherDust.name=Wither Dust
+item.netherex:frostRod.name=Frost Rod
+item.netherex:frostPowder.name=Frost Powder
+item.netherex:blazedWitherBone.name=Blazed Wither Bone
+item.netherex:frostedWitherBone.name=Frosted Wither Bone
+item.netherex:salamanderHide.orange.name=Orange Salamander Hide
+item.netherex:salamanderHide.black.name=Black Salamander Hide
+item.netherex:amethystCrystal.name=Nether Amethyst Crystal
+item.netherex:rimeCrystal.name=Nether Rime Crystal
+item.netherex:cobaltIngot.name=Cobalt Ingot
+item.netherex:arditeIngot.name=Ardite Ingot
+item.netherex:rimeAndSteel.name=Rime and Steel
+item.netherex:spore.name=Spore
+item.netherex:boneSpiderFang.name=Frost Fang
+item.netherex:ghastQueenTear.name=Ghast Queen Tears
+item.netherex:obsidianBoat.name=Obsidian Boat
+item.netherex:ghastMeatRaw.name=Raw Ghast Meat
+item.netherex:ghastMeatCooked.name=Cooked Ghast Meat
+item.netherex:congealedMagmaCream.name=Congealed Magma Cream
+item.netherex:enokiMushroom.name=Enoki Mushroom
+item.netherex:amedianSword.name=Amedian Sword
+item.netherex:amedianPickaxe.name=Amedian Pickaxe
+item.netherex:amedianShovel.name=Amedian Shovel
+item.netherex:amedianAxe.name=Amedian Axe
+item.netherex:amedianHoe.name=Amedian Hoe
+item.netherex:amedianHammer.name=Amedian Hammer
+item.netherex:witherBoneHelmet.name=Wither Bone Helmet
+item.netherex:witherBoneChestplate.name=Wither Bone Chestplate
+item.netherex:witherBoneLeggings.name=Wither Bone Leggings
+item.netherex:witherBoneBoots.name=Wither Bone Boots
+item.netherex:salamanderHideHelmet.name=Salamander Hide Helmet
+item.netherex:salamanderHideChestplate.name=Salamander Hide Chestplate
+item.netherex:salamanderHideLeggings.name=Salamander Hide Leggings
+item.netherex:salamanderHideBoots.name=Salamander Hide Boots
+item.netherex:quartzBonspiderArmor.name=Quartz Bonspider Armor
+item.netherex:goldBonspiderArmor.name=Gold Bonspider Armor
+item.netherex:amethystBonspiderArmor.name=Amethyst Bonspider Armor
+
+# Subtitles
+subtitle.netherex:sound.pigtificate.ambient=Pigtificate Snort
+subtitle.netherex:sound.pigtificate.hurt=Pigtificate Hurt Squeal
+subtitle.netherex:sound.pigtificate.death=Pigtificate Death Squeal
+subtitle.netherex:sound.mogus.ambient=Mogus Converse
+subtitle.netherex:sound.mogus.hurt=Mogus Wince
+subtitle.netherex:sound.mogus.death=Mogus Death
+subtitle.netherex:sound.salamander.ambient=Salamander Snarl
+subtitle.netherex:sound.salamander.hurt=Salamander Roar
+subtitle.netherex:sound.salamander.death=Salamander Death
+subtitle.netherex:sound.wight.ambient=Wight Whisper
+subtitle.netherex:sound.wight.hurt=Wight Moan
+subtitle.netherex:sound.wight.death=Wight Death
+subtitle.netherex:sound.ember.hurt=Ember Dwindle
+subtitle.netherex:sound.ember.death=Ember Extinguish
+subtitle.netherex:sound.nethermite.ambient=Nethermite Chatter
+subtitle.netherex:sound.nethermite.hurt=Nethermite Shriek
+subtitle.netherex:sound.nethermite.death=Nethermite Death
+subtitle.netherex:sound.spinout.ambient=Spinout Spin
+subtitle.netherex:sound.spinout.hurt=Spinout Hurt
+subtitle.netherex:sound.spinout.death=Spinout Death
+subtitle.netherex:sound.ghastling.ambient=Ghastling Moan
+subtitle.netherex:sound.ghastling.hurt=Ghastling Scream
+subtitle.netherex:sound.ghastling.death=Ghastling Death
+subtitle.netherex:sound.ghastling.warn=Ghastling Warn
+subtitle.netherex:sound.ghastling.shoot=Ghastling Shoot
+subtitle.netherex:sound.spore.hurt=Spore Hurt
+subtitle.netherex:sound.spore.death=Spore Death
+subtitle.netherex:sound.spore.warn=Spore Sizzle
+subtitle.netherex:sound.spore.explode=Spore Explosion
+subtitle.netherex:sound.ghastQueen.ambient=Ghast Queen Moan
+subtitle.netherex:sound.ghastQueen.hurt=Ghast Queen Scream
+subtitle.netherex:sound.ghastQueen.death=Ghast Queen Death
+subtitle.netherex:sound.ghastQueen.shoot=Ghast Queen Fireball
+subtitle.netherex:sound.ghastQueen.summon=Ghast Queen Summon
+
+# Tiles (Blocks)
+tile.netherex:basalt.normal.name=Basalt
+tile.netherex:basalt.smooth.name=Smooth Basalt
+tile.netherex:basalt.brick.name=Basalt Bricks
+tile.netherex:basalt.pillar.name=Basalt Pillar
+tile.netherex:netherrack.fiery.name=Fiery Netherrack
+tile.netherex:netherrack.icy.name=Icy Netherrack
+tile.netherex:netherrack.lively.name=Lively Netherrack
+tile.netherex:netherrack.gloomy.name=Gloomy Netherrack
+tile.netherex:cryingObsidian.name=Crying Obsidian
+tile.netherex:glowingObsidian.name=Glowing Obsidian
+tile.netherex:netherBrick.fiery.name=Fiery Nether Bricks
+tile.netherex:netherBrick.icy.name=Icy Nether Bricks
+tile.netherex:netherBrick.lively.name=Lively Nether Bricks
+tile.netherex:netherBrick.gloomy.name=Gloomy Nether Bricks
+tile.netherex:netherrackPath.normal.name=Trodden Netherrack
+tile.netherex:netherrackPath.fiery.name=Fiery Trodden Netherrack
+tile.netherex:netherrackPath.icy.name=Icy Trodden Netherrack
+tile.netherex:netherrackPath.lively.name=Lively Trodden Netherrack
+tile.netherex:netherrackPath.gloomy.name=Gloomy Trodden Netherrack
+tile.netherex:hyphae.name=Hyphae
+tile.netherex:tilledSoulSand.name=Tilled Soul Sand
+tile.netherex:soulGlass.name=Soul Glass
+tile.netherex:soulGlassPane.name=Soul Glass Pane
+tile.netherex:amethystBlock.name=Nether Amethyst Block
+tile.netherex:rimeBlock.name=Nether Rime Block
+tile.netherex:cobaltBlock.name=Cobalt Block
+tile.netherex:arditeBlock.name=Ardite Block
+tile.netherex:frostburnIce.name=Frostburn Ice
+tile.netherex:boneSliver.name=Bone Sliver
+tile.netherex:boneChunk.name=Bone Chunk
+tile.netherex:wornIron.name=Worn Iron Block
+tile.netherex:blueFire.name=Blue Fire
+tile.netherex:netherPortal.name=Nether Portal Block
+tile.netherex:urnOfSorrow.empty.name=Urn of Sorrow
+tile.netherex:urnOfSorrow.full.name=Urn of Sorrow
+tile.netherex:quartzOre.name=Nether Quartz Ore
+tile.netherex:amethystOre.name=Nether Amethyst Ore
+tile.netherex:rimeOre.name=Nether Rime Ore
+tile.netherex:cobaltOre.name=Cobalt Ore
+tile.netherex:arditeOre.name=Ardite Ore
+tile.netherex:thornstalk.name=Thornstalk
+tile.netherex:elderMushroom.brown.name=Brown Elder Mushroom
+tile.netherex:elderMushroom.red.name=Red Elder Mushroom
+tile.netherex:elderMushroomCap.brown.name=Brown Elder Mushroom Cap
+tile.netherex:elderMushroomCap.red.name=Red Elder Mushroom Cap
+tile.netherex:elderMushroomStem.name=Elder Mushroom Stem
+tile.netherex:enokiMushroomCap.name=Enoki Mushroom Cap
+tile.netherex:enokiMushroomStem.name=Enoki Mushroom Stem
+tile.netherex:ichor.name=Ichor
+tile.netherex:blight.name=blight
+tile.netherex:vanillaSlab.redNetherBrick.name=Red Nether Brick Slab
+tile.netherex:basaltSlab.normal.name=Basalt Slab
+tile.netherex:basaltSlab.smooth.name=Smooth Basalt Slab
+tile.netherex:basaltSlab.brick.name=Basalt Brick Slab
+tile.netherex:basaltSlab.pillar.name=Basalt Pillar Slab
+tile.netherex:netherBrickSlab.fiery.name=Fiery Nether Brick Slab
+tile.netherex:netherBrickSlab.icy.name=Icy Nether Brick Slab
+tile.netherex:netherBrickSlab.lively.name=Lively Nether Brick Slab
+tile.netherex:netherBrickSlab.gloomy.name=Gloomy Nether Brick Slab
+tile.netherex:vanillaSlabDouble.redNetherBrick.name=Red Nether Brick Slabs
+tile.netherex:basaltSlabDouble.normal.name=Basalt Slabs
+tile.netherex:basaltSlabDouble.smooth.name=Smooth Basalt Slabs
+tile.netherex:basaltSlabDouble.brick.name=Basalt Brick Slabs
+tile.netherex:basaltSlabDouble.pillar.name=Basalt Pillar Slabs
+tile.netherex:netherBrickSlabDouble.fiery.name=Fiery Nether Brick Slabs
+tile.netherex:netherBrickSlabDouble.icy.name=Icy Nether Brick Slabs
+tile.netherex:netherBrickSlabDouble.lively.name=Lively Nether Brick Slabs
+tile.netherex:netherBrickSlabDouble.gloomy.name=Gloomy Nether Brick Slabs
+tile.netherex:redNetherBrickStairs.name=Red Nether Brick Stairs
+tile.netherex:basaltStairs.name=Basalt Stairs
+tile.netherex:basaltSmoothStairs.name=Smooth Basalt Stairs
+tile.netherex:basaltBrickStairs.name=Basalt Brick Stairs
+tile.netherex:basaltPillarStairs.name=Basalt Pillar Stairs
+tile.netherex:fieryNetherBrickStairs.name=Fiery Nether Brick Stairs
+tile.netherex:icyNetherBrickStairs.name=Icy Nether Brick Stairs
+tile.netherex:livelyNetherBrickStairs.name=Lively Nether Brick Stairs
+tile.netherex:gloomyNetherBrickStairs.name=Gloomy Nether Brick Stairs
+tile.netherex:vanillaWall.quartz.name=Quartz Wall
+tile.netherex:vanillaWall.netherBrick.name=Nether Brick Wall
+tile.netherex:vanillaWall.redNetherBrick.name=Red Nether Brick Wall
+tile.netherex:basaltWall.normal.name=Basalt Wall
+tile.netherex:basaltWall.smooth.name=Smooth Basalt Wall
+tile.netherex:basaltWall.brick.name=Basalt Brick Wall
+tile.netherex:basaltWall.pillar.name=Basalt Pillar Wall
+tile.netherex:netherBrickWall.fiery.name=Fiery Nether Brick Wall
+tile.netherex:netherBrickWall.icy.name=Icy Nether Brick Wall
+tile.netherex:netherBrickWall.lively.name=Lively Nether Brick Wall
+tile.netherex:netherBrickWall.gloomy.name=Gloomy Nether Brick Wall
+tile.netherex:vanillaFence.quartz.name=Quartz Fence
+tile.netherex:vanillaFence.redNetherBrick.name=Red Nether Brick Fence
+tile.netherex:basaltFence.normal.name=Basalt Fence
+tile.netherex:basaltFence.smooth.name=Smooth Basalt Fence
+tile.netherex:basaltFence.brick.name=Basalt Brick Fence
+tile.netherex:basaltFence.pillar.name=Basalt Pillar Fence
+tile.netherex:netherBrickFence.fiery.name=Fiery Nether Brick Fence
+tile.netherex:netherBrickFence.icy.name=Icy Nether Brick Fence
+tile.netherex:netherBrickFence.lively.name=Lively Nether Brick Fence
+tile.netherex:netherBrickFence.gloomy.name=Gloomy Nether Brick Fence
+tile.netherex:quartzFenceGate.name=Quartz Fence Gate
+tile.netherex:netherBrickFenceGate.name=Nether Brick Fence Gate
+tile.netherex:redNetherBrickFenceGate.name=Red Nether Brick Fence Gate
+tile.netherex:basaltFenceGate.name=Basalt Fence Gate
+tile.netherex:basaltSmoothFenceGate.name=Smooth Basalt Fence Gate
+tile.netherex:basaltBrickFenceGate.name=Basalt Brick Fence Gate
+tile.netherex:basaltPillarFenceGate.name=Basalt Pillar Fence Gate
+tile.netherex:fieryNetherBrickFenceGate.name=Fiery Nether Brick Fence Gate
+tile.netherex:icyNetherBrickFenceGate.name=Icy Nether Brick Fence Gate
+tile.netherex:livelyNetherBrickFenceGate.name=Lively Nether Brick Fence Gate
+tile.netherex:gloomyNetherBrickFenceGate.name=Gloomy Nether Brick Fence Gate

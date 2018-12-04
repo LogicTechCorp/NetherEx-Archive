@@ -1,8 +1,0 @@
-{
-    "parent": "block/half_slab",
-    "textures": {
-        "bottom": "nex:blocks/gloomy_nether_brick",
-        "top": "nex:blocks/gloomy_nether_brick",
-        "side": "nex:blocks/gloomy_nether_brick"
-    }
-}

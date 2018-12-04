@@ -1,0 +1,434 @@
+# Lang File Settings
+language.name=Russian
+language.region=Russian Federation
+language.code=ru_ru
+
+#Config
+config.netherex=NetherEx Конфиг
+config.netherex:client=Настройки клиента
+config.netherex:client.tooltip=Настройки, которые затрагивают Клиент
+config.netherex:client.visual=Визуальные настройки
+config.netherex:client.visual.tooltip=Настройки, которые затрагивают Визуальные клиенты
+config.netherex:client.visual.disableNetherFog=Отключить туман в Нижнем мире
+config.netherex:client.visual.disableNetherFog.tooltip=Не отображать Туман в Нижнем Мире
+
+config.netherex:compatibility=Настройки совместимости
+config.netherex:compatibility.tooltip=Настройки, которые затрагивают Совместимость мода
+
+config.netherex:compatibility.biomesOPlenty=Настройки совместимости Biomes O' Plenty
+config.netherex:compatibility.biomesOPlenty.tooltip=Настройки, которые затрагивают совместимость Biomes O' Plenty
+config.netherex:compatibility.biomesOPlenty.enableCompat=Включить совместимость Biomes O' Plenty
+config.netherex:compatibility.biomesOPlenty.enableCompat.tooltip=Включает совместимость Biomes O' Plenty
+
+config.netherex:dimension=Настройки измерения
+config.netherex:dimension.tooltip=Настройки, которые затрагивают Измерения
+
+config.netherex:dimension.nether=Настройки измерения Нижнего мира
+config.netherex:dimension.nether.tooltip=Настройки, которые затрагивают Измерение нижнего мира
+config.netherex:dimension.nether.overrideNether=Переопределить нижний мир
+config.netherex:dimension.nether.overrideNether.tooltip=Независимо от того, что NetherEx переопределяет Нижний мир
+config.netherex:dimension.nether.generateSoulSand=Генерация песка душ
+config.netherex:dimension.nether.generateSoulSand.tooltip=Песок душ генерируется платформами в Нижнем мире
+config.netherex:dimension.nether.generateGravel=Генерация гравия
+config.netherex:dimension.nether.generateGravel.tooltip=Гравий генерируется платформами в Нижнем мире
+config.netherex:dimension.nether.isLavaInfinite=Бесконечная лава
+config.netherex:dimension.nether.isLavaInfinite.tooltip=Лава бесконечна в Нижнем мире
+
+config.netherex:block=Настройки блоков
+config.netherex:block.tooltip=Настройки, которые затрагивают Блоки
+
+config.netherex:block.netherPortal=Настройки портала в Нижний мир
+config.netherex:block.netherPortal.tooltip=Настройки, которые затрагивают Блоки портала в Нижний мир
+config.netherex:block.netherPortal.pigmanSpawnRarity=Редко возраждать Зомби-Свиночеловека
+config.netherex:block.netherPortal.pigmanSpawnRarity.tooltip=Как часто Зомби-Свиночеловек возраждается от блоков портала в Нижний мир
+
+config.netherex:block.netherrack=Настройки камня из Нижнего мира
+config.netherex:block.netherrack.tooltip=Настройки, которые затрагивают камень из Нижнего мира
+config.netherex:block.netherrack.allowAllShovelsToFlatten=Разрешить любым Лопатам выравнивать
+config.netherex:block.netherrack.allowAllShovelsToFlatten.tooltip=Любым лопатам разрешается выравнивать камень из Нижнего мира
+
+config.netherex:block.soulSand=Настройки песка душ
+config.netherex:block.soulSand.tooltip=Настройки, которые затрагивают Песок душ
+config.netherex:block.soulSand.allowAllHoesToTill=Разрешить любым Мотыгам вспахивать
+config.netherex:block.soulSand.allowAllHoesToTill.tooltip=Любым мотыгам разрешается вспахивать Песок душ
+config.netherex:block.soulSand.useLavaInsteadOfIchorToMoisten=Вспаханный песок душ требует Лаву, вместо увлажнения Ихором
+config.netherex:block.soulSand.useLavaInsteadOfIchorToMoisten.tooltip=Вспаханный песок душ требует Лаву как источник жидкости, нежели увлажнением Ихором
+
+config.netherex:block.netherWart=Настройки адской бородавки
+config.netherex:block.netherWart.tooltip=Настройки, которые затрагивают Адскую бородавку
+config.netherex:block.netherWart.growLikeCrops=Адская бородавка выращивается как Урожай
+config.netherex:block.netherWart.growLikeCrops.tooltip=Адская бородавка требует Вспаханный песок душ и источник жидкости для роста
+config.netherex:block.netherWart.growthTickSpeed=Скорость тикания роста Адской бородавки
+config.netherex:block.netherWart.growthTickSpeed.tooltip=Скорость тика, с которой растёт Адская бородавка
+
+config.netherex:block.magma=Настройки магмы
+config.netherex:block.magma.tooltip=Настройки, которые затрагивают Магму
+config.netherex:block.magma.turnIntoLavaWhenBroken=Превратить в Лаву после разрушения
+config.netherex:block.magma.turnIntoLavaWhenBroken.tooltip=Магма превратится в Лаву, после разрушения
+
+config.netherex:block.rime=Настройки блока Льда с инеем
+config.netherex:block.rime.tooltip=Настройки, которые затрагивают Лёд с инеем
+config.netherex:block.rime.canFreezeWater=Может замораживать Воду
+config.netherex:block.rime.canFreezeWater.tooltip=Лёд с инеем может заморозить Воду
+config.netherex:block.rime.canFreezeLava=Может замораживать Лаву
+config.netherex:block.rime.canFreezeLava.tooltip=Лёд с инеем может заморозить Лаву
+config.netherex:block.rime.canFreezeMobs=Может замораживать Монстров
+config.netherex:block.rime.canFreezeMobs.tooltip=Лёд с инеем может замораживать Монстров
+
+config.netherex:block.thornstalk=Настройки шипа
+config.netherex:block.thornstalk.tooltip=Настройки, которые затрагивают Шип
+config.netherex:block.thornstalk.canDestroyItems=Может уничтожить предметы
+config.netherex:block.thornstalk.canDestroyItems.tooltip=Шип может уничтожить предметы
+config.netherex:block.thornstalk.mobBlacklist=Чёрный список монстров
+config.netherex:block.thornstalk.mobBlacklist.tooltip=Монстры не причиняют себе урон от Шипа
+
+config.netherex:block.hyphae=Настройки гифы
+config.netherex:block.hyphae.tooltip=Настройки, которые затрагивают Гифу
+config.netherex:block.hyphae.shouldSpread=Гифа может распространяться
+config.netherex:block.hyphae.shouldSpread.tooltip=Гифа может распространяться по Яркому адскому камню
+
+config.netherex:potionEffect=Настройки эффекта зелья
+config.netherex:potionEffect.tooltip=Настройки, которые затрагивают Эффекты зелья
+config.netherex:potionEffect.freeze=Настройки эффекта заморозки
+config.netherex:potionEffect.freeze.tooltip=Настройки, которые затрагивают эффект заморозки
+config.netherex:potionEffect.freeze.thawRarity=Редко размораживать
+config.netherex:potionEffect.freeze.thawRarity.tooltip=Как часто монстры размораживаются от Эффекта замораживания, после отметки
+config.netherex:potionEffect.freeze.mobBlacklist=Чёрный список монстров
+config.netherex:potionEffect.freeze.mobBlacklist.tooltip=Монстры, которые не замораживаются
+
+config.netherex:potionEffect.spore=Настройки спорового эффекта
+config.netherex:potionEffect.spore.tooltip=Настройки, которые затрагивают Споровый Эффект
+config.netherex:potionEffect.spore.sporeSpawnRarity=Редко возраждать Спору
+config.netherex:potionEffect.spore.sporeSpawnRarity.tooltip=Как часто Спора появляется от существа со Споровым эффектом
+config.netherex:potionEffect.spore.mobBlacklist=Чёрный список монстров
+config.netherex:potionEffect.spore.mobBlacklist.tooltip=Монстры, которые не возраждают Споры
+
+config.netherex:potionEffect.lost=Настройки утраченного эффекта
+config.netherex:potionEffect.lost.tooltip=Настройки, которые затрагивают Утраченный эффект
+config.netherex:potionEffect.lost.ghastlingSpawnRarity=Редко возраждать гаста
+config.netherex:potionEffect.lost.ghastlingSpawnRarity.tooltip=Как часто Гаст появляется от существа от Утраченного эффекта
+
+config.netherex:entity=Настройки существ
+config.netherex:entity.tooltip=Настройки, которые затрагивают Существа
+
+config.netherex:entity.ember=Настройки уголька
+config.netherex:entity.ember.tooltip=Настройки, которые затрагивают Уголёк
+config.netherex:entity.ember.setPlayerOnFireRarity=Редко устанавливать огонь на игрока
+config.netherex:entity.ember.setPlayerOnFireRarity.tooltip=Как часто Уголёк устанавливает огонь на игрока
+
+config.netherex:entity.nethermite=Настройки клеща из Нижнего мира
+config.netherex:entity.nethermite.tooltip=Настройки, которые затрагивают Клеща из Нижнего мира
+config.netherex:entity.nethermite.spawnRarity=Редко возраждать
+config.netherex:entity.nethermite.spawnRarity.tooltip=Как часто клещ из нижнего мира появляется из руды в Нижнем мире
+config.netherex:entity.nethermite.blockWhitelist=Белый список блоков
+config.netherex:entity.nethermite.blockWhitelist.tooltip=Клещ из нижнего мира будет появляться из блоков
+
+config.netherex:entity.spinout=Настройки урагана
+config.netherex:entity.spinout.tooltip=Настройки, которые затрагивают Урагана
+config.netherex:entity.spinout.spinTime=Время вращения
+config.netherex:entity.spinout.spinTime.tooltip=Сколько времени Ураган вращается
+config.netherex:entity.spinout.spinCooldown=Время восстановления вращения
+config.netherex:entity.spinout.spinCooldown.tooltip=Сколько времени Ураган останавливается между вращениями
+
+config.netherex:entity.sporeCreeper=Настройки спорового крипера
+config.netherex:entity.sporeCreeper.tooltip=Настройки, которые затрагивают Спорового крипера
+config.netherex:entity.sporeCreeper.sporeSpawnRarity=Редко возраждать Спору
+config.netherex:entity.sporeCreeper.sporeSpawnRarity.tooltip=Как часто появляется Спора после смерти
+
+config.netherex:entity.spore=Настройки споры
+config.netherex:entity.spore.tooltip=Настройки, которые затрагивают Спору
+config.netherex:entity.spore.growthTime=Время роста
+config.netherex:entity.spore.growthTime.tooltip=Сколько должно пройти времени, чтобы Спора выросла
+config.netherex:entity.spore.creeperSpawnAmount=Кол-во возраждений Крипера
+config.netherex:entity.spore.creeperSpawnAmount.tooltip=Сколько споровых криперов появляются от Споры
+
+config.netherex:entity.brute=Настройки зверя
+config.netherex:entity.brute.tooltip=Настройки, которые затрагивают Зверя
+config.netherex:entity.brute.chargeCooldown=Время восстановления Заряда
+config.netherex:entity.brute.chargeCooldown.tooltip=Сколько времени длится время восстановления после зарядки игроков
+
+config.netherex:entity.ghast=Настройки гаста
+config.netherex:entity.ghast.tooltip=Настройки, которые затрагивают большинство Гастов
+config.netherex:entity.ghast.meatDropRarity=Редко выпадает мясо
+config.netherex:entity.ghast.meatDropRarity.tooltip=Как часто выпадает Мясо гаста
+
+config.netherex:entity.ghastQueen=Настройки королевы гастов
+config.netherex:entity.ghastQueen.tooltip=Настройки, которые затрагивают Королеву гастов
+config.netherex:entity.ghastQueen.ghastlingSpawnCooldown=Время восстановления возраждения Гаста
+config.netherex:entity.ghastQueen.ghastlingSpawnCooldown.tooltip=Сколько времени длится время восстановления после возраждения Гастов
+config.netherex:entity.ghastQueen.ghastlingSpawnAmount=Кол-во возраждений гаста
+config.netherex:entity.ghastQueen.ghastlingSpawnAmount.tooltip=Сколько возраждаются Гастов, когда атакует Королева гастов
+
+config.netherex:entity.witherSkeleton=Настройки скелета-иссушителя
+config.netherex:entity.witherSkeleton.tooltip=Настройки, которые затрагивают Скелета-иссушителя
+config.netherex:entity.witherSkeleton.boneDropRarity=Редко выпадать кости
+config.netherex:entity.witherSkeleton.boneDropRarity.tooltip=Как часто выпадает Кость из Иссушителя
+
+config.netherex:biome=Настройки Биома
+config.netherex:biome.tooltip=Настройки, которые затрагивают Биомы
+
+config.netherex:biome.hell=Настройки адского биома
+config.netherex:biome.hell.tooltip=Настройки, которые затрагивают Адский биом
+
+config.netherex:biome.ruthlessSands=Настройки биома Беспощадных песков
+config.netherex:biome.ruthlessSands.tooltip=Настройки, которые затрагивают биом Беспощадных песков
+
+config.netherex:biome.fungiForest=Настройки биома Грибной лес
+config.netherex:biome.fungiForest.tooltip=Настройки, которые затрагивают биом Грибной лес
+
+config.netherex:biome.torridWasteland=Настройки биома Пылающая пустошь
+config.netherex:biome.torridWasteland.tooltip=Настройки, которые затрагивают биом Пылающая пустошь
+
+config.netherex:biome.arcticAbyss=Настройки биома Арктическая пропасть
+config.netherex:biome.arcticAbyss.tooltip=Настройки, которые затрагивают биом Арктическая пропасть
+config.netherex:biome.arcticAbyss.canPlayersFreeze=Может заморозить игроков
+config.netherex:biome.arcticAbyss.canPlayersFreeze.tooltip=Независимо от того, что Игроки могут заморозиться в биоме Арктической пропасти
+config.netherex:biome.arcticAbyss.mobFreezeRarity=Редко замораживать монстров
+config.netherex:biome.arcticAbyss.mobFreezeRarity.tooltip=Как часто монстры замораживаются в биоме Арктическая пропасть
+
+# Creative Tabs
+itemGroup.netherex=NetherEx
+
+# Effects
+potion.effect.netherex:freeze=Заморозка
+potion.effect.netherex:normalFreeze=Зелье заморозка
+splash_potion.effect.netherex:normalFreeze=Взрывное зелье Заморозка
+lingering_potion.effect.netherex:normalFreeze=Оседающее зелье Заморозка
+tipped_arrow.effect.netherex:normalFreeze=Замораживающая стрела
+
+potion.effect.netherex:frostbite=Обморожение
+potion.effect.netherex:normalFrostbite=Зелье обморожение
+splash_potion.effect.netherex:normalFrostbite=Взрывное зелье Обморожение
+lingering_potion.effect.netherex:normalFrostbite=Оседающее зелье Обморожение
+tipped_arrow.effect.netherex:normalFrostbite=Обмораживающая стрела
+
+potion.effect.netherex:spore=Спора
+potion.effect.netherex:normalSpore=Зелье рассеивание
+splash_potion.effect.netherex:normalSpore=Взрывное зелье Рассеивание
+lingering_potion.effect.netherex:normalSpore=Оседающее зелье Рассеивание
+tipped_arrow.effect.netherex:normalSpore=Рассеивающая стрела
+
+potion.effect.netherex:lost=Утерянное
+potion.effect.netherex:normalLost=Зелье утерянное
+splash_potion.effect.netherex:normalLost=Взрывное зелье утерянное
+lingering_potion.effect.netherex:normalLost=Оседающее зелье утерянное
+tipped_arrow.effect.netherex:normalLost=Утерянная стрела
+
+#Entities (Mobs)
+entity.netherex:ghastQueenFireball.name=Огненный шар королевы гастов
+entity.netherex:ghastlingFireball.name=Огненный шар гаста
+entity.netherex:obsidianBoat.name=Обсидиановая лодка
+entity.netherex:pigtificateLeader.name=Свино-житель руководитель
+entity.netherex:pigtificateLeader.chief.name=Свино-житель начальник
+entity.netherex:pigtificate.name=Свино-житель
+entity.netherex:pigtificate.hunter.name=Свино-житель охотник
+entity.netherex:pigtificate.gatherer.name=Свино-житель сборщик
+entity.netherex:pigtificate.scavenger.name=Свино-житель мусорщик
+entity.netherex:pigtificate.armorsmith.name=Свино-житель оружейник
+entity.netherex:pigtificate.toolsmith.name=Свино-житель конструкторщик
+entity.netherex:pigtificate.enchanter.name=Свино-житель чародей
+entity.netherex:pigtificate.brewer.name=Свино-житель пивовар
+entity.netherex:goldGolem.name=Золотой голем
+entity.netherex:mogus.name=Могус
+entity.netherex:mogus.brown.name=Коричневый могус
+entity.netherex:mogus.red.name=Красный могус
+entity.netherex:mogus.white.name=Белый могус
+entity.netherex:salamander.name=Саламандра
+entity.netherex:salamander.orange.name=Оранжевая саламандра
+entity.netherex:salamander.black.name=Чёрная саламандра
+entity.netherex:wight.name=Существо
+entity.netherex:ember.name=Уголёк
+entity.netherex:nethermite.name=Адский клещ
+entity.netherex:spinout.name=Ураган
+entity.netherex:sporeCreeper.name=Споровый крипер
+entity.netherex:spore.name=Спора
+entity.netherex:spore.one.name=Первый стадия Споры
+entity.netherex:spore.two.name=Второй стадия Споры
+entity.netherex:spore.three.name=Третья стадия Споры
+entity.netherex:spore.four.name=Четвёртая стадия Споры
+entity.netherex:spore.five.name=Пятая стадия Споры
+entity.netherex:ghastling.name=Гаст
+entity.netherex:coolmarSpider.name=Паук-скелет
+entity.netherex:brute.name=Зверь
+entity.netherex:ghastQueen.name=Королева гастов
+
+#Fluids
+fluid.ichor=Ихор
+
+# Items
+item.netherex:netherbrick.fiery.name=Горячий кирпич из Нижнего мира
+item.netherex:netherbrick.icy.name=Холодный кирпич из Нижнего мира
+item.netherex:netherbrick.lively.name=Яркий кирпич из Нижнего мира
+item.netherex:netherbrick.gloomy.name=Мрачный кирпич из Нижнего мира
+item.netherex:witherBone.name=Кость иссушителя
+item.netherex:witherDust.name=Костная пыль Иссушитеоя
+item.netherex:salamanderHide.orange.name=Оранжевая шкурка саламандры
+item.netherex:salamanderHide.black.name=Чёрная шкурка саламандры
+item.netherex:amethystCrystal.name=Аметистовый кристалл из Нижнего мира
+item.netherex:rimeCrystal.name=Кристалл льда с инеем из Нижнего мира
+item.netherex:rimeAndSteel.name=Огниво из Льда с инеем
+item.netherex:spore.name=Спора
+item.netherex:boneSpiderFang.name=Морозный клык
+item.netherex:ghastQueenTear.name=Слеза королевы гастов
+item.netherex:obsidianBoat.name=Обсидиановая лодка
+item.netherex:ghastMeatRaw.name=Сырое мясо гаста
+item.netherex:ghastMeatCooked.name=Приготовленное мясо гаста
+item.netherex:congealedMagmaCream.name=Застывший лавовый крем
+item.netherex:enokiMushroom.name=Гриб эноки
+item.netherex:goldenWitherBoneSword.name=Золотой костный меч Иссушителя
+item.netherex:goldenWitherBonePickaxe.name=Золотая костная кирка Иссушителя
+item.netherex:goldenWitherBoneShovel.name=Золотая костная лопата Иссушителя
+item.netherex:goldenWitherBoneAxe.name=Золотой костный топор Иссушителя
+item.netherex:goldenWitherBoneHoe.name=Золотая костная мотыга Иссушителя
+item.netherex:goldenWitherBoneHammer.name=Золотой костный молот Иссушителя
+item.netherex:witherBoneHelmet.name=Костный шлем Иссушителя
+item.netherex:witherBoneChestplate.name=Костный нагрудник Иссушителя
+item.netherex:witherBoneLeggings.name=Костные поножи Иссушителя
+item.netherex:witherBoneBoots.name=Костные ботинки Иссушителя
+item.netherex:salamanderHideHelmet.name=Шлем из шкурки Саламандры
+item.netherex:salamanderHideChestplate.name=Нагрудник из шкурки Саламандры
+item.netherex:salamanderHideLeggings.name=Поножи из шкурки Саламандры
+item.netherex:salamanderHideBoots.name=Ботинки из шкурки Саламандры
+
+# Subtitles
+subtitle.netherex:sound.pigtificate.ambient=Свино-житель храпит
+subtitle.netherex:sound.pigtificate.hurt=Свино-житель ранено визжит
+subtitle.netherex:sound.pigtificate.death=Свино-житель смертно визжит
+subtitle.netherex:sound.mogus.ambient=Могус беседует
+subtitle.netherex:sound.mogus.hurt=Могус морщится
+subtitle.netherex:sound.mogus.death=Могус умер
+subtitle.netherex:sound.salamander.ambient=Саламандра скалится
+subtitle.netherex:sound.salamander.hurt=Саламандра рычит
+subtitle.netherex:sound.salamander.death=Саламандра умерла
+subtitle.netherex:sound.wight.ambient=Существо шепчет
+subtitle.netherex:sound.wight.hurt=Существо стонет
+subtitle.netherex:sound.wight.death=Существо умерло
+subtitle.netherex:sound.ember.hurt=Уголёк истощается
+subtitle.netherex:sound.ember.death=Уголёк гаснет
+subtitle.netherex:sound.nethermite.ambient=Адский клещ стрекочет
+subtitle.netherex:sound.nethermite.hurt=Адский клещ визжит
+subtitle.netherex:sound.nethermite.death=Адский клещ умер
+subtitle.netherex:sound.spinout.ambient=Ураган вращается
+subtitle.netherex:sound.spinout.hurt=Ураган ранен
+subtitle.netherex:sound.spinout.death=Ураган умер
+subtitle.netherex:sound.ghastling.ambient=Гаст стонет
+subtitle.netherex:sound.ghastling.hurt=Гаст кричит
+subtitle.netherex:sound.ghastling.death=Гаст умер
+subtitle.netherex:sound.ghastling.warn=Гаст предупреждает
+subtitle.netherex:sound.ghastling.shoot=Гаст стреляет
+subtitle.netherex:sound.spore.hurt=Спора ранена
+subtitle.netherex:sound.spore.death=Спора умерла
+subtitle.netherex:sound.spore.warn=Спора шипит
+subtitle.netherex:sound.spore.explode=Спора взорвалась
+subtitle.netherex:sound.ghastQueen.ambient=Королева гастов стонет
+subtitle.netherex:sound.ghastQueen.hurt=Королева гастов кричит
+subtitle.netherex:sound.ghastQueen.death=Королева гастов умерла
+subtitle.netherex:sound.ghastQueen.shoot=Королева гастов стреляет огненным шаром
+subtitle.netherex:sound.ghastQueen.summon=Королева гастов призывает
+
+# Tiles (Blocks)
+tile.netherex:basalt.normal.name=Базальт
+tile.netherex:basalt.smooth.name=Гладкий базальт
+tile.netherex:basalt.brick.name=Базальтовый кирпичи
+tile.netherex:basalt.pillar.name=Базальтовая колонна
+tile.netherex:netherrack.fiery.name=Горячий адский камень
+tile.netherex:netherrack.icy.name=Холодный адский камень
+tile.netherex:netherrack.lively.name=Яркий адский камень
+tile.netherex:netherrack.gloomy.name=Мрачный адский камень
+tile.netherex:netherBrick.fiery.name=Горячие адские кирпичи
+tile.netherex:netherBrick.icy.name=Холодные адские кирпичи
+tile.netherex:netherBrick.lively.name=Яркие адские кирпичи
+tile.netherex:netherBrick.gloomy.name=Мрачные адские кирпичи
+tile.netherex:netherrackPath.normal.name=Раздавленный адский камень
+tile.netherex:netherrackPath.fiery.name=Горячий раздавленный адский камень
+tile.netherex:netherrackPath.icy.name=Холодный раздавленный адский камень
+tile.netherex:netherrackPath.lively.name=Яркий раздавленный адский камень
+tile.netherex:netherrackPath.gloomy.name=Мрачный раздавленный адский камень
+tile.netherex:hyphae.name=Гифа
+tile.netherex:tilledSoulSand.name=Вспаханный песок душ
+tile.netherex:soulGlass.name=Стекло из песка душ
+tile.netherex:soulGlassPane.name=Стеклянная панель из песка душ
+tile.netherex:amethystBlock.name=Аметистовый адский блок
+tile.netherex:rimeBlock.name=Адский Блок из Льда с инеем
+tile.netherex:frostburnIce.name=Обжигающе-холодный лёд
+tile.netherex:boneSliver.name=Шепка кости
+tile.netherex:boneChunk.name=Кусочек кости
+tile.netherex:wornIron.name=Истёртый железный блок
+tile.netherex:blueFire.name=Синий огонёк
+tile.netherex:netherPortal.name=Блок портала в Нижний мир
+tile.netherex:urnOfSorrow.empty.name=Пустая урна скорби
+tile.netherex:urnOfSorrow.full.name=Полная урна скорби
+tile.netherex:quartzOre.fiery.name=Горячая кварцевая руда
+tile.netherex:quartzOre.icy.name=Холодная кварцевая руда
+tile.netherex:quartzOre.lively.name=Яркая кварцевая руда
+tile.netherex:quartzOre.gloomy.name=Мрачная кварцевая руда
+tile.netherex:amethystOre.name=Аметистовая адская руда
+tile.netherex:rimeOre.name=Адская руда из Льда с инеем
+tile.netherex:thornstalk.name=Шип
+tile.netherex:elderMushroom.brown.name=Коричневый старый гриб
+tile.netherex:elderMushroom.red.name=Красный старый гриб
+tile.netherex:elderMushroomCap.brown.name=Коричневая старая грибная шляпка
+tile.netherex:elderMushroomCap.red.name=Красная старая грибная шляпка
+tile.netherex:elderMushroomStem.name=Старый грибной ствол
+tile.netherex:enokiMushroomCap.name=Грибная шапка Эноки
+tile.netherex:enokiMushroomStem.name=Грибной ствол Эноки
+tile.netherex:ichor.name=Ихор
+tile.netherex:vanillaSlab.redNetherBrick.name=Красная адская кирпичная плита
+tile.netherex:basaltSlab.normal.name=Базальтовая плита
+tile.netherex:basaltSlab.smooth.name=Гладкая базальтовая плита
+tile.netherex:basaltSlab.brick.name=Базальтовая кирпичная плита
+tile.netherex:basaltSlab.pillar.name=Базальтовая колонная плита
+tile.netherex:netherBrickSlab.fiery.name=Горячая адская кирпичная плита
+tile.netherex:netherBrickSlab.icy.name=Холодная адская кирпичная плита
+tile.netherex:netherBrickSlab.lively.name=Активная адская кирпичная плита
+tile.netherex:netherBrickSlab.gloomy.name=Мрачная адская кирпичная плита
+tile.netherex:vanillaSlabDouble.redNetherBrick.name=Красные адские кирпичные плиты
+tile.netherex:basaltSlabDouble.normal.name=Базальтовые плиты
+tile.netherex:basaltSlabDouble.smooth.name=Гладкие базальтовые плиты
+tile.netherex:basaltSlabDouble.brick.name=Базальтовые кирпичные плиты
+tile.netherex:basaltSlabDouble.pillar.name=Базальтовые колонные плиты
+tile.netherex:netherBrickSlabDouble.fiery.name=Горячие адские кирпичные плиты
+tile.netherex:netherBrickSlabDouble.icy.name=Холодные адские кирпичные плиты
+tile.netherex:netherBrickSlabDouble.lively.name=Активные адские кирпичные плиты
+tile.netherex:netherBrickSlabDouble.gloomy.name=Мрачные адские кирпичные плиты
+tile.netherex:redNetherBrickStairs.name=Красные адские кирпичные ступеньки
+tile.netherex:basaltStairs.name=Базальтовые ступеньки
+tile.netherex:basaltSmoothStairs.name=Гладкие базальтовые ступеньки
+tile.netherex:basaltBrickStairs.name=Базальтовые кирпичные ступеньки
+tile.netherex:basaltPillarStairs.name=Базальтовые колонные ступеньки
+tile.netherex:fieryNetherBrickStairs.name=Горячие адские кирпичные ступеньки
+tile.netherex:icyNetherBrickStairs.name=Холодные адские кирпичные ступеньки
+tile.netherex:livelyNetherBrickStairs.name=Активные адские кирпичные ступеньки
+tile.netherex:gloomyNetherBrickStairs.name=Мрачные адские кирпичные ступеньки
+tile.netherex:vanillaWall.quartz.name=Кварцевая стена
+tile.netherex:vanillaWall.netherBrick.name=Адская кирпичная стена
+tile.netherex:vanillaWall.redNetherBrick.name=Красная адская кирпичная стена
+tile.netherex:basaltWall.normal.name=Базальтовая стена
+tile.netherex:basaltWall.smooth.name=Гладкая базальтовая стена
+tile.netherex:basaltWall.brick.name=Базальтовая кирпичная стена
+tile.netherex:basaltWall.pillar.name=Базальтовая колонная стена
+tile.netherex:netherBrickWall.fiery.name=Горячая адская кирпичная стена
+tile.netherex:netherBrickWall.icy.name=Холодная адская кирпичная стена
+tile.netherex:netherBrickWall.lively.name=Активная адская кирпичная стена
+tile.netherex:netherBrickWall.gloomy.name=Мрачная адская кирпичная стена
+tile.netherex:vanillaFence.quartz.name=Кварцевый забор
+tile.netherex:vanillaFence.redNetherBrick.name=Красный адский кирпичный забор
+tile.netherex:basaltFence.normal.name=Базальтовый забор
+tile.netherex:basaltFence.smooth.name=Гладкий базальтовый забор
+tile.netherex:basaltFence.brick.name=Базальтовый кирпичный забор
+tile.netherex:basaltFence.pillar.name=Базальтовый колонный забор
+tile.netherex:netherBrickFence.fiery.name=Горячий адский кирпичный забор
+tile.netherex:netherBrickFence.icy.name=Холодный адский кирпичный забор
+tile.netherex:netherBrickFence.lively.name=Активный адский кирпичный забор
+tile.netherex:netherBrickFence.gloomy.name=Мрачный адский кирпичный забор
+tile.netherex:quartzFenceGate.name=Кварцевая калитка
+tile.netherex:netherBrickFenceGate.name=Адская кирпичная калитка
+tile.netherex:redNetherBrickFenceGate.name=Красная адская кирпичная калитка
+tile.netherex:basaltFenceGate.name=Базальтовая калитка
+tile.netherex:basaltSmoothFenceGate.name=Гладкая базальтовая калитка
+tile.netherex:basaltBrickFenceGate.name=Базальтовая кирпичная калитка
+tile.netherex:basaltPillarFenceGate.name=Базальтовая колонная калитка
+tile.netherex:fieryNetherBrickFenceGate.name=Горячая адская кирпичная калитка
+tile.netherex:icyNetherBrickFenceGate.name=Холодная адская кирпичная калитка
+tile.netherex:livelyNetherBrickFenceGate.name=Активная адская кирпичная калитка
+tile.netherex:gloomyNetherBrickFenceGate.name=Мрачная адская кирпичная калитка

@@ -10,7 +10,7 @@ public class PigtificateProfession extends TraderProfession<PigtificateProfessio
         super(name);
     }
 
-    public class Career extends TraderProfession.Career
+    public static class Career extends TraderProfession.Career<PigtificateProfession, PigtificateProfession.Career>
     {
         protected Career(ResourceLocation name, PigtificateProfession profession, ResourceLocation lootTable, ResourceLocation texture, ResourceLocation alternateTexture)
         {

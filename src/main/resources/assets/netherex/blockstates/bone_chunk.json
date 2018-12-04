@@ -1,0 +1,28 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "facing": {
+            "down": {
+                "model": "netherex:bone_chunk", "x": 180
+            },
+            "up": {
+                "model": "netherex:bone_chunk"
+            },
+            "north": {
+                "model": "netherex:bone_chunk", "y": 0, "x": 90
+            },
+            "south": {
+                "model": "netherex:bone_chunk", "y": 180, "x": 90
+            },
+            "west": {
+                "model": "netherex:bone_chunk", "y": 270, "x": 90
+            },
+            "east": {
+                "model": "netherex:bone_chunk", "y": 90, "x": 90
+            }
+        }
+    }
+}

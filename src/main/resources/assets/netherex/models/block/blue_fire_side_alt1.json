@@ -1,0 +1,7 @@
+{
+    "parent": "block/fire_side_alt",
+    "textures": {
+        "particle": "netherex:blocks/blue_fire_layer_1",
+        "fire": "netherex:blocks/blue_fire_layer_1"
+    }
+}

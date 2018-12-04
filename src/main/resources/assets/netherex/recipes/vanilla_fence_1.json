@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#X#",
+        "#X#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_nether_brick"
+        },
+        "X": {
+            "item": "netherex:vanilla_slab",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "netherex:vanilla_fence",
+        "data": 1,
+        "count": 4
+    }
+}

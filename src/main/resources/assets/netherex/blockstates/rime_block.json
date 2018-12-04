@@ -1,0 +1,12 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": {
+            "model": "cube_all",
+            "textures": {
+                "all": "netherex:blocks/rime_block"
+            },
+            "transform": "forge:default-block"
+        }
+    }
+}

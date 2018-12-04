@@ -1,0 +1,24 @@
+{
+    "pools": [
+        {
+            "name": "torrid_wasteland_temple_pool1",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_torrid_wasteland"
+                }
+            ]
+        },
+        {
+            "name": "torrid_wasteland_temple_pool2",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "netherex:chest/base_temple"
+                }
+            ]
+        }
+    ]
+}

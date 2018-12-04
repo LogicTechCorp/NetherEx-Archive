@@ -1,6 +1,6 @@
 [
     {
-        "modid": "nex",
+        "modid": "netherex",
         "name": "NetherEx",
         "description": "A Nether expansion, exploration, and experience.",
         "version": "${version}",
@@ -8,7 +8,7 @@
         "url": "https://minecraft.curseforge.com/projects/netherex",
         "authorList": [ "LogicTechCorp", "Eleazzaar", "Nazenn", "Vlakk", "AnarchCassius", "LapisWhovian", "misterslime" ],
         "credits": "",
-        "logoFile": "assets/nex/logo.png",
+        "logoFile": "assets/netherex/logo.png",
         "screenshots": [ ],
         "dependencies": [ ]
     }

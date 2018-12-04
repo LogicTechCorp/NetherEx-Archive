@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "empty": {
+                "model": "netherex:urn_of_sorrow_empty"
+            },
+            "full": {
+                "model": "netherex:urn_of_sorrow_full"
+            }
+        }
+    }
+}

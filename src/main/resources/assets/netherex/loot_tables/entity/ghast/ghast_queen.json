@@ -1,0 +1,14 @@
+{
+    "pools": [
+        {
+            "name": "ghast_queen_loot_pool",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "netherex:ghast_queen_tear"
+                }
+            ]
+        }
+    ]
+}
