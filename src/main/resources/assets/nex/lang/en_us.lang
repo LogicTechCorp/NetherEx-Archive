@@ -257,7 +257,8 @@ entity.nex:hellhound.name=Hellhound
 entity.nex:ghastQueen.name=Ghast Queen
 
 #Fluids
-fluid.ichor=Ichor
+fluid.nex:ichor=Ichor
+fluid.nex:bligt=Blight
 
 #Guis
 gui.nex:selectWorld.reset=Reset
@@ -395,6 +396,7 @@ tile.nex:elderMushroomStem.name=Elder Mushroom Stem
 tile.nex:enokiMushroomCap.name=Enoki Mushroom Cap
 tile.nex:enokiMushroomStem.name=Enoki Mushroom Stem
 tile.nex:ichor.name=Ichor
+tile.nex:blight.name=blight
 tile.nex:vanillaSlab.redNetherBrick.name=Red Nether Brick Slab
 tile.nex:basaltSlab.normal.name=Basalt Slab
 tile.nex:basaltSlab.smooth.name=Smooth Basalt Slab
