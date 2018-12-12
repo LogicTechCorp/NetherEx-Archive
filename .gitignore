@@ -6,3 +6,4 @@
 !/README.md
 !build.gradle
 !gradle.properties
+!.travis.yml
