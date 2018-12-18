@@ -49,6 +49,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -125,7 +126,7 @@ public class ClickHandler
             world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.setBlockState(pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState(), 0b1011);
             
-            event.setResult(ALLOW);
+            event.setResult(Event.Result.ALLOW);
         }
     }
 
