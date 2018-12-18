@@ -125,8 +125,7 @@ public class ClickHandler
             world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.setBlockState(pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState(), 0b1011);
             
-            if(!player.capabilities.isCreativeMode)
-                stack.damageItem(1, player);
+            event.setResult(ALLOW);
         }
     }
 
