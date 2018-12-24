@@ -1,0 +1,30 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:half_slab",
+        "textures": {
+            "bottom": "netherex:blocks/smooth_basalt",
+            "top": "netherex:blocks/smooth_basalt",
+            "side": "netherex:blocks/smooth_basalt"
+        },
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type=top": [
+            {
+                "x": 180,
+                "uvlock": true
+            }
+        ],
+        "type=bottom": [ { } ],
+        "type=double": [
+            {
+                "model": "minecraft:cube_all",
+                "textures": {
+                    "all": "netherex:blocks/smooth_basalt"
+                }
+            }
+        ],
+        "inventory": [ { } ]
+    }
+}

@@ -25,9 +25,6 @@ import logictechcorp.libraryex.world.gen.feature.FeatureCluster;
 import logictechcorp.libraryex.world.gen.feature.FeatureOre;
 import logictechcorp.libraryex.world.gen.feature.FeatureStructure;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockElderMushroom;
-import logictechcorp.netherex.block.BlockElderMushroomCap;
-import logictechcorp.netherex.block.BlockNetherrack;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
@@ -49,7 +46,7 @@ import java.util.Arrays;
 public class BiomeFungiForest extends BiomeNetherEx
 {
     private static final IBlockState HYPHAE = NetherExBlocks.HYPHAE.getDefaultState();
-    private static final IBlockState LIVELY_NETHERRACK = NEX_NETHERRACK.withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
+    private static final IBlockState LIVELY_NETHERRACK = NetherExBlocks.LIVELY_NETHERRACK.getDefaultState();
 
     public BiomeFungiForest()
     {
@@ -94,8 +91,8 @@ public class BiomeFungiForest extends BiomeNetherEx
                     new FeatureStructure(1, 0.0125D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":ghast_queen_shrine"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
             )));
             this.getFeatures(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.ELDER_MUSHROOM_CAP.getDefaultState().withProperty(BlockElderMushroomCap.TYPE, BlockElderMushroom.EnumType.BROWN), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.FLAT),
-                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.ELDER_MUSHROOM_CAP.getDefaultState().withProperty(BlockElderMushroomCap.TYPE, BlockElderMushroom.EnumType.RED), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.BULB),
+                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.FLAT),
+                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.BULB),
                     new FeatureEnoki(32, 1.0D, false, 48, 118)
             )));
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(

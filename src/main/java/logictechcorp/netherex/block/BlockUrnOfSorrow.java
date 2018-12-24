@@ -18,10 +18,11 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockTileEntity;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.tileentity.TileEntityUrnOfSorrow;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -40,8 +41,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
@@ -52,8 +51,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 
     public BlockUrnOfSorrow()
     {
-        super(NetherEx.instance, "urn_of_sorrow", Material.ROCK, TileEntityUrnOfSorrow.class);
-        this.setHardness(0.5F);
+        super(NetherEx.getResource("urn_of_sorrow"), TileEntityUrnOfSorrow.class, new BlockBuilder(Material.ROCK, MapColor.SNOW).hardness(0.5F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override
@@ -168,16 +166,6 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, TYPE);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        for(BlockUrnOfSorrow.EnumType type : BlockUrnOfSorrow.EnumType.values())
-        {
-            ItemModelHandler.registerBlockModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("type=%s", type.getName()));
-        }
     }
 
     public enum EnumType implements IStringSerializable

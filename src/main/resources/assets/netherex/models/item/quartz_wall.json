@@ -1,6 +1,3 @@
 {
-    "parent": "block/wall_inventory",
-    "textures": {
-        "wall": "blocks/quartz_block_bottom"
-    }
+    "parent": "netherex:block/quartz_wall_inventory"
 }

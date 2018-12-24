@@ -17,14 +17,15 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
+import logictechcorp.libraryex.block.BlockModPath;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -46,18 +47,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockTilledSoulSand extends BlockLibEx
+public class BlockTilledSoulSand extends BlockModPath
 {
     public static final PropertyInteger MOISTURE = PropertyInteger.create("moisture", 0, 7);
-    private static final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
 
     public BlockTilledSoulSand()
     {
-        super(NetherEx.instance, "tilled_soul_sand", Material.GROUND);
-        this.setSoundType(SoundType.SAND);
+        super(NetherEx.getResource("tilled_soul_sand"), Blocks.SOUL_SAND, new BlockBuilder(Material.SAND, MapColor.BROWN).sound(SoundType.SAND).hardness(0.6F).tickRandomly().creativeTab(NetherEx.instance.getCreativeTab()));
         this.setLightOpacity(255);
-        this.setHardness(0.6F);
-        this.setTickRandomly(true);
     }
 
     @Override
@@ -70,12 +67,6 @@ public class BlockTilledSoulSand extends BlockLibEx
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return FARMLAND_AABB;
     }
 
     @Override
@@ -221,12 +212,5 @@ public class BlockTilledSoulSand extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, MOISTURE);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        ItemModelHandler.registerBlockModel(this, "moisture=0");
     }
 }

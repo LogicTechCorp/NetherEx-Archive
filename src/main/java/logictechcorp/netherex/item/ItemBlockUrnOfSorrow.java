@@ -17,23 +17,15 @@
 
 package logictechcorp.netherex.item;
 
-import com.google.common.base.CaseFormat;
-import logictechcorp.libraryex.item.ItemBlockLibEx;
-import logictechcorp.netherex.block.BlockUrnOfSorrow;
+import logictechcorp.libraryex.item.ItemBlockMod;
 import logictechcorp.netherex.init.NetherExBlocks;
-import net.minecraft.item.ItemStack;
+import logictechcorp.netherex.init.NetherExItems;
 
-public class ItemBlockUrnOfSorrow extends ItemBlockLibEx
+public class ItemBlockUrnOfSorrow extends ItemBlockMod
 {
     public ItemBlockUrnOfSorrow()
     {
-        super(NetherExBlocks.URN_OF_SORROW);
+        super(NetherExBlocks.URN_OF_SORROW, NetherExItems.getDefaultItemBuilder());
         this.setHasSubtypes(true);
-    }
-
-    @Override
-    public String getTranslationKey(ItemStack stack)
-    {
-        return super.getTranslationKey() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockUrnOfSorrow.EnumType.fromMeta(stack.getItemDamage()).getName());
     }
 }

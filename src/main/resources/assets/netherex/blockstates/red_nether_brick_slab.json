@@ -1,0 +1,30 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:half_slab",
+        "textures": {
+            "bottom": "netherex:blocks/red_nether_brick",
+            "top": "netherex:blocks/red_nether_brick",
+            "side": "netherex:blocks/red_nether_brick"
+        },
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type=top": [
+            {
+                "x": 180,
+                "uvlock": true
+            }
+        ],
+        "type=bottom": [ { } ],
+        "type=double": [
+            {
+                "model": "minecraft:cube_all",
+                "textures": {
+                    "all": "netherex:blocks/red_nether_brick"
+                }
+            }
+        ],
+        "inventory": [ { } ]
+    }
+}

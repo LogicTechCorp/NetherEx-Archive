@@ -18,6 +18,7 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.sound.SoundEventLibEx;
+import logictechcorp.libraryex.util.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,40 +29,40 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExSoundEvents
 {
-    public static final SoundEvent PIGTIFICATE_AMBIENT = null;
-    public static final SoundEvent PIGTIFICATE_HURT = null;
-    public static final SoundEvent PIGTIFICATE_DEATH = null;
-    public static final SoundEvent MOGUS_AMBIENT = null;
-    public static final SoundEvent MOGUS_HURT = null;
-    public static final SoundEvent MOGUS_DEATH = null;
-    public static final SoundEvent SALAMANDER_AMBIENT = null;
-    public static final SoundEvent SALAMANDER_HURT = null;
-    public static final SoundEvent SALAMANDER_DEATH = null;
-    public static final SoundEvent WIGHT_AMBIENT = null;
-    public static final SoundEvent WIGHT_HURT = null;
-    public static final SoundEvent WIGHT_DEATH = null;
-    public static final SoundEvent EMBER_HURT = null;
-    public static final SoundEvent EMBER_DEATH = null;
-    public static final SoundEvent NETHERMITE_AMBIENT = null;
-    public static final SoundEvent NETHERMITE_HURT = null;
-    public static final SoundEvent NETHERMITE_DEATH = null;
-    public static final SoundEvent SPINOUT_AMBIENT = null;
-    public static final SoundEvent SPINOUT_HURT = null;
-    public static final SoundEvent SPINOUT_DEATH = null;
-    public static final SoundEvent SPORE_HURT = null;
-    public static final SoundEvent SPORE_DEATH = null;
-    public static final SoundEvent SPORE_WARN = null;
-    public static final SoundEvent SPORE_EXPLODE = null;
-    public static final SoundEvent GHASTLING_AMBIENT = null;
-    public static final SoundEvent GHASTLING_HURT = null;
-    public static final SoundEvent GHASTLING_DEATH = null;
-    public static final SoundEvent GHASTLING_WARN = null;
-    public static final SoundEvent GHASTLING_SHOOT = null;
-    public static final SoundEvent GHAST_QUEEN_AMBIENT = null;
-    public static final SoundEvent GHAST_QUEEN_HURT = null;
-    public static final SoundEvent GHAST_QUEEN_DEATH = null;
-    public static final SoundEvent GHAST_QUEEN_SHOOT = null;
-    public static final SoundEvent GHAST_QUEEN_SUMMON = null;
+    public static final SoundEvent PIGTIFICATE_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent PIGTIFICATE_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent PIGTIFICATE_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent MOGUS_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent MOGUS_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent MOGUS_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent SALAMANDER_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent SALAMANDER_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent SALAMANDER_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent WIGHT_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent WIGHT_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent WIGHT_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent EMBER_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent EMBER_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent NETHERMITE_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent NETHERMITE_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent NETHERMITE_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent SPINOUT_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent SPINOUT_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent SPINOUT_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent SPORE_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent SPORE_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent SPORE_WARN = InjectionHelper.nullValue();
+    public static final SoundEvent SPORE_EXPLODE = InjectionHelper.nullValue();
+    public static final SoundEvent GHASTLING_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent GHASTLING_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent GHASTLING_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent GHASTLING_WARN = InjectionHelper.nullValue();
+    public static final SoundEvent GHASTLING_SHOOT = InjectionHelper.nullValue();
+    public static final SoundEvent GHAST_QUEEN_AMBIENT = InjectionHelper.nullValue();
+    public static final SoundEvent GHAST_QUEEN_HURT = InjectionHelper.nullValue();
+    public static final SoundEvent GHAST_QUEEN_DEATH = InjectionHelper.nullValue();
+    public static final SoundEvent GHAST_QUEEN_SHOOT = InjectionHelper.nullValue();
+    public static final SoundEvent GHAST_QUEEN_SUMMON = InjectionHelper.nullValue();
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler

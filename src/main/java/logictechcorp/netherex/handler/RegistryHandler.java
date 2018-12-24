@@ -15,7 +15,7 @@ public class RegistryHandler
     public static void onNewRegistry(RegistryEvent.NewRegistry event)
     {
         new RegistryBuilder<PigtificateProfession>()
-                .setName(new ResourceLocation(NetherEx.MOD_ID + ":pigtificates_professions"))
+                .setName(new ResourceLocation(NetherEx.MOD_ID + ":pigtificate_professions"))
                 .setType(PigtificateProfession.class)
                 .setDefaultKey(new ResourceLocation(NetherEx.MOD_ID + ":missing_no"))
                 .create();

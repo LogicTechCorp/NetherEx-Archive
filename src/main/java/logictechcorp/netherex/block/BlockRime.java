@@ -17,12 +17,16 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.libraryex.util.CollectionHelper;
 import logictechcorp.libraryex.util.EntityHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExEffects;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -37,12 +41,11 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-public class BlockRime extends BlockLibEx
+public class BlockRime extends BlockMod
 {
     public BlockRime()
     {
-        super(NetherEx.instance, "rime_block", "pickaxe", 0, 5.0F, 10.0F, Material.ROCK);
-        this.setLightLevel(0.9375F);
+        super(NetherEx.getResource("rime_block"), new BlockBuilder(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(5.0F).resistance(10.0F).lightLevel(0.9375F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override

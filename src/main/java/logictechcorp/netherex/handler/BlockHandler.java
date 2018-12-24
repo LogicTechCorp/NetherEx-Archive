@@ -17,12 +17,12 @@
 
 package logictechcorp.netherex.handler;
 
+import logictechcorp.libraryex.item.ItemModHammer;
 import logictechcorp.libraryex.util.CollectionHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.BlockTilledSoulSand;
 import logictechcorp.netherex.entity.monster.EntityNethermite;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -143,7 +143,7 @@ public class BlockHandler
         {
             if(state.getBlock() == Blocks.BEDROCK)
             {
-                if(player.getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_HAMMER)
+                if(player.getHeldItemMainhand().getItem() instanceof ItemModHammer)
                 {
                     ItemStack stack = new ItemStack(Blocks.BEDROCK, 1, 0);
                     stack.setTagInfo("AboveNether", new NBTTagByte((byte) 1));

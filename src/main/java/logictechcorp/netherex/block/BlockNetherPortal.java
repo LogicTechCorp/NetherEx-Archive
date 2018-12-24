@@ -18,8 +18,8 @@
 package logictechcorp.netherex.block;
 
 import com.google.common.collect.Queues;
-import logictechcorp.libraryex.block.BlockLibEx;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.libraryex.util.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -27,6 +27,7 @@ import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.TeleporterNetherEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -62,7 +63,7 @@ import java.util.Random;
  * Based on code written by Alz454 here:
  * https://github.com/enhancedportals/enhancedportals/blob/1647357d3cbed1289a653347e2107d92a2875a65/src/main/java/enhanced/portals/portal/PortalUtils.java
  */
-public class BlockNetherPortal extends BlockLibEx
+public class BlockNetherPortal extends BlockMod
 {
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
 
@@ -72,11 +73,7 @@ public class BlockNetherPortal extends BlockLibEx
 
     public BlockNetherPortal()
     {
-        super(NetherEx.instance, "nether_portal", Material.PORTAL);
-        this.setSoundType(SoundType.GLASS);
-        this.setLightLevel(0.75F);
-        this.setTickRandomly(true);
-        this.setHardness(-1F);
+        super(NetherEx.getResource("nether_portal"), new BlockBuilder(Material.PORTAL, MapColor.PURPLE).sound(SoundType.GLASS).lightLevel(0.75F).hardness(-1.0F).tickRandomly());
     }
 
     @Override
@@ -349,16 +346,6 @@ public class BlockNetherPortal extends BlockLibEx
     public static int getMetaForAxis(EnumFacing.Axis axis)
     {
         return axis == EnumFacing.Axis.X ? 0 : axis == EnumFacing.Axis.Y ? 1 : 2;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        for(EnumFacing.Axis axis : EnumFacing.Axis.values())
-        {
-            ItemModelHandler.registerBlockModel(this, axis.ordinal(), this.getRegistryName().toString(), String.format("axis=%s", axis.getName()));
-        }
     }
 
     public boolean trySpawnPortal(World world, BlockPos pos)

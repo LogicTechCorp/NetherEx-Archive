@@ -17,7 +17,8 @@
 
 package logictechcorp.netherex.item;
 
-import logictechcorp.libraryex.item.ItemLibEx;
+import logictechcorp.libraryex.item.ItemMod;
+import logictechcorp.libraryex.item.builder.ItemBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import net.minecraft.block.Block;
@@ -37,12 +38,11 @@ import net.minecraft.world.World;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class ItemObsidianBoat extends ItemLibEx
+public class ItemObsidianBoat extends ItemMod
 {
     public ItemObsidianBoat()
     {
-        super(NetherEx.instance, "obsidian_boat");
-        this.setMaxStackSize(1);
+        super(NetherEx.getResource("obsidian_boat"), new ItemBuilder().maxStackSize(1));
     }
 
     @Override

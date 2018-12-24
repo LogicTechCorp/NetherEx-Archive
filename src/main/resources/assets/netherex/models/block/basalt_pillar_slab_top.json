@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "netherex:blocks/basalt_pillar_end",
-        "top": "netherex:blocks/basalt_pillar_end",
-        "side": "netherex:blocks/basalt_pillar_side"
-    }
-}

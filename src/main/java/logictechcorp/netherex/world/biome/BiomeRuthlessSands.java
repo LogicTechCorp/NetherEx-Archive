@@ -24,7 +24,6 @@ import logictechcorp.libraryex.world.gen.feature.FeatureCluster;
 import logictechcorp.libraryex.world.gen.feature.FeatureFluid;
 import logictechcorp.libraryex.world.gen.feature.FeatureOre;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockNetherrack;
 import logictechcorp.netherex.entity.monster.EntitySpinout;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
@@ -43,7 +42,7 @@ import java.util.Arrays;
 
 public class BiomeRuthlessSands extends BiomeNetherEx
 {
-    private static final IBlockState GLOOMY_NETHERRACK = NEX_NETHERRACK.withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.GLOOMY);
+    private static final IBlockState GLOOMY_NETHERRACK = NetherExBlocks.GLOOMY_NETHERRACK.getDefaultState();
 
     public BiomeRuthlessSands()
     {

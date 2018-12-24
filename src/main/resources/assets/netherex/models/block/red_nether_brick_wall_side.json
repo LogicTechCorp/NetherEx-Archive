@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/wall_side",
+    "textures": {
+        "wall": "netherex:blocks/red_nether_brick"
+    }
+}

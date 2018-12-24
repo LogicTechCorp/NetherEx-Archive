@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_post",
+    "textures": {
+        "texture": "netherex:blocks/red_nether_brick"
+    }
+}

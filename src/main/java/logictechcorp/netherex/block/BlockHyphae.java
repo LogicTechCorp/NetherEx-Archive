@@ -17,15 +17,25 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBlocks;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -36,11 +46,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockHyphae extends BlockLibEx
+public class BlockHyphae extends BlockMod
 {
     public BlockHyphae()
     {
-        super(NetherEx.instance, "hyphae", "pickaxe", 0, 0.5F, 2.0F, Material.ROCK);
+        super(NetherEx.getResource("hyphae"), new BlockBuilder(Material.ROCK, MapColor.GRAY).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.5F).resistance(2.0F).creativeTab(NetherEx.instance.getCreativeTab()));
 
         if(ConfigHandler.blockConfig.hyphae.shouldSpread)
         {
@@ -65,7 +75,7 @@ public class BlockHyphae extends BlockLibEx
         {
             if(world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2)
             {
-                world.setBlockState(pos, NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY));
+                world.setBlockState(pos, NetherExBlocks.LIVELY_NETHERRACK.getDefaultState());
             }
             else
             {
@@ -77,7 +87,7 @@ public class BlockHyphae extends BlockLibEx
                         IBlockState stateNew = world.getBlockState(newPos);
                         IBlockState stateUp = world.getBlockState(newPos.up());
 
-                        if(stateNew.getBlock() == NetherExBlocks.NETHERRACK && stateNew.getValue(BlockNetherrack.TYPE) == BlockNetherrack.EnumType.LIVELY && world.getLightFromNeighbors(newPos.up()) >= 4 && stateUp.getLightOpacity(world, newPos.up()) <= 2)
+                        if(stateNew.getBlock() == NetherExBlocks.LIVELY_NETHERRACK && world.getLightFromNeighbors(newPos.up()) >= 4 && stateUp.getLightOpacity(world, newPos.up()) <= 2)
                         {
                             world.setBlockState(newPos, this.getDefaultState());
                         }
@@ -88,15 +98,26 @@ public class BlockHyphae extends BlockLibEx
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
     {
-        return Item.getItemFromBlock(NetherExBlocks.NETHERRACK);
+
+        for(EnumHand hand : EnumHand.values())
+        {
+            if(player.getHeldItem(hand).getItem() instanceof ItemSpade)
+            {
+                ItemStack stack = player.getHeldItem(hand);
+                player.swingArm(hand);
+                world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.setBlockState(pos, NetherExBlocks.LIVELY_NETHERRACK_PATH.getDefaultState(), 11);
+                stack.damageItem(1, player);
+            }
+        }
     }
 
     @Override
-    public int damageDropped(IBlockState state)
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return BlockNetherrack.EnumType.LIVELY.ordinal();
+        return Item.getItemFromBlock(NetherExBlocks.LIVELY_NETHERRACK);
     }
 
     @Override

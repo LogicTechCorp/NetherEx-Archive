@@ -17,9 +17,12 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -37,7 +40,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockBoneChunk extends BlockLibEx
+public class BlockBoneChunk extends BlockMod
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
@@ -50,7 +53,7 @@ public class BlockBoneChunk extends BlockLibEx
 
     public BlockBoneChunk()
     {
-        super(NetherEx.instance, "bone_chunk", "pickaxe", 1, 2.0F, 5.0F, Material.ROCK);
+        super(NetherEx.getResource("bone_chunk"), new BlockBuilder(Material.ROCK, MapColor.SNOW).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(2.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override
@@ -139,12 +142,5 @@ public class BlockBoneChunk extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        ItemModelHandler.registerBlockModel(this, "facing=up");
     }
 }

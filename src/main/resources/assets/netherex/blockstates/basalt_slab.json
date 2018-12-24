@@ -1,32 +1,30 @@
 {
     "forge_marker": 1,
     "defaults": {
+        "model": "minecraft:half_slab",
+        "textures": {
+            "bottom": "netherex:blocks/basalt",
+            "top": "netherex:blocks/basalt",
+            "side": "netherex:blocks/basalt"
+        },
         "transform": "forge:default-block"
     },
     "variants": {
-        "half=top,type=normal": {
-            "model": "netherex:basalt_slab_top"
-        },
-        "half=bottom,type=normal": {
-            "model": "netherex:basalt_slab_bottom"
-        },
-        "half=top,type=smooth": {
-            "model": "netherex:basalt_smooth_slab_top"
-        },
-        "half=bottom,type=smooth": {
-            "model": "netherex:basalt_smooth_slab_bottom"
-        },
-        "half=top,type=brick": {
-            "model": "netherex:basalt_brick_slab_top"
-        },
-        "half=bottom,type=brick": {
-            "model": "netherex:basalt_brick_slab_bottom"
-        },
-        "half=top,type=pillar": {
-            "model": "netherex:basalt_pillar_slab_top"
-        },
-        "half=bottom,type=pillar": {
-            "model": "netherex:basalt_pillar_slab_bottom"
-        }
+        "type=top": [
+            {
+                "x": 180,
+                "uvlock": true
+            }
+        ],
+        "type=bottom": [ { } ],
+        "type=double": [
+            {
+                "model": "minecraft:cube_all",
+                "textures": {
+                    "all": "netherex:blocks/basalt"
+                }
+            }
+        ],
+        "inventory": [ { } ]
     }
 }

@@ -17,11 +17,13 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -41,16 +43,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockEnokiMushroomCap extends BlockLibEx
+public class BlockEnokiMushroomCap extends BlockMod
 {
     private static final PropertyInteger AGE = PropertyInteger.create("age", 0, 5);
 
     public BlockEnokiMushroomCap()
     {
-        super(NetherEx.instance, "enoki_mushroom_cap", Material.PLANTS);
-        this.setSoundType(SoundType.WOOD);
-        this.setHardness(0.4F);
-        this.setTickRandomly(true);
+        super(NetherEx.getResource("enoki_mushroom_cap"), new BlockBuilder(Material.PLANTS, MapColor.SNOW).sound(SoundType.WOOD).hardness(0.4F).tickRandomly().creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override
@@ -81,7 +80,7 @@ public class BlockEnokiMushroomCap extends BlockLibEx
                     boolean nearNetherrack = false;
                     Block block = world.getBlockState(pos.up()).getBlock();
 
-                    if(block == Blocks.NETHERRACK || block == NetherExBlocks.NETHERRACK)
+                    if(block == NetherExBlocks.LIVELY_NETHERRACK)
                     {
                         canGrow = true;
                     }
@@ -95,7 +94,7 @@ public class BlockEnokiMushroomCap extends BlockLibEx
 
                             if(checkBlock != NetherExBlocks.ENOKI_MUSHROOM_STEM)
                             {
-                                if(checkBlock == Blocks.NETHERRACK || checkBlock == NetherExBlocks.NETHERRACK)
+                                if(checkBlock == Blocks.NETHERRACK || checkBlock == NetherExBlocks.LIVELY_NETHERRACK)
                                 {
                                     nearNetherrack = true;
                                 }
@@ -228,12 +227,11 @@ public class BlockEnokiMushroomCap extends BlockLibEx
 
     public boolean canSurvive(World world, BlockPos pos)
     {
-        IBlockState stateUp = world.getBlockState(pos.up());
-        Block blockUp = stateUp.getBlock();
+        IBlockState state = world.getBlockState(pos.up());
 
-        if(blockUp != NetherExBlocks.ENOKI_MUSHROOM_STEM && stateUp != NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
+        if(state.getBlock() != NetherExBlocks.ENOKI_MUSHROOM_STEM && state.getBlock() != NetherExBlocks.LIVELY_NETHERRACK)
         {
-            if(stateUp.getMaterial() == Material.AIR)
+            if(state.getMaterial() == Material.AIR)
             {
                 int blocks = 0;
 

@@ -1,72 +1,24 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "builtin/generated"
-    },
-    "variants": {
-        "type": {
-            "fiery": {
-                "textures": {
-                    "wall": "netherex:blocks/fiery_nether_brick"
-                }
-            },
-            "icy": {
-                "textures": {
-                    "wall": "netherex:blocks/icy_nether_brick"
-                }
-            },
-            "lively": {
-                "textures": {
-                    "wall": "netherex:blocks/lively_nether_brick"
-                }
-            },
-            "gloomy": {
-                "textures": {
-                    "wall": "netherex:blocks/gloomy_nether_brick"
-                }
-            }
+    "multipart": [
+        {
+            "when": { "up": "true" },
+            "apply": { "model": "netherex:nether_brick_wall_post" }
         },
-        "up": {
-            "true": {
-                "submodel": "wall_post"
-            },
-            "false": {
-            }
+        {
+            "when": { "north": "true" },
+            "apply": { "model": "netherex:nether_brick_wall_side", "uvlock": true }
         },
-        "north": {
-            "true": {
-                "submodel": "wall_side",
-                "uvlock": true
-            },
-            "false": {
-            }
+        {
+            "when": { "east": "true" },
+            "apply": { "model": "netherex:nether_brick_wall_side", "y": 90, "uvlock": true }
         },
-        "east": {
-            "true": {
-                "submodel": "wall_side",
-                "y": 90,
-                "uvlock": true
-            },
-            "false": {
-            }
+        {
+            "when": { "south": "true" },
+            "apply": { "model": "netherex:nether_brick_wall_side", "y": 180, "uvlock": true }
         },
-        "south": {
-            "true": {
-                "submodel": "wall_side",
-                "y": 180,
-                "uvlock": true
-            },
-            "false": {
-            }
-        },
-        "west": {
-            "true": {
-                "submodel": "wall_side",
-                "y": 270,
-                "uvlock": true
-            },
-            "false": {
-            }
+        {
+            "when": { "west": "true" },
+            "apply": { "model": "netherex:nether_brick_wall_side", "y": 270, "uvlock": true }
         }
-    }
+    ]
 }

@@ -56,12 +56,12 @@ public class PigtificateVillageManager
         else
         {
             String worldFile = PigtificateVillageData.getDataId(world);
-            data = (PigtificateVillageData) world.loadData(PigtificateVillageData.class, worldFile);
+            data = (PigtificateVillageData) world.getPerWorldStorage().getOrLoadData(PigtificateVillageData.class, worldFile);
 
             if(data == null && createData)
             {
                 data = new PigtificateVillageData(world);
-                world.setData(worldFile, data);
+                world.getPerWorldStorage().setData(worldFile, data);
             }
         }
 

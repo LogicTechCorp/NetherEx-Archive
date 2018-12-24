@@ -1,8 +1,0 @@
-{
-    "parent": "block/half_slab",
-    "textures": {
-        "bottom": "netherex:blocks/basalt",
-        "top": "netherex:blocks/basalt",
-        "side": "netherex:blocks/basalt"
-    }
-}

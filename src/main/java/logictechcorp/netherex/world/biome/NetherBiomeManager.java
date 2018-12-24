@@ -56,7 +56,7 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
 
     public void readBiomeConfigs()
     {
-        LibraryEx.LOGGER.info("Reading Nether biome configs.");
+        NetherEx.LOGGER.info("Reading Nether biome configs.");
 
         try
         {
@@ -109,7 +109,7 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
                     }
                     else if(!configFile.isDirectory())
                     {
-                        LibraryEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
+                        NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
                     }
                 }
             }

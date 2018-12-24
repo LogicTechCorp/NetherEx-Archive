@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_gate_open",
+    "textures": {
+        "texture": "netherex:blocks/gloomy_nether_brick"
+    }
+}

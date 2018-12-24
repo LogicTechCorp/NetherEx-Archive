@@ -17,12 +17,14 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -43,7 +45,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockEnokiMushroomStem extends BlockLibEx
+public class BlockEnokiMushroomStem extends BlockMod
 {
     private static final PropertyBool NORTH = PropertyBool.create("north");
     private static final PropertyBool EAST = PropertyBool.create("east");
@@ -54,9 +56,7 @@ public class BlockEnokiMushroomStem extends BlockLibEx
 
     public BlockEnokiMushroomStem()
     {
-        super(NetherEx.instance, "enoki_mushroom_stem", Material.PLANTS);
-        this.setSoundType(SoundType.WOOD);
-        this.setHardness(0.4F);
+        super(NetherEx.getResource("enoki_mushroom_stem"), new BlockBuilder(Material.PLANTS, MapColor.SNOW).sound(SoundType.WOOD).hardness(0.4F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override
@@ -94,7 +94,7 @@ public class BlockEnokiMushroomStem extends BlockLibEx
         Block blockWest = world.getBlockState(pos.west()).getBlock();
 
         return state.withProperty(DOWN, blockDown == this || blockDown == NetherExBlocks.ENOKI_MUSHROOM_CAP)
-                .withProperty(UP, blockUp == this || blockUp == Blocks.NETHERRACK || blockUp == NetherExBlocks.NETHERRACK || blockUp == NetherExBlocks.ENOKI_MUSHROOM_CAP)
+                .withProperty(UP, blockUp == this || blockUp == NetherExBlocks.LIVELY_NETHERRACK || blockUp == NetherExBlocks.ENOKI_MUSHROOM_CAP)
                 .withProperty(NORTH, blockNorth == this || blockNorth == NetherExBlocks.ENOKI_MUSHROOM_CAP)
                 .withProperty(EAST, blockEast == this || blockEast == NetherExBlocks.ENOKI_MUSHROOM_CAP)
                 .withProperty(SOUTH, blockSouth == this || blockSouth == NetherExBlocks.ENOKI_MUSHROOM_CAP)
@@ -231,7 +231,7 @@ public class BlockEnokiMushroomStem extends BlockLibEx
 
                 IBlockState stateUp = world.getBlockState(offsetPos.up());
 
-                if(stateUp.getBlock() == this || stateUp.getBlock() == Blocks.NETHERRACK || stateUp == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY))
+                if(stateUp.getBlock() == this || stateUp.getBlock() == Blocks.NETHERRACK || stateUp == NetherExBlocks.LIVELY_NETHERRACK)
                 {
                     return true;
                 }
@@ -239,6 +239,6 @@ public class BlockEnokiMushroomStem extends BlockLibEx
         }
 
         IBlockState stateUp = world.getBlockState(pos.up());
-        return stateUp.getBlock() == this || stateUp.getBlock() == Blocks.NETHERRACK || stateUp == NetherExBlocks.NETHERRACK.getDefaultState().withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.LIVELY);
+        return stateUp.getBlock() == this || stateUp.getBlock() == Blocks.NETHERRACK || stateUp == NetherExBlocks.LIVELY_NETHERRACK;
     }
 }

@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_gate_open",
+    "textures": {
+        "texture": "netherex:blocks/lively_nether_brick"
+    }
+}

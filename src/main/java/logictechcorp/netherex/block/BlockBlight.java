@@ -1,6 +1,7 @@
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockFiniteFluidLibEx;
+import logictechcorp.libraryex.block.BlockModFiniteFluid;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.libraryex.util.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.capability.CapabilityBlightChunkData;
@@ -10,6 +11,7 @@ import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -26,12 +28,11 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 
 import java.util.Random;
 
-public class BlockBlight extends BlockFiniteFluidLibEx
+public class BlockBlight extends BlockModFiniteFluid
 {
     public BlockBlight()
     {
-        super(NetherEx.instance, "blight", NetherExFluids.BLIGHT, Material.WATER);
-        this.setTickRandomly(true);
+        super(NetherEx.getResource("blight"), NetherExFluids.BLIGHT, new BlockBuilder(Material.WATER, MapColor.RED).tickRandomly().creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override

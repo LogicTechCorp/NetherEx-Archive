@@ -17,10 +17,16 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.item.ItemEdibleLibEx;
-import logictechcorp.libraryex.item.ItemLibEx;
+import logictechcorp.libraryex.item.*;
+import logictechcorp.libraryex.item.builder.ItemArmorBuilder;
+import logictechcorp.libraryex.item.builder.ItemBuilder;
+import logictechcorp.libraryex.item.builder.ItemEdibleBuilder;
+import logictechcorp.libraryex.item.builder.ItemToolBuilder;
+import logictechcorp.libraryex.util.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.item.*;
+import logictechcorp.netherex.item.ItemObsidianBoat;
+import logictechcorp.netherex.item.ItemRimeAndSteel;
+import logictechcorp.netherex.item.ItemWitherDust;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -33,41 +39,63 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExItems
 {
-    public static final ItemNetherbrick NETHERBRICK = null;
-    public static final ItemLibEx WITHER_BONE = null;
-    public static final ItemWitherDust WITHER_DUST = null;
-    public static final ItemLibEx FROST_ROD = null;
-    public static final ItemLibEx FROST_POWDER = null;
-    public static final ItemLibEx BLAZED_WITHER_BONE = null;
-    public static final ItemLibEx FROSTED_WITHER_BONE = null;
-    public static final ItemSalamanderHide SALAMANDER_HIDE = null;
-    public static final ItemLibEx AMETHYST_CRYSTAL = null;
-    public static final ItemLibEx RIME_CRYSTAL = null;
-    public static final ItemLibEx COBALT_INGOT = null;
-    public static final ItemLibEx ARDITE_INGOT = null;
-    public static final ItemRimeAndSteel RIME_AND_STEEL = null;
-    public static final ItemLibEx SPORE = null;
-    public static final ItemLibEx BONE_SPIDER_FANG = null;
-    public static final ItemLibEx GHAST_QUEEN_TEAR = null;
-    public static final ItemObsidianBoat OBSIDIAN_BOAT = null;
-    public static final ItemEdibleLibEx GHAST_MEAT_RAW = null;
-    public static final ItemEdibleLibEx GHAST_MEAT_COOKED = null;
-    public static final ItemEdibleLibEx CONGEALED_MAGMA_CREAM = null;
-    public static final ItemEdibleLibEx ENOKI_MUSHROOM = null;
-    public static final ItemAmedianSword AMEDIAN_SWORD = null;
-    public static final ItemAmedianPickaxe AMEDIAN_PICKAXE = null;
-    public static final ItemAmedianShovel AMEDIAN_SHOVEL = null;
-    public static final ItemAmedianAxe AMEDIAN_AXE = null;
-    public static final ItemAmedianHoe AMEDIAN_HOE = null;
-    public static final ItemAmedianHammer AMEDIAN_HAMMER = null;
-    public static final ItemWitherBoneArmor WITHER_BONE_HELMET = null;
-    public static final ItemWitherBoneArmor WITHER_BONE_CHESTPLATE = null;
-    public static final ItemWitherBoneArmor WITHER_BONE_LEGGINGS = null;
-    public static final ItemWitherBoneArmor WITHER_BONE_BOOTS = null;
-    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_HELMET = null;
-    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_CHESTPLATE = null;
-    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_LEGGINGS = null;
-    public static final ItemSalamanderHideArmor SALAMANDER_HIDE_BOOTS = null;
+    public static final ItemMod GLOOMY_NETHERBRICK = InjectionHelper.nullValue();
+    public static final ItemMod LIVELY_NETHERBRICK = InjectionHelper.nullValue();
+    public static final ItemMod FIERY_NETHERBRICK = InjectionHelper.nullValue();
+    public static final ItemMod ICY_NETHERBRICK = InjectionHelper.nullValue();
+    public static final ItemMod WITHER_BONE = InjectionHelper.nullValue();
+    public static final ItemWitherDust WITHER_DUST = InjectionHelper.nullValue();
+    public static final ItemMod FROST_ROD = InjectionHelper.nullValue();
+    public static final ItemMod FROST_POWDER = InjectionHelper.nullValue();
+    public static final ItemMod BLAZED_WITHER_BONE = InjectionHelper.nullValue();
+    public static final ItemMod FROSTED_WITHER_BONE = InjectionHelper.nullValue();
+    public static final ItemMod ORANGE_SALAMANDER_HIDE = InjectionHelper.nullValue();
+    public static final ItemMod BLACK_SALAMANDER_HIDE = InjectionHelper.nullValue();
+    public static final ItemMod AMETHYST_CRYSTAL = InjectionHelper.nullValue();
+    public static final ItemMod RIME_CRYSTAL = InjectionHelper.nullValue();
+    public static final ItemMod COBALT_INGOT = InjectionHelper.nullValue();
+    public static final ItemMod ARDITE_INGOT = InjectionHelper.nullValue();
+    public static final ItemRimeAndSteel RIME_AND_STEEL = InjectionHelper.nullValue();
+    public static final ItemMod SPORE = InjectionHelper.nullValue();
+    public static final ItemMod BONE_SPIDER_FANG = InjectionHelper.nullValue();
+    public static final ItemMod GHAST_QUEEN_TEAR = InjectionHelper.nullValue();
+    public static final ItemObsidianBoat OBSIDIAN_BOAT = InjectionHelper.nullValue();
+    public static final ItemModEdible GHAST_MEAT_RAW = InjectionHelper.nullValue();
+    public static final ItemModEdible GHAST_MEAT_COOKED = InjectionHelper.nullValue();
+    public static final ItemModEdible CONGEALED_MAGMA_CREAM = InjectionHelper.nullValue();
+    public static final ItemModEdible ENOKI_MUSHROOM = InjectionHelper.nullValue();
+    public static final ItemModSword WITHERED_AMEDIAN_SWORD = InjectionHelper.nullValue();
+    public static final ItemModPickaxe WITHERED_AMEDIAN_PICKAXE = InjectionHelper.nullValue();
+    public static final ItemModShovel WITHERED_AMEDIAN_SHOVEL = InjectionHelper.nullValue();
+    public static final ItemModAxe WITHERED_AMEDIAN_AXE = InjectionHelper.nullValue();
+    public static final ItemModHoe WITHERED_AMEDIAN_HOE = InjectionHelper.nullValue();
+    public static final ItemModHammer WITHERED_AMEDIAN_HAMMER = InjectionHelper.nullValue();
+    public static final ItemModSword BLAZED_AMEDIAN_SWORD = InjectionHelper.nullValue();
+    public static final ItemModPickaxe BLAZED_AMEDIAN_PICKAXE = InjectionHelper.nullValue();
+    public static final ItemModShovel BLAZED_AMEDIAN_SHOVEL = InjectionHelper.nullValue();
+    public static final ItemModAxe BLAZED_AMEDIAN_AXE = InjectionHelper.nullValue();
+    public static final ItemModHoe BLAZED_AMEDIAN_HOE = InjectionHelper.nullValue();
+    public static final ItemModHammer BLAZED_AMEDIAN_HAMMER = InjectionHelper.nullValue();
+    public static final ItemModSword FROSTED_AMEDIAN_SWORD = InjectionHelper.nullValue();
+    public static final ItemModPickaxe FROSTED_AMEDIAN_PICKAXE = InjectionHelper.nullValue();
+    public static final ItemModShovel FROSTED_AMEDIAN_SHOVEL = InjectionHelper.nullValue();
+    public static final ItemModAxe FROSTED_AMEDIAN_AXE = InjectionHelper.nullValue();
+    public static final ItemModHoe FROSTED_AMEDIAN_HOE = InjectionHelper.nullValue();
+    public static final ItemModHammer FROSTED_AMEDIAN_HAMMER = InjectionHelper.nullValue();
+    public static final ItemModArmor WITHER_BONE_HELMET = InjectionHelper.nullValue();
+    public static final ItemModArmor WITHER_BONE_CHESTPLATE = InjectionHelper.nullValue();
+    public static final ItemModArmor WITHER_BONE_LEGGINGS = InjectionHelper.nullValue();
+    public static final ItemModArmor WITHER_BONE_BOOTS = InjectionHelper.nullValue();
+    public static final ItemModArmor ORANGE_SALAMANDER_HIDE_HELMET = InjectionHelper.nullValue();
+    public static final ItemModArmor ORANGE_SALAMANDER_HIDE_CHESTPLATE = InjectionHelper.nullValue();
+    public static final ItemModArmor ORANGE_SALAMANDER_HIDE_LEGGINGS = InjectionHelper.nullValue();
+    public static final ItemModArmor ORANGE_SALAMANDER_HIDE_BOOTS = InjectionHelper.nullValue();
+    public static final ItemModArmor BLACK_SALAMANDER_HIDE_HELMET = InjectionHelper.nullValue();
+    public static final ItemModArmor BLACK_SALAMANDER_HIDE_CHESTPLATE = InjectionHelper.nullValue();
+    public static final ItemModArmor BLACK_SALAMANDER_HIDE_LEGGINGS = InjectionHelper.nullValue();
+    public static final ItemModArmor BLACK_SALAMANDER_HIDE_BOOTS = InjectionHelper.nullValue();
+
+    private static final ItemBuilder DEFAULT_ITEM_BUILDER = new ItemBuilder().creativeTab(NetherEx.instance.getCreativeTab());
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -76,41 +104,67 @@ public class NetherExItems
         public static void onRegisterItems(RegistryEvent.Register<Item> event)
         {
             event.getRegistry().registerAll(
-                    new ItemNetherbrick(),
-                    new ItemLibEx(NetherEx.instance, "wither_bone"),
+                    new ItemMod(NetherEx.getResource("gloomy_netherbrick"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("lively_netherbrick"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("fiery_netherbrick"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("icy_netherbrick"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("wither_bone"), DEFAULT_ITEM_BUILDER),
                     new ItemWitherDust(),
-                    new ItemLibEx(NetherEx.instance, "frost_rod"),
-                    new ItemLibEx(NetherEx.instance, "frost_powder"),
-                    new ItemLibEx(NetherEx.instance, "blazed_wither_bone"),
-                    new ItemLibEx(NetherEx.instance, "frosted_wither_bone"),
-                    new ItemSalamanderHide(),
-                    new ItemLibEx(NetherEx.instance, "amethyst_crystal"),
-                    new ItemLibEx(NetherEx.instance, "rime_crystal"),
-                    new ItemLibEx(NetherEx.instance, "cobalt_ingot"),
-                    new ItemLibEx(NetherEx.instance, "ardite_ingot"),
+                    new ItemMod(NetherEx.getResource("frost_rod"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("frost_powder"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("blazed_wither_bone"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("frosted_wither_bone"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("orange_salamander_hide"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("black_salamander_hide"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("amethyst_crystal"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("rime_crystal"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("cobalt_ingot"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("ardite_ingot"), DEFAULT_ITEM_BUILDER),
                     new ItemRimeAndSteel(),
-                    new ItemLibEx(NetherEx.instance, "spore"),
-                    new ItemLibEx(NetherEx.instance, "bone_spider_fang"),
-                    new ItemLibEx(NetherEx.instance, "ghast_queen_tear"), new ItemObsidianBoat(),
-                    new ItemEdibleLibEx(NetherEx.instance, "ghast_meat_raw", 4, 0.5F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
-                    new ItemEdibleLibEx(NetherEx.instance, "ghast_meat_cooked", 8, 1.0F, false).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemEdibleLibEx(NetherEx.instance, "congealed_magma_cream", 1, 0.3F, false).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
-                    new ItemEdibleLibEx(NetherEx.instance, "enoki_mushroom", 3, 0.7F, false),
-                    new ItemAmedianSword(),
-                    new ItemAmedianPickaxe(),
-                    new ItemAmedianShovel(),
-                    new ItemAmedianAxe(),
-                    new ItemAmedianHoe(),
-                    new ItemAmedianHammer(),
-                    new ItemWitherBoneArmor("helmet", 1, EntityEquipmentSlot.HEAD),
-                    new ItemWitherBoneArmor("chestplate", 1, EntityEquipmentSlot.CHEST),
-                    new ItemWitherBoneArmor("leggings", 2, EntityEquipmentSlot.LEGS),
-                    new ItemWitherBoneArmor("boots", 1, EntityEquipmentSlot.FEET),
-                    new ItemSalamanderHideArmor("helmet", 1, EntityEquipmentSlot.HEAD),
-                    new ItemSalamanderHideArmor("chestplate", 1, EntityEquipmentSlot.CHEST),
-                    new ItemSalamanderHideArmor("leggings", 2, EntityEquipmentSlot.LEGS),
-                    new ItemSalamanderHideArmor("boots", 1, EntityEquipmentSlot.FEET)
+                    new ItemMod(NetherEx.getResource("spore"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("bone_spider_fang"), DEFAULT_ITEM_BUILDER),
+                    new ItemMod(NetherEx.getResource("ghast_queen_tear"), DEFAULT_ITEM_BUILDER),
+                    new ItemObsidianBoat(),
+                    new ItemModEdible(NetherEx.getResource("ghast_meat_raw"), new ItemEdibleBuilder(4, 0.5F, false)).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),
+                    new ItemModEdible(NetherEx.getResource("ghast_meat_cooked"), new ItemEdibleBuilder(8, 1.0F, false)).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
+                    new ItemModEdible(NetherEx.getResource("congealed_magma_cream"), new ItemEdibleBuilder(1, 0.3F, false)).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
+                    new ItemModEdible(NetherEx.getResource("enoki_mushroom"), new ItemEdibleBuilder(3, 0.7F, false)),
+                    new ItemModSword(NetherEx.getResource("withered_amedian_sword"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModPickaxe(NetherEx.getResource("withered_amedian_pickaxe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModShovel(NetherEx.getResource("withered_amedian_shovel"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModAxe(NetherEx.getResource("withered_amedian_axe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN).attackDamage(10.0F).attackSpeed(-2.0F)),
+                    new ItemModHoe(NetherEx.getResource("withered_amedian_hoe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModHammer(NetherEx.getResource("withered_amedian_hammer"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModSword(NetherEx.getResource("blazed_amedian_sword"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModPickaxe(NetherEx.getResource("blazed_amedian_pickaxe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModShovel(NetherEx.getResource("blazed_amedian_shovel"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModAxe(NetherEx.getResource("blazed_amedian_axe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN).attackDamage(10.0F).attackSpeed(-2.0F)),
+                    new ItemModHoe(NetherEx.getResource("blazed_amedian_hoe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModHammer(NetherEx.getResource("blazed_amedian_hammer"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModSword(NetherEx.getResource("frosted_amedian_sword"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModPickaxe(NetherEx.getResource("frosted_amedian_pickaxe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModShovel(NetherEx.getResource("frosted_amedian_shovel"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModAxe(NetherEx.getResource("frosted_amedian_axe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN).attackDamage(10.0F).attackSpeed(-2.0F)),
+                    new ItemModHoe(NetherEx.getResource("frosted_amedian_hoe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModHammer(NetherEx.getResource("frosted_amedian_hammer"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
+                    new ItemModArmor(NetherEx.getResource("wither_bone_helmet"), new ItemArmorBuilder(NetherExMaterials.WITHER_BONE, EntityEquipmentSlot.HEAD)),
+                    new ItemModArmor(NetherEx.getResource("wither_bone_chestplate"), new ItemArmorBuilder(NetherExMaterials.WITHER_BONE, EntityEquipmentSlot.CHEST)),
+                    new ItemModArmor(NetherEx.getResource("wither_bone_leggings"), new ItemArmorBuilder(NetherExMaterials.WITHER_BONE, EntityEquipmentSlot.LEGS)),
+                    new ItemModArmor(NetherEx.getResource("wither_bone_boots"), new ItemArmorBuilder(NetherExMaterials.WITHER_BONE, EntityEquipmentSlot.FEET)),
+                    new ItemModArmor(NetherEx.getResource("orange_salamander_hide_helmet"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.HEAD)),
+                    new ItemModArmor(NetherEx.getResource("orange_salamander_hide_chestplate"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.CHEST)),
+                    new ItemModArmor(NetherEx.getResource("orange_salamander_hide_leggings"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.LEGS)),
+                    new ItemModArmor(NetherEx.getResource("orange_salamander_hide_boots"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.FEET)),
+                    new ItemModArmor(NetherEx.getResource("black_salamander_hide_helmet"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.HEAD)),
+                    new ItemModArmor(NetherEx.getResource("black_salamander_hide_chestplate"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.CHEST)),
+                    new ItemModArmor(NetherEx.getResource("black_salamander_hide_leggings"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.LEGS)),
+                    new ItemModArmor(NetherEx.getResource("black_salamander_hide_boots"), new ItemArmorBuilder(NetherExMaterials.SALAMANDER_HIDE, EntityEquipmentSlot.FEET))
             );
         }
+    }
+
+    public static ItemBuilder getDefaultItemBuilder()
+    {
+        return DEFAULT_ITEM_BUILDER;
     }
 }

@@ -17,13 +17,15 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.libraryex.util.CollectionHelper;
 import logictechcorp.libraryex.util.EntityHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -47,15 +49,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockThornstalk extends BlockLibEx
+public class BlockThornstalk extends BlockMod
 {
     public static final PropertyEnum<EnumPart> PART = PropertyEnum.create("part", EnumPart.class);
 
     public BlockThornstalk()
     {
-        super(NetherEx.instance, "thornstalk", Material.PLANTS);
-        this.setSoundType(SoundType.PLANT);
-        this.setHardness(0.0F);
+        super(NetherEx.getResource("thornstalk"), new BlockBuilder(Material.PLANTS, MapColor.BROWN).sound(SoundType.PLANT).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override

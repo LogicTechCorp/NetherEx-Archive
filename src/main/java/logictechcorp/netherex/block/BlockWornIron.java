@@ -17,9 +17,13 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,12 +34,11 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockWornIron extends BlockLibEx
+public class BlockWornIron extends BlockMod
 {
     public BlockWornIron()
     {
-        super(NetherEx.instance, "worn_iron", "pickaxe", 1, 5.0F, 10.0F, Material.IRON);
-        this.setSoundType(SoundType.METAL);
+        super(NetherEx.getResource("worn_iron"), new BlockBuilder(Material.IRON, MapColor.GRAY).sound(SoundType.METAL).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(5.0F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override

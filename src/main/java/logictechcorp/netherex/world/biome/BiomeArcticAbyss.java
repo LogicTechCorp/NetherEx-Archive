@@ -25,7 +25,6 @@ import logictechcorp.libraryex.world.gen.feature.FeatureOre;
 import logictechcorp.libraryex.world.gen.feature.FeaturePool;
 import logictechcorp.libraryex.world.gen.feature.FeatureScatter;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockNetherrack;
 import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
 import logictechcorp.netherex.entity.monster.EntityWight;
@@ -47,7 +46,7 @@ import java.util.Arrays;
 public class BiomeArcticAbyss extends BiomeNetherEx
 {
     private static final IBlockState FROSTBURN_ICE = NetherExBlocks.FROSTBURN_ICE.getDefaultState();
-    private static final IBlockState ICY_NETHERRACK = NEX_NETHERRACK.withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.ICY);
+    private static final IBlockState ICY_NETHERRACK = NetherExBlocks.ICY_NETHERRACK.getDefaultState();
 
     public BiomeArcticAbyss()
     {

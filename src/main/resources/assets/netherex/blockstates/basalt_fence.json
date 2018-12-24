@@ -1,65 +1,21 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "fence_post"
-    },
-    "variants": {
-        "type": {
-            "normal": {
-                "textures": {
-                    "texture": "netherex:blocks/basalt"
-                }
-            },
-            "smooth": {
-                "textures": {
-                    "texture": "netherex:blocks/basalt_smooth"
-                }
-            },
-            "brick": {
-                "textures": {
-                    "texture": "netherex:blocks/basalt_brick"
-                }
-            },
-            "pillar": {
-                "textures": {
-                    "texture": "netherex:blocks/basalt_pillar_side"
-                }
-            }
+    "multipart": [
+        { "apply": { "model": "netherex:basalt_fence_post" } },
+        {
+            "when": { "north": "true" },
+            "apply": { "model": "netherex:basalt_fence_side", "uvlock": true }
         },
-        "north": {
-            "true": {
-                "submodel": "fence_side",
-                "uvlock": true
-            },
-            "false": {
-            }
+        {
+            "when": { "east": "true" },
+            "apply": { "model": "netherex:basalt_fence_side", "y": 90, "uvlock": true }
         },
-        "east": {
-            "true": {
-                "submodel": "fence_side",
-                "y": 90,
-                "uvlock": true
-            },
-            "false": {
-            }
+        {
+            "when": { "south": "true" },
+            "apply": { "model": "netherex:basalt_fence_side", "y": 180, "uvlock": true }
         },
-        "south": {
-            "true": {
-                "submodel": "fence_side",
-                "y": 180,
-                "uvlock": true
-            },
-            "false": {
-            }
-        },
-        "west": {
-            "true": {
-                "submodel": "fence_side",
-                "y": 270,
-                "uvlock": true
-            },
-            "false": {
-            }
+        {
+            "when": { "west": "true" },
+            "apply": { "model": "netherex:basalt_fence_side", "y": 270, "uvlock": true }
         }
-    }
+    ]
 }

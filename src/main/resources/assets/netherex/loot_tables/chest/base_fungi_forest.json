@@ -15,7 +15,12 @@
                 {
                     "type": "item",
                     "weight": 2,
-                    "name": "netherex:elder_mushroom"
+                    "name": "netherex:brown_elder_mushroom"
+                },
+                {
+                    "type": "item",
+                    "weight": 2,
+                    "name": "netherex:red_elder_mushroom"
                 },
                 {
                     "type": "item",
@@ -25,7 +30,12 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "netherex:elder_mushroom_cap"
+                    "name": "netherex:brown_elder_mushroom_cap"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "netherex:red_elder_mushroom_cap"
                 },
                 {
                     "type": "item",

@@ -1,22 +1,22 @@
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.block.BlockDynamic;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.libraryex.world.biome.wrapper.BiomeBlockType;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.Biome;
 
 public abstract class BlockDynamicNetherBiome extends BlockDynamic
 {
-    public BlockDynamicNetherBiome(IModData data, String name, Material material, TexturePlacement texturePlacement)
+    public BlockDynamicNetherBiome(ResourceLocation registryName, TexturePlacement texturePlacement, BlockBuilder builder)
     {
-        super(data, name, material, texturePlacement);
+        super(registryName, texturePlacement, builder);
     }
 
     @Override

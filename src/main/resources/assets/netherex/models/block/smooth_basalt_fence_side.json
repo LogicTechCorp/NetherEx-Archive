@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_side",
+    "textures": {
+        "texture": "netherex:blocks/smooth_basalt"
+    }
+}

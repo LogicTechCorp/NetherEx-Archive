@@ -1,6 +1,3 @@
 {
-    "parent": "block/wall_inventory",
-    "textures": {
-        "wall": "netherex:blocks/icy_nether_brick"
-    }
+    "parent": "netherex:block/icy_nether_brick_wall_inventory"
 }

@@ -17,19 +17,20 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.libraryex.util.RandomHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -45,13 +46,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockBlueFire extends BlockLibEx
+public class BlockBlueFire extends BlockMod
 {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
     public static final PropertyBool NORTH = PropertyBool.create("north");
@@ -62,9 +62,7 @@ public class BlockBlueFire extends BlockLibEx
 
     public BlockBlueFire()
     {
-        super(NetherEx.instance, "blue_fire", Material.FIRE);
-        this.setLightLevel(1.0F);
-        this.setTickRandomly(true);
+        super(NetherEx.getResource("blue_fire"), new BlockBuilder(Material.FIRE, MapColor.LIGHT_BLUE).lightLevel(1.0F).tickRandomly());
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 
@@ -462,13 +460,5 @@ public class BlockBlueFire extends BlockLibEx
     private boolean canDie(World world, BlockPos pos)
     {
         return world.isRainingAt(pos) || world.isRainingAt(pos.west()) || world.isRainingAt(pos.east()) || world.isRainingAt(pos.north()) || world.isRainingAt(pos.south());
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        ModelLoader.setCustomStateMapper(this, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());
-        super.registerModel();
     }
 }

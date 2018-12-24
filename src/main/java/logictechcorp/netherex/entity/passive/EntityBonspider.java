@@ -232,7 +232,7 @@ public class EntityBonspider extends AbstractHorse
             growth = 30;
             temper = 3;
         }
-        else if(item == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM))
+        else if(item == Item.getItemFromBlock(NetherExBlocks.BROWN_ELDER_MUSHROOM) || item == Item.getItemFromBlock(NetherExBlocks.RED_ELDER_MUSHROOM))
         {
             health = 3.0F;
             growth = 60;

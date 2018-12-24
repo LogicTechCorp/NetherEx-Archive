@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "netherex:blocks/brown_elder_mushroom"
+    }
+}

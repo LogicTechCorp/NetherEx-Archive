@@ -1,0 +1,14 @@
+{
+    "pools": [
+        {
+            "name": "orange_salamander_loot_pool",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "netherex:orange_salamander_hide"
+                }
+            ]
+        }
+    ]
+}

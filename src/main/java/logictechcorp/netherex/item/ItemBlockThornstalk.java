@@ -17,14 +17,14 @@
 
 package logictechcorp.netherex.item;
 
-import logictechcorp.libraryex.item.ItemBlockLibEx;
+import logictechcorp.libraryex.item.ItemBlockMod;
 import logictechcorp.netherex.init.NetherExBlocks;
 
-public class ItemBlockThornstalk extends ItemBlockLibEx
+public class ItemBlockThornstalk extends ItemBlockMod
 {
     public ItemBlockThornstalk()
     {
-        super(NetherExBlocks.THORNSTALK);
+        super(NetherExBlocks.THORNSTALK, NetherExBlocks.getDefaultItemBlockBuilder());
         this.setHasSubtypes(true);
     }
 }

@@ -18,6 +18,7 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.potion.PotionTypeLibEx;
+import logictechcorp.libraryex.util.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
@@ -29,10 +30,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExEffectTypes
 {
-    public static final PotionType NORMAL_FREEZE = null;
-    public static final PotionType NORMAL_FROSTBITE = null;
-    public static final PotionType NORMAL_SPORE = null;
-    public static final PotionType NORMAL_LOST = null;
+    public static final PotionType NORMAL_FREEZE = InjectionHelper.nullValue();
+    public static final PotionType NORMAL_FROSTBITE = InjectionHelper.nullValue();
+    public static final PotionType NORMAL_SPORE = InjectionHelper.nullValue();
+    public static final PotionType NORMAL_LOST = InjectionHelper.nullValue();
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler

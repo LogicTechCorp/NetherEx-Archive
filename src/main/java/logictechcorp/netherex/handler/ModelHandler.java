@@ -1,12 +1,10 @@
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.client.model.item.IModelContainer;
 import logictechcorp.libraryex.client.render.block.model.BakedModelDynamic;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,12 +12,6 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class ModelHandler
 {
-    @SubscribeEvent
-    public static void onModelRegister(ModelRegistryEvent event)
-    {
-        NetherEx.instance.getModelContainers().forEach(IModelContainer::registerModel);
-    }
-
     @SubscribeEvent
     public static void onModelBake(ModelBakeEvent event)
     {

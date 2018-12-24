@@ -17,9 +17,10 @@
 
 package logictechcorp.netherex.item;
 
-import logictechcorp.libraryex.item.ItemLibEx;
+import logictechcorp.libraryex.item.ItemMod;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.BlockElderMushroom;
+import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -36,11 +37,11 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.event.ForgeEventFactory;
 
-public class ItemWitherDust extends ItemLibEx
+public class ItemWitherDust extends ItemMod
 {
     public ItemWitherDust()
     {
-        super(NetherEx.instance, "wither_dust");
+        super(NetherEx.getResource("wither_dust"), NetherExItems.getDefaultItemBuilder());
 
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new Bootstrap.BehaviorDispenseOptional()
         {

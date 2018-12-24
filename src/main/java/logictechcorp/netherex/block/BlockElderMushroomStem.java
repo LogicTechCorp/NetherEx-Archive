@@ -17,11 +17,14 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -35,17 +38,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockElderMushroomStem extends BlockLibEx
+public class BlockElderMushroomStem extends BlockMod
 {
     public static final PropertyEnum<EnumType> AXIS = PropertyEnum.create("axis", EnumType.class);
 
     public BlockElderMushroomStem()
     {
-        super(NetherEx.instance, "elder_mushroom_stem", "axe", 0, 0.5F, 2.0F, Material.WOOD);
-        this.setSoundType(SoundType.WOOD);
+        super(NetherEx.getResource("elder_mushroom_stem"), new BlockBuilder(Material.WOOD, MapColor.SNOW).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BlockElderMushroomStem extends BlockLibEx
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     {
-        return player.getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_AXE;
+        return player.getHeldItemMainhand().getItem() == NetherExItems.WITHERED_AMEDIAN_AXE;
     }
 
     @Override
@@ -82,16 +82,6 @@ public class BlockElderMushroomStem extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, AXIS);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        for(BlockElderMushroomStem.EnumType type : BlockElderMushroomStem.EnumType.values())
-        {
-            ItemModelHandler.registerBlockModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("axis=%s", type.getName()));
-        }
     }
 
     public enum EnumType implements IStringSerializable

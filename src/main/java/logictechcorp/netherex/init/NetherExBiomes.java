@@ -17,6 +17,7 @@
 
 package logictechcorp.netherex.init;
 
+import logictechcorp.libraryex.util.InjectionHelper;
 import logictechcorp.libraryex.world.gen.GenerationStage;
 import logictechcorp.libraryex.world.gen.feature.FeatureOre;
 import logictechcorp.libraryex.world.gen.feature.FeatureStructure;
@@ -40,12 +41,12 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBiomes
 {
-    public static final BiomeRuthlessSands RUTHLESS_SANDS = null;
-    public static final BiomeFungiForest FUNGI_FOREST = null;
-    public static final BiomeTorridWasteland TORRID_WASTELAND = null;
-    public static final BiomeArcticAbyss ARCTIC_ABYSS = null;
-    public static final BiomeRegrowthsCollapse REGROWTHS_COLLAPSE = null;
-    public static final BiomeBlightsAscension BLIGHTS_ASCENSION = null;
+    public static final BiomeRuthlessSands RUTHLESS_SANDS = InjectionHelper.nullValue();
+    public static final BiomeFungiForest FUNGI_FOREST = InjectionHelper.nullValue();
+    public static final BiomeTorridWasteland TORRID_WASTELAND = InjectionHelper.nullValue();
+    public static final BiomeArcticAbyss ARCTIC_ABYSS = InjectionHelper.nullValue();
+    public static final BiomeRegrowthsCollapse REGROWTHS_COLLAPSE = InjectionHelper.nullValue();
+    public static final BiomeBlightsAscension BLIGHTS_ASCENSION = InjectionHelper.nullValue();
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler

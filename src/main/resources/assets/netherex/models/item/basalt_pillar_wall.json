@@ -1,6 +1,3 @@
 {
-    "parent": "block/wall_inventory",
-    "textures": {
-        "wall": "netherex:blocks/basalt_pillar_side"
-    }
+    "parent": "netherex:block/basalt_pillar_wall_inventory"
 }

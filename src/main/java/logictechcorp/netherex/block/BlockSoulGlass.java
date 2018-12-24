@@ -17,9 +17,11 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
@@ -31,14 +33,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockSoulGlass extends BlockLibEx
+public class BlockSoulGlass extends BlockMod
 {
     public BlockSoulGlass()
     {
-        super(NetherEx.instance, "soul_glass", Material.GLASS);
-        this.setSoundType(SoundType.GLASS);
-        this.setLightOpacity(255);
-        this.setHardness(0.3F);
+        super(NetherEx.getResource("soul_glass"), new BlockBuilder(Material.GLASS, MapColor.AIR).sound(SoundType.GLASS).hardness(0.3F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override

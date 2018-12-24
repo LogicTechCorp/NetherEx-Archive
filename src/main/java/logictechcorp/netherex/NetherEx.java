@@ -18,20 +18,23 @@
 package logictechcorp.netherex;
 
 import logictechcorp.libraryex.IModData;
-import logictechcorp.libraryex.client.model.item.IModelContainer;
 import logictechcorp.libraryex.proxy.IProxy;
 import logictechcorp.netherex.capability.CapabilityBlightChunkData;
 import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.handler.FlatteningHandler;
 import logictechcorp.netherex.handler.GuiHandler;
 import logictechcorp.netherex.init.*;
-import logictechcorp.netherex.village.PigtificateTradeManager;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -42,12 +45,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData
 {
+    //TODO:
+    // Finish Regrowth's Collapse and Blight's Ascension biomes
+    // Finish new trading system
+    // Fix old saves
+
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "2.0.9";
@@ -59,6 +64,8 @@ public class NetherEx implements IModData
     @SidedProxy(clientSide = "logictechcorp.netherex.proxy.ClientProxy", serverSide = "logictechcorp.netherex.proxy.ServerProxy")
     public static IProxy proxy;
 
+    public static final ModFixs FIXER = FMLCommonHandler.instance().getDataFixer().init(MOD_ID, Integer.getInteger(VERSION.replace(".", "")));
+
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)
     {
         @Override
@@ -68,8 +75,6 @@ public class NetherEx implements IModData
             return new ItemStack(Blocks.NETHERRACK);
         }
     };
-
-    private static final List<IModelContainer> MODEL_CONTAINERS = new ArrayList<>();
 
     public static final boolean IS_BOP_LOADED = Loader.isModLoaded("biomesoplenty");
 
@@ -84,10 +89,11 @@ public class NetherEx implements IModData
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         ConfigHandler.updateConfigEntries();
-        PigtificateTradeManager.copyTradeConfigs();
         NetherExOverrides.overrideObjects();
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         CapabilityManager.INSTANCE.register(IBlightChunkData.class, new CapabilityBlightChunkData.Storage(), new CapabilityBlightChunkData.Factory());
+        FIXER.registerFix(FixTypes.CHUNK, FlatteningHandler.INSTANCE);
+        FIXER.registerFix(FixTypes.ITEM_INSTANCE, FlatteningHandler.INSTANCE);
         proxy.preInit();
     }
 
@@ -112,7 +118,6 @@ public class NetherEx implements IModData
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
         NetherBiomeManager.INSTANCE.readBiomeConfigs();
-        PigtificateTradeManager.readTradeConfigs();
     }
 
     @Mod.EventHandler
@@ -133,9 +138,8 @@ public class NetherEx implements IModData
         return CREATIVE_TAB;
     }
 
-    @Override
-    public List<IModelContainer> getModelContainers()
+    public static ResourceLocation getResource(String name)
     {
-        return MODEL_CONTAINERS;
+        return new ResourceLocation(NetherEx.MOD_ID + ":" + name);
     }
 }

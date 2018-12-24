@@ -17,87 +17,36 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
-import logictechcorp.netherex.NetherEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockElderMushroomCap extends BlockLibEx
+public class BlockElderMushroomCap extends BlockMod
 {
-    public static final PropertyEnum<BlockElderMushroom.EnumType> TYPE = PropertyEnum.create("type", BlockElderMushroom.EnumType.class);
-
-    public BlockElderMushroomCap()
+    public BlockElderMushroomCap(ResourceLocation registryName)
     {
-        super(NetherEx.instance, "elder_mushroom_cap", "axe", 0, 0.5F, 2.0F, Material.WOOD);
-        this.setSoundType(SoundType.WOOD);
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
-        {
-            list.add(new ItemStack(this, 1, type.ordinal()));
-        }
+        super(registryName, new BlockBuilder(Material.WOOD, MapColor.SNOW).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F));
     }
 
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     {
-        return player.getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_AXE;
+        return player.getHeldItemMainhand().getItem() == NetherExItems.WITHERED_AMEDIAN_AXE;
     }
 
     @Override
     public boolean canDropFromExplosion(Explosion explosionIn)
     {
         return false;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.getMetaFromState(state);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(TYPE, BlockElderMushroom.EnumType.fromMeta(meta));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(TYPE).ordinal();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, TYPE);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        for(BlockElderMushroom.EnumType type : BlockElderMushroom.EnumType.values())
-        {
-            ItemModelHandler.registerBlockModel(this, type.ordinal(), this.getRegistryName().toString(), String.format("type=%s", type.getName()));
-        }
     }
 }

@@ -19,7 +19,6 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.util.BlockHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockNetherrackPath;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.init.NetherExItems;
@@ -84,7 +83,7 @@ public class ClickHandler
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
 
-            if(block == Blocks.NETHERRACK || block == NetherExBlocks.NETHERRACK || block == NetherExBlocks.HYPHAE)
+            if(block == Blocks.NETHERRACK)
             {
                 for(EnumHand hand : EnumHand.values())
                 {
@@ -94,13 +93,10 @@ public class ClickHandler
                     }
                 }
 
-                int meta = block == Blocks.NETHERRACK ? 0 : block == NetherExBlocks.HYPHAE ? 3 : NetherExBlocks.NETHERRACK.getMetaFromState(state) + 1;
-
                 world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, NetherExBlocks.NETHERRACK_PATH.getDefaultState().withProperty(BlockNetherrackPath.TYPE, BlockNetherrackPath.EnumType.fromMeta(meta)), 11);
+                world.setBlockState(pos, NetherExBlocks.NETHERRACK_PATH.getDefaultState(), 11);
                 stack.damageItem(1, player);
             }
-
         }
         if(stack.getItem() instanceof ItemHoe)
         {
@@ -139,7 +135,7 @@ public class ClickHandler
             event.setCanceled(true);
         }
 
-        if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_HAMMER)
+        if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.WITHERED_AMEDIAN_HAMMER)
         {
             BlockHelper.mine3x3(world, player.getHeldItemMainhand(), originalPos, player);
         }

@@ -139,7 +139,7 @@ public class EntitySpore extends EntityMob
     {
         if(source.getTrueSource() != null && source.getTrueSource() instanceof EntityLivingBase)
         {
-            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.AMEDIAN_SWORD)
+            if(((EntityLivingBase) source.getTrueSource()).getHeldItemMainhand().getItem() == NetherExItems.WITHERED_AMEDIAN_SWORD)
             {
                 amount *= 2.0F;
             }

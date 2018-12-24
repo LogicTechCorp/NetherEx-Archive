@@ -17,12 +17,14 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -40,7 +42,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockSoulGlassPane extends BlockLibEx
+public class BlockSoulGlassPane extends BlockMod
 {
     public static final PropertyBool NORTH = PropertyBool.create("north");
     public static final PropertyBool EAST = PropertyBool.create("east");
@@ -50,10 +52,7 @@ public class BlockSoulGlassPane extends BlockLibEx
 
     public BlockSoulGlassPane()
     {
-        super(NetherEx.instance, "soul_glass_pane", Material.GLASS);
-        this.setSoundType(SoundType.GLASS);
-        this.setLightOpacity(255);
-        this.setHardness(0.3F);
+        super(NetherEx.getResource("soul_glass_pane"), new BlockBuilder(Material.GLASS, MapColor.AIR).sound(SoundType.GLASS).hardness(0.3F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override

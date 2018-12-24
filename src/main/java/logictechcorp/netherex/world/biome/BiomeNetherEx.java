@@ -19,7 +19,6 @@ package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.world.biome.BiomeLibEx;
-import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -34,7 +33,6 @@ public abstract class BiomeNetherEx extends BiomeLibEx<INetherBiomeWrapper>
     protected static final IBlockState LAVA = Blocks.LAVA.getDefaultState();
     protected static final IBlockState FLOWING_LAVA = Blocks.FLOWING_LAVA.getDefaultState();
     protected static final IBlockState MAGMA = Blocks.MAGMA.getDefaultState();
-    protected static final IBlockState NEX_NETHERRACK = NetherExBlocks.NETHERRACK.getDefaultState();
 
     public BiomeNetherEx(IModData data, BiomeProperties properties, String name)
     {

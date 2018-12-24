@@ -76,7 +76,7 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
                     {
                         Item item = stackInSlot.getItem();
 
-                        if((item == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stackInSlot.getCount() > 7) || (item == NetherExItems.ENOKI_MUSHROOM && stackInSlot.getCount() > 63))
+                        if(((item == Item.getItemFromBlock(NetherExBlocks.BROWN_ELDER_MUSHROOM) || item == Item.getItemFromBlock(NetherExBlocks.RED_ELDER_MUSHROOM)) && stackInSlot.getCount() > 7) || (item == NetherExItems.ENOKI_MUSHROOM && stackInSlot.getCount() > 63))
                         {
                             int amount = stackInSlot.getCount() / 2;
                             stackInSlot.shrink(amount);

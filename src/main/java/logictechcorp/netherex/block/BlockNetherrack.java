@@ -17,39 +17,28 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
-import logictechcorp.netherex.NetherEx;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockNetherrack extends BlockLibEx
+public class BlockNetherrack extends BlockMod
 {
-    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
+    private Block path;
 
-    public BlockNetherrack()
+    public BlockNetherrack(ResourceLocation registryName, Block path, BlockBuilder builder)
     {
-        super(NetherEx.instance, "netherrack", "pickaxe", 0, 0.5F, 2.0F, Material.ROCK);
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        for(EnumType type : EnumType.values())
-        {
-            list.add(new ItemStack(this, 1, type.ordinal()));
-        }
+        super(registryName, builder);
+        this.path = path;
     }
 
     @Override
@@ -59,60 +48,20 @@ public class BlockNetherrack extends BlockLibEx
     }
 
     @Override
-    public int damageDropped(IBlockState state)
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
     {
-        return state.getValue(TYPE).ordinal();
-    }
 
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(TYPE).ordinal();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, TYPE);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        for(BlockNetherrack.EnumType type : BlockNetherrack.EnumType.values())
+        for(EnumHand hand : EnumHand.values())
         {
-            ItemModelHandler.registerBlockModel(this, type.ordinal(), String.format(NetherEx.MOD_ID + ":%s_" + this.getRegistryName().getPath(), type.getName()), "inventory");
-        }
-    }
-
-    public enum EnumType implements IStringSerializable
-    {
-        FIERY,
-        ICY,
-        LIVELY,
-        GLOOMY;
-
-        @Override
-        public String getName()
-        {
-            return this.toString().toLowerCase();
-        }
-
-        public static EnumType fromMeta(int meta)
-        {
-            if(meta < 0 || meta >= values().length)
+            if(player.getHeldItem(hand).getItem() instanceof ItemSpade)
             {
-                meta = 0;
+                ItemStack stack = player.getHeldItem(hand);
+                player.swingArm(hand);
+                world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.setBlockState(pos, this.path.getDefaultState(), 11);
+                stack.damageItem(1, player);
             }
-
-            return values()[meta];
         }
     }
+
 }

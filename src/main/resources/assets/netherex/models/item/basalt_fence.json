@@ -1,6 +1,3 @@
 {
-    "parent": "block/fence_inventory",
-    "textures": {
-        "texture": "netherex:blocks/basalt"
-    }
+    "parent": "netherex:block/basalt_fence_inventory"
 }

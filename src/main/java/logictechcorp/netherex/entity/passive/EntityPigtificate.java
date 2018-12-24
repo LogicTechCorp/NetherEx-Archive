@@ -487,7 +487,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
 
     private boolean canPickupItem(Item item)
     {
-        return item == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) || item == NetherExItems.ENOKI_MUSHROOM;
+        return item == Item.getItemFromBlock(NetherExBlocks.BROWN_ELDER_MUSHROOM) || item == Item.getItemFromBlock(NetherExBlocks.RED_ELDER_MUSHROOM) || item == NetherExItems.ENOKI_MUSHROOM;
     }
 
     public boolean canAbandonItems()
@@ -515,7 +515,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
 
             if(!stack.isEmpty())
             {
-                if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.ENOKI_MUSHROOM && stack.getCount() >= 32 * multiplier))
+                if(((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.BROWN_ELDER_MUSHROOM) || stack.getItem() == Item.getItemFromBlock(NetherExBlocks.RED_ELDER_MUSHROOM)) && stack.getCount() >= 4 * multiplier) || (stack.getItem() == NetherExItems.ENOKI_MUSHROOM && stack.getCount() >= 32 * multiplier))
                 {
                     return true;
                 }
@@ -553,7 +553,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
 
                 if(!stack.isEmpty())
                 {
-                    if(stack.getItem() == Item.getItemFromBlock(NetherExBlocks.ELDER_MUSHROOM) && stack.getCount() >= 4)
+                    if((stack.getItem() == Item.getItemFromBlock(NetherExBlocks.BROWN_ELDER_MUSHROOM) || stack.getItem() == Item.getItemFromBlock(NetherExBlocks.RED_ELDER_MUSHROOM)) && stack.getCount() >= 4)
                     {
                         flag = true;
                         this.inventory.decrStackSize(i, 3);

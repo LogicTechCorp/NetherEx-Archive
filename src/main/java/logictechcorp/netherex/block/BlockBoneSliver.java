@@ -17,9 +17,12 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
-import logictechcorp.libraryex.client.model.item.ItemModelHandler;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -32,10 +35,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockBoneSliver extends BlockLibEx
+public class BlockBoneSliver extends BlockMod
 {
     private static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
 
@@ -45,7 +46,7 @@ public class BlockBoneSliver extends BlockLibEx
 
     public BlockBoneSliver()
     {
-        super(NetherEx.instance, "bone_sliver", "pickaxe", 1, 2.0F, 5.0F, Material.ROCK);
+        super(NetherEx.getResource("bone_sliver"), new BlockBuilder(Material.ROCK, MapColor.SNOW).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(2.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override
@@ -120,12 +121,5 @@ public class BlockBoneSliver extends BlockLibEx
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, AXIS);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModel()
-    {
-        ItemModelHandler.registerBlockModel(this, "axis=y");
     }
 }

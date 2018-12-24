@@ -17,10 +17,10 @@
 
 package logictechcorp.netherex.item;
 
-import com.google.common.base.CaseFormat;
 import logictechcorp.libraryex.item.ItemBlockEdible;
-import logictechcorp.netherex.block.BlockElderMushroom;
+import logictechcorp.libraryex.item.builder.ItemEdibleBuilder;
 import logictechcorp.netherex.init.NetherExBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -31,9 +31,9 @@ import net.minecraft.world.World;
 
 public class ItemBlockElderMushroom extends ItemBlockEdible
 {
-    public ItemBlockElderMushroom()
+    public ItemBlockElderMushroom(Block block)
     {
-        super(NetherExBlocks.ELDER_MUSHROOM, 0, 0.0F, false);
+        super(block, new ItemEdibleBuilder(0, 0.0F, false));
         this.setHasSubtypes(true);
     }
 
@@ -44,13 +44,13 @@ public class ItemBlockElderMushroom extends ItemBlockEdible
         {
             EntityPlayer player = (EntityPlayer) entityLiving;
 
-            if(stack.getItemDamage() == 0)
+            if(this.block == NetherExBlocks.BROWN_ELDER_MUSHROOM)
             {
                 player.attackEntityFrom(DamageSource.GENERIC, player.getRNG().nextInt((12 - 8) + 1) + 4);
                 player.getFoodStats().setFoodLevel(20);
 
             }
-            else
+            else if(this.block == NetherExBlocks.RED_ELDER_MUSHROOM)
             {
                 player.heal(player.getMaxHealth());
                 player.getFoodStats().setFoodLevel(0);
@@ -79,11 +79,5 @@ public class ItemBlockElderMushroom extends ItemBlockEdible
         {
             return new ActionResult(EnumActionResult.FAIL, stack);
         }
-    }
-
-    @Override
-    public String getTranslationKey(ItemStack stack)
-    {
-        return super.getTranslationKey() + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, BlockElderMushroom.EnumType.fromMeta(stack.getItemDamage()).getName());
     }
 }

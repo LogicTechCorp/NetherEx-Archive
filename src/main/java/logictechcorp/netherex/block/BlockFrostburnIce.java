@@ -17,9 +17,13 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockLibEx;
+import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
+import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
@@ -29,12 +33,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFrostburnIce extends BlockLibEx
+public class BlockFrostburnIce extends BlockMod
 {
     public BlockFrostburnIce()
     {
-        super(NetherEx.instance, "frostburn_ice", "pickaxe", 0, 0.5F, 1.0F, Material.ICE);
-        this.setSoundType(SoundType.GLASS);
+        super(NetherEx.getResource("frostburn_ice"), new BlockBuilder(Material.ICE, MapColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.5F).resistance(1.0F).creativeTab(NetherEx.instance.getCreativeTab()));
         this.setLightOpacity(3);
     }
 

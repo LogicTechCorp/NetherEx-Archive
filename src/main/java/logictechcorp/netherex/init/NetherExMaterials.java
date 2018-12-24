@@ -23,12 +23,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class NetherExMaterials
 {
     public static final Item.ToolMaterial AMEDIAN = EnumHelper.addToolMaterial(NetherEx.MOD_ID + ":golden_wither_bone", 4, 2250, 10.0F, 1.0F, 12).setRepairItem(new ItemStack(NetherExItems.AMETHYST_CRYSTAL));
 
     public static final ItemArmor.ArmorMaterial WITHER_BONE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":wither_bone", NetherEx.MOD_ID + ":wither_bone_armor", 8, new int[]{2, 3, 4, 2}, 16, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.5F).setRepairItem(new ItemStack(NetherExItems.WITHER_BONE));
-    public static final ItemArmor.ArmorMaterial SALAMANDER_HIDE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":salamander_hide", NetherEx.MOD_ID + ":salamander_hide_armor", 10, new int[]{2, 4, 5, 2}, 21, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F).setRepairItem(new ItemStack(NetherExItems.SALAMANDER_HIDE, 1, OreDictionary.WILDCARD_VALUE));
+    public static final ItemArmor.ArmorMaterial SALAMANDER_HIDE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":salamander_hide", NetherEx.MOD_ID + ":salamander_hide_armor", 10, new int[]{2, 4, 5, 2}, 21, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F);
 }

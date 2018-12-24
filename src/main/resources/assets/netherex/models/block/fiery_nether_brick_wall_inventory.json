@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/wall_inventory",
+    "textures": {
+        "wall": "netherex:blocks/fiery_nether_brick"
+    }
+}

@@ -22,7 +22,6 @@ import logictechcorp.libraryex.world.biome.wrapper.BiomeBlockType;
 import logictechcorp.libraryex.world.gen.GenerationStage;
 import logictechcorp.libraryex.world.gen.feature.*;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockNetherrack;
 import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
 import logictechcorp.netherex.init.NetherExBiomes;
@@ -42,7 +41,7 @@ import java.util.Arrays;
 
 public class BiomeTorridWasteland extends BiomeNetherEx
 {
-    private static final IBlockState FIERY_NETHERRACK = NEX_NETHERRACK.withProperty(BlockNetherrack.TYPE, BlockNetherrack.EnumType.FIERY);
+    private static final IBlockState FIERY_NETHERRACK = NetherExBlocks.FIERY_NETHERRACK.getDefaultState();
 
     public BiomeTorridWasteland()
     {
