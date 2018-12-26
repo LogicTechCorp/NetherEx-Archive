@@ -19,6 +19,7 @@ package logictechcorp.netherex.init;
 
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 
 public class NetherExLootTables
 {
@@ -48,4 +49,34 @@ public class NetherExLootTables
     public static final ResourceLocation FROST = new ResourceLocation(NetherEx.MOD_ID + ":entity/frost");
     public static final ResourceLocation BRUTE = new ResourceLocation(NetherEx.MOD_ID + ":entity/brute");
     public static final ResourceLocation GHAST_QUEEN = new ResourceLocation(NetherEx.MOD_ID + ":entity/ghast/ghast_queen");
+    
+    public static void registerLootTables()
+    {
+        LootTableList.register(PIGTIFICATE_CHIEF);
+        LootTableList.register(PIGTIFICATE_HUNTER);
+        LootTableList.register(PIGTIFICATE_GATHERER);
+        LootTableList.register(PIGTIFICATE_SCAVENGER);
+        LootTableList.register(PIGTIFICATE_ARMORSMITH);
+        LootTableList.register(PIGTIFICATE_TOOLSMITH);
+        LootTableList.register(PIGTIFICATE_ENCHANTER);
+        LootTableList.register(PIGTIFICATE_BREWER);
+        LootTableList.register(BONSPIDER);
+        LootTableList.register(GOLD_GOLEM);
+        LootTableList.register(BROWN_MOGUS);
+        LootTableList.register(RED_MOGUS);
+        LootTableList.register(WHITE_MOGUS);
+        LootTableList.register(ORANGE_SALAMANDER);
+        LootTableList.register(BLACK_SALAMANDER);
+        LootTableList.register(WIGHT);
+        LootTableList.register(EMBER);
+        LootTableList.register(NETHERMITE);
+        LootTableList.register(SPINOUT);
+        LootTableList.register(SPORE_CREEPER);
+        LootTableList.register(SPORE);
+        LootTableList.register(GHASTLING);
+        LootTableList.register(COOLMAR_SPIDER);
+        LootTableList.register(FROST);
+        LootTableList.register(BRUTE);
+        LootTableList.register(GHAST_QUEEN);
+    }
 }

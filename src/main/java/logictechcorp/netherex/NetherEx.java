@@ -98,6 +98,7 @@ public class NetherEx implements IModData
         NetherExRecipes.registerRecipes();
         NetherExOreDictionary.registerOres();
         NetherExFeatures.registerFeatures();
+        NetherExLootTables.registerLootTables();
         proxy.init();
     }
 
