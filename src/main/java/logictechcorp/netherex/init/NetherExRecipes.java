@@ -51,7 +51,7 @@ public class NetherExRecipes
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.CONGEALED_MAGMA_CREAM), new ItemStack(Items.MAGMA_CREAM), 0.5F);
 
         RecipeHelper.addBrewing(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(NetherExItems.RIME_CRYSTAL)), NetherExEffectTypes.NORMAL_FREEZE);
-        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.BONE_SPIDER_FANG, NetherExEffectTypes.NORMAL_FROSTBITE);
+        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.COOLMAR_SPIDER_FANG, NetherExEffectTypes.NORMAL_FROSTBITE);
         RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.SPORE, NetherExEffectTypes.NORMAL_SPORE);
         RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.GHAST_MEAT_RAW, NetherExEffectTypes.NORMAL_LOST);
     }

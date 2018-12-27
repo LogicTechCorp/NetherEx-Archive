@@ -48,7 +48,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -100,7 +99,7 @@ public class ClickHandler
             }
         }
     }
-    
+
     @SubscribeEvent
     public static void useHoeEvent(UseHoeEvent event)
     {
@@ -108,7 +107,7 @@ public class ClickHandler
         BlockPos pos = event.getPos();
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = event.getCurrent();
-        
+
         if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
         {
             for(EnumHand hand : EnumHand.values())
@@ -121,7 +120,7 @@ public class ClickHandler
 
             world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.setBlockState(pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState(), 0b1011);
-            
+
             event.setResult(Event.Result.ALLOW);
         }
     }

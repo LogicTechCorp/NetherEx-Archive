@@ -203,7 +203,7 @@ public class NetherExModels
         ModelHelper.registerItemModel(NetherExItems.ARDITE_INGOT);
         ModelHelper.registerItemModel(NetherExItems.RIME_AND_STEEL);
         ModelHelper.registerItemModel(NetherExItems.SPORE);
-        ModelHelper.registerItemModel(NetherExItems.BONE_SPIDER_FANG);
+        ModelHelper.registerItemModel(NetherExItems.COOLMAR_SPIDER_FANG);
         ModelHelper.registerItemModel(NetherExItems.GHAST_QUEEN_TEAR);
         ModelHelper.registerItemModel(NetherExItems.OBSIDIAN_BOAT);
         ModelHelper.registerItemModel(NetherExItems.GHAST_MEAT_RAW);

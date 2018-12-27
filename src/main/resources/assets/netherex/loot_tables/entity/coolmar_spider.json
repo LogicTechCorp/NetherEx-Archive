@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-            "name": "bone_spider_loot_pool",
+            "name": "coolmar_spider_loot_pool",
             "rolls": 1,
             "entries": [
                 {
@@ -27,12 +27,12 @@
             ]
         },
         {
-            "name": "bone_spider_loot_pool_1",
+            "name": "coolmar_spider_loot_pool_1",
             "rolls": 1,
             "entries": [
                 {
                     "type": "item",
-                    "name": "netherex:bone_spider_fang",
+                    "name": "netherex:coolmar_spider_fang",
                     "functions": [
                         {
                             "function": "set_count",
