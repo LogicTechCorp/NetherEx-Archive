@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
+import java.io.File;
 import java.util.Arrays;
 
 public class NetherBiomeWrapperHell extends NetherBiomeWrapper
@@ -24,7 +25,7 @@ public class NetherBiomeWrapperHell extends NetherBiomeWrapper
     }
 
     @Override
-    public FileConfig serialize()
+    public FileConfig serialize(File configFile)
     {
         this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
@@ -54,6 +55,6 @@ public class NetherBiomeWrapperHell extends NetherBiomeWrapper
                 new FeatureOre(16, 1.0D, false, 10, 108, Blocks.QUARTZ_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 14),
                 new FeatureOre(4, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 32)
         ));
-        return super.serialize();
+        return super.serialize(configFile);
     }
 }

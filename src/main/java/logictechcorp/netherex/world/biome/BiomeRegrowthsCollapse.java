@@ -17,6 +17,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -45,7 +46,7 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
         }
 
         @Override
-        public FileConfig serialize()
+        public FileConfig serialize(File configFile)
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, Blocks.GRASS.getDefaultState());
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, Blocks.DIRT.getDefaultState());
@@ -65,7 +66,7 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(1, 0.125D, false, 10, 108, NetherExBlocks.COBALT_ORE.getDefaultState(), Blocks.STONE.getDefaultState(), 8)
             )));
-            return super.serialize();
+            return super.serialize(configFile);
         }
     }
 }

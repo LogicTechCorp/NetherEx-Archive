@@ -18,15 +18,17 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.config.IConfigData;
 import logictechcorp.libraryex.util.ConfigHelper;
 import logictechcorp.libraryex.util.FileHelper;
+import logictechcorp.libraryex.util.WorldHelper;
 import logictechcorp.libraryex.world.biome.DimensionBiomeManager;
+import logictechcorp.libraryex.world.biome.wrapper.IBiomeWrapper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
 import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapper;
 import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapperHell;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
@@ -51,66 +53,63 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
     private void setupDefaultBiomes()
     {
         this.addBiome(new NetherBiomeWrapperHell());
-        this.addConfigPath(LibraryEx.CONFIG_DIRECTORY.getPath() + "/NetherEx/Biomes");
     }
 
-    public void readBiomeConfigs()
+    public void readBiomeConfigs(MinecraftServer server)
     {
+        Path path = new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Biomes").toPath();
         NetherEx.LOGGER.info("Reading Nether biome configs.");
 
         try
         {
-            for(Path path : this.configPaths)
+            Files.createDirectories(path);
+            Iterator<Path> pathIter = Files.walk(path).iterator();
+
+            while(pathIter.hasNext())
             {
-                Files.createDirectories(path);
-                Iterator<Path> pathIter = Files.walk(path).iterator();
+                File configFile = pathIter.next().toFile();
 
-                while(pathIter.hasNext())
+                if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
-                    File configFile = pathIter.next().toFile();
+                    FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
+                    config.load();
 
-                    if(FileHelper.getFileExtension(configFile).equals("json"))
+                    Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation("biome"));
+
+                    if(biome != null && config.getOrElse("enabled", true))
                     {
-                        FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
-                        config.load();
+                        int biomeId = Biome.getIdForBiome(biome);
+                        INetherBiomeWrapper wrapper;
 
-                        Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation("biome"));
-
-                        if(biome != null && config.getOrElse("enabled", true))
+                        if(this.moddedBiomes.containsKey(biomeId) && this.moddedBiomes.get(biomeId) instanceof IConfigData)
                         {
-                            int biomeId = Biome.getIdForBiome(biome);
-                            INetherBiomeWrapper wrapper;
+                            wrapper = this.moddedBiomes.get(biomeId);
+                            ((IConfigData) wrapper).deserialize(config);
 
-                            if(this.moddedBiomes.containsKey(biomeId) && this.moddedBiomes.get(biomeId) instanceof IConfigData)
+                            if(wrapper.isEnabled())
                             {
-                                wrapper = this.moddedBiomes.get(biomeId);
-                                ((IConfigData) wrapper).deserialize(config);
-
-                                if(wrapper.isEnabled())
-                                {
-                                    this.moddedBiomes.put(biomeId, wrapper);
-                                    this.biomeEntries.add(new BiomeManager.BiomeEntry(biome, wrapper.getWeight()));
-                                }
-                            }
-                            else
-                            {
-                                wrapper = new NetherBiomeWrapper();
-                                ((NetherBiomeWrapper) wrapper).deserialize(config);
-
-                                if(wrapper.isEnabled())
-                                {
-                                    this.playerBiomes.put(biomeId, wrapper);
-                                    this.biomeEntries.add(new BiomeManager.BiomeEntry(biome, wrapper.getWeight()));
-                                }
+                                this.moddedBiomes.put(biomeId, wrapper);
+                                this.biomeEntries.add(new BiomeManager.BiomeEntry(biome, wrapper.getWeight()));
                             }
                         }
+                        else
+                        {
+                            wrapper = new NetherBiomeWrapper();
+                            ((NetherBiomeWrapper) wrapper).deserialize(config);
 
-                        config.close();
+                            if(wrapper.isEnabled())
+                            {
+                                this.playerBiomes.put(biomeId, wrapper);
+                                this.biomeEntries.add(new BiomeManager.BiomeEntry(biome, wrapper.getWeight()));
+                            }
+                        }
                     }
-                    else if(!configFile.isDirectory())
-                    {
-                        NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
-                    }
+
+                    config.close();
+                }
+                else if(!configFile.isDirectory())
+                {
+                    NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
                 }
             }
         }
@@ -120,15 +119,17 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
         }
     }
 
-    public void writeBiomeConfigs()
+    public void writeBiomeConfigs(MinecraftServer server)
     {
         NetherEx.LOGGER.info("Writing Nether biome configs.");
 
         for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.moddedBiomes.entrySet())
         {
-            if(entry.getValue() instanceof IConfigData)
+            IBiomeWrapper wrapper = entry.getValue();
+
+            if(wrapper instanceof IConfigData)
             {
-                FileConfig config = ((IConfigData) entry.getValue()).serialize();
+                FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
                 config.save();
                 config.close();
             }
@@ -136,9 +137,11 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
 
         for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.playerBiomes.entrySet())
         {
-            if(entry.getValue() instanceof IConfigData)
+            IBiomeWrapper wrapper = entry.getValue();
+
+            if(wrapper instanceof IConfigData)
             {
-                FileConfig config = ((IConfigData) entry.getValue()).serialize();
+                FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
                 config.save();
                 config.close();
             }

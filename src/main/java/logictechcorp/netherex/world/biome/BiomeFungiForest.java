@@ -40,6 +40,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -72,7 +73,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         }
 
         @Override
-        public FileConfig serialize()
+        public FileConfig serialize(File configFile)
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
@@ -98,7 +99,7 @@ public class BiomeFungiForest extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
             )));
-            return super.serialize();
+            return super.serialize(configFile);
         }
     }
 }

@@ -37,6 +37,7 @@ import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -68,7 +69,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         }
 
         @Override
-        public FileConfig serialize()
+        public FileConfig serialize(File configFile)
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, SOUL_SAND);
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
@@ -93,7 +94,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
             )));
-            return super.serialize();
+            return super.serialize(configFile);
         }
     }
 }

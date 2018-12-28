@@ -417,12 +417,12 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
             {
                 for(Trade trade : trades.subList(0, 2))
                 {
-                    this.trades.add(trade.randomize());
+                    this.trades.add(trade.randomize(this.rand));
                 }
             }
             else
             {
-                this.trades.add(trades.get(0).randomize());
+                this.trades.add(trades.get(0).randomize(this.rand));
             }
         }
     }

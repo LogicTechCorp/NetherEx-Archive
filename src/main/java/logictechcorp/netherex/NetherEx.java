@@ -31,6 +31,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -109,13 +110,13 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
-        NetherBiomeManager.INSTANCE.readBiomeConfigs();
+        NetherBiomeManager.INSTANCE.readBiomeConfigs(event.getServer());
     }
 
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
-        NetherBiomeManager.INSTANCE.writeBiomeConfigs();
+        NetherBiomeManager.INSTANCE.writeBiomeConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
     }
 
     @Override

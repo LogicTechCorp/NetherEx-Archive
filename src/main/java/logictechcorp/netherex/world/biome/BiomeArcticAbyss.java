@@ -40,6 +40,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -74,7 +75,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         }
 
         @Override
-        public FileConfig serialize()
+        public FileConfig serialize(File configFile)
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
@@ -99,7 +100,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
             )));
-            return super.serialize();
+            return super.serialize(configFile);
         }
     }
 }

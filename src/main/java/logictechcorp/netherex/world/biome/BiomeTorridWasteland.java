@@ -36,6 +36,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -67,7 +68,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         }
 
         @Override
-        public FileConfig serialize()
+        public FileConfig serialize(File configFile)
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
@@ -94,7 +95,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
                     new FeatureOre(14, 1.0D, false, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
                     new FeatureOre(8, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
             )));
-            return super.serialize();
+            return super.serialize(configFile);
         }
     }
 }
