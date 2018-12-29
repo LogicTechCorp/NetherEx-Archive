@@ -3,7 +3,7 @@ package logictechcorp.netherex.village;
 import logictechcorp.libraryex.village.TraderProfession;
 import net.minecraft.util.ResourceLocation;
 
-public class PigtificateProfession extends TraderProfession<PigtificateProfession, PigtificateProfession.Career>
+public abstract class PigtificateProfession extends TraderProfession<PigtificateProfession, PigtificateProfession.Career>
 {
     public PigtificateProfession(ResourceLocation name)
     {

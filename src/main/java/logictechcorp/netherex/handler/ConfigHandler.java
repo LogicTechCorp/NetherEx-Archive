@@ -19,24 +19,19 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
 import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
-import java.io.File;
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.util.Map;
-import java.util.Optional;
 
 @Config.LangKey("config." + NetherEx.MOD_ID + ":title")
-@Config(modid = NetherEx.MOD_ID, name = "NetherEx/" + NetherEx.MOD_ID, category = "logictechcorp/netherex")
+@Config(modid = NetherEx.MOD_ID, name = "NetherEx/" + NetherEx.MOD_ID, category = "netherex")
 public class ConfigHandler
 {
+    @Config.Name("internal")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":internal")
+    public static InternalConfig internalConfig = new InternalConfig();
+
     @Config.Name("client")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":client")
     public static ClientConfig clientConfig = new ClientConfig();
@@ -65,64 +60,37 @@ public class ConfigHandler
     @Config.LangKey("config." + NetherEx.MOD_ID + ":biome")
     public static BiomeConfig biomeConfig = new BiomeConfig();
 
-    private static Configuration config;
-
-    public static void updateConfigEntries()
+    public static class InternalConfig
     {
-        config = getConfig();
+        @Config.Name("biomeConfigs")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.biomeConfigs")
+        public BiomeConfigs biomeConfigs = new BiomeConfigs();
 
-        if(config != null)
+        @Config.Name("tradeConfigs")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.tradeConfigs")
+        public TradeConfigs tradeConfigs = new TradeConfigs();
+
+        @Config.Name("recipes")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.recipes")
+        public Recipes recipes = new Recipes();
+
+        public class BiomeConfigs
         {
-            ConfigCategory netherrackCategory = config.getCategory("logictechcorp.netherex.block.netherrack");
-            netherrackCategory.remove("allowAllShovelsToFlatten");
-
-            ConfigCategory soulSandCategory = config.getCategory("logictechcorp.netherex.block.soul_sand");
-            soulSandCategory.remove("doesNetherwartUseNewGrowthSystem");
-            soulSandCategory.remove("doesRequireIchorInsteadOfLava");
-            soulSandCategory.remove("allowAllHoesToTill");
-
-            config.getCategory("logictechcorp.netherex.block.nether_portal").remove("allowPigmanSpawning");
-            config.renameProperty("logictechcorp.netherex.block.thornstalk", "blacklist", "mobBlacklist");
-            config.renameProperty("logictechcorp.netherex.block.hyphae", "doesSpread", "shouldSpread");
-            config.renameProperty("logictechcorp.netherex.block.soul_sand", "useLavaInsteadOfIchorToMoisten", "useLavaAndIchorToHydrate");
-            config.renameProperty("logictechcorp.netherex.potion_effect.freeze", "blacklist", "mobBlacklist");
-            config.renameProperty("logictechcorp.netherex.potion_effect.freeze", "chanceOfThawing", "thawRarity");
-            config.renameProperty("logictechcorp.netherex.potion_effect.spore", "blacklist", "mobBlacklist");
-            config.renameProperty("logictechcorp.netherex.potion_effect.spore", "chanceOfSporeSpawning", "sporeSpawnRarity");
-            config.renameProperty("logictechcorp.netherex.potion_effect.lost", "chanceOfGhastlingSpawning", "ghastlingSpawnRarity");
-            config.renameProperty("logictechcorp.netherex.entity.ember", "chanceOfSettingPlayerOnFire", "setPlayerOnFireRarity");
-            config.renameProperty("logictechcorp.netherex.entity.nethermite", "chanceOfSpawning", "spawnRarity");
-            config.renameProperty("logictechcorp.netherex.entity.nethermite", "whitelist", "blockWhitelist");
-            config.renameProperty("logictechcorp.netherex.entity.spore_creeper", "chanceOfSporeSpawning", "sporeSpawnRarity");
-            config.renameProperty("logictechcorp.netherex.entity.spore", "creeperSpawns", "creeperSpawnAmount");
-            config.renameProperty("logictechcorp.netherex.entity.ghast_queen", "ghastlingSpawns", "ghastlingSpawnAmount");
-            config.renameProperty("logictechcorp.netherex.biome.arctic_abyss", "chanceOfFreezing", "mobFreezeRarity");
-            config.save();
-        }
-    }
-
-    private static Configuration getConfig()
-    {
-        if(config == null)
-        {
-            try
-            {
-                MethodHandle CONFIGS_GETTER = MethodHandles.lookup().unreflectGetter(ReflectionHelper.findField(ConfigManager.class, "CONFIGS", null));
-                String fileName = NetherEx.MOD_ID + ".cfg";
-                Map<String, Configuration> configsMap = (Map<String, Configuration>) CONFIGS_GETTER.invokeExact();
-
-                Optional<Map.Entry<String, Configuration>> entryOptional = configsMap.entrySet().stream()
-                        .filter(entry -> fileName.equals(new File(entry.getKey()).getName()))
-                        .findFirst();
-
-                entryOptional.ifPresent(configEntry -> config = configEntry.getValue());
-            }
-            catch(Throwable ignored)
-            {
-            }
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.biomeConfigs.writeBiomeConfigsToWorldConfigFolder")
+            public boolean writeBiomeConfigsToWorldConfigFolder = false;
         }
 
-        return config;
+        public class TradeConfigs
+        {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.tradeConfigs.writeTradeConfigsToWorldConfigFolder")
+            public boolean writeTradeConfigsToWorldConfigFolder = false;
+        }
+
+        public class Recipes
+        {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.recipes.writeRecipesToGlobalConfigFolder")
+            public boolean writeRecipesToGlobalConfigFolder = false;
+        }
     }
 
     public static class ClientConfig

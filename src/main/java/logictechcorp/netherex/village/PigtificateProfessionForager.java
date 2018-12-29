@@ -13,31 +13,16 @@ import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionForager extends PigtificateProfession
 {
-    private final PigtificateProfession.Career hunter = new CareerHunter(this);
-    private final PigtificateProfession.Career gatherer = new CareerGatherer(this);
-    private final PigtificateProfession.Career scavenger = new CareerScavenger(this);
-
     public PigtificateProfessionForager()
     {
         super(new ResourceLocation(NetherEx.MOD_ID + ":forager"));
-        this.registerCareer(this.hunter);
-        this.registerCareer(this.gatherer);
-        this.registerCareer(this.scavenger);
     }
 
-    public Career getHunterCareer()
+    public void registerDefaultCareers()
     {
-        return this.hunter;
-    }
-
-    public Career getGathererCareer()
-    {
-        return this.gatherer;
-    }
-
-    public Career getScavengerCareer()
-    {
-        return this.scavenger;
+        this.registerCareer(new CareerHunter(this));
+        this.registerCareer(new CareerGatherer(this));
+        this.registerCareer(new CareerScavenger(this));
     }
 
     static class CareerHunter extends PigtificateProfession.Career

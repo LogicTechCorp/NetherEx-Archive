@@ -16,6 +16,14 @@ public class NetherExPigtificates
     public static final PigtificateProfessionSmith SMITH = InjectionHelper.nullValue();
     public static final PigtificateProfessionSorcerer SORCERER = InjectionHelper.nullValue();
 
+    public static void registerPigtificateCareers()
+    {
+        LEADER.registerDefaultCareers();
+        FORAGER.registerDefaultCareers();
+        SMITH.registerDefaultCareers();
+        SORCERER.registerDefaultCareers();
+    }
+
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {

@@ -24,6 +24,7 @@ import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.GuiHandler;
 import logictechcorp.netherex.init.*;
+import logictechcorp.netherex.village.PigtificateTradeManager;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -82,7 +83,6 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        ConfigHandler.updateConfigEntries();
         NetherExOverrides.overrideObjects();
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         CapabilityManager.INSTANCE.register(IBlightChunkData.class, new CapabilityBlightChunkData.Storage(), new CapabilityBlightChunkData.Factory());
@@ -93,6 +93,7 @@ public class NetherEx implements IModData
     public void onFMLInitialization(FMLInitializationEvent event)
     {
         NetherExDataFixers.registerFixes();
+        NetherExPigtificates.registerPigtificateCareers();
         NetherExBiomes.registerBiomes();
         NetherExRecipes.registerRecipes();
         NetherExOreDictionary.registerOres();
@@ -111,12 +112,14 @@ public class NetherEx implements IModData
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
         NetherBiomeManager.INSTANCE.readBiomeConfigs(event.getServer());
+        PigtificateTradeManager.readTradeConfigs(event.getServer());
     }
 
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
         NetherBiomeManager.INSTANCE.writeBiomeConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
+        PigtificateTradeManager.writeTradeConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
     }
 
     @Override
@@ -129,6 +132,12 @@ public class NetherEx implements IModData
     public CreativeTabs getCreativeTab()
     {
         return CREATIVE_TAB;
+    }
+
+    @Override
+    public boolean writeRecipeJsons()
+    {
+        return ConfigHandler.internalConfig.recipes.writeRecipesToGlobalConfigFolder;
     }
 
     public static ResourceLocation getResource(String name)

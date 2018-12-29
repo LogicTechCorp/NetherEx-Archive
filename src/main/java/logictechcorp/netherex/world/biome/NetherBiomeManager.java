@@ -25,6 +25,7 @@ import logictechcorp.libraryex.util.WorldHelper;
 import logictechcorp.libraryex.world.biome.DimensionBiomeManager;
 import logictechcorp.libraryex.world.biome.wrapper.IBiomeWrapper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
 import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapper;
 import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapperHell;
@@ -69,7 +70,7 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
             {
                 File configFile = pathIter.next().toFile();
 
-                if(FileHelper.getFileExtension(configFile).equals("json"))
+                if(FileHelper.getFileExtension(configFile).equals("toml"))
                 {
                     FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
                     config.load();
@@ -109,7 +110,7 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
                 }
                 else if(!configFile.isDirectory())
                 {
-                    NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
+                    NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a toml file.", configFile.getPath());
                 }
             }
         }
@@ -121,30 +122,35 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
 
     public void writeBiomeConfigs(MinecraftServer server)
     {
-        NetherEx.LOGGER.info("Writing Nether biome configs.");
-
-        for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.moddedBiomes.entrySet())
+        if(ConfigHandler.internalConfig.biomeConfigs.writeBiomeConfigsToWorldConfigFolder)
         {
-            IBiomeWrapper wrapper = entry.getValue();
+            NetherEx.LOGGER.info("Writing Nether biome configs.");
 
-            if(wrapper instanceof IConfigData)
+            for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.moddedBiomes.entrySet())
             {
-                FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
-                config.save();
-                config.close();
+                IBiomeWrapper wrapper = entry.getValue();
+
+                if(wrapper instanceof IConfigData)
+                {
+                    FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
+                    config.save();
+                    config.close();
+                }
             }
-        }
 
-        for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.playerBiomes.entrySet())
-        {
-            IBiomeWrapper wrapper = entry.getValue();
-
-            if(wrapper instanceof IConfigData)
+            for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.playerBiomes.entrySet())
             {
-                FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
-                config.save();
-                config.close();
+                IBiomeWrapper wrapper = entry.getValue();
+
+                if(wrapper instanceof IConfigData)
+                {
+                    FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
+                    config.save();
+                    config.close();
+                }
             }
+
+            ConfigHandler.internalConfig.biomeConfigs.writeBiomeConfigsToWorldConfigFolder = false;
         }
     }
 }

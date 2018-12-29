@@ -5,6 +5,21 @@ language.code=en_us
 
 #Config
 config.netherex=NetherEx Config
+
+config.netherex:internal=Internal Settings
+config.netherex:internal.tooltip=Settings that only affect Internal functions
+config.netherex:internal.biomeConfigs=Internal Biome Config Settings
+config.netherex:internal.biomeConfigs.tooltip=Settings that only affect Internal Biome Config functions
+config.netherex:internal.biomeConfigs.writeBiomeConfigsToWorldConfigFolder=Write Biome Configs To World Config Folder
+config.netherex:internal.biomeConfigs.writeBiomeConfigsToWorldConfigFolder.tooltip=Whether or not Biome Configs are written to the world config folder
+config.netherex:internal.tradeConfigs=Internal Trade Config Settings
+config.netherex:internal.tradeConfigs.tooltip=Settings that only affect Internal Trade Config functions
+config.netherex:internal.tradeConfigs.writeTradeConfigsToWorldConfigFolder=Write Trade Configs To World Config Folder
+config.netherex:internal.tradeConfigs.writeTradeConfigsToWorldConfigFolder.tooltip=Whether or not Trade Configs are written to the world config folder
+config.netherex:internal.recipes=Internal Recipe Settings
+config.netherex:internal.recipes.tooltip=Settings that only affect Internal Recipe functions
+config.netherex:internal.recipes.writeRecipesToGlobalConfigFolder=Write Recipes To Global Config Folder
+config.netherex:internal.recipes.writeRecipesToGlobalConfigFolder.tooltip=Whether or not Recipes are written to the global config folder
 config.netherex:client=Client Settings
 config.netherex:client.tooltip=Settings that only affect the Client
 config.netherex:client.visual=Visual Settings

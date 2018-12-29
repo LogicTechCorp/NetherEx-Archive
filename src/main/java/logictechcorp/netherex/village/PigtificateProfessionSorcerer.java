@@ -12,24 +12,15 @@ import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionSorcerer extends PigtificateProfession
 {
-    private final PigtificateProfession.Career enchanter = new CareerEnchanter(this);
-    private final PigtificateProfession.Career brewer = new CareerBrewer(this);
-
     public PigtificateProfessionSorcerer()
     {
         super(new ResourceLocation(NetherEx.MOD_ID + ":sorcerer"));
-        this.registerCareer(this.enchanter);
-        this.registerCareer(this.brewer);
     }
 
-    public Career getEnchanterCareer()
+    public void registerDefaultCareers()
     {
-        return this.enchanter;
-    }
-
-    public Career getBrewerCareer()
-    {
-        return this.brewer;
+        this.registerCareer(new CareerEnchanter(this));
+        this.registerCareer(new CareerBrewer(this));
     }
 
     static class CareerEnchanter extends PigtificateProfession.Career

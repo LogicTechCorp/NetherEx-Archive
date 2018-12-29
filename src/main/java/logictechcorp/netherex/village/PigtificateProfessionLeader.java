@@ -7,17 +7,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionLeader extends PigtificateProfession
 {
-    private final PigtificateProfession.Career chief = new CareerChief(this);
-
     public PigtificateProfessionLeader()
     {
         super(new ResourceLocation(NetherEx.MOD_ID + ":leader"));
-        this.registerCareer(this.chief);
     }
 
-    public Career getChiefCareer()
+    public void registerDefaultCareers()
     {
-        return this.chief;
+        this.registerCareer(new CareerChief(this));
     }
 
     static class CareerChief extends PigtificateProfession.Career

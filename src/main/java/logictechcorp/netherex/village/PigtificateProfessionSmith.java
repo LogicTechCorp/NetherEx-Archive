@@ -11,24 +11,15 @@ import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionSmith extends PigtificateProfession
 {
-    private final PigtificateProfession.Career armorsmith = new CareerArmorsmith(this);
-    private final PigtificateProfession.Career toolsmith = new CareerToolsmith(this);
-
     public PigtificateProfessionSmith()
     {
         super(new ResourceLocation(NetherEx.MOD_ID + ":smith"));
-        this.registerCareer(this.armorsmith);
-        this.registerCareer(this.toolsmith);
     }
 
-    public Career getArmorsmithCareer()
+    public void registerDefaultCareers()
     {
-        return this.armorsmith;
-    }
-
-    public Career getToolsmithCareer()
-    {
-        return this.toolsmith;
+        this.registerCareer(new CareerArmorsmith(this));
+        this.registerCareer(new CareerToolsmith(this));
     }
 
     static class CareerArmorsmith extends PigtificateProfession.Career
