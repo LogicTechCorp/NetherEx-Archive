@@ -17,12 +17,10 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.netherex.fluid.FluidBlight;
 import logictechcorp.netherex.fluid.FluidIchor;
 import net.minecraftforge.fluids.Fluid;
 
 public class NetherExFluids
 {
     public static final Fluid ICHOR = new FluidIchor();
-    public static final Fluid BLIGHT = new FluidBlight();
 }

@@ -180,7 +180,6 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_PILLAR_FENCE_GATE.getDefaultState(), "inventory");
 
         ModelHelper.registerFluidModel(NetherEx.instance, NetherExBlocks.ICHOR);
-        ModelHelper.registerFluidModel(NetherEx.instance, NetherExBlocks.BLIGHT);
     }
 
     private static void registerItemModels()

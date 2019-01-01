@@ -110,15 +110,15 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
-        NetherBiomeManager.INSTANCE.readBiomeConfigs(event.getServer());
-        PigtificateTradeManager.readTradeConfigs(event.getServer());
+        NetherBiomeManager.INSTANCE.readBiomeInfoFromConfigs(event.getServer());
+        PigtificateTradeManager.readTradesFromConfigs(event.getServer());
     }
 
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
-        NetherBiomeManager.INSTANCE.writeBiomeConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
-        PigtificateTradeManager.writeTradeConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
+        NetherBiomeManager.INSTANCE.writeBiomeInfoToConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
+        PigtificateTradeManager.writeTradesToConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
     }
 
     @Override

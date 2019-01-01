@@ -1,7 +1,8 @@
 package logictechcorp.netherex.world.biome;
 
-import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.world.biome.wrapper.BiomeBlockType;
+import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeBlockType;
+import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.gen.GenerationStage;
 import logictechcorp.libraryex.world.gen.feature.FeatureCluster;
 import logictechcorp.libraryex.world.gen.feature.FeatureFluid;
@@ -10,14 +11,12 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.passive.EntityBonspider;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
-import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapper;
+import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -33,20 +32,20 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
     }
 
     @Override
-    public INetherBiomeWrapper getWrapper()
+    public BiomeInfo getInfo()
     {
-        return new Wrapper();
+        return new Info();
     }
 
-    private class Wrapper extends NetherBiomeWrapper
+    private class Info extends NetherBiomeInfo
     {
-        public Wrapper()
+        public Info()
         {
             super(NetherExBiomes.REGROWTHS_COLLAPSE.getRegistryName(), 2, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public Config getAsConfig()
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, Blocks.GRASS.getDefaultState());
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, Blocks.DIRT.getDefaultState());
@@ -66,7 +65,7 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(1, 0.125D, false, 10, 108, NetherExBlocks.COBALT_ORE.getDefaultState(), Blocks.STONE.getDefaultState(), 8)
             )));
-            return super.serialize(configFile);
+            return super.getAsConfig();
         }
     }
 }

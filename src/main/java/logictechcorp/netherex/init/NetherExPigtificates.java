@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class NetherExPigtificates
 {
     public static final PigtificateProfessionLeader LEADER = InjectionHelper.nullValue();
+    public static final PigtificateProfessionDimwit DIMWIT = InjectionHelper.nullValue();
     public static final PigtificateProfessionForager FORAGER = InjectionHelper.nullValue();
     public static final PigtificateProfessionSmith SMITH = InjectionHelper.nullValue();
     public static final PigtificateProfessionSorcerer SORCERER = InjectionHelper.nullValue();
@@ -19,6 +20,7 @@ public class NetherExPigtificates
     public static void registerPigtificateCareers()
     {
         LEADER.registerDefaultCareers();
+        DIMWIT.registerDefaultCareers();
         FORAGER.registerDefaultCareers();
         SMITH.registerDefaultCareers();
         SORCERER.registerDefaultCareers();
@@ -28,10 +30,11 @@ public class NetherExPigtificates
     public static class EventHandler
     {
         @SubscribeEvent
-        public static void onRegisterBlocks(RegistryEvent.Register<PigtificateProfession> event)
+        public static void onRegisterPigtificateProfessions(RegistryEvent.Register<PigtificateProfession> event)
         {
             event.getRegistry().registerAll(
                     new PigtificateProfessionLeader(),
+                    new PigtificateProfessionDimwit(),
                     new PigtificateProfessionForager(),
                     new PigtificateProfessionSmith(),
                     new PigtificateProfessionSorcerer()

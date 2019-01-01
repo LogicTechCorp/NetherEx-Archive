@@ -17,8 +17,9 @@
 
 package logictechcorp.netherex.world.biome;
 
-import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.world.biome.wrapper.BiomeBlockType;
+import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeBlockType;
+import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.gen.GenerationStage;
 import logictechcorp.libraryex.world.gen.feature.FeatureBigMushroom;
 import logictechcorp.libraryex.world.gen.feature.FeatureCluster;
@@ -30,8 +31,7 @@ import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
-import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapper;
+import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import logictechcorp.netherex.world.gen.feature.FeatureEnoki;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -40,7 +40,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -60,20 +59,20 @@ public class BiomeFungiForest extends BiomeNetherEx
     }
 
     @Override
-    public INetherBiomeWrapper getWrapper()
+    public BiomeInfo getInfo()
     {
-        return new Wrapper();
+        return new Info();
     }
 
-    private class Wrapper extends NetherBiomeWrapper
+    private class Info extends NetherBiomeInfo
     {
-        public Wrapper()
+        public Info()
         {
             super(NetherExBiomes.FUNGI_FOREST.getRegistryName(), 4, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public Config getAsConfig()
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
@@ -99,7 +98,7 @@ public class BiomeFungiForest extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
             )));
-            return super.serialize(configFile);
+            return super.getAsConfig();
         }
     }
 }

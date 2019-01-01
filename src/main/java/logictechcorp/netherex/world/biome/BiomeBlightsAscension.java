@@ -1,7 +1,7 @@
 package logictechcorp.netherex.world.biome;
 
+import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
 
 public class BiomeBlightsAscension extends BiomeNetherEx
 {
@@ -11,7 +11,7 @@ public class BiomeBlightsAscension extends BiomeNetherEx
     }
 
     @Override
-    public INetherBiomeWrapper getWrapper()
+    public BiomeInfo getInfo()
     {
         return null;
     }

@@ -20,7 +20,7 @@ package logictechcorp.netherex.entity.passive;
 import logictechcorp.netherex.entity.ai.EntityAIPigtificateInteract;
 import logictechcorp.netherex.entity.ai.EntityAIPigtificateLookAtTradePlayer;
 import logictechcorp.netherex.entity.ai.EntityAIPigtificateTradePlayer;
-import logictechcorp.netherex.village.PigtificateProfessionLeader;
+import logictechcorp.netherex.init.NetherExPigtificates;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -34,11 +34,8 @@ public class EntityPigtificateLeader extends EntityPigtificate
     public EntityPigtificateLeader(World world)
     {
         super(world);
-    }
-
-    public EntityPigtificateLeader(World world, PigtificateProfessionLeader profession)
-    {
-        super(world, profession);
+        this.setProfession(NetherExPigtificates.LEADER);
+        this.setCareer(NetherExPigtificates.LEADER.getRandomCareer(this.rand));
     }
 
     @Override

@@ -18,10 +18,10 @@
 package logictechcorp.netherex.world.gen;
 
 import logictechcorp.libraryex.event.LibExEventFactory;
-import logictechcorp.libraryex.world.biome.wrapper.BiomeBlockType;
+import logictechcorp.libraryex.world.biome.BiomeBlockType;
+import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
-import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -396,16 +396,16 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        INetherBiomeWrapper wrapper = NetherBiomeManager.INSTANCE.getBiomeWrapper(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
         this.netherBridge.generateStructure(this.world, this.rand, chunkPos);
         LibExEventFactory.onPreDecorateBiome(this.world, this.rand, chunkPos);
         LibExEventFactory.onDecorateBiome(this.world, this.rand, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM);
 
-        if(wrapper != null && wrapper.genDefaultFeatures())
+        if(info != null && info.genDefaultFeatures())
         {
-            wrapper.getBiome().decorate(this.world, this.rand, blockPos);
+            info.getBiome().decorate(this.world, this.rand, blockPos);
         }
 
         LibExEventFactory.onPostDecorateBiome(this.world, this.rand, chunkPos);
@@ -436,8 +436,8 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             }
         }
 
-        INetherBiomeWrapper wrapper = NetherBiomeManager.INSTANCE.getBiomeWrapper(this.world.getBiome(pos));
-        return creatureType == null || wrapper == null ? new ArrayList<>() : wrapper.getEntitySpawnEntries(creatureType);
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(this.world.getBiome(pos));
+        return creatureType == null || info == null ? new ArrayList<>() : info.getEntitySpawnEntries(creatureType);
     }
 
     @Override
@@ -489,21 +489,21 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         {
             for(int z = 0; z < 16; z++)
             {
-                INetherBiomeWrapper wrapper = NetherBiomeManager.INSTANCE.getBiomeWrapper(biomes[x + z * 16]);
+                BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(biomes[x + z * 16]);
 
-                if(wrapper != null)
+                if(info != null)
                 {
-                    Biome biome = wrapper.getBiome();
+                    Biome biome = info.getBiome();
                     ResourceLocation biomeName = biome.getRegistryName();
 
                     if(!biomeName.getNamespace().equalsIgnoreCase("biomesoplenty"))
                     {
-                        IBlockState surfaceBlock = wrapper.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, biome.topBlock);
-                        IBlockState fillerBlock = wrapper.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, biome.fillerBlock);
-                        IBlockState wallBlock = wrapper.getBiomeBlock(BiomeBlockType.WALL_BLOCK, biome.fillerBlock);
-                        IBlockState ceilingFillerBlock = wrapper.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, biome.fillerBlock);
-                        IBlockState ceilingBottomBlock = wrapper.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, biome.fillerBlock);
-                        IBlockState oceanBlock = wrapper.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
+                        IBlockState surfaceBlock = info.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, biome.topBlock);
+                        IBlockState fillerBlock = info.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, biome.fillerBlock);
+                        IBlockState wallBlock = info.getBiomeBlock(BiomeBlockType.WALL_BLOCK, biome.fillerBlock);
+                        IBlockState ceilingFillerBlock = info.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, biome.fillerBlock);
+                        IBlockState ceilingBottomBlock = info.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, biome.fillerBlock);
+                        IBlockState oceanBlock = info.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
 
                         int localX = ((chunkX * 16) + x) & 15;
                         int localZ = ((chunkZ * 16) + z) & 15;

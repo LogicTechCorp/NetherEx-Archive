@@ -42,6 +42,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.*;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
@@ -55,20 +58,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
 public class EntityPigtificate extends EntityAgeable implements ITrader
 {
-    private PigtificateProfession profession;
-    private PigtificateProfession.Career career;
+    private static final DataParameter<String> PROFESSION = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.STRING);
+    private static final DataParameter<Integer> CAREER = EntityDataManager.createKey(EntityPigtificate.class, DataSerializers.VARINT);
+
     private int careerLevel;
     private int tickCounter;
     private int timeUntilRestock;
 
     private PigtificateVillage village;
-
     private boolean needsInitialization;
     private boolean willingToMate;
     private boolean mating;
@@ -85,6 +89,10 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     public EntityPigtificate(World world)
     {
         super(world);
+        List<PigtificateProfession> professions = new ArrayList<>(NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection());
+        professions.removeIf(profession -> profession == NetherExPigtificates.LEADER);
+        this.setProfession((PigtificateProfession) professions.toArray()[this.rand.nextInt(professions.size())]);
+        this.setCareer(this.getProfession().getRandomCareer(this.rand));
         this.inventory = new InventoryBasic("Items", false, 8);
         this.isImmuneToFire = true;
         this.setCanPickUpLoot(true);
@@ -94,11 +102,20 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     public EntityPigtificate(World world, PigtificateProfession profession)
     {
         super(world);
-        this.profession = profession;
+        this.setProfession(profession);
+        this.setCareer(this.getProfession().getRandomCareer(this.rand));
         this.inventory = new InventoryBasic("Items", false, 8);
         this.isImmuneToFire = true;
         this.setCanPickUpLoot(true);
         this.setSize(0.6F, 1.95F);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(PROFESSION, NetherExPigtificates.DIMWIT.getName().toString());
+        this.dataManager.register(CAREER, 0);
     }
 
     @Override
@@ -211,8 +228,8 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setString("Profession", this.career.getProfession().getName().toString());
-        compound.setInteger("Career", this.career.getId());
+        compound.setString("Profession", this.getProfession().getName().toString());
+        compound.setInteger("Career", this.getCareer().getId());
         compound.setInteger("CareerLevel", this.careerLevel);
         compound.setBoolean("Willing", this.willingToMate);
 
@@ -241,7 +258,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     {
         super.readEntityFromNBT(compound);
         this.setProfession(NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(compound.getString("Profession"))));
-        this.setCareer(this.profession.getCareer(compound.getInteger("Career")));
+        this.setCareer(this.getProfession().getCareer(compound.getInteger("Career")));
         this.setCareerLevel(compound.getInteger("CareerLevel"));
         this.setWillingToMate(compound.getBoolean("Willing"));
 
@@ -398,7 +415,6 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
         }
         else
         {
-            this.career = this.profession.getRandomCareer(this.rand);
             this.careerLevel = 1;
         }
 
@@ -407,7 +423,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
             this.trades = new MerchantRecipeList();
         }
 
-        List<Trade> trades = this.career.getTrades(this.careerLevel);
+        List<Trade> trades = this.getCareer().getTradesForLevel(this.careerLevel);
 
         if(trades != null && trades.size() > 0)
         {
@@ -527,7 +543,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
 
     public boolean wantsMoreFood()
     {
-        boolean wantsMore = this.profession == NetherExPigtificates.LEADER;
+        boolean wantsMore = this.getProfession() == NetherExPigtificates.LEADER;
         return wantsMore ? !this.hasEnoughItems(5) : !this.hasEnoughItems(1);
     }
 
@@ -606,11 +622,6 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
         return this.isChild() ? 0.81F : 1.62F;
     }
 
-    public PigtificateProfession.Career getCareer()
-    {
-        return this.career;
-    }
-
     public InventoryBasic getInventory()
     {
         return this.inventory;
@@ -620,6 +631,16 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     public EntityPlayer getCustomer()
     {
         return this.customer;
+    }
+
+    public PigtificateProfession getProfession()
+    {
+        return NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(this.dataManager.get(PROFESSION)));
+    }
+
+    public PigtificateProfession.Career getCareer()
+    {
+        return this.getProfession().getCareer(Math.max(this.dataManager.get(CAREER), 0));
     }
 
     @Override
@@ -642,15 +663,14 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
         }
         else
         {
-            String entityName = EntityList.getEntityString(this);
-            return I18n.translateToLocal("entity." + entityName + "." + this.career.getName().toString().toLowerCase() + ".name");
+            return I18n.translateToLocal("entity." + this.getProfession().getName().getNamespace() + ":pigtificate_" + this.getCareer().getName().getPath().toLowerCase() + ".name");
         }
     }
 
     @Override
     protected ResourceLocation getLootTable()
     {
-        return this.career.getLootTable();
+        return this.getCareer().getLootTable();
     }
 
     @Override
@@ -673,22 +693,25 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
 
     public void setProfession(PigtificateProfession profession)
     {
-        this.profession = profession;
+        this.dataManager.set(PROFESSION, profession.getName().toString());
     }
 
     public void setCareer(PigtificateProfession.Career career)
     {
-        this.career = career;
+        if(this.getProfession() == career.getProfession())
+        {
+            this.dataManager.set(CAREER, career.getId());
+        }
     }
 
-    public void setCareerLevel(int i)
+    public void setCareerLevel(int careerLevel)
     {
-        if(i < 0)
+        if(careerLevel < 0)
         {
-            i = 0;
+            careerLevel = 0;
         }
 
-        this.careerLevel = i;
+        this.careerLevel = careerLevel;
     }
 
     private void setAdditionalAITasks()

@@ -17,22 +17,19 @@
 
 package logictechcorp.netherex.world.biome;
 
+import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.config.IConfigData;
 import logictechcorp.libraryex.util.ConfigHelper;
 import logictechcorp.libraryex.util.FileHelper;
 import logictechcorp.libraryex.util.WorldHelper;
+import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.biome.DimensionBiomeManager;
-import logictechcorp.libraryex.world.biome.wrapper.IBiomeWrapper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
-import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapper;
-import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapperHell;
+import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
+import logictechcorp.netherex.world.biome.info.NetherBiomeInfoHell;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.io.File;
@@ -40,9 +37,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Iterator;
-import java.util.Map;
 
-public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrapper>
+public class NetherBiomeManager extends DimensionBiomeManager
 {
     public static final NetherBiomeManager INSTANCE = new NetherBiomeManager();
 
@@ -53,10 +49,11 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
 
     private void setupDefaultBiomes()
     {
-        this.addBiome(new NetherBiomeWrapperHell());
+        this.addBiome(new NetherBiomeInfoHell());
     }
 
-    public void readBiomeConfigs(MinecraftServer server)
+    @Override
+    public void readBiomeInfoFromConfigs(MinecraftServer server)
     {
         Path path = new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Biomes").toPath();
         NetherEx.LOGGER.info("Reading Nether biome configs.");
@@ -75,34 +72,26 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
                     FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
                     config.load();
 
-                    Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation("biome"));
+                    Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
 
-                    if(biome != null && config.getOrElse("enabled", true))
+                    if(biome != null)
                     {
-                        int biomeId = Biome.getIdForBiome(biome);
-                        INetherBiomeWrapper wrapper;
+                        BiomeInfo info = this.getAllBiomeInfo(biome);
 
-                        if(this.moddedBiomes.containsKey(biomeId) && this.moddedBiomes.get(biomeId) instanceof IConfigData)
+                        if(info == null)
                         {
-                            wrapper = this.moddedBiomes.get(biomeId);
-                            ((IConfigData) wrapper).deserialize(config);
+                            info = new NetherBiomeInfo();
+                        }
 
-                            if(wrapper.isEnabled())
-                            {
-                                this.moddedBiomes.put(biomeId, wrapper);
-                                this.biomeEntries.add(new BiomeManager.BiomeEntry(biome, wrapper.getWeight()));
-                            }
+                        info.setupFromConfig(config);
+
+                        if(info.isEnabled())
+                        {
+                            this.addBiome(info);
                         }
                         else
                         {
-                            wrapper = new NetherBiomeWrapper();
-                            ((NetherBiomeWrapper) wrapper).deserialize(config);
-
-                            if(wrapper.isEnabled())
-                            {
-                                this.playerBiomes.put(biomeId, wrapper);
-                                this.biomeEntries.add(new BiomeManager.BiomeEntry(biome, wrapper.getWeight()));
-                            }
+                            this.removeBiome(info);
                         }
                     }
 
@@ -120,37 +109,28 @@ public class NetherBiomeManager extends DimensionBiomeManager<INetherBiomeWrappe
         }
     }
 
-    public void writeBiomeConfigs(MinecraftServer server)
+    @Override
+    public void writeBiomeInfoToConfigs(MinecraftServer server)
     {
-        if(ConfigHandler.internalConfig.biomeConfigs.writeBiomeConfigsToWorldConfigFolder)
+        NetherEx.LOGGER.info("Writing Nether biome configs.");
+
+        for(BiomeInfo info : this.getAllBiomeInfo())
         {
-            NetherEx.LOGGER.info("Writing Nether biome configs.");
+            File configFile = this.getBiomeInfoSaveFile(server, info);
+            FileConfig fileConfig = FileConfig.of(configFile);
 
-            for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.moddedBiomes.entrySet())
+            if(!configFile.exists() && configFile.getParentFile().mkdirs() || !configFile.exists())
             {
-                IBiomeWrapper wrapper = entry.getValue();
-
-                if(wrapper instanceof IConfigData)
-                {
-                    FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
-                    config.save();
-                    config.close();
-                }
+                Config config = info.getAsConfig();
+                config.entrySet().forEach(entry -> fileConfig.add(entry.getKey(), entry.getValue()));
+            }
+            else
+            {
+                fileConfig.load();
+                info.setupFromConfig(fileConfig);
             }
 
-            for(Map.Entry<Integer, INetherBiomeWrapper> entry : this.playerBiomes.entrySet())
-            {
-                IBiomeWrapper wrapper = entry.getValue();
-
-                if(wrapper instanceof IConfigData)
-                {
-                    FileConfig config = ((IConfigData) wrapper).serialize(this.getBiomeWrapperSaveFile(server, wrapper));
-                    config.save();
-                    config.close();
-                }
-            }
-
-            ConfigHandler.internalConfig.biomeConfigs.writeBiomeConfigsToWorldConfigFolder = false;
+            fileConfig.save();
         }
     }
 }

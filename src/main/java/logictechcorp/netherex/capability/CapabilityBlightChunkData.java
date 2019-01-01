@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import logictechcorp.libraryex.capability.CapabilitySerializable;
 import logictechcorp.libraryex.util.WorldHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.block.BlockBlight;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,12 +23,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.*;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CapabilityBlightChunkData implements IBlightChunkData
 {
     @CapabilityInject(IBlightChunkData.class)
     public static final Capability<IBlightChunkData> INSTANCE = null;
-    private final Map<Long, BlightChunk> blightChunks = new HashMap<>();
+    private final Map<Long, BlightChunk> blightChunks = new ConcurrentHashMap<>();
 
     private CapabilityBlightChunkData()
     {
@@ -46,7 +47,7 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             NBTTagCompound blightChunkCompound = new NBTTagCompound();
             blightChunkCompound.setInteger("ChunkX", chunk.getChunkX());
             blightChunkCompound.setInteger("ChunkZ", chunk.getChunkZ());
-            blightChunkCompound.setBoolean("BlightMaterialized", chunk.hasBlightMaterialized());
+            blightChunkCompound.setBoolean("HasBlightSpread", chunk.hasBlightSpread());
             blightChunkData.appendTag(blightChunkCompound);
         }
 
@@ -61,7 +62,7 @@ public class CapabilityBlightChunkData implements IBlightChunkData
         {
             NBTTagCompound blightChunkCompound = (NBTTagCompound) base;
             BlightChunk chunk = new BlightChunk(blightChunkCompound.getInteger("ChunkX"), blightChunkCompound.getInteger("ChunkZ"));
-            chunk.setBlightMaterialized(blightChunkCompound.getBoolean("BlightMaterialized"));
+            chunk.setBlightSpread(blightChunkCompound.getBoolean("HasBlightSpread"));
             this.blightChunks.put(ChunkPos.asLong(chunk.getChunkX(), chunk.getChunkZ()), chunk);
         }
     }
@@ -128,7 +129,7 @@ public class CapabilityBlightChunkData implements IBlightChunkData
         private int chunkX;
         private int chunkZ;
         private ChunkPos chunkPos;
-        private boolean blightMaterialized;
+        private boolean hasBlightSpread;
 
         BlightChunk(int chunkX, int chunkZ)
         {
@@ -141,24 +142,24 @@ public class CapabilityBlightChunkData implements IBlightChunkData
         {
             Random rand = world.rand;
 
-            if(!this.blightMaterialized && rand.nextInt(8) == 0)
+            BlockPos chunkStartPos = new BlockPos((this.chunkX << 4), 0, (this.chunkZ << 4));
+            BlockPos chunkEndPos = new BlockPos((this.chunkX << 4) + 15, 0, (this.chunkZ << 4) + 15);
+            List<BlockPos> chunkPositions = Lists.newArrayList(BlockPos.getAllInBox(chunkStartPos, chunkEndPos));
+            Collections.shuffle(chunkPositions, rand);
+            boolean hasBlightSpread = false;
+
+            if(!this.hasBlightSpread)
             {
-                BlockPos chunkStartPos = new BlockPos((this.chunkX << 4), 0, (this.chunkZ << 4));
-                BlockPos chunkEndPos = new BlockPos((this.chunkX << 4) + 15, 0, (this.chunkZ << 4) + 15);
-                List<BlockPos> chunkPositions = Lists.newArrayList(BlockPos.getAllInBox(chunkStartPos, chunkEndPos));
-                Collections.shuffle(chunkPositions, rand);
-
-                for(int i = 0; i < rand.nextInt(8) + 1; i++)
+                for(int i = 0; i < rand.nextInt(16) + 1; i++)
                 {
-                    BlockPos blockPos = world.getTopSolidOrLiquidBlock(chunkPositions.get(i));
-
-                    if(world.getLight(blockPos, false) <= 7)
+                    if(BlockBlight.spread(world, world.getTopSolidOrLiquidBlock(chunkPositions.get(i)), rand))
                     {
-                        world.setBlockState(blockPos, NetherExBlocks.BLIGHT.getDefaultState());
-                        this.blightMaterialized = true;
+                        hasBlightSpread = true;
                     }
                 }
             }
+
+            this.hasBlightSpread = hasBlightSpread;
         }
 
         public int getChunkX()
@@ -171,9 +172,9 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             return this.chunkZ;
         }
 
-        public boolean hasBlightMaterialized()
+        public boolean hasBlightSpread()
         {
-            return this.blightMaterialized;
+            return this.hasBlightSpread;
         }
 
         public ChunkPos getPos()
@@ -181,9 +182,9 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             return this.chunkPos;
         }
 
-        public void setBlightMaterialized(boolean blightMaterialized)
+        public void setBlightSpread(boolean hasBlightSpread)
         {
-            this.blightMaterialized = blightMaterialized;
+            this.hasBlightSpread = hasBlightSpread;
         }
     }
 

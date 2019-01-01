@@ -17,8 +17,9 @@
 
 package logictechcorp.netherex.world.biome;
 
-import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.world.biome.wrapper.BiomeBlockType;
+import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeBlockType;
+import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.gen.GenerationStage;
 import logictechcorp.libraryex.world.gen.feature.*;
 import logictechcorp.netherex.NetherEx;
@@ -26,8 +27,7 @@ import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
-import logictechcorp.netherex.world.biome.wrapper.NetherBiomeWrapper;
+import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityBlaze;
@@ -36,7 +36,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -55,20 +54,20 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     }
 
     @Override
-    public INetherBiomeWrapper getWrapper()
+    public BiomeInfo getInfo()
     {
-        return new Wrapper();
+        return new Info();
     }
 
-    private class Wrapper extends NetherBiomeWrapper
+    private class Info extends NetherBiomeInfo
     {
-        public Wrapper()
+        public Info()
         {
             super(NetherExBiomes.TORRID_WASTELAND.getRegistryName(), 6, true, true);
         }
 
         @Override
-        public FileConfig serialize(File configFile)
+        public Config getAsConfig()
         {
             this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
             this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
@@ -95,7 +94,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
                     new FeatureOre(14, 1.0D, false, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
                     new FeatureOre(8, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
             )));
-            return super.serialize(configFile);
+            return super.getAsConfig();
         }
     }
 }

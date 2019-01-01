@@ -1,13 +1,13 @@
-package logictechcorp.netherex.world.biome.wrapper;
+package logictechcorp.netherex.world.biome.info;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class BOPNetherBiomeWrapper extends NetherBiomeWrapper
+public class BOPNetherBiomeInfo extends NetherBiomeInfo
 {
-    public BOPNetherBiomeWrapper(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
+    public BOPNetherBiomeInfo(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
     {
         super(biomeRegistryName, weight, enabled, genDefaultFeatures);
     }

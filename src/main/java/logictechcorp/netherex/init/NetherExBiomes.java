@@ -18,14 +18,14 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.util.InjectionHelper;
+import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.gen.GenerationStage;
 import logictechcorp.libraryex.world.gen.feature.FeatureOre;
 import logictechcorp.libraryex.world.gen.feature.FeatureStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.*;
-import logictechcorp.netherex.world.biome.wrapper.BOPNetherBiomeWrapper;
-import logictechcorp.netherex.world.biome.wrapper.INetherBiomeWrapper;
+import logictechcorp.netherex.world.biome.info.BOPNetherBiomeInfo;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -74,23 +74,23 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(REGROWTHS_COLLAPSE, NETHER, DEAD);
         BiomeDictionary.addTypes(BLIGHTS_ASCENSION, NETHER, SPOOKY);
 
-        INetherBiomeWrapper wrapper = NetherBiomeManager.INSTANCE.getBiomeWrapper(Biomes.HELL);
-        wrapper.getFeatures(GenerationStage.PRE_DECORATE).add(new FeatureStructure(1, 1.0D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":village/tiny_hell_pigtificate_village"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
-        wrapper.getFeatures(GenerationStage.ORE).add(new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3));
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(Biomes.HELL);
+        info.getFeatures(GenerationStage.PRE_DECORATE).add(new FeatureStructure(1, 1.0D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":village/tiny_hell_pigtificate_village"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
+        info.getFeatures(GenerationStage.ORE).add(new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3));
 
-        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.RUTHLESS_SANDS.getWrapper());
-        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.FUNGI_FOREST.getWrapper());
-        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.TORRID_WASTELAND.getWrapper());
-        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.ARCTIC_ABYSS.getWrapper());
-        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.REGROWTHS_COLLAPSE.getWrapper());
+        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.RUTHLESS_SANDS.getInfo());
+        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.FUNGI_FOREST.getInfo());
+        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.TORRID_WASTELAND.getInfo());
+        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.ARCTIC_ABYSS.getInfo());
+        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.REGROWTHS_COLLAPSE.getInfo());
 
         if(NetherEx.IS_BOP_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {
-            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, true));
-            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, true));
-            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:phantasmagoric_inferno"), 6, true, true));
-            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:undergarden"), 4, true, true));
-            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeWrapper(new ResourceLocation("biomesoplenty:visceral_heap"), 4, true, true));
+            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeInfo(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, true));
+            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeInfo(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, true));
+            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeInfo(new ResourceLocation("biomesoplenty:phantasmagoric_inferno"), 6, true, true));
+            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeInfo(new ResourceLocation("biomesoplenty:undergarden"), 4, true, true));
+            NetherBiomeManager.INSTANCE.addBiome(new BOPNetherBiomeInfo(new ResourceLocation("biomesoplenty:visceral_heap"), 4, true, true));
         }
     }
 }

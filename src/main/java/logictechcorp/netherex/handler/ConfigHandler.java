@@ -62,29 +62,9 @@ public class ConfigHandler
 
     public static class InternalConfig
     {
-        @Config.Name("biomeConfigs")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.biomeConfigs")
-        public BiomeConfigs biomeConfigs = new BiomeConfigs();
-
-        @Config.Name("tradeConfigs")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.tradeConfigs")
-        public TradeConfigs tradeConfigs = new TradeConfigs();
-
         @Config.Name("recipes")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.recipes")
         public Recipes recipes = new Recipes();
-
-        public class BiomeConfigs
-        {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.biomeConfigs.writeBiomeConfigsToWorldConfigFolder")
-            public boolean writeBiomeConfigsToWorldConfigFolder = false;
-        }
-
-        public class TradeConfigs
-        {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.tradeConfigs.writeTradeConfigsToWorldConfigFolder")
-            public boolean writeTradeConfigsToWorldConfigFolder = false;
-        }
 
         public class Recipes
         {

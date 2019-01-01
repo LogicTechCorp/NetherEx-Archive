@@ -28,6 +28,8 @@ public class NetherExTextures
     public static final ResourceLocation OBSIDIAN_BOAT = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/obsidian_boat.png");
     public static final ResourceLocation PIGTIFICATE_CHIEF = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/pigtificate/pigtificate_chief.png");
     public static final ResourceLocation PIGTIFICATE_CHIEF_ALT = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/pigtificate/pigtificate_chief_alt.png");
+    public static final ResourceLocation PIGTIFICATE_NINCOMPOOP = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/pigtificate/pigtificate_nincompoop.png");
+    public static final ResourceLocation PIGTIFICATE_NINCOMPOOP_ALT = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/pigtificate/pigtificate_nincompoop_alt.png");
     public static final ResourceLocation PIGTIFICATE_HUNTER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/pigtificate/pigtificate_hunter.png");
     public static final ResourceLocation PIGTIFICATE_HUNTER_ALT = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/pigtificate/pigtificate_hunter_alt.png");
     public static final ResourceLocation PIGTIFICATE_GATHERER = new ResourceLocation(NetherEx.MOD_ID + ":textures/entity/pigtificate/pigtificate_gatherer.png");

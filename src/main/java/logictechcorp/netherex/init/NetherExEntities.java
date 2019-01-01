@@ -31,47 +31,67 @@ import logictechcorp.netherex.entity.projectile.EntityBlueFireball;
 import logictechcorp.netherex.entity.projectile.EntityGhastQueenFireball;
 import logictechcorp.netherex.entity.projectile.EntityGhastlingFireball;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class NetherExEntities
 {
+    private static int entityId = -1;
+
+    private static void registerEntities()
+    {
+        registerEntity("ghast_queen_fireball", EntityGhastQueenFireball.class, entityId++);
+        registerEntity("ghastling_fireball", EntityGhastlingFireball.class, entityId++);
+        registerEntity("blue_fireball", EntityBlueFireball.class, entityId++);
+
+        registerEntity("obsidian_boat", EntityObsidianBoat.class, entityId++);
+
+        registerEntity("pigtificate_leader", EntityPigtificateLeader.class, entityId++, 12422002, 15771042);
+        registerEntity("pigtificate", EntityPigtificate.class, entityId++, 15771042, 12422002);
+        registerEntity("bonspider", EntityBonspider.class, entityId++, 394758, 16711680);
+
+        registerEntity("gold_golem", EntityGoldGolem.class, entityId++, 16773448, 14520344);
+        registerEntity("mogus", EntityMogus.class, entityId++, 6770482, 5114119);
+        registerEntity("salamander", EntitySalamander.class, entityId++, 15949838, 394758);
+
+        registerEntity("wight", EntityWight.class, entityId++, 16382457, 9484735);
+        registerEntity("ember", EntityEmber.class, entityId++, 16711680, 16762880);
+        registerEntity("nethermite", EntityNethermite.class, entityId++, 3344642, 8992279);
+        registerEntity("spinout", EntitySpinout.class, entityId++, 3279879, 15724527);
+        registerEntity("spore_creeper", EntitySporeCreeper.class, entityId++, 5576214, 15721297);
+        registerEntity("spore", EntitySpore.class, entityId++, 15721297, 5576214);
+        registerEntity("ghastling", EntityGhastling.class, entityId++, 16447992, 14077883);
+        registerEntity("coolmar_spider", EntityCoolmarSpider.class, entityId++, 13750221, 13369344);
+        registerEntity("brute", EntityBrute.class, entityId++, 11045525, 4793626);
+        registerEntity("frost", EntityFrost.class, entityId++, 16382457, 6143186);
+        registerEntity("hellhound", EntityHellhound.class, entityId++, 15724527, 5576214);
+
+        registerEntity("ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
+    }
+
+    private static void registerEntity(String name, Class<? extends Entity> cls, int id)
+    {
+        ResourceLocation registryName = new ResourceLocation(NetherEx.MOD_ID + ":" + name);
+        EntityRegistry.registerModEntity(registryName, cls, registryName.toString(), id, NetherEx.instance, 64, 1, true);
+    }
+
+    private static void registerEntity(String name, Class<? extends Entity> cls, int id, int primaryEggColor, int secondaryEggColor)
+    {
+        ResourceLocation registryName = new ResourceLocation(NetherEx.MOD_ID + ":" + name);
+        EntityRegistry.registerModEntity(registryName, cls, registryName.toString(), id, NetherEx.instance, 64, 1, true, primaryEggColor, secondaryEggColor);
+    }
+
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
     {
-        private static final EntityEntryBuilder<Entity> ENTITY_BUILDER = EntityEntryBuilder.create();
-        private static int entityId = -1;
-
         @SubscribeEvent
         public static void onRegisterEntities(RegistryEvent.Register<EntityEntry> event)
         {
-            event.getRegistry().registerAll(
-                    ENTITY_BUILDER.entity(EntityGhastQueenFireball.class).id("ghast_queen_fireball", entityId++).name("ghast_queen_fireball").build(),
-                    ENTITY_BUILDER.entity(EntityGhastlingFireball.class).id("ghastling_fireball", entityId++).name("ghastling_fireball").build(),
-                    ENTITY_BUILDER.entity(EntityBlueFireball.class).id("blue_fireball", entityId++).name("blue_fireball").build(),
-                    ENTITY_BUILDER.entity(EntityObsidianBoat.class).id("obsidian_boat", entityId++).name("obsidian_boat").build(),
-                    ENTITY_BUILDER.entity(EntityPigtificateLeader.class).id("pigtificate_leader", entityId++).name("pigtificate_leader").egg(12422002, 15771042).build(),
-                    ENTITY_BUILDER.entity(EntityPigtificate.class).id("pigtificate", entityId++).name("pigtificate").egg(15771042, 12422002).build(),
-                    ENTITY_BUILDER.entity(EntityBonspider.class).id("bonspider", entityId++).name("bonspider").egg(394758, 16711680).build(),
-                    ENTITY_BUILDER.entity(EntityGoldGolem.class).id("gold_golem", entityId++).name("gold_golem").egg(16773448, 14520344).build(),
-                    ENTITY_BUILDER.entity(EntityMogus.class).id("mogus", entityId++).name("mogus").egg(6770482, 5114119).build(),
-                    ENTITY_BUILDER.entity(EntitySalamander.class).id("salamander", entityId++).name("salamander").egg(15949838, 394758).build(),
-                    ENTITY_BUILDER.entity(EntityWight.class).id("wight", entityId++).name("wight").egg(16382457, 9484735).build(),
-                    ENTITY_BUILDER.entity(EntityEmber.class).id("ember", entityId++).name("ember").egg(16711680, 16762880).build(),
-                    ENTITY_BUILDER.entity(EntityNethermite.class).id("nethermite", entityId++).name("nethermite").egg(3344642, 8992279).build(),
-                    ENTITY_BUILDER.entity(EntitySpinout.class).id("spinout", entityId++).name("spinout").egg(3279879, 15724527).build(),
-                    ENTITY_BUILDER.entity(EntitySporeCreeper.class).id("spore_creeper", entityId++).name("spore_creeper").egg(5576214, 15721297).build(),
-                    ENTITY_BUILDER.entity(EntitySpore.class).id("spore", entityId++).name("spore").egg(15721297, 5576214).build(),
-                    ENTITY_BUILDER.entity(EntityGhastling.class).id("ghastling", entityId++).name("ghastling").egg(16447992, 14077883).build(),
-                    ENTITY_BUILDER.entity(EntityCoolmarSpider.class).id("coolmar_spider", entityId++).name("coolmar_spider").egg(13750221, 13369344).build(),
-                    ENTITY_BUILDER.entity(EntityBrute.class).id("brute", entityId++).name("brute").egg(11045525, 4793626).build(),
-                    ENTITY_BUILDER.entity(EntityFrost.class).id("frost", entityId++).name("frost").egg(16382457, 6143186).build(),
-                    ENTITY_BUILDER.entity(EntityHellhound.class).id("hellhound", entityId++).name("hellhound").egg(15724527, 5576214).build(),
-                    ENTITY_BUILDER.entity(EntityGhastQueen.class).id("ghast_queen", entityId++).name("ghast_queen").egg(15790320, 13546448).build()
-            );
+            registerEntities();
         }
     }
 }

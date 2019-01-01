@@ -24,6 +24,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 public class NetherExLootTables
 {
     public static final ResourceLocation PIGTIFICATE_CHIEF = LootTableList.register(new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_chief"));
+    public static final ResourceLocation PIGTIFICATE_NINCOMPOOP = LootTableList.register(new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_nincompoop"));
     public static final ResourceLocation PIGTIFICATE_HUNTER = LootTableList.register(new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_hunter"));
     public static final ResourceLocation PIGTIFICATE_GATHERER = LootTableList.register(new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_gatherer"));
     public static final ResourceLocation PIGTIFICATE_SCAVENGER = LootTableList.register(new ResourceLocation(NetherEx.MOD_ID + ":entity/pigtificate/pigtificate_scavenger"));
