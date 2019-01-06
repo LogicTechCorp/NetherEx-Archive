@@ -74,7 +74,7 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(REGROWTHS_COLLAPSE, NETHER, DEAD);
         BiomeDictionary.addTypes(BLIGHTS_ASCENSION, NETHER, SPOOKY);
 
-        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(Biomes.HELL);
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(Biomes.HELL);
         info.getFeatures(GenerationStage.PRE_DECORATE).add(new FeatureStructure(1, 1.0D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":village/tiny_hell_pigtificate_village"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
         info.getFeatures(GenerationStage.ORE).add(new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3));
 

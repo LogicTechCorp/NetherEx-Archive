@@ -92,7 +92,7 @@ public class FeatureGenHandler
 
     private static void generateFeature(World world, BlockPos pos, Random rand, GenerationStage generationStage)
     {
-        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(world.getBiome(pos.add(16, 0, 16)));
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(world.getBiome(pos.add(16, 0, 16)));
 
         if(info != null)
         {

@@ -23,7 +23,7 @@ public abstract class BlockDynamicNetherBiome extends BlockDynamic
     public IBlockState getDynamicState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         Biome biome = world.getBiome(pos);
-        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(biome);
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(biome);
 
         if(info != null)
         {

@@ -1,13 +1,13 @@
 package logictechcorp.netherex.capability;
 
-import com.google.common.collect.Lists;
 import logictechcorp.libraryex.capability.CapabilitySerializable;
 import logictechcorp.libraryex.util.WorldHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockBlight;
+import logictechcorp.netherex.util.BlightHelper;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +47,25 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             NBTTagCompound blightChunkCompound = new NBTTagCompound();
             blightChunkCompound.setInteger("ChunkX", chunk.getChunkX());
             blightChunkCompound.setInteger("ChunkZ", chunk.getChunkZ());
-            blightChunkCompound.setBoolean("HasBlightSpread", chunk.hasBlightSpread());
+
+            NBTTagList dormantList = new NBTTagList();
+
+            for(BlockPos blockPos : chunk.getDormantPositions())
+            {
+                dormantList.appendTag(NBTUtil.createPosTag(blockPos));
+            }
+
+            blightChunkCompound.setTag("DormantPositions", dormantList);
+            NBTTagList activeList = new NBTTagList();
+
+            for(BlockPos blockPos : chunk.getActivePositions())
+            {
+                dormantList.appendTag(NBTUtil.createPosTag(blockPos));
+            }
+
+            blightChunkCompound.setTag("ActivePositions", activeList);
+            blightChunkCompound.setBoolean("StartedTransformation", chunk.startedTransformation());
+            blightChunkCompound.setBoolean("FullyTransformed", chunk.hasFullyTransformed());
             blightChunkData.appendTag(blightChunkCompound);
         }
 
@@ -61,8 +79,27 @@ public class CapabilityBlightChunkData implements IBlightChunkData
         for(NBTBase base : compound.getTagList("BlightChunkData", Constants.NBT.TAG_COMPOUND))
         {
             NBTTagCompound blightChunkCompound = (NBTTagCompound) base;
-            BlightChunk chunk = new BlightChunk(blightChunkCompound.getInteger("ChunkX"), blightChunkCompound.getInteger("ChunkZ"));
-            chunk.setBlightSpread(blightChunkCompound.getBoolean("HasBlightSpread"));
+            int chunkX = blightChunkCompound.getInteger("ChunkX");
+            int chunkZ = blightChunkCompound.getInteger("ChunkZ");
+            NBTTagList dormantList = blightChunkCompound.getTagList("DormantPositions", Constants.NBT.TAG_COMPOUND);
+            NBTTagList activeList = blightChunkCompound.getTagList("ActivePositions", Constants.NBT.TAG_COMPOUND);
+
+            List<BlockPos> dormantPositions = new ArrayList<>();
+            List<BlockPos> activePositions = new ArrayList<>();
+
+            for(NBTBase blockPosCompound : dormantList)
+            {
+                dormantPositions.add(NBTUtil.getPosFromTag((NBTTagCompound) blockPosCompound));
+            }
+
+            for(NBTBase blockPosCompound : activeList)
+            {
+                activePositions.add(NBTUtil.getPosFromTag((NBTTagCompound) blockPosCompound));
+            }
+
+            BlightChunk chunk = new BlightChunk(chunkX, chunkZ, dormantPositions, activePositions);
+            chunk.setStartedTransformation(blightChunkCompound.getBoolean("StartedTransformation"));
+            chunk.setFullyTransformed(blightChunkCompound.getBoolean("FullyTransformed"));
             this.blightChunks.put(ChunkPos.asLong(chunk.getChunkX(), chunk.getChunkZ()), chunk);
         }
     }
@@ -86,13 +123,25 @@ public class CapabilityBlightChunkData implements IBlightChunkData
     }
 
     @Override
-    public BlightChunk getBlightChunk(ChunkPos chunkPos)
+    public void removeChunk(ChunkPos chunkPos)
+    {
+        this.blightChunks.remove(ChunkPos.asLong(chunkPos.x, chunkPos.z));
+    }
+
+    @Override
+    public boolean hasChunk(ChunkPos chunkPos)
+    {
+        return this.blightChunks.containsKey(ChunkPos.asLong(chunkPos.x, chunkPos.z));
+    }
+
+    @Override
+    public BlightChunk getChunk(ChunkPos chunkPos)
     {
         return this.blightChunks.get(ChunkPos.asLong(chunkPos.x, chunkPos.z));
     }
 
     @Override
-    public Collection<BlightChunk> getBlightChunks()
+    public Collection<BlightChunk> getChunks()
     {
         return this.blightChunks.values();
     }
@@ -126,55 +175,66 @@ public class CapabilityBlightChunkData implements IBlightChunkData
 
     public class BlightChunk
     {
-        private int chunkX;
-        private int chunkZ;
         private ChunkPos chunkPos;
-        private boolean hasBlightSpread;
+        private List<BlockPos> dormantPositions = new ArrayList<>();
+        private List<BlockPos> activePositions = new ArrayList<>();
+        private int tickCounter = 0;
+        private boolean startedTransformation = false;
+        private boolean fullyTransformed = false;
 
         BlightChunk(int chunkX, int chunkZ)
         {
-            this.chunkX = chunkX;
-            this.chunkZ = chunkZ;
             this.chunkPos = new ChunkPos(chunkX, chunkZ);
+
+            for(int x = this.chunkPos.getXStart(); x <= this.chunkPos.getXEnd(); x++)
+            {
+                for(int z = this.chunkPos.getZStart(); z <= this.chunkPos.getZEnd(); z++)
+                {
+                    this.dormantPositions.add(new BlockPos(x, 0, z));
+                }
+            }
+        }
+
+        BlightChunk(int chunkX, int chunkZ, List<BlockPos> dormantPositions, List<BlockPos> activePositions)
+        {
+            this.chunkPos = new ChunkPos(chunkX, chunkZ);
+            this.dormantPositions = dormantPositions;
+            this.activePositions = activePositions;
         }
 
         private void tick(World world)
         {
             Random rand = world.rand;
+            this.tickCounter++;
 
-            BlockPos chunkStartPos = new BlockPos((this.chunkX << 4), 0, (this.chunkZ << 4));
-            BlockPos chunkEndPos = new BlockPos((this.chunkX << 4) + 15, 0, (this.chunkZ << 4) + 15);
-            List<BlockPos> chunkPositions = Lists.newArrayList(BlockPos.getAllInBox(chunkStartPos, chunkEndPos));
-            Collections.shuffle(chunkPositions, rand);
-            boolean hasBlightSpread = false;
-
-            if(!this.hasBlightSpread)
+            if(!this.startedTransformation && BlightHelper.addBlightToChunk(world, this.dormantPositions.get(0)))
             {
-                for(int i = 0; i < rand.nextInt(16) + 1; i++)
+                this.startedTransformation = true;
+            }
+
+            if(!this.fullyTransformed && this.startedTransformation && (this.tickCounter % 40) == 0)
+            {
+                BlockPos originalBlockPos = this.dormantPositions.get(rand.nextInt(this.dormantPositions.size()));
+                BlockPos adjustedBlockPos = world.getTopSolidOrLiquidBlock(originalBlockPos);
+
+                if((world.getLightFromNeighbors(adjustedBlockPos.up()) <= 7 && BlightHelper.convertBlock(world, adjustedBlockPos)) || (world.getLightFromNeighbors(adjustedBlockPos) <= 7 && BlightHelper.convertBlock(world, adjustedBlockPos.down())))
                 {
-                    if(BlockBlight.spread(world, world.getTopSolidOrLiquidBlock(chunkPositions.get(i)), rand))
-                    {
-                        hasBlightSpread = true;
-                    }
+                    BlockPos activePos = this.dormantPositions.remove(this.dormantPositions.indexOf(originalBlockPos));
+                    BlightHelper.convertBiome(world, activePos);
+                    this.activePositions.add(activePos);
+                }
+                else if(world.getLightFromNeighbors(adjustedBlockPos.up()) <= 7)
+                {
+                    BlockPos activePos = this.dormantPositions.remove(this.dormantPositions.indexOf(originalBlockPos));
+                    BlightHelper.convertBiome(world, activePos);
+                    this.activePositions.add(activePos);
                 }
             }
 
-            this.hasBlightSpread = hasBlightSpread;
-        }
-
-        public int getChunkX()
-        {
-            return this.chunkX;
-        }
-
-        public int getChunkZ()
-        {
-            return this.chunkZ;
-        }
-
-        public boolean hasBlightSpread()
-        {
-            return this.hasBlightSpread;
+            if(!this.fullyTransformed && this.activePositions.size() == 256)
+            {
+                this.fullyTransformed = true;
+            }
         }
 
         public ChunkPos getPos()
@@ -182,9 +242,44 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             return this.chunkPos;
         }
 
-        public void setBlightSpread(boolean hasBlightSpread)
+        public int getChunkX()
         {
-            this.hasBlightSpread = hasBlightSpread;
+            return this.chunkPos.x;
+        }
+
+        public int getChunkZ()
+        {
+            return this.chunkPos.z;
+        }
+
+        public List<BlockPos> getDormantPositions()
+        {
+            return this.dormantPositions;
+        }
+
+        public List<BlockPos> getActivePositions()
+        {
+            return this.activePositions;
+        }
+
+        public boolean startedTransformation()
+        {
+            return this.startedTransformation;
+        }
+
+        public boolean hasFullyTransformed()
+        {
+            return this.fullyTransformed;
+        }
+
+        void setStartedTransformation(boolean startedTransformation)
+        {
+            this.startedTransformation = startedTransformation;
+        }
+
+        void setFullyTransformed(boolean fullyTransformed)
+        {
+            this.fullyTransformed = fullyTransformed;
         }
     }
 

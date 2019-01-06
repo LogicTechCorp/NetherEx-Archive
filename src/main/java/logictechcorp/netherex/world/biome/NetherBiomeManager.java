@@ -49,7 +49,7 @@ public class NetherBiomeManager extends DimensionBiomeManager
 
     private void setupDefaultBiomes()
     {
-        this.addBiome(new NetherBiomeInfoHell());
+        this.addBiome(NetherBiomeInfoHell.INSTANCE);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class NetherBiomeManager extends DimensionBiomeManager
 
                     if(biome != null)
                     {
-                        BiomeInfo info = this.getAllBiomeInfo(biome);
+                        BiomeInfo info = this.getBiomeInfo(biome);
 
                         if(info == null)
                         {
@@ -132,5 +132,11 @@ public class NetherBiomeManager extends DimensionBiomeManager
 
             fileConfig.save();
         }
+    }
+
+    @Override
+    public File getBiomeInfoSaveFile(MinecraftServer server, BiomeInfo wrapper)
+    {
+        return new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Biomes/" + wrapper.getFileName());
     }
 }

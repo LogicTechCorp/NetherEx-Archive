@@ -83,7 +83,7 @@ public class GuiScreenHandler
                         }
 
                         MINECRAFT.displayGuiScreen(guiWorldList.getGuiWorldSelection());
-                    }, I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_question", worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_warning", worldDisplayName, worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":selectWorld.reset"), I18n.format("gui.cancel"), 0));
+                    }, I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_question", worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_warning", worldDisplayName, worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset"), I18n.format("gui.cancel"), 0));
                 }
             }
         }

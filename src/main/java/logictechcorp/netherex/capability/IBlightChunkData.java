@@ -13,7 +13,11 @@ public interface IBlightChunkData extends INBTSerializable<NBTTagCompound>
 
     void addChunk(ChunkPos chunkPos);
 
-    CapabilityBlightChunkData.BlightChunk getBlightChunk(ChunkPos chunkPos);
+    void removeChunk(ChunkPos chunkPos);
 
-    Collection<CapabilityBlightChunkData.BlightChunk> getBlightChunks();
+    boolean hasChunk(ChunkPos chunkPos);
+
+    CapabilityBlightChunkData.BlightChunk getChunk(ChunkPos chunkPos);
+
+    Collection<CapabilityBlightChunkData.BlightChunk> getChunks();
 }

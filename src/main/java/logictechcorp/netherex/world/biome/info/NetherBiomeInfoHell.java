@@ -16,9 +16,11 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
 
-public class NetherBiomeInfoHell extends NetherBiomeInfo
+public final class NetherBiomeInfoHell extends NetherBiomeInfo
 {
-    public NetherBiomeInfoHell()
+    public static final NetherBiomeInfo INSTANCE = new NetherBiomeInfoHell();
+
+    private NetherBiomeInfoHell()
     {
         super(Biomes.HELL.getRegistryName(), 10, true, true);
     }

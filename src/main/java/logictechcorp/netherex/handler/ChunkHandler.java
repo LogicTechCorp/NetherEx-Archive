@@ -2,9 +2,9 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.event.world.ChunkGenerateEvent;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.capability.CapabilityBlightChunkData;
-import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.init.NetherExBiomes;
+import logictechcorp.netherex.util.BlightHelper;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -22,8 +22,6 @@ public class ChunkHandler
     {
         World world = event.getWorld();
         Chunk chunk = event.getChunk();
-        int chunkX = chunk.x;
-        int chunkZ = chunk.z;
 
         if(!world.isRemote)
         {
@@ -35,7 +33,7 @@ public class ChunkHandler
                 {
                     Biome biome = Biome.getBiomeForId(biomeId);
 
-                    if(!collapsed && biome == NetherExBiomes.REGROWTHS_COLLAPSE)
+                    if(biome == NetherExBiomes.REGROWTHS_COLLAPSE)
                     {
                         collapsed = true;
                     }
@@ -45,12 +43,9 @@ public class ChunkHandler
 
                 if(overworld != null && collapsed)
                 {
-                    IBlightChunkData data = overworld.getCapability(CapabilityBlightChunkData.INSTANCE, null);
-
-                    if(data != null)
-                    {
-                        data.addChunk(new ChunkPos((chunkX * 8), (chunkZ * 8)));
-                    }
+                    ChunkPos chunkPos = chunk.getPos();
+                    BlockPos blockPos = new BlockPos(chunkPos.getXStart() * 8, 0, chunkPos.getZStart() * 8);
+                    BlightHelper.addBlightToChunk(overworld, blockPos);
                 }
             }
         }

@@ -396,7 +396,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
         this.netherBridge.generateStructure(this.world, this.rand, chunkPos);
@@ -436,7 +436,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             }
         }
 
-        BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(this.world.getBiome(pos));
+        BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(this.world.getBiome(pos));
         return creatureType == null || info == null ? new ArrayList<>() : info.getEntitySpawnEntries(creatureType);
     }
 
@@ -489,7 +489,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         {
             for(int z = 0; z < 16; z++)
             {
-                BiomeInfo info = NetherBiomeManager.INSTANCE.getAllBiomeInfo(biomes[x + z * 16]);
+                BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(biomes[x + z * 16]);
 
                 if(info != null)
                 {
