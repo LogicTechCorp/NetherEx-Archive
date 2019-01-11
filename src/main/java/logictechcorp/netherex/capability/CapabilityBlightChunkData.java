@@ -45,8 +45,9 @@ public class CapabilityBlightChunkData implements IBlightChunkData
         {
             BlightChunk chunk = entry.getValue();
             NBTTagCompound blightChunkCompound = new NBTTagCompound();
-            blightChunkCompound.setInteger("ChunkX", chunk.getChunkX());
-            blightChunkCompound.setInteger("ChunkZ", chunk.getChunkZ());
+            blightChunkCompound.setInteger("ChunkX", chunk.getXPos());
+            blightChunkCompound.setInteger("ChunkZ", chunk.getZPos());
+            blightChunkCompound.setInteger("TickCounter", chunk.getTickCounter());
 
             NBTTagList dormantList = new NBTTagList();
 
@@ -65,7 +66,15 @@ public class CapabilityBlightChunkData implements IBlightChunkData
 
             blightChunkCompound.setTag("ActivePositions", activeList);
             blightChunkCompound.setBoolean("StartedTransformation", chunk.startedTransformation());
-            blightChunkCompound.setBoolean("FullyTransformed", chunk.hasFullyTransformed());
+            blightChunkCompound.setBoolean("FinishedTransformation", chunk.finishedTransformation());
+
+            BlightChunk parentChunk = chunk.getParentChunk();
+
+            if(parentChunk != null)
+            {
+                blightChunkCompound.setLong("ParentChunk", ChunkPos.asLong(parentChunk.getXPos(), parentChunk.getZPos()));
+            }
+
             blightChunkData.appendTag(blightChunkCompound);
         }
 
@@ -98,9 +107,16 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             }
 
             BlightChunk chunk = new BlightChunk(chunkX, chunkZ, dormantPositions, activePositions);
+            chunk.setTickCounter(blightChunkCompound.getInteger("TickCounter"));
             chunk.setStartedTransformation(blightChunkCompound.getBoolean("StartedTransformation"));
-            chunk.setFullyTransformed(blightChunkCompound.getBoolean("FullyTransformed"));
-            this.blightChunks.put(ChunkPos.asLong(chunk.getChunkX(), chunk.getChunkZ()), chunk);
+            chunk.setFinishedTransformation(blightChunkCompound.getBoolean("FinishedTransformation"));
+
+            if(blightChunkCompound.getLong("ParentChunk") != 0L)
+            {
+                chunk.setParentChunk(this.blightChunks.get(blightChunkCompound.getLong("ParentChunk")));
+            }
+
+            this.blightChunks.put(ChunkPos.asLong(chunk.getXPos(), chunk.getZPos()), chunk);
         }
     }
 
@@ -173,14 +189,15 @@ public class CapabilityBlightChunkData implements IBlightChunkData
         }
     }
 
-    public class BlightChunk
+    public static class BlightChunk
     {
         private ChunkPos chunkPos;
         private List<BlockPos> dormantPositions = new ArrayList<>();
         private List<BlockPos> activePositions = new ArrayList<>();
         private int tickCounter = 0;
         private boolean startedTransformation = false;
-        private boolean fullyTransformed = false;
+        private boolean finishedTransformation = false;
+        private BlightChunk parentChunk = null;
 
         BlightChunk(int chunkX, int chunkZ)
         {
@@ -212,7 +229,7 @@ public class CapabilityBlightChunkData implements IBlightChunkData
                 this.startedTransformation = true;
             }
 
-            if(!this.fullyTransformed && this.startedTransformation && (this.tickCounter % 40) == 0)
+            if(!this.finishedTransformation && this.startedTransformation && (this.tickCounter % 40) == 0)
             {
                 BlockPos originalBlockPos = this.dormantPositions.get(rand.nextInt(this.dormantPositions.size()));
                 BlockPos adjustedBlockPos = world.getTopSolidOrLiquidBlock(originalBlockPos);
@@ -231,9 +248,36 @@ public class CapabilityBlightChunkData implements IBlightChunkData
                 }
             }
 
-            if(!this.fullyTransformed && this.activePositions.size() == 256)
+            if(!this.finishedTransformation && this.activePositions.size() == 256)
             {
-                this.fullyTransformed = true;
+                this.finishedTransformation = true;
+            }
+
+            if(this.finishedTransformation)
+            {
+                if(this.parentChunk == null && (this.tickCounter % 36000) == 0)
+                {
+                    chunk_label:
+                    for(int x = this.getXPos() - 2; x <= this.getXPos() + 2; x++)
+                    {
+                        for(int z = this.getZPos() - 2; z <= this.getZPos() + 2; z++)
+                        {
+                            IBlightChunkData data = world.getCapability(CapabilityBlightChunkData.INSTANCE, null);
+
+                            if(data != null)
+                            {
+                                ChunkPos childChunkPos = new ChunkPos(x, z);
+
+                                if(!data.hasChunk(childChunkPos))
+                                {
+                                    data.addChunk(childChunkPos);
+                                    data.getChunk(childChunkPos).setParentChunk(this);
+                                    break chunk_label;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -242,14 +286,19 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             return this.chunkPos;
         }
 
-        public int getChunkX()
+        public int getXPos()
         {
             return this.chunkPos.x;
         }
 
-        public int getChunkZ()
+        public int getZPos()
         {
             return this.chunkPos.z;
+        }
+
+        public int getTickCounter()
+        {
+            return this.tickCounter;
         }
 
         public List<BlockPos> getDormantPositions()
@@ -267,9 +316,19 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             return this.startedTransformation;
         }
 
-        public boolean hasFullyTransformed()
+        public boolean finishedTransformation()
         {
-            return this.fullyTransformed;
+            return this.finishedTransformation;
+        }
+
+        public BlightChunk getParentChunk()
+        {
+            return this.parentChunk;
+        }
+
+        void setTickCounter(int tickCounter)
+        {
+            this.tickCounter = tickCounter;
         }
 
         void setStartedTransformation(boolean startedTransformation)
@@ -277,9 +336,14 @@ public class CapabilityBlightChunkData implements IBlightChunkData
             this.startedTransformation = startedTransformation;
         }
 
-        void setFullyTransformed(boolean fullyTransformed)
+        void setFinishedTransformation(boolean finishedTransformation)
         {
-            this.fullyTransformed = fullyTransformed;
+            this.finishedTransformation = finishedTransformation;
+        }
+
+        void setParentChunk(BlightChunk parentChunk)
+        {
+            this.parentChunk = parentChunk;
         }
     }
 

@@ -84,7 +84,7 @@ public class BlightHelper
             int localChunkZ = pos.getZ() & 15;
             Chunk chunk = world.getChunk(pos);
             chunk.getBiomeArray()[localChunkZ << 4 | localChunkX] = (byte) Biome.getIdForBiome(NetherExBiomes.BLIGHTS_ASCENSION);
-            chunk.markDirty();
+            chunk.setModified(true);
         }
     }
 

@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "snowy=false": [
+            { "model": "netherex:genesis_grass" },
+            { "model": "netherex:genesis_grass", "y": 90 },
+            { "model": "netherex:genesis_grass", "y": 180 },
+            { "model": "netherex:genesis_grass", "y": 270 }
+        ],
+        "snowy=true": [
+            { "model": "netherex:genesis_grass_snowy" },
+            { "model": "netherex:genesis_grass_snowy", "y": 90 },
+            { "model": "netherex:genesis_grass_snowy", "y": 180 },
+            { "model": "netherex:genesis_grass_snowy", "y": 270 }
+        ]
+    }
+}

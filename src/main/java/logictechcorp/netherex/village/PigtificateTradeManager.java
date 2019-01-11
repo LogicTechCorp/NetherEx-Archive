@@ -120,5 +120,4 @@ public class PigtificateTradeManager
             e.printStackTrace();
         }
     }
-
 }

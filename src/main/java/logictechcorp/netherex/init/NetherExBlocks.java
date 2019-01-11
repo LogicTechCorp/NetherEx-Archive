@@ -46,6 +46,7 @@ public class NetherExBlocks
     public static final BlockHyphae HYPHAE = InjectionHelper.nullValue();
     public static final BlockFrostburnIce FROSTBURN_ICE = InjectionHelper.nullValue();
     public static final BlockTilledSoulSand TILLED_SOUL_SAND = InjectionHelper.nullValue();
+    public static final BlockGenesisGrass GENESIS_GRASS = InjectionHelper.nullValue();
     public static final BlockSoulGlass SOUL_GLASS = InjectionHelper.nullValue();
     public static final BlockSoulGlassPane SOUL_GLASS_PANE = InjectionHelper.nullValue();
     public static final BlockMod AMETHYST_BLOCK = InjectionHelper.nullValue();
@@ -71,6 +72,7 @@ public class NetherExBlocks
     public static final BlockElderMushroomStem ELDER_MUSHROOM_STEM = InjectionHelper.nullValue();
     public static final BlockEnokiMushroomCap ENOKI_MUSHROOM_CAP = InjectionHelper.nullValue();
     public static final BlockEnokiMushroomStem ENOKI_MUSHROOM_STEM = InjectionHelper.nullValue();
+    public static final BlockCyanRose CYAN_ROSE = InjectionHelper.nullValue();
     public static final BlockModInfiniteFluid ICHOR = InjectionHelper.nullValue();
     public static final BlockModSlab RED_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab GLOOMY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
@@ -154,6 +156,7 @@ public class NetherExBlocks
                     new BlockHyphae(),
                     new BlockFrostburnIce(),
                     new BlockTilledSoulSand(),
+                    new BlockGenesisGrass(),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
                     new BlockMod(NetherEx.getResource("amethyst_block"), new BlockBuilder(Material.IRON, MapColor.PURPLE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(5.0F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -179,6 +182,7 @@ public class NetherExBlocks
                     new BlockElderMushroomStem(),
                     new BlockEnokiMushroomCap(),
                     new BlockEnokiMushroomStem(),
+                    new BlockCyanRose(),
                     new BlockModInfiniteFluid(NetherEx.getResource("ichor"), NetherExFluids.ICHOR, new BlockBuilder(Material.WATER, MapColor.RED).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModSlab(NetherEx.getResource("red_nether_brick_slab"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModSlab(NetherEx.getResource("gloomy_nether_brick_slab"), new BlockBuilder(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -259,6 +263,7 @@ public class NetherExBlocks
                     new ItemBlockMod(HYPHAE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(FROSTBURN_ICE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(TILLED_SOUL_SAND, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_GRASS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(SOUL_GLASS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(SOUL_GLASS_PANE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(AMETHYST_BLOCK, DEFAULT_ITEM_BLOCK_BUILDER),
@@ -281,6 +286,7 @@ public class NetherExBlocks
                     new ItemBlockMod(ELDER_MUSHROOM_STEM, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(ENOKI_MUSHROOM_CAP, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(ENOKI_MUSHROOM_STEM, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(CYAN_ROSE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockThornstalk(),
                     new ItemBlockMod(ICHOR, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockModSlab(RED_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_BUILDER),

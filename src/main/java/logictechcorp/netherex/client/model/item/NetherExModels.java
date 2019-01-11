@@ -105,6 +105,7 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.HYPHAE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.FROSTBURN_ICE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.TILLED_SOUL_SAND.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_GRASS.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_GLASS.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_GLASS_PANE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.AMETHYST_BLOCK.getDefaultState());
@@ -128,6 +129,7 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ENOKI_MUSHROOM_CAP.getDefaultState(), "normal");
         ModelHelper.registerBlockItemModel(NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), "normal");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CYAN_ROSE.getDefaultState(), "normal");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");

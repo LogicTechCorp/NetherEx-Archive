@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "netherex:blocks/dirt",
+        "top": "netherex:blocks/genesis_grass_top",
+        "side": "netherex:blocks/grass_side_snowy"
+    }
+}

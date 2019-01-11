@@ -242,12 +242,12 @@ public class BlockBlueFire extends BlockMod
                     j = -50;
                 }
 
-                this.tryCatchFire(world, pos.east(), 300 + j, rand, age, EnumFacing.WEST);
-                this.tryCatchFire(world, pos.west(), 300 + j, rand, age, EnumFacing.EAST);
-                this.tryCatchFire(world, pos.down(), 250 + j, rand, age, EnumFacing.UP);
-                this.tryCatchFire(world, pos.up(), 250 + j, rand, age, EnumFacing.DOWN);
-                this.tryCatchFire(world, pos.north(), 300 + j, rand, age, EnumFacing.SOUTH);
-                this.tryCatchFire(world, pos.south(), 300 + j, rand, age, EnumFacing.NORTH);
+                this.tryCatchFire(world, pos, pos.east(), 300 + j, rand, age, EnumFacing.WEST);
+                this.tryCatchFire(world, pos, pos.west(), 300 + j, rand, age, EnumFacing.EAST);
+                this.tryCatchFire(world, pos, pos.down(), 250 + j, rand, age, EnumFacing.UP);
+                this.tryCatchFire(world, pos, pos.up(), 250 + j, rand, age, EnumFacing.DOWN);
+                this.tryCatchFire(world, pos, pos.north(), 300 + j, rand, age, EnumFacing.SOUTH);
+                this.tryCatchFire(world, pos, pos.south(), 300 + j, rand, age, EnumFacing.NORTH);
 
                 for(int posX = -1; posX <= 1; posX++)
                 {
@@ -426,15 +426,15 @@ public class BlockBlueFire extends BlockMod
         }
     }
 
-    private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face)
+    private void tryCatchFire(World world, BlockPos firePos, BlockPos blockPos, int chance, Random random, int age, EnumFacing face)
     {
-        int flammability = world.getBlockState(pos).getBlock().getFlammability(world, pos, face);
+        int flammability = world.getBlockState(blockPos).getBlock().getFlammability(world, blockPos, face);
 
         if(random.nextInt(chance) < flammability)
         {
-            IBlockState state = world.getBlockState(pos);
+            IBlockState state = world.getBlockState(blockPos);
 
-            if(random.nextInt(age + 10) < 5 && !world.isRainingAt(pos))
+            if(random.nextInt(age + 10) < 5 && !world.isRainingAt(blockPos))
             {
                 int stage = age + random.nextInt(5) / 4;
 
@@ -443,16 +443,17 @@ public class BlockBlueFire extends BlockMod
                     stage = 15;
                 }
 
-                world.setBlockState(pos, this.getDefaultState().withProperty(AGE, stage), 3);
+                world.setBlockState(blockPos, this.getDefaultState().withProperty(AGE, stage), 3);
             }
             else
             {
-                world.setBlockToAir(pos);
+                world.setBlockToAir(blockPos);
+                world.setBlockToAir(firePos);
             }
 
             if(state.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onPlayerDestroy(world, pos, state.withProperty(BlockTNT.EXPLODE, true));
+                Blocks.TNT.onPlayerDestroy(world, blockPos, state.withProperty(BlockTNT.EXPLODE, true));
             }
         }
     }
