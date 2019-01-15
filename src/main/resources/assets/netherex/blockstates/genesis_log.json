@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y": { "model": "netherex:genesis_log" },
+        "axis=z": { "model": "netherex:genesis_log", "x": 90 },
+        "axis=x": { "model": "netherex:genesis_log", "x": 90, "y": 90 }
+    }
+}

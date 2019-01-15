@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2018 by MineEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,16 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.item;
+package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.item.ItemBlockMod;
-import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.advancements.criterion.PigtificateTradeTrigger;
+import net.minecraft.advancements.CriteriaTriggers;
 
-public class ItemBlockThornstalk extends ItemBlockMod
+public class NetherExCriteria
 {
-    public ItemBlockThornstalk()
+    public static final PigtificateTradeTrigger PIGTIFICATE_TRADE = CriteriaTriggers.register(new PigtificateTradeTrigger());
+
+    public static void registerCriteria()
     {
-        super(NetherExBlocks.THORNSTALK, NetherExBlocks.getDefaultItemBlockBuilder());
-        this.setHasSubtypes(true);
+
     }
 }

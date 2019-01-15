@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2018 by MineEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -384,9 +385,9 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
             this.needsInitialization = true;
             this.willingToMate = true;
 
-            if(this.getCustomer() != null)
+            if(this.customer != null)
             {
-                this.lastCustomer = this.getCustomer().getUniqueID();
+                this.lastCustomer = this.customer.getUniqueID();
             }
             else
             {
@@ -398,6 +399,10 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
         if(recipe.getRewardsExp())
         {
             this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY + 0.5D, this.posZ, i));
+        }
+        if(this.customer instanceof EntityPlayerMP)
+        {
+            NetherExCriteria.PIGTIFICATE_TRADE.trigger((EntityPlayerMP) this.customer, this, recipe.getItemToSell());
         }
     }
 
@@ -693,7 +698,16 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
 
     public void setProfession(PigtificateProfession profession)
     {
-        this.dataManager.set(PROFESSION, profession.getName().toString());
+        if(profession != null)
+        {
+            this.dataManager.set(PROFESSION, profession.getName().toString());
+        }
+        else
+        {
+            List<PigtificateProfession> professions = new ArrayList<>(NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection());
+            professions.removeIf(pigtificateProfession -> pigtificateProfession == NetherExPigtificates.LEADER);
+            this.setProfession((PigtificateProfession) professions.toArray()[this.rand.nextInt(professions.size())]);
+        }
     }
 
     public void setCareer(PigtificateProfession.Career career)

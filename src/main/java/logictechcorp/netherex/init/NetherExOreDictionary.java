@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2018 by MineEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 package logictechcorp.netherex.init;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -24,6 +25,23 @@ public class NetherExOreDictionary
 {
     public static void registerOres()
     {
+        OreDictionary.registerOre("grass", new ItemStack(NetherExBlocks.GENESIS_GRASS));
+        OreDictionary.registerOre("logWood", new ItemStack(NetherExBlocks.GENESIS_LOG));
+        OreDictionary.registerOre("plankWood", new ItemStack(NetherExBlocks.GENESIS_PLANK));
+        OreDictionary.registerOre("slabWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_SLAB));
+        OreDictionary.registerOre("stairWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_STAIRS));
+        OreDictionary.registerOre("fenceWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_FENCE));
+        OreDictionary.registerOre("fenceGateWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_FENCE_GATE));
+        OreDictionary.registerOre("fenceGateWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_SLAB));
+        OreDictionary.registerOre("treeSapling", new ItemStack(NetherExBlocks.GENESIS_SAPLING));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(NetherExBlocks.GENESIS_LEAF));
+        OreDictionary.registerOre("ore", Blocks.GOLD_ORE);
+        OreDictionary.registerOre("ore", Blocks.IRON_ORE);
+        OreDictionary.registerOre("ore", Blocks.LAPIS_ORE);
+        OreDictionary.registerOre("ore", Blocks.DIAMOND_ORE);
+        OreDictionary.registerOre("ore", Blocks.REDSTONE_ORE);
+        OreDictionary.registerOre("ore", Blocks.EMERALD_ORE);
+        OreDictionary.registerOre("ore", Blocks.COAL_ORE);
         OreDictionary.registerOre("netherrack", new ItemStack(NetherExBlocks.GLOOMY_NETHERRACK));
         OreDictionary.registerOre("netherrack", new ItemStack(NetherExBlocks.LIVELY_NETHERRACK));
         OreDictionary.registerOre("netherrack", new ItemStack(NetherExBlocks.FIERY_NETHERRACK));

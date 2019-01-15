@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "grow=false": { "model": "netherex:genesis_sapling" },
+        "grow=true": { "model": "netherex:genesis_sapling" }
+    }
+}

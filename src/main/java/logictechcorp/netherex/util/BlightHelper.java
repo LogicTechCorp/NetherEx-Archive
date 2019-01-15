@@ -1,6 +1,6 @@
 /*
- * LibraryEx
- * Copyright (c) 2017-2018 by MineEx
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,7 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package logictechcorp.netherex.util;
@@ -24,7 +23,6 @@ import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -55,7 +53,7 @@ public class BlightHelper
             {
                 return world.setBlockState(pos, NetherExBlocks.BASALT.getDefaultState());
             }
-            else if(block instanceof BlockOre || BlockHelper.oreDictNameContains(state, "ore"))
+            else if(BlockHelper.isOreDict("ore", state.getBlock()))
             {
                 return world.setBlockState(pos, NetherExBlocks.ARDITE_ORE.getDefaultState());
             }

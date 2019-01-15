@@ -1,3 +1,20 @@
+/*
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation version 3 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.block.*;
@@ -9,9 +26,8 @@ import logictechcorp.libraryex.util.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.*;
 import logictechcorp.netherex.item.ItemBlockElderMushroom;
-import logictechcorp.netherex.item.ItemBlockThornstalk;
-import logictechcorp.netherex.item.ItemBlockUrnOfSorrow;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -47,6 +63,8 @@ public class NetherExBlocks
     public static final BlockFrostburnIce FROSTBURN_ICE = InjectionHelper.nullValue();
     public static final BlockTilledSoulSand TILLED_SOUL_SAND = InjectionHelper.nullValue();
     public static final BlockGenesisGrass GENESIS_GRASS = InjectionHelper.nullValue();
+    public static final BlockModLog GENESIS_LOG = InjectionHelper.nullValue();
+    public static final BlockMod GENESIS_PLANK = InjectionHelper.nullValue();
     public static final BlockSoulGlass SOUL_GLASS = InjectionHelper.nullValue();
     public static final BlockSoulGlassPane SOUL_GLASS_PANE = InjectionHelper.nullValue();
     public static final BlockMod AMETHYST_BLOCK = InjectionHelper.nullValue();
@@ -72,6 +90,8 @@ public class NetherExBlocks
     public static final BlockElderMushroomStem ELDER_MUSHROOM_STEM = InjectionHelper.nullValue();
     public static final BlockEnokiMushroomCap ENOKI_MUSHROOM_CAP = InjectionHelper.nullValue();
     public static final BlockEnokiMushroomStem ENOKI_MUSHROOM_STEM = InjectionHelper.nullValue();
+    public static final BlockGenesisLeaf GENESIS_LEAF = InjectionHelper.nullValue();
+    public static final BlockGenesisSapling GENESIS_SAPLING = InjectionHelper.nullValue();
     public static final BlockCyanRose CYAN_ROSE = InjectionHelper.nullValue();
     public static final BlockModInfiniteFluid ICHOR = InjectionHelper.nullValue();
     public static final BlockModSlab RED_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
@@ -83,6 +103,7 @@ public class NetherExBlocks
     public static final BlockModSlab SMOOTH_BASALT_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab BASALT_BRICK_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab BASALT_PILLAR_SLAB = InjectionHelper.nullValue();
+    public static final BlockModSlab GENESIS_PLANK_SLAB = InjectionHelper.nullValue();
     public static final BlockModStairs RED_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs GLOOMY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs ICY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
@@ -92,6 +113,7 @@ public class NetherExBlocks
     public static final BlockModStairs SMOOTH_BASALT_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs BASALT_BRICK_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs BASALT_PILLAR_STAIRS = InjectionHelper.nullValue();
+    public static final BlockModStairs GENESIS_PLANK_STAIRS = InjectionHelper.nullValue();
     public static final BlockModWall QUARTZ_WALL = InjectionHelper.nullValue();
     public static final BlockModWall NETHER_BRICK_WALL = InjectionHelper.nullValue();
     public static final BlockModWall RED_NETHER_BRICK_WALL = InjectionHelper.nullValue();
@@ -113,6 +135,7 @@ public class NetherExBlocks
     public static final BlockModFence SMOOTH_BASALT_FENCE = InjectionHelper.nullValue();
     public static final BlockModFence BASALT_BRICK_FENCE = InjectionHelper.nullValue();
     public static final BlockModFence BASALT_PILLAR_FENCE = InjectionHelper.nullValue();
+    public static final BlockModFence GENESIS_PLANK_FENCE = InjectionHelper.nullValue();
     public static final BlockModFenceGate QUARTZ_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate RED_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
@@ -124,6 +147,7 @@ public class NetherExBlocks
     public static final BlockModFenceGate ICY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate LIVELY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate GLOOMY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
+    public static final BlockModFenceGate GENESIS_PLANK_FENCE_GATE = InjectionHelper.nullValue();
 
     private static final ItemBuilder DEFAULT_ITEM_BLOCK_BUILDER = new ItemBuilder();
 
@@ -157,6 +181,8 @@ public class NetherExBlocks
                     new BlockFrostburnIce(),
                     new BlockTilledSoulSand(),
                     new BlockGenesisGrass(),
+                    new BlockModLog(NetherEx.getResource("genesis_log"), new BlockBuilder(Material.WOOD, MapColor.OBSIDIAN).sound(SoundType.WOOD).hardness(2.0F).resistance(5.0F)),
+                    new BlockMod(NetherEx.getResource("genesis_plank"), new BlockBuilder(Material.WOOD, MapColor.SAND).sound(SoundType.WOOD).hardness(2.0F).resistance(5.0F)),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
                     new BlockMod(NetherEx.getResource("amethyst_block"), new BlockBuilder(Material.IRON, MapColor.PURPLE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(5.0F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -182,6 +208,8 @@ public class NetherExBlocks
                     new BlockElderMushroomStem(),
                     new BlockEnokiMushroomCap(),
                     new BlockEnokiMushroomStem(),
+                    new BlockGenesisLeaf(),
+                    new BlockGenesisSapling(),
                     new BlockCyanRose(),
                     new BlockModInfiniteFluid(NetherEx.getResource("ichor"), NetherExFluids.ICHOR, new BlockBuilder(Material.WATER, MapColor.RED).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModSlab(NetherEx.getResource("red_nether_brick_slab"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -193,6 +221,7 @@ public class NetherExBlocks
                     new BlockModSlab(NetherEx.getResource("smooth_basalt_slab"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModSlab(NetherEx.getResource("basalt_brick_slab"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModSlab(NetherEx.getResource("basalt_pillar_slab"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
+                    new BlockModSlab(NetherEx.getResource("genesis_plank_slab"), new BlockBuilder(Material.WOOD, MapColor.SAND).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(1.5F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModStairs(NetherEx.getResource("red_nether_brick_stairs"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModStairs(NetherEx.getResource("basalt_stairs"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModStairs(NetherEx.getResource("smooth_basalt_stairs"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -202,6 +231,7 @@ public class NetherExBlocks
                     new BlockModStairs(NetherEx.getResource("lively_nether_brick_stairs"), new BlockBuilder(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModStairs(NetherEx.getResource("fiery_nether_brick_stairs"), new BlockBuilder(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModStairs(NetherEx.getResource("icy_nether_brick_stairs"), new BlockBuilder(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
+                    new BlockModStairs(NetherEx.getResource("genesis_plank_stairs"), new BlockBuilder(Material.WOOD, MapColor.SAND).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(1.5F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModWall(NetherEx.getResource("quartz_wall"), new BlockBuilder(Material.ROCK, MapColor.SNOW).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModWall(NetherEx.getResource("nether_brick_wall"), new BlockBuilder(Material.ROCK, MapColor.NETHERRACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModWall(NetherEx.getResource("red_nether_brick_wall"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -223,6 +253,7 @@ public class NetherExBlocks
                     new BlockModFence(NetherEx.getResource("smooth_basalt_fence"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModFence(NetherEx.getResource("basalt_brick_fence"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModFence(NetherEx.getResource("basalt_pillar_fence"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
+                    new BlockModFence(NetherEx.getResource("genesis_plank_fence"), new BlockBuilder(Material.WOOD, MapColor.SAND).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(1.5F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModFenceGate(NetherEx.getResource("quartz_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.SNOW).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModFenceGate(NetherEx.getResource("nether_brick_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.NETHERRACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModFenceGate(NetherEx.getResource("red_nether_brick_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -233,7 +264,8 @@ public class NetherExBlocks
                     new BlockModFenceGate(NetherEx.getResource("basalt_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModFenceGate(NetherEx.getResource("smooth_basalt_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModFenceGate(NetherEx.getResource("basalt_brick_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
-                    new BlockModFenceGate(NetherEx.getResource("basalt_pillar_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab()))
+                    new BlockModFenceGate(NetherEx.getResource("basalt_pillar_fence_gate"), new BlockBuilder(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab())),
+                    new BlockModFenceGate(NetherEx.getResource("genesis_plank_fence_gate"), new BlockBuilder(Material.WOOD, MapColor.SAND).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(1.5F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab()))
             );
         }
 
@@ -264,6 +296,8 @@ public class NetherExBlocks
                     new ItemBlockMod(FROSTBURN_ICE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(TILLED_SOUL_SAND, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(GENESIS_GRASS, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_LOG, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_PLANK, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(SOUL_GLASS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(SOUL_GLASS_PANE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(AMETHYST_BLOCK, DEFAULT_ITEM_BLOCK_BUILDER),
@@ -273,7 +307,7 @@ public class NetherExBlocks
                     new ItemBlockMod(BONE_SLIVER, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(BONE_CHUNK, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(WORN_IRON, DEFAULT_ITEM_BLOCK_BUILDER),
-                    new ItemBlockUrnOfSorrow(),
+                    new ItemBlockMod(URN_OF_SORROW, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(QUARTZ_ORE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(AMETHYST_ORE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(RIME_ORE, DEFAULT_ITEM_BLOCK_BUILDER),
@@ -286,8 +320,10 @@ public class NetherExBlocks
                     new ItemBlockMod(ELDER_MUSHROOM_STEM, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(ENOKI_MUSHROOM_CAP, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(ENOKI_MUSHROOM_STEM, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_LEAF, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_SAPLING, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(CYAN_ROSE, DEFAULT_ITEM_BLOCK_BUILDER),
-                    new ItemBlockThornstalk(),
+                    new ItemBlockMod(THORNSTALK, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(ICHOR, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockModSlab(RED_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockModSlab(BASALT_SLAB, DEFAULT_ITEM_BLOCK_BUILDER),
@@ -298,6 +334,7 @@ public class NetherExBlocks
                     new ItemBlockModSlab(LIVELY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockModSlab(FIERY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockModSlab(ICY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockModSlab(GENESIS_PLANK_SLAB, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(RED_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(FIERY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(ICY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_BUILDER),
@@ -307,6 +344,7 @@ public class NetherExBlocks
                     new ItemBlockMod(SMOOTH_BASALT_STAIRS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(BASALT_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(BASALT_PILLAR_STAIRS, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_PLANK_STAIRS, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(QUARTZ_WALL, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(NETHER_BRICK_WALL, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(RED_NETHER_BRICK_WALL, DEFAULT_ITEM_BLOCK_BUILDER),
@@ -328,6 +366,7 @@ public class NetherExBlocks
                     new ItemBlockMod(SMOOTH_BASALT_FENCE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(BASALT_BRICK_FENCE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(BASALT_PILLAR_FENCE, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_PLANK_FENCE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(QUARTZ_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(RED_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER),
@@ -338,7 +377,8 @@ public class NetherExBlocks
                     new ItemBlockMod(FIERY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(ICY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(LIVELY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER),
-                    new ItemBlockMod(GLOOMY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER)
+                    new ItemBlockMod(GLOOMY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(GENESIS_PLANK_FENCE_GATE, DEFAULT_ITEM_BLOCK_BUILDER)
             );
         }
     }

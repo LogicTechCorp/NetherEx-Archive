@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2018 by MineEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -72,6 +72,7 @@ public class ParticleSporeExplosionHuge extends Particle
     @SideOnly(Side.CLIENT)
     public static class Factory implements IParticleFactory
     {
+        @Override
         public Particle createParticle(int particleID, World world, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
         {
             return new ParticleSporeExplosionHuge(world, xCoordIn, yCoordIn, zCoordIn);
