@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':LibEx')
+    compile project(':LibraryEx-1.12.x')
 }
 
 processResources {
