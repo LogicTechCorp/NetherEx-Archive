@@ -1,6 +1,7 @@
 /*
 !/src/
 !.gitignore
+!.gitmodules
 !gradlew*
 !/gradle/
 !/README.md
