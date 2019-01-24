@@ -31,6 +31,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':LibraryEx')
 }
 
 processResources {
@@ -45,11 +46,5 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
-    }
-}
-
-jar {
-    manifest {
-        attributes 'FMLAT': "nex_at.cfg"
     }
 }
