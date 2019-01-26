@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.ai;
 
-import logictechcorp.libraryex.util.EntityHelper;
+import logictechcorp.libraryex.utility.EntityHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.AbstractHorse;

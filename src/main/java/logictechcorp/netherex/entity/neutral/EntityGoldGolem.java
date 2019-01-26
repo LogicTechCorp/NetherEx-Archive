@@ -53,7 +53,7 @@ public class EntityGoldGolem extends EntityGolem
 {
     protected static final DataParameter<Boolean> PLAYER_CREATED = EntityDataManager.createKey(EntityGoldGolem.class, DataSerializers.BOOLEAN);
 
-    PigtificateVillage village;
+    private PigtificateVillage village;
 
     private int homeCheckTimer;
     private int attackTimer;

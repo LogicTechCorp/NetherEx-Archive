@@ -60,16 +60,16 @@ public class BlockHyphae extends BlockMod
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
+    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random random)
     {
-        if(rand.nextInt(10) == 0)
+        if(random.nextInt(10) == 0)
         {
-            world.spawnParticle(EnumParticleTypes.TOWN_AURA, (double) ((float) pos.getX() + rand.nextFloat()), (double) ((float) pos.getY() + 1.1F), (double) ((float) pos.getZ() + rand.nextFloat()), 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.TOWN_AURA, (double) ((float) pos.getX() + random.nextFloat()), (double) ((float) pos.getY() + 1.1F), (double) ((float) pos.getZ() + random.nextFloat()), 0.0D, 0.0D, 0.0D);
         }
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         if(!world.isRemote && ConfigHandler.blockConfig.hyphae.shouldSpread)
         {
@@ -83,7 +83,7 @@ public class BlockHyphae extends BlockMod
                 {
                     for(int i = 0; i < 4; i++)
                     {
-                        BlockPos newPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+                        BlockPos newPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                         IBlockState stateNew = world.getBlockState(newPos);
                         IBlockState stateUp = world.getBlockState(newPos.up());
 
@@ -115,7 +115,7 @@ public class BlockHyphae extends BlockMod
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
         return Item.getItemFromBlock(NetherExBlocks.LIVELY_NETHERRACK);
     }

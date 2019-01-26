@@ -70,7 +70,7 @@ public class BlockTilledSoulSand extends BlockModPath
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         int moisture = state.getValue(MOISTURE);
 
@@ -191,7 +191,7 @@ public class BlockTilledSoulSand extends BlockModPath
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
         return Item.getItemFromBlock(Blocks.SOUL_SAND);
     }

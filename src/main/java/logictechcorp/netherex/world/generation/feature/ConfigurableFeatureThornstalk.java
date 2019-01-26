@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.gen.feature;
+package logictechcorp.netherex.world.generation.feature;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.gen.feature.Feature;
+import logictechcorp.libraryex.world.generation.feature.ConfigurableFeature;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -27,30 +27,29 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FeatureThornstalk extends Feature
+public class ConfigurableFeatureThornstalk extends ConfigurableFeature
 {
-
-    public FeatureThornstalk(Config config)
+    public ConfigurableFeatureThornstalk(Config config)
     {
         super(config);
     }
 
-    public FeatureThornstalk(int genAttempts, double genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
+    public ConfigurableFeatureThornstalk(int generationAttempts, double generationProbability, boolean randomizeGenerationAttempts, int minGenerationHeight, int maxGenerationHeight)
     {
-        super(genAttempts, genProbability, randomizeGenAttempts, minGenHeight, maxGenHeight);
+        super(generationAttempts, generationProbability, randomizeGenerationAttempts, minGenerationHeight, maxGenerationHeight);
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, Random random, BlockPos pos)
     {
         for(int i = 0; i < 64; i++)
         {
-            BlockPos newPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+            BlockPos newPos = pos.add(random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
             Block blockDown = world.getBlockState(newPos.down()).getBlock();
 
             if(blockDown == Blocks.SOUL_SAND && NetherExBlocks.THORNSTALK.canPlaceBlockAt(world, newPos))
             {
-                NetherExBlocks.THORNSTALK.generate(world, rand, newPos);
+                NetherExBlocks.THORNSTALK.generate(world, random, newPos);
             }
         }
 

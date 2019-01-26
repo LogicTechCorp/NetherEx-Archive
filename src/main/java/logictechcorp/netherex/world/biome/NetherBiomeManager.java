@@ -19,15 +19,14 @@ package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.util.ConfigHelper;
-import logictechcorp.libraryex.util.FileHelper;
-import logictechcorp.libraryex.util.WorldHelper;
+import logictechcorp.libraryex.utility.ConfigHelper;
+import logictechcorp.libraryex.utility.FileHelper;
+import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.biome.DimensionBiomeManager;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import logictechcorp.netherex.world.biome.info.NetherBiomeInfoHell;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -53,9 +52,9 @@ public class NetherBiomeManager extends DimensionBiomeManager
     }
 
     @Override
-    public void readBiomeInfoFromConfigs(MinecraftServer server)
+    public void readBiomeInfoFromConfigs()
     {
-        Path path = new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Biomes").toPath();
+        Path path = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Biomes").toPath();
         NetherEx.LOGGER.info("Reading Nether biome configs.");
 
         try
@@ -110,13 +109,13 @@ public class NetherBiomeManager extends DimensionBiomeManager
     }
 
     @Override
-    public void writeBiomeInfoToConfigs(MinecraftServer server)
+    public void writeBiomeInfoToConfigs()
     {
         NetherEx.LOGGER.info("Writing Nether biome configs.");
 
         for(BiomeInfo info : this.getAllBiomeInfo())
         {
-            File configFile = this.getBiomeInfoSaveFile(server, info);
+            File configFile = this.getBiomeInfoSaveFile(info);
             FileConfig fileConfig = FileConfig.of(configFile);
 
             if(!configFile.exists() && configFile.getParentFile().mkdirs() || !configFile.exists())
@@ -135,8 +134,8 @@ public class NetherBiomeManager extends DimensionBiomeManager
     }
 
     @Override
-    public File getBiomeInfoSaveFile(MinecraftServer server, BiomeInfo wrapper)
+    public File getBiomeInfoSaveFile(BiomeInfo biomeInfo)
     {
-        return new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Biomes/" + wrapper.getFileName());
+        return new File(WorldHelper.getSaveFile(), "/config/NetherEx/Biomes/" + biomeInfo.getFileName());
     }
 }

@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.entity.passive;
 
+import logictechcorp.libraryex.village.ConfigurableTrade;
 import logictechcorp.libraryex.village.ITrader;
-import logictechcorp.libraryex.village.Trade;
 import logictechcorp.netherex.entity.ai.*;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateProfession;
@@ -428,7 +428,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
             this.trades = new MerchantRecipeList();
         }
 
-        List<Trade> trades = this.getCareer().getTradesForLevel(this.careerLevel);
+        List<ConfigurableTrade> trades = this.getCareer().getTradesForLevel(this.careerLevel);
 
         if(trades != null && trades.size() > 0)
         {
@@ -436,7 +436,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
 
             if(this.careerLevel == 1 && trades.size() > 1)
             {
-                for(Trade trade : trades.subList(0, 2))
+                for(ConfigurableTrade trade : trades.subList(0, 2))
                 {
                     this.trades.add(trade.randomize(this.rand));
                 }

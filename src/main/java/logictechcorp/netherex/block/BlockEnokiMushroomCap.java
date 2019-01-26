@@ -60,7 +60,7 @@ public class BlockEnokiMushroomCap extends BlockMod
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         if(!this.canSurvive(world, pos))
         {
@@ -74,7 +74,7 @@ public class BlockEnokiMushroomCap extends BlockMod
             {
                 int age = state.getValue(AGE);
 
-                if(age < 5 && rand.nextInt(1) == 0)
+                if(age < 5 && random.nextInt(1) == 0)
                 {
                     boolean canGrow = false;
                     boolean nearNetherrack = false;
@@ -112,7 +112,7 @@ public class BlockEnokiMushroomCap extends BlockMod
                             randomGrowthChance++;
                         }
 
-                        if(growthChance < 2 || rand.nextInt(randomGrowthChance) >= growthChance)
+                        if(growthChance < 2 || random.nextInt(randomGrowthChance) >= growthChance)
                         {
                             canGrow = true;
                         }
@@ -129,7 +129,7 @@ public class BlockEnokiMushroomCap extends BlockMod
                     }
                     else if(age < 4)
                     {
-                        int growths = rand.nextInt(4);
+                        int growths = random.nextInt(4);
                         boolean grew = false;
 
                         if(nearNetherrack)
@@ -139,7 +139,7 @@ public class BlockEnokiMushroomCap extends BlockMod
 
                         for(int i = 0; i < growths; i++)
                         {
-                            EnumFacing facing = EnumFacing.Plane.HORIZONTAL.random(rand);
+                            EnumFacing facing = EnumFacing.Plane.HORIZONTAL.random(random);
                             BlockPos offsetPos = pos.offset(facing);
 
                             if(world.isAirBlock(offsetPos) && world.isAirBlock(offsetPos.up()) && areAllNeighborsEmpty(world, offsetPos, facing.getOpposite()))
@@ -202,7 +202,7 @@ public class BlockEnokiMushroomCap extends BlockMod
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
         return Items.AIR;
     }
@@ -276,16 +276,16 @@ public class BlockEnokiMushroomCap extends BlockMod
         return true;
     }
 
-    public static void generatePlant(World world, BlockPos pos, Random rand, int x)
+    public static void generatePlant(World world, BlockPos pos, Random random, int x)
     {
         BlockPos newPos = !world.isAirBlock(pos) ? pos.down() : pos;
         world.setBlockState(newPos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
-        growTreeRecursive(world, newPos, rand, newPos, x, 0);
+        growTreeRecursive(world, newPos, random, newPos, x, 0);
     }
 
-    private static void growTreeRecursive(World world, BlockPos pos, Random rand, BlockPos pos1, int x, int z)
+    private static void growTreeRecursive(World world, BlockPos pos, Random random, BlockPos pos1, int x, int z)
     {
-        int height = rand.nextInt(4) + 1;
+        int height = random.nextInt(4) + 1;
 
         if(z == 0)
         {
@@ -308,7 +308,7 @@ public class BlockEnokiMushroomCap extends BlockMod
 
         if(z < 4)
         {
-            int growthChances = rand.nextInt(4);
+            int growthChances = random.nextInt(4);
 
             if(z == 0)
             {
@@ -317,14 +317,14 @@ public class BlockEnokiMushroomCap extends BlockMod
 
             for(int i = 0; i < growthChances; i++)
             {
-                EnumFacing facing = EnumFacing.Plane.HORIZONTAL.random(rand);
+                EnumFacing facing = EnumFacing.Plane.HORIZONTAL.random(random);
                 BlockPos blockPos = pos.down(height).offset(facing);
 
                 if(Math.abs(blockPos.getX() - pos1.getX()) < x && Math.abs(blockPos.getZ() - pos1.getZ()) < x && world.isAirBlock(blockPos) && world.isAirBlock(blockPos.up()) && areAllNeighborsEmpty(world, blockPos, facing.getOpposite()))
                 {
                     grew = true;
                     world.setBlockState(blockPos, NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), 2);
-                    growTreeRecursive(world, blockPos, rand, pos1, x, z + 1);
+                    growTreeRecursive(world, blockPos, random, pos1, x, z + 1);
                 }
             }
         }

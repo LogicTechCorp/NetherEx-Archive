@@ -18,7 +18,7 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.sound.SoundEventLibEx;
-import logictechcorp.libraryex.util.InjectionHelper;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;

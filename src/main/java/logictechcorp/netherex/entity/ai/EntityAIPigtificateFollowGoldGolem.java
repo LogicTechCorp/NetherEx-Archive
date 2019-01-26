@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.ai;
 
-import logictechcorp.libraryex.util.WorldHelper;
+import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.netherex.entity.neutral.EntityGoldGolem;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
 import net.minecraft.entity.ai.EntityAIBase;

@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.util;
+package logictechcorp.netherex.utility;
 
-import logictechcorp.libraryex.util.BlockHelper;
+import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.capability.CapabilityBlightChunkData;
 import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.init.NetherExBiomes;

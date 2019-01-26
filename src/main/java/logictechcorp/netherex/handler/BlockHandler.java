@@ -18,7 +18,7 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.item.ItemModHammer;
-import logictechcorp.libraryex.util.CollectionHelper;
+import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.BlockTilledSoulSand;
 import logictechcorp.netherex.entity.monster.EntityNethermite;

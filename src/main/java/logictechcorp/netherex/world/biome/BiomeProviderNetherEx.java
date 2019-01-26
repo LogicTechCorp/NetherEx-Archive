@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.netherex.world.gen.layer.GenLayerNetherEx;
+import logictechcorp.netherex.world.generation.layer.GenLayerNetherEx;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;

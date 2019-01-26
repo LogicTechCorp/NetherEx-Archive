@@ -17,17 +17,17 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.world.gen.feature.FeatureRegistry;
+import logictechcorp.libraryex.world.generation.feature.FeatureRegistry;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.gen.feature.FeatureEnoki;
-import logictechcorp.netherex.world.gen.feature.FeatureThornstalk;
+import logictechcorp.netherex.world.generation.feature.ConfigurableFeatureEnoki;
+import logictechcorp.netherex.world.generation.feature.ConfigurableFeatureThornstalk;
 import net.minecraft.util.ResourceLocation;
 
 public class NetherExFeatures
 {
     public static void registerFeatures()
     {
-        FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":thornstalk"), FeatureThornstalk.class);
-        FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":enoki"), FeatureEnoki.class);
+        FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":thornstalk"), ConfigurableFeatureThornstalk.class);
+        FeatureRegistry.registerFeature(new ResourceLocation(NetherEx.MOD_ID + ":enoki"), ConfigurableFeatureEnoki.class);
     }
 }

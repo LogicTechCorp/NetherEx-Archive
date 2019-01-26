@@ -22,8 +22,9 @@ import logictechcorp.libraryex.item.builder.ItemArmorBuilder;
 import logictechcorp.libraryex.item.builder.ItemBuilder;
 import logictechcorp.libraryex.item.builder.ItemEdibleBuilder;
 import logictechcorp.libraryex.item.builder.ItemToolBuilder;
-import logictechcorp.libraryex.util.InjectionHelper;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.item.ItemDullMirror;
 import logictechcorp.netherex.item.ItemObsidianBoat;
 import logictechcorp.netherex.item.ItemRimeAndSteel;
 import logictechcorp.netherex.item.ItemWitherDust;
@@ -64,6 +65,7 @@ public class NetherExItems
     public static final ItemModEdible GHAST_MEAT_COOKED = InjectionHelper.nullValue();
     public static final ItemModEdible CONGEALED_MAGMA_CREAM = InjectionHelper.nullValue();
     public static final ItemModEdible ENOKI_MUSHROOM = InjectionHelper.nullValue();
+    public static final ItemDullMirror DULL_MIRROR = InjectionHelper.nullValue();
     public static final ItemModSword WITHERED_AMEDIAN_SWORD = InjectionHelper.nullValue();
     public static final ItemModPickaxe WITHERED_AMEDIAN_PICKAXE = InjectionHelper.nullValue();
     public static final ItemModShovel WITHERED_AMEDIAN_SHOVEL = InjectionHelper.nullValue();
@@ -129,6 +131,7 @@ public class NetherExItems
                     new ItemModEdible(NetherEx.getResource("ghast_meat_cooked"), new ItemEdibleBuilder(8, 1.0F, false)).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemModEdible(NetherEx.getResource("congealed_magma_cream"), new ItemEdibleBuilder(1, 0.3F, false)).setPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 200, 1), 1.0F).setAlwaysEdible(),
                     new ItemModEdible(NetherEx.getResource("enoki_mushroom"), new ItemEdibleBuilder(3, 0.7F, false)),
+                    new ItemDullMirror(),
                     new ItemModSword(NetherEx.getResource("withered_amedian_sword"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
                     new ItemModPickaxe(NetherEx.getResource("withered_amedian_pickaxe"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),
                     new ItemModShovel(NetherEx.getResource("withered_amedian_shovel"), new ItemToolBuilder(NetherExMaterials.AMEDIAN)),

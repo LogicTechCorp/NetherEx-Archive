@@ -21,8 +21,8 @@ import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.util.CollectionHelper;
-import logictechcorp.libraryex.util.EntityHelper;
+import logictechcorp.libraryex.utility.CollectionHelper;
+import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExEffects;
@@ -49,7 +49,7 @@ public class BlockRime extends BlockMod
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         for(int x = -1; x < 2; x++)
         {
@@ -62,7 +62,7 @@ public class BlockRime extends BlockMod
             }
         }
 
-        world.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
+        world.scheduleUpdate(pos, this, MathHelper.getInt(random, 20, 40));
     }
 
     @Override

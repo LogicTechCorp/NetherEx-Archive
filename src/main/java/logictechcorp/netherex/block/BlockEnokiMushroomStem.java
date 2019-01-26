@@ -75,7 +75,7 @@ public class BlockEnokiMushroomStem extends BlockMod
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         if(!this.canSurviveAt(world, pos))
         {
@@ -182,9 +182,9 @@ public class BlockEnokiMushroomStem extends BlockMod
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
-        if(rand.nextInt(4) == 0)
+        if(random.nextInt(4) == 0)
         {
             return NetherExItems.ENOKI_MUSHROOM;
         }

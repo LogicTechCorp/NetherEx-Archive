@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.util.ArmorHelper;
+import logictechcorp.libraryex.utility.ArmorHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
@@ -58,7 +58,7 @@ public class LivingHandler
         World world = event.getEntityLiving().getEntityWorld();
         BlockPos pos = new BlockPos(event.getEntityLiving());
         EntityLivingBase entity = event.getEntityLiving();
-        Random rand = world.rand;
+        Random random = world.rand;
 
         NetherExEffects.FREEZE.performEffect(entity, 0);
 
@@ -72,7 +72,7 @@ public class LivingHandler
                 int conversionTime = entityData.getInteger("ConversionTime");
                 int conversionProgress = 1;
 
-                if(rand.nextFloat() < 0.01F)
+                if(random.nextFloat() < 0.01F)
                 {
                     int conversionBoosters = 0;
                     BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
@@ -87,7 +87,7 @@ public class LivingHandler
 
                                 if(block == Blocks.IRON_BARS)
                                 {
-                                    if(rand.nextFloat() < 0.3F)
+                                    if(random.nextFloat() < 0.3F)
                                     {
                                         conversionProgress++;
                                     }
@@ -199,19 +199,19 @@ public class LivingHandler
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event)
     {
-        Random rand = new Random();
+        Random random = new Random();
         BlockPos deathPoint = event.getEntity().getPosition();
 
         if(event.getEntity() instanceof EntityGhast)
         {
-            if(ConfigHandler.entityConfig.ghast.meatDropRarity > 0 && rand.nextInt(ConfigHandler.entityConfig.ghast.meatDropRarity) == 0)
+            if(ConfigHandler.entityConfig.ghast.meatDropRarity > 0 && random.nextInt(ConfigHandler.entityConfig.ghast.meatDropRarity) == 0)
             {
-                event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.GHAST_MEAT_RAW, rand.nextInt(3) + 1, 0)));
+                event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.GHAST_MEAT_RAW, random.nextInt(3) + 1, 0)));
             }
         }
         else if(event.getEntity() instanceof EntityWitherSkeleton)
         {
-            if(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity > 0 && rand.nextInt(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity) == 0)
+            if(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity > 0 && random.nextInt(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity) == 0)
             {
                 ListIterator<EntityItem> iter = event.getDrops().listIterator();
 
@@ -226,7 +226,7 @@ public class LivingHandler
                     }
                 }
 
-                event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.WITHER_BONE, rand.nextInt(3), 0)));
+                event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.WITHER_BONE, random.nextInt(3), 0)));
             }
         }
     }

@@ -19,8 +19,8 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.util.CollectionHelper;
-import logictechcorp.libraryex.util.EntityHelper;
+import logictechcorp.libraryex.utility.CollectionHelper;
+import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import net.minecraft.block.Block;
@@ -164,9 +164,9 @@ public class BlockThornstalk extends BlockMod
         return new BlockStateContainer(this, PART);
     }
 
-    public void generate(World world, Random rand, BlockPos pos)
+    public void generate(World world, Random random, BlockPos pos)
     {
-        int height = rand.nextInt(3) + 1;
+        int height = random.nextInt(3) + 1;
 
         if(height == 1)
         {

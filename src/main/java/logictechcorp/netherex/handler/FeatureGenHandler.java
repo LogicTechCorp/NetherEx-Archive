@@ -17,10 +17,10 @@
 
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.util.RandomHelper;
+import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
-import logictechcorp.libraryex.world.gen.GenerationStage;
-import logictechcorp.libraryex.world.gen.feature.Feature;
+import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.generation.feature.ConfigurableFeature;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.util.math.BlockPos;
@@ -90,17 +90,17 @@ public class FeatureGenHandler
         }
     }
 
-    private static void generateFeature(World world, BlockPos pos, Random rand, GenerationStage generationStage)
+    private static void generateFeature(World world, BlockPos pos, Random random, GenerationStage generationStage)
     {
         BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(world.getBiome(pos.add(16, 0, 16)));
 
         if(info != null)
         {
-            for(Feature feature : info.getFeatures(generationStage))
+            for(ConfigurableFeature feature : info.getFeatures(generationStage))
             {
-                for(int generationAttempts = 0; generationAttempts < feature.getGenAttempts(rand); generationAttempts++)
+                for(int generationAttempts = 0; generationAttempts < feature.getRandomizedGenerationAttempts(random); generationAttempts++)
                 {
-                    feature.generate(world, rand, pos.add(rand.nextInt(16) + 8, RandomHelper.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), rand), rand.nextInt(16) + 8));
+                    feature.generate(world, random, pos.add(random.nextInt(16) + 8, RandomHelper.getNumberInRange(feature.getMinHeight(), feature.getMaxHeight(), random), random.nextInt(16) + 8));
                 }
             }
         }

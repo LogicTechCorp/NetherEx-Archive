@@ -19,7 +19,7 @@ package logictechcorp.netherex.world;
 
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.BiomeProviderNetherEx;
-import logictechcorp.netherex.world.gen.ChunkGeneratorNetherEx;
+import logictechcorp.netherex.world.generation.ChunkGeneratorNetherEx;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;

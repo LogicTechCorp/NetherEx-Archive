@@ -20,7 +20,7 @@ package logictechcorp.netherex.handler;
 import logictechcorp.libraryex.event.world.ChunkGenerateEvent;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBiomes;
-import logictechcorp.netherex.util.BlightHelper;
+import logictechcorp.netherex.utility.BlightHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.DimensionType;

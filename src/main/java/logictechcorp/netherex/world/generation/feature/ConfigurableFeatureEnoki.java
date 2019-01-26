@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.gen.feature;
+package logictechcorp.netherex.world.generation.feature;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.gen.feature.Feature;
+import logictechcorp.libraryex.world.generation.feature.ConfigurableFeature;
 import logictechcorp.netherex.block.BlockEnokiMushroomCap;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.util.math.BlockPos;
@@ -26,25 +26,24 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FeatureEnoki extends Feature
+public class ConfigurableFeatureEnoki extends ConfigurableFeature
 {
-
-    public FeatureEnoki(Config config)
+    public ConfigurableFeatureEnoki(Config config)
     {
         super(config);
     }
 
-    public FeatureEnoki(int genAttempts, double genProbability, boolean randomizeGenAttempts, int minGenHeight, int maxGenHeight)
+    public ConfigurableFeatureEnoki(int generationAttempts, double generationProbability, boolean randomizeGenerationAttempts, int minGenerationHeight, int maxGenerationHeight)
     {
-        super(genAttempts, genProbability, randomizeGenAttempts, minGenHeight, maxGenHeight);
+        super(generationAttempts, generationProbability, randomizeGenerationAttempts, minGenerationHeight, maxGenerationHeight);
     }
 
     @Override
-    public boolean generate(World world, Random rand, BlockPos pos)
+    public boolean generate(World world, Random random, BlockPos pos)
     {
-        if(world.isAirBlock(pos.down()) && NetherExBlocks.ENOKI_MUSHROOM_CAP.canSurvive(world, pos) && rand.nextInt(8) == 7)
+        if(world.isAirBlock(pos.down()) && NetherExBlocks.ENOKI_MUSHROOM_CAP.canSurvive(world, pos) && random.nextInt(8) == 7)
         {
-            BlockEnokiMushroomCap.generatePlant(world, pos, rand, 8);
+            BlockEnokiMushroomCap.generatePlant(world, pos, random, 8);
             return true;
         }
 

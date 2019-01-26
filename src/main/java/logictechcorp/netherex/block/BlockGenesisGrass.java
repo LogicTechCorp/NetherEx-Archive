@@ -48,7 +48,7 @@ public class BlockGenesisGrass extends BlockMod implements IGrowable
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         if(!world.isRemote)
         {
@@ -67,7 +67,7 @@ public class BlockGenesisGrass extends BlockMod implements IGrowable
                 {
                     for(int i = 0; i < 4; i++)
                     {
-                        BlockPos newPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+                        BlockPos newPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 
                         if(newPos.getY() >= 0 && newPos.getY() < 256 && !world.isBlockLoaded(newPos))
                         {
@@ -117,13 +117,13 @@ public class BlockGenesisGrass extends BlockMod implements IGrowable
     }
 
     @Override
-    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    public boolean canUseBonemeal(World world, Random random, BlockPos pos, IBlockState state)
     {
         return true;
     }
 
     @Override
-    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
+    public void grow(World world, Random random, BlockPos pos, IBlockState state)
     {
         BlockPos blockPosUp = pos.up();
 
@@ -138,13 +138,13 @@ public class BlockGenesisGrass extends BlockMod implements IGrowable
                 {
                     if(world.isAirBlock(blockPosUpHolder))
                     {
-                        if(rand.nextInt(8) == 0)
+                        if(random.nextInt(8) == 0)
                         {
                             world.setBlockState(blockPosUpHolder, NetherExBlocks.CYAN_ROSE.getDefaultState());
                         }
-                        else if(rand.nextInt(4) == 0)
+                        else if(random.nextInt(4) == 0)
                         {
-                            world.getBiome(blockPosUpHolder).plantFlower(world, rand, blockPosUpHolder);
+                            world.getBiome(blockPosUpHolder).plantFlower(world, random, blockPosUpHolder);
                         }
                         else
                         {
@@ -160,7 +160,7 @@ public class BlockGenesisGrass extends BlockMod implements IGrowable
                     break;
                 }
 
-                blockPosUpHolder = blockPosUpHolder.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
+                blockPosUpHolder = blockPosUpHolder.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
 
                 if(world.getBlockState(blockPosUpHolder.down()).getBlock() != this || world.getBlockState(blockPosUpHolder).isNormalCube())
                 {
@@ -173,9 +173,9 @@ public class BlockGenesisGrass extends BlockMod implements IGrowable
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
-        return Blocks.DIRT.getItemDropped(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
+        return Blocks.DIRT.getItemDropped(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), random, fortune);
     }
 
     @Override

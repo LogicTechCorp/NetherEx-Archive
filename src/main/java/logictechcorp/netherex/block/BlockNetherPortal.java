@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import com.google.common.collect.Queues;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.util.BlockHelper;
+import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBlocks;
@@ -92,32 +92,32 @@ public class BlockNetherPortal extends BlockMod
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
+    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random random)
     {
-        if(rand.nextInt(100) == 0)
+        if(random.nextInt(100) == 0)
         {
-            world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+            world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
         }
 
         for(int i = 0; i < 4; i++)
         {
-            double posX = (double) ((float) pos.getX() + rand.nextFloat());
-            double posY = (double) ((float) pos.getY() + rand.nextFloat());
-            double posZ = (double) ((float) pos.getZ() + rand.nextFloat());
-            double speedX = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-            double speedY = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-            double speedZ = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-            int multiplier = rand.nextInt(2) * 2 - 1;
+            double posX = (double) ((float) pos.getX() + random.nextFloat());
+            double posY = (double) ((float) pos.getY() + random.nextFloat());
+            double posZ = (double) ((float) pos.getZ() + random.nextFloat());
+            double speedX = ((double) random.nextFloat() - 0.5D) * 0.5D;
+            double speedY = ((double) random.nextFloat() - 0.5D) * 0.5D;
+            double speedZ = ((double) random.nextFloat() - 0.5D) * 0.5D;
+            int multiplier = random.nextInt(2) * 2 - 1;
 
             if(world.getBlockState(pos.west()).getBlock() != this && world.getBlockState(pos.east()).getBlock() != this)
             {
                 posX = (double) pos.getX() + 0.5D + 0.25D * (double) multiplier;
-                speedX = (double) (rand.nextFloat() * 2.0F * (float) multiplier);
+                speedX = (double) (random.nextFloat() * 2.0F * (float) multiplier);
             }
             else
             {
                 posZ = (double) pos.getZ() + 0.5D + 0.25D * (double) multiplier;
-                speedZ = (double) (rand.nextFloat() * 2.0F * (float) multiplier);
+                speedZ = (double) (random.nextFloat() * 2.0F * (float) multiplier);
             }
 
             world.spawnParticle(EnumParticleTypes.PORTAL, posX, posY, posZ, speedX, speedY, speedZ);
@@ -137,7 +137,7 @@ public class BlockNetherPortal extends BlockMod
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         EnumFacing.Axis axis = state.getValue(AXIS);
 
@@ -165,7 +165,7 @@ public class BlockNetherPortal extends BlockMod
 
         if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity > 0)
         {
-            if(rand.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getId())
+            if(random.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getId())
             {
                 int posY = pos.getY();
                 BlockPos blockPos;

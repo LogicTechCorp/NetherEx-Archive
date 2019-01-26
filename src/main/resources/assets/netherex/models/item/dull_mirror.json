@@ -1,0 +1,14 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "netherex:items/dull_mirror_off"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "on": 1
+            },
+            "model": "netherex:item/dull_mirror_on"
+        }
+    ]
+}

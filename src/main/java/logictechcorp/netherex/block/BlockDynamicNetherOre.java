@@ -18,6 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.utility.RandomHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
@@ -45,29 +46,29 @@ public class BlockDynamicNetherOre extends BlockDynamicNetherBiome
     }
 
     @Override
-    public int quantityDroppedWithBonus(int fortune, Random rand)
+    public int quantityDroppedWithBonus(int fortune, Random random)
     {
         if(fortune > 0)
         {
-            int i = rand.nextInt(fortune + 2) - 1;
+            int i = random.nextInt(fortune + 2) - 1;
 
             if(i < 0)
             {
                 i = 0;
             }
 
-            return this.quantityDropped(rand) * (i + 1);
+            return this.quantityDropped(random) * (i + 1);
         }
         else
         {
-            return this.quantityDropped(rand);
+            return this.quantityDropped(random);
         }
     }
 
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        Random rand = world instanceof World ? ((World) world).rand : new Random();
-        return MathHelper.getInt(rand, 2, 5);
+        Random random = world instanceof World ? ((World) world).rand : RandomHelper.getRandom();
+        return MathHelper.getInt(random, 2, 5);
     }
 }

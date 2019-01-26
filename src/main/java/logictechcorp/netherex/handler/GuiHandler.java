@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.util.PlayerHelper;
+import logictechcorp.libraryex.utility.PlayerHelper;
 import logictechcorp.netherex.client.gui.inventory.GuiScreenRideableInventory;
 import logictechcorp.netherex.inventory.ContainerRideableInventory;
 import net.minecraft.entity.Entity;

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.gen.layer;
+package logictechcorp.netherex.world.generation.layer;
 
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.layer.*;

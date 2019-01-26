@@ -19,7 +19,7 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.util.RandomHelper;
+import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExEffects;
@@ -75,11 +75,11 @@ public class BlockBlueFire extends BlockMod
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random)
     {
-        if(rand.nextInt(24) == 0)
+        if(random.nextInt(24) == 0)
         {
-            world.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+            world.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
         }
 
         if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !this.canCatchFire(world, pos.down(), EnumFacing.UP))
@@ -88,9 +88,9 @@ public class BlockBlueFire extends BlockMod
             {
                 for(int i = 0; i < 2; i++)
                 {
-                    double posX = (double) pos.getX() + rand.nextDouble() * 0.10000000149011612D;
-                    double posY = (double) pos.getY() + rand.nextDouble();
-                    double posZ = (double) pos.getZ() + rand.nextDouble();
+                    double posX = (double) pos.getX() + random.nextDouble() * 0.10000000149011612D;
+                    double posY = (double) pos.getY() + random.nextDouble();
+                    double posZ = (double) pos.getZ() + random.nextDouble();
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
                 }
             }
@@ -99,9 +99,9 @@ public class BlockBlueFire extends BlockMod
             {
                 for(int i = 0; i < 2; i++)
                 {
-                    double posX = (double) (pos.getX() + 1) - rand.nextDouble() * 0.10000000149011612D;
-                    double posY = (double) pos.getY() + rand.nextDouble();
-                    double posZ = (double) pos.getZ() + rand.nextDouble();
+                    double posX = (double) (pos.getX() + 1) - random.nextDouble() * 0.10000000149011612D;
+                    double posY = (double) pos.getY() + random.nextDouble();
+                    double posZ = (double) pos.getZ() + random.nextDouble();
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
                 }
             }
@@ -110,9 +110,9 @@ public class BlockBlueFire extends BlockMod
             {
                 for(int i = 0; i < 2; i++)
                 {
-                    double posX = (double) pos.getX() + rand.nextDouble();
-                    double posY = (double) pos.getY() + rand.nextDouble();
-                    double posZ = (double) pos.getZ() + rand.nextDouble() * 0.10000000149011612D;
+                    double posX = (double) pos.getX() + random.nextDouble();
+                    double posY = (double) pos.getY() + random.nextDouble();
+                    double posZ = (double) pos.getZ() + random.nextDouble() * 0.10000000149011612D;
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
                 }
             }
@@ -121,9 +121,9 @@ public class BlockBlueFire extends BlockMod
             {
                 for(int i = 0; i < 2; i++)
                 {
-                    double posX = (double) pos.getX() + rand.nextDouble();
-                    double posY = (double) pos.getY() + rand.nextDouble();
-                    double posZ = (double) (pos.getZ() + 1) - rand.nextDouble() * 0.10000000149011612D;
+                    double posX = (double) pos.getX() + random.nextDouble();
+                    double posY = (double) pos.getY() + random.nextDouble();
+                    double posZ = (double) (pos.getZ() + 1) - random.nextDouble() * 0.10000000149011612D;
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
                 }
             }
@@ -132,9 +132,9 @@ public class BlockBlueFire extends BlockMod
             {
                 for(int i = 0; i < 2; i++)
                 {
-                    double posX = (double) pos.getX() + rand.nextDouble();
-                    double posY = (double) (pos.getY() + 1) - rand.nextDouble() * 0.10000000149011612D;
-                    double posZ = (double) pos.getZ() + rand.nextDouble();
+                    double posX = (double) pos.getX() + random.nextDouble();
+                    double posY = (double) (pos.getY() + 1) - random.nextDouble() * 0.10000000149011612D;
+                    double posZ = (double) pos.getZ() + random.nextDouble();
                     world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
                 }
             }
@@ -143,9 +143,9 @@ public class BlockBlueFire extends BlockMod
         {
             for(int i = 0; i < 3; i++)
             {
-                double posX = (double) pos.getX() + rand.nextDouble();
-                double posY = (double) pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
-                double posZ = (double) pos.getZ() + rand.nextDouble();
+                double posX = (double) pos.getX() + random.nextDouble();
+                double posY = (double) pos.getY() + random.nextDouble() * 0.5D + 0.5D;
+                double posZ = (double) pos.getZ() + random.nextDouble();
                 world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
             }
         }
@@ -188,7 +188,7 @@ public class BlockBlueFire extends BlockMod
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         if(world.getGameRules().getBoolean("doFireTick"))
         {
@@ -201,7 +201,7 @@ public class BlockBlueFire extends BlockMod
 
             int age = state.getValue(AGE);
 
-            if(!sideSolid && world.isRaining() && this.canDie(world, pos) && rand.nextFloat() < 0.2F + (float) age * 0.03F)
+            if(!sideSolid && world.isRaining() && this.canDie(world, pos) && random.nextFloat() < 0.2F + (float) age * 0.03F)
             {
                 world.setBlockToAir(pos);
             }
@@ -209,11 +209,11 @@ public class BlockBlueFire extends BlockMod
             {
                 if(age < 15)
                 {
-                    state = state.withProperty(AGE, age + rand.nextInt(3) / 2);
+                    state = state.withProperty(AGE, age + random.nextInt(3) / 2);
                     world.setBlockState(pos, state, 4);
                 }
 
-                world.scheduleUpdate(pos, this, this.tickRate(world) + rand.nextInt(10));
+                world.scheduleUpdate(pos, this, this.tickRate(world) + random.nextInt(10));
 
                 if(!sideSolid)
                 {
@@ -227,7 +227,7 @@ public class BlockBlueFire extends BlockMod
                         return;
                     }
 
-                    if(!this.canCatchFire(world, pos.down(), EnumFacing.UP) && age == 15 && rand.nextInt(4) == 0)
+                    if(!this.canCatchFire(world, pos.down(), EnumFacing.UP) && age == 15 && random.nextInt(4) == 0)
                     {
                         world.setBlockToAir(pos);
                         return;
@@ -242,12 +242,12 @@ public class BlockBlueFire extends BlockMod
                     j = -50;
                 }
 
-                this.tryCatchFire(world, pos, pos.east(), 300 + j, rand, age, EnumFacing.WEST);
-                this.tryCatchFire(world, pos, pos.west(), 300 + j, rand, age, EnumFacing.EAST);
-                this.tryCatchFire(world, pos, pos.down(), 250 + j, rand, age, EnumFacing.UP);
-                this.tryCatchFire(world, pos, pos.up(), 250 + j, rand, age, EnumFacing.DOWN);
-                this.tryCatchFire(world, pos, pos.north(), 300 + j, rand, age, EnumFacing.SOUTH);
-                this.tryCatchFire(world, pos, pos.south(), 300 + j, rand, age, EnumFacing.NORTH);
+                this.tryCatchFire(world, pos, pos.east(), 300 + j, random, age, EnumFacing.WEST);
+                this.tryCatchFire(world, pos, pos.west(), 300 + j, random, age, EnumFacing.EAST);
+                this.tryCatchFire(world, pos, pos.down(), 250 + j, random, age, EnumFacing.UP);
+                this.tryCatchFire(world, pos, pos.up(), 250 + j, random, age, EnumFacing.DOWN);
+                this.tryCatchFire(world, pos, pos.north(), 300 + j, random, age, EnumFacing.SOUTH);
+                this.tryCatchFire(world, pos, pos.south(), 300 + j, random, age, EnumFacing.NORTH);
 
                 for(int posX = -1; posX <= 1; posX++)
                 {
@@ -276,9 +276,9 @@ public class BlockBlueFire extends BlockMod
                                         fireHumidityChance /= 2;
                                     }
 
-                                    if(fireHumidityChance > 0 && rand.nextInt(fireHeightChance) <= fireHumidityChance && (!world.isRaining() || !this.canDie(world, blockPos)))
+                                    if(fireHumidityChance > 0 && random.nextInt(fireHeightChance) <= fireHumidityChance && (!world.isRaining() || !this.canDie(world, blockPos)))
                                     {
-                                        int stage = age + rand.nextInt(5) / 4;
+                                        int stage = age + random.nextInt(5) / 4;
 
                                         if(stage > 15)
                                         {

@@ -18,9 +18,9 @@
 package logictechcorp.netherex.capability;
 
 import logictechcorp.libraryex.capability.CapabilitySerializable;
-import logictechcorp.libraryex.util.WorldHelper;
+import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.util.BlightHelper;
+import logictechcorp.netherex.utility.BlightHelper;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -238,7 +238,7 @@ public class CapabilityBlightChunkData implements IBlightChunkData
 
         private void tick(World world)
         {
-            Random rand = world.rand;
+            Random random = world.rand;
             this.tickCounter++;
 
             if(!this.startedTransformation && BlightHelper.addBlightToChunk(world, this.dormantPositions.get(0)))
@@ -248,7 +248,7 @@ public class CapabilityBlightChunkData implements IBlightChunkData
 
             if(!this.finishedTransformation && this.startedTransformation && (this.tickCounter % 40) == 0)
             {
-                BlockPos originalBlockPos = this.dormantPositions.get(rand.nextInt(this.dormantPositions.size()));
+                BlockPos originalBlockPos = this.dormantPositions.get(random.nextInt(this.dormantPositions.size()));
                 BlockPos adjustedBlockPos = world.getTopSolidOrLiquidBlock(originalBlockPos);
 
                 if((world.getLightFromNeighbors(adjustedBlockPos.up()) <= 7 && BlightHelper.convertBlock(world, adjustedBlockPos)) || (world.getLightFromNeighbors(adjustedBlockPos) <= 7 && BlightHelper.convertBlock(world, adjustedBlockPos.down())))

@@ -18,10 +18,10 @@
 package logictechcorp.netherex.item;
 
 import logictechcorp.libraryex.item.ItemMod;
-import logictechcorp.libraryex.item.builder.ItemBuilder;
-import logictechcorp.libraryex.util.BlockHelper;
+import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.dispenser.IBlockSource;
@@ -41,7 +41,7 @@ public class ItemRimeAndSteel extends ItemMod
 {
     public ItemRimeAndSteel()
     {
-        super(NetherEx.getResource("rime_and_steel"), new ItemBuilder().maxDamage(64));
+        super(NetherEx.getResource("rime_and_steel"), NetherExItems.getDefaultItemBuilder().copy().maxDamage(64));
 
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new Bootstrap.BehaviorDispenseOptional()
         {

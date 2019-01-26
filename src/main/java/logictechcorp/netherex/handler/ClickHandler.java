@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.util.BlockHelper;
+import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExEffects;
@@ -192,7 +192,7 @@ public class ClickHandler
         World world = event.getWorld();
         EntityPlayer player = event.getEntityPlayer();
         Entity entity = event.getTarget();
-        Random rand = world.rand;
+        Random random = world.rand;
 
         if(entity instanceof EntityPigZombie)
         {
@@ -208,7 +208,7 @@ public class ClickHandler
 
                 if(!world.isRemote)
                 {
-                    int conversionTime = rand.nextInt(2401) + 3600;
+                    int conversionTime = random.nextInt(2401) + 3600;
                     zombiePigman.getEntityData().setInteger("ConversionTime", conversionTime);
                     zombiePigman.removePotionEffect(MobEffects.WEAKNESS);
                     zombiePigman.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, conversionTime, Math.min(world.getDifficulty().getId() - 1, 0)));

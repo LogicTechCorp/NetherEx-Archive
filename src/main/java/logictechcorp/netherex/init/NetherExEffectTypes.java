@@ -18,7 +18,7 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.potion.PotionTypeLibEx;
-import logictechcorp.libraryex.util.InjectionHelper;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;

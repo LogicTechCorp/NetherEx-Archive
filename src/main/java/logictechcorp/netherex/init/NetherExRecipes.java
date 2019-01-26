@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.util.RecipeHelper;
+import logictechcorp.libraryex.utility.RecipeHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import net.minecraft.init.Blocks;
@@ -207,7 +207,11 @@ public class NetherExRecipes
                     RecipeHelper.addLeggingsRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLACK_SALAMANDER_HIDE_LEGGINGS, 1), NetherExItems.BLACK_SALAMANDER_HIDE),
                     RecipeHelper.addBootsRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLACK_SALAMANDER_HIDE_BOOTS, 1), NetherExItems.BLACK_SALAMANDER_HIDE),
 
+                    //Repair Recipes
+                    RecipeHelper.addRepairRecipe(NetherEx.instance, new ItemStack(NetherExItems.DULL_MIRROR), Items.GHAST_TEAR, -1),
+
                     //Misc recipes
+                    RecipeHelper.addSurroundedRecipe(NetherEx.instance, new ItemStack(NetherExItems.DULL_MIRROR), Items.GHAST_TEAR, Items.GOLD_INGOT),
                     RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_GLASS_PANE, 18), NetherExBlocks.SOUL_GLASS),
                     RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_GLASS, 3), NetherExBlocks.SOUL_GLASS_PANE),
                     RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.RIME_BLOCK, 1), NetherExItems.RIME_CRYSTAL),

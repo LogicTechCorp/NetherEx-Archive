@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.ai;
 
-import logictechcorp.libraryex.util.WorldHelper;
+import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.netherex.village.PigtificateVillage;
 import logictechcorp.netherex.village.PigtificateVillageFenceGateInfo;
 import logictechcorp.netherex.village.PigtificateVillageManager;

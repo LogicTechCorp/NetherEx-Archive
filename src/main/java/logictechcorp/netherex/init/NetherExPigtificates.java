@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.util.InjectionHelper;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.village.*;
 import net.minecraftforge.event.RegistryEvent;

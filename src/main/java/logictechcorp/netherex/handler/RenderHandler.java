@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.util.ArmorHelper;
+import logictechcorp.libraryex.utility.ArmorHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.init.NetherExEffects;

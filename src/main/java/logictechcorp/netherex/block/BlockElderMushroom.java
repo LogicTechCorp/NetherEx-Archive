@@ -19,7 +19,7 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.world.gen.feature.FeatureBigMushroom;
+import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureBigMushroom;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -129,19 +129,19 @@ public class BlockElderMushroom extends BlockMod implements IPlantable, IGrowabl
     }
 
     @Override
-    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    public boolean canUseBonemeal(World world, Random random, BlockPos pos, IBlockState state)
     {
         return false;
     }
 
     @Override
-    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
+    public void grow(World world, Random random, BlockPos pos, IBlockState state)
     {
         world.setBlockToAir(pos);
 
-        WorldGenerator elderMushroom = new FeatureBigMushroom(1, 1.0F, false, pos.getY(), pos.up(12).getY(), this.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), FeatureBigMushroom.Shape.FLAT);
+        WorldGenerator elderMushroom = new ConfigurableFeatureBigMushroom(1, 1.0F, false, pos.getY(), pos.up(12).getY(), this.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), ConfigurableFeatureBigMushroom.Shape.FLAT);
 
-        if(!elderMushroom.generate(world, rand, pos))
+        if(!elderMushroom.generate(world, random, pos))
         {
             world.setBlockState(pos, state);
         }

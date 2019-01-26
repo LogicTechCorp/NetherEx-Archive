@@ -32,7 +32,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -48,6 +47,7 @@ public class NetherEx implements IModData
 {
     //TODO:
     // Finish Regrowth's Collapse and Blight's Ascension biomes
+    // Fix Blue Fire not spawning in Arctic Abyss
 
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
@@ -111,15 +111,15 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
-        NetherBiomeManager.INSTANCE.readBiomeInfoFromConfigs(event.getServer());
-        PigtificateTradeManager.readTradesFromConfigs(event.getServer());
+        NetherBiomeManager.INSTANCE.readBiomeInfoFromConfigs();
+        PigtificateTradeManager.readTradesFromConfigs();
     }
 
     @Mod.EventHandler
     public void onFMLServerStopping(FMLServerStoppingEvent event)
     {
-        NetherBiomeManager.INSTANCE.writeBiomeInfoToConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
-        PigtificateTradeManager.writeTradesToConfigs(FMLCommonHandler.instance().getMinecraftServerInstance());
+        NetherBiomeManager.INSTANCE.writeBiomeInfoToConfigs();
+        PigtificateTradeManager.writeTradesToConfigs();
     }
 
     @Override

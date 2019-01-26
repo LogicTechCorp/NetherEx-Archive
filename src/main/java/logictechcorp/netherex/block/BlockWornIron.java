@@ -42,15 +42,15 @@ public class BlockWornIron extends BlockMod
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
         return Items.IRON_NUGGET;
     }
 
     @Override
-    public int quantityDropped(Random rand)
+    public int quantityDropped(Random random)
     {
-        return rand.nextInt(4) + 1;
+        return random.nextInt(4) + 1;
     }
 
     @Override

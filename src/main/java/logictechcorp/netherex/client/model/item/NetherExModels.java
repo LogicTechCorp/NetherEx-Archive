@@ -223,6 +223,7 @@ public class NetherExModels
         ModelHelper.registerItemModel(NetherExItems.GHAST_MEAT_COOKED);
         ModelHelper.registerItemModel(NetherExItems.CONGEALED_MAGMA_CREAM);
         ModelHelper.registerItemModel(NetherExItems.ENOKI_MUSHROOM);
+        ModelHelper.registerItemModel(NetherExItems.DULL_MIRROR);
         ModelHelper.registerItemModel(NetherExItems.WITHERED_AMEDIAN_SWORD);
         ModelHelper.registerItemModel(NetherExItems.WITHERED_AMEDIAN_PICKAXE);
         ModelHelper.registerItemModel(NetherExItems.WITHERED_AMEDIAN_SHOVEL);

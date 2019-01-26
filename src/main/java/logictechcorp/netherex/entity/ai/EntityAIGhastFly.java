@@ -61,10 +61,10 @@ public class EntityAIGhastFly extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        Random rand = this.ghast.getRNG();
-        double posX = this.ghast.posX + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double posY = this.ghast.posY + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double posZ = this.ghast.posZ + (double) ((rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        Random random = this.ghast.getRNG();
+        double posX = this.ghast.posX + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posY = this.ghast.posY + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posZ = this.ghast.posZ + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
         this.ghast.getMoveHelper().setMoveTo(posX, posY, posZ, 1.0D);
     }
 }

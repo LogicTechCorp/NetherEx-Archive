@@ -300,6 +300,7 @@ item.netherex:ghast_meat_raw.name=Raw Ghast Meat
 item.netherex:ghast_meat_cooked.name=Cooked Ghast Meat
 item.netherex:congealed_magma_cream.name=Congealed Magma Cream
 item.netherex:enoki_mushroom.name=Enoki Mushroom
+item.netherex:dull_mirror.name=Dull Mirror
 item.netherex:withered_amedian_sword.name=Withered Amedian Sword
 item.netherex:withered_amedian_pickaxe.name=Withered Amedian Pickaxe
 item.netherex:withered_amedian_shovel.name=Withered Amedian Shovel
@@ -476,3 +477,10 @@ tile.netherex:icy_nether_brick_fence_gate.name=Icy Nether Brick Fence Gate
 tile.netherex:lively_nether_brick_fence_gate.name=Lively Nether Brick Fence Gate
 tile.netherex:gloomy_nether_brick_fence_gate.name=Gloomy Nether Brick Fence Gate
 tile.netherex:genesis_plank_fence_gate.name=Gensis Plank Fence Gate
+
+# Tooltips
+tooltip.netherex:dull_mirror.spawn_dimension=§aSpawn Dimension: %s
+tooltip.netherex:dull_mirror.spawn_point=§9Spawn Point: %s
+tooltip.netherex:dull_mirror.spawn_point_set=§9Spawn point set to: %s
+tooltip.netherex:dull_mirror.spawn_point_removed=§cSpawn point removed
+tooltip.netherex:dull_mirror.death_point=§cDeath Point: %s

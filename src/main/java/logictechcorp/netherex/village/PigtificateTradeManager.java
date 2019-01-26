@@ -19,13 +19,12 @@ package logictechcorp.netherex.village;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.util.ConfigHelper;
-import logictechcorp.libraryex.util.FileHelper;
-import logictechcorp.libraryex.util.WorldHelper;
-import logictechcorp.libraryex.village.Trade;
+import logictechcorp.libraryex.utility.ConfigHelper;
+import logictechcorp.libraryex.utility.FileHelper;
+import logictechcorp.libraryex.utility.WorldHelper;
+import logictechcorp.libraryex.village.ConfigurableTrade;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExRegistries;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.File;
@@ -39,9 +38,9 @@ import java.util.stream.Collectors;
 
 public class PigtificateTradeManager
 {
-    public static void readTradesFromConfigs(MinecraftServer server)
+    public static void readTradesFromConfigs()
     {
-        Path path = new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Trades").toPath();
+        Path path = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades").toPath();
         NetherEx.LOGGER.info("Reading Pigtificate trade configs.");
 
         try
@@ -73,7 +72,7 @@ public class PigtificateTradeManager
                             {
                                 for(Config tradeConfig : tradeConfigs)
                                 {
-                                    career.addTrade(new Trade(tradeConfig));
+                                    career.addTrade(new ConfigurableTrade(tradeConfig));
                                 }
                             }
                         }
@@ -92,7 +91,7 @@ public class PigtificateTradeManager
         }
     }
 
-    public static void writeTradesToConfigs(MinecraftServer server)
+    public static void writeTradesToConfigs()
     {
         try
         {
@@ -102,13 +101,13 @@ public class PigtificateTradeManager
             {
                 for(PigtificateProfession.Career career : profession.getCareers())
                 {
-                    List<Trade> trades = career.getTrades();
-                    File configFile = new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml");
+                    List<ConfigurableTrade> trades = career.getTrades();
+                    File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml");
                     Files.createDirectories(configFile.getParentFile().toPath());
-                    FileConfig tradeConfig = ConfigHelper.newConfig(new File(WorldHelper.getSaveFile(server.getEntityWorld()), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml"), true, true, true);
+                    FileConfig tradeConfig = ConfigHelper.newConfig(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml"), true, true, true);
                     tradeConfig.set("profession", profession.getName().toString());
                     tradeConfig.set("career", career.getName().toString());
-                    tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
+                    tradeConfig.add("trades", trades.stream().map(ConfigurableTrade::getAsConfig).collect(Collectors.toList()));
                     tradeConfig.save();
                     tradeConfig.close();
                     trades.forEach(career::removeTrade);

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.gen.layer;
+package logictechcorp.netherex.world.generation.layer;
 
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.init.Biomes;

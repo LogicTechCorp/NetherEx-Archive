@@ -18,8 +18,8 @@
 package logictechcorp.netherex.potion;
 
 import logictechcorp.libraryex.potion.PotionLibEx;
-import logictechcorp.libraryex.util.CollectionHelper;
-import logictechcorp.libraryex.util.EntityHelper;
+import logictechcorp.libraryex.utility.CollectionHelper;
+import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBiomes;

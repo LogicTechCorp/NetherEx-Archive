@@ -20,8 +20,8 @@ package logictechcorp.netherex.world.biome;
 import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
-import logictechcorp.libraryex.world.gen.GenerationStage;
-import logictechcorp.libraryex.world.gen.feature.*;
+import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.generation.feature.*;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
@@ -75,24 +75,24 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
             this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
             this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, LAVA);
-            this.getEntitySpawnEntries(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6),
                     new Biome.SpawnListEntry(EntityMagmaCube.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntityBlaze.class, 3, 1, 4)
             )));
             this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureFluid(16, 1.0D, false, 4, 124, FLOWING_LAVA, FIERY_NETHERRACK, false),
-                    new FeatureScatter(20, 1.0D, true, 4, 124, FIRE, FIERY_NETHERRACK, FeatureScatter.Placement.ON_GROUND),
-                    new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureFluid(32, 1.0D, false, 10, 118, FLOWING_LAVA, FIERY_NETHERRACK, true),
-                    new FeaturePool(8, 1.0, false, 10, 108, LAVA, FIERY_NETHERRACK)
+                    new ConfigurableFeatureFluid(16, 1.0D, false, 4, 124, FLOWING_LAVA, FIERY_NETHERRACK, false),
+                    new ConfigurableFeatureScatter(20, 1.0D, true, 4, 124, FIRE, FIERY_NETHERRACK, ConfigurableFeatureScatter.Placement.ON_GROUND),
+                    new ConfigurableFeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
+                    new ConfigurableFeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
+                    new ConfigurableFeatureFluid(32, 1.0D, false, 10, 118, FLOWING_LAVA, FIERY_NETHERRACK, true),
+                    new ConfigurableFeaturePool(8, 1.0, false, 10, 108, LAVA, FIERY_NETHERRACK)
             )));
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), FIERY_NETHERRACK, 14),
-                    new FeatureOre(14, 1.0D, false, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
-                    new FeatureOre(8, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
+                    new ConfigurableFeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), FIERY_NETHERRACK, 14),
+                    new ConfigurableFeatureOre(14, 1.0D, false, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
+                    new ConfigurableFeatureOre(8, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
             )));
             return super.getAsConfig();
         }

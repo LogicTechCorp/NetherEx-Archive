@@ -22,7 +22,7 @@ import logictechcorp.libraryex.block.builder.BlockBuilder;
 import logictechcorp.libraryex.item.ItemBlockMod;
 import logictechcorp.libraryex.item.ItemBlockModSlab;
 import logictechcorp.libraryex.item.builder.ItemBuilder;
-import logictechcorp.libraryex.util.InjectionHelper;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.*;
 import logictechcorp.netherex.item.ItemBlockElderMushroom;

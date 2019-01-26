@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.monster;
 
-import logictechcorp.libraryex.util.EntityHelper;
+import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.entity.projectile.EntityBlueFireball;
 import logictechcorp.netherex.init.NetherExLootTables;
 import net.minecraft.entity.EntityLivingBase;

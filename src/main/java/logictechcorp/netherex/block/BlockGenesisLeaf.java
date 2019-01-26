@@ -39,7 +39,7 @@ public class BlockGenesisLeaf extends BlockModLeaf
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
         return Item.getItemFromBlock(NetherExBlocks.GENESIS_SAPLING);
     }
