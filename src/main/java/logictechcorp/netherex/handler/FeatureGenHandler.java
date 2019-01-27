@@ -20,7 +20,7 @@ package logictechcorp.netherex.handler;
 import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeature;
+import logictechcorp.libraryex.world.generation.feature.FeatureMod;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.util.math.BlockPos;
@@ -96,7 +96,7 @@ public class FeatureGenHandler
 
         if(info != null)
         {
-            for(ConfigurableFeature feature : info.getFeatures(generationStage))
+            for(FeatureMod feature : info.getFeatures(generationStage))
             {
                 for(int generationAttempts = 0; generationAttempts < feature.getRandomizedGenerationAttempts(random); generationAttempts++)
                 {

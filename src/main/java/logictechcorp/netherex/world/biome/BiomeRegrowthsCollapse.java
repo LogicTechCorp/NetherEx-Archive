@@ -21,9 +21,9 @@ import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureCluster;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureFluid;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureOre;
+import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
+import logictechcorp.libraryex.world.generation.feature.FeatureFluid;
+import logictechcorp.libraryex.world.generation.feature.FeatureOre;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.passive.EntityBonspider;
 import logictechcorp.netherex.init.NetherExBiomes;
@@ -74,13 +74,13 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
                     new Biome.SpawnListEntry(EntityBonspider.class, 65, 2, 4)
             )));
             this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureFluid(8, 1.0D, false, 4, 124, Blocks.WATER.getDefaultState(), Blocks.STONE.getDefaultState(), false),
-                    new ConfigurableFeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, Blocks.STONE.getDefaultState(), EnumFacing.DOWN),
-                    new ConfigurableFeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, Blocks.STONE.getDefaultState(), EnumFacing.DOWN),
-                    new ConfigurableFeatureFluid(16, 1.0D, false, 10, 118, Blocks.FLOWING_WATER.getDefaultState(), Blocks.STONE.getDefaultState(), true)
+                    new FeatureFluid(8, 1.0D, false, 4, 124, Blocks.WATER.getDefaultState(), Blocks.STONE.getDefaultState(), false),
+                    new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, Blocks.STONE.getDefaultState(), EnumFacing.DOWN),
+                    new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, Blocks.STONE.getDefaultState(), EnumFacing.DOWN),
+                    new FeatureFluid(16, 1.0D, false, 10, 118, Blocks.FLOWING_WATER.getDefaultState(), Blocks.STONE.getDefaultState(), true)
             )));
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureOre(1, 0.125D, false, 10, 108, NetherExBlocks.COBALT_ORE.getDefaultState(), Blocks.STONE.getDefaultState(), 8)
+                    new FeatureOre(1, 0.125D, false, 10, 108, NetherExBlocks.COBALT_ORE.getDefaultState(), Blocks.STONE.getDefaultState(), 8)
             )));
             return super.getAsConfig();
         }

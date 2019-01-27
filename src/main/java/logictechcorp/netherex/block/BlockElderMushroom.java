@@ -19,7 +19,7 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureBigMushroom;
+import logictechcorp.libraryex.world.generation.feature.FeatureBigMushroom;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -139,7 +139,7 @@ public class BlockElderMushroom extends BlockMod implements IPlantable, IGrowabl
     {
         world.setBlockToAir(pos);
 
-        WorldGenerator elderMushroom = new ConfigurableFeatureBigMushroom(1, 1.0F, false, pos.getY(), pos.up(12).getY(), this.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), ConfigurableFeatureBigMushroom.Shape.FLAT);
+        WorldGenerator elderMushroom = new FeatureBigMushroom(1, 1.0F, false, pos.getY(), pos.up(12).getY(), this.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), FeatureBigMushroom.Shape.FLAT);
 
         if(!elderMushroom.generate(world, random, pos))
         {

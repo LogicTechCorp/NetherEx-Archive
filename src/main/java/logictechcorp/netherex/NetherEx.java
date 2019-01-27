@@ -47,7 +47,6 @@ public class NetherEx implements IModData
 {
     //TODO:
     // Finish Regrowth's Collapse and Blight's Ascension biomes
-    // Fix Blue Fire not spawning in Arctic Abyss
 
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";

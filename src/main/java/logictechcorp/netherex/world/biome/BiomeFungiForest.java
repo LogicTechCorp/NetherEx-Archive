@@ -21,10 +21,10 @@ import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureBigMushroom;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureCluster;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureOre;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureStructure;
+import logictechcorp.libraryex.world.generation.feature.FeatureBigMushroom;
+import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
+import logictechcorp.libraryex.world.generation.feature.FeatureOre;
+import logictechcorp.libraryex.world.generation.feature.FeatureStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
@@ -32,7 +32,7 @@ import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
-import logictechcorp.netherex.world.generation.feature.ConfigurableFeatureEnoki;
+import logictechcorp.netherex.world.generation.feature.FeatureEnoki;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -86,17 +86,17 @@ public class BiomeFungiForest extends BiomeNetherEx
                     new Biome.SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4)
             )));
             this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
-                    new ConfigurableFeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
-                    new ConfigurableFeatureStructure(1, 0.0125D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":ghast_queen_shrine"), ConfigurableFeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
+                    new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
+                    new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
+                    new FeatureStructure(1, 0.0125D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":ghast_queen_shrine"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
             )));
             this.getFeatures(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, ConfigurableFeatureBigMushroom.Shape.FLAT),
-                    new ConfigurableFeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, ConfigurableFeatureBigMushroom.Shape.BULB),
-                    new ConfigurableFeatureEnoki(32, 1.0D, false, 48, 118)
+                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.FLAT),
+                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.BULB),
+                    new FeatureEnoki(32, 1.0D, false, 48, 118)
             )));
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
+                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
             )));
             return super.getAsConfig();
         }

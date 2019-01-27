@@ -21,10 +21,10 @@ import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureCluster;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureOre;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeaturePool;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureScatter;
+import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
+import logictechcorp.libraryex.world.generation.feature.FeatureOre;
+import logictechcorp.libraryex.world.generation.feature.FeaturePool;
+import logictechcorp.libraryex.world.generation.feature.FeatureScatter;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
@@ -90,14 +90,14 @@ public class BiomeArcticAbyss extends BiomeNetherEx
                     new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1)
             )));
             this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureScatter(5, 1.0D, true, 4, 124, NetherExBlocks.BLUE_FIRE.getDefaultState(), FROSTBURN_ICE, ConfigurableFeatureScatter.Placement.ON_GROUND),
-                    new ConfigurableFeatureCluster(10, 1.0D, true, 4, 124, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
-                    new ConfigurableFeatureCluster(10, 1.0D, false, 1, 128, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
-                    new ConfigurableFeaturePool(2, 0.125, false, 36, 96, NetherExBlocks.ICHOR.getDefaultState(), FROSTBURN_ICE)
+                    new FeatureScatter(5, 1.0D, true, 4, 124, NetherExBlocks.BLUE_FIRE.getDefaultState(), FROSTBURN_ICE, FeatureScatter.Placement.ON_GROUND),
+                    new FeatureCluster(10, 1.0D, true, 4, 124, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
+                    new FeatureCluster(10, 1.0D, false, 1, 128, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
+                    new FeaturePool(2, 0.125, false, 36, 96, NetherExBlocks.ICHOR.getDefaultState(), FROSTBURN_ICE)
             )));
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
-                    new ConfigurableFeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
+                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
+                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
             )));
             return super.getAsConfig();
         }

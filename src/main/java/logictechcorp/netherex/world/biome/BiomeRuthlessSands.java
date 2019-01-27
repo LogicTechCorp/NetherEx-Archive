@@ -21,15 +21,15 @@ import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureCluster;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureFluid;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeatureOre;
+import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
+import logictechcorp.libraryex.world.generation.feature.FeatureFluid;
+import logictechcorp.libraryex.world.generation.feature.FeatureOre;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpinout;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
-import logictechcorp.netherex.world.generation.feature.ConfigurableFeatureThornstalk;
+import logictechcorp.netherex.world.generation.feature.FeatureThornstalk;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -82,16 +82,16 @@ public class BiomeRuthlessSands extends BiomeNetherEx
                     new Biome.SpawnListEntry(EntitySpinout.class, 100, 1, 4)
             )));
             this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureFluid(8, 1.0D, false, 4, 124, FLOWING_LAVA, GLOOMY_NETHERRACK, false),
-                    new ConfigurableFeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
-                    new ConfigurableFeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
-                    new ConfigurableFeatureFluid(16, 1.0D, false, 10, 118, FLOWING_LAVA, GLOOMY_NETHERRACK, true)
+                    new FeatureFluid(8, 1.0D, false, 4, 124, FLOWING_LAVA, GLOOMY_NETHERRACK, false),
+                    new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
+                    new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
+                    new FeatureFluid(16, 1.0D, false, 10, 118, FLOWING_LAVA, GLOOMY_NETHERRACK, true)
             )));
             this.getFeatures(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureThornstalk(16, 1.0D, false, 32, 108)
+                    new FeatureThornstalk(16, 1.0D, false, 32, 108)
             )));
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new ConfigurableFeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
+                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
             )));
             return super.getAsConfig();
         }

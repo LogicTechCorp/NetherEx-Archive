@@ -19,10 +19,10 @@ package logictechcorp.netherex.village;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
+import logictechcorp.libraryex.entity.trader.Trade;
 import logictechcorp.libraryex.utility.ConfigHelper;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
-import logictechcorp.libraryex.village.ConfigurableTrade;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExRegistries;
 import net.minecraft.util.ResourceLocation;
@@ -72,7 +72,7 @@ public class PigtificateTradeManager
                             {
                                 for(Config tradeConfig : tradeConfigs)
                                 {
-                                    career.addTrade(new ConfigurableTrade(tradeConfig));
+                                    career.addTrade(new Trade(tradeConfig));
                                 }
                             }
                         }
@@ -101,13 +101,13 @@ public class PigtificateTradeManager
             {
                 for(PigtificateProfession.Career career : profession.getCareers())
                 {
-                    List<ConfigurableTrade> trades = career.getTrades();
+                    List<Trade> trades = career.getTrades();
                     File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml");
                     Files.createDirectories(configFile.getParentFile().toPath());
                     FileConfig tradeConfig = ConfigHelper.newConfig(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml"), true, true, true);
                     tradeConfig.set("profession", profession.getName().toString());
                     tradeConfig.set("career", career.getName().toString());
-                    tradeConfig.add("trades", trades.stream().map(ConfigurableTrade::getAsConfig).collect(Collectors.toList()));
+                    tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
                     tradeConfig.save();
                     tradeConfig.close();
                     trades.forEach(career::removeTrade);

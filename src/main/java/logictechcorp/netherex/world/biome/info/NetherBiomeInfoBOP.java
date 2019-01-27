@@ -22,9 +22,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class BOPNetherBiomeInfo extends NetherBiomeInfo
+public class NetherBiomeInfoBOP extends NetherBiomeInfo
 {
-    public BOPNetherBiomeInfo(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
+    public NetherBiomeInfoBOP(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
     {
         super(biomeRegistryName, weight, enabled, genDefaultFeatures);
     }

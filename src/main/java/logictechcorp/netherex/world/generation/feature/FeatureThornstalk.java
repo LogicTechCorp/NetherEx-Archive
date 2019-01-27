@@ -18,22 +18,23 @@
 package logictechcorp.netherex.world.generation.feature;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.generation.feature.ConfigurableFeature;
-import logictechcorp.netherex.block.BlockEnokiMushroomCap;
+import logictechcorp.libraryex.world.generation.feature.FeatureMod;
 import logictechcorp.netherex.init.NetherExBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ConfigurableFeatureEnoki extends ConfigurableFeature
+public class FeatureThornstalk extends FeatureMod
 {
-    public ConfigurableFeatureEnoki(Config config)
+    public FeatureThornstalk(Config config)
     {
         super(config);
     }
 
-    public ConfigurableFeatureEnoki(int generationAttempts, double generationProbability, boolean randomizeGenerationAttempts, int minGenerationHeight, int maxGenerationHeight)
+    public FeatureThornstalk(int generationAttempts, double generationProbability, boolean randomizeGenerationAttempts, int minGenerationHeight, int maxGenerationHeight)
     {
         super(generationAttempts, generationProbability, randomizeGenerationAttempts, minGenerationHeight, maxGenerationHeight);
     }
@@ -41,12 +42,17 @@ public class ConfigurableFeatureEnoki extends ConfigurableFeature
     @Override
     public boolean generate(World world, Random random, BlockPos pos)
     {
-        if(world.isAirBlock(pos.down()) && NetherExBlocks.ENOKI_MUSHROOM_CAP.canSurvive(world, pos) && random.nextInt(8) == 7)
+        for(int i = 0; i < 64; i++)
         {
-            BlockEnokiMushroomCap.generatePlant(world, pos, random, 8);
-            return true;
+            BlockPos newPos = pos.add(random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
+            Block blockDown = world.getBlockState(newPos.down()).getBlock();
+
+            if(blockDown == Blocks.SOUL_SAND && NetherExBlocks.THORNSTALK.canPlaceBlockAt(world, newPos))
+            {
+                NetherExBlocks.THORNSTALK.generate(world, random, newPos);
+            }
         }
 
-        return false;
+        return true;
     }
 }
