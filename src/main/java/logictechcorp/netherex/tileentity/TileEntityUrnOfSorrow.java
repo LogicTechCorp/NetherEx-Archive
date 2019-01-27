@@ -93,6 +93,12 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
         this.canBreak = compound.getBoolean("CanBreak");
     }
 
+    @Override
+    public boolean acceptsItemStack(ItemStack stack)
+    {
+        return stack.getItem() == Items.GHAST_TEAR;
+    }
+
     public int getSummoningTime()
     {
         return this.summoningTime;

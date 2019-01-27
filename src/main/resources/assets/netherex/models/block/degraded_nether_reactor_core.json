@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "netherex:blocks/degraded_nether_reactor_core"
+	}
+}

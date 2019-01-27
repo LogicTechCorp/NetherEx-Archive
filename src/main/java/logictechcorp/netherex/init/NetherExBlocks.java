@@ -77,6 +77,8 @@ public class NetherExBlocks
     public static final BlockBlueFire BLUE_FIRE = InjectionHelper.nullValue();
     public static final BlockNetherPortal NETHER_PORTAL = InjectionHelper.nullValue();
     public static final BlockUrnOfSorrow URN_OF_SORROW = InjectionHelper.nullValue();
+    public static final BlockNetherReactorCore NETHER_REACTOR_CORE = InjectionHelper.nullValue();
+    public static final BlockMod DEGRADED_NETHER_REACTOR_CORE = InjectionHelper.nullValue();
     public static final BlockDynamicNetherOre QUARTZ_ORE = InjectionHelper.nullValue();
     public static final BlockModOre AMETHYST_ORE = InjectionHelper.nullValue();
     public static final BlockModOre RIME_ORE = InjectionHelper.nullValue();
@@ -195,6 +197,8 @@ public class NetherExBlocks
                     new BlockBlueFire(),
                     new BlockNetherPortal(),
                     new BlockUrnOfSorrow(),
+                    new BlockNetherReactorCore(),
+                    new BlockMod(NetherEx.getResource("degraded_nether_reactor_core"), new BlockBuilder(Material.IRON, MapColor.OBSIDIAN).lightLevel(0.25F).hardness(2.0F).resistance(2.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockDynamicNetherOre(NetherEx.getResource("quartz_ore"), BlockDynamic.TexturePlacement.UNDER, new BlockBuilder(Material.ROCK, MapColor.NETHERRACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(2.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModOre(NetherEx.getResource("amethyst_ore"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(3.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModOre(NetherEx.getResource("rime_ore"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(3.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
@@ -308,6 +312,8 @@ public class NetherExBlocks
                     new ItemBlockMod(BONE_CHUNK, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(WORN_IRON, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(URN_OF_SORROW, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(NETHER_REACTOR_CORE, DEFAULT_ITEM_BLOCK_BUILDER),
+                    new ItemBlockMod(DEGRADED_NETHER_REACTOR_CORE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(QUARTZ_ORE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(AMETHYST_ORE, DEFAULT_ITEM_BLOCK_BUILDER),
                     new ItemBlockMod(RIME_ORE, DEFAULT_ITEM_BLOCK_BUILDER),

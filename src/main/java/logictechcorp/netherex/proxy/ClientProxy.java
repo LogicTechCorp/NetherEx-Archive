@@ -19,7 +19,8 @@ package logictechcorp.netherex.proxy;
 
 import logictechcorp.libraryex.proxy.IProxy;
 import logictechcorp.netherex.client.render.entity.*;
-import logictechcorp.netherex.client.render.tileentity.RenderSummoningAltar;
+import logictechcorp.netherex.client.render.tileentity.RenderNetherReactorCore;
+import logictechcorp.netherex.client.render.tileentity.RenderUrnOfSorrow;
 import logictechcorp.netherex.entity.boss.EntityGhastQueen;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.entity.monster.*;
@@ -33,6 +34,7 @@ import logictechcorp.netherex.entity.projectile.EntityBlueFireball;
 import logictechcorp.netherex.entity.projectile.EntityGhastQueenFireball;
 import logictechcorp.netherex.entity.projectile.EntityGhastlingFireball;
 import logictechcorp.netherex.init.NetherExParticleTypes;
+import logictechcorp.netherex.tileentity.TileEntityNetherReactorCore;
 import logictechcorp.netherex.tileentity.TileEntityUrnOfSorrow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -47,7 +49,8 @@ public class ClientProxy implements IProxy
     @Override
     public void preInit()
     {
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUrnOfSorrow.class, new RenderSummoningAltar());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUrnOfSorrow.class, new RenderUrnOfSorrow());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherReactorCore.class, new RenderNetherReactorCore());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueenFireball.class, RenderGhastQueenFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastlingFireball.class, RenderGhastlingFireball::new);

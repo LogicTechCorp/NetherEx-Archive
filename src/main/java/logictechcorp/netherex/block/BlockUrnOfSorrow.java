@@ -49,7 +49,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 
     public BlockUrnOfSorrow()
     {
-        super(NetherEx.getResource("urn_of_sorrow"), TileEntityUrnOfSorrow.class, new BlockBuilder(Material.ROCK, MapColor.SNOW).hardness(0.5F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("urn_of_sorrow"), TileEntityUrnOfSorrow.class, new BlockBuilder(Material.ROCK, MapColor.SNOW).hardness(2.0F).resistance(2.0F).creativeTab(NetherEx.instance.getCreativeTab()));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 
         ItemStackHandler inventory = urn.getInventory();
         ItemStack inventoryStack = inventory.getStackInSlot(0);
-        ItemStack heldStack = player.getHeldItemMainhand();
+        ItemStack heldStack = player.getHeldItem(hand);
 
         if(!player.isSneaking())
         {
@@ -92,16 +92,16 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
                 {
                     if(effect.getPotion() == NetherExEffects.LOST)
                     {
-                        player.getHeldItemMainhand().shrink(1);
+                        heldStack.shrink(1);
                         world.setBlockState(pos, state.withProperty(TYPE, EnumType.FULL));
                     }
                 }
             }
             else
             {
-                if(inventoryStack.isEmpty() && !player.getHeldItemMainhand().isEmpty())
+                if(inventoryStack.isEmpty() && !heldStack.isEmpty() && urn.acceptsItemStack(heldStack))
                 {
-                    inventory.setStackInSlot(0, player.getHeldItemMainhand().splitStack(1));
+                    inventory.setStackInSlot(0, heldStack.splitStack(1));
                 }
             }
         }
@@ -113,11 +113,12 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
                 {
                     urn.spawnItemStack(world, pos.up(), inventory.getStackInSlot(0));
                 }
+
                 inventory.setStackInSlot(0, ItemStack.EMPTY);
             }
         }
 
-        return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+        return true;
     }
 
     @Override
@@ -130,7 +131,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
             return 0.5F;
         }
 
-        return urn.canBreak() ? 0.5F : -1.0F;
+        return urn.canBreak() ? 2.0F : -1.0F;
     }
 
     @Override

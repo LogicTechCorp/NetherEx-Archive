@@ -122,6 +122,8 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.BONE_CHUNK.getDefaultState(), "facing=up");
         ModelHelper.registerBlockItemModel(NetherExBlocks.WORN_IRON.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.URN_OF_SORROW.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.NETHER_REACTOR_CORE.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.DEGRADED_NETHER_REACTOR_CORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.QUARTZ_ORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.AMETHYST_ORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.RIME_ORE.getDefaultState());

@@ -26,21 +26,22 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class RenderSummoningAltar extends TileEntitySpecialRenderer<TileEntityUrnOfSorrow>
+public class RenderUrnOfSorrow extends TileEntitySpecialRenderer<TileEntityUrnOfSorrow>
 {
     @Override
-    public void render(TileEntityUrnOfSorrow altar, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    public void render(TileEntityUrnOfSorrow urn, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if(altar == null)
+        if(urn == null)
         {
             return;
         }
 
-        World world = altar.getWorld();
-        ItemStack stack = altar.getInventory().getStackInSlot(0);
+        ItemStack stack = urn.getInventory().getStackInSlot(0);
 
         if(!stack.isEmpty())
         {
+            World world = urn.getWorld();
+
             GlStateManager.pushMatrix();
             GlStateManager.translate(x + 0.5F, y + 1.225F, z + 0.5F);
             GlStateManager.disableLighting();
