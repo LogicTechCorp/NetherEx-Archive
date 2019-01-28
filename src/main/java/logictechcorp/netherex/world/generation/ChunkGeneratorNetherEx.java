@@ -18,8 +18,8 @@
 package logictechcorp.netherex.world.generation;
 
 import logictechcorp.libraryex.event.LibExEventFactory;
-import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
+import logictechcorp.libraryex.world.generation.BiomeStyler;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.block.BlockFalling;
@@ -28,7 +28,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -375,7 +374,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.netherBridge.generate(this.world, chunkX, chunkZ, primer);
 
         Biome[] biomes = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
-        this.replaceBiomeBlocks(chunkX, chunkZ, primer, biomes);
+        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, NetherBiomeManager.INSTANCE, biomes, this.random);
 
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
@@ -466,123 +465,5 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         this.netherBridge.generate(this.world, chunkX, chunkZ, null);
-    }
-
-    /**
-     * A method that replaces the default Nether blocks with ones designated for each biome
-     * <p>
-     * Written by the Biomes O' Plenty team here:
-     * https://github.com/Glitchfiend/BiomesOPlenty/blob/9873b7ad56ab8f32e6073dea060c4b67aad8b77e/src/main/java/biomesoplenty/common/biome/nether/BOPHellBiome.java#L84
-     *
-     * @author Biomes O' Plenty team
-     */
-    private void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
-    {
-        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, this.world))
-        {
-            return;
-        }
-
-        this.terrainNoise = this.terrainNoiseGen.getRegion(this.terrainNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
-
-        for(int x = 0; x < 16; x++)
-        {
-            for(int z = 0; z < 16; z++)
-            {
-                BiomeInfo biomeInfo = NetherBiomeManager.INSTANCE.getBiomeInfo(biomes[x + z * 16]);
-
-                if(biomeInfo != null)
-                {
-                    Biome biome = biomeInfo.getBiome();
-                    ResourceLocation biomeName = biome.getRegistryName();
-
-                    if(!biomeName.getNamespace().equalsIgnoreCase("biomesoplenty"))
-                    {
-                        IBlockState surfaceBlock = biomeInfo.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, biome.topBlock);
-                        IBlockState fillerBlock = biomeInfo.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, biome.fillerBlock);
-                        IBlockState wallBlock = biomeInfo.getBiomeBlock(BiomeBlockType.WALL_BLOCK, biome.fillerBlock);
-                        IBlockState ceilingFillerBlock = biomeInfo.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, biome.fillerBlock);
-                        IBlockState ceilingBottomBlock = biomeInfo.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, biome.fillerBlock);
-                        IBlockState oceanBlock = biomeInfo.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
-
-                        int localX = ((chunkX * 16) + x) & 15;
-                        int localZ = ((chunkZ * 16) + z) & 15;
-
-                        boolean wasLastBlockSolid = true;
-
-                        for(int localY = 127; localY >= 0; localY--)
-                        {
-                            int blocksToSkip = 0;
-
-                            IBlockState checkState = primer.getBlockState(localX, localY, localZ);
-
-                            if(checkState.getBlock() == Blocks.NETHERRACK)
-                            {
-                                primer.setBlockState(localX, localY, localZ, wallBlock);
-
-                                if(!wasLastBlockSolid)
-                                {
-                                    primer.setBlockState(localX, localY, localZ, surfaceBlock);
-
-                                    for(int floorOffset = 1; floorOffset <= 4 - 1 && localY - floorOffset >= 0; floorOffset++)
-                                    {
-                                        IBlockState state = primer.getBlockState(localX, localY - floorOffset, localZ);
-                                        blocksToSkip = floorOffset;
-
-                                        if(state.getBlock() == Blocks.NETHERRACK)
-                                        {
-                                            primer.setBlockState(localX, localY - floorOffset, localZ, fillerBlock);
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-                                    }
-                                }
-
-                                wasLastBlockSolid = true;
-                            }
-                            else if(checkState.getBlock() == Blocks.AIR)
-                            {
-                                if(wasLastBlockSolid)
-                                {
-                                    if(localY + 1 < 128)
-                                    {
-                                        primer.setBlockState(localX, localY + 1, localZ, ceilingBottomBlock);
-                                    }
-
-                                    for(int roofOffset = 2; roofOffset <= 4 && localY + roofOffset <= 127; roofOffset++)
-                                    {
-                                        IBlockState state = primer.getBlockState(localX, localY + roofOffset, localZ);
-
-                                        if(state.getBlock() == Blocks.NETHERRACK || state == wallBlock)
-                                        {
-                                            primer.setBlockState(localX, localY + roofOffset, localZ, ceilingFillerBlock);
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-                                    }
-                                }
-
-                                wasLastBlockSolid = false;
-                            }
-                            else if(checkState == Blocks.LAVA.getDefaultState())
-                            {
-                                primer.setBlockState(localX, localY, localZ, oceanBlock);
-                                wasLastBlockSolid = false;
-                            }
-
-                            localY -= blocksToSkip;
-                        }
-                    }
-                    else
-                    {
-                        biome.genTerrainBlocks(this.world, this.random, primer, chunkX * 16 + x, chunkZ * 16 + z, this.terrainNoise[x + z * 16]);
-                    }
-                }
-            }
-        }
     }
 }
