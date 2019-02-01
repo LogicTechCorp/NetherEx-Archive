@@ -53,6 +53,16 @@ public class NetherExOreDictionary
         OreDictionary.registerOre("stoneBasalt", new ItemStack(NetherExBlocks.BASALT_PILLAR));
         OreDictionary.registerOre("stoneBasaltBrick", new ItemStack(NetherExBlocks.BASALT_BRICK));
         OreDictionary.registerOre("stoneBasaltBrick", new ItemStack(NetherExBlocks.BASALT_PILLAR));
+        OreDictionary.registerOre("blockBrickNether", new ItemStack(Blocks.NETHER_BRICK));
+        OreDictionary.registerOre("blockBrickNether", new ItemStack(NetherExBlocks.GLOOMY_NETHER_BRICK));
+        OreDictionary.registerOre("blockBrickNether", new ItemStack(NetherExBlocks.LIVELY_NETHER_BRICK));
+        OreDictionary.registerOre("blockBrickNether", new ItemStack(NetherExBlocks.FIERY_NETHER_BRICK));
+        OreDictionary.registerOre("blockBrickNether", new ItemStack(NetherExBlocks.ICY_NETHER_BRICK));
+        OreDictionary.registerOre("blockNetherBrick", new ItemStack(Blocks.NETHER_BRICK));
+        OreDictionary.registerOre("blockNetherBrick", new ItemStack(NetherExBlocks.GLOOMY_NETHER_BRICK));
+        OreDictionary.registerOre("blockNetherBrick", new ItemStack(NetherExBlocks.LIVELY_NETHER_BRICK));
+        OreDictionary.registerOre("blockNetherBrick", new ItemStack(NetherExBlocks.FIERY_NETHER_BRICK));
+        OreDictionary.registerOre("blockNetherBrick", new ItemStack(NetherExBlocks.ICY_NETHER_BRICK));
         OreDictionary.registerOre("blockGlass", new ItemStack(NetherExBlocks.SOUL_GLASS));
         OreDictionary.registerOre("paneGlass", new ItemStack(NetherExBlocks.SOUL_GLASS_PANE));
         OreDictionary.registerOre("ingotBrickNether", new ItemStack(NetherExItems.GLOOMY_NETHERBRICK));

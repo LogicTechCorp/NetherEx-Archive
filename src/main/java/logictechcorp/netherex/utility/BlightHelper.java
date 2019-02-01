@@ -41,31 +41,31 @@ public class BlightHelper
 
         if(!state.getMaterial().isReplaceable() && !state.getMaterial().isLiquid() && state.isFullBlock() && state.isFullCube() && state.isOpaqueCube())
         {
-            if(BlockHelper.isOreDict("grass", block))
+            if(BlockHelper.isOreDict(block, "grass"))
             {
                 return world.setBlockState(pos, NetherExBlocks.HYPHAE.getDefaultState());
             }
-            else if(BlockHelper.isOreDict("dirt", block))
+            else if(BlockHelper.isOreDict(block, "dirt"))
             {
                 return world.setBlockState(pos, NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
             }
-            else if(BlockHelper.isOreDict("stone", block))
+            else if(BlockHelper.isOreDict(block, "stone"))
             {
                 return world.setBlockState(pos, NetherExBlocks.BASALT.getDefaultState());
             }
-            else if(BlockHelper.isOreDict("ore", state.getBlock()))
+            else if(BlockHelper.isOreDict(state.getBlock(), "ore"))
             {
                 return world.setBlockState(pos, NetherExBlocks.ARDITE_ORE.getDefaultState());
             }
-            else if(BlockHelper.isOreDict("logWood", block))
+            else if(BlockHelper.isOreDict(block, "logWood"))
             {
                 return world.setBlockState(pos, Blocks.HARDENED_CLAY.getDefaultState());
             }
-            else if(BlockHelper.isOreDict("treeLeaves", block))
+            else if(BlockHelper.isOreDict(block, "treeLeaves"))
             {
                 return world.setBlockState(pos, Blocks.MAGMA.getDefaultState());
             }
-            else if(BlockHelper.isOreDict("sand", block))
+            else if(BlockHelper.isOreDict(block, "sand"))
             {
                 return world.setBlockState(pos, Blocks.SOUL_SAND.getDefaultState());
             }

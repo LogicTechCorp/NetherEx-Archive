@@ -44,18 +44,14 @@ public class TileEntityUrnOfSorrow extends TileEntityInventory implements ITicka
     {
         if(BlockUrnOfSorrow.EnumType.fromMeta(this.getBlockMetadata()) == BlockUrnOfSorrow.EnumType.FULL)
         {
-            ItemStack stack = this.getInventory().getStackInSlot(0);
-
-            if(stack.getItem() == Items.GHAST_TEAR)
+            if(this.summoningTime == 0)
             {
-                if(this.summoningTime == 0)
-                {
-                    this.world.playSound(null, this.pos, NetherExSoundEvents.GHAST_QUEEN_SUMMON, SoundCategory.AMBIENT, 0.5F, 1.0F);
-                }
-
-                this.summoningTime += 1;
-                this.canBreak = false;
+                this.world.playSound(null, this.pos, NetherExSoundEvents.GHAST_QUEEN_SUMMON, SoundCategory.AMBIENT, 0.5F, 1.0F);
             }
+
+            this.summoningTime += 1;
+            this.canBreak = false;
+
             if(this.summoningTime / 20.0F >= 6.8F)
             {
                 EntityGhastQueen ghastQueen = new EntityGhastQueen(this.getWorld());

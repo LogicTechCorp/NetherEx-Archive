@@ -108,7 +108,7 @@ public class BlockNetherReactorCore extends BlockTileEntity<TileEntityNetherReac
         ItemStackHandler inventory = reactorCore.getInventory();
         ItemStack inventoryStack = inventory.getStackInSlot(0);
 
-        if (!inventoryStack.isEmpty() && block != this && world.isBlockPowered(pos))
+        if(!inventoryStack.isEmpty() && reactorCore.hasFormed() && block != this && world.isBlockPowered(pos))
         {
             world.setBlockState(pos, state.withProperty(ACTIVATED, true), 2);
         }
@@ -117,7 +117,7 @@ public class BlockNetherReactorCore extends BlockTileEntity<TileEntityNetherReac
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return  !state.getValue(ACTIVATED) ? 5 : 15;
+        return !state.getValue(ACTIVATED) ? 5 : 15;
     }
 
     @Override

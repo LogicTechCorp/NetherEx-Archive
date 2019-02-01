@@ -96,7 +96,7 @@ public class ItemRimeAndSteel extends ItemMod
 
                 for(EnumFacing checkFacing : EnumFacing.values())
                 {
-                    if(BlockHelper.isOreDict("obsidian", world.getBlockState(pos.offset(checkFacing)).getBlock()))
+                    if(BlockHelper.isOreDict(world.getBlockState(pos.offset(checkFacing)).getBlock(), "obsidian"))
                     {
                         NetherExBlocks.NETHER_PORTAL.trySpawnPortal(world, pos);
                     }

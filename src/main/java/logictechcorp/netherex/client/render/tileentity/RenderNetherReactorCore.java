@@ -50,15 +50,16 @@ public class RenderNetherReactorCore extends TileEntitySpecialRenderer<TileEntit
             if(state.getBlock() == NetherExBlocks.NETHER_REACTOR_CORE)
             {
                 GlStateManager.pushMatrix();
-                GlStateManager.translate(x + 0.5F, y + 1.225F, z + 0.5F);
                 GlStateManager.disableLighting();
 
                 if(!state.getValue(BlockNetherReactorCore.ACTIVATED))
                 {
+                    GlStateManager.translate(x + 0.5F, y + 1.225F, z + 0.5F);
                     GlStateManager.rotate(((world.getTotalWorldTime() + partialTicks) / 15.0F) * (180.0F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
                 }
                 else
                 {
+                    GlStateManager.translate(x + 0.5F, y + 2.225F, z + 0.5F);
                     GlStateManager.rotate(((world.getTotalWorldTime() + partialTicks)) * (180.0F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
                 }
 

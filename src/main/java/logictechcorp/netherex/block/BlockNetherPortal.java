@@ -82,7 +82,6 @@ public class BlockNetherPortal extends BlockModPortal
         }
     }
 
-
     @Override
     public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
@@ -132,6 +131,6 @@ public class BlockNetherPortal extends BlockModPortal
     public boolean isPortalPart(World world, BlockPos pos)
     {
         Block block = world.getBlockState(pos).getBlock();
-        return BlockHelper.isOreDict("obsidian", block) || block == NetherExBlocks.BLUE_FIRE || block == this;
+        return BlockHelper.isOreDict(block, "obsidian") || block == NetherExBlocks.BLUE_FIRE || block == this;
     }
 }
