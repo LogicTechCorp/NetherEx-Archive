@@ -41,7 +41,7 @@ public class NetherExOverrides
 
     public static void overrideNether()
     {
-        if(ConfigHandler.dimensionConfig.nether.overrideNether)
+        if(DimensionManager.getWorld(DimensionType.OVERWORLD.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
         {
             DimensionManager.unregisterDimension(-1);
             DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNetherEx.class, false);

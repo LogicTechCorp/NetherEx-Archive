@@ -23,8 +23,10 @@ import logictechcorp.netherex.capability.CapabilityBlightChunkData;
 import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.GuiHandler;
+import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateTradeManager;
+import logictechcorp.netherex.world.WorldTypeNetherEx;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -69,7 +71,9 @@ public class NetherEx implements IModData
         }
     };
 
-    public static final boolean IS_BOP_LOADED = Loader.isModLoaded("biomesoplenty");
+    public static final WorldTypeNetherEx WORLD_TYPE = new WorldTypeNetherEx();
+    public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
+    public static final boolean LOST_CITIES_LOADED = Loader.isModLoaded("lostcities");
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 
@@ -97,19 +101,20 @@ public class NetherEx implements IModData
         NetherExOreDictionary.registerOres();
         NetherExFeatures.registerFeatures();
         NetherExCriteria.registerCriteria();
+        IMCHandler.sendCompatibilityMessages();
         proxy.init();
     }
 
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        NetherExOverrides.overrideNether();
         proxy.postInit();
     }
 
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
+        NetherExOverrides.overrideNether();
         NetherBiomeManager.INSTANCE.readBiomeInfoFromConfigs();
         PigtificateTradeManager.readTradesFromConfigs();
     }

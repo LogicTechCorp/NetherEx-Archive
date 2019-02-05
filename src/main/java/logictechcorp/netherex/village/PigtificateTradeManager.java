@@ -26,6 +26,8 @@ import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExRegistries;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DimensionType;
+import net.minecraftforge.common.DimensionManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,83 +42,89 @@ public class PigtificateTradeManager
 {
     public static void readTradesFromConfigs()
     {
-        Path path = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades").toPath();
-        NetherEx.LOGGER.info("Reading Pigtificate trade configs.");
-
-        try
+        if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
         {
-            Files.createDirectories(path);
-            Iterator<Path> pathIter = Files.walk(path).iterator();
+            Path path = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades").toPath();
+            NetherEx.LOGGER.info("Reading Pigtificate trade configs.");
 
-            while(pathIter.hasNext())
+            try
             {
-                Path configPath = pathIter.next();
-                File configFile = configPath.toFile();
+                Files.createDirectories(path);
+                Iterator<Path> pathIter = Files.walk(path).iterator();
 
-                if(FileHelper.getFileExtension(configFile).equals("toml"))
+                while(pathIter.hasNext())
                 {
-                    FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
-                    config.load();
+                    Path configPath = pathIter.next();
+                    File configFile = configPath.toFile();
 
-                    PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
-
-                    if(profession != null)
+                    if(FileHelper.getFileExtension(configFile).equals("toml"))
                     {
-                        PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
+                        FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
+                        config.load();
 
-                        if(career != null)
+                        PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
+
+                        if(profession != null)
                         {
-                            List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
+                            PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
 
-                            if(tradeConfigs.size() > 0)
+                            if(career != null)
                             {
-                                for(Config tradeConfig : tradeConfigs)
+                                List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
+
+                                if(tradeConfigs.size() > 0)
                                 {
-                                    career.addTrade(new Trade(tradeConfig));
+                                    for(Config tradeConfig : tradeConfigs)
+                                    {
+                                        career.addTrade(new Trade(tradeConfig));
+                                    }
                                 }
                             }
                         }
-                    }
 
-                }
-                else if(!configFile.isDirectory())
-                {
-                    NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a toml file.", configPath.toString());
+                    }
+                    else if(!configFile.isDirectory())
+                    {
+                        NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a toml file.", configPath.toString());
+                    }
                 }
             }
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void writeTradesToConfigs()
     {
-        try
+        if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
         {
-            NetherEx.LOGGER.info("Writing Pigtificate trade configs.");
-
-            for(PigtificateProfession profession : NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection())
+            try
             {
-                for(PigtificateProfession.Career career : profession.getCareers())
+                NetherEx.LOGGER.info("Writing Pigtificate trade configs.");
+
+                for(PigtificateProfession profession : NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection())
                 {
-                    List<Trade> trades = career.getTrades();
-                    File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml");
-                    Files.createDirectories(configFile.getParentFile().toPath());
-                    FileConfig tradeConfig = ConfigHelper.newConfig(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml"), true, true, true);
-                    tradeConfig.set("profession", profession.getName().toString());
-                    tradeConfig.set("career", career.getName().toString());
-                    tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
-                    tradeConfig.save();
-                    tradeConfig.close();
-                    trades.forEach(career::removeTrade);
+                    for(PigtificateProfession.Career career : profession.getCareers())
+                    {
+                        List<Trade> trades = career.getTrades();
+                        File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml");
+                        Files.createDirectories(configFile.getParentFile().toPath());
+                        FileConfig tradeConfig = ConfigHelper.newConfig(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml"), true, true, true);
+                        tradeConfig.set("profession", profession.getName().toString());
+                        tradeConfig.set("career", career.getName().toString());
+                        tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
+                        tradeConfig.save();
+                        tradeConfig.close();
+                        trades.forEach(career::removeTrade);
+                    }
                 }
             }
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 }

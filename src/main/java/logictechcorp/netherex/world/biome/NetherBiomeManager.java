@@ -28,7 +28,9 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import logictechcorp.netherex.world.biome.info.NetherBiomeInfoHell;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.io.File;
@@ -54,82 +56,88 @@ public class NetherBiomeManager extends DimensionBiomeManager
     @Override
     public void readBiomeInfoFromConfigs()
     {
-        Path path = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Biomes").toPath();
-        NetherEx.LOGGER.info("Reading Nether biome configs.");
-
-        try
+        if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
         {
-            Files.createDirectories(path);
-            Iterator<Path> pathIter = Files.walk(path).iterator();
+            Path path = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Biomes").toPath();
+            NetherEx.LOGGER.info("Reading Nether biome configs.");
 
-            while(pathIter.hasNext())
+            try
             {
-                File configFile = pathIter.next().toFile();
+                Files.createDirectories(path);
+                Iterator<Path> pathIter = Files.walk(path).iterator();
 
-                if(FileHelper.getFileExtension(configFile).equals("toml"))
+                while(pathIter.hasNext())
                 {
-                    FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
-                    config.load();
+                    File configFile = pathIter.next().toFile();
 
-                    Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
-
-                    if(biome != null)
+                    if(FileHelper.getFileExtension(configFile).equals("toml"))
                     {
-                        BiomeInfo info = this.getBiomeInfo(biome);
+                        FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
+                        config.load();
 
-                        if(info == null)
+                        Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
+
+                        if(biome != null)
                         {
-                            info = new NetherBiomeInfo();
+                            BiomeInfo info = this.getBiomeInfo(biome);
+
+                            if(info == null)
+                            {
+                                info = new NetherBiomeInfo();
+                            }
+
+                            info.setupFromConfig(config);
+
+                            if(info.isEnabled())
+                            {
+                                this.addBiome(info);
+                            }
+                            else
+                            {
+                                this.removeBiome(info);
+                            }
                         }
 
-                        info.setupFromConfig(config);
-
-                        if(info.isEnabled())
-                        {
-                            this.addBiome(info);
-                        }
-                        else
-                        {
-                            this.removeBiome(info);
-                        }
+                        config.close();
                     }
-
-                    config.close();
-                }
-                else if(!configFile.isDirectory())
-                {
-                    NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a toml file.", configFile.getPath());
+                    else if(!configFile.isDirectory())
+                    {
+                        NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a toml file.", configFile.getPath());
+                    }
                 }
             }
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public void writeBiomeInfoToConfigs()
     {
-        NetherEx.LOGGER.info("Writing Nether biome configs.");
-
-        for(BiomeInfo info : this.getAllBiomeInfo())
+        if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
         {
-            File configFile = this.getBiomeInfoSaveFile(info);
-            FileConfig fileConfig = FileConfig.of(configFile);
+            NetherEx.LOGGER.info("Writing Nether biome configs.");
 
-            if(!configFile.exists() && configFile.getParentFile().mkdirs() || !configFile.exists())
+            for(BiomeInfo info : this.getAllBiomeInfo())
             {
-                Config config = info.getAsConfig();
-                config.entrySet().forEach(entry -> fileConfig.add(entry.getKey(), entry.getValue()));
-            }
-            else
-            {
-                fileConfig.load();
-                info.setupFromConfig(fileConfig);
-            }
+                File configFile = this.getBiomeInfoSaveFile(info);
+                FileConfig fileConfig = FileConfig.of(configFile);
 
-            fileConfig.save();
+                if(!configFile.exists() && configFile.getParentFile().mkdirs() || !configFile.exists())
+                {
+                    Config config = info.getAsConfig();
+                    config.entrySet().forEach(entry -> fileConfig.add(entry.getKey(), entry.getValue()));
+                }
+                else
+                {
+                    fileConfig.load();
+                    info.setupFromConfig(fileConfig);
+                }
+
+                fileConfig.save();
+            }
         }
     }
 

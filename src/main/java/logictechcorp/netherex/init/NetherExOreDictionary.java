@@ -53,6 +53,7 @@ public class NetherExOreDictionary
         OreDictionary.registerOre("stoneBasalt", new ItemStack(NetherExBlocks.BASALT_PILLAR));
         OreDictionary.registerOre("stoneBasaltBrick", new ItemStack(NetherExBlocks.BASALT_BRICK));
         OreDictionary.registerOre("stoneBasaltBrick", new ItemStack(NetherExBlocks.BASALT_PILLAR));
+        OreDictionary.registerOre("blockIce", new ItemStack(NetherExBlocks.FROSTBURN_ICE));
         OreDictionary.registerOre("blockBrickNether", new ItemStack(Blocks.NETHER_BRICK));
         OreDictionary.registerOre("blockBrickNether", new ItemStack(NetherExBlocks.GLOOMY_NETHER_BRICK));
         OreDictionary.registerOre("blockBrickNether", new ItemStack(NetherExBlocks.LIVELY_NETHER_BRICK));

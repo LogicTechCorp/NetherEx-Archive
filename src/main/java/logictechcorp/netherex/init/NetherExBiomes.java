@@ -84,7 +84,7 @@ public class NetherExBiomes
         NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.ARCTIC_ABYSS.getInfo());
         NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.REGROWTHS_COLLAPSE.getInfo());
 
-        if(NetherEx.IS_BOP_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
+        if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {
             NetherBiomeManager.INSTANCE.addBiome(new NetherBiomeInfoBOP(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, true));
             NetherBiomeManager.INSTANCE.addBiome(new NetherBiomeInfoBOP(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, true));
