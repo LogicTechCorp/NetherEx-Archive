@@ -19,14 +19,11 @@ package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.utility.ConfigHelper;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.biome.DimensionBiomeManager;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
-import logictechcorp.netherex.world.biome.info.NetherBiomeInfoHell;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
@@ -70,9 +67,9 @@ public class NetherBiomeManager extends DimensionBiomeManager
                 {
                     File configFile = pathIter.next().toFile();
 
-                    if(FileHelper.getFileExtension(configFile).equals("toml"))
+                    if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
+                        FileConfig config = FileConfig.builder(configFile).autoreload().autosave().sync().build();
                         config.load();
 
                         Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
@@ -102,7 +99,7 @@ public class NetherBiomeManager extends DimensionBiomeManager
                     }
                     else if(!configFile.isDirectory())
                     {
-                        NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a toml file.", configFile.getPath());
+                        NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
                     }
                 }
             }

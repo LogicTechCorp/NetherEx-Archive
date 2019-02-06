@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
@@ -28,7 +27,6 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpinout;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import logictechcorp.netherex.world.generation.feature.FeatureThornstalk;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -70,12 +68,12 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         @Override
         public Config getAsConfig()
         {
-            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, SOUL_SAND);
-            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, LAVA);
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_TOP_BLOCK, SOUL_SAND);
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.WALL_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.OCEAN_BLOCK, LAVA);
             this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityWitherSkeleton.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 3, 1, 4),

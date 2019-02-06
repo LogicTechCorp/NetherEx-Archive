@@ -15,10 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.biome.info;
+package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
 import logictechcorp.libraryex.world.generation.feature.FeatureFluid;
@@ -45,12 +44,12 @@ public final class NetherBiomeInfoHell extends NetherBiomeInfo
     @Override
     public Config getAsConfig()
     {
-        this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
+        this.getBiomeBlock(BlockType.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BlockType.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BlockType.WALL_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BlockType.CEILING_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BlockType.CEILING_BOTTOM_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.getBiomeBlock(BlockType.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
         this.getEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
                 new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                 new Biome.SpawnListEntry(EntityPigZombie.class, 100, 1, 4),

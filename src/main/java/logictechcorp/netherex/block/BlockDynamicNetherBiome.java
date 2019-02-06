@@ -19,7 +19,6 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockDynamic;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.block.state.IBlockState;
@@ -44,7 +43,7 @@ public abstract class BlockDynamicNetherBiome extends BlockDynamic
 
         if(info != null)
         {
-            return info.getBiomeBlock(BiomeBlockType.WALL_BLOCK, null);
+            return info.getBiomeBlock(BiomeInfo.BlockType.WALL_BLOCK, null);
         }
 
         return Blocks.NETHERRACK.getDefaultState();

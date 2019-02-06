@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.*;
@@ -27,7 +26,6 @@ import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityBlaze;
@@ -69,12 +67,12 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         @Override
         public Config getAsConfig()
         {
-            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, LAVA);
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.WALL_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.OCEAN_BLOCK, LAVA);
             this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6),

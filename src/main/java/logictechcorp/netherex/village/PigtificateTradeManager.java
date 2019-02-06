@@ -20,7 +20,6 @@ package logictechcorp.netherex.village;
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import logictechcorp.libraryex.entity.trader.Trade;
-import logictechcorp.libraryex.utility.ConfigHelper;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.netherex.NetherEx;
@@ -57,9 +56,9 @@ public class PigtificateTradeManager
                     Path configPath = pathIter.next();
                     File configFile = configPath.toFile();
 
-                    if(FileHelper.getFileExtension(configFile).equals("toml"))
+                    if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        FileConfig config = ConfigHelper.newConfig(configFile, true, true, true);
+                        FileConfig config = FileConfig.builder(configFile).autoreload().autosave().sync().build();
                         config.load();
 
                         PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
@@ -85,7 +84,7 @@ public class PigtificateTradeManager
                     }
                     else if(!configFile.isDirectory())
                     {
-                        NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a toml file.", configPath.toString());
+                        NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
                     }
                 }
             }
@@ -109,9 +108,9 @@ public class PigtificateTradeManager
                     for(PigtificateProfession.Career career : profession.getCareers())
                     {
                         List<Trade> trades = career.getTrades();
-                        File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml");
+                        File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json");
                         Files.createDirectories(configFile.getParentFile().toPath());
-                        FileConfig tradeConfig = ConfigHelper.newConfig(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".toml"), true, true, true);
+                        FileConfig tradeConfig = FileConfig.of(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json"));
                         tradeConfig.set("profession", profession.getName().toString());
                         tradeConfig.set("career", career.getName().toString());
                         tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));

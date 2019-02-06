@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
@@ -28,7 +27,6 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.passive.EntityBonspider;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -64,12 +62,12 @@ public class BiomeRegrowthsCollapse extends BiomeNetherEx
         @Override
         public Config getAsConfig()
         {
-            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, Blocks.GRASS.getDefaultState());
-            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, Blocks.DIRT.getDefaultState());
-            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, Blocks.STONE.getDefaultState());
-            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, Blocks.STONE.getDefaultState());
-            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, Blocks.STONE.getDefaultState());
-            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, Blocks.WATER.getDefaultState());
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_TOP_BLOCK, Blocks.GRASS.getDefaultState());
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_FILLER_BLOCK, Blocks.DIRT.getDefaultState());
+            this.getBiomeBlock(BiomeInfo.BlockType.WALL_BLOCK, Blocks.STONE.getDefaultState());
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_BOTTOM_BLOCK, Blocks.STONE.getDefaultState());
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_FILLER_BLOCK, Blocks.STONE.getDefaultState());
+            this.getBiomeBlock(BiomeInfo.BlockType.OCEAN_BLOCK, Blocks.WATER.getDefaultState());
             this.getEntities(EnumCreatureType.CREATURE).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityBonspider.class, 65, 2, 4)
             )));

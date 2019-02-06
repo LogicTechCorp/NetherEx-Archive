@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
@@ -31,7 +30,6 @@ import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
 import logictechcorp.netherex.entity.monster.EntityWight;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.info.NetherBiomeInfo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityGhast;
@@ -76,12 +74,12 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         @Override
         public Config getAsConfig()
         {
-            this.getBiomeBlock(BiomeBlockType.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
-            this.getBiomeBlock(BiomeBlockType.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.WALL_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlockType.OCEAN_BLOCK, MAGMA);
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
+            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.WALL_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeInfo.BlockType.OCEAN_BLOCK, MAGMA);
             this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),

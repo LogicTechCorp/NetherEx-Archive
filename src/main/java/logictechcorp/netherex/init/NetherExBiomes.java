@@ -25,7 +25,6 @@ import logictechcorp.libraryex.world.generation.feature.FeatureStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.*;
-import logictechcorp.netherex.world.biome.info.NetherBiomeInfoBOP;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;

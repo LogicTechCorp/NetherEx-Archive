@@ -15,22 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.biome.info;
+package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.world.biome.BiomeInfo;
-import net.minecraft.init.Biomes;
+import logictechcorp.netherex.NetherEx;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.WorldType;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class NetherBiomeInfo extends BiomeInfo
+public class NetherBiomeInfoBOP extends NetherBiomeInfo
 {
-    public NetherBiomeInfo(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
+    public NetherBiomeInfoBOP(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
     {
         super(biomeRegistryName, weight, enabled, genDefaultFeatures);
     }
 
-    public NetherBiomeInfo()
+    @Override
+    public boolean isEnabled()
     {
-        super();
-        this.biome = Biomes.HELL;
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+
+        if(server != null && NetherEx.BIOMES_O_PLENTY_LOADED)
+        {
+            WorldType worldType = server.getEntityWorld().getWorldType();
+            return worldType.getName().equalsIgnoreCase(NetherEx.MOD_ID);
+        }
+
+        return false;
     }
 }
