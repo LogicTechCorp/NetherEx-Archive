@@ -113,28 +113,25 @@ public class NetherBiomeManager extends DimensionBiomeManager
     @Override
     public void writeBiomeInfoToConfigs()
     {
-        if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
+        NetherEx.LOGGER.info("Writing Nether biome configs.");
+
+        for(BiomeInfo info : this.getAllBiomeInfo())
         {
-            NetherEx.LOGGER.info("Writing Nether biome configs.");
+            File configFile = this.getBiomeInfoSaveFile(info);
+            FileConfig fileConfig = FileConfig.of(configFile);
 
-            for(BiomeInfo info : this.getAllBiomeInfo())
+            if(!configFile.exists() && configFile.getParentFile().mkdirs() || !configFile.exists())
             {
-                File configFile = this.getBiomeInfoSaveFile(info);
-                FileConfig fileConfig = FileConfig.of(configFile);
-
-                if(!configFile.exists() && configFile.getParentFile().mkdirs() || !configFile.exists())
-                {
-                    Config config = info.getAsConfig();
-                    config.entrySet().forEach(entry -> fileConfig.add(entry.getKey(), entry.getValue()));
-                }
-                else
-                {
-                    fileConfig.load();
-                    info.setupFromConfig(fileConfig);
-                }
-
-                fileConfig.save();
+                Config config = info.getAsConfig();
+                config.entrySet().forEach(entry -> fileConfig.add(entry.getKey(), entry.getValue()));
             }
+            else
+            {
+                fileConfig.load();
+                info.setupFromConfig(fileConfig);
+            }
+
+            fileConfig.save();
         }
     }
 

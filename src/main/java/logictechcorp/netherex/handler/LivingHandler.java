@@ -77,11 +77,11 @@ public class LivingHandler
                     int conversionBoosters = 0;
                     BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
-                    for(int x = (int) zombiePigman.posX - 4; x < (int) zombiePigman.posX + 4 && conversionBoosters < 14; ++x)
+                    for(int x = (int) zombiePigman.posX - 4; x < (int) zombiePigman.posX + 4 && conversionBoosters < 14; x++)
                     {
-                        for(int y = (int) zombiePigman.posY - 4; y < (int) zombiePigman.posY + 4 && conversionBoosters < 14; ++y)
+                        for(int y = (int) zombiePigman.posY - 4; y < (int) zombiePigman.posY + 4 && conversionBoosters < 14; y++)
                         {
-                            for(int z = (int) zombiePigman.posZ - 4; z < (int) zombiePigman.posZ + 4 && conversionBoosters < 14; ++z)
+                            for(int z = (int) zombiePigman.posZ - 4; z < (int) zombiePigman.posZ + 4 && conversionBoosters < 14; z++)
                             {
                                 Block block = world.getBlockState(mutableBlockPos.setPos(x, y, z)).getBlock();
 

@@ -102,7 +102,7 @@ public class PlayerHandler
 
                 if(stack.getItem() == NetherExItems.DULL_MIRROR)
                 {
-                    if(stack.getItemDamage() < 3)
+                    if(stack.getItemDamage() < (stack.getMaxDamage() - 1))
                     {
                         stack.damageItem(1, newPlayer);
                     }

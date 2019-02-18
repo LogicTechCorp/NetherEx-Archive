@@ -97,33 +97,30 @@ public class PigtificateTradeManager
 
     public static void writeTradesToConfigs()
     {
-        if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
+        try
         {
-            try
-            {
-                NetherEx.LOGGER.info("Writing Pigtificate trade configs.");
+            NetherEx.LOGGER.info("Writing Pigtificate trade configs.");
 
-                for(PigtificateProfession profession : NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection())
+            for(PigtificateProfession profession : NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection())
+            {
+                for(PigtificateProfession.Career career : profession.getCareers())
                 {
-                    for(PigtificateProfession.Career career : profession.getCareers())
-                    {
-                        List<Trade> trades = career.getTrades();
-                        File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json");
-                        Files.createDirectories(configFile.getParentFile().toPath());
-                        FileConfig tradeConfig = FileConfig.of(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json"));
-                        tradeConfig.set("profession", profession.getName().toString());
-                        tradeConfig.set("career", career.getName().toString());
-                        tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
-                        tradeConfig.save();
-                        tradeConfig.close();
-                        trades.forEach(career::removeTrade);
-                    }
+                    List<Trade> trades = career.getTrades();
+                    File configFile = new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json");
+                    Files.createDirectories(configFile.getParentFile().toPath());
+                    FileConfig tradeConfig = FileConfig.of(new File(WorldHelper.getSaveFile(), "/config/NetherEx/Trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json"));
+                    tradeConfig.set("profession", profession.getName().toString());
+                    tradeConfig.set("career", career.getName().toString());
+                    tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
+                    tradeConfig.save();
+                    tradeConfig.close();
+                    trades.forEach(career::removeTrade);
                 }
             }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-            }
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
         }
     }
 }

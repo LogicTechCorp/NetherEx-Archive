@@ -28,60 +28,60 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelSalamander extends ModelBase
 {
-    private ModelRenderer frontRightLeg;
-    private ModelRenderer frontLeftLeg;
-    private ModelRenderer toothLeft;
-    private ModelRenderer toothRight;
-    private ModelRenderer jawLower;
-    private ModelRenderer jawUpper;
-    private ModelRenderer bodyFront;
-    private ModelRenderer bodyBack;
-    private ModelRenderer tail;
-    private ModelRenderer backRightLeg;
-    private ModelRenderer backLeftLeg;
+    public ModelRenderer head;
+    public ModelRenderer torso;
+    public ModelRenderer frontRightLeg;
+    public ModelRenderer frontLeftLeg;
+    public ModelRenderer backRightLeg;
+    public ModelRenderer backLeftLeg;
+    public ModelRenderer mouth;
+    public ModelRenderer teeth;
+    public ModelRenderer waist;
+    public ModelRenderer tail;
 
     public ModelSalamander()
     {
-        this.frontRightLeg = new ModelRenderer(this, 0, 18);
-        this.frontRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
-        this.frontRightLeg.setRotationPoint(-6F, 19.5F, -4.5F);
-        this.frontLeftLeg = new ModelRenderer(this, 0, 18);
-        this.frontLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
-        this.frontLeftLeg.setRotationPoint(6F, 19.5F, -4.5F);
-        this.toothLeft = new ModelRenderer(this, 0, 27);
-        this.toothLeft.addBox(1.5F, -6.5F, -1F, 1, 1, 1, 0.0F);
-        this.toothLeft.setRotationPoint(0F, 20.5F, -7.5F);
-        this.toothLeft.rotateAngleX = 1.5708F;
-        this.toothRight = new ModelRenderer(this, 0, 27);
-        this.toothRight.addBox(-2.5F, -6.5F, -1F, 1, 1, 1, 0.0F);
-        this.toothRight.setRotationPoint(0F, 20.5F, -7.5F);
-        this.toothRight.rotateAngleX = 1.5708F;
-        this.jawLower = new ModelRenderer(this, 0, 9);
-        this.jawLower.addBox(-3F, -7F, -2.5F, 6, 7, 2, 0.0F);
-        this.jawLower.setRotationPoint(0F, 20.5F, -7.5F);
-        this.jawLower.rotateAngleX = 1.5708F;
-        this.jawUpper = new ModelRenderer(this, 0, 0);
-        this.jawUpper.addBox(-2.5F, -6.5F, 0F, 5, 6, 3, 0.0F);
-        this.jawUpper.setRotationPoint(0F, 20.5F, -7.5F);
-        this.jawUpper.rotateAngleX = 1.5708F;
-        this.bodyFront = new ModelRenderer(this, 16, 0);
-        this.bodyFront.addBox(-4.5F, -5F, -3F, 9, 10, 6, 0.0F);
-        this.bodyFront.setRotationPoint(0F, 20F, -3F);
-        this.bodyFront.rotateAngleX = 1.5708F;
-        this.bodyBack = new ModelRenderer(this, 16, 16);
-        this.bodyBack.addBox(-3.5F, -3.5F, -2.5F, 7, 7, 5, 0.0F);
-        this.bodyBack.setRotationPoint(0F, 20F, 5.5F);
-        this.bodyBack.rotateAngleX = 1.5708F;
-        this.tail = new ModelRenderer(this, 46, 0);
-        this.tail.addBox(-2.5F, -3.5F, -1.5F, 5, 7, 3, 0.0F);
-        this.tail.setRotationPoint(0F, 20F, 12.5F);
-        this.tail.rotateAngleX = 1.5708F;
-        this.backRightLeg = new ModelRenderer(this, 0, 18);
-        this.backRightLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
-        this.backRightLeg.setRotationPoint(-5F, 19.5F, 5.5F);
-        this.backLeftLeg = new ModelRenderer(this, 0, 18);
-        this.backLeftLeg.addBox(-1.5F, -1.5F, -1.5F, 3, 6, 3, 0.0F);
-        this.backLeftLeg.setRotationPoint(5F, 19.5F, 5.5F);
+        this.textureWidth = 64;
+        this.textureHeight = 64;
+        this.frontRightLeg = new ModelRenderer(this, 50, 54);
+        this.frontRightLeg.setRotationPoint(-5.0F, 19.0F, 4.0F);
+        this.frontRightLeg.addBox(-3.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
+        this.waist = new ModelRenderer(this, 0, 43);
+        this.waist.setRotationPoint(0.0F, 0.0F, 10.0F);
+        this.waist.addBox(-4.0F, -2.5F, 0.0F, 8, 5, 10, 0.0F);
+        this.backLeftLeg = new ModelRenderer(this, 50, 54);
+        this.backLeftLeg.mirror = true;
+        this.backLeftLeg.setRotationPoint(4.0F, 19.0F, 17.0F);
+        this.backLeftLeg.addBox(0.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
+        this.tail = new ModelRenderer(this, 36, 10);
+        this.tail.setRotationPoint(0.0F, 0.0F, 10.0F);
+        this.tail.addBox(-2.5F, -1.5F, -1.0F, 5, 3, 9, 0.0F);
+        this.setRotateAngle(this.tail, -0.17453292519943295F, 0.0F, 0.0F);
+        this.backRightLeg = new ModelRenderer(this, 50, 54);
+        this.backRightLeg.setRotationPoint(-4.0F, 19.0F, 17.0F);
+        this.backRightLeg.addBox(-3.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
+        this.teeth = new ModelRenderer(this, 30, 0);
+        this.teeth.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.teeth.addBox(-3.5F, -1.0F, -9.0F, 7, 1, 9, 0.0F);
+        this.mouth = new ModelRenderer(this, 0, 13);
+        this.mouth.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.mouth.addBox(-3.5F, 0.0F, -9.0F, 7, 3, 9, 0.0F);
+        this.setRotateAngle(this.mouth, 0.17453292519943295F, 0.0F, 0.0F);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setRotationPoint(0.0F, 20.0F, 0.0F);
+        this.head.addBox(-3.0F, -4.0F, -8.5F, 6, 4, 9, 0.0F);
+        this.setRotateAngle(this.head, -0.061086523819801536F, 0.0F, 0.0F);
+        this.torso = new ModelRenderer(this, 0, 25);
+        this.torso.setRotationPoint(0.0F, 19.0F, 0.0F);
+        this.torso.addBox(-5.0F, -3.0F, 0.0F, 10, 6, 12, 0.0F);
+        this.frontLeftLeg = new ModelRenderer(this, 50, 54);
+        this.frontLeftLeg.mirror = true;
+        this.frontLeftLeg.setRotationPoint(5.0F, 19.0F, 4.0F);
+        this.frontLeftLeg.addBox(0.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
+        this.torso.addChild(this.waist);
+        this.waist.addChild(this.tail);
+        this.mouth.addChild(this.teeth);
+        this.head.addChild(this.mouth);
     }
 
     @Override
@@ -90,13 +90,8 @@ public class ModelSalamander extends ModelBase
         this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
         this.frontRightLeg.render(scale);
         this.frontLeftLeg.render(scale);
-        this.toothLeft.renderWithRotation(scale);
-        this.toothRight.renderWithRotation(scale);
-        this.jawLower.renderWithRotation(scale);
-        this.jawUpper.renderWithRotation(scale);
-        this.bodyFront.renderWithRotation(scale);
-        this.bodyBack.renderWithRotation(scale);
-        this.tail.renderWithRotation(scale);
+        this.head.render(scale);
+        this.torso.render(scale);
         this.backRightLeg.render(scale);
         this.backLeftLeg.render(scale);
     }
@@ -108,5 +103,12 @@ public class ModelSalamander extends ModelBase
         this.frontLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
         this.backRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount;
         this.backLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+    }
+
+    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+    {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
     }
 }
