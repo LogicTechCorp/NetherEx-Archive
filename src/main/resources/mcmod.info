@@ -6,7 +6,7 @@
         "version": "${version}",
         "mcversion": "${mcversion}",
         "url": "https://minecraft.curseforge.com/projects/netherex",
-        "authorList": [ "LogicTechCorp", "Eleazzaar", "Nazenn", "Vlakk", "AnarchCassius", "LapisWhovian", "misterslime", "MCvinnyq" ],
+        "authorList": [ "LogicTechCorp", "Eleazzaar", "Nazenn", "Vlakk", "AnarchCassius", "LapisWhovian", "misterslime", "MCvinnyq", "Cameron" ],
         "credits": "",
         "logoFile": "assets/netherex/logo.png",
         "screenshots": [ ],

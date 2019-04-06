@@ -7,6 +7,20 @@
                 {
                     "type": "item",
                     "name": "netherex:ghast_queen_tear"
+                },
+                {
+                    "type": "loot_table",
+                    "name": "minecraft:entities/ghast"
+                }
+            ]
+        },
+        {
+            "name": "ghast_loot_pool",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "loot_table",
+                    "name": "minecraft:entities/ghast"
                 }
             ]
         }

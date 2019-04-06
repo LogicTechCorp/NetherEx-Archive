@@ -28,11 +28,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.ListIterator;
 
@@ -55,12 +57,44 @@ public class PlayerHandler
                 if(compound.hasKey("SpawnDimension") && compound.hasKey("SpawnPoint"))
                 {
                     int spawnDimension = compound.getInteger("SpawnDimension");
+                    BlockPos spawnPoint = NBTUtil.getPosFromTag(compound.getCompoundTag("SpawnPoint"));
+                    player.setSpawnDimension(spawnDimension);
+                    player.setSpawnChunk(spawnPoint, true, spawnDimension);
+                }
+            }
+        }
+    }
 
-                    if(player.getBedLocation(spawnDimension) == null)
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event)
+    {
+        TickEvent.Phase phase = event.phase;
+        EntityPlayer player = event.player;
+        World world = player.getEntityWorld();
+
+        if(phase == TickEvent.Phase.END)
+        {
+            if(!world.isRemote)
+            {
+                IInventory inventory = player.inventory;
+                int mirrorCount = 0;
+
+                for(int i = 0; i < inventory.getSizeInventory(); i++)
+                {
+                    ItemStack stack = inventory.getStackInSlot(i);
+
+                    if(stack.getItem() == NetherExItems.DULL_MIRROR)
                     {
-                        BlockPos spawnPoint = NBTUtil.getPosFromTag(compound.getCompoundTag("SpawnPoint"));
-                        player.setSpawnDimension(spawnDimension);
-                        player.setSpawnChunk(spawnPoint, true, spawnDimension);
+                        mirrorCount++;
+
+                        if(mirrorCount > 1)
+                        {
+                            EntityItem item = new EntityItem(world, player.posX, player.posY + 0.5F, player.posZ, stack);
+                            item.setPickupDelay(50);
+                            world.spawnEntity(item);
+                            inventory.setInventorySlotContents(i, ItemStack.EMPTY);
+                            break;
+                        }
                     }
                 }
             }
@@ -82,6 +116,7 @@ public class PlayerHandler
             {
                 player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, stack);
                 iter.remove();
+                break;
             }
         }
     }
@@ -93,8 +128,11 @@ public class PlayerHandler
         {
             EntityPlayer oldPlayer = event.getOriginal();
             EntityPlayer newPlayer = event.getEntityPlayer();
+            World world = newPlayer.getEntityWorld();
             IInventory oldInventory = oldPlayer.inventory;
             IInventory newInventory = newPlayer.inventory;
+
+            ItemStack mirrorStack = ItemStack.EMPTY;
 
             for(int i = 0; i < oldInventory.getSizeInventory(); i++)
             {
@@ -108,8 +146,36 @@ public class PlayerHandler
                     }
 
                     newInventory.setInventorySlotContents(i, stack);
+                    mirrorStack = stack;
+                    break;
                 }
             }
+
+            if(!mirrorStack.isEmpty())
+            {
+                if(mirrorStack.getItemDamage() < mirrorStack.getMaxDamage() - 1)
+                {
+                    NBTTagCompound compound = NBTHelper.ensureTagExists(mirrorStack);
+
+                    if(compound.hasKey("SpawnDimension") && compound.hasKey("SpawnPoint"))
+                    {
+                        int spawnDimension = compound.getInteger("SpawnDimension");
+
+                        BlockPos spawnPoint = NBTUtil.getPosFromTag(compound.getCompoundTag("SpawnPoint"));
+                        newPlayer.setSpawnDimension(spawnDimension);
+                        newPlayer.setSpawnChunk(spawnPoint, true, spawnDimension);
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event)
+    {
+        if(!event.isEndConquered())
+        {
+
         }
     }
 }

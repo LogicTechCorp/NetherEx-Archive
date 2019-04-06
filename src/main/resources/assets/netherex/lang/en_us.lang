@@ -153,22 +153,12 @@ config.netherex:entity.brute.tooltip=Settings that only affect the Brute
 config.netherex:entity.brute.chargeCooldown=Charge Cooldown
 config.netherex:entity.brute.chargeCooldown.tooltip=How long is the cooldown after charging players
 
-config.netherex:entity.ghast=Ghast Settings
-config.netherex:entity.ghast.tooltip=Settings that affect most Ghasts
-config.netherex:entity.ghast.meatDropRarity=Meat Drop Rarity
-config.netherex:entity.ghast.meatDropRarity.tooltip=How rare it is for Ghast Meat to drop
-
 config.netherex:entity.ghastQueen=Ghast Queen Settings
 config.netherex:entity.ghastQueen.tooltip=Settings that only affect the Ghast Queen
 config.netherex:entity.ghastQueen.ghastlingSpawnCooldown=Ghastling Spawn Cooldown
 config.netherex:entity.ghastQueen.ghastlingSpawnCooldown.tooltip=How long is the cooldown after spawning Ghastlings
 config.netherex:entity.ghastQueen.ghastlingSpawnAmount=Ghastling Spawn Amount
 config.netherex:entity.ghastQueen.ghastlingSpawnAmount.tooltip=How many Ghastlings spawn when the Ghast Queen is attacked
-
-config.netherex:entity.witherSkeleton=Wither Skeleton Settings
-config.netherex:entity.witherSkeleton.tooltip=Settings that only affect the Wither Skeleton
-config.netherex:entity.witherSkeleton.boneDropRarity=Bone Drop Rarity
-config.netherex:entity.witherSkeleton.boneDropRarity.tooltip=How rare it is for a Wither Bone to drop
 
 config.netherex:biome=Biome Settings
 config.netherex:biome.tooltip=Settings that only affect Biomes

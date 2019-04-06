@@ -24,7 +24,10 @@ import logictechcorp.libraryex.world.generation.feature.FeatureFluid;
 import logictechcorp.libraryex.world.generation.feature.FeatureOre;
 import logictechcorp.libraryex.world.generation.feature.FeatureScatter;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -54,8 +57,7 @@ public final class NetherBiomeInfoHell extends NetherBiomeInfo
                 new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                 new Biome.SpawnListEntry(EntityPigZombie.class, 100, 1, 4),
                 new Biome.SpawnListEntry(EntityMagmaCube.class, 3, 1, 4),
-                new Biome.SpawnListEntry(EntityEnderman.class, 1, 1, 4),
-                new Biome.SpawnListEntry(EntityBlaze.class, 2, 1, 4)
+                new Biome.SpawnListEntry(EntityEnderman.class, 1, 1, 4)
         ));
         this.getFeatures(GenerationStage.PRE_DECORATE).addAll(Arrays.asList(
                 new FeatureFluid(8, 1.0D, false, 4, 124, Blocks.FLOWING_LAVA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), false),

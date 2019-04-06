@@ -22,31 +22,27 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
 import logictechcorp.netherex.init.NetherExEffects;
-import logictechcorp.netherex.init.NetherExItems;
 import logictechcorp.netherex.init.NetherExMaterials;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
-import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.ListIterator;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
@@ -192,41 +188,6 @@ public class LivingHandler
             if(!player.isPotionActive(MobEffects.REGENERATION) && !player.isPotionActive(MobEffects.ABSORPTION) && player.isPotionActive(NetherExEffects.FROSTBITE))
             {
                 event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onLivingDrops(LivingDropsEvent event)
-    {
-        Random random = new Random();
-        BlockPos deathPoint = event.getEntity().getPosition();
-
-        if(event.getEntity() instanceof EntityGhast)
-        {
-            if(ConfigHandler.entityConfig.ghast.meatDropRarity > 0 && random.nextInt(ConfigHandler.entityConfig.ghast.meatDropRarity) == 0)
-            {
-                event.getDrops().add(new EntityItem(event.getEntity().getEntityWorld(), deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.GHAST_MEAT_RAW, random.nextInt(3) + 1, 0)));
-            }
-        }
-        else if(event.getEntity() instanceof EntityWitherSkeleton)
-        {
-            if(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity > 0 && random.nextInt(ConfigHandler.entityConfig.witherSkeleton.boneDropRarity) == 0)
-            {
-                ListIterator<EntityItem> iter = event.getDrops().listIterator();
-
-                while(iter.hasNext())
-                {
-                    EntityItem entityItem = iter.next();
-                    ItemStack stack = entityItem.getItem();
-
-                    if(stack.getItem() == Items.BONE || stack.getItem() == Items.COAL)
-                    {
-                        iter.remove();
-                    }
-                }
-
-                event.getDrops().add(new EntityItem(event.getEntity().world, deathPoint.getX(), deathPoint.getY(), deathPoint.getZ(), new ItemStack(NetherExItems.WITHER_BONE, random.nextInt(3), 0)));
             }
         }
     }

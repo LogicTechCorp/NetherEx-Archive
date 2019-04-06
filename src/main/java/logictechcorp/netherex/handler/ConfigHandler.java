@@ -317,17 +317,9 @@ public class ConfigHandler
         @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.brute")
         public Brute brute = new Brute();
 
-        @Config.Name("ghast")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghast")
-        public Ghast ghast = new Ghast();
-
         @Config.Name("ghast_queen")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen")
         public GhastQueen ghastQueen = new GhastQueen();
-
-        @Config.Name("wither_skeleton")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.witherSkeleton")
-        public WitherSkeleton witherSkeleton = new WitherSkeleton();
 
         public class Ember
         {
@@ -428,14 +420,6 @@ public class ConfigHandler
             public int chargeCooldown = 2;
         }
 
-        public class Ghast
-        {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghast.meatDropRarity")
-            @Config.Comment({"The lower the number, the more common it is for Ghast Meat to drop", "The higher the number, the rarer it is for Ghast Meat to drop", "If set to 0, Ghast Meat does not drop"})
-            @Config.RangeInt(min = 0)
-            public int meatDropRarity = 1;
-        }
-
         public class GhastQueen
         {
             @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen.ghastlingSpawnCooldown")
@@ -447,14 +431,6 @@ public class ConfigHandler
             @Config.Comment({"The lower the number, the less Ghastling spawn", "The higher the number, the more Ghastling spawn"})
             @Config.RangeInt(min = 1)
             public int ghastlingSpawnAmount = 4;
-        }
-
-        public class WitherSkeleton
-        {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.witherSkeleton.boneDropRarity")
-            @Config.Comment({"The lower the number, the more common it is for a Bone to drop", "The higher the number, the rarer it is for a Bone drop", "If set to 0, Bones do not drop"})
-            @Config.RangeInt(min = 0)
-            public int boneDropRarity = 4;
         }
     }
 
