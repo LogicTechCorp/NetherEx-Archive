@@ -26,8 +26,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityCoolmarSpider extends EntitySpider
 {
@@ -37,14 +35,7 @@ public class EntityCoolmarSpider extends EntitySpider
         this.setSize(1.5F, 1.0F);
         this.isImmuneToFire = true;
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender()
-    {
-        return 15728880;
-    }
-
+    
     @Override
     protected void applyEntityAttributes()
     {
