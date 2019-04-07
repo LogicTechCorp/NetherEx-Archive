@@ -19,6 +19,7 @@ package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
+import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.libraryex.world.biome.BiomeInfo;
@@ -69,7 +70,7 @@ public class NetherBiomeManager extends DimensionBiomeManager
 
                     if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        FileConfig config = FileConfig.builder(configFile).autoreload().autosave().sync().build();
+                        FileConfig config = FileConfig.of(configFile, ModJsonConfigFormat.instance());
                         config.load();
 
                         Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
@@ -118,7 +119,7 @@ public class NetherBiomeManager extends DimensionBiomeManager
         for(BiomeInfo info : this.getAllBiomeInfo())
         {
             File configFile = this.getBiomeInfoSaveFile(info);
-            FileConfig fileConfig = FileConfig.of(configFile);
+            FileConfig fileConfig = FileConfig.of(configFile, ModJsonConfigFormat.instance());
 
             if(!configFile.exists() && configFile.getParentFile().mkdirs() || !configFile.exists())
             {

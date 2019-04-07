@@ -19,6 +19,7 @@ package logictechcorp.netherex.village;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
+import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.entity.trader.Trade;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
@@ -58,7 +59,7 @@ public class PigtificateTradeManager
 
                     if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        FileConfig config = FileConfig.builder(configFile).autoreload().autosave().sync().build();
+                        FileConfig config = FileConfig.of(configFile, ModJsonConfigFormat.instance());
                         config.load();
 
                         PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
