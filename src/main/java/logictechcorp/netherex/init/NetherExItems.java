@@ -54,8 +54,6 @@ public class NetherExItems
     public static final ItemMod BLACK_SALAMANDER_HIDE = InjectionHelper.nullValue();
     public static final ItemMod AMETHYST_CRYSTAL = InjectionHelper.nullValue();
     public static final ItemMod RIME_CRYSTAL = InjectionHelper.nullValue();
-    public static final ItemMod COBALT_INGOT = InjectionHelper.nullValue();
-    public static final ItemMod ARDITE_INGOT = InjectionHelper.nullValue();
     public static final ItemRimeAndSteel RIME_AND_STEEL = InjectionHelper.nullValue();
     public static final ItemMod SPORE = InjectionHelper.nullValue();
     public static final ItemMod COOLMAR_SPIDER_FANG = InjectionHelper.nullValue();
@@ -120,8 +118,6 @@ public class NetherExItems
                     new ItemMod(NetherEx.getResource("black_salamander_hide"), DEFAULT_ITEM_BUILDER),
                     new ItemMod(NetherEx.getResource("amethyst_crystal"), DEFAULT_ITEM_BUILDER),
                     new ItemMod(NetherEx.getResource("rime_crystal"), DEFAULT_ITEM_BUILDER),
-                    new ItemMod(NetherEx.getResource("cobalt_ingot"), DEFAULT_ITEM_BUILDER),
-                    new ItemMod(NetherEx.getResource("ardite_ingot"), DEFAULT_ITEM_BUILDER),
                     new ItemRimeAndSteel(),
                     new ItemMod(NetherEx.getResource("spore"), DEFAULT_ITEM_BUILDER),
                     new ItemMod(NetherEx.getResource("coolmar_spider_fang"), DEFAULT_ITEM_BUILDER),

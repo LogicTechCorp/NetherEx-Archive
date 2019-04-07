@@ -46,8 +46,6 @@ public class NetherExRecipes
         RecipeHelper.addSmelting(new ItemStack(Items.QUARTZ), new ItemStack(NetherExBlocks.QUARTZ_ORE), 0.0F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.AMETHYST_CRYSTAL), new ItemStack(NetherExBlocks.AMETHYST_ORE), 0.0F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.RIME_CRYSTAL), new ItemStack(NetherExBlocks.RIME_ORE), 0.0F);
-        RecipeHelper.addSmelting(new ItemStack(NetherExItems.COBALT_INGOT), new ItemStack(NetherExBlocks.COBALT_ORE), 0.0F);
-        RecipeHelper.addSmelting(new ItemStack(NetherExItems.ARDITE_INGOT), new ItemStack(NetherExBlocks.ARDITE_ORE), 0.0F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.GHAST_MEAT_COOKED), new ItemStack(NetherExItems.GHAST_MEAT_RAW), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.CONGEALED_MAGMA_CREAM), new ItemStack(Items.MAGMA_CREAM), 0.5F);
 
@@ -218,10 +216,6 @@ public class NetherExRecipes
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.RIME_CRYSTAL, 9), NetherExBlocks.RIME_BLOCK),
                     RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.AMETHYST_BLOCK, 1), NetherExItems.AMETHYST_CRYSTAL),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.AMETHYST_CRYSTAL, 9), NetherExBlocks.AMETHYST_BLOCK),
-                    RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.COBALT_BLOCK, 1), NetherExItems.COBALT_INGOT),
-                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.COBALT_INGOT, 9), NetherExBlocks.COBALT_BLOCK),
-                    RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.ARDITE_BLOCK, 1), NetherExItems.ARDITE_INGOT),
-                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.ARDITE_INGOT, 9), NetherExBlocks.ARDITE_BLOCK),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(Items.DYE, 6, EnumDyeColor.WHITE.getDyeDamage()), NetherExBlocks.BONE_SLIVER),
                     RecipeHelper.add2x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.BONE_SLIVER, 1), new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage())),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(Items.DYE, 3, EnumDyeColor.WHITE.getDyeDamage()), NetherExBlocks.BONE_CHUNK),

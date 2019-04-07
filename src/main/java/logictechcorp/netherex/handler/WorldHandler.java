@@ -18,11 +18,8 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.capability.CapabilityBlightChunkData;
-import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.village.PigtificateVillageData;
 import logictechcorp.netherex.village.PigtificateVillageManager;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -57,21 +54,6 @@ public class WorldHandler
                 if(data != null)
                 {
                     data.tick();
-                }
-            }
-        }
-        else
-        {
-            if(!world.isRemote)
-            {
-                if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
-                {
-                    IBlightChunkData data = world.getCapability(CapabilityBlightChunkData.INSTANCE, null);
-
-                    if(data != null)
-                    {
-                        data.tick(world);
-                    }
                 }
             }
         }

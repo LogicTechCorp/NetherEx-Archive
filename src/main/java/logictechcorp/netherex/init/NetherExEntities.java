@@ -24,7 +24,6 @@ import logictechcorp.netherex.entity.monster.*;
 import logictechcorp.netherex.entity.neutral.EntityGoldGolem;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
-import logictechcorp.netherex.entity.passive.EntityBonspider;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
 import logictechcorp.netherex.entity.passive.EntityPigtificateLeader;
 import logictechcorp.netherex.entity.projectile.EntityBlueFireball;
@@ -52,7 +51,6 @@ public class NetherExEntities
 
         registerEntity("pigtificate_leader", EntityPigtificateLeader.class, entityId++, 12422002, 15771042);
         registerEntity("pigtificate", EntityPigtificate.class, entityId++, 15771042, 12422002);
-        registerEntity("bonspider", EntityBonspider.class, entityId++, 394758, 16711680);
 
         registerEntity("gold_golem", EntityGoldGolem.class, entityId++, 16773448, 14520344);
         registerEntity("mogus", EntityMogus.class, entityId++, 6770482, 5114119);
@@ -68,7 +66,6 @@ public class NetherExEntities
         registerEntity("coolmar_spider", EntityCoolmarSpider.class, entityId++, 13750221, 13369344);
         registerEntity("brute", EntityBrute.class, entityId++, 11045525, 4793626);
         registerEntity("frost", EntityFrost.class, entityId++, 16382457, 6143186);
-        registerEntity("hellhound", EntityHellhound.class, entityId++, 15724527, 5576214);
 
         registerEntity("ghast_queen", EntityGhastQueen.class, entityId++, 15790320, 13546448);
     }

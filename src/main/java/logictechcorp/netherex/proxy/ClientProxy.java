@@ -19,7 +19,6 @@ package logictechcorp.netherex.proxy;
 
 import logictechcorp.libraryex.proxy.IProxy;
 import logictechcorp.netherex.client.render.entity.*;
-import logictechcorp.netherex.client.render.tileentity.RenderNetherReactorCore;
 import logictechcorp.netherex.client.render.tileentity.RenderUrnOfSorrow;
 import logictechcorp.netherex.entity.boss.EntityGhastQueen;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
@@ -27,14 +26,12 @@ import logictechcorp.netherex.entity.monster.*;
 import logictechcorp.netherex.entity.neutral.EntityGoldGolem;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
-import logictechcorp.netherex.entity.passive.EntityBonspider;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
 import logictechcorp.netherex.entity.passive.EntityPigtificateLeader;
 import logictechcorp.netherex.entity.projectile.EntityBlueFireball;
 import logictechcorp.netherex.entity.projectile.EntityGhastQueenFireball;
 import logictechcorp.netherex.entity.projectile.EntityGhastlingFireball;
 import logictechcorp.netherex.init.NetherExParticleTypes;
-import logictechcorp.netherex.tileentity.TileEntityNetherReactorCore;
 import logictechcorp.netherex.tileentity.TileEntityUrnOfSorrow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -50,7 +47,6 @@ public class ClientProxy implements IProxy
     public void preInit()
     {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUrnOfSorrow.class, new RenderUrnOfSorrow());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetherReactorCore.class, new RenderNetherReactorCore());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueenFireball.class, RenderGhastQueenFireball::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastlingFireball.class, RenderGhastlingFireball::new);
@@ -58,7 +54,6 @@ public class ClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityObsidianBoat.class, RenderObsidianBoat::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigtificateLeader.class, RenderPigtificateLeader::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigtificate.class, RenderPigtificate::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityBonspider.class, RenderBonspider::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGoldGolem.class, RenderGoldGolem::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityMogus.class, RenderMogus::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySalamander.class, RenderSalamander::new);
@@ -72,7 +67,6 @@ public class ClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityCoolmarSpider.class, RenderCoolmarSpider::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBrute.class, RenderBrute::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityFrost.class, RenderFrost::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityHellhound.class, RenderHellhound::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastQueen.class, RenderGhastQueen::new);
     }
 

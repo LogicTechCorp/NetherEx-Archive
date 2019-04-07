@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "activated=false": { "model": "netherex:nether_reactor_core" },
-        "activated=true": { "model": "netherex:active_nether_reactor_core" }
-    }
-}

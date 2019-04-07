@@ -44,8 +44,6 @@ public class NetherExBiomes
     public static final BiomeFungiForest FUNGI_FOREST = InjectionHelper.nullValue();
     public static final BiomeTorridWasteland TORRID_WASTELAND = InjectionHelper.nullValue();
     public static final BiomeArcticAbyss ARCTIC_ABYSS = InjectionHelper.nullValue();
-    public static final BiomeRegrowthsCollapse REGROWTHS_COLLAPSE = InjectionHelper.nullValue();
-    public static final BiomeBlightsAscension BLIGHTS_ASCENSION = InjectionHelper.nullValue();
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -57,9 +55,7 @@ public class NetherExBiomes
                     new BiomeRuthlessSands(),
                     new BiomeFungiForest(),
                     new BiomeTorridWasteland(),
-                    new BiomeArcticAbyss(),
-                    new BiomeRegrowthsCollapse(),
-                    new BiomeBlightsAscension()
+                    new BiomeArcticAbyss()
             );
         }
     }
@@ -70,8 +66,6 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, HOT, DRY, MUSHROOM);
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, WET, COLD);
-        BiomeDictionary.addTypes(REGROWTHS_COLLAPSE, NETHER, DEAD);
-        BiomeDictionary.addTypes(BLIGHTS_ASCENSION, NETHER, SPOOKY);
 
         BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(Biomes.HELL);
         info.getFeatures(GenerationStage.PRE_DECORATE).add(new FeatureStructure(1, 1.0D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":village/tiny_hell_pigtificate_village"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
@@ -81,7 +75,6 @@ public class NetherExBiomes
         NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.FUNGI_FOREST.getInfo());
         NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.TORRID_WASTELAND.getInfo());
         NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.ARCTIC_ABYSS.getInfo());
-        NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.REGROWTHS_COLLAPSE.getInfo());
 
         if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {

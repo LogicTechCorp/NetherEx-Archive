@@ -25,16 +25,6 @@ public class NetherExOreDictionary
 {
     public static void registerOres()
     {
-        OreDictionary.registerOre("grass", new ItemStack(NetherExBlocks.GENESIS_GRASS));
-        OreDictionary.registerOre("logWood", new ItemStack(NetherExBlocks.GENESIS_LOG));
-        OreDictionary.registerOre("plankWood", new ItemStack(NetherExBlocks.GENESIS_PLANK));
-        OreDictionary.registerOre("slabWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_SLAB));
-        OreDictionary.registerOre("stairWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_STAIRS));
-        OreDictionary.registerOre("fenceWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_FENCE));
-        OreDictionary.registerOre("fenceGateWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_FENCE_GATE));
-        OreDictionary.registerOre("fenceGateWood", new ItemStack(NetherExBlocks.GENESIS_PLANK_SLAB));
-        OreDictionary.registerOre("treeSapling", new ItemStack(NetherExBlocks.GENESIS_SAPLING));
-        OreDictionary.registerOre("treeLeaves", new ItemStack(NetherExBlocks.GENESIS_LEAF));
         OreDictionary.registerOre("ore", Blocks.GOLD_ORE);
         OreDictionary.registerOre("ore", Blocks.IRON_ORE);
         OreDictionary.registerOre("ore", Blocks.LAPIS_ORE);
@@ -71,20 +61,12 @@ public class NetherExOreDictionary
         OreDictionary.registerOre("ingotBrickNether", new ItemStack(NetherExItems.FIERY_NETHERBRICK));
         OreDictionary.registerOre("ingotBrickNether", new ItemStack(NetherExItems.ICY_NETHERBRICK));
         OreDictionary.registerOre("oreQuartz", new ItemStack(NetherExBlocks.QUARTZ_ORE));
-        OreDictionary.registerOre("obsidian", new ItemStack(NetherExBlocks.GLOWING_OBSIDIAN));
-        OreDictionary.registerOre("obsidian", new ItemStack(NetherExBlocks.CRYING_OBSIDIAN));
         OreDictionary.registerOre("oreAmethyst", new ItemStack(NetherExBlocks.AMETHYST_ORE));
         OreDictionary.registerOre("blockAmethyst", new ItemStack(NetherExBlocks.AMETHYST_BLOCK));
         OreDictionary.registerOre("gemAmethyst", new ItemStack(NetherExItems.AMETHYST_CRYSTAL));
         OreDictionary.registerOre("oreRime", new ItemStack(NetherExBlocks.RIME_ORE));
         OreDictionary.registerOre("blockRime", new ItemStack(NetherExBlocks.RIME_BLOCK));
         OreDictionary.registerOre("gemRime", new ItemStack(NetherExItems.RIME_CRYSTAL));
-        OreDictionary.registerOre("oreCobalt", new ItemStack(NetherExBlocks.COBALT_ORE));
-        OreDictionary.registerOre("blockCobalt", new ItemStack(NetherExBlocks.COBALT_BLOCK));
-        OreDictionary.registerOre("ingotCobalt", new ItemStack(NetherExItems.COBALT_INGOT));
-        OreDictionary.registerOre("oreArdite", new ItemStack(NetherExBlocks.ARDITE_ORE));
-        OreDictionary.registerOre("blockArdite", new ItemStack(NetherExBlocks.ARDITE_BLOCK));
-        OreDictionary.registerOre("ingotArdite", new ItemStack(NetherExItems.ARDITE_INGOT));
         OreDictionary.registerOre("boneWithered", new ItemStack(NetherExItems.WITHER_BONE));
         OreDictionary.registerOre("boneWitheredBlazed", new ItemStack(NetherExItems.BLAZED_WITHER_BONE));
         OreDictionary.registerOre("boneWitheredFrosted", new ItemStack(NetherExItems.FROSTED_WITHER_BONE));

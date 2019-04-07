@@ -19,10 +19,7 @@ package logictechcorp.netherex;
 
 import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.proxy.IProxy;
-import logictechcorp.netherex.capability.CapabilityBlightChunkData;
-import logictechcorp.netherex.capability.IBlightChunkData;
 import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.handler.GuiHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateTradeManager;
@@ -32,13 +29,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
@@ -48,9 +43,9 @@ import org.apache.logging.log4j.Logger;
 public class NetherEx implements IModData
 {
     //TODO:
-    // Finish Regrowth's Collapse and Blight's Ascension biomes
-    // Add child Blight chunks to parent
     // Fix Dull Mirror not working across dimensions
+    // Fix Enoki Mushroom Stem item display
+    // Finish adding in new textures
 
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
@@ -88,8 +83,6 @@ public class NetherEx implements IModData
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         NetherExOverrides.overrideObjects();
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-        CapabilityManager.INSTANCE.register(IBlightChunkData.class, new CapabilityBlightChunkData.Storage(), new CapabilityBlightChunkData.Factory());
         proxy.preInit();
     }
 

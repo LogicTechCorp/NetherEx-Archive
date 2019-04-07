@@ -36,15 +36,7 @@ public class IMCHandler
         IMCHelper.registerChiseledBlock("basalt", NetherExBlocks.SMOOTH_BASALT.getDefaultState());
         IMCHelper.registerChiseledBlock("basalt", NetherExBlocks.BASALT_BRICK.getDefaultState());
         IMCHelper.registerChiseledBlock("basalt", NetherExBlocks.BASALT_PILLAR.getDefaultState());
-        IMCHelper.registerChiseledBlock("plankWood-oak", NetherExBlocks.GENESIS_PLANK.getDefaultState());
-        IMCHelper.registerChiseledBlock("plankWood-spruce", NetherExBlocks.GENESIS_PLANK.getDefaultState());
-        IMCHelper.registerChiseledBlock("plankWood-birch", NetherExBlocks.GENESIS_PLANK.getDefaultState());
-        IMCHelper.registerChiseledBlock("plankWood-jungle", NetherExBlocks.GENESIS_PLANK.getDefaultState());
-        IMCHelper.registerChiseledBlock("plankWood-acacia", NetherExBlocks.GENESIS_PLANK.getDefaultState());
-        IMCHelper.registerChiseledBlock("plankWood-dark-oak", NetherExBlocks.GENESIS_PLANK.getDefaultState());
         IMCHelper.registerChiseledBlock("ice", NetherExBlocks.FROSTBURN_ICE.getDefaultState());
         IMCHelper.registerChiseledBlock("glass", NetherExBlocks.SOUL_GLASS.getDefaultState());
-        IMCHelper.registerChiseledBlock("obsidian", NetherExBlocks.CRYING_OBSIDIAN.getDefaultState());
-        IMCHelper.registerChiseledBlock("obsidian", NetherExBlocks.GLOWING_OBSIDIAN.getDefaultState());
     }
 }

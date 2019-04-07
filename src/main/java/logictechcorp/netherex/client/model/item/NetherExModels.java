@@ -51,7 +51,6 @@ public class NetherExModels
         StateMapperBase wallVariantMapper = new StateMap.Builder().ignore(BlockWall.VARIANT).build();
         StateMapperBase fenceGatePowerMapper = new StateMap.Builder().ignore(BlockFenceGate.POWERED).build();
 
-        ModelLoader.setCustomStateMapper(NetherExBlocks.GENESIS_LEAF, leafDecayMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BLUE_FIRE, new StateMap.Builder().ignore(BlockBlueFire.AGE).build());
         ModelLoader.setCustomStateMapper(NetherExBlocks.RED_NETHER_BRICK_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.GLOOMY_NETHER_BRICK_SLAB, slabHalfMapper);
@@ -62,7 +61,6 @@ public class NetherExModels
         ModelLoader.setCustomStateMapper(NetherExBlocks.SMOOTH_BASALT_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_BRICK_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_PILLAR_SLAB, slabHalfMapper);
-        ModelLoader.setCustomStateMapper(NetherExBlocks.GENESIS_PLANK_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.QUARTZ_WALL, wallVariantMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.NETHER_BRICK_WALL, wallVariantMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.RED_NETHER_BRICK_WALL, wallVariantMapper);
@@ -85,7 +83,6 @@ public class NetherExModels
         ModelLoader.setCustomStateMapper(NetherExBlocks.ICY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.LIVELY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.GLOOMY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
-        ModelLoader.setCustomStateMapper(NetherExBlocks.GENESIS_PLANK_FENCE_GATE, fenceGatePowerMapper);
 
         ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHERRACK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHERRACK.getDefaultState());
@@ -100,8 +97,6 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.FIERY_NETHER_BRICK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ICY_NETHER_BRICK.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.CRYING_OBSIDIAN.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GLOWING_OBSIDIAN.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK.getDefaultState());
@@ -109,26 +104,17 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.HYPHAE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.FROSTBURN_ICE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.TILLED_SOUL_SAND.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_GRASS.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_LOG.getDefaultState(), "axis=y");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_PLANK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_GLASS.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_GLASS_PANE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.AMETHYST_BLOCK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.RIME_BLOCK.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.COBALT_BLOCK.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.ARDITE_BLOCK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.BONE_SLIVER.getDefaultState(), "axis=y");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BONE_CHUNK.getDefaultState(), "facing=up");
         ModelHelper.registerBlockItemModel(NetherExBlocks.WORN_IRON.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.URN_OF_SORROW.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.NETHER_REACTOR_CORE.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.DEGRADED_NETHER_REACTOR_CORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.QUARTZ_ORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.AMETHYST_ORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.RIME_ORE.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.COBALT_ORE.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.ARDITE_ORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.THORNSTALK.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BROWN_ELDER_MUSHROOM.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_ELDER_MUSHROOM.getDefaultState(), "inventory");
@@ -137,9 +123,6 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ENOKI_MUSHROOM_CAP.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_LEAF.getDefaultState(), "normal");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_SAPLING.getDefaultState(), "inventory");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.CYAN_ROSE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
@@ -149,7 +132,6 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_PILLAR_SLAB.getDefaultState(), "type=bottom");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_PLANK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.FIERY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.ICY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
@@ -159,7 +141,6 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_PILLAR_STAIRS.getDefaultState(), "inventory");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_PLANK_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.QUARTZ_WALL.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.NETHER_BRICK_WALL.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_NETHER_BRICK_WALL.getDefaultState(), "inventory");
@@ -181,7 +162,6 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT_FENCE.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK_FENCE.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_PILLAR_FENCE.getDefaultState(), "inventory");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_PLANK_FENCE.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.QUARTZ_FENCE_GATE.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.NETHER_BRICK_FENCE_GATE.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_NETHER_BRICK_FENCE_GATE.getDefaultState(), "inventory");
@@ -193,7 +173,6 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT_FENCE_GATE.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK_FENCE_GATE.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_PILLAR_FENCE_GATE.getDefaultState(), "inventory");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GENESIS_PLANK_FENCE_GATE.getDefaultState(), "inventory");
 
         ModelHelper.registerFluidModel(NetherEx.instance, NetherExBlocks.ICHOR);
     }
@@ -214,8 +193,6 @@ public class NetherExModels
         ModelHelper.registerItemModel(NetherExItems.BLACK_SALAMANDER_HIDE);
         ModelHelper.registerItemModel(NetherExItems.AMETHYST_CRYSTAL);
         ModelHelper.registerItemModel(NetherExItems.RIME_CRYSTAL);
-        ModelHelper.registerItemModel(NetherExItems.COBALT_INGOT);
-        ModelHelper.registerItemModel(NetherExItems.ARDITE_INGOT);
         ModelHelper.registerItemModel(NetherExItems.RIME_AND_STEEL);
         ModelHelper.registerItemModel(NetherExItems.SPORE);
         ModelHelper.registerItemModel(NetherExItems.COOLMAR_SPIDER_FANG);

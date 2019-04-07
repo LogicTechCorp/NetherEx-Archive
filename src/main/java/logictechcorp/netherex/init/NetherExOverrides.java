@@ -34,7 +34,6 @@ public class NetherExOverrides
             Blocks.NETHER_WART.setTickRandomly(false);
         }
 
-        Blocks.OBSIDIAN.setTickRandomly(true);
         Biomes.HELL.topBlock = Blocks.NETHERRACK.getDefaultState();
         Biomes.HELL.fillerBlock = Blocks.NETHERRACK.getDefaultState();
     }
