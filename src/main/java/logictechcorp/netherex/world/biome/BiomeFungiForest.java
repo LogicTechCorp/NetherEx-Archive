@@ -35,7 +35,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
 import java.util.ArrayList;
@@ -86,7 +85,7 @@ public class BiomeFungiForest extends BiomeNetherEx
             this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
                     new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureStructure(1, 0.0125D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":ghast_queen_shrine"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
+                    new FeatureStructure(1, 0.0125D, false, 32, 116, NetherEx.getResource("ghast_queen_shrine"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
             )));
             this.getFeatures(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.FLAT),

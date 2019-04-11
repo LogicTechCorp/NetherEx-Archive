@@ -26,13 +26,12 @@ import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExTextures;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionForager extends PigtificateProfession
 {
     public PigtificateProfessionForager()
     {
-        super(new ResourceLocation(NetherEx.MOD_ID + ":forager"));
+        super(NetherEx.getResource("forager"));
     }
 
     public void registerDefaultCareers()
@@ -46,7 +45,7 @@ public class PigtificateProfessionForager extends PigtificateProfession
     {
         CareerHunter(PigtificateProfessionForager profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":hunter"),
+            super(NetherEx.getResource("hunter"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_HUNTER,
                     NetherExTextures.PIGTIFICATE_HUNTER,
@@ -67,7 +66,7 @@ public class PigtificateProfessionForager extends PigtificateProfession
     {
         CareerGatherer(PigtificateProfessionForager profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":gatherer"),
+            super(NetherEx.getResource("gatherer"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_GATHERER,
                     NetherExTextures.PIGTIFICATE_GATHERER,
@@ -88,7 +87,7 @@ public class PigtificateProfessionForager extends PigtificateProfession
     {
         CareerScavenger(PigtificateProfessionForager profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":scavenger"),
+            super(NetherEx.getResource("scavenger"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_SCAVENGER,
                     NetherExTextures.PIGTIFICATE_SCAVENGER,

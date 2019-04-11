@@ -29,67 +29,65 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModelGoldGolem extends ModelBase
 {
     private ModelRenderer head;
-    private ModelRenderer nose;
-    private ModelRenderer body;
-    private ModelRenderer waist;
-    private ModelRenderer loinClothFront;
-    private ModelRenderer loinClothBack;
     private ModelRenderer rightLeg;
-    private ModelRenderer leftLeg;
     private ModelRenderer rightArm;
     private ModelRenderer leftArm;
+    private ModelRenderer waist;
+    private ModelRenderer leftLeg;
+    private ModelRenderer body;
+    private ModelRenderer snout;
+    private ModelRenderer loinCloth;
 
     public ModelGoldGolem()
     {
         this.textureWidth = 128;
         this.textureHeight = 128;
-
-        this.head = new ModelRenderer(this, 0, 0);
-        this.head.setRotationPoint(0.0F, -14.0F, -4.0F);
-        this.head.addBox(-4.0F, -9.0F, -4.0F, 8, 9, 8);
-        this.nose = new ModelRenderer(this, 24, 0);
-        this.nose.setRotationPoint(0.0F, -1.0F, -4.0F);
-        this.nose.addBox(-2.0F, -3.0F, -1.0F, 4, 3, 1);
-        this.head.addChild(this.nose);
-        this.body = new ModelRenderer(this, 0, 17);
-        this.body.setRotationPoint(0.0F, -18.0F, 0.0F);
-        this.body.addBox(-9.0F, 0.0F, -5.0F, 18, 20, 10);
-        this.waist = new ModelRenderer(this, 0, 47);
-        this.waist.setRotationPoint(0.0F, 2.0F, 0.0F);
-        this.waist.addBox(-5.0F, 0.0F, -4.0F, 10, 5, 8);
-        this.loinClothFront = new ModelRenderer(this, 36, 47);
-        this.loinClothFront.setRotationPoint(0.0F, 5.0F, -4.0F);
-        this.loinClothFront.addBox(-3.0F, 0.0F, 0.0F, 6, 10, 0);
-        this.waist.addChild(this.loinClothFront);
-        this.loinClothBack = new ModelRenderer(this, 36, 47);
-        this.loinClothBack.setRotationPoint(0.0F, 5.0F, 4.0F);
-        this.loinClothBack.addBox(-3.0F, 0.0F, 0.0F, 6, 10, 0);
-        this.waist.addChild(this.loinClothBack);
-        this.rightLeg = new ModelRenderer(this, 0, 60);
-        this.rightLeg.setRotationPoint(5.0F, 7.0F, 0.0F);
-        this.rightLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6);
-        this.leftLeg = new ModelRenderer(this, 0, 60);
-        this.leftLeg.setRotationPoint(-5.0F, 7.0F, 0.0F);
-        this.leftLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6);
-        this.rightArm = new ModelRenderer(this, 0, 83);
-        this.rightArm.setRotationPoint(11.5F, -17.0F, 0.0F);
-        this.rightArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5);
         this.leftArm = new ModelRenderer(this, 0, 83);
         this.leftArm.setRotationPoint(-11.5F, -17.0F, 0.0F);
-        this.leftArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5);
+        this.leftArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5, 0.0F);
+        this.setRotationAngles(this.leftArm, 1.401298464324817E-45F, 0.0F, 0.0F);
+        this.loinCloth = new ModelRenderer(this, 36, 47);
+        this.loinCloth.setRotationPoint(0.0F, 5.0F, -4.0F);
+        this.loinCloth.addBox(-3.0F, 0.0F, 0.0F, 6, 10, 8, 0.0F);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setRotationPoint(0.0F, -14.0F, -4.0F);
+        this.head.addBox(-4.0F, -9.0F, -4.0F, 8, 9, 8, 0.0F);
+        this.setRotationAngles(this.head, 0.0F, 0.016406094968746697F, 0.0F);
+        this.rightLeg = new ModelRenderer(this, 0, 60);
+        this.rightLeg.mirror = true;
+        this.rightLeg.setRotationPoint(5.0F, 7.0F, 0.0F);
+        this.rightLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6, 0.0F);
+        this.waist = new ModelRenderer(this, 0, 47);
+        this.waist.setRotationPoint(0.0F, 2.0F, 0.0F);
+        this.waist.addBox(-5.0F, 0.0F, -4.0F, 10, 5, 8, 0.0F);
+        this.rightArm = new ModelRenderer(this, 0, 83);
+        this.rightArm.mirror = true;
+        this.rightArm.setRotationPoint(11.5F, -17.0F, 0.0F);
+        this.rightArm.addBox(-2.5F, 0.0F, -2.5F, 5, 31, 5, 0.0F);
+        this.leftLeg = new ModelRenderer(this, 0, 60);
+        this.leftLeg.setRotationPoint(-5.0F, 7.0F, 0.0F);
+        this.leftLeg.addBox(-3.0F, 0.0F, -3.0F, 6, 17, 6, 0.0F);
+        this.body = new ModelRenderer(this, 0, 17);
+        this.body.setRotationPoint(0.0F, -18.0F, 0.0F);
+        this.body.addBox(-9.0F, 0.0F, -5.0F, 18, 20, 10, 0.0F);
+        this.snout = new ModelRenderer(this, 24, 0);
+        this.snout.setRotationPoint(0.0F, -1.0F, -4.0F);
+        this.snout.addBox(-2.0F, -3.0F, -1.0F, 4, 3, 1, 0.0F);
+        this.waist.addChild(this.loinCloth);
+        this.head.addChild(this.snout);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
         this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
-        this.head.render(scale);
-        this.body.render(scale);
-        this.waist.render(scale);
-        this.rightLeg.render(scale);
-        this.leftLeg.render(scale);
-        this.rightArm.render(scale);
         this.leftArm.render(scale);
+        this.head.render(scale);
+        this.rightLeg.render(scale);
+        this.waist.render(scale);
+        this.rightArm.render(scale);
+        this.leftLeg.render(scale);
+        this.body.render(scale);
     }
 
     @Override

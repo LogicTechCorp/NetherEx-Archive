@@ -19,7 +19,6 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.village.PigtificateProfession;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,9 +31,9 @@ public class RegistryHandler
     public static void onNewRegistry(RegistryEvent.NewRegistry event)
     {
         new RegistryBuilder<PigtificateProfession>()
-                .setName(new ResourceLocation(NetherEx.MOD_ID + ":pigtificate_professions"))
+                .setName(NetherEx.getResource("pigtificate_professions"))
                 .setType(PigtificateProfession.class)
-                .setDefaultKey(new ResourceLocation(NetherEx.MOD_ID + ":missing_no"))
+                .setDefaultKey(NetherEx.getResource("missing_no"))
                 .create();
     }
 }

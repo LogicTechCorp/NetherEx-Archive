@@ -24,13 +24,12 @@ import logictechcorp.netherex.init.NetherExItems;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExTextures;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionSmith extends PigtificateProfession
 {
     public PigtificateProfessionSmith()
     {
-        super(new ResourceLocation(NetherEx.MOD_ID + ":smith"));
+        super(NetherEx.getResource("smith"));
     }
 
     public void registerDefaultCareers()
@@ -43,7 +42,7 @@ public class PigtificateProfessionSmith extends PigtificateProfession
     {
         CareerArmorsmith(PigtificateProfessionSmith profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":armorsmith"),
+            super(NetherEx.getResource("armorsmith"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_ARMORSMITH,
                     NetherExTextures.PIGTIFICATE_ARMORSMITH,
@@ -74,7 +73,7 @@ public class PigtificateProfessionSmith extends PigtificateProfession
     {
         CareerToolsmith(PigtificateProfessionSmith profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":toolsmith"),
+            super(NetherEx.getResource("toolsmith"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_TOOLSMITH,
                     NetherExTextures.PIGTIFICATE_TOOLSMITH,

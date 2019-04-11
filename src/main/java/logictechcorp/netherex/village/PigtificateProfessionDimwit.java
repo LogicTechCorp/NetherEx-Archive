@@ -20,13 +20,12 @@ package logictechcorp.netherex.village;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExTextures;
-import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionDimwit extends PigtificateProfession
 {
     public PigtificateProfessionDimwit()
     {
-        super(new ResourceLocation(NetherEx.MOD_ID + ":dimwit"));
+        super(NetherEx.getResource("dimwit"));
     }
 
     public void registerDefaultCareers()
@@ -38,7 +37,7 @@ public class PigtificateProfessionDimwit extends PigtificateProfession
     {
         CareerNincompoop(PigtificateProfessionDimwit profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":nincompoop"),
+            super(NetherEx.getResource("nincompoop"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_NINCOMPOOP,
                     NetherExTextures.PIGTIFICATE_NINCOMPOOP,

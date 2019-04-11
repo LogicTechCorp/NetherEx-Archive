@@ -25,13 +25,12 @@ import logictechcorp.netherex.init.NetherExItems;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExTextures;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
 
 public class PigtificateProfessionSorcerer extends PigtificateProfession
 {
     public PigtificateProfessionSorcerer()
     {
-        super(new ResourceLocation(NetherEx.MOD_ID + ":sorcerer"));
+        super(NetherEx.getResource("sorcerer"));
     }
 
     public void registerDefaultCareers()
@@ -44,7 +43,7 @@ public class PigtificateProfessionSorcerer extends PigtificateProfession
     {
         CareerEnchanter(PigtificateProfessionSorcerer profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":enchanter"),
+            super(NetherEx.getResource("enchanter"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_ENCHANTER,
                     NetherExTextures.PIGTIFICATE_ENCHANTER,
@@ -68,7 +67,7 @@ public class PigtificateProfessionSorcerer extends PigtificateProfession
     {
         CareerBrewer(PigtificateProfessionSorcerer profession)
         {
-            super(new ResourceLocation(NetherEx.MOD_ID + ":brewer"),
+            super(NetherEx.getResource("brewer"),
                     profession,
                     NetherExLootTables.PIGTIFICATE_BREWER,
                     NetherExTextures.PIGTIFICATE_BREWER,

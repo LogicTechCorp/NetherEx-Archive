@@ -68,7 +68,7 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, WET, COLD);
 
         BiomeInfo info = NetherBiomeManager.INSTANCE.getBiomeInfo(Biomes.HELL);
-        info.getFeatures(GenerationStage.PRE_DECORATE).add(new FeatureStructure(1, 1.0D, false, 32, 116, new ResourceLocation(NetherEx.MOD_ID + ":village/tiny_hell_pigtificate_village"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
+        info.getFeatures(GenerationStage.PRE_DECORATE).add(new FeatureStructure(1, 1.0D, false, 32, 116, NetherEx.getResource("village/tiny_hell_pigtificate_village"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
         info.getFeatures(GenerationStage.ORE).add(new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3));
 
         NetherBiomeManager.INSTANCE.addBiome(NetherExBiomes.RUTHLESS_SANDS.getInfo());

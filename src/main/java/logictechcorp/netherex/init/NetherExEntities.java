@@ -72,13 +72,13 @@ public class NetherExEntities
 
     private static void registerEntity(String name, Class<? extends Entity> cls, int id)
     {
-        ResourceLocation registryName = new ResourceLocation(NetherEx.MOD_ID + ":" + name);
+        ResourceLocation registryName = NetherEx.getResource("" + name);
         EntityRegistry.registerModEntity(registryName, cls, registryName.toString(), id, NetherEx.instance, 64, 1, true);
     }
 
     private static void registerEntity(String name, Class<? extends Entity> cls, int id, int primaryEggColor, int secondaryEggColor)
     {
-        ResourceLocation registryName = new ResourceLocation(NetherEx.MOD_ID + ":" + name);
+        ResourceLocation registryName = NetherEx.getResource("" + name);
         EntityRegistry.registerModEntity(registryName, cls, registryName.toString(), id, NetherEx.instance, 64, 1, true, primaryEggColor, secondaryEggColor);
     }
 

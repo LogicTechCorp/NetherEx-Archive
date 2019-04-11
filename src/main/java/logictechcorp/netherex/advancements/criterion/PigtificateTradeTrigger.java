@@ -34,7 +34,7 @@ import java.util.*;
 
 public class PigtificateTradeTrigger implements ICriterionTrigger<PigtificateTradeTrigger.Instance>
 {
-    private static final ResourceLocation ID = new ResourceLocation(NetherEx.MOD_ID + ":pigtificate_trade");
+    private static final ResourceLocation ID = NetherEx.getResource("pigtificate_trade");
     private final Map<PlayerAdvancements, PigtificateTradeTrigger.Listeners> listeners = new HashMap<>();
 
     @Override

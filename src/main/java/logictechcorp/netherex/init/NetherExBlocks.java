@@ -174,8 +174,6 @@ public class NetherExBlocks
                     new BlockDynamicNetherOre(NetherEx.getResource("quartz_ore"), BlockDynamic.TexturePlacement.UNDER, new BlockBuilder(Material.ROCK, MapColor.NETHERRACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(2.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModOre(NetherEx.getResource("amethyst_ore"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(3.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockModOre(NetherEx.getResource("rime_ore"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(3.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
-                    new BlockModOre(NetherEx.getResource("cobalt_ore"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.OBSIDIAN).hardness(10.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
-                    new BlockModOre(NetherEx.getResource("ardite_ore"), new BlockBuilder(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.OBSIDIAN).hardness(10.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab())),
                     new BlockThornstalk(),
                     new BlockElderMushroom(NetherEx.getResource("brown_elder_mushroom")),
                     new BlockElderMushroom(NetherEx.getResource("red_elder_mushroom")),
