@@ -19,12 +19,15 @@ package logictechcorp.netherex;
 
 import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.proxy.IProxy;
+import logictechcorp.libraryex.world.biome.IBiomeDataManager;
+import logictechcorp.libraryex.world.biome.IBiomeDataRegistry;
+import logictechcorp.netherex.api.NetherExAPI;
+import logictechcorp.netherex.api.internal.INetherExAPI;
+import logictechcorp.netherex.api.internal.ITradeManager;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
-import logictechcorp.netherex.village.PigtificateTradeManager;
 import logictechcorp.netherex.world.WorldTypeNetherEx;
-import logictechcorp.netherex.world.biome.NetherBiomeManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -33,14 +36,17 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
-public class NetherEx implements IModData
+public class NetherEx implements IModData, INetherExAPI
 {
     //TODO:
     // Fix Dull Mirror not working across dimensions
@@ -89,6 +95,7 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
+        NetherExAPI.setInstance(this);
         NetherExDataFixers.registerFixes();
         NetherExPigtificates.registerPigtificateCareers();
         NetherExBiomes.registerBiomes();
@@ -110,15 +117,6 @@ public class NetherEx implements IModData
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
         NetherExOverrides.overrideNether();
-        NetherBiomeManager.INSTANCE.readBiomeInfoFromConfigs();
-        PigtificateTradeManager.readTradesFromConfigs();
-    }
-
-    @Mod.EventHandler
-    public void onFMLServerStopping(FMLServerStoppingEvent event)
-    {
-        NetherBiomeManager.INSTANCE.writeBiomeInfoToConfigs();
-        PigtificateTradeManager.writeTradesToConfigs();
     }
 
     @Override
@@ -137,6 +135,30 @@ public class NetherEx implements IModData
     public boolean writeRecipeJsons()
     {
         return ConfigHandler.internalConfig.recipes.writeRecipesToGlobalConfigFolder;
+    }
+
+    @Override
+    public boolean isStub()
+    {
+        return false;
+    }
+
+    @Override
+    public IBiomeDataRegistry getNetherBiomeDataRegistry()
+    {
+        return NetherBiomeDataRegistry.INSTANCE;
+    }
+
+    @Override
+    public IBiomeDataManager getNetherBiomeDataManager()
+    {
+        return NetherBiomeDataManager.INSTANCE;
+    }
+
+    @Override
+    public ITradeManager getPigtificateTradeManager()
+    {
+        return PigtificateTradeManager.INSTANCE;
     }
 
     public static ResourceLocation getResource(String name)

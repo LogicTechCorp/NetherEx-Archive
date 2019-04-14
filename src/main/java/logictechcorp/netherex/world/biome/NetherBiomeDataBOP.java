@@ -17,15 +17,16 @@
 
 package logictechcorp.netherex.world.biome;
 
+import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class NetherBiomeInfoBOP extends NetherBiomeInfo
+public class NetherBiomeDataBOP extends BiomeDataConfigurable
 {
-    public NetherBiomeInfoBOP(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
+    public NetherBiomeDataBOP(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
     {
         super(biomeRegistryName, weight, enabled, genDefaultFeatures);
     }

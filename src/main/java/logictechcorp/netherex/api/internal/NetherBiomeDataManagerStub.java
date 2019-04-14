@@ -1,6 +1,6 @@
 /*
- * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * LibraryEx
+ * Copyright (c) 2017-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,22 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.biome;
+package logictechcorp.netherex.api.internal;
 
-import logictechcorp.libraryex.world.biome.BiomeInfo;
-import net.minecraft.init.Biomes;
-import net.minecraft.util.ResourceLocation;
+import logictechcorp.libraryex.world.biome.IBiomeDataManager;
+import net.minecraftforge.event.world.WorldEvent;
 
-public class NetherBiomeInfo extends BiomeInfo
+public final class NetherBiomeDataManagerStub implements IBiomeDataManager
 {
-    public NetherBiomeInfo(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
+    public static final IBiomeDataManager INSTANCE = new NetherBiomeDataManagerStub();
+
+    private NetherBiomeDataManagerStub()
     {
-        super(biomeRegistryName, weight, enabled, genDefaultFeatures);
     }
 
-    public NetherBiomeInfo()
+    @Override
+    public void readBiomeDataConfigs(WorldEvent.Load event)
     {
-        super();
-        this.biome = Biomes.HELL;
+
+    }
+
+    @Override
+    public void writeBiomeDataConfigs(WorldEvent.Unload event)
+    {
+
     }
 }

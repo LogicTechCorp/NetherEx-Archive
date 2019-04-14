@@ -18,7 +18,7 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeInfo;
+import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.*;
 import logictechcorp.netherex.NetherEx;
@@ -52,27 +52,27 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     }
 
     @Override
-    public BiomeInfo getInfo()
+    public BiomeData getBiomeData()
     {
-        return new Info();
+        return new BiomeData();
     }
 
-    private class Info extends NetherBiomeInfo
+    private class BiomeData extends BiomeDataConfigurable
     {
-        public Info()
+        BiomeData()
         {
             super(NetherExBiomes.TORRID_WASTELAND.getRegistryName(), 6, true, true);
         }
 
         @Override
-        public Config getAsConfig()
+        public void writeToConfig(Config config)
         {
-            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.WALL_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.OCEAN_BLOCK, LAVA);
+            this.getBiomeBlock(BiomeData.BlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.WALL_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.OCEAN_BLOCK, LAVA);
             this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6),
@@ -92,7 +92,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
                     new FeatureOre(14, 1.0D, false, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
                     new FeatureOre(8, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
             )));
-            return super.getAsConfig();
+            super.writeToConfig(config);
         }
     }
 }

@@ -18,6 +18,7 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.village.PigtificateVillageData;
 import logictechcorp.netherex.village.PigtificateVillageManager;
 import net.minecraft.world.World;
@@ -36,6 +37,8 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
+            NetherExAPI.getInstance().getNetherBiomeDataManager().readBiomeDataConfigs(event);
+            NetherExAPI.getInstance().getPigtificateTradeManager().readTradeConfigs(event);
             PigtificateVillageManager.loadVillageData(world);
         }
     }
@@ -66,6 +69,8 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
+            NetherExAPI.getInstance().getNetherBiomeDataManager().writeBiomeDataConfigs(event);
+            NetherExAPI.getInstance().getPigtificateTradeManager().writeTradeConfigs(event);
             PigtificateVillageManager.unloadVillageData(world);
         }
     }

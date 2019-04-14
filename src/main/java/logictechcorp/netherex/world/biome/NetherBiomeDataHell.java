@@ -18,6 +18,8 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
+import logictechcorp.libraryex.world.biome.IBiomeData;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
 import logictechcorp.libraryex.world.generation.feature.FeatureFluid;
@@ -35,17 +37,17 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
 
-public final class NetherBiomeInfoHell extends NetherBiomeInfo
+public final class NetherBiomeDataHell extends BiomeDataConfigurable
 {
-    public static final NetherBiomeInfo INSTANCE = new NetherBiomeInfoHell();
+    public static final IBiomeData INSTANCE = new NetherBiomeDataHell();
 
-    private NetherBiomeInfoHell()
+    private NetherBiomeDataHell()
     {
         super(Biomes.HELL.getRegistryName(), 10, true, true);
     }
 
     @Override
-    public Config getAsConfig()
+    public void writeToConfig(Config config)
     {
         this.getBiomeBlock(BlockType.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BlockType.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
@@ -74,6 +76,6 @@ public final class NetherBiomeInfoHell extends NetherBiomeInfo
                 new FeatureOre(16, 1.0D, false, 10, 108, Blocks.QUARTZ_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 14),
                 new FeatureOre(4, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 32)
         ));
-        return super.getAsConfig();
+        super.writeToConfig(config);
     }
 }

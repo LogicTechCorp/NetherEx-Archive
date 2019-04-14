@@ -18,7 +18,7 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeInfo;
+import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
 import logictechcorp.libraryex.world.generation.feature.FeatureFluid;
@@ -53,27 +53,27 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     }
 
     @Override
-    public BiomeInfo getInfo()
+    public BiomeData getBiomeData()
     {
-        return new Info();
+        return new BiomeData();
     }
 
-    private class Info extends NetherBiomeInfo
+    private class BiomeData extends BiomeDataConfigurable
     {
-        public Info()
+        BiomeData()
         {
             super(NetherExBiomes.RUTHLESS_SANDS.getRegistryName(), 8, true, true);
         }
 
         @Override
-        public Config getAsConfig()
+        public void writeToConfig(Config config)
         {
-            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_TOP_BLOCK, SOUL_SAND);
-            this.getBiomeBlock(BiomeInfo.BlockType.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.WALL_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeInfo.BlockType.OCEAN_BLOCK, LAVA);
+            this.getBiomeBlock(BiomeData.BlockType.FLOOR_TOP_BLOCK, SOUL_SAND);
+            this.getBiomeBlock(BiomeData.BlockType.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.WALL_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeData.BlockType.OCEAN_BLOCK, LAVA);
             this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityWitherSkeleton.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 3, 1, 4),
@@ -91,7 +91,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
             )));
-            return super.getAsConfig();
+            super.writeToConfig(config);
         }
     }
 }
