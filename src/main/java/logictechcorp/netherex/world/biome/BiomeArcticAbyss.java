@@ -18,12 +18,13 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
-import logictechcorp.libraryex.world.generation.feature.FeatureOre;
-import logictechcorp.libraryex.world.generation.feature.FeaturePool;
-import logictechcorp.libraryex.world.generation.feature.FeatureScatter;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitPool;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
@@ -68,34 +69,34 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     {
         BiomeData()
         {
-            super(NetherExBiomes.ARCTIC_ABYSS.getRegistryName(), 2, true, true);
+            super(NetherExBiomes.ARCTIC_ABYSS, 2, true, true);
         }
 
         @Override
         public void writeToConfig(Config config)
         {
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.WALL_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.OCEAN_BLOCK, MAGMA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
+            this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, MAGMA);
+            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4),
                     new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1)
             )));
-            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureScatter(5, 1.0D, true, 4, 124, NetherExBlocks.BLUE_FIRE.getDefaultState(), FROSTBURN_ICE, FeatureScatter.Placement.ON_GROUND),
-                    new FeatureCluster(10, 1.0D, true, 4, 124, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureCluster(10, 1.0D, false, 1, 128, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
-                    new FeaturePool(2, 0.125, false, 36, 96, NetherExBlocks.ICHOR.getDefaultState(), FROSTBURN_ICE)
+            this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitScatter(5, true, 1.0D, 4, 124, NetherExBlocks.BLUE_FIRE.getDefaultState(), FROSTBURN_ICE, BiomeTraitScatter.Placement.ON_GROUND),
+                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitPool(2, false, 0.125, 36, 96, NetherExBlocks.ICHOR.getDefaultState(), FROSTBURN_ICE)
             )));
-            this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
-                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
+            this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
+                    new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
             )));
             super.writeToConfig(config);
         }

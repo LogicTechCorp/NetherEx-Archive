@@ -18,9 +18,10 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.*;
+import logictechcorp.libraryex.world.generation.trait.*;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
@@ -61,36 +62,36 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     {
         BiomeData()
         {
-            super(NetherExBiomes.TORRID_WASTELAND.getRegistryName(), 6, true, true);
+            super(NetherExBiomes.TORRID_WASTELAND, 6, true, true);
         }
 
         @Override
         public void writeToConfig(Config config)
         {
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.WALL_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.OCEAN_BLOCK, LAVA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, FIERY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
+            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6),
                     new Biome.SpawnListEntry(EntityMagmaCube.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntityBlaze.class, 3, 1, 4)
             )));
-            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureFluid(16, 1.0D, false, 4, 124, FLOWING_LAVA, FIERY_NETHERRACK, false),
-                    new FeatureScatter(20, 1.0D, true, 4, 124, FIRE, FIERY_NETHERRACK, FeatureScatter.Placement.ON_GROUND),
-                    new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureFluid(32, 1.0D, false, 10, 118, FLOWING_LAVA, FIERY_NETHERRACK, true),
-                    new FeaturePool(8, 1.0, false, 10, 108, LAVA, FIERY_NETHERRACK)
+            this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitFluid(16, false, 1.0D, 4, 124, FLOWING_LAVA, FIERY_NETHERRACK, false),
+                    new BiomeTraitScatter(20, true, 1.0D, 4, 124, FIRE, FIERY_NETHERRACK, BiomeTraitScatter.Placement.ON_GROUND),
+                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, GLOWSTONE, FIERY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitFluid(32, false, 1.0D, 10, 118, FLOWING_LAVA, FIERY_NETHERRACK, true),
+                    new BiomeTraitPool(8, false, 1.0, 10, 108, LAVA, FIERY_NETHERRACK)
             )));
-            this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), FIERY_NETHERRACK, 14),
-                    new FeatureOre(14, 1.0D, false, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
-                    new FeatureOre(8, 1.0D, false, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
+            this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), FIERY_NETHERRACK, 14),
+                    new BiomeTraitOre(14, false, 1.0D, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
+                    new BiomeTraitOre(8, false, 1.0D, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
             )));
             super.writeToConfig(config);
         }

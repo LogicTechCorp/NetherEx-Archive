@@ -18,11 +18,12 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
-import logictechcorp.libraryex.world.generation.feature.FeatureFluid;
-import logictechcorp.libraryex.world.generation.feature.FeatureOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpinout;
 import logictechcorp.netherex.init.NetherExBiomes;
@@ -62,34 +63,34 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     {
         BiomeData()
         {
-            super(NetherExBiomes.RUTHLESS_SANDS.getRegistryName(), 8, true, true);
+            super(NetherExBiomes.RUTHLESS_SANDS, 8, true, true);
         }
 
         @Override
         public void writeToConfig(Config config)
         {
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_TOP_BLOCK, SOUL_SAND);
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.WALL_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.OCEAN_BLOCK, LAVA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, SOUL_SAND);
+            this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
+            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityWitherSkeleton.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 3, 1, 4),
                     new Biome.SpawnListEntry(EntitySpinout.class, 100, 1, 4)
             )));
-            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureFluid(8, 1.0D, false, 4, 124, FLOWING_LAVA, GLOOMY_NETHERRACK, false),
-                    new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureFluid(16, 1.0D, false, 10, 118, FLOWING_LAVA, GLOOMY_NETHERRACK, true)
+            this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitFluid(8, false, 1.0D, 4, 124, FLOWING_LAVA, GLOOMY_NETHERRACK, false),
+                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitFluid(16, false, 1.0D, 10, 118, FLOWING_LAVA, GLOOMY_NETHERRACK, true)
             )));
-            this.getFeatures(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureThornstalk(16, 1.0D, false, 32, 108)
+            this.getBiomeTraits(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
+                    new FeatureThornstalk(16, false, 1.0D, 32, 108)
             )));
-            this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
+            this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
             )));
             super.writeToConfig(config);
         }

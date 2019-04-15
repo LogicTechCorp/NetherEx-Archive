@@ -35,7 +35,7 @@ public class EntityCoolmarSpider extends EntitySpider
         this.setSize(1.5F, 1.0F);
         this.isImmuneToFire = true;
     }
-    
+
     @Override
     protected void applyEntityAttributes()
     {

@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.world.generation.feature;
 
-import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.generation.feature.FeatureMod;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitConfigurable;
+import logictechcorp.libraryex.world.generation.trait.IBiomeTraitConfigurable;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -27,20 +27,15 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FeatureThornstalk extends FeatureMod
+public class FeatureThornstalk extends BiomeTraitConfigurable
 {
-    public FeatureThornstalk(Config config)
+    public FeatureThornstalk(int generationAttempts, boolean randomizeGenerationAttempts, double generationProbability, int minimumGenerationHeight, int maximumGenerationHeight)
     {
-        super(config);
-    }
-
-    public FeatureThornstalk(int generationAttempts, double generationProbability, boolean randomizeGenerationAttempts, int minGenerationHeight, int maxGenerationHeight)
-    {
-        super(generationAttempts, generationProbability, randomizeGenerationAttempts, minGenerationHeight, maxGenerationHeight);
+        super(generationAttempts, randomizeGenerationAttempts, generationProbability, minimumGenerationHeight, maximumGenerationHeight);
     }
 
     @Override
-    public boolean generate(World world, Random random, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random random)
     {
         for(int i = 0; i < 64; i++)
         {
@@ -54,5 +49,11 @@ public class FeatureThornstalk extends FeatureMod
         }
 
         return true;
+    }
+
+    @Override
+    public IBiomeTraitConfigurable create()
+    {
+        return null;
     }
 }

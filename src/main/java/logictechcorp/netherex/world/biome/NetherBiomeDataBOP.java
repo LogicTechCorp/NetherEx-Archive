@@ -32,7 +32,7 @@ public class NetherBiomeDataBOP extends BiomeDataConfigurable
     }
 
     @Override
-    public boolean isEnabled()
+    public boolean generateBiome()
     {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 

@@ -19,7 +19,8 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.world.generation.feature.FeatureBigMushroom;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
+import logictechcorp.libraryex.world.generation.trait.IBiomeTrait;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -35,7 +36,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -139,9 +139,9 @@ public class BlockElderMushroom extends BlockMod implements IPlantable, IGrowabl
     {
         world.setBlockToAir(pos);
 
-        WorldGenerator elderMushroom = new FeatureBigMushroom(1, 1.0F, false, pos.getY(), pos.up(12).getY(), this.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), FeatureBigMushroom.Shape.FLAT);
+        IBiomeTrait elderMushroom = new BiomeTraitBigMushroom(1, false, 1.0F, pos.getY(), pos.up(12).getY(), this.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), BiomeTraitBigMushroom.Shape.FLAT);
 
-        if(!elderMushroom.generate(world, random, pos))
+        if(!elderMushroom.generate(world, pos, random))
         {
             world.setBlockState(pos, state);
         }

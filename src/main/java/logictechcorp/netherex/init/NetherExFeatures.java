@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.world.generation.feature.FeatureRegistry;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitRegistry;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.generation.feature.FeatureEnoki;
 import logictechcorp.netherex.world.generation.feature.FeatureThornstalk;
@@ -26,7 +26,7 @@ public class NetherExFeatures
 {
     public static void registerFeatures()
     {
-        FeatureRegistry.registerFeature(NetherEx.getResource("thornstalk"), FeatureThornstalk.class);
-        FeatureRegistry.registerFeature(NetherEx.getResource("enoki"), FeatureEnoki.class);
+        BiomeTraitRegistry.registerFeature(NetherEx.getResource("thornstalk"), FeatureThornstalk.class);
+        BiomeTraitRegistry.registerFeature(NetherEx.getResource("enoki"), FeatureEnoki.class);
     }
 }

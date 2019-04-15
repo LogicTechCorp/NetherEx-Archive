@@ -20,8 +20,8 @@ package logictechcorp.netherex.init;
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.libraryex.world.biome.IBiomeDataRegistry;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.FeatureOre;
-import logictechcorp.libraryex.world.generation.feature.FeatureStructure;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -67,8 +67,8 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, WET, COLD);
 
-        NetherBiomeDataHell.INSTANCE.getFeatures(GenerationStage.PRE_DECORATE).add(new FeatureStructure(1, 1.0D, false, 32, 116, NetherEx.getResource("village/tiny_hell_pigtificate_village"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
-        NetherBiomeDataHell.INSTANCE.getFeatures(GenerationStage.ORE).add(new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3));
+        NetherBiomeDataHell.INSTANCE.getBiomeTraits(GenerationStage.PRE_DECORATE).add(new BiomeTraitStructure(1, false, 1.0D, 32, 116, NetherEx.getResource("village/tiny_hell_pigtificate_village"), BiomeTraitStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
+        NetherBiomeDataHell.INSTANCE.getBiomeTraits(GenerationStage.ORE).add(new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3));
 
         IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getNetherBiomeDataRegistry();
         biomeDataRegistry.registerBiomeData(NetherBiomeDataHell.INSTANCE);

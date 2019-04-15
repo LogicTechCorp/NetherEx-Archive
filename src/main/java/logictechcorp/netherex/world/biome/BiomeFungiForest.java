@@ -18,12 +18,13 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
+import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.feature.FeatureBigMushroom;
-import logictechcorp.libraryex.world.generation.feature.FeatureCluster;
-import logictechcorp.libraryex.world.generation.feature.FeatureOre;
-import logictechcorp.libraryex.world.generation.feature.FeatureStructure;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
@@ -65,35 +66,35 @@ public class BiomeFungiForest extends BiomeNetherEx
     {
         BiomeData()
         {
-            super(NetherExBiomes.FUNGI_FOREST.getRegistryName(), 4, true, true);
+            super(NetherExBiomes.FUNGI_FOREST, 4, true, true);
         }
 
         @Override
         public void writeToConfig(Config config)
         {
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
-            this.getBiomeBlock(BiomeData.BlockType.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.WALL_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_FILLER_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.CEILING_BOTTOM_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeData.BlockType.OCEAN_BLOCK, LAVA);
-            this.getEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
+            this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, LIVELY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
+            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
                     new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6),
                     new Biome.SpawnListEntry(EntitySpore.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4)
             )));
-            this.getFeatures(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureCluster(10, 1.0D, true, 4, 124, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureCluster(10, 1.0D, false, 1, 128, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
-                    new FeatureStructure(1, 0.0125D, false, 32, 116, NetherEx.getResource("ghast_queen_shrine"), FeatureStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
+            this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, GLOWSTONE, LIVELY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitStructure(1, false, 0.0125D, 32, 116, NetherEx.getResource("ghast_queen_shrine"), BiomeTraitStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D)
             )));
-            this.getFeatures(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.FLAT),
-                    new FeatureBigMushroom(256, 1.0D, false, 32, 108, NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, FeatureBigMushroom.Shape.BULB),
-                    new FeatureEnoki(32, 1.0D, false, 48, 118)
+            this.getBiomeTraits(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitBigMushroom(256, false, 1.0D, 32, 108, NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, BiomeTraitBigMushroom.Shape.FLAT),
+                    new BiomeTraitBigMushroom(256, false, 1.0D, 32, 108, NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, BiomeTraitBigMushroom.Shape.BULB),
+                    new FeatureEnoki(32, false, 1.0D, 48, 118)
             )));
-            this.getFeatures(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureOre(16, 1.0D, false, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
+            this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
+                    new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
             )));
             super.writeToConfig(config);
         }

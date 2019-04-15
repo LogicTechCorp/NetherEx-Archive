@@ -19,9 +19,9 @@ package logictechcorp.netherex.world.generation;
 
 import logictechcorp.libraryex.event.LibExEventFactory;
 import logictechcorp.libraryex.world.biome.IBiomeData;
-import logictechcorp.libraryex.world.generation.BiomeStyler;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.world.biome.NetherBiomeStyler;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -374,7 +374,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.netherBridge.generate(this.world, chunkX, chunkZ, primer);
 
         Biome[] biomes = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
-        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, NetherExAPI.getInstance().getNetherBiomeDataRegistry(), biomes, this.random);
+        NetherBiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, NetherExAPI.getInstance().getNetherBiomeDataRegistry(), biomes, this.random);
 
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
@@ -402,7 +402,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         LibExEventFactory.onPreDecorateBiome(this.world, this.random, chunkPos);
         LibExEventFactory.onDecorateBiome(this.world, this.random, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM);
 
-        if(biomeData != null && biomeData.generateDefaultFeatures())
+        if(biomeData != null && biomeData.generateDefaultBiomeFeatures())
         {
             biomeData.getBiome().decorate(this.world, this.random, blockPos);
         }
@@ -436,7 +436,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         }
 
         IBiomeData biomeData = NetherExAPI.getInstance().getNetherBiomeDataRegistry().getBiomeData(this.world.getBiome(pos));
-        return creatureType == null || biomeData == null ? new ArrayList<>() : biomeData.getEntities(creatureType);
+        return creatureType == null || biomeData == null ? new ArrayList<>() : biomeData.getBiomeEntities(creatureType);
     }
 
     @Override

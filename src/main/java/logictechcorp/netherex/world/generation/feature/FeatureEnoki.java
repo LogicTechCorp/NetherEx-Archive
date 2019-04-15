@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.world.generation.feature;
 
-import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.generation.feature.FeatureMod;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitConfigurable;
+import logictechcorp.libraryex.world.generation.trait.IBiomeTraitConfigurable;
 import logictechcorp.netherex.block.BlockEnokiMushroomCap;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.util.math.BlockPos;
@@ -26,20 +26,15 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FeatureEnoki extends FeatureMod
+public class FeatureEnoki extends BiomeTraitConfigurable
 {
-    public FeatureEnoki(Config config)
+    public FeatureEnoki(int generationAttempts, boolean randomizeGenerationAttempts, double generationProbability, int minimumGenerationHeight, int maximumGenerationHeight)
     {
-        super(config);
-    }
-
-    public FeatureEnoki(int generationAttempts, double generationProbability, boolean randomizeGenerationAttempts, int minGenerationHeight, int maxGenerationHeight)
-    {
-        super(generationAttempts, generationProbability, randomizeGenerationAttempts, minGenerationHeight, maxGenerationHeight);
+        super(generationAttempts, randomizeGenerationAttempts, generationProbability, minimumGenerationHeight, maximumGenerationHeight);
     }
 
     @Override
-    public boolean generate(World world, Random random, BlockPos pos)
+    public boolean generate(World world, BlockPos pos, Random random)
     {
         if(world.isAirBlock(pos.down()) && NetherExBlocks.ENOKI_MUSHROOM_CAP.canSurvive(world, pos) && random.nextInt(8) == 7)
         {
@@ -48,5 +43,11 @@ public class FeatureEnoki extends FeatureMod
         }
 
         return false;
+    }
+
+    @Override
+    public IBiomeTraitConfigurable create()
+    {
+        return null;
     }
 }
