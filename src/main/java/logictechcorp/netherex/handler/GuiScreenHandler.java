@@ -21,6 +21,7 @@ import logictechcorp.netherex.NetherEx;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldSummary;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -44,13 +45,13 @@ public class GuiScreenHandler
     public static void onInitGuiPost(GuiScreenEvent.InitGuiEvent.Post event)
     {
         GuiScreen guiScreen = event.getGui();
-        List<GuiButton> buttons = event.getButtonList();
+        List<GuiButton> guiButtons = event.getButtonList();
 
         if(guiScreen instanceof GuiWorldSelection)
         {
-            resetNetherButton = new GuiButton(getButtonId(buttons), guiScreen.width / 2 - 154, 6, 90, 20, I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether"));
+            resetNetherButton = new GuiButton(getButtonId(guiButtons), guiScreen.width / 2 - 154, 6, 90, 20, I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether"));
             resetNetherButton.enabled = false;
-            buttons.add(resetNetherButton);
+            guiButtons.add(resetNetherButton);
         }
     }
 
@@ -74,6 +75,7 @@ public class GuiScreenHandler
     public static void onActionPerformed(GuiScreenEvent.ActionPerformedEvent.Post event)
     {
         GuiScreen guiScreen = event.getGui();
+        List<GuiButton> guiButtons = event.getButtonList();
         GuiButton guiButton = event.getButton();
 
         if(guiScreen instanceof GuiWorldSelection)
@@ -101,6 +103,32 @@ public class GuiScreenHandler
 
                         MINECRAFT.displayGuiScreen(guiWorldList.getGuiWorldSelection());
                     }, I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_question", worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_warning", worldDisplayName, worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset"), I18n.format("gui.cancel"), 0));
+                }
+            }
+        }
+        else if(guiScreen instanceof GuiCreateWorld)
+        {
+            GuiCreateWorld guiCreateWorld = (GuiCreateWorld) guiScreen;
+            int selectedWorldType = ReflectionHelper.getPrivateValue(GuiCreateWorld.class, guiCreateWorld, "field_146331_K", "selectedIndex");
+
+            GuiButton button = guiButtons.get(8);
+
+            if(button != null)
+            {
+                if(WorldType.WORLD_TYPES[selectedWorldType] == NetherEx.WORLD_TYPE)
+                {
+                    if(NetherEx.LOST_CITIES_LOADED)
+                    {
+                        button.displayString = I18n.format("gui.netherex:create_world.customize.lost_cities");
+                    }
+                    else if(NetherEx.BIOMES_O_PLENTY_LOADED)
+                    {
+                        button.displayString = I18n.format("gui.netherex:create_world.customize.biomes_o_plenty");
+                    }
+                }
+                else
+                {
+                    button.displayString = I18n.format("selectWorld.customizeType");
                 }
             }
         }

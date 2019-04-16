@@ -258,6 +258,8 @@ fluid.netherex:blood.name=Ichor
 generator.netherex:netherex=NetherEx
 
 #Guis
+gui.netherex:create_world.customize.lost_cities=Customize Lost Cities
+gui.netherex:create_world.customize.biomes_o_plenty=Customize Biomes O' Plenty
 gui.netherex:select_world.reset=Reset
 gui.netherex:select_world.reset_nether=Reset Nether
 gui.netherex:select_world.reset_nether_question=Are you sure you want to reset the Nether for %s?

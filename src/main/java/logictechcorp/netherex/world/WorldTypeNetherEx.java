@@ -45,32 +45,40 @@ public class WorldTypeNetherEx extends WorldType
     @Override
     public void onCustomizeButton(Minecraft minecraft, GuiCreateWorld guiCreateWorld)
     {
-        if(NetherEx.LOST_CITIES_LOADED)
+        WorldType compatibleWorldType = null;
+
+        for(WorldType worldType : WORLD_TYPES)
         {
-            WorldType lostCitiesWorldType = null;
+            String worldTypeName = worldType.getName();
 
-            for(WorldType worldType : WORLD_TYPES)
+            if(NetherEx.LOST_CITIES_LOADED)
             {
-                String worldTypeName = worldType.getName();
-
                 if(worldTypeName.equalsIgnoreCase("lostcities") || worldTypeName.equalsIgnoreCase("lostcities_bop"))
                 {
-                    lostCitiesWorldType = worldType;
+                    compatibleWorldType = worldType;
                     break;
                 }
             }
-
-            if(lostCitiesWorldType != null)
+            else if(NetherEx.BIOMES_O_PLENTY_LOADED)
             {
-                lostCitiesWorldType.onCustomizeButton(minecraft, guiCreateWorld);
+                if(worldTypeName.equalsIgnoreCase("BIOMESOP"))
+                {
+                    compatibleWorldType = worldType;
+                    break;
+                }
             }
+        }
+
+        if(compatibleWorldType != null)
+        {
+            compatibleWorldType.onCustomizeButton(minecraft, guiCreateWorld);
         }
     }
 
     @Override
     public boolean isCustomizable()
     {
-        return NetherEx.LOST_CITIES_LOADED;
+        return NetherEx.LOST_CITIES_LOADED || NetherEx.BIOMES_O_PLENTY_LOADED;
     }
 
     @Override
