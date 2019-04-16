@@ -20,6 +20,8 @@ package logictechcorp.netherex.world;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.biome.BiomeProviderNetherEx;
 import logictechcorp.netherex.world.generation.ChunkGeneratorNetherEx;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiCreateWorld;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -32,11 +34,43 @@ public class WorldTypeNetherEx extends WorldType
 {
     private BiomeProvider overworldBiomeProvider = null;
     private BiomeProvider netherBiomeProvider = null;
+    private IChunkGenerator overworldChunkGenerator = null;
     private IChunkGenerator netherChunkGenerator = null;
 
     public WorldTypeNetherEx()
     {
         super(NetherEx.MOD_ID);
+    }
+
+    @Override
+    public void onCustomizeButton(Minecraft minecraft, GuiCreateWorld guiCreateWorld)
+    {
+        if(NetherEx.LOST_CITIES_LOADED)
+        {
+            WorldType lostCitiesWorldType = null;
+
+            for(WorldType worldType : WORLD_TYPES)
+            {
+                String worldTypeName = worldType.getName();
+
+                if(worldTypeName.equalsIgnoreCase("lostcities") || worldTypeName.equalsIgnoreCase("lostcities_bop"))
+                {
+                    lostCitiesWorldType = worldType;
+                    break;
+                }
+            }
+
+            if(lostCitiesWorldType != null)
+            {
+                lostCitiesWorldType.onCustomizeButton(minecraft, guiCreateWorld);
+            }
+        }
+    }
+
+    @Override
+    public boolean isCustomizable()
+    {
+        return NetherEx.LOST_CITIES_LOADED;
     }
 
     @Override
@@ -48,39 +82,36 @@ public class WorldTypeNetherEx extends WorldType
         {
             if(this.overworldBiomeProvider == null)
             {
-                if(NetherEx.BIOMES_O_PLENTY_LOADED)
+                WorldType originalWorldType = world.getWorldInfo().getTerrainType();
+                WorldType compatibleWorldType = null;
+
+                for(WorldType worldType : WORLD_TYPES)
                 {
-                    for(WorldType worldType : WORLD_TYPES)
+                    String worldTypeName = worldType.getName();
+
+                    if(NetherEx.LOST_CITIES_LOADED)
                     {
-                        String worldTypeName = worldType.getName();
-
-                        WorldType originalWorldType;
-
-                        if(NetherEx.LOST_CITIES_LOADED)
+                        if(worldTypeName.equalsIgnoreCase("lostcities") || worldTypeName.equalsIgnoreCase("lostcities_bop"))
                         {
-                            if(worldTypeName.equalsIgnoreCase("lostcities_bop"))
-                            {
-                                originalWorldType = world.getWorldInfo().getTerrainType();
-                            }
-                            else
-                            {
-                                continue;
-                            }
+                            compatibleWorldType = worldType;
+                            break;
                         }
-                        else if(worldTypeName.equalsIgnoreCase("BIOMESOP"))
-                        {
-                            originalWorldType = world.getWorldInfo().getTerrainType();
-                        }
-                        else
-                        {
-                            continue;
-                        }
-
-                        world.getWorldInfo().setTerrainType(worldType);
-                        this.overworldBiomeProvider = worldType.getBiomeProvider(world);
-                        world.getWorldInfo().setTerrainType(originalWorldType);
-                        break;
                     }
+                    else if(NetherEx.BIOMES_O_PLENTY_LOADED)
+                    {
+                        if(worldTypeName.equalsIgnoreCase("BIOMESOP"))
+                        {
+                            compatibleWorldType = worldType;
+                            break;
+                        }
+                    }
+                }
+
+                if(compatibleWorldType != null)
+                {
+                    world.getWorldInfo().setTerrainType(compatibleWorldType);
+                    this.overworldBiomeProvider = compatibleWorldType.getBiomeProvider(world);
+                    world.getWorldInfo().setTerrainType(originalWorldType);
                 }
                 else
                 {
@@ -113,7 +144,52 @@ public class WorldTypeNetherEx extends WorldType
     @Override
     public IChunkGenerator getChunkGenerator(World world, String generatorOptions)
     {
-        if(world.provider.getDimension() == DimensionType.NETHER.getId())
+        int dimension = world.provider.getDimension();
+
+        if(dimension == DimensionType.OVERWORLD.getId())
+        {
+            if(this.overworldChunkGenerator == null)
+            {
+                WorldType originalWorldType = world.getWorldInfo().getTerrainType();
+                WorldType compatibleWorldType = null;
+
+                for(WorldType worldType : WORLD_TYPES)
+                {
+                    String worldTypeName = worldType.getName();
+
+                    if(NetherEx.LOST_CITIES_LOADED)
+                    {
+                        if(worldTypeName.equalsIgnoreCase("lostcities") || worldTypeName.equalsIgnoreCase("lostcities_bop"))
+                        {
+                            compatibleWorldType = worldType;
+                            break;
+                        }
+                    }
+                    else if(NetherEx.BIOMES_O_PLENTY_LOADED)
+                    {
+                        if(worldTypeName.equalsIgnoreCase("BIOMESOP"))
+                        {
+                            compatibleWorldType = worldType;
+                            break;
+                        }
+                    }
+                }
+
+                if(compatibleWorldType != null)
+                {
+                    world.getWorldInfo().setTerrainType(compatibleWorldType);
+                    this.overworldChunkGenerator = compatibleWorldType.getChunkGenerator(world, generatorOptions);
+                    world.getWorldInfo().setTerrainType(originalWorldType);
+                }
+                else
+                {
+                    this.overworldChunkGenerator = super.getChunkGenerator(world, generatorOptions);
+                }
+            }
+
+            return this.overworldChunkGenerator;
+        }
+        else if(dimension == DimensionType.NETHER.getId())
         {
             if(this.netherChunkGenerator == null)
             {
