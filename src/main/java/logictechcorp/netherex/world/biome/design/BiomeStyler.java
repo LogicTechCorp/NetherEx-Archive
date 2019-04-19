@@ -9,12 +9,11 @@
  * (Edited to work with multiple dimensions)
  */
 
+package logictechcorp.netherex.world.biome.design;
 
-package logictechcorp.netherex.world.biome;
-
-import logictechcorp.libraryex.world.biome.BiomeBlock;
-import logictechcorp.libraryex.world.biome.IBiomeData;
-import logictechcorp.libraryex.world.biome.IBiomeDataRegistry;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -27,7 +26,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.Random;
 
-public class NetherBiomeStyler
+public class BiomeStyler
 {
     public static void styleBiome(World world, IChunkGenerator generator, ChunkPrimer primer, int chunkX, int chunkZ, NoiseGeneratorPerlin terrainNoiseGen, double[] terrainNoise, IBiomeDataRegistry biomeDataRegistry, Biome[] biomes, Random random)
     {

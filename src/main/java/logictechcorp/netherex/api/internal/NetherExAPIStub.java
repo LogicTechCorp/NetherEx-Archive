@@ -17,8 +17,9 @@
 
 package logictechcorp.netherex.api.internal;
 
-import logictechcorp.libraryex.world.biome.IBiomeDataManager;
-import logictechcorp.libraryex.world.biome.IBiomeDataRegistry;
+import logictechcorp.libraryex.trade.ITradeManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
 
 public final class NetherExAPIStub implements INetherExAPI
 {
@@ -35,19 +36,19 @@ public final class NetherExAPIStub implements INetherExAPI
     }
 
     @Override
-    public IBiomeDataRegistry getNetherBiomeDataRegistry()
+    public IBiomeDataRegistry getBiomeDataRegistry()
     {
         return NetherBiomeDataRegistryStub.INSTANCE;
     }
 
     @Override
-    public IBiomeDataManager getNetherBiomeDataManager()
+    public IBiomeDataManager getBiomeDataManager()
     {
         return NetherBiomeDataManagerStub.INSTANCE;
     }
 
     @Override
-    public ITradeManager getPigtificateTradeManager()
+    public ITradeManager getTradeManager()
     {
         return TradeManagerStub.INSTANCE;
     }

@@ -18,15 +18,15 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlock;
-import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.*;
+import logictechcorp.libraryex.world.generation.trait.impl.*;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityBlaze;
@@ -58,7 +58,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         return new BiomeData();
     }
 
-    private class BiomeData extends BiomeDataConfigurable
+    private class BiomeData extends BiomeDataNetherEx
     {
         BiomeData()
         {

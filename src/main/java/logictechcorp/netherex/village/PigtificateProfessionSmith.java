@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.village;
 
-import logictechcorp.libraryex.entity.trader.Trade;
-import logictechcorp.libraryex.entity.trader.TradeStack;
+import logictechcorp.libraryex.trade.Trade;
+import logictechcorp.libraryex.trade.TradeStack;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExItems;
 import logictechcorp.netherex.init.NetherExLootTables;

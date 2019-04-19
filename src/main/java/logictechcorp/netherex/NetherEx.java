@@ -19,11 +19,11 @@ package logictechcorp.netherex;
 
 import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.proxy.IProxy;
-import logictechcorp.libraryex.world.biome.IBiomeDataManager;
-import logictechcorp.libraryex.world.biome.IBiomeDataRegistry;
+import logictechcorp.libraryex.trade.ITradeManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.api.internal.INetherExAPI;
-import logictechcorp.netherex.api.internal.ITradeManager;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
@@ -101,7 +101,6 @@ public class NetherEx implements IModData, INetherExAPI
         NetherExBiomes.registerBiomes();
         NetherExRecipes.registerRecipes();
         NetherExOreDictionary.registerOres();
-        NetherExFeatures.registerFeatures();
         NetherExCriteria.registerCriteria();
         IMCHandler.sendCompatibilityMessages();
         proxy.init();
@@ -144,19 +143,19 @@ public class NetherEx implements IModData, INetherExAPI
     }
 
     @Override
-    public IBiomeDataRegistry getNetherBiomeDataRegistry()
+    public IBiomeDataRegistry getBiomeDataRegistry()
     {
         return NetherBiomeDataRegistry.INSTANCE;
     }
 
     @Override
-    public IBiomeDataManager getNetherBiomeDataManager()
+    public IBiomeDataManager getBiomeDataManager()
     {
         return NetherBiomeDataManager.INSTANCE;
     }
 
     @Override
-    public ITradeManager getPigtificateTradeManager()
+    public ITradeManager getTradeManager()
     {
         return PigtificateTradeManager.INSTANCE;
     }

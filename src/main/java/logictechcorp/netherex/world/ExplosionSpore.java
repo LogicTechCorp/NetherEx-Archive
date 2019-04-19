@@ -212,11 +212,11 @@ public class ExplosionSpore extends Explosion
 
         if(this.explosionSize >= 2.0F && this.isSmoking)
         {
-            NetherEx.proxy.spawnParticle(this.world, NetherExParticleTypes.SPORE_EXPLOSION_HUGE.ordinal(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(NetherExParticleTypes.SPORE_EXPLOSION_HUGE.getId(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
         }
         else
         {
-            NetherEx.proxy.spawnParticle(this.world, NetherExParticleTypes.SPORE_EXPLOSION_LARGE.ordinal(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(NetherExParticleTypes.SPORE_EXPLOSION_LARGE.getId(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
         }
 
         if(!this.world.isRemote)
@@ -225,10 +225,10 @@ public class ExplosionSpore extends Explosion
             {
                 for(BlockPos pos : this.affectedBlockPositions)
                 {
-                    IBlockState iblockstate = this.world.getBlockState(pos);
-                    Block block = iblockstate.getBlock();
+                    IBlockState state = this.world.getBlockState(pos);
+                    Block block = state.getBlock();
 
-                    if(iblockstate.getMaterial() != Material.AIR)
+                    if(state.getMaterial() != Material.AIR)
                     {
                         if(block.canDropFromExplosion(this))
                         {

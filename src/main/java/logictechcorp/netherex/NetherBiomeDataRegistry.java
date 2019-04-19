@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex;
 
-import logictechcorp.libraryex.world.biome.IBiomeData;
-import logictechcorp.libraryex.world.biome.IBiomeDataRegistry;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;

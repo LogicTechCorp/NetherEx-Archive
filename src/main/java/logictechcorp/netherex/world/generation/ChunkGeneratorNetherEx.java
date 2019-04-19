@@ -18,10 +18,10 @@
 package logictechcorp.netherex.world.generation;
 
 import logictechcorp.libraryex.event.LibExEventFactory;
-import logictechcorp.libraryex.world.biome.IBiomeData;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.world.biome.NetherBiomeStyler;
+import logictechcorp.netherex.world.biome.design.BiomeStyler;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -374,7 +374,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.netherBridge.generate(this.world, chunkX, chunkZ, primer);
 
         Biome[] biomes = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
-        NetherBiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, NetherExAPI.getInstance().getNetherBiomeDataRegistry(), biomes, this.random);
+        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, NetherExAPI.getInstance().getBiomeDataRegistry(), biomes, this.random);
 
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
@@ -395,7 +395,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        IBiomeData biomeData = NetherExAPI.getInstance().getNetherBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
+        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
         this.netherBridge.generateStructure(this.world, this.random, chunkPos);
@@ -435,7 +435,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             }
         }
 
-        IBiomeData biomeData = NetherExAPI.getInstance().getNetherBiomeDataRegistry().getBiomeData(this.world.getBiome(pos));
+        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(pos));
         return creatureType == null || biomeData == null ? new ArrayList<>() : biomeData.getBiomeEntities(creatureType);
     }
 

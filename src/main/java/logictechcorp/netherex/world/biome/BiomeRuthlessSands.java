@@ -18,17 +18,17 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlock;
-import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitFluid;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitOre;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpinout;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.generation.feature.FeatureThornstalk;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
+import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -59,7 +59,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         return new BiomeData();
     }
 
-    private class BiomeData extends BiomeDataConfigurable
+    private class BiomeData extends BiomeDataNetherEx
     {
         BiomeData()
         {
@@ -87,7 +87,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
                     new BiomeTraitFluid(16, false, 1.0D, 10, 118, FLOWING_LAVA, GLOOMY_NETHERRACK, true)
             )));
             this.getBiomeTraits(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new FeatureThornstalk(16, false, 1.0D, 32, 108)
+                    new BiomeTraitThornstalk(16, false, 1.0D, 32, 108)
             )));
             this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)

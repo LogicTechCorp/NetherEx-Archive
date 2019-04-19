@@ -28,6 +28,11 @@ public enum NetherExParticleTypes
     SPORE_EXPLOSION_LARGE,
     SPORE_EXPLOSION_HUGE;
 
+    public int getId()
+    {
+        return this.ordinal();
+    }
+
     @SideOnly(Side.CLIENT)
     public static IParticleFactory getFactory(int particleId)
     {

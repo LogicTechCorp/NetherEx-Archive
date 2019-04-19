@@ -1,6 +1,6 @@
 /*
- * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * LibraryEx
+ * Copyright (c) 2017-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.biome;
+package logictechcorp.netherex.world.biome.design;
 
 import logictechcorp.netherex.world.generation.layer.GenLayerNetherEx;
 import net.minecraft.world.World;

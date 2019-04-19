@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.api.internal;
 
-import logictechcorp.libraryex.world.biome.IBiomeDataManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
 import net.minecraftforge.event.world.WorldEvent;
 
 public final class NetherBiomeDataManagerStub implements IBiomeDataManager

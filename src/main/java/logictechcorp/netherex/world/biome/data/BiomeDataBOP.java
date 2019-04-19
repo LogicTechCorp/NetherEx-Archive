@@ -1,6 +1,6 @@
 /*
- * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * LibraryEx
+ * Copyright (c) 2017-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.biome;
+package logictechcorp.netherex.world.biome.data;
 
-import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class NetherBiomeDataBOP extends BiomeDataConfigurable
+public class BiomeDataBOP extends BiomeDataNetherEx
 {
-    public NetherBiomeDataBOP(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
+    public BiomeDataBOP(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
     {
         super(biomeRegistryName, weight, enabled, genDefaultFeatures);
     }

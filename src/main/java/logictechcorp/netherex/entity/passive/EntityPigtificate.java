@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.entity.passive;
 
-import logictechcorp.libraryex.entity.trader.ITrader;
-import logictechcorp.libraryex.entity.trader.Trade;
+import logictechcorp.libraryex.trade.ITrader;
+import logictechcorp.libraryex.trade.Trade;
 import logictechcorp.netherex.entity.ai.*;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateProfession;

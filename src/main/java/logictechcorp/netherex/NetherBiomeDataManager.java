@@ -21,7 +21,11 @@ import com.electronwill.nightconfig.core.file.FileConfig;
 import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
-import logictechcorp.libraryex.world.biome.*;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataConfigurable;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
@@ -91,7 +95,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
                             if(biome != null)
                             {
-                                IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getNetherBiomeDataRegistry();
+                                IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getBiomeDataRegistry();
                                 IBiomeData biomeData;
 
                                 if(biomeDataRegistry.hasBiomeData(biome))
@@ -148,7 +152,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
         {
             NetherEx.LOGGER.info(this.marker, "Writing Nether biome data configs to disk.");
 
-            for(IBiomeData biomeData : NetherExAPI.getInstance().getNetherBiomeDataRegistry().getBiomeData().values())
+            for(IBiomeData biomeData : NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData().values())
             {
                 if(!(biomeData instanceof IBiomeDataConfigurable))
                 {

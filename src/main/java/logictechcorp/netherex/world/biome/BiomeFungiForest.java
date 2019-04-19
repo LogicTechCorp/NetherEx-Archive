@@ -18,20 +18,20 @@
 package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlock;
-import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitBigMushroom;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.generation.feature.FeatureEnoki;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
+import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -62,7 +62,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         return new BiomeData();
     }
 
-    private class BiomeData extends BiomeDataConfigurable
+    private class BiomeData extends BiomeDataNetherEx
     {
         BiomeData()
         {
@@ -91,7 +91,7 @@ public class BiomeFungiForest extends BiomeNetherEx
             this.getBiomeTraits(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new BiomeTraitBigMushroom(256, false, 1.0D, 32, 108, NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, BiomeTraitBigMushroom.Shape.FLAT),
                     new BiomeTraitBigMushroom(256, false, 1.0D, 32, 108, NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), HYPHAE, BiomeTraitBigMushroom.Shape.BULB),
-                    new FeatureEnoki(32, false, 1.0D, 48, 118)
+                    new BiomeTraitEnoki(32, false, 1.0D, 48, 118)
             )));
             this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)

@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.generation.feature;
+package logictechcorp.netherex.world.generation.trait;
 
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitConfigurable;
-import logictechcorp.libraryex.world.generation.trait.IBiomeTraitConfigurable;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTrait;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitConfigurable;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -27,11 +27,16 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FeatureThornstalk extends BiomeTraitConfigurable
+public class BiomeTraitThornstalk extends BiomeTraitConfigurable
 {
-    public FeatureThornstalk(int generationAttempts, boolean randomizeGenerationAttempts, double generationProbability, int minimumGenerationHeight, int maximumGenerationHeight)
+    public BiomeTraitThornstalk(int generationAttempts, boolean randomizeGenerationAttempts, double generationProbability, int minimumGenerationHeight, int maximumGenerationHeight)
     {
         super(generationAttempts, randomizeGenerationAttempts, generationProbability, minimumGenerationHeight, maximumGenerationHeight);
+    }
+
+    private BiomeTraitThornstalk(Builder builder)
+    {
+        super(builder);
     }
 
     @Override
@@ -51,9 +56,17 @@ public class FeatureThornstalk extends BiomeTraitConfigurable
         return true;
     }
 
-    @Override
-    public IBiomeTraitConfigurable create()
+    public static class Builder extends BiomeTrait.Builder
     {
-        return null;
+        public Builder()
+        {
+            super();
+        }
+
+        @Override
+        public BiomeTrait create()
+        {
+            return new BiomeTraitThornstalk(this);
+        }
     }
 }

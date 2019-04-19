@@ -19,8 +19,8 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockBuilder;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
-import logictechcorp.libraryex.world.generation.trait.IBiomeTrait;
+import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitBigMushroom;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;

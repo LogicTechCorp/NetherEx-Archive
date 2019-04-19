@@ -22,7 +22,7 @@ import logictechcorp.netherex.api.internal.NetherExAPIStub;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
 
-public class NetherExAPI
+public final class NetherExAPI
 {
     private static INetherExAPI instance = NetherExAPIStub.INSTANCE;
 

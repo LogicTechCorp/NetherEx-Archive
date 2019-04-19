@@ -17,6 +17,7 @@
 
 package logictechcorp.netherex.api.internal;
 
+import logictechcorp.libraryex.trade.ITradeManager;
 import net.minecraftforge.event.world.WorldEvent;
 
 public final class TradeManagerStub implements ITradeManager

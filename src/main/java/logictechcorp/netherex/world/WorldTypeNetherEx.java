@@ -18,7 +18,7 @@
 package logictechcorp.netherex.world;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.biome.BiomeProviderNetherEx;
+import logictechcorp.netherex.world.biome.design.BiomeProviderNetherEx;
 import logictechcorp.netherex.world.generation.ChunkGeneratorNetherEx;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiCreateWorld;

@@ -1,6 +1,6 @@
 /*
- * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * LibraryEx
+ * Copyright (c) 2017-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.init;
+package logictechcorp.netherex.world.biome.design;
 
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitRegistry;
-import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.generation.feature.FeatureEnoki;
-import logictechcorp.netherex.world.generation.feature.FeatureThornstalk;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDecorator;
 
-public class NetherExFeatures
+import java.util.Random;
+
+public class BiomeDecoratorNetherEx extends BiomeDecorator
 {
-    public static void registerFeatures()
+    @Override
+    public void decorate(World world, Random random, Biome biome, BlockPos pos)
     {
-        BiomeTraitRegistry.registerFeature(NetherEx.getResource("thornstalk"), FeatureThornstalk.class);
-        BiomeTraitRegistry.registerFeature(NetherEx.getResource("enoki"), FeatureEnoki.class);
     }
 }

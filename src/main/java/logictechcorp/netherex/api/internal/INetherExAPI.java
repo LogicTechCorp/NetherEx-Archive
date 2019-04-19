@@ -17,8 +17,9 @@
 
 package logictechcorp.netherex.api.internal;
 
-import logictechcorp.libraryex.world.biome.IBiomeDataManager;
-import logictechcorp.libraryex.world.biome.IBiomeDataRegistry;
+import logictechcorp.libraryex.trade.ITradeManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
 
 public interface INetherExAPI
 {
@@ -34,19 +35,19 @@ public interface INetherExAPI
      *
      * @return The biome data registry.
      */
-    IBiomeDataRegistry getNetherBiomeDataRegistry();
+    IBiomeDataRegistry getBiomeDataRegistry();
 
     /**
      * Returns The biome data manager.
      *
      * @return The biome data manager
      */
-    IBiomeDataManager getNetherBiomeDataManager();
+    IBiomeDataManager getBiomeDataManager();
 
     /**
      * Returns the trade manger.
      *
      * @return The trade manger.
      */
-    ITradeManager getPigtificateTradeManager();
+    ITradeManager getTradeManager();
 }

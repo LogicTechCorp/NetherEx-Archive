@@ -37,8 +37,8 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
-            NetherExAPI.getInstance().getNetherBiomeDataManager().readBiomeDataConfigs(event);
-            NetherExAPI.getInstance().getPigtificateTradeManager().readTradeConfigs(event);
+            NetherExAPI.getInstance().getBiomeDataManager().readBiomeDataConfigs(event);
+            NetherExAPI.getInstance().getTradeManager().readTradeConfigs(event);
             PigtificateVillageManager.loadVillageData(world);
         }
     }
@@ -69,8 +69,8 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
-            NetherExAPI.getInstance().getNetherBiomeDataManager().writeBiomeDataConfigs(event);
-            NetherExAPI.getInstance().getPigtificateTradeManager().writeTradeConfigs(event);
+            NetherExAPI.getInstance().getBiomeDataManager().writeBiomeDataConfigs(event);
+            NetherExAPI.getInstance().getTradeManager().writeTradeConfigs(event);
             PigtificateVillageManager.unloadVillageData(world);
         }
     }

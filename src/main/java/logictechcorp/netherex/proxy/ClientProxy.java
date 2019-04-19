@@ -41,8 +41,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy implements IProxy
 {
-    private final Minecraft minecraft = Minecraft.getMinecraft();
-
     @Override
     public void preInit()
     {
@@ -83,8 +81,10 @@ public class ClientProxy implements IProxy
     }
 
     @Override
-    public void spawnParticle(World world, int particleId, double posX, double posY, double posZ, double speedX, double speedY, double speedZ)
+    public void spawnParticle(int particleId, double posX, double posY, double posZ, double speedX, double speedY, double speedZ)
     {
-        this.minecraft.effectRenderer.addEffect(NetherExParticleTypes.getFactory(particleId).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
+        Minecraft minecraft = Minecraft.getMinecraft();
+        World world = minecraft.world;
+        minecraft.effectRenderer.addEffect(NetherExParticleTypes.getFactory(particleId).createParticle(0, world, posX, posY, posZ, speedX, speedY, speedZ));
     }
 }

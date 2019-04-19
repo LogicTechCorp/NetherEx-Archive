@@ -1,6 +1,6 @@
 /*
- * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * LibraryEx
+ * Copyright (c) 2017-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,17 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.biome;
+package logictechcorp.netherex.world.biome.data;
 
 import com.electronwill.nightconfig.core.Config;
-import logictechcorp.libraryex.world.biome.BiomeBlock;
-import logictechcorp.libraryex.world.biome.BiomeDataConfigurable;
-import logictechcorp.libraryex.world.biome.IBiomeData;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitFluid;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitScatter;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityGhast;
@@ -38,11 +37,11 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
 
-public final class NetherBiomeDataHell extends BiomeDataConfigurable
+public final class BiomeDataHell extends BiomeDataNetherEx
 {
-    public static final IBiomeData INSTANCE = new NetherBiomeDataHell();
+    public static final IBiomeData INSTANCE = new BiomeDataHell();
 
-    private NetherBiomeDataHell()
+    private BiomeDataHell()
     {
         super(Biomes.HELL, 10, true, true);
     }

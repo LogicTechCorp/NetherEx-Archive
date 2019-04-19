@@ -18,9 +18,9 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.utility.RandomHelper;
-import logictechcorp.libraryex.world.biome.IBiomeData;
+import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.IBiomeTrait;
+import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.math.BlockPos;
@@ -92,7 +92,7 @@ public class FeatureGenHandler
 
     private static void generateFeature(World world, BlockPos pos, Random random, GenerationStage generationStage)
     {
-        IBiomeData biomeData = NetherExAPI.getInstance().getNetherBiomeDataRegistry().getBiomeData(world.getBiome(pos.add(16, 0, 16)));
+        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(world.getBiome(pos.add(16, 0, 16)));
 
         if(biomeData != null)
         {
