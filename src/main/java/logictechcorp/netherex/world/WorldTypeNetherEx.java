@@ -18,6 +18,7 @@
 package logictechcorp.netherex.world;
 
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.client.gui.GuiCustomizeWorld;
 import logictechcorp.netherex.world.biome.design.BiomeProviderNetherEx;
 import logictechcorp.netherex.world.generation.ChunkGeneratorNetherEx;
 import net.minecraft.client.Minecraft;
@@ -29,6 +30,9 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorldTypeNetherEx extends WorldType
 {
@@ -45,33 +49,44 @@ public class WorldTypeNetherEx extends WorldType
     @Override
     public void onCustomizeButton(Minecraft minecraft, GuiCreateWorld guiCreateWorld)
     {
-        WorldType compatibleWorldType = null;
+        List<WorldType> compatibleWorldTypes = new ArrayList<>();
 
         for(WorldType worldType : WORLD_TYPES)
         {
+            if(worldType == null)
+            {
+                continue;
+            }
+
             String worldTypeName = worldType.getName();
 
-            if(NetherEx.LOST_CITIES_LOADED)
+            if(NetherEx.LOST_CITIES_LOADED && NetherEx.BIOMES_O_PLENTY_LOADED)
             {
-                if(worldTypeName.equalsIgnoreCase("lostcities") || worldTypeName.equalsIgnoreCase("lostcities_bop"))
+                if(worldTypeName.equals("lostcities_bop"))
                 {
-                    compatibleWorldType = worldType;
-                    break;
+                    compatibleWorldTypes.add(worldType);
                 }
             }
-            else if(NetherEx.BIOMES_O_PLENTY_LOADED)
+            else if(NetherEx.LOST_CITIES_LOADED)
             {
-                if(worldTypeName.equalsIgnoreCase("BIOMESOP"))
+                if(worldTypeName.equals("lostcities"))
                 {
-                    compatibleWorldType = worldType;
-                    break;
+                    compatibleWorldTypes.add(worldType);
+                }
+            }
+
+            if(NetherEx.BIOMES_O_PLENTY_LOADED)
+            {
+                if(worldTypeName.equals("BIOMESOP"))
+                {
+                    compatibleWorldTypes.add(worldType);
                 }
             }
         }
 
-        if(compatibleWorldType != null)
+        if(compatibleWorldTypes.size() > 0)
         {
-            compatibleWorldType.onCustomizeButton(minecraft, guiCreateWorld);
+            minecraft.displayGuiScreen(new GuiCustomizeWorld(guiCreateWorld, compatibleWorldTypes));
         }
     }
 
@@ -97,9 +112,17 @@ public class WorldTypeNetherEx extends WorldType
                 {
                     String worldTypeName = worldType.getName();
 
-                    if(NetherEx.LOST_CITIES_LOADED)
+                    if(NetherEx.LOST_CITIES_LOADED && NetherEx.BIOMES_O_PLENTY_LOADED)
                     {
-                        if(worldTypeName.equalsIgnoreCase("lostcities") || worldTypeName.equalsIgnoreCase("lostcities_bop"))
+                        if(worldTypeName.equals("lostcities_bop"))
+                        {
+                            compatibleWorldType = worldType;
+                            break;
+                        }
+                    }
+                    else if(NetherEx.LOST_CITIES_LOADED)
+                    {
+                        if(worldTypeName.equals("lostcities"))
                         {
                             compatibleWorldType = worldType;
                             break;
@@ -107,7 +130,7 @@ public class WorldTypeNetherEx extends WorldType
                     }
                     else if(NetherEx.BIOMES_O_PLENTY_LOADED)
                     {
-                        if(worldTypeName.equalsIgnoreCase("BIOMESOP"))
+                        if(worldTypeName.equals("BIOMESOP"))
                         {
                             compatibleWorldType = worldType;
                             break;
@@ -165,9 +188,17 @@ public class WorldTypeNetherEx extends WorldType
                 {
                     String worldTypeName = worldType.getName();
 
-                    if(NetherEx.LOST_CITIES_LOADED)
+                    if(NetherEx.LOST_CITIES_LOADED && NetherEx.BIOMES_O_PLENTY_LOADED)
                     {
-                        if(worldTypeName.equalsIgnoreCase("lostcities") || worldTypeName.equalsIgnoreCase("lostcities_bop"))
+                        if(worldTypeName.equals("lostcities_bop"))
+                        {
+                            compatibleWorldType = worldType;
+                            break;
+                        }
+                    }
+                    else if(NetherEx.LOST_CITIES_LOADED)
+                    {
+                        if(worldTypeName.equals("lostcities"))
                         {
                             compatibleWorldType = worldType;
                             break;
@@ -175,7 +206,7 @@ public class WorldTypeNetherEx extends WorldType
                     }
                     else if(NetherEx.BIOMES_O_PLENTY_LOADED)
                     {
-                        if(worldTypeName.equalsIgnoreCase("BIOMESOP"))
+                        if(worldTypeName.equals("BIOMESOP"))
                         {
                             compatibleWorldType = worldType;
                             break;
