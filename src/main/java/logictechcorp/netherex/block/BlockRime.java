@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
@@ -45,7 +45,7 @@ public class BlockRime extends BlockMod
 {
     public BlockRime()
     {
-        super(NetherEx.getResource("rime_block"), new BlockBuilder(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(5.0F).resistance(10.0F).lightLevel(0.9375F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("rime_block"), new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(5.0F).resistance(10.0F).lightLevel(0.9375F));
     }
 
     @Override

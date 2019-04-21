@@ -41,7 +41,7 @@ public class ItemWitherDust extends ItemMod
 {
     public ItemWitherDust()
     {
-        super(NetherEx.getResource("wither_dust"), NetherExItems.getDefaultItemBuilder());
+        super(NetherEx.getResource("wither_dust"), NetherExItems.getDefaultItemProperties());
 
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new Bootstrap.BehaviorDispenseOptional()
         {

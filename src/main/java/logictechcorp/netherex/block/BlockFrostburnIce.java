@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -37,7 +37,7 @@ public class BlockFrostburnIce extends BlockMod
 {
     public BlockFrostburnIce()
     {
-        super(NetherEx.getResource("frostburn_ice"), new BlockBuilder(Material.ICE, MapColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.5F).resistance(1.0F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("frostburn_ice"), new BlockProperties(Material.ICE, MapColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.5F).resistance(1.0F));
         this.setLightOpacity(3);
     }
 

@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockTileEntity;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.tileentity.TileEntityUrnOfSorrow;
@@ -49,7 +49,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 
     public BlockUrnOfSorrow()
     {
-        super(NetherEx.getResource("urn_of_sorrow"), TileEntityUrnOfSorrow.class, new BlockBuilder(Material.ROCK, MapColor.SNOW).hardness(2.0F).resistance(2.0F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("urn_of_sorrow"), TileEntityUrnOfSorrow.class, new BlockProperties(Material.ROCK, MapColor.SNOW).hardness(2.0F).resistance(2.0F));
     }
 
     @Override

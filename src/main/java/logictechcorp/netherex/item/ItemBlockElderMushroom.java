@@ -18,7 +18,7 @@
 package logictechcorp.netherex.item;
 
 import logictechcorp.libraryex.item.ItemBlockEdible;
-import logictechcorp.libraryex.item.builder.ItemEdibleBuilder;
+import logictechcorp.libraryex.item.builder.ItemEdibleProperties;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -33,7 +33,7 @@ public class ItemBlockElderMushroom extends ItemBlockEdible
 {
     public ItemBlockElderMushroom(Block block)
     {
-        super(block, new ItemEdibleBuilder(0, 0.0F, false));
+        super(block, new ItemEdibleProperties(0, 0.0F, false));
     }
 
     @Override

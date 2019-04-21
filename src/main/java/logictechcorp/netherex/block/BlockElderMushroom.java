@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitBigMushroom;
 import logictechcorp.netherex.init.NetherExBlocks;
@@ -49,7 +49,7 @@ public class BlockElderMushroom extends BlockMod implements IPlantable, IGrowabl
 
     public BlockElderMushroom(ResourceLocation registryName)
     {
-        super(registryName, new BlockBuilder(Material.PLANTS, MapColor.SNOW).sound(SoundType.PLANT));
+        super(registryName, new BlockProperties(Material.PLANTS, MapColor.SNOW).sound(SoundType.PLANT));
     }
 
     @Override

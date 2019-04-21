@@ -22,11 +22,14 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
@@ -124,14 +127,14 @@ public class PlayerHandler
     @SubscribeEvent
     public static void onPlayerClone(Clone event)
     {
+        EntityPlayer oldPlayer = event.getOriginal();
+        EntityPlayer newPlayer = event.getEntityPlayer();
+        World world = newPlayer.getEntityWorld();
+        IInventory oldInventory = oldPlayer.inventory;
+        IInventory newInventory = newPlayer.inventory;
+
         if(event.isWasDeath())
         {
-            EntityPlayer oldPlayer = event.getOriginal();
-            EntityPlayer newPlayer = event.getEntityPlayer();
-            World world = newPlayer.getEntityWorld();
-            IInventory oldInventory = oldPlayer.inventory;
-            IInventory newInventory = newPlayer.inventory;
-
             ItemStack mirrorStack = ItemStack.EMPTY;
 
             for(int i = 0; i < oldInventory.getSizeInventory(); i++)
@@ -173,9 +176,48 @@ public class PlayerHandler
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event)
     {
-        if(!event.isEndConquered())
-        {
+        World world = event.player.getEntityWorld();
+        EntityPlayer player = event.player;
+        InventoryPlayer playerInventory = player.inventory;
 
+        if(!world.isRemote)
+        {
+            ItemStack mirrorStack = ItemStack.EMPTY;
+
+            for(int i = 0; i < playerInventory.getSizeInventory(); i++)
+            {
+                ItemStack stack = playerInventory.getStackInSlot(i);
+
+                if(stack.getItem() == NetherExItems.DULL_MIRROR)
+                {
+                    mirrorStack = stack;
+                    break;
+                }
+            }
+
+            if(!mirrorStack.isEmpty())
+            {
+                if(mirrorStack.getItemDamage() < mirrorStack.getMaxDamage() - 1)
+                {
+                    NBTTagCompound compound = NBTHelper.ensureTagExists(mirrorStack);
+
+                    if(compound.hasKey("SpawnDimension") && compound.hasKey("SpawnPoint"))
+                    {
+                        int spawnDimension = compound.getInteger("SpawnDimension");
+
+                        if(player.dimension != spawnDimension)
+                        {
+                            MinecraftServer server = world.getMinecraftServer();
+
+                            if(server != null)
+                            {
+                                BlockPos spawnPoint = NBTUtil.getPosFromTag(compound.getCompoundTag("SpawnPoint"));
+                                server.getPlayerList().transferPlayerToDimension((EntityPlayerMP) player, spawnDimension, (toWorld, entity, yaw) -> entity.setPosition(spawnPoint.getX() + 0.5D, spawnPoint.getY(), spawnPoint.getZ() + 0.5D));
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

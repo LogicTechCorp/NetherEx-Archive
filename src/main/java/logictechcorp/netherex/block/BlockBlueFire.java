@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -62,7 +62,7 @@ public class BlockBlueFire extends BlockMod
 
     public BlockBlueFire()
     {
-        super(NetherEx.getResource("blue_fire"), new BlockBuilder(Material.FIRE, MapColor.LIGHT_BLUE).lightLevel(1.0F).tickRandomly());
+        super(NetherEx.getResource("blue_fire"), new BlockProperties(Material.FIRE, MapColor.LIGHT_BLUE).lightLevel(1.0F).tickRandomly());
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false).withProperty(UPPER, false));
     }
 

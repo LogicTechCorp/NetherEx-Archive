@@ -41,7 +41,7 @@ public class ItemRimeAndSteel extends ItemMod
 {
     public ItemRimeAndSteel()
     {
-        super(NetherEx.getResource("rime_and_steel"), NetherExItems.getDefaultItemBuilder().copy().maxDamage(64));
+        super(NetherEx.getResource("rime_and_steel"), NetherExItems.getDefaultItemProperties().copy().maxDamage(64));
 
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, new Bootstrap.BehaviorDispenseOptional()
         {

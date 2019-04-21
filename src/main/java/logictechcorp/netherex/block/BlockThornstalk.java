@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
@@ -55,7 +55,7 @@ public class BlockThornstalk extends BlockMod
 
     public BlockThornstalk()
     {
-        super(NetherEx.getResource("thornstalk"), new BlockBuilder(Material.PLANTS, MapColor.BROWN).sound(SoundType.PLANT).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("thornstalk"), new BlockProperties(Material.PLANTS, MapColor.BROWN).sound(SoundType.PLANT));
     }
 
     @Override

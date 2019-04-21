@@ -122,7 +122,7 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ENOKI_MUSHROOM_CAP.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.ENOKI_MUSHROOM_STEM.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");

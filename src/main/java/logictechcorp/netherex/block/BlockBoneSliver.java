@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -46,7 +46,7 @@ public class BlockBoneSliver extends BlockMod
 
     public BlockBoneSliver()
     {
-        super(NetherEx.getResource("bone_sliver"), new BlockBuilder(Material.ROCK, MapColor.SNOW).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(2.0F).resistance(5.0F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("bone_sliver"), new BlockProperties(Material.ROCK, MapColor.SNOW).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(2.0F).resistance(5.0F));
     }
 
     @Override

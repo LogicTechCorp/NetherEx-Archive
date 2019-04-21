@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -35,9 +35,9 @@ public class BlockNetherrack extends BlockMod
 {
     private Block path;
 
-    public BlockNetherrack(ResourceLocation registryName, Block path, BlockBuilder builder)
+    public BlockNetherrack(ResourceLocation registryName, Block path, BlockProperties properties)
     {
-        super(registryName, builder);
+        super(registryName, properties);
         this.path = path;
     }
 

@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -38,7 +38,7 @@ public class BlockWornIron extends BlockMod
 {
     public BlockWornIron()
     {
-        super(NetherEx.getResource("worn_iron"), new BlockBuilder(Material.IRON, MapColor.GRAY).sound(SoundType.METAL).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(5.0F).resistance(10.0F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("worn_iron"), new BlockProperties(Material.IRON, MapColor.GRAY).sound(SoundType.METAL).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(5.0F).resistance(10.0F));
     }
 
     @Override

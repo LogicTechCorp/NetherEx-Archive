@@ -46,7 +46,7 @@ public class ItemDullMirror extends ItemMod
 {
     public ItemDullMirror()
     {
-        super(NetherEx.getResource("dull_mirror"), NetherExItems.getDefaultItemBuilder().copy().maxDamage(6));
+        super(NetherEx.getResource("dull_mirror"), NetherExItems.getDefaultItemProperties().copy().maxDamage(6));
         this.addPropertyOverride(new ResourceLocation("on"), (stack, world, entity) -> !stack.hasTagCompound() ? 0.0F : stack.getTagCompound().hasKey("SpawnPoint") ? 1.0F : 0.0F);
     }
 
@@ -89,8 +89,9 @@ public class ItemDullMirror extends ItemMod
 
                 if(compound.hasKey("SpawnDimension") && compound.hasKey("SpawnPoint"))
                 {
-                    player.setSpawnDimension(null);
-                    player.setSpawnChunk(null, false, compound.getInteger("SpawnDimension"));
+                    int bedDimension = compound.getInteger("BedDimension");
+                    player.setSpawnDimension(bedDimension);
+                    player.setSpawnChunk(NBTUtil.getPosFromTag(compound.getCompoundTag("BedPoint")), true, bedDimension);
                     compound.setBoolean("RemovedSpawn", true);
                 }
             }
@@ -110,6 +111,8 @@ public class ItemDullMirror extends ItemMod
 
             if(!compound.hasKey("SpawnDimension") || !compound.hasKey("SpawnPoint"))
             {
+                compound.setInteger("BedDimension", player.getSpawnDimension());
+                compound.setTag("BedPoint", NBTUtil.createPosTag(player.getBedLocation(player.getSpawnDimension())));
                 compound.setInteger("SpawnDimension", spawnDimension);
                 compound.setTag("SpawnPoint", NBTUtil.createPosTag(spawnPoint));
                 player.setSpawnDimension(spawnDimension);
@@ -124,9 +127,11 @@ public class ItemDullMirror extends ItemMod
             }
             else
             {
+                int bedDimension = compound.getInteger("BedDimension");
                 compound.removeTag("SpawnDimension");
                 compound.removeTag("SpawnPoint");
-                player.setSpawnDimension(null);
+                player.setSpawnDimension(bedDimension);
+                player.setSpawnChunk(NBTUtil.getPosFromTag(compound.getCompoundTag("BedPoint")), true, bedDimension);
 
                 if(!world.isRemote)
                 {

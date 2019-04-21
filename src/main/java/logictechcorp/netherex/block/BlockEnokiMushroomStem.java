@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExItems;
@@ -56,7 +56,7 @@ public class BlockEnokiMushroomStem extends BlockMod
 
     public BlockEnokiMushroomStem()
     {
-        super(NetherEx.getResource("enoki_mushroom_stem"), new BlockBuilder(Material.PLANTS, MapColor.SNOW).sound(SoundType.WOOD).hardness(0.4F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("enoki_mushroom_stem"), new BlockProperties(Material.PLANTS, MapColor.SNOW).sound(SoundType.WOOD).hardness(0.4F));
     }
 
     @Override

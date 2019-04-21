@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBlocks;
@@ -50,7 +50,7 @@ public class BlockHyphae extends BlockMod
 {
     public BlockHyphae()
     {
-        super(NetherEx.getResource("hyphae"), new BlockBuilder(Material.ROCK, MapColor.GRAY).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.5F).resistance(2.0F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("hyphae"), new BlockProperties(Material.ROCK, MapColor.GRAY).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.5F).resistance(2.0F));
 
         if(ConfigHandler.blockConfig.hyphae.shouldSpread)
         {

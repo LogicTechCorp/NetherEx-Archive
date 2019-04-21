@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.SoundType;
@@ -45,7 +45,7 @@ public class BlockElderMushroomStem extends BlockMod
 
     public BlockElderMushroomStem()
     {
-        super(NetherEx.getResource("elder_mushroom_stem"), new BlockBuilder(Material.WOOD, MapColor.SNOW).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F).creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("elder_mushroom_stem"), new BlockProperties(Material.WOOD, MapColor.SNOW).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F));
     }
 
     @Override

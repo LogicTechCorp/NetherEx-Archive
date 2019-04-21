@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.utility.RandomHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
@@ -33,9 +33,9 @@ import java.util.Random;
 
 public class BlockDynamicNetherOre extends BlockDynamicNetherBiome
 {
-    public BlockDynamicNetherOre(ResourceLocation registryName, TexturePlacement texturePlacement, BlockBuilder builder)
+    public BlockDynamicNetherOre(ResourceLocation registryName, TexturePlacement texturePlacement, BlockProperties properties)
     {
-        super(registryName, texturePlacement, builder);
+        super(registryName, texturePlacement, properties);
     }
 
     @Override

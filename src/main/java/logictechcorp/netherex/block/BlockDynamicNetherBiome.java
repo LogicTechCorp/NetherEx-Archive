@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockDynamic;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.netherex.api.NetherExAPI;
@@ -31,9 +31,9 @@ import net.minecraft.world.biome.Biome;
 
 public abstract class BlockDynamicNetherBiome extends BlockDynamic
 {
-    public BlockDynamicNetherBiome(ResourceLocation registryName, TexturePlacement texturePlacement, BlockBuilder builder)
+    public BlockDynamicNetherBiome(ResourceLocation registryName, TexturePlacement texturePlacement, BlockProperties properties)
     {
-        super(registryName, texturePlacement, builder);
+        super(registryName, texturePlacement, properties);
     }
 
     @Override

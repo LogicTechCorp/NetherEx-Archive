@@ -49,8 +49,6 @@ import org.apache.logging.log4j.Logger;
 public class NetherEx implements IModData, INetherExAPI
 {
     //TODO:
-    // Fix Dull Mirror not working across dimensions
-    // Fix Enoki Mushroom Stem item display
     // Finish adding in new textures
 
     public static final String MOD_ID = "netherex";

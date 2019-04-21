@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockModPortal;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -40,7 +40,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.ITeleporter;
 
 import java.util.Random;
@@ -49,7 +48,7 @@ public class BlockNetherPortal extends BlockModPortal
 {
     public BlockNetherPortal()
     {
-        super(NetherEx.getResource("nether_portal"), new BlockBuilder(Material.PORTAL, MapColor.PURPLE).sound(SoundType.GLASS).lightLevel(0.75F).hardness(-1.0F).tickRandomly());
+        super(NetherEx.getResource("nether_portal"), new BlockProperties(Material.PORTAL, MapColor.PURPLE).sound(SoundType.GLASS).lightLevel(0.75F).hardness(-1.0F).tickRandomly());
     }
 
     @Override
@@ -95,25 +94,25 @@ public class BlockNetherPortal extends BlockModPortal
             {
                 if(!world.isRemote)
                 {
-                    WorldServer worldServer = (WorldServer) world;
-                    MinecraftServer minecraftServer = worldServer.getMinecraftServer();
+                    MinecraftServer server = world.getMinecraftServer();
 
-                    if(minecraftServer != null)
+                    if(server != null)
                     {
-                        PlayerList playerList = minecraftServer.getPlayerList();
-                        int dimension = entity.dimension == DimensionType.NETHER.getId() ? DimensionType.OVERWORLD.getId() : DimensionType.NETHER.getId();
-                        ITeleporter teleporter = TeleporterNetherEx.getTeleporterForWorld(minecraftServer, dimension);
+                        PlayerList playerList = server.getPlayerList();
+                        int fromDimension = entity.dimension;
+                        int toDimension = entity.dimension == DimensionType.NETHER.getId() ? DimensionType.OVERWORLD.getId() : DimensionType.NETHER.getId();
+                        ITeleporter teleporter = TeleporterNetherEx.getTeleporterForWorld(server, toDimension);
 
                         entity.setPortal(pos);
                         entity.timeUntilPortal = entity.getPortalCooldown();
 
                         if(entity instanceof EntityPlayerMP)
                         {
-                            playerList.transferPlayerToDimension((EntityPlayerMP) entity, dimension, teleporter);
+                            playerList.transferPlayerToDimension((EntityPlayerMP) entity, toDimension, teleporter);
                         }
                         else
                         {
-                            playerList.transferEntityToWorld(entity, entity.dimension, worldServer, minecraftServer.getWorld(dimension), teleporter);
+                            playerList.transferEntityToWorld(entity, fromDimension, server.getWorld(fromDimension), server.getWorld(toDimension), teleporter);
                         }
                     }
                 }

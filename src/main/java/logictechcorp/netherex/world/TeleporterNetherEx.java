@@ -1,6 +1,6 @@
 /*
- * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * LibraryEx
+ * Copyright (c) 2017-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -436,9 +436,9 @@ public class TeleporterNetherEx extends Teleporter
 
     public static TeleporterNetherEx getTeleporterForWorld(MinecraftServer minecraftServer, int dimension)
     {
-        WorldServer server = minecraftServer.getWorld(dimension);
+        WorldServer worldServer = minecraftServer.getWorld(dimension);
 
-        for(Teleporter teleporter : server.customTeleporters)
+        for(Teleporter teleporter : worldServer.customTeleporters)
         {
             if(teleporter instanceof TeleporterNetherEx)
             {
@@ -446,8 +446,8 @@ public class TeleporterNetherEx extends Teleporter
             }
         }
 
-        TeleporterNetherEx teleporter = new TeleporterNetherEx(server);
-        server.customTeleporters.add(teleporter);
+        TeleporterNetherEx teleporter = new TeleporterNetherEx(worldServer);
+        worldServer.customTeleporters.add(teleporter);
         return teleporter;
     }
 }

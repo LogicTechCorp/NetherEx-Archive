@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockModPath;
-import logictechcorp.libraryex.block.builder.BlockBuilder;
+import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBlocks;
@@ -53,7 +53,7 @@ public class BlockTilledSoulSand extends BlockModPath
 
     public BlockTilledSoulSand()
     {
-        super(NetherEx.getResource("tilled_soul_sand"), Blocks.SOUL_SAND, new BlockBuilder(Material.SAND, MapColor.BROWN).sound(SoundType.SAND).hardness(0.6F).tickRandomly().creativeTab(NetherEx.instance.getCreativeTab()));
+        super(NetherEx.getResource("tilled_soul_sand"), Blocks.SOUL_SAND, new BlockProperties(Material.SAND, MapColor.BROWN).sound(SoundType.SAND).hardness(0.6F).tickRandomly());
         this.setLightOpacity(255);
     }
 

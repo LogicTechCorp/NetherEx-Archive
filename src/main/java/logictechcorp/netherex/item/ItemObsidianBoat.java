@@ -42,7 +42,7 @@ public class ItemObsidianBoat extends ItemMod
 {
     public ItemObsidianBoat()
     {
-        super(NetherEx.getResource("obsidian_boat"), NetherExItems.getDefaultItemBuilder().copy().maxStackSize(1));
+        super(NetherEx.getResource("obsidian_boat"), NetherExItems.getDefaultItemProperties().copy().maxStackSize(1));
     }
 
     @Override
