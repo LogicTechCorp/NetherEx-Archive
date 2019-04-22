@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.world.biome;
 
-import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
@@ -70,11 +69,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         BiomeData()
         {
             super(NetherExBiomes.ARCTIC_ABYSS, 2, true, true);
-        }
-
-        @Override
-        public void writeToConfig(Config config)
-        {
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, ICY_NETHERRACK);
@@ -98,7 +92,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
                     new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
                     new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
             )));
-            super.writeToConfig(config);
         }
     }
 }

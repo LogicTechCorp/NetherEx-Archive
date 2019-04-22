@@ -38,7 +38,7 @@ public class BiomeDataBOP extends BiomeDataNetherEx
         if(server != null && NetherEx.BIOMES_O_PLENTY_LOADED)
         {
             WorldType worldType = server.getEntityWorld().getWorldType();
-            return worldType.getName().equalsIgnoreCase(NetherEx.MOD_ID);
+            return worldType.getName().equals(NetherEx.MOD_ID);
         }
 
         return false;

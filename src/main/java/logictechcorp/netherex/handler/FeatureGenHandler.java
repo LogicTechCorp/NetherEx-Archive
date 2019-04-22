@@ -39,58 +39,70 @@ public class FeatureGenHandler
     @SubscribeEvent
     public static void onPreBiomeDecorate(DecorateBiomeEvent.Pre event)
     {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        World world = event.getWorld();
+
+        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateFeature(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.PRE_DECORATE);
+            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.PRE_DECORATE);
         }
     }
 
     @SubscribeEvent
     public static void onBiomeDecorate(DecorateBiomeEvent.Decorate event)
     {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
+        World world = event.getWorld();
+
+        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
         {
-            generateFeature(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.DECORATE);
+            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.DECORATE);
         }
     }
 
     @SubscribeEvent
     public static void onPostBiomeDecorate(DecorateBiomeEvent.Post event)
     {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        World world = event.getWorld();
+
+        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateFeature(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.POST_DECORATE);
+            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.POST_DECORATE);
         }
     }
 
     @SubscribeEvent
     public static void onPreGenerateOres(OreGenEvent.Pre event)
     {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        World world = event.getWorld();
+
+        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_ORE);
+            generateBiomeTraits(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_ORE);
         }
     }
 
     @SubscribeEvent
     public static void onGenerateOres(OreGenEvent.GenerateMinable event)
     {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == OreGenEvent.GenerateMinable.EventType.CUSTOM)
+        World world = event.getWorld();
+
+        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == OreGenEvent.GenerateMinable.EventType.CUSTOM)
         {
-            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.ORE);
+            generateBiomeTraits(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.ORE);
         }
     }
 
     @SubscribeEvent
     public static void onPostGenerateOres(OreGenEvent.Post event)
     {
-        if(event.getWorld().provider.getDimension() == DimensionType.NETHER.getId())
+        World world = event.getWorld();
+
+        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateFeature(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_ORE);
+            generateBiomeTraits(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_ORE);
         }
     }
 
-    private static void generateFeature(World world, BlockPos pos, Random random, GenerationStage generationStage)
+    private static void generateBiomeTraits(World world, BlockPos pos, Random random, GenerationStage generationStage)
     {
         IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(world.getBiome(pos.add(16, 0, 16)));
 

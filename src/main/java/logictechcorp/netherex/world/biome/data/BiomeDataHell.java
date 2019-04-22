@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.world.biome.data;
 
-import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
@@ -44,11 +43,6 @@ public final class BiomeDataHell extends BiomeDataNetherEx
     private BiomeDataHell()
     {
         super(Biomes.HELL, 10, true, true);
-    }
-
-    @Override
-    public void writeToConfig(Config config)
-    {
         this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.WALL_BLOCK, Blocks.NETHERRACK.getDefaultState());
@@ -76,6 +70,5 @@ public final class BiomeDataHell extends BiomeDataNetherEx
                 new BiomeTraitOre(16, false, 1.0D, 10, 108, Blocks.QUARTZ_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 14),
                 new BiomeTraitOre(4, false, 1.0D, 28, 38, Blocks.MAGMA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 32)
         ));
-        super.writeToConfig(config);
     }
 }

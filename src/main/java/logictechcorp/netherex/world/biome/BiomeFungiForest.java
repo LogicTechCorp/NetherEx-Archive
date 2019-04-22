@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.world.biome;
 
-import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitBigMushroom;
@@ -67,11 +66,6 @@ public class BiomeFungiForest extends BiomeNetherEx
         BiomeData()
         {
             super(NetherExBiomes.FUNGI_FOREST, 4, true, true);
-        }
-
-        @Override
-        public void writeToConfig(Config config)
-        {
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, LIVELY_NETHERRACK);
@@ -96,7 +90,6 @@ public class BiomeFungiForest extends BiomeNetherEx
             this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), LIVELY_NETHERRACK, 14)
             )));
-            super.writeToConfig(config);
         }
     }
 }

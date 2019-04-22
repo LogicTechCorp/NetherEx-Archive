@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.world.biome;
 
-import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.*;
@@ -63,11 +62,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         BiomeData()
         {
             super(NetherExBiomes.TORRID_WASTELAND, 6, true, true);
-        }
-
-        @Override
-        public void writeToConfig(Config config)
-        {
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, FIERY_NETHERRACK);
@@ -93,7 +87,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
                     new BiomeTraitOre(14, false, 1.0D, 10, 108, NetherExBlocks.BASALT.getDefaultState(), FIERY_NETHERRACK, 24),
                     new BiomeTraitOre(8, false, 1.0D, 28, 38, Blocks.MAGMA.getDefaultState(), FIERY_NETHERRACK, 32)
             )));
-            super.writeToConfig(config);
         }
     }
 }

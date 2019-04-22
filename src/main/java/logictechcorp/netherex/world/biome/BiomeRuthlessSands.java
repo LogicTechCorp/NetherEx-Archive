@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.world.biome;
 
-import com.electronwill.nightconfig.core.Config;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
@@ -64,11 +63,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
         BiomeData()
         {
             super(NetherExBiomes.RUTHLESS_SANDS, 8, true, true);
-        }
-
-        @Override
-        public void writeToConfig(Config config)
-        {
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, SOUL_SAND);
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, GLOOMY_NETHERRACK);
@@ -92,7 +86,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
                     new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), GLOOMY_NETHERRACK, 14)
             )));
-            super.writeToConfig(config);
         }
     }
 }

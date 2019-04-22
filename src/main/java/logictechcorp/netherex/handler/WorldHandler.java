@@ -37,9 +37,12 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
-            NetherExAPI.getInstance().getBiomeDataManager().readBiomeDataConfigs(event);
-            NetherExAPI.getInstance().getTradeManager().readTradeConfigs(event);
-            PigtificateVillageManager.loadVillageData(world);
+            if(world.getWorldType() == NetherEx.WORLD_TYPE)
+            {
+                NetherExAPI.getInstance().getBiomeDataManager().readBiomeDataConfigs(event);
+                NetherExAPI.getInstance().getTradeManager().readTradeConfigs(event);
+                PigtificateVillageManager.loadVillageData(world);
+            }
         }
     }
 
@@ -52,11 +55,14 @@ public class WorldHandler
         {
             if(!world.isRemote)
             {
-                PigtificateVillageData data = PigtificateVillageManager.getVillageData(world, false);
-
-                if(data != null)
+                if(world.getWorldType() == NetherEx.WORLD_TYPE)
                 {
-                    data.tick();
+                    PigtificateVillageData data = PigtificateVillageManager.getVillageData(world, false);
+
+                    if(data != null)
+                    {
+                        data.tick();
+                    }
                 }
             }
         }
@@ -69,9 +75,12 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
-            NetherExAPI.getInstance().getBiomeDataManager().writeBiomeDataConfigs(event);
-            NetherExAPI.getInstance().getTradeManager().writeTradeConfigs(event);
-            PigtificateVillageManager.unloadVillageData(world);
+            if(world.getWorldType() == NetherEx.WORLD_TYPE)
+            {
+                NetherExAPI.getInstance().getBiomeDataManager().writeBiomeDataConfigs(event);
+                NetherExAPI.getInstance().getTradeManager().writeTradeConfigs(event);
+                PigtificateVillageManager.unloadVillageData(world);
+            }
         }
     }
 }

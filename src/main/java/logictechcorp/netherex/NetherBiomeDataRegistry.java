@@ -55,6 +55,10 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
             this.biomeData.put(biomeRegistryName, biomeData);
             this.biomeEntries.put(biomeData, new BiomeManager.BiomeEntry(biome, biomeData.getBiomeGenerationWeight()));
         }
+        else
+        {
+            this.biomeEntries.get(biomeData).itemWeight = biomeData.getBiomeGenerationWeight();
+        }
     }
 
     @Override
