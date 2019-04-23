@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "netherex:blocks/soul_sandstone_bottom",
+        "top": "netherex:blocks/soul_sandstone_top",
+        "side": "netherex:blocks/soul_sandstone"
+    }
+}

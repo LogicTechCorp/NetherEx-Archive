@@ -42,6 +42,7 @@ public class NetherExRecipes
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.LIVELY_NETHERBRICK), new ItemStack(NetherExBlocks.LIVELY_NETHERRACK), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.FIERY_NETHERBRICK), new ItemStack(NetherExBlocks.FIERY_NETHERRACK), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.ICY_NETHERBRICK), new ItemStack(NetherExBlocks.ICY_NETHERRACK), 0.5F);
+        RecipeHelper.addSmelting(new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE), new ItemStack(NetherExBlocks.SOUL_SANDSTONE), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExBlocks.SOUL_GLASS), new ItemStack(Blocks.SOUL_SAND), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(Items.QUARTZ), new ItemStack(NetherExBlocks.QUARTZ_ORE), 0.0F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.AMETHYST_CRYSTAL), new ItemStack(NetherExBlocks.AMETHYST_ORE), 0.0F);
@@ -108,6 +109,41 @@ public class NetherExRecipes
                     RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.ICY_NETHER_BRICK, 3), NetherExBlocks.ICY_NETHER_BRICK_STAIRS),
                     RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.ICY_NETHER_BRICK_FENCE, 6), NetherExBlocks.ICY_NETHER_BRICK, NetherExBlocks.ICY_NETHER_BRICK_SLAB),
                     RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.ICY_NETHER_BRICK_FENCE_GATE, 6), NetherExBlocks.ICY_NETHER_BRICK_SLAB, NetherExBlocks.ICY_NETHER_BRICK),
+
+                    //Soul Sandstone Recipes
+                    RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 4), Blocks.SOUL_SAND),
+                    RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.SOUL_SANDSTONE),
+                    RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 1), NetherExBlocks.SOUL_SANDSTONE_SLAB),
+                    RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE_WALL, 6), NetherExBlocks.SOUL_SANDSTONE),
+                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 1), NetherExBlocks.SOUL_SANDSTONE_WALL),
+                    RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.SOUL_SANDSTONE),
+                    RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 3), NetherExBlocks.SOUL_SANDSTONE_STAIRS),
+
+                    //Cut Soul Sandstone Recipes
+                    RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 4), NetherExBlocks.SOUL_SANDSTONE),
+                    RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.CUT_SOUL_SANDSTONE),
+                    RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 1), NetherExBlocks.CUT_SOUL_SANDSTONE_SLAB),
+                    RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE_WALL, 6), NetherExBlocks.CUT_SOUL_SANDSTONE),
+                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 1), NetherExBlocks.CUT_SOUL_SANDSTONE_WALL),
+                    RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.CUT_SOUL_SANDSTONE),
+                    RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 3), NetherExBlocks.CUT_SOUL_SANDSTONE_STAIRS),
+
+                    //Chiseled Soul Sandstone Recipes
+                    RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 2), NetherExBlocks.SOUL_SANDSTONE_SLAB),
+                    RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.CHISELED_SOUL_SANDSTONE),
+                    RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 1), NetherExBlocks.CHISELED_SOUL_SANDSTONE_SLAB),
+                    RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE_WALL, 6), NetherExBlocks.CHISELED_SOUL_SANDSTONE),
+                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 1), NetherExBlocks.CHISELED_SOUL_SANDSTONE_WALL),
+                    RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.CHISELED_SOUL_SANDSTONE),
+                    RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 3), NetherExBlocks.CHISELED_SOUL_SANDSTONE_STAIRS),
+
+                    //Smooth Soul Sandstone Recipes
+                    RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.SMOOTH_SOUL_SANDSTONE),
+                    RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE, 1), NetherExBlocks.SMOOTH_SOUL_SANDSTONE_SLAB),
+                    RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_WALL, 6), NetherExBlocks.SMOOTH_SOUL_SANDSTONE),
+                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE, 1), NetherExBlocks.SMOOTH_SOUL_SANDSTONE_WALL),
+                    RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.SMOOTH_SOUL_SANDSTONE),
+                    RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE, 3), NetherExBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS),
 
                     //Basalt recipes
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.BASALT, 4), NetherExBlocks.SMOOTH_BASALT),

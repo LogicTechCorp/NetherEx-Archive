@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
-public class FeatureGenHandler
+public class BiomeTraitGenerationHandler
 {
     @SubscribeEvent
     public static void onPreBiomeDecorate(DecorateBiomeEvent.Pre event)

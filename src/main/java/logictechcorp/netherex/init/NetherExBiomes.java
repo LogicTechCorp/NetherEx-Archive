@@ -20,9 +20,6 @@ package logictechcorp.netherex.init;
 import logictechcorp.libraryex.api.LibraryExAPI;
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
-import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitOre;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -34,7 +31,6 @@ import logictechcorp.netherex.world.biome.data.BiomeDataBOP;
 import logictechcorp.netherex.world.biome.data.BiomeDataHell;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -78,15 +74,9 @@ public class NetherExBiomes
         LibraryExAPI.getInstance().getBiomeTraitRegistry().registerBiomeTrait(NetherEx.getResource("thornstalk"), new BiomeTraitThornstalk.Builder(), BiomeTraitThornstalk.class);
         LibraryExAPI.getInstance().getBiomeTraitRegistry().registerBiomeTrait(NetherEx.getResource("enoki"), new BiomeTraitEnoki.Builder(), BiomeTraitEnoki.class);
 
-        BiomeDataHell.INSTANCE.getBiomeTraits(GenerationStage.PRE_DECORATE).add(new BiomeTraitStructure(1, false, 1.0D, 32, 116, NetherEx.getResource("village/tiny_hell_pigtificate_village"), BiomeTraitStructure.Type.GROUNDED, Blocks.STRUCTURE_VOID, 0.75D));
-        BiomeDataHell.INSTANCE.getBiomeTraits(GenerationStage.ORE).add(new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.AMETHYST_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 3));
-
         IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getBiomeDataRegistry();
         biomeDataRegistry.registerBiomeData(BiomeDataHell.INSTANCE);
         biomeDataRegistry.registerBiomeData(NetherExBiomes.RUTHLESS_SANDS.getBiomeData());
-        biomeDataRegistry.registerBiomeData(NetherExBiomes.FUNGI_FOREST.getBiomeData());
-        biomeDataRegistry.registerBiomeData(NetherExBiomes.TORRID_WASTELAND.getBiomeData());
-        biomeDataRegistry.registerBiomeData(NetherExBiomes.ARCTIC_ABYSS.getBiomeData());
 
         if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {

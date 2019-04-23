@@ -43,6 +43,7 @@ public class NetherExBlocks
     public static final BlockNetherrack LIVELY_NETHERRACK = InjectionHelper.nullValue();
     public static final BlockNetherrack FIERY_NETHERRACK = InjectionHelper.nullValue();
     public static final BlockNetherrack ICY_NETHERRACK = InjectionHelper.nullValue();
+    public static final BlockHauntedSoulSand HAUNTED_SOUL_SAND = InjectionHelper.nullValue();
     public static final BlockModPath NETHERRACK_PATH = InjectionHelper.nullValue();
     public static final BlockModPath GLOOMY_NETHERRACK_PATH = InjectionHelper.nullValue();
     public static final BlockModPath LIVELY_NETHERRACK_PATH = InjectionHelper.nullValue();
@@ -52,6 +53,10 @@ public class NetherExBlocks
     public static final BlockMod LIVELY_NETHER_BRICK = InjectionHelper.nullValue();
     public static final BlockMod FIERY_NETHER_BRICK = InjectionHelper.nullValue();
     public static final BlockMod ICY_NETHER_BRICK = InjectionHelper.nullValue();
+    public static final BlockMod SOUL_SANDSTONE = InjectionHelper.nullValue();
+    public static final BlockMod CUT_SOUL_SANDSTONE = InjectionHelper.nullValue();
+    public static final BlockMod CHISELED_SOUL_SANDSTONE = InjectionHelper.nullValue();
+    public static final BlockMod SMOOTH_SOUL_SANDSTONE = InjectionHelper.nullValue();
     public static final BlockMod BASALT = InjectionHelper.nullValue();
     public static final BlockMod SMOOTH_BASALT = InjectionHelper.nullValue();
     public static final BlockMod BASALT_BRICK = InjectionHelper.nullValue();
@@ -86,15 +91,23 @@ public class NetherExBlocks
     public static final BlockModSlab LIVELY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab FIERY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab ICY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
+    public static final BlockModSlab SOUL_SANDSTONE_SLAB = InjectionHelper.nullValue();
+    public static final BlockModSlab CUT_SOUL_SANDSTONE_SLAB = InjectionHelper.nullValue();
+    public static final BlockModSlab CHISELED_SOUL_SANDSTONE_SLAB = InjectionHelper.nullValue();
+    public static final BlockModSlab SMOOTH_SOUL_SANDSTONE_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab BASALT_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab SMOOTH_BASALT_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab BASALT_BRICK_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab BASALT_PILLAR_SLAB = InjectionHelper.nullValue();
     public static final BlockModStairs RED_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs GLOOMY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
-    public static final BlockModStairs ICY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
-    public static final BlockModStairs FIERY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs LIVELY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final BlockModStairs FIERY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final BlockModStairs ICY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final BlockModStairs SOUL_SANDSTONE_STAIRS = InjectionHelper.nullValue();
+    public static final BlockModStairs CUT_SOUL_SANDSTONE_STAIRS = InjectionHelper.nullValue();
+    public static final BlockModStairs CHISELED_SOUL_SANDSTONE_STAIRS = InjectionHelper.nullValue();
+    public static final BlockModStairs SMOOTH_SOUL_SANDSTONE_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs BASALT_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs SMOOTH_BASALT_STAIRS = InjectionHelper.nullValue();
     public static final BlockModStairs BASALT_BRICK_STAIRS = InjectionHelper.nullValue();
@@ -106,6 +119,10 @@ public class NetherExBlocks
     public static final BlockModWall LIVELY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
     public static final BlockModWall FIERY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
     public static final BlockModWall ICY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
+    public static final BlockModWall SOUL_SANDSTONE_WALL = InjectionHelper.nullValue();
+    public static final BlockModWall CUT_SOUL_SANDSTONE_WALL = InjectionHelper.nullValue();
+    public static final BlockModWall CHISELED_SOUL_SANDSTONE_WALL = InjectionHelper.nullValue();
+    public static final BlockModWall SMOOTH_SOUL_SANDSTONE_WALL = InjectionHelper.nullValue();
     public static final BlockModWall BASALT_WALL = InjectionHelper.nullValue();
     public static final BlockModWall SMOOTH_BASALT_WALL = InjectionHelper.nullValue();
     public static final BlockModWall BASALT_BRICK_WALL = InjectionHelper.nullValue();
@@ -127,10 +144,10 @@ public class NetherExBlocks
     public static final BlockModFenceGate SMOOTH_BASALT_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate BASALT_BRICK_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate BASALT_PILLAR_FENCE_GATE = InjectionHelper.nullValue();
+    public static final BlockModFenceGate GLOOMY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
+    public static final BlockModFenceGate LIVELY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate FIERY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
     public static final BlockModFenceGate ICY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
-    public static final BlockModFenceGate LIVELY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
-    public static final BlockModFenceGate GLOOMY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
 
     private static final ItemProperties DEFAULT_ITEM_BLOCK_PROPERTIES = new ItemProperties().creativeTab(NetherEx.instance.getCreativeTab());
 
@@ -145,6 +162,11 @@ public class NetherExBlocks
                     new BlockNetherrack(NetherEx.getResource("lively_netherrack"), LIVELY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
                     new BlockNetherrack(NetherEx.getResource("fiery_netherrack"), FIERY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
                     new BlockNetherrack(NetherEx.getResource("icy_netherrack"), ICY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
+                    new BlockHauntedSoulSand(),
+                    new BlockMod(NetherEx.getResource("soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockMod(NetherEx.getResource("cut_soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockMod(NetherEx.getResource("chiseled_soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockMod(NetherEx.getResource("smooth_soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
                     new BlockModPath(NetherEx.getResource("netherrack_path"), Blocks.NETHERRACK, new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModPath(NetherEx.getResource("gloomy_netherrack_path"), GLOOMY_NETHERRACK, new BlockProperties(Material.GROUND, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
                     new BlockModPath(NetherEx.getResource("lively_netherrack_path"), LIVELY_NETHERRACK, new BlockProperties(Material.GROUND, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
@@ -188,19 +210,27 @@ public class NetherExBlocks
                     new BlockModSlab(NetherEx.getResource("lively_nether_brick_slab"), new BlockProperties(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModSlab(NetherEx.getResource("fiery_nether_brick_slab"), new BlockProperties(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModSlab(NetherEx.getResource("icy_nether_brick_slab"), new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
+                    new BlockModSlab(NetherEx.getResource("soul_sandstone_slab"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModSlab(NetherEx.getResource("cut_soul_sandstone_slab"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModSlab(NetherEx.getResource("chiseled_soul_sandstone_slab"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModSlab(NetherEx.getResource("smooth_soul_sandstone_slab"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
                     new BlockModSlab(NetherEx.getResource("basalt_slab"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModSlab(NetherEx.getResource("smooth_basalt_slab"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModSlab(NetherEx.getResource("basalt_brick_slab"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModSlab(NetherEx.getResource("basalt_pillar_slab"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModStairs(NetherEx.getResource("red_nether_brick_stairs"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
-                    new BlockModStairs(NetherEx.getResource("basalt_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
-                    new BlockModStairs(NetherEx.getResource("smooth_basalt_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
-                    new BlockModStairs(NetherEx.getResource("basalt_brick_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
-                    new BlockModStairs(NetherEx.getResource("basalt_pillar_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModStairs(NetherEx.getResource("gloomy_nether_brick_stairs"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModStairs(NetherEx.getResource("lively_nether_brick_stairs"), new BlockProperties(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModStairs(NetherEx.getResource("fiery_nether_brick_stairs"), new BlockProperties(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModStairs(NetherEx.getResource("icy_nether_brick_stairs"), new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("soul_sandstone_stairs"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("cut_soul_sandstone_stairs"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("chiseled_soul_sandstone_stairs"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("smooth_soul_sandstone_stairs"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("basalt_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("smooth_basalt_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("basalt_brick_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
+                    new BlockModStairs(NetherEx.getResource("basalt_pillar_stairs"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("quartz_wall"), new BlockProperties(Material.ROCK, MapColor.SNOW).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("nether_brick_wall"), new BlockProperties(Material.ROCK, MapColor.NETHERRACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("red_nether_brick_wall"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
@@ -208,6 +238,10 @@ public class NetherExBlocks
                     new BlockModWall(NetherEx.getResource("lively_nether_brick_wall"), new BlockProperties(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("fiery_nether_brick_wall"), new BlockProperties(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("icy_nether_brick_wall"), new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
+                    new BlockModWall(NetherEx.getResource("soul_sandstone_wall"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModWall(NetherEx.getResource("cut_soul_sandstone_wall"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModWall(NetherEx.getResource("chiseled_soul_sandstone_wall"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
+                    new BlockModWall(NetherEx.getResource("smooth_soul_sandstone_wall"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("basalt_wall"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("smooth_basalt_wall"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModWall(NetherEx.getResource("basalt_brick_wall"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
@@ -244,6 +278,11 @@ public class NetherExBlocks
                     new ItemBlockMod(LIVELY_NETHERRACK, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(FIERY_NETHERRACK, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ICY_NETHERRACK, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(HAUNTED_SOUL_SAND, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SOUL_SANDSTONE, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(CUT_SOUL_SANDSTONE, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(CHISELED_SOUL_SANDSTONE, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SMOOTH_SOUL_SANDSTONE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(NETHERRACK_PATH, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(GLOOMY_NETHERRACK_PATH, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(LIVELY_NETHERRACK_PATH, DEFAULT_ITEM_BLOCK_PROPERTIES),
@@ -281,19 +320,27 @@ public class NetherExBlocks
                     new ItemBlockMod(THORNSTALK, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ICHOR, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(RED_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockModSlab(BASALT_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockModSlab(SMOOTH_BASALT_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockModSlab(BASALT_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockModSlab(BASALT_PILLAR_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(GLOOMY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(LIVELY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(FIERY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(ICY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(SOUL_SANDSTONE_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(CUT_SOUL_SANDSTONE_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(CHISELED_SOUL_SANDSTONE_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(SMOOTH_SOUL_SANDSTONE_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(BASALT_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(SMOOTH_BASALT_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(BASALT_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockModSlab(BASALT_PILLAR_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(RED_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(GLOOMY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(LIVELY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(FIERY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ICY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(LIVELY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(GLOOMY_NETHER_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SOUL_SANDSTONE_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(CUT_SOUL_SANDSTONE_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(CHISELED_SOUL_SANDSTONE_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SMOOTH_SOUL_SANDSTONE_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(BASALT_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(SMOOTH_BASALT_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(BASALT_BRICK_STAIRS, DEFAULT_ITEM_BLOCK_PROPERTIES),
@@ -305,6 +352,10 @@ public class NetherExBlocks
                     new ItemBlockMod(LIVELY_NETHER_BRICK_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(FIERY_NETHER_BRICK_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ICY_NETHER_BRICK_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SOUL_SANDSTONE_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(CUT_SOUL_SANDSTONE_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(CHISELED_SOUL_SANDSTONE_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SMOOTH_SOUL_SANDSTONE_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(BASALT_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(SMOOTH_BASALT_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(BASALT_BRICK_WALL, DEFAULT_ITEM_BLOCK_PROPERTIES),
@@ -326,10 +377,10 @@ public class NetherExBlocks
                     new ItemBlockMod(SMOOTH_BASALT_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(BASALT_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(BASALT_PILLAR_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(FIERY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(ICY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(GLOOMY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(LIVELY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(GLOOMY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES)
+                    new ItemBlockMod(FIERY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(ICY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES)
             );
         }
     }

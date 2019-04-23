@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.client.model.item;
 
-import logictechcorp.libraryex.block.BlockModLeaf;
 import logictechcorp.libraryex.client.util.ModelHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.BlockBlueFire;
@@ -46,7 +45,6 @@ public class NetherExModels
 
     private static void registerBlockModels()
     {
-        StateMapperBase leafDecayMapper = new StateMap.Builder().ignore(BlockModLeaf.DECAY).build();
         StateMapperBase slabHalfMapper = new StateMap.Builder().ignore(BlockSlab.HALF).build();
         StateMapperBase wallVariantMapper = new StateMap.Builder().ignore(BlockWall.VARIANT).build();
         StateMapperBase fenceGatePowerMapper = new StateMap.Builder().ignore(BlockFenceGate.POWERED).build();
@@ -57,6 +55,10 @@ public class NetherExModels
         ModelLoader.setCustomStateMapper(NetherExBlocks.LIVELY_NETHER_BRICK_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.FIERY_NETHER_BRICK_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.ICY_NETHER_BRICK_SLAB, slabHalfMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.SOUL_SANDSTONE_SLAB, slabHalfMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.CUT_SOUL_SANDSTONE_SLAB, slabHalfMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.CHISELED_SOUL_SANDSTONE_SLAB, slabHalfMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.SMOOTH_BASALT_SLAB, slabHalfMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_BRICK_SLAB, slabHalfMapper);
@@ -68,6 +70,10 @@ public class NetherExModels
         ModelLoader.setCustomStateMapper(NetherExBlocks.LIVELY_NETHER_BRICK_WALL, wallVariantMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.FIERY_NETHER_BRICK_WALL, wallVariantMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.ICY_NETHER_BRICK_WALL, wallVariantMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.SOUL_SANDSTONE_WALL, wallVariantMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.CUT_SOUL_SANDSTONE_WALL, wallVariantMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.CHISELED_SOUL_SANDSTONE_WALL, wallVariantMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_WALL, wallVariantMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_WALL, wallVariantMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.SMOOTH_BASALT_WALL, wallVariantMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_BRICK_WALL, wallVariantMapper);
@@ -79,15 +85,19 @@ public class NetherExModels
         ModelLoader.setCustomStateMapper(NetherExBlocks.SMOOTH_BASALT_FENCE_GATE, fenceGatePowerMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_BRICK_FENCE_GATE, fenceGatePowerMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.BASALT_PILLAR_FENCE_GATE, fenceGatePowerMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.GLOOMY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
+        ModelLoader.setCustomStateMapper(NetherExBlocks.LIVELY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.FIERY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
         ModelLoader.setCustomStateMapper(NetherExBlocks.ICY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
-        ModelLoader.setCustomStateMapper(NetherExBlocks.LIVELY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
-        ModelLoader.setCustomStateMapper(NetherExBlocks.GLOOMY_NETHER_BRICK_FENCE_GATE, fenceGatePowerMapper);
-
         ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHERRACK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHERRACK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.FIERY_NETHERRACK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ICY_NETHERRACK.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.HAUNTED_SOUL_SAND.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_SANDSTONE.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CUT_SOUL_SANDSTONE.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CHISELED_SOUL_SANDSTONE.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_SOUL_SANDSTONE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.NETHERRACK_PATH.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHERRACK_PATH.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHERRACK_PATH.getDefaultState());
@@ -128,15 +138,23 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.FIERY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.ICY_NETHER_BRICK_SLAB.getDefaultState(), "type=bottom");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_SANDSTONE_SLAB.getDefaultState(), "type=bottom");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CUT_SOUL_SANDSTONE_SLAB.getDefaultState(), "type=bottom");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CHISELED_SOUL_SANDSTONE_SLAB.getDefaultState(), "type=bottom");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_PILLAR_SLAB.getDefaultState(), "type=bottom");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.FIERY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.ICY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
-        ModelHelper.registerBlockItemModel(NetherExBlocks.GLOOMY_NETHER_BRICK_STAIRS.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_SANDSTONE_STAIRS.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CUT_SOUL_SANDSTONE_STAIRS.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CHISELED_SOUL_SANDSTONE_STAIRS.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT_STAIRS.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK_STAIRS.getDefaultState(), "inventory");
@@ -148,6 +166,10 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHER_BRICK_WALL.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.FIERY_NETHER_BRICK_WALL.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.ICY_NETHER_BRICK_WALL.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_SANDSTONE_WALL.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CUT_SOUL_SANDSTONE_WALL.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.CHISELED_SOUL_SANDSTONE_WALL.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_WALL.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_WALL.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.SMOOTH_BASALT_WALL.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BASALT_BRICK_WALL.getDefaultState(), "inventory");

@@ -1,5 +1,22 @@
 {
     "variants": {
-        "normal": { "model": "netherex:icy_netherrack" }
+        "normal": [
+            { "model": "netherex:icy_netherrack" },
+            { "model": "netherex:icy_netherrack", "x": 90 },
+            { "model": "netherex:icy_netherrack", "x": 180 },
+            { "model": "netherex:icy_netherrack", "x": 270 },
+            { "model": "netherex:icy_netherrack", "y": 90 },
+            { "model": "netherex:icy_netherrack", "y": 90, "x": 90 },
+            { "model": "netherex:icy_netherrack", "y": 90, "x": 180 },
+            { "model": "netherex:icy_netherrack", "y": 90, "x": 270 },
+            { "model": "netherex:icy_netherrack", "y": 180 },
+            { "model": "netherex:icy_netherrack", "y": 180, "x": 90 },
+            { "model": "netherex:icy_netherrack", "y": 180, "x": 180 },
+            { "model": "netherex:icy_netherrack", "y": 180, "x": 270 },
+            { "model": "netherex:icy_netherrack", "y": 270 },
+            { "model": "netherex:icy_netherrack", "y": 270, "x": 90 },
+            { "model": "netherex:icy_netherrack", "y": 270, "x": 180 },
+            { "model": "netherex:icy_netherrack", "y": 270, "x": 270 }
+        ]
     }
 }

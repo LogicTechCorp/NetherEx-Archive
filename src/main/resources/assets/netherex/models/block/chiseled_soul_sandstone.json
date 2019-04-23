@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "netherex:blocks/soul_sandstone_top",
+        "side": "netherex:blocks/chiseled_soul_sandstone"
+    }
+}
