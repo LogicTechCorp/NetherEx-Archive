@@ -20,9 +20,7 @@ package logictechcorp.netherex.handler;
 import logictechcorp.libraryex.item.ItemModHammer;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockTilledSoulSand;
 import logictechcorp.netherex.entity.monster.EntityNethermite;
-import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,40 +56,6 @@ public class BlockHandler
             if(player.dimension != DimensionType.NETHER.getId() || pos.getY() < 120)
             {
                 event.setCanceled(true);
-            }
-        }
-        if(state.getBlock() == Blocks.NETHER_WART && ConfigHandler.blockConfig.netherWart.growLikeCrops)
-        {
-            if(world.getBlockState(pos.down()).getBlock() == Blocks.SOUL_SAND)
-            {
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onCropPreGrow(BlockEvent.CropGrowEvent.Pre event)
-    {
-        World world = event.getWorld();
-        BlockPos pos = event.getPos();
-        IBlockState state = event.getState();
-
-        if(state.getBlock() == Blocks.NETHER_WART)
-        {
-            if(ConfigHandler.blockConfig.netherWart.growLikeCrops)
-            {
-                if(world.getBlockState(pos.down()) == NetherExBlocks.TILLED_SOUL_SAND.getDefaultState().withProperty(BlockTilledSoulSand.MOISTURE, 7))
-                {
-                    event.setResult(Event.Result.ALLOW);
-                }
-                else
-                {
-                    event.setResult(Event.Result.DENY);
-                }
-            }
-            if(ConfigHandler.blockConfig.netherWart.growthTickSpeed > 0)
-            {
-                world.scheduleUpdate(pos, state.getBlock(), ConfigHandler.blockConfig.netherWart.growthTickSpeed);
             }
         }
     }

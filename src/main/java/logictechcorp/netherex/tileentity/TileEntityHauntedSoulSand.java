@@ -35,6 +35,11 @@ public class TileEntityHauntedSoulSand extends TileEntity
 
     public void drainExperience(EntityPlayer player)
     {
+        if(player.capabilities.isCreativeMode)
+        {
+            return;
+        }
+
         if(this.experience < this.maxExperience)
         {
             int playerExperience = ExperienceHelper.getPlayerExperience(player);
@@ -44,7 +49,7 @@ public class TileEntityHauntedSoulSand extends TileEntity
                 return;
             }
 
-            int drainAmount = Math.min(15, playerExperience);
+            int drainAmount = Math.min(5, playerExperience);
 
             if(this.experience + drainAmount > this.maxExperience)
             {

@@ -26,7 +26,9 @@ import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.*;
 import logictechcorp.netherex.item.ItemBlockElderMushroom;
+import logictechcorp.netherex.item.ItemSpoulVines;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -63,7 +65,6 @@ public class NetherExBlocks
     public static final BlockMod BASALT_PILLAR = InjectionHelper.nullValue();
     public static final BlockHyphae HYPHAE = InjectionHelper.nullValue();
     public static final BlockFrostburnIce FROSTBURN_ICE = InjectionHelper.nullValue();
-    public static final BlockTilledSoulSand TILLED_SOUL_SAND = InjectionHelper.nullValue();
     public static final BlockSoulGlass SOUL_GLASS = InjectionHelper.nullValue();
     public static final BlockSoulGlassPane SOUL_GLASS_PANE = InjectionHelper.nullValue();
     public static final BlockMod AMETHYST_BLOCK = InjectionHelper.nullValue();
@@ -78,13 +79,17 @@ public class NetherExBlocks
     public static final BlockModOre AMETHYST_ORE = InjectionHelper.nullValue();
     public static final BlockModOre RIME_ORE = InjectionHelper.nullValue();
     public static final BlockThornstalk THORNSTALK = InjectionHelper.nullValue();
+    public static final BlockSpoulVines SPOUL_VINES = InjectionHelper.nullValue();
     public static final BlockElderMushroom BROWN_ELDER_MUSHROOM = InjectionHelper.nullValue();
     public static final BlockElderMushroom RED_ELDER_MUSHROOM = InjectionHelper.nullValue();
-    public static final BlockElderMushroomCap BROWN_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
-    public static final BlockElderMushroomCap RED_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
-    public static final BlockElderMushroomStem ELDER_MUSHROOM_STEM = InjectionHelper.nullValue();
+    public static final BlockSpoulShroom SPOUL_SHROOM = InjectionHelper.nullValue();
+    public static final BlockModBigMushroom BROWN_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
+    public static final BlockModBigMushroom RED_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
     public static final BlockEnokiMushroomCap ENOKI_MUSHROOM_CAP = InjectionHelper.nullValue();
+    public static final BlockModBigMushroom SPOUL_SHROOM_CAP = InjectionHelper.nullValue();
+    public static final BlockElderMushroomStem ELDER_MUSHROOM_STEM = InjectionHelper.nullValue();
     public static final BlockEnokiMushroomStem ENOKI_MUSHROOM_STEM = InjectionHelper.nullValue();
+    public static final BlockModBigMushroom SPOUL_SHROOM_STEM = InjectionHelper.nullValue();
     public static final BlockModInfiniteFluid ICHOR = InjectionHelper.nullValue();
     public static final BlockModSlab RED_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
     public static final BlockModSlab GLOOMY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
@@ -182,7 +187,6 @@ public class NetherExBlocks
                     new BlockMod(NetherEx.getResource("basalt_pillar"), new BlockProperties(Material.ROCK, MapColor.BLACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockHyphae(),
                     new BlockFrostburnIce(),
-                    new BlockTilledSoulSand(),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
                     new BlockMod(NetherEx.getResource("amethyst_block"), new BlockProperties(Material.IRON, MapColor.PURPLE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(5.0F).resistance(10.0F)),
@@ -197,13 +201,17 @@ public class NetherExBlocks
                     new BlockModOre(NetherEx.getResource("amethyst_ore"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(3.0F).resistance(5.0F)),
                     new BlockModOre(NetherEx.getResource("rime_ore"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).lightLevel(0.5F).hardness(3.0F).resistance(5.0F)),
                     new BlockThornstalk(),
+                    new BlockSpoulVines(),
                     new BlockElderMushroom(NetherEx.getResource("brown_elder_mushroom")),
                     new BlockElderMushroom(NetherEx.getResource("red_elder_mushroom")),
-                    new BlockElderMushroomCap(NetherEx.getResource("brown_elder_mushroom_cap")),
-                    new BlockElderMushroomCap(NetherEx.getResource("red_elder_mushroom_cap")),
-                    new BlockElderMushroomStem(),
+                    new BlockSpoulShroom(),
+                    new BlockModBigMushroom(NetherEx.getResource("brown_elder_mushroom_cap"), new BlockProperties(Material.WOOD, MapColor.BROWN).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F)),
+                    new BlockModBigMushroom(NetherEx.getResource("red_elder_mushroom_cap"), new BlockProperties(Material.WOOD, MapColor.RED).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F)),
                     new BlockEnokiMushroomCap(),
+                    new BlockModBigMushroom(NetherEx.getResource("spoul_shroom_cap"), new BlockProperties(Material.WOOD, MapColor.BROWN).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F)),
+                    new BlockElderMushroomStem(),
                     new BlockEnokiMushroomStem(),
+                    new BlockModBigMushroom(NetherEx.getResource("spoul_shroom_stem"), new BlockProperties(Material.WOOD, MapColor.BROWN).sound(SoundType.WOOD).harvestLevel(HarvestTool.AXE, HarvestLevel.WOOD).hardness(0.5F).hardness(2.0F)),
                     new BlockModInfiniteFluid(NetherEx.getResource("ichor"), NetherExFluids.ICHOR, new BlockProperties(Material.WATER, MapColor.RED)),
                     new BlockModSlab(NetherEx.getResource("red_nether_brick_slab"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
                     new BlockModSlab(NetherEx.getResource("gloomy_nether_brick_slab"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(1.5F).resistance(10.0F)),
@@ -298,7 +306,6 @@ public class NetherExBlocks
                     new ItemBlockMod(BASALT_PILLAR, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(HYPHAE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(FROSTBURN_ICE, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(TILLED_SOUL_SAND, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(SOUL_GLASS, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(SOUL_GLASS_PANE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(AMETHYST_BLOCK, DEFAULT_ITEM_BLOCK_PROPERTIES),
@@ -312,12 +319,16 @@ public class NetherExBlocks
                     new ItemBlockMod(RIME_ORE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockElderMushroom(BROWN_ELDER_MUSHROOM),
                     new ItemBlockElderMushroom(RED_ELDER_MUSHROOM),
+                    new ItemBlockMod(SPOUL_SHROOM, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(BROWN_ELDER_MUSHROOM_CAP, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(RED_ELDER_MUSHROOM_CAP, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(ELDER_MUSHROOM_STEM, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ENOKI_MUSHROOM_CAP, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SPOUL_SHROOM_CAP, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(ELDER_MUSHROOM_STEM, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ENOKI_MUSHROOM_STEM, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(SPOUL_SHROOM_STEM, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(THORNSTALK, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemSpoulVines(),
                     new ItemBlockMod(ICHOR, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(RED_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(GLOOMY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
@@ -383,5 +394,10 @@ public class NetherExBlocks
                     new ItemBlockMod(ICY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES)
             );
         }
+    }
+
+    public static ItemProperties getDefaultItemBlockProperties()
+    {
+        return DEFAULT_ITEM_BLOCK_PROPERTIES;
     }
 }

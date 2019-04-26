@@ -17,13 +17,11 @@
 
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -45,9 +43,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -101,51 +97,24 @@ public class ClickHandler
     }
 
     @SubscribeEvent
-    public static void useHoeEvent(UseHoeEvent event)
-    {
-        World world = event.getWorld();
-        BlockPos pos = event.getPos();
-        EntityPlayer player = event.getEntityPlayer();
-        ItemStack stack = event.getCurrent();
-
-        if(world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND)
-        {
-            for(EnumHand hand : EnumHand.values())
-            {
-                if(player.getHeldItem(hand).equals(stack))
-                {
-                    player.swingArm(hand);
-                }
-            }
-
-            world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            world.setBlockState(pos, NetherExBlocks.TILLED_SOUL_SAND.getDefaultState(), 0b1011);
-
-            event.setResult(Event.Result.ALLOW);
-        }
-    }
-
-    @SubscribeEvent
     public static void onPlayerLeftClick(PlayerInteractEvent.LeftClickBlock event)
     {
         World world = event.getWorld();
         EnumFacing facing = event.getFace();
         BlockPos originalPos = event.getPos();
-        BlockPos offsetPos = originalPos.offset(facing);
-        IBlockState originalState = world.getBlockState(originalPos);
-        IBlockState offsetState = world.getBlockState(offsetPos);
         EntityPlayer player = event.getEntityPlayer();
 
-        if(offsetState.getBlock() == NetherExBlocks.BLUE_FIRE)
+        if(facing != null)
         {
-            world.playEvent(player, 1009, offsetPos, 0);
-            world.setBlockToAir(offsetPos);
-            event.setCanceled(true);
-        }
+            BlockPos offsetPos = originalPos.offset(facing);
+            IBlockState offsetState = world.getBlockState(offsetPos);
 
-        if(originalState.getBlock() == Blocks.BEDROCK && player.getHeldItemMainhand().getItem() == NetherExItems.WITHERED_AMEDIAN_HAMMER)
-        {
-            BlockHelper.mine3x3(world, player.getHeldItemMainhand(), originalPos, player);
+            if(offsetState.getBlock() == NetherExBlocks.BLUE_FIRE)
+            {
+                world.playEvent(player, 1009, offsetPos, 0);
+                world.setBlockToAir(offsetPos);
+                event.setCanceled(true);
+            }
         }
     }
 
@@ -153,24 +122,39 @@ public class ClickHandler
     public static void onBoneMealUse(BonemealEvent event)
     {
         World world = event.getWorld();
+        EntityPlayer player = event.getEntityPlayer();
         BlockPos pos = event.getPos();
         IBlockState state = event.getBlock();
-        EntityPlayer player = event.getEntityPlayer();
+        Block block = state.getBlock();
 
-        if(player.getHeldItemMainhand().getItem() == NetherExItems.WITHER_DUST)
+        boolean cancel = false;
+
+        if(block == NetherExBlocks.BROWN_ELDER_MUSHROOM)
         {
-            if(state.getBlock() == Blocks.NETHER_WART)
+            if(player.getHeldItemMainhand().getItem() != NetherExItems.WITHER_DUST)
             {
-                int age = state.getValue(BlockNetherWart.AGE);
-
-                if(age < 3)
-                {
-                    state = state.withProperty(BlockNetherWart.AGE, age + 1);
-                    world.setBlockState(pos, state);
-                    event.setResult(Event.Result.ALLOW);
-                }
+                cancel = true;
             }
-            else if(state.getBlock() instanceof IGrowable)
+
+        }
+        else if(block == NetherExBlocks.RED_ELDER_MUSHROOM)
+        {
+            if(player.getHeldItemMainhand().getItem() != NetherExItems.WITHER_DUST)
+            {
+                cancel = true;
+            }
+        }
+        else if(block == NetherExBlocks.SPOUL_SHROOM)
+        {
+            if(player.getHeldItemMainhand().getItem() != NetherExItems.WITHER_DUST)
+            {
+                cancel = true;
+            }
+        }
+
+        if(!cancel)
+        {
+            if(state.getBlock() instanceof IGrowable)
             {
                 IGrowable growable = (IGrowable) state.getBlock();
 
@@ -179,10 +163,10 @@ public class ClickHandler
                     growable.grow(world, world.rand, pos, state);
                 }
             }
-            else
-            {
-                event.setCanceled(true);
-            }
+        }
+        else
+        {
+            event.setCanceled(true);
         }
     }
 

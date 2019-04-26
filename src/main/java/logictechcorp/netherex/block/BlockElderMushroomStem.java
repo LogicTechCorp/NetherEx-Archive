@@ -17,12 +17,11 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.BlockMod;
+import logictechcorp.libraryex.block.BlockModBigMushroom;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
 import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -30,16 +29,13 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockElderMushroomStem extends BlockMod
+public class BlockElderMushroomStem extends BlockModBigMushroom
 {
     public static final PropertyEnum<EnumType> AXIS = PropertyEnum.create("axis", EnumType.class);
 
@@ -52,18 +48,6 @@ public class BlockElderMushroomStem extends BlockMod
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
     {
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(AXIS, EnumType.fromAxis(facing.getAxis()));
-    }
-
-    @Override
-    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
-    {
-        return player.getHeldItemMainhand().getItem() == NetherExItems.WITHERED_AMEDIAN_AXE;
-    }
-
-    @Override
-    public boolean canDropFromExplosion(Explosion explosionIn)
-    {
-        return false;
     }
 
     @Override

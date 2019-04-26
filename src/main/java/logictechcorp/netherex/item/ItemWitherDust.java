@@ -19,7 +19,6 @@ package logictechcorp.netherex.item;
 
 import logictechcorp.libraryex.item.ItemMod;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.BlockElderMushroom;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.IGrowable;
@@ -114,7 +113,7 @@ public class ItemWitherDust extends ItemMod
         {
             IGrowable growable = (IGrowable) state.getBlock();
 
-            if(growable.canGrow(world, pos, state, world.isRemote) || growable instanceof BlockElderMushroom)
+            if(growable.canGrow(world, pos, state, world.isRemote))
             {
                 if(!world.isRemote)
                 {

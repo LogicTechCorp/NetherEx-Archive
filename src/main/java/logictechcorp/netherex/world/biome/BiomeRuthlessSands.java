@@ -19,8 +19,7 @@ package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitPatch;
+import logictechcorp.libraryex.world.generation.trait.impl.*;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
@@ -36,12 +35,13 @@ public class BiomeRuthlessSands extends BiomeNetherEx
 {
     private static final IBlockState SOUL_SANDSTONE = NetherExBlocks.SOUL_SANDSTONE.getDefaultState();
     private static final IBlockState GLOOMY_NETHERRACK = NetherExBlocks.GLOOMY_NETHERRACK.getDefaultState();
+    private static final IBlockState HAUNTED_SOUL_SAND = NetherExBlocks.HAUNTED_SOUL_SAND.getDefaultState();
 
     public BiomeRuthlessSands()
     {
         super(NetherEx.instance, new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
         this.topBlock = SOUL_SAND;
-        this.fillerBlock = GLOOMY_NETHERRACK;
+        this.fillerBlock = SOUL_SAND;
     }
 
     @Override
@@ -62,12 +62,19 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
             this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
-                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
-                    new BiomeTraitPatch(7, false, 1.0D, 32, 128, SOUL_SANDSTONE, SOUL_SAND, 5)
+                    new BiomeTraitPatch(4, false, 0.85D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 6),
+                    new BiomeTraitPatch(2, false, 0.85D, 32, 124, HAUNTED_SOUL_SAND, SOUL_SAND, 3)
             )));
             this.getBiomeTraits(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new BiomeTraitThornstalk(12, false, 0.85D, 32, 120)
+                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
+                    new BiomeTraitThornstalk(12, false, 0.85D, 32, 120),
+                    new BiomeTraitBoulder(4, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 0),
+                    new BiomeTraitBoulder(2, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 1),
+                    new BiomeTraitDenseTree(68, false, 1.0F, 32, 108, NetherExBlocks.SPOUL_SHROOM_STEM.getDefaultState(), NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState(), SOUL_SAND, 3, 8),
+                    new BiomeTraitSparseTree(68, false, 1.0F, 32, 108, NetherExBlocks.SPOUL_SHROOM_STEM.getDefaultState(), NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState(), SOUL_SAND, 4, 12),
+                    new BiomeTraitScatter(36, false, 1.0D, 32, 120, NetherExBlocks.SPOUL_SHROOM.getDefaultState(), SOUL_SAND, BiomeTraitScatter.Placement.ON_GROUND),
+                    new BiomeTraitScatter(128, false, 1.0D, 32, 120, NetherExBlocks.SPOUL_VINES.getDefaultState(), NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState(), BiomeTraitScatter.Placement.ON_ROOF)
             )));
         }
     }

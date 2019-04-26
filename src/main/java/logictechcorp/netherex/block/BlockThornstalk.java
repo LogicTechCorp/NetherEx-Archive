@@ -52,6 +52,7 @@ import java.util.Random;
 public class BlockThornstalk extends BlockMod
 {
     public static final PropertyEnum<EnumPart> PART = PropertyEnum.create("part", EnumPart.class);
+    protected static final AxisAlignedBB THORNSTALK_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
     public BlockThornstalk()
     {
@@ -75,6 +76,12 @@ public class BlockThornstalk extends BlockMod
     public boolean isFullCube(IBlockState state)
     {
         return false;
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return THORNSTALK_AABB;
     }
 
     @Override

@@ -128,14 +128,6 @@ public class ConfigHandler
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal")
         public NetherPortal netherPortal = new NetherPortal();
 
-        @Config.Name("soul_sand")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand")
-        public SoulSand soulSand = new SoulSand();
-
-        @Config.Name("nether_wart")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherWart")
-        public NetherWart netherWart = new NetherWart();
-
         @Config.Name("magma")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.magma")
         public Magma magma = new Magma();
@@ -171,24 +163,6 @@ public class ConfigHandler
             @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherPortal.pigmanSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is for Pigman to spawn", "The lower the number, the more common it is for Pigman to spawn", "If set to 0, Pigman won't spawn"})
             public int pigmanSpawnRarity = 2000;
-        }
-
-        public class SoulSand
-        {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.soulSand.useLavaAndIchorToHydrate")
-            public boolean useLavaAndIchorToHydrate = false;
-        }
-
-        public class NetherWart
-        {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherWart.growLikeCrops")
-            public boolean growLikeCrops = true;
-
-            @Config.RequiresMcRestart
-            @Config.RangeInt(min = 0)
-            @Config.Comment({"The higher the number, the slower Nether Wart grows", "The lower the number, the faster Nether Wart grows", "If set to 0, Nether Wart growth will default to Vanilla speed"})
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":block.netherWart.growthTickSpeed")
-            public int growthTickSpeed = 0;
         }
 
         public class Magma
