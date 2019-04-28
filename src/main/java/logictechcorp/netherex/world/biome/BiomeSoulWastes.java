@@ -26,20 +26,19 @@ import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class BiomeRuthlessSands extends BiomeNetherEx
+public class BiomeSoulWastes extends BiomeNetherEx
 {
     private static final IBlockState SOUL_SANDSTONE = NetherExBlocks.SOUL_SANDSTONE.getDefaultState();
     private static final IBlockState GLOOMY_NETHERRACK = NetherExBlocks.GLOOMY_NETHERRACK.getDefaultState();
     private static final IBlockState HAUNTED_SOUL_SAND = NetherExBlocks.HAUNTED_SOUL_SAND.getDefaultState();
 
-    public BiomeRuthlessSands()
+    public BiomeSoulWastes()
     {
-        super(NetherEx.instance, new BiomeProperties("Ruthless Sands").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "ruthless_sands");
+        super(NetherEx.instance, new BiomeProperties("Soul Wastes").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "soul_wastes");
         this.topBlock = SOUL_SAND;
         this.fillerBlock = SOUL_SAND;
     }
@@ -54,7 +53,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     {
         BiomeData()
         {
-            super(NetherExBiomes.RUTHLESS_SANDS, 8, true, true);
+            super(NetherExBiomes.SOUL_WASTES, 8, true, true);
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, SOUL_SAND);
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, SOUL_SAND);
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, GLOOMY_NETHERRACK);
@@ -66,8 +65,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
                     new BiomeTraitPatch(2, false, 0.85D, 32, 124, HAUNTED_SOUL_SAND, SOUL_SAND, 3)
             )));
             this.getBiomeTraits(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
-                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, GLOWSTONE, GLOOMY_NETHERRACK, EnumFacing.DOWN),
                     new BiomeTraitThornstalk(12, false, 0.85D, 32, 120),
                     new BiomeTraitBoulder(4, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 0),
                     new BiomeTraitBoulder(2, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 1),

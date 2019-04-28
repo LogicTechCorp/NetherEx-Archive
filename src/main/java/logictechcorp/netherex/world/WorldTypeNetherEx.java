@@ -230,7 +230,7 @@ public class WorldTypeNetherEx extends WorldType
         else if(dimension == DimensionType.NETHER.getId())
         {
 
-            return new ChunkGeneratorNetherEx(world);
+            return new ChunkGeneratorNetherEx(world, world.getWorldInfo().isMapFeaturesEnabled(), world.getSeed());
         }
 
         return super.getChunkGenerator(world, generatorOptions);

@@ -45,7 +45,7 @@ public class NetherExBlocks
     public static final BlockNetherrack LIVELY_NETHERRACK = InjectionHelper.nullValue();
     public static final BlockNetherrack FIERY_NETHERRACK = InjectionHelper.nullValue();
     public static final BlockNetherrack ICY_NETHERRACK = InjectionHelper.nullValue();
-    public static final BlockHauntedSoulSand HAUNTED_SOUL_SAND = InjectionHelper.nullValue();
+    public static final BlockPossessedSoulSand HAUNTED_SOUL_SAND = InjectionHelper.nullValue();
     public static final BlockModPath NETHERRACK_PATH = InjectionHelper.nullValue();
     public static final BlockModPath GLOOMY_NETHERRACK_PATH = InjectionHelper.nullValue();
     public static final BlockModPath LIVELY_NETHERRACK_PATH = InjectionHelper.nullValue();
@@ -167,7 +167,7 @@ public class NetherExBlocks
                     new BlockNetherrack(NetherEx.getResource("lively_netherrack"), LIVELY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
                     new BlockNetherrack(NetherEx.getResource("fiery_netherrack"), FIERY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
                     new BlockNetherrack(NetherEx.getResource("icy_netherrack"), ICY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
-                    new BlockHauntedSoulSand(),
+                    new BlockPossessedSoulSand(),
                     new BlockMod(NetherEx.getResource("soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
                     new BlockMod(NetherEx.getResource("cut_soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
                     new BlockMod(NetherEx.getResource("chiseled_soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),

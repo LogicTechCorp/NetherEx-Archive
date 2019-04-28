@@ -12,8 +12,8 @@
 package logictechcorp.netherex.world.biome.design;
 
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
+import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +28,7 @@ import java.util.Random;
 
 public class BiomeStyler
 {
-    public static void styleBiome(World world, IChunkGenerator generator, ChunkPrimer primer, int chunkX, int chunkZ, NoiseGeneratorPerlin terrainNoiseGen, double[] terrainNoise, IBiomeDataRegistry biomeDataRegistry, Biome[] biomes, Random random)
+    public static void styleBiome(World world, IChunkGenerator generator, ChunkPrimer primer, int chunkX, int chunkZ, NoiseGeneratorPerlin terrainNoiseGen, double[] terrainNoise, Biome[] biomes, Random random)
     {
         if(!ForgeEventFactory.onReplaceBiomeBlocks(generator, chunkX, chunkZ, primer, world))
         {
@@ -41,7 +41,7 @@ public class BiomeStyler
         {
             for(int z = 0; z < 16; z++)
             {
-                IBiomeData biomeData = biomeDataRegistry.getBiomeData(biomes[x + z * 16]);
+                IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(biomes[x + z * 16]);
 
                 if(biomeData != null)
                 {

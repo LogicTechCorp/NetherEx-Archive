@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "netherex:blocks/haunted_soul_sand"
+		"all": "netherex:blocks/possessed_soul_sand"
 	}
 }

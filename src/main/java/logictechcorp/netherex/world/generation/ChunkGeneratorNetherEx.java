@@ -35,10 +35,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.ChunkGeneratorHell;
-import net.minecraft.world.gen.MapGenCavesHell;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.MinecraftForge;
@@ -54,6 +51,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 {
     private final World world;
     private final Random random;
+    private final boolean generateStructures;
 
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
@@ -75,14 +73,15 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private double[] scaleNoise;
     private double[] depthNoise;
 
-    private MapGenCavesHell netherCaves = new MapGenCavesHell();
-    private MapGenNetherBridge netherBridge = new MapGenNetherBridge();
+    private MapGenBase netherCaves = new MapGenCavesHell();
+    private MapGenNetherBridge netherFortress = new MapGenNetherBridge();
 
-    public ChunkGeneratorNetherEx(World world)
+    public ChunkGeneratorNetherEx(World world, boolean generateStructures, long seed)
     {
-        super(world, true, world.getSeed());
+        super(world, generateStructures, seed);
         this.world = world;
-        this.random = new Random(this.world.getSeed());
+        this.random = new Random(seed);
+        this.generateStructures = generateStructures;
         this.noiseGen1 = new NoiseGeneratorOctaves(this.random, 16);
         this.noiseGen2 = new NoiseGeneratorOctaves(this.random, 16);
         this.noiseGen3 = new NoiseGeneratorOctaves(this.random, 8);
@@ -103,8 +102,14 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.scaleNoiseGen = ctx.getScale();
         this.depthNoiseGen = ctx.getDepth();
 
-        this.netherCaves = (MapGenCavesHell) TerrainGen.getModdedMapGen(this.netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
-        this.netherBridge = (MapGenNetherBridge) TerrainGen.getModdedMapGen(this.netherBridge, InitMapGenEvent.EventType.NETHER_BRIDGE);
+        this.netherCaves = TerrainGen.getModdedMapGen(this.netherCaves, InitMapGenEvent.EventType.NETHER_CAVE);
+
+        MapGenBase replacedNetherFortress = TerrainGen.getModdedMapGen(this.netherFortress, InitMapGenEvent.EventType.NETHER_BRIDGE);
+
+        if(replacedNetherFortress instanceof MapGenNetherBridge)
+        {
+            this.netherFortress = (MapGenNetherBridge) replacedNetherFortress;
+        }
 
         world.setSeaLevel(31);
     }
@@ -371,10 +376,14 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.prepareHeights(chunkX, chunkZ, primer);
         this.buildSurfaces(chunkX, chunkZ, primer);
         this.netherCaves.generate(this.world, chunkX, chunkZ, primer);
-        this.netherBridge.generate(this.world, chunkX, chunkZ, primer);
+
+        if(this.generateStructures)
+        {
+            this.netherFortress.generate(this.world, chunkX, chunkZ, primer);
+        }
 
         Biome[] biomes = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
-        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, NetherExAPI.getInstance().getBiomeDataRegistry(), biomes, this.random);
+        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, biomes, this.random);
 
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
@@ -398,7 +407,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
-        this.netherBridge.generateStructure(this.world, this.random, chunkPos);
+        this.netherFortress.generateStructure(this.world, this.random, chunkPos);
         LibExEventFactory.onPreDecorateBiome(this.world, this.random, chunkPos);
         LibExEventFactory.onDecorateBiome(this.world, this.random, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM);
 
@@ -425,13 +434,13 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         if(creatureType == EnumCreatureType.MONSTER)
         {
-            if(this.netherBridge.isInsideStructure(pos))
+            if(this.netherFortress.isInsideStructure(pos))
             {
-                return this.netherBridge.getSpawnList();
+                return this.netherFortress.getSpawnList();
             }
-            if(this.netherBridge.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
+            if(this.netherFortress.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
             {
-                return this.netherBridge.getSpawnList();
+                return this.netherFortress.getSpawnList();
             }
         }
 
@@ -444,7 +453,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         if("Fortress".equalsIgnoreCase(structureName))
         {
-            return this.netherBridge != null ? this.netherBridge.getNearestStructurePos(world, pos, force) : null;
+            return this.netherFortress != null ? this.netherFortress.getNearestStructurePos(world, pos, force) : null;
         }
 
         return null;
@@ -455,7 +464,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         if("Fortress".equalsIgnoreCase(structureName))
         {
-            return this.netherBridge != null && this.netherBridge.isInsideStructure(pos);
+            return this.netherFortress != null && this.netherFortress.isInsideStructure(pos);
         }
 
         return false;
@@ -464,6 +473,6 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        this.netherBridge.generate(this.world, chunkX, chunkZ, null);
+        this.netherFortress.generate(this.world, chunkX, chunkZ, null);
     }
 }

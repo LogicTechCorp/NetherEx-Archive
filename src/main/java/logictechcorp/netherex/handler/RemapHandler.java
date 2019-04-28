@@ -138,6 +138,7 @@ public class RemapHandler
 
             //Biomes
             .put("nex:hell", "minecraft:hell")
+            .put("nex:ruthless_sands", "netherex:soul_wastes")
 
             //Entities
             .put("nex:projectile_ghast_queen_fireball", "netherex:ghast_queen_fireball")

@@ -37,13 +37,13 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockHauntedSoulSand extends BlockTileEntity<TileEntityHauntedSoulSand>
+public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityHauntedSoulSand>
 {
     protected static final AxisAlignedBB SOUL_SAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
 
-    public BlockHauntedSoulSand()
+    public BlockPossessedSoulSand()
     {
-        super(NetherEx.getResource("haunted_soul_sand"), TileEntityHauntedSoulSand.class, new BlockProperties(Material.SAND, MapColor.BROWN).sound(SoundType.SAND).hardness(0.5F));
+        super(NetherEx.getResource("possessed_soul_sand"), TileEntityHauntedSoulSand.class, new BlockProperties(Material.SAND, MapColor.BROWN).sound(SoundType.SAND).hardness(0.5F));
     }
 
     @Override
