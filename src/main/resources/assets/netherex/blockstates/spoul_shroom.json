@@ -1,20 +1,7 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "cross"
-    },
     "variants": {
-        "part": {
-            "top": {
-                "textures": {
-                    "cross": "netherex:blocks/spoul_shroom_top"
-                }
-            },
-            "bottom": {
-                "textures": {
-                    "cross": "netherex:blocks/spoul_shroom_bottom"
-                }
-            }
-        }
+        "part=single": { "model": "netherex:spoul_shroom" },
+        "part=double_top": { "model": "netherex:double_spoul_shroom_top" },
+        "part=double_bottom": { "model": "netherex:double_spoul_shroom_bottom" }
     }
 }

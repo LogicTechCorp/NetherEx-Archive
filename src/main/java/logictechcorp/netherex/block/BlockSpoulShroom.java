@@ -49,7 +49,7 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
     public BlockSpoulShroom()
     {
         super(NetherEx.getResource("spoul_shroom"), new BlockProperties(Material.PLANTS, MapColor.BROWN), EnumPlantType.Nether);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(PART, EnumPart.TOP));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(PART, EnumPart.SINGLE));
     }
 
     @Override
@@ -65,12 +65,12 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
         IBlockState stateDown = world.getBlockState(pos.down());
         Block blockDown = stateDown.getBlock();
 
-        if(state.getValue(PART) == EnumPart.TOP)
+        if(state.getValue(PART) == EnumPart.SINGLE)
         {
             if(world.isAirBlock(posUp) && blockDown != this)
             {
-                world.setBlockState(pos, state.withProperty(PART, EnumPart.BOTTOM));
-                world.setBlockState(posUp, state.withProperty(PART, EnumPart.TOP));
+                world.setBlockState(pos, state.withProperty(PART, EnumPart.DOUBLE_BOTTOM));
+                world.setBlockState(posUp, state.withProperty(PART, EnumPart.DOUBLE_TOP));
             }
         }
         else
@@ -91,8 +91,8 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
 
             if(!spoulShroom.generate(world, pos, random))
             {
-                world.setBlockState(pos, state.withProperty(PART, EnumPart.BOTTOM));
-                world.setBlockState(posUp, state.withProperty(PART, EnumPart.TOP));
+                world.setBlockState(pos, state.withProperty(PART, EnumPart.DOUBLE_BOTTOM));
+                world.setBlockState(posUp, state.withProperty(PART, EnumPart.DOUBLE_TOP));
             }
         }
     }
@@ -102,7 +102,7 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
     {
         IBlockState soil = world.getBlockState(pos.down());
 
-        if(state.getValue(PART) == EnumPart.TOP && soil.getBlock() == this && soil.getValue(PART) == EnumPart.BOTTOM)
+        if(state.getValue(PART) == EnumPart.DOUBLE_TOP && soil.getBlock() == this && soil.getValue(PART) == EnumPart.DOUBLE_BOTTOM)
         {
             return false;
         }
@@ -117,13 +117,13 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
 
         if(plant.getBlock() == this)
         {
-            if(plant.getValue(PART) == EnumPart.TOP && state.getValue(PART) == EnumPart.TOP)
+            if(plant.getValue(PART) == EnumPart.DOUBLE_TOP && state.getValue(PART) == EnumPart.DOUBLE_TOP)
             {
                 return false;
             }
             else
             {
-                return plant.getValue(PART) == EnumPart.TOP && state.getValue(PART) == EnumPart.BOTTOM;
+                return plant.getValue(PART) == EnumPart.DOUBLE_TOP && state.getValue(PART) == EnumPart.DOUBLE_BOTTOM;
             }
         }
 
@@ -150,8 +150,9 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
 
     public enum EnumPart implements IStringSerializable
     {
-        TOP,
-        BOTTOM;
+        SINGLE,
+        DOUBLE_TOP,
+        DOUBLE_BOTTOM;
 
         @Override
         public String getName()
