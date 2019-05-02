@@ -48,3 +48,11 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+jar {
+    manifest {
+        attributes([
+                'FMLAT': "netherex_at.cfg"
+        ])
+    }
+}

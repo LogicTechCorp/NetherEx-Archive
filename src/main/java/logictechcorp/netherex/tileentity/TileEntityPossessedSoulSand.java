@@ -18,6 +18,7 @@
 package logictechcorp.netherex.tileentity;
 
 import logictechcorp.libraryex.utility.ExperienceHelper;
+import logictechcorp.netherex.block.BlockPossessedSoulSand;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,12 +29,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class TileEntityHauntedSoulSand extends TileEntity
+public class TileEntityPossessedSoulSand extends TileEntity
 {
-    private final int maxExperience = ExperienceHelper.getExperienceForLevel(30);
+    private final int maxExperience;
     private int experience = 0;
 
-    public void drainExperience(EntityPlayer player)
+    public TileEntityPossessedSoulSand()
+    {
+        this.maxExperience = ExperienceHelper.getExperienceForLevel(30);
+    }
+
+    public void consumeExperience(EntityPlayer player)
     {
         if(player.capabilities.isCreativeMode)
         {
@@ -59,6 +65,11 @@ public class TileEntityHauntedSoulSand extends TileEntity
             ExperienceHelper.adjustPlayerExperience(player, -drainAmount);
             this.experience += drainAmount;
         }
+
+        if(this.experience <= this.maxExperience)
+        {
+            this.increaseEyeGlow();
+        }
     }
 
     public void expelExperience()
@@ -70,6 +81,44 @@ public class TileEntityHauntedSoulSand extends TileEntity
                 int experienceFragment = EntityXPOrb.getXPSplit(this.experience);
                 this.experience -= experienceFragment;
                 this.world.spawnEntity(new EntityXPOrb(this.world, (double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D, experienceFragment));
+            }
+        }
+    }
+
+    private void increaseEyeGlow()
+    {
+        IBlockState state = this.world.getBlockState(this.pos);
+        int experienceLevel = ExperienceHelper.getLevelForExperience(this.experience) / 2;
+
+        if(state.getBlock() == this.getBlockType())
+        {
+            if((experienceLevel == 2 || experienceLevel == 3) && state.getValue(BlockPossessedSoulSand.STAGE) < 1)
+            {
+                this.world.setBlockState(this.pos, state.withProperty(BlockPossessedSoulSand.STAGE, 1));
+            }
+            else if((experienceLevel == 4 || experienceLevel == 5) && state.getValue(BlockPossessedSoulSand.STAGE) < 2)
+            {
+                this.world.setBlockState(this.pos, state.withProperty(BlockPossessedSoulSand.STAGE, 2));
+            }
+            else if((experienceLevel == 6 || experienceLevel == 7) && state.getValue(BlockPossessedSoulSand.STAGE) < 3)
+            {
+                this.world.setBlockState(this.pos, state.withProperty(BlockPossessedSoulSand.STAGE, 3));
+            }
+            else if((experienceLevel == 8 || experienceLevel == 9) && state.getValue(BlockPossessedSoulSand.STAGE) < 4)
+            {
+                this.world.setBlockState(this.pos, state.withProperty(BlockPossessedSoulSand.STAGE, 4));
+            }
+            else if((experienceLevel == 10 || experienceLevel == 11) && state.getValue(BlockPossessedSoulSand.STAGE) < 5)
+            {
+                this.world.setBlockState(this.pos, state.withProperty(BlockPossessedSoulSand.STAGE, 5));
+            }
+            else if((experienceLevel == 12 || experienceLevel == 13) && state.getValue(BlockPossessedSoulSand.STAGE) < 6)
+            {
+                this.world.setBlockState(this.pos, state.withProperty(BlockPossessedSoulSand.STAGE, 6));
+            }
+            else if((experienceLevel == 14 || experienceLevel == 15) && state.getValue(BlockPossessedSoulSand.STAGE) < 7)
+            {
+                this.world.setBlockState(this.pos, state.withProperty(BlockPossessedSoulSand.STAGE, 7));
             }
         }
     }

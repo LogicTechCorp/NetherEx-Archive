@@ -37,8 +37,10 @@ public class GenLayerNetherSubBiome extends GenLayer
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] biomeIds = this.parent.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
-        int[] subBiomeChances = this.subBiomeLayer.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
+        int outerWidth = areaWidth + 2;
+        int outerHeight = areaHeight + 2;
+        int[] biomeIds = this.parent.getInts(areaX - 1, areaY - 1, outerWidth, outerHeight);
+        int[] subBiomeChances = this.subBiomeLayer.getInts(areaX - 1, areaY - 1, outerWidth, outerHeight);
         int[] outputs = IntCache.getIntCache(areaWidth * areaHeight);
 
         for(int y = 0; y < areaHeight; y++)
@@ -46,9 +48,9 @@ public class GenLayerNetherSubBiome extends GenLayer
             for(int x = 0; x < areaWidth; x++)
             {
                 this.initChunkSeed((long) (x + areaX), (long) (y + areaY));
-                int biomeId = biomeIds[x + 1 + (y + 1) * (areaWidth + 2)];
+                int biomeId = biomeIds[x + 1 + (y + 1) * (outerWidth)];
 
-                int subBiomeChance = (subBiomeChances[x + 1 + (y + 1) * (areaWidth + 2)] % 29);
+                int subBiomeChance = (subBiomeChances[x + 1 + (y + 1) * (outerWidth)] % 29);
 
                 boolean tryRareBiome = (subBiomeChance == 1);
                 boolean tryRareHillsBiome = (subBiomeChance == 2);
@@ -76,10 +78,10 @@ public class GenLayerNetherSubBiome extends GenLayer
                             subBiomeId = this.getRandomBiome(subBiomeId);
                         }
 
-                        int biomeNorth = biomeIds[x + 1 + (y + 1 - 1) * (areaWidth + 2)];
-                        int biomeEast = biomeIds[x + 1 + 1 + (y + 1) * (areaWidth + 2)];
-                        int biomeWest = biomeIds[x + 1 - 1 + (y + 1) * (areaWidth + 2)];
-                        int biomeSouth = biomeIds[x + 1 + (y + 1 + 1) * (areaWidth + 2)];
+                        int biomeNorth = biomeIds[x + 1 + (y + 1 - 1) * (outerWidth)];
+                        int biomeEast = biomeIds[x + 1 + 1 + (y + 1) * (outerWidth)];
+                        int biomeWest = biomeIds[x + 1 - 1 + (y + 1) * (outerWidth)];
+                        int biomeSouth = biomeIds[x + 1 + (y + 1 + 1) * (outerWidth)];
                         int surroundingSameCount = 0;
 
                         if(biomesEqualOrMesaPlateau(biomeNorth, biomeId))

@@ -24,7 +24,6 @@ import logictechcorp.libraryex.world.generation.trait.impl.*;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
 import net.minecraft.block.state.IBlockState;
 
 import java.util.ArrayList;
@@ -65,7 +64,6 @@ public class BiomeSoulWastes extends BiomeNetherEx
                     new BiomeTraitPatch(2, false, 0.85D, 32, 124, POSSESSED_SOUL_SAND, SOUL_SAND, 3)
             )));
             this.getBiomeTraits(GenerationStage.DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new BiomeTraitThornstalk(12, false, 0.85D, 32, 120),
                     new BiomeTraitBoulder(4, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 0),
                     new BiomeTraitBoulder(2, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 1),
                     new BiomeTraitDenseTree(68, false, 1.0F, 32, 108, NetherExBlocks.SPOUL_SHROOM_STEM.getDefaultState(), NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState(), SOUL_SAND, 3, 8),

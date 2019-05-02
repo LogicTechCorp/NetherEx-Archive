@@ -72,6 +72,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private double[] terrainNoise = new double[256];
     private double[] scaleNoise;
     private double[] depthNoise;
+    private Biome[] biomesForGeneration;
 
     private MapGenBase netherCaves = new MapGenCavesHell();
     private MapGenNetherBridge netherFortress = new MapGenNetherBridge();
@@ -117,6 +118,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     @Override
     public void prepareHeights(int chunkX, int chunkZ, ChunkPrimer primer)
     {
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
         this.heightmap = this.generateHeightMap(this.heightmap, chunkX * 4, 0, chunkZ * 4, 5, 17, 5);
 
         for(int x = 0; x < 4; x++)
@@ -374,6 +376,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         ChunkPrimer primer = new ChunkPrimer();
         this.random.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
         this.prepareHeights(chunkX, chunkZ, primer);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
         this.buildSurfaces(chunkX, chunkZ, primer);
         this.netherCaves.generate(this.world, chunkX, chunkZ, primer);
 
@@ -382,15 +385,14 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             this.netherFortress.generate(this.world, chunkX, chunkZ, primer);
         }
 
-        Biome[] biomes = this.world.getBiomeProvider().getBiomes(null, chunkX * 16, chunkZ * 16, 16, 16);
-        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, biomes, this.random);
+        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, this.biomesForGeneration, this.random);
 
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
 
         for(int i = 0; i < biomeArray.length; i++)
         {
-            Biome biome = biomes[i];
+            Biome biome = this.biomesForGeneration[i];
             biomeArray[i] = (byte) Biome.getIdForBiome(biome);
         }
 

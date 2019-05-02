@@ -20,10 +20,12 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockTileEntity;
 import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.tileentity.TileEntityHauntedSoulSand;
+import logictechcorp.netherex.tileentity.TileEntityPossessedSoulSand;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,13 +39,14 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityHauntedSoulSand>
+public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityPossessedSoulSand>
 {
+    public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 7);
     protected static final AxisAlignedBB SOUL_SAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
 
     public BlockPossessedSoulSand()
     {
-        super(NetherEx.getResource("possessed_soul_sand"), TileEntityHauntedSoulSand.class, new BlockProperties(Material.SAND, MapColor.BROWN).sound(SoundType.SAND).hardness(0.5F));
+        super(NetherEx.getResource("possessed_soul_sand"), TileEntityPossessedSoulSand.class, new BlockProperties(Material.SAND, MapColor.BROWN).sound(SoundType.SAND).hardness(0.5F));
     }
 
     @Override
@@ -60,12 +63,11 @@ public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityHauntedSou
 
         TileEntity tileEntity = world.getTileEntity(pos);
 
-        if(tileEntity instanceof TileEntityHauntedSoulSand)
+        if(tileEntity instanceof TileEntityPossessedSoulSand)
         {
-
             if(entity instanceof EntityPlayer)
             {
-                ((TileEntityHauntedSoulSand) tileEntity).drainExperience((EntityPlayer) entity);
+                ((TileEntityPossessedSoulSand) tileEntity).consumeExperience((EntityPlayer) entity);
             }
         }
     }
@@ -75,9 +77,9 @@ public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityHauntedSou
     {
         TileEntity tileEntity = world.getTileEntity(pos);
 
-        if(tileEntity instanceof TileEntityHauntedSoulSand)
+        if(tileEntity instanceof TileEntityPossessedSoulSand)
         {
-            ((TileEntityHauntedSoulSand) tileEntity).expelExperience();
+            ((TileEntityPossessedSoulSand) tileEntity).expelExperience();
         }
 
         super.breakBlock(world, pos, state);
@@ -88,4 +90,32 @@ public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityHauntedSou
     {
         return Item.getItemFromBlock(Blocks.SOUL_SAND);
     }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        if(meta > 7)
+        {
+            meta = 7;
+        }
+        else if(meta < 0)
+        {
+            meta = 0;
+        }
+
+        return this.getDefaultState().withProperty(STAGE, meta);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(STAGE);
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, STAGE);
+    }
+
 }

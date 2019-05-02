@@ -20,10 +20,14 @@ package logictechcorp.netherex.world.biome.design;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.generation.layer.GenLayerNetherBiome;
 import logictechcorp.netherex.world.generation.layer.GenLayerNetherSubBiome;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.init.Biomes;
+import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.*;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class BiomeProviderNetherEx extends BiomeProvider
 {
@@ -31,8 +35,42 @@ public class BiomeProviderNetherEx extends BiomeProvider
     {
         super();
         GenLayer[] genLayers = this.createGenLayers(world.getSeed());
-        ObfuscationReflectionHelper.setPrivateValue(BiomeProvider.class, this, genLayers[0], "field_76944_d", "genBiomes");
-        ObfuscationReflectionHelper.setPrivateValue(BiomeProvider.class, this, genLayers[1], "field_76945_e", "biomeIndexLayer");
+        this.genBiomes = genLayers[0];
+        this.biomeIndexLayer = genLayers[1];
+    }
+
+    @Override
+    public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int z, int width, int height)
+    {
+        IntCache.resetIntCache();
+
+        if (biomes == null || biomes.length < width * height)
+        {
+            biomes = new Biome[width * height];
+        }
+
+        int[] biomeIds = this.genBiomes.getInts(x, z, width, height);
+
+        try
+        {
+            for (int i = 0; i < width * height; i++)
+            {
+                biomes[i] = Biome.getBiome(biomeIds[i], Biomes.HELL);
+            }
+
+            return biomes;
+        }
+        catch (Throwable throwable)
+        {
+            CrashReport crashReport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
+            CrashReportCategory crashReportCategory = crashReport.makeCategory("RawBiomeBlock");
+            crashReportCategory.addCrashSection("biomes[] size", biomes.length);
+            crashReportCategory.addCrashSection("x", x);
+            crashReportCategory.addCrashSection("z", z);
+            crashReportCategory.addCrashSection("w", width);
+            crashReportCategory.addCrashSection("h", height);
+            throw new ReportedException(crashReport);
+        }
     }
 
     private GenLayer[] createGenLayers(long worldSeed)
