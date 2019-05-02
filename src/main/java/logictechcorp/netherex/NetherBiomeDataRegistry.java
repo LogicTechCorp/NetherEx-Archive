@@ -32,11 +32,13 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
 {
     static final IBiomeDataRegistry INSTANCE = new NetherBiomeDataRegistry();
 
-    private final Map<ResourceLocation, IBiomeData> biomeData = new HashMap<>();
-    private final Map<IBiomeData, BiomeManager.BiomeEntry> biomeEntries = new ConcurrentHashMap<>();
+    private final Map<ResourceLocation, IBiomeData> biomeData;
+    private final Map<IBiomeData, BiomeManager.BiomeEntry> biomeEntries;
 
     private NetherBiomeDataRegistry()
     {
+        this.biomeData = new HashMap<>();
+        this.biomeEntries = new ConcurrentHashMap<>();
     }
 
     @Override
@@ -53,11 +55,11 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
         if(!this.biomeData.containsKey(biomeRegistryName))
         {
             this.biomeData.put(biomeRegistryName, biomeData);
-            this.biomeEntries.put(biomeData, new BiomeManager.BiomeEntry(biome, biomeData.getBiomeGenerationWeight()));
-        }
-        else
-        {
-            this.biomeEntries.get(biomeData).itemWeight = biomeData.getBiomeGenerationWeight();
+
+            if(!biomeData.isSubBiomeData())
+            {
+                this.biomeEntries.put(biomeData, new BiomeManager.BiomeEntry(biome, biomeData.getBiomeGenerationWeight()));
+            }
         }
     }
 
@@ -70,7 +72,11 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
         if(biomeData != null)
         {
             this.biomeEntries.remove(biomeData);
-            this.biomeData.remove(biomeRegistryName);
+
+            if(!biomeData.isSubBiomeData())
+            {
+                this.biomeData.remove(biomeRegistryName);
+            }
         }
     }
 

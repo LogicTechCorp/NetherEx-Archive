@@ -23,7 +23,7 @@ import logictechcorp.libraryex.trade.ITradeManager;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
 import logictechcorp.netherex.api.NetherExAPI;
-import logictechcorp.netherex.api.internal.INetherExAPI;
+import logictechcorp.netherex.api.internal.iface.INetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
@@ -48,13 +48,15 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData, INetherExAPI
 {
-    //TODO:
-    // Finish adding in new textures
+    static final String NAME = "NetherEx";
+    static final String VERSION = "2.0.9";
+    static final String DEPENDENCIES = "required-after:libraryex@[1.0.9,);";
 
     public static final String MOD_ID = "netherex";
-    public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.0.9";
-    public static final String DEPENDENCIES = "required-after:libraryex@[1.0.9,);";
+
+    public static final WorldTypeNetherEx WORLD_TYPE = new WorldTypeNetherEx();
+    public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
+    public static final boolean LOST_CITIES_LOADED = Loader.isModLoaded("lostcities");
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;
@@ -71,10 +73,6 @@ public class NetherEx implements IModData, INetherExAPI
             return new ItemStack(Blocks.NETHERRACK);
         }
     };
-
-    public static final WorldTypeNetherEx WORLD_TYPE = new WorldTypeNetherEx();
-    public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
-    public static final boolean LOST_CITIES_LOADED = Loader.isModLoaded("lostcities");
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 

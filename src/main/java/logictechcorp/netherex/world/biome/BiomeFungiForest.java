@@ -18,6 +18,7 @@
 package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitBigMushroom;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
@@ -29,7 +30,6 @@ import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -61,11 +61,11 @@ public class BiomeFungiForest extends BiomeNetherEx
         return new BiomeData();
     }
 
-    private class BiomeData extends BiomeDataNetherEx
+    private class BiomeData extends BiomeDataConfigurable
     {
         BiomeData()
         {
-            super(NetherExBiomes.FUNGI_FOREST, 4, true, true);
+            super(NetherExBiomes.FUNGI_FOREST, 4, false, true, true);
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, LIVELY_NETHERRACK);

@@ -15,39 +15,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.api.internal;
+package logictechcorp.netherex.api.internal.impl;
 
 import logictechcorp.libraryex.trade.ITradeManager;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
+import logictechcorp.netherex.api.internal.iface.INetherExAPI;
 
-public interface INetherExAPI
+public final class NetherExAPIStub implements INetherExAPI
 {
-    /**
-     * Returns false if the actual mod is loaded.
-     *
-     * @return Whether this API instance is created by the mod.
-     */
-    boolean isStub();
+    public static final INetherExAPI INSTANCE = new NetherExAPIStub();
 
-    /**
-     * Returns the biome data registry.
-     *
-     * @return The biome data registry.
-     */
-    IBiomeDataRegistry getBiomeDataRegistry();
+    private NetherExAPIStub()
+    {
+    }
 
-    /**
-     * Returns The biome data manager.
-     *
-     * @return The biome data manager
-     */
-    IBiomeDataManager getBiomeDataManager();
+    @Override
+    public boolean isStub()
+    {
+        return true;
+    }
 
-    /**
-     * Returns the trade manger.
-     *
-     * @return The trade manger.
-     */
-    ITradeManager getTradeManager();
+    @Override
+    public IBiomeDataRegistry getBiomeDataRegistry()
+    {
+        return NetherBiomeDataRegistryStub.INSTANCE;
+    }
+
+    @Override
+    public IBiomeDataManager getBiomeDataManager()
+    {
+        return NetherBiomeDataManagerStub.INSTANCE;
+    }
+
+    @Override
+    public ITradeManager getTradeManager()
+    {
+        return TradeManagerStub.INSTANCE;
+    }
 }

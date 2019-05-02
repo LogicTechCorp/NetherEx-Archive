@@ -18,6 +18,7 @@
 package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitOre;
@@ -29,7 +30,6 @@ import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
 import logictechcorp.netherex.entity.monster.EntityWight;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityGhast;
@@ -64,11 +64,11 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         return new BiomeData();
     }
 
-    private class BiomeData extends BiomeDataNetherEx
+    private class BiomeData extends BiomeDataConfigurable
     {
         BiomeData()
         {
-            super(NetherExBiomes.ARCTIC_ABYSS, 2, true, true);
+            super(NetherExBiomes.ARCTIC_ABYSS, 2, false, true, true);
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, ICY_NETHERRACK);

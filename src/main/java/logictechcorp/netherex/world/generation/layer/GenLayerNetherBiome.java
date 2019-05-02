@@ -28,7 +28,7 @@ import net.minecraftforge.common.BiomeManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenLayerNetherBiome extends GenLayerNetherEx
+public class GenLayerNetherBiome extends GenLayer
 {
     public GenLayerNetherBiome(long seed, GenLayer parent)
     {
@@ -37,16 +37,16 @@ public class GenLayerNetherBiome extends GenLayerNetherEx
     }
 
     @Override
-    public int[] getInts(int areaX, int areaZ, int areaWidth, int areaHeight)
+    public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
         int[] outputs = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for(int z = 0; z < areaHeight; z++)
+        for(int y = 0; y < areaHeight; y++)
         {
             for(int x = 0; x < areaWidth; x++)
             {
-                this.initChunkSeed(x + areaX, z + areaZ);
-                outputs[x + z * areaWidth] = Biome.getIdForBiome(this.getRandomBiome());
+                this.initChunkSeed(x + areaX, y + areaY);
+                outputs[x + y * areaWidth] = Biome.getIdForBiome(this.getRandomBiome());
             }
         }
 

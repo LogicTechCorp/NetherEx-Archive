@@ -19,6 +19,7 @@ package logictechcorp.netherex.world.biome.data;
 
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitFluid;
@@ -36,13 +37,13 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
 
-public final class BiomeDataHell extends BiomeDataNetherEx
+public final class BiomeDataHell extends BiomeDataConfigurable
 {
     public static final IBiomeData INSTANCE = new BiomeDataHell();
 
     private BiomeDataHell()
     {
-        super(Biomes.HELL, 10, true, true);
+        super(Biomes.HELL, 10, false, true, true);
         this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.WALL_BLOCK, Blocks.NETHERRACK.getDefaultState());

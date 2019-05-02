@@ -53,9 +53,9 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private final Random random;
     private final boolean generateStructures;
 
-    private NoiseGeneratorOctaves noiseGen1;
-    private NoiseGeneratorOctaves noiseGen2;
-    private NoiseGeneratorOctaves noiseGen3;
+    private NoiseGeneratorOctaves lowerNoiseGen;
+    private NoiseGeneratorOctaves upperNoiseGen;
+    private NoiseGeneratorOctaves noiseLevelsGen;
     private NoiseGeneratorOctaves soulSandGravelNoiseGen;
     private NoiseGeneratorOctaves netherrackNoiseGen;
     private NoiseGeneratorPerlin terrainNoiseGen;
@@ -66,9 +66,9 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private double[] netherrackNoise = new double[256];
     private double[] soulSandNoise = new double[256];
     private double[] gravelNoise = new double[256];
-    private double[] noiseData1;
-    private double[] noiseData2;
-    private double[] noiseData3;
+    private double[] noiseLevels;
+    private double[] lowerNoiseData;
+    private double[] upperNoiseData;
     private double[] terrainNoise = new double[256];
     private double[] scaleNoise;
     private double[] depthNoise;
@@ -82,21 +82,21 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.world = world;
         this.random = new Random(seed);
         this.generateStructures = generateStructures;
-        this.noiseGen1 = new NoiseGeneratorOctaves(this.random, 16);
-        this.noiseGen2 = new NoiseGeneratorOctaves(this.random, 16);
-        this.noiseGen3 = new NoiseGeneratorOctaves(this.random, 8);
+        this.lowerNoiseGen = new NoiseGeneratorOctaves(this.random, 16);
+        this.upperNoiseGen = new NoiseGeneratorOctaves(this.random, 16);
+        this.noiseLevelsGen = new NoiseGeneratorOctaves(this.random, 8);
         this.soulSandGravelNoiseGen = new NoiseGeneratorOctaves(this.random, 4);
         this.netherrackNoiseGen = new NoiseGeneratorOctaves(this.random, 4);
         this.scaleNoiseGen = new NoiseGeneratorOctaves(this.random, 10);
         this.depthNoiseGen = new NoiseGeneratorOctaves(this.random, 16);
         this.terrainNoiseGen = new NoiseGeneratorPerlin(this.random, 4);
 
-        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(this.noiseGen1, this.noiseGen2, this.noiseGen3, this.soulSandGravelNoiseGen, this.netherrackNoiseGen, this.scaleNoiseGen, this.depthNoiseGen);
+        InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(this.lowerNoiseGen, this.upperNoiseGen, this.noiseLevelsGen, this.soulSandGravelNoiseGen, this.netherrackNoiseGen, this.scaleNoiseGen, this.depthNoiseGen);
         ctx = TerrainGen.getModdedNoiseGenerators(this.world, this.random, ctx);
 
-        this.noiseGen1 = ctx.getLPerlin1();
-        this.noiseGen2 = ctx.getLPerlin2();
-        this.noiseGen3 = ctx.getPerlin();
+        this.lowerNoiseGen = ctx.getLPerlin1();
+        this.upperNoiseGen = ctx.getLPerlin2();
+        this.noiseLevelsGen = ctx.getPerlin();
         this.soulSandGravelNoiseGen = ctx.getPerlin2();
         this.netherrackNoiseGen = ctx.getPerlin3();
         this.scaleNoiseGen = ctx.getScale();
@@ -277,14 +277,14 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         }
     }
 
-    private double[] generateHeightMap(double[] heightMap, int posX, int posY, int posZ, int xSize, int ySize, int zSize)
+    private double[] generateHeightMap(double[] heightMap, int posX, int posY, int posZ, int sizeX, int sizeY, int sizeZ)
     {
         if(heightMap == null)
         {
-            heightMap = new double[xSize * ySize * zSize];
+            heightMap = new double[sizeX * sizeY * sizeZ];
         }
 
-        ChunkGeneratorEvent.InitNoiseField event = new ChunkGeneratorEvent.InitNoiseField(this, heightMap, posX, posY, posZ, xSize, ySize, zSize);
+        ChunkGeneratorEvent.InitNoiseField event = new ChunkGeneratorEvent.InitNoiseField(this, heightMap, posX, posY, posZ, sizeX, sizeY, sizeZ);
         MinecraftForge.EVENT_BUS.post(event);
 
         if(event.getResult() == Event.Result.DENY)
@@ -292,75 +292,75 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             return event.getNoisefield();
         }
 
-        this.scaleNoise = this.scaleNoiseGen.generateNoiseOctaves(this.scaleNoise, posX, posY, posZ, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
-        this.depthNoise = this.depthNoiseGen.generateNoiseOctaves(this.depthNoise, posX, posY, posZ, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
-        this.noiseData1 = this.noiseGen3.generateNoiseOctaves(this.noiseData1, posX, posY, posZ, xSize, ySize, zSize, 8.555150000000001D, 34.2206D, 8.555150000000001D);
-        this.noiseData2 = this.noiseGen1.generateNoiseOctaves(this.noiseData2, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
-        this.noiseData3 = this.noiseGen2.generateNoiseOctaves(this.noiseData3, posX, posY, posZ, xSize, ySize, zSize, 684.412D, 2053.236D, 684.412D);
+        this.scaleNoise = this.scaleNoiseGen.generateNoiseOctaves(this.scaleNoise, posX, posY, posZ, sizeX, 1, sizeZ, 1.0D, 0.0D, 1.0D);
+        this.depthNoise = this.depthNoiseGen.generateNoiseOctaves(this.depthNoise, posX, posY, posZ, sizeX, 1, sizeZ, 100.0D, 0.0D, 100.0D);
+        this.noiseLevels = this.noiseLevelsGen.generateNoiseOctaves(this.noiseLevels, posX, posY, posZ, sizeX, sizeY, sizeZ, 8.55515D, 34.2206D, 8.55515D);
+        this.lowerNoiseData = this.lowerNoiseGen.generateNoiseOctaves(this.lowerNoiseData, posX, posY, posZ, sizeX, sizeY, sizeZ, 684.412D, 2053.236D, 684.412D);
+        this.upperNoiseData = this.upperNoiseGen.generateNoiseOctaves(this.upperNoiseData, posX, posY, posZ, sizeX, sizeY, sizeZ, 684.412D, 2053.236D, 684.412D);
 
-        double[] newYSize = new double[ySize];
+        double[] heightAdjustments = new double[sizeY];
 
-        for(int j = 0; j < ySize; ++j)
+        for(int y = 0; y < sizeY; y++)
         {
-            newYSize[j] = Math.cos((double) j * Math.PI * 6.0D / (double) ySize) * 2.0D;
-            double d2 = (double) j;
+            heightAdjustments[y] = Math.cos((double) y * Math.PI * 6.0D / (double) sizeY) * 2.0D;
+            double adjustedY = (double) y;
 
-            if(j > ySize / 2)
+            if(y > sizeY / 2)
             {
-                d2 = (double) (ySize - 1 - j);
+                adjustedY = (double) (sizeY - 1 - y);
             }
 
-            if(d2 < 4.0D)
+            if(adjustedY < 4.0D)
             {
-                d2 = 4.0D - d2;
-                newYSize[j] -= d2 * d2 * d2 * 10.0D;
+                adjustedY = 4.0D - adjustedY;
+                heightAdjustments[y] -= adjustedY * adjustedY * adjustedY * 10.0D;
             }
         }
 
-        int index = 0;
+        int posCounter = 0;
 
-        for(int l = 0; l < xSize; ++l)
+        for(int x = 0; x < sizeX; x++)
         {
-            for(int i1 = 0; i1 < zSize; ++i1)
+            for(int z = 0; z < sizeZ; z++)
             {
-                for(int k = 0; k < ySize; ++k)
+                for(int y = 0; y < sizeY; y++)
                 {
-                    double d4 = newYSize[k];
-                    double d5 = this.noiseData2[index] / 512.0D;
-                    double d6 = this.noiseData3[index] / 512.0D;
-                    double d7 = (this.noiseData1[index] / 10.0D + 1.0D) / 2.0D;
-                    double d8;
+                    double heightAdjustment = heightAdjustments[y];
+                    double lowerNoise = this.lowerNoiseData[posCounter] / 512.0D;
+                    double upperNoise = this.upperNoiseData[posCounter] / 512.0D;
+                    double noiseLevel = (this.noiseLevels[posCounter] / 10.0D + 1.0D) / 2.0D;
+                    double height;
 
-                    if(d7 < 0.0D)
+                    if(noiseLevel < 0.0D)
                     {
-                        d8 = d5;
+                        height = lowerNoise;
                     }
-                    else if(d7 > 1.0D)
+                    else if(noiseLevel > 1.0D)
                     {
-                        d8 = d6;
+                        height = upperNoise;
                     }
                     else
                     {
-                        d8 = d5 + (d6 - d5) * d7;
+                        height = lowerNoise + (upperNoise - lowerNoise) * noiseLevel;
                     }
 
-                    d8 = d8 - d4;
+                    height = height - heightAdjustment;
 
-                    if(k > ySize - 4)
+                    if(y > sizeY - 4)
                     {
-                        double d9 = (double) ((float) (k - (ySize - 4)) / 3.0F);
-                        d8 = d8 * (1.0D - d9) + -10.0D * d9;
+                        double distance = (double) ((float) (y - (sizeY - 4)) / 3.0F);
+                        height = height * (1.0D - distance) + -10.0D * distance;
                     }
 
-                    if((double) k < 0.0D)
+                    if((double) y < 0.0D)
                     {
-                        double d10 = (0.0D - (double) k) / 4.0D;
-                        d10 = MathHelper.clamp(d10, 0.0D, 1.0D);
-                        d8 = d8 * (1.0D - d10) + -10.0D * d10;
+                        double distance = (0.0D - (double) y) / 4.0D;
+                        distance = MathHelper.clamp(distance, 0.0D, 1.0D);
+                        height = height * (1.0D - distance) + -10.0D * distance;
                     }
 
-                    heightMap[index] = d8;
-                    index++;
+                    heightMap[posCounter] = height;
+                    posCounter++;
                 }
             }
         }

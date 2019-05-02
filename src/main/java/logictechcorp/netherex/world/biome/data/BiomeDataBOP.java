@@ -17,30 +17,20 @@
 
 package logictechcorp.netherex.world.biome.data;
 
+import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
 import logictechcorp.netherex.NetherEx;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.WorldType;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class BiomeDataBOP extends BiomeDataNetherEx
+public class BiomeDataBOP extends BiomeDataConfigurable
 {
-    public BiomeDataBOP(ResourceLocation biomeRegistryName, int weight, boolean enabled, boolean genDefaultFeatures)
+    public BiomeDataBOP(ResourceLocation biomeRegistryName, int biomeGenerationWeight, boolean isSubBiomeData, boolean generateBiome, boolean generateDefaultBiomeFeatures)
     {
-        super(biomeRegistryName, weight, enabled, genDefaultFeatures);
+        super(biomeRegistryName, biomeGenerationWeight, isSubBiomeData, generateBiome, generateDefaultBiomeFeatures);
     }
 
     @Override
     public boolean generateBiome()
     {
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-
-        if(server != null && NetherEx.BIOMES_O_PLENTY_LOADED)
-        {
-            WorldType worldType = server.getEntityWorld().getWorldType();
-            return worldType.getName().equals(NetherEx.MOD_ID);
-        }
-
-        return false;
+        return this.generateBiome && NetherEx.BIOMES_O_PLENTY_LOADED;
     }
 }

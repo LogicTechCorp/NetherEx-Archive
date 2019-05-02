@@ -45,7 +45,7 @@ public class NetherExBlocks
     public static final BlockNetherrack LIVELY_NETHERRACK = InjectionHelper.nullValue();
     public static final BlockNetherrack FIERY_NETHERRACK = InjectionHelper.nullValue();
     public static final BlockNetherrack ICY_NETHERRACK = InjectionHelper.nullValue();
-    public static final BlockPossessedSoulSand HAUNTED_SOUL_SAND = InjectionHelper.nullValue();
+    public static final BlockPossessedSoulSand POSSESSED_SOUL_SAND = InjectionHelper.nullValue();
     public static final BlockModPath NETHERRACK_PATH = InjectionHelper.nullValue();
     public static final BlockModPath GLOOMY_NETHERRACK_PATH = InjectionHelper.nullValue();
     public static final BlockModPath LIVELY_NETHERRACK_PATH = InjectionHelper.nullValue();
@@ -286,7 +286,7 @@ public class NetherExBlocks
                     new ItemBlockMod(LIVELY_NETHERRACK, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(FIERY_NETHERRACK, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ICY_NETHERRACK, DEFAULT_ITEM_BLOCK_PROPERTIES),
-                    new ItemBlockMod(HAUNTED_SOUL_SAND, DEFAULT_ITEM_BLOCK_PROPERTIES),
+                    new ItemBlockMod(POSSESSED_SOUL_SAND, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(SOUL_SANDSTONE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(CUT_SOUL_SANDSTONE, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(CHISELED_SOUL_SANDSTONE, DEFAULT_ITEM_BLOCK_PROPERTIES),

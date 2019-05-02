@@ -43,6 +43,13 @@ public class WorldTypeNetherEx extends WorldType
 
     @Override
     @SideOnly(Side.CLIENT)
+    public String getTranslationKey()
+    {
+        return "generator." + NetherEx.MOD_ID + ":" + this.getName();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
     public void onCustomizeButton(Minecraft minecraft, GuiCreateWorld guiCreateWorld)
     {
         List<WorldType> compatibleWorldTypes = new ArrayList<>();
@@ -161,13 +168,6 @@ public class WorldTypeNetherEx extends WorldType
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public String getTranslationKey()
-    {
-        return "generator." + NetherEx.MOD_ID + ":" + this.getName();
-    }
-
-    @Override
     public IChunkGenerator getChunkGenerator(World world, String generatorOptions)
     {
         int dimension = world.provider.getDimension();
@@ -230,7 +230,7 @@ public class WorldTypeNetherEx extends WorldType
         else if(dimension == DimensionType.NETHER.getId())
         {
 
-            return new ChunkGeneratorNetherEx(world, world.getWorldInfo().isMapFeaturesEnabled(), world.getSeed());
+            return new ChunkGeneratorNetherEx(world, world.getWorldInfo().isMapFeaturesEnabled(), world.getSeed(), generatorOptions);
         }
 
         return super.getChunkGenerator(world, generatorOptions);

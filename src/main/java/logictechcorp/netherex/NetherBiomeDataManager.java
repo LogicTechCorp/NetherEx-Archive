@@ -18,6 +18,7 @@
 package logictechcorp.netherex;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import logictechcorp.libraryex.api.IBiomeDataAPI;
 import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
@@ -74,7 +75,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
         {
             if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
             {
-                Path path = new File(WorldHelper.getSaveDirectory(world), "/config/netherex/biomes").toPath();
+                Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/biomes").toPath();
                 NetherEx.LOGGER.info(this.marker, "Reading Nether biome data configs from disk.");
 
                 try
@@ -95,7 +96,8 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
                             if(biome != null)
                             {
-                                IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getBiomeDataRegistry();
+                                IBiomeDataAPI biomeDataAPI = NetherExAPI.getInstance();
+                                IBiomeDataRegistry biomeDataRegistry = biomeDataAPI.getBiomeDataRegistry();
                                 IBiomeData biomeData;
 
                                 if(biomeDataRegistry.hasBiomeData(biome))
@@ -107,12 +109,12 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                                         continue;
                                     }
 
-                                    ((IBiomeDataConfigurable) biomeData).readFromConfig(config);
+                                    ((IBiomeDataConfigurable) biomeData).readFromConfig(biomeDataAPI, config);
                                 }
                                 else
                                 {
                                     biomeData = new BiomeDataConfigurable(biome.getRegistryName());
-                                    ((IBiomeDataConfigurable) biomeData).readFromConfig(config);
+                                    ((IBiomeDataConfigurable) biomeData).readFromConfig(biomeDataAPI, config);
                                 }
 
                                 if(biomeData.generateBiome())
@@ -125,6 +127,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                                 }
                             }
 
+                            config.save();
                             config.close();
                         }
                         else if(!configFile.isDirectory())
@@ -152,7 +155,9 @@ final class NetherBiomeDataManager implements IBiomeDataManager
         {
             NetherEx.LOGGER.info(this.marker, "Writing Nether biome data configs to disk.");
 
-            for(IBiomeData biomeData : NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData().values())
+            IBiomeDataAPI biomeDataAPI = NetherExAPI.getInstance();
+
+            for(IBiomeData biomeData : biomeDataAPI.getBiomeDataRegistry().getBiomeData().values())
             {
                 if(!(biomeData instanceof IBiomeDataConfigurable))
                 {
@@ -160,13 +165,13 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                 }
 
                 IBiomeDataConfigurable biomeDataConfigurable = (IBiomeDataConfigurable) biomeData;
-                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), biomeDataConfigurable.getRelativeSaveFile());
+                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeDataConfigurable.getRelativeSaveFile());
                 FileConfig fileConfig = FileConfig.of(configFile, ModJsonConfigFormat.instance());
 
                 if(!configFile.getParentFile().mkdirs() && configFile.exists() || configFile.exists())
                 {
                     fileConfig.load();
-                    biomeDataConfigurable.readFromConfig(fileConfig);
+                    biomeDataConfigurable.readFromConfig(biomeDataAPI, fileConfig);
                 }
 
                 biomeDataConfigurable.writeToConfig(fileConfig);

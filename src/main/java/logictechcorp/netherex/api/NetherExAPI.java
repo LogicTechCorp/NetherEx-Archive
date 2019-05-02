@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.api;
 
-import logictechcorp.netherex.api.internal.INetherExAPI;
-import logictechcorp.netherex.api.internal.NetherExAPIStub;
+import logictechcorp.netherex.api.internal.iface.INetherExAPI;
+import logictechcorp.netherex.api.internal.impl.NetherExAPIStub;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
 

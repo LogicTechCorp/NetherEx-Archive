@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.api.internal;
+package logictechcorp.netherex.api.internal.impl;
 
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
 import net.minecraftforge.event.world.WorldEvent;

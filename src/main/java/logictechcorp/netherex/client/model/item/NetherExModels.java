@@ -95,7 +95,7 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.LIVELY_NETHERRACK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.FIERY_NETHERRACK.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.ICY_NETHERRACK.getDefaultState());
-        ModelHelper.registerBlockItemModel(NetherExBlocks.HAUNTED_SOUL_SAND.getDefaultState());
+        ModelHelper.registerBlockItemModel(NetherExBlocks.POSSESSED_SOUL_SAND.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.SOUL_SANDSTONE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.CUT_SOUL_SANDSTONE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.CHISELED_SOUL_SANDSTONE.getDefaultState());
