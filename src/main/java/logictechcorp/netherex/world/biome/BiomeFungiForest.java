@@ -63,7 +63,7 @@ public class BiomeFungiForest extends BiomeNetherEx
 
     private class BiomeData extends BiomeDataConfigurable
     {
-        BiomeData()
+        private BiomeData()
         {
             super(NetherExBiomes.FUNGI_FOREST, 4, false, true, true);
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());

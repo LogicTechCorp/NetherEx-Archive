@@ -66,7 +66,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
 
     private class BiomeData extends BiomeDataConfigurable
     {
-        BiomeData()
+        private BiomeData()
         {
             super(NetherExBiomes.ARCTIC_ABYSS, 2, false, true, true);
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FROSTBURN_ICE);

@@ -32,7 +32,7 @@ import java.util.Arrays;
 public class BiomeSoulWastes extends BiomeNetherEx
 {
     private static final IBlockState SOUL_SANDSTONE = NetherExBlocks.SOUL_SANDSTONE.getDefaultState();
-    private static final IBlockState GLOOMY_NETHERRACK = NetherExBlocks.GLOOMY_NETHERRACK.getDefaultState();
+    private static final IBlockState CUT_SOUL_SANDSTONE = NetherExBlocks.CUT_SOUL_SANDSTONE.getDefaultState();
     private static final IBlockState POSSESSED_SOUL_SAND = NetherExBlocks.POSSESSED_SOUL_SAND.getDefaultState();
 
     public BiomeSoulWastes()
@@ -50,14 +50,14 @@ public class BiomeSoulWastes extends BiomeNetherEx
 
     private class BiomeData extends BiomeDataConfigurable
     {
-        BiomeData()
+        private BiomeData()
         {
             super(NetherExBiomes.SOUL_WASTES, 8, false, true, true);
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, SOUL_SAND);
             this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, SOUL_SAND);
-            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, GLOOMY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, GLOOMY_NETHERRACK);
+            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, SOUL_SANDSTONE);
+            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, SOUL_SANDSTONE);
+            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, CUT_SOUL_SANDSTONE);
             this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
             this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new BiomeTraitPatch(4, false, 0.85D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 6),

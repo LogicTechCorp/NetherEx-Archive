@@ -59,7 +59,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
 
     private class BiomeData extends BiomeDataConfigurable
     {
-        BiomeData()
+        private BiomeData()
         {
             super(NetherExBiomes.TORRID_WASTELAND, 6, false, true, true);
             this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
