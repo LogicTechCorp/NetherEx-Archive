@@ -44,7 +44,7 @@ public class BiomeProviderNetherEx extends BiomeProvider
     {
         IntCache.resetIntCache();
 
-        if (biomes == null || biomes.length < width * height)
+        if(biomes == null || biomes.length < width * height)
         {
             biomes = new Biome[width * height];
         }
@@ -53,14 +53,14 @@ public class BiomeProviderNetherEx extends BiomeProvider
 
         try
         {
-            for (int i = 0; i < width * height; i++)
+            for(int i = 0; i < width * height; i++)
             {
                 biomes[i] = Biome.getBiome(biomeIds[i], Biomes.HELL);
             }
 
             return biomes;
         }
-        catch (Throwable throwable)
+        catch(Throwable throwable)
         {
             CrashReport crashReport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             CrashReportCategory crashReportCategory = crashReport.makeCategory("RawBiomeBlock");

@@ -41,34 +41,37 @@ public class TileEntityPossessedSoulSand extends TileEntity
 
     public void consumeExperience(EntityPlayer player)
     {
-        if(player.capabilities.isCreativeMode)
+        if(!this.world.isRemote)
         {
-            return;
-        }
-
-        if(this.experience < this.maxExperience)
-        {
-            int playerExperience = ExperienceHelper.getPlayerExperience(player);
-
-            if(playerExperience <= 0)
+            if(player.capabilities.isCreativeMode)
             {
                 return;
             }
 
-            int drainAmount = Math.min(5, playerExperience);
-
-            if(this.experience + drainAmount > this.maxExperience)
+            if(this.experience < this.maxExperience)
             {
-                drainAmount = this.maxExperience - this.experience;
+                int playerExperience = ExperienceHelper.getPlayerExperience(player);
+
+                if(playerExperience <= 0)
+                {
+                    return;
+                }
+
+                int drainAmount = Math.min(5, playerExperience);
+
+                if(this.experience + drainAmount > this.maxExperience)
+                {
+                    drainAmount = this.maxExperience - this.experience;
+                }
+
+                ExperienceHelper.adjustPlayerExperience(player, -drainAmount);
+                this.experience += drainAmount;
             }
 
-            ExperienceHelper.adjustPlayerExperience(player, -drainAmount);
-            this.experience += drainAmount;
-        }
-
-        if(this.experience <= this.maxExperience)
-        {
-            this.increaseEyeGlow();
+            if(this.experience <= this.maxExperience)
+            {
+                this.increaseEyeGlow();
+            }
         }
     }
 

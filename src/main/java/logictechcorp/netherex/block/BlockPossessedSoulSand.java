@@ -28,6 +28,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -50,7 +51,7 @@ public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityPossessedS
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos)
     {
         return SOUL_SAND_AABB;
     }
@@ -58,8 +59,11 @@ public class BlockPossessedSoulSand extends BlockTileEntity<TileEntityPossessedS
     @Override
     public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        entity.motionX *= 0.2D;
-        entity.motionZ *= 0.2D;
+        if(entity instanceof EntityLivingBase)
+        {
+            entity.setInWeb();
+            entity.setSprinting(true);
+        }
 
         TileEntity tileEntity = world.getTileEntity(pos);
 
