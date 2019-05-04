@@ -58,7 +58,7 @@ public class BiomeSoulWastes extends BiomeNetherEx
             this.getBiomeBlock(BiomeBlock.WALL_BLOCK, SOUL_SANDSTONE);
             this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, SOUL_SANDSTONE);
             this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, CUT_SOUL_SANDSTONE);
-            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
+            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, SOUL_SAND);
             this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
                     new BiomeTraitPatch(4, false, 0.85D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 6),
                     new BiomeTraitPatch(2, false, 0.85D, 32, 124, POSSESSED_SOUL_SAND, SOUL_SAND, 3)
