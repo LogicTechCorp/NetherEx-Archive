@@ -80,6 +80,7 @@ public class NetherExBlocks
     public static final BlockModOre RIME_ORE = InjectionHelper.nullValue();
     public static final BlockThornstalk THORNSTALK = InjectionHelper.nullValue();
     public static final BlockSpoulVines SPOUL_VINES = InjectionHelper.nullValue();
+    public static final BlockSpoulFruit SPOUL_FRUIT = InjectionHelper.nullValue();
     public static final BlockElderMushroom BROWN_ELDER_MUSHROOM = InjectionHelper.nullValue();
     public static final BlockElderMushroom RED_ELDER_MUSHROOM = InjectionHelper.nullValue();
     public static final BlockSpoulShroom SPOUL_SHROOM = InjectionHelper.nullValue();
@@ -202,6 +203,7 @@ public class NetherExBlocks
                     new BlockModOre(NetherEx.getResource("rime_ore"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).lightLevel(0.5F).hardness(3.0F).resistance(5.0F)),
                     new BlockThornstalk(),
                     new BlockSpoulVines(),
+                    new BlockSpoulFruit(),
                     new BlockElderMushroom(NetherEx.getResource("brown_elder_mushroom")),
                     new BlockElderMushroom(NetherEx.getResource("red_elder_mushroom")),
                     new BlockSpoulShroom(),
@@ -329,6 +331,7 @@ public class NetherExBlocks
                     new ItemBlockMod(SPOUL_SHROOM_STEM, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(THORNSTALK, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemSpoulVines(),
+                    new ItemBlockMod(SPOUL_FRUIT, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockMod(ICHOR, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(RED_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),
                     new ItemBlockModSlab(GLOOMY_NETHER_BRICK_SLAB, DEFAULT_ITEM_BLOCK_PROPERTIES),

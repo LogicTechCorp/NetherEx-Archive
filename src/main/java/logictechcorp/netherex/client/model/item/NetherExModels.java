@@ -128,6 +128,7 @@ public class NetherExModels
         ModelHelper.registerBlockItemModel(NetherExBlocks.RIME_ORE.getDefaultState());
         ModelHelper.registerBlockItemModel(NetherExBlocks.THORNSTALK.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.SPOUL_VINES.getDefaultState(), "inventory");
+        ModelHelper.registerBlockItemModel(NetherExBlocks.SPOUL_FRUIT.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.BROWN_ELDER_MUSHROOM.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.RED_ELDER_MUSHROOM.getDefaultState(), "inventory");
         ModelHelper.registerBlockItemModel(NetherExBlocks.SPOUL_SHROOM.getDefaultState(), "inventory");

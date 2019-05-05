@@ -27,6 +27,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -58,9 +59,9 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private NoiseGeneratorOctaves noiseLevelsGen;
     private NoiseGeneratorOctaves soulSandGravelNoiseGen;
     private NoiseGeneratorOctaves netherrackNoiseGen;
-    private NoiseGeneratorPerlin terrainNoiseGen;
     private NoiseGeneratorOctaves scaleNoiseGen;
     private NoiseGeneratorOctaves depthNoiseGen;
+    private NoiseGeneratorPerlin terrainNoiseGen;
 
     private double[] heightmap;
     private double[] netherrackNoise = new double[256];
@@ -378,11 +379,18 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.prepareHeights(chunkX, chunkZ, primer);
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
         this.buildSurfaces(chunkX, chunkZ, primer);
+
+        BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
+        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
+
         this.netherCaves.generate(this.world, chunkX, chunkZ, primer);
 
         if(this.generateStructures)
         {
-            this.netherFortress.generate(this.world, chunkX, chunkZ, primer);
+            if(biomeData.getBiome() == Biomes.HELL)
+            {
+                this.netherFortress.generate(this.world, chunkX, chunkZ, primer);
+            }
         }
 
         BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, this.biomesForGeneration, this.random);
@@ -475,6 +483,15 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     @Override
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
-        this.netherFortress.generate(this.world, chunkX, chunkZ, null);
+        BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
+        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
+
+        if(this.generateStructures)
+        {
+            if(biomeData.getBiome() == Biomes.HELL)
+            {
+                this.netherFortress.generate(this.world, chunkX, chunkZ, null);
+            }
+        }
     }
 }

@@ -49,7 +49,7 @@ public class BlockSpoulVines extends BlockMod implements IShearable
 
     public BlockSpoulVines()
     {
-        super(NetherEx.getResource("spoul_vines"), new BlockProperties(Material.PLANTS, MapColor.BROWN).hardness(4.0F));
+        super(NetherEx.getResource("spoul_vines"), new BlockProperties(Material.PLANTS, MapColor.BROWN).hardness(4.0F).tickRandomly());
         this.setLightOpacity(1);
         this.setDefaultState(this.blockState.getBaseState().withProperty(GROW_FRUIT, true));
     }
@@ -59,6 +59,20 @@ public class BlockSpoulVines extends BlockMod implements IShearable
     public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
+    {
+        if(random.nextInt(50) == 0)
+        {
+            BlockPos posDown = pos.down();
+
+            if(world.getBlockState(posDown).getBlock().isReplaceable(world, posDown))
+            {
+                world.setBlockState(posDown, NetherExBlocks.SPOUL_FRUIT.getDefaultState());
+            }
+        }
     }
 
     @Override
