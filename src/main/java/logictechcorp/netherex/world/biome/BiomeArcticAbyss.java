@@ -19,11 +19,6 @@ package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
-import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitOre;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitPool;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitScatter;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
@@ -34,11 +29,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BiomeArcticAbyss extends BiomeNetherEx
@@ -75,23 +67,13 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
             this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, MAGMA);
-            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(new ArrayList<>(Arrays.asList(
+            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
                     new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
                     new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),
                     new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4),
                     new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4),
                     new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1)
-            )));
-            this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(new ArrayList<>(Arrays.asList(
-                    new BiomeTraitScatter(5, true, 1.0D, 4, 124, NetherExBlocks.BLUE_FIRE.getDefaultState(), FROSTBURN_ICE, BiomeTraitScatter.Placement.ON_GROUND),
-                    new BiomeTraitCluster(10, true, 1.0D, 4, 124, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
-                    new BiomeTraitCluster(10, false, 1.0D, 1, 128, Blocks.GLOWSTONE.getDefaultState(), ICY_NETHERRACK, EnumFacing.DOWN),
-                    new BiomeTraitPool(2, false, 0.125, 36, 96, NetherExBlocks.ICHOR.getDefaultState(), FROSTBURN_ICE)
-            )));
-            this.getBiomeTraits(GenerationStage.ORE).addAll(new ArrayList<>(Arrays.asList(
-                    new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.QUARTZ_ORE.getDefaultState(), ICY_NETHERRACK, 14),
-                    new BiomeTraitOre(16, false, 1.0D, 10, 108, NetherExBlocks.RIME_ORE.getDefaultState(), ICY_NETHERRACK, 7)
-            )));
+            ));
         }
     }
 }
