@@ -18,7 +18,7 @@
 package logictechcorp.netherex.entity.projectile;
 
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.init.NetherExEffects;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -69,7 +69,7 @@ public class EntityBlueFireball extends EntityFireball
 
                         if(entity instanceof EntityLivingBase)
                         {
-                            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, 100));
+                            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FIRE_BURNING, 100));
                         }
                     }
                 }

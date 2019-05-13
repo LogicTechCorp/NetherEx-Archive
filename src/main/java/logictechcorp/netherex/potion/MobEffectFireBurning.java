@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.potion;
 
-import logictechcorp.libraryex.potion.PotionLibEx;
+import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -27,11 +27,11 @@ import net.minecraft.util.DamageSource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PotionBlueFire extends PotionLibEx
+public class MobEffectFireBurning extends MobEffectMod
 {
-    public PotionBlueFire()
+    public MobEffectFireBurning()
     {
-        super(NetherEx.instance, "blue_fire", true, 0, 0, 0);
+        super(NetherEx.instance, "fire_burning", true, 0, 0, 0);
     }
 
     @Override

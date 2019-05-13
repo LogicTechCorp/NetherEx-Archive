@@ -3,7 +3,7 @@ language.name=English
 language.region=United States
 language.code=en_us
 
-#Config
+# Config
 config.netherex=NetherEx Config
 
 config.netherex:internal=Internal Settings
@@ -174,31 +174,35 @@ config.netherex:biome.arcticAbyss.mobFreezeRarity.tooltip=How rare it is for a m
 itemGroup.netherex=NetherEx
 
 # Effects
-potion.effect.netherex:freeze=Freeze
-potion.effect.netherex:normal_freeze=Potion of Freezing
-splash_potion.effect.netherex:normal_freeze=Splash Potion of Freezing
-lingering_potion.effect.netherex:normal_freeze=Lingering Potion of Freezing
-tipped_arrow.effect.netherex:normal_freeze=Arrow of Freezing
+mob_effect.netherex:frozen=Frozen
+mob_effect.netherex:frostbitten=Frostbitten
+mob_effect.netherex:infested=Infested
+mob_effect.netherex:crying=Crying
+mob_effect.netherex:fire_buring=Fire Burning
+mob_effect.netherex:soul_sucked=Soul Sucked
 
-potion.effect.netherex:frostbite=Frostbite
-potion.effect.netherex:normal_frostbite=Potion of Frostbite
-splash_potion.effect.netherex:normal_frostbite=Splash Potion of Frostbite
-lingering_potion.effect.netherex:normal_frostbite=Lingering Potion of Frostbite
-tipped_arrow.effect.netherex:normal_frostbite=Arrow of Frostbite
+# Potions
+potion.effect.netherex:freezing=Potion of Freezing
+splash_potion.effect.netherex:freezing=Splash Potion of Freezing
+lingering_potion.effect.netherex:freezing=Lingering Potion of Freezing
+tipped_arrow.effect.netherex:freezing=Arrow of Freezing
 
-potion.effect.netherex:spore=Spore
-potion.effect.netherex:normal_spore=Potion of Dispersal
-splash_potion.effect.netherex:normal_spore=Splash Potion of Dispersal
-lingering_potion.effect.netherex:normal_spore=Lingering Potion of Dispersal
-tipped_arrow.effect.netherex:normal_Spore=Arrow of Dispersal
+potion.effect.netherex:frigid_health=Potion of Frigid Health
+splash_potion.effect.netherex:frigid_health=Splash Potion of Frigid Health
+lingering_potion.effect.netherex:frigid_health=Lingering Potion of Frigid Health
+tipped_arrow.effect.netherex:frigid_health=Arrow of Frigid Health
 
-potion.effect.netherex:lost=The Lost
-potion.effect.netherex:normal_lost=Potion of The Lost
-splash_potion.effect.netherex:normal_lost=Splash Potion of The Lost
-lingering_potion.effect.netherex:normal_lost=Lingering Potion of The Lost
-tipped_arrow.effect.netherex:normal_lost=Arrow of The Lost
+potion.effect.netherex:dispersal=Potion of Dispersal
+splash_potion.effect.netherex:dispersal=Splash Potion of Dispersal
+lingering_potion.effect.netherex:dispersal=Lingering Potion of Dispersal
+tipped_arrow.effect.netherex:dispersal=Arrow of Dispersal
 
-#Entities (Mobs)
+potion.effect.netherex:sorrow=Potion of Sorrow
+splash_potion.effect.netherex:sorrow=Splash Potion of Sorrow
+lingering_potion.effect.netherex:sorrow=Lingering Potion of Sorrow
+tipped_arrow.effect.netherex:sorrow=Arrow of Sorrow
+
+# Entities (Mobs)
 entity.netherex:ghast_queen_fireball.name=Ghast Queen Fireball
 entity.netherex:ghastling_fireball.name=Ghastling Fireball
 entity.netherex:blue_fireball.name=Blue Fireball
@@ -239,13 +243,13 @@ entity.netherex:brute.name=Brute
 entity.netherex:frost.name=Frost
 entity.netherex:ghast_queen.name=Ghast Queen
 
-#Fluids
+# Fluids
 fluid.netherex:blood.name=Ichor
 
-#Generators
+# Generators
 generator.netherex:netherex=NetherEx
 
-#Guis
+# Guis
 gui.netherex:create_world.customize.lost_cities=Customize Lost Cities
 gui.netherex:create_world.customize.biomes_o_plenty=Customize Biomes O' Plenty
 gui.netherex:select_world.reset=Reset

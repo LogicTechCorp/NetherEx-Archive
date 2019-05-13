@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.potion.PotionTypeLibEx;
+import logictechcorp.libraryex.potion.PotionMod;
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.potion.PotionEffect;
@@ -28,12 +28,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
-public class NetherExEffectTypes
+public class NetherExPotions
 {
-    public static final PotionType NORMAL_FREEZE = InjectionHelper.nullValue();
-    public static final PotionType NORMAL_FROSTBITE = InjectionHelper.nullValue();
-    public static final PotionType NORMAL_SPORE = InjectionHelper.nullValue();
-    public static final PotionType NORMAL_LOST = InjectionHelper.nullValue();
+    public static final PotionMod FREEZING = InjectionHelper.nullValue();
+    public static final PotionMod FRIGID_HEALTH = InjectionHelper.nullValue();
+    public static final PotionMod DISPERSAL = InjectionHelper.nullValue();
+    public static final PotionMod SORROW = InjectionHelper.nullValue();
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -42,10 +42,10 @@ public class NetherExEffectTypes
         public static void onRegisterPotionTypes(RegistryEvent.Register<PotionType> event)
         {
             event.getRegistry().registerAll(
-                    new PotionTypeLibEx(NetherEx.instance, "normal_freeze", new PotionEffect(NetherExEffects.FREEZE, 600)),
-                    new PotionTypeLibEx(NetherEx.instance, "normal_frostbite", new PotionEffect(NetherExEffects.FROSTBITE, 600)),
-                    new PotionTypeLibEx(NetherEx.instance, "normal_spore", new PotionEffect(NetherExEffects.SPORE, 600)),
-                    new PotionTypeLibEx(NetherEx.instance, "normal_lost", new PotionEffect(NetherExEffects.LOST, 600))
+                    new PotionMod(NetherEx.instance, "freezing", new PotionEffect(NetherExMobEffects.FROZEN, 600)),
+                    new PotionMod(NetherEx.instance, "frigid_health", new PotionEffect(NetherExMobEffects.FROSTBITTEN, 600)),
+                    new PotionMod(NetherEx.instance, "dispersal", new PotionEffect(NetherExMobEffects.INFESTED, 600)),
+                    new PotionMod(NetherEx.instance, "sorrow", new PotionEffect(NetherExMobEffects.CRYING, 600))
             );
         }
     }

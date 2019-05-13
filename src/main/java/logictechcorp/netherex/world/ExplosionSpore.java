@@ -21,7 +21,7 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.init.NetherExEffects;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import logictechcorp.netherex.init.NetherExParticleTypes;
 import logictechcorp.netherex.init.NetherExSoundEvents;
 import net.minecraft.block.Block;
@@ -175,7 +175,7 @@ public class ExplosionSpore extends Explosion
                             }
                             if(entity instanceof EntityLivingBase)
                             {
-                                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.SPORE, 2400, 0));
+                                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.INFESTED, 2400, 0));
                             }
 
                             double d11 = d10;

@@ -20,8 +20,8 @@ package logictechcorp.netherex.handler;
 import logictechcorp.libraryex.utility.ArmorHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
-import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.init.NetherExMaterials;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -70,7 +70,7 @@ public class RenderHandler
         double posY = event.getY() + (entity.posY - entity.lastTickPosY + 1) * (double) partialTicks;
         double posZ = event.getZ() + (entity.posZ - entity.lastTickPosZ) * (double) partialTicks;
 
-        if(entity.isPotionActive(NetherExEffects.BLUE_FIRE))
+        if(entity.isPotionActive(NetherExMobEffects.FIRE_BURNING))
         {
             renderEntityOnBlueFire(entity, posX, posY, posZ);
         }

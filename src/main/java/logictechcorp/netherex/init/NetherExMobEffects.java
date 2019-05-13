@@ -17,24 +17,24 @@
 
 package logictechcorp.netherex.init;
 
-import logictechcorp.libraryex.potion.PotionLibEx;
+import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.potion.PotionBlueFire;
-import logictechcorp.netherex.potion.PotionFreeze;
-import logictechcorp.netherex.potion.PotionLost;
-import logictechcorp.netherex.potion.PotionSpore;
+import logictechcorp.netherex.potion.*;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class NetherExEffects
+@GameRegistry.ObjectHolder(NetherEx.MOD_ID)
+public class NetherExMobEffects
 {
-    public static final PotionLibEx FREEZE = new PotionFreeze();
-    public static final PotionLibEx FROSTBITE = new PotionLibEx(NetherEx.instance, "frostbite", true, 19, 226, 255);
-    public static final PotionLibEx SPORE = new PotionSpore();
-    public static final PotionLibEx LOST = new PotionLost();
-    public static final PotionLibEx BLUE_FIRE = new PotionBlueFire();
+    public static final Potion FROZEN = new MobEffectFrozen();
+    public static final Potion FROSTBITTEN = new MobEffectMod(NetherEx.instance, "frostbitten", true, 19, 226, 255);
+    public static final Potion INFESTED = new MobEffectInfested();
+    public static final Potion CRYING = new MobEffectCrying();
+    public static final Potion FIRE_BURNING = new MobEffectFireBurning();
+    public static final Potion SOUL_SUCKED = new MobEffectSoulSucked();
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
     public static class EventHandler
@@ -43,11 +43,12 @@ public class NetherExEffects
         public static void onRegisterPotions(RegistryEvent.Register<Potion> event)
         {
             event.getRegistry().registerAll(
-                    FREEZE,
-                    FROSTBITE,
-                    SPORE,
-                    LOST,
-                    BLUE_FIRE
+                    FROZEN,
+                    FROSTBITTEN,
+                    INFESTED,
+                    CRYING,
+                    FIRE_BURNING,
+                    SOUL_SUCKED
             );
         }
     }

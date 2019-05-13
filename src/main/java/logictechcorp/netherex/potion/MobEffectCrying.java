@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.potion;
 
-import logictechcorp.libraryex.potion.PotionLibEx;
+import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityGhastling;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -27,11 +27,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 
-public class PotionLost extends PotionLibEx
+public class MobEffectCrying extends MobEffectMod
 {
-    public PotionLost()
+    public MobEffectCrying()
     {
-        super(NetherEx.instance, "lost", true, 103, 62, 124);
+        super(NetherEx.instance, "crying", true, 103, 62, 124);
     }
 
     @Override

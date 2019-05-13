@@ -21,8 +21,8 @@ import logictechcorp.libraryex.utility.ArmorHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
-import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.init.NetherExMaterials;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -56,7 +56,7 @@ public class LivingHandler
         EntityLivingBase entity = event.getEntityLiving();
         Random random = world.rand;
 
-        NetherExEffects.FREEZE.performEffect(entity, 0);
+        NetherExMobEffects.FROZEN.performEffect(entity, 0);
 
         if(entity instanceof EntityPigZombie)
         {
@@ -185,7 +185,7 @@ public class LivingHandler
         {
             EntityPlayer player = (EntityPlayer) entity;
 
-            if(!player.isPotionActive(MobEffects.REGENERATION) && !player.isPotionActive(MobEffects.ABSORPTION) && player.isPotionActive(NetherExEffects.FROSTBITE))
+            if(!player.isPotionActive(MobEffects.REGENERATION) && !player.isPotionActive(MobEffects.ABSORPTION) && player.isPotionActive(NetherExMobEffects.FROSTBITTEN))
             {
                 event.setCanceled(true);
             }

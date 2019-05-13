@@ -20,17 +20,25 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.init.NetherExMobEffects;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Random;
 
 public class BlockSoulGlass extends BlockMod
@@ -67,6 +75,164 @@ public class BlockSoulGlass extends BlockMod
     }
 
     @Override
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean isActualState)
+    {
+        if(!(entity instanceof EntityPlayer))
+        {
+            super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entity, isActualState);
+        }
+        else
+        {
+            EntityPlayer player = (EntityPlayer) entity;
+
+            if(!player.isSneaking() && !player.isPotionActive(NetherExMobEffects.SOUL_SUCKED))
+            {
+                super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entity, isActualState);
+            }
+        }
+    }
+
+    @Override
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
+    {
+        if(entity instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer) entity;
+            boolean sinking = player.getLookVec().y < -0.75D;
+
+            if(player.isSneaking())
+            {
+                if(!sinking)
+                {
+                    Block blockOneBack = world.getBlockState(pos.offset(player.getHorizontalFacing().getOpposite())).getBlock();
+                    Block blockTwoBack = world.getBlockState(pos.offset(player.getHorizontalFacing().getOpposite(), 2)).getBlock();
+                    Block blockThreeBack = world.getBlockState(pos.offset(player.getHorizontalFacing().getOpposite(), 3)).getBlock();
+
+                    if(blockOneBack != this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 60, 0));
+                    }
+                    if(blockOneBack == this && blockTwoBack != this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 120, 1));
+                    }
+                    else if(blockOneBack == this && blockThreeBack != this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 180, 2));
+                    }
+                    else if(blockOneBack == this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 240, 3));
+                    }
+                }
+                else
+                {
+                    Block blockUpOne = world.getBlockState(pos.up()).getBlock();
+                    Block blockUpTwo = world.getBlockState(pos.up(2)).getBlock();
+                    Block blockUpThree = world.getBlockState(pos.up(3)).getBlock();
+
+                    if(blockUpOne != this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 60, 0));
+                    }
+                    if(blockUpOne == this && blockUpTwo != this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 120, 1));
+                    }
+                    else if(blockUpOne == this && blockUpThree != this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 180, 2));
+                    }
+                    else if(blockUpOne == this)
+                    {
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 240, 3));
+                    }
+
+                    player.motionY /= 3.0D;
+                }
+            }
+            else
+            {
+
+                PotionEffect effect = player.getActivePotionEffect(NetherExMobEffects.SOUL_SUCKED);
+                int amplifier = 1;
+
+                if(effect != null)
+                {
+                    amplifier = (effect.getAmplifier() + 1);
+                }
+
+                if(!sinking)
+                {
+                    if(player.getHorizontalFacing() == EnumFacing.NORTH)
+                    {
+                        if(player.motionZ < 0)
+                        {
+                            player.motionZ = -player.motionZ;
+                        }
+                        else if(player.motionZ == 0)
+                        {
+                            player.motionZ = 0.5D;
+                        }
+                    }
+                    else if(player.getHorizontalFacing() == EnumFacing.EAST)
+                    {
+                        if(player.motionX > 0)
+                        {
+                            player.motionX = -player.motionX;
+                        }
+                        else if(player.motionX == 0)
+                        {
+                            player.motionX = -0.5D;
+                        }
+                    }
+                    else if(player.getHorizontalFacing() == EnumFacing.SOUTH)
+                    {
+                        if(player.motionZ > 0)
+                        {
+                            player.motionZ = -player.motionZ;
+                        }
+                        else if(player.motionZ == 0)
+                        {
+                            player.motionZ = -0.5D;
+                        }
+                    }
+                    else if(player.getHorizontalFacing() == EnumFacing.WEST)
+                    {
+                        if(player.motionX < 0)
+                        {
+                            player.motionX = -player.motionX;
+                        }
+                        else if(player.motionX == 0)
+                        {
+                            player.motionX = 0.5D;
+                        }
+                    }
+
+                    if(player.motionX > -6.0D && player.motionX < 6.0D)
+                    {
+                        player.motionX *= (1.15D * amplifier);
+                    }
+
+                    if(player.motionZ > -6.0D && player.motionZ < 6.0D)
+                    {
+                        player.motionZ *= (1.15D * amplifier);
+                    }
+                }
+                else
+                {
+                    if(player.motionY <= 0)
+                    {
+                        player.motionY = 0.105D;
+                    }
+
+                    player.motionY += amplifier * 0.1D;
+                }
+            }
+        }
+    }
+
+    @Override
     public int quantityDropped(Random random)
     {
         return 0;
@@ -77,5 +243,4 @@ public class BlockSoulGlass extends BlockMod
     {
         return true;
     }
-
 }

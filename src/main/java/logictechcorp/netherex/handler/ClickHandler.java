@@ -19,8 +19,8 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
-import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.init.NetherExItems;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -59,7 +59,7 @@ public class ClickHandler
     {
         EntityPlayer player = Minecraft.getMinecraft().player;
 
-        if(player.isPotionActive(NetherExEffects.FREEZE))
+        if(player.isPotionActive(NetherExMobEffects.FROZEN))
         {
             KeyBinding.unPressAllKeys();
             event.setCanceled(true);

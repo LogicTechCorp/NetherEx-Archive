@@ -64,7 +64,7 @@ public class BiomeSoulWastes extends BiomeNetherEx
             this.getBiomeTraits(GenerationStage.DECORATE).addAll(Arrays.asList(
                     new BiomeTraitBoulder(4, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 0),
                     new BiomeTraitBoulder(2, false, 0.75D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 1),
-                    new BiomeTraitStructure(32, true, 1.0F, 32, 108, Arrays.asList(
+                    new BiomeTraitStructure(40, true, 1.0F, 32, 108, Arrays.asList(
                             NetherEx.getResource("spoul_shroom/spoul_shroom_01"),
                             NetherEx.getResource("spoul_shroom/spoul_shroom_02"),
                             NetherEx.getResource("spoul_shroom/spoul_shroom_03"),
@@ -77,6 +77,9 @@ public class BiomeSoulWastes extends BiomeNetherEx
                             NetherEx.getResource("spoul_shroom/spoul_shroom_10"),
                             NetherEx.getResource("spoul_shroom/spoul_shroom_11"),
                             NetherEx.getResource("spoul_shroom/spoul_shroom_12")),
+                            BiomeTraitStructure.Type.GROUND, AIR.getBlock(), 1.0F),
+                    new BiomeTraitStructure(1, true, 0.5F, 32, 108, Arrays.asList(
+                            NetherEx.getResource("soul_sandstone_arch/soul_sandstone_arch_01")),
                             BiomeTraitStructure.Type.GROUND, AIR.getBlock(), 1.0F),
                     new BiomeTraitPatch(4, false, 0.85D, 32, 124, SOUL_SANDSTONE, SOUL_SAND, 6),
                     new BiomeTraitPatch(2, false, 0.85D, 32, 124, POSSESSED_SOUL_SAND, SOUL_SAND, 3)

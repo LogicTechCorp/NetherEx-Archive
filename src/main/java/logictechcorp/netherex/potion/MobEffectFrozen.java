@@ -17,13 +17,12 @@
 
 package logictechcorp.netherex.potion;
 
-import logictechcorp.libraryex.potion.PotionLibEx;
+import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBiomes;
-import logictechcorp.netherex.init.NetherExEffects;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
@@ -31,11 +30,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class PotionFreeze extends PotionLibEx
+public class MobEffectFrozen extends MobEffectMod
 {
-    public PotionFreeze()
+    public MobEffectFrozen()
     {
-        super(NetherEx.instance, "freeze", true, 93, 188, 210);
+        super(NetherEx.instance, "frozen", true, 93, 188, 210);
     }
 
     @Override
@@ -58,11 +57,11 @@ public class PotionFreeze extends PotionLibEx
 
         if(this.canFreeze(entity))
         {
-            boolean frozen = entity.isPotionActive(NetherExEffects.FREEZE);
+            boolean frozen = entity.isPotionActive(this);
 
             if(!frozen && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0 && world.getBiome(entity.getPosition()) == NetherExBiomes.ARCTIC_ABYSS)
             {
-                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                entity.addPotionEffect(new PotionEffect(this, 300, 0));
             }
             if(frozen)
             {
@@ -72,7 +71,7 @@ public class PotionFreeze extends PotionLibEx
                 }
                 if(world.rand.nextInt(ConfigHandler.potionEffectConfig.freeze.thawRarity) == 0)
                 {
-                    entity.removePotionEffect(NetherExEffects.FREEZE);
+                    entity.removePotionEffect(this);
                 }
             }
         }

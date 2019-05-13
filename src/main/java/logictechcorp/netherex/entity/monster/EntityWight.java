@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.entity.monster;
 
-import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.init.NetherExLootTables;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import logictechcorp.netherex.init.NetherExSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -91,7 +91,7 @@ public class EntityWight extends EntityMob
 
         if(this.getAttackTarget() != null)
         {
-            if(this.getAttackTarget().isPotionActive(NetherExEffects.FREEZE))
+            if(this.getAttackTarget().isPotionActive(NetherExMobEffects.FROZEN))
             {
                 this.setAttackTarget(null);
             }
@@ -101,9 +101,9 @@ public class EntityWight extends EntityMob
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        if(entity instanceof EntityLivingBase && !((EntityLivingBase) entity).isPotionActive(NetherExEffects.FREEZE))
+        if(entity instanceof EntityLivingBase && !((EntityLivingBase) entity).isPotionActive(NetherExMobEffects.FROZEN))
         {
-            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 160, 0));
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FROZEN, 160, 0));
         }
         return super.attackEntityAsMob(entity);
     }

@@ -26,7 +26,6 @@ import net.minecraft.init.PotionTypes;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -50,10 +49,10 @@ public class NetherExRecipes
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.GHAST_MEAT_COOKED), new ItemStack(NetherExItems.GHAST_MEAT_RAW), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.CONGEALED_MAGMA_CREAM), new ItemStack(Items.MAGMA_CREAM), 0.5F);
 
-        RecipeHelper.addBrewing(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(NetherExItems.RIME_CRYSTAL)), NetherExEffectTypes.NORMAL_FREEZE);
-        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.COOLMAR_SPIDER_FANG, NetherExEffectTypes.NORMAL_FROSTBITE);
-        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.SPORE, NetherExEffectTypes.NORMAL_SPORE);
-        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.GHAST_MEAT_RAW, NetherExEffectTypes.NORMAL_LOST);
+        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.RIME_CRYSTAL, NetherExPotions.FREEZING);
+        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.COOLMAR_SPIDER_FANG, NetherExPotions.FRIGID_HEALTH);
+        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.SPORE, NetherExPotions.DISPERSAL);
+        RecipeHelper.addBrewing(PotionTypes.AWKWARD, NetherExItems.GHAST_MEAT_RAW, NetherExPotions.SORROW);
     }
 
     @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)

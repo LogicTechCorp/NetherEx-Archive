@@ -25,7 +25,7 @@ import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.init.NetherExEffects;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -90,7 +90,7 @@ public class BlockRime extends BlockMod
 
             if(canFreeze && ConfigHandler.blockConfig.rime.canFreezeMobs)
             {
-                entity.addPotionEffect(new PotionEffect(NetherExEffects.FREEZE, 300, 0));
+                entity.addPotionEffect(new PotionEffect(NetherExMobEffects.FROZEN, 300, 0));
             }
         }
     }

@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.entity.monster;
 
-import logictechcorp.netherex.init.NetherExEffects;
 import logictechcorp.netherex.init.NetherExLootTables;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySpider;
@@ -50,7 +50,7 @@ public class EntityCoolmarSpider extends EntitySpider
     {
         if(entity instanceof EntityPlayer)
         {
-            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(NetherExEffects.FROSTBITE, 320, 0));
+            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FROSTBITTEN, 320, 0));
         }
         return super.attackEntityAsMob(entity);
     }

@@ -22,7 +22,7 @@ import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.init.NetherExEffects;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.MapColor;
@@ -341,7 +341,7 @@ public class BlockBlueFire extends BlockMod
             }
 
             int ticks = RandomHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
-            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExEffects.BLUE_FIRE, ticks));
+            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FIRE_BURNING, ticks));
         }
     }
 

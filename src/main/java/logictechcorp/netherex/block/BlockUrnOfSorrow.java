@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockTileEntity;
 import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.init.NetherExEffects;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import logictechcorp.netherex.tileentity.TileEntityUrnOfSorrow;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -90,7 +90,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
             {
                 for(PotionEffect effect : PotionUtils.getEffectsFromStack(heldStack))
                 {
-                    if(effect.getPotion() == NetherExEffects.LOST)
+                    if(effect.getPotion() == NetherExMobEffects.CRYING)
                     {
                         heldStack.shrink(1);
                         world.setBlockState(pos, state.withProperty(TYPE, EnumType.FULL));

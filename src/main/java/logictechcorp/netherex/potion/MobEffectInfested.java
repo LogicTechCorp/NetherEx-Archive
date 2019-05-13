@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.potion;
 
-import logictechcorp.libraryex.potion.PotionLibEx;
+import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
@@ -30,11 +30,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class PotionSpore extends PotionLibEx
+public class MobEffectInfested extends MobEffectMod
 {
-    public PotionSpore()
+    public MobEffectInfested()
     {
-        super(NetherEx.instance, "spore", true, 142, 96, 40);
+        super(NetherEx.instance, "infested", true, 142, 96, 40);
     }
 
     @Override
