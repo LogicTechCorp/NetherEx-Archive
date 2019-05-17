@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
-import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
@@ -52,7 +51,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         return new BiomeData();
     }
 
-    private class BiomeData extends BiomeDataConfigurable
+    private class BiomeData extends logictechcorp.libraryex.world.biome.data.impl.BiomeData
     {
         private BiomeData()
         {

@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
-import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
@@ -52,7 +51,7 @@ public class BiomeFungiForest extends BiomeNetherEx
         return new BiomeData();
     }
 
-    private class BiomeData extends BiomeDataConfigurable
+    private class BiomeData extends logictechcorp.libraryex.world.biome.data.impl.BiomeData
     {
         private BiomeData()
         {

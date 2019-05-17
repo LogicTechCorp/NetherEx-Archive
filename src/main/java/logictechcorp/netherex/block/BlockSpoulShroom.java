@@ -20,16 +20,15 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockModSmallMushroom;
 import logictechcorp.libraryex.block.builder.BlockProperties;
 import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitDenseTree;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitSparseTree;
+import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -39,6 +38,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class BlockSpoulShroom extends BlockModSmallMushroom
@@ -78,16 +78,29 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
             world.setBlockToAir(posUp);
             world.setBlockToAir(pos);
 
-            IBiomeTrait spoulShroom;
-
-            if(random.nextBoolean())
-            {
-                spoulShroom = new BiomeTraitDenseTree(34, false, 1.0F, 0, 0, NetherExBlocks.SPOUL_SHROOM_STEM.getDefaultState(), NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState(), stateDown, 3, 8);
-            }
-            else
-            {
-                spoulShroom = new BiomeTraitSparseTree(34, false, 1.0F, 0, 0, NetherExBlocks.SPOUL_SHROOM_STEM.getDefaultState(), NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState(), stateDown, 4, 12);
-            }
+            IBiomeTrait spoulShroom = BiomeTraitStructure.create(trait -> {
+                trait.generationAttempts(1);
+                trait.randomizeGenerationAttempts(true);
+                trait.minimumGenerationHeight(32);
+                trait.maximumGenerationHeight(108);
+                trait.structures(Arrays.asList(
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_01"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_02"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_03"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_04"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_05"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_06"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_07"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_08"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_09"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_10"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_11"),
+                        NetherEx.getResource("spoul_shroom/spoul_shroom_12")));
+                trait.structureType(BiomeTraitStructure.StructureType.GROUND);
+                trait.ignoredBlock(Blocks.AIR);
+                trait.clearancePercentage(1.0D);
+                trait.orientRandomly(true);
+            });
 
             if(!spoulShroom.generate(world, pos, random))
             {

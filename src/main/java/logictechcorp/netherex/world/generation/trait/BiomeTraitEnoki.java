@@ -18,24 +18,26 @@
 package logictechcorp.netherex.world.generation.trait;
 
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTrait;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitConfigurable;
 import logictechcorp.netherex.block.BlockEnokiMushroomCap;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
+import java.util.function.Consumer;
 
-public class BiomeTraitEnoki extends BiomeTraitConfigurable
+public class BiomeTraitEnoki extends BiomeTrait
 {
-    public BiomeTraitEnoki(int generationAttempts, boolean randomizeGenerationAttempts, double generationProbability, int minimumGenerationHeight, int maximumGenerationHeight)
-    {
-        super(generationAttempts, randomizeGenerationAttempts, generationProbability, minimumGenerationHeight, maximumGenerationHeight);
-    }
-
     private BiomeTraitEnoki(Builder builder)
     {
         super(builder);
+    }
+
+    public static BiomeTraitEnoki create(Consumer<Builder> consumer)
+    {
+        Builder builder = new Builder();
+        consumer.accept(builder);
+        return builder.create();
     }
 
     @Override
@@ -58,7 +60,7 @@ public class BiomeTraitEnoki extends BiomeTraitConfigurable
         }
 
         @Override
-        public BiomeTrait create()
+        public BiomeTraitEnoki create()
         {
             return new BiomeTraitEnoki(this);
         }

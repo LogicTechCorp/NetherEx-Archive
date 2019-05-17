@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.generation.trait;
 
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTrait;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitConfigurable;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -26,17 +25,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
+import java.util.function.Consumer;
 
-public class BiomeTraitThornstalk extends BiomeTraitConfigurable
+public class BiomeTraitThornstalk extends BiomeTrait
 {
-    public BiomeTraitThornstalk(int generationAttempts, boolean randomizeGenerationAttempts, double generationProbability, int minimumGenerationHeight, int maximumGenerationHeight)
-    {
-        super(generationAttempts, randomizeGenerationAttempts, generationProbability, minimumGenerationHeight, maximumGenerationHeight);
-    }
-
-    private BiomeTraitThornstalk(Builder builder)
+    protected BiomeTraitThornstalk(Builder builder)
     {
         super(builder);
+    }
+
+    public static BiomeTraitThornstalk create(Consumer<Builder> consumer)
+    {
+        Builder builder = new Builder();
+        consumer.accept(builder);
+        return builder.create();
     }
 
     @Override
@@ -58,13 +60,8 @@ public class BiomeTraitThornstalk extends BiomeTraitConfigurable
 
     public static class Builder extends BiomeTrait.Builder
     {
-        public Builder()
-        {
-            super();
-        }
-
         @Override
-        public BiomeTrait create()
+        public BiomeTraitThornstalk create()
         {
             return new BiomeTraitThornstalk(this);
         }

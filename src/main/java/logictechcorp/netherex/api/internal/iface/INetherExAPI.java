@@ -19,7 +19,7 @@ package logictechcorp.netherex.api.internal.iface;
 
 import logictechcorp.libraryex.api.IBiomeDataAPI;
 import logictechcorp.libraryex.api.IModAPI;
-import logictechcorp.libraryex.api.internal.ITradeAPI;
+import logictechcorp.libraryex.api.ITradeAPI;
 
 public interface INetherExAPI extends IModAPI, IBiomeDataAPI, ITradeAPI
 {

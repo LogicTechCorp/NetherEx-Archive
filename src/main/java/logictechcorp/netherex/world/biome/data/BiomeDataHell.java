@@ -19,8 +19,8 @@ package logictechcorp.netherex.world.biome.data;
 
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
-import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
-import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeData;
+import logictechcorp.libraryex.world.generation.impl.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitCluster;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitFluid;
 import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitOre;
@@ -37,7 +37,7 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
 
-public final class BiomeDataHell extends BiomeDataConfigurable
+public final class BiomeDataHell extends BiomeData
 {
     public static final IBiomeData INSTANCE = new BiomeDataHell();
 
@@ -57,19 +57,86 @@ public final class BiomeDataHell extends BiomeDataConfigurable
                 new Biome.SpawnListEntry(EntityEnderman.class, 1, 1, 4)
         ));
         this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(Arrays.asList(
-                new BiomeTraitFluid(8, false, 1.0D, 4, 124, Blocks.FLOWING_LAVA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), false),
-                new BiomeTraitScatter(10, true, 1.0D, 4, 124, Blocks.FIRE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), BiomeTraitScatter.Placement.ON_GROUND),
-                new BiomeTraitCluster(10, true, 1.0D, 4, 124, Blocks.GLOWSTONE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), EnumFacing.DOWN),
-                new BiomeTraitCluster(10, false, 1.0D, 1, 128, Blocks.GLOWSTONE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), EnumFacing.DOWN),
-                new BiomeTraitFluid(16, false, 1.0D, 10, 118, Blocks.FLOWING_LAVA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), true)
+                BiomeTraitFluid.create(trait -> {
+                    trait.generationAttempts(8);
+                    trait.minimumGenerationHeight(4);
+                    trait.maximumGenerationHeight(124);
+                    trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.generateFalling(false);
+                }),
+                BiomeTraitScatter.create(trait -> {
+                    trait.generationAttempts(10);
+                    trait.randomizeGenerationAttempts(true);
+                    trait.minimumGenerationHeight(4);
+                    trait.maximumGenerationHeight(124);
+                    trait.blockToSpawn(Blocks.FIRE.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
+                }),
+                BiomeTraitCluster.create(trait -> {
+                    trait.generationAttempts(10);
+                    trait.randomizeGenerationAttempts(true);
+                    trait.minimumGenerationHeight(4);
+                    trait.maximumGenerationHeight(124);
+                    trait.blockToSpawn(Blocks.GLOWSTONE.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.direction(EnumFacing.DOWN);
+                }),
+                BiomeTraitCluster.create(trait -> {
+                    trait.generationAttempts(10);
+                    trait.minimumGenerationHeight(1);
+                    trait.maximumGenerationHeight(128);
+                    trait.blockToSpawn(Blocks.GLOWSTONE.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.direction(EnumFacing.DOWN);
+                }),
+                BiomeTraitFluid.create(trait -> {
+                    trait.generationAttempts(16);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(118);
+                    trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.generateFalling(true);
+                })
         ));
         this.getBiomeTraits(GenerationStage.DECORATE).addAll(Arrays.asList(
-                new BiomeTraitScatter(1, false, 0.25D, 1, 128, Blocks.RED_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), BiomeTraitScatter.Placement.ON_GROUND),
-                new BiomeTraitScatter(1, false, 0.25D, 1, 128, Blocks.BROWN_MUSHROOM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), BiomeTraitScatter.Placement.ON_GROUND)
+                BiomeTraitScatter.create(trait -> {
+                    trait.generationAttempts(1);
+                    trait.generationProbability(0.25D);
+                    trait.minimumGenerationHeight(1);
+                    trait.maximumGenerationHeight(128);
+                    trait.blockToSpawn(Blocks.BROWN_MUSHROOM.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
+                }),
+                BiomeTraitScatter.create(trait -> {
+                    trait.generationAttempts(1);
+                    trait.generationProbability(0.25D);
+                    trait.minimumGenerationHeight(1);
+                    trait.maximumGenerationHeight(128);
+                    trait.blockToSpawn(Blocks.RED_MUSHROOM.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
+                })
         ));
         this.getBiomeTraits(GenerationStage.ORE).addAll(Arrays.asList(
-                new BiomeTraitOre(16, false, 1.0D, 10, 108, Blocks.QUARTZ_ORE.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 14),
-                new BiomeTraitOre(4, false, 1.0D, 28, 38, Blocks.MAGMA.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), 32)
+                BiomeTraitOre.create(trait -> {
+                    trait.generationAttempts(16);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(Blocks.QUARTZ_ORE.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.veinSize(14);
+                }),
+                BiomeTraitOre.create(trait -> {
+                    trait.generationAttempts(4);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(Blocks.MAGMA.getDefaultState());
+                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.veinSize(32);
+                })
         ));
     }
 }

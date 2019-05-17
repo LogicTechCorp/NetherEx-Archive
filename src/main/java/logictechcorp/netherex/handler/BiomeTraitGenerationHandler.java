@@ -19,7 +19,8 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
-import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.generation.iface.IGeneratorStage;
+import logictechcorp.libraryex.world.generation.impl.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
@@ -102,7 +103,7 @@ public class BiomeTraitGenerationHandler
         }
     }
 
-    private static void generateBiomeTraits(World world, BlockPos pos, Random random, GenerationStage generationStage)
+    private static void generateBiomeTraits(World world, BlockPos pos, Random random, IGeneratorStage generationStage)
     {
         IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(world.getBiome(pos.add(16, 0, 16)));
 

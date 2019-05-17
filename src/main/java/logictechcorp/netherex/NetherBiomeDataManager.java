@@ -23,10 +23,9 @@ import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataConfigurable;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
 import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
-import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeData;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
@@ -103,18 +102,12 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                                 if(biomeDataRegistry.hasBiomeData(biome))
                                 {
                                     biomeData = biomeDataRegistry.getBiomeData(biome);
-
-                                    if(!(biomeData instanceof IBiomeDataConfigurable))
-                                    {
-                                        continue;
-                                    }
-
-                                    ((IBiomeDataConfigurable) biomeData).readFromConfig(biomeDataAPI, config);
+                                    biomeData.readFromConfig(biomeDataAPI, config);
                                 }
                                 else
                                 {
-                                    biomeData = new BiomeDataConfigurable(biome.getRegistryName());
-                                    ((IBiomeDataConfigurable) biomeData).readFromConfig(biomeDataAPI, config);
+                                    biomeData = new BiomeData(biome.getRegistryName());
+                                    biomeData.readFromConfig(biomeDataAPI, config);
                                 }
 
                                 if(biomeData.generateBiome())
@@ -159,22 +152,16 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
             for(IBiomeData biomeData : biomeDataAPI.getBiomeDataRegistry().getBiomeData().values())
             {
-                if(!(biomeData instanceof IBiomeDataConfigurable))
-                {
-                    continue;
-                }
-
-                IBiomeDataConfigurable biomeDataConfigurable = (IBiomeDataConfigurable) biomeData;
-                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeDataConfigurable.getRelativeSaveFile());
+                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeData.getRelativeSaveFile());
                 FileConfig fileConfig = FileConfig.of(configFile, ModJsonConfigFormat.instance());
 
                 if(!configFile.getParentFile().mkdirs() && configFile.exists() || configFile.exists())
                 {
                     fileConfig.load();
-                    biomeDataConfigurable.readFromConfig(biomeDataAPI, fileConfig);
+                    biomeData.readFromConfig(biomeDataAPI, fileConfig);
                 }
 
-                biomeDataConfigurable.writeToConfig(fileConfig);
+                biomeData.writeToConfig(fileConfig);
                 fileConfig.save();
                 fileConfig.close();
             }

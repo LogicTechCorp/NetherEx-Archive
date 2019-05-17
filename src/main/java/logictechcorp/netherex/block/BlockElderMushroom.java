@@ -48,11 +48,23 @@ public class BlockElderMushroom extends BlockModSmallMushroom
 
         if(this == NetherExBlocks.BROWN_ELDER_MUSHROOM)
         {
-            elderMushroom = new BiomeTraitBigMushroom(1, false, 1.0F, pos.getY(), pos.up(12).getY(), NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), BiomeTraitBigMushroom.Shape.FLAT);
+            elderMushroom = BiomeTraitBigMushroom.create(trait -> {
+                trait.generationAttempts(1);
+                trait.mushroomCap(NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState());
+                trait.mushroomStem(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
+                trait.blockToPlaceOn(world.getBlockState(pos.down()));
+                trait.shape(BiomeTraitBigMushroom.Shape.FLAT);
+            });
         }
         else if(this == NetherExBlocks.RED_ELDER_MUSHROOM)
         {
-            elderMushroom = new BiomeTraitBigMushroom(1, false, 1.0F, pos.getY(), pos.up(12).getY(), NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState(), NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState(), world.getBlockState(pos.down()), BiomeTraitBigMushroom.Shape.BULB);
+            elderMushroom = BiomeTraitBigMushroom.create(trait -> {
+                trait.generationAttempts(1);
+                trait.mushroomCap(NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState());
+                trait.mushroomStem(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
+                trait.blockToPlaceOn(world.getBlockState(pos.down()));
+                trait.shape(BiomeTraitBigMushroom.Shape.BULB);
+            });
         }
 
         if(elderMushroom != null && !elderMushroom.generate(world, pos, random))

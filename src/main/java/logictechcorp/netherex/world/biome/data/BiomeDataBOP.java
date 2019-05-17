@@ -17,11 +17,11 @@
 
 package logictechcorp.netherex.world.biome.data;
 
-import logictechcorp.libraryex.world.biome.data.impl.BiomeDataConfigurable;
+import logictechcorp.libraryex.world.biome.data.impl.BiomeData;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.ResourceLocation;
 
-public class BiomeDataBOP extends BiomeDataConfigurable
+public class BiomeDataBOP extends BiomeData
 {
     public BiomeDataBOP(ResourceLocation biomeRegistryName, int biomeGenerationWeight, boolean isSubBiomeData, boolean generateBiome, boolean generateDefaultBiomeFeatures)
     {
