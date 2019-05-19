@@ -19,7 +19,7 @@ package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.potion.*;
+import logictechcorp.netherex.mobeffect.*;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;

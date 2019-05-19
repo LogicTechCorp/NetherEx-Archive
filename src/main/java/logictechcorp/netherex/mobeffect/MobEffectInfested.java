@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.potion;
+package logictechcorp.netherex.mobeffect;
 
 import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.libraryex.utility.CollectionHelper;

@@ -19,9 +19,7 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.utility.NBTHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExItems;
-import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -74,8 +72,8 @@ public class PlayerHandler
     public static void onPlayerTick(TickEvent.PlayerTickEvent event)
     {
         TickEvent.Phase phase = event.phase;
+        World world = event.player.getEntityWorld();
         EntityPlayer player = event.player;
-        World world = player.getEntityWorld();
 
         if(phase == TickEvent.Phase.END)
         {
@@ -99,14 +97,6 @@ public class PlayerHandler
                             world.spawnEntity(item);
                             inventory.setInventorySlotContents(i, ItemStack.EMPTY);
                             break;
-                        }
-                    }
-
-                    if(player.isPotionActive(NetherExMobEffects.SOUL_SUCKED))
-                    {
-                        if(world.getBlockState(player.getPosition()).getBlock() != NetherExBlocks.SOUL_GLASS)
-                        {
-                            player.removePotionEffect(NetherExMobEffects.SOUL_SUCKED);
                         }
                     }
                 }

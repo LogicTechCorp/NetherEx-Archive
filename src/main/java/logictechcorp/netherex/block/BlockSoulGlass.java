@@ -28,6 +28,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -100,60 +101,82 @@ public class BlockSoulGlass extends BlockMod
             EntityPlayer player = (EntityPlayer) entity;
             boolean sinking = player.getLookVec().y < -0.75D;
 
+            NBTTagCompound playerData = player.getEntityData();
+            EnumFacing shootDirection = null;
+
+            if(!player.isPotionActive(NetherExMobEffects.SOUL_SUCKED))
+            {
+                playerData.removeTag("netherex:soul_shoot_direction");
+            }
+            if(playerData.hasKey("netherex:soul_shoot_direction"))
+            {
+                shootDirection = EnumFacing.byIndex(playerData.getInteger("netherex:soul_shoot_direction"));
+            }
+
             if(player.isSneaking())
             {
                 if(!sinking)
                 {
-                    Block blockOneBack = world.getBlockState(pos.offset(player.getHorizontalFacing().getOpposite())).getBlock();
-                    Block blockTwoBack = world.getBlockState(pos.offset(player.getHorizontalFacing().getOpposite(), 2)).getBlock();
-                    Block blockThreeBack = world.getBlockState(pos.offset(player.getHorizontalFacing().getOpposite(), 3)).getBlock();
+                    if(shootDirection == null)
+                    {
+                        shootDirection = player.getHorizontalFacing().getOpposite();
+                    }
+
+                    Block blockOneBack = world.getBlockState(pos.offset(shootDirection)).getBlock();
+                    Block blockTwoBack = world.getBlockState(pos.offset(shootDirection, 2)).getBlock();
+                    Block blockThreeBack = world.getBlockState(pos.offset(shootDirection, 3)).getBlock();
 
                     if(blockOneBack != this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 60, 0));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 0, false, false));
                     }
                     if(blockOneBack == this && blockTwoBack != this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 120, 1));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 1, false, false));
                     }
                     else if(blockOneBack == this && blockThreeBack != this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 180, 2));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 2, false, false));
                     }
                     else if(blockOneBack == this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 240, 3));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 3, false, false));
                     }
                 }
                 else
                 {
+                    if(shootDirection == null)
+                    {
+                        shootDirection = EnumFacing.UP;
+                    }
+
                     Block blockUpOne = world.getBlockState(pos.up()).getBlock();
                     Block blockUpTwo = world.getBlockState(pos.up(2)).getBlock();
                     Block blockUpThree = world.getBlockState(pos.up(3)).getBlock();
 
                     if(blockUpOne != this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 60, 0));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 0, false, false));
                     }
                     if(blockUpOne == this && blockUpTwo != this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 120, 1));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 1, false, false));
                     }
                     else if(blockUpOne == this && blockUpThree != this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 180, 2));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 2, false, false));
                     }
                     else if(blockUpOne == this)
                     {
-                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 240, 3));
+                        player.addPotionEffect(new PotionEffect(NetherExMobEffects.SOUL_SUCKED, 5, 3, false, false));
+                        player.posY = player.prevPosY;
                     }
 
-                    player.motionY /= 3.0D;
+                    player.motionY /= 5.0D;
                 }
             }
             else
             {
-
                 PotionEffect effect = player.getActivePotionEffect(NetherExMobEffects.SOUL_SUCKED);
                 int amplifier = 1;
 
@@ -162,9 +185,11 @@ public class BlockSoulGlass extends BlockMod
                     amplifier = (effect.getAmplifier() + 1);
                 }
 
-                if(!sinking)
+                if(!sinking && shootDirection != null && shootDirection != EnumFacing.UP)
                 {
-                    if(player.getHorizontalFacing() == EnumFacing.NORTH)
+                    EnumFacing playerDirection = shootDirection.getOpposite();
+
+                    if(playerDirection == EnumFacing.NORTH)
                     {
                         if(player.motionZ < 0)
                         {
@@ -175,7 +200,7 @@ public class BlockSoulGlass extends BlockMod
                             player.motionZ = 0.5D;
                         }
                     }
-                    else if(player.getHorizontalFacing() == EnumFacing.EAST)
+                    else if(playerDirection == EnumFacing.EAST)
                     {
                         if(player.motionX > 0)
                         {
@@ -186,7 +211,7 @@ public class BlockSoulGlass extends BlockMod
                             player.motionX = -0.5D;
                         }
                     }
-                    else if(player.getHorizontalFacing() == EnumFacing.SOUTH)
+                    else if(playerDirection == EnumFacing.SOUTH)
                     {
                         if(player.motionZ > 0)
                         {
@@ -197,7 +222,7 @@ public class BlockSoulGlass extends BlockMod
                             player.motionZ = -0.5D;
                         }
                     }
-                    else if(player.getHorizontalFacing() == EnumFacing.WEST)
+                    else if(playerDirection == EnumFacing.WEST)
                     {
                         if(player.motionX < 0)
                         {
@@ -228,6 +253,11 @@ public class BlockSoulGlass extends BlockMod
 
                     player.motionY += amplifier * 0.1D;
                 }
+            }
+
+            if(shootDirection != null)
+            {
+                playerData.setInteger("netherex:soul_shoot_direction", shootDirection.getIndex());
             }
         }
     }
