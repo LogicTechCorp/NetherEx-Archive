@@ -17,10 +17,10 @@
 
 package logictechcorp.netherex.block;
 
+import logictechcorp.libraryex.api.world.generation.trait.IBiomeTrait;
 import logictechcorp.libraryex.block.BlockModSmallMushroom;
-import logictechcorp.libraryex.block.builder.BlockProperties;
-import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitStructure;
+import logictechcorp.libraryex.block.property.BlockProperties;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -78,7 +78,8 @@ public class BlockSpoulShroom extends BlockModSmallMushroom
             world.setBlockToAir(posUp);
             world.setBlockToAir(pos);
 
-            IBiomeTrait spoulShroom = BiomeTraitStructure.create(trait -> {
+            IBiomeTrait spoulShroom = BiomeTraitStructure.create(trait ->
+            {
                 trait.generationAttempts(1);
                 trait.randomizeGenerationAttempts(true);
                 trait.minimumGenerationHeight(32);

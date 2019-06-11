@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.world.generation;
 
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.event.LibExEventFactory;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.design.BiomeStyler;

@@ -17,10 +17,10 @@
 
 package logictechcorp.netherex.block;
 
+import logictechcorp.libraryex.api.world.generation.trait.IBiomeTrait;
 import logictechcorp.libraryex.block.BlockModSmallMushroom;
-import logictechcorp.libraryex.block.builder.BlockProperties;
-import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTraitBigMushroom;
+import logictechcorp.libraryex.block.property.BlockProperties;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -48,7 +48,8 @@ public class BlockElderMushroom extends BlockModSmallMushroom
 
         if(this == NetherExBlocks.BROWN_ELDER_MUSHROOM)
         {
-            elderMushroom = BiomeTraitBigMushroom.create(trait -> {
+            elderMushroom = BiomeTraitBigMushroom.create(trait ->
+            {
                 trait.generationAttempts(1);
                 trait.mushroomCap(NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState());
                 trait.mushroomStem(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());

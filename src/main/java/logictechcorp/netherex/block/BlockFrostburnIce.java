@@ -20,7 +20,7 @@ package logictechcorp.netherex.block;
 import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
-import logictechcorp.libraryex.block.builder.BlockProperties;
+import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;

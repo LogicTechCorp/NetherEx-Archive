@@ -17,11 +17,11 @@
 
 package logictechcorp.netherex;
 
-import logictechcorp.libraryex.IModData;
-import logictechcorp.libraryex.proxy.IProxy;
-import logictechcorp.libraryex.trade.ITradeManager;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
+import logictechcorp.libraryex.api.IModData;
+import logictechcorp.libraryex.api.IProxy;
+import logictechcorp.libraryex.api.entity.trade.ITradeManager;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.api.internal.iface.INetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -127,7 +127,7 @@ public class NetherEx implements IModData, INetherExAPI
     }
 
     @Override
-    public boolean writeRecipeJsons()
+    public boolean writeRecipesToJson()
     {
         return ConfigHandler.internalConfig.recipes.writeRecipesToGlobalConfigFolder;
     }

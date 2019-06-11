@@ -19,8 +19,8 @@ package logictechcorp.netherex;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
+import logictechcorp.libraryex.api.entity.trade.ITradeManager;
 import logictechcorp.libraryex.config.ModJsonConfigFormat;
-import logictechcorp.libraryex.trade.ITradeManager;
 import logictechcorp.libraryex.trade.Trade;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;

@@ -17,11 +17,11 @@
 
 package logictechcorp.netherex.handler;
 
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
+import logictechcorp.libraryex.api.world.generation.IGeneratorStage;
+import logictechcorp.libraryex.api.world.generation.trait.IBiomeTrait;
 import logictechcorp.libraryex.utility.RandomHelper;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
-import logictechcorp.libraryex.world.generation.iface.IGeneratorStage;
-import logictechcorp.libraryex.world.generation.impl.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.iface.IBiomeTrait;
+import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.math.BlockPos;

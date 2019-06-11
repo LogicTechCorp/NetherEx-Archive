@@ -17,7 +17,9 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
+import logictechcorp.libraryex.world.biome.BiomeBlock;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
@@ -46,27 +48,20 @@ public class BiomeFungiForest extends BiomeNetherEx
     }
 
     @Override
-    public BiomeData getBiomeData()
+    public IBiomeData getBiomeData()
     {
-        return new BiomeData();
-    }
-
-    private class BiomeData extends logictechcorp.libraryex.world.biome.data.impl.BiomeData
-    {
-        private BiomeData()
-        {
-            super(NetherExBiomes.FUNGI_FOREST, 4, false, true, true);
-            this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
-            this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, LIVELY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
-            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
-                    new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6),
-                    new Biome.SpawnListEntry(EntitySpore.class, 25, 1, 4),
-                    new Biome.SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4)
-            ));
-        }
+        IBiomeData biomeData = new BiomeData(NetherExBiomes.FUNGI_FOREST, 4, false, true, true);
+        biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
+        biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, LIVELY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, LIVELY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, LIVELY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
+        biomeData.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
+                new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6),
+                new Biome.SpawnListEntry(EntitySpore.class, 25, 1, 4),
+                new Biome.SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4)
+        ));
+        return biomeData;
     }
 }

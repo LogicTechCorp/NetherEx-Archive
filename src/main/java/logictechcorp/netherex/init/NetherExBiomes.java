@@ -18,8 +18,8 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.api.LibraryExAPI;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.libraryex.utility.InjectionHelper;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;

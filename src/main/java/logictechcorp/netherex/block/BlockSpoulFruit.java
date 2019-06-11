@@ -1,7 +1,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockProperties;
+import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;

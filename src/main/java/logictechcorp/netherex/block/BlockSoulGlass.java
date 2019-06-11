@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockProperties;
+import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.Block;
@@ -250,8 +250,10 @@ public class BlockSoulGlass extends BlockMod
                     {
                         player.motionY = 0.105D;
                     }
-
-                    player.motionY += amplifier * 0.1D;
+                    if(player.motionY < 1.315D)
+                    {
+                        player.motionY += amplifier * 0.1D;
+                    }
                 }
             }
 

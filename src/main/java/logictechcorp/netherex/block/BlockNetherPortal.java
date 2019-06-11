@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockModPortal;
-import logictechcorp.libraryex.block.builder.BlockProperties;
+import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;

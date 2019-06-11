@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.proxy;
 
-import logictechcorp.libraryex.proxy.IProxy;
+import logictechcorp.libraryex.api.IProxy;
 
 public class ServerProxy implements IProxy
 {

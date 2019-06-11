@@ -17,7 +17,9 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
+import logictechcorp.libraryex.world.biome.BiomeBlock;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
@@ -50,29 +52,22 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     }
 
     @Override
-    public BiomeData getBiomeData()
+    public IBiomeData getBiomeData()
     {
-        return new BiomeData();
-    }
-
-    private class BiomeData extends logictechcorp.libraryex.world.biome.data.impl.BiomeData
-    {
-        private BiomeData()
-        {
-            super(NetherExBiomes.ARCTIC_ABYSS, 2, false, true, true);
-            this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
-            this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.WALL_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
-            this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, MAGMA);
-            this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
-                    new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
-                    new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),
-                    new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4),
-                    new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4),
-                    new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1)
-            ));
-        }
+        IBiomeData biomeData = new BiomeData(NetherExBiomes.ARCTIC_ABYSS, 2, false, true, true);
+        biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
+        biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, ICY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
+        biomeData.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, MAGMA);
+        biomeData.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
+                new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
+                new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),
+                new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4),
+                new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4),
+                new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1)
+        ));
+        return biomeData;
     }
 }

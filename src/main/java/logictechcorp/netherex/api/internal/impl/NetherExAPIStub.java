@@ -17,9 +17,9 @@
 
 package logictechcorp.netherex.api.internal.impl;
 
-import logictechcorp.libraryex.trade.ITradeManager;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
+import logictechcorp.libraryex.api.entity.trade.ITradeManager;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.netherex.api.internal.iface.INetherExAPI;
 
 public final class NetherExAPIStub implements INetherExAPI

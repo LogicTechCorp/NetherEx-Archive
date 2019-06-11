@@ -10,7 +10,7 @@
 
 package logictechcorp.netherex.world.generation.layer;
 
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;

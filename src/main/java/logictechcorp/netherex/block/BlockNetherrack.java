@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockMod;
-import logictechcorp.libraryex.block.builder.BlockProperties;
+import logictechcorp.libraryex.block.property.BlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

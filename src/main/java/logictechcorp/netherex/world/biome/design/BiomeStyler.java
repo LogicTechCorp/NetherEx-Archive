@@ -10,8 +10,8 @@
 
 package logictechcorp.netherex.world.biome.design;
 
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
-import logictechcorp.libraryex.world.biome.data.impl.BiomeBlock;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
+import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

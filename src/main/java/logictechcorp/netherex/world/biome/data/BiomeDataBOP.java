@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.world.biome.data;
 
-import logictechcorp.libraryex.world.biome.data.impl.BiomeData;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.ResourceLocation;
 

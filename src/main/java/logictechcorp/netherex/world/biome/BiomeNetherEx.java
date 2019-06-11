@@ -17,9 +17,9 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.IModData;
+import logictechcorp.libraryex.api.IModData;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.world.biome.BiomeMod;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
 import logictechcorp.netherex.world.biome.design.BiomeDecoratorNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

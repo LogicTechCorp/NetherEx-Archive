@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.world.generation.trait;
 
-import logictechcorp.libraryex.world.generation.trait.impl.BiomeTrait;
+import logictechcorp.libraryex.world.generation.trait.BiomeTrait;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

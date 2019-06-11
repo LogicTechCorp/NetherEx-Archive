@@ -18,7 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.BlockTileEntity;
-import logictechcorp.libraryex.block.builder.BlockProperties;
+import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExMobEffects;
 import logictechcorp.netherex.tileentity.TileEntityUrnOfSorrow;

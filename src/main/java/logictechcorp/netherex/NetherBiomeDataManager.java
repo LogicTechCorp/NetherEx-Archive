@@ -18,14 +18,14 @@
 package logictechcorp.netherex;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
-import logictechcorp.libraryex.api.IBiomeDataAPI;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataAPI;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeData;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataManager;
-import logictechcorp.libraryex.world.biome.data.iface.IBiomeDataRegistry;
-import logictechcorp.libraryex.world.biome.data.impl.BiomeData;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
