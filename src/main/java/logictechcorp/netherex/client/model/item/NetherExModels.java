@@ -224,6 +224,7 @@ public class NetherExModels
         ModelHelper.registerItemModel(NetherExItems.RIME_AND_STEEL);
         ModelHelper.registerItemModel(NetherExItems.SPORE);
         ModelHelper.registerItemModel(NetherExItems.COOLMAR_SPIDER_FANG);
+        ModelHelper.registerItemModel(NetherExItems.RIPPER_CLAW);
         ModelHelper.registerItemModel(NetherExItems.GHAST_QUEEN_TEAR);
         ModelHelper.registerItemModel(NetherExItems.OBSIDIAN_BOAT);
         ModelHelper.registerItemModel(NetherExItems.GHAST_MEAT_RAW);

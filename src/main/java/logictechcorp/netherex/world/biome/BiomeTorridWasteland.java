@@ -65,5 +65,4 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         ));
         return biomeData;
     }
-
 }

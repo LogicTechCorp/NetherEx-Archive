@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.entity.monster;
 
-import logictechcorp.netherex.entity.ai.EntityAIGhastFly;
-import logictechcorp.netherex.entity.ai.EntityAIGhastLookAround;
+import logictechcorp.netherex.entity.ai.EntityAIFlyRandomly;
+import logictechcorp.netherex.entity.ai.EntityAIChangeFlyDirection;
 import logictechcorp.netherex.entity.ai.EntityAIGhastlingFireballAttack;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExSoundEvents;
@@ -60,8 +60,8 @@ public class EntityGhastling extends EntityGhast
     protected void initEntityAI()
     {
         this.tasks.addTask(0, new EntityAIGhastlingFireballAttack(this));
-        this.tasks.addTask(1, new EntityAIGhastLookAround(this));
-        this.tasks.addTask(2, new EntityAIGhastFly(this));
+        this.tasks.addTask(1, new EntityAIChangeFlyDirection(this));
+        this.tasks.addTask(2, new EntityAIFlyRandomly(this));
         this.targetTasks.addTask(0, new EntityAIFindEntityNearestPlayer(this));
     }
 

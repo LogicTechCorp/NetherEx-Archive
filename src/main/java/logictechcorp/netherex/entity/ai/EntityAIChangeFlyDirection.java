@@ -17,18 +17,20 @@
 
 package logictechcorp.netherex.entity.ai;
 
+import net.minecraft.entity.EntityFlying;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.math.MathHelper;
 
-public class EntityAIGhastLookAround extends EntityAIBase
+public class EntityAIChangeFlyDirection extends EntityAIBase
 {
-    private final EntityGhast ghast;
+    private final EntityLiving flying;
 
-    public EntityAIGhastLookAround(EntityGhast ghast)
+    public EntityAIChangeFlyDirection(EntityLiving flying)
     {
-        this.ghast = ghast;
+        this.flying = flying;
         this.setMutexBits(2);
     }
 
@@ -41,21 +43,21 @@ public class EntityAIGhastLookAround extends EntityAIBase
     @Override
     public void updateTask()
     {
-        if(this.ghast.getAttackTarget() == null)
+        if(this.flying.getAttackTarget() == null)
         {
-            this.ghast.rotationYaw = -((float) MathHelper.atan2(this.ghast.motionX, this.ghast.motionZ)) * (180F / (float) Math.PI);
-            this.ghast.renderYawOffset = this.ghast.rotationYaw;
+            this.flying.rotationYaw = -((float) MathHelper.atan2(this.flying.motionX, this.flying.motionZ)) * (180F / (float) Math.PI);
+            this.flying.renderYawOffset = this.flying.rotationYaw;
         }
         else
         {
-            EntityLivingBase target = this.ghast.getAttackTarget();
+            EntityLivingBase target = this.flying.getAttackTarget();
 
-            if(target.getDistanceSq(this.ghast) < 4096.0D)
+            if(target.getDistanceSq(this.flying) < 4096.0D)
             {
-                double distanceX = target.posX - this.ghast.posX;
-                double distanceZ = target.posZ - this.ghast.posZ;
-                this.ghast.rotationYaw = -((float) MathHelper.atan2(distanceX, distanceZ)) * (180F / (float) Math.PI);
-                this.ghast.renderYawOffset = this.ghast.rotationYaw;
+                double distanceX = target.posX - this.flying.posX;
+                double distanceZ = target.posZ - this.flying.posZ;
+                this.flying.rotationYaw = -((float) MathHelper.atan2(distanceX, distanceZ)) * (180F / (float) Math.PI);
+                this.flying.renderYawOffset = this.flying.rotationYaw;
             }
         }
     }

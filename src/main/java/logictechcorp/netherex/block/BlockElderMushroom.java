@@ -59,7 +59,8 @@ public class BlockElderMushroom extends BlockModSmallMushroom
         }
         else if(this == NetherExBlocks.RED_ELDER_MUSHROOM)
         {
-            elderMushroom = BiomeTraitBigMushroom.create(trait -> {
+            elderMushroom = BiomeTraitBigMushroom.create(trait ->
+            {
                 trait.generationAttempts(1);
                 trait.mushroomCap(NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState());
                 trait.mushroomStem(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());

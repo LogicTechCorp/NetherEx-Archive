@@ -90,10 +90,6 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     public EntityPigtificate(World world)
     {
         super(world);
-        List<PigtificateProfession> professions = new ArrayList<>(NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection());
-        professions.removeIf(profession -> profession == NetherExPigtificates.LEADER);
-        this.setProfession((PigtificateProfession) professions.toArray()[this.rand.nextInt(professions.size())]);
-        this.setCareer(this.getProfession().getRandomCareer(this.rand));
         this.inventory = new InventoryBasic("Items", false, 8);
         this.isImmuneToFire = true;
         this.setCanPickUpLoot(true);
@@ -293,6 +289,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData)
     {
+        this.setRandomProfessionAndCareer();
         this.setAdditionalAITasks();
         this.populateTradeList();
         return super.onInitialSpawn(difficulty, livingData);
@@ -716,6 +713,14 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
         {
             this.dataManager.set(CAREER, career.getId());
         }
+    }
+
+    public void setRandomProfessionAndCareer()
+    {
+        List<PigtificateProfession> professions = new ArrayList<>(NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection());
+        professions.removeIf(profession -> profession == NetherExPigtificates.LEADER);
+        this.setProfession((PigtificateProfession) professions.toArray()[this.rand.nextInt(professions.size())]);
+        this.setCareer(this.getProfession().getRandomCareer(this.rand));
     }
 
     public void setCareerLevel(int careerLevel)

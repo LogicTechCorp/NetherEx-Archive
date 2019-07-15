@@ -17,23 +17,25 @@
 
 package logictechcorp.netherex.entity.neutral;
 
-import com.google.common.collect.Lists;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExSoundEvents;
+import logictechcorp.netherex.init.NetherExTextures;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -45,26 +47,7 @@ public class EntitySalamander extends EntityMob
     {
         super(world);
         this.isImmuneToFire = true;
-        this.setSize(0.95F, 0.45F);
-        this.setRandomType();
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound()
-    {
-        return NetherExSoundEvents.SALAMANDER_AMBIENT;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource source)
-    {
-        return NetherExSoundEvents.SALAMANDER_HURT;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound()
-    {
-        return NetherExSoundEvents.SALAMANDER_DEATH;
+        this.setSize(1.25F, 0.5F);
     }
 
     @Override
@@ -73,6 +56,7 @@ public class EntitySalamander extends EntityMob
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.3F));
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(4, new EntityAILookIdle(this));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
@@ -97,9 +81,27 @@ public class EntitySalamander extends EntityMob
     }
 
     @Override
-    public boolean getCanSpawnHere()
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data)
     {
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
+        this.setRandomType();
+        return super.onInitialSpawn(difficulty, data);
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        if(entity instanceof EntityLivingBase)
+        {
+            if(this.getType() == Type.ORANGE)
+            {
+                entity.setFire(4);
+            }
+            else
+            {
+                entity.setFire(8);
+            }
+        }
+        return super.attackEntityAsMob(entity);
     }
 
     @Override
@@ -109,13 +111,9 @@ public class EntitySalamander extends EntityMob
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity)
+    public boolean getCanSpawnHere()
     {
-        if(this.getType() == 1 && entity instanceof EntityLivingBase)
-        {
-            entity.setFire(8);
-        }
-        return super.attackEntityAsMob(entity);
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
     @Override
@@ -127,42 +125,82 @@ public class EntitySalamander extends EntityMob
         }
         else
         {
-            String entityName = EntityList.getEntityString(this);
-            String type = this.getType() == 0 ? "orange" : "black";
-            return I18n.translateToLocal("entity." + entityName + "." + type + ".name");
+            String type = this.getType() == Type.ORANGE ? "orange" : "black";
+            return I18n.translateToLocal("entity." + NetherEx.MOD_ID + ":" + type + "_salamander.name");
         }
     }
 
     @Override
     protected ResourceLocation getLootTable()
     {
-        return this.getType() == 0 ? NetherExLootTables.ORANGE_SALAMANDER : NetherExLootTables.BLACK_SALAMANDER;
+        return this.getType().getLootTable();
     }
 
-    public int getType()
+    @Override
+    protected SoundEvent getAmbientSound()
     {
-        return this.dataManager.get(TYPE);
+        return NetherExSoundEvents.SALAMANDER_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source)
+    {
+        return NetherExSoundEvents.SALAMANDER_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return NetherExSoundEvents.SALAMANDER_DEATH;
+    }
+
+    public Type getType()
+    {
+        return Type.getFromOrdinal(this.dataManager.get(TYPE));
     }
 
     private void setRandomType()
     {
-        WeightedRandom.Item orange = new WeightedRandom.Item(10);
-        WeightedRandom.Item black = new WeightedRandom.Item(1);
-        WeightedRandom.Item item = WeightedRandom.getRandomItem(this.rand, Lists.newArrayList(orange, black));
-        this.setType(item == orange ? 0 : 1);
+        this.setType(this.rand.nextInt(10) != 0 ? Type.ORANGE : Type.BLACK);
     }
 
-    public void setType(int id)
+    public void setType(Type type)
     {
-        if(id < 0)
+        this.dataManager.set(TYPE, type.ordinal());
+    }
+
+    public enum Type
+    {
+        ORANGE(NetherExTextures.RED_MOGUS, NetherExLootTables.RED_MOGUS),
+        BLACK(NetherExTextures.WHITE_MOGUS, NetherExLootTables.WHITE_MOGUS);
+
+        ResourceLocation texture;
+        ResourceLocation lootTable;
+
+        Type(ResourceLocation texture, ResourceLocation lootTable)
         {
-            id = 0;
-        }
-        else if(id > 1)
-        {
-            id = 1;
+            this.texture = texture;
+            this.lootTable = lootTable;
         }
 
-        this.dataManager.set(TYPE, id);
+        public ResourceLocation getTexture()
+        {
+            return this.texture;
+        }
+
+        public ResourceLocation getLootTable()
+        {
+            return this.lootTable;
+        }
+
+        static Type getFromOrdinal(int ordinal)
+        {
+            if(ordinal < 0 || ordinal >= values().length)
+            {
+                ordinal = 0;
+            }
+
+            return values()[ordinal];
+        }
     }
 }

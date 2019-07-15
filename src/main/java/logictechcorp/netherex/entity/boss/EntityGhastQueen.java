@@ -18,8 +18,8 @@
 package logictechcorp.netherex.entity.boss;
 
 import logictechcorp.netherex.block.BlockUrnOfSorrow;
-import logictechcorp.netherex.entity.ai.EntityAIGhastFly;
-import logictechcorp.netherex.entity.ai.EntityAIGhastLookAround;
+import logictechcorp.netherex.entity.ai.EntityAIFlyRandomly;
+import logictechcorp.netherex.entity.ai.EntityAIChangeFlyDirection;
 import logictechcorp.netherex.entity.ai.EntityAIGhastQueenFireballAttack;
 import logictechcorp.netherex.entity.monster.EntityGhastling;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -82,8 +82,8 @@ public class EntityGhastQueen extends EntityGhast
     @Override
     protected void initEntityAI()
     {
-        this.tasks.addTask(1, new EntityAIGhastLookAround(this));
-        this.tasks.addTask(2, new EntityAIGhastFly(this));
+        this.tasks.addTask(1, new EntityAIChangeFlyDirection(this));
+        this.tasks.addTask(2, new EntityAIFlyRandomly(this));
         this.targetTasks.addTask(0, new EntityAIFindEntityNearestPlayer(this));
     }
 

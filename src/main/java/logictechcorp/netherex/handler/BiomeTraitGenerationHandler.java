@@ -44,7 +44,7 @@ public class BiomeTraitGenerationHandler
 
         if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.PRE_DECORATE);
+            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.TERRAIN_ALTERATION);
         }
     }
 
@@ -55,7 +55,8 @@ public class BiomeTraitGenerationHandler
 
         if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
         {
-            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.DECORATE);
+            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.DECORATION);
+            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.PLANT_DECORATION);
         }
     }
 
@@ -66,18 +67,7 @@ public class BiomeTraitGenerationHandler
 
         if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
         {
-            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.POST_DECORATE);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPreGenerateOres(OreGenEvent.Pre event)
-    {
-        World world = event.getWorld();
-
-        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
-        {
-            generateBiomeTraits(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.PRE_ORE);
+            generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.STRUCTURE);
         }
     }
 
@@ -89,17 +79,6 @@ public class BiomeTraitGenerationHandler
         if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == OreGenEvent.GenerateMinable.EventType.CUSTOM)
         {
             generateBiomeTraits(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.ORE);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPostGenerateOres(OreGenEvent.Post event)
-    {
-        World world = event.getWorld();
-
-        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
-        {
-            generateBiomeTraits(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.POST_ORE);
         }
     }
 

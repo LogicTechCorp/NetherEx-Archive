@@ -25,15 +25,9 @@ import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
 
@@ -50,20 +44,14 @@ public final class BiomeDataHell extends BiomeData
         this.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
-        this.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
-                new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
-                new Biome.SpawnListEntry(EntityPigZombie.class, 100, 1, 4),
-                new Biome.SpawnListEntry(EntityMagmaCube.class, 3, 1, 4),
-                new Biome.SpawnListEntry(EntityEnderman.class, 1, 1, 4)
-        ));
-        this.getBiomeTraits(GenerationStage.PRE_DECORATE).addAll(Arrays.asList(
+        this.getBiomeTraits(GenerationStage.DECORATION).addAll(Arrays.asList(
                 BiomeTraitFluid.create(trait ->
                 {
                     trait.generationAttempts(8);
                     trait.minimumGenerationHeight(4);
                     trait.maximumGenerationHeight(124);
                     trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToTarget(Blocks.NETHERRACK.getDefaultState());
                     trait.generateFalling(false);
                 }),
                 BiomeTraitScatter.create(trait ->
@@ -73,7 +61,7 @@ public final class BiomeDataHell extends BiomeData
                     trait.minimumGenerationHeight(4);
                     trait.maximumGenerationHeight(124);
                     trait.blockToSpawn(Blocks.FIRE.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToTarget(Blocks.NETHERRACK.getDefaultState());
                     trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
                 }),
                 BiomeTraitCluster.create(trait ->
@@ -83,7 +71,7 @@ public final class BiomeDataHell extends BiomeData
                     trait.minimumGenerationHeight(4);
                     trait.maximumGenerationHeight(124);
                     trait.blockToSpawn(Blocks.GLOWSTONE.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
                     trait.direction(EnumFacing.DOWN);
                 }),
                 BiomeTraitCluster.create(trait ->
@@ -92,7 +80,7 @@ public final class BiomeDataHell extends BiomeData
                     trait.minimumGenerationHeight(1);
                     trait.maximumGenerationHeight(128);
                     trait.blockToSpawn(Blocks.GLOWSTONE.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
                     trait.direction(EnumFacing.DOWN);
                 }),
                 BiomeTraitFluid.create(trait ->
@@ -101,11 +89,9 @@ public final class BiomeDataHell extends BiomeData
                     trait.minimumGenerationHeight(10);
                     trait.maximumGenerationHeight(118);
                     trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToTarget(Blocks.NETHERRACK.getDefaultState());
                     trait.generateFalling(true);
-                })
-        ));
-        this.getBiomeTraits(GenerationStage.DECORATE).addAll(Arrays.asList(
+                }),
                 BiomeTraitScatter.create(trait ->
                 {
                     trait.generationAttempts(1);
@@ -113,7 +99,7 @@ public final class BiomeDataHell extends BiomeData
                     trait.minimumGenerationHeight(1);
                     trait.maximumGenerationHeight(128);
                     trait.blockToSpawn(Blocks.BROWN_MUSHROOM.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToTarget(Blocks.NETHERRACK.getDefaultState());
                     trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
                 }),
                 BiomeTraitScatter.create(trait ->
@@ -123,7 +109,7 @@ public final class BiomeDataHell extends BiomeData
                     trait.minimumGenerationHeight(1);
                     trait.maximumGenerationHeight(128);
                     trait.blockToSpawn(Blocks.RED_MUSHROOM.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToTarget(Blocks.NETHERRACK.getDefaultState());
                     trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
                 })
         ));

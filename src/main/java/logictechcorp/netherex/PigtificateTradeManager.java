@@ -19,8 +19,8 @@ package logictechcorp.netherex;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
+import com.electronwill.nightconfig.json.JsonFormat;
 import logictechcorp.libraryex.api.entity.trade.ITradeManager;
-import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.trade.Trade;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
@@ -89,7 +89,7 @@ final class PigtificateTradeManager implements ITradeManager
 
                         if(FileHelper.getFileExtension(configFile).equals("json"))
                         {
-                            FileConfig config = FileConfig.of(configFile, ModJsonConfigFormat.instance());
+                            FileConfig config = FileConfig.of(configFile, JsonFormat.fancyInstance());
                             config.load();
 
                             PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));

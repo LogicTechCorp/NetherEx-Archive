@@ -19,7 +19,6 @@ package logictechcorp.netherex.client.render.entity;
 
 import logictechcorp.netherex.client.model.entity.ModelSalamander;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
-import logictechcorp.netherex.init.NetherExTextures;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -37,6 +36,6 @@ public class RenderSalamander extends RenderLiving<EntitySalamander>
     @Override
     protected ResourceLocation getEntityTexture(EntitySalamander salamander)
     {
-        return salamander.getType() == 0 ? NetherExTextures.ORANGE_SALAMANDER : NetherExTextures.BLACK_SALAMANDER;
+        return salamander.getType().getTexture();
     }
 }

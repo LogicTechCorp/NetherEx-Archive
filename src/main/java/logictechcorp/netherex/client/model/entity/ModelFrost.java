@@ -27,22 +27,22 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelFrost extends ModelBase
 {
-    public ModelRenderer head;
-    public ModelRenderer headSpikes;
-    public ModelRenderer lowerRod1;
-    public ModelRenderer lowerRod2;
-    public ModelRenderer lowerRod3;
-    public ModelRenderer lowerRod4;
-    public ModelRenderer lowerRod5;
-    public ModelRenderer lowerRod6;
-    public ModelRenderer lowerRod7;
-    public ModelRenderer upperRod1;
-    public ModelRenderer upperRod2;
-    public ModelRenderer upperRod3;
-    public ModelRenderer upperRod4;
-    public ModelRenderer upperRod5;
-    public ModelRenderer upperRod6;
-    public ModelRenderer upperRod7;
+    private ModelRenderer head;
+    private ModelRenderer headSpikes;
+    private ModelRenderer lowerRod1;
+    private ModelRenderer lowerRod2;
+    private ModelRenderer lowerRod3;
+    private ModelRenderer lowerRod4;
+    private ModelRenderer lowerRod5;
+    private ModelRenderer lowerRod6;
+    private ModelRenderer lowerRod7;
+    private ModelRenderer upperRod1;
+    private ModelRenderer upperRod2;
+    private ModelRenderer upperRod3;
+    private ModelRenderer upperRod4;
+    private ModelRenderer upperRod5;
+    private ModelRenderer upperRod6;
+    private ModelRenderer upperRod7;
 
     public ModelFrost()
     {

@@ -47,8 +47,5 @@ public abstract class BiomeNetherEx extends BiomeMod<IBiomeData>
     }
 
     @Override
-    public IBiomeData getBiomeData()
-    {
-        return null;
-    }
+    public abstract IBiomeData getBiomeData();
 }

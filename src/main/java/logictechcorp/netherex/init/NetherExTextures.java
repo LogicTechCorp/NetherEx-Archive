@@ -19,6 +19,7 @@ package logictechcorp.netherex.init;
 
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 
 public class NetherExTextures
 {
@@ -45,15 +46,23 @@ public class NetherExTextures
     public static final ResourceLocation PIGTIFICATE_BREWER = NetherEx.getResource("textures/entity/pigtificate/pigtificate_brewer.png");
     public static final ResourceLocation PIGTIFICATE_BREWER_ALT = NetherEx.getResource("textures/entity/pigtificate/pigtificate_brewer_alt.png");
     public static final ResourceLocation GOLD_GOLEM = NetherEx.getResource("textures/entity/gold_golem.png");
-    public static final ResourceLocation MOGUS_BROWN = NetherEx.getResource("textures/entity/mogus/brown_mogus.png");
-    public static final ResourceLocation MOGUS_RED = NetherEx.getResource("textures/entity/mogus/red_mogus.png");
-    public static final ResourceLocation MOGUS_WHITE = NetherEx.getResource("textures/entity/mogus/white_mogus.png");
+    public static final ResourceLocation BROWN_MOGUS = NetherEx.getResource("textures/entity/mogus/brown_mogus.png");
+    public static final ResourceLocation RED_MOGUS = NetherEx.getResource("textures/entity/mogus/red_mogus.png");
+    public static final ResourceLocation WHITE_MOGUS = NetherEx.getResource("textures/entity/mogus/white_mogus.png");
     public static final ResourceLocation ORANGE_SALAMANDER = NetherEx.getResource("textures/entity/salamander/orange_salamander.png");
     public static final ResourceLocation BLACK_SALAMANDER = NetherEx.getResource("textures/entity/salamander/black_salamander.png");
+    public static final ResourceLocation KIND_LOST_SOUL = LootTableList.register(NetherEx.getResource("textures/entity/lost_soul/kind_lost_soul.png"));
+    public static final ResourceLocation TIMID_LOST_SOUL = LootTableList.register(NetherEx.getResource("textures/entity/lost_soul/timid_lost_soul.png"));
+    public static final ResourceLocation NEUTRAL_LOST_SOUL = LootTableList.register(NetherEx.getResource("textures/entity/lost_soul/neutral_lost_soul.png"));
+    public static final ResourceLocation MEAN_LOST_SOUL = LootTableList.register(NetherEx.getResource("textures/entity/lost_soul/mean_lost_soul.png"));
+    public static final ResourceLocation ANGRY_LOST_SOUL = LootTableList.register(NetherEx.getResource("textures/entity/lost_soul/angry_lost_soul.png"));
     public static final ResourceLocation WIGHT = NetherEx.getResource("textures/entity/wight.png");
     public static final ResourceLocation EMBER = NetherEx.getResource("textures/entity/ember.png");
     public static final ResourceLocation NETHERMITE = NetherEx.getResource("textures/entity/nethermite.png");
     public static final ResourceLocation SPINOUT = NetherEx.getResource("textures/entity/spinout.png");
+    public static final ResourceLocation RIPPER_CALM = NetherEx.getResource("textures/entity/ripper/ripper_calm.png");
+    public static final ResourceLocation RIPPER_FOCUSED = NetherEx.getResource("textures/entity/ripper/ripper_focused.png");
+    public static final ResourceLocation RIPPER_ENRAGED = NetherEx.getResource("textures/entity/ripper/ripper_enraged.png");
     public static final ResourceLocation SPORE_CREEPER = NetherEx.getResource("textures/entity/spore_creeper.png");
     public static final ResourceLocation SPORE = NetherEx.getResource("textures/entity/spore.png");
     public static final ResourceLocation GHASTLING = NetherEx.getResource("textures/entity/ghast/ghastling.png");

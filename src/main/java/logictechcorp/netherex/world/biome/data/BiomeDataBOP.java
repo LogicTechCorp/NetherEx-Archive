@@ -31,6 +31,6 @@ public class BiomeDataBOP extends BiomeData
     @Override
     public boolean generateBiome()
     {
-        return this.generateBiome && NetherEx.BIOMES_O_PLENTY_LOADED;
+        return super.generateBiome() && NetherEx.BIOMES_O_PLENTY_LOADED;
     }
 }

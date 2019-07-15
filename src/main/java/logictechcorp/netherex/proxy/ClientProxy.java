@@ -59,6 +59,8 @@ public class ClientProxy implements IProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityEmber.class, RenderEmber::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityNethermite.class, RenderNethermite::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpinout.class, RenderSpinout::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityLostSoul.class, RenderLostSoul::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRipper.class, RenderRipper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySporeCreeper.class, RenderSporeCreeper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, RenderSpore::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhastling.class, RenderGhastling::new);

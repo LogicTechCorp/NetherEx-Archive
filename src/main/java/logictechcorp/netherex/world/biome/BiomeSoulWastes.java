@@ -26,6 +26,8 @@ import logictechcorp.libraryex.world.generation.trait.BiomeTraitPatch;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.entity.monster.EntityLostSoul;
+import logictechcorp.netherex.entity.monster.EntityRipper;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.state.IBlockState;
@@ -44,6 +46,8 @@ public class BiomeSoulWastes extends BiomeNetherEx
         super(NetherEx.instance, new BiomeProperties("Soul Wastes").setTemperature(2.0F).setRainfall(0.0F).setRainDisabled(), "soul_wastes");
         this.topBlock = SOUL_SAND;
         this.fillerBlock = SOUL_SAND;
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityLostSoul.class, 25, 2, 8));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityRipper.class, 2, 1, 1));
     }
 
     @Override
@@ -56,7 +60,7 @@ public class BiomeSoulWastes extends BiomeNetherEx
         biomeData.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, SOUL_SANDSTONE);
         biomeData.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, CUT_SOUL_SANDSTONE);
         biomeData.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, SOUL_SAND);
-        biomeData.getBiomeTraits(GenerationStage.DECORATE).addAll(Arrays.asList(
+        biomeData.getBiomeTraits(GenerationStage.DECORATION).addAll(Arrays.asList(
                 BiomeTraitBoulder.create(trait ->
                 {
                     trait.generationAttempts(4);
@@ -64,7 +68,7 @@ public class BiomeSoulWastes extends BiomeNetherEx
                     trait.minimumGenerationHeight(32);
                     trait.maximumGenerationHeight(124);
                     trait.blockToSpawn(SOUL_SANDSTONE);
-                    trait.blockToSpawn(SOUL_SAND);
+                    trait.blockToTarget(SOUL_SAND);
                     trait.boulderRadius(0);
                 }),
                 BiomeTraitBoulder.create(trait ->
@@ -74,7 +78,7 @@ public class BiomeSoulWastes extends BiomeNetherEx
                     trait.minimumGenerationHeight(32);
                     trait.maximumGenerationHeight(124);
                     trait.blockToSpawn(SOUL_SANDSTONE);
-                    trait.blockToSpawn(SOUL_SAND);
+                    trait.blockToTarget(SOUL_SAND);
                     trait.boulderRadius(1);
                 }),
                 BiomeTraitStructure.create(trait ->
@@ -120,7 +124,7 @@ public class BiomeSoulWastes extends BiomeNetherEx
                     trait.minimumGenerationHeight(32);
                     trait.maximumGenerationHeight(124);
                     trait.blockToSpawn(SOUL_SANDSTONE);
-                    trait.blockToSpawn(SOUL_SAND);
+                    trait.blockToTarget(SOUL_SAND);
                     trait.patchWidth(6);
                 }),
                 BiomeTraitPatch.create(trait ->
@@ -130,18 +134,18 @@ public class BiomeSoulWastes extends BiomeNetherEx
                     trait.minimumGenerationHeight(32);
                     trait.maximumGenerationHeight(124);
                     trait.blockToSpawn(POSSESSED_SOUL_SAND);
-                    trait.blockToSpawn(SOUL_SAND);
+                    trait.blockToTarget(SOUL_SAND);
                     trait.patchWidth(3);
                 })
         ));
-        biomeData.getBiomeTraits(GenerationStage.POST_DECORATE).addAll(Arrays.asList(
+        biomeData.getBiomeTraits(GenerationStage.PLANT_DECORATION).addAll(Arrays.asList(
                 BiomeTraitScatter.create(trait ->
                 {
                     trait.generationAttempts(36);
                     trait.minimumGenerationHeight(32);
                     trait.maximumGenerationHeight(120);
                     trait.blockToSpawn(NetherExBlocks.SPOUL_SHROOM.getDefaultState());
-                    trait.blockToSpawn(SOUL_SAND);
+                    trait.blockToTarget(SOUL_SAND);
                     trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
                 }),
                 BiomeTraitScatter.create(trait ->
@@ -150,7 +154,7 @@ public class BiomeSoulWastes extends BiomeNetherEx
                     trait.minimumGenerationHeight(32);
                     trait.maximumGenerationHeight(120);
                     trait.blockToSpawn(NetherExBlocks.SPOUL_VINES.getDefaultState());
-                    trait.blockToSpawn(NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState());
+                    trait.blockToTarget(NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState());
                     trait.placement(BiomeTraitScatter.Placement.ON_ROOF);
                 })
         ));

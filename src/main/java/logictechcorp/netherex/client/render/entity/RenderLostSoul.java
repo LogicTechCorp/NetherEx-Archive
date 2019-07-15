@@ -17,8 +17,8 @@
 
 package logictechcorp.netherex.client.render.entity;
 
-import logictechcorp.netherex.client.model.entity.ModelMogus;
-import logictechcorp.netherex.entity.neutral.EntityMogus;
+import logictechcorp.netherex.client.model.entity.ModelLostSoul;
+import logictechcorp.netherex.entity.monster.EntityLostSoul;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -26,16 +26,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderMogus extends RenderLiving<EntityMogus>
+public class RenderLostSoul extends RenderLiving<EntityLostSoul>
 {
-    public RenderMogus(RenderManager manager)
+    public RenderLostSoul(RenderManager manager)
     {
-        super(manager, new ModelMogus(), 0.3F);
+        super(manager, new ModelLostSoul(), 0.5F);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityMogus mogus)
+    protected ResourceLocation getEntityTexture(EntityLostSoul lostSoul)
     {
-        return mogus.getType().getTexture();
+        return lostSoul.getType().getTexture();
     }
 }

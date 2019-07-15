@@ -50,6 +50,8 @@ processResources {
 }
 
 jar {
+    exclude "**/*.bat"
+    
     manifest {
         attributes([
                 'FMLAT': "netherex_at.cfg"

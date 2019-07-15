@@ -18,11 +18,11 @@
 package logictechcorp.netherex;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import com.electronwill.nightconfig.json.JsonFormat;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataAPI;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
-import logictechcorp.libraryex.config.ModJsonConfigFormat;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
@@ -88,7 +88,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
                         if(FileHelper.getFileExtension(configFile).equals("json"))
                         {
-                            FileConfig config = FileConfig.of(configFile, ModJsonConfigFormat.instance());
+                            FileConfig config = FileConfig.of(configFile, JsonFormat.fancyInstance());
                             config.load();
 
                             Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
@@ -153,7 +153,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
             for(IBiomeData biomeData : biomeDataAPI.getBiomeDataRegistry().getBiomeData().values())
             {
                 File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeData.getRelativeSaveFile());
-                FileConfig fileConfig = FileConfig.of(configFile, ModJsonConfigFormat.instance());
+                FileConfig fileConfig = FileConfig.of(configFile, JsonFormat.fancyInstance());
 
                 if(!configFile.getParentFile().mkdirs() && configFile.exists() || configFile.exists())
                 {

@@ -76,7 +76,7 @@ public class NetherExBiomes
 
         IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getBiomeDataRegistry();
         biomeDataRegistry.registerBiomeData(BiomeDataHell.INSTANCE);
-        biomeDataRegistry.registerBiomeData(NetherExBiomes.SOUL_WASTES.getBiomeData());
+        biomeDataRegistry.registerBiomeData(SOUL_WASTES.getBiomeData());
 
         if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {

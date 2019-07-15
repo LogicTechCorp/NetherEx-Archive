@@ -17,26 +17,26 @@
 
 package logictechcorp.netherex.entity.ai;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.monster.EntityGhast;
 
 import java.util.Random;
 
-public class EntityAIGhastFly extends EntityAIBase
+public class EntityAIFlyRandomly extends EntityAIBase
 {
-    private final EntityGhast ghast;
+    private final EntityLiving flying;
 
-    public EntityAIGhastFly(EntityGhast ghast)
+    public EntityAIFlyRandomly(EntityLiving flying)
     {
-        this.ghast = ghast;
+        this.flying = flying;
         this.setMutexBits(1);
     }
 
     @Override
     public boolean shouldExecute()
     {
-        EntityMoveHelper moveHelper = this.ghast.getMoveHelper();
+        EntityMoveHelper moveHelper = this.flying.getMoveHelper();
 
         if(!moveHelper.isUpdating())
         {
@@ -44,9 +44,9 @@ public class EntityAIGhastFly extends EntityAIBase
         }
         else
         {
-            double distanceX = moveHelper.getX() - this.ghast.posX;
-            double distanceY = moveHelper.getY() - this.ghast.posY;
-            double distanceZ = moveHelper.getZ() - this.ghast.posZ;
+            double distanceX = moveHelper.getX() - this.flying.posX;
+            double distanceY = moveHelper.getY() - this.flying.posY;
+            double distanceZ = moveHelper.getZ() - this.flying.posZ;
             double distanceSq = distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ;
             return distanceSq < 1.0D || distanceSq > 3600.0D;
         }
@@ -61,10 +61,10 @@ public class EntityAIGhastFly extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        Random random = this.ghast.getRNG();
-        double posX = this.ghast.posX + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double posY = this.ghast.posY + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double posZ = this.ghast.posZ + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        this.ghast.getMoveHelper().setMoveTo(posX, posY, posZ, 1.0D);
+        Random random = this.flying.getRNG();
+        double posX = this.flying.posX + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posY = this.flying.posY + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double posZ = this.flying.posZ + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        this.flying.getMoveHelper().setMoveTo(posX, posY, posZ, 1.0D);
     }
 }

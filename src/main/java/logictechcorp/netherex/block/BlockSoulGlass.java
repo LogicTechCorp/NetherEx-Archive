@@ -44,6 +44,8 @@ import java.util.Random;
 
 public class BlockSoulGlass extends BlockMod
 {
+    public static final String SHOOT_DIRECTION_KEY = NetherEx.MOD_ID + ":soul_shoot_direction";
+
     public BlockSoulGlass()
     {
         super(NetherEx.getResource("soul_glass"), new BlockProperties(Material.GLASS, MapColor.AIR).sound(SoundType.GLASS).hardness(0.3F));
@@ -106,11 +108,11 @@ public class BlockSoulGlass extends BlockMod
 
             if(!player.isPotionActive(NetherExMobEffects.SOUL_SUCKED))
             {
-                playerData.removeTag("netherex:soul_shoot_direction");
+                playerData.removeTag(SHOOT_DIRECTION_KEY);
             }
-            if(playerData.hasKey("netherex:soul_shoot_direction"))
+            if(playerData.hasKey(SHOOT_DIRECTION_KEY))
             {
-                shootDirection = EnumFacing.byIndex(playerData.getInteger("netherex:soul_shoot_direction"));
+                shootDirection = EnumFacing.byIndex(playerData.getInteger(SHOOT_DIRECTION_KEY));
             }
 
             if(player.isSneaking())
@@ -259,7 +261,7 @@ public class BlockSoulGlass extends BlockMod
 
             if(shootDirection != null)
             {
-                playerData.setInteger("netherex:soul_shoot_direction", shootDirection.getIndex());
+                playerData.setInteger(SHOOT_DIRECTION_KEY, shootDirection.getIndex());
             }
         }
     }
