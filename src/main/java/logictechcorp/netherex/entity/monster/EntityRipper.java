@@ -153,6 +153,16 @@ public class EntityRipper extends EntityMob
     }
 
     @Override
+    public void setInWeb()
+    {
+    }
+
+    @Override
+    public void setSprinting(boolean sprinting)
+    {
+    }
+
+    @Override
     public void setAttackTarget(EntityLivingBase livingEntity)
     {
         if(livingEntity != null && !livingEntity.isSneaking())

@@ -39,7 +39,7 @@ public class FloatingMovementController extends EntityMoveHelper
         {
             this.action = EntityMoveHelper.Action.WAIT;
 
-            if(!this.stickNearGround && !this.entity.hasNoGravity())
+            if(this.stickNearGround && !this.entity.hasNoGravity())
             {
                 this.entity.setNoGravity(true);
             }
@@ -69,7 +69,7 @@ public class FloatingMovementController extends EntityMoveHelper
         }
         else
         {
-            if(!this.stickNearGround && this.entity.hasNoGravity())
+            if(this.stickNearGround && this.entity.hasNoGravity())
             {
                 this.entity.setNoGravity(false);
             }

@@ -171,8 +171,8 @@ public class EntitySalamander extends EntityMob
 
     public enum Type
     {
-        ORANGE(NetherExTextures.RED_MOGUS, NetherExLootTables.RED_MOGUS),
-        BLACK(NetherExTextures.WHITE_MOGUS, NetherExLootTables.WHITE_MOGUS);
+        ORANGE(NetherExTextures.ORANGE_SALAMANDER, NetherExLootTables.ORANGE_SALAMANDER),
+        BLACK(NetherExTextures.BLACK_SALAMANDER, NetherExLootTables.BLACK_SALAMANDER);
 
         ResourceLocation texture;
         ResourceLocation lootTable;

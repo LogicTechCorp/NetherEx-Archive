@@ -190,6 +190,16 @@ public class EntityLostSoul extends EntityCreature implements IMob
         return Type.getFromOrdinal(this.dataManager.get(TYPE));
     }
 
+    @Override
+    public void setInWeb()
+    {
+    }
+
+    @Override
+    public void setSprinting(boolean sprinting)
+    {
+    }
+
     public void setType(Type type)
     {
         this.dataManager.set(TYPE, type.ordinal());
