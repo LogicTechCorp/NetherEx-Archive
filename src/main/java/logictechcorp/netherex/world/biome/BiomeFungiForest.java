@@ -20,17 +20,25 @@ package logictechcorp.netherex.world.biome;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class BiomeFungiForest extends BiomeNetherEx
 {
@@ -57,11 +65,73 @@ public class BiomeFungiForest extends BiomeNetherEx
         biomeData.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, LIVELY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, LIVELY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, LAVA);
-        biomeData.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
-                new Biome.SpawnListEntry(EntityMogus.class, 100, 4, 6),
-                new Biome.SpawnListEntry(EntitySpore.class, 25, 1, 4),
-                new Biome.SpawnListEntry(EntitySporeCreeper.class, 50, 1, 4)
+        biomeData.getBiomeTraits(GenerationStage.DECORATION).addAll(Arrays.asList(
+                BiomeTraitCluster.create(trait ->
+                {
+                    trait.generationAttempts(10);
+                    trait.randomizeGenerationAttempts(true);
+                    trait.minimumGenerationHeight(4);
+                    trait.maximumGenerationHeight(124);
+                    trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
+                    trait.direction(EnumFacing.DOWN);
+                }),
+                BiomeTraitCluster.create(trait ->
+                {
+                    trait.generationAttempts(10);
+                    trait.minimumGenerationHeight(1);
+                    trait.maximumGenerationHeight(128);
+                    trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
+                    trait.direction(EnumFacing.DOWN);
+                }),
+                BiomeTraitBigMushroom.create(trait ->
+                {
+                    trait.generationAttempts(256);
+                    trait.minimumGenerationHeight(32);
+                    trait.maximumGenerationHeight(108);
+                    trait.mushroomCap(NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.getDefaultState());
+                    trait.mushroomStem(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
+                    trait.blockToPlaceOn(HYPHAE);
+                    trait.shape(BiomeTraitBigMushroom.Shape.FLAT);
+                }),
+                BiomeTraitBigMushroom.create(trait ->
+                {
+                    trait.generationAttempts(256);
+                    trait.minimumGenerationHeight(32);
+                    trait.maximumGenerationHeight(108);
+                    trait.mushroomCap(NetherExBlocks.RED_ELDER_MUSHROOM_CAP.getDefaultState());
+                    trait.mushroomStem(NetherExBlocks.ELDER_MUSHROOM_STEM.getDefaultState());
+                    trait.blockToPlaceOn(HYPHAE);
+                    trait.shape(BiomeTraitBigMushroom.Shape.BULB);
+                }),
+                BiomeTraitEnoki.create(trait ->
+                {
+                    trait.generationAttempts(32);
+                    trait.minimumGenerationHeight(48);
+                    trait.maximumGenerationHeight(118);
+                })
         ));
+        biomeData.getBiomeTraits(GenerationStage.ORE).add(
+                BiomeTraitOre.create(trait ->
+                {
+                    trait.generationAttempts(16);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(NetherExBlocks.QUARTZ_ORE.getDefaultState());
+                    trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
+                    trait.veinSize(14);
+                })
+        );
+        biomeData.getBiomeTraits(GenerationStage.STRUCTURE).add(
+                BiomeTraitStructure.create(trait ->
+                {
+                    trait.generationAttempts(1);
+                    trait.generationProbability(0.0125D);
+                    trait.minimumGenerationHeight(32);
+                    trait.maximumGenerationHeight(118);
+                    trait.structures(Collections.singletonList(NetherEx.getResource("ghast_queen_shrine")));
+                    trait.structureType(BiomeTraitStructure.StructureType.AIR);
+                })
+        );
         return biomeData;
     }
 }

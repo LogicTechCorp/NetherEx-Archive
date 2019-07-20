@@ -29,7 +29,6 @@ import logictechcorp.netherex.village.PigtificateProfession;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.world.WorldEvent;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
@@ -72,59 +71,55 @@ final class PigtificateTradeManager implements ITradeManager
 
         if(PigtificateTradeManager.readConfigs)
         {
-            if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
+            Path path = new File(WorldHelper.getSaveDirectory(world), "/config/netherex/trades").toPath();
+            NetherEx.LOGGER.info(this.marker, "Reading Pigtificate trade configs from disk.");
+
+            try
             {
-                Path path = new File(WorldHelper.getSaveDirectory(world), "/config/netherex/trades").toPath();
-                NetherEx.LOGGER.info(this.marker, "Reading Pigtificate trade configs from disk.");
+                Files.createDirectories(path);
+                Iterator<Path> pathIter = Files.walk(path).iterator();
 
-                try
+                while(pathIter.hasNext())
                 {
-                    Files.createDirectories(path);
-                    Iterator<Path> pathIter = Files.walk(path).iterator();
+                    Path configPath = pathIter.next();
+                    File configFile = configPath.toFile();
 
-                    while(pathIter.hasNext())
+                    if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        Path configPath = pathIter.next();
-                        File configFile = configPath.toFile();
+                        FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
+                        config.load();
 
-                        if(FileHelper.getFileExtension(configFile).equals("json"))
+                        PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
+
+                        if(profession != null)
                         {
-                            FileConfig config = FileConfig.of(configFile, JsonFormat.fancyInstance());
-                            config.load();
+                            PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
 
-                            PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
-
-                            if(profession != null)
+                            if(career != null)
                             {
-                                PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
+                                List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
 
-                                if(career != null)
+                                if(tradeConfigs.size() > 0)
                                 {
-                                    List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
-
-                                    if(tradeConfigs.size() > 0)
+                                    for(Config tradeConfig : tradeConfigs)
                                     {
-                                        for(Config tradeConfig : tradeConfigs)
-                                        {
-                                            career.addTrade(new Trade(tradeConfig));
-                                        }
+                                        career.addTrade(new Trade(tradeConfig));
                                     }
                                 }
                             }
+                        }
 
-                        }
-                        else if(!configFile.isDirectory())
-                        {
-                            NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
-                        }
+                    }
+                    else if(!configFile.isDirectory())
+                    {
+                        NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
                     }
                 }
-                catch(IOException e)
-                {
-                    e.printStackTrace();
-                }
             }
-
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
             PigtificateTradeManager.readConfigs = false;
         }
     }

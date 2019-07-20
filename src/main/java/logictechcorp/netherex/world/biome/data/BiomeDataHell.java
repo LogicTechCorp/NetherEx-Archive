@@ -21,15 +21,14 @@ import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
-import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
+import logictechcorp.libraryex.world.generation.trait.*;
+import logictechcorp.netherex.NetherEx;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public final class BiomeDataHell extends BiomeData
 {
@@ -70,7 +69,6 @@ public final class BiomeDataHell extends BiomeData
                     trait.randomizeGenerationAttempts(true);
                     trait.minimumGenerationHeight(4);
                     trait.maximumGenerationHeight(124);
-                    trait.blockToSpawn(Blocks.GLOWSTONE.getDefaultState());
                     trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
                     trait.direction(EnumFacing.DOWN);
                 }),
@@ -79,7 +77,6 @@ public final class BiomeDataHell extends BiomeData
                     trait.generationAttempts(10);
                     trait.minimumGenerationHeight(1);
                     trait.maximumGenerationHeight(128);
-                    trait.blockToSpawn(Blocks.GLOWSTONE.getDefaultState());
                     trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
                     trait.direction(EnumFacing.DOWN);
                 }),
@@ -91,7 +88,9 @@ public final class BiomeDataHell extends BiomeData
                     trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
                     trait.blockToTarget(Blocks.NETHERRACK.getDefaultState());
                     trait.generateFalling(true);
-                }),
+                })
+        ));
+        this.getBiomeTraits(GenerationStage.PLANT_DECORATION).addAll(Arrays.asList(
                 BiomeTraitScatter.create(trait ->
                 {
                     trait.generationAttempts(1);
@@ -120,18 +119,29 @@ public final class BiomeDataHell extends BiomeData
                     trait.minimumGenerationHeight(10);
                     trait.maximumGenerationHeight(108);
                     trait.blockToSpawn(Blocks.QUARTZ_ORE.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
                     trait.veinSize(14);
                 }),
                 BiomeTraitOre.create(trait ->
                 {
                     trait.generationAttempts(4);
-                    trait.minimumGenerationHeight(10);
-                    trait.maximumGenerationHeight(108);
+                    trait.minimumGenerationHeight(28);
+                    trait.maximumGenerationHeight(38);
                     trait.blockToSpawn(Blocks.MAGMA.getDefaultState());
-                    trait.blockToSpawn(Blocks.NETHERRACK.getDefaultState());
+                    trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
                     trait.veinSize(32);
                 })
         ));
+        this.getBiomeTraits(GenerationStage.STRUCTURE).add(
+                BiomeTraitStructure.create(trait ->
+                {
+                    trait.generationAttempts(1);
+                    trait.generationProbability(0.125D);
+                    trait.minimumGenerationHeight(32);
+                    trait.maximumGenerationHeight(118);
+                    trait.structures(Collections.singletonList(NetherEx.getResource("pigtificate_village/tiny_pigtificate_village")));
+                    trait.structureType(BiomeTraitStructure.StructureType.GROUND);
+                })
+        );
     }
 }

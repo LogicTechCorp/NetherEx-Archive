@@ -29,68 +29,48 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelPigtificate extends ModelBiped
 {
-    public ModelRenderer head;
-    public ModelRenderer rightArm;
-    public ModelRenderer leftArm;
-    public ModelRenderer rightLeg;
-    public ModelRenderer leftLeg;
-    public ModelRenderer body;
-    public ModelRenderer robe;
-    public ModelRenderer headWear;
-    public ModelRenderer middleClosedArm;
-    public ModelRenderer snout;
-    public ModelRenderer robeFloor;
-    public ModelRenderer rightClosedArm;
-    public ModelRenderer leftClosedArm;
+    private ModelRenderer headWear;
+    private ModelRenderer head;
+    private ModelRenderer nose;
+    private ModelRenderer upperBody;
+    private ModelRenderer lowerBody;
+    private ModelRenderer rightArm;
+    private ModelRenderer leftArm;
+    private ModelRenderer rightLeg;
+    private ModelRenderer leftLeg;
 
     public ModelPigtificate()
     {
-        this.textureWidth = 64;
+        this.textureWidth = 128;
         this.textureHeight = 128;
-        this.leftArm = new ModelRenderer(this, 42, 34);
-        this.leftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.leftArm.addBox(-1.55F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.headWear = new ModelRenderer(this, 41, 0);
+        this.headWear.setRotationPoint(0.0F, -1.0F, 0.0F);
+        this.headWear.addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.5F);
         this.head = new ModelRenderer(this, 0, 0);
-        this.head.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.head.addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.0F);
-        this.body = new ModelRenderer(this, 16, 18);
-        this.body.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.body.addBox(-4.0F, 0.0F, -2.5F, 8, 12, 5, 0.0F);
-        this.rightLeg = new ModelRenderer(this, 0, 18);
-        this.rightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
-        this.rightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.rightClosedArm = new ModelRenderer(this, 32, 61);
-        this.rightClosedArm.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.rightClosedArm.addBox(-8.0F, -2.0F, -2.0F, 4, 8, 4, 0.0F);
-        this.middleClosedArm = new ModelRenderer(this, 32, 53);
-        this.middleClosedArm.setRotationPoint(0.0F, 3.0F, -0.8F);
-        this.middleClosedArm.addBox(-4.0F, 2.0F, -2.0F, 8, 4, 4, 0.0F);
-        this.setRotateAngle(this.middleClosedArm, -0.7853981633974483F, 0.0F, 0.0F);
-        this.leftClosedArm = new ModelRenderer(this, 48, 61);
-        this.leftClosedArm.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.leftClosedArm.addBox(4.0F, -2.0F, -2.0F, 4, 8, 4, 0.0F);
-        this.leftLeg = new ModelRenderer(this, 0, 34);
-        this.leftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
-        this.leftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.robe = new ModelRenderer(this, 0, 50);
-        this.robe.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.robe.addBox(-4.5F, -1.0F, -3.5F, 9, 25, 7, 0.0F);
-        this.snout = new ModelRenderer(this, 24, 0);
-        this.snout.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.snout.addBox(-2.0F, -4.0F, -5.0F, 4, 3, 1, 0.0F);
-        this.robeFloor = new ModelRenderer(this, 6, 38);
-        this.robeFloor.setRotationPoint(0.0F, 24.0F, 3.0F);
-        this.robeFloor.addBox(-4.5F, 0.0F, 0.0F, 9, 0, 12, 0.0F);
-        this.rightArm = new ModelRenderer(this, 42, 18);
-        this.rightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.rightArm.addBox(-2.45F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.headWear = new ModelRenderer(this, 32, 0);
-        this.headWear.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.headWear.addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.6F);
-        this.middleClosedArm.addChild(this.rightClosedArm);
-        this.middleClosedArm.addChild(this.leftClosedArm);
-        this.head.addChild(this.snout);
-        this.robe.addChild(this.robeFloor);
+        this.head.setRotationPoint(0.0F, -1.0F, 0.0F);
+        this.head.addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8);
+        this.nose = new ModelRenderer(this, 32, 14);
+        this.nose.setRotationPoint(0.0F, -4.0F, -4.5F);
+        this.nose.addBox(-2.0F, 0.0F, -0.5F, 4, 3, 1);
+        this.head.addChild(this.nose);
+        this.upperBody = new ModelRenderer(this, 0, 18);
+        this.upperBody.setRotationPoint(-1.0F, -1.0F, -1.0F);
+        this.upperBody.addBox(-4.0F, 0.0F, -2.0F, 10, 13, 6);
+        this.lowerBody = new ModelRenderer(this, 0, 37);
+        this.lowerBody.setRotationPoint(-1.0F, 12.0F, -1.0F);
+        this.lowerBody.addBox(-4.0F, 0.0F, -2.0F, 10, 7, 6);
+        this.rightArm = new ModelRenderer(this, 48, 21);
+        this.rightArm.setRotationPoint(7.0F, -1.0F, 0.0F);
+        this.rightArm.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4);
+        this.leftArm = new ModelRenderer(this, 32, 21);
+        this.leftArm.setRotationPoint(-7.0F, -1.0F, 0.0F);
+        this.leftArm.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4);
+        this.rightLeg = new ModelRenderer(this, 16, 50);
+        this.rightLeg.setRotationPoint(2.0F, 12.0F, 0.0F);
+        this.rightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4);
+        this.leftLeg = new ModelRenderer(this, 0, 50);
+        this.leftLeg.setRotationPoint(-2.0F, 12.0F, 0.0F);
+        this.leftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4);
     }
 
     @Override
@@ -98,14 +78,14 @@ public class ModelPigtificate extends ModelBiped
     {
         this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale, entity);
 
-        this.head.render(scale);
-        this.body.render(scale);
-        this.rightLeg.render(scale);
-        this.leftLeg.render(scale);
-        this.robe.render(scale);
         this.headWear.render(scale);
+        this.head.render(scale);
+        this.upperBody.render(scale);
+        this.lowerBody.render(scale);
         this.rightArm.render(scale);
         this.leftArm.render(scale);
+        this.leftLeg.render(scale);
+        this.rightLeg.render(scale);
     }
 
     @Override
@@ -123,7 +103,7 @@ public class ModelPigtificate extends ModelBiped
             this.head.rotateAngleX = headPitch * 0.017453292F;
         }
 
-        this.body.rotateAngleY = 0.0F;
+        this.upperBody.rotateAngleY = 0.0F;
         this.rightArm.rotationPointZ = 0.0F;
         this.rightArm.rotationPointX = -6.25F;
         this.leftArm.rotationPointZ = 0.0F;
@@ -201,20 +181,20 @@ public class ModelPigtificate extends ModelBiped
             EnumHandSide hand = this.getMainHand(entity);
             ModelRenderer modelRenderer = this.getArmForSide(hand);
             float f1 = this.swingProgress;
-            this.body.rotateAngleY = MathHelper.sin(MathHelper.sqrt(f1) * ((float) Math.PI * 2F)) * 0.2F;
+            this.upperBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt(f1) * ((float) Math.PI * 2F)) * 0.2F;
 
             if(hand == EnumHandSide.LEFT)
             {
-                this.body.rotateAngleY *= -1.0F;
+                this.upperBody.rotateAngleY *= -1.0F;
             }
 
-            this.rightArm.rotationPointZ = MathHelper.sin(this.body.rotateAngleY) * 5.0F;
-            this.rightArm.rotationPointX = -MathHelper.cos(this.body.rotateAngleY) * 5.0F;
-            this.leftArm.rotationPointZ = -MathHelper.sin(this.body.rotateAngleY) * 5.0F;
-            this.leftArm.rotationPointX = MathHelper.cos(this.body.rotateAngleY) * 5.0F;
-            this.rightArm.rotateAngleY += this.body.rotateAngleY;
-            this.leftArm.rotateAngleY += this.body.rotateAngleY;
-            this.leftArm.rotateAngleX += this.body.rotateAngleY;
+            this.rightArm.rotationPointZ = MathHelper.sin(this.upperBody.rotateAngleY) * 5.0F;
+            this.rightArm.rotationPointX = -MathHelper.cos(this.upperBody.rotateAngleY) * 5.0F;
+            this.leftArm.rotationPointZ = -MathHelper.sin(this.upperBody.rotateAngleY) * 5.0F;
+            this.leftArm.rotationPointX = MathHelper.cos(this.upperBody.rotateAngleY) * 5.0F;
+            this.rightArm.rotateAngleY += this.upperBody.rotateAngleY;
+            this.leftArm.rotateAngleY += this.upperBody.rotateAngleY;
+            this.leftArm.rotateAngleX += this.upperBody.rotateAngleY;
             f1 = 1.0F - this.swingProgress;
             f1 = f1 * f1;
             f1 = f1 * f1;
@@ -222,13 +202,13 @@ public class ModelPigtificate extends ModelBiped
             float f2 = MathHelper.sin(f1 * (float) Math.PI);
             float f3 = MathHelper.sin(this.swingProgress * (float) Math.PI) * -(this.head.rotateAngleX - 0.7F) * 0.75F;
             modelRenderer.rotateAngleX = (float) ((double) modelRenderer.rotateAngleX - ((double) f2 * 1.2D + (double) f3));
-            modelRenderer.rotateAngleY += this.body.rotateAngleY * 2.0F;
+            modelRenderer.rotateAngleY += this.upperBody.rotateAngleY * 2.0F;
             modelRenderer.rotateAngleZ += MathHelper.sin(this.swingProgress * (float) Math.PI) * -0.4F;
         }
 
         if(this.isSneak)
         {
-            this.body.rotateAngleX = 0.5F;
+            this.upperBody.rotateAngleX = 0.5F;
             this.rightArm.rotateAngleX += 0.4F;
             this.leftArm.rotateAngleX += 0.4F;
             this.rightLeg.rotationPointZ = 4.0F;
@@ -239,7 +219,7 @@ public class ModelPigtificate extends ModelBiped
         }
         else
         {
-            this.body.rotateAngleX = 0.0F;
+            this.upperBody.rotateAngleX = 0.0F;
             this.rightLeg.rotationPointZ = 0.1F;
             this.leftLeg.rotationPointZ = 0.1F;
             this.rightLeg.rotationPointY = 12.0F;
@@ -270,10 +250,22 @@ public class ModelPigtificate extends ModelBiped
         copyModelAngles(this.head, this.headWear);
     }
 
-    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+    @Override
+    protected ModelRenderer getArmForSide(EnumHandSide side)
     {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
+        return side == EnumHandSide.LEFT ? this.leftArm : this.rightArm;
+    }
+
+    @Override
+    public void setVisible(boolean visible)
+    {
+        this.headWear.showModel = visible;
+        this.head.showModel = visible;
+        this.upperBody.showModel = visible;
+        this.lowerBody.showModel = visible;
+        this.rightArm.showModel = visible;
+        this.leftArm.showModel = visible;
+        this.rightLeg.showModel = visible;
+        this.leftLeg.showModel = visible;
     }
 }

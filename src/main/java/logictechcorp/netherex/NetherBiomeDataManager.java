@@ -31,7 +31,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.logging.log4j.Marker;
@@ -72,69 +71,65 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
         if(NetherBiomeDataManager.readConfigs)
         {
-            if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
+            Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/biomes").toPath();
+            NetherEx.LOGGER.info(this.marker, "Reading Nether biome data configs from disk.");
+
+            try
             {
-                Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/biomes").toPath();
-                NetherEx.LOGGER.info(this.marker, "Reading Nether biome data configs from disk.");
+                Files.createDirectories(path);
+                Iterator<Path> pathIter = Files.walk(path).iterator();
 
-                try
+                while(pathIter.hasNext())
                 {
-                    Files.createDirectories(path);
-                    Iterator<Path> pathIter = Files.walk(path).iterator();
+                    File configFile = pathIter.next().toFile();
 
-                    while(pathIter.hasNext())
+                    if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        File configFile = pathIter.next().toFile();
+                        FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
+                        config.load();
 
-                        if(FileHelper.getFileExtension(configFile).equals("json"))
+                        Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
+
+                        if(biome != null)
                         {
-                            FileConfig config = FileConfig.of(configFile, JsonFormat.fancyInstance());
-                            config.load();
+                            IBiomeDataAPI biomeDataAPI = NetherExAPI.getInstance();
+                            IBiomeDataRegistry biomeDataRegistry = biomeDataAPI.getBiomeDataRegistry();
+                            IBiomeData biomeData;
 
-                            Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(config.get("biome")));
-
-                            if(biome != null)
+                            if(biomeDataRegistry.hasBiomeData(biome))
                             {
-                                IBiomeDataAPI biomeDataAPI = NetherExAPI.getInstance();
-                                IBiomeDataRegistry biomeDataRegistry = biomeDataAPI.getBiomeDataRegistry();
-                                IBiomeData biomeData;
-
-                                if(biomeDataRegistry.hasBiomeData(biome))
-                                {
-                                    biomeData = biomeDataRegistry.getBiomeData(biome);
-                                    biomeData.readFromConfig(biomeDataAPI, config);
-                                }
-                                else
-                                {
-                                    biomeData = new BiomeData(biome.getRegistryName());
-                                    biomeData.readFromConfig(biomeDataAPI, config);
-                                }
-
-                                if(biomeData.generateBiome())
-                                {
-                                    biomeDataRegistry.registerBiomeData(biomeData);
-                                }
-                                else
-                                {
-                                    biomeDataRegistry.unregisterBiomeData(biome);
-                                }
+                                biomeData = biomeDataRegistry.getBiomeData(biome);
+                                biomeData.readFromConfig(biomeDataAPI, config);
+                            }
+                            else
+                            {
+                                biomeData = new BiomeData(biome.getRegistryName());
+                                biomeData.readFromConfig(biomeDataAPI, config);
                             }
 
-                            config.save();
-                            config.close();
+                            if(biomeData.generateBiome())
+                            {
+                                biomeDataRegistry.registerBiomeData(biomeData);
+                            }
+                            else
+                            {
+                                biomeDataRegistry.unregisterBiomeData(biome);
+                            }
                         }
-                        else if(!configFile.isDirectory())
-                        {
-                            NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
-                        }
+
+                        config.save();
+                        config.close();
+                    }
+                    else if(!configFile.isDirectory())
+                    {
+                        NetherEx.LOGGER.warn("Skipping file located at, {}, as it is not a json file.", configFile.getPath());
                     }
                 }
-                catch(IOException e)
-                {
-                    e.printStackTrace();
-                }
             }
-
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
             NetherBiomeDataManager.readConfigs = false;
         }
     }
@@ -153,17 +148,17 @@ final class NetherBiomeDataManager implements IBiomeDataManager
             for(IBiomeData biomeData : biomeDataAPI.getBiomeDataRegistry().getBiomeData().values())
             {
                 File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeData.getRelativeSaveFile());
-                FileConfig fileConfig = FileConfig.of(configFile, JsonFormat.fancyInstance());
+                FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
 
                 if(!configFile.getParentFile().mkdirs() && configFile.exists() || configFile.exists())
                 {
-                    fileConfig.load();
-                    biomeData.readFromConfig(biomeDataAPI, fileConfig);
+                    config.load();
+                    biomeData.readFromConfig(biomeDataAPI, config);
                 }
 
-                biomeData.writeToConfig(fileConfig);
-                fileConfig.save();
-                fileConfig.close();
+                biomeData.writeToConfig(config);
+                config.save();
+                config.close();
             }
         }
     }

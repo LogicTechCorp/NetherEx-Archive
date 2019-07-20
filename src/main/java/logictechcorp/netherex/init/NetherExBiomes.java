@@ -25,7 +25,7 @@ import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.biome.BiomeArcticAbyss;
 import logictechcorp.netherex.world.biome.BiomeFungiForest;
-import logictechcorp.netherex.world.biome.BiomeSoulWastes;
+import logictechcorp.netherex.world.biome.BiomeRuthlessSands;
 import logictechcorp.netherex.world.biome.BiomeTorridWasteland;
 import logictechcorp.netherex.world.biome.data.BiomeDataBOP;
 import logictechcorp.netherex.world.biome.data.BiomeDataHell;
@@ -44,7 +44,8 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 @GameRegistry.ObjectHolder(NetherEx.MOD_ID)
 public class NetherExBiomes
 {
-    public static final BiomeSoulWastes SOUL_WASTES = InjectionHelper.nullValue();
+    //public static final BiomeSoulWastes SOUL_WASTES = InjectionHelper.nullValue();
+    public static final BiomeRuthlessSands RUTHLESS_SANDS = InjectionHelper.nullValue();
     public static final BiomeFungiForest FUNGI_FOREST = InjectionHelper.nullValue();
     public static final BiomeTorridWasteland TORRID_WASTELAND = InjectionHelper.nullValue();
     public static final BiomeArcticAbyss ARCTIC_ABYSS = InjectionHelper.nullValue();
@@ -56,7 +57,8 @@ public class NetherExBiomes
         public static void onRegisterBiomes(RegistryEvent.Register<Biome> event)
         {
             event.getRegistry().registerAll(
-                    new BiomeSoulWastes(),
+                    //new BiomeSoulWastes(),
+                    new BiomeRuthlessSands(),
                     new BiomeFungiForest(),
                     new BiomeTorridWasteland(),
                     new BiomeArcticAbyss()
@@ -66,7 +68,8 @@ public class NetherExBiomes
 
     public static void registerBiomes()
     {
-        BiomeDictionary.addTypes(SOUL_WASTES, NETHER, HOT, DRY, SANDY);
+        //BiomeDictionary.addTypes(SOUL_WASTES, NETHER, HOT, DRY, SANDY);
+        BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, COLD, WET, MUSHROOM);
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, COLD, WET);
@@ -76,7 +79,11 @@ public class NetherExBiomes
 
         IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getBiomeDataRegistry();
         biomeDataRegistry.registerBiomeData(BiomeDataHell.INSTANCE);
-        biomeDataRegistry.registerBiomeData(SOUL_WASTES.getBiomeData());
+        //biomeDataRegistry.registerBiomeData(SOUL_WASTES.getBiomeData());
+        biomeDataRegistry.registerBiomeData(RUTHLESS_SANDS.getBiomeData());
+        biomeDataRegistry.registerBiomeData(FUNGI_FOREST.getBiomeData());
+        biomeDataRegistry.registerBiomeData(TORRID_WASTELAND.getBiomeData());
+        biomeDataRegistry.registerBiomeData(ARCTIC_ABYSS.getBiomeData());
 
         if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {

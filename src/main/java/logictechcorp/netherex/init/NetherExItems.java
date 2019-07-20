@@ -122,7 +122,7 @@ public class NetherExItems
                     new ItemRimeAndSteel(),
                     new ItemMod(NetherEx.getResource("spore"), DEFAULT_ITEM_PROPERTIES),
                     new ItemMod(NetherEx.getResource("coolmar_spider_fang"), DEFAULT_ITEM_PROPERTIES),
-                    new ItemMod(NetherEx.getResource("ripper_claw"), DEFAULT_ITEM_PROPERTIES),
+                    //new ItemMod(NetherEx.getResource("ripper_claw"), DEFAULT_ITEM_PROPERTIES),
                     new ItemMod(NetherEx.getResource("ghast_queen_tear"), DEFAULT_ITEM_PROPERTIES),
                     new ItemObsidianBoat(),
                     new ItemModEdible(NetherEx.getResource("ghast_meat_raw"), (ItemEdibleProperties) new ItemEdibleProperties(4, 0.5F, false).creativeTab(NetherEx.instance.getCreativeTab())).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),

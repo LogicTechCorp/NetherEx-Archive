@@ -42,7 +42,7 @@ public class BiomeTraitGenerationHandler
     {
         World world = event.getWorld();
 
-        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
+        if(world.provider.getDimension() == DimensionType.NETHER.getId())
         {
             generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.TERRAIN_ALTERATION);
         }
@@ -53,7 +53,7 @@ public class BiomeTraitGenerationHandler
     {
         World world = event.getWorld();
 
-        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
+        if(world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == DecorateBiomeEvent.Decorate.EventType.CUSTOM)
         {
             generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.DECORATION);
             generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.PLANT_DECORATION);
@@ -65,7 +65,7 @@ public class BiomeTraitGenerationHandler
     {
         World world = event.getWorld();
 
-        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId())
+        if(world.provider.getDimension() == DimensionType.NETHER.getId())
         {
             generateBiomeTraits(event.getWorld(), event.getChunkPos().getBlock(0, 0, 0), event.getRand(), GenerationStage.STRUCTURE);
         }
@@ -76,7 +76,7 @@ public class BiomeTraitGenerationHandler
     {
         World world = event.getWorld();
 
-        if(world.getWorldType() == NetherEx.WORLD_TYPE && world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == OreGenEvent.GenerateMinable.EventType.CUSTOM)
+        if(world.provider.getDimension() == DimensionType.NETHER.getId() && event.getType() == OreGenEvent.GenerateMinable.EventType.CUSTOM)
         {
             generateBiomeTraits(event.getWorld(), event.getPos(), event.getRand(), GenerationStage.ORE);
         }

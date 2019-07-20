@@ -18,6 +18,7 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.WorldProviderNetherEx;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
@@ -34,7 +35,7 @@ public class NetherExOverrides
 
     public static void overrideNether()
     {
-        if(DimensionManager.getWorld(DimensionType.NETHER.getId()).getWorldInfo().getTerrainType() == NetherEx.WORLD_TYPE)
+        if(ConfigHandler.dimensionConfig.nether.overrideNether)
         {
             DimensionManager.unregisterDimension(-1);
             DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNetherEx.class, false);

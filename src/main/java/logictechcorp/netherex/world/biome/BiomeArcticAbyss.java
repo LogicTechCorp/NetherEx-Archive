@@ -20,6 +20,11 @@ package logictechcorp.netherex.world.biome;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitPool;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
@@ -27,9 +32,10 @@ import logictechcorp.netherex.entity.monster.EntityWight;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
@@ -61,12 +67,65 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         biomeData.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, ICY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, ICY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, MAGMA);
-        biomeData.getBiomeEntities(EnumCreatureType.MONSTER).addAll(Arrays.asList(
-                new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4),
-                new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4),
-                new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4),
-                new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4),
-                new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1)
+        biomeData.getBiomeTraits(GenerationStage.TERRAIN_ALTERATION).add(
+                BiomeTraitPool.create(trait ->
+                {
+                    trait.generationAttempts(2);
+                    trait.generationProbability(0.125);
+                    trait.minimumGenerationHeight(36);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(NetherExBlocks.ICHOR.getDefaultState());
+                    trait.blockToSurround(FROSTBURN_ICE);
+                })
+        );
+        biomeData.getBiomeTraits(GenerationStage.DECORATION).addAll(Arrays.asList(
+                BiomeTraitScatter.create(trait ->
+                {
+                    trait.generationAttempts(5);
+                    trait.randomizeGenerationAttempts(true);
+                    trait.minimumGenerationHeight(4);
+                    trait.maximumGenerationHeight(124);
+                    trait.blockToSpawn(NetherExBlocks.BLUE_FIRE.getDefaultState());
+                    trait.blockToTarget(FROSTBURN_ICE);
+                    trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
+                }),
+                BiomeTraitCluster.create(trait ->
+                {
+                    trait.generationAttempts(10);
+                    trait.randomizeGenerationAttempts(true);
+                    trait.minimumGenerationHeight(4);
+                    trait.maximumGenerationHeight(124);
+                    trait.blockToAttachTo(ICY_NETHERRACK);
+                    trait.direction(EnumFacing.DOWN);
+                }),
+                BiomeTraitCluster.create(trait ->
+                {
+                    trait.generationAttempts(10);
+                    trait.minimumGenerationHeight(1);
+                    trait.maximumGenerationHeight(128);
+                    trait.blockToAttachTo(ICY_NETHERRACK);
+                    trait.direction(EnumFacing.DOWN);
+                })
+        ));
+        biomeData.getBiomeTraits(GenerationStage.ORE).addAll(Arrays.asList(
+                BiomeTraitOre.create(trait ->
+                {
+                    trait.generationAttempts(16);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(Blocks.QUARTZ_ORE.getDefaultState());
+                    trait.blockToReplace(ICY_NETHERRACK);
+                    trait.veinSize(14);
+                }),
+                BiomeTraitOre.create(trait ->
+                {
+                    trait.generationAttempts(16);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(NetherExBlocks.RIME_ORE.getDefaultState());
+                    trait.blockToReplace(ICY_NETHERRACK);
+                    trait.veinSize(7);
+                })
         ));
         return biomeData;
     }

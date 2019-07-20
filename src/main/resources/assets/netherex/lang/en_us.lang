@@ -33,6 +33,8 @@ config.netherex:dimension.tooltip=Settings that only affect Dimensions
 
 config.netherex:dimension.nether=Nether Dimension Settings
 config.netherex:dimension.nether.tooltip=Settings that only affect the Nether Dimension
+config.netherex:dimension.nether.overrideNether=Override Nether
+config.netherex:dimension.nether.overrideNether.tooltip=Whether or not NetherEx overrides the Nether
 config.netherex:dimension.nether.generateSoulSand=Generate Soul Sand
 config.netherex:dimension.nether.generateSoulSand.tooltip=Do Soul Sand platforms generate in the Nether
 config.netherex:dimension.nether.generateGravel=Generate Gravel

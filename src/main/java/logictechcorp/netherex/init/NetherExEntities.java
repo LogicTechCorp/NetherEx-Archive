@@ -60,8 +60,8 @@ public class NetherExEntities
         registerEntity("ember", EntityEmber.class, entityId++, 16711680, 16762880);
         registerEntity("nethermite", EntityNethermite.class, entityId++, 3344642, 8992279);
         registerEntity("spinout", EntitySpinout.class, entityId++, 3279879, 15724527);
-        registerEntity("lost_soul", EntityLostSoul.class, entityId++, 16382457, 13750221);
-        registerEntity("ripper", EntityRipper.class, entityId++, 16711680, 5576214);
+        //registerEntity("lost_soul", EntityLostSoul.class, entityId++, 16382457, 13750221);
+        //registerEntity("ripper", EntityRipper.class, entityId++, 16711680, 5576214);
 
         registerEntity("spore_creeper", EntitySporeCreeper.class, entityId++, 5576214, 15721297);
         registerEntity("spore", EntitySpore.class, entityId++, 15721297, 5576214);

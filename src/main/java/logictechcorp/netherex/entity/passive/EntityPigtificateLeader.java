@@ -34,8 +34,6 @@ public class EntityPigtificateLeader extends EntityPigtificate
     public EntityPigtificateLeader(World world)
     {
         super(world);
-        this.setProfession(NetherExPigtificates.LEADER);
-        this.setCareer(NetherExPigtificates.LEADER.getRandomCareer(this.rand));
     }
 
     @Override
@@ -61,5 +59,12 @@ public class EntityPigtificateLeader extends EntityPigtificate
     public boolean isWillingToMate(boolean updateFirst)
     {
         return false;
+    }
+
+    @Override
+    public void setRandomProfessionAndCareer()
+    {
+        this.setProfession(NetherExPigtificates.LEADER);
+        this.setCareer(this.getProfession().getRandomCareer(this.rand));
     }
 }

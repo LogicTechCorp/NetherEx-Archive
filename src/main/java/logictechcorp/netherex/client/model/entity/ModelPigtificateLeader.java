@@ -20,7 +20,6 @@ package logictechcorp.netherex.client.model.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,7 +33,7 @@ public class ModelPigtificateLeader extends ModelBase
     private ModelRenderer leftLeg;
     private ModelRenderer torso;
     private ModelRenderer gem;
-    private ModelRenderer mouth;
+    private ModelRenderer jaw;
     private ModelRenderer head;
     private ModelRenderer earringsTeeth;
     private ModelRenderer snout;
@@ -58,9 +57,9 @@ public class ModelPigtificateLeader extends ModelBase
         this.gem = new ModelRenderer(this, 80, 123);
         this.gem.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.gem.addBox(-2.0F, 8.0F, -11.0F, 4, 3, 2, 0.0F);
-        this.mouth = new ModelRenderer(this, 0, 59);
-        this.mouth.setRotationPoint(0.0F, -10.5F, 6.5F);
-        this.mouth.addBox(-4.5F, 0.0F, -5.5F, 9, 2, 11, 0.0F);
+        this.jaw = new ModelRenderer(this, 0, 59);
+        this.jaw.setRotationPoint(0.0F, -10.5F, 6.5F);
+        this.jaw.addBox(-4.5F, 0.0F, -5.5F, 9, 2, 11, 0.0F);
         this.earringsTeeth = new ModelRenderer(this, 0, 25);
         this.earringsTeeth.setRotationPoint(0.0F, 0.0F, 1.0F);
         this.earringsTeeth.addBox(-7.0F, -4.0F, -6.0F, 14, 4, 6, 0.0F);
@@ -101,10 +100,10 @@ public class ModelPigtificateLeader extends ModelBase
         this.setRotationAngles(this.rightHorn, 0.0F, 0.0F, -0.4363323129985824F);
         this.stomach.addChild(this.torso);
         this.stomach.addChild(this.gem);
-        this.torso.addChild(this.mouth);
-        this.mouth.addChild(this.earringsTeeth);
+        this.torso.addChild(this.jaw);
+        this.jaw.addChild(this.earringsTeeth);
         this.head.addChild(this.crown);
-        this.mouth.addChild(this.head);
+        this.jaw.addChild(this.head);
         this.head.addChild(this.snout);
         this.head.addChild(this.leftHorn);
         this.head.addChild(this.rightHorn);
@@ -123,20 +122,8 @@ public class ModelPigtificateLeader extends ModelBase
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netheadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        this.mouth.rotateAngleY = netheadYaw * 0.017453292F;
-        this.mouth.rotateAngleX = headPitch * 0.017453292F;
-
-        this.rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
-        this.leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
-        this.rightArm.rotateAngleZ = 0.0F;
-        this.leftArm.rotateAngleZ = 0.0F;
-
-        this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 1.0F;
-        this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 1.0F;
-        this.rightLeg.rotateAngleY = 0.0F;
-        this.leftLeg.rotateAngleY = 0.0F;
-        this.rightLeg.rotateAngleZ = 0.0F;
-        this.leftLeg.rotateAngleZ = 0.0F;
+        this.jaw.rotateAngleY = netheadYaw * 0.017453292F;
+        this.jaw.rotateAngleX = headPitch * 0.017453292F;
     }
 
     public void setRotationAngles(ModelRenderer modelRenderer, float x, float y, float z)

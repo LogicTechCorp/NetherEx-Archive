@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.world.biome.design;
 
-import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.generation.layer.GenLayerNetherBiome;
 import logictechcorp.netherex.world.generation.layer.GenLayerNetherSubBiome;
 import net.minecraft.crash.CrashReport;
@@ -25,6 +24,7 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.*;
@@ -34,7 +34,7 @@ public class BiomeProviderNetherEx extends BiomeProvider
     public BiomeProviderNetherEx(World world)
     {
         super();
-        GenLayer[] genLayers = this.createGenLayers(world.getSeed());
+        GenLayer[] genLayers = this.createGenLayers(world.getWorldType(), world.getSeed());
         this.genBiomes = genLayers[0];
         this.biomeIndexLayer = genLayers[1];
     }
@@ -73,7 +73,7 @@ public class BiomeProviderNetherEx extends BiomeProvider
         }
     }
 
-    private GenLayer[] createGenLayers(long worldSeed)
+    private GenLayer[] createGenLayers(WorldType worldType, long worldSeed)
     {
         GenLayer baseLayer = new GenLayerIsland(1L);
         GenLayer biomeLayer = new GenLayerNetherBiome(200L, baseLayer);
@@ -81,7 +81,7 @@ public class BiomeProviderNetherEx extends BiomeProvider
         biomeLayer = GenLayerZoom.magnify(1000L, biomeLayer, 2);
         subBiomeLayer = GenLayerZoom.magnify(1000L, subBiomeLayer, 2);
         baseLayer = new GenLayerNetherSubBiome(1000L, biomeLayer, subBiomeLayer);
-        baseLayer = GenLayerZoom.magnify(1000L, baseLayer, GenLayer.getModdedBiomeSize(NetherEx.WORLD_TYPE, 3));
+        baseLayer = GenLayerZoom.magnify(1000L, baseLayer, GenLayer.getModdedBiomeSize(worldType, 3));
         baseLayer = new GenLayerSmooth(1000L, baseLayer);
         GenLayer zoomedLayer = new GenLayerVoronoiZoom(10L, baseLayer);
         baseLayer.initWorldGenSeed(worldSeed);

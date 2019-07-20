@@ -27,7 +27,6 @@ import logictechcorp.netherex.api.internal.iface.INetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
-import logictechcorp.netherex.world.WorldTypeNetherEx;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -54,9 +53,7 @@ public class NetherEx implements IModData, INetherExAPI
 
     public static final String MOD_ID = "netherex";
 
-    public static final WorldTypeNetherEx WORLD_TYPE = new WorldTypeNetherEx();
     public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
-    public static final boolean LOST_CITIES_LOADED = Loader.isModLoaded("lostcities");
 
     @Mod.Instance(MOD_ID)
     public static NetherEx instance;
