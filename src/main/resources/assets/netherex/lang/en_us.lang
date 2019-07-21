@@ -7,11 +7,13 @@ language.code=en_us
 config.netherex=NetherEx Config
 
 config.netherex:internal=Internal Settings
-config.netherex:internal.tooltip=Settings that only affect Internal functions
-config.netherex:internal.recipes=Internal Recipe Settings
-config.netherex:internal.recipes.tooltip=Settings that only affect Internal Recipe functions
-config.netherex:internal.recipes.writeRecipesToGlobalConfigFolder=Write Recipes To Global Config Folder
-config.netherex:internal.recipes.writeRecipesToGlobalConfigFolder.tooltip=Whether or not Recipes are written to the global config folder
+config.netherex:internal.tooltip=Settings that are used internally
+config.netherex:internal.doNotChange=Do Not Change
+config.netherex:internal.doNotChange.tooltip=Settings that should not be changed by players
+config.netherex:internal.doNotChange.warnBreakingChanges=Warn Breaking Changes
+config.netherex:internal.doNotChange.warnBreakingChanges.tooltip=Whether or not breaking changes are displayed
+config.netherex:internal.doNotChange.configVersion=Config Version
+config.netherex:internal.doNotChange.configVersion.tooltip=The config version number
 
 config.netherex:client=Client Settings
 config.netherex:client.tooltip=Settings that only affect the Client
@@ -83,26 +85,26 @@ config.netherex:block.hyphae.tooltip=Settings that only affect Hyphae
 config.netherex:block.hyphae.shouldSpread=Should Hyphae Spread
 config.netherex:block.hyphae.shouldSpread.tooltip=Should Hyphae spread to Lively Netherrack
 
-config.netherex:potionEffect=Potion Effect Settings
-config.netherex:potionEffect.tooltip=Settings that only affect Potion Effects
-config.netherex:potionEffect.freeze=Freeze Effect Settings
-config.netherex:potionEffect.freeze.tooltip=Settings that only affect the Freeze Effect
-config.netherex:potionEffect.freeze.thawRarity=Thaw Rarity
-config.netherex:potionEffect.freeze.thawRarity.tooltip=How rare it is for a mob to Thaw from the Freeze Effect when ticked
-config.netherex:potionEffect.freeze.mobBlacklist=Mob Blacklist
-config.netherex:potionEffect.freeze.mobBlacklist.tooltip=Mobs that won't freeze
+config.netherex:mobEffect=Mob Effect Settings
+config.netherex:mobEffect.tooltip=Settings that only affect Mob Effects
+config.netherex:mobEffect.freeze=Freeze Effect Settings
+config.netherex:mobEffect.freeze.tooltip=Settings that only affect the Freeze Effect
+config.netherex:mobEffect.freeze.thawRarity=Thaw Rarity
+config.netherex:mobEffect.freeze.thawRarity.tooltip=How rare it is for a mob to Thaw from the Freeze Effect when ticked
+config.netherex:mobEffect.freeze.mobBlacklist=Mob Blacklist
+config.netherex:mobEffect.freeze.mobBlacklist.tooltip=Mobs that won't freeze
 
-config.netherex:potionEffect.spore=Spore Effect Settings
-config.netherex:potionEffect.spore.tooltip=Settings that only affect the Spore Effect
-config.netherex:potionEffect.spore.sporeSpawnRarity=Spore Spawn Rarity
-config.netherex:potionEffect.spore.sporeSpawnRarity.tooltip=How rare it is for a Spore to spawn from an entity with the Spore Effect
-config.netherex:potionEffect.spore.mobBlacklist=Mob Blacklist
-config.netherex:potionEffect.spore.mobBlacklist.tooltip=Mobs that won't spawn Spores
+config.netherex:mobEffect.spore=Spore Effect Settings
+config.netherex:mobEffect.spore.tooltip=Settings that only affect the Spore Effect
+config.netherex:mobEffect.spore.sporeSpawnRarity=Spore Spawn Rarity
+config.netherex:mobEffect.spore.sporeSpawnRarity.tooltip=How rare it is for a Spore to spawn from an entity with the Spore Effect
+config.netherex:mobEffect.spore.mobBlacklist=Mob Blacklist
+config.netherex:mobEffect.spore.mobBlacklist.tooltip=Mobs that won't spawn Spores
 
-config.netherex:potionEffect.lost=Lost Effect Settings
-config.netherex:potionEffect.lost.tooltip=Settings that only affect the Lost Effect
-config.netherex:potionEffect.lost.ghastlingSpawnRarity=Ghastling Spawn Rarity
-config.netherex:potionEffect.lost.ghastlingSpawnRarity.tooltip=How rare it is for a Ghastling to spawn from an entity with the Lost Effect
+config.netherex:mobEffect.lost=Lost Effect Settings
+config.netherex:mobEffect.lost.tooltip=Settings that only affect the Lost Effect
+config.netherex:mobEffect.lost.ghastlingSpawnRarity=Ghastling Spawn Rarity
+config.netherex:mobEffect.lost.ghastlingSpawnRarity.tooltip=How rare it is for a Ghastling to spawn from an entity with the Lost Effect
 
 config.netherex:entity=Entity Settings
 config.netherex:entity.tooltip=Settings that only affect Entities
@@ -171,6 +173,16 @@ config.netherex:biome.arcticAbyss.canPlayersFreeze=Can Players Freeze
 config.netherex:biome.arcticAbyss.canPlayersFreeze.tooltip=Whether or not Players can freeze in the Arctic Abyss biome
 config.netherex:biome.arcticAbyss.mobFreezeRarity=Mob Freeze Rarity
 config.netherex:biome.arcticAbyss.mobFreezeRarity.tooltip=How rare it is for a mob to freeze in the Arctic Abyss biome
+
+# Messages
+information.netherex:breaking_changes.1=NetherEx has changed the location in which biome and trade configs are saved.
+information.netherex:breaking_changes.2=They are now located in the world save folder.
+information.netherex:breaking_changes.3=Any changes applied to previous configs need to be reapplied.
+information.netherex:breaking_changes.4=Things to note:
+information.netherex:breaking_changes.5=NetherEx has changed mod id from "nex" to "netherex".
+information.netherex:breaking_changes.6=NetherEx items and blocks have been flattened.
+information.netherex:breaking_changes.7=If you don't understand the above, or didn't modify biome/trade configs,
+information.netherex:breaking_changes.8=this message can be ignored without issues.
 
 # Creative Tabs
 itemGroup.netherex=NetherEx
@@ -259,8 +271,6 @@ fluid.netherex:blood.name=Ichor
 generator.netherex:netherex=NetherEx
 
 # Guis
-gui.netherex:create_world.customize.lost_cities=Customize Lost Cities
-gui.netherex:create_world.customize.biomes_o_plenty=Customize Biomes O' Plenty
 gui.netherex:select_world.reset=Reset
 gui.netherex:select_world.reset_nether=Reset Nether
 gui.netherex:select_world.reset_nether_question=Are you sure you want to reset the Nether for %s?

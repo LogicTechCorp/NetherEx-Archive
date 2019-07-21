@@ -34,7 +34,6 @@ import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
@@ -113,7 +112,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
                     trait.generationAttempts(16);
                     trait.minimumGenerationHeight(10);
                     trait.maximumGenerationHeight(108);
-                    trait.blockToSpawn(Blocks.QUARTZ_ORE.getDefaultState());
+                    trait.blockToSpawn(NetherExBlocks.QUARTZ_ORE.getDefaultState());
                     trait.blockToReplace(ICY_NETHERRACK);
                     trait.veinSize(14);
                 }),

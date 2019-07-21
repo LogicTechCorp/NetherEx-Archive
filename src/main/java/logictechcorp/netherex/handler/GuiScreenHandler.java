@@ -18,12 +18,16 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.client.gui.GuiBreakingChanges;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldSummary;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
@@ -39,6 +43,19 @@ public class GuiScreenHandler
 {
     private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
     private static GuiButton resetNetherButton;
+
+    @SubscribeEvent
+    public static void onGuiOpen(GuiOpenEvent event)
+    {
+        GuiScreen gui = event.getGui();
+
+        if(ConfigHandler.internalConfig.doNotChange.warnBreakingChanges && gui instanceof GuiMainMenu)
+        {
+            event.setGui(new GuiBreakingChanges((GuiMainMenu) gui));
+            ConfigHandler.internalConfig.doNotChange.warnBreakingChanges = false;
+            MinecraftForge.EVENT_BUS.post(new ConfigChangedEvent.OnConfigChangedEvent(NetherEx.MOD_ID, NetherEx.NAME, false, false));
+        }
+    }
 
     @SubscribeEvent
     public static void onInitGuiPost(GuiScreenEvent.InitGuiEvent.Post event)

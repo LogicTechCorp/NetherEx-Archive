@@ -86,7 +86,7 @@ public class BlockRime extends BlockMod
 
         for(EntityLivingBase entity : entities)
         {
-            boolean canFreeze = !(entity instanceof EntityPlayer) && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.freeze.mobBlacklist, EntityHelper.getEntityLocation(entity));
+            boolean canFreeze = !(entity instanceof EntityPlayer) && !CollectionHelper.contains(ConfigHandler.mobEffectConfig.freeze.mobBlacklist, EntityHelper.getEntityLocation(entity));
 
             if(canFreeze && ConfigHandler.blockConfig.rime.canFreezeMobs)
             {

@@ -24,7 +24,6 @@ import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.api.internal.iface.INetherExAPI;
-import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -47,11 +46,10 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData, INetherExAPI
 {
-    static final String NAME = "NetherEx";
-    static final String VERSION = "2.0.9";
-    static final String DEPENDENCIES = "required-after:libraryex@[1.0.9,);";
-
     public static final String MOD_ID = "netherex";
+    public static final String NAME = "NetherEx";
+    public static final String VERSION = "2.0.9";
+    public static final String DEPENDENCIES = "required-after:libraryex@[1.0.9,);";
 
     public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
 
@@ -121,12 +119,6 @@ public class NetherEx implements IModData, INetherExAPI
     public CreativeTabs getCreativeTab()
     {
         return CREATIVE_TAB;
-    }
-
-    @Override
-    public boolean writeRecipesToJson()
-    {
-        return ConfigHandler.internalConfig.recipes.writeRecipesToGlobalConfigFolder;
     }
 
     @Override

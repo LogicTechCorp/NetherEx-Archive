@@ -69,7 +69,7 @@ public class MobEffectFrozen extends MobEffectMod
                 {
                     entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
                 }
-                if(world.rand.nextInt(ConfigHandler.potionEffectConfig.freeze.thawRarity) == 0)
+                if(world.rand.nextInt(ConfigHandler.mobEffectConfig.freeze.thawRarity) == 0)
                 {
                     entity.removePotionEffect(this);
                 }
@@ -107,6 +107,6 @@ public class MobEffectFrozen extends MobEffectMod
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);
-        return entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.potionEffectConfig.freeze.mobBlacklist, entityRegistryName);
+        return entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.mobEffectConfig.freeze.mobBlacklist, entityRegistryName);
     }
 }

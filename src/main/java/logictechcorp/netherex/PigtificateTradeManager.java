@@ -71,7 +71,7 @@ final class PigtificateTradeManager implements ITradeManager
 
         if(PigtificateTradeManager.readConfigs)
         {
-            Path path = new File(WorldHelper.getSaveDirectory(world), "/config/netherex/trades").toPath();
+            Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/trades").toPath();
             NetherEx.LOGGER.info(this.marker, "Reading Pigtificate trade configs from disk.");
 
             try

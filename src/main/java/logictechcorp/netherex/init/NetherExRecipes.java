@@ -19,7 +19,6 @@ package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.utility.RecipeHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -264,8 +263,6 @@ public class NetherExRecipes
                     RecipeHelper.addFilledCrossRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_WITHER_BONE, 3), Items.BLAZE_POWDER, NetherExItems.WITHER_BONE),
                     RecipeHelper.addFilledCrossRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_WITHER_BONE, 3), NetherExItems.FROST_ROD, NetherExItems.WITHER_BONE)
             );
-
-            ConfigHandler.internalConfig.recipes.writeRecipesToGlobalConfigFolder = false;
         }
     }
 }

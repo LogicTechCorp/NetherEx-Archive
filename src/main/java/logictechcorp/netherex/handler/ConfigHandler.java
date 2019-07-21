@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config.LangKey("config." + NetherEx.MOD_ID + ":title")
-@Config(modid = NetherEx.MOD_ID, name = "NetherEx/" + NetherEx.MOD_ID, category = "netherex")
+@Config(modid = NetherEx.MOD_ID, name = NetherEx.MOD_ID, category = "global")
 public class ConfigHandler
 {
     @Config.Name("internal")
@@ -48,9 +48,9 @@ public class ConfigHandler
     @Config.LangKey("config." + NetherEx.MOD_ID + ":block")
     public static BlockConfig blockConfig = new BlockConfig();
 
-    @Config.Name("potion_effect")
-    @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect")
-    public static PotionEffectConfig potionEffectConfig = new PotionEffectConfig();
+    @Config.Name("mob_effect")
+    @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect")
+    public static MobEffectConfig mobEffectConfig = new MobEffectConfig();
 
     @Config.Name("entity")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":entity")
@@ -62,14 +62,18 @@ public class ConfigHandler
 
     public static class InternalConfig
     {
-        @Config.Name("recipes")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.recipes")
-        public Recipes recipes = new Recipes();
+        @Config.Name("do_not_change")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.doNotChange")
+        public DoNotChange doNotChange = new DoNotChange();
 
-        public class Recipes
+        public class DoNotChange
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.recipes.writeRecipesToGlobalConfigFolder")
-            public boolean writeRecipesToGlobalConfigFolder = false;
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.doNotChange.warnBreakingChanges")
+            public boolean warnBreakingChanges = true;
+
+            @Config.RangeInt(min = 1, max = 1)
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.doNotChange.configVersion")
+            public int configVersion = 1;
         }
     }
 
@@ -208,7 +212,7 @@ public class ConfigHandler
         }
     }
 
-    public static class PotionEffectConfig
+    public static class MobEffectConfig
     {
         @Config.Name("freeze")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze")
