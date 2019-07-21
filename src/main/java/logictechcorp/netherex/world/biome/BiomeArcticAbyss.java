@@ -28,12 +28,11 @@ import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
+import logictechcorp.netherex.entity.monster.EntityFrost;
 import logictechcorp.netherex.entity.monster.EntityWight;
 import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
@@ -49,8 +48,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
         super(NetherEx.instance, new BiomeProperties("Arctic Abyss").setTemperature(0.0F).setRainfall(0.0F).setRainDisabled(), "arctic_abyss");
         this.topBlock = FROSTBURN_ICE;
         this.fillerBlock = ICY_NETHERRACK;
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGhast.class, 50, 1, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityPigZombie.class, 25, 1, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityFrost.class, 10, 1, 3));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityCoolmarSpider.class, 35, 1, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWight.class, 100, 1, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBrute.class, 15, 1, 1));

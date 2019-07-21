@@ -46,7 +46,7 @@ public class ItemFlatteningFixer implements IFixableData
             .put("nex:block_basalt.2", "netherex:basalt_brick")
             .put("nex:block_basalt.3", "netherex:basalt_pillar")
             .put("nex:block_hyphae.0", "netherex:hyphae")
-            .put("nex:block_sand_soul_tilled.0", "netherex:tilled_soul_sand")
+            .put("nex:block_sand_soul_tilled.0", "minecraft:soul_sand")
             .put("nex:block_glass_soul.0", "netherex:soul_glass")
             .put("nex:block_glass_pane_soul.0", "netherex:soul_glass_pane")
             .put("nex:block_amethyst.0", "netherex:amethyst_block")
