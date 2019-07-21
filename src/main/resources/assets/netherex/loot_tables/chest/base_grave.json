@@ -70,13 +70,13 @@
                 {
                     "type": "item",
                     "weight": 10,
-                    "name": "netherex:nether_brick",
+                    "name": "netherex:gloomy_nether_brick",
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 16
+                                "max": 6
                             }
                         }
                     ]
@@ -154,16 +154,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "netherex:quartz_ore",
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 8
-                            }
-                        }
-                    ]
+                    "name": "minecraft:quartz_ore"
                 },
                 {
                     "type": "item",
@@ -213,7 +204,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "netherex:salamander_hide",
+                    "name": "netherex:orange_salamander_hide",
                     "functions": [
                         {
                             "function": "set_count",

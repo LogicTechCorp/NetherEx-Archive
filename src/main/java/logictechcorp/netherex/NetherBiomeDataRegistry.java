@@ -33,7 +33,7 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
     static final IBiomeDataRegistry INSTANCE = new NetherBiomeDataRegistry();
 
     private final Map<ResourceLocation, IBiomeData> biomeData;
-    private final Map<IBiomeData, BiomeManager.BiomeEntry> biomeEntries;
+    private final Map<ResourceLocation, BiomeManager.BiomeEntry> biomeEntries;
 
     private NetherBiomeDataRegistry()
     {
@@ -44,21 +44,18 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
     @Override
     public void registerBiomeData(IBiomeData biomeData)
     {
-        if(biomeData == null || biomeData.getBiome() == null)
+        if(biomeData != null && biomeData.getBiome() != null)
         {
-            return;
-        }
+            Biome biome = biomeData.getBiome();
+            ResourceLocation biomeRegistryName = biome.getRegistryName();
 
-        Biome biome = biomeData.getBiome();
-        ResourceLocation biomeRegistryName = biome.getRegistryName();
-
-        if(!this.biomeData.containsKey(biomeRegistryName))
-        {
-            this.biomeData.put(biomeRegistryName, biomeData);
-
+            if(!this.biomeData.containsKey(biomeRegistryName))
+            {
+                this.biomeData.put(biomeRegistryName, biomeData);
+            }
             if(!biomeData.isSubBiomeData())
             {
-                this.biomeEntries.put(biomeData, new BiomeManager.BiomeEntry(biome, biomeData.getBiomeGenerationWeight()));
+                this.biomeEntries.put(biomeRegistryName, new BiomeManager.BiomeEntry(biome, biomeData.getBiomeGenerationWeight()));
             }
         }
     }
@@ -66,17 +63,11 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
     @Override
     public void unregisterBiomeData(Biome biome)
     {
-        ResourceLocation biomeRegistryName = biome.getRegistryName();
-        IBiomeData biomeData = this.biomeData.get(biomeRegistryName);
-
-        if(biomeData != null)
+        if(biome != null)
         {
-            this.biomeEntries.remove(biomeData);
-
-            if(!biomeData.isSubBiomeData())
-            {
-                this.biomeData.remove(biomeRegistryName);
-            }
+            ResourceLocation biomeRegistryName = biome.getRegistryName();
+            this.biomeData.remove(biomeRegistryName);
+            this.biomeEntries.remove(biomeRegistryName);
         }
     }
 
@@ -99,7 +90,7 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
     }
 
     @Override
-    public Map<IBiomeData, BiomeManager.BiomeEntry> getBiomeEntries()
+    public Map<ResourceLocation, BiomeManager.BiomeEntry> getBiomeEntries()
     {
         return Collections.unmodifiableMap(this.biomeEntries);
     }

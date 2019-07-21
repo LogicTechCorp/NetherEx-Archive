@@ -65,7 +65,7 @@ public final class NetherBiomeDataRegistryStub implements IBiomeDataRegistry
     }
 
     @Override
-    public Map<IBiomeData, BiomeManager.BiomeEntry> getBiomeEntries()
+    public Map<ResourceLocation, BiomeManager.BiomeEntry> getBiomeEntries()
     {
         return new HashMap<>();
     }

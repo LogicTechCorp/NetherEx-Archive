@@ -99,13 +99,13 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                             if(biomeDataRegistry.hasBiomeData(biome))
                             {
                                 biomeData = biomeDataRegistry.getBiomeData(biome);
-                                biomeData.readFromConfig(biomeDataAPI, config);
                             }
                             else
                             {
                                 biomeData = new BiomeData(biome.getRegistryName());
-                                biomeData.readFromConfig(biomeDataAPI, config);
                             }
+
+                            biomeData.readFromConfig(biomeDataAPI, config);
 
                             if(biomeData.generateBiome())
                             {

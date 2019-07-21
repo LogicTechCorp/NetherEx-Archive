@@ -23,6 +23,7 @@ import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.*;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -121,6 +122,15 @@ public final class BiomeDataHell extends BiomeData
                     trait.blockToSpawn(Blocks.QUARTZ_ORE.getDefaultState());
                     trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
                     trait.veinSize(14);
+                }),
+                BiomeTraitOre.create(trait ->
+                {
+                    trait.generationAttempts(8);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(NetherExBlocks.AMETHYST_ORE.getDefaultState());
+                    trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
+                    trait.veinSize(7);
                 }),
                 BiomeTraitOre.create(trait ->
                 {

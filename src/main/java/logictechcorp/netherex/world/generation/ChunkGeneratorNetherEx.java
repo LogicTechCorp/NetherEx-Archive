@@ -488,7 +488,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
         if(this.generateStructures)
         {
-            if(biomeData.getBiome() == Biomes.HELL)
+            if(biomeData != null && biomeData.getBiome() == Biomes.HELL)
             {
                 this.netherFortress.generate(this.world, chunkX, chunkZ, null);
             }

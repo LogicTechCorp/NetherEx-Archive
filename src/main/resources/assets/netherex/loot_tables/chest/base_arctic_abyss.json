@@ -29,13 +29,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "netherex:gem",
-                    "functions": [
-                        {
-                            "function": "minecraft:set_data",
-                            "data": 1
-                        }
-                    ]
+                    "name": "netherex:rime_crystal"
                 },
                 {
                     "type": "item",

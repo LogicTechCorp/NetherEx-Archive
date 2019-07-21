@@ -34,7 +34,7 @@
                 {
                     "type": "item",
                     "weight": 2,
-                    "name": "netherex:salamander_hide",
+                    "name": "netherex:orange_salamander_hide",
                     "functions": [
                         {
                             "function": "set_count",

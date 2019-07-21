@@ -34,7 +34,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "netherex:quartz_ore",
+                    "name": "minecraft:quartz_ore",
                     "functions": [
                         {
                             "function": "set_count",
