@@ -333,15 +333,18 @@ public class BlockBlueFire extends BlockMod
         }
         else if(entity instanceof EntityLivingBase)
         {
-            if(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight > ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight)
+            if(!entity.isImmuneToFire())
             {
-                int temp = ConfigHandler.blockConfig.blueFire.minEntityTicksAlight;
-                ConfigHandler.blockConfig.blueFire.minEntityTicksAlight = ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight;
-                ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
-            }
+                if(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight > ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight)
+                {
+                    int temp = ConfigHandler.blockConfig.blueFire.minEntityTicksAlight;
+                    ConfigHandler.blockConfig.blueFire.minEntityTicksAlight = ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight;
+                    ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
+                }
 
-            int ticks = RandomHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
-            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FIRE_BURNING, ticks));
+                int ticks = RandomHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
+                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FIRE_BURNING, ticks));
+            }
         }
     }
 

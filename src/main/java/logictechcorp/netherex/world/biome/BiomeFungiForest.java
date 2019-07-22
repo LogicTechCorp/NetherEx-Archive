@@ -130,6 +130,7 @@ public class BiomeFungiForest extends BiomeNetherEx
                     trait.maximumGenerationHeight(118);
                     trait.structures(Collections.singletonList(NetherEx.getResource("ghast_queen_shrine")));
                     trait.structureType(BiomeTraitStructure.StructureType.AIR);
+                    trait.clearancePercentage(1.0D);
                 })
         );
         return biomeData;
