@@ -44,9 +44,9 @@ public class BiomeTorridWasteland extends BiomeNetherEx
         super(NetherEx.instance, new BiomeProperties("Torrid Wasteland").setTemperature(4.0F).setRainfall(0.0F).setRainDisabled(), "torrid_wasteland");
         this.topBlock = FIERY_NETHERRACK;
         this.fillerBlock = FIERY_NETHERRACK;
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 25, 1, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEmber.class, 50, 4, 6));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMagmaCube.class, 30, 1, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEmber.class, 25, 1, 3));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySalamander.class, 100, 1, 2));
     }
 
     @Override
