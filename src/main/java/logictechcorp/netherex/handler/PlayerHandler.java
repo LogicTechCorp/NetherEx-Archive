@@ -129,7 +129,6 @@ public class PlayerHandler
     {
         EntityPlayer oldPlayer = event.getOriginal();
         EntityPlayer newPlayer = event.getEntityPlayer();
-        World world = newPlayer.getEntityWorld();
         IInventory oldInventory = oldPlayer.inventory;
         IInventory newInventory = newPlayer.inventory;
 
@@ -143,7 +142,9 @@ public class PlayerHandler
 
                 if(stack.getItem() == NetherExItems.DULL_MIRROR)
                 {
-                    if(stack.getItemDamage() < (stack.getMaxDamage() - 1))
+                    NBTHelper.ensureTagExists(stack);
+
+                    if(stack.getTagCompound().hasKey("SpawnPoint") && (stack.getItemDamage() < (stack.getMaxDamage() - 1)))
                     {
                         stack.damageItem(1, newPlayer);
                     }

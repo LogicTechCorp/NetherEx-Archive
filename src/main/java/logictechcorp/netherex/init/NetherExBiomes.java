@@ -20,6 +20,9 @@ package logictechcorp.netherex.init;
 import logictechcorp.libraryex.api.LibraryExAPI;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.libraryex.utility.InjectionHelper;
+import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.handler.ConfigHandler;
@@ -31,6 +34,7 @@ import logictechcorp.netherex.world.biome.data.BiomeDataBOP;
 import logictechcorp.netherex.world.biome.data.BiomeDataHell;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -38,6 +42,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.Collections;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
@@ -84,6 +90,29 @@ public class NetherExBiomes
         biomeDataRegistry.registerBiomeData(FUNGI_FOREST.getBiomeData());
         biomeDataRegistry.registerBiomeData(TORRID_WASTELAND.getBiomeData());
         biomeDataRegistry.registerBiomeData(ARCTIC_ABYSS.getBiomeData());
+
+        BiomeDataHell.INSTANCE.getBiomeTraits(GenerationStage.STRUCTURE).add(
+                BiomeTraitStructure.create(trait ->
+                {
+                    trait.generationAttempts(1);
+                    trait.generationProbability(0.125D);
+                    trait.minimumGenerationHeight(32);
+                    trait.maximumGenerationHeight(118);
+                    trait.structures(Collections.singletonList(NetherEx.getResource("pigtificate_village/tiny_pigtificate_village")));
+                    trait.structureType(BiomeTraitStructure.StructureType.GROUND);
+                }));
+        BiomeDataHell.INSTANCE.getBiomeTraits(GenerationStage.ORE).add(
+                BiomeTraitOre.create(trait ->
+                {
+                    trait.generationAttempts(8);
+                    trait.minimumGenerationHeight(10);
+                    trait.maximumGenerationHeight(108);
+                    trait.blockToSpawn(NetherExBlocks.AMETHYST_ORE.getDefaultState());
+                    trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
+                    trait.veinSize(7);
+                })
+        );
+        BiomeDataHell.INSTANCE.updateDefaults();
 
         if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {

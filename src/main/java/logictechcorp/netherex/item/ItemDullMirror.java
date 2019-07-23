@@ -19,7 +19,6 @@ package logictechcorp.netherex.item;
 
 import logictechcorp.libraryex.item.ItemMod;
 import logictechcorp.libraryex.utility.NBTHelper;
-import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.client.resources.I18n;
@@ -103,45 +102,46 @@ public class ItemDullMirror extends ItemMod
     {
         ItemStack stack = player.getHeldItem(hand);
 
-        if(stack.getItemDamage() < this.getMaxDamage(stack) && player.isSneaking())
+        if(!world.isRemote)
         {
-            int spawnDimension = world.provider.getDimension();
-            BlockPos spawnPoint = player.getPosition();
-            NBTTagCompound compound = NBTHelper.ensureTagExists(stack);
-
-            if(!compound.hasKey("SpawnDimension") || !compound.hasKey("SpawnPoint"))
+            if(stack.getItemDamage() < this.getMaxDamage(stack) && player.isSneaking())
             {
-                compound.setInteger("BedDimension", player.getSpawnDimension());
-                compound.setTag("BedPoint", NBTUtil.createPosTag(player.getBedLocation(player.getSpawnDimension())));
-                compound.setInteger("SpawnDimension", spawnDimension);
-                compound.setTag("SpawnPoint", NBTUtil.createPosTag(spawnPoint));
-                player.setSpawnDimension(spawnDimension);
-                player.setSpawnChunk(spawnPoint, true, spawnDimension);
+                int spawnDimension = world.provider.getDimension();
+                BlockPos spawnPoint = player.getPosition();
+                NBTTagCompound compound = NBTHelper.ensureTagExists(stack);
 
-                if(!world.isRemote)
+                if(!compound.hasKey("SpawnDimension") || !compound.hasKey("SpawnPoint"))
                 {
+                    int bedDimension = player.getSpawnDimension();
+                    BlockPos bedPos = player.getBedLocation(bedDimension);
+
+                    if(bedPos == null)
+                    {
+                        bedPos = world.getMinecraftServer().getWorld(bedDimension).getSpawnPoint();
+                    }
+
+                    compound.setInteger("BedDimension", bedDimension);
+                    compound.setTag("BedPoint", NBTUtil.createPosTag(bedPos));
+                    compound.setInteger("SpawnDimension", spawnDimension);
+                    compound.setTag("SpawnPoint", NBTUtil.createPosTag(spawnPoint));
+                    player.setSpawnDimension(spawnDimension);
+                    player.setSpawnChunk(spawnPoint, true, spawnDimension);
                     player.sendMessage(new TextComponentTranslation("tooltip.netherex:dull_mirror.spawn_point_set", spawnPoint.getX() + " " + spawnPoint.getY() + " " + spawnPoint.getZ()));
+                    world.playSound((double) spawnPoint.getX() + 0.5D, (double) spawnPoint.getY() + 0.5D, (double) spawnPoint.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.4F + 0.8F, false);
                 }
-
-                world.playSound((double) spawnPoint.getX() + 0.5D, (double) spawnPoint.getY() + 0.5D, (double) spawnPoint.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, RandomHelper.getRandom().nextFloat() * 0.4F + 0.8F, false);
-            }
-            else
-            {
-                int bedDimension = compound.getInteger("BedDimension");
-                compound.removeTag("SpawnDimension");
-                compound.removeTag("SpawnPoint");
-                player.setSpawnDimension(bedDimension);
-                player.setSpawnChunk(NBTUtil.getPosFromTag(compound.getCompoundTag("BedPoint")), true, bedDimension);
-
-                if(!world.isRemote)
+                else
                 {
+                    int bedDimension = compound.getInteger("BedDimension");
+                    compound.removeTag("SpawnDimension");
+                    compound.removeTag("SpawnPoint");
+                    player.setSpawnDimension(bedDimension);
+                    player.setSpawnChunk(NBTUtil.getPosFromTag(compound.getCompoundTag("BedPoint")), true, bedDimension);
                     player.sendMessage(new TextComponentTranslation("tooltip.netherex:dull_mirror.spawn_point_removed", spawnPoint.getX() + " " + spawnPoint.getY() + " " + spawnPoint.getZ()));
+                    world.playSound((double) spawnPoint.getX() + 0.5D, (double) spawnPoint.getY() + 0.5D, (double) spawnPoint.getZ() + 0.5D, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.4F + 0.8F, false);
                 }
 
-                world.playSound((double) spawnPoint.getX() + 0.5D, (double) spawnPoint.getY() + 0.5D, (double) spawnPoint.getZ() + 0.5D, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 0.5F, RandomHelper.getRandom().nextFloat() * 0.4F + 0.8F, false);
+                return new ActionResult<>(EnumActionResult.SUCCESS, stack);
             }
-
-            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
 
         return new ActionResult<>(EnumActionResult.FAIL, stack);

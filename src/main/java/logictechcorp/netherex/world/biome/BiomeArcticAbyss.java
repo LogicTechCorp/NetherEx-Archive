@@ -124,6 +124,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
                     trait.veinSize(7);
                 })
         ));
+        biomeData.updateDefaults();
         return biomeData;
     }
 }

@@ -74,7 +74,7 @@ public class NetherExBlocks
     public static final BlockBlueFire BLUE_FIRE = InjectionHelper.nullValue();
     public static final BlockNetherPortal NETHER_PORTAL = InjectionHelper.nullValue();
     public static final BlockUrnOfSorrow URN_OF_SORROW = InjectionHelper.nullValue();
-    public static final BlockDynamicNetherOre QUARTZ_ORE = InjectionHelper.nullValue();
+    public static final BlockQuartzOre QUARTZ_ORE = InjectionHelper.nullValue();
     public static final BlockModOre AMETHYST_ORE = InjectionHelper.nullValue();
     public static final BlockModOre RIME_ORE = InjectionHelper.nullValue();
     public static final BlockThornstalk THORNSTALK = InjectionHelper.nullValue();
@@ -197,7 +197,7 @@ public class NetherExBlocks
                     new BlockBlueFire(),
                     new BlockNetherPortal(),
                     new BlockUrnOfSorrow(),
-                    new BlockDynamicNetherOre(NetherEx.getResource("quartz_ore"), BlockDynamic.TexturePlacement.UNDER, new BlockProperties(Material.ROCK, MapColor.NETHERRACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(2.0F).resistance(5.0F)),
+                    new BlockQuartzOre(),
                     new BlockModOre(NetherEx.getResource("amethyst_ore"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(3.0F).resistance(5.0F)),
                     new BlockModOre(NetherEx.getResource("rime_ore"), new BlockProperties(Material.ROCK, MapColor.RED).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).lightLevel(0.5F).hardness(3.0F).resistance(5.0F)),
                     new BlockThornstalk(),

@@ -106,15 +106,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                             }
 
                             biomeData.readFromConfig(biomeDataAPI, config);
-
-                            if(biomeData.generateBiome())
-                            {
-                                biomeDataRegistry.registerBiomeData(biomeData);
-                            }
-                            else
-                            {
-                                biomeDataRegistry.unregisterBiomeData(biome);
-                            }
+                            biomeDataRegistry.registerBiomeData(biomeData);
                         }
 
                         config.save();
@@ -159,6 +151,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                 biomeData.writeToConfig(config);
                 config.save();
                 config.close();
+                biomeData.resetToDefaults(biomeDataAPI);
             }
         }
     }

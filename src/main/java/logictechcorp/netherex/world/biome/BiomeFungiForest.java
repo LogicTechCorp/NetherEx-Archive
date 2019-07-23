@@ -133,6 +133,7 @@ public class BiomeFungiForest extends BiomeNetherEx
                     trait.clearancePercentage(1.0D);
                 })
         );
+        biomeData.updateDefaults();
         return biomeData;
     }
 }

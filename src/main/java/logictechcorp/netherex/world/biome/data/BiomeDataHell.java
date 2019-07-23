@@ -21,15 +21,16 @@ import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.libraryex.world.generation.GenerationStage;
-import logictechcorp.libraryex.world.generation.trait.*;
-import logictechcorp.netherex.NetherEx;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
+import logictechcorp.libraryex.world.generation.trait.BiomeTraitScatter;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public final class BiomeDataHell extends BiomeData
 {
@@ -142,16 +143,7 @@ public final class BiomeDataHell extends BiomeData
                     trait.veinSize(32);
                 })
         ));
-        this.getBiomeTraits(GenerationStage.STRUCTURE).add(
-                BiomeTraitStructure.create(trait ->
-                {
-                    trait.generationAttempts(1);
-                    trait.generationProbability(0.125D);
-                    trait.minimumGenerationHeight(32);
-                    trait.maximumGenerationHeight(118);
-                    trait.structures(Collections.singletonList(NetherEx.getResource("pigtificate_village/tiny_pigtificate_village")));
-                    trait.structureType(BiomeTraitStructure.StructureType.GROUND);
-                })
-        );
+
+        this.updateDefaults();
     }
 }

@@ -17,11 +17,19 @@
 
 package logictechcorp.netherex.block;
 
+import logictechcorp.libraryex.block.BlockDynamic;
+import logictechcorp.libraryex.block.HarvestLevel;
+import logictechcorp.libraryex.block.HarvestTool;
 import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.libraryex.utility.RandomHelper;
+import logictechcorp.netherex.NetherEx;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -31,18 +39,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockDynamicNetherOre extends BlockDynamicNetherBiome
+public class BlockQuartzOre extends BlockDynamicNetherBiome
 {
-    public BlockDynamicNetherOre(ResourceLocation registryName, TexturePlacement texturePlacement, BlockProperties properties)
+    public BlockQuartzOre()
     {
-        super(registryName, texturePlacement, properties);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
+        super(NetherEx.getResource("quartz_ore"), BlockDynamic.TexturePlacement.UNDER, new BlockProperties(Material.ROCK, MapColor.NETHERRACK).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(2.0F).resistance(5.0F));
     }
 
     @Override
@@ -63,6 +64,25 @@ public class BlockDynamicNetherOre extends BlockDynamicNetherBiome
         {
             return this.quantityDropped(random);
         }
+    }
+
+    @Override
+    public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Items.QUARTZ;
     }
 
     @Override

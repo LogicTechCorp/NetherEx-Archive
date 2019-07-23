@@ -114,6 +114,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
                     trait.veinSize(14);
                 })
         );
+        biomeData.updateDefaults();
         return biomeData;
     }
 }
