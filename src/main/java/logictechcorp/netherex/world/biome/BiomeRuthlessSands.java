@@ -53,7 +53,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     @Override
     public IBiomeData getBiomeData()
     {
-        IBiomeData biomeData = new BiomeData(NetherExBiomes.RUTHLESS_SANDS, 8, false, true, true);
+        IBiomeData biomeData = new BiomeData(NetherExBiomes.RUTHLESS_SANDS, 8, true, false, true);
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, SOUL_SAND);
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, GLOOMY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, GLOOMY_NETHERRACK);

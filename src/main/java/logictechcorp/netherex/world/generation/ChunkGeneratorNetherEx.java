@@ -421,7 +421,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         LibExEventFactory.onPreDecorateBiome(this.world, this.random, chunkPos);
         LibExEventFactory.onDecorateBiome(this.world, this.random, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM);
 
-        if(biomeData != null && biomeData.generateDefaultBiomeFeatures())
+        if(biomeData != null && biomeData.useDefaultBiomeDecorations())
         {
             biomeData.getBiome().decorate(this.world, this.random, blockPos);
         }
@@ -455,7 +455,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         }
 
         IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(pos));
-        return creatureType == null || biomeData == null ? new ArrayList<>() : biomeData.getBiomeEntities(creatureType);
+        return creatureType == null || biomeData == null ? new ArrayList<>() : biomeData.getEntitySpawns(creatureType);
     }
 
     @Override

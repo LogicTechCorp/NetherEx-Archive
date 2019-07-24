@@ -57,7 +57,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     @Override
     public IBiomeData getBiomeData()
     {
-        IBiomeData biomeData = new BiomeData(NetherExBiomes.ARCTIC_ABYSS, 2, false, true, true);
+        IBiomeData biomeData = new BiomeData(NetherExBiomes.ARCTIC_ABYSS, 2, true, false, true);
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FROSTBURN_ICE);
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, ICY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, ICY_NETHERRACK);

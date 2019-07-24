@@ -37,7 +37,7 @@ public final class BiomeDataHell extends BiomeData
 
     private BiomeDataHell()
     {
-        super(Biomes.HELL, 10, false, true, true);
+        super(Biomes.HELL, 10, true, false, true);
         this.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, Blocks.NETHERRACK.getDefaultState());
         this.getBiomeBlock(BiomeBlock.WALL_BLOCK, Blocks.NETHERRACK.getDefaultState());

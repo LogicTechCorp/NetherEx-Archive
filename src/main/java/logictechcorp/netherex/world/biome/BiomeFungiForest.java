@@ -58,7 +58,7 @@ public class BiomeFungiForest extends BiomeNetherEx
     @Override
     public IBiomeData getBiomeData()
     {
-        IBiomeData biomeData = new BiomeData(NetherExBiomes.FUNGI_FOREST, 4, false, true, true);
+        IBiomeData biomeData = new BiomeData(NetherExBiomes.FUNGI_FOREST, 4, true, false, true);
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, LIVELY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, LIVELY_NETHERRACK);

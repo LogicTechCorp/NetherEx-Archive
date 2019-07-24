@@ -52,7 +52,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     @Override
     public IBiomeData getBiomeData()
     {
-        IBiomeData biomeData = new BiomeData(NetherExBiomes.TORRID_WASTELAND, 6, false, true, true);
+        IBiomeData biomeData = new BiomeData(NetherExBiomes.TORRID_WASTELAND, 6, true, false, true);
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, FIERY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, FIERY_NETHERRACK);
         biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, FIERY_NETHERRACK);

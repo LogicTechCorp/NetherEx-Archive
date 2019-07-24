@@ -139,7 +139,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
             for(IBiomeData biomeData : biomeDataAPI.getBiomeDataRegistry().getBiomeData().values())
             {
-                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeData.getRelativeSaveFile());
+                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeData.getRelativeConfigPath());
                 FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
 
                 if(!configFile.exists())
