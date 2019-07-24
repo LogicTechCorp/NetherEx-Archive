@@ -134,6 +134,6 @@ public final class BiomeDataHell extends BiomeData
                 })
         ));
 
-        this.updateDefaults();
+        this.writeToDefaultConfig();
     }
 }

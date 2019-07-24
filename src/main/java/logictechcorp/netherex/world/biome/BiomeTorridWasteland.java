@@ -145,7 +145,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
                     trait.veinSize(32);
                 })
         ));
-        biomeData.updateDefaults();
+        biomeData.writeToDefaultConfig();
         return biomeData;
     }
 }

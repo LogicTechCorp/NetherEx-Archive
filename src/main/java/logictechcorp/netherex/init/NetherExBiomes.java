@@ -112,7 +112,7 @@ public class NetherExBiomes
                     trait.veinSize(7);
                 })
         );
-        BiomeDataHell.INSTANCE.updateDefaults();
+        BiomeDataHell.INSTANCE.writeToDefaultConfig();
 
         if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {

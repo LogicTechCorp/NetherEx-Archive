@@ -23,14 +23,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class BiomeDataBOP extends BiomeData
 {
-    public BiomeDataBOP(ResourceLocation registryName, int generationWeight, boolean useDefaultDecorations, boolean isSubBiome, boolean generateBiome)
+    public BiomeDataBOP(ResourceLocation registryName, int generationWeight, boolean useDefaultDecorations, boolean isSubBiome, boolean isEnabled)
     {
-        super(registryName, generationWeight, useDefaultDecorations, isSubBiome, generateBiome);
+        super(registryName, generationWeight, useDefaultDecorations, isSubBiome, isEnabled);
     }
 
     @Override
-    public boolean generateBiome()
+    public boolean isBiomeEnabled()
     {
-        return super.generateBiome() && NetherEx.BIOMES_O_PLENTY_LOADED;
+        return super.isBiomeEnabled() && NetherEx.BIOMES_O_PLENTY_LOADED;
     }
 }

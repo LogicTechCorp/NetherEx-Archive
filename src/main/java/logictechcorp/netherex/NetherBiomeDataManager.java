@@ -161,7 +161,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                 biomeData.writeToConfig(config);
                 config.save();
                 config.close();
-                biomeData.resetToDefaults(biomeDataAPI);
+                biomeData.readFromDefaultConfig(biomeDataAPI);
             }
         }
     }
