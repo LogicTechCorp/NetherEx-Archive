@@ -20,12 +20,9 @@ package logictechcorp.netherex.handler;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExItems;
-import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,32 +37,16 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
-public class ClickHandler
+public class InputHandler
 {
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public static void onMouse(MouseEvent event)
-    {
-        EntityPlayer player = Minecraft.getMinecraft().player;
-
-        if(player.isPotionActive(NetherExMobEffects.FROZEN))
-        {
-            KeyBinding.unPressAllKeys();
-            event.setCanceled(true);
-        }
-    }
-
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickBlock event)
     {
