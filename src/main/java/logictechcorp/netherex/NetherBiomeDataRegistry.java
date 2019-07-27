@@ -53,11 +53,11 @@ final class NetherBiomeDataRegistry implements IBiomeDataRegistry
             {
                 this.biomeData.put(biomeRegistryName, biomeData);
             }
-            if(!biomeData.isSubBiomeData())
+            if(!biomeData.isSubBiome())
             {
-                if(biomeData.isBiomeEnabled())
+                if(biomeData.isEnabled())
                 {
-                    this.biomeEntries.put(biomeRegistryName, new BiomeManager.BiomeEntry(biome, biomeData.getBiomeGenerationWeight()));
+                    this.biomeEntries.put(biomeRegistryName, new BiomeManager.BiomeEntry(biome, biomeData.getGenerationWeight()));
                 }
                 else
                 {

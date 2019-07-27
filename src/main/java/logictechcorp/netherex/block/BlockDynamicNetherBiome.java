@@ -17,10 +17,10 @@
 
 package logictechcorp.netherex.block;
 
+import logictechcorp.libraryex.api.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.block.BlockDynamic;
 import logictechcorp.libraryex.block.property.BlockProperties;
-import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -44,7 +44,7 @@ public abstract class BlockDynamicNetherBiome extends BlockDynamic
 
         if(biomeData != null)
         {
-            return biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, null);
+            return biomeData.getBiomeBlock(BiomeBlockType.CAVE_WALL_BLOCK);
         }
 
         return Blocks.NETHERRACK.getDefaultState();

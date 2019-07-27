@@ -10,8 +10,8 @@
 
 package logictechcorp.netherex.world.biome.design;
 
+import logictechcorp.libraryex.api.world.biome.BiomeBlockType;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.world.biome.BiomeBlock;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -49,12 +49,12 @@ public class BiomeStyler
 
                     if(!biomeRegistryName.getNamespace().equalsIgnoreCase("biomesoplenty"))
                     {
-                        IBlockState surfaceBlock = biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, biome.topBlock);
-                        IBlockState fillerBlock = biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, biome.fillerBlock);
-                        IBlockState wallBlock = biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, biome.fillerBlock);
-                        IBlockState ceilingFillerBlock = biomeData.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, biome.fillerBlock);
-                        IBlockState ceilingBottomBlock = biomeData.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, biome.fillerBlock);
-                        IBlockState oceanBlock = biomeData.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, Blocks.LAVA.getDefaultState());
+                        IBlockState surfaceBlock = biomeData.getBiomeBlock(BiomeBlockType.SURFACE_BLOCK);
+                        IBlockState subsurfaceBlock = biomeData.getBiomeBlock(BiomeBlockType.SUBSURFACE_BLOCK);
+                        IBlockState caveCeilingBlock = biomeData.getBiomeBlock(BiomeBlockType.CAVE_CEILING_BLOCK);
+                        IBlockState wallBlock = biomeData.getBiomeBlock(BiomeBlockType.CAVE_WALL_BLOCK);
+                        IBlockState caveFloorBlock = biomeData.getBiomeBlock(BiomeBlockType.CAVE_FLOOR_BLOCK);
+                        IBlockState fluidBlock = biomeData.getBiomeBlock(BiomeBlockType.FLUID_BLOCK);
 
                         int localX = ((chunkX * 16) + x) & 15;
                         int localZ = ((chunkZ * 16) + z) & 15;
@@ -82,7 +82,7 @@ public class BiomeStyler
 
                                         if(state.getBlock() == Blocks.NETHERRACK)
                                         {
-                                            primer.setBlockState(localX, localY - floorOffset, localZ, fillerBlock);
+                                            primer.setBlockState(localX, localY - floorOffset, localZ, subsurfaceBlock);
                                         }
                                         else
                                         {
@@ -99,7 +99,7 @@ public class BiomeStyler
                                 {
                                     if(localY + 1 < 128)
                                     {
-                                        primer.setBlockState(localX, localY + 1, localZ, ceilingBottomBlock);
+                                        primer.setBlockState(localX, localY + 1, localZ, caveFloorBlock);
                                     }
 
                                     for(int roofOffset = 2; roofOffset <= 4 && localY + roofOffset <= 127; roofOffset++)
@@ -108,7 +108,7 @@ public class BiomeStyler
 
                                         if(state.getBlock() == Blocks.NETHERRACK || state == wallBlock)
                                         {
-                                            primer.setBlockState(localX, localY + roofOffset, localZ, ceilingFillerBlock);
+                                            primer.setBlockState(localX, localY + roofOffset, localZ, caveCeilingBlock);
                                         }
                                         else
                                         {
@@ -121,7 +121,7 @@ public class BiomeStyler
                             }
                             else if(checkState == Blocks.LAVA.getDefaultState())
                             {
-                                primer.setBlockState(localX, localY, localZ, oceanBlock);
+                                primer.setBlockState(localX, localY, localZ, fluidBlock);
                                 wasLastBlockSolid = false;
                             }
 

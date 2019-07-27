@@ -29,8 +29,8 @@ public class BiomeDataBOP extends BiomeData
     }
 
     @Override
-    public boolean isBiomeEnabled()
+    public boolean isEnabled()
     {
-        return super.isBiomeEnabled() && NetherEx.BIOMES_O_PLENTY_LOADED;
+        return super.isEnabled() && NetherEx.BIOMES_O_PLENTY_LOADED;
     }
 }

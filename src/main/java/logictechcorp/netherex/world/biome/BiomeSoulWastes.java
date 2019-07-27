@@ -41,110 +41,106 @@ public class BiomeSoulWastes extends BiomeNetherEx
     public IBiomeData getBiomeData()
     {
         //IBiomeData biomeData = new BiomeData(NetherExBiomes.SOUL_WASTES, 8, false, true, true);
-        //biomeData.getBiomeBlock(BiomeBlock.FLOOR_TOP_BLOCK, SOUL_SAND);
-        //biomeData.getBiomeBlock(BiomeBlock.FLOOR_FILLER_BLOCK, SOUL_SAND);
-        //biomeData.getBiomeBlock(BiomeBlock.WALL_BLOCK, SOUL_SANDSTONE);
-        //biomeData.getBiomeBlock(BiomeBlock.CEILING_FILLER_BLOCK, SOUL_SANDSTONE);
-        //biomeData.getBiomeBlock(BiomeBlock.CEILING_BOTTOM_BLOCK, CUT_SOUL_SANDSTONE);
-        //biomeData.getBiomeBlock(BiomeBlock.OCEAN_BLOCK, SOUL_SAND);
-        //biomeData.getBiomeTraits(GenerationStage.DECORATION).addAll(Arrays.asList(
-        //        BiomeTraitBoulder.create(trait ->
-        //        {
-        //            trait.generationAttempts(4);
-        //            trait.generationProbability(0.75D);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(124);
-        //            trait.blockToSpawn(SOUL_SANDSTONE);
-        //            trait.blockToTarget(SOUL_SAND);
-        //            trait.boulderRadius(0);
-        //        }),
-        //        BiomeTraitBoulder.create(trait ->
-        //        {
-        //            trait.generationAttempts(2);
-        //            trait.generationProbability(0.75D);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(124);
-        //            trait.blockToSpawn(SOUL_SANDSTONE);
-        //            trait.blockToTarget(SOUL_SAND);
-        //            trait.boulderRadius(1);
-        //        }),
-        //        BiomeTraitStructure.create(trait ->
-        //        {
-        //            trait.generationAttempts(40);
-        //            trait.randomizeGenerationAttempts(true);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(108);
-        //            trait.structures(Arrays.asList(
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_01"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_02"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_03"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_04"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_05"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_06"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_07"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_08"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_09"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_10"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_11"),
-        //                    NetherEx.getResource("spoul_shroom/spoul_shroom_12")));
-        //            trait.structureType(BiomeTraitStructure.StructureType.GROUND);
-        //            trait.ignoredBlock(AIR.getBlock());
-        //            trait.clearancePercentage(1.0D);
-        //            trait.orientRandomly(true);
-        //        }),
-        //        BiomeTraitStructure.create(trait ->
-        //        {
-        //            trait.generationAttempts(1);
-        //            trait.generationProbability(0.5D);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(108);
-        //            trait.structures(Collections.singletonList(NetherEx.getResource("soul_sandstone_arch/soul_sandstone_arch_01")));
-        //            trait.structureType(BiomeTraitStructure.StructureType.GROUND);
-        //            trait.ignoredBlock(AIR.getBlock());
-        //            trait.clearancePercentage(1.0D);
-        //            trait.orientRandomly(true);
-        //        }),
-        //        BiomeTraitPatch.create(trait ->
-        //        {
-        //            trait.generationAttempts(4);
-        //            trait.generationProbability(0.85D);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(124);
-        //            trait.blockToSpawn(SOUL_SANDSTONE);
-        //            trait.blockToTarget(SOUL_SAND);
-        //            trait.patchWidth(6);
-        //        }),
-        //        BiomeTraitPatch.create(trait ->
-        //        {
-        //            trait.generationAttempts(2);
-        //            trait.generationProbability(0.85D);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(124);
-        //            trait.blockToSpawn(POSSESSED_SOUL_SAND);
-        //            trait.blockToTarget(SOUL_SAND);
-        //            trait.patchWidth(3);
-        //        })
-        //));
-        //biomeData.getBiomeTraits(GenerationStage.PLANT_DECORATION).addAll(Arrays.asList(
-        //        BiomeTraitScatter.create(trait ->
-        //        {
-        //            trait.generationAttempts(36);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(120);
-        //            trait.blockToSpawn(NetherExBlocks.SPOUL_SHROOM.getDefaultState());
-        //            trait.blockToTarget(SOUL_SAND);
-        //            trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
-        //        }),
-        //        BiomeTraitScatter.create(trait ->
-        //        {
-        //            trait.generationAttempts(128);
-        //            trait.minimumGenerationHeight(32);
-        //            trait.maximumGenerationHeight(120);
-        //            trait.blockToSpawn(NetherExBlocks.SPOUL_VINES.getDefaultState());
-        //            trait.blockToTarget(NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState());
-        //            trait.placement(BiomeTraitScatter.Placement.ON_ROOF);
-        //        })
-        //));
+        //biomeData.addBiomeBlock(BiomeBlockType.SURFACE_BLOCK, SOUL_SAND);
+        //biomeData.addBiomeBlock(BiomeBlockType.SUBSURFACE_BLOCK, SOUL_SAND);
+        //biomeData.addBiomeBlock(BiomeBlockType.CAVE_CEILING_BLOCK, SOUL_SANDSTONE);
+        //biomeData.addBiomeBlock(BiomeBlockType.CAVE_WALL_BLOCK, SOUL_SANDSTONE);
+        //biomeData.addBiomeBlock(BiomeBlockType.CAVE_FLOOR_BLOCK, CUT_SOUL_SANDSTONE);
+        //biomeData.addBiomeBlock(BiomeBlockType.FLUID_BLOCK, SOUL_SAND);
+        //biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitBoulder.create(trait ->
+        //{
+        //    trait.generationAttempts(4);
+        //    trait.generationProbability(0.75D);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(124);
+        //    trait.blockToSpawn(SOUL_SANDSTONE);
+        //    trait.blockToTarget(SOUL_SAND);
+        //    trait.boulderRadius(0);
+        //}));
+        //biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitBoulder.create(trait ->
+        //{
+        //    trait.generationAttempts(2);
+        //    trait.generationProbability(0.75D);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(124);
+        //    trait.blockToSpawn(SOUL_SANDSTONE);
+        //    trait.blockToTarget(SOUL_SAND);
+        //    trait.boulderRadius(1);
+        //}));
+        //biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitStructure.create(trait ->
+        //{
+        //    trait.generationAttempts(40);
+        //    trait.randomizeGenerationAttempts(true);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(108);
+        //    trait.structures(Arrays.asList(
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_01"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_02"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_03"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_04"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_05"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_06"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_07"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_08"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_09"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_10"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_11"),
+        //            NetherEx.getResource("spoul_shroom/spoul_shroom_12")));
+        //    trait.structureType(BiomeTraitStructure.StructureType.GROUND);
+        //    trait.ignoredBlock(AIR.getBlock());
+        //    trait.clearancePercentage(1.0D);
+        //    trait.orientRandomly(true);
+        //}));
+        //biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitStructure.create(trait ->
+        //{
+        //    trait.generationAttempts(1);
+        //    trait.generationProbability(0.5D);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(108);
+        //    trait.structures(Collections.singletonList(NetherEx.getResource("soul_sandstone_arch/soul_sandstone_arch_01")));
+        //    trait.structureType(BiomeTraitStructure.StructureType.GROUND);
+        //    trait.ignoredBlock(AIR.getBlock());
+        //    trait.clearancePercentage(1.0D);
+        //    trait.orientRandomly(true);
+        //}));
+        //biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitPatch.create(trait ->
+        //{
+        //    trait.generationAttempts(4);
+        //    trait.generationProbability(0.85D);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(124);
+        //    trait.blockToSpawn(SOUL_SANDSTONE);
+        //    trait.blockToTarget(SOUL_SAND);
+        //    trait.patchWidth(6);
+        //}));
+        //biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitPatch.create(trait ->
+        //{
+        //    trait.generationAttempts(2);
+        //    trait.generationProbability(0.85D);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(124);
+        //    trait.blockToSpawn(POSSESSED_SOUL_SAND);
+        //    trait.blockToTarget(SOUL_SAND);
+        //    trait.patchWidth(3);
+        //}));
+        //biomeData.addBiomeTrait(GenerationStage.PLANT_DECORATION, BiomeTraitScatter.create(trait ->
+        //{
+        //    trait.generationAttempts(36);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(120);
+        //    trait.blockToSpawn(NetherExBlocks.SPOUL_SHROOM.getDefaultState());
+        //    trait.blockToTarget(SOUL_SAND);
+        //    trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
+        //}));
+        //biomeData.addBiomeTrait(GenerationStage.PLANT_DECORATION, BiomeTraitScatter.create(trait ->
+        //{
+        //    trait.generationAttempts(128);
+        //    trait.minimumGenerationHeight(32);
+        //    trait.maximumGenerationHeight(120);
+        //    trait.blockToSpawn(NetherExBlocks.SPOUL_VINES.getDefaultState());
+        //    trait.blockToTarget(NetherExBlocks.SPOUL_SHROOM_CAP.getDefaultState());
+        //    trait.placement(BiomeTraitScatter.Placement.ON_ROOF);
+        //}));
         //return biomeData;
         return null;
     }

@@ -129,11 +129,11 @@ public class GenLayerNetherSubBiome extends GenLayer
             {
                 List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>();
 
-                for(IBiomeData subBiomeData : biomeData.getSubBiomeData())
+                for(IBiomeData subBiomeData : biomeData.getSubBiomes())
                 {
-                    if(subBiomeData != null && subBiomeData.isBiomeEnabled())
+                    if(subBiomeData != null && subBiomeData.isEnabled())
                     {
-                        biomeEntries.add(new BiomeManager.BiomeEntry(subBiomeData.getBiome(), subBiomeData.getBiomeGenerationWeight()));
+                        biomeEntries.add(new BiomeManager.BiomeEntry(subBiomeData.getBiome(), subBiomeData.getGenerationWeight()));
                     }
                 }
 

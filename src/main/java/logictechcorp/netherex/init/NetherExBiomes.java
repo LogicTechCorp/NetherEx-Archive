@@ -20,7 +20,7 @@ package logictechcorp.netherex.init;
 import logictechcorp.libraryex.api.LibraryExAPI;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.libraryex.utility.InjectionHelper;
-import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.api.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
