@@ -20,7 +20,6 @@ package logictechcorp.netherex;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.json.JsonFormat;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeDataAPI;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.libraryex.utility.FileHelper;
@@ -33,8 +32,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,8 +42,6 @@ import java.util.Iterator;
 final class NetherBiomeDataManager implements IBiomeDataManager
 {
     static final IBiomeDataManager INSTANCE = new NetherBiomeDataManager();
-    private static boolean readConfigs = false;
-    private final Marker marker = MarkerManager.getMarker("NetherBiomeDataManager");
 
     private NetherBiomeDataManager()
     {
@@ -56,23 +51,11 @@ final class NetherBiomeDataManager implements IBiomeDataManager
     public void readBiomeDataConfigs(WorldEvent.Load event)
     {
         World world = event.getWorld();
-        int dimensionId = world.provider.getDimension();
-
-        if(dimensionId != DimensionType.OVERWORLD.getId() && dimensionId != DimensionType.NETHER.getId())
-        {
-            return;
-        }
 
         if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
         {
-            NetherBiomeDataManager.readConfigs = true;
-            return;
-        }
-
-        if(NetherBiomeDataManager.readConfigs)
-        {
             Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/biomes").toPath();
-            NetherEx.LOGGER.info(this.marker, "Reading Nether biome data configs from disk.");
+            NetherEx.LOGGER.info("Reading Nether biome data configs from disk.");
 
             try
             {
@@ -92,8 +75,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
                         if(biome != null)
                         {
-                            IBiomeDataAPI biomeDataAPI = NetherExAPI.getInstance();
-                            IBiomeDataRegistry biomeDataRegistry = biomeDataAPI.getBiomeDataRegistry();
+                            IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getBiomeDataRegistry();
                             IBiomeData biomeData;
 
                             if(biomeDataRegistry.hasBiomeData(biome))
@@ -102,10 +84,10 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                             }
                             else
                             {
-                                biomeData = new BiomeData(biome.getRegistryName());
+                                biomeData = new BiomeData(biome.getRegistryName(), 10, true, false, true, true);
                             }
 
-                            biomeData.readFromConfig(biomeDataAPI, config);
+                            biomeData.readFromConfig(biomeDataRegistry, config);
                             biomeDataRegistry.registerBiomeData(biomeData);
                         }
 
@@ -122,7 +104,6 @@ final class NetherBiomeDataManager implements IBiomeDataManager
             {
                 e.printStackTrace();
             }
-            NetherBiomeDataManager.readConfigs = false;
         }
     }
 
@@ -133,11 +114,10 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
         if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
         {
-            NetherEx.LOGGER.info(this.marker, "Writing Nether biome data configs to disk.");
+            NetherEx.LOGGER.info("Writing Nether biome data configs to disk.");
+            IBiomeDataRegistry biomeDataRegistry = NetherExAPI.getInstance().getBiomeDataRegistry();
 
-            IBiomeDataAPI biomeDataAPI = NetherExAPI.getInstance();
-
-            for(IBiomeData biomeData : biomeDataAPI.getBiomeDataRegistry().getBiomeData().values())
+            for(IBiomeData biomeData : biomeDataRegistry.getBiomeData().values())
             {
                 File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeData.getRelativeConfigPath());
                 FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
@@ -161,7 +141,12 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                 biomeData.writeToConfig(config);
                 config.save();
                 config.close();
-                biomeData.readFromDefaultConfig(biomeDataAPI);
+                biomeData.readFromDefaultConfig(biomeDataRegistry);
+
+                if(biomeData.isPlayerCreated())
+                {
+                    biomeDataRegistry.unregisterBiomeData(biomeData.getBiome());
+                }
             }
         }
     }

@@ -30,8 +30,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,9 +42,8 @@ import java.util.stream.Collectors;
 
 final class PigtificateTradeManager implements ITradeManager
 {
-    static final ITradeManager INSTANCE = new PigtificateTradeManager();
     private static boolean readConfigs = false;
-    private final Marker marker = MarkerManager.getMarker("PigtificateTradeManager");
+    static final ITradeManager INSTANCE = new PigtificateTradeManager();
 
     private PigtificateTradeManager()
     {
@@ -72,7 +69,7 @@ final class PigtificateTradeManager implements ITradeManager
         if(PigtificateTradeManager.readConfigs)
         {
             Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/trades").toPath();
-            NetherEx.LOGGER.info(this.marker, "Reading Pigtificate trade configs from disk.");
+            NetherEx.LOGGER.info("Reading Pigtificate trade configs from disk.");
 
             try
             {
@@ -109,6 +106,9 @@ final class PigtificateTradeManager implements ITradeManager
                             }
                         }
 
+                        config.save();
+                        config.close();
+
                     }
                     else if(!configFile.isDirectory())
                     {
@@ -133,7 +133,7 @@ final class PigtificateTradeManager implements ITradeManager
         {
             try
             {
-                NetherEx.LOGGER.info(this.marker, "Writing Pigtificate trade configs to disk.");
+                NetherEx.LOGGER.info("Writing Pigtificate trade configs to disk.");
 
                 for(PigtificateProfession profession : NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection())
                 {
