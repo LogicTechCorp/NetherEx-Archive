@@ -125,6 +125,5 @@ public final class BiomeDataHell extends BiomeData
             trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
             trait.veinSize(32);
         }));
-        this.writeToDefaultConfig();
     }
 }

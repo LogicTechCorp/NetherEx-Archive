@@ -29,6 +29,9 @@ import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+
+import java.util.Random;
 
 public class MobEffectFrozen extends MobEffectMod
 {
@@ -57,19 +60,32 @@ public class MobEffectFrozen extends MobEffectMod
 
         if(this.canFreeze(entity))
         {
+            Random random = entity.getRNG();
             boolean frozen = entity.isPotionActive(this);
 
-            if(!frozen && world.rand.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0 && world.getBiome(entity.getPosition()) == NetherExBiomes.ARCTIC_ABYSS)
+            if(!frozen)
             {
-                entity.addPotionEffect(new PotionEffect(this, 300, 0));
+                Biome biome = world.getBiome(entity.getPosition());
+
+                if(random.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0 && biome == NetherExBiomes.ARCTIC_ABYSS)
+                {
+                    if(entity instanceof EntityPlayer)
+                    {
+                        entity.addPotionEffect(new PotionEffect(this, 100, 0));
+                    }
+                    else
+                    {
+                        entity.addPotionEffect(new PotionEffect(this, 300, 0));
+                    }
+                }
             }
-            if(frozen)
+            else
             {
                 if(entity instanceof EntityPlayer)
                 {
                     entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
                 }
-                if(world.rand.nextInt(ConfigHandler.mobEffectConfig.freeze.thawRarity) == 0)
+                if(random.nextInt(ConfigHandler.mobEffectConfig.freeze.thawRarity) == 0)
                 {
                     entity.removePotionEffect(this);
                 }
@@ -101,9 +117,12 @@ public class MobEffectFrozen extends MobEffectMod
 
     public boolean canFreeze(EntityLivingBase entity)
     {
-        if(entity instanceof EntityPlayer && ConfigHandler.biomeConfig.arcticAbyss.canPlayersFreeze && !((EntityPlayer) entity).isCreative())
+        World world = entity.getEntityWorld();
+        Biome biome = world.getBiome(entity.getPosition());
+
+        if(entity instanceof EntityPlayer && !((EntityPlayer) entity).isCreative())
         {
-            return true;
+            return biome != NetherExBiomes.ARCTIC_ABYSS || ConfigHandler.biomeConfig.arcticAbyss.canPlayersFreeze;
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);

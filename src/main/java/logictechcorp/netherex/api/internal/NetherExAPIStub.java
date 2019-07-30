@@ -1,6 +1,6 @@
 /*
- * LibraryEx
- * Copyright (c) 2017-2019 by LogicTechCorp
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,26 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.api.internal.impl;
+package logictechcorp.netherex.api.internal;
 
-import logictechcorp.libraryex.api.entity.trade.ITradeManager;
-import net.minecraftforge.event.world.WorldEvent;
+import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 
-public final class TradeManagerStub implements ITradeManager
+public final class NetherExAPIStub implements INetherExAPI
 {
-    public static final ITradeManager INSTANCE = new TradeManagerStub();
+    public static final INetherExAPI INSTANCE = new NetherExAPIStub();
 
-    private TradeManagerStub()
+    private NetherExAPIStub()
     {
     }
 
     @Override
-    public void readTradeConfigs(WorldEvent.Load event)
+    public boolean isStub()
     {
+        return true;
     }
 
     @Override
-    public void writeTradeConfigs(WorldEvent.Unload event)
+    public IBiomeDataRegistry getBiomeDataRegistry()
     {
+        return NetherExBiomeDataRegistryStub.INSTANCE;
     }
 }

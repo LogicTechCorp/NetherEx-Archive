@@ -19,8 +19,8 @@ package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.api.LibraryExAPI;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.libraryex.api.world.generation.GenerationStage;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
@@ -112,7 +112,6 @@ public class NetherExBiomes
                     trait.veinSize(7);
                 })
         );
-        BiomeDataHell.INSTANCE.writeToDefaultConfig();
 
         if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {

@@ -1,6 +1,6 @@
 /*
- * LibraryEx
- * Copyright (c) 2017-2019 by LogicTechCorp
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,17 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex;
+package logictechcorp.netherex.village;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.json.JsonFormat;
-import logictechcorp.libraryex.api.entity.trade.ITradeManager;
+import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.trade.Trade;
 import logictechcorp.libraryex.utility.FileHelper;
-import logictechcorp.libraryex.utility.WorldHelper;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExRegistries;
-import logictechcorp.netherex.village.PigtificateProfession;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -40,35 +39,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-final class PigtificateTradeManager implements ITradeManager
+public final class NetherExTradeManager
 {
-    private static boolean readConfigs = false;
-    static final ITradeManager INSTANCE = new PigtificateTradeManager();
+    //NOT for use by modders. Please access using the api.
+    public static final NetherExTradeManager INSTANCE = new NetherExTradeManager();
 
-    private PigtificateTradeManager()
-    {
-    }
-
-    @Override
     public void readTradeConfigs(WorldEvent.Load event)
     {
         World world = event.getWorld();
-        int dimensionId = world.provider.getDimension();
-
-        if(dimensionId != DimensionType.OVERWORLD.getId() && dimensionId != DimensionType.NETHER.getId())
-        {
-            return;
-        }
 
         if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
         {
-            PigtificateTradeManager.readConfigs = true;
-            return;
-        }
-
-        if(PigtificateTradeManager.readConfigs)
-        {
-            Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/trades").toPath();
+            Path path = new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.MOD_ID + "/trades").toPath();
             NetherEx.LOGGER.info("Reading Pigtificate trade configs from disk.");
 
             try
@@ -120,11 +102,9 @@ final class PigtificateTradeManager implements ITradeManager
             {
                 e.printStackTrace();
             }
-            PigtificateTradeManager.readConfigs = false;
         }
     }
 
-    @Override
     public void writeTradeConfigs(WorldEvent.Unload event)
     {
         World world = event.getWorld();
@@ -140,7 +120,7 @@ final class PigtificateTradeManager implements ITradeManager
                     for(PigtificateProfession.Career career : profession.getCareers())
                     {
                         List<Trade> trades = career.getTrades();
-                        File configFile = new File(WorldHelper.getSaveDirectory(world), "/config/netherex/trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json");
+                        File configFile = new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.MOD_ID + "/trades/" + career.getName().getNamespace() + "/" + career.getName().getPath() + ".json");
                         Files.createDirectories(configFile.getParentFile().toPath());
                         FileConfig tradeConfig = FileConfig.of(configFile);
                         tradeConfig.set("profession", profession.getName().toString());

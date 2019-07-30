@@ -106,7 +106,6 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             trait.blockToReplace(GLOOMY_NETHERRACK);
             trait.veinSize(14);
         }));
-        biomeData.writeToDefaultConfig();
         return biomeData;
     }
 }

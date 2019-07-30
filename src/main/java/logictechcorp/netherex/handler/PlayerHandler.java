@@ -20,6 +20,8 @@ package logictechcorp.netherex.handler;
 import logictechcorp.libraryex.utility.NBTHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExItems;
+import logictechcorp.netherex.init.NetherExMobEffects;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -32,6 +34,7 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import net.minecraftforge.fml.common.Mod;
@@ -100,6 +103,22 @@ public class PlayerHandler
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJump(LivingEvent.LivingJumpEvent event)
+    {
+        EntityLivingBase entity = event.getEntityLiving();
+
+        if(entity instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer) entity;
+
+            if(player.isPotionActive(NetherExMobEffects.FROZEN))
+            {
+                player.motionY = 0;
             }
         }
     }

@@ -116,7 +116,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             trait.blockToReplace(ICY_NETHERRACK);
             trait.veinSize(7);
         }));
-        biomeData.writeToDefaultConfig();
         return biomeData;
     }
 }

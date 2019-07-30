@@ -155,18 +155,6 @@ config.netherex:entity.ghastQueen.ghastlingSpawnAmount.tooltip=How many Ghastlin
 config.netherex:biome=Biome Settings
 config.netherex:biome.tooltip=Settings that only affect Biomes
 
-config.netherex:biome.hell=Hell Biome Settings
-config.netherex:biome.hell.tooltip=Settings that only affect the Hell biome
-
-config.netherex:biome.ruthlessSands=Ruthless Sands Biome Settings
-config.netherex:biome.ruthlessSands.tooltip=Settings that only affect the Ruthless Sands biome
-
-config.netherex:biome.fungiForest=Fungi Forest Biome Settings
-config.netherex:biome.fungiForest.tooltip=Settings that only affect the Fungi Forest biome
-
-config.netherex:biome.torridWasteland=Torrid Wasteland Biome Settings
-config.netherex:biome.torridWasteland.tooltip=Settings that only affect the Torrid Wasteland biome
-
 config.netherex:biome.arcticAbyss=Arctic Abyss Biome Settings
 config.netherex:biome.arcticAbyss.tooltip=Settings that only affect the Arctic Abyss biome
 config.netherex:biome.arcticAbyss.canPlayersFreeze=Can Players Freeze
@@ -175,14 +163,11 @@ config.netherex:biome.arcticAbyss.mobFreezeRarity=Mob Freeze Rarity
 config.netherex:biome.arcticAbyss.mobFreezeRarity.tooltip=How rare it is for a mob to freeze in the Arctic Abyss biome
 
 # Messages
-information.netherex:breaking_changes.1=NetherEx has changed the location in which biome and trade configs are saved.
-information.netherex:breaking_changes.2=They are now located in the world save folder.
-information.netherex:breaking_changes.3=Any changes applied to previous configs need to be reapplied.
-information.netherex:breaking_changes.4=Things to note:
-information.netherex:breaking_changes.5=NetherEx has changed mod id from "nex" to "netherex".
-information.netherex:breaking_changes.6=NetherEx items and blocks have been flattened.
-information.netherex:breaking_changes.7=If you don't understand the above, or didn't modify biome/trade configs,
-information.netherex:breaking_changes.8=this message can be ignored without issues.
+information.netherex:breaking_changes.1=NetherEx has changed mod id from "nex" to "netherex".
+information.netherex:breaking_changes.2=NetherEx has also flattened all of its items and blocks.
+information.netherex:breaking_changes.3=As a result, the previous biome/trade configs will be overwritten.
+information.netherex:breaking_changes.4=If changes were made to previous configs, they need to be reapplied.
+information.netherex:breaking_changes.5=If you didn't modify the previous biome/trade configs, this message can be ignored.
 
 # Creative Tabs
 itemGroup.netherex=NetherEx

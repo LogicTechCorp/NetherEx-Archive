@@ -1,6 +1,6 @@
 /*
- * LibraryEx
- * Copyright (c) 2017-2019 by LogicTechCorp
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.api.internal.impl;
+package logictechcorp.netherex.api.internal;
 
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
@@ -26,11 +26,11 @@ import net.minecraftforge.common.BiomeManager;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class NetherBiomeDataRegistryStub implements IBiomeDataRegistry
+public final class NetherExBiomeDataRegistryStub implements IBiomeDataRegistry
 {
-    public static final IBiomeDataRegistry INSTANCE = new NetherBiomeDataRegistryStub();
+    public static final IBiomeDataRegistry INSTANCE = new NetherExBiomeDataRegistryStub();
 
-    private NetherBiomeDataRegistryStub()
+    private NetherExBiomeDataRegistryStub()
     {
     }
 

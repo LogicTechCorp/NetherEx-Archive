@@ -137,7 +137,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.blockToReplace(FIERY_NETHERRACK);
             trait.veinSize(32);
         }));
-        biomeData.writeToDefaultConfig();
         return biomeData;
     }
 }

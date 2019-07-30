@@ -1,6 +1,6 @@
 /*
- * LibraryEx
- * Copyright (c) 2017-2019 by LogicTechCorp
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex;
+package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
@@ -28,14 +28,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-final class NetherBiomeDataRegistry implements IBiomeDataRegistry
+public final class NetherExBiomeDataRegistry implements IBiomeDataRegistry
 {
-    static final IBiomeDataRegistry INSTANCE = new NetherBiomeDataRegistry();
+    //NOT for use by modders. Please access using the api.
+    public static final IBiomeDataRegistry INSTANCE = new NetherExBiomeDataRegistry();
 
     private final Map<ResourceLocation, IBiomeData> biomeData;
     private final Map<ResourceLocation, BiomeManager.BiomeEntry> biomeEntries;
 
-    private NetherBiomeDataRegistry()
+    private NetherExBiomeDataRegistry()
     {
         this.biomeData = new HashMap<>();
         this.biomeEntries = new ConcurrentHashMap<>();

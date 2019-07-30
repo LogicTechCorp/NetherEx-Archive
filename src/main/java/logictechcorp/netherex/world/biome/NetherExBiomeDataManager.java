@@ -1,6 +1,6 @@
 /*
- * LibraryEx
- * Copyright (c) 2017-2019 by LogicTechCorp
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,16 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex;
+package logictechcorp.netherex.world.biome;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.json.JsonFormat;
+import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.libraryex.utility.FileHelper;
-import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
@@ -39,22 +39,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Iterator;
 
-final class NetherBiomeDataManager implements IBiomeDataManager
+public final class NetherExBiomeDataManager
 {
-    static final IBiomeDataManager INSTANCE = new NetherBiomeDataManager();
+    public static final NetherExBiomeDataManager INSTANCE = new NetherExBiomeDataManager();
 
-    private NetherBiomeDataManager()
+    private NetherExBiomeDataManager()
     {
     }
 
-    @Override
     public void readBiomeDataConfigs(WorldEvent.Load event)
     {
         World world = event.getWorld();
 
         if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
         {
-            Path path = new File(WorldHelper.getSaveDirectory(world), "/config/" + NetherEx.MOD_ID + "/biomes").toPath();
+            Path path = new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.MOD_ID + "/biomes").toPath();
             NetherEx.LOGGER.info("Reading Nether biome data configs from disk.");
 
             try
@@ -84,7 +83,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                             }
                             else
                             {
-                                biomeData = new BiomeData(biome.getRegistryName(), 10, true, false, true, true);
+                                biomeData = new BiomeData(biome.getRegistryName(), 10, true, false, true);
                             }
 
                             biomeData.readFromConfig(biomeDataRegistry, config);
@@ -107,7 +106,6 @@ final class NetherBiomeDataManager implements IBiomeDataManager
         }
     }
 
-    @Override
     public void writeBiomeDataConfigs(WorldEvent.Unload event)
     {
         World world = event.getWorld();
@@ -119,7 +117,7 @@ final class NetherBiomeDataManager implements IBiomeDataManager
 
             for(IBiomeData biomeData : biomeDataRegistry.getBiomeData().values())
             {
-                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "config/" + NetherEx.MOD_ID + "/" + biomeData.getRelativeConfigPath());
+                File configFile = new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.MOD_ID + "/biomes/" + biomeData.getBiome().getRegistryName().toString().replace(":", "/") + ".json");
                 FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
 
                 if(!configFile.exists())
@@ -141,12 +139,6 @@ final class NetherBiomeDataManager implements IBiomeDataManager
                 biomeData.writeToConfig(config);
                 config.save();
                 config.close();
-                biomeData.readFromDefaultConfig(biomeDataRegistry);
-
-                if(biomeData.isPlayerCreated())
-                {
-                    biomeDataRegistry.unregisterBiomeData(biomeData.getBiome());
-                }
             }
         }
     }

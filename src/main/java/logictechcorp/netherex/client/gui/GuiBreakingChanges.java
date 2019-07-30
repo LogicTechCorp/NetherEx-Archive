@@ -52,17 +52,11 @@ public class GuiBreakingChanges extends GuiScreen
         int x = this.width / 2;
         int y = this.height / 4;
 
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < 5; i++)
         {
             String s = I18n.format("information." + NetherEx.MOD_ID + ":breaking_changes." + (i + 1));
             this.drawCenteredString(this.fontRenderer, s, x, y, 0xFFFFFF);
-
-            if(i == 2 || i == 5)
-            {
-                y += 10;
-            }
-
-            y += 10;
+            y += 12;
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);

@@ -126,7 +126,6 @@ public class BiomeFungiForest extends BiomeNetherEx
             trait.structureType(BiomeTraitStructure.StructureType.AIR);
             trait.clearancePercentage(1.0D);
         }));
-        biomeData.writeToDefaultConfig();
         return biomeData;
     }
 }

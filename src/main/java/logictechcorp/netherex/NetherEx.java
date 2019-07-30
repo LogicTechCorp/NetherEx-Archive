@@ -17,15 +17,16 @@
 
 package logictechcorp.netherex;
 
+import com.google.common.io.Files;
+import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.api.IModData;
 import logictechcorp.libraryex.api.IProxy;
-import logictechcorp.libraryex.api.entity.trade.ITradeManager;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeDataManager;
 import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
 import logictechcorp.netherex.api.NetherExAPI;
-import logictechcorp.netherex.api.internal.iface.INetherExAPI;
+import logictechcorp.netherex.api.internal.INetherExAPI;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
+import logictechcorp.netherex.world.biome.NetherExBiomeDataRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -42,6 +43,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
 
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData, INetherExAPI
@@ -74,6 +78,20 @@ public class NetherEx implements IModData, INetherExAPI
     static
     {
         FluidRegistry.enableUniversalBucket();
+
+        File oldConfigDirectory = new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME);
+
+        if(oldConfigDirectory.exists() && oldConfigDirectory.getPath().contains(NetherEx.NAME))
+        {
+            try
+            {
+                Files.move(oldConfigDirectory, new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME + "_old"));
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Mod.EventHandler
@@ -130,19 +148,7 @@ public class NetherEx implements IModData, INetherExAPI
     @Override
     public IBiomeDataRegistry getBiomeDataRegistry()
     {
-        return NetherBiomeDataRegistry.INSTANCE;
-    }
-
-    @Override
-    public IBiomeDataManager getBiomeDataManager()
-    {
-        return NetherBiomeDataManager.INSTANCE;
-    }
-
-    @Override
-    public ITradeManager getTradeManager()
-    {
-        return PigtificateTradeManager.INSTANCE;
+        return NetherExBiomeDataRegistry.INSTANCE;
     }
 
     public static ResourceLocation getResource(String name)

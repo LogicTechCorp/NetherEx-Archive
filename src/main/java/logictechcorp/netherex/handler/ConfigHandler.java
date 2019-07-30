@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config.LangKey("config." + NetherEx.MOD_ID + ":title")
-@Config(modid = NetherEx.MOD_ID, name = NetherEx.MOD_ID, category = "global")
+@Config(modid = NetherEx.MOD_ID, name = NetherEx.MOD_ID + "/" + NetherEx.MOD_ID, category = "global")
 public class ConfigHandler
 {
     @Config.Name("internal")
@@ -215,25 +215,25 @@ public class ConfigHandler
     public static class MobEffectConfig
     {
         @Config.Name("freeze")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.freeze")
         public Freeze freeze = new Freeze();
 
         @Config.Name("spore")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.spore")
         public Spore spore = new Spore();
 
         @Config.Name("lost")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.lost")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.lost")
         public Lost lost = new Lost();
 
         public class Freeze
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.thawRarity")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.freeze.thawRarity")
             @Config.Comment({"The higher the number, the rarer it is to thaw", "The lower the number, the more common it is to thaw"})
             @Config.RangeInt(min = 1)
             public int thawRarity = 1024;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.freeze.mobBlacklist")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.freeze.mobBlacklist")
             @Config.Comment("Mobs that won't freeze")
             public String[] mobBlacklist = new String[]{
                     "minecraft:blaze",
@@ -250,12 +250,12 @@ public class ConfigHandler
 
         public class Spore
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.sporeSpawnRarity")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.spore.sporeSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is to spawn a Spore", "The lower the number, the more common it is to spawn a Spore"})
             @Config.RangeInt(min = 1)
             public int sporeSpawnRarity = 128;
 
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.spore.mobBlacklist")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.spore.mobBlacklist")
             @Config.Comment("Mobs that shouldn't spawn Spores")
             public String[] mobBlacklist = new String[]{
                     NetherEx.MOD_ID + ":spore_creeper",
@@ -266,7 +266,7 @@ public class ConfigHandler
 
         public class Lost
         {
-            @Config.LangKey("config." + NetherEx.MOD_ID + ":potionEffect.lost.ghastlingSpawnRarity")
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.lost.ghastlingSpawnRarity")
             @Config.Comment({"The higher the number, the rarer it is to spawn a Ghastling", "The lower the number, the more common it is to spawn a Ghastling"})
             @Config.RangeInt(min = 1)
             public int ghastlingSpawnRarity = 256;
@@ -418,41 +418,9 @@ public class ConfigHandler
 
     public static class BiomeConfig
     {
-        @Config.Name("hell")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.hell")
-        public Hell hell = new Hell();
-
-        @Config.Name("ruthless_sands")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.ruthlessSands")
-        public RuthlessSands ruthlessSands = new RuthlessSands();
-
-        @Config.Name("fungi_forest")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.fungiForest")
-        public FungiForest fungiForest = new FungiForest();
-
-        @Config.Name("torrid_wasteland")
-        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.torridWasteland")
-        public TorridWasteland torridWasteland = new TorridWasteland();
-
         @Config.Name("arctic_abyss")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss")
         public ArcticAbyss arcticAbyss = new ArcticAbyss();
-
-        public class Hell
-        {
-        }
-
-        public class RuthlessSands
-        {
-        }
-
-        public class FungiForest
-        {
-        }
-
-        public class TorridWasteland
-        {
-        }
 
         public class ArcticAbyss
         {
