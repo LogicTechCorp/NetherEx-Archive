@@ -26,6 +26,8 @@ import logictechcorp.netherex.api.NetherExAPI;
 import logictechcorp.netherex.api.internal.INetherExAPI;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
+import logictechcorp.netherex.village.PigtificateTradeConfigManager;
+import logictechcorp.netherex.world.biome.NetherBiomeDataConfigManager;
 import logictechcorp.netherex.world.biome.NetherExBiomeDataRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -87,9 +89,8 @@ public class NetherEx implements IModData, INetherExAPI
             {
                 Files.move(oldConfigDirectory, new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME + "_old"));
             }
-            catch(IOException e)
+            catch(IOException ignored)
             {
-                e.printStackTrace();
             }
         }
     }
@@ -118,6 +119,8 @@ public class NetherEx implements IModData, INetherExAPI
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
+        NetherBiomeDataConfigManager.writeBiomeDataConfigs();
+        PigtificateTradeConfigManager.writeTradeConfigs();
         proxy.postInit();
     }
 

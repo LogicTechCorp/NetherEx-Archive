@@ -18,10 +18,11 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.village.NetherExTradeManager;
+import logictechcorp.netherex.village.PigtificateTradeConfigManager;
 import logictechcorp.netherex.village.PigtificateVillageData;
 import logictechcorp.netherex.village.PigtificateVillageManager;
-import logictechcorp.netherex.world.biome.NetherExBiomeDataManager;
+import logictechcorp.netherex.world.biome.NetherBiomeDataConfigManager;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -38,8 +39,12 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
-            NetherExBiomeDataManager.INSTANCE.readBiomeDataConfigs(event);
-            NetherExTradeManager.INSTANCE.readTradeConfigs(event);
+            if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
+            {
+                NetherBiomeDataConfigManager.readBiomeDataConfigs();
+                PigtificateTradeConfigManager.readTradeConfigs();
+            }
+
             PigtificateVillageManager.loadVillageData(world);
         }
     }
@@ -70,8 +75,12 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
-            NetherExBiomeDataManager.INSTANCE.writeBiomeDataConfigs(event);
-            NetherExTradeManager.INSTANCE.writeTradeConfigs(event);
+            if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
+            {
+                NetherBiomeDataConfigManager.writeBiomeDataConfigs();
+                PigtificateTradeConfigManager.writeTradeConfigs();
+            }
+
             PigtificateVillageManager.unloadVillageData(world);
         }
     }
