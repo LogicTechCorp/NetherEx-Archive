@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/wall_inventory",
-	"textures": {
-		"wall": "netherex:blocks/chiseled_soul_sandstone"
-	}
+    "parent": "minecraft:block/wall_inventory",
+    "textures": {
+        "wall": "netherex:blocks/chiseled_soul_sandstone"
+    }
 }

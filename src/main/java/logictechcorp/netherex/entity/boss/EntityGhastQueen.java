@@ -18,8 +18,8 @@
 package logictechcorp.netherex.entity.boss;
 
 import logictechcorp.netherex.block.BlockUrnOfSorrow;
-import logictechcorp.netherex.entity.ai.EntityAIFlyRandomly;
 import logictechcorp.netherex.entity.ai.EntityAIChangeFlyDirection;
+import logictechcorp.netherex.entity.ai.EntityAIFlyRandomly;
 import logictechcorp.netherex.entity.ai.EntityAIGhastQueenFireballAttack;
 import logictechcorp.netherex.entity.monster.EntityGhastling;
 import logictechcorp.netherex.handler.ConfigHandler;

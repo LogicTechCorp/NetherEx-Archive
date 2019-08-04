@@ -1,6 +1,6 @@
 {
-	"parent": "block/cross",
-	"textures": {
-		"cross": "netherex:blocks/spoul_vines"
-	}
+    "parent": "block/cross",
+    "textures": {
+        "cross": "netherex:blocks/spoul_vines"
+    }
 }

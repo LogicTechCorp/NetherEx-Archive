@@ -20,8 +20,8 @@ package logictechcorp.netherex.client.model.entity;
 import logictechcorp.netherex.entity.monster.EntityLostSoul;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
@@ -41,11 +41,11 @@ public class ModelLostSoul extends ModelBase
         this.body = new ModelRenderer(this, 38, 0);
         this.body.setRotationPoint(0.6F, 16.3F, -0.9F);
         this.body.addBox(-4.0F, 0.0F, -3.0F, 7, 9, 6, 0.0F);
-        this.setRotateAngle(body, 0.5235987755982988F, 0.0F, 0.0F);
+        this.setRotateAngle(this.body, 0.5235987755982988F, 0.0F, 0.0F);
         this.enlargedHead = new ModelRenderer(this, 0, 17);
         this.enlargedHead.setRotationPoint(0.0F, 14.0F, 0.0F);
         this.enlargedHead.addBox(-5.0F, -7.5F, -5.0F, 10, 12, 10, 0.0F);
-        this.setRotateAngle(enlargedHead, -0.1308996938995747F, 0.0F, 0.1308996938995747F);
+        this.setRotateAngle(this.enlargedHead, -0.1308996938995747F, 0.0F, 0.1308996938995747F);
     }
 
     @Override

@@ -243,7 +243,7 @@ public class ConfigHandler
                     NetherEx.MOD_ID + ":wight",
                     NetherEx.MOD_ID + ":ember",
                     NetherEx.MOD_ID + ":spinout",
-                    NetherEx.MOD_ID + ":bone_spider",
+                    NetherEx.MOD_ID + ":coolmar_spider",
                     NetherEx.MOD_ID + ":brute"
             };
         }

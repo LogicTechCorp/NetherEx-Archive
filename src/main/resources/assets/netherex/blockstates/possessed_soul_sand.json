@@ -1,5 +1,5 @@
 {
-	"variants": {
+    "variants": {
         "stage=0": { "model": "netherex:possessed_soul_sand_stage_1" },
         "stage=1": { "model": "netherex:possessed_soul_sand_stage_2" },
         "stage=2": { "model": "netherex:possessed_soul_sand_stage_3" },

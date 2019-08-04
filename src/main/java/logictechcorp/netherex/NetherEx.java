@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex;
 
-import com.google.common.io.Files;
 import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.api.IModData;
 import logictechcorp.libraryex.api.IProxy;
@@ -48,6 +47,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
 public class NetherEx implements IModData, INetherExAPI
@@ -87,7 +87,7 @@ public class NetherEx implements IModData, INetherExAPI
         {
             try
             {
-                Files.move(oldConfigDirectory, new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME + "_old"));
+                Files.move(oldConfigDirectory.toPath(), new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME + "_old").toPath());
             }
             catch(IOException ignored)
             {
@@ -98,6 +98,7 @@ public class NetherEx implements IModData, INetherExAPI
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
+        NetherExAPI.setInstance(this);
         NetherExOverrides.overrideObjects();
         proxy.preInit();
     }
@@ -105,7 +106,6 @@ public class NetherEx implements IModData, INetherExAPI
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        NetherExAPI.setInstance(this);
         NetherExDataFixers.registerFixes();
         NetherExPigtificates.registerPigtificateCareers();
         NetherExBiomes.registerBiomes();
@@ -113,6 +113,8 @@ public class NetherEx implements IModData, INetherExAPI
         NetherExOreDictionary.registerOres();
         NetherExCriteria.registerCriteria();
         IMCHandler.sendCompatibilityMessages();
+        NetherBiomeDataConfigManager.readBiomeDataConfigs();
+        PigtificateTradeConfigManager.readTradeConfigs();
         proxy.init();
     }
 
