@@ -18,7 +18,6 @@
 package logictechcorp.netherex.fixer;
 
 import com.google.common.collect.ImmutableMap;
-import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -340,16 +339,13 @@ public class BlockFlatteningFixer implements IFixableData
                             }
 
                             data.setIndex(i, 0);
-
-                            NetherEx.LOGGER.info("Data fixed the block {}, with a meta of {}. It is now {}.", oldRegistryName, oldMeta, newBlock.getRegistryName().toString());
                         }
                     }
                 }
             }
         }
-        catch(Exception e)
+        catch(Exception ignored)
         {
-            NetherEx.LOGGER.warn("Unable to data fix blocks, level format may be missing tags.");
         }
 
         return compound;

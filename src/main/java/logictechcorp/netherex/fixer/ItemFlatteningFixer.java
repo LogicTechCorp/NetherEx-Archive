@@ -359,14 +359,12 @@ public class ItemFlatteningFixer implements IFixableData
         {
             compound.setString("id", newRegistryName);
             compound.setShort("Damage", (short) 0);
-            NetherEx.LOGGER.info("Data fixed the item {}, with a meta of {}. It is now {}.", oldRegistryName, oldMeta, newRegistryName);
         }
         else if(oldRegistryName.contains("nex"))
         {
             newRegistryName = oldRegistryName.replace("nex", NetherEx.MOD_ID);
             compound.setString("id", newRegistryName);
             compound.setShort("Damage", (short) 0);
-            NetherEx.LOGGER.info("Data fixed the item {}, with a meta of {}. It is now {}.", oldRegistryName, oldMeta, newRegistryName);
         }
 
         return compound;
