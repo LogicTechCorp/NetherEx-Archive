@@ -32,12 +32,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Comparator;
 import java.util.List;
 
-@SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class GuiScreenHandler
 {
