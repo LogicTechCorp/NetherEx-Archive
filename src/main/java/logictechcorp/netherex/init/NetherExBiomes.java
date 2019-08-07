@@ -95,7 +95,7 @@ public class NetherExBiomes
                 BiomeTraitStructure.create(trait ->
                 {
                     trait.generationAttempts(1);
-                    trait.generationProbability(0.125D);
+                    trait.generationProbability(0.25D);
                     trait.minimumGenerationHeight(32);
                     trait.maximumGenerationHeight(118);
                     trait.structures(Collections.singletonList(NetherEx.getResource("pigtificate_village/tiny_pigtificate_village")));
