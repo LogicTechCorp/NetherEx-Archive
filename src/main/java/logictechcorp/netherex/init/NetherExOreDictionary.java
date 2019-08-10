@@ -25,13 +25,6 @@ public class NetherExOreDictionary
 {
     public static void registerOres()
     {
-        OreDictionary.registerOre("ore", Blocks.GOLD_ORE);
-        OreDictionary.registerOre("ore", Blocks.IRON_ORE);
-        OreDictionary.registerOre("ore", Blocks.LAPIS_ORE);
-        OreDictionary.registerOre("ore", Blocks.DIAMOND_ORE);
-        OreDictionary.registerOre("ore", Blocks.REDSTONE_ORE);
-        OreDictionary.registerOre("ore", Blocks.EMERALD_ORE);
-        OreDictionary.registerOre("ore", Blocks.COAL_ORE);
         OreDictionary.registerOre("netherrack", new ItemStack(NetherExBlocks.GLOOMY_NETHERRACK));
         OreDictionary.registerOre("netherrack", new ItemStack(NetherExBlocks.LIVELY_NETHERRACK));
         OreDictionary.registerOre("netherrack", new ItemStack(NetherExBlocks.FIERY_NETHERRACK));
