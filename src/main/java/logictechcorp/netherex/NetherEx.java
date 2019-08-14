@@ -54,7 +54,7 @@ public class NetherEx implements IModData, INetherExAPI
 {
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.0.10";
+    public static final String VERSION = "2.0.11";
     public static final String DEPENDENCIES = "required-after:libraryex@[1.0.9,);";
 
     public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
@@ -83,15 +83,15 @@ public class NetherEx implements IModData, INetherExAPI
 
         File oldConfigDirectory = new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME);
 
-        if(oldConfigDirectory.exists() && oldConfigDirectory.getPath().contains(NetherEx.NAME))
+        try
         {
-            try
+            if(oldConfigDirectory.exists() && oldConfigDirectory.getCanonicalFile().getName().equals(NetherEx.NAME))
             {
                 Files.move(oldConfigDirectory.toPath(), new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME + "_old").toPath());
             }
-            catch(IOException ignored)
-            {
-            }
+        }
+        catch(IOException ignored)
+        {
         }
     }
 
