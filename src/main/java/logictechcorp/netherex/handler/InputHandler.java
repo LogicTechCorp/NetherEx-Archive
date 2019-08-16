@@ -71,24 +71,40 @@ public class InputHandler
         BlockPos pos = event.getPos();
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = event.getItemStack();
+        EnumHand hand = event.getHand();
 
         if(stack.getItem() instanceof ItemSpade)
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
+            IBlockState flattenedBlock = null;
 
             if(block == Blocks.NETHERRACK)
             {
-                for(EnumHand hand : EnumHand.values())
-                {
-                    if(player.getHeldItem(hand).getItem() instanceof ItemSpade)
-                    {
-                        player.swingArm(hand);
-                    }
-                }
+                flattenedBlock = NetherExBlocks.NETHERRACK_PATH.getDefaultState();
+            }
+            else if(block == NetherExBlocks.GLOOMY_NETHERRACK)
+            {
+                flattenedBlock = NetherExBlocks.GLOOMY_NETHERRACK_PATH.getDefaultState();
+            }
+            else if(block == NetherExBlocks.LIVELY_NETHERRACK)
+            {
+                flattenedBlock = NetherExBlocks.LIVELY_NETHERRACK_PATH.getDefaultState();
+            }
+            else if(block == NetherExBlocks.FIERY_NETHERRACK)
+            {
+                flattenedBlock = NetherExBlocks.FIERY_NETHERRACK_PATH.getDefaultState();
+            }
+            else if(block == NetherExBlocks.ICY_NETHERRACK)
+            {
+                flattenedBlock = NetherExBlocks.ICY_NETHERRACK_PATH.getDefaultState();
+            }
 
+            if(flattenedBlock != null)
+            {
+                player.swingArm(hand);
                 world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, NetherExBlocks.NETHERRACK_PATH.getDefaultState(), 11);
+                world.setBlockState(pos, flattenedBlock, 11);
                 stack.damageItem(1, player);
             }
         }

@@ -163,10 +163,10 @@ public class NetherExBlocks
         public static void onRegisterBlocks(RegistryEvent.Register<Block> event)
         {
             event.getRegistry().registerAll(
-                    new BlockNetherrack(NetherEx.getResource("gloomy_netherrack"), GLOOMY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
-                    new BlockNetherrack(NetherEx.getResource("lively_netherrack"), LIVELY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
-                    new BlockNetherrack(NetherEx.getResource("fiery_netherrack"), FIERY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
-                    new BlockNetherrack(NetherEx.getResource("icy_netherrack"), ICY_NETHERRACK_PATH, new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
+                    new BlockNetherrack(NetherEx.getResource("gloomy_netherrack"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
+                    new BlockNetherrack(NetherEx.getResource("lively_netherrack"), new BlockProperties(Material.ROCK, MapColor.MAGENTA).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
+                    new BlockNetherrack(NetherEx.getResource("fiery_netherrack"), new BlockProperties(Material.ROCK, MapColor.ADOBE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
+                    new BlockNetherrack(NetherEx.getResource("icy_netherrack"), new BlockProperties(Material.ROCK, MapColor.LIGHT_BLUE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.STONE).hardness(0.5F).resistance(2.0F)),
                     new BlockPossessedSoulSand(),
                     //new BlockMod(NetherEx.getResource("soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
                     //new BlockMod(NetherEx.getResource("cut_soul_sandstone"), new BlockProperties(Material.ROCK, MapColor.BROWN).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.8F).resistance(10.0F)),
