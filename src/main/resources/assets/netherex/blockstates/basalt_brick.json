@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:basalt_brick" }
+        "": { "model": "netherex:block/basalt_brick" }
     }
 }

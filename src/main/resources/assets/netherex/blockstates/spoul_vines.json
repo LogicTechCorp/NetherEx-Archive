@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:spoul_vines" }
+        "": { "model": "netherex:block/spoul_vines" }
     }
 }

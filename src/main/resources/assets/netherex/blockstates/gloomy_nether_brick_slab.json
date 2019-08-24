@@ -3,9 +3,9 @@
     "defaults": {
         "model": "minecraft:half_slab",
         "textures": {
-            "bottom": "netherex:blocks/gloomy_nether_brick",
-            "top": "netherex:blocks/gloomy_nether_brick",
-            "side": "netherex:blocks/gloomy_nether_brick"
+            "bottom": "netherex:block/gloomy_nether_brick",
+            "top": "netherex:block/gloomy_nether_brick",
+            "side": "netherex:block/gloomy_nether_brick"
         },
         "transform": "forge:default-block"
     },
@@ -21,7 +21,7 @@
             {
                 "model": "minecraft:cube_all",
                 "textures": {
-                    "all": "netherex:blocks/gloomy_nether_brick"
+                    "all": "netherex:block/gloomy_nether_brick"
                 }
             }
         ],

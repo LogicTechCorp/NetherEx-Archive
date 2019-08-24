@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:fiery_netherrack_path" }
+        "": { "model": "netherex:block/fiery_netherrack_path" }
     }
 }

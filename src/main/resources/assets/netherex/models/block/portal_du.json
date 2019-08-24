@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "blocks/portal",
-        "portal": "blocks/portal"
+        "particle": "block/portal",
+        "portal": "block/portal"
     },
     "elements": [
         {

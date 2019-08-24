@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/wall_side",
     "textures": {
-        "wall": "netherex:blocks/quartz"
+        "wall": "netherex:block/quartz"
     }
 }

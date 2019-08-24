@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:gloomy_netherrack_path" }
+        "": { "model": "netherex:block/gloomy_netherrack_path" }
     }
 }

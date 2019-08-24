@@ -1,0 +1,19 @@
+modLoader="javafml"
+loaderVersion="[26,)"
+issueTrackerURL="https://github.com/LogicTechCorp/NetherEx/issues"
+
+[[mods]]
+modId="netherex"
+version="${file.jarVersion}"
+displayName="NetherEx"
+displayURL="https://minecraft.curseforge.com/projects/netherex"
+logoFile="assets/netherex/logo.png"
+authors="LogicTechCorp, Eleazzaar, Nazenn, Vlakk, AnarchCassius, LapisWhovian, misterslime, MCvinnyq, Cameron, Endergy"
+description="A mod that adds new content to the Nether."
+
+[[dependencies.netherex]]
+modId="forge"
+mandatory=true
+versionRange="[26,)"
+ordering="NONE"
+side="BOTH"

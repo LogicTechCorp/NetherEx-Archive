@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "netherex:blocks/red_elder_mushroom"
+        "cross": "netherex:block/red_elder_mushroom"
     }
 }

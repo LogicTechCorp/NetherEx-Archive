@@ -3,8 +3,8 @@
     "defaults": {
         "model": "pane_post",
         "textures": {
-            "edge": "netherex:blocks/soul_glass_pane_side",
-            "pane": "netherex:blocks/soul_glass"
+            "edge": "netherex:block/soul_glass_pane_side",
+            "pane": "netherex:block/soul_glass"
         }
     },
     "variants": {

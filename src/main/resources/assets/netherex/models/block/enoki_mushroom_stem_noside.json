@@ -1,9 +1,9 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "texture": "netherex:blocks/enoki_mushroom_w3",
-        "inside": "netherex:blocks/enoki_mushroom_stem2",
-        "particle": "netherex:blocks/enoki_mushroom_stem1"
+        "texture": "netherex:block/enoki_mushroom_w3",
+        "inside": "netherex:block/enoki_mushroom_stem2",
+        "particle": "netherex:block/enoki_mushroom_stem1"
     },
     "elements": [
         {

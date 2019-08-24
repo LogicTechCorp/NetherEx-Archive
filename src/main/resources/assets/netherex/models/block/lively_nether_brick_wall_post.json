@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/wall_post",
     "textures": {
-        "wall": "netherex:blocks/lively_nether_brick"
+        "wall": "netherex:block/lively_nether_brick"
     }
 }

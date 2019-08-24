@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "netherex:blocks/thornstalk_top"
+        "layer0": "netherex:block/thornstalk_top"
     }
 }

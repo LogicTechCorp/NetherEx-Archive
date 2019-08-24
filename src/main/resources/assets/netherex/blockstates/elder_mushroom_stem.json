@@ -3,8 +3,8 @@
     "defaults": {
         "model": "cube_column",
         "textures": {
-            "side": "netherex:blocks/elder_mushroom_stem",
-            "end": "netherex:blocks/elder_mushroom_stem_flesh"
+            "side": "netherex:block/elder_mushroom_stem",
+            "end": "netherex:block/elder_mushroom_stem_flesh"
         },
         "transform": "forge:default-block"
     },
@@ -16,7 +16,7 @@
             "none": {
                 "model": "cube_all",
                 "textures": {
-                    "all": "netherex:blocks/elder_mushroom_stem"
+                    "all": "netherex:block/elder_mushroom_stem"
                 }
             }
         }

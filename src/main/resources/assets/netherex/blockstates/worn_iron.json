@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:worn_iron" }
+        "": { "model": "netherex:block/worn_iron" }
     }
 }

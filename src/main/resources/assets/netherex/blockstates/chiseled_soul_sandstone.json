@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:chiseled_soul_sandstone" }
+        "": { "model": "netherex:block/chiseled_soul_sandstone" }
     }
 }

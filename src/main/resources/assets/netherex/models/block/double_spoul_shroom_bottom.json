@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "netherex:blocks/double_spoul_shroom_bottom"
+        "cross": "netherex:block/double_spoul_shroom_bottom"
     }
 }

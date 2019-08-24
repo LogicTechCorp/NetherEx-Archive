@@ -6,22 +6,22 @@
     "variants": {
         "facing": {
             "down": {
-                "model": "netherex:bone_chunk", "x": 180
+                "model": "netherex:block/bone_chunk", "x": 180
             },
             "up": {
-                "model": "netherex:bone_chunk"
+                "model": "netherex:block/bone_chunk"
             },
             "north": {
-                "model": "netherex:bone_chunk", "y": 0, "x": 90
+                "model": "netherex:block/bone_chunk", "y": 0, "x": 90
             },
             "south": {
-                "model": "netherex:bone_chunk", "y": 180, "x": 90
+                "model": "netherex:block/bone_chunk", "y": 180, "x": 90
             },
             "west": {
-                "model": "netherex:bone_chunk", "y": 270, "x": 90
+                "model": "netherex:block/bone_chunk", "y": 270, "x": 90
             },
             "east": {
-                "model": "netherex:bone_chunk", "y": 90, "x": 90
+                "model": "netherex:block/bone_chunk", "y": 90, "x": 90
             }
         }
     }

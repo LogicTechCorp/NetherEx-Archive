@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "netherex:blocks/bone_sliver_side",
-        "0": "netherex:blocks/bone_pieces"
+        "particle": "netherex:block/bone_sliver_side",
+        "0": "netherex:block/bone_pieces"
     },
     "elements": [
         {

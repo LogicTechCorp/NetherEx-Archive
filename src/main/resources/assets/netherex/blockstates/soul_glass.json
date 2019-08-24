@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:soul_glass" }
+        "": { "model": "netherex:block/soul_glass" }
     }
 }

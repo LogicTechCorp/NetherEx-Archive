@@ -20,9 +20,9 @@ for %%x in (%*) do (
 		echo   "defaults": {
 		echo     "model": "minecraft:half_slab",
 		echo     "textures": {
-		echo       "bottom": "%modid%:blocks/%%x",
-		echo       "top": "%modid%:blocks/%%x",
-		echo       "side": "%modid%:blocks/%%x"
+		echo       "bottom": "%modid%:block/%%x",
+		echo       "top": "%modid%:block/%%x",
+		echo       "side": "%modid%:block/%%x"
 		echo     },
 		echo     "transform": "forge:default-block"
 		echo   },
@@ -35,7 +35,7 @@ for %%x in (%*) do (
 		echo     "type=double": [{
 		echo       "model": "minecraft:cube_all",
         echo       "textures": {
-        echo         "all": "%modid%:blocks/%%x"
+        echo         "all": "%modid%:block/%%x"
         echo       }
 		echo     }],
 		echo     "inventory": [{}]

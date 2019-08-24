@@ -18,7 +18,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "block/fence_inventory",
 		echo 	"textures": {
-		echo 		"texture": "%modid%:blocks/%%x"
+		echo 		"texture": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_fence_inventory.json
@@ -28,7 +28,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "block/fence_post",
 		echo 	"textures": {
-		echo 		"texture": "%modid%:blocks/%%x"
+		echo 		"texture": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_fence_post.json
@@ -38,7 +38,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "block/fence_side",
 		echo 	"textures": {
-		echo 		"texture": "%modid%:blocks/%%x"
+		echo 		"texture": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_fence_side.json
@@ -54,18 +54,18 @@ for %%x in (%*) do (
 	(
 		echo {
         echo     "multipart": [
-        echo         {   "apply": { "model": "%modid%:%%x_fence_post" }},
+        echo         {   "apply": { "model": "%modid%:block/%%x_fence_post" }},
         echo         {   "when": { "north": "true" },
-        echo             "apply": { "model": "%modid%:%%x_fence_side", "uvlock": true }
+        echo             "apply": { "model": "%modid%:block/%%x_fence_side", "uvlock": true }
         echo         },
         echo         {   "when": { "east": "true" },
-        echo             "apply": { "model": "%modid%:%%x_fence_side", "y": 90, "uvlock": true }
+        echo             "apply": { "model": "%modid%:block/%%x_fence_side", "y": 90, "uvlock": true }
         echo         },
         echo         {   "when": { "south": "true" },
-        echo             "apply": { "model": "%modid%:%%x_fence_side", "y": 180, "uvlock": true }
+        echo             "apply": { "model": "%modid%:block/%%x_fence_side", "y": 180, "uvlock": true }
         echo        },
         echo        {   "when": { "west": "true" },
-        echo            "apply": { "model": "%modid%:%%x_fence_side", "y": 270, "uvlock": true }
+        echo            "apply": { "model": "%modid%:block/%%x_fence_side", "y": 270, "uvlock": true }
         echo        }
         echo    ]
         echo }

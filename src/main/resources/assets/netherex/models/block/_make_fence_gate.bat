@@ -18,7 +18,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "block/fence_gate_closed",
 		echo 	"textures": {
-		echo 		"texture": "%modid%:blocks/%%x"
+		echo 		"texture": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_fence_gate_closed.json
@@ -28,7 +28,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "block/fence_gate_open",
 		echo 	"textures": {
-		echo 		"texture": "%modid%:blocks/%%x"
+		echo 		"texture": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_fence_gate_open.json
@@ -38,7 +38,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "block/wall_gate_closed",
 		echo 	"textures": {
-		echo 		"texture": "%modid%:blocks/%%x"
+		echo 		"texture": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_wall_gate_closed.json
@@ -48,7 +48,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "block/wall_gate_open",
 		echo 	"textures": {
-		echo 		"texture": "%modid%:blocks/%%x"
+		echo 		"texture": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_wall_gate_open.json
@@ -64,24 +64,24 @@ for %%x in (%*) do (
 	(
 		echo {
 		echo 	"variants": {
-        echo        "inventory": { "model": "%modid%:%%x_fence_gate_closed", "uvlock": true },
-        echo        "normal": { "model": "%modid%:%%x_fence_gate_closed", "uvlock": true },
-        echo        "facing=south,in_wall=false,open=false": { "model": "%modid%:%%x_fence_gate_closed", "uvlock": true },
-        echo        "facing=west,in_wall=false,open=false":  { "model": "%modid%:%%x_fence_gate_closed", "uvlock": true, "y": 90 },
-        echo        "facing=north,in_wall=false,open=false": { "model": "%modid%:%%x_fence_gate_closed", "uvlock": true, "y": 180 },
-        echo        "facing=east,in_wall=false,open=false":  { "model": "%modid%:%%x_fence_gate_closed", "uvlock": true, "y": 270 },
-        echo        "facing=south,in_wall=false,open=true": { "model": "%modid%:%%x_fence_gate_open", "uvlock": true },
-        echo        "facing=west,in_wall=false,open=true":  { "model": "%modid%:%%x_fence_gate_open", "uvlock": true, "y": 90 },
-        echo        "facing=north,in_wall=false,open=true": { "model": "%modid%:%%x_fence_gate_open", "uvlock": true, "y": 180 },
-        echo        "facing=east,in_wall=false,open=true":  { "model": "%modid%:%%x_fence_gate_open", "uvlock": true, "y": 270 },
-        echo        "facing=south,in_wall=true,open=false": { "model": "%modid%:%%x_wall_gate_closed", "uvlock": true },
-        echo        "facing=west,in_wall=true,open=false":  { "model": "%modid%:%%x_wall_gate_closed", "uvlock": true, "y": 90 },
-        echo        "facing=north,in_wall=true,open=false": { "model": "%modid%:%%x_wall_gate_closed", "uvlock": true, "y": 180 },
-        echo        "facing=east,in_wall=true,open=false":  { "model": "%modid%:%%x_wall_gate_closed", "uvlock": true, "y": 270 },
-        echo        "facing=south,in_wall=true,open=true": { "model": "%modid%:%%x_wall_gate_open", "uvlock": true },
-        echo        "facing=west,in_wall=true,open=true":  { "model": "%modid%:%%x_wall_gate_open", "uvlock": true, "y": 90 },
-        echo        "facing=north,in_wall=true,open=true": { "model": "%modid%:%%x_wall_gate_open", "uvlock": true, "y": 180 },
-        echo        "facing=east,in_wall=true,open=true": { "model": "%modid%:%%x_wall_gate_open", "uvlock": true, "y": 270 }
+        echo        "inventory": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true },
+        echo        "": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true },
+        echo        "facing=south,in_wall=false,open=false": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true },
+        echo        "facing=west,in_wall=false,open=false":  { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true, "y": 90 },
+        echo        "facing=north,in_wall=false,open=false": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true, "y": 180 },
+        echo        "facing=east,in_wall=false,open=false":  { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true, "y": 270 },
+        echo        "facing=south,in_wall=false,open=true": { "model": "%modid%:block/%%x_fence_gate_open", "uvlock": true },
+        echo        "facing=west,in_wall=false,open=true":  { "model": "%modid%:block/%%x_fence_gate_open", "uvlock": true, "y": 90 },
+        echo        "facing=north,in_wall=false,open=true": { "model": "%modid%:block/%%x_fence_gate_open", "uvlock": true, "y": 180 },
+        echo        "facing=east,in_wall=false,open=true":  { "model": "%modid%:block/%%x_fence_gate_open", "uvlock": true, "y": 270 },
+        echo        "facing=south,in_wall=true,open=false": { "model": "%modid%:block/%%x_wall_gate_closed", "uvlock": true },
+        echo        "facing=west,in_wall=true,open=false":  { "model": "%modid%:block/%%x_wall_gate_closed", "uvlock": true, "y": 90 },
+        echo        "facing=north,in_wall=true,open=false": { "model": "%modid%:block/%%x_wall_gate_closed", "uvlock": true, "y": 180 },
+        echo        "facing=east,in_wall=true,open=false":  { "model": "%modid%:block/%%x_wall_gate_closed", "uvlock": true, "y": 270 },
+        echo        "facing=south,in_wall=true,open=true": { "model": "%modid%:block/%%x_wall_gate_open", "uvlock": true },
+        echo        "facing=west,in_wall=true,open=true":  { "model": "%modid%:block/%%x_wall_gate_open", "uvlock": true, "y": 90 },
+        echo        "facing=north,in_wall=true,open=true": { "model": "%modid%:block/%%x_wall_gate_open", "uvlock": true, "y": 180 },
+        echo        "facing=east,in_wall=true,open=true": { "model": "%modid%:block/%%x_wall_gate_open", "uvlock": true, "y": 270 }
 		echo 	}
 		echo }
 	) > ../../blockstates/%%x_fence_gate.json

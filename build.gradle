@@ -1,15 +1,15 @@
-apply plugin: 'net.minecraftforge.gradle.forge'
+import org.apache.tools.ant.filters.ReplaceTokens
+
+apply plugin: 'net.minecraftforge.gradle'
 
 buildscript {
     repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
+        mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
 
@@ -17,44 +17,56 @@ version = mod_version
 group = "com.github.logictechcorp"
 archivesBaseName = "${mod_name}-${minecraft_version}"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "${minecraft_version}-${forge_version}"
-    mappings = mcp_version
-    runDir = "run"
-    makeObfSourceJar = false
+    mappings channel: "snapshot", version: "${mcp_version}"
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            ideaModule "${project.name}.main"
+            environment 'MOD_CLASSES', "NetherEx%%${project.file("build/resources/main").canonicalPath};NetherEx%%${project.file("/build/classes/java/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/resources/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/classes/java/main").canonicalPath}"
+        }
+
+        server {
+            workingDirectory project.file('run')
+            ideaModule "${project.name}.main"
+            environment 'MOD_CLASSES', "NetherEx%%${project.file("build/resources/main").canonicalPath};NetherEx%%${project.file("/build/classes/java/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/resources/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/classes/java/main").canonicalPath}"
+        }
+    }
 }
 
 repositories {
+    mavenCentral()
 }
 
 dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compile project(':LibraryEx')
-}
-
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        expand 'version': project.version, 'mcversion': project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
 }
 
 jar {
     exclude "**/*.bat"
-    
+
     manifest {
         attributes([
-                'FMLAT': "netherex_at.cfg"
+                "Specification-Title": "${mod_name}",
+                "Specification-Vendor": "LogicTechCorp",
+                "Specification-Version": "${mod_version}",
+                "Implementation-Title": "${mod_name}",
+                "Implementation-Version": "${mod_version}",
+                "Implementation-Vendor" :"LogicTechCorp",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "FMLAT": "netherex_at.cfg"
         ])
+    }
+}
+
+task processDevResources(type: Copy) {
+    destinationDir = ((Copy)project.tasks.getByName("processResources")).getDestinationDir()
+    from(sourceSets.main.resources.srcDirs) {
+        filter tokens: ["file.jarVersion": project.version as String], beginToken: "\${", endToken: "}", ReplaceTokens
     }
 }

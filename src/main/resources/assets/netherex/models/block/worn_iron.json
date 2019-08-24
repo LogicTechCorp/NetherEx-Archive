@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "netherex:blocks/worn_iron"
+        "all": "netherex:block/worn_iron"
     }
 }

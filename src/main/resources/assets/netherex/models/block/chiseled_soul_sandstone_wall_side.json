@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/wall_side",
     "textures": {
-        "wall": "netherex:blocks/chiseled_soul_sandstone"
+        "wall": "netherex:block/chiseled_soul_sandstone"
     }
 }

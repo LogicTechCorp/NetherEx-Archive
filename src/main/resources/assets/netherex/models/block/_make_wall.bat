@@ -10,7 +10,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "minecraft:block/wall_post",
 		echo 	"textures": {
-		echo 		"wall": "%modid%:blocks/%%x"
+		echo 		"wall": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_wall_post.json
@@ -20,7 +20,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "minecraft:block/wall_side",
 		echo 	"textures": {
-		echo 		"wall": "%modid%:blocks/%%x"
+		echo 		"wall": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_wall_side.json
@@ -30,7 +30,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "minecraft:block/wall_inventory",
 		echo 	"textures": {
-		echo 		"wall": "%modid%:blocks/%%x"
+		echo 		"wall": "%modid%:block/%%x"
 		echo 	}
 		echo }
 	) > %%x_wall_inventory.json
@@ -48,19 +48,19 @@ for %%x in (%*) do (
 		echo {
 		echo     "multipart": [
 		echo         {   "when": { "up": "true" },
-		echo             "apply": { "model": "%modid%:%%x_wall_post" }
+		echo             "apply": { "model": "%modid%:block/%%x_wall_post" }
 		echo         },
 		echo         {   "when": { "north": "true" },
-		echo             "apply": { "model": "%modid%:%%x_wall_side", "uvlock": true  }
+		echo             "apply": { "model": "%modid%:block/%%x_wall_side", "uvlock": true  }
 		echo         },
 		echo         {   "when": { "east": "true" },
-		echo             "apply": { "model": "%modid%:%%x_wall_side", "y": 90, "uvlock": true }
+		echo             "apply": { "model": "%modid%:block/%%x_wall_side", "y": 90, "uvlock": true }
 		echo         },
 		echo         {   "when": { "south": "true" },
-		echo             "apply": { "model": "%modid%:%%x_wall_side", "y": 180, "uvlock": true }
+		echo             "apply": { "model": "%modid%:block/%%x_wall_side", "y": 180, "uvlock": true }
 		echo         },
 		echo         {   "when": { "west": "true" },
-		echo             "apply": { "model": "%modid%:%%x_wall_side", "y": 270, "uvlock": true }
+		echo             "apply": { "model": "%modid%:block/%%x_wall_side", "y": 270, "uvlock": true }
 		echo         }
 		echo     ]
 		echo }

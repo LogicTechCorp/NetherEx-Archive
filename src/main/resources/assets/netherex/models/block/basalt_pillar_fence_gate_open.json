@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_gate_open",
     "textures": {
-        "texture": "netherex:blocks/basalt_pillar_side"
+        "texture": "netherex:block/basalt_pillar_side"
     }
 }

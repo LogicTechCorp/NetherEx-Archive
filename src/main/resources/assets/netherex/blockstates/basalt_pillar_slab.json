@@ -3,9 +3,9 @@
     "defaults": {
         "model": "minecraft:half_slab",
         "textures": {
-            "bottom": "netherex:blocks/basalt_pillar_end",
-            "top": "netherex:blocks/basalt_pillar_end",
-            "side": "netherex:blocks/basalt_pillar_side"
+            "bottom": "netherex:block/basalt_pillar_end",
+            "top": "netherex:block/basalt_pillar_end",
+            "side": "netherex:block/basalt_pillar_side"
         },
         "transform": "forge:default-block"
     },
@@ -21,8 +21,8 @@
             {
                 "model": "minecraft:cube_column",
                 "textures": {
-                    "end": "netherex:blocks/basalt_pillar_end",
-                    "side": "netherex:blocks/basalt_pillar_side"
+                    "end": "netherex:block/basalt_pillar_end",
+                    "side": "netherex:block/basalt_pillar_side"
                 }
             }
         ],

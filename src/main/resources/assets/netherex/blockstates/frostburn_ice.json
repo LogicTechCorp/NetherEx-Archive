@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:frostburn_ice" }
+        "": { "model": "netherex:block/frostburn_ice" }
     }
 }

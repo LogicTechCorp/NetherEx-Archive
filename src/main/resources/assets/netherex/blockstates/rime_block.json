@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:rime_block" }
+        "": { "model": "netherex:block/rime_block" }
     }
 }

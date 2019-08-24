@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:lively_netherrack_path" }
+        "": { "model": "netherex:block/lively_netherrack_path" }
     }
 }

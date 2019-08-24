@@ -1,9 +1,9 @@
 {
     "textures": {
-        "particle": "netherex:blocks/urn_of_sorrow_full_bottom",
-        "0": "netherex:blocks/urn_of_sorrow_full",
-        "1": "netherex:blocks/urn_of_sorrow_full_bottom",
-        "2": "netherex:blocks/urn_of_sorrow_full_liquid"
+        "particle": "netherex:block/urn_of_sorrow_full_bottom",
+        "0": "netherex:block/urn_of_sorrow_full",
+        "1": "netherex:block/urn_of_sorrow_full_bottom",
+        "2": "netherex:block/urn_of_sorrow_full_liquid"
     },
     "elements": [
         {

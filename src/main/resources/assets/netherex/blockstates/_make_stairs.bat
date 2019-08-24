@@ -19,13 +19,13 @@ for %%x in (%*) do (
 		echo   "forge_marker": 1,
 		echo   "defaults": {
 		echo     "textures": {
-		echo       "bottom": "%modid%:blocks/%%x",
-		echo       "top": "%modid%:blocks/%%x",
-		echo       "side": "%modid%:blocks/%%x"
+		echo       "bottom": "%modid%:block/%%x",
+		echo       "top": "%modid%:block/%%x",
+		echo       "side": "%modid%:block/%%x"
 		echo     }
 		echo   },
 		echo   "variants": {
-		echo      "normal": { "model": "minecraft:stairs" },
+		echo      "": { "model": "minecraft:stairs" },
 		echo      "inventory": { "model": "minecraft:stairs" },
 		echo		"facing=east,half=bottom,shape=straight":  { "model": "minecraft:stairs" },
 		echo		"facing=west,half=bottom,shape=straight":  { "model": "minecraft:stairs", "y": 180, "uvlock": true },

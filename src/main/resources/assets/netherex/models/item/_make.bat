@@ -19,7 +19,7 @@ for %%x in (%*) do (
 		echo {
 		echo 	"parent": "item/generated",
 		echo 	"textures": {
-		echo 		"layer0": "%modid%:items/%%x"
+		echo 		"layer0": "%modid%:item/%%x"
 		echo 	}
 		echo }
 	) > %%x.json

@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "netherex:blocks/basalt_pillar_end",
-        "side": "netherex:blocks/basalt_pillar_side"
+        "end": "netherex:block/basalt_pillar_end",
+        "side": "netherex:block/basalt_pillar_side"
     }
 }

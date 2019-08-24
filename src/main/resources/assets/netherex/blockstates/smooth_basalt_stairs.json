@@ -2,13 +2,13 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "bottom": "netherex:blocks/smooth_basalt",
-            "top": "netherex:blocks/smooth_basalt",
-            "side": "netherex:blocks/smooth_basalt"
+            "bottom": "netherex:block/smooth_basalt",
+            "top": "netherex:block/smooth_basalt",
+            "side": "netherex:block/smooth_basalt"
         }
     },
     "variants": {
-        "normal": { "model": "minecraft:stairs" },
+        "": { "model": "minecraft:stairs" },
         "inventory": { "model": "minecraft:stairs" },
         "facing=east,half=bottom,shape=straight": { "model": "minecraft:stairs" },
         "facing=west,half=bottom,shape=straight": { "model": "minecraft:stairs", "y": 180, "uvlock": true },

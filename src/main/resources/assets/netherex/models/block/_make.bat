@@ -34,7 +34,7 @@ for %%x in (%*) do (
 	(
 		echo {
 		echo 	"variants": {
-		echo 		"normal": { "model": "%modid%:%%x" }
+		echo 		"": { "model": "%modid%:%%x" }
 		echo 	}
 		echo }
 	) > ../../blockstates/%%x.json

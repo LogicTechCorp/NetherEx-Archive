@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:red_elder_mushroom" }
+        "": { "model": "netherex:block/red_elder_mushroom" }
     }
 }

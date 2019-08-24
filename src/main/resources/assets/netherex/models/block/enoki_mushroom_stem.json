@@ -2,9 +2,9 @@
     "parent": "block/block",
     "ambientocclusion": false,
     "textures": {
-        "texture": "netherex:blocks/enoki_mushroom_stem1",
-        "top": "netherex:blocks/enoki_mushroom_w1",
-        "particle": "netherex:blocks/enoki_mushroom_stem1"
+        "texture": "netherex:block/enoki_mushroom_stem1",
+        "top": "netherex:block/enoki_mushroom_w1",
+        "particle": "netherex:block/enoki_mushroom_stem1"
     },
     "elements": [
         {

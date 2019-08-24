@@ -1,6 +1,3 @@
 {
-    "parent": "minecraft:block/cube_all",
-    "textures": {
-        "all": "netherex:quartz_ore"
-    }
+    "parent": "block/nether_quartz_ore"
 }

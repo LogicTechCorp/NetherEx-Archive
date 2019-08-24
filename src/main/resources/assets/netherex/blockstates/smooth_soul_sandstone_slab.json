@@ -3,9 +3,9 @@
     "defaults": {
         "model": "minecraft:half_slab",
         "textures": {
-            "bottom": "netherex:blocks/smooth_soul_sandstone",
-            "top": "netherex:blocks/smooth_soul_sandstone",
-            "side": "netherex:blocks/smooth_soul_sandstone"
+            "bottom": "netherex:block/smooth_soul_sandstone",
+            "top": "netherex:block/smooth_soul_sandstone",
+            "side": "netherex:block/smooth_soul_sandstone"
         },
         "transform": "forge:default-block"
     },
@@ -21,7 +21,7 @@
             {
                 "model": "minecraft:cube_all",
                 "textures": {
-                    "all": "netherex:blocks/smooth_soul_sandstone"
+                    "all": "netherex:block/smooth_soul_sandstone"
                 }
             }
         ],

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "netherex:blocks/spoul_vines"
+        "layer0": "netherex:block/spoul_vines"
     }
 }

@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "netherex:block/gloomy_nether_bricks"
+    }
+}

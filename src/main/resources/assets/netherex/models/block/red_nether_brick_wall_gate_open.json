@@ -1,6 +1,6 @@
 {
     "parent": "block/wall_gate_open",
     "textures": {
-        "texture": "netherex:blocks/red_nether_brick"
+        "texture": "netherex:block/red_nether_brick"
     }
 }

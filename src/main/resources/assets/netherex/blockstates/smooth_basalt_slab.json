@@ -3,9 +3,9 @@
     "defaults": {
         "model": "minecraft:half_slab",
         "textures": {
-            "bottom": "netherex:blocks/smooth_basalt",
-            "top": "netherex:blocks/smooth_basalt",
-            "side": "netherex:blocks/smooth_basalt"
+            "bottom": "netherex:block/smooth_basalt",
+            "top": "netherex:block/smooth_basalt",
+            "side": "netherex:block/smooth_basalt"
         },
         "transform": "forge:default-block"
     },
@@ -21,7 +21,7 @@
             {
                 "model": "minecraft:cube_all",
                 "textures": {
-                    "all": "netherex:blocks/smooth_basalt"
+                    "all": "netherex:block/smooth_basalt"
                 }
             }
         ],

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:amethyst_ore" }
+        "": { "model": "netherex:block/amethyst_ore" }
     }
 }

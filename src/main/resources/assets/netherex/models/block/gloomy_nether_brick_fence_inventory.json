@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_inventory",
     "textures": {
-        "texture": "netherex:blocks/gloomy_nether_brick"
+        "texture": "netherex:block/gloomy_nether_brick"
     }
 }

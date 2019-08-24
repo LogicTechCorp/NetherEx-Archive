@@ -1,9 +1,9 @@
 {
     "credit": "Made with Blockbench",
     "textures": {
-        "0": "netherex:blocks/urn_of_sorrow_empty",
-        "1": "netherex:blocks/urn_of_sorrow_empty_bottom",
-        "particle": "netherex:blocks/urn_of_sorrow_empty_bottom"
+        "0": "netherex:block/urn_of_sorrow_empty",
+        "1": "netherex:block/urn_of_sorrow_empty_bottom",
+        "particle": "netherex:block/urn_of_sorrow_empty_bottom"
     },
     "elements": [
         {

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:smooth_soul_sandstone" }
+        "": { "model": "netherex:block/smooth_soul_sandstone" }
     }
 }

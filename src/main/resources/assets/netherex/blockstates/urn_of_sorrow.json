@@ -6,10 +6,10 @@
     "variants": {
         "type": {
             "empty": {
-                "model": "netherex:urn_of_sorrow_empty"
+                "model": "netherex:block/urn_of_sorrow_empty"
             },
             "full": {
-                "model": "netherex:urn_of_sorrow_full"
+                "model": "netherex:block/urn_of_sorrow_full"
             }
         }
     }

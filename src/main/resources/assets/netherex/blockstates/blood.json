@@ -4,7 +4,7 @@
         "model": "forge:fluid"
     },
     "variants": {
-        "normal": [
+        "": [
             {
                 "custom": {
                     "fluid": "blood"

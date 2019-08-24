@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "netherex:blocks/spoul_shroom_stem"
+        "all": "netherex:block/spoul_shroom_stem"
     }
 }

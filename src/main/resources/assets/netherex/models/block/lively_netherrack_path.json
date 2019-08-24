@@ -1,6 +1,9 @@
 {
-    "parent": "block/cube_all",
+    "parent": "netherex:block/path",
     "textures": {
-        "all": "netherex:blocks/lively_netherrack_path"
+        "particle": "netherex:block/lively_netherrack_path",
+        "top": "netherex:block/lively_netherrack_path",
+        "side": "netherex:block/lively_netherrack",
+        "bottom": "netherex:block/lively_netherrack"
     }
 }

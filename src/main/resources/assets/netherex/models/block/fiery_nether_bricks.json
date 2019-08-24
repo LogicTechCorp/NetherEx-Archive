@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "netherex:block/fiery_nether_bricks"
+    }
+}

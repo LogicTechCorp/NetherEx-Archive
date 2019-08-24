@@ -3,8 +3,8 @@
     "defaults": {
         "model": "farmland",
         "textures": {
-            "particle": "blocks/soul_sand",
-            "dirt": "blocks/soul_sand"
+            "particle": "block/soul_sand",
+            "dirt": "block/soul_sand"
         },
         "transform": "forge:default-block"
     },
@@ -12,42 +12,42 @@
         "moisture": {
             "0": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_dry"
+                    "top": "netherex:block/tilled_soul_sand_dry"
                 }
             },
             "1": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_dry"
+                    "top": "netherex:block/tilled_soul_sand_dry"
                 }
             },
             "2": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_dry"
+                    "top": "netherex:block/tilled_soul_sand_dry"
                 }
             },
             "3": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_dry"
+                    "top": "netherex:block/tilled_soul_sand_dry"
                 }
             },
             "4": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_dry"
+                    "top": "netherex:block/tilled_soul_sand_dry"
                 }
             },
             "5": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_dry"
+                    "top": "netherex:block/tilled_soul_sand_dry"
                 }
             },
             "6": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_dry"
+                    "top": "netherex:block/tilled_soul_sand_dry"
                 }
             },
             "7": {
                 "textures": {
-                    "top": "netherex:blocks/tilled_soul_sand_wet"
+                    "top": "netherex:block/tilled_soul_sand_wet"
                 }
             }
         }

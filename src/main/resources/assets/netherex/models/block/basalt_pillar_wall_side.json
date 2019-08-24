@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/wall_side",
     "textures": {
-        "wall": "netherex:blocks/basalt_pillar_side"
+        "wall": "netherex:block/basalt_pillar_side"
     }
 }

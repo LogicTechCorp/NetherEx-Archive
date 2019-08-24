@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "netherex:blocks/smooth_basalt"
+        "all": "netherex:block/smooth_basalt"
     }
 }

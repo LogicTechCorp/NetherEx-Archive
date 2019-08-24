@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "netherex:spoul_shroom_stem" }
+        "": { "model": "netherex:block/spoul_shroom_stem" }
     }
 }

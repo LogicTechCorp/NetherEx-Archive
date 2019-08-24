@@ -17,58 +17,27 @@
 
 package logictechcorp.netherex;
 
-import logictechcorp.libraryex.LibraryEx;
-import logictechcorp.libraryex.api.IModData;
-import logictechcorp.libraryex.api.IProxy;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
-import logictechcorp.netherex.api.NetherExAPI;
-import logictechcorp.netherex.api.internal.INetherExAPI;
-import logictechcorp.netherex.handler.IMCHandler;
-import logictechcorp.netherex.init.*;
-import logictechcorp.netherex.village.PigtificateTradeConfigManager;
-import logictechcorp.netherex.world.biome.NetherBiomeDataConfigManager;
-import logictechcorp.netherex.world.biome.NetherExBiomeDataRegistry;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
+import logictechcorp.netherex.handler.NetherDimensionManager;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-
-@Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
-public class NetherEx implements IModData, INetherExAPI
+@Mod(NetherEx.MOD_ID)
+public class NetherEx
 {
     public static final String MOD_ID = "netherex";
-    public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.0.9";
-    public static final String DEPENDENCIES = "required-after:libraryex@[1.0.9,);";
-
-    public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
-
-    @Mod.Instance(MOD_ID)
-    public static NetherEx instance;
-
-    @SidedProxy(clientSide = "logictechcorp.netherex.proxy.ClientProxy", serverSide = "logictechcorp.netherex.proxy.ServerProxy")
-    public static IProxy proxy;
-
-    private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)
+    public static final ItemGroup ITEM_GROUP = new ItemGroup(MOD_ID)
     {
         @Override
-        @SideOnly(Side.CLIENT)
+        @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon()
         {
             return new ItemStack(Blocks.NETHERRACK);
@@ -77,87 +46,14 @@ public class NetherEx implements IModData, INetherExAPI
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 
-    static
+    public NetherEx()
     {
-        FluidRegistry.enableUniversalBucket();
-
-        File oldConfigDirectory = new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME);
-
-        if(oldConfigDirectory.exists() && oldConfigDirectory.getPath().contains(NetherEx.NAME))
-        {
-            try
-            {
-                Files.move(oldConfigDirectory.toPath(), new File(LibraryEx.CONFIG_DIRECTORY, NetherEx.NAME + "_old").toPath());
-            }
-            catch(IOException ignored)
-            {
-            }
-        }
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::onCommonSetup);
     }
 
-    @Mod.EventHandler
-    public void onFMLPreInitialization(FMLPreInitializationEvent event)
+    private void onCommonSetup(FMLCommonSetupEvent event)
     {
-        NetherExAPI.setInstance(this);
-        NetherExOverrides.overrideObjects();
-        proxy.preInit();
-    }
-
-    @Mod.EventHandler
-    public void onFMLInitialization(FMLInitializationEvent event)
-    {
-        NetherExDataFixers.registerFixes();
-        NetherExPigtificates.registerPigtificateCareers();
-        NetherExBiomes.registerBiomes();
-        NetherExRecipes.registerRecipes();
-        NetherExOreDictionary.registerOres();
-        NetherExCriteria.registerCriteria();
-        IMCHandler.sendCompatibilityMessages();
-        NetherBiomeDataConfigManager.readBiomeDataConfigs();
-        PigtificateTradeConfigManager.readTradeConfigs();
-        proxy.init();
-    }
-
-    @Mod.EventHandler
-    public void onFMLPostInitialization(FMLPostInitializationEvent event)
-    {
-        NetherBiomeDataConfigManager.writeBiomeDataConfigs();
-        PigtificateTradeConfigManager.writeTradeConfigs();
-        proxy.postInit();
-    }
-
-    @Mod.EventHandler
-    public void onFMLServerStarting(FMLServerStartingEvent event)
-    {
-        NetherExOverrides.overrideNether();
-    }
-
-    @Override
-    public String getModId()
-    {
-        return MOD_ID;
-    }
-
-    @Override
-    public CreativeTabs getCreativeTab()
-    {
-        return CREATIVE_TAB;
-    }
-
-    @Override
-    public boolean isStub()
-    {
-        return false;
-    }
-
-    @Override
-    public IBiomeDataRegistry getBiomeDataRegistry()
-    {
-        return NetherExBiomeDataRegistry.INSTANCE;
-    }
-
-    public static ResourceLocation getResource(String name)
-    {
-        return new ResourceLocation(NetherEx.MOD_ID + ":" + name);
+        NetherDimensionManager.setup();
     }
 }

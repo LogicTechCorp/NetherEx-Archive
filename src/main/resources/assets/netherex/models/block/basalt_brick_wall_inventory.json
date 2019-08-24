@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/wall_inventory",
     "textures": {
-        "wall": "netherex:blocks/basalt_brick"
+        "wall": "netherex:block/basalt_brick"
     }
 }

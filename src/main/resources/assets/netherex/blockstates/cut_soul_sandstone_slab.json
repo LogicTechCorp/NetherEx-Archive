@@ -3,9 +3,9 @@
     "defaults": {
         "model": "minecraft:half_slab",
         "textures": {
-            "bottom": "netherex:blocks/soul_sandstone_top",
-            "top": "netherex:blocks/soul_sandstone_top",
-            "side": "netherex:blocks/cut_soul_sandstone"
+            "bottom": "netherex:block/soul_sandstone_top",
+            "top": "netherex:block/soul_sandstone_top",
+            "side": "netherex:block/cut_soul_sandstone"
         },
         "transform": "forge:default-block"
     },
@@ -21,8 +21,8 @@
             {
                 "model": "minecraft:cube_column",
                 "textures": {
-                    "end": "netherex:blocks/soul_sandstone_top",
-                    "side": "netherex:blocks/cut_soul_sandstone"
+                    "end": "netherex:block/soul_sandstone_top",
+                    "side": "netherex:block/cut_soul_sandstone"
                 }
             }
         ],

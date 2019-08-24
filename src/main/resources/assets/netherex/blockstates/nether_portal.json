@@ -9,7 +9,7 @@
                 "model": "portal_ew"
             },
             "y": {
-                "model": "netherex:portal_du"
+                "model": "netherex:block/portal_du"
             },
             "z": {
                 "model": "portal_ns"
