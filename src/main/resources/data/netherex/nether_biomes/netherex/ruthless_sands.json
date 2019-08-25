@@ -1,0 +1,69 @@
+{
+    "generation_weight": 8,
+    "use_default_features": true,
+    "is_sub_biome": false,
+    "blocks": {
+        "surface": {
+            "Name": "minecraft:soul_sand"
+        },
+        "subsurface": {
+            "Name": "netherex:gloomy_netherrack"
+        },
+        "cave_ceiling": {
+            "Name": "netherex:gloomy_netherrack"
+        },
+        "cave_wall": {
+            "Name": "netherex:gloomy_netherrack"
+        },
+        "cave_floor": {
+            "Name": "netherex:gloomy_netherrack"
+        },
+        "liquid": {
+            "Name": "minecraft:lava"
+        }
+    },
+    "entities": [
+    ],
+    "features": [
+        {
+            "feature": {
+                "Name": "libraryex:triple_plant",
+                "state": {
+                    "Name": "netherex:thornstalk"
+                }
+            },
+            "placement": {
+                "Name": "minecraft:noise_heightmap_32",
+                "noise_level": -0.8,
+                "below_noise": 0,
+                "above_noise": 7
+            },
+            "stage": "vegetal_decoration"
+        },
+        {
+            "feature": {
+                "Name": "minecraft:glowstone_blob"
+            },
+            "placement": {
+                "Name": "minecraft:light_gem_chance",
+                "count": 10
+            },
+            "stage": "underground_decoration"
+        },
+        {
+            "feature": {
+                "Name": "minecraft:glowstone_blob"
+            },
+            "placement": {
+                "Name": "minecraft:count_range",
+                "count": 10,
+                "bottom_offset": 0,
+                "top_offset": 0,
+                "maximum": 128
+            },
+            "stage": "underground_decoration"
+        }
+    ],
+    "sub_biomes": [
+    ]
+}

@@ -26,7 +26,6 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import java.util.Random;
 import java.util.function.Function;
 
-
 public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBuilderWrapper.Config>
 {
     protected long seed;
@@ -131,7 +130,7 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
     @Override
     public void setSeed(long seed)
     {
-        if (this.seed != seed || this.noiseGenerator == null)
+        if(this.seed != seed || this.noiseGenerator == null)
         {
             this.noiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4);
         }
@@ -160,7 +159,7 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
             this.originalBuilder = biomeData.getBiome().getSurfaceBuilder();
         }
 
-        public static Config deserialize(Dynamic<?> ops)
+        public static <T> Config deserialize(Dynamic<T> dynamic)
         {
             return new Config(BiomeData.EMPTY);
         }

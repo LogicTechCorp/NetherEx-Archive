@@ -33,7 +33,7 @@ import java.util.function.LongFunction;
 public class NetherLayerUtil
 {
 
-    public static  Layer[] createLayers(long seed, WorldType worldType, OverworldGenSettings generatorSettings)
+    public static Layer[] createLayers(long seed, WorldType worldType, OverworldGenSettings generatorSettings)
     {
         List<IAreaFactory<LazyArea>> areas = createAreas(worldType, generatorSettings, (seedModifier) -> new LazyAreaLayerContext(25, seed, seedModifier));
         return new Layer[]{new Layer(areas.get(0)), new Layer(areas.get(1)), new Layer(areas.get(2))};

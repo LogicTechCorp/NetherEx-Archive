@@ -40,9 +40,6 @@ import java.util.List;
 
 public class NetherExWorldType extends WorldType
 {
-    private static final boolean LC_IS_LOADED = ModList.get().isLoaded("lostcities");
-    private static final boolean BOP_IS_LOADED = ModList.get().isLoaded("biomesoplenty");
-
     public NetherExWorldType()
     {
         super(NetherEx.MOD_ID);
@@ -52,6 +49,9 @@ public class NetherExWorldType extends WorldType
     @OnlyIn(Dist.CLIENT)
     public void onCustomizeButton(Minecraft minecraft, CreateWorldScreen createWorldScreen)
     {
+        boolean lcIsLoaded = ModList.get().isLoaded("lostcities");
+        boolean bopIsLoaded = ModList.get().isLoaded("biomesoplenty");
+
         List<WorldType> compatibleWorldTypes = new ArrayList<>();
 
         for(WorldType worldType : WORLD_TYPES)
@@ -63,14 +63,14 @@ public class NetherExWorldType extends WorldType
 
             String worldTypeName = worldType.getName();
 
-            if(LC_IS_LOADED && BOP_IS_LOADED)
+            if(lcIsLoaded && bopIsLoaded)
             {
                 if(worldTypeName.equals("lostcities_bop"))
                 {
                     compatibleWorldTypes.add(worldType);
                 }
             }
-            else if(LC_IS_LOADED)
+            else if(lcIsLoaded)
             {
                 if(worldTypeName.equals("lostcities"))
                 {
@@ -78,7 +78,7 @@ public class NetherExWorldType extends WorldType
                 }
             }
 
-            if(BOP_IS_LOADED)
+            if(bopIsLoaded)
             {
                 if(worldTypeName.equals("biomesoplenty"))
                 {
@@ -96,6 +96,8 @@ public class NetherExWorldType extends WorldType
     @Override
     public ChunkGenerator<?> createChunkGenerator(World world)
     {
+        boolean lcIsLoaded = ModList.get().isLoaded("lostcities");
+        boolean bopIsLoaded = ModList.get().isLoaded("biomesoplenty");
         DimensionType dimension = world.getDimension().getType();
 
         if(dimension == DimensionType.OVERWORLD)
@@ -114,7 +116,7 @@ public class NetherExWorldType extends WorldType
 
                 String worldTypeName = worldType.getName();
 
-                if(LC_IS_LOADED && BOP_IS_LOADED)
+                if(lcIsLoaded && bopIsLoaded)
                 {
                     if(worldTypeName.equals("lostcities_bop"))
                     {
@@ -122,7 +124,7 @@ public class NetherExWorldType extends WorldType
                         break;
                     }
                 }
-                else if(LC_IS_LOADED)
+                else if(lcIsLoaded)
                 {
                     if(worldTypeName.equals("lostcities"))
                     {
@@ -130,7 +132,7 @@ public class NetherExWorldType extends WorldType
                         break;
                     }
                 }
-                else if(BOP_IS_LOADED)
+                else if(bopIsLoaded)
                 {
                     if(worldTypeName.equals("BIOMESOP"))
                     {
@@ -172,6 +174,6 @@ public class NetherExWorldType extends WorldType
     @OnlyIn(Dist.CLIENT)
     public boolean hasCustomOptions()
     {
-        return LC_IS_LOADED || BOP_IS_LOADED;
+        return ModList.get().isLoaded("lostcities") || ModList.get().isLoaded("biomesoplenty");
     }
 }

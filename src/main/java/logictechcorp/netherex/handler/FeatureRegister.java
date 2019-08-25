@@ -18,24 +18,25 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.generation.surfacebuilder.NetherSurfaceBuilderWrapper;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import logictechcorp.netherex.world.generation.feature.GlowstoneBlobFeatureOverride;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class SurfaceBuilderRegister
+public class FeatureRegister
 {
     @SubscribeEvent
-    public static void onSurfaceBuilderRegister(RegistryEvent.Register<SurfaceBuilder<?>> event)
+    public static void onFeatureRegister(RegistryEvent.Register<Feature<?>> event)
     {
-        registerSurfaceBuilder("nether_surface_builder_wrapper", new NetherSurfaceBuilderWrapper(NetherSurfaceBuilderWrapper.Config::deserialize));
+        registerFeature("minecraft:glowstone_blob", new GlowstoneBlobFeatureOverride(NoFeatureConfig::deserialize));
     }
 
-    private static void registerSurfaceBuilder(String name, SurfaceBuilder<?> feature)
+    private static void registerFeature(String name, Feature<?> feature)
     {
-        ForgeRegistries.SURFACE_BUILDERS.register(feature.setRegistryName(name));
+        ForgeRegistries.FEATURES.register(feature.setRegistryName(name));
     }
 }

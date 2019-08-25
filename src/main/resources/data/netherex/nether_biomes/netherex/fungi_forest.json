@@ -1,0 +1,31 @@
+{
+    "generation_weight": 4,
+    "use_default_features": true,
+    "is_sub_biome": false,
+    "blocks": {
+        "surface": {
+            "Name": "netherex:hyphae"
+        },
+        "subsurface": {
+            "Name": "netherex:lively_netherrack"
+        },
+        "cave_ceiling": {
+            "Name": "netherex:lively_netherrack"
+        },
+        "cave_wall": {
+            "Name": "netherex:lively_netherrack"
+        },
+        "cave_floor": {
+            "Name": "netherex:lively_netherrack"
+        },
+        "liquid": {
+            "Name": "lava"
+        }
+    },
+    "entities": [
+    ],
+    "features": [
+    ],
+    "sub_biomes": [
+    ]
+}

@@ -99,9 +99,9 @@ public class NetherBiomeProvider extends BiomeProvider
             int posX = x + area % width << 2;
             int posZ = z + area / width << 2;
 
-            if (biomes.contains(localBiomes[area]))
+            if(biomes.contains(localBiomes[area]))
             {
-                if (pos == null || random.nextInt(areaCount + 1) == 0)
+                if(pos == null || random.nextInt(areaCount + 1) == 0)
                 {
                     pos = new BlockPos(posX, 0, posZ);
                 }
@@ -122,7 +122,7 @@ public class NetherBiomeProvider extends BiomeProvider
     @Override
     public Set<BlockState> getSurfaceBlocks()
     {
-        if (this.topBlocksCache.isEmpty())
+        if(this.topBlocksCache.isEmpty())
         {
             this.topBlocksCache.add(Blocks.NETHERRACK.getDefaultState());
         }

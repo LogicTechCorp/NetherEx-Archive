@@ -1,0 +1,31 @@
+{
+    "generation_weight": 2,
+    "use_default_features": true,
+    "is_sub_biome": false,
+    "blocks": {
+        "surface": {
+            "Name": "netherex:frostburn_ice"
+        },
+        "subsurface": {
+            "Name": "netherex:icy_netherrack"
+        },
+        "cave_ceiling": {
+            "Name": "netherex:icy_netherrack"
+        },
+        "cave_wall": {
+            "Name": "netherex:icy_netherrack"
+        },
+        "cave_floor": {
+            "Name": "netherex:icy_netherrack"
+        },
+        "liquid": {
+            "Name": "lava"
+        }
+    },
+    "entities": [
+    ],
+    "features": [
+    ],
+    "sub_biomes": [
+    ]
+}

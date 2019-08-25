@@ -1,24 +1,18 @@
 /*
- * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * Copyright 2014-2016, the Biomes O' Plenty Team
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation version 3 of the License.
+ * This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Original: https://github.com/Glitchfiend/BiomesOPlenty/blob/71f8cd626617e08caa70b6127ee887ab9342b204/src/main/java/biomesoplenty/common/world/layer/GenLayerSubBiomesBOP.java
+ * Edited to fit a newer Minecraft version
  */
 
 package logictechcorp.netherex.world.generation.layer;
 
 import logictechcorp.libraryex.world.biome.BiomeData;
-import logictechcorp.netherex.handler.NetherDimensionManager;
+import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -104,7 +98,7 @@ public enum NetherSubBiomeLayer implements IAreaTransformer2, IDimOffset1Transfo
 
         if(biome != null)
         {
-            BiomeData biomeData = NetherDimensionManager.getBiomeData().get(biome.getRegistryName());
+            BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData().get(biome.getRegistryName());
 
             if(biomeData != null)
             {

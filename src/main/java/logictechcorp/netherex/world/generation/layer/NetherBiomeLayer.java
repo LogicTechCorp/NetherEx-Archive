@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.world.generation.layer;
 
-import logictechcorp.netherex.handler.NetherDimensionManager;
+import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -41,7 +41,7 @@ public enum NetherBiomeLayer implements IC0Transformer
 
     private Biome getBiome(INoiseRandom random)
     {
-        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>(NetherDimensionManager.getBiomeEntries().values());
+        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>(NetherEx.BIOME_DATA_MANAGER.getBiomeEntries().values());
         int biomeWeights = WeightedRandom.getTotalWeight(biomeEntries);
         return biomeWeights <= 0 ? Biomes.NETHER : WeightedRandom.getRandomItem(biomeEntries, random.random(biomeWeights)).biome;
     }

@@ -20,12 +20,10 @@ package logictechcorp.netherex.world.biome;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
-public class RuthlessSandsBiome extends Biome
+public class BasicNetherBiome extends Biome
 {
-    protected RuthlessSandsBiome()
+    public BasicNetherBiome()
     {
         super(new Builder().surfaceBuilder(SurfaceBuilder.NETHER, SurfaceBuilder.NETHERRACK_CONFIG).precipitation(RainType.NONE).category(Category.NETHER).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).waterColor(4159204).waterFogColor(329011).parent(null));
     }
-
-
 }

@@ -1,0 +1,31 @@
+{
+    "generation_weight": 6,
+    "use_default_features": true,
+    "is_sub_biome": false,
+    "blocks": {
+        "surface": {
+            "Name": "netherex:fiery_netherrack"
+        },
+        "subsurface": {
+            "Name": "netherex:fiery_netherrack"
+        },
+        "cave_ceiling": {
+            "Name": "netherex:fiery_netherrack"
+        },
+        "cave_wall": {
+            "Name": "netherex:fiery_netherrack"
+        },
+        "cave_floor": {
+            "Name": "netherex:fiery_netherrack"
+        },
+        "liquid": {
+            "Name": "lava"
+        }
+    },
+    "entities": [
+    ],
+    "features": [
+    ],
+    "sub_biomes": [
+    ]
+}
