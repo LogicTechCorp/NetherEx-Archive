@@ -21,6 +21,7 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.generation.feature.*;
 import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.HellLavaConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,8 +34,9 @@ public class FeatureRegister
     @SubscribeEvent
     public static void onFeatureRegister(RegistryEvent.Register<Feature<?>> event)
     {
-        registerFeature("minecraft:glowstone_blob", new GlowstoneBlobFeatureOverride(NoFeatureConfig::deserialize));
         registerFeature("minecraft:hell_fire", new FireFeatureOverride(NoFeatureConfig::deserialize));
+        registerFeature("minecraft:glowstone_blob", new GlowstoneBlobFeatureOverride(NoFeatureConfig::deserialize));
+        registerFeature("minecraft:nether_spring", new NetherSpringOverride(HellLavaConfig::deserialize));
         registerFeature("brown_elder_mushroom", new BrownElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
         registerFeature("red_elder_mushroom", new RedElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
         registerFeature("enoki_mushroom", new EnokiMushroomFeature(NoFeatureConfig::deserialize));

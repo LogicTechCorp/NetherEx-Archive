@@ -27,6 +27,20 @@
     ],
     "features": [
         {
+            "feature": "minecraft:nether_spring",
+            "feature_config": {
+                "inside_rock": false
+            },
+            "placement": "minecraft:count_range",
+            "placement_config": {
+                "count": 12,
+                "bottom_offset": 4,
+                "top_offset": 8,
+                "maximum": 128
+            },
+            "stage": "underground_decoration"
+        },
+        {
             "feature": "minecraft:hell_fire",
             "placement": "minecraft:hell_fire",
             "placement_config": {
@@ -49,6 +63,39 @@
                 "count": 10,
                 "bottom_offset": 0,
                 "top_offset": 0,
+                "maximum": 128
+            },
+            "stage": "underground_decoration"
+        },
+        {
+            "feature": "libraryex:pool",
+            "feature_config": {
+                "liquid_state": {
+                    "Name": "minecraft:lava"
+                },
+                "surrounding_state": {
+                    "Name": "netherex:fiery_netherrack"
+                }
+            },
+            "placement": "minecraft:count_range",
+            "placement_config": {
+                "count": 4,
+                "bottom_offset": 10,
+                "top_offset": 10,
+                "maximum": 128
+            },
+            "stage": "underground_decoration"
+        },
+        {
+            "feature": "minecraft:nether_spring",
+            "feature_config": {
+                "inside_rock": true
+            },
+            "placement": "minecraft:count_range",
+            "placement_config": {
+                "count": 24,
+                "bottom_offset": 10,
+                "top_offset": 10,
                 "maximum": 128
             },
             "stage": "underground_decoration"

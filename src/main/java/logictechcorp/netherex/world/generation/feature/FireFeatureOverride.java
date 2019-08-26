@@ -18,9 +18,9 @@
 package logictechcorp.netherex.world.generation.feature;
 
 import com.mojang.datafixers.Dynamic;
+import logictechcorp.netherex.init.NetherExTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -46,7 +46,7 @@ public class FireFeatureOverride extends FireFeature
             BlockPos randomPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             BlockState randomState = world.getBlockState(randomPos.down());
 
-            if(world.isAirBlock(randomPos) && randomState.getBlock().isFireSource(randomState, world, randomPos, Direction.UP))
+            if(world.isAirBlock(randomPos) && randomState.getBlock().isIn(NetherExTags.Blocks.NETHERRACK))
             {
                 world.setBlockState(randomPos, Blocks.FIRE.getDefaultState(), 2);
             }

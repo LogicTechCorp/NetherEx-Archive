@@ -1,0 +1,10 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:netherrack",
+        "netherex:gloomy_netherrack",
+        "netherex:lively_netherrack",
+        "netherex:fiery_netherrack",
+        "netherex:icy_netherrack"
+    ]
+}

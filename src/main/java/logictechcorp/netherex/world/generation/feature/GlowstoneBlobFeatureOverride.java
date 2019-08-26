@@ -18,7 +18,7 @@
 package logictechcorp.netherex.world.generation.feature;
 
 import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.Block;
+import logictechcorp.netherex.init.NetherExTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +47,7 @@ public class GlowstoneBlobFeatureOverride extends GlowstoneBlobFeature
         {
             return false;
         }
-        else if(!Block.hasSolidSide(world.getBlockState(upPos), world, upPos, Direction.DOWN))
+        else if(!world.getBlockState(upPos).isIn(NetherExTags.Blocks.NETHERRACK))
         {
             return false;
         }
