@@ -1,24 +1,40 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "cube_column",
-        "textures": {
-            "side": "netherex:block/elder_mushroom_stem",
-            "end": "netherex:block/elder_mushroom_stem_flesh"
+    "multipart": [
+        {   "when": { "north": true },
+            "apply": { "model": "netherex:block/elder_mushroom_stem" }
         },
-        "transform": "forge:default-block"
-    },
-    "variants": {
-        "axis": {
-            "y": { },
-            "x": { "x": 90, "y": 90 },
-            "z": { "x": 90 },
-            "none": {
-                "model": "cube_all",
-                "textures": {
-                    "all": "netherex:block/elder_mushroom_stem"
-                }
-            }
+        {   "when": { "east": true },
+            "apply": { "model": "netherex:block/elder_mushroom_stem", "y": 90, "uvlock": true }
+        },
+        {   "when": { "south": true },
+            "apply": { "model": "netherex:block/elder_mushroom_stem", "y": 180, "uvlock": true }
+        },
+        {   "when": { "west": true },
+            "apply": { "model": "netherex:block/elder_mushroom_stem", "y": 270, "uvlock": true }
+        },
+        {   "when": { "up": true },
+            "apply": { "model": "netherex:block/elder_mushroom_stem", "x": 270, "uvlock": true }
+        },
+        {   "when": { "down": true },
+            "apply": { "model": "netherex:block/elder_mushroom_stem", "x": 90, "uvlock": true }
+        },
+        {   "when": { "north": false },
+            "apply": { "model": "netherex:block/elder_mushroom_inside" }
+        },
+        {   "when": { "east": false },
+            "apply": { "model": "netherex:block/elder_mushroom_inside", "y": 90, "uvlock": false }
+        },
+        {   "when": { "south": false },
+            "apply": { "model": "netherex:block/elder_mushroom_inside", "y": 180, "uvlock": false }
+        },
+        {   "when": { "west": false },
+            "apply": { "model": "netherex:block/elder_mushroom_inside", "y": 270, "uvlock": false }
+        },
+        {   "when": { "up": false },
+            "apply": { "model": "netherex:block/elder_mushroom_inside", "x": 270, "uvlock": false }
+        },
+        {   "when": { "down": false },
+            "apply": { "model": "netherex:block/elder_mushroom_inside", "x": 90, "uvlock": false }
         }
-    }
+    ]
 }

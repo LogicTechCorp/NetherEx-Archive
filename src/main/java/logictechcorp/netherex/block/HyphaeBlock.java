@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -28,18 +28,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.RegistryObject;
 
 import java.util.Random;
 
 public class HyphaeBlock extends Block
 {
-    private final RegistryObject<Block> livelyNetherrack;
-
     public HyphaeBlock()
     {
         super(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_GRAY).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F).tickRandomly());
-        this.livelyNetherrack = RegistryObject.of(NetherEx.MOD_ID + ":lively_netherrack", () -> Block.class);
     }
 
     @Override
@@ -55,7 +51,7 @@ public class HyphaeBlock extends Block
     @Override
     public void tick(BlockState state, World world, BlockPos pos, Random random)
     {
-        if(!world.isRemote && this.livelyNetherrack.isPresent())
+        if(!world.isRemote)
         {
             if(world.isAreaLoaded(pos, 3) && world.getLight(pos.up()) >= 9)
             {
@@ -63,7 +59,7 @@ public class HyphaeBlock extends Block
                 {
                     BlockPos randomPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 
-                    if(world.getBlockState(randomPos).getBlock() == this.livelyNetherrack.orElse(null))
+                    if(world.getBlockState(randomPos).getBlock() == NetherExBlocks.LIVELY_NETHERRACK)
                     {
                         world.setBlockState(randomPos, state);
                     }

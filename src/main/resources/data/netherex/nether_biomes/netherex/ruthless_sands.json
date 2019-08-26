@@ -1,4 +1,5 @@
 {
+    "biome": "netherex:ruthless_sands",
     "generation_weight": 8,
     "use_default_features": true,
     "is_sub_biome": false,
@@ -26,42 +27,38 @@
     ],
     "features": [
         {
-            "feature": {
-                "Name": "libraryex:triple_plant",
-                "state": {
-                    "Name": "netherex:thornstalk"
-                }
-            },
-            "placement": {
-                "Name": "minecraft:noise_heightmap_32",
-                "noise_level": -0.8,
-                "below_noise": 0,
-                "above_noise": 7
-            },
-            "stage": "vegetal_decoration"
-        },
-        {
-            "feature": {
-                "Name": "minecraft:glowstone_blob"
-            },
-            "placement": {
-                "Name": "minecraft:light_gem_chance",
+            "feature": "minecraft:glowstone_blob",
+            "placement": "minecraft:light_gem_chance",
+            "placement_config": {
                 "count": 10
             },
             "stage": "underground_decoration"
         },
         {
-            "feature": {
-                "Name": "minecraft:glowstone_blob"
-            },
-            "placement": {
-                "Name": "minecraft:count_range",
+            "feature": "minecraft:glowstone_blob",
+            "placement": "minecraft:count_range",
+            "placement_config": {
                 "count": 10,
                 "bottom_offset": 0,
                 "top_offset": 0,
                 "maximum": 128
             },
             "stage": "underground_decoration"
+        },
+        {
+            "feature": "libraryex:triple_plant",
+            "feature_config": {
+                "state": {
+                    "Name": "netherex:thornstalk"
+                }
+            },
+            "placement": "minecraft:noise_heightmap_32",
+            "placement_config": {
+                "noise_level": -0.8,
+                "below_noise": 0,
+                "above_noise": 7
+            },
+            "stage": "vegetal_decoration"
         }
     ],
     "sub_biomes": [

@@ -1,4 +1,5 @@
 {
+    "biome": "netherex:fungi_forest",
     "generation_weight": 4,
     "use_default_features": true,
     "is_sub_biome": false,
@@ -25,6 +26,65 @@
     "entities": [
     ],
     "features": [
+        {
+            "feature": "minecraft:glowstone_blob",
+            "placement": "minecraft:light_gem_chance",
+            "placement_config": {
+                "count": 10
+            },
+            "stage": "underground_decoration"
+        },
+        {
+            "feature": "minecraft:glowstone_blob",
+            "placement": "minecraft:count_range",
+            "placement_config": {
+                "count": 10,
+                "bottom_offset": 0,
+                "top_offset": 0,
+                "maximum": 128
+            },
+            "stage": "underground_decoration"
+        },
+        {
+            "feature": "minecraft:random_selector",
+            "feature_config": {
+                "features": [
+                    {
+                        "name": "netherex:brown_elder_mushroom",
+                        "config": {
+                            "planted": false
+                        },
+                        "chance": 0.4
+                    },
+                    {
+                        "name": "netherex:red_elder_mushroom",
+                        "config": {
+                            "planted": false
+                        },
+                        "chance": 0.6
+                    }
+                ],
+                "default": {
+                    "name": "netherex:brown_elder_mushroom",
+                    "config": {
+                        "planted": false
+                    }
+                }
+            },
+            "placement": "minecraft:count_range",
+            "placement_config": {
+                "count": 256,
+                "bottom_offset": 32,
+                "top_offset": 32,
+                "maximum": 128
+            },
+            "stage": "vegetal_decoration"
+        },
+        {
+            "feature": "netherex:enoki_mushroom",
+            "placement": "netherex:enoki_mushroom",
+            "stage": "vegetal_decoration"
+        }
     ],
     "sub_biomes": [
     ]

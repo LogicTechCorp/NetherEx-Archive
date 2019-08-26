@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "netherex:block/brown_elder_mushroom_cap"
+    }
+}

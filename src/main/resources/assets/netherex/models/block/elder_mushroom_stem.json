@@ -1,0 +1,14 @@
+{
+    "textures": {
+        "texture": "netherex:block/elder_mushroom_stem",
+        "particle": "netherex:block/elder_mushroom_stem"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 0 ],
+            "faces": {
+                "north": { "texture": "#texture", "cullface":"north" }
+            }
+        }
+    ]
+}

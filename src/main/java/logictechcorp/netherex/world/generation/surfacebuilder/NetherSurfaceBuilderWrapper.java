@@ -54,32 +54,32 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
             BlockState caveFloorState = config.getCaveFloor();
             BlockState liquidState = config.getLiquid();
 
-            BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+            BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
             boolean wasLastBlockSolid = true;
 
             for(int posY = 127; posY >= 0; posY--)
             {
-                mutableBlockPos = mutableBlockPos.setPos(posX, posY, posZ);
+                mutablePos = mutablePos.setPos(posX, posY, posZ);
 
-                BlockState checkState = chunk.getBlockState(mutableBlockPos);
+                BlockState checkState = chunk.getBlockState(mutablePos);
                 int blocksToSkip = 0;
 
                 if(checkState == defaultState)
                 {
-                    chunk.setBlockState(mutableBlockPos, caveWallState, false);
+                    chunk.setBlockState(mutablePos, caveWallState, false);
 
                     if(!wasLastBlockSolid)
                     {
-                        chunk.setBlockState(mutableBlockPos, surfaceState, false);
+                        chunk.setBlockState(mutablePos, surfaceState, false);
 
                         for(int floorOffset = 1; floorOffset <= 4 - 1 && posY - floorOffset >= 0; floorOffset++)
                         {
-                            BlockState state = chunk.getBlockState(mutableBlockPos.setPos(posX, posY - floorOffset, posZ));
+                            BlockState state = chunk.getBlockState(mutablePos.setPos(posX, posY - floorOffset, posZ));
                             blocksToSkip = floorOffset;
 
                             if(state == defaultState)
                             {
-                                chunk.setBlockState(mutableBlockPos, subsurfaceState, false);
+                                chunk.setBlockState(mutablePos, subsurfaceState, false);
                             }
                             else
                             {
@@ -96,16 +96,16 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
                     {
                         if(posY + 1 <= 127)
                         {
-                            chunk.setBlockState(mutableBlockPos.setPos(posX, posY + 1, posZ), caveFloorState, false);
+                            chunk.setBlockState(mutablePos.setPos(posX, posY + 1, posZ), caveFloorState, false);
                         }
 
                         for(int roofOffset = 2; roofOffset <= 4 && posY + roofOffset <= 127; roofOffset++)
                         {
-                            BlockState state = chunk.getBlockState(mutableBlockPos.setPos(posX, posY + roofOffset, posZ));
+                            BlockState state = chunk.getBlockState(mutablePos.setPos(posX, posY + roofOffset, posZ));
 
                             if(state == defaultState || state == caveWallState)
                             {
-                                chunk.setBlockState(mutableBlockPos, caveCeilingState, false);
+                                chunk.setBlockState(mutablePos, caveCeilingState, false);
                             }
                             else
                             {
@@ -118,7 +118,7 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
                 }
                 else if(checkState == defaultLiquid)
                 {
-                    chunk.setBlockState(mutableBlockPos, liquidState, false);
+                    chunk.setBlockState(mutablePos, liquidState, false);
                     wasLastBlockSolid = false;
                 }
 

@@ -15,13 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.handler;
+package logictechcorp.netherex.init;
 
 import logictechcorp.libraryex.block.*;
+import logictechcorp.libraryex.utilities.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.block.EnokiCapBlock;
+import logictechcorp.netherex.block.EnokiStemBlock;
 import logictechcorp.netherex.block.HyphaeBlock;
 import logictechcorp.netherex.block.QuartzOreBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HugeMushroomBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -36,14 +41,45 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.GameData;
+import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@ObjectHolder(NetherEx.MOD_ID)
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class BlockRegister
+public class NetherExBlocks
 {
     private static final Set<Item> BLOCK_ITEMS = new HashSet<>();
+
+    public static final Block GLOOMY_NETHERRACK = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHERRACK = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHERRACK = InjectionHelper.nullValue();
+    public static final Block ICY_NETHERRACK = InjectionHelper.nullValue();
+    public static final Block BASALT = InjectionHelper.nullValue();
+    public static final Block HYPHAE = InjectionHelper.nullValue();
+    public static final Block FROSTBURN_ICE = InjectionHelper.nullValue();
+    public static final Block QUARTZ_ORE = InjectionHelper.nullValue();
+    public static final Block AMETHYST_ORE = InjectionHelper.nullValue();
+    public static final Block RIME_ORE = InjectionHelper.nullValue();
+    public static final Block THORNSTALK = InjectionHelper.nullValue();
+    public static final Block BROWN_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
+    public static final Block RED_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
+    public static final Block ELDER_MUSHROOM_STEM = InjectionHelper.nullValue();
+    public static final Block ENOKI_MUSHROOM_CAP = InjectionHelper.nullValue();
+    public static final Block ENOKI_MUSHROOM_STEM = InjectionHelper.nullValue();
+    public static final Block NETHERRACK_PATH = InjectionHelper.nullValue();
+    public static final Block GLOOMY_NETHERRACK_PATH = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHERRACK_PATH = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHERRACK_PATH = InjectionHelper.nullValue();
+    public static final Block ICY_NETHERRACK_PATH = InjectionHelper.nullValue();
+    public static final Block GLOOMY_NETHER_BRICKS = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHER_BRICKS = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHER_BRICKS = InjectionHelper.nullValue();
+    public static final Block ICY_NETHER_BRICKS = InjectionHelper.nullValue();
+    public static final Block SMOOTH_BASALT = InjectionHelper.nullValue();
+    public static final Block BASALT_BRICK = InjectionHelper.nullValue();
+    public static final Block BASALT_PILLAR = InjectionHelper.nullValue();
 
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event)
@@ -52,28 +88,27 @@ public class BlockRegister
         registerBlock("lively_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
         registerBlock("fiery_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
         registerBlock("icy_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
-
         registerBlock("basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
         registerBlock("hyphae", new HyphaeBlock());
         registerBlock("frostburn_ice", new UnmeltableIceBlock(Block.Properties.create(Material.ICE, DyeColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 1.0F)));
-
         registerBlock("quartz_ore", new QuartzOreBlock());
         registerBlock("amethyst_ore", new ExperienceDroppingBlock(1, 5, Block.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
         registerBlock("rime_ore", new ExperienceDroppingBlock(2, 6, Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
-
         registerBlock("thornstalk", new TriplePlantBlock(Block.Properties.create(Material.PLANTS, DyeColor.BROWN).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
-
+        registerBlock("brown_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.BROWN_MUSHROOM_BLOCK)));
+        registerBlock("red_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.RED_MUSHROOM_BLOCK)));
+        registerBlock("elder_mushroom_stem", new HugeMushroomBlock(Block.Properties.from(Blocks.MUSHROOM_STEM)));
+        registerBlock("enoki_mushroom_stem", new EnokiStemBlock(Block.Properties.from(Blocks.CHORUS_PLANT)));
+        registerBlock("enoki_mushroom_cap", new EnokiCapBlock(Block.Properties.from(Blocks.CHORUS_FLOWER)));
         registerBlock("netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.RED).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of("minecraft:netherrack", () -> Block.class)));
         registerBlock("gloomy_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":gloomy_netherrack", () -> Block.class)));
         registerBlock("lively_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":lively_netherrack", () -> Block.class)));
         registerBlock("fiery_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":fiery_netherrack", () -> Block.class)));
         registerBlock("icy_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":icy_netherrack", () -> Block.class)));
-
         registerBlock("gloomy_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
         registerBlock("lively_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
         registerBlock("fiery_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
         registerBlock("icy_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-
         registerBlock("smooth_basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
         registerBlock("basalt_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
         registerBlock("basalt_pillar", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));

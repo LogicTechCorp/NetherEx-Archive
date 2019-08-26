@@ -1,4 +1,5 @@
 {
+    "biome": "minecraft:nether",
     "generation_weight": 10,
     "use_default_features": true,
     "is_sub_biome": false,
@@ -24,25 +25,25 @@
     },
     "entities": [
         {
-            "Name": "minecraft:ghast",
+            "entity": "minecraft:ghast",
             "spawn_weight": 50,
             "minimum_group_count": 4,
             "maximum_group_count": 4
         },
         {
-            "Name": "minecraft:zombie_pigman",
+            "entity": "minecraft:zombie_pigman",
             "spawn_weight": 100,
             "minimum_group_count": 4,
             "maximum_group_count": 4
         },
         {
-            "Name": "minecraft:magma_cube",
+            "entity": "minecraft:magma_cube",
             "spawn_weight": 2,
             "minimum_group_count": 4,
             "maximum_group_count": 4
         },
         {
-            "Name": "minecraft:enderman",
+            "entity": "minecraft:enderman",
             "spawn_weight": 1,
             "minimum_group_count": 4,
             "maximum_group_count": 4
