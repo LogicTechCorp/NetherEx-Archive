@@ -1,30 +1,7 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "minecraft:half_slab",
-        "textures": {
-            "bottom": "netherex:block/basalt_brick",
-            "top": "netherex:block/basalt_brick",
-            "side": "netherex:block/basalt_brick"
-        },
-        "transform": "forge:default-block"
-    },
-    "variants": {
-        "type=top": [
-            {
-                "x": 180,
-                "uvlock": true
-            }
-        ],
-        "type=bottom": [ { } ],
-        "type=double": [
-            {
-                "model": "minecraft:cube_all",
-                "textures": {
-                    "all": "netherex:block/basalt_brick"
-                }
-            }
-        ],
-        "inventory": [ { } ]
-    }
+     "variants": {
+         "type=bottom": { "model": "netherex:block/basalt_brick_slab" },
+         "type=top": { "model": "netherex:block/basalt_brick_slab_top" },
+         "type=double": { "model": "netherex:block/basalt_brick" }
+     }
 }

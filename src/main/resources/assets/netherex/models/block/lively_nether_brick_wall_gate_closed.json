@@ -1,6 +1,6 @@
 {
-    "parent": "block/wall_gate_closed",
+    "parent": "block/template_fence_gate_wall",
     "textures": {
-        "texture": "netherex:block/lively_nether_brick"
+        "texture": "netherex:block/lively_nether_bricks"
     }
 }

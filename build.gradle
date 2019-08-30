@@ -16,7 +16,6 @@ buildscript {
 version = mod_version
 group = "com.github.logictechcorp"
 archivesBaseName = "${mod_name}-${minecraft_version}"
-
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -36,6 +35,8 @@ minecraft {
             environment 'MOD_CLASSES', "NetherEx%%${project.file("build/resources/main").canonicalPath};NetherEx%%${project.file("/build/classes/java/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/resources/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/classes/java/main").canonicalPath}"
         }
     }
+
+    accessTransformer = file('src/main/resources/META-INF/netherex_at.cfg')
 }
 
 repositories {

@@ -1,0 +1,8 @@
+{
+	"parent": "block/slab_top",
+    "textures": {
+        "bottom": "netherex:block/fiery_nether_bricks",
+        "top": "netherex:block/fiery_nether_bricks",
+        "side": "netherex:block/fiery_nether_bricks"
+    }
+}

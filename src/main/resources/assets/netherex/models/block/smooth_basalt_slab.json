@@ -1,0 +1,8 @@
+{
+	"parent": "block/slab",
+    "textures": {
+        "bottom": "netherex:block/smooth_basalt",
+        "top": "netherex:block/smooth_basalt",
+        "side": "netherex:block/smooth_basalt"
+    }
+}

@@ -24,23 +24,18 @@ import logictechcorp.netherex.block.EnokiCapBlock;
 import logictechcorp.netherex.block.EnokiStemBlock;
 import logictechcorp.netherex.block.HyphaeBlock;
 import logictechcorp.netherex.block.QuartzOreBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HugeMushroomBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.GameData;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.HashSet;
@@ -80,6 +75,46 @@ public class NetherExBlocks
     public static final Block SMOOTH_BASALT = InjectionHelper.nullValue();
     public static final Block BASALT_BRICK = InjectionHelper.nullValue();
     public static final Block BASALT_PILLAR = InjectionHelper.nullValue();
+    public static final Block GLOOMY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
+    public static final Block ICY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
+    public static final Block BASALT_SLAB = InjectionHelper.nullValue();
+    public static final Block SMOOTH_BASALT_SLAB = InjectionHelper.nullValue();
+    public static final Block BASALT_BRICK_SLAB = InjectionHelper.nullValue();
+    public static final Block BASALT_PILLAR_SLAB = InjectionHelper.nullValue();
+    public static final Block GLOOMY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final Block ICY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final Block BASALT_STAIRS = InjectionHelper.nullValue();
+    public static final Block SMOOTH_BASALT_STAIRS = InjectionHelper.nullValue();
+    public static final Block BASALT_BRICK_STAIRS = InjectionHelper.nullValue();
+    public static final Block BASALT_PILLAR_STAIRS = InjectionHelper.nullValue();
+    public static final Block GLOOMY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
+    public static final Block ICY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
+    public static final Block BASALT_WALL = InjectionHelper.nullValue();
+    public static final Block SMOOTH_BASALT_WALL = InjectionHelper.nullValue();
+    public static final Block BASALT_BRICK_WALL = InjectionHelper.nullValue();
+    public static final Block BASALT_PILLAR_WALL = InjectionHelper.nullValue();
+    public static final Block GLOOMY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
+    public static final Block ICY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
+    public static final Block BASALT_FENCE = InjectionHelper.nullValue();
+    public static final Block SMOOTH_BASALT_FENCE = InjectionHelper.nullValue();
+    public static final Block BASALT_BRICK_FENCE = InjectionHelper.nullValue();
+    public static final Block BASALT_PILLAR_FENCE = InjectionHelper.nullValue();
+    public static final Block GLOOMY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
+    public static final Block LIVELY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
+    public static final Block FIERY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
+    public static final Block ICY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
+    public static final Block BASALT_FENCE_GATE = InjectionHelper.nullValue();
+    public static final Block SMOOTH_BASALT_FENCE_GATE = InjectionHelper.nullValue();
+    public static final Block BASALT_BRICK_FENCE_GATE = InjectionHelper.nullValue();
+    public static final Block BASALT_PILLAR_FENCE_GATE = InjectionHelper.nullValue();
 
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event)
@@ -88,7 +123,7 @@ public class NetherExBlocks
         registerBlock("lively_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
         registerBlock("fiery_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
         registerBlock("icy_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
-        registerBlock("basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
         registerBlock("hyphae", new HyphaeBlock());
         registerBlock("frostburn_ice", new UnmeltableIceBlock(Block.Properties.create(Material.ICE, DyeColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 1.0F)));
         registerBlock("quartz_ore", new QuartzOreBlock());
@@ -105,13 +140,13 @@ public class NetherExBlocks
         registerBlock("lively_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":lively_netherrack", () -> Block.class)));
         registerBlock("fiery_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":fiery_netherrack", () -> Block.class)));
         registerBlock("icy_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":icy_netherrack", () -> Block.class)));
-        registerBlock("gloomy_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("lively_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("fiery_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("icy_nether_bricks", new Block(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("smooth_basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("basalt_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("basalt_pillar", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("gloomy_nether_bricks", "gloomy_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("lively_nether_bricks", "lively_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("fiery_nether_bricks", "fiery_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("icy_nether_bricks", "icy_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("smooth_basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("basalt_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+        registerDecorativeBlocks("basalt_pillar", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
     }
 
     @SubscribeEvent
@@ -122,15 +157,35 @@ public class NetherExBlocks
 
     private static void registerBlock(String name, Block block)
     {
-        ResourceLocation registryName = GameData.checkPrefix(name, false);
-        ForgeRegistries.BLOCKS.register(block.setRegistryName(registryName));
-        BLOCK_ITEMS.add(new BlockItem(block, new Item.Properties().group(NetherEx.ITEM_GROUP)).setRegistryName(registryName));
+        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
+        BLOCK_ITEMS.add(new BlockItem(block, new Item.Properties().group(NetherEx.ITEM_GROUP)).setRegistryName(name));
     }
 
-    private static void registerBlock(String name, Block block, BlockItem item)
+    private static void registerDecorativeBlocks(String name, Block block)
     {
-        ResourceLocation registryName = new ResourceLocation(name);
-        ForgeRegistries.BLOCKS.register(block.setRegistryName(registryName));
-        BLOCK_ITEMS.add(item.setRegistryName(registryName));
+        registerDecorativeBlocks(name, name, block);
+    }
+
+    private static void registerDecorativeBlocks(String name, String decorativePrefix, Block block)
+    {
+        Block.Properties blockProperties = Block.Properties.from(block);
+        Item.Properties itemProperties = new Item.Properties().group(NetherEx.ITEM_GROUP);
+        Block slabBlock = new SlabBlock(blockProperties);
+        Block stairBlock = new StairsBlock(block.getDefaultState(), blockProperties);
+        Block fenceBlock = new FenceBlock(blockProperties);
+        Block fenceGateBlock = new FenceGateBlock(blockProperties);
+        Block wallBlock = new WallBlock(blockProperties);
+        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
+        ForgeRegistries.BLOCKS.register(slabBlock.setRegistryName(decorativePrefix + "_slab"));
+        ForgeRegistries.BLOCKS.register(stairBlock.setRegistryName(decorativePrefix + "_stairs"));
+        ForgeRegistries.BLOCKS.register(fenceBlock.setRegistryName(decorativePrefix + "_fence"));
+        ForgeRegistries.BLOCKS.register(fenceGateBlock.setRegistryName(decorativePrefix + "_fence_gate"));
+        ForgeRegistries.BLOCKS.register(wallBlock.setRegistryName(decorativePrefix + "_wall"));
+        BLOCK_ITEMS.add(new BlockItem(block, itemProperties).setRegistryName(block.getRegistryName()));
+        BLOCK_ITEMS.add(new BlockItem(slabBlock, itemProperties).setRegistryName(slabBlock.getRegistryName()));
+        BLOCK_ITEMS.add(new BlockItem(stairBlock, itemProperties).setRegistryName(stairBlock.getRegistryName()));
+        BLOCK_ITEMS.add(new BlockItem(fenceBlock, itemProperties).setRegistryName(fenceBlock.getRegistryName()));
+        BLOCK_ITEMS.add(new BlockItem(fenceGateBlock, itemProperties).setRegistryName(fenceGateBlock.getRegistryName()));
+        BLOCK_ITEMS.add(new BlockItem(wallBlock, itemProperties).setRegistryName(wallBlock.getRegistryName()));
     }
 }

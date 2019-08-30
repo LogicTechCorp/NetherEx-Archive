@@ -1,0 +1,8 @@
+{
+	"parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "netherex:block/basalt_brick",
+        "top": "netherex:block/basalt_brick",
+        "side": "netherex:block/basalt_brick"
+    }
+}

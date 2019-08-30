@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:block/wall_side",
+    "parent": "minecraft:block/template_wall_side",
     "textures": {
-        "wall": "netherex:block/icy_nether_brick"
+        "wall": "netherex:block/icy_nether_bricks"
     }
 }

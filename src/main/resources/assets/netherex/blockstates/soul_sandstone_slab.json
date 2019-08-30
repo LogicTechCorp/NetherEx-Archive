@@ -1,14 +1,4 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "minecraft:half_slab",
-        "textures": {
-            "bottom": "netherex:block/soul_sandstone_bottom",
-            "top": "netherex:block/soul_sandstone_top",
-            "side": "netherex:block/soul_sandstone"
-        },
-        "transform": "forge:default-block"
-    },
     "variants": {
         "type=top": [
             {
@@ -26,7 +16,6 @@
                     "side": "netherex:block/soul_sandstone"
                 }
             }
-        ],
-        "inventory": [ { } ]
+        ]
     }
 }

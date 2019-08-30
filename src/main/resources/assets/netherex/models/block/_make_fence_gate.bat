@@ -13,59 +13,10 @@ set modid=netherex
 setlocal enabledelayedexpansion
 
 for %%x in (%*) do (
-	echo Making %%x_fence_gate_closed.json block
-	(
-		echo {
-		echo 	"parent": "block/fence_gate_closed",
-		echo 	"textures": {
-		echo 		"texture": "%modid%:block/%%x"
-		echo 	}
-		echo }
-	) > %%x_fence_gate_closed.json
-
-	echo Making %%x_fence_gate_open.json block
-	(
-		echo {
-		echo 	"parent": "block/fence_gate_open",
-		echo 	"textures": {
-		echo 		"texture": "%modid%:block/%%x"
-		echo 	}
-		echo }
-	) > %%x_fence_gate_open.json
-
-	echo Making %%x_wall_gate_closed.json block
-	(
-		echo {
-		echo 	"parent": "block/wall_gate_closed",
-		echo 	"textures": {
-		echo 		"texture": "%modid%:block/%%x"
-		echo 	}
-		echo }
-	) > %%x_wall_gate_closed.json
-
-	echo Making %%x_wall_gate_open.json block
-	(
-		echo {
-		echo 	"parent": "block/wall_gate_open",
-		echo 	"textures": {
-		echo 		"texture": "%modid%:block/%%x"
-		echo 	}
-		echo }
-	) > %%x_wall_gate_open.json
-
-	echo Making %%x_fence_gate.json item
-	(
-		echo {
-		echo 	"parent": "%modid%:block/%%x_fence_gate_closed"
-		echo }
-	) > ../item/%%x_fence_gate.json
-
 	echo Making %%x_fence_gate.json blockstate
 	(
 		echo {
 		echo 	"variants": {
-        echo        "inventory": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true },
-        echo        "": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true },
         echo        "facing=south,in_wall=false,open=false": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true },
         echo        "facing=west,in_wall=false,open=false":  { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true, "y": 90 },
         echo        "facing=north,in_wall=false,open=false": { "model": "%modid%:block/%%x_fence_gate_closed", "uvlock": true, "y": 180 },
@@ -85,4 +36,51 @@ for %%x in (%*) do (
 		echo 	}
 		echo }
 	) > ../../blockstates/%%x_fence_gate.json
+
+	echo Making %%x_fence_gate_closed.json block model
+	(
+		echo {
+		echo 	"parent": "block/template_fence_gate",
+		echo 	"textures": {
+		echo 		"texture": "%modid%:block/%%x"
+		echo 	}
+		echo }
+	) > %%x_fence_gate_closed.json
+
+	echo Making %%x_fence_gate_open.json block model
+	(
+		echo {
+		echo 	"parent": "block/template_fence_gate_open",
+		echo 	"textures": {
+		echo 		"texture": "%modid%:block/%%x"
+		echo 	}
+		echo }
+	) > %%x_fence_gate_open.json
+
+	echo Making %%x_wall_gate_closed.json block model
+	(
+		echo {
+		echo 	"parent": "block/template_fence_gate_wall",
+		echo 	"textures": {
+		echo 		"texture": "%modid%:block/%%x"
+		echo 	}
+		echo }
+	) > %%x_wall_gate_closed.json
+
+	echo Making %%x_wall_gate_open.json block model
+	(
+		echo {
+		echo 	"parent": "block/template_fence_gate_wall_open",
+		echo 	"textures": {
+		echo 		"texture": "%modid%:block/%%x"
+		echo 	}
+		echo }
+	) > %%x_wall_gate_open.json
+
+	echo Making %%x_fence_gate.json item model
+	(
+		echo {
+		echo 	"parent": "%modid%:block/%%x_fence_gate_closed"
+		echo }
+	) > ../item/%%x_fence_gate.json
 )

@@ -1,6 +1,6 @@
 {
-    "parent": "block/wall_gate_open",
+    "parent": "block/template_fence_gate_wall_open",
     "textures": {
-        "texture": "netherex:block/icy_nether_brick"
+        "texture": "netherex:block/icy_nether_bricks"
     }
 }

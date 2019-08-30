@@ -1,0 +1,13 @@
+{
+    "replace": false,
+    "values": [
+        "netherex:gloomy_nether_brick_fence",
+        "netherex:lively_nether_brick_fence",
+        "netherex:fiery_nether_brick_fence",
+        "netherex:icy_nether_brick_fence",
+        "netherex:basalt_fence",
+        "netherex:smooth_basalt_fence",
+        "netherex:basalt_brick_fence",
+        "netherex:basalt_pillar_fence"
+    ]
+}
