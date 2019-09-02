@@ -141,18 +141,16 @@ public class PigtificateVillage
                 BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
                 int posX = pos.getX() - size.getX() / 2;
                 int posZ = pos.getZ() - size.getZ() / 2;
+
                 for(int x = posX; x < posX + size.getX(); x++)
                 {
                     for(int y = pos.getY(); y < pos.getY() + size.getY(); y++)
-
                     {
 
                         for(int z = posZ; z < posZ + size.getZ(); z++)
-
                         {
 
                             if(world.getBlockState(mutableBlockPos.setPos(x, y, z)).isNormalCube())
-
                             {
 
                                 return false;

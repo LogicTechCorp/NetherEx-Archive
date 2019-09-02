@@ -62,7 +62,7 @@ public final class PigtificateTradeConfigManager
                     FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
                     config.load();
 
-                    PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
+                    PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.getOrElse("profession", NetherEx.MOD_ID + ":dimwit")));
 
                     if(profession != null)
                     {

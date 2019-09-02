@@ -141,46 +141,24 @@ public class InputHandler
         IBlockState state = event.getBlock();
         Block block = state.getBlock();
 
-        boolean cancel = false;
-
-        if(block == NetherExBlocks.BROWN_ELDER_MUSHROOM)
+        if(player.getHeldItemMainhand().getItem() == NetherExItems.WITHER_DUST)
         {
-            if(player.getHeldItemMainhand().getItem() != NetherExItems.WITHER_DUST)
+            if(block == NetherExBlocks.BROWN_ELDER_MUSHROOM || block == NetherExBlocks.RED_ELDER_MUSHROOM)
             {
-                cancel = true;
-            }
-
-        }
-        else if(block == NetherExBlocks.RED_ELDER_MUSHROOM)
-        {
-            if(player.getHeldItemMainhand().getItem() != NetherExItems.WITHER_DUST)
-            {
-                cancel = true;
-            }
-        }
-        else if(block == NetherExBlocks.SPOUL_SHROOM)
-        {
-            if(player.getHeldItemMainhand().getItem() != NetherExItems.WITHER_DUST)
-            {
-                cancel = true;
-            }
-        }
-
-        if(!cancel)
-        {
-            if(state.getBlock() instanceof IGrowable)
-            {
-                IGrowable growable = (IGrowable) state.getBlock();
-
-                if(growable.canGrow(world, pos, state, world.isRemote))
+                if(block instanceof IGrowable)
                 {
-                    growable.grow(world, world.rand, pos, state);
+                    IGrowable growable = (IGrowable) state.getBlock();
+
+                    if(growable.canGrow(world, pos, state, world.isRemote))
+                    {
+                        growable.grow(world, world.rand, pos, state);
+                    }
                 }
             }
-        }
-        else
-        {
-            event.setCanceled(true);
+            else
+            {
+                event.setCanceled(true);
+            }
         }
     }
 
