@@ -18,7 +18,7 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.block.MimicBlock;
-import logictechcorp.libraryex.client.render.model.MimicBakedModel;
+import logictechcorp.libraryex.client.render.block.model.MimicBakedModel;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.model.IBakedModel;

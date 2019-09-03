@@ -15,15 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.init;
+package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.*;
+import logictechcorp.libraryex.block.ExperienceDroppingBlock;
+import logictechcorp.libraryex.block.FireSustainingBlock;
+import logictechcorp.libraryex.block.PathBlock;
+import logictechcorp.libraryex.block.UnmeltableIceBlock;
 import logictechcorp.libraryex.utilities.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.block.EnokiCapBlock;
-import logictechcorp.netherex.block.EnokiStemBlock;
-import logictechcorp.netherex.block.HyphaeBlock;
-import logictechcorp.netherex.block.QuartzOreBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -129,7 +128,7 @@ public class NetherExBlocks
         registerBlock("quartz_ore", new QuartzOreBlock());
         registerBlock("amethyst_ore", new ExperienceDroppingBlock(1, 5, Block.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
         registerBlock("rime_ore", new ExperienceDroppingBlock(2, 6, Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
-        registerBlock("thornstalk", new TriplePlantBlock(Block.Properties.create(Material.PLANTS, DyeColor.BROWN).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+        registerBlock("thornstalk", new ThornstalkBlock());
         registerBlock("brown_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.BROWN_MUSHROOM_BLOCK)));
         registerBlock("red_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.RED_MUSHROOM_BLOCK)));
         registerBlock("elder_mushroom_stem", new HugeMushroomBlock(Block.Properties.from(Blocks.MUSHROOM_STEM)));

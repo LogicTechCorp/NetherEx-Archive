@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.init;
+package logictechcorp.netherex.data;
 
 import net.minecraft.block.Block;
 import net.minecraft.tags.BlockTags;

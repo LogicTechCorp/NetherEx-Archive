@@ -18,6 +18,8 @@
 package logictechcorp.netherex;
 
 import logictechcorp.libraryex.world.biome.BiomeDataManager;
+import logictechcorp.netherex.proxy.ClientProxy;
+import logictechcorp.netherex.proxy.CommonProxy;
 import logictechcorp.netherex.world.NetherExWorldType;
 import logictechcorp.netherex.world.biome.NetherBiomeDataManager;
 import net.minecraft.block.Blocks;
@@ -26,11 +28,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
+import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,18 +55,7 @@ public class NetherEx
 
     public NetherEx()
     {
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-        forgeEventBus.addListener(this::onServerAboutToStart);
-        forgeEventBus.addListener(this::onServerStopping);
-    }
-
-    private void onServerAboutToStart(FMLServerAboutToStartEvent event)
-    {
-        event.getServer().getResourceManager().addReloadListener(NetherEx.BIOME_DATA_MANAGER);
-    }
-
-    protected void onServerStopping(FMLServerStoppingEvent event)
-    {
-        BIOME_DATA_MANAGER.cleanup();
+        DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new).registerHandlers();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.COMMON_SPEC);
     }
 }

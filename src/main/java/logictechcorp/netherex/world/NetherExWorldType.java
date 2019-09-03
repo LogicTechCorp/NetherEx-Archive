@@ -20,6 +20,7 @@ package logictechcorp.netherex.world;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.client.gui.screen.CustomizeNetherExWorldTypeScreen;
 import logictechcorp.netherex.world.biome.provider.NetherBiomeProvider;
+import logictechcorp.netherex.world.generation.NetherExChunkGenerators;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.CreateWorldScreen;
@@ -164,7 +165,7 @@ public class NetherExWorldType extends WorldType
             OverworldBiomeProviderSettings biomeProviderSettings = new OverworldBiomeProviderSettings();
             biomeProviderSettings.setGeneratorSettings(new OverworldGenSettings());
             biomeProviderSettings.setWorldInfo(world.getWorldInfo());
-            return ChunkGeneratorType.CAVES.create(world, new NetherBiomeProvider(biomeProviderSettings), netherGenSettings);
+            return NetherExChunkGenerators.NETHER.create(world, new NetherBiomeProvider(biomeProviderSettings), netherGenSettings);
         }
 
         return super.createChunkGenerator(world);

@@ -18,7 +18,7 @@
 package logictechcorp.netherex.world.generation.feature;
 
 import com.mojang.datafixers.Dynamic;
-import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.block.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

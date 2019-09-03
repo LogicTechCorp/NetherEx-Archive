@@ -24,6 +24,18 @@
         }
     },
     "entities": [
+        {
+            "entity": "minecraft:wither_skeleton",
+            "spawn_weight": 65,
+            "minimum_group_count": 1,
+            "maximum_group_count": 4
+        },
+        {
+            "entity": "netherex:spinout",
+            "spawn_weight": 100,
+            "minimum_group_count": 1,
+            "maximum_group_count": 4
+        }
     ],
     "features": [
         {

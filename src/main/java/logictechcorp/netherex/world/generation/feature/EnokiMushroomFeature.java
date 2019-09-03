@@ -19,7 +19,7 @@ package logictechcorp.netherex.world.generation.feature;
 
 import com.mojang.datafixers.Dynamic;
 import logictechcorp.netherex.block.EnokiCapBlock;
-import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.block.NetherExBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;

@@ -17,7 +17,6 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SixWayBlock;
