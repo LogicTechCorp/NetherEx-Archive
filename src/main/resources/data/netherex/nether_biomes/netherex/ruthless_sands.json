@@ -46,6 +46,26 @@
             "stage": "underground_decoration"
         },
         {
+            "feature": "libraryex:ore",
+            "feature_config": {
+                "ore_state": {
+                    "Name": "netherex:quartz_ore"
+                },
+                "target_state": {
+                    "Name": "netherex:gloomy_netherrack"
+                },
+                "size": 14
+            },
+            "placement": "minecraft:count_range",
+            "placement_config": {
+                "count": 8,
+                "bottom_offset": 10,
+                "top_offset": 30,
+                "maximum": 128
+            },
+            "stage": "underground_ores"
+        },
+        {
             "feature": "libraryex:triple_plant",
             "feature_config": {
                 "state": {
