@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.generation;
+package logictechcorp.netherex.potion;
 
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
-import net.minecraft.world.gen.ChunkGeneratorType;
-import net.minecraft.world.gen.NetherGenSettings;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -29,18 +29,18 @@ import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(NetherEx.MOD_ID)
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class NetherExChunkGenerators
+public class NetherExPotions
 {
-    public static final ChunkGeneratorType<NetherGenSettings, CaveChunkGenerator> NETHER = InjectionHelper.nullValue();
+    public static final Potion DISPERSAL = InjectionHelper.nullValue();
 
     @SubscribeEvent
-    public static void onChunkGeneratorRegister(RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
+    public static void onRegisterPotion(RegistryEvent.Register<Potion> event)
     {
-        registerChunkGenerator("nether", new ChunkGeneratorType<>(CaveChunkGenerator::new, true, NetherGenSettings::new));
+        registerPotion("dispersal", new Potion(new EffectInstance(NetherExEffects.INFESTED, 600)));
     }
 
-    private static void registerChunkGenerator(String name, ChunkGeneratorType<?, ?> chunkGeneratorType)
+    private static void registerPotion(String name, Potion potion)
     {
-        ForgeRegistries.CHUNK_GENERATOR_TYPES.register(chunkGeneratorType.setRegistryName(name));
+        ForgeRegistries.POTION_TYPES.register(potion.setRegistryName(name));
     }
 }

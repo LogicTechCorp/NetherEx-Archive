@@ -17,8 +17,21 @@
 
 package logictechcorp.netherex.proxy;
 
+import logictechcorp.netherex.client.particle.SporeCreeperExplosionEmitterParticle;
+import logictechcorp.netherex.client.particle.SporeCreeperExplosionParticle;
+import logictechcorp.netherex.client.render.entity.MogusRenderer;
 import logictechcorp.netherex.client.render.entity.SpinoutRenderer;
+import logictechcorp.netherex.client.render.entity.SporeCreeperRenderer;
+import logictechcorp.netherex.client.render.entity.SporeRenderer;
 import logictechcorp.netherex.entity.hostile.SpinoutEntity;
+import logictechcorp.netherex.entity.hostile.SporeCreeperEntity;
+import logictechcorp.netherex.entity.hostile.SporeEntity;
+import logictechcorp.netherex.entity.neutral.MogusEntity;
+import logictechcorp.netherex.particle.NetherExParticles;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.ParticleManager;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -30,13 +43,24 @@ public class ClientProxy extends CommonProxy
     public void registerHandlers()
     {
         super.registerHandlers();
-
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
+        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+        forgeEventBus.addListener(this::onRegisterParticleFactory);
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
     {
+        RenderingRegistry.registerEntityRenderingHandler(MogusEntity.class, MogusRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SpinoutEntity.class, SpinoutRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SporeEntity.class, SporeRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SporeCreeperEntity.class, SporeCreeperRenderer::new);
+    }
+
+    private void onRegisterParticleFactory(ParticleFactoryRegisterEvent event)
+    {
+        ParticleManager particleManager = Minecraft.getInstance().particles;
+        particleManager.registerFactory(NetherExParticles.SPORE_CREEPER_EXPLOSION, SporeCreeperExplosionParticle.Factory::new);
+        particleManager.registerFactory(NetherExParticles.SPORE_CREEPER_EXPLOSION_EMITTER, new SporeCreeperExplosionEmitterParticle.Factory());
     }
 }

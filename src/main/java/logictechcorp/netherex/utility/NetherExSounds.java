@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.utilities;
+package logictechcorp.netherex.utility;
 
-import logictechcorp.libraryex.utilities.InjectionHelper;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;

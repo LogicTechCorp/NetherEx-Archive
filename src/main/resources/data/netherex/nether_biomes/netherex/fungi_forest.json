@@ -24,6 +24,24 @@
         }
     },
     "entities": [
+        {
+            "entity": "netherex:mogus",
+            "spawn_weight": 100,
+            "minimum_group_count": 4,
+            "maximum_group_count": 6
+        },
+        {
+            "entity": "netherex:spore",
+            "spawn_weight": 25,
+            "minimum_group_count": 1,
+            "maximum_group_count": 3
+        },
+        {
+            "entity": "netherex:spore_creeper",
+            "spawn_weight": 50,
+            "minimum_group_count": 1,
+            "maximum_group_count": 3
+        }
     ],
     "features": [
         {

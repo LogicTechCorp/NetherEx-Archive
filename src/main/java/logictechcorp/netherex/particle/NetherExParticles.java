@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.world.generation;
+package logictechcorp.netherex.particle;
 
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
-import net.minecraft.world.gen.ChunkGeneratorType;
-import net.minecraft.world.gen.NetherGenSettings;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -29,18 +29,20 @@ import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(NetherEx.MOD_ID)
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class NetherExChunkGenerators
+public class NetherExParticles
 {
-    public static final ChunkGeneratorType<NetherGenSettings, CaveChunkGenerator> NETHER = InjectionHelper.nullValue();
+    public static final BasicParticleType SPORE_CREEPER_EXPLOSION = InjectionHelper.nullValue();
+    public static final BasicParticleType SPORE_CREEPER_EXPLOSION_EMITTER = InjectionHelper.nullValue();
 
     @SubscribeEvent
-    public static void onChunkGeneratorRegister(RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
+    public static void onRegisterParticle(RegistryEvent.Register<ParticleType<?>> event)
     {
-        registerChunkGenerator("nether", new ChunkGeneratorType<>(CaveChunkGenerator::new, true, NetherGenSettings::new));
+        registerParticle("spore_creeper_explosion", new BasicParticleType(true));
+        registerParticle("spore_creeper_explosion_emitter", new BasicParticleType(true));
     }
 
-    private static void registerChunkGenerator(String name, ChunkGeneratorType<?, ?> chunkGeneratorType)
+    private static void registerParticle(String name, ParticleType<?> particleType)
     {
-        ForgeRegistries.CHUNK_GENERATOR_TYPES.register(chunkGeneratorType.setRegistryName(name));
+        ForgeRegistries.PARTICLE_TYPES.register(particleType.setRegistryName(name));
     }
 }

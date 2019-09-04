@@ -18,7 +18,7 @@
 package logictechcorp.netherex.entity.hostile;
 
 import logictechcorp.netherex.NetherExConfig;
-import logictechcorp.netherex.utilities.NetherExSounds;
+import logictechcorp.netherex.utility.NetherExSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
@@ -46,9 +46,9 @@ public class SpinoutEntity extends MonsterEntity
     private final Goal attackMelee = new MeleeAttackGoal(this, 1.0D, true);
     private final Goal wander = new RandomWalkingGoal(this, 1.0D, 1);
 
-    public SpinoutEntity(EntityType<? extends MonsterEntity> type, World world)
+    public SpinoutEntity(EntityType<? extends MonsterEntity> entityType, World world)
     {
-        super(type, world);
+        super(entityType, world);
         this.setPathPriority(PathNodeType.LAVA, 8.0F);
     }
 
@@ -96,11 +96,11 @@ public class SpinoutEntity extends MonsterEntity
                 this.setSilent(false);
             }
         }
-        if(this.spinCounter >= NetherExConfig.COMMON.spinoutSpinTime.get() * 20)
+        if(this.spinCounter >= NetherExConfig.ENTITY.spinoutSpinTime.get() * 20)
         {
             this.spinCounter = 0;
             this.spinning = false;
-            this.spinCooldown = NetherExConfig.COMMON.spinoutSpinCooldown.get() * 20;
+            this.spinCooldown = NetherExConfig.ENTITY.spinoutSpinCooldown.get() * 20;
         }
         if(this.spinCooldown > 0)
         {

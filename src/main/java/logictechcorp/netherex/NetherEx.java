@@ -29,9 +29,7 @@ import net.minecraft.world.WorldType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -56,6 +54,6 @@ public class NetherEx
     public NetherEx()
     {
         DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new).registerHandlers();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.COMMON_SPEC);
+        NetherExConfig.registerConfigs();
     }
 }

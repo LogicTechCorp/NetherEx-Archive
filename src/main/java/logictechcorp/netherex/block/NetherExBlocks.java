@@ -21,7 +21,7 @@ import logictechcorp.libraryex.block.ExperienceDroppingBlock;
 import logictechcorp.libraryex.block.FireSustainingBlock;
 import logictechcorp.libraryex.block.PathBlock;
 import logictechcorp.libraryex.block.UnmeltableIceBlock;
-import logictechcorp.libraryex.utilities.InjectionHelper;
+import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
