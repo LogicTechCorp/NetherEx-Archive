@@ -70,7 +70,7 @@ public class SporeCreeperModel extends EntityModel<SporeCreeperEntity>
     }
 
     @Override
-    public void setRotationAngles(SporeCreeperEntity entity,float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
+    public void setRotationAngles(SporeCreeperEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
     {
         this.head.rotateAngleY = netHeadYaw * 0.017453292F;
         this.head.rotateAngleX = headPitch * 0.017453292F;

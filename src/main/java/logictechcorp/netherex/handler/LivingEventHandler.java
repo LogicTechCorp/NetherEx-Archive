@@ -18,27 +18,24 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.biome.BasicNetherBiome;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.event.RegistryEvent;
+import logictechcorp.netherex.potion.NetherExEffects;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.Effects;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class BiomeRegister
+@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
+public class LivingEventHandler
 {
     @SubscribeEvent
-    public static void onBiomeRegister(RegistryEvent.Register<Biome> event)
+    public static void onLivingHeal(LivingHealEvent event)
     {
-        registerBiome("ruthless_sands", new BasicNetherBiome());
-        registerBiome("fungi_forest", new BasicNetherBiome());
-        registerBiome("torrid_wasteland", new BasicNetherBiome());
-        registerBiome("arctic_abyss", new BasicNetherBiome());
-    }
+        LivingEntity entity = event.getEntityLiving();
 
-    private static void registerBiome(String name, Biome biome)
-    {
-        ForgeRegistries.BIOMES.register(biome.setRegistryName(name));
+        if(!entity.isPotionActive(Effects.REGENERATION) && entity.isPotionActive(NetherExEffects.FROSTBITTEN))
+        {
+            event.setCanceled(true);
+        }
     }
 }

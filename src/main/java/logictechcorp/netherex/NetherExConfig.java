@@ -33,16 +33,16 @@ public class NetherExConfig
 {
     private static final ForgeConfigSpec ENTITY_SPEC;
     private static final ForgeConfigSpec EFFECT_SPEC;
-    public static final Entity ENTITY;
-    public static final Effect EFFECT;
+    public static final EntityConfig ENTITY;
+    public static final EffectConfig EFFECT;
 
     static
     {
-        Pair<Entity, ForgeConfigSpec> entitySpecPair = new ForgeConfigSpec.Builder().configure(Entity::new);
+        Pair<EntityConfig, ForgeConfigSpec> entitySpecPair = new ForgeConfigSpec.Builder().configure(EntityConfig::new);
         ENTITY_SPEC = entitySpecPair.getRight();
         ENTITY = entitySpecPair.getLeft();
 
-        Pair<Effect, ForgeConfigSpec> effectSpecPair = new ForgeConfigSpec.Builder().configure(Effect::new);
+        Pair<EffectConfig, ForgeConfigSpec> effectSpecPair = new ForgeConfigSpec.Builder().configure(EffectConfig::new);
         EFFECT_SPEC = effectSpecPair.getRight();
         EFFECT = effectSpecPair.getLeft();
     }
@@ -53,7 +53,7 @@ public class NetherExConfig
         {
             Files.createDirectory(Paths.get(FMLPaths.CONFIGDIR.get().toAbsolutePath().toString(), "netherex"));
         }
-        catch (IOException ignored)
+        catch(IOException ignored)
         {
             NetherEx.LOGGER.error("Failed to create netherex config directory.");
         }
@@ -62,7 +62,7 @@ public class NetherExConfig
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.EFFECT_SPEC, "netherex/effect-config.toml");
     }
 
-    public static class Entity
+    public static class EntityConfig
     {
         //Spore settings
         public final ForgeConfigSpec.IntValue sporeGrowthTime;
@@ -72,7 +72,7 @@ public class NetherExConfig
         public final ForgeConfigSpec.IntValue spinoutSpinTime;
         public final ForgeConfigSpec.IntValue spinoutSpinCooldown;
 
-        Entity(ForgeConfigSpec.Builder builder)
+        EntityConfig(ForgeConfigSpec.Builder builder)
         {
             //Entity config
             builder.comment("Entity configuration settings")
@@ -104,27 +104,50 @@ public class NetherExConfig
         }
     }
 
-    public static class Effect
+    public static class EffectConfig
     {
         //Infested settings
+        public final ForgeConfigSpec.BooleanValue infestedEffectPlayersSpawnSpores;
         public final ForgeConfigSpec.IntValue infestedEffectSporeSpawnChance;
         public final ForgeConfigSpec.ConfigValue<List<String>> infestedEffectEntityBlacklist;
 
-        Effect(ForgeConfigSpec.Builder builder)
+        //Frozen settings
+        public final ForgeConfigSpec.BooleanValue frozenEffectPlayersFreeze;
+        public final ForgeConfigSpec.IntValue frozenEffectThawChance;
+        public final ForgeConfigSpec.ConfigValue<List<String>> frozenEffectEntityBlacklist;
+
+        EffectConfig(ForgeConfigSpec.Builder builder)
         {
             //Effect config
             builder.comment("Effect configuration settings");
             builder.push("effect");
 
             //Infested effect config
-            builder.comment("Infested configuration settings");
+            builder.comment("Infested effect configuration settings");
             builder.push("infested");
+            this.infestedEffectPlayersSpawnSpores = builder
+                    .comment("Whether or not players can be spawn spores when they have the Infested effect.")
+                    .define("playersSpawnSpores", false);
             this.infestedEffectSporeSpawnChance = builder
                     .comment("The chance that a Spore will spawn.")
                     .defineInRange("sporeSpawnChance", 128, 1, Integer.MAX_VALUE);
             this.infestedEffectEntityBlacklist = builder
-                    .comment("Entities that shouldn't spawn spores when they have the Infested effect")
+                    .comment("Entities that shouldn't spawn spores when they have the Infested effect.")
                     .define("entityBlacklist", Arrays.asList(NetherEx.MOD_ID + ":spore", NetherEx.MOD_ID + ":spore_creeper", NetherEx.MOD_ID + ":mogus"));
+            builder.pop();
+
+            //Frozen effect config
+            builder.comment("Frozen effect configuration settings");
+            builder.push("frozen");
+            this.frozenEffectPlayersFreeze = builder
+                    .comment("Whether or not players can be frozen when they have the Frozen effect.")
+                    .define("playersFreeze", false);
+            this.frozenEffectThawChance = builder
+                    .comment("The chance that a frozen entity will thaw.")
+                    .defineInRange("thawChance", 1024, 1, Integer.MAX_VALUE);
+            this.frozenEffectEntityBlacklist = builder
+                    .comment("Entities that shouldn't freeze when they have the Frozen effect.")
+                    .define("entityBlacklist", Arrays.asList(NetherEx.MOD_ID + ":wight", NetherEx.MOD_ID + ":coolmar_spider"));
             builder.pop();
 
             builder.pop();

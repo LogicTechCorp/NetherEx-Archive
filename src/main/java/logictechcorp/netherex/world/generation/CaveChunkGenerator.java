@@ -42,14 +42,14 @@ public class CaveChunkGenerator extends NetherChunkGenerator
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EntityClassification classification, BlockPos pos)
     {
-        if (classification == EntityClassification.MONSTER)
+        if(classification == EntityClassification.MONSTER)
         {
-            if (Feature.NETHER_BRIDGE.isPositionInsideStructure(this.world, pos))
+            if(Feature.NETHER_BRIDGE.isPositionInsideStructure(this.world, pos))
             {
                 return Feature.NETHER_BRIDGE.getSpawnList();
             }
 
-            if (Feature.NETHER_BRIDGE.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICKS)
+            if(Feature.NETHER_BRIDGE.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICKS)
             {
                 return Feature.NETHER_BRIDGE.getSpawnList();
             }

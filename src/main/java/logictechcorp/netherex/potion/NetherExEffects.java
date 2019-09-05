@@ -19,23 +19,32 @@ package logictechcorp.netherex.potion;
 
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
+import java.awt.*;
+
 @ObjectHolder(NetherEx.MOD_ID)
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExEffects
 {
     public static final Effect INFESTED = InjectionHelper.nullValue();
+    public static final Effect FROZEN = InjectionHelper.nullValue();
+    public static final Effect FROSTBITTEN = InjectionHelper.nullValue();
 
     @SubscribeEvent
     public static void onRegisterEffect(RegistryEvent.Register<Effect> event)
     {
         registerEffect("infested", new InfestedEffect());
+        registerEffect("frozen", new FrozenEffect().addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "C1372E45-9DB2-4E2E-BA2C-E3C5F6977891", -1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        registerEffect("frostbitten", new Effect(EffectType.HARMFUL, new Color(19, 226, 255).getRGB()));
     }
 
     private static void registerEffect(String name, Effect effect)

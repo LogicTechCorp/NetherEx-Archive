@@ -15,36 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.potion;
+package logictechcorp.netherex.registry;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
+import logictechcorp.netherex.world.generation.placement.EnokiMushroomPlacement;
+import net.minecraft.world.gen.placement.NoPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(NetherEx.MOD_ID)
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class NetherExPotions
+public class PlacementRegister
 {
-    public static final Potion DISPERSAL = InjectionHelper.nullValue();
-    public static final Potion FREEZING = InjectionHelper.nullValue();
-    public static final Potion FRIGID_HEALTH = InjectionHelper.nullValue();
-
     @SubscribeEvent
-    public static void onRegisterPotion(RegistryEvent.Register<Potion> event)
+    public static void onPlacementRegister(RegistryEvent.Register<Placement<?>> event)
     {
-        registerPotion("dispersal", new Potion(new EffectInstance(NetherExEffects.INFESTED, 600)));
-        registerPotion("freezing", new Potion(new EffectInstance(NetherExEffects.FROZEN, 600)));
-        registerPotion("frigid_health", new Potion(new EffectInstance(NetherExEffects.FROSTBITTEN, 600)));
+        registerFeature("enoki_mushroom", new EnokiMushroomPlacement(NoPlacementConfig::deserialize));
     }
 
-    private static void registerPotion(String name, Potion potion)
+    private static void registerFeature(String name, Placement<?> feature)
     {
-        ForgeRegistries.POTION_TYPES.register(potion.setRegistryName(name));
+        ForgeRegistries.DECORATORS.register(feature.setRegistryName(name));
     }
 }

@@ -19,14 +19,10 @@ package logictechcorp.netherex.proxy;
 
 import logictechcorp.netherex.client.particle.SporeCreeperExplosionEmitterParticle;
 import logictechcorp.netherex.client.particle.SporeCreeperExplosionParticle;
-import logictechcorp.netherex.client.render.entity.MogusRenderer;
-import logictechcorp.netherex.client.render.entity.SpinoutRenderer;
-import logictechcorp.netherex.client.render.entity.SporeCreeperRenderer;
-import logictechcorp.netherex.client.render.entity.SporeRenderer;
-import logictechcorp.netherex.entity.hostile.SpinoutEntity;
-import logictechcorp.netherex.entity.hostile.SporeCreeperEntity;
-import logictechcorp.netherex.entity.hostile.SporeEntity;
+import logictechcorp.netherex.client.render.entity.*;
+import logictechcorp.netherex.entity.hostile.*;
 import logictechcorp.netherex.entity.neutral.MogusEntity;
+import logictechcorp.netherex.entity.neutral.SalamanderEntity;
 import logictechcorp.netherex.particle.NetherExParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
@@ -52,9 +48,12 @@ public class ClientProxy extends CommonProxy
     private void onClientSetup(FMLClientSetupEvent event)
     {
         RenderingRegistry.registerEntityRenderingHandler(MogusEntity.class, MogusRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SalamanderEntity.class, SalamanderRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SpinoutEntity.class, SpinoutRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SporeEntity.class, SporeRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SporeCreeperEntity.class, SporeCreeperRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(WightEntity.class, WightRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(CoolmarSpiderEntity.class, CoolmarSpiderRenderer::new);
     }
 
     private void onRegisterParticleFactory(ParticleFactoryRegisterEvent event)

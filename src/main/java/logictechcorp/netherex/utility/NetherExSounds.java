@@ -104,9 +104,9 @@ public class NetherExSounds
         registerSound("entity.ghast_queen.shoot");
         registerSound("entity.ghast_queen.summon");
     }
-    
+
     private static void registerSound(String name)
     {
-        ForgeRegistries.SOUND_EVENTS.register(new SoundEvent( new ResourceLocation(NetherEx.MOD_ID, name)).setRegistryName( new ResourceLocation(NetherEx.MOD_ID, name.replace(".", "_"))));
+        ForgeRegistries.SOUND_EVENTS.register(new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, name)).setRegistryName(new ResourceLocation(NetherEx.MOD_ID, name.replace(".", "_"))));
     }
 }

@@ -70,7 +70,7 @@ public class InfestedEffect extends Effect
     {
         if(entity instanceof PlayerEntity)
         {
-            return true;
+            return NetherExConfig.EFFECT.infestedEffectPlayersSpawnSpores.get();
         }
 
         return NetherExConfig.EFFECT.infestedEffectEntityBlacklist.get().contains(entity.getType().getRegistryName().toString());

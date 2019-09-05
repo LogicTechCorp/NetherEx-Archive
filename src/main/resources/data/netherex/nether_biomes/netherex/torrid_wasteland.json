@@ -24,6 +24,18 @@
         }
     },
     "entities": [
+        {
+            "entity": "minecraft:magma_cube",
+            "spawn_weight": 30,
+            "minimum_group_count": 1,
+            "maximum_group_count": 4
+        },
+        {
+            "entity": "netherex:salamander",
+            "spawn_weight": 100,
+            "minimum_group_count": 1,
+            "maximum_group_count": 2
+        }
     ],
     "features": [
         {

@@ -15,28 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.handler;
+package logictechcorp.netherex.registry;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.generation.placement.EnokiMushroomPlacement;
-import net.minecraft.world.gen.placement.NoPlacementConfig;
-import net.minecraft.world.gen.placement.Placement;
+import logictechcorp.netherex.world.generation.surfacebuilder.NetherSurfaceBuilderWrapper;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class PlacementRegister
+public class SurfaceBuilderRegister
 {
     @SubscribeEvent
-    public static void onPlacementRegister(RegistryEvent.Register<Placement<?>> event)
+    public static void onSurfaceBuilderRegister(RegistryEvent.Register<SurfaceBuilder<?>> event)
     {
-        registerFeature("enoki_mushroom", new EnokiMushroomPlacement(NoPlacementConfig::deserialize));
+        registerSurfaceBuilder("nether_surface_builder_wrapper", new NetherSurfaceBuilderWrapper(NetherSurfaceBuilderWrapper.Config::deserialize));
     }
 
-    private static void registerFeature(String name, Placement<?> feature)
+    private static void registerSurfaceBuilder(String name, SurfaceBuilder<?> feature)
     {
-        ForgeRegistries.DECORATORS.register(feature.setRegistryName(name));
+        ForgeRegistries.SURFACE_BUILDERS.register(feature.setRegistryName(name));
     }
 }

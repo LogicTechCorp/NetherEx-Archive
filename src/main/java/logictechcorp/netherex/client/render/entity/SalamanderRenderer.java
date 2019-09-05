@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.client.render.entity;
 
-import logictechcorp.netherex.entity.neutral.MogusEntity;
+import logictechcorp.netherex.entity.neutral.SalamanderEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -25,16 +25,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class MogusRenderer extends MobRenderer<MogusEntity, MogusModel>
+public class SalamanderRenderer extends MobRenderer<SalamanderEntity, SalamanderModel>
 {
-    public MogusRenderer(EntityRendererManager manager)
+    public SalamanderRenderer(EntityRendererManager manager)
     {
-        super(manager, new MogusModel(), 0.3F);
+        super(manager, new SalamanderModel(), 0.5F);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(MogusEntity mogus)
+    protected ResourceLocation getEntityTexture(SalamanderEntity salamander)
     {
-        return mogus.getVariant().getTexture();
+        return salamander.getVariant().getTexture();
     }
 }

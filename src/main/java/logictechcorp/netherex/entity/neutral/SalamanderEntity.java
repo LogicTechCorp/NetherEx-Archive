@@ -19,10 +19,7 @@ package logictechcorp.netherex.entity.neutral;
 
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.utility.NetherExSounds;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,16 +40,16 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class MogusEntity extends MonsterEntity
+public class SalamanderEntity extends MonsterEntity
 {
-    private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(MogusEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(SalamanderEntity.class, DataSerializers.VARINT);
 
-    public MogusEntity(EntityType<? extends MonsterEntity> entityType, World world)
+    public SalamanderEntity(EntityType<? extends MonsterEntity> entityType, World world)
     {
         super(entityType, world);
     }
 
-    public static boolean canSpawn(EntityType<MogusEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random)
+    public static boolean canSpawn(EntityType<SalamanderEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random)
     {
         return world.getDifficulty() != Difficulty.PEACEFUL;
     }
@@ -61,23 +58,23 @@ public class MogusEntity extends MonsterEntity
     protected void registerGoals()
     {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.45D, true));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.45D));
-        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(1, new LeapAtTargetGoal(this, 0.3F));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(3, new RandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
+        this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
     }
 
     @Override
     protected void registerAttributes()
     {
         super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0D);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-        this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+        this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.2D);
+        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
+        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
     }
 
     @Override
@@ -95,6 +92,23 @@ public class MogusEntity extends MonsterEntity
     }
 
     @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        if(entity instanceof LivingEntity)
+        {
+            if(this.getVariant() == Variant.ORANGE)
+            {
+                entity.setFire(4);
+            }
+            else
+            {
+                entity.setFire(8);
+            }
+        }
+        return super.attackEntityAsMob(entity);
+    }
+
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
@@ -109,33 +123,27 @@ public class MogusEntity extends MonsterEntity
         }
         else
         {
-            String type = this.getVariant() == Variant.BROWN ? "brown" : this.getVariant() == Variant.RED ? "red" : "white";
-            return new TranslationTextComponent("entity." + NetherEx.MOD_ID + "." + type + "_mogus.name");
+            String type = this.getVariant() == Variant.ORANGE ? "orange" : "black";
+            return new TranslationTextComponent("entity." + NetherEx.MOD_ID + ":" + type + "_salamander.name");
         }
-    }
-
-    @Override
-    protected ResourceLocation getLootTable()
-    {
-        return this.getVariant().getLootTable();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSounds.ENTITY_MOGUS_AMBIENT;
+        return NetherExSounds.ENTITY_SALAMANDER_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSounds.ENTITY_MOGUS_HURT;
+        return NetherExSounds.ENTITY_SALAMANDER_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSounds.ENTITY_MOGUS_DEATH;
+        return NetherExSounds.ENTITY_SALAMANDER_DEATH;
     }
 
     public Variant getVariant()
@@ -145,7 +153,7 @@ public class MogusEntity extends MonsterEntity
 
     private void setRandomVariant()
     {
-        this.setVariant(this.rand.nextInt(10) > 1 ? this.rand.nextInt(10) < 5 ? Variant.BROWN : Variant.RED : Variant.WHITE);
+        this.setVariant(this.rand.nextInt(10) != 0 ? Variant.ORANGE : Variant.BLACK);
     }
 
     public void setVariant(Variant variant)
@@ -155,9 +163,8 @@ public class MogusEntity extends MonsterEntity
 
     public enum Variant
     {
-        BROWN(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/brown_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/brown_mogus.json")),
-        RED(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/red_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/red_mogus.json")),
-        WHITE(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/white_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/white_mogus.json"));
+        ORANGE(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/salamander/orange_salamander.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/salamander/orange_salamander")),
+        BLACK(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/salamander/black_salamander.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/salamander/black_salamander"));
 
         ResourceLocation texture;
         ResourceLocation lootTable;
@@ -188,5 +195,4 @@ public class MogusEntity extends MonsterEntity
             return values()[ordinal];
         }
     }
-
 }

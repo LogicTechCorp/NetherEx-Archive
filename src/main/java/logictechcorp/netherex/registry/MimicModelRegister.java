@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.handler;
+package logictechcorp.netherex.registry;
 
 import logictechcorp.libraryex.block.MimicBlock;
 import logictechcorp.libraryex.client.render.block.model.MimicBakedModel;

@@ -17,7 +17,8 @@
 
 package logictechcorp.netherex.client.render.entity;
 
-import logictechcorp.netherex.entity.neutral.MogusEntity;
+import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.entity.hostile.WightEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -25,16 +26,18 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class MogusRenderer extends MobRenderer<MogusEntity, MogusModel>
+public class WightRenderer extends MobRenderer<WightEntity, WightModel>
 {
-    public MogusRenderer(EntityRendererManager manager)
+    private static final ResourceLocation TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/wight.png");
+
+    public WightRenderer(EntityRendererManager manager)
     {
-        super(manager, new MogusModel(), 0.3F);
+        super(manager, new WightModel(), 0.5F);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(MogusEntity mogus)
+    protected ResourceLocation getEntityTexture(WightEntity entity)
     {
-        return mogus.getVariant().getTexture();
+        return TEXTURE;
     }
 }

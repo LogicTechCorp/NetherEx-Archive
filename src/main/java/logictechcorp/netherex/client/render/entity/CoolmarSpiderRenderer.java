@@ -17,7 +17,9 @@
 
 package logictechcorp.netherex.client.render.entity;
 
-import logictechcorp.netherex.entity.neutral.MogusEntity;
+import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.client.render.entity.layers.CoolmarSpiderLayer;
+import logictechcorp.netherex.entity.hostile.CoolmarSpiderEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -25,16 +27,25 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class MogusRenderer extends MobRenderer<MogusEntity, MogusModel>
+public class CoolmarSpiderRenderer extends MobRenderer<CoolmarSpiderEntity, CoolmarSpiderModel>
 {
-    public MogusRenderer(EntityRendererManager manager)
+    private static final ResourceLocation TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/coolmar_spider/coolmar_spider.png");
+
+    public CoolmarSpiderRenderer(EntityRendererManager manager)
     {
-        super(manager, new MogusModel(), 0.3F);
+        super(manager, new CoolmarSpiderModel(), 0.5F);
+        this.addLayer(new CoolmarSpiderLayer(this));
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(MogusEntity mogus)
+    protected float getDeathMaxRotation(CoolmarSpiderEntity coolmarSpider)
     {
-        return mogus.getVariant().getTexture();
+        return 180.0F;
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(CoolmarSpiderEntity coolmarSpider)
+    {
+        return TEXTURE;
     }
 }

@@ -15,27 +15,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.handler;
+package logictechcorp.netherex.registry;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.generation.surfacebuilder.NetherSurfaceBuilderWrapper;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import logictechcorp.netherex.world.biome.BasicNetherBiome;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class SurfaceBuilderRegister
+public class BiomeRegister
 {
     @SubscribeEvent
-    public static void onSurfaceBuilderRegister(RegistryEvent.Register<SurfaceBuilder<?>> event)
+    public static void onBiomeRegister(RegistryEvent.Register<Biome> event)
     {
-        registerSurfaceBuilder("nether_surface_builder_wrapper", new NetherSurfaceBuilderWrapper(NetherSurfaceBuilderWrapper.Config::deserialize));
+        registerBiome("ruthless_sands", new BasicNetherBiome());
+        registerBiome("fungi_forest", new BasicNetherBiome());
+        registerBiome("torrid_wasteland", new BasicNetherBiome());
+        registerBiome("arctic_abyss", new BasicNetherBiome());
     }
 
-    private static void registerSurfaceBuilder(String name, SurfaceBuilder<?> feature)
+    private static void registerBiome(String name, Biome biome)
     {
-        ForgeRegistries.SURFACE_BUILDERS.register(feature.setRegistryName(name));
+        ForgeRegistries.BIOMES.register(biome.setRegistryName(name));
     }
 }
