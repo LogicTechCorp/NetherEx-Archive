@@ -1,6 +1,6 @@
 {
     "biome": "netherex:torrid_wasteland",
-    "generation_weight": 6,
+    "generation_weight": 100,
     "use_default_features": true,
     "is_sub_biome": false,
     "blocks": {
@@ -53,10 +53,22 @@
             "stage": "underground_decoration"
         },
         {
-            "feature": "minecraft:hell_fire",
-            "placement": "minecraft:hell_fire",
+            "feature": "libraryex:scatter",
+            "feature_config": {
+                "scatter_state": {
+                    "Name": "minecraft:fire"
+                },
+                "target_state": {
+                    "Name": "netherex:fiery_netherrack"
+                },
+                "target_area": "on_ground"
+            },
+            "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 20
+                "count": 20,
+                "bottom_offset": 4,
+                "top_offset": 0,
+                "maximum": 120
             },
             "stage": "underground_decoration"
         },

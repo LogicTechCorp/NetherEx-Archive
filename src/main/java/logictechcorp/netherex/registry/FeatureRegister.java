@@ -34,7 +34,6 @@ public class FeatureRegister
     @SubscribeEvent
     public static void onFeatureRegister(RegistryEvent.Register<Feature<?>> event)
     {
-        registerFeature("minecraft:hell_fire", new FireFeatureOverride(NoFeatureConfig::deserialize));
         registerFeature("minecraft:glowstone_blob", new GlowstoneBlobFeatureOverride(NoFeatureConfig::deserialize));
         registerFeature("minecraft:nether_spring", new NetherSpringOverride(HellLavaConfig::deserialize));
         registerFeature("brown_elder_mushroom", new BrownElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
