@@ -29,9 +29,11 @@ import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Iterator;
@@ -58,6 +60,12 @@ public final class NetherBiomeDataConfigManager
 
                 if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
+                    if(FileUtils.readFileToString(configFile, Charset.defaultCharset()).isEmpty())
+                    {
+                        FileUtils.write(configFile, "{}", Charset.defaultCharset());
+                        continue;
+                    }
+
                     FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
                     config.load();
 

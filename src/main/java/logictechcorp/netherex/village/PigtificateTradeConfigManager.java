@@ -26,9 +26,11 @@ import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.init.NetherExRegistries;
 import net.minecraft.util.ResourceLocation;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -59,10 +61,16 @@ public final class PigtificateTradeConfigManager
 
                 if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
+                    if(FileUtils.readFileToString(configFile, Charset.defaultCharset()).isEmpty())
+                    {
+                        FileUtils.write(configFile, "{}", Charset.defaultCharset());
+                        continue;
+                    }
+
                     FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
                     config.load();
 
-                    PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.getOrElse("profession", NetherEx.MOD_ID + ":dimwit")));
+                    PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
 
                     if(profession != null)
                     {

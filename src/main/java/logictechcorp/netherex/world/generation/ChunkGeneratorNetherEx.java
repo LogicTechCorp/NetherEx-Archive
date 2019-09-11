@@ -418,6 +418,9 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
         BlockFalling.fallInstantly = true;
         this.netherFortress.generateStructure(this.world, this.random, chunkPos);
+        ForgeEventFactory.onChunkPopulate(true, this, this.world, this.random, chunkX, chunkZ, false);
+        TerrainGen.populate(this, this.world, this.random, chunkX, chunkZ, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
+        ForgeEventFactory.onChunkPopulate(false, this, this.world, this.random, chunkX, chunkZ, false);
         LibExEventFactory.onPreDecorateBiome(this.world, this.random, chunkPos);
         LibExEventFactory.onDecorateBiome(this.world, this.random, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM);
 
