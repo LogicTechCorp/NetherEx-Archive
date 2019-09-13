@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -61,9 +62,14 @@ public final class PigtificateTradeConfigManager
 
                 if(FileHelper.getFileExtension(configFile).equals("json"))
                 {
-                    if(FileUtils.readFileToString(configFile, Charset.defaultCharset()).isEmpty())
+                    String fileText = FileUtils.readFileToString(configFile, Charset.defaultCharset()).trim();
+
+                    if(fileText.isEmpty() || !fileText.startsWith("{") || !fileText.endsWith("}"))
                     {
-                        FileUtils.write(configFile, "{}", Charset.defaultCharset());
+                        String filePath = configFile.getPath();
+                        String fileBackupPath = filePath + "_backup";
+                        Files.move(configFile.toPath(), Paths.get(fileBackupPath));
+                        NetherEx.LOGGER.warn("The trade config at {} was invalid and was backed up as {}.", filePath, fileBackupPath);
                         continue;
                     }
 
@@ -94,7 +100,7 @@ public final class PigtificateTradeConfigManager
                     config.close();
 
                 }
-                else if(!configFile.isDirectory())
+                else if(!configFile.isDirectory() && !FileHelper.getFileExtension(configFile).equals("json_backup"))
                 {
                     NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
                 }
