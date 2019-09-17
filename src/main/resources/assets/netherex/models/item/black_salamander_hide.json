@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "netherex:items/black_salamander_hide"
+        "layer0": "netherex:item/black_salamander_hide"
     }
 }

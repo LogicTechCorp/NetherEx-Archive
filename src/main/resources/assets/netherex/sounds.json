@@ -1,19 +1,4 @@
 {
-    "entity.pigtificate.ambient": {
-        "category": "neutral",
-        "sounds": [ "netherex:entity/pigtificate/pigtificate_ambient_1", "netherex:entity/pigtificate/pigtificate_ambient_2", "netherex:entity/pigtificate/pigtificate_ambient_3", "netherex:entity/pigtificate/pigtificate_ambient_4", "netherex:entity/pigtificate/pigtificate_ambient_5" ],
-        "subtitle": "subtitle.netherex.sound.pigtificate_ambient"
-    },
-    "entity.pigtificate.hurt": {
-        "category": "neutral",
-        "sounds": [ "netherex:entity/pigtificate/pigtificate_hurt" ],
-        "subtitle": "subtitle.netherex.sound.pigtificate_hurt"
-    },
-    "entity.pigtificate.death": {
-        "category": "neutral",
-        "sounds": [ "netherex:entity/pigtificate/pigtificate_death" ],
-        "subtitle": "subtitle.netherex.sound.pigtificate_death"
-    },
     "entity.mogus.ambient": {
         "category": "neutral",
         "sounds": [ "netherex:entity/mogus/mogus_ambient_1", "netherex:entity/mogus/mogus_ambient_2" ],
@@ -59,31 +44,6 @@
         "sounds": [ "netherex:entity/wight/wight_death" ],
         "subtitle": "subtitle.netherex.sound.wight_death"
     },
-    "entity.ember.hurt": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ember/ember_hurt_1", "netherex:entity/ember/ember_hurt_2", "netherex:entity/ember/ember_hurt_3" ],
-        "subtitle": "subtitle.netherex.sound.ember_hurt"
-    },
-    "entity.ember.death": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ember/ember_death" ],
-        "subtitle": "subtitle.netherex.sound.ember_death"
-    },
-    "entity.nethermite.ambient": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/nethermite/nethermite_ambient" ],
-        "subtitle": "subtitle.netherex.sound.nethermite_ambient"
-    },
-    "entity.nethermite.hurt": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/nethermite/nethermite_hurt" ],
-        "subtitle": "subtitle.netherex.sound.nethermite_hurt"
-    },
-    "entity.nethermite.death": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/nethermite/nethermite_death" ],
-        "subtitle": "subtitle.netherex.sound.nethermite_death"
-    },
     "entity.spinout.ambient": {
         "category": "hostile",
         "sounds": [ "netherex:entity/spinout/spinout_ambient_1", "netherex:entity/spinout/spinout_ambient_2", "netherex:entity/spinout/spinout_ambient_3" ],
@@ -118,55 +78,5 @@
         "category": "hostile",
         "sounds": [ "netherex:entity/spore/spore_explode" ],
         "subtitle": "subtitle.netherex.sound.spore_explode"
-    },
-    "entity.ghastling.ambient": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghastling_ambient_1", "netherex:entity/ghast/ghastling_ambient_2", "netherex:entity/ghast/ghastling_ambient_3", "netherex:entity/ghast/ghastling_ambient_4", "netherex:entity/ghast/ghastling_ambient_5", "netherex:entity/ghast/ghastling_ambient_6", "netherex:entity/ghast/ghastling_ambient_7" ],
-        "subtitle": "subtitle.netherex.sound.ghast_ambient"
-    },
-    "entity.ghastling.hurt": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghastling_hurt_1", "netherex:entity/ghast/ghastling_hurt_2", "netherex:entity/ghast/ghastling_hurt_3", "netherex:entity/ghast/ghastling_hurt_4", "netherex:entity/ghast/ghastling_hurt_5" ],
-        "subtitle": "subtitle.netherex.sound.ghast_hurt"
-    },
-    "entity.ghastling.death": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghastling_death" ],
-        "subtitle": "subtitle.netherex.sound.ghast_death"
-    },
-    "entity.ghastling.warn": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghastling_warn" ],
-        "subtitle": "subtitle.netherex.sound.ghast_warn"
-    },
-    "entity.ghastling.shoot": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghastling_shoot" ],
-        "subtitle": "subtitle.netherex.sound.ghast_shoot"
-    },
-    "entity.ghast_queen.ambient": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghast_queen_ambient_1", "netherex:entity/ghast/ghast_queen_ambient_2", "netherex:entity/ghast/ghast_queen_ambient_3", "netherex:entity/ghast/ghast_queen_ambient_4", "netherex:entity/ghast/ghast_queen_ambient_5" ],
-        "subtitle": "subtitle.netherex.sound.ghast_queen_ambient"
-    },
-    "entity.ghast_queen.hurt": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghast_queen_hurt_1", "netherex:entity/ghast/ghast_queen_hurt_2", "netherex:entity/ghast/ghast_queen_hurt_3", "netherex:entity/ghast/ghast_queen_hurt_4", "netherex:entity/ghast/ghast_queen_hurt_5" ],
-        "subtitle": "subtitle.netherex.sound.ghast_queen_hurt"
-    },
-    "entity.ghast_queen.death": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghast_queen_death" ],
-        "subtitle": "subtitle.netherex.sound.ghast_queen_death"
-    },
-    "entity.ghast_queen.shoot": {
-        "category": "hostile",
-        "sounds": [ "netherex:entity/ghast/ghast_queen_shoot" ],
-        "subtitle": "subtitle.netherex.sound.ghast_queen_shoot"
-    },
-    "entity.ghast_queen.summon": {
-        "category": "ambient",
-        "sounds": [ "netherex:entity/ghast/ghast_queen_summon" ],
-        "subtitle": "subtitle.netherex.sound.ghast_queen.summon"
     }
 }

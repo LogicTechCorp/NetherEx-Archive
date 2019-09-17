@@ -39,6 +39,26 @@
     ],
     "features": [
         {
+            "feature": "libraryex:scatter",
+            "feature_config": {
+                "scatter_state": {
+                    "Name": "netherex:blue_fire"
+                },
+                "target_state": {
+                    "Name": "netherex:frostburn_ice"
+                },
+                "target_area": "on_ground"
+            },
+            "placement": "minecraft:count_range",
+            "placement_config": {
+                "count": 5,
+                "bottom_offset": 4,
+                "top_offset": 0,
+                "maximum": 120
+            },
+            "stage": "underground_decoration"
+        },
+        {
             "feature": "minecraft:glowstone_blob",
             "placement": "minecraft:light_gem_chance",
             "placement_config": {

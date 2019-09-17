@@ -31,9 +31,6 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExSounds
 {
-    public static final SoundEvent ENTITY_PIGTIFICATE_AMBIENT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_PIGTIFICATE_HURT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_PIGTIFICATE_DEATH = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_MOGUS_AMBIENT = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_MOGUS_HURT = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_MOGUS_DEATH = InjectionHelper.nullValue();
@@ -43,11 +40,6 @@ public class NetherExSounds
     public static final SoundEvent ENTITY_WIGHT_AMBIENT = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_WIGHT_HURT = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_WIGHT_DEATH = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_EMBER_HURT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_EMBER_DEATH = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_NETHERMITE_AMBIENT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_NETHERMITE_HURT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_NETHERMITE_DEATH = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_SPINOUT_AMBIENT = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_SPINOUT_HURT = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_SPINOUT_DEATH = InjectionHelper.nullValue();
@@ -55,23 +47,10 @@ public class NetherExSounds
     public static final SoundEvent ENTITY_SPORE_DEATH = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_SPORE_WARN = InjectionHelper.nullValue();
     public static final SoundEvent ENTITY_SPORE_EXPLODE = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHASTLING_AMBIENT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHASTLING_HURT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHASTLING_DEATH = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHASTLING_WARN = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHASTLING_SHOOT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHAST_QUEEN_AMBIENT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHAST_QUEEN_HURT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHAST_QUEEN_DEATH = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHAST_QUEEN_SHOOT = InjectionHelper.nullValue();
-    public static final SoundEvent ENTITY_GHAST_QUEEN_SUMMON = InjectionHelper.nullValue();
 
     @SubscribeEvent
     public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event)
     {
-        registerSound("entity.pigtificate.ambient");
-        registerSound("entity.pigtificate.hurt");
-        registerSound("entity.pigtificate.death");
         registerSound("entity.mogus.ambient");
         registerSound("entity.mogus.hurt");
         registerSound("entity.mogus.death");
@@ -81,11 +60,6 @@ public class NetherExSounds
         registerSound("entity.wight.ambient");
         registerSound("entity.wight.hurt");
         registerSound("entity.wight.death");
-        registerSound("entity.ember.hurt");
-        registerSound("entity.ember.death");
-        registerSound("entity.nethermite.ambient");
-        registerSound("entity.nethermite.hurt");
-        registerSound("entity.nethermite.death");
         registerSound("entity.spinout.ambient");
         registerSound("entity.spinout.hurt");
         registerSound("entity.spinout.death");
@@ -93,16 +67,6 @@ public class NetherExSounds
         registerSound("entity.spore.death");
         registerSound("entity.spore.warn");
         registerSound("entity.spore.explode");
-        registerSound("entity.ghastling.ambient");
-        registerSound("entity.ghastling.hurt");
-        registerSound("entity.ghastling.death");
-        registerSound("entity.ghastling.warn");
-        registerSound("entity.ghastling.shoot");
-        registerSound("entity.ghast_queen.ambient");
-        registerSound("entity.ghast_queen.hurt");
-        registerSound("entity.ghast_queen.death");
-        registerSound("entity.ghast_queen.shoot");
-        registerSound("entity.ghast_queen.summon");
     }
 
     private static void registerSound(String name)

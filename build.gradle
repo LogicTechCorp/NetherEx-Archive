@@ -19,6 +19,19 @@ archivesBaseName = "${mod_name}-${minecraft_version}"
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+            srcDir 'src/main/generated/resources'
+        }
+        compileClasspath += sourceSets.main.compileClasspath
+    }
+}
+
 minecraft {
     mappings channel: "snapshot", version: "${mcp_version}"
 
@@ -33,6 +46,20 @@ minecraft {
             workingDirectory project.file('run')
             ideaModule "${project.name}.main"
             environment 'MOD_CLASSES', "NetherEx%%${project.file("build/resources/main").canonicalPath};NetherEx%%${project.file("/build/classes/java/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/resources/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/classes/java/main").canonicalPath}"
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.console.level', 'info'
+
+            args '--mod', 'netherex', '--all', '--output', file('src/main/generated/resources'), '--input', file('src/main/resources')
+
+            mods {
+                netherex {
+                    source sourceSets.main
+                }
+            }
         }
     }
 

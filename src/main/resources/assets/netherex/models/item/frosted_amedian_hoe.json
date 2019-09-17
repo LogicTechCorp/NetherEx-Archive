@@ -1,6 +1,0 @@
-{
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "netherex:items/frosted_amedian_hoe"
-    }
-}

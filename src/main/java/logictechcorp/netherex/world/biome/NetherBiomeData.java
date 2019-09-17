@@ -18,18 +18,14 @@
 package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.world.biome.BiomeData;
-import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.world.generation.surfacebuilder.NetherExSurfaceBuilders;
 import logictechcorp.netherex.world.generation.surfacebuilder.NetherSurfaceBuilderWrapper;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class NetherBiomeData extends BiomeData
 {
-    private static final RegistryObject<SurfaceBuilder<NetherSurfaceBuilderWrapper.Config>> surfaceBuilderWrapper = RegistryObject.of(NetherEx.MOD_ID + ":nether_surface_builder_wrapper", () -> (Class<SurfaceBuilder<?>>) (Object) SurfaceBuilder.class);
-
     public NetherBiomeData(Biome biome, int generationWeight, boolean useDefaultFeatures, boolean isSubBiome)
     {
         super(biome, generationWeight, useDefaultFeatures, isSubBiome);
@@ -38,7 +34,7 @@ public class NetherBiomeData extends BiomeData
     @Override
     public void configureBiome()
     {
-        ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, new ConfiguredSurfaceBuilder<>(surfaceBuilderWrapper.orElse(null), new NetherSurfaceBuilderWrapper.Config(this)), "field_201875_ar");
+        ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, new ConfiguredSurfaceBuilder<>(NetherExSurfaceBuilders.NETHER_SURFACE_BUILDER_WRAPPER, new NetherSurfaceBuilderWrapper.Config(this)), "field_201875_ar");
         super.configureBiome();
     }
 

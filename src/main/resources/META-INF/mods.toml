@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[26,)"
+loaderVersion="[28,)"
 issueTrackerURL="https://github.com/LogicTechCorp/NetherEx/issues"
 
 [[mods]]
@@ -14,6 +14,6 @@ description="A mod that adds new content to the Nether."
 [[dependencies.netherex]]
 modId="forge"
 mandatory=true
-versionRange="[26,)"
+versionRange="[28,)"
 ordering="NONE"
 side="BOTH"

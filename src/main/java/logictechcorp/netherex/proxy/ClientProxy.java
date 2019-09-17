@@ -27,7 +27,6 @@ import logictechcorp.netherex.particle.NetherExParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -41,8 +40,7 @@ public class ClientProxy extends CommonProxy
         super.registerHandlers();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-        forgeEventBus.addListener(this::onRegisterParticleFactory);
+        modEventBus.addListener(this::onRegisterParticleFactory);
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
