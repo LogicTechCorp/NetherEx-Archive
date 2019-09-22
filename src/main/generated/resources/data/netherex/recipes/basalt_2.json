@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "netherex:smooth_basalt"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "netherex:basalt"
+  }
+}

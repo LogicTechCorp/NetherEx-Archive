@@ -77,7 +77,6 @@ public class ClientEventHandler
         }
     }
 
-
     @SubscribeEvent
     public static void onRenderLivingSpecialPost(RenderLivingEvent.Specials.Post event)
     {

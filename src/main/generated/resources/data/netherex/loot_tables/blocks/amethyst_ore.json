@@ -5,7 +5,7 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:loot_Table",
+          "type": "minecraft:alternatives",
           "name": "netherex:amethyst_crystal",
           "children": [
             {

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "netherex:smooth_basalt"
+    }
+  },
+  "result": {
+    "count": 6,
+    "item": "netherex:smooth_basalt_slab"
+  }
+}

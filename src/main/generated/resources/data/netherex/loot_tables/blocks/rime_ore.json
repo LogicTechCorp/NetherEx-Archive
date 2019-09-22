@@ -28,7 +28,7 @@
               "name": "netherex:rime_ore"
             },
             {
-              "type": "minecraft:alternatives",
+              "type": "minecraft:item",
               "functions": [
                 {
                   "function": "minecraft:apply_bonus",

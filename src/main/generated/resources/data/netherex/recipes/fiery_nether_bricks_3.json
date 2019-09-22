@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "netherex:fiery_nether_brick_wall"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "netherex:fiery_nether_bricks"
+  }
+}

@@ -33,10 +33,10 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExItems
 {
-    public static final Item GLOOMY_NETHERBRICK = InjectionHelper.nullValue();
-    public static final Item LIVELY_NETHERBRICK = InjectionHelper.nullValue();
-    public static final Item FIERY_NETHERBRICK = InjectionHelper.nullValue();
-    public static final Item ICY_NETHERBRICK = InjectionHelper.nullValue();
+    public static final Item GLOOMY_NETHER_BRICK = InjectionHelper.nullValue();
+    public static final Item LIVELY_NETHER_BRICK = InjectionHelper.nullValue();
+    public static final Item FIERY_NETHER_BRICK = InjectionHelper.nullValue();
+    public static final Item ICY_NETHER_BRICK = InjectionHelper.nullValue();
     public static final Item ORANGE_SALAMANDER_HIDE = InjectionHelper.nullValue();
     public static final Item BLACK_SALAMANDER_HIDE = InjectionHelper.nullValue();
     public static final Item AMETHYST_CRYSTAL = InjectionHelper.nullValue();

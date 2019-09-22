@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "netherex:rime_crystal"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "netherex:rime_and_steel"
+  }
+}

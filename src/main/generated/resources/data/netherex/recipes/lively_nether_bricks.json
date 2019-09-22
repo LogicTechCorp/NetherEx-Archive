@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "netherex:lively_nether_brick"
+    }
+  },
+  "result": {
+    "count": 4,
+    "item": "netherex:lively_nether_bricks"
+  }
+}

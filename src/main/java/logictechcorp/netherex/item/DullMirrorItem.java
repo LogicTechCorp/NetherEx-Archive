@@ -71,7 +71,6 @@ public class DullMirrorItem extends Item
         }
     }
 
-
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
     {

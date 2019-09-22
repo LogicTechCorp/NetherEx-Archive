@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "netherex:smooth_basalt_wall"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "netherex:smooth_basalt"
+  }
+}
