@@ -50,16 +50,10 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-
+            ideaModule "${project.name}.main"
+            environment 'MOD_CLASSES', "NetherEx%%${project.file("build/resources/main").canonicalPath};NetherEx%%${project.file("/build/classes/java/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/resources/main").canonicalPath};LibraryEx%%${project.file("LibraryEx/build/classes/java/main").canonicalPath}"
             property 'forge.logging.console.level', 'info'
-
             args '--mod', 'netherex', '--all', '--output', file('src/main/generated/resources'), '--input', file('src/main/resources')
-
-            mods {
-                netherex {
-                    source sourceSets.main
-                }
-            }
         }
     }
 
@@ -68,10 +62,15 @@ minecraft {
 
 repositories {
     mavenCentral()
+    maven {
+        name 'LDTTeam - Modding'
+        url 'https://ldtteam.jfrog.io/ldtteam/modding/'
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    compile "com.ldtteam:datagenerators:0.1.34-ALPHA"
     compile project(':LibraryEx')
 }
 
