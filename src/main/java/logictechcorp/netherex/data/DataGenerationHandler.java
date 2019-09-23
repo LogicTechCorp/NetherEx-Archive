@@ -71,6 +71,7 @@ public class DataGenerationHandler
         }
 
         lootTableGenerator.addOreLootTable(NetherExBlocks.AMETHYST_ORE, NetherExItems.AMETHYST_CRYSTAL).addOreLootTable(NetherExBlocks.RIME_ORE, NetherExItems.RIME_CRYSTAL);
+        lootTableGenerator.addFragileLootTable(NetherExBlocks.SOUL_GLASS).addFragileLootTable(NetherExBlocks.SOUL_GLASS_PANE);
         return lootTableGenerator;
     }
 
@@ -205,20 +206,15 @@ public class DataGenerationHandler
 
         //Misc recipes
         recipeGenerator.addSurroundedRecipe(new ItemStack(NetherExItems.DULL_MIRROR), Items.GHAST_TEAR, Items.GOLD_INGOT);
-        //recipeGenerator.addWallRecipe(new ItemStack(NetherExBlocks.SOUL_GLASS_PANE, 18), NetherExBlocks.SOUL_GLASS);
-        //recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.SOUL_GLASS, 3), NetherExBlocks.SOUL_GLASS_PANE);
-        //recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.RIME_BLOCK, 1), NetherExItems.RIME_CRYSTAL);
-        //recipeGenerator.addShapelessRecipe(new ItemStack(NetherExItems.RIME_CRYSTAL, 9), NetherExBlocks.RIME_BLOCK);
-        //recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.AMETHYST_BLOCK, 1), NetherExItems.AMETHYST_CRYSTAL);
-        //recipeGenerator.addShapelessRecipe(new ItemStack(NetherExItems.AMETHYST_CRYSTAL, 9), NetherExBlocks.AMETHYST_BLOCK);
+        recipeGenerator.addWallRecipe(new ItemStack(NetherExBlocks.SOUL_GLASS_PANE, 18), NetherExBlocks.SOUL_GLASS);
+        recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.SOUL_GLASS, 3), NetherExBlocks.SOUL_GLASS_PANE);
+        recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.RIME_BLOCK, 1), NetherExItems.RIME_CRYSTAL);
+        recipeGenerator.addShapelessRecipe(new ItemStack(NetherExItems.RIME_CRYSTAL, 9), NetherExBlocks.RIME_BLOCK);
+        recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.AMETHYST_BLOCK, 1), NetherExItems.AMETHYST_CRYSTAL);
+        recipeGenerator.addShapelessRecipe(new ItemStack(NetherExItems.AMETHYST_CRYSTAL, 9), NetherExBlocks.AMETHYST_BLOCK);
         recipeGenerator.addShapelessRecipe(new ItemStack(NetherExItems.RIME_AND_STEEL, 1), Items.FLINT_AND_STEEL, NetherExItems.RIME_CRYSTAL);
         recipeGenerator.addShapelessRecipe(new ItemStack(NetherExItems.RIME_AND_STEEL, 1), Items.IRON_INGOT, Items.FLINT, NetherExItems.RIME_CRYSTAL);
 
         return recipeGenerator;
-    }
-
-    private static void createDecorativeBlockRecipes(RecipeGenerator recipeGenerator, Block baseBlock)
-    {
-
     }
 }

@@ -39,6 +39,7 @@ public class NetherExEffects
     public static final Effect FROZEN = InjectionHelper.nullValue();
     public static final Effect FROSTBITTEN = InjectionHelper.nullValue();
     public static final Effect FIRE_BURNING = InjectionHelper.nullValue();
+    public static final Effect SOUL_SUCKED = InjectionHelper.nullValue();
 
     @SubscribeEvent
     public static void onRegisterEffect(RegistryEvent.Register<Effect> event)
@@ -47,6 +48,7 @@ public class NetherExEffects
         registerEffect("frozen", new FrozenEffect().addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "C1372E45-9DB2-4E2E-BA2C-E3C5F6977891", -1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
         registerEffect("frostbitten", new Effect(EffectType.HARMFUL, new Color(19, 226, 255).getRGB()));
         registerEffect("fire_burning", new FireBurningEffect());
+        registerEffect("soul_sucked", new SoulSuckedEffect());
     }
 
     private static void registerEffect(String name, Effect effect)

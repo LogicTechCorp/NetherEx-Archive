@@ -31,13 +31,19 @@ import java.util.List;
 
 public class NetherExConfig
 {
+    private static final ForgeConfigSpec BLOCK_SPEC;
     private static final ForgeConfigSpec ENTITY_SPEC;
     private static final ForgeConfigSpec EFFECT_SPEC;
+    public static final BlockConfig BLOCK;
     public static final EntityConfig ENTITY;
     public static final EffectConfig EFFECT;
 
     static
     {
+        Pair<BlockConfig, ForgeConfigSpec> blockSpecPair = new ForgeConfigSpec.Builder().configure(BlockConfig::new);
+        BLOCK_SPEC = blockSpecPair.getRight();
+        BLOCK = blockSpecPair.getLeft();
+
         Pair<EntityConfig, ForgeConfigSpec> entitySpecPair = new ForgeConfigSpec.Builder().configure(EntityConfig::new);
         ENTITY_SPEC = entitySpecPair.getRight();
         ENTITY = entitySpecPair.getLeft();
@@ -58,8 +64,40 @@ public class NetherExConfig
             NetherEx.LOGGER.error("Failed to create netherex config directory.");
         }
 
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.BLOCK_SPEC, "netherex/block-config.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.ENTITY_SPEC, "netherex/entity-config.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.EFFECT_SPEC, "netherex/effect-config.toml");
+    }
+
+    public static class BlockConfig
+    {
+        //Rime settings
+        public final ForgeConfigSpec.BooleanValue rimeCanFreezeWater;
+        public final ForgeConfigSpec.BooleanValue rimeCanFreezeLava;
+        public final ForgeConfigSpec.BooleanValue rimeCanFreezeEntities;
+
+        BlockConfig(ForgeConfigSpec.Builder builder)
+        {
+            //Start block config
+            builder.comment("Block configuration settings")
+                    .push("block");
+
+            //Rime config
+            builder.comment("Rime configuration settings")
+                    .push("rime");
+            this.rimeCanFreezeWater = builder
+                    .comment("Whether or not rime can freeze water.")
+                    .define("canFreezeWater", true);
+            this.rimeCanFreezeLava = builder
+                    .comment("Whether or not rime can freeze lava.")
+                    .define("canFreezeLava", true);
+            this.rimeCanFreezeEntities = builder
+                    .comment("Whether or not rime can freeze entities.")
+                    .define("canFreezeLava", true);
+
+            //End block config
+            builder.pop();
+        }
     }
 
     public static class EntityConfig
@@ -74,7 +112,7 @@ public class NetherExConfig
 
         EntityConfig(ForgeConfigSpec.Builder builder)
         {
-            //Entity config
+            //Start entity config
             builder.comment("Entity configuration settings")
                     .push("entity");
 
@@ -100,6 +138,7 @@ public class NetherExConfig
                     .defineInRange("spinCooldown", 2, 1, Integer.MAX_VALUE);
             builder.pop();
 
+            //End entity config
             builder.pop();
         }
     }
@@ -118,7 +157,7 @@ public class NetherExConfig
 
         EffectConfig(ForgeConfigSpec.Builder builder)
         {
-            //Effect config
+            //Start effect config
             builder.comment("Effect configuration settings");
             builder.push("effect");
 
@@ -150,6 +189,7 @@ public class NetherExConfig
                     .define("entityBlacklist", Arrays.asList(NetherEx.MOD_ID + ":wight", NetherEx.MOD_ID + ":coolmar_spider"));
             builder.pop();
 
+            //End effect config
             builder.pop();
         }
     }

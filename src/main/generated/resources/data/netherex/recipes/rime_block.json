@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "netherex:rime_crystal"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "netherex:rime_block"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "netherex:soul_glass_pane"
+    }
+  },
+  "result": {
+    "count": 3,
+    "item": "netherex:soul_glass"
+  }
+}

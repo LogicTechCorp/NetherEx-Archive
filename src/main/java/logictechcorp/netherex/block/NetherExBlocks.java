@@ -107,7 +107,9 @@ public class NetherExBlocks
     public static final Block FROSTBURN_ICE = InjectionHelper.nullValue();
     public static final Block QUARTZ_ORE = InjectionHelper.nullValue();
     public static final Block AMETHYST_ORE = InjectionHelper.nullValue();
+    public static final Block AMETHYST_BLOCK = InjectionHelper.nullValue();
     public static final Block RIME_ORE = InjectionHelper.nullValue();
+    public static final Block RIME_BLOCK = InjectionHelper.nullValue();
     public static final Block THORNSTALK = InjectionHelper.nullValue();
     public static final Block BROWN_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
     public static final Block RED_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
@@ -115,6 +117,8 @@ public class NetherExBlocks
     public static final Block ENOKI_MUSHROOM_CAP = InjectionHelper.nullValue();
     public static final Block ENOKI_MUSHROOM_STEM = InjectionHelper.nullValue();
     public static final Block BLUE_FIRE = InjectionHelper.nullValue();
+    public static final Block SOUL_GLASS = InjectionHelper.nullValue();
+    public static final Block SOUL_GLASS_PANE = InjectionHelper.nullValue();
 
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event)
@@ -140,7 +144,9 @@ public class NetherExBlocks
         registerBlock("frostburn_ice", new UnmeltableIceBlock(Block.Properties.create(Material.ICE, DyeColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 1.0F)));
         registerBlock("quartz_ore", new QuartzOreBlock());
         registerBlock("amethyst_ore", new ExperienceDroppingBlock(1, 5, Block.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
+        registerBlock("amethyst_block", new Block(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(5.0F, 10.0F)));
         registerBlock("rime_ore", new ExperienceDroppingBlock(2, 6, Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
+        registerBlock("rime_block", new RimeBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(5.0F, 10.0F).lightValue(13)));
         registerBlock("thornstalk", new ThornstalkBlock());
         registerBlock("brown_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.BROWN_MUSHROOM_BLOCK)));
         registerBlock("red_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.RED_MUSHROOM_BLOCK)));
@@ -148,6 +154,8 @@ public class NetherExBlocks
         registerBlock("enoki_mushroom_stem", new EnokiStemBlock(Block.Properties.from(Blocks.CHORUS_PLANT)));
         registerBlock("enoki_mushroom_cap", new EnokiCapBlock(Block.Properties.from(Blocks.CHORUS_FLOWER)));
         registerBlockWithoutItem("blue_fire", new BlueFireBlock(Block.Properties.create(Material.FIRE, MaterialColor.LIGHT_BLUE).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0.0F).lightValue(15).sound(SoundType.CLOTH).noDrops()));
+        registerBlock("soul_glass", new SoulGlassBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS)));
+        registerBlock("soul_glass_pane", new SoulGlassPaneBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS_PANE)));
     }
 
     @SubscribeEvent
