@@ -17,6 +17,7 @@
 
 package logictechcorp.netherex.potion;
 
+import logictechcorp.libraryex.potion.ModEffect;
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -46,7 +47,7 @@ public class NetherExEffects
     {
         registerEffect("infested", new InfestedEffect());
         registerEffect("frozen", new FrozenEffect().addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "C1372E45-9DB2-4E2E-BA2C-E3C5F6977891", -1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
-        registerEffect("frostbitten", new Effect(EffectType.HARMFUL, new Color(19, 226, 255).getRGB()));
+        registerEffect("frostbitten", new ModEffect(EffectType.HARMFUL, new Color(19, 226, 255).getRGB()));
         registerEffect("fire_burning", new FireBurningEffect());
         registerEffect("soul_sucked", new SoulSuckedEffect());
     }

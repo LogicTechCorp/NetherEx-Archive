@@ -17,3 +17,10 @@ mandatory=true
 versionRange="[28,)"
 ordering="NONE"
 side="BOTH"
+
+#[[dependencies.netherex]]
+#modId="libraryex"
+#mandatory=true
+#versionRange="[2,)"
+#ordering="BEFORE"
+#side="BOTH"

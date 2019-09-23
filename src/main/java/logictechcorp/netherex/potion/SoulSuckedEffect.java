@@ -36,7 +36,6 @@ public class SoulSuckedEffect extends Effect
         this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "6D9EEBB1-F8CD-44C0-86AA-8D36B03B3625", -0.3D, AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
-
     @Override
     public boolean shouldRender(EffectInstance effect)
     {

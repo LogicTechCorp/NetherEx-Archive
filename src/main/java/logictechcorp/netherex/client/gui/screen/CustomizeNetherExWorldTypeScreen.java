@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.client.gui.screen;
 
-import logictechcorp.libraryex.client.gui.GuiScrollableButtonList;
+import logictechcorp.libraryex.client.gui.ScrollableButtonList;
 import net.minecraft.client.gui.screen.CreateWorldScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -30,31 +30,31 @@ import java.util.List;
 
 public class CustomizeNetherExWorldTypeScreen extends Screen
 {
-    private CreateWorldScreen guiCreateWorld;
+    private CreateWorldScreen createWorldScreen;
     private List<WorldType> compatibleWorldTypes;
-    private GuiScrollableButtonList guiScrollableButtonList;
+    private ScrollableButtonList guiScrollableButtonList;
 
-    public CustomizeNetherExWorldTypeScreen(CreateWorldScreen guiCreateWorld, List<WorldType> compatibleWorldTypes)
+    public CustomizeNetherExWorldTypeScreen(CreateWorldScreen createWorldScreen, List<WorldType> compatibleWorldTypes)
     {
         super(new TranslationTextComponent("selectWorld.customizeType"));
-        this.guiCreateWorld = guiCreateWorld;
+        this.createWorldScreen = createWorldScreen;
         this.compatibleWorldTypes = compatibleWorldTypes;
     }
 
     @Override
     public void init()
     {
-        this.buttons.clear();
-        this.buttons.add(new Button((this.width / 2) - 45, (this.height - 27), 90, 20, I18n.format("gui.done"), (button) -> this.minecraft.displayGuiScreen(this.guiCreateWorld)));
+        this.addButton(new Button((this.width / 2) - 45, (this.height - 27), 90, 20, I18n.format("gui.done"), (button) -> this.minecraft.displayGuiScreen(this.createWorldScreen)));
 
-        List<GuiScrollableButtonList.GuiScrollableButtonData> guiScrollableButtonData = new ArrayList<>();
+        List<ScrollableButtonList.ButtonData> buttonDataList = new ArrayList<>();
 
         for(int i = 0; i < this.compatibleWorldTypes.size(); i++)
         {
-            guiScrollableButtonData.add(new GuiScrollableButtonList.GuiScrollableButtonData(i, I18n.format("selectWorld.customizeType") + " " + I18n.format(this.compatibleWorldTypes.get(i).getTranslationKey())));
+            WorldType worldType = this.compatibleWorldTypes.get(i);
+            buttonDataList.add(new ScrollableButtonList.ButtonData(I18n.format("selectWorld.customizeType") + " " + I18n.format(worldType.getTranslationKey()), i * 160, button -> worldType.onCustomizeButton(this.minecraft, this.createWorldScreen)));
         }
 
-        this.guiScrollableButtonList = new GuiScrollableButtonList(this.minecraft, this.width, this.height, 32, this.height - 32, guiScrollableButtonData, (button) -> this.compatibleWorldTypes.get(this.buttons.indexOf(button)).onCustomizeButton(this.minecraft, this.guiCreateWorld));
+        this.guiScrollableButtonList = new ScrollableButtonList(this.createWorldScreen, this.width, this.height, 32, this.height - 32, buttonDataList);
     }
 
     @Override
@@ -68,14 +68,25 @@ public class CustomizeNetherExWorldTypeScreen extends Screen
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton)
     {
-        this.guiScrollableButtonList.mouseClicked(mouseX, mouseY, mouseButton);
+        if(this.guiScrollableButtonList.mouseClicked(mouseX, mouseY, mouseButton))
+        {
+            return true;
+        }
         return super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int state)
     {
-        this.guiScrollableButtonList.mouseReleased(mouseX, mouseY, state);
+        if(this.guiScrollableButtonList.mouseReleased(mouseX, mouseY, state))
+        {
+            return true;
+        }
         return super.mouseReleased(mouseX, mouseY, state);
+    }
+
+    public CreateWorldScreen getCreateWorldScreen()
+    {
+        return this.createWorldScreen;
     }
 }

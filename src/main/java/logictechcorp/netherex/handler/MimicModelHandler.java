@@ -34,13 +34,17 @@ public class MimicModelHandler
     @SubscribeEvent
     public static void onModelBake(ModelBakeEvent event)
     {
-        MimicBlock mimicBlock = (MimicBlock) NetherExBlocks.QUARTZ_ORE;
-        ModelResourceLocation modelLocation = mimicBlock.getModelLocation();
-        IBakedModel model = event.getModelRegistry().get(modelLocation);
+        MimicBlock quartzOreBlock = (MimicBlock) NetherExBlocks.QUARTZ_ORE;
 
-        if(model != null)
+        if(quartzOreBlock != null)
         {
-            event.getModelRegistry().put(modelLocation, new MimicBakedModel(model, mimicBlock.getMimicType()));
+            ModelResourceLocation modelLocation = quartzOreBlock.getModelLocation();
+            IBakedModel model = event.getModelRegistry().get(modelLocation);
+
+            if(model != null)
+            {
+                event.getModelRegistry().put(modelLocation, new MimicBakedModel(model, quartzOreBlock.getMimicType()));
+            }
         }
     }
 }

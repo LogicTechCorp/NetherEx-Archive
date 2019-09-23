@@ -56,8 +56,6 @@ minecraft {
             args '--mod', 'netherex', '--all', '--output', file('src/main/generated/resources'), '--input', file('src/main/resources')
         }
     }
-
-    accessTransformer = file('src/main/resources/META-INF/netherex_at.cfg')
 }
 
 repositories {
@@ -97,3 +95,5 @@ task processDevResources(type: Copy) {
         filter tokens: ["file.jarVersion": project.version as String], beginToken: "\${", endToken: "}", ReplaceTokens
     }
 }
+
+build.dependsOn(processDevResources)

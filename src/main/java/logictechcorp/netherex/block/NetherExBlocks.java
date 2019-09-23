@@ -17,10 +17,7 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.ExperienceDroppingBlock;
-import logictechcorp.libraryex.block.FireSustainingBlock;
-import logictechcorp.libraryex.block.PathBlock;
-import logictechcorp.libraryex.block.UnmeltableIceBlock;
+import logictechcorp.libraryex.block.*;
 import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.*;
@@ -185,7 +182,7 @@ public class NetherExBlocks
         Block.Properties blockProperties = Block.Properties.from(block);
         Item.Properties itemProperties = new Item.Properties().group(NetherEx.ITEM_GROUP);
         Block slabBlock = new SlabBlock(blockProperties);
-        Block stairBlock = new StairsBlock(block.getDefaultState(), blockProperties);
+        Block stairBlock = new ModStairsBlock(block.getDefaultState(), blockProperties);
         Block fenceBlock = new FenceBlock(blockProperties);
         Block fenceGateBlock = new FenceGateBlock(blockProperties);
         Block wallBlock = new WallBlock(blockProperties);
