@@ -24,6 +24,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -32,11 +33,13 @@ import java.util.List;
 public class NetherExConfig
 {
     private static final ForgeConfigSpec BLOCK_SPEC;
-    private static final ForgeConfigSpec ENTITY_SPEC;
     private static final ForgeConfigSpec EFFECT_SPEC;
+    private static final ForgeConfigSpec ENTITY_SPEC;
+    private static final ForgeConfigSpec NETHER_SPEC;
     public static final BlockConfig BLOCK;
-    public static final EntityConfig ENTITY;
     public static final EffectConfig EFFECT;
+    public static final EntityConfig ENTITY;
+    public static final NetherConfig NETHER;
 
     static
     {
@@ -44,29 +47,38 @@ public class NetherExConfig
         BLOCK_SPEC = blockSpecPair.getRight();
         BLOCK = blockSpecPair.getLeft();
 
+        Pair<EffectConfig, ForgeConfigSpec> effectSpecPair = new ForgeConfigSpec.Builder().configure(EffectConfig::new);
+        EFFECT_SPEC = effectSpecPair.getRight();
+        EFFECT = effectSpecPair.getLeft();
+
         Pair<EntityConfig, ForgeConfigSpec> entitySpecPair = new ForgeConfigSpec.Builder().configure(EntityConfig::new);
         ENTITY_SPEC = entitySpecPair.getRight();
         ENTITY = entitySpecPair.getLeft();
 
-        Pair<EffectConfig, ForgeConfigSpec> effectSpecPair = new ForgeConfigSpec.Builder().configure(EffectConfig::new);
-        EFFECT_SPEC = effectSpecPair.getRight();
-        EFFECT = effectSpecPair.getLeft();
+        Pair<NetherConfig, ForgeConfigSpec> netherSpecPair = new ForgeConfigSpec.Builder().configure(NetherConfig::new);
+        NETHER_SPEC = netherSpecPair.getRight();
+        NETHER = netherSpecPair.getLeft();
     }
 
-    public static void registerConfigs()
+    static void registerConfigs()
     {
         try
         {
             Files.createDirectory(Paths.get(FMLPaths.CONFIGDIR.get().toAbsolutePath().toString(), "netherex"));
+        }
+        catch(FileAlreadyExistsException ignored)
+        {
         }
         catch(IOException ignored)
         {
             NetherEx.LOGGER.error("Failed to create netherex config directory.");
         }
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.BLOCK_SPEC, "netherex/block-config.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.ENTITY_SPEC, "netherex/entity-config.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NetherExConfig.EFFECT_SPEC, "netherex/effect-config.toml");
+        ModLoadingContext loadingContext = ModLoadingContext.get();
+        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.BLOCK_SPEC, "netherex/block-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.EFFECT_SPEC, "netherex/effect-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.ENTITY_SPEC, "netherex/entity-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.ENTITY_SPEC, "netherex/nether-config.toml");
     }
 
     public static class BlockConfig
@@ -96,49 +108,6 @@ public class NetherExConfig
                     .define("canFreezeLava", true);
 
             //End block config
-            builder.pop();
-        }
-    }
-
-    public static class EntityConfig
-    {
-        //Spore settings
-        public final ForgeConfigSpec.IntValue sporeGrowthTime;
-        public final ForgeConfigSpec.IntValue sporeHatchAmount;
-
-        //Spinout settings
-        public final ForgeConfigSpec.IntValue spinoutSpinTime;
-        public final ForgeConfigSpec.IntValue spinoutSpinCooldown;
-
-        EntityConfig(ForgeConfigSpec.Builder builder)
-        {
-            //Start entity config
-            builder.comment("Entity configuration settings")
-                    .push("entity");
-
-            //Spore config
-            builder.comment("Spore configuration settings")
-                    .push("spore");
-            this.sporeGrowthTime = builder
-                    .comment("The number of seconds it takes to grown into the next stage.")
-                    .defineInRange("growthTime", 60, 1, Integer.MAX_VALUE);
-            this.sporeHatchAmount = builder
-                    .comment("The number of Spore Creepers that can be hatched.")
-                    .defineInRange("hatchAmount", 3, 1, Integer.MAX_VALUE);
-            builder.pop();
-
-            //Spinout config
-            builder.comment("Spinout configuration settings")
-                    .push("spinout");
-            this.spinoutSpinTime = builder
-                    .comment("The number of seconds a spin will last.")
-                    .defineInRange("spinTime", 6, 1, Integer.MAX_VALUE);
-            this.spinoutSpinCooldown = builder
-                    .comment("The number of seconds between each spin.")
-                    .defineInRange("spinCooldown", 2, 1, Integer.MAX_VALUE);
-            builder.pop();
-
-            //End entity config
             builder.pop();
         }
     }
@@ -190,6 +159,80 @@ public class NetherExConfig
             builder.pop();
 
             //End effect config
+            builder.pop();
+        }
+    }
+
+    public static class EntityConfig
+    {
+        //Spore settings
+        public final ForgeConfigSpec.IntValue sporeGrowthTime;
+        public final ForgeConfigSpec.IntValue sporeHatchAmount;
+
+        //Spinout settings
+        public final ForgeConfigSpec.IntValue spinoutSpinTime;
+        public final ForgeConfigSpec.IntValue spinoutSpinCooldown;
+
+        EntityConfig(ForgeConfigSpec.Builder builder)
+        {
+            //Start entity config
+            builder.comment("Entity configuration settings")
+                    .push("entity");
+
+            //Spore config
+            builder.comment("Spore configuration settings")
+                    .push("spore");
+            this.sporeGrowthTime = builder
+                    .comment("The number of seconds it takes to grown into the next stage.")
+                    .defineInRange("growthTime", 60, 1, Integer.MAX_VALUE);
+            this.sporeHatchAmount = builder
+                    .comment("The number of Spore Creepers that can be hatched.")
+                    .defineInRange("hatchAmount", 3, 1, Integer.MAX_VALUE);
+            builder.pop();
+
+            //Spinout config
+            builder.comment("Spinout configuration settings")
+                    .push("spinout");
+            this.spinoutSpinTime = builder
+                    .comment("The number of seconds a spin will last.")
+                    .defineInRange("spinTime", 6, 1, Integer.MAX_VALUE);
+            this.spinoutSpinCooldown = builder
+                    .comment("The number of seconds between each spin.")
+                    .defineInRange("spinCooldown", 2, 1, Integer.MAX_VALUE);
+            builder.pop();
+
+            //End entity config
+            builder.pop();
+        }
+    }
+
+    public static class NetherConfig
+    {
+        //Biome pack settings
+        public final ForgeConfigSpec.BooleanValue biomePackUseDefaultBiomePack;
+        public final ForgeConfigSpec.BooleanValue biomePackUseLegacyBiomePack;
+        public final ForgeConfigSpec.BooleanValue biomePackUseBOPBiomePack;
+
+        NetherConfig(ForgeConfigSpec.Builder builder)
+        {
+            //Start nether config
+            builder.comment("Nether configuration settings")
+                    .push("nether");
+
+            //Start biome pack config
+            builder.comment("Biome pack configuration settings")
+                    .push("biome_packs");
+            this.biomePackUseDefaultBiomePack = builder
+                    .comment("Use the default biome pack.")
+                    .define("useDefaultBiomePack", true);
+            this.biomePackUseLegacyBiomePack = builder
+                    .comment("Use the legacy biome pack.")
+                    .define("useLegacyBiomePack", true);
+            this.biomePackUseBOPBiomePack = builder
+                    .comment("Use the default biome pack.")
+                    .define("useBOPBiomePack", true);
+
+            //End nether config
             builder.pop();
         }
     }

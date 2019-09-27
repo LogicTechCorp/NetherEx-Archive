@@ -20,12 +20,10 @@ package logictechcorp.netherex;
 import logictechcorp.libraryex.world.biome.BiomeDataManager;
 import logictechcorp.netherex.proxy.ClientProxy;
 import logictechcorp.netherex.proxy.CommonProxy;
-import logictechcorp.netherex.world.NetherExWorldType;
 import logictechcorp.netherex.world.biome.NetherBiomeDataManager;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.WorldType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
@@ -46,7 +44,6 @@ public class NetherEx
             return new ItemStack(Blocks.NETHERRACK);
         }
     };
-    public static final WorldType WORLD_TYPE = new NetherExWorldType();
     public static final BiomeDataManager BIOME_DATA_MANAGER = new NetherBiomeDataManager();
 
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");

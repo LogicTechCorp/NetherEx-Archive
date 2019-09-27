@@ -206,6 +206,7 @@ public class DataGenerationHandler
 
         //Misc recipes
         recipeGenerator.addSurroundedRecipe(new ItemStack(NetherExItems.DULL_MIRROR), Items.GHAST_TEAR, Items.GOLD_INGOT);
+        recipeGenerator.createRepairRecipe(new ItemStack(NetherExItems.DULL_MIRROR)).repairStack(new ItemStack(Items.GHAST_TEAR)).repairAmount(1).build();
         recipeGenerator.addWallRecipe(new ItemStack(NetherExBlocks.SOUL_GLASS_PANE, 18), NetherExBlocks.SOUL_GLASS);
         recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.SOUL_GLASS, 3), NetherExBlocks.SOUL_GLASS_PANE);
         recipeGenerator.add3x3Recipe(new ItemStack(NetherExBlocks.RIME_BLOCK, 1), NetherExItems.RIME_CRYSTAL);

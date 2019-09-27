@@ -1,0 +1,26 @@
+{
+    "biome": "biomesoplenty:undergarden",
+    "generation_weight": 7,
+    "use_default_features": true,
+    "is_sub_biome": false,
+    "blocks": {
+        "surface": {
+            "Name": "minecraft:netherrack"
+        },
+        "subsurface": {
+            "Name": "minecraft:netherrack"
+        },
+        "cave_ceiling": {
+            "Name": "minecraft:netherrack"
+        },
+        "cave_wall": {
+            "Name": "minecraft:netherrack"
+        },
+        "cave_floor": {
+            "Name": "minecraft:netherrack"
+        },
+        "liquid": {
+            "Name": "minecraft:lava"
+        }
+    }
+}
