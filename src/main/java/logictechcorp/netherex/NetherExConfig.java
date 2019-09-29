@@ -78,7 +78,7 @@ public class NetherExConfig
         loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.BLOCK_SPEC, "netherex/block-config.toml");
         loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.EFFECT_SPEC, "netherex/effect-config.toml");
         loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.ENTITY_SPEC, "netherex/entity-config.toml");
-        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.ENTITY_SPEC, "netherex/nether-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.NETHER_SPEC, "netherex/nether-config.toml");
     }
 
     public static class BlockConfig
@@ -229,7 +229,7 @@ public class NetherExConfig
                     .comment("Use the legacy biome pack.")
                     .define("useLegacyBiomePack", true);
             this.biomePackUseBOPBiomePack = builder
-                    .comment("Use the default biome pack.")
+                    .comment("Use the Biomes O' Plenty biome pack.")
                     .define("useBOPBiomePack", true);
 
             //End nether config
