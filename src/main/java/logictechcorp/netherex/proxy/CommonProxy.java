@@ -18,9 +18,9 @@
 package logictechcorp.netherex.proxy;
 
 import logictechcorp.libraryex.proxy.IProxy;
+import logictechcorp.libraryex.resource.OptionalResourcePack;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.NetherExConfig;
-import logictechcorp.netherex.resource.NetherExBiomePackFinder;
 import logictechcorp.netherex.world.generation.NetherExChunkGenerators;
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackList;
@@ -28,16 +28,16 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
-import java.io.File;
 import java.lang.reflect.Field;
-import java.net.URL;
 
 public class CommonProxy implements IProxy
 {
@@ -71,35 +71,21 @@ public class CommonProxy implements IProxy
     {
         MinecraftServer server = event.getServer();
         ResourcePackList<ResourcePackInfo> resourcePacks = server.getResourcePacks();
+        ModFile modFile = ModList.get().getModFileById(NetherEx.MOD_ID).getFile();
 
         if(NetherExConfig.NETHER.biomePackUseDefaultBiomePack.get())
         {
-            URL biomePackURL = NetherEx.class.getResource("/data/netherex/biome_pack");
-
-            if(biomePackURL != null)
-            {
-                resourcePacks.addPackFinder(new NetherExBiomePackFinder(new File(biomePackURL.getFile())));
-            }
+            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "biome_pack", true));
         }
 
         if(NetherExConfig.NETHER.biomePackUseLegacyBiomePack.get())
         {
-            URL legacyBiomePackURL = NetherEx.class.getResource("/data/netherex/legacy_biome_pack");
-
-            if(legacyBiomePackURL != null)
-            {
-                resourcePacks.addPackFinder(new NetherExBiomePackFinder(new File(legacyBiomePackURL.getFile())));
-            }
+            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "legacy_biome_pack", true));
         }
 
         if(NetherExConfig.NETHER.biomePackUseBOPBiomePack.get())
         {
-            URL bopBiomePackURL = NetherEx.class.getResource("/data/netherex/bop_biome_pack");
-
-            if(bopBiomePackURL != null)
-            {
-                resourcePacks.addPackFinder(new NetherExBiomePackFinder(new File(bopBiomePackURL.getFile())));
-            }
+            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "bop_biome_pack", true));
         }
 
         server.getResourceManager().addReloadListener(NetherEx.BIOME_DATA_MANAGER);
