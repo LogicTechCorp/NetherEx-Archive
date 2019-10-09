@@ -17,35 +17,46 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
+import logictechcorp.libraryex.resource.OptionalResourcePack;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
+import net.minecraft.resources.ResourcePackInfo;
+import net.minecraft.resources.ResourcePackList;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.loading.moddiscovery.ModFile;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(NetherEx.MOD_ID)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExBiomes
 {
-    public static final Biome RUTHLESS_SANDS = InjectionHelper.nullValue();
-    public static final Biome FUNGI_FOREST = InjectionHelper.nullValue();
-    public static final Biome TORRID_WASTELAND = InjectionHelper.nullValue();
-    public static final Biome ARCTIC_ABYSS = InjectionHelper.nullValue();
+    public static final DeferredRegister<Biome> BIOMES = new DeferredRegister<>(ForgeRegistries.BIOMES, NetherEx.MOD_ID);
 
-    @SubscribeEvent
-    public static void onBiomeRegister(RegistryEvent.Register<Biome> event)
-    {
-        registerBiome("ruthless_sands", new BasicNetherBiome());
-        registerBiome("fungi_forest", new BasicNetherBiome());
-        registerBiome("torrid_wasteland", new BasicNetherBiome());
-        registerBiome("arctic_abyss", new BasicNetherBiome());
-    }
+    public static final RegistryObject<Biome> RUTHLESS_SANDS = BIOMES.register("ruthless_sands", BasicNetherBiome::new);
+    public static final RegistryObject<Biome> FUNGI_FOREST = BIOMES.register("fungi_forest", BasicNetherBiome::new);
+    public static final RegistryObject<Biome> TORRID_WASTELAND = BIOMES.register("torrid_wasteland", BasicNetherBiome::new);
+    public static final RegistryObject<Biome> ARCTIC_ABYSS = BIOMES.register("arctic_abyss", BasicNetherBiome::new);
 
-    private static void registerBiome(String name, Biome biome)
+    public static void registerBiomePacks(MinecraftServer server)
     {
-        ForgeRegistries.BIOMES.register(biome.setRegistryName(name));
+        ResourcePackList<ResourcePackInfo> resourcePacks = server.getResourcePacks();
+        ModFile modFile = ModList.get().getModFileById(NetherEx.MOD_ID).getFile();
+
+        if(NetherExConfig.NETHER.biomePackUseDefaultBiomePack.get())
+        {
+            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "biome_pack", true));
+        }
+
+        if(NetherExConfig.NETHER.biomePackUseLegacyBiomePack.get())
+        {
+            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "legacy_biome_pack", true));
+        }
+
+        if(NetherExConfig.NETHER.biomePackUseBOPBiomePack.get())
+        {
+            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "bop_biome_pack", true));
+        }
     }
 }

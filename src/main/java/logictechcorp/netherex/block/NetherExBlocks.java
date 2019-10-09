@@ -18,185 +18,92 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.*;
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.world.generation.feature.NetherExFeatures;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-import java.util.HashSet;
-import java.util.Set;
-
-@ObjectHolder(NetherEx.MOD_ID)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExBlocks
 {
-    private static final Set<Item> BLOCK_ITEMS = new HashSet<>();
+    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, NetherEx.MOD_ID);
 
-    public static final Block GLOOMY_NETHERRACK = InjectionHelper.nullValue();
-    public static final Block GLOOMY_NETHERRACK_PATH = InjectionHelper.nullValue();
-    public static final Block GLOOMY_NETHER_BRICKS = InjectionHelper.nullValue();
-    public static final Block GLOOMY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
-    public static final Block GLOOMY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
-    public static final Block GLOOMY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
-    public static final Block GLOOMY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
-    public static final Block GLOOMY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHERRACK = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHERRACK_PATH = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHER_BRICKS = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
-    public static final Block LIVELY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHERRACK = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHERRACK_PATH = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHER_BRICKS = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
-    public static final Block FIERY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block ICY_NETHERRACK = InjectionHelper.nullValue();
-    public static final Block ICY_NETHERRACK_PATH = InjectionHelper.nullValue();
-    public static final Block ICY_NETHER_BRICKS = InjectionHelper.nullValue();
-    public static final Block ICY_NETHER_BRICK_SLAB = InjectionHelper.nullValue();
-    public static final Block ICY_NETHER_BRICK_STAIRS = InjectionHelper.nullValue();
-    public static final Block ICY_NETHER_BRICK_WALL = InjectionHelper.nullValue();
-    public static final Block ICY_NETHER_BRICK_FENCE = InjectionHelper.nullValue();
-    public static final Block ICY_NETHER_BRICK_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block NETHERRACK_PATH = InjectionHelper.nullValue();
-    public static final Block BASALT = InjectionHelper.nullValue();
-    public static final Block BASALT_SLAB = InjectionHelper.nullValue();
-    public static final Block BASALT_STAIRS = InjectionHelper.nullValue();
-    public static final Block BASALT_WALL = InjectionHelper.nullValue();
-    public static final Block BASALT_FENCE = InjectionHelper.nullValue();
-    public static final Block BASALT_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block SMOOTH_BASALT = InjectionHelper.nullValue();
-    public static final Block SMOOTH_BASALT_SLAB = InjectionHelper.nullValue();
-    public static final Block SMOOTH_BASALT_STAIRS = InjectionHelper.nullValue();
-    public static final Block SMOOTH_BASALT_WALL = InjectionHelper.nullValue();
-    public static final Block SMOOTH_BASALT_FENCE = InjectionHelper.nullValue();
-    public static final Block SMOOTH_BASALT_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block BASALT_BRICK = InjectionHelper.nullValue();
-    public static final Block BASALT_BRICK_SLAB = InjectionHelper.nullValue();
-    public static final Block BASALT_BRICK_STAIRS = InjectionHelper.nullValue();
-    public static final Block BASALT_BRICK_WALL = InjectionHelper.nullValue();
-    public static final Block BASALT_BRICK_FENCE = InjectionHelper.nullValue();
-    public static final Block BASALT_BRICK_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block BASALT_PILLAR = InjectionHelper.nullValue();
-    public static final Block BASALT_PILLAR_SLAB = InjectionHelper.nullValue();
-    public static final Block BASALT_PILLAR_STAIRS = InjectionHelper.nullValue();
-    public static final Block BASALT_PILLAR_WALL = InjectionHelper.nullValue();
-    public static final Block BASALT_PILLAR_FENCE = InjectionHelper.nullValue();
-    public static final Block BASALT_PILLAR_FENCE_GATE = InjectionHelper.nullValue();
-    public static final Block HYPHAE = InjectionHelper.nullValue();
-    public static final Block FROSTBURN_ICE = InjectionHelper.nullValue();
-    public static final Block QUARTZ_ORE = InjectionHelper.nullValue();
-    public static final Block AMETHYST_ORE = InjectionHelper.nullValue();
-    public static final Block AMETHYST_BLOCK = InjectionHelper.nullValue();
-    public static final Block RIME_ORE = InjectionHelper.nullValue();
-    public static final Block RIME_BLOCK = InjectionHelper.nullValue();
-    public static final Block THORNSTALK = InjectionHelper.nullValue();
-    public static final Block BROWN_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
-    public static final Block RED_ELDER_MUSHROOM_CAP = InjectionHelper.nullValue();
-    public static final Block ELDER_MUSHROOM_STEM = InjectionHelper.nullValue();
-    public static final Block ENOKI_MUSHROOM_CAP = InjectionHelper.nullValue();
-    public static final Block ENOKI_MUSHROOM_STEM = InjectionHelper.nullValue();
-    public static final Block BLUE_FIRE = InjectionHelper.nullValue();
-    public static final Block SOUL_GLASS = InjectionHelper.nullValue();
-    public static final Block SOUL_GLASS_PANE = InjectionHelper.nullValue();
-
-    @SubscribeEvent
-    public static void onBlockRegister(RegistryEvent.Register<Block> event)
-    {
-        registerBlock("gloomy_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
-        registerBlock("gloomy_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":gloomy_netherrack", () -> Block.class)));
-        registerDecorativeBlocks("gloomy_nether_bricks", "gloomy_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("lively_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
-        registerBlock("lively_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":lively_netherrack", () -> Block.class)));
-        registerDecorativeBlocks("lively_nether_bricks", "lively_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("fiery_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
-        registerBlock("fiery_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":fiery_netherrack", () -> Block.class)));
-        registerDecorativeBlocks("fiery_nether_bricks", "fiery_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.ORANGE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("icy_netherrack", new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
-        registerBlock("icy_netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of(NetherEx.MOD_ID + ":icy_netherrack", () -> Block.class)));
-        registerDecorativeBlocks("icy_nether_bricks", "icy_nether_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("netherrack_path", new PathBlock(Block.Properties.create(Material.ROCK, DyeColor.RED).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F), RegistryObject.of("minecraft:netherrack", () -> Block.class)));
-        registerDecorativeBlocks("basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerDecorativeBlocks("smooth_basalt", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerDecorativeBlocks("basalt_brick", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerDecorativeBlocks("basalt_pillar", new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
-        registerBlock("hyphae", new HyphaeBlock());
-        registerBlock("frostburn_ice", new UnmeltableIceBlock(Block.Properties.create(Material.ICE, DyeColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 1.0F)));
-        registerBlock("quartz_ore", new QuartzOreBlock());
-        registerBlock("amethyst_ore", new ExperienceDroppingBlock(1, 5, Block.Properties.create(Material.ROCK, MaterialColor.NETHERRACK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
-        registerBlock("amethyst_block", new Block(Block.Properties.create(Material.ROCK, DyeColor.PURPLE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(5.0F, 10.0F)));
-        registerBlock("rime_ore", new ExperienceDroppingBlock(2, 6, Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
-        registerBlock("rime_block", new RimeBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(5.0F, 10.0F).lightValue(13)));
-        registerBlock("thornstalk", new ThornstalkBlock());
-        registerBlock("brown_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.BROWN_MUSHROOM_BLOCK)));
-        registerBlock("red_elder_mushroom_cap", new HugeMushroomBlock(Block.Properties.from(Blocks.RED_MUSHROOM_BLOCK)));
-        registerBlock("elder_mushroom_stem", new HugeMushroomBlock(Block.Properties.from(Blocks.MUSHROOM_STEM)));
-        registerBlock("enoki_mushroom_stem", new EnokiStemBlock(Block.Properties.from(Blocks.CHORUS_PLANT)));
-        registerBlock("enoki_mushroom_cap", new EnokiCapBlock(Block.Properties.from(Blocks.CHORUS_FLOWER)));
-        registerBlockWithoutItem("blue_fire", new BlueFireBlock(Block.Properties.create(Material.FIRE, MaterialColor.LIGHT_BLUE).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0.0F).lightValue(15).sound(SoundType.CLOTH).noDrops()));
-        registerBlock("soul_glass", new SoulGlassBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS)));
-        registerBlock("soul_glass_pane", new SoulGlassPaneBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS_PANE)));
-    }
-
-    @SubscribeEvent
-    public static void onItemRegister(RegistryEvent.Register<Item> event)
-    {
-        BLOCK_ITEMS.forEach(item -> event.getRegistry().register(item));
-    }
-
-    private static void registerBlock(String name, Block block)
-    {
-        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
-        BLOCK_ITEMS.add(new BlockItem(block, new Item.Properties().group(NetherEx.ITEM_GROUP)).setRegistryName(name));
-    }
-
-    private static void registerBlockWithoutItem(String name, Block block)
-    {
-        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
-    }
-
-    private static void registerDecorativeBlocks(String name, Block block)
-    {
-        registerDecorativeBlocks(name, name, block);
-    }
-
-    private static void registerDecorativeBlocks(String name, String decorativePrefix, Block block)
-    {
-        Block.Properties blockProperties = Block.Properties.from(block);
-        Item.Properties itemProperties = new Item.Properties().group(NetherEx.ITEM_GROUP);
-        Block slabBlock = new SlabBlock(blockProperties);
-        Block stairBlock = new ModStairsBlock(block.getDefaultState(), blockProperties);
-        Block fenceBlock = new FenceBlock(blockProperties);
-        Block fenceGateBlock = new FenceGateBlock(blockProperties);
-        Block wallBlock = new WallBlock(blockProperties);
-        ForgeRegistries.BLOCKS.register(block.setRegistryName(name));
-        ForgeRegistries.BLOCKS.register(slabBlock.setRegistryName(decorativePrefix + "_slab"));
-        ForgeRegistries.BLOCKS.register(stairBlock.setRegistryName(decorativePrefix + "_stairs"));
-        ForgeRegistries.BLOCKS.register(fenceBlock.setRegistryName(decorativePrefix + "_fence"));
-        ForgeRegistries.BLOCKS.register(fenceGateBlock.setRegistryName(decorativePrefix + "_fence_gate"));
-        ForgeRegistries.BLOCKS.register(wallBlock.setRegistryName(decorativePrefix + "_wall"));
-        BLOCK_ITEMS.add(new BlockItem(block, itemProperties).setRegistryName(block.getRegistryName()));
-        BLOCK_ITEMS.add(new BlockItem(slabBlock, itemProperties).setRegistryName(slabBlock.getRegistryName()));
-        BLOCK_ITEMS.add(new BlockItem(stairBlock, itemProperties).setRegistryName(stairBlock.getRegistryName()));
-        BLOCK_ITEMS.add(new BlockItem(fenceBlock, itemProperties).setRegistryName(fenceBlock.getRegistryName()));
-        BLOCK_ITEMS.add(new BlockItem(fenceGateBlock, itemProperties).setRegistryName(fenceGateBlock.getRegistryName()));
-        BLOCK_ITEMS.add(new BlockItem(wallBlock, itemProperties).setRegistryName(wallBlock.getRegistryName()));
-    }
+    public static final RegistryObject<Block> GLOOMY_NETHERRACK = BLOCKS.register("gloomy_netherrack", () -> new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
+    public static final RegistryObject<Block> GLOOMY_NETHERRACK_PATH = BLOCKS.register("gloomy_netherrack_path", () -> new PathBlock(() -> GLOOMY_NETHERRACK.get().getDefaultState(), Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F)));
+    public static final RegistryObject<Block> GLOOMY_NETHER_BRICKS = BLOCKS.register("gloomy_nether_bricks", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> GLOOMY_NETHER_BRICK_SLAB = BLOCKS.register("gloomy_nether_brick_slab", () -> new SlabBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> GLOOMY_NETHER_BRICK_STAIRS = BLOCKS.register("gloomy_nether_brick_stairs", () -> new StairsBlock(() -> GLOOMY_NETHER_BRICKS.get().getDefaultState(), Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> GLOOMY_NETHER_BRICK_WALL = BLOCKS.register("gloomy_nether_brick_wall", () -> new WallBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> GLOOMY_NETHER_BRICK_FENCE = BLOCKS.register("gloomy_nether_brick_fence", () -> new FenceBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> GLOOMY_NETHER_BRICK_FENCE_GATE = BLOCKS.register("gloomy_nether_brick_fence_gate", () -> new FenceGateBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> LIVELY_NETHERRACK = BLOCKS.register("lively_netherrack", () -> new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
+    public static final RegistryObject<Block> LIVELY_NETHERRACK_PATH = BLOCKS.register("lively_netherrack_path", () -> new PathBlock(() -> LIVELY_NETHERRACK.get().getDefaultState(), Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F)));
+    public static final RegistryObject<Block> LIVELY_NETHER_BRICKS = BLOCKS.register("lively_nether_bricks", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> LIVELY_NETHER_BRICK_SLAB = BLOCKS.register("lively_nether_brick_slab", () -> new SlabBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> LIVELY_NETHER_BRICK_STAIRS = BLOCKS.register("lively_nether_brick_stairs", () -> new StairsBlock(() -> GLOOMY_NETHER_BRICKS.get().getDefaultState(), Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> LIVELY_NETHER_BRICK_WALL = BLOCKS.register("lively_nether_brick_wall", () -> new WallBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> LIVELY_NETHER_BRICK_FENCE = BLOCKS.register("lively_nether_brick_fence", () -> new FenceBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> LIVELY_NETHER_BRICK_FENCE_GATE = BLOCKS.register("lively_nether_brick_fence_gate", () -> new FenceGateBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> FIERY_NETHERRACK = BLOCKS.register("fiery_netherrack", () -> new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
+    public static final RegistryObject<Block> FIERY_NETHERRACK_PATH = BLOCKS.register("fiery_netherrack_path", () -> new PathBlock(() -> FIERY_NETHERRACK.get().getDefaultState(), Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F)));
+    public static final RegistryObject<Block> FIERY_NETHER_BRICKS = BLOCKS.register("fiery_nether_bricks", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> FIERY_NETHER_BRICK_SLAB = BLOCKS.register("fiery_nether_brick_slab", () -> new SlabBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> FIERY_NETHER_BRICK_STAIRS = BLOCKS.register("fiery_nether_brick_stairs", () -> new StairsBlock(() -> GLOOMY_NETHER_BRICKS.get().getDefaultState(), Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> FIERY_NETHER_BRICK_WALL = BLOCKS.register("fiery_nether_brick_wall", () -> new WallBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> FIERY_NETHER_BRICK_FENCE = BLOCKS.register("fiery_nether_brick_fence", () -> new FenceBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> FIERY_NETHER_BRICK_FENCE_GATE = BLOCKS.register("fiery_nether_brick_fence_gate", () -> new FenceGateBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> ICY_NETHERRACK = BLOCKS.register("icy_netherrack", () -> new FireSustainingBlock(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.4F)));
+    public static final RegistryObject<Block> ICY_NETHERRACK_PATH = BLOCKS.register("icy_netherrack_path", () -> new PathBlock(() -> ICY_NETHERRACK.get().getDefaultState(), Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F)));
+    public static final RegistryObject<Block> ICY_NETHER_BRICKS = BLOCKS.register("icy_nether_bricks", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BROWN).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> ICY_NETHER_BRICK_SLAB = BLOCKS.register("icy_nether_brick_slab", () -> new SlabBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> ICY_NETHER_BRICK_STAIRS = BLOCKS.register("icy_nether_brick_stairs", () -> new StairsBlock(() -> GLOOMY_NETHER_BRICKS.get().getDefaultState(), Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> ICY_NETHER_BRICK_WALL = BLOCKS.register("icy_nether_brick_wall", () -> new WallBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> ICY_NETHER_BRICK_FENCE = BLOCKS.register("icy_nether_brick_fence", () -> new FenceBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> ICY_NETHER_BRICK_FENCE_GATE = BLOCKS.register("icy_nether_brick_fence_gate", () -> new FenceGateBlock(Block.Properties.from(GLOOMY_NETHER_BRICKS.get())));
+    public static final RegistryObject<Block> NETHERRACK_PATH = BLOCKS.register("netherrack_path", () -> new PathBlock(() -> Blocks.NETHERRACK.getDefaultState(), Block.Properties.create(Material.ROCK, DyeColor.RED).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 2.0F)));
+    public static final RegistryObject<Block> BASALT = BLOCKS.register("basalt", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> BASALT_SLAB = BLOCKS.register("basalt_slab", () -> new SlabBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_STAIRS = BLOCKS.register("basalt_stairs", () -> new StairsBlock(() -> BASALT.get().getDefaultState(), Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_WALL = BLOCKS.register("basalt_wall", () -> new WallBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_FENCE = BLOCKS.register("basalt_fence", () -> new FenceBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_FENCE_GATE = BLOCKS.register("basalt_fence_gate", () -> new FenceGateBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> SMOOTH_BASALT = BLOCKS.register("smooth_basalt", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> SMOOTH_BASALT_SLAB = BLOCKS.register("smooth_basalt_slab", () -> new SlabBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> SMOOTH_BASALT_STAIRS = BLOCKS.register("smooth_basalt_stairs", () -> new StairsBlock(() -> BASALT.get().getDefaultState(), Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> SMOOTH_BASALT_WALL = BLOCKS.register("smooth_basalt_wall", () -> new WallBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> SMOOTH_BASALT_FENCE = BLOCKS.register("smooth_basalt_fence", () -> new FenceBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> SMOOTH_BASALT_FENCE_GATE = BLOCKS.register("smooth_basalt_fence_gate", () -> new FenceGateBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_BRICK = BLOCKS.register("basalt_brick", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> BASALT_BRICK_SLAB = BLOCKS.register("basalt_brick_slab", () -> new SlabBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_BRICK_STAIRS = BLOCKS.register("basalt_brick_stairs", () -> new StairsBlock(() -> BASALT.get().getDefaultState(), Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_BRICK_WALL = BLOCKS.register("basalt_brick_wall", () -> new WallBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_BRICK_FENCE = BLOCKS.register("basalt_brick_fence", () -> new FenceBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_BRICK_FENCE_GATE = BLOCKS.register("basalt_brick_fence_gate", () -> new FenceGateBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_PILLAR = BLOCKS.register("basalt_pillar", () -> new Block(Block.Properties.create(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F)));
+    public static final RegistryObject<Block> BASALT_PILLAR_SLAB = BLOCKS.register("basalt_pillar_slab", () -> new SlabBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_PILLAR_STAIRS = BLOCKS.register("basalt_pillar_stairs", () -> new StairsBlock(() -> BASALT.get().getDefaultState(), Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_PILLAR_WALL = BLOCKS.register("basalt_pillar_wall", () -> new WallBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_PILLAR_FENCE = BLOCKS.register("basalt_pillar_fence", () -> new FenceBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> BASALT_PILLAR_FENCE_GATE = BLOCKS.register("basalt_pillar_fence_gate", () -> new FenceGateBlock(Block.Properties.from(BASALT.get())));
+    public static final RegistryObject<Block> HYPHAE = BLOCKS.register("hyphae", () -> new HyphaeBlock());
+    public static final RegistryObject<Block> FROSTBURN_ICE = BLOCKS.register("frostburn_ice", () -> new UnmeltableIceBlock(Block.Properties.create(Material.ICE, DyeColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 1.0F)));
+    public static final RegistryObject<Block> QUARTZ_ORE = BLOCKS.register("quartz_ore", () -> new QuartzOreBlock());
+    public static final RegistryObject<Block> RIME_ORE = BLOCKS.register("rime_ore", () -> new ExperienceDroppingBlock(2, 6, Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F)));
+    public static final RegistryObject<Block> RIME_BLOCK = BLOCKS.register("rime_block", () -> new RimeBlock(Block.Properties.create(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(5.0F, 10.0F).lightValue(13)));
+    public static final RegistryObject<Block> THORNSTALK = BLOCKS.register("thornstalk", () -> new ThornstalkBlock());
+    public static final RegistryObject<Block> BROWN_ELDER_MUSHROOM = BLOCKS.register("brown_elder_mushroom", () -> new ModMushroomBlock(() -> NetherExFeatures.BROWN_ELDER_MUSHROOM.get(), Block.Properties.from(Blocks.BROWN_MUSHROOM)));
+    public static final RegistryObject<Block> RED_ELDER_MUSHROOM = BLOCKS.register("red_elder_mushroom", () -> new ModMushroomBlock(() -> NetherExFeatures.RED_ELDER_MUSHROOM.get(), Block.Properties.from(Blocks.BROWN_MUSHROOM)));
+    public static final RegistryObject<Block> BROWN_ELDER_MUSHROOM_CAP = BLOCKS.register("brown_elder_mushroom_cap", () -> new HugeMushroomBlock(Block.Properties.from(Blocks.BROWN_MUSHROOM_BLOCK)));
+    public static final RegistryObject<Block> RED_ELDER_MUSHROOM_CAP = BLOCKS.register("red_elder_mushroom_cap", () -> new HugeMushroomBlock(Block.Properties.from(Blocks.RED_MUSHROOM_BLOCK)));
+    public static final RegistryObject<Block> ELDER_MUSHROOM_STEM = BLOCKS.register("elder_mushroom_stem", () -> new HugeMushroomBlock(Block.Properties.from(Blocks.MUSHROOM_STEM)));
+    public static final RegistryObject<Block> ENOKI_MUSHROOM_CAP = BLOCKS.register("enoki_mushroom_stem", () -> new EnokiStemBlock(Block.Properties.from(Blocks.CHORUS_PLANT)));
+    public static final RegistryObject<Block> ENOKI_MUSHROOM_STEM = BLOCKS.register("enoki_mushroom_cap", () -> new EnokiCapBlock(Block.Properties.from(Blocks.CHORUS_FLOWER)));
+    public static final RegistryObject<Block> BLUE_FIRE = BLOCKS.register("blue_fire", () -> new BlueFireBlock(Block.Properties.create(Material.FIRE, MaterialColor.LIGHT_BLUE).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0.0F).lightValue(15).sound(SoundType.CLOTH).noDrops()));
+    public static final RegistryObject<Block> SOUL_GLASS = BLOCKS.register("soul_glass", () -> new SoulGlassBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS)));
+    public static final RegistryObject<Block> SOUL_GLASS_PANE = BLOCKS.register("soul_glass_pane", () -> new SoulGlassPaneBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS_PANE)));
 }

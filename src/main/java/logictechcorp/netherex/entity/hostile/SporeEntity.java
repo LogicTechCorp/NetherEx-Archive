@@ -20,7 +20,7 @@ package logictechcorp.netherex.entity.hostile;
 import com.google.common.collect.Lists;
 import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.entity.NetherExEntities;
-import logictechcorp.netherex.utility.NetherExSounds;
+import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -98,7 +98,7 @@ public class SporeEntity extends MonsterEntity
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {
-                        SporeCreeperEntity creeper = new SporeCreeperEntity(NetherExEntities.SPORE_CREEPER, this.world);
+                        SporeCreeperEntity creeper = new SporeCreeperEntity(NetherExEntities.SPORE_CREEPER.get(), this.world);
                         creeper.setPosition(this.posX, this.posY, this.posZ);
                         this.world.addEntity(creeper);
                     }
@@ -137,13 +137,13 @@ public class SporeEntity extends MonsterEntity
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSounds.ENTITY_SPORE_HURT;
+        return NetherExSoundEvents.ENTITY_SPORE_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSounds.ENTITY_SPORE_DEATH;
+        return NetherExSoundEvents.ENTITY_SPORE_DEATH.get();
     }
 
     @Override

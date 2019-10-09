@@ -17,30 +17,16 @@
 
 package logictechcorp.netherex.world.generation.placement;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(NetherEx.MOD_ID)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExPlacements
 {
-    public static final Placement<NoPlacementConfig> ENOKI_MUSHROOM = InjectionHelper.nullValue();
+    public static final DeferredRegister<Placement<?>> PLACEMENTS = new DeferredRegister<>(ForgeRegistries.DECORATORS, NetherEx.MOD_ID);
 
-    @SubscribeEvent
-    public static void onPlacementRegister(RegistryEvent.Register<Placement<?>> event)
-    {
-        registerFeature("enoki_mushroom", new EnokiMushroomPlacement(NoPlacementConfig::deserialize));
-    }
-
-    private static void registerFeature(String name, Placement<?> feature)
-    {
-        ForgeRegistries.DECORATORS.register(feature.setRegistryName(name));
-    }
+    public static final RegistryObject<Placement<NoPlacementConfig>> ENOKI_MUSHROOM = PLACEMENTS.register("enoki_mushroom", () -> new EnokiMushroomPlacement(NoPlacementConfig::deserialize));
 }

@@ -18,7 +18,7 @@
 package logictechcorp.netherex.entity.hostile;
 
 import logictechcorp.netherex.NetherExConfig;
-import logictechcorp.netherex.utility.NetherExSounds;
+import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
@@ -139,7 +139,7 @@ public class SpinoutEntity extends MonsterEntity
     @Override
     public void playSound(SoundEvent sound, float volume, float pitch)
     {
-        if(!this.isSilent() || sound != NetherExSounds.ENTITY_SPINOUT_AMBIENT)
+        if(!this.isSilent() || sound != NetherExSoundEvents.ENTITY_SPINOUT_AMBIENT.get())
         {
             this.world.playSound(null, this.posX, this.posY, this.posZ, sound, this.getSoundCategory(), volume, pitch);
         }
@@ -165,18 +165,18 @@ public class SpinoutEntity extends MonsterEntity
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSounds.ENTITY_SPINOUT_AMBIENT;
+        return NetherExSoundEvents.ENTITY_SPINOUT_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSounds.ENTITY_SPINOUT_HURT;
+        return NetherExSoundEvents.ENTITY_SPINOUT_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSounds.ENTITY_SPINOUT_DEATH;
+        return NetherExSoundEvents.ENTITY_SPINOUT_DEATH.get();
     }
 }

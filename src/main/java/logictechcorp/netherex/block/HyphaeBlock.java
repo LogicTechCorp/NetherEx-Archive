@@ -22,10 +22,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.DyeColor;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
@@ -58,12 +62,19 @@ public class HyphaeBlock extends Block
                 {
                     BlockPos randomPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 
-                    if(world.getBlockState(randomPos).getBlock() == NetherExBlocks.LIVELY_NETHERRACK)
+                    if(world.getBlockState(randomPos).getBlock() == NetherExBlocks.LIVELY_NETHERRACK.get())
                     {
                         world.setBlockState(randomPos, state);
                     }
                 }
             }
         }
+    }
+
+    @Override
+    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable)
+    {
+        PlantType plantType = plantable.getPlantType(world, pos);
+        return plantType == PlantType.Nether || plantType == PlantType.Cave;
     }
 }

@@ -17,31 +17,16 @@
 
 package logictechcorp.netherex.world.generation;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
-import logictechcorp.netherex.NetherEx;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.NetherChunkGenerator;
 import net.minecraft.world.gen.NetherGenSettings;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExChunkGenerators
 {
-    @ObjectHolder("minecraft:caves")
-    public static final ChunkGeneratorType<NetherGenSettings, NetherChunkGenerator> CAVES = InjectionHelper.nullValue();
+    public static final DeferredRegister<ChunkGeneratorType<?, ?>> CHUNK_GENERATOR_OVERRIDES = new DeferredRegister<>(ForgeRegistries.CHUNK_GENERATOR_TYPES, "minecraft");
 
-    @SubscribeEvent
-    public static void onChunkGeneratorRegister(RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
-    {
-        registerChunkGenerator("minecraft:caves", new CaveChunkGeneratorTypeOverride(CaveChunkGenerator::new, true, NetherGenSettings::new));
-    }
-
-    private static void registerChunkGenerator(String name, ChunkGeneratorType<?, ?> chunkGeneratorType)
-    {
-        ForgeRegistries.CHUNK_GENERATOR_TYPES.register(chunkGeneratorType.setRegistryName(name));
-    }
+    public static final RegistryObject<ChunkGeneratorType<NetherGenSettings, NetherChunkGenerator>> CAVES = CHUNK_GENERATOR_OVERRIDES.register("caves", () -> new CaveChunkGeneratorTypeOverride(CaveChunkGenerator::new, true, NetherGenSettings::new));
 }

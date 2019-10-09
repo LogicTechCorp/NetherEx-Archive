@@ -34,7 +34,7 @@ public class NetherBiomeData extends BiomeData
     @Override
     public void configureBiome()
     {
-        ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, new ConfiguredSurfaceBuilder<>(NetherExSurfaceBuilders.NETHER_SURFACE_BUILDER_WRAPPER, new NetherSurfaceBuilderWrapper.Config(this)), "field_201875_ar");
+        ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, new ConfiguredSurfaceBuilder<>(NetherExSurfaceBuilders.NETHER_SURFACE_BUILDER_WRAPPER.get(), new NetherSurfaceBuilderWrapper.Config(this)), "field_201875_ar");
         super.configureBiome();
     }
 

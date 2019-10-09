@@ -32,15 +32,14 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class ClientProxy extends CommonProxy
+public class ClientProxy
 {
-    @Override
-    public void registerHandlers()
+    public ClientProxy()
     {
-        super.registerHandlers();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::onRegisterParticleFactory);
+
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
@@ -57,7 +56,7 @@ public class ClientProxy extends CommonProxy
     private void onRegisterParticleFactory(ParticleFactoryRegisterEvent event)
     {
         ParticleManager particleManager = Minecraft.getInstance().particles;
-        particleManager.registerFactory(NetherExParticles.SPORE_CREEPER_EXPLOSION, SporeCreeperExplosionParticle.Factory::new);
-        particleManager.registerFactory(NetherExParticles.SPORE_CREEPER_EXPLOSION_EMITTER, new SporeCreeperExplosionEmitterParticle.Factory());
+        particleManager.registerFactory(NetherExParticles.SPORE_CREEPER_EXPLOSION.get(), SporeCreeperExplosionParticle.Factory::new);
+        particleManager.registerFactory(NetherExParticles.SPORE_CREEPER_EXPLOSION_EMITTER.get(), new SporeCreeperExplosionEmitterParticle.Factory());
     }
 }

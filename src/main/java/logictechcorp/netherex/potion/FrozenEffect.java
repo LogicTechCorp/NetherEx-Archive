@@ -73,7 +73,7 @@ public class FrozenEffect extends Effect
     {
         if(entity instanceof PlayerEntity && !((PlayerEntity) entity).isCreative())
         {
-            return NetherExConfig.EFFECT.frozenEffectPlayersFreeze.get();
+            return NetherExConfig.EFFECT.frozenEffectCanPlayersFreeze.get();
         }
 
         return NetherExConfig.EFFECT.frozenEffectEntityBlacklist.get().contains(entity.getType().getRegistryName().toString());

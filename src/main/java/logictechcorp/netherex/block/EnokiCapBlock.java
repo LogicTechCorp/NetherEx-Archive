@@ -67,11 +67,11 @@ public class EnokiCapBlock extends Block
                     BlockState upState = world.getBlockState(pos.up());
                     Block upBlock = upState.getBlock();
 
-                    if(upBlock == NetherExBlocks.LIVELY_NETHERRACK)
+                    if(upBlock == NetherExBlocks.LIVELY_NETHERRACK.get())
                     {
                         validPosition = true;
                     }
-                    else if(upBlock == NetherExBlocks.ENOKI_MUSHROOM_STEM)
+                    else if(upBlock == NetherExBlocks.ENOKI_MUSHROOM_STEM.get())
                     {
                         int height = 1;
 
@@ -79,9 +79,9 @@ public class EnokiCapBlock extends Block
                         {
                             Block block1 = world.getBlockState(pos.up(height + 1)).getBlock();
 
-                            if(block1 != NetherExBlocks.ENOKI_MUSHROOM_STEM)
+                            if(block1 != NetherExBlocks.ENOKI_MUSHROOM_STEM.get())
                             {
-                                if(block1 == NetherExBlocks.LIVELY_NETHERRACK)
+                                if(block1 == NetherExBlocks.LIVELY_NETHERRACK.get())
                                 {
                                     foundNetherrack = true;
                                 }
@@ -104,7 +104,7 @@ public class EnokiCapBlock extends Block
 
                     if(validPosition && areAllNeighborsEmpty(world, downPos, null) && world.isAirBlock(pos.up(2)))
                     {
-                        world.setBlockState(pos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM).makeConnections(world, pos), 2);
+                        world.setBlockState(pos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM.get()).makeConnections(world, pos), 2);
                         this.placeCap(world, downPos, age);
                     }
                     else if(age < 4)
@@ -132,7 +132,7 @@ public class EnokiCapBlock extends Block
 
                         if(placedCap)
                         {
-                            world.setBlockState(pos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM).makeConnections(world, pos), 2);
+                            world.setBlockState(pos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM.get()).makeConnections(world, pos), 2);
                         }
                         else
                         {
@@ -193,7 +193,7 @@ public class EnokiCapBlock extends Block
         BlockState upState = world.getBlockState(pos.up());
         Block upBlock = upState.getBlock();
 
-        if(upBlock != NetherExBlocks.ENOKI_MUSHROOM_STEM && upBlock != NetherExBlocks.LIVELY_NETHERRACK)
+        if(upBlock != NetherExBlocks.ENOKI_MUSHROOM_STEM.get() && upBlock != NetherExBlocks.LIVELY_NETHERRACK.get())
         {
             if(!upState.isAir(world, pos.up()))
             {
@@ -207,7 +207,7 @@ public class EnokiCapBlock extends Block
                 {
                     BlockState offsetState = world.getBlockState(pos.offset(direction));
 
-                    if(offsetState.getBlock() == NetherExBlocks.ENOKI_MUSHROOM_STEM)
+                    if(offsetState.getBlock() == NetherExBlocks.ENOKI_MUSHROOM_STEM.get())
                     {
                         if(foundStem)
                         {
@@ -239,7 +239,7 @@ public class EnokiCapBlock extends Block
 
     public static void generatePlant(IWorld world, BlockPos pos, Random random, int maximumHeight)
     {
-        world.setBlockState(pos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM).makeConnections(world, pos), 2);
+        world.setBlockState(pos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM.get()).makeConnections(world, pos), 2);
         growTreeRecursive(world, pos, random, pos, maximumHeight, 0);
     }
 
@@ -261,8 +261,8 @@ public class EnokiCapBlock extends Block
                 return;
             }
 
-            world.setBlockState(downPos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM).makeConnections(world, downPos), 2);
-            world.setBlockState(downPos.up(), ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM).makeConnections(world, downPos.up()), 2);
+            world.setBlockState(downPos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM.get()).makeConnections(world, downPos), 2);
+            world.setBlockState(downPos.up(), ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM.get()).makeConnections(world, downPos.up()), 2);
         }
 
         boolean continueGrowing = false;
@@ -284,8 +284,8 @@ public class EnokiCapBlock extends Block
                 if(Math.abs(offsetPos.getX() - otherPos.getX()) < maximumHeight && Math.abs(offsetPos.getZ() - otherPos.getZ()) < maximumHeight && world.isAirBlock(offsetPos) && world.isAirBlock(offsetPos.up()) && areAllNeighborsEmpty(world, offsetPos, direction.getOpposite()))
                 {
                     continueGrowing = true;
-                    world.setBlockState(offsetPos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM).makeConnections(world, offsetPos), 2);
-                    world.setBlockState(offsetPos.offset(direction.getOpposite()), ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM).makeConnections(world, offsetPos.offset(direction.getOpposite())), 2);
+                    world.setBlockState(offsetPos, ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM.get()).makeConnections(world, offsetPos), 2);
+                    world.setBlockState(offsetPos.offset(direction.getOpposite()), ((EnokiStemBlock) NetherExBlocks.ENOKI_MUSHROOM_STEM.get()).makeConnections(world, offsetPos.offset(direction.getOpposite())), 2);
                     growTreeRecursive(world, offsetPos, random, otherPos, maximumHeight, minimumHeight + 1);
                 }
             }
@@ -293,7 +293,7 @@ public class EnokiCapBlock extends Block
 
         if(!continueGrowing)
         {
-            world.setBlockState(pos.down(randomHeight), NetherExBlocks.ENOKI_MUSHROOM_CAP.getDefaultState().with(AGE, 5), 2);
+            world.setBlockState(pos.down(randomHeight), NetherExBlocks.ENOKI_MUSHROOM_CAP.get().getDefaultState().with(AGE, 5), 2);
         }
     }
 

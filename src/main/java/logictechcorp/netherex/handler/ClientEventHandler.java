@@ -48,7 +48,7 @@ public class ClientEventHandler
     {
         PlayerEntity player = event.getEntity();
 
-        if(player.isPotionActive(NetherExEffects.FROZEN))
+        if(player.isPotionActive(NetherExEffects.FROZEN.get()))
         {
             float fov = 1.0F;
 
@@ -83,7 +83,7 @@ public class ClientEventHandler
         LivingEntity entity = event.getEntity();
         float partialTicks = event.getPartialRenderTick();
 
-        if(entity.isPotionActive(NetherExEffects.FIRE_BURNING))
+        if(entity.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
         {
             double posX = event.getX() + (entity.posX - entity.lastTickPosX) * (double) partialTicks;
             double posY = event.getY() + (entity.posY - entity.lastTickPosY + 1) * (double) partialTicks;

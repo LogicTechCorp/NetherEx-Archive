@@ -40,7 +40,7 @@ public class EnokiMushroomFeature extends Feature<NoFeatureConfig>
     @Override
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random random, BlockPos pos, NoFeatureConfig config)
     {
-        if(world.isAirBlock(pos.down()) && world.getBlockState(pos).getBlock() == NetherExBlocks.LIVELY_NETHERRACK)
+        if(world.isAirBlock(pos.down()) && world.getBlockState(pos).getBlock() == NetherExBlocks.LIVELY_NETHERRACK.get())
         {
             EnokiCapBlock.generatePlant(world, pos.down(), random, 8);
             return true;

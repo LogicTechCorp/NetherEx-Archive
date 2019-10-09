@@ -17,34 +17,18 @@
 
 package logictechcorp.netherex.potion;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Potion;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(NetherEx.MOD_ID)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExPotions
 {
-    public static final Potion DISPERSAL = InjectionHelper.nullValue();
-    public static final Potion FREEZING = InjectionHelper.nullValue();
-    public static final Potion FRIGID_HEALTH = InjectionHelper.nullValue();
+    public static final DeferredRegister<Potion> POTIONS = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, NetherEx.MOD_ID);
 
-    @SubscribeEvent
-    public static void onRegisterPotion(RegistryEvent.Register<Potion> event)
-    {
-        registerPotion("dispersal", new Potion(new EffectInstance(NetherExEffects.INFESTED, 600)));
-        registerPotion("freezing", new Potion(new EffectInstance(NetherExEffects.FROZEN, 600)));
-        registerPotion("frigid_health", new Potion(new EffectInstance(NetherExEffects.FROSTBITTEN, 600)));
-    }
-
-    private static void registerPotion(String name, Potion potion)
-    {
-        ForgeRegistries.POTION_TYPES.register(potion.setRegistryName(name));
-    }
+    public static final RegistryObject<Potion> DISPERSAL = POTIONS.register("dispersal", () -> new Potion(new EffectInstance(NetherExEffects.INFESTED.get(), 600)));
+    public static final RegistryObject<Potion> FREEZING = POTIONS.register("freezing", () -> new Potion(new EffectInstance(NetherExEffects.FROZEN.get(), 600)));
+    public static final RegistryObject<Potion> FRIGID_HEALTH = POTIONS.register("frigid_health", () -> new Potion(new EffectInstance(NetherExEffects.FROSTBITTEN.get(), 600)));
 }

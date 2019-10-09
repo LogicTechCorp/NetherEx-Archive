@@ -18,7 +18,7 @@
 package logictechcorp.netherex.entity.hostile;
 
 import logictechcorp.netherex.potion.NetherExEffects;
-import logictechcorp.netherex.utility.NetherExSounds;
+import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -52,19 +52,19 @@ public class WightEntity extends MonsterEntity
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSounds.ENTITY_WIGHT_AMBIENT;
+        return NetherExSoundEvents.ENTITY_WIGHT_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSounds.ENTITY_WIGHT_HURT;
+        return NetherExSoundEvents.ENTITY_WIGHT_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSounds.ENTITY_WIGHT_DEATH;
+        return NetherExSoundEvents.ENTITY_WIGHT_DEATH.get();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class WightEntity extends MonsterEntity
 
         if(this.getAttackTarget() != null)
         {
-            if(this.getAttackTarget().isPotionActive(NetherExEffects.FROZEN))
+            if(this.getAttackTarget().isPotionActive(NetherExEffects.FROZEN.get()))
             {
                 this.setAttackTarget(null);
             }
@@ -104,9 +104,9 @@ public class WightEntity extends MonsterEntity
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        if(entity instanceof LivingEntity && !((LivingEntity) entity).isPotionActive(NetherExEffects.FROZEN))
+        if(entity instanceof LivingEntity && !((LivingEntity) entity).isPotionActive(NetherExEffects.FROZEN.get()))
         {
-            ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FROZEN, 160, 0));
+            ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FROZEN.get(), 160, 0));
         }
         return super.attackEntityAsMob(entity);
     }

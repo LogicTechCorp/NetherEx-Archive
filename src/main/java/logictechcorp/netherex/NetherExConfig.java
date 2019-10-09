@@ -115,12 +115,12 @@ public class NetherExConfig
     public static class EffectConfig
     {
         //Infested settings
-        public final ForgeConfigSpec.BooleanValue infestedEffectPlayersSpawnSpores;
+        public final ForgeConfigSpec.BooleanValue infestedEffectCanPlayersSpawnSpores;
         public final ForgeConfigSpec.IntValue infestedEffectSporeSpawnChance;
         public final ForgeConfigSpec.ConfigValue<List<String>> infestedEffectEntityBlacklist;
 
         //Frozen settings
-        public final ForgeConfigSpec.BooleanValue frozenEffectPlayersFreeze;
+        public final ForgeConfigSpec.BooleanValue frozenEffectCanPlayersFreeze;
         public final ForgeConfigSpec.IntValue frozenEffectThawChance;
         public final ForgeConfigSpec.ConfigValue<List<String>> frozenEffectEntityBlacklist;
 
@@ -133,9 +133,9 @@ public class NetherExConfig
             //Infested effect config
             builder.comment("Infested effect configuration settings");
             builder.push("infested");
-            this.infestedEffectPlayersSpawnSpores = builder
+            this.infestedEffectCanPlayersSpawnSpores = builder
                     .comment("Whether or not players can be spawn spores when they have the Infested effect.")
-                    .define("playersSpawnSpores", false);
+                    .define("canPlayersSpawnSpores", false);
             this.infestedEffectSporeSpawnChance = builder
                     .comment("The chance that a Spore will spawn.")
                     .defineInRange("sporeSpawnChance", 128, 1, Integer.MAX_VALUE);
@@ -147,9 +147,9 @@ public class NetherExConfig
             //Frozen effect config
             builder.comment("Frozen effect configuration settings");
             builder.push("frozen");
-            this.frozenEffectPlayersFreeze = builder
+            this.frozenEffectCanPlayersFreeze = builder
                     .comment("Whether or not players can be frozen when they have the Frozen effect.")
-                    .define("playersFreeze", false);
+                    .define("canPlayersFreeze", false);
             this.frozenEffectThawChance = builder
                     .comment("The chance that a frozen entity will thaw.")
                     .defineInRange("thawChance", 1024, 1, Integer.MAX_VALUE);

@@ -21,7 +21,7 @@ import logictechcorp.netherex.entity.NetherExEntities;
 import logictechcorp.netherex.entity.ai.goal.SporeCreeperSwellGoal;
 import logictechcorp.netherex.particle.NetherExParticles;
 import logictechcorp.netherex.potion.NetherExEffects;
-import logictechcorp.netherex.utility.NetherExSounds;
+import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.ProtectionEnchantment;
@@ -78,13 +78,13 @@ public class SporeCreeperEntity extends MonsterEntity
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSounds.ENTITY_SPORE_HURT;
+        return NetherExSoundEvents.ENTITY_SPORE_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSounds.ENTITY_SPORE_DEATH;
+        return NetherExSoundEvents.ENTITY_SPORE_DEATH.get();
     }
 
     @Override
@@ -132,7 +132,7 @@ public class SporeCreeperEntity extends MonsterEntity
 
             if(i > 0 && this.timeSinceIgnited == 0)
             {
-                this.playSound(NetherExSounds.ENTITY_SPORE_WARN, 1.0F, 0.5F);
+                this.playSound(NetherExSoundEvents.ENTITY_SPORE_WARN.get(), 1.0F, 0.5F);
             }
 
             this.timeSinceIgnited += i;
@@ -408,13 +408,13 @@ public class SporeCreeperEntity extends MonsterEntity
                                 double d14 = func_222259_a(vec3d, entity);
                                 double d10 = (1.0D - d12) * d14;
 
-                                if(entity.getType() != NetherExEntities.SPORE && entity.getType() != NetherExEntities.SPORE_CREEPER)
+                                if(entity.getType() != NetherExEntities.SPORE.get() && entity.getType() != NetherExEntities.SPORE_CREEPER.get())
                                 {
                                     entity.attackEntityFrom(DamageSource.causeExplosionDamage(this), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
                                 }
                                 if(entity instanceof LivingEntity)
                                 {
-                                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.INFESTED, 2400, 0));
+                                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.INFESTED.get(), 2400, 0));
                                 }
 
                                 double d11 = d10;
@@ -445,15 +445,15 @@ public class SporeCreeperEntity extends MonsterEntity
         @Override
         public void doExplosionB(boolean spawnParticles)
         {
-            this.world.playSound(null, this.explosionX, this.explosionY, this.explosionZ, NetherExSounds.ENTITY_SPORE_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
+            this.world.playSound(null, this.explosionX, this.explosionY, this.explosionZ, NetherExSoundEvents.ENTITY_SPORE_EXPLODE.get(), SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
 
             if(!(this.explosionSize < 2.0F))
             {
-                this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION_EMITTER, this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
+                this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION_EMITTER.get(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
             }
             else
             {
-                this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION, this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
+                this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION.get(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
             }
 
             for(BlockPos affectedPos : this.affectedBlockPositions)
@@ -499,7 +499,7 @@ public class SporeCreeperEntity extends MonsterEntity
             {
                 if(this.world.getBlockState(affectedPos).isAir(this.world, affectedPos) && this.world.getBlockState(affectedPos.down()).isOpaqueCube(this.world, affectedPos.down()) && this.world.rand.nextInt(3) == 0)
                 {
-                    SporeEntity spore = new SporeEntity(NetherExEntities.SPORE, this.world);
+                    SporeEntity spore = new SporeEntity(NetherExEntities.SPORE.get(), this.world);
                     spore.setPosition((double) affectedPos.getX() + 0.5D, affectedPos.getY(), (double) affectedPos.getZ() + 0.5D);
                     this.world.addEntity(spore);
                 }

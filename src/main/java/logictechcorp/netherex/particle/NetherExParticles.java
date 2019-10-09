@@ -17,32 +17,17 @@
 
 package logictechcorp.netherex.particle;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(NetherEx.MOD_ID)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExParticles
 {
-    public static final BasicParticleType SPORE_CREEPER_EXPLOSION = InjectionHelper.nullValue();
-    public static final BasicParticleType SPORE_CREEPER_EXPLOSION_EMITTER = InjectionHelper.nullValue();
+    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, NetherEx.MOD_ID);
 
-    @SubscribeEvent
-    public static void onRegisterParticle(RegistryEvent.Register<ParticleType<?>> event)
-    {
-        registerParticle("spore_creeper_explosion", new BasicParticleType(true));
-        registerParticle("spore_creeper_explosion_emitter", new BasicParticleType(true));
-    }
-
-    private static void registerParticle(String name, ParticleType<?> particleType)
-    {
-        ForgeRegistries.PARTICLE_TYPES.register(particleType.setRegistryName(name));
-    }
+    public static final RegistryObject<BasicParticleType> SPORE_CREEPER_EXPLOSION = PARTICLE_TYPES.register("spore_creeper_explosion", () -> new BasicParticleType(true));
+    public static final RegistryObject<BasicParticleType> SPORE_CREEPER_EXPLOSION_EMITTER = PARTICLE_TYPES.register("spore_creeper_explosion_emitter", () -> new BasicParticleType(true));
 }

@@ -33,7 +33,7 @@ public class LivingEventHandler
     {
         LivingEntity entity = event.getEntityLiving();
 
-        if(!entity.isPotionActive(Effects.REGENERATION) && entity.isPotionActive(NetherExEffects.FROSTBITTEN))
+        if(!entity.isPotionActive(Effects.REGENERATION) && entity.isPotionActive(NetherExEffects.FROSTBITTEN.get()))
         {
             event.setCanceled(true);
         }

@@ -18,7 +18,7 @@
 package logictechcorp.netherex.entity.neutral;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.utility.NetherExSounds;
+import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -131,19 +131,19 @@ public class SalamanderEntity extends MonsterEntity
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSounds.ENTITY_SALAMANDER_AMBIENT;
+        return NetherExSoundEvents.ENTITY_SALAMANDER_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSounds.ENTITY_SALAMANDER_HURT;
+        return NetherExSoundEvents.ENTITY_SALAMANDER_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSounds.ENTITY_SALAMANDER_DEATH;
+        return NetherExSoundEvents.ENTITY_SALAMANDER_DEATH.get();
     }
 
     public Variant getVariant()

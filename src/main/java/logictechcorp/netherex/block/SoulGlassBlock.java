@@ -56,7 +56,7 @@ public class SoulGlassBlock extends GlassBlock
             CompoundNBT playerData = player.getPersistentData();
             Direction shootDirection = null;
 
-            if(!player.isPotionActive(NetherExEffects.SOUL_SUCKED))
+            if(!player.isPotionActive(NetherExEffects.SOUL_SUCKED.get()))
             {
                 playerData.remove(SHOOT_DIRECTION_KEY);
             }
@@ -80,19 +80,19 @@ public class SoulGlassBlock extends GlassBlock
 
                     if(blockOneBack != this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 0, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 0, false, false));
                     }
                     if(blockOneBack == this && blockTwoBack != this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 1, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 1, false, false));
                     }
                     else if(blockOneBack == this && blockThreeBack != this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 2, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 2, false, false));
                     }
                     else if(blockOneBack == this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 3, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 3, false, false));
                     }
                 }
                 else
@@ -108,19 +108,19 @@ public class SoulGlassBlock extends GlassBlock
 
                     if(blockUpOne != this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 0, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 0, false, false));
                     }
                     if(blockUpOne == this && blockUpTwo != this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 1, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 1, false, false));
                     }
                     else if(blockUpOne == this && blockUpThree != this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 2, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 2, false, false));
                     }
                     else if(blockUpOne == this)
                     {
-                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED, 5, 3, false, false));
+                        player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 3, false, false));
                         player.posY = player.prevPosY;
                     }
 
@@ -129,7 +129,7 @@ public class SoulGlassBlock extends GlassBlock
             }
             else
             {
-                EffectInstance effect = player.getActivePotionEffect(NetherExEffects.SOUL_SUCKED);
+                EffectInstance effect = player.getActivePotionEffect(NetherExEffects.SOUL_SUCKED.get());
                 int amplifier = 1;
 
                 if(effect != null)
@@ -233,7 +233,7 @@ public class SoulGlassBlock extends GlassBlock
         {
             PlayerEntity player = (PlayerEntity) entity;
 
-            if(player.isSneaking() || player.isPotionActive(NetherExEffects.SOUL_SUCKED))
+            if(player.isSneaking() || player.isPotionActive(NetherExEffects.SOUL_SUCKED.get()))
             {
                 return VoxelShapes.empty();
             }

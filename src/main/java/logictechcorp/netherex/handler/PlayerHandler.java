@@ -52,7 +52,7 @@ public class PlayerHandler
         PlayerEntity player = event.getPlayer();
         ItemStack stack = event.getCrafting();
 
-        if(stack.getItem() == NetherExItems.DULL_MIRROR)
+        if(stack.getItem() == NetherExItems.DULL_MIRROR.get())
         {
             if(stack.getDamage() < stack.getMaxDamage())
             {
@@ -92,7 +92,7 @@ public class PlayerHandler
                 {
                     ItemStack stack = inventory.getStackInSlot(i);
 
-                    if(stack.getItem() == NetherExItems.DULL_MIRROR)
+                    if(stack.getItem() == NetherExItems.DULL_MIRROR.get())
                     {
                         mirrorCount++;
 
@@ -125,7 +125,7 @@ public class PlayerHandler
                 ItemEntity entityItem = iter.next();
                 ItemStack stack = entityItem.getItem();
 
-                if(stack.getItem() == NetherExItems.DULL_MIRROR)
+                if(stack.getItem() == NetherExItems.DULL_MIRROR.get())
                 {
                     player.setItemStackToSlot(EquipmentSlotType.MAINHAND, stack);
                     iter.remove();
@@ -151,7 +151,7 @@ public class PlayerHandler
             {
                 ItemStack stack = oldInventory.getStackInSlot(i);
 
-                if(stack.getItem() == NetherExItems.DULL_MIRROR)
+                if(stack.getItem() == NetherExItems.DULL_MIRROR.get())
                 {
                     NBTHelper.ensureTagExists(stack);
 
@@ -205,7 +205,7 @@ public class PlayerHandler
             {
                 ItemStack stack = playerInventory.getStackInSlot(i);
 
-                if(stack.getItem() == NetherExItems.DULL_MIRROR)
+                if(stack.getItem() == NetherExItems.DULL_MIRROR.get())
                 {
                     mirrorStack = stack;
                     break;

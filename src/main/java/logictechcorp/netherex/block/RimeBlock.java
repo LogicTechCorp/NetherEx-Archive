@@ -82,7 +82,7 @@ public class RimeBlock extends Block
 
             if(canFreeze && NetherExConfig.BLOCK.rimeCanFreezeEntities.get())
             {
-                entity.addPotionEffect(new EffectInstance(NetherExEffects.FROZEN, 300, 0));
+                entity.addPotionEffect(new EffectInstance(NetherExEffects.FROZEN.get(), 300, 0));
             }
         }
     }

@@ -34,7 +34,7 @@ public class MimicModelHandler
     @SubscribeEvent
     public static void onModelBake(ModelBakeEvent event)
     {
-        MimicBlock quartzOreBlock = (MimicBlock) NetherExBlocks.QUARTZ_ORE;
+        MimicBlock quartzOreBlock = (MimicBlock) NetherExBlocks.QUARTZ_ORE.get();
 
         if(quartzOreBlock != null)
         {

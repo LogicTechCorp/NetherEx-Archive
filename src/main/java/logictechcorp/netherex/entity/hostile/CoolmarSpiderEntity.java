@@ -62,7 +62,7 @@ public class CoolmarSpiderEntity extends SpiderEntity
     {
         if(entity instanceof PlayerEntity)
         {
-            ((PlayerEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FROSTBITTEN, 320, 0));
+            ((PlayerEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FROSTBITTEN.get(), 320, 0));
         }
         return super.attackEntityAsMob(entity);
     }

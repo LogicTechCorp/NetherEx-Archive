@@ -17,60 +17,108 @@
 
 package logictechcorp.netherex.item;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.block.NetherExBlocks;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(NetherEx.MOD_ID)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExItems
 {
-    public static final Item GLOOMY_NETHER_BRICK = InjectionHelper.nullValue();
-    public static final Item LIVELY_NETHER_BRICK = InjectionHelper.nullValue();
-    public static final Item FIERY_NETHER_BRICK = InjectionHelper.nullValue();
-    public static final Item ICY_NETHER_BRICK = InjectionHelper.nullValue();
-    public static final Item ORANGE_SALAMANDER_HIDE = InjectionHelper.nullValue();
-    public static final Item BLACK_SALAMANDER_HIDE = InjectionHelper.nullValue();
-    public static final Item AMETHYST_CRYSTAL = InjectionHelper.nullValue();
-    public static final Item RIME_CRYSTAL = InjectionHelper.nullValue();
-    public static final Item RIME_AND_STEEL = InjectionHelper.nullValue();
-    public static final Item SPORE = InjectionHelper.nullValue();
-    public static final Item COOLMAR_SPIDER_FANG = InjectionHelper.nullValue();
-    public static final Item GHAST_MEAT = InjectionHelper.nullValue();
-    public static final Item COOKED_GHAST_MEAT = InjectionHelper.nullValue();
-    public static final Item ENOKI_MUSHROOM = InjectionHelper.nullValue();
-    public static final Item DULL_MIRROR = InjectionHelper.nullValue();
+    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, NetherEx.MOD_ID);
 
-    @SubscribeEvent
-    public static void onItemRegister(RegistryEvent.Register<Item> event)
-    {
-        registerItem("gloomy_nether_brick", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("lively_nether_brick", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("fiery_nether_brick", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("icy_nether_brick", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("orange_salamander_hide", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("black_salamander_hide", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("amethyst_crystal", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("rime_crystal", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("rime_and_steel", new RimeAndSteelItem(new Item.Properties().group(NetherEx.ITEM_GROUP).defaultMaxDamage(64)));
-        registerItem("spore", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("coolmar_spider_fang", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
-        registerItem("ghast_meat", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 100), 1.0F).meat().hunger(4).saturation(0.5F).setAlwaysEdible().build())));
-        registerItem("cooked_ghast_meat", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 200), 1.0F).meat().hunger(8).saturation(1.0F).setAlwaysEdible().build())));
-        registerItem("enoki_mushroom", new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 200), 1.0F).hunger(3).saturation(0.7F).build())));
-        registerItem("dull_mirror", new DullMirrorItem(new Item.Properties().group(NetherEx.ITEM_GROUP).maxDamage(6)));
-    }
+    //Block items
+    public static final RegistryObject<Item> GLOOMY_NETHERRACK = ITEMS.register("gloomy_netherrack", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHERRACK.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GLOOMY_NETHERRACK_PATH = ITEMS.register("gloomy_netherrack_path", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHERRACK_PATH.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GLOOMY_NETHER_BRICKS = ITEMS.register("gloomy_nether_bricks", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHER_BRICKS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GLOOMY_NETHER_BRICK_SLAB = ITEMS.register("gloomy_nether_brick_slab", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHER_BRICK_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GLOOMY_NETHER_BRICK_STAIRS = ITEMS.register("gloomy_nether_brick_stairs", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHER_BRICK_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GLOOMY_NETHER_BRICK_WALL = ITEMS.register("gloomy_nether_brick_wall", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHER_BRICK_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GLOOMY_NETHER_BRICK_FENCE = ITEMS.register("gloomy_nether_brick_fence", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHER_BRICK_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GLOOMY_NETHER_BRICK_FENCE_GATE = ITEMS.register("gloomy_nether_brick_fence_gate", () -> new BlockItem(NetherExBlocks.GLOOMY_NETHER_BRICK_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHERRACK = ITEMS.register("lively_netherrack", () -> new BlockItem(NetherExBlocks.LIVELY_NETHERRACK.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHERRACK_PATH = ITEMS.register("lively_netherrack_path", () -> new BlockItem(NetherExBlocks.LIVELY_NETHERRACK_PATH.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHER_BRICKS = ITEMS.register("lively_nether_bricks", () -> new BlockItem(NetherExBlocks.LIVELY_NETHER_BRICKS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHER_BRICK_SLAB = ITEMS.register("lively_nether_brick_slab", () -> new BlockItem(NetherExBlocks.LIVELY_NETHER_BRICK_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHER_BRICK_STAIRS = ITEMS.register("lively_nether_brick_stairs", () -> new BlockItem(NetherExBlocks.LIVELY_NETHER_BRICK_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHER_BRICK_WALL = ITEMS.register("lively_nether_brick_wall", () -> new BlockItem(NetherExBlocks.LIVELY_NETHER_BRICK_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHER_BRICK_FENCE = ITEMS.register("lively_nether_brick_fence", () -> new BlockItem(NetherExBlocks.LIVELY_NETHER_BRICK_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHER_BRICK_FENCE_GATE = ITEMS.register("lively_nether_brick_fence_gate", () -> new BlockItem(NetherExBlocks.LIVELY_NETHER_BRICK_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHERRACK = ITEMS.register("fiery_netherrack", () -> new BlockItem(NetherExBlocks.FIERY_NETHERRACK.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHERRACK_PATH = ITEMS.register("fiery_netherrack_path", () -> new BlockItem(NetherExBlocks.FIERY_NETHERRACK_PATH.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHER_BRICKS = ITEMS.register("fiery_nether_bricks", () -> new BlockItem(NetherExBlocks.FIERY_NETHER_BRICKS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHER_BRICK_SLAB = ITEMS.register("fiery_nether_brick_slab", () -> new BlockItem(NetherExBlocks.FIERY_NETHER_BRICK_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHER_BRICK_STAIRS = ITEMS.register("fiery_nether_brick_stairs", () -> new BlockItem(NetherExBlocks.FIERY_NETHER_BRICK_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHER_BRICK_WALL = ITEMS.register("fiery_nether_brick_wall", () -> new BlockItem(NetherExBlocks.FIERY_NETHER_BRICK_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHER_BRICK_FENCE = ITEMS.register("fiery_nether_brick_fence", () -> new BlockItem(NetherExBlocks.FIERY_NETHER_BRICK_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHER_BRICK_FENCE_GATE = ITEMS.register("fiery_nether_brick_fence_gate", () -> new BlockItem(NetherExBlocks.FIERY_NETHER_BRICK_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHERRACK = ITEMS.register("icy_netherrack", () -> new BlockItem(NetherExBlocks.ICY_NETHERRACK.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHERRACK_PATH = ITEMS.register("icy_netherrack_path", () -> new BlockItem(NetherExBlocks.ICY_NETHERRACK_PATH.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHER_BRICKS = ITEMS.register("icy_nether_bricks", () -> new BlockItem(NetherExBlocks.ICY_NETHER_BRICKS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHER_BRICK_SLAB = ITEMS.register("icy_nether_brick_slab", () -> new BlockItem(NetherExBlocks.ICY_NETHER_BRICK_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHER_BRICK_STAIRS = ITEMS.register("icy_nether_brick_stairs", () -> new BlockItem(NetherExBlocks.ICY_NETHER_BRICK_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHER_BRICK_WALL = ITEMS.register("icy_nether_brick_wall", () -> new BlockItem(NetherExBlocks.ICY_NETHER_BRICK_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHER_BRICK_FENCE = ITEMS.register("icy_nether_brick_fence", () -> new BlockItem(NetherExBlocks.ICY_NETHER_BRICK_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHER_BRICK_FENCE_GATE = ITEMS.register("icy_nether_brick_fence_gate", () -> new BlockItem(NetherExBlocks.ICY_NETHER_BRICK_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> NETHERRACK_PATH = ITEMS.register("netherrack_path", () -> new BlockItem(NetherExBlocks.NETHERRACK_PATH.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT = ITEMS.register("basalt", () -> new BlockItem(NetherExBlocks.BASALT.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_SLAB = ITEMS.register("basalt_slab", () -> new BlockItem(NetherExBlocks.BASALT_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_STAIRS = ITEMS.register("basalt_stairs", () -> new BlockItem(NetherExBlocks.BASALT_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_WALL = ITEMS.register("basalt_wall", () -> new BlockItem(NetherExBlocks.BASALT_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_FENCE = ITEMS.register("basalt_fence", () -> new BlockItem(NetherExBlocks.BASALT_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_FENCE_GATE = ITEMS.register("basalt_fence_gate", () -> new BlockItem(NetherExBlocks.BASALT_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SMOOTH_BASALT = ITEMS.register("smooth_basalt", () -> new BlockItem(NetherExBlocks.SMOOTH_BASALT.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SMOOTH_BASALT_SLAB = ITEMS.register("smooth_basalt_slab", () -> new BlockItem(NetherExBlocks.SMOOTH_BASALT_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SMOOTH_BASALT_STAIRS = ITEMS.register("smooth_basalt_stairs", () -> new BlockItem(NetherExBlocks.SMOOTH_BASALT_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SMOOTH_BASALT_WALL = ITEMS.register("smooth_basalt_wall", () -> new BlockItem(NetherExBlocks.SMOOTH_BASALT_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SMOOTH_BASALT_FENCE = ITEMS.register("smooth_basalt_fence", () -> new BlockItem(NetherExBlocks.SMOOTH_BASALT_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SMOOTH_BASALT_FENCE_GATE = ITEMS.register("smooth_basalt_fence_gate", () -> new BlockItem(NetherExBlocks.SMOOTH_BASALT_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_BRICK = ITEMS.register("basalt_brick", () -> new BlockItem(NetherExBlocks.BASALT_BRICK.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_BRICK_SLAB = ITEMS.register("basalt_brick_slab", () -> new BlockItem(NetherExBlocks.BASALT_BRICK_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_BRICK_STAIRS = ITEMS.register("basalt_brick_stairs", () -> new BlockItem(NetherExBlocks.BASALT_BRICK_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_BRICK_WALL = ITEMS.register("basalt_brick_wall", () -> new BlockItem(NetherExBlocks.BASALT_BRICK_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_BRICK_FENCE = ITEMS.register("basalt_brick_fence", () -> new BlockItem(NetherExBlocks.BASALT_BRICK_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_BRICK_FENCE_GATE = ITEMS.register("basalt_brick_fence_gate", () -> new BlockItem(NetherExBlocks.BASALT_BRICK_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_PILLAR = ITEMS.register("basalt_pillar", () -> new BlockItem(NetherExBlocks.BASALT_PILLAR.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_PILLAR_SLAB = ITEMS.register("basalt_pillar_slab", () -> new BlockItem(NetherExBlocks.BASALT_PILLAR_SLAB.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_PILLAR_STAIRS = ITEMS.register("basalt_pillar_stairs", () -> new BlockItem(NetherExBlocks.BASALT_PILLAR_STAIRS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_PILLAR_WALL = ITEMS.register("basalt_pillar_wall", () -> new BlockItem(NetherExBlocks.BASALT_PILLAR_WALL.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_PILLAR_FENCE = ITEMS.register("basalt_pillar_fence", () -> new BlockItem(NetherExBlocks.BASALT_PILLAR_FENCE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BASALT_PILLAR_FENCE_GATE = ITEMS.register("basalt_pillar_fence_gate", () -> new BlockItem(NetherExBlocks.BASALT_PILLAR_FENCE_GATE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> HYPHAE = ITEMS.register("hyphae", () -> new BlockItem(NetherExBlocks.HYPHAE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FROSTBURN_ICE = ITEMS.register("frostburn_ice", () -> new BlockItem(NetherExBlocks.FROSTBURN_ICE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> QUARTZ_ORE = ITEMS.register("quartz_ore", () -> new BlockItem(NetherExBlocks.QUARTZ_ORE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> RIME_ORE = ITEMS.register("rime_ore", () -> new BlockItem(NetherExBlocks.RIME_ORE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> RIME_BLOCK = ITEMS.register("rime_block", () -> new BlockItem(NetherExBlocks.RIME_BLOCK.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> THORNSTALK = ITEMS.register("thornstalk", () -> new BlockItem(NetherExBlocks.THORNSTALK.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BROWN_ELDER_MUSHROOM = ITEMS.register("brown_elder_mushroom", () -> new BlockItem(NetherExBlocks.BROWN_ELDER_MUSHROOM.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> RED_ELDER_MUSHROOM = ITEMS.register("red_elder_mushroom", () -> new BlockItem(NetherExBlocks.RED_ELDER_MUSHROOM.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BROWN_ELDER_MUSHROOM_CAP = ITEMS.register("brown_elder_mushroom_cap", () -> new BlockItem(NetherExBlocks.BROWN_ELDER_MUSHROOM_CAP.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> RED_ELDER_MUSHROOM_CAP = ITEMS.register("red_elder_mushroom_cap", () -> new BlockItem(NetherExBlocks.RED_ELDER_MUSHROOM_CAP.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ELDER_MUSHROOM_STEM = ITEMS.register("elder_mushroom_stem", () -> new BlockItem(NetherExBlocks.ELDER_MUSHROOM_STEM.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ENOKI_MUSHROOM_CAP = ITEMS.register("enoki_mushroom_stem", () -> new BlockItem(NetherExBlocks.ENOKI_MUSHROOM_CAP.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ENOKI_MUSHROOM_STEM = ITEMS.register("enoki_mushroom_cap", () -> new BlockItem(NetherExBlocks.ENOKI_MUSHROOM_STEM.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SOUL_GLASS = ITEMS.register("soul_glass", () -> new BlockItem(NetherExBlocks.SOUL_GLASS.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SOUL_GLASS_PANE = ITEMS.register("soul_glass_pane", () -> new BlockItem(NetherExBlocks.SOUL_GLASS_PANE.get(), new Item.Properties().group(NetherEx.ITEM_GROUP)));
 
-    private static void registerItem(String name, Item item)
-    {
-        ForgeRegistries.ITEMS.register(item.setRegistryName(name));
-    }
+    //Items
+    public static final RegistryObject<Item> GLOOMY_NETHER_BRICK = ITEMS.register("gloomy_nether_brick", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> LIVELY_NETHER_BRICK = ITEMS.register("lively_nether_brick", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> FIERY_NETHER_BRICK = ITEMS.register("fiery_nether_brick", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ICY_NETHER_BRICK = ITEMS.register("icy_nether_brick", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> ORANGE_SALAMANDER_HIDE = ITEMS.register("orange_salamander_hide", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> BLACK_SALAMANDER_HIDE = ITEMS.register("black_salamander_hide", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> RIME_CRYSTAL = ITEMS.register("rime_crystal", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> RIME_AND_STEEL = ITEMS.register("rime_and_steel", () -> new RimeAndSteelItem(new Item.Properties().group(NetherEx.ITEM_GROUP).defaultMaxDamage(64)));
+    public static final RegistryObject<Item> SPORE = ITEMS.register("spore", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> COOLMAR_SPIDER_FANG = ITEMS.register("coolmar_spider_fang", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> GHAST_MEAT = ITEMS.register("ghast_meat", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 100), 1.0F).meat().hunger(4).saturation(0.5F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> COOKED_GHAST_MEAT = ITEMS.register("cooked_ghast_meat", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 200), 1.0F).meat().hunger(8).saturation(1.0F).setAlwaysEdible().build())));
+    public static final RegistryObject<Item> ENOKI_MUSHROOM = ITEMS.register("enoki_mushroom", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 200), 1.0F).hunger(3).saturation(0.7F).build())));
+    public static final RegistryObject<Item> DULL_MIRROR = ITEMS.register("dull_mirror", () -> new DullMirrorItem(new Item.Properties().group(NetherEx.ITEM_GROUP).maxDamage(6)));
 }

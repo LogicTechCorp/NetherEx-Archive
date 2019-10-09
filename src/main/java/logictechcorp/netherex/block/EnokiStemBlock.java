@@ -73,7 +73,7 @@ public class EnokiStemBlock extends SixWayBlock
         else
         {
             Block block = facingState.getBlock();
-            boolean flag = block == this || block == NetherExBlocks.ENOKI_MUSHROOM_CAP || facing == Direction.UP && block == NetherExBlocks.LIVELY_NETHERRACK;
+            boolean flag = block == this || block == NetherExBlocks.ENOKI_MUSHROOM_CAP.get() || facing == Direction.UP && block == NetherExBlocks.LIVELY_NETHERRACK.get();
             return state.with(FACING_TO_PROPERTY_MAP.get(facing), flag);
         }
     }
@@ -86,7 +86,7 @@ public class EnokiStemBlock extends SixWayBlock
         Block eastBlock = world.getBlockState(pos.east()).getBlock();
         Block southBlock = world.getBlockState(pos.south()).getBlock();
         Block westBlock = world.getBlockState(pos.west()).getBlock();
-        return this.getDefaultState().with(DOWN, downBlock == this || downBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP).with(UP, upBlock == this || upBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP || upBlock == NetherExBlocks.LIVELY_NETHERRACK).with(NORTH, northBlock == this || northBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP).with(EAST, eastBlock == this || eastBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP).with(SOUTH, southBlock == this || southBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP).with(WEST, westBlock == this || westBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP);
+        return this.getDefaultState().with(DOWN, downBlock == this || downBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP.get()).with(UP, upBlock == this || upBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP.get() || upBlock == NetherExBlocks.LIVELY_NETHERRACK.get()).with(NORTH, northBlock == this || northBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP.get()).with(EAST, eastBlock == this || eastBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP.get()).with(SOUTH, southBlock == this || southBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP.get()).with(WEST, westBlock == this || westBlock == NetherExBlocks.ENOKI_MUSHROOM_CAP.get());
     }
 
     @Override
@@ -109,7 +109,7 @@ public class EnokiStemBlock extends SixWayBlock
 
                 Block upBlock = world.getBlockState(offsetPos.up()).getBlock();
 
-                if(upBlock == this || upBlock == NetherExBlocks.LIVELY_NETHERRACK)
+                if(upBlock == this || upBlock == NetherExBlocks.LIVELY_NETHERRACK.get())
                 {
                     return true;
                 }
@@ -117,7 +117,7 @@ public class EnokiStemBlock extends SixWayBlock
         }
 
         Block upBlock = upState.getBlock();
-        return upBlock == this || upBlock == NetherExBlocks.LIVELY_NETHERRACK;
+        return upBlock == this || upBlock == NetherExBlocks.LIVELY_NETHERRACK.get();
     }
 
     @Override

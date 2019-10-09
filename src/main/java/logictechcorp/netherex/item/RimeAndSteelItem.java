@@ -49,7 +49,7 @@ public class RimeAndSteelItem extends Item
 
                 if(world.isAirBlock(pos))
                 {
-                    world.setBlockState(pos, NetherExBlocks.BLUE_FIRE.getDefaultState());
+                    world.setBlockState(pos, NetherExBlocks.BLUE_FIRE.get().getDefaultState());
 
                     if(stack.attemptDamageItem(1, world.rand, null))
                     {
@@ -92,7 +92,7 @@ public class RimeAndSteelItem extends Item
             if(world.isAirBlock(pos))
             {
                 world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
-                world.setBlockState(pos, NetherExBlocks.BLUE_FIRE.getDefaultState(), 11);
+                world.setBlockState(pos, NetherExBlocks.BLUE_FIRE.get().getDefaultState(), 11);
             }
 
             stack.damageItem(1, player, entity -> entity.sendBreakAnimation(hand));

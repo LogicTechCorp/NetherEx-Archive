@@ -17,29 +17,15 @@
 
 package logictechcorp.netherex.world.generation.surfacebuilder;
 
-import logictechcorp.libraryex.utility.InjectionHelper;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(NetherEx.MOD_ID)
-@Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NetherExSurfaceBuilders
 {
-    public static final SurfaceBuilder<NetherSurfaceBuilderWrapper.Config> NETHER_SURFACE_BUILDER_WRAPPER = InjectionHelper.nullValue();
+    public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = new DeferredRegister<>(ForgeRegistries.SURFACE_BUILDERS, NetherEx.MOD_ID);
 
-    @SubscribeEvent
-    public static void onSurfaceBuilderRegister(RegistryEvent.Register<SurfaceBuilder<?>> event)
-    {
-        registerSurfaceBuilder("nether_surface_builder_wrapper", new NetherSurfaceBuilderWrapper(NetherSurfaceBuilderWrapper.Config::deserialize));
-    }
-
-    private static void registerSurfaceBuilder(String name, SurfaceBuilder<?> feature)
-    {
-        ForgeRegistries.SURFACE_BUILDERS.register(feature.setRegistryName(name));
-    }
+    public static final RegistryObject<SurfaceBuilder<NetherSurfaceBuilderWrapper.Config>> NETHER_SURFACE_BUILDER_WRAPPER = SURFACE_BUILDERS.register("nether_surface_builder_wrapper", () -> new NetherSurfaceBuilderWrapper(NetherSurfaceBuilderWrapper.Config::deserialize));
 }

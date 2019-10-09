@@ -18,7 +18,7 @@
 package logictechcorp.netherex.entity.neutral;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.utility.NetherExSounds;
+import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -123,19 +123,19 @@ public class MogusEntity extends MonsterEntity
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return NetherExSounds.ENTITY_MOGUS_AMBIENT;
+        return NetherExSoundEvents.ENTITY_MOGUS_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
     {
-        return NetherExSounds.ENTITY_MOGUS_HURT;
+        return NetherExSoundEvents.ENTITY_MOGUS_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return NetherExSounds.ENTITY_MOGUS_DEATH;
+        return NetherExSoundEvents.ENTITY_MOGUS_DEATH.get();
     }
 
     public Variant getVariant()

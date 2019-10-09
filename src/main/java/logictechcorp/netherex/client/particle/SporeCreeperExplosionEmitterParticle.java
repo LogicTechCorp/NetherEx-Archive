@@ -45,7 +45,7 @@ public class SporeCreeperExplosionEmitterParticle extends MetaParticle
             double randomPosX = this.posX + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
             double randomPosY = this.posY + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
             double randomPosZ = this.posZ + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
-            this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION, randomPosX, randomPosY, randomPosZ, ((float) this.timeSinceStart / (float) this.maximumTime), 0.0D, 0.0D);
+            this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION.get(), randomPosX, randomPosY, randomPosZ, ((float) this.timeSinceStart / (float) this.maximumTime), 0.0D, 0.0D);
         }
 
         this.timeSinceStart++;

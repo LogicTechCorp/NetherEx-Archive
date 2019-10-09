@@ -47,7 +47,7 @@ public class BlueFireBlock extends EternalFireBlock
             if(!entity.isImmuneToFire())
             {
                 int ticks = RandomHelper.getNumberInRange(1, 70, world.rand);
-                ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FIRE_BURNING, ticks));
+                ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FIRE_BURNING.get(), ticks));
             }
         }
     }

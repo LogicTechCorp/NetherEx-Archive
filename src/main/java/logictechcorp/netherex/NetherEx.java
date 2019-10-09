@@ -18,18 +18,42 @@
 package logictechcorp.netherex;
 
 import logictechcorp.libraryex.world.biome.BiomeDataManager;
+import logictechcorp.netherex.block.NetherExBlocks;
+import logictechcorp.netherex.entity.NetherExEntities;
+import logictechcorp.netherex.item.NetherExItems;
+import logictechcorp.netherex.particle.NetherExParticles;
+import logictechcorp.netherex.potion.NetherExEffects;
+import logictechcorp.netherex.potion.NetherExPotions;
 import logictechcorp.netherex.proxy.ClientProxy;
-import logictechcorp.netherex.proxy.CommonProxy;
+import logictechcorp.netherex.proxy.ServerProxy;
+import logictechcorp.netherex.utility.NetherExSoundEvents;
 import logictechcorp.netherex.world.biome.NetherBiomeDataManager;
+import logictechcorp.netherex.world.biome.NetherExBiomes;
+import logictechcorp.netherex.world.generation.NetherExChunkGenerators;
+import logictechcorp.netherex.world.generation.feature.NetherExFeatures;
+import logictechcorp.netherex.world.generation.placement.NetherExPlacements;
+import logictechcorp.netherex.world.generation.surfacebuilder.NetherExSurfaceBuilders;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Field;
 
 @Mod(NetherEx.MOD_ID)
 public class NetherEx
@@ -50,7 +74,55 @@ public class NetherEx
 
     public NetherEx()
     {
-        DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new).registerHandlers();
+        DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::onCommonSetup);
+        NetherExBlocks.BLOCKS.register(modEventBus);
+        NetherExItems.ITEMS.register(modEventBus);
+        NetherExBiomes.BIOMES.register(modEventBus);
+        NetherExEntities.ENTITY_TYPES.register(modEventBus);
+        NetherExChunkGenerators.CHUNK_GENERATOR_OVERRIDES.register(modEventBus);
+        NetherExSurfaceBuilders.SURFACE_BUILDERS.register(modEventBus);
+        NetherExFeatures.FEATURES.register(modEventBus);
+        NetherExFeatures.FEATURE_OVERRIDES.register(modEventBus);
+        NetherExPlacements.PLACEMENTS.register(modEventBus);
+        NetherExParticles.PARTICLE_TYPES.register(modEventBus);
+        NetherExEffects.EFFECTS.register(modEventBus);
+        NetherExPotions.POTIONS.register(modEventBus);
+        NetherExSoundEvents.SOUND_EVENTS.register(modEventBus);
+
+        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+        forgeEventBus.addListener(this::onServerAboutToStart);
+        forgeEventBus.addListener(this::onServerStopping);
         NetherExConfig.registerConfigs();
+    }
+
+    private void onCommonSetup(FMLCommonSetupEvent event)
+    {
+        //Temporary workaround
+        try
+        {
+            Field cavesField = ObfuscationReflectionHelper.findField(ChunkGeneratorType.class, "field_206912_c");
+            FieldUtils.removeFinalModifier(cavesField, true);
+            FieldUtils.writeStaticField(cavesField, NetherExChunkGenerators.CAVES.get(), true);
+        }
+        catch(ReflectiveOperationException e)
+        {
+            e.printStackTrace();
+        }
+
+        NetherExEntities.registerSpawnPlacements();
+    }
+
+    private void onServerAboutToStart(FMLServerAboutToStartEvent event)
+    {
+        MinecraftServer server = event.getServer();
+        server.getResourceManager().addReloadListener(BIOME_DATA_MANAGER);
+        NetherExBiomes.registerBiomePacks(server);
+    }
+
+    private void onServerStopping(FMLServerStoppingEvent event)
+    {
+        BIOME_DATA_MANAGER.cleanup();
     }
 }

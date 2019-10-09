@@ -52,7 +52,7 @@ public class InfestedEffect extends Effect
 
                 if(!world.isRemote && world.isAirBlock(newPos) && !world.isAirBlock(newPos.down()))
                 {
-                    SporeEntity spore = new SporeEntity(NetherExEntities.SPORE, world);
+                    SporeEntity spore = new SporeEntity(NetherExEntities.SPORE.get(), world);
                     spore.setLocationAndAngles(newPos.getX(), newPos.getY(), newPos.getZ(), entity.rotationYaw, entity.rotationPitch);
                     world.addEntity(spore);
                 }
@@ -70,7 +70,7 @@ public class InfestedEffect extends Effect
     {
         if(entity instanceof PlayerEntity)
         {
-            return NetherExConfig.EFFECT.infestedEffectPlayersSpawnSpores.get();
+            return NetherExConfig.EFFECT.infestedEffectCanPlayersSpawnSpores.get();
         }
 
         return NetherExConfig.EFFECT.infestedEffectEntityBlacklist.get().contains(entity.getType().getRegistryName().toString());
