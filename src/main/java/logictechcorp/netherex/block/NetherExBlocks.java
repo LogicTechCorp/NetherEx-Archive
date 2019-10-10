@@ -101,8 +101,8 @@ public class NetherExBlocks
     public static final RegistryObject<Block> BROWN_ELDER_MUSHROOM_CAP = BLOCKS.register("brown_elder_mushroom_cap", () -> new HugeMushroomBlock(Block.Properties.from(Blocks.BROWN_MUSHROOM_BLOCK)));
     public static final RegistryObject<Block> RED_ELDER_MUSHROOM_CAP = BLOCKS.register("red_elder_mushroom_cap", () -> new HugeMushroomBlock(Block.Properties.from(Blocks.RED_MUSHROOM_BLOCK)));
     public static final RegistryObject<Block> ELDER_MUSHROOM_STEM = BLOCKS.register("elder_mushroom_stem", () -> new HugeMushroomBlock(Block.Properties.from(Blocks.MUSHROOM_STEM)));
-    public static final RegistryObject<Block> ENOKI_MUSHROOM_CAP = BLOCKS.register("enoki_mushroom_stem", () -> new EnokiStemBlock(Block.Properties.from(Blocks.CHORUS_PLANT)));
-    public static final RegistryObject<Block> ENOKI_MUSHROOM_STEM = BLOCKS.register("enoki_mushroom_cap", () -> new EnokiCapBlock(Block.Properties.from(Blocks.CHORUS_FLOWER)));
+    public static final RegistryObject<Block> ENOKI_MUSHROOM_CAP = BLOCKS.register("enoki_mushroom_cap", () -> new EnokiCapBlock(Block.Properties.from(Blocks.CHORUS_FLOWER)));
+    public static final RegistryObject<Block> ENOKI_MUSHROOM_STEM = BLOCKS.register("enoki_mushroom_stem", () -> new EnokiStemBlock(Block.Properties.from(Blocks.CHORUS_PLANT)));
     public static final RegistryObject<Block> BLUE_FIRE = BLOCKS.register("blue_fire", () -> new BlueFireBlock(Block.Properties.create(Material.FIRE, MaterialColor.LIGHT_BLUE).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0.0F).lightValue(15).sound(SoundType.CLOTH).noDrops()));
     public static final RegistryObject<Block> SOUL_GLASS = BLOCKS.register("soul_glass", () -> new SoulGlassBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS)));
     public static final RegistryObject<Block> SOUL_GLASS_PANE = BLOCKS.register("soul_glass_pane", () -> new SoulGlassPaneBlock(Block.Properties.from(Blocks.BROWN_STAINED_GLASS_PANE)));

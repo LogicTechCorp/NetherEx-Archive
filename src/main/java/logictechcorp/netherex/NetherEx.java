@@ -75,12 +75,13 @@ public class NetherEx
     public NetherEx()
     {
         DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onCommonSetup);
         NetherExBlocks.BLOCKS.register(modEventBus);
         NetherExItems.ITEMS.register(modEventBus);
         NetherExBiomes.BIOMES.register(modEventBus);
-        NetherExEntities.ENTITY_TYPES.register(modEventBus);
+        NetherExEntities.ENTITIES.register(modEventBus);
         NetherExChunkGenerators.CHUNK_GENERATOR_OVERRIDES.register(modEventBus);
         NetherExSurfaceBuilders.SURFACE_BUILDERS.register(modEventBus);
         NetherExFeatures.FEATURES.register(modEventBus);

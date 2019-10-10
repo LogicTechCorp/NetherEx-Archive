@@ -31,15 +31,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetherExEntities
 {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.ENTITIES, NetherEx.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = new DeferredRegister<>(ForgeRegistries.ENTITIES, NetherEx.MOD_ID);
 
-    public static final RegistryObject<EntityType<MogusEntity>> MOGUS = ENTITY_TYPES.register("mogus", () -> EntityType.Builder.create(MogusEntity::new, EntityClassification.MONSTER).size(0.35F, 0.55F).immuneToFire().build(NetherEx.MOD_ID + ":mogus"));
-    public static final RegistryObject<EntityType<SalamanderEntity>> SALAMANDER = ENTITY_TYPES.register("salamander", () -> EntityType.Builder.create(SalamanderEntity::new, EntityClassification.MONSTER).size(1.25F, 0.5F).immuneToFire().build(NetherEx.MOD_ID + ":salamander"));
-    public static final RegistryObject<EntityType<SpinoutEntity>> SPINOUT = ENTITY_TYPES.register("spinout", () -> EntityType.Builder.create(SpinoutEntity::new, EntityClassification.MONSTER).size(0.55F, 1.95F).immuneToFire().build(NetherEx.MOD_ID + ":spinout"));
-    public static final RegistryObject<EntityType<SporeEntity>> SPORE = ENTITY_TYPES.register("spore", () -> EntityType.Builder.create(SporeEntity::new, EntityClassification.MONSTER).size(0.55F, 1.95F).immuneToFire().build(NetherEx.MOD_ID + ":spore"));
-    public static final RegistryObject<EntityType<SporeCreeperEntity>> SPORE_CREEPER = ENTITY_TYPES.register("spore_creeper", () -> EntityType.Builder.create(SporeCreeperEntity::new, EntityClassification.MONSTER).size(0.55F, 1.95F).immuneToFire().build(NetherEx.MOD_ID + ":spore_creeper"));
-    public static final RegistryObject<EntityType<WightEntity>> WIGHT = ENTITY_TYPES.register("wight", () -> EntityType.Builder.create(WightEntity::new, EntityClassification.MONSTER).size(0.55F, 1.5F).immuneToFire().build(NetherEx.MOD_ID + ":wight"));
-    public static final RegistryObject<EntityType<CoolmarSpiderEntity>> COOLMAR_SPIDER = ENTITY_TYPES.register("coolmar_spider", () -> EntityType.Builder.create(CoolmarSpiderEntity::new, EntityClassification.MONSTER).size(1.5F, 1.0F).immuneToFire().build(NetherEx.MOD_ID + ":coolmar_spider"));
+    public static final RegistryObject<EntityType<MogusEntity>> MOGUS = ENTITIES.register("mogus", () -> EntityType.Builder.create(MogusEntity::new, EntityClassification.MONSTER).size(0.35F, 0.55F).immuneToFire().build(NetherEx.MOD_ID + ":mogus"));
+    public static final RegistryObject<EntityType<SalamanderEntity>> SALAMANDER = ENTITIES.register("salamander", () -> EntityType.Builder.create(SalamanderEntity::new, EntityClassification.MONSTER).size(1.25F, 0.5F).immuneToFire().build(NetherEx.MOD_ID + ":salamander"));
+    public static final RegistryObject<EntityType<SpinoutEntity>> SPINOUT = ENTITIES.register("spinout", () -> EntityType.Builder.create(SpinoutEntity::new, EntityClassification.MONSTER).size(0.55F, 1.95F).immuneToFire().build(NetherEx.MOD_ID + ":spinout"));
+    public static final RegistryObject<EntityType<SporeEntity>> SPORE = ENTITIES.register("spore", () -> EntityType.Builder.create(SporeEntity::new, EntityClassification.MONSTER).size(0.55F, 1.95F).immuneToFire().build(NetherEx.MOD_ID + ":spore"));
+    public static final RegistryObject<EntityType<SporeCreeperEntity>> SPORE_CREEPER = ENTITIES.register("spore_creeper", () -> EntityType.Builder.create(SporeCreeperEntity::new, EntityClassification.MONSTER).size(0.55F, 1.95F).immuneToFire().build(NetherEx.MOD_ID + ":spore_creeper"));
+    public static final RegistryObject<EntityType<WightEntity>> WIGHT = ENTITIES.register("wight", () -> EntityType.Builder.create(WightEntity::new, EntityClassification.MONSTER).size(0.55F, 1.5F).immuneToFire().build(NetherEx.MOD_ID + ":wight"));
+    public static final RegistryObject<EntityType<CoolmarSpiderEntity>> COOLMAR_SPIDER = ENTITIES.register("coolmar_spider", () -> EntityType.Builder.create(CoolmarSpiderEntity::new, EntityClassification.MONSTER).size(1.5F, 1.0F).immuneToFire().build(NetherEx.MOD_ID + ":coolmar_spider"));
 
     public static void registerSpawnPlacements()
     {

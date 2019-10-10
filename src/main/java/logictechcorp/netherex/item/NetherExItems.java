@@ -17,8 +17,10 @@
 
 package logictechcorp.netherex.item;
 
+import logictechcorp.libraryex.item.ModSpawnEggItem;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.NetherExBlocks;
+import logictechcorp.netherex.entity.NetherExEntities;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -111,11 +113,18 @@ public class NetherExItems
     public static final RegistryObject<Item> LIVELY_NETHER_BRICK = ITEMS.register("lively_nether_brick", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> FIERY_NETHER_BRICK = ITEMS.register("fiery_nether_brick", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> ICY_NETHER_BRICK = ITEMS.register("icy_nether_brick", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> MOGUS_SPAWN_EGG = ITEMS.register("mogus_spawn_egg", () -> new ModSpawnEggItem(() -> NetherExEntities.MOGUS.get(), 10489616, 10051392, new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SALAMANDER_SPAWN_EGG = ITEMS.register("salamander_spawn_egg", () -> new ModSpawnEggItem(() -> NetherExEntities.SALAMANDER.get(), 15690005, 0, new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> ORANGE_SALAMANDER_HIDE = ITEMS.register("orange_salamander_hide", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> BLACK_SALAMANDER_HIDE = ITEMS.register("black_salamander_hide", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SPINOUT_SPAWN_EGG = ITEMS.register("spinout_spawn_egg", () -> new ModSpawnEggItem(() -> NetherExEntities.SPINOUT.get(), 5651507, 16382457, new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> WIGHT_SPAWN_EGG = ITEMS.register("wight_spawn_egg", () -> new ModSpawnEggItem(() -> NetherExEntities.WIGHT.get(), 15198183, 7375001, new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> RIME_CRYSTAL = ITEMS.register("rime_crystal", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> RIME_AND_STEEL = ITEMS.register("rime_and_steel", () -> new RimeAndSteelItem(new Item.Properties().group(NetherEx.ITEM_GROUP).defaultMaxDamage(64)));
+    public static final RegistryObject<Item> SPORE_SPAWN_EGG = ITEMS.register("spore_spawn_egg", () -> new ModSpawnEggItem(() -> NetherExEntities.SPORE.get(), 16579584, 11013646, new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> SPORE_CREEPER_SPAWN_EGG = ITEMS.register("spore_creeper_spawn_egg", () -> new ModSpawnEggItem(() -> NetherExEntities.SPORE_CREEPER.get(), 11013646, 16579584, new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> SPORE = ITEMS.register("spore", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
+    public static final RegistryObject<Item> COOLMAR_SPIDER_SPAWN_EGG = ITEMS.register("coolmar_spider_spawn_egg", () -> new ModSpawnEggItem(() -> NetherExEntities.COOLMAR_SPIDER.get(), 14144467, 8032420, new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> COOLMAR_SPIDER_FANG = ITEMS.register("coolmar_spider_fang", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP)));
     public static final RegistryObject<Item> GHAST_MEAT = ITEMS.register("ghast_meat", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 100), 1.0F).meat().hunger(4).saturation(0.5F).setAlwaysEdible().build())));
     public static final RegistryObject<Item> COOKED_GHAST_MEAT = ITEMS.register("cooked_ghast_meat", () -> new Item(new Item.Properties().group(NetherEx.ITEM_GROUP).food(new Food.Builder().effect(new EffectInstance(Effects.LEVITATION, 200), 1.0F).meat().hunger(8).saturation(1.0F).setAlwaysEdible().build())));
