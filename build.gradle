@@ -56,6 +56,8 @@ minecraft {
             args '--mod', 'netherex', '--all', '--output', file('src/main/generated/resources'), '--input', file('src/main/resources')
         }
     }
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 }
 
 repositories {
