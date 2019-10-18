@@ -6,7 +6,6 @@
       "entries": [
         {
           "type": "minecraft:alternatives",
-          "name": "netherex:rime_crystal",
           "children": [
             {
               "type": "minecraft:item",

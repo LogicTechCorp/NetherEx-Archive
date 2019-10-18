@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "netherex:gloomy_nether_bricks"
+  },
+  "result": "netherex:gloomy_nether_brick_stairs",
+  "count": 1
+}

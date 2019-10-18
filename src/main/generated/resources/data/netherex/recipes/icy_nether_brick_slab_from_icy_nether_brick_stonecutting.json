@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "netherex:icy_nether_bricks"
+  },
+  "result": "netherex:icy_nether_brick_slab",
+  "count": 2
+}

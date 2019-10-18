@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "netherex:fiery_nether_bricks"
+  },
+  "result": "netherex:fiery_nether_brick_wall",
+  "count": 1
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "netherex:rime_block"
+    }
+  ],
+  "result": {
+    "item": "netherex:rime_crystal",
+    "count": 9
+  }
+}
