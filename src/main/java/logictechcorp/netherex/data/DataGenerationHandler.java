@@ -155,7 +155,7 @@ public class DataGenerationHandler
         //Basalt recipes
         provider.addShapedRecipe(NetherExItems.BASALT_SLAB.get(), 6).pattern("###").key('#', NetherExItems.BASALT.get()).build("basalt_slab");
         provider.addShapedRecipe(NetherExItems.BASALT_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExItems.BASALT.get()).build("basalt_stairs");
-        provider.addShapedRecipe(NetherExItems.BASALT_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.BASALT.get()).build("basalt_Wall");
+        provider.addShapedRecipe(NetherExItems.BASALT_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.BASALT.get()).build("basalt_wall");
         provider.addShapedRecipe(NetherExItems.BASALT_FENCE.get(), 4).pattern("#*#").pattern("#*#").key('#', NetherExItems.BASALT.get()).key('*', NetherExItems.BASALT_SLAB.get()).build("basalt_fence");
         provider.addShapedRecipe(NetherExItems.BASALT_FENCE_GATE.get(), 2).pattern("#*#").pattern("#*#").key('#', NetherExItems.BASALT_SLAB.get()).key('*', NetherExItems.BASALT.get()).build("basalt_fence_gate");
         provider.addStonecutterRecipe(NetherExItems.BASALT_SLAB.get(), 2).ingredient(NetherExItems.BASALT.get()).build("basalt_slab_from_basalt_stonecutting");
@@ -166,7 +166,7 @@ public class DataGenerationHandler
         provider.addShapedRecipe(NetherExItems.SMOOTH_BASALT.get(), 4).pattern("##").pattern("##").key('#', NetherExItems.BASALT.get()).build("smooth_basalt");
         provider.addShapedRecipe(NetherExItems.SMOOTH_BASALT_SLAB.get(), 6).pattern("###").key('#', NetherExItems.SMOOTH_BASALT.get()).build("smooth_basalt_slab");
         provider.addShapedRecipe(NetherExItems.SMOOTH_BASALT_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExItems.SMOOTH_BASALT.get()).build("smooth_basalt_stairs");
-        provider.addShapedRecipe(NetherExItems.SMOOTH_BASALT_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.SMOOTH_BASALT.get()).build("smooth_basalt_Wall");
+        provider.addShapedRecipe(NetherExItems.SMOOTH_BASALT_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.SMOOTH_BASALT.get()).build("smooth_basalt_wall");
         provider.addShapedRecipe(NetherExItems.SMOOTH_BASALT_FENCE.get(), 4).pattern("#*#").pattern("#*#").key('#', NetherExItems.SMOOTH_BASALT.get()).key('*', NetherExItems.SMOOTH_BASALT_SLAB.get()).build("smooth_basalt_fence");
         provider.addShapedRecipe(NetherExItems.SMOOTH_BASALT_FENCE_GATE.get(), 2).pattern("#*#").pattern("#*#").key('#', NetherExItems.SMOOTH_BASALT_SLAB.get()).key('*', NetherExItems.SMOOTH_BASALT.get()).build("smooth_basalt_fence_gate");
         provider.addStonecutterRecipe(NetherExItems.SMOOTH_BASALT_SLAB.get(), 2).ingredient(NetherExItems.SMOOTH_BASALT.get()).build("smooth_basalt_slab_from_smooth_basalt_stonecutting");
@@ -177,7 +177,7 @@ public class DataGenerationHandler
         provider.addShapedRecipe(NetherExItems.BASALT_BRICK.get(), 4).pattern("##").pattern("##").key('#', NetherExItems.SMOOTH_BASALT.get()).build("basalt_brick");
         provider.addShapedRecipe(NetherExItems.BASALT_BRICK_SLAB.get(), 6).pattern("###").key('#', NetherExItems.BASALT_BRICK.get()).build("basalt_brick_slab");
         provider.addShapedRecipe(NetherExItems.BASALT_BRICK_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExItems.BASALT_BRICK.get()).build("basalt_brick_stairs");
-        provider.addShapedRecipe(NetherExItems.BASALT_BRICK_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.BASALT_BRICK.get()).build("basalt_brick_Wall");
+        provider.addShapedRecipe(NetherExItems.BASALT_BRICK_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.BASALT_BRICK.get()).build("basalt_brick_wall");
         provider.addShapedRecipe(NetherExItems.BASALT_BRICK_FENCE.get(), 4).pattern("#*#").pattern("#*#").key('#', NetherExItems.BASALT_BRICK.get()).key('*', NetherExItems.BASALT_BRICK_SLAB.get()).build("basalt_brick_fence");
         provider.addShapedRecipe(NetherExItems.BASALT_BRICK_FENCE_GATE.get(), 2).pattern("#*#").pattern("#*#").key('#', NetherExItems.BASALT_BRICK_SLAB.get()).key('*', NetherExItems.BASALT_BRICK.get()).build("basalt_brick_fence_gate");
         provider.addStonecutterRecipe(NetherExItems.BASALT_BRICK_SLAB.get(), 2).ingredient(NetherExItems.BASALT_BRICK.get()).build("basalt_brick_slab_from_basalt_brick_stonecutting");
@@ -188,7 +188,7 @@ public class DataGenerationHandler
         provider.addShapedRecipe(NetherExItems.BASALT_PILLAR.get(), 4).pattern("##").pattern("##").key('#', NetherExItems.BASALT_BRICK.get()).build("basalt_pillar");
         provider.addShapedRecipe(NetherExItems.BASALT_PILLAR_SLAB.get(), 6).pattern("###").key('#', NetherExItems.BASALT_PILLAR.get()).build("basalt_pillar_slab");
         provider.addShapedRecipe(NetherExItems.BASALT_PILLAR_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExItems.BASALT_PILLAR.get()).build("basalt_pillar_stairs");
-        provider.addShapedRecipe(NetherExItems.BASALT_PILLAR_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.BASALT_PILLAR.get()).build("basalt_pillar_Wall");
+        provider.addShapedRecipe(NetherExItems.BASALT_PILLAR_WALL.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.BASALT_PILLAR.get()).build("basalt_pillar_wall");
         provider.addShapedRecipe(NetherExItems.BASALT_PILLAR_FENCE.get(), 4).pattern("#*#").pattern("#*#").key('#', NetherExItems.BASALT_PILLAR.get()).key('*', NetherExItems.BASALT_PILLAR_SLAB.get()).build("basalt_pillar_fence");
         provider.addShapedRecipe(NetherExItems.BASALT_PILLAR_FENCE_GATE.get(), 2).pattern("#*#").pattern("#*#").key('#', NetherExItems.BASALT_PILLAR_SLAB.get()).key('*', NetherExItems.BASALT_PILLAR.get()).build("basalt_pillar_fence_gate");
         provider.addStonecutterRecipe(NetherExItems.BASALT_PILLAR_SLAB.get(), 2).ingredient(NetherExItems.BASALT_PILLAR.get()).build("basalt_pillar_slab_from_basalt_pillar_stonecutting");
