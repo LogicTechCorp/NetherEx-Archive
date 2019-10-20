@@ -7,7 +7,7 @@ modId="netherex"
 version="${file.jarVersion}"
 displayName="NetherEx"
 displayURL="https://minecraft.curseforge.com/projects/netherex"
-logoFile="assets/netherex/logo.png"
+logoFile="assets/netherex/textures/logo.png"
 authors="LogicTechCorp, Eleazzaar, Nazenn, Vlakk, AnarchCassius, LapisWhovian, misterslime, MCvinnyq, Cameron, Endergy"
 description="A mod that adds new content to the Nether."
 
