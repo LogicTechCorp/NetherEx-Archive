@@ -38,6 +38,6 @@ public class ThornstalkBlock extends TriplePlantBlock
     @Override
     public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, MobEntity entity)
     {
-        return PathNodeType.DANGER_CACTUS;
+        return PathNodeType.DAMAGE_CACTUS;
     }
 }

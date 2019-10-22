@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:ghast_tear"
+      "item": "minecraft:gold_ingot"
     },
     "*": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:ghast_tear"
     }
   },
   "result": {

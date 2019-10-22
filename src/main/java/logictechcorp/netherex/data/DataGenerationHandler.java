@@ -202,7 +202,7 @@ public class DataGenerationHandler
         provider.addCampfireRecipe(NetherExItems.COOKED_GHAST_MEAT.get()).ingredient(NetherExItems.GHAST_MEAT.get()).cookTime(600).experience(0.35F).build("cooked_ghast_meat_from_campfire_cooking");
 
         //Misc recipes
-        provider.addShapedRecipe(NetherExItems.DULL_MIRROR.get(), 1).pattern("###").pattern("#*#").pattern("###").key('#', Items.GHAST_TEAR).key('*', Items.GOLD_INGOT).build("dull_mirror");
+        provider.addShapedRecipe(NetherExItems.DULL_MIRROR.get(), 1).pattern("###").pattern("#*#").pattern("###").key('#', Items.GOLD_INGOT).key('*', Items.GHAST_TEAR).build("dull_mirror");
         provider.addRepairRecipe(NetherExItems.DULL_MIRROR.get(), 1).ingredient(Items.GHAST_TEAR).build("dull_mirror_repair");
         provider.addShapedRecipe(NetherExItems.SOUL_GLASS_PANE.get(), 6).pattern("###").pattern("###").key('#', NetherExItems.SOUL_GLASS.get()).build("soul_glass_pane");
         provider.addShapedRecipe(NetherExItems.RIME_BLOCK.get(), 1).pattern("###").pattern("###").pattern("###").key('#', NetherExItems.RIME_CRYSTAL.get()).build("rime_block");

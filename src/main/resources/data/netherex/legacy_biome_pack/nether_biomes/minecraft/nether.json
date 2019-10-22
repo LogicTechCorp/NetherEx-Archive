@@ -50,26 +50,6 @@
         }
     ],
     "features": [
-        {
-            "feature": "libraryex:ore",
-            "feature_config": {
-                "ore_state": {
-                    "Name": "netherex:amethyst_ore"
-                },
-                "target_state": {
-                    "Name": "minecraft:netherrack"
-                },
-                "size": 7
-            },
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 8,
-                "bottom_offset": 10,
-                "top_offset": 30,
-                "maximum": 128
-            },
-            "stage": "underground_ores"
-        }
     ],
     "sub_biomes": [
     ]
