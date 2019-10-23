@@ -19,7 +19,9 @@ package logictechcorp.netherex.world.generation.feature;
 
 import com.mojang.datafixers.Dynamic;
 import logictechcorp.netherex.block.NetherExBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.HugeMushroomBlock;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
@@ -54,9 +56,9 @@ public class RedElderMushroomFeature extends Feature<BigMushroomFeatureConfig>
 
         if(posY >= 1 && (posY + height + 1) < world.getWorld().getDimension().getHeight())
         {
-            BlockState state = world.getBlockState(pos);
+            Block block = world.getBlockState(pos.down()).getBlock();
 
-            if(!state.isValidPosition(world, pos))
+            if(!Block.isDirt(block) && block != Blocks.GRASS_BLOCK && block != Blocks.MYCELIUM && block != NetherExBlocks.HYPHAE.get())
             {
                 return false;
             }
