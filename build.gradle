@@ -102,4 +102,6 @@ task processDevResources(type: Copy) {
     }
 }
 
-build.dependsOn(processDevResources)
+build {
+    dependsOn(processDevResources)
+}
