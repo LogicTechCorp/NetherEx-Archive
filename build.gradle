@@ -17,8 +17,8 @@ version = mod_version
 group = "com.github.logictechcorp"
 archivesBaseName = "${mod_name}-${minecraft_version}"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"

@@ -1,11 +1,5 @@
-/*
-!/src/
-!.gitignore
-!.gitmodules
-!gradlew*
-!/gradle/
-!/README.md
-!build.gradle
-!gradle.properties
-!settings.gradle
-!/LibraryEx/
+/.gradle/
+/.idea/
+/build/
+/out/
+/run/
