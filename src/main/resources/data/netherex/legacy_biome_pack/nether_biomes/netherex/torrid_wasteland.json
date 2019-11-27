@@ -36,7 +36,7 @@
             },
             "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 12,
+                "count": 8,
                 "bottom_offset": 4,
                 "top_offset": 8,
                 "maximum": 128
@@ -56,7 +56,7 @@
             },
             "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 20,
+                "count": 15,
                 "bottom_offset": 4,
                 "top_offset": 0,
                 "maximum": 120
@@ -114,7 +114,7 @@
             },
             "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 4,
+                "count": 3,
                 "bottom_offset": 10,
                 "top_offset": 10,
                 "maximum": 128
@@ -128,7 +128,7 @@
             },
             "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 24,
+                "count": 18,
                 "bottom_offset": 10,
                 "top_offset": 10,
                 "maximum": 128
