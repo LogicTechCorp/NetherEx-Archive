@@ -10,15 +10,6 @@
         "subsurface": {
             "Name": "minecraft:netherrack"
         },
-        "cave_ceiling": {
-            "Name": "minecraft:netherrack"
-        },
-        "cave_wall": {
-            "Name": "minecraft:netherrack"
-        },
-        "cave_floor": {
-            "Name": "minecraft:netherrack"
-        },
         "liquid": {
             "Name": "minecraft:lava"
         }

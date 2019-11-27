@@ -62,7 +62,7 @@ public class HyphaeBlock extends Block
                 {
                     BlockPos randomPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
 
-                    if(world.getBlockState(randomPos).getBlock() == NetherExBlocks.LIVELY_NETHERRACK.get())
+                    if(world.getBlockState(randomPos.up()).getBlock() != this && world.getBlockState(randomPos).getBlock() == NetherExBlocks.LIVELY_NETHERRACK.get())
                     {
                         world.setBlockState(randomPos, state);
                     }

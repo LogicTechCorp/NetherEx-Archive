@@ -10,15 +10,6 @@
         "subsurface": {
             "Name": "netherex:gloomy_netherrack"
         },
-        "cave_ceiling": {
-            "Name": "netherex:gloomy_netherrack"
-        },
-        "cave_wall": {
-            "Name": "netherex:gloomy_netherrack"
-        },
-        "cave_floor": {
-            "Name": "netherex:gloomy_netherrack"
-        },
         "liquid": {
             "Name": "minecraft:lava"
         }

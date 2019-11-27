@@ -1,12 +1,18 @@
 /*
- * Copyright 2014-2017, the Biomes O' Plenty Team
+ * NetherEx
+ * Copyright (c) 2016-2019 by LogicTechCorp
  *
- * This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation version 3 of the License.
  *
- * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- * Original: https://github.com/Glitchfiend/BiomesOPlenty/blob/9873b7ad56ab8f32e6073dea060c4b67aad8b77e/src/main/java/biomesoplenty/common/biome/nether/BOPHellBiome.java#L84
- * Edited to fit a newer Minecraft version
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package logictechcorp.netherex.world.generation.surfacebuilder;
@@ -47,82 +53,45 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
         {
             int posX = chunkX & 15;
             int posZ = chunkZ & 15;
-            BlockState surfaceState = config.getTop();
-            BlockState subsurfaceState = config.getUnder();
-            BlockState caveCeilingState = config.getCaveCeiling();
-            BlockState caveWallState = config.getCaveWall();
-            BlockState caveFloorState = config.getCaveFloor();
-            BlockState liquidState = config.getLiquid();
 
             BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
-            boolean wasLastBlockSolid = true;
+
+            boolean wasLastBlockNonSolid = false;
 
             for(int posY = 127; posY >= 0; posY--)
             {
                 mutablePos = mutablePos.setPos(posX, posY, posZ);
-
                 BlockState checkState = chunk.getBlockState(mutablePos);
-                int blocksToSkip = 0;
 
-                if(checkState == defaultState)
+                if(checkState.isAir(chunk, mutablePos))
                 {
-                    chunk.setBlockState(mutablePos, caveWallState, false);
-
-                    if(!wasLastBlockSolid)
-                    {
-                        chunk.setBlockState(mutablePos, surfaceState, false);
-
-                        for(int floorOffset = 1; floorOffset <= 4 - 1 && posY - floorOffset >= 0; floorOffset++)
-                        {
-                            BlockState state = chunk.getBlockState(mutablePos.setPos(posX, posY - floorOffset, posZ));
-                            blocksToSkip = floorOffset;
-
-                            if(state == defaultState)
-                            {
-                                chunk.setBlockState(mutablePos, subsurfaceState, false);
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-
-                    wasLastBlockSolid = true;
+                    wasLastBlockNonSolid = true;
                 }
-                else if(checkState.isAir())
+                else if(checkState == defaultState)
                 {
-                    if(wasLastBlockSolid)
+                    if(wasLastBlockNonSolid)
                     {
-                        if(posY + 1 <= 127)
+                        if(posY < seaLevel)
                         {
-                            chunk.setBlockState(mutablePos.setPos(posX, posY + 1, posZ), caveFloorState, false);
+                            chunk.setBlockState(mutablePos, config.getLiquid(), false);
                         }
-
-                        for(int roofOffset = 2; roofOffset <= 4 && posY + roofOffset <= 127; roofOffset++)
+                        else
                         {
-                            BlockState state = chunk.getBlockState(mutablePos.setPos(posX, posY + roofOffset, posZ));
-
-                            if(state == defaultState || state == caveWallState)
-                            {
-                                chunk.setBlockState(mutablePos, caveCeilingState, false);
-                            }
-                            else
-                            {
-                                break;
-                            }
+                            chunk.setBlockState(mutablePos, config.getTop(), false);
                         }
                     }
+                    else
+                    {
+                        chunk.setBlockState(mutablePos, config.getUnder(), false);
+                    }
 
-                    wasLastBlockSolid = false;
+                    wasLastBlockNonSolid = false;
                 }
                 else if(checkState == defaultLiquid)
                 {
-                    chunk.setBlockState(mutablePos, liquidState, false);
-                    wasLastBlockSolid = false;
+                    chunk.setBlockState(mutablePos, config.getLiquid(), false);
+                    wasLastBlockNonSolid = true;
                 }
-
-                posY -= blocksToSkip;
             }
         }
     }
@@ -142,9 +111,6 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
     {
         private final BlockState surfaceState;
         private final BlockState subsurfaceState;
-        private final BlockState caveCeilingState;
-        private final BlockState caveWallState;
-        private final BlockState caveFloorState;
         private final BlockState liquidState;
         private final ConfiguredSurfaceBuilder<?> originalBuilder;
 
@@ -152,9 +118,6 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
         {
             this.surfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK);
             this.subsurfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK);
-            this.caveCeilingState = biomeData.getBiomeBlock(BiomeData.BlockType.CAVE_CEILING_BLOCK);
-            this.caveWallState = biomeData.getBiomeBlock(BiomeData.BlockType.CAVE_WALL_BLOCK);
-            this.caveFloorState = biomeData.getBiomeBlock(BiomeData.BlockType.CAVE_FLOOR_BLOCK);
             this.liquidState = biomeData.getBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK);
             this.originalBuilder = biomeData.getBiome().getSurfaceBuilder();
         }
@@ -174,21 +137,6 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
         public BlockState getUnder()
         {
             return this.subsurfaceState;
-        }
-
-        public BlockState getCaveCeiling()
-        {
-            return this.caveCeilingState;
-        }
-
-        public BlockState getCaveWall()
-        {
-            return this.caveWallState;
-        }
-
-        public BlockState getCaveFloor()
-        {
-            return this.caveFloorState;
         }
 
         public BlockState getLiquid()
