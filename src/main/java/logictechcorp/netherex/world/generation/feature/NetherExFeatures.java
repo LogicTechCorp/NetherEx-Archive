@@ -20,7 +20,6 @@ package logictechcorp.netherex.world.generation.feature;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.HellLavaConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -38,6 +37,6 @@ public class NetherExFeatures
     static
     {
         FEATURE_OVERRIDES.register("glowstone_blob", () -> new GlowstoneBlobFeatureOverride(NoFeatureConfig::deserialize));
-        FEATURE_OVERRIDES.register("nether_spring", () -> new NetherSpringOverride(HellLavaConfig::deserialize));
+        FEATURE_OVERRIDES.register("nether_spring", () -> new NetherSpringOverride(NetherSpringOverride::deserialize));
     }
 }

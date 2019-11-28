@@ -40,12 +40,9 @@
                 },
                 "target_area": "on_ground"
             },
-            "placement": "minecraft:count_range",
+            "placement": "minecraft:hell_fire",
             "placement_config": {
-                "count": 5,
-                "bottom_offset": 4,
-                "top_offset": 0,
-                "maximum": 120
+                "count": 5
             },
             "stage": "underground_decoration"
         },

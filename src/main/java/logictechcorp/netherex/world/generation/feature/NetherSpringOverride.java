@@ -17,6 +17,7 @@
 
 package logictechcorp.netherex.world.generation.feature;
 
+import com.google.gson.JsonObject;
 import com.mojang.datafixers.Dynamic;
 import logictechcorp.netherex.data.NetherExTags;
 import net.minecraft.block.Blocks;
@@ -115,4 +116,24 @@ public class NetherSpringOverride extends NetherSpringFeature
         }
     }
 
+    public static <T> HellLavaConfig deserialize(Dynamic<T> dynamic)
+    {
+        boolean insideRock = dynamic.get("inside_rock").asBoolean(false);
+
+        T dynamicValue = dynamic.getValue();
+
+        if(dynamicValue instanceof JsonObject)
+        {
+            JsonObject object = (JsonObject) dynamicValue;
+
+            if(object.has("inside_rock") && object.get("inside_rock").getAsBoolean())
+            {
+                insideRock = true;
+            }
+        }
+
+        System.out.println(insideRock);
+
+        return new HellLavaConfig(insideRock);
+    }
 }

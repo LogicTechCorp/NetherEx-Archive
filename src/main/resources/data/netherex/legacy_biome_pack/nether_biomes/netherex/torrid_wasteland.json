@@ -36,7 +36,7 @@
             },
             "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 8,
+                "count": 12,
                 "bottom_offset": 4,
                 "top_offset": 8,
                 "maximum": 128
@@ -54,12 +54,9 @@
                 },
                 "target_area": "on_ground"
             },
-            "placement": "minecraft:count_range",
+            "placement": "minecraft:hell_fire",
             "placement_config": {
-                "count": 15,
-                "bottom_offset": 4,
-                "top_offset": 0,
-                "maximum": 120
+                "count": 30
             },
             "stage": "underground_decoration"
         },
@@ -114,7 +111,7 @@
             },
             "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 3,
+                "count": 5,
                 "bottom_offset": 10,
                 "top_offset": 10,
                 "maximum": 128
@@ -128,7 +125,7 @@
             },
             "placement": "minecraft:count_range",
             "placement_config": {
-                "count": 18,
+                "count": 24,
                 "bottom_offset": 10,
                 "top_offset": 10,
                 "maximum": 128
