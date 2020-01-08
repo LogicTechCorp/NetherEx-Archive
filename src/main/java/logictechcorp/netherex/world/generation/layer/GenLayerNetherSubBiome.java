@@ -10,8 +10,8 @@
 
 package logictechcorp.netherex.world.generation.layer;
 
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.netherex.api.NetherExAPI;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.netherex.NetherEx;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
@@ -47,7 +47,7 @@ public class GenLayerNetherSubBiome extends GenLayer
         {
             for(int x = 0; x < areaWidth; x++)
             {
-                this.initChunkSeed((long) (x + areaX), (long) (y + areaY));
+                this.initChunkSeed((x + areaX), (y + areaY));
                 int biomeId = biomeIds[x + 1 + (y + 1) * (outerWidth)];
 
                 int subBiomeChance = (subBiomeChances[x + 1 + (y + 1) * (outerWidth)] % 29);
@@ -123,13 +123,13 @@ public class GenLayerNetherSubBiome extends GenLayer
 
         if(biome != null)
         {
-            IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(biome);
+            BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome);
 
             if(biomeData != null)
             {
                 List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>();
 
-                for(IBiomeData subBiomeData : biomeData.getSubBiomes())
+                for(BiomeData subBiomeData : biomeData.getSubBiomes())
                 {
                     if(subBiomeData != null && subBiomeData.isEnabled())
                     {

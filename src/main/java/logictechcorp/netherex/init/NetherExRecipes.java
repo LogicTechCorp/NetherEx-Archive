@@ -40,7 +40,6 @@ public class NetherExRecipes
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.LIVELY_NETHERBRICK), new ItemStack(NetherExBlocks.LIVELY_NETHERRACK), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.FIERY_NETHERBRICK), new ItemStack(NetherExBlocks.FIERY_NETHERRACK), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.ICY_NETHERBRICK), new ItemStack(NetherExBlocks.ICY_NETHERRACK), 0.5F);
-        RecipeHelper.addSmelting(new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE), new ItemStack(NetherExBlocks.SOUL_SANDSTONE), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(NetherExBlocks.SOUL_GLASS), new ItemStack(Blocks.SOUL_SAND), 0.5F);
         RecipeHelper.addSmelting(new ItemStack(Items.QUARTZ), new ItemStack(NetherExBlocks.QUARTZ_ORE), 0.0F);
         RecipeHelper.addSmelting(new ItemStack(NetherExItems.AMETHYST_CRYSTAL), new ItemStack(NetherExBlocks.AMETHYST_ORE), 0.0F);

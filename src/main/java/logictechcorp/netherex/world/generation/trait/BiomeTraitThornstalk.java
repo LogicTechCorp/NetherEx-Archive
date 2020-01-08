@@ -58,7 +58,7 @@ public class BiomeTraitThornstalk extends BiomeTrait
         return true;
     }
 
-    public static class Builder extends BiomeTrait.Builder
+    public static class Builder extends BiomeTrait.Builder<BiomeTraitThornstalk>
     {
         @Override
         public BiomeTraitThornstalk create()

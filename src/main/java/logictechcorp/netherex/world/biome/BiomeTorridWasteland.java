@@ -17,10 +17,8 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.api.world.biome.BiomeBlockType;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.api.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.*;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityEmber;
@@ -48,15 +46,12 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     }
 
     @Override
-    public IBiomeData getBiomeData()
+    public BiomeData getBiomeData()
     {
-        IBiomeData biomeData = new BiomeData(NetherExBiomes.TORRID_WASTELAND, 6, true, false, true);
-        biomeData.addBiomeBlock(BiomeBlockType.SURFACE_BLOCK, FIERY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.SUBSURFACE_BLOCK, FIERY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_CEILING_BLOCK, FIERY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_WALL_BLOCK, FIERY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_FLOOR_BLOCK, FIERY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.FLUID_BLOCK, LAVA);
+        BiomeData biomeData = new BiomeData(NetherExBiomes.TORRID_WASTELAND, 6, true, false);
+        biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, FIERY_NETHERRACK);
+        biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, FIERY_NETHERRACK);
+        biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);
         biomeData.addBiomeTrait(GenerationStage.TERRAIN_ALTERATION, BiomeTraitPool.create(trait ->
         {
             trait.generationAttempts(8);

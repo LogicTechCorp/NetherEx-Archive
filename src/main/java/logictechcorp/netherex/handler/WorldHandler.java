@@ -18,10 +18,7 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.village.PigtificateTradeConfigManager;
 import logictechcorp.netherex.village.PigtificateVillageData;
-import logictechcorp.netherex.village.PigtificateVillageManager;
-import logictechcorp.netherex.world.biome.NetherBiomeDataConfigManager;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
@@ -41,11 +38,13 @@ public class WorldHandler
         {
             if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
             {
-                NetherBiomeDataConfigManager.readBiomeDataConfigs();
-                PigtificateTradeConfigManager.readTradeConfigs();
+                NetherEx.BIOME_DATA_MANAGER.createBiomeDataConfigs(event);
+                NetherEx.PIGTIFICATE_VILLAGE_MANAGER.createPigtificateTradeConfigs(event);
+                NetherEx.BIOME_DATA_MANAGER.readBiomeDataConfigs(event);
+                NetherEx.PIGTIFICATE_VILLAGE_MANAGER.readPigtificateTradeConfigs(event);
             }
 
-            PigtificateVillageManager.loadVillageData(world);
+            NetherEx.PIGTIFICATE_VILLAGE_MANAGER.loadVillageData(event);
         }
     }
 
@@ -58,7 +57,7 @@ public class WorldHandler
         {
             if(!world.isRemote)
             {
-                PigtificateVillageData data = PigtificateVillageManager.getVillageData(world, false);
+                PigtificateVillageData data = NetherEx.PIGTIFICATE_VILLAGE_MANAGER.getVillageData(world, false);
 
                 if(data != null)
                 {
@@ -75,13 +74,13 @@ public class WorldHandler
 
         if(!world.isRemote)
         {
+            NetherEx.PIGTIFICATE_VILLAGE_MANAGER.unloadVillageData(event);
+
             if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
             {
-                NetherBiomeDataConfigManager.writeBiomeDataConfigs();
-                PigtificateTradeConfigManager.writeTradeConfigs();
+                NetherEx.BIOME_DATA_MANAGER.cleanup(event);
+                NetherEx.PIGTIFICATE_VILLAGE_MANAGER.cleanup(event);
             }
-
-            PigtificateVillageManager.unloadVillageData(world);
         }
     }
 }

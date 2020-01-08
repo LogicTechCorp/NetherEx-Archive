@@ -39,9 +39,6 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class GuiScreenHandler
 {
-    private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
-    private static GuiButton resetNetherButton;
-
     @SubscribeEvent
     public static void onGuiOpen(GuiOpenEvent event)
     {
@@ -53,88 +50,5 @@ public class GuiScreenHandler
             ConfigHandler.internalConfig.doNotChange.warnBreakingChanges = false;
             MinecraftForge.EVENT_BUS.post(new ConfigChangedEvent.OnConfigChangedEvent(NetherEx.MOD_ID, NetherEx.NAME, false, false));
         }
-    }
-
-    @SubscribeEvent
-    public static void onInitGuiPost(GuiScreenEvent.InitGuiEvent.Post event)
-    {
-        GuiScreen guiScreen = event.getGui();
-        List<GuiButton> guiButtons = event.getButtonList();
-
-        if(guiScreen instanceof GuiWorldSelection)
-        {
-            resetNetherButton = new GuiButton(getButtonId(guiButtons), guiScreen.width / 2 - 154, 6, 90, 20, I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether"));
-            resetNetherButton.enabled = false;
-            guiButtons.add(resetNetherButton);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onMousePressed(GuiScreenEvent.MouseInputEvent.Post event)
-    {
-        GuiScreen guiScreen = event.getGui();
-
-        if(guiScreen instanceof GuiWorldSelection)
-        {
-            GuiListWorldSelection guiWorldList = ReflectionHelper.getPrivateValue(GuiWorldSelection.class, (GuiWorldSelection) guiScreen, "field_184866_u", "selectionList");
-
-            if(guiWorldList.getSelectedWorld() != null)
-            {
-                resetNetherButton.enabled = true;
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onActionPerformed(GuiScreenEvent.ActionPerformedEvent.Post event)
-    {
-        GuiScreen guiScreen = event.getGui();
-        GuiButton guiButton = event.getButton();
-
-        if(guiScreen instanceof GuiWorldSelection)
-        {
-            if(guiButton == resetNetherButton)
-            {
-                GuiListWorldSelection guiWorldList = ReflectionHelper.getPrivateValue(GuiWorldSelection.class, (GuiWorldSelection) guiScreen, "field_184866_u", "selectionList");
-                GuiListWorldSelectionEntry guiWorld = guiWorldList.getSelectedWorld();
-
-                if(guiWorld != null)
-                {
-                    WorldSummary worldSummary = ReflectionHelper.getPrivateValue(GuiListWorldSelectionEntry.class, guiWorld, "field_186786_g", "worldSummary");
-                    String worldDisplayName = worldSummary.getDisplayName();
-
-                    MINECRAFT.displayGuiScreen(new GuiYesNo((result, id) ->
-                    {
-                        if(result)
-                        {
-                            MINECRAFT.displayGuiScreen(new GuiScreenWorking());
-                            ISaveFormat saveFormat = MINECRAFT.getSaveLoader();
-                            saveFormat.flushCache();
-                            saveFormat.deleteWorldDirectory(worldSummary.getFileName() + "/DIM-1");
-                            guiWorldList.refreshList();
-                        }
-
-                        MINECRAFT.displayGuiScreen(guiWorldList.getGuiWorldSelection());
-                    }, I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_question", worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset_nether_warning", worldDisplayName, worldDisplayName), I18n.format("gui." + NetherEx.MOD_ID + ":select_world.reset"), I18n.format("gui.cancel"), 0));
-                }
-            }
-        }
-    }
-
-    private static int getButtonId(List<GuiButton> buttons)
-    {
-        int buttonId = 0;
-
-        buttons.sort(Comparator.comparingInt(button -> button.id));
-
-        for(GuiButton button : buttons)
-        {
-            if(buttonId == button.id)
-            {
-                buttonId++;
-            }
-        }
-
-        return buttonId;
     }
 }

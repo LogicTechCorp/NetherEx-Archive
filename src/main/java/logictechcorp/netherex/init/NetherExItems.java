@@ -57,7 +57,6 @@ public class NetherExItems
     public static final ItemRimeAndSteel RIME_AND_STEEL = InjectionHelper.nullValue();
     public static final ItemMod SPORE = InjectionHelper.nullValue();
     public static final ItemMod COOLMAR_SPIDER_FANG = InjectionHelper.nullValue();
-    public static final ItemMod RIPPER_CLAW = InjectionHelper.nullValue();
     public static final ItemMod GHAST_QUEEN_TEAR = InjectionHelper.nullValue();
     public static final ItemObsidianBoat OBSIDIAN_BOAT = InjectionHelper.nullValue();
     public static final ItemModEdible GHAST_MEAT_RAW = InjectionHelper.nullValue();
@@ -122,7 +121,6 @@ public class NetherExItems
                     new ItemRimeAndSteel(),
                     new ItemMod(NetherEx.getResource("spore"), DEFAULT_ITEM_PROPERTIES),
                     new ItemMod(NetherEx.getResource("coolmar_spider_fang"), DEFAULT_ITEM_PROPERTIES),
-                    //new ItemMod(NetherEx.getResource("ripper_claw"), DEFAULT_ITEM_PROPERTIES),
                     new ItemMod(NetherEx.getResource("ghast_queen_tear"), DEFAULT_ITEM_PROPERTIES),
                     new ItemObsidianBoat(),
                     new ItemModEdible(NetherEx.getResource("ghast_meat_raw"), (ItemEdibleProperties) new ItemEdibleProperties(4, 0.5F, false).creativeTab(NetherEx.instance.getCreativeTab())).setPotionEffect(new PotionEffect(MobEffects.LEVITATION, 100, 1), 1.0F).setAlwaysEdible(),

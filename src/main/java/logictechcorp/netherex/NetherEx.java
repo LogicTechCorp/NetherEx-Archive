@@ -17,17 +17,13 @@
 
 package logictechcorp.netherex;
 
+import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.LibraryEx;
-import logictechcorp.libraryex.api.IModData;
-import logictechcorp.libraryex.api.IProxy;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeDataRegistry;
-import logictechcorp.netherex.api.NetherExAPI;
-import logictechcorp.netherex.api.internal.INetherExAPI;
+import logictechcorp.libraryex.proxy.IProxy;
+import logictechcorp.libraryex.world.biome.data.BiomeDataManager;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
-import logictechcorp.netherex.village.PigtificateTradeConfigManager;
-import logictechcorp.netherex.world.biome.NetherBiomeDataConfigManager;
-import logictechcorp.netherex.world.biome.NetherExBiomeDataRegistry;
+import logictechcorp.netherex.village.PigtificateVillageManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -50,12 +46,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 @Mod(modid = NetherEx.MOD_ID, name = NetherEx.NAME, version = NetherEx.VERSION, dependencies = NetherEx.DEPENDENCIES)
-public class NetherEx implements IModData, INetherExAPI
+public class NetherEx implements IModData
 {
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.0.15";
-    public static final String DEPENDENCIES = "required-after:libraryex@[1.0.11,);";
+    public static final String VERSION = "2.1.0";
+    public static final String DEPENDENCIES = "required-after:libraryex@[1.1.0,);";
 
     public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
 
@@ -74,7 +70,8 @@ public class NetherEx implements IModData, INetherExAPI
             return new ItemStack(Blocks.NETHERRACK);
         }
     };
-
+    public static final BiomeDataManager BIOME_DATA_MANAGER = new BiomeDataManager(MOD_ID, NAME);
+    public static final PigtificateVillageManager PIGTIFICATE_VILLAGE_MANAGER = new PigtificateVillageManager();
     public static final Logger LOGGER = LogManager.getLogger("NetherEx");
 
     static
@@ -98,7 +95,6 @@ public class NetherEx implements IModData, INetherExAPI
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        NetherExAPI.setInstance(this);
         NetherExOverrides.overrideObjects();
         proxy.preInit();
     }
@@ -113,16 +109,14 @@ public class NetherEx implements IModData, INetherExAPI
         NetherExOreDictionary.registerOres();
         NetherExCriteria.registerCriteria();
         IMCHandler.sendCompatibilityMessages();
-        NetherBiomeDataConfigManager.readBiomeDataConfigs();
-        PigtificateTradeConfigManager.readTradeConfigs();
         proxy.init();
     }
 
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        NetherBiomeDataConfigManager.writeBiomeDataConfigs();
-        PigtificateTradeConfigManager.writeTradeConfigs();
+        BIOME_DATA_MANAGER.setup();
+        PIGTIFICATE_VILLAGE_MANAGER.setup();
         proxy.postInit();
     }
 
@@ -142,18 +136,6 @@ public class NetherEx implements IModData, INetherExAPI
     public CreativeTabs getCreativeTab()
     {
         return CREATIVE_TAB;
-    }
-
-    @Override
-    public boolean isStub()
-    {
-        return false;
-    }
-
-    @Override
-    public IBiomeDataRegistry getBiomeDataRegistry()
-    {
-        return NetherExBiomeDataRegistry.INSTANCE;
     }
 
     public static ResourceLocation getResource(String name)

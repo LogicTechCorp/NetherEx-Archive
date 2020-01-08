@@ -17,10 +17,8 @@
 
 package logictechcorp.netherex.world.biome.data;
 
-import logictechcorp.libraryex.api.world.biome.BiomeBlockType;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.api.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
@@ -31,17 +29,14 @@ import net.minecraft.util.EnumFacing;
 
 public final class BiomeDataHell extends BiomeData
 {
-    public static final IBiomeData INSTANCE = new BiomeDataHell();
+    public static final BiomeData INSTANCE = new BiomeDataHell();
 
     private BiomeDataHell()
     {
-        super(Biomes.HELL, 10, true, false, true);
-        this.addBiomeBlock(BiomeBlockType.SURFACE_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.addBiomeBlock(BiomeBlockType.SUBSURFACE_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.addBiomeBlock(BiomeBlockType.CAVE_CEILING_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.addBiomeBlock(BiomeBlockType.CAVE_WALL_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.addBiomeBlock(BiomeBlockType.CAVE_FLOOR_BLOCK, Blocks.NETHERRACK.getDefaultState());
-        this.addBiomeBlock(BiomeBlockType.FLUID_BLOCK, Blocks.LAVA.getDefaultState());
+        super(Biomes.HELL, 10, true, false);
+        this.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, Blocks.NETHERRACK.getDefaultState());
+        this.addBiomeBlock(BlockType.LIQUID_BLOCK, Blocks.LAVA.getDefaultState());
         this.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitFluid.create(trait ->
         {
             trait.generationAttempts(8);

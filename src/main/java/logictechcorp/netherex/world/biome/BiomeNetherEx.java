@@ -17,15 +17,15 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.api.IModData;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
+import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.world.biome.BiomeMod;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.netherex.world.biome.design.BiomeDecoratorNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeDecorator;
 
-public abstract class BiomeNetherEx extends BiomeMod<IBiomeData>
+public abstract class BiomeNetherEx extends BiomeMod<BiomeData>
 {
     protected static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
     protected static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
@@ -47,5 +47,5 @@ public abstract class BiomeNetherEx extends BiomeMod<IBiomeData>
     }
 
     @Override
-    public abstract IBiomeData getBiomeData();
+    public abstract BiomeData getBiomeData();
 }

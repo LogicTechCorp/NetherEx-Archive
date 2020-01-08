@@ -17,10 +17,8 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.api.world.biome.BiomeBlockType;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.api.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
@@ -55,15 +53,12 @@ public class BiomeFungiForest extends BiomeNetherEx
     }
 
     @Override
-    public IBiomeData getBiomeData()
+    public BiomeData getBiomeData()
     {
-        IBiomeData biomeData = new BiomeData(NetherExBiomes.FUNGI_FOREST, 4, true, false, true);
-        biomeData.addBiomeBlock(BiomeBlockType.SURFACE_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
-        biomeData.addBiomeBlock(BiomeBlockType.SUBSURFACE_BLOCK, LIVELY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_CEILING_BLOCK, LIVELY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_WALL_BLOCK, LIVELY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_FLOOR_BLOCK, LIVELY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.FLUID_BLOCK, LAVA);
+        BiomeData biomeData = new BiomeData(NetherExBiomes.FUNGI_FOREST, 4, true, false);
+        biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
+        biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, LIVELY_NETHERRACK);
+        biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitCluster.create(trait ->
         {
             trait.generationAttempts(10);

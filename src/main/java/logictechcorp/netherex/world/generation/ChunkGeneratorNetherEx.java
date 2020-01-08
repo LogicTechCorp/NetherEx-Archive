@@ -17,11 +17,9 @@
 
 package logictechcorp.netherex.world.generation;
 
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
 import logictechcorp.libraryex.event.LibExEventFactory;
-import logictechcorp.netherex.api.NetherExAPI;
-import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.world.biome.design.BiomeStyler;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -61,7 +59,6 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private NoiseGeneratorOctaves netherrackNoiseGen;
     private NoiseGeneratorOctaves scaleNoiseGen;
     private NoiseGeneratorOctaves depthNoiseGen;
-    private NoiseGeneratorPerlin terrainNoiseGen;
 
     private double[] heightmap;
     private double[] netherrackNoise = new double[256];
@@ -70,7 +67,6 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private double[] noiseLevels;
     private double[] lowerNoiseData;
     private double[] upperNoiseData;
-    private double[] terrainNoise = new double[256];
     private double[] scaleNoise;
     private double[] depthNoise;
     private Biome[] biomesForGeneration;
@@ -91,7 +87,6 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.netherrackNoiseGen = new NoiseGeneratorOctaves(this.random, 4);
         this.scaleNoiseGen = new NoiseGeneratorOctaves(this.random, 10);
         this.depthNoiseGen = new NoiseGeneratorOctaves(this.random, 16);
-        this.terrainNoiseGen = new NoiseGeneratorPerlin(this.random, 4);
 
         InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(this.lowerNoiseGen, this.upperNoiseGen, this.noiseLevelsGen, this.soulSandGravelNoiseGen, this.netherrackNoiseGen, this.scaleNoiseGen, this.depthNoiseGen);
         ctx = TerrainGen.getModdedNoiseGenerators(this.world, this.random, ctx);
@@ -196,84 +191,65 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.soulSandNoise = this.soulSandGravelNoiseGen.generateNoiseOctaves(this.soulSandNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.03125D, 0.03125D, 1.0D);
         this.gravelNoise = this.soulSandGravelNoiseGen.generateNoiseOctaves(this.gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
         this.netherrackNoise = this.netherrackNoiseGen.generateNoiseOctaves(this.netherrackNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
+        BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
 
-        for(int x = 0; x < 16; x++)
+        for(int posX = 0; posX < 16; posX++)
         {
-            for(int z = 0; z < 16; z++)
+            for(int posZ = 0; posZ < 16; posZ++)
             {
-                int l = (int) (this.netherrackNoise[x + z * 16] / 3.0D + 3.0D + this.random.nextDouble() * 0.25D);
-                int i1 = -1;
-                boolean genSoulSand = this.soulSandNoise[x + z * 16] + this.random.nextDouble() * 0.2D > 0.0D;
-                boolean genGravel = this.gravelNoise[x + z * 16] + this.random.nextDouble() * 0.2D > 0.0D;
+                BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(world.getBiome(blockPos.add(posX, 0, posZ)));
+                IBlockState surfaceState = Blocks.NETHERRACK.getDefaultState();
+                IBlockState subSurfaceState = Blocks.NETHERRACK.getDefaultState();
+                IBlockState liquidState = Blocks.LAVA.getDefaultState();
 
-                IBlockState floorTopBlock = Blocks.NETHERRACK.getDefaultState();
-                IBlockState floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
-
-                for(int y = 127; y >= 0; y--)
+                if(biomeData != null)
                 {
-                    if(y < 124 && y > 3)
+                    surfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK);
+                    subSurfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK);
+                    liquidState = biomeData.getBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK);
+                }
+
+                boolean wasLastBlockNonSolid = false;
+
+                for(int posY = 127; posY >= 0; posY--)
+                {
+                    if (posY < 127 - this.random.nextInt(5) && posY > this.random.nextInt(5))
                     {
-                        IBlockState checkBlock = primer.getBlockState(x, y, z);
+                        IBlockState checkState = primer.getBlockState(posX, posY, posZ);
 
-                        if(checkBlock.getMaterial() != Material.AIR)
+                        if(checkState.getMaterial() == Material.AIR)
                         {
-                            if(checkBlock == Blocks.NETHERRACK.getDefaultState())
+                            wasLastBlockNonSolid = true;
+                        }
+                        else if(checkState == Blocks.NETHERRACK.getDefaultState())
+                        {
+                            if(wasLastBlockNonSolid)
                             {
-                                if(i1 == -1)
+                                if(posY < world.getSeaLevel())
                                 {
-                                    if(l <= 0)
-                                    {
-                                        floorTopBlock = Blocks.AIR.getDefaultState();
-                                        floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
-                                    }
-                                    else if(y >= 62 && y <= 66)
-                                    {
-                                        floorTopBlock = Blocks.NETHERRACK.getDefaultState();
-                                        floorFillerBlock = Blocks.NETHERRACK.getDefaultState();
-
-                                        if(ConfigHandler.dimensionConfig.nether.generateGravel && genGravel)
-                                        {
-                                            floorTopBlock = Blocks.GRAVEL.getDefaultState();
-                                        }
-
-                                        if(ConfigHandler.dimensionConfig.nether.generateSoulSand && genSoulSand)
-                                        {
-                                            floorTopBlock = Blocks.SOUL_SAND.getDefaultState();
-                                            floorFillerBlock = Blocks.SOUL_SAND.getDefaultState();
-                                        }
-                                    }
-
-                                    if(y <= 32 && (floorTopBlock == null || floorTopBlock.getMaterial() == Material.AIR))
-                                    {
-                                        floorTopBlock = Blocks.LAVA.getDefaultState();
-                                    }
-
-                                    i1 = l;
-
-                                    if(y >= 64)
-                                    {
-                                        primer.setBlockState(x, y, z, floorTopBlock);
-                                    }
-                                    else
-                                    {
-                                        primer.setBlockState(x, y, z, floorFillerBlock);
-                                    }
+                                    primer.setBlockState(posX, posY, posZ, liquidState);
                                 }
-                                else if(i1 > 0)
+                                else
                                 {
-                                    i1--;
-                                    primer.setBlockState(x, y, z, floorFillerBlock);
+                                    primer.setBlockState(posX, posY, posZ, surfaceState);
                                 }
                             }
+                            else
+                            {
+                                primer.setBlockState(posX, posY, posZ, subSurfaceState);
+                            }
+
+                            wasLastBlockNonSolid = false;
                         }
-                        else
+                        else if(checkState == Blocks.LAVA.getDefaultState())
                         {
-                            i1 = -1;
+                            primer.setBlockState(posX, posY, posZ, liquidState);
+                            wasLastBlockNonSolid = true;
                         }
                     }
                     else
                     {
-                        primer.setBlockState(x, y, z, Blocks.BEDROCK.getDefaultState());
+                        primer.setBlockState(posX, posY, posZ, Blocks.BEDROCK.getDefaultState());
                     }
                 }
             }
@@ -306,11 +282,11 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         for(int y = 0; y < sizeY; y++)
         {
             heightAdjustments[y] = Math.cos((double) y * Math.PI * 6.0D / (double) sizeY) * 2.0D;
-            double adjustedY = (double) y;
+            double adjustedY = y;
 
             if(y > sizeY / 2)
             {
-                adjustedY = (double) (sizeY - 1 - y);
+                adjustedY = (sizeY - 1 - y);
             }
 
             if(adjustedY < 4.0D)
@@ -351,7 +327,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
                     if(y > sizeY - 4)
                     {
-                        double distance = (double) ((float) (y - (sizeY - 4)) / 3.0F);
+                        double distance = ((float) (y - (sizeY - 4)) / 3.0F);
                         height = height * (1.0D - distance) + -10.0D * distance;
                     }
 
@@ -381,7 +357,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.buildSurfaces(chunkX, chunkZ, primer);
 
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         this.netherCaves.generate(this.world, chunkX, chunkZ, primer);
 
@@ -392,8 +368,6 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
                 this.netherFortress.generate(this.world, chunkX, chunkZ, primer);
             }
         }
-
-        BiomeStyler.styleBiome(this.world, this, primer, chunkX, chunkZ, this.terrainNoiseGen, this.terrainNoise, this.biomesForGeneration, this.random);
 
         Chunk chunk = new Chunk(this.world, primer, chunkX, chunkZ);
         byte[] biomeArray = chunk.getBiomeArray();
@@ -414,7 +388,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     {
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         BlockFalling.fallInstantly = true;
         this.netherFortress.generateStructure(this.world, this.random, chunkPos);
@@ -457,8 +431,16 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
             }
         }
 
-        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(pos));
-        return creatureType == null || biomeData == null ? new ArrayList<>() : biomeData.getEntitySpawns(creatureType);
+        Biome biome = this.world.getBiome(pos);
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome);
+        List<Biome.SpawnListEntry> spawns = new ArrayList<>(biome.getSpawnableList(creatureType));
+
+        if(biomeData != null)
+        {
+            spawns.addAll(biomeData.getEntitySpawns(creatureType));
+        }
+
+        return spawns;
     }
 
     @Override
@@ -487,7 +469,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     public void recreateStructures(Chunk chunk, int chunkX, int chunkZ)
     {
         BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
 
         if(this.generateStructures)
         {

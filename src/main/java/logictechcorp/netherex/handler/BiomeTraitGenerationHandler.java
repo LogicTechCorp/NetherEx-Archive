@@ -17,12 +17,11 @@
 
 package logictechcorp.netherex.handler;
 
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.api.world.generation.GenerationStage;
-import logictechcorp.libraryex.api.world.generation.trait.IBiomeTrait;
 import logictechcorp.libraryex.utility.RandomHelper;
+import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.libraryex.world.generation.GenerationStage;
+import logictechcorp.libraryex.world.generation.trait.BiomeTrait;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.api.NetherExAPI;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -83,11 +82,11 @@ public class BiomeTraitGenerationHandler
 
     private static void generateBiomeTraits(World world, BlockPos pos, Random random, GenerationStage generationStage)
     {
-        IBiomeData biomeData = NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeData(world.getBiome(pos.add(16, 0, 16)));
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(world.getBiome(pos.add(16, 0, 16)));
 
         if(biomeData != null)
         {
-            for(IBiomeTrait trait : biomeData.getBiomeTraits(generationStage))
+            for(BiomeTrait trait : biomeData.getBiomeTraits(generationStage))
             {
                 for(int generationAttempts = 0; generationAttempts < trait.getGenerationAttempts(world, pos, random); generationAttempts++)
                 {

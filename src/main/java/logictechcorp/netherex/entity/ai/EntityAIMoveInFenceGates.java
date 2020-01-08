@@ -18,6 +18,7 @@
 package logictechcorp.netherex.entity.ai;
 
 import logictechcorp.libraryex.utility.WorldHelper;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.village.PigtificateVillage;
 import logictechcorp.netherex.village.PigtificateVillageFenceGateInfo;
 import logictechcorp.netherex.village.PigtificateVillageManager;
@@ -53,13 +54,13 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
             {
                 return false;
             }
-            else if(this.insidePosX != -1 && this.creature.getDistanceSq((double) this.insidePosX, this.creature.posY, (double) this.insidePosZ) < 4.0D)
+            else if(this.insidePosX != -1 && this.creature.getDistanceSq(this.insidePosX, this.creature.posY, this.insidePosZ) < 4.0D)
             {
                 return false;
             }
             else
             {
-                PigtificateVillage village = PigtificateVillageManager.getVillageData(world, true).getNearestVillage(pos, 14);
+                PigtificateVillage village = NetherEx.PIGTIFICATE_VILLAGE_MANAGER.getVillageData(world, true).getNearestVillage(pos, 14);
 
                 if(village == null)
                 {

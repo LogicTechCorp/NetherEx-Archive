@@ -111,6 +111,30 @@ public class RemapHandler
             .put("nex:fence_gate_brick_nether_lively", "netherex:lively_nether_brick_fence_gate")
             .put("nex:fence_gate_brick_nether_gloomy", "netherex:gloomy_nether_brick_fence_gate")
 
+            //Unreleased blocks
+            .put("netherex:possessed_soul_sand", "minecraft:air")
+            .put("netherex:soul_sandstone", "minecraft:air")
+            .put("netherex:cut_soul_sandstone", "minecraft:air")
+            .put("netherex:chiseled_soul_sandstone", "minecraft:air")
+            .put("netherex:smooth_soul_sandstone", "minecraft:air")
+            .put("netherex:spoul_vines", "minecraft:air")
+            .put("netherex:spoul_fruit", "minecraft:air")
+            .put("netherex:spoul_shroom", "minecraft:air")
+            .put("netherex:spoul_shroom_cap", "minecraft:air")
+            .put("netherex:spoul_shroom_stem", "minecraft:air")
+            .put("netherex:soul_sandstone_slab", "minecraft:air")
+            .put("netherex:cut_soul_sandstone_slab", "minecraft:air")
+            .put("netherex:chiseled_soul_sandstone_slab", "minecraft:air")
+            .put("netherex:smooth_soul_sandstone_slab", "minecraft:air")
+            .put("netherex:soul_sandstone_stairs", "minecraft:air")
+            .put("netherex:cut_soul_sandstone_stairs", "minecraft:air")
+            .put("netherex:chiseled_soul_sandstone_stairs", "minecraft:air")
+            .put("netherex:smooth_soul_sandstone_stairs", "minecraft:air")
+            .put("netherex:soul_sandstone_wall", "minecraft:air")
+            .put("netherex:cut_soul_sandstone_wall", "minecraft:air")
+            .put("netherex:chiseled_soul_sandstone_wall", "minecraft:air")
+            .put("netherex:smooth_soul_sandstone_wall", "minecraft:air")
+
             //Items
             .put("nex:item_brick_nether", "netherex:netherbrick")
             .put("nex:item_bone_wither", "netherex:wither_bone")
@@ -135,6 +159,9 @@ public class RemapHandler
             .put("nex:armor_chestplate_hide_salamander", "netherex:salamander_hide_chestplate")
             .put("nex:armor_leggings_hide_salamander", "netherex:salamander_hide_leggings")
             .put("nex:armor_boots_hide_salamander", "netherex:salamander_hide_boots")
+
+            //Unreleased items
+            .put(NetherEx.MOD_ID + ":ripper_claw", "minecraft:air")
 
             //Biomes
             .put("nex:hell", "minecraft:hell")
@@ -210,8 +237,15 @@ public class RemapHandler
 
             if(registry.containsKey(replacementMapping) && entry != null)
             {
-                missingMapping.remap(entry);
-                NetherEx.LOGGER.info("Remapped {} {} to {}.", registry.getRegistrySuperType().getSimpleName(), missingMapping.key, replacementMapping);
+                if(!entry.getRegistryName().toString().equals("minecraft:air"))
+                {
+                    missingMapping.remap(entry);
+                    NetherEx.LOGGER.info("Remapped {} {} to {}.", registry.getRegistrySuperType().getSimpleName(), missingMapping.key, replacementMapping);
+                }
+                else
+                {
+                    missingMapping.ignore();
+                }
             }
         }
         else if(oldMapping.contains("nex"))

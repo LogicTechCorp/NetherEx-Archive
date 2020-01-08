@@ -17,9 +17,9 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.api.world.generation.trait.IBiomeTrait;
 import logictechcorp.libraryex.block.BlockModSmallMushroom;
 import logictechcorp.libraryex.block.property.BlockProperties;
+import logictechcorp.libraryex.world.generation.trait.BiomeTrait;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitBigMushroom;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.SoundType;
@@ -44,7 +44,7 @@ public class BlockElderMushroom extends BlockModSmallMushroom
     public void grow(World world, Random random, BlockPos pos, IBlockState state)
     {
         world.setBlockToAir(pos);
-        IBiomeTrait elderMushroom = null;
+        BiomeTrait elderMushroom = null;
 
         if(this == NetherExBlocks.BROWN_ELDER_MUSHROOM)
         {

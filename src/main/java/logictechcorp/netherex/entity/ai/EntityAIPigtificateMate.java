@@ -17,6 +17,7 @@
 
 package logictechcorp.netherex.entity.ai;
 
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
 import logictechcorp.netherex.village.PigtificateVillage;
 import logictechcorp.netherex.village.PigtificateVillageManager;
@@ -55,7 +56,7 @@ public class EntityAIPigtificateMate extends EntityAIBase
         }
         else
         {
-            this.village = PigtificateVillageManager.getVillageData(this.world, true).getNearestVillage(new BlockPos(this.pigtificate), 0);
+            this.village = NetherEx.PIGTIFICATE_VILLAGE_MANAGER.getVillageData(this.world, true).getNearestVillage(new BlockPos(this.pigtificate), 0);
 
             if(this.village == null)
             {

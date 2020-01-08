@@ -17,8 +17,9 @@
 
 package logictechcorp.netherex.entity.passive;
 
-import logictechcorp.libraryex.api.entity.trade.ITrader;
+import logictechcorp.libraryex.entity.trade.ITrader;
 import logictechcorp.libraryex.trade.Trade;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.ai.*;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateProfession;
@@ -147,9 +148,9 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
         if(this.tickCounter-- <= 0)
         {
             BlockPos blockPos = new BlockPos(this);
-            PigtificateVillageManager.getVillageData(this.world, true).addPigtificate(blockPos);
+            NetherEx.PIGTIFICATE_VILLAGE_MANAGER.getVillageData(this.world, true).addPigtificate(blockPos);
             this.tickCounter = 70 + this.rand.nextInt(50);
-            this.village = PigtificateVillageManager.getVillageData(this.world, true).getNearestVillage(blockPos, 32);
+            this.village = NetherEx.PIGTIFICATE_VILLAGE_MANAGER.getVillageData(this.world, true).getNearestVillage(blockPos, 32);
 
             if(this.village == null)
             {

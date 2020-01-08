@@ -17,10 +17,8 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.api.world.biome.BiomeBlockType;
-import logictechcorp.libraryex.api.world.biome.data.IBiomeData;
-import logictechcorp.libraryex.api.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitCluster;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitPool;
@@ -53,15 +51,12 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     }
 
     @Override
-    public IBiomeData getBiomeData()
+    public BiomeData getBiomeData()
     {
-        IBiomeData biomeData = new BiomeData(NetherExBiomes.ARCTIC_ABYSS, 2, true, false, true);
-        biomeData.addBiomeBlock(BiomeBlockType.SURFACE_BLOCK, FROSTBURN_ICE);
-        biomeData.addBiomeBlock(BiomeBlockType.SUBSURFACE_BLOCK, ICY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_CEILING_BLOCK, ICY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_WALL_BLOCK, ICY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.CAVE_FLOOR_BLOCK, ICY_NETHERRACK);
-        biomeData.addBiomeBlock(BiomeBlockType.FLUID_BLOCK, MAGMA);
+        BiomeData biomeData = new BiomeData(NetherExBiomes.ARCTIC_ABYSS, 2, true, false);
+        biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, FROSTBURN_ICE);
+        biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, ICY_NETHERRACK);
+        biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, MAGMA);
         biomeData.addBiomeTrait(GenerationStage.TERRAIN_ALTERATION, BiomeTraitPool.create(trait ->
         {
             trait.generationAttempts(2);

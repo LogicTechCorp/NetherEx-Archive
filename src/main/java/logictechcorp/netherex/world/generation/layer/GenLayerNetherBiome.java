@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.world.generation.layer;
 
-import logictechcorp.netherex.api.NetherExAPI;
+import logictechcorp.netherex.NetherEx;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
@@ -55,7 +55,7 @@ public class GenLayerNetherBiome extends GenLayer
 
     private Biome getRandomBiome()
     {
-        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>(NetherExAPI.getInstance().getBiomeDataRegistry().getBiomeEntries().values());
+        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>(NetherEx.BIOME_DATA_MANAGER.getWorldSpecificBiomeEntries().values());
         int biomeWeights = WeightedRandom.getTotalWeight(biomeEntries);
         return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntries, this.nextInt(biomeWeights)).biome;
     }

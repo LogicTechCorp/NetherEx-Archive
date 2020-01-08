@@ -23,9 +23,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class BiomeDataBOP extends BiomeData
 {
-    public BiomeDataBOP(ResourceLocation registryName, int generationWeight, boolean useDefaultDecorations, boolean isSubBiome, boolean isEnabled)
+    public BiomeDataBOP(ResourceLocation registryName, int generationWeight, boolean useDefaultDecorations, boolean isSubBiome)
     {
-        super(registryName, generationWeight, useDefaultDecorations, isSubBiome, isEnabled);
+        super(registryName, generationWeight, useDefaultDecorations, isSubBiome);
     }
 
     @Override

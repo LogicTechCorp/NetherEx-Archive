@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.proxy;
 
-import logictechcorp.libraryex.api.IProxy;
+import logictechcorp.libraryex.proxy.IProxy;
 import logictechcorp.netherex.client.render.entity.*;
 import logictechcorp.netherex.client.render.tileentity.RenderUrnOfSorrow;
 import logictechcorp.netherex.entity.boss.EntityGhastQueen;

@@ -52,7 +52,7 @@ public class BiomeTraitEnoki extends BiomeTrait
         return false;
     }
 
-    public static class Builder extends BiomeTrait.Builder
+    public static class Builder extends BiomeTrait.Builder<BiomeTraitEnoki>
     {
         public Builder()
         {

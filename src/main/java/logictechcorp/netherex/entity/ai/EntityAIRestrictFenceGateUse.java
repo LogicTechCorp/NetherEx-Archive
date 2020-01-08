@@ -18,6 +18,7 @@
 package logictechcorp.netherex.entity.ai;
 
 import logictechcorp.libraryex.utility.WorldHelper;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.village.PigtificateVillage;
 import logictechcorp.netherex.village.PigtificateVillageFenceGateInfo;
 import logictechcorp.netherex.village.PigtificateVillageManager;
@@ -54,7 +55,7 @@ public class EntityAIRestrictFenceGateUse extends EntityAIBase
         else
         {
             BlockPos pos = new BlockPos(this.creature);
-            PigtificateVillage village = PigtificateVillageManager.getVillageData(world, true).getNearestVillage(pos, 16);
+            PigtificateVillage village = NetherEx.PIGTIFICATE_VILLAGE_MANAGER.getVillageData(world, true).getNearestVillage(pos, 16);
 
             if(village == null)
             {

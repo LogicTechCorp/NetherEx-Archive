@@ -17,6 +17,7 @@
 
 package logictechcorp.netherex.entity.neutral;
 
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.ai.EntityAIGoldGolemDefendVillage;
 import logictechcorp.netherex.entity.ai.EntityAIGoldGolemLookAtPigtificate;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
@@ -95,7 +96,7 @@ public class EntityGoldGolem extends EntityGolem
         if(this.homeCheckTimer-- <= 0)
         {
             this.homeCheckTimer = 70 + this.rand.nextInt(50);
-            this.village = PigtificateVillageManager.getVillageData(this.getEntityWorld(), true).getNearestVillage(new BlockPos(this), 32);
+            this.village = NetherEx.PIGTIFICATE_VILLAGE_MANAGER.getVillageData(this.getEntityWorld(), true).getNearestVillage(new BlockPos(this), 32);
 
             if(this.village == null)
             {
