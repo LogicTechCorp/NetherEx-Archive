@@ -11,9 +11,9 @@ logoFile="assets/netherex/textures/logo.png"
 authors="LogicTechCorp, Eleazzaar, Nazenn, Vlakk, AnarchCassius, LapisWhovian, misterslime, MCvinnyq, Cameron, Endergy"
 description="A mod that adds new content to the Nether."
 
-#[[dependencies.netherex]]
-#modId="libraryex"
-#mandatory=true
-#versionRange="[2.0.0,)"
-#ordering="BEFORE"
-#side="BOTH"
+[[dependencies.netherex]]
+modId="libraryex"
+mandatory=true
+versionRange="[2.0.0,)"
+ordering="BEFORE"
+side="BOTH"

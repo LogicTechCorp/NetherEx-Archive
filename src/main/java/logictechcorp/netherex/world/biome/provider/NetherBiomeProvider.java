@@ -56,7 +56,7 @@ public class NetherBiomeProvider extends BiomeProvider
     }
 
     @Override
-    public Biome func_222366_b(int x, int z)
+    public Biome getBiomeAtFactorFour(int x, int z)
     {
         return this.genBiomes.func_215738_a(x, z);
     }

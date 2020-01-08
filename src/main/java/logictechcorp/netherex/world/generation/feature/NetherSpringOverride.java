@@ -132,8 +132,6 @@ public class NetherSpringOverride extends NetherSpringFeature
             }
         }
 
-        System.out.println(insideRock);
-
         return new HellLavaConfig(insideRock);
     }
 }

@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * Copyright (c) 2016-2020 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,11 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.handler;
+package logictechcorp.netherex.client.handler;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.potion.NetherExEffects;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -31,15 +33,17 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+@SuppressWarnings("all")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Dist.CLIENT)
-public class ClientEventHandler
+public class RenderEventHandler
 {
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
 
@@ -78,31 +82,50 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    public static void onRenderLivingSpecialPost(RenderLivingEvent.Specials.Post event)
+    public static void onRenderHand(RenderHandEvent event)
+    {
+    }
+
+    @SubscribeEvent
+    public static void onRenderSpecificHand(RenderSpecificHandEvent event)
+    {
+        PlayerEntity player = MINECRAFT.player;
+        float partialTicks = event.getPartialTicks();
+
+        if(player.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
+        {
+            renderFirstPersonBlueFire();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRenderLivingPost(RenderLivingEvent.Post event)
     {
         LivingEntity entity = event.getEntity();
+        double posX = event.getX();
+        double posY = event.getY();
+        double posZ = event.getZ();
         float partialTicks = event.getPartialRenderTick();
 
         if(entity.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
         {
-            double posX = event.getX() + (entity.posX - entity.lastTickPosX) * (double) partialTicks;
-            double posY = event.getY() + (entity.posY - entity.lastTickPosY + 1) * (double) partialTicks;
-            double posZ = event.getZ() + (entity.posZ - entity.lastTickPosZ) * (double) partialTicks;
-            renderEntityOnBlueFire(entity, posX, posY, posZ);
+            renderThirdPersonBlueFire(entity, posX, posY, posZ);
         }
     }
 
-    private static void renderBlueFireInFirstPerson()
+    private static void renderFirstPersonBlueFire()
     {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder builder = tessellator.getBuffer();
+        GlStateManager.disableAlphaTest();
+        GlStateManager.disableLighting();
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.9F);
         GlStateManager.depthFunc(519);
         GlStateManager.depthMask(false);
         GlStateManager.enableBlend();
         GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 
-        for(int i = 0; i < 2; i++)
+        for(int stage = 0; stage < 2; stage++)
         {
             GlStateManager.pushMatrix();
             TextureAtlasSprite sprite = MINECRAFT.getTextureMap().getSprite(new ResourceLocation(NetherEx.MOD_ID, "block/blue_fire_layer_1"));
@@ -111,8 +134,8 @@ public class ClientEventHandler
             float maxU = sprite.getMaxU();
             float minV = sprite.getMinV();
             float maxV = sprite.getMaxV();
-            GlStateManager.translatef((float) (-(i * 2 - 1)) * 0.24F, -0.3F, 0.0F);
-            GlStateManager.rotatef((float) (i * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.translatef((float) (-(stage * 2 - 1)) * 0.24F, -0.3F, 0.0F);
+            GlStateManager.rotatef((float) (stage * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
             builder.begin(7, DefaultVertexFormats.POSITION_TEX);
             builder.pos(-0.5D, -0.5D, -0.5D).tex(maxU, maxV).endVertex();
             builder.pos(0.5D, -0.5D, -0.5D).tex(minU, maxV).endVertex();
@@ -126,9 +149,11 @@ public class ClientEventHandler
         GlStateManager.disableBlend();
         GlStateManager.depthMask(true);
         GlStateManager.depthFunc(515);
+        GlStateManager.enableLighting();
+        GlStateManager.enableAlphaTest();
     }
 
-    private static void renderEntityOnBlueFire(Entity entity, double posX, double posY, double posZ)
+    private static void renderThirdPersonBlueFire(Entity entity, double posX, double posY, double posZ)
     {
         GlStateManager.disableLighting();
         AtlasTexture textureMap = MINECRAFT.getTextureMap();

@@ -405,7 +405,7 @@ public class SporeCreeperEntity extends MonsterEntity
                                 d5 = d5 / d13;
                                 d7 = d7 / d13;
                                 d9 = d9 / d13;
-                                double d14 = func_222259_a(vec3d, entity);
+                                double d14 = getBlockDensity(vec3d, entity);
                                 double d10 = (1.0D - d12) * d14;
 
                                 if(entity.getType() != NetherExEntities.SPORE.get() && entity.getType() != NetherExEntities.SPORE_CREEPER.get())

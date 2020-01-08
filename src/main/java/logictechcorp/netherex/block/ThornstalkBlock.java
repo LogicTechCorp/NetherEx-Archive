@@ -22,17 +22,26 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 public class ThornstalkBlock extends TriplePlantBlock
 {
     public ThornstalkBlock()
     {
         super(Block.Properties.create(Material.PLANTS, DyeColor.BROWN).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT));
+    }
+
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity)
+    {
+        entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
     }
 
     @Override
