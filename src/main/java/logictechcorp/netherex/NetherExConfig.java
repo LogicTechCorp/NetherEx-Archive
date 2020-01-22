@@ -24,7 +24,6 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -66,19 +65,16 @@ public class NetherExConfig
         {
             Files.createDirectory(Paths.get(FMLPaths.CONFIGDIR.get().toAbsolutePath().toString(), "netherex"));
         }
-        catch(FileAlreadyExistsException ignored)
-        {
-        }
         catch(IOException ignored)
         {
             NetherEx.LOGGER.error("Failed to create netherex config directory.");
         }
 
         ModLoadingContext loadingContext = ModLoadingContext.get();
-        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.BLOCK_SPEC, "netherex/block-config.toml");
-        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.EFFECT_SPEC, "netherex/effect-config.toml");
-        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.ENTITY_SPEC, "netherex/entity-config.toml");
-        loadingContext.registerConfig(ModConfig.Type.COMMON, NetherExConfig.NETHER_SPEC, "netherex/nether-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, BLOCK_SPEC, "netherex/block-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, EFFECT_SPEC, "netherex/effect-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, ENTITY_SPEC, "netherex/entity-config.toml");
+        loadingContext.registerConfig(ModConfig.Type.COMMON, NETHER_SPEC, "netherex/nether-config.toml");
     }
 
     public static class BlockConfig
@@ -106,6 +102,7 @@ public class NetherExConfig
             this.rimeCanFreezeEntities = builder
                     .comment("Whether or not rime can freeze entities.")
                     .define("canFreezeLava", true);
+            builder.pop();
 
             //End block config
             builder.pop();
@@ -231,6 +228,7 @@ public class NetherExConfig
             this.biomePackUseBOPBiomePack = builder
                     .comment("Use the Biomes O' Plenty biome pack.")
                     .define("useBOPBiomePack", true);
+            builder.pop();
 
             //End nether config
             builder.pop();
