@@ -1,5 +1,5 @@
 {
-	"parent": "block/inner_stairs",
+    "parent": "block/inner_stairs",
     "textures": {
         "bottom": "netherex:block/lively_nether_bricks",
         "top": "netherex:block/lively_nether_bricks",

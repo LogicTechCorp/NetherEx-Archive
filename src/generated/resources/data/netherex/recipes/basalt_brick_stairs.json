@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "netherex:basalt_brick"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#  ",
+        "## ",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:basalt_brick"
+        }
+    },
+    "result": {
+        "item": "netherex:basalt_brick_stairs",
+        "count": 4
     }
-  },
-  "result": {
-    "item": "netherex:basalt_brick_stairs",
-    "count": 4
-  }
 }

@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "netherex:gloomy_nether_brick"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:gloomy_nether_brick"
+        }
+    },
+    "result": {
+        "item": "netherex:gloomy_nether_bricks",
+        "count": 4
     }
-  },
-  "result": {
-    "item": "netherex:gloomy_nether_bricks",
-    "count": 4
-  }
 }

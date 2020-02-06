@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "netherex:rime_crystal"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:rime_crystal"
+        }
+    },
+    "result": {
+        "item": "netherex:rime_block"
     }
-  },
-  "result": {
-    "item": "netherex:rime_block"
-  }
 }

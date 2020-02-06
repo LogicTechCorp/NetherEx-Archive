@@ -1,7 +1,7 @@
 {
-     "variants": {
-         "type=bottom": { "model": "netherex:block/smooth_basalt_slab" },
-         "type=top": { "model": "netherex:block/smooth_basalt_slab_top" },
-         "type=double": { "model": "netherex:block/smooth_basalt" }
-     }
+    "variants": {
+        "type=bottom": { "model": "netherex:block/smooth_basalt_slab" },
+        "type=top": { "model": "netherex:block/smooth_basalt_slab_top" },
+        "type=double": { "model": "netherex:block/smooth_basalt" }
+    }
 }

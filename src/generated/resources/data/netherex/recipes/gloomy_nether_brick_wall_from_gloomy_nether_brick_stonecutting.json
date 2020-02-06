@@ -1,8 +1,8 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "netherex:gloomy_nether_bricks"
-  },
-  "result": "netherex:gloomy_nether_brick_wall",
-  "count": 1
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "netherex:gloomy_nether_bricks"
+    },
+    "result": "netherex:gloomy_nether_brick_wall",
+    "count": 1
 }

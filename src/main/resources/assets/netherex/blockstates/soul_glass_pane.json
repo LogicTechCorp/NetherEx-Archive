@@ -1,28 +1,36 @@
 {
     "multipart": [
-        {   "apply": { "model": "netherex:block/soul_glass_pane_post" }},
-        {   "when": { "north": true },
+        { "apply": { "model": "netherex:block/soul_glass_pane_post" } },
+        {
+            "when": { "north": true },
             "apply": { "model": "netherex:block/soul_glass_pane_side" }
         },
-        {   "when": { "east": true },
+        {
+            "when": { "east": true },
             "apply": { "model": "netherex:block/soul_glass_pane_side", "y": 90 }
         },
-        {   "when": { "south": true },
+        {
+            "when": { "south": true },
             "apply": { "model": "netherex:block/soul_glass_pane_side_alt" }
         },
-        {   "when": { "west": true },
+        {
+            "when": { "west": true },
             "apply": { "model": "netherex:block/soul_glass_pane_side_alt", "y": 90 }
         },
-        {   "when": { "north": false },
+        {
+            "when": { "north": false },
             "apply": { "model": "netherex:block/soul_glass_pane_noside" }
         },
-        {   "when": { "east": false },
+        {
+            "when": { "east": false },
             "apply": { "model": "netherex:block/soul_glass_pane_noside_alt" }
         },
-        {   "when": { "south": false },
+        {
+            "when": { "south": false },
             "apply": { "model": "netherex:block/soul_glass_pane_noside_alt", "y": 90 }
         },
-        {   "when": { "west": false },
+        {
+            "when": { "west": false },
             "apply": { "model": "netherex:block/soul_glass_pane_noside", "y": 270 }
         }
     ]

@@ -1,5 +1,5 @@
 {
-	"parent": "block/outer_stairs",
+    "parent": "block/outer_stairs",
     "textures": {
         "bottom": "netherex:block/gloomy_nether_bricks",
         "top": "netherex:block/gloomy_nether_bricks",

@@ -2,7 +2,6 @@
     "language.name": "English",
     "language.region": "United States",
     "language.code": "en_us",
-
     "block.netherex.gloomy_netherrack": "Gloomy Netherrack",
     "block.netherex.gloomy_netherrack_path": "Gloomy Trodden Netherrack",
     "block.netherex.gloomy_nether_bricks": "Gloomy Nether Bricks",
@@ -76,7 +75,6 @@
     "block.netherex.blue_fire": "Blue Fire",
     "block.netherex.soul_glass": "Soul Glass",
     "block.netherex.soul_glass_pane": "Soul Glass Pane",
-
     "item.netherex.gloomy_nether_brick": "Gloomy Nether Brick",
     "item.netherex.lively_nether_brick": "Lively Nether Brick",
     "item.netherex.fiery_nether_brick": "Fiery Nether Brick",
@@ -98,7 +96,6 @@
     "item.netherex.cooked_ghast_meat": "Cooked Ghast Meat",
     "item.netherex.enoki_mushroom": "Enoki Mushroom",
     "item.netherex.dull_mirror": "Dull Mirror",
-
     "entity.netherex.mogus": "Mogus",
     "entity.netherex.brown_mogus": "Brown Mogus",
     "entity.netherex.red_mogus": "Red Mogus",
@@ -116,36 +113,29 @@
     "entity.netherex.spore_creeper": "Spore Creeper",
     "entity.netherex.wight": "Wight",
     "entity.netherex.coolmar_spider": "Coolmar Spider",
-
     "effect.netherex.frozen": "Frozen",
     "effect.netherex.frostbitten": "Frostbitten",
     "effect.netherex.infested": "Infested",
     "effect.netherex.crying": "Crying",
     "effect.netherex.fire_buring": "Fire Burning",
     "effect.netherex.soul_sucked": "Soul Sucked",
-
     "item.minecraft.tipped_arrow.effect.freezing": "Arrow of Freezing",
     "item.minecraft.tipped_arrow.effect.frigid_health": "Arrow of Frigid Health",
     "item.minecraft.tipped_arrow.effect.dispersal": "Arrow of Dispersal",
     "item.minecraft.tipped_arrow.effect.sorrow": "Arrow of Sorrow",
-
     "item.minecraft.potion.effect.freezing": "Potion of Freezing",
     "item.minecraft.potion.effect.frigid_health": "Potion of Frigid Health",
     "item.minecraft.potion.effect.dispersal": "Potion of Dispersal",
     "item.minecraft.potion.effect.sorrow": "Potion of Sorrow",
-
     "item.minecraft.splash_potion.effect.freezing": "Splash Potion of Freezing",
     "item.minecraft.splash_potion.effect.frigid_health": "Splash Potion of Frigid Health",
     "item.minecraft.splash_potion.effect.dispersal": "Splash Potion of Dispersal",
     "item.minecraft.splash_potion.effect.sorrow": "Splash Potion of Sorrow",
-
     "item.minecraft.lingering_potion.effect.freezing": "Lingering Potion of Freezing",
     "item.minecraft.lingering_potion.effect.frigid_health": "Lingering Potion of Frigid Health",
     "item.minecraft.lingering_potion.effect.dispersal": "Lingering Potion of Dispersal",
     "item.minecraft.lingering_potion.effect.sorrow": "Lingering Potion of Sorrow",
-
     "itemGroup.netherex": "NetherEx",
-
     "subtitle.netherex.sound.mogus_ambient": "Mogus Converse",
     "subtitle.netherex.sound.mogus_hurt": "Mogus Wince",
     "subtitle.netherex.sound.mogus_death": "Mogus Death",
@@ -162,17 +152,14 @@
     "subtitle.netherex.sound.spore_death": "Spore Death",
     "subtitle.netherex.sound.spore_warn": "Spore Sizzle",
     "subtitle.netherex.sound.spore_explode": "Spore Explosion",
-
     "tooltip.netherex.dull_mirror.spawn_dimension": "§aSpawn Dimension: %s",
     "tooltip.netherex.dull_mirror.spawn_point": "§9Spawn Point: %s",
     "tooltip.netherex.dull_mirror.spawn_point_set": "§9Spawn point set to: %s",
     "tooltip.netherex.dull_mirror.spawn_point_removed": "§cSpawn point removed",
     "tooltip.netherex.dull_mirror.death_point": "§cDeath Point: %s",
-
     "biome.netherex.ruthless_sands": "Ruthless Sands",
     "biome.netherex.fungi_forest": "Fungi Forest",
     "biome.netherex.torrid_wasteland": "Torrid Wasteland",
     "biome.netherex.arctic_abyss": "Arctic Abyss",
-
     "generator.netherex": "NetherEx"
 }

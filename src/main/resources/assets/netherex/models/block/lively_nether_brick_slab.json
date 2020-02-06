@@ -1,5 +1,5 @@
 {
-	"parent": "block/slab",
+    "parent": "block/slab",
     "textures": {
         "bottom": "netherex:block/lively_nether_bricks",
         "top": "netherex:block/lively_nether_bricks",

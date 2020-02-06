@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "netherex:ghast_meat"
-  },
-  "result": "netherex:cooked_ghast_meat",
-  "experience": 0.35,
-  "cookingtime": 200
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "netherex:ghast_meat"
+    },
+    "result": "netherex:cooked_ghast_meat",
+    "experience": 0.35,
+    "cookingtime": 200
 }

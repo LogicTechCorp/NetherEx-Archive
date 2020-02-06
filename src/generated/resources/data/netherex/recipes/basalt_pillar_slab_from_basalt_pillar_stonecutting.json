@@ -1,8 +1,8 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "netherex:basalt_pillar"
-  },
-  "result": "netherex:basalt_pillar_slab",
-  "count": 2
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "netherex:basalt_pillar"
+    },
+    "result": "netherex:basalt_pillar_slab",
+    "count": 2
 }

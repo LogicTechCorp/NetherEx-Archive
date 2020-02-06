@@ -1,8 +1,8 @@
 {
-  "type": "libraryex:crafting_repair",
-  "ingredient": {
-    "item": "minecraft:ghast_tear"
-  },
-  "result": "netherex:dull_mirror",
-  "count": 1
+    "type": "libraryex:crafting_repair",
+    "ingredient": {
+        "item": "minecraft:ghast_tear"
+    },
+    "result": "netherex:dull_mirror",
+    "count": 1
 }

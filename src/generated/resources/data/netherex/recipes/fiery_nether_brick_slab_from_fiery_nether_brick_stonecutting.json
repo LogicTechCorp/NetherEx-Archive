@@ -1,8 +1,8 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "netherex:fiery_nether_bricks"
-  },
-  "result": "netherex:fiery_nether_brick_slab",
-  "count": 2
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "netherex:fiery_nether_bricks"
+    },
+    "result": "netherex:fiery_nether_brick_slab",
+    "count": 2
 }

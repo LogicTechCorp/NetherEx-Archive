@@ -1,19 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#*#",
-    "#*#"
-  ],
-  "key": {
-    "#": {
-      "item": "netherex:basalt_slab"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#*#",
+        "#*#"
+    ],
+    "key": {
+        "#": {
+            "item": "netherex:basalt_slab"
+        },
+        "*": {
+            "item": "netherex:basalt"
+        }
     },
-    "*": {
-      "item": "netherex:basalt"
+    "result": {
+        "item": "netherex:basalt_fence_gate",
+        "count": 2
     }
-  },
-  "result": {
-    "item": "netherex:basalt_fence_gate",
-    "count": 2
-  }
 }

@@ -1,5 +1,5 @@
 {
-	"parent": "block/stairs",
+    "parent": "block/stairs",
     "textures": {
         "bottom": "netherex:block/smooth_basalt",
         "top": "netherex:block/smooth_basalt",

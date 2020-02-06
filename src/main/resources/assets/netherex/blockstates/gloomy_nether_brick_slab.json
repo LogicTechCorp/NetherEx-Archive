@@ -1,7 +1,7 @@
 {
-     "variants": {
-         "type=bottom": { "model": "netherex:block/gloomy_nether_brick_slab" },
-         "type=top": { "model": "netherex:block/gloomy_nether_brick_slab_top" },
-         "type=double": { "model": "netherex:block/gloomy_nether_bricks" }
-     }
+    "variants": {
+        "type=bottom": { "model": "netherex:block/gloomy_nether_brick_slab" },
+        "type=top": { "model": "netherex:block/gloomy_nether_brick_slab_top" },
+        "type=double": { "model": "netherex:block/gloomy_nether_bricks" }
+    }
 }

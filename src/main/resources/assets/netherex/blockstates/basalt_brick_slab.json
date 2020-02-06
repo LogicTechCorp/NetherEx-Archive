@@ -1,7 +1,7 @@
 {
-     "variants": {
-         "type=bottom": { "model": "netherex:block/basalt_brick_slab" },
-         "type=top": { "model": "netherex:block/basalt_brick_slab_top" },
-         "type=double": { "model": "netherex:block/basalt_brick" }
-     }
+    "variants": {
+        "type=bottom": { "model": "netherex:block/basalt_brick_slab" },
+        "type=top": { "model": "netherex:block/basalt_brick_slab_top" },
+        "type=double": { "model": "netherex:block/basalt_brick" }
+    }
 }

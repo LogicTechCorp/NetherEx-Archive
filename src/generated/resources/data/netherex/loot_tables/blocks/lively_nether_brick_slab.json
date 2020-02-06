@@ -1,34 +1,34 @@
 {
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "entries": [
+    "type": "minecraft:block",
+    "pools": [
         {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:survives_explosion"
-            }
-          ],
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "conditions": [
+            "rolls": 1,
+            "entries": [
                 {
-                  "condition": "minecraft:block_state_property",
-                  "block": "netherex:lively_nether_brick_slab",
-                  "properties": {
-                    "type": "double"
-                  }
+                    "type": "minecraft:item",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:survives_explosion"
+                        }
+                    ],
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "netherex:lively_nether_brick_slab",
+                                    "properties": {
+                                        "type": "double"
+                                    }
+                                }
+                            ],
+                            "count": 2
+                        }
+                    ],
+                    "name": "netherex:lively_nether_brick_slab"
                 }
-              ],
-              "count": 2
-            }
-          ],
-          "name": "netherex:lively_nether_brick_slab"
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
