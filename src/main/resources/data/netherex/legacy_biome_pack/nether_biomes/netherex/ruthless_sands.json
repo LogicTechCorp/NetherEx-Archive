@@ -16,13 +16,13 @@
     },
     "entities": [
         {
-            "entity": "minecraft:wither_skeleton",
+            "type": "minecraft:wither_skeleton",
             "spawn_weight": 65,
             "minimum_group_count": 1,
             "maximum_group_count": 4
         },
         {
-            "entity": "netherex:spinout",
+            "type": "netherex:spinout",
             "spawn_weight": 100,
             "minimum_group_count": 1,
             "maximum_group_count": 4
@@ -30,56 +30,76 @@
     ],
     "features": [
         {
-            "feature": "minecraft:glowstone_blob",
-            "placement": "minecraft:light_gem_chance",
-            "placement_config": {
-                "count": 10
+            "feature": {
+                "name": "minecraft:glowstone_blob",
+                "config": {
+                }
+            },
+            "decorator": {
+                "name": "minecraft:light_gem_chance",
+                "config": {
+                    "count": 10
+                }
             },
             "stage": "underground_decoration"
         },
         {
-            "feature": "minecraft:glowstone_blob",
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 10,
-                "bottom_offset": 0,
-                "top_offset": 0,
-                "maximum": 128
+            "feature": {
+                "name": "minecraft:glowstone_blob",
+                "config": {
+                }
+            },
+            "decorator": {
+                "name": "minecraft:count_range",
+                "config": {
+                    "count": 10,
+                    "bottom_offset": 0,
+                    "top_offset": 0,
+                    "maximum": 128
+                }
             },
             "stage": "underground_decoration"
         },
         {
-            "feature": "libraryex:ore",
-            "feature_config": {
-                "ore_state": {
-                    "Name": "netherex:quartz_ore"
-                },
-                "target_state": {
-                    "Name": "netherex:gloomy_netherrack"
-                },
-                "size": 14
+            "feature": {
+                "name": "libraryex:ore",
+                "config": {
+                    "ore_state": {
+                        "Name": "netherex:quartz_ore"
+                    },
+                    "target_state": {
+                        "Name": "netherex:gloomy_netherrack"
+                    },
+                    "size": 14
+                }
             },
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 8,
-                "bottom_offset": 10,
-                "top_offset": 30,
-                "maximum": 128
+            "decorator": {
+                "name": "minecraft:count_range",
+                "config": {
+                    "count": 8,
+                    "bottom_offset": 10,
+                    "top_offset": 30,
+                    "maximum": 128
+                }
             },
             "stage": "underground_ores"
         },
         {
-            "feature": "libraryex:triple_plant",
-            "feature_config": {
-                "state": {
-                    "Name": "netherex:thornstalk"
+            "feature": {
+                "name": "libraryex:triple_plant",
+                "config": {
+                    "state": {
+                        "Name": "netherex:thornstalk"
+                    }
                 }
             },
-            "placement": "minecraft:noise_heightmap_32",
-            "placement_config": {
-                "noise_level": -0.8,
-                "below_noise": 0,
-                "above_noise": 7
+            "decorator": {
+                "name": "minecraft:noise_heightmap_32",
+                "config": {
+                    "noise_level": -0.8,
+                    "below_noise": 0,
+                    "above_noise": 7
+                }
             },
             "stage": "vegetal_decoration"
         }

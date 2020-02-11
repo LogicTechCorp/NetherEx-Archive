@@ -16,25 +16,25 @@
     },
     "entities": [
         {
-            "entity": "minecraft:ghast",
+            "type": "minecraft:ghast",
             "spawn_weight": 50,
             "minimum_group_count": 4,
             "maximum_group_count": 4
         },
         {
-            "entity": "minecraft:zombie_pigman",
+            "type": "minecraft:zombie_pigman",
             "spawn_weight": 100,
             "minimum_group_count": 4,
             "maximum_group_count": 4
         },
         {
-            "entity": "minecraft:magma_cube",
+            "type": "minecraft:magma_cube",
             "spawn_weight": 2,
             "minimum_group_count": 4,
             "maximum_group_count": 4
         },
         {
-            "entity": "minecraft:enderman",
+            "type": "minecraft:enderman",
             "spawn_weight": 1,
             "minimum_group_count": 4,
             "maximum_group_count": 4

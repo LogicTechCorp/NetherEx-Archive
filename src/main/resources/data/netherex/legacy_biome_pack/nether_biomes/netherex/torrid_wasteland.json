@@ -16,13 +16,13 @@
     },
     "entities": [
         {
-            "entity": "minecraft:magma_cube",
+            "type": "minecraft:magma_cube",
             "spawn_weight": 30,
             "minimum_group_count": 1,
             "maximum_group_count": 4
         },
         {
-            "entity": "netherex:salamander",
+            "type": "netherex:salamander",
             "spawn_weight": 100,
             "minimum_group_count": 1,
             "maximum_group_count": 2
@@ -30,105 +30,137 @@
     ],
     "features": [
         {
-            "feature": "minecraft:nether_spring",
-            "feature_config": {
-                "inside_rock": false
+            "feature": {
+                "name": "minecraft:nether_spring",
+                "config": {
+                    "inside_rock": false
+                }
             },
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 12,
-                "bottom_offset": 4,
-                "top_offset": 8,
-                "maximum": 128
-            },
-            "stage": "underground_decoration"
-        },
-        {
-            "feature": "libraryex:scatter",
-            "feature_config": {
-                "scatter_state": {
-                    "Name": "minecraft:fire"
-                },
-                "target_state": {
-                    "Name": "netherex:fiery_netherrack"
-                },
-                "target_area": "on_ground"
-            },
-            "placement": "minecraft:hell_fire",
-            "placement_config": {
-                "count": 30
+            "decorator": {
+                "name": "minecraft:count_range",
+                "config": {
+                    "count": 12,
+                    "bottom_offset": 4,
+                    "top_offset": 8,
+                    "maximum": 128
+                }
             },
             "stage": "underground_decoration"
         },
         {
-            "feature": "minecraft:glowstone_blob",
-            "placement": "minecraft:light_gem_chance",
-            "placement_config": {
-                "count": 10
+            "feature": {
+                "name": "libraryex:scatter",
+                "config": {
+                    "scatter_state": {
+                        "Name": "minecraft:fire"
+                    },
+                    "target_state": {
+                        "Name": "netherex:fiery_netherrack"
+                    },
+                    "target_area": "on_ground"
+                }
+            },
+            "decorator": {
+                "name": "minecraft:hell_fire",
+                "config": {
+                    "count": 30
+                }
             },
             "stage": "underground_decoration"
         },
         {
-            "feature": "minecraft:glowstone_blob",
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 10,
-                "bottom_offset": 0,
-                "top_offset": 0,
-                "maximum": 128
+            "feature": {
+                "name": "minecraft:glowstone_blob",
+                "config": {
+                }
+            },
+            "decorator": {
+                "name": "minecraft:light_gem_chance",
+                "config": {
+                    "count": 10
+                }
             },
             "stage": "underground_decoration"
         },
         {
-            "feature": "libraryex:ore",
-            "feature_config": {
-                "ore_state": {
-                    "Name": "netherex:quartz_ore"
-                },
-                "target_state": {
-                    "Name": "netherex:fiery_netherrack"
-                },
-                "size": 14
+            "feature": {
+                "name": "minecraft:glowstone_blob",
+                "config": {
+                }
             },
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 8,
-                "bottom_offset": 10,
-                "top_offset": 30,
-                "maximum": 128
+            "decorator": {
+                "name": "minecraft:count_range",
+                "config": {
+                    "count": 10,
+                    "bottom_offset": 0,
+                    "top_offset": 0,
+                    "maximum": 128
+                }
+            },
+            "stage": "underground_decoration"
+        },
+        {
+            "feature": {
+                "name": "libraryex:ore",
+                "config": {
+                    "ore_state": {
+                        "Name": "netherex:quartz_ore"
+                    },
+                    "target_state": {
+                        "Name": "netherex:fiery_netherrack"
+                    },
+                    "size": 14
+                }
+            },
+            "decorator": {
+                "name": "minecraft:count_range",
+                "config": {
+                    "count": 8,
+                    "bottom_offset": 10,
+                    "top_offset": 30,
+                    "maximum": 128
+                }
             },
             "stage": "underground_ores"
         },
         {
-            "feature": "libraryex:pool",
-            "feature_config": {
-                "liquid_state": {
-                    "Name": "minecraft:lava"
-                },
-                "surrounding_state": {
-                    "Name": "netherex:fiery_netherrack"
+            "feature": {
+                "name": "libraryex:pool",
+                "config": {
+                    "liquid_state": {
+                        "Name": "minecraft:lava"
+                    },
+                    "surrounding_state": {
+                        "Name": "netherex:fiery_netherrack"
+                    }
                 }
             },
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 5,
-                "bottom_offset": 10,
-                "top_offset": 10,
-                "maximum": 128
+            "decorator": {
+                "name": "minecraft:count_range",
+                "config": {
+                    "count": 5,
+                    "bottom_offset": 10,
+                    "top_offset": 10,
+                    "maximum": 128
+                }
             },
             "stage": "underground_decoration"
         },
         {
-            "feature": "minecraft:nether_spring",
-            "feature_config": {
-                "inside_rock": true
+            "feature": {
+                "name": "minecraft:nether_spring",
+                "config": {
+                    "inside_rock": true
+                }
             },
-            "placement": "minecraft:count_range",
-            "placement_config": {
-                "count": 24,
-                "bottom_offset": 10,
-                "top_offset": 10,
-                "maximum": 128
+            "decorator": {
+                "name": "minecraft:count_range",
+                "config": {
+                    "count": 24,
+                    "bottom_offset": 10,
+                    "top_offset": 10,
+                    "maximum": 128
+                }
             },
             "stage": "underground_decoration"
         }
