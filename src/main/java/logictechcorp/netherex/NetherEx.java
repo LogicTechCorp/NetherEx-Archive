@@ -17,8 +17,10 @@
 
 package logictechcorp.netherex;
 
+import com.mojang.brigadier.CommandDispatcher;
 import logictechcorp.libraryex.world.biome.BiomeDataManager;
 import logictechcorp.netherex.block.NetherExBlocks;
+import logictechcorp.netherex.command.NetherExCommand;
 import logictechcorp.netherex.entity.NetherExEntities;
 import logictechcorp.netherex.item.NetherExItems;
 import logictechcorp.netherex.particle.NetherExParticles;
@@ -34,6 +36,7 @@ import logictechcorp.netherex.world.generation.feature.NetherExFeatures;
 import logictechcorp.netherex.world.generation.placement.NetherExPlacements;
 import logictechcorp.netherex.world.generation.surfacebuilder.NetherExSurfaceBuilders;
 import net.minecraft.block.Blocks;
+import net.minecraft.command.CommandSource;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -47,6 +50,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -94,6 +98,7 @@ public class NetherEx
 
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
         forgeEventBus.addListener(this::onServerAboutToStart);
+        forgeEventBus.addListener(this::onServerStarting);
         forgeEventBus.addListener(this::onServerStopping);
         NetherExConfig.registerConfigs();
     }
@@ -120,6 +125,12 @@ public class NetherEx
         MinecraftServer server = event.getServer();
         server.getResourceManager().addReloadListener(BIOME_DATA_MANAGER);
         NetherExBiomes.registerBiomePacks(server);
+    }
+
+    private void onServerStarting(FMLServerStartingEvent event)
+    {
+        CommandDispatcher<CommandSource> dispatcher = event.getCommandDispatcher();
+        NetherExCommand.register(dispatcher);
     }
 
     private void onServerStopping(FMLServerStoppingEvent event)
