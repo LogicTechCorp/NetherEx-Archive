@@ -23,12 +23,13 @@ import logictechcorp.netherex.NetherEx;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 
 public class ExportDefaultBiomePacksCommand
@@ -37,10 +38,10 @@ public class ExportDefaultBiomePacksCommand
     {
         return Commands.literal("exportDefaultBiomePacks")
                 .requires(source -> source.hasPermissionLevel(2))
-                .executes(ExportDefaultBiomePacksCommand::enableCustomNetherBiomes);
+                .executes(ExportDefaultBiomePacksCommand::exportBiomePacks);
     }
 
-    private static int enableCustomNetherBiomes(CommandContext<CommandSource> context)
+    private static int exportBiomePacks(CommandContext<CommandSource> context)
     {
         CommandSource source = context.getSource();
         MinecraftServer server = source.getServer();
@@ -48,7 +49,8 @@ public class ExportDefaultBiomePacksCommand
 
         try
         {
-            Iterator<Path> pathIter = Files.walk(Paths.get(NetherEx.class.getResource("/data/" + NetherEx.MOD_ID).toURI())).iterator();
+            ModFile modFile = ModList.get().getModFileById(NetherEx.MOD_ID).getFile();
+            Iterator<Path> pathIter = Files.walk(modFile.getLocator().findPath(modFile, "datapacks"), 1).iterator();
 
             while(pathIter.hasNext())
             {
@@ -63,7 +65,7 @@ public class ExportDefaultBiomePacksCommand
         }
         catch(Throwable ignored)
         {
-            NetherEx.LOGGER.warn("Unable to enable custom nether biomes");
+            NetherEx.LOGGER.warn("Unable to export default biome packs.");
         }
 
         return 0;

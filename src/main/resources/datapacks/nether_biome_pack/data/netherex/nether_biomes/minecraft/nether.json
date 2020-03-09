@@ -1,0 +1,26 @@
+{
+    "biome": "minecraft:nether",
+    "generation_weight": 10,
+    "use_default_carvers": true,
+    "use_default_features": true,
+    "is_sub_biome": false,
+    "blocks": {
+        "surface": {
+            "Name": "minecraft:netherrack"
+        },
+        "subsurface": {
+            "Name": "minecraft:netherrack"
+        },
+        "liquid": {
+            "Name": "minecraft:lava"
+        }
+    },
+    "entities": [
+    ],
+    "carvers": [
+    ],
+    "features": [
+    ],
+    "sub_biomes": [
+    ]
+}
