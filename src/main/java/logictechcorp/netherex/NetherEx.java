@@ -32,6 +32,7 @@ import logictechcorp.netherex.utility.NetherExSoundEvents;
 import logictechcorp.netherex.world.biome.NetherBiomeDataManager;
 import logictechcorp.netherex.world.biome.NetherExBiomes;
 import logictechcorp.netherex.world.generation.NetherExChunkGenerators;
+import logictechcorp.netherex.world.generation.carver.NetherExCarvers;
 import logictechcorp.netherex.world.generation.feature.NetherExFeatures;
 import logictechcorp.netherex.world.generation.placement.NetherExPlacements;
 import logictechcorp.netherex.world.generation.surfacebuilder.NetherExSurfaceBuilders;
@@ -41,6 +42,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.gen.ChunkGeneratorType;
+import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -88,6 +90,7 @@ public class NetherEx
         NetherExEntities.ENTITIES.register(modEventBus);
         NetherExChunkGenerators.CHUNK_GENERATOR_OVERRIDES.register(modEventBus);
         NetherExSurfaceBuilders.SURFACE_BUILDERS.register(modEventBus);
+        NetherExCarvers.CARVER_OVERRIDES.register(modEventBus);
         NetherExFeatures.FEATURES.register(modEventBus);
         NetherExFeatures.FEATURE_OVERRIDES.register(modEventBus);
         NetherExPlacements.PLACEMENTS.register(modEventBus);
@@ -108,9 +111,13 @@ public class NetherEx
         //Temporary workaround
         try
         {
-            Field cavesField = ObfuscationReflectionHelper.findField(ChunkGeneratorType.class, "field_206912_c");
-            FieldUtils.removeFinalModifier(cavesField, true);
-            FieldUtils.writeStaticField(cavesField, NetherExChunkGenerators.CAVES.get(), true);
+            Field cavesGeneratorField = ObfuscationReflectionHelper.findField(ChunkGeneratorType.class, "field_206912_c");
+            FieldUtils.removeFinalModifier(cavesGeneratorField, true);
+            FieldUtils.writeStaticField(cavesGeneratorField, NetherExChunkGenerators.CAVES.get(), true);
+
+            Field netherCarverField = ObfuscationReflectionHelper.findField(WorldCarver.class, "field_222710_b");
+            FieldUtils.removeFinalModifier(netherCarverField, true);
+            FieldUtils.writeStaticField(netherCarverField, NetherExCarvers.NETHER_CAVE.get(), true);
         }
         catch(ReflectiveOperationException e)
         {

@@ -1,6 +1,7 @@
 {
     "biome": "netherex:fungi_forest",
     "generation_weight": 4,
+    "use_default_carvers": true,
     "use_default_features": true,
     "is_sub_biome": false,
     "blocks": {
@@ -32,6 +33,20 @@
             "spawn_weight": 50,
             "minimum_group_count": 1,
             "maximum_group_count": 3
+        }
+    ],
+    "carvers": [
+        {
+            "carver": {
+                "name": "minecraft:hell_cave"
+            },
+            "decorator": {
+                "name": "minecraft:probability",
+                "config": {
+                    "probability": 0.2
+                }
+            },
+            "stage": "air"
         }
     ],
     "features": [

@@ -1,6 +1,7 @@
 {
     "biome": "minecraft:nether",
     "generation_weight": 10,
+    "use_default_carvers": true,
     "use_default_features": true,
     "is_sub_biome": false,
     "blocks": {
@@ -39,6 +40,8 @@
             "minimum_group_count": 4,
             "maximum_group_count": 4
         }
+    ],
+    "carvers": [
     ],
     "features": [
     ],

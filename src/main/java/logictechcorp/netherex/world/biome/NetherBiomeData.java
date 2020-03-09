@@ -26,22 +26,20 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class NetherBiomeData extends BiomeData
 {
-    public NetherBiomeData(Biome biome, int generationWeight, boolean useDefaultFeatures, boolean isSubBiome)
+    public NetherBiomeData(Biome biome, int generationWeight, boolean useDefaultCarvers, boolean useDefaultFeatures, boolean isSubBiome)
     {
-        super(biome, generationWeight, useDefaultFeatures, isSubBiome);
+        super(biome, generationWeight, useDefaultCarvers, useDefaultFeatures, isSubBiome);
     }
 
     @Override
     public void configureBiome()
     {
         ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, new ConfiguredSurfaceBuilder<>(NetherExSurfaceBuilders.NETHER_SURFACE_BUILDER_WRAPPER.get(), new NetherSurfaceBuilderWrapper.Config(this)), "field_201875_ar");
-        super.configureBiome();
     }
 
     @Override
     public void resetBiome()
     {
         ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, ((NetherSurfaceBuilderWrapper.Config) this.biome.getSurfaceBuilder().config).getOriginalBuilder(), "field_201875_ar");
-        super.resetBiome();
     }
 }

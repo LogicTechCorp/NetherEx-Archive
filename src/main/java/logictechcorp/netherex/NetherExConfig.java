@@ -67,7 +67,6 @@ public class NetherExConfig
         }
         catch(IOException ignored)
         {
-            NetherEx.LOGGER.error("Failed to create netherex config directory.");
         }
 
         ModLoadingContext loadingContext = ModLoadingContext.get();

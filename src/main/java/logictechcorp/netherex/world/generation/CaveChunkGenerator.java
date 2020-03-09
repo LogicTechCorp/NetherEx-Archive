@@ -21,12 +21,16 @@ import logictechcorp.libraryex.world.biome.BiomeData;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.NetherChunkGenerator;
 import net.minecraft.world.gen.NetherGenSettings;
+import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.ArrayList;
@@ -37,6 +41,38 @@ public class CaveChunkGenerator extends NetherChunkGenerator
     public CaveChunkGenerator(World world, BiomeProvider biomeProvider, NetherGenSettings settings)
     {
         super(world, biomeProvider, settings);
+    }
+
+    @Override
+    public void carve(IChunk chunk, GenerationStage.Carving stage)
+    {
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.getBiome(chunk));
+
+        if(biomeData != BiomeData.EMPTY)
+        {
+            biomeData.carve(stage, chunk, this.seed, this.getSeaLevel());
+        }
+    }
+
+    @Override
+    public void decorate(WorldGenRegion region)
+    {
+        int chunkX = region.getMainChunkX();
+        int chunkZ = region.getMainChunkZ();
+        int posX = chunkX * 16;
+        int posZ = chunkZ * 16;
+        BlockPos pos = new BlockPos(posX, 0, posZ);
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.getBiome(region, pos.add(8, 8, 8)));
+        SharedSeedRandom random = new SharedSeedRandom();
+        long decorationSeed = random.setDecorationSeed(region.getSeed(), posX, posZ);
+
+        if(biomeData != BiomeData.EMPTY)
+        {
+            for(GenerationStage.Decoration stage : GenerationStage.Decoration.values())
+            {
+                biomeData.decorate(stage, this, region, decorationSeed, random, pos);
+            }
+        }
     }
 
     @Override
@@ -56,10 +92,10 @@ public class CaveChunkGenerator extends NetherChunkGenerator
         }
 
         Biome biome = this.world.getBiome(pos);
-        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData().get(biome.getRegistryName());
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome);
         List<Biome.SpawnListEntry> spawns = new ArrayList<>(biome.getSpawns(classification));
 
-        if(biomeData != null)
+        if(biomeData != BiomeData.EMPTY)
         {
             spawns.addAll(biomeData.getSpawns(classification));
         }

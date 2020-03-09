@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.world.biome;
 
-import logictechcorp.libraryex.resource.OptionalResourcePack;
+import logictechcorp.libraryex.resource.BuiltinDataPack;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.NetherExConfig;
 import net.minecraft.resources.ResourcePackInfo;
@@ -46,17 +46,17 @@ public class NetherExBiomes
 
         if(NetherExConfig.NETHER.biomePackUseDefaultBiomePack.get())
         {
-            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "biome_pack", true));
+            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "biome_pack"));
         }
 
         if(NetherExConfig.NETHER.biomePackUseLegacyBiomePack.get())
         {
-            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "legacy_biome_pack", true));
+            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "legacy_biome_pack"));
         }
 
         if(NetherExConfig.NETHER.biomePackUseBOPBiomePack.get())
         {
-            resourcePacks.addPackFinder(new OptionalResourcePack(modFile, "bop_biome_pack", true));
+            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "bop_biome_pack"));
         }
     }
 }

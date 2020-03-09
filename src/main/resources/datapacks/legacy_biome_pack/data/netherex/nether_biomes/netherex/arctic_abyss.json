@@ -1,61 +1,58 @@
 {
-    "biome": "netherex:torrid_wasteland",
-    "generation_weight": 6,
+    "biome": "netherex:arctic_abyss",
+    "generation_weight": 2,
+    "use_default_carvers": true,
     "use_default_features": true,
     "is_sub_biome": false,
     "blocks": {
         "surface": {
-            "Name": "netherex:fiery_netherrack"
+            "Name": "netherex:frostburn_ice"
         },
         "subsurface": {
-            "Name": "netherex:fiery_netherrack"
+            "Name": "netherex:icy_netherrack"
         },
         "liquid": {
-            "Name": "lava"
+            "Name": "minecraft:magma_block"
         }
     },
     "entities": [
         {
-            "type": "minecraft:magma_cube",
-            "spawn_weight": 30,
+            "type": "netherex:wight",
+            "spawn_weight": 100,
             "minimum_group_count": 1,
             "maximum_group_count": 4
         },
         {
-            "type": "netherex:salamander",
-            "spawn_weight": 100,
+            "type": "netherex:coolmar_spider",
+            "spawn_weight": 35,
             "minimum_group_count": 1,
             "maximum_group_count": 2
+        }
+    ],
+    "carvers": [
+        {
+            "carver": {
+                "name": "minecraft:hell_cave"
+            },
+            "decorator": {
+                "name": "minecraft:probability",
+                "config": {
+                    "probability": 0.2
+                }
+            },
+            "stage": "air"
         }
     ],
     "features": [
         {
             "feature": {
-                "name": "minecraft:nether_spring",
-                "config": {
-                    "inside_rock": false
-                }
-            },
-            "decorator": {
-                "name": "minecraft:count_range",
-                "config": {
-                    "count": 12,
-                    "bottom_offset": 4,
-                    "top_offset": 8,
-                    "maximum": 128
-                }
-            },
-            "stage": "underground_decoration"
-        },
-        {
-            "feature": {
                 "name": "libraryex:scatter",
                 "config": {
                     "scatter_state": {
-                        "Name": "minecraft:fire"
+                        "Name": "netherex:blue_fire"
                     },
                     "target_state": {
-                        "Name": "netherex:fiery_netherrack"
+                        "Name": "netherex:frostburn_ice"
                     },
                     "target_area": "on_ground"
                 }
@@ -63,7 +60,7 @@
             "decorator": {
                 "name": "minecraft:hell_fire",
                 "config": {
-                    "count": 30
+                    "count": 5
                 }
             },
             "stage": "underground_decoration"
@@ -107,7 +104,7 @@
                         "Name": "netherex:quartz_ore"
                     },
                     "target_state": {
-                        "Name": "netherex:fiery_netherrack"
+                        "Name": "netherex:icy_netherrack"
                     },
                     "size": 14
                 }
@@ -125,44 +122,27 @@
         },
         {
             "feature": {
-                "name": "libraryex:pool",
+                "name": "libraryex:ore",
                 "config": {
-                    "liquid_state": {
-                        "Name": "minecraft:lava"
+                    "ore_state": {
+                        "Name": "netherex:rime_ore"
                     },
-                    "surrounding_state": {
-                        "Name": "netherex:fiery_netherrack"
-                    }
+                    "target_state": {
+                        "Name": "netherex:icy_netherrack"
+                    },
+                    "size": 14
                 }
             },
             "decorator": {
                 "name": "minecraft:count_range",
                 "config": {
-                    "count": 5,
+                    "count": 8,
                     "bottom_offset": 10,
-                    "top_offset": 10,
+                    "top_offset": 30,
                     "maximum": 128
                 }
             },
-            "stage": "underground_decoration"
-        },
-        {
-            "feature": {
-                "name": "minecraft:nether_spring",
-                "config": {
-                    "inside_rock": true
-                }
-            },
-            "decorator": {
-                "name": "minecraft:count_range",
-                "config": {
-                    "count": 24,
-                    "bottom_offset": 10,
-                    "top_offset": 10,
-                    "maximum": 128
-                }
-            },
-            "stage": "underground_decoration"
+            "stage": "underground_ores"
         }
     ],
     "sub_biomes": [
