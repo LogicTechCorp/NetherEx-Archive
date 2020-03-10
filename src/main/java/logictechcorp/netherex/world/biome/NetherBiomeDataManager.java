@@ -29,8 +29,8 @@ public class NetherBiomeDataManager extends BiomeDataManager
     }
 
     @Override
-    public BiomeData createBiomeData(Biome biome, int generationWeight, boolean useDefaultCarvers, boolean useDefaultFeatures, boolean isSubBiome)
+    public BiomeData createBiomeData(Biome biome, int generationWeight, boolean useDefaultEntities, boolean useDefaultCarvers, boolean useDefaultFeatures, boolean isSubBiome)
     {
-        return new NetherBiomeData(biome, generationWeight, useDefaultCarvers, useDefaultFeatures, isSubBiome);
+        return new NetherBiomeData(biome, generationWeight, useDefaultEntities, useDefaultCarvers, useDefaultFeatures, isSubBiome);
     }
 }

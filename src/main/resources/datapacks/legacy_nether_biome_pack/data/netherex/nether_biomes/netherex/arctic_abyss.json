@@ -1,6 +1,7 @@
 {
     "biome": "netherex:arctic_abyss",
     "generation_weight": 2,
+    "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,
     "is_sub_biome": false,

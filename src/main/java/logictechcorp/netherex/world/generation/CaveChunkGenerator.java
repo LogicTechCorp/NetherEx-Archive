@@ -93,13 +93,14 @@ public class CaveChunkGenerator extends NetherChunkGenerator
 
         Biome biome = this.world.getBiome(pos);
         BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome);
-        List<Biome.SpawnListEntry> spawns = new ArrayList<>(biome.getSpawns(classification));
+        List<Biome.SpawnListEntry> spawns = new ArrayList<>();
 
-        if(biomeData != BiomeData.EMPTY)
+        if(biomeData != BiomeData.EMPTY && biomeData.useDefaultEntities())
         {
-            spawns.addAll(biomeData.getSpawns(classification));
+            spawns.addAll(biome.getSpawns(classification));
         }
 
+        spawns.addAll(biomeData.getSpawns(classification));
         return spawns;
     }
 }

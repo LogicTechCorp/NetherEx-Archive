@@ -1,6 +1,7 @@
 {
     "biome": "biomesoplenty:visceral_heap",
     "generation_weight": 7,
+    "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,
     "is_sub_biome": false,
