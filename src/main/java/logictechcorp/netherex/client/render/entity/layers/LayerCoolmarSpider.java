@@ -44,15 +44,7 @@ public class LayerCoolmarSpider implements LayerRenderer<EntityCoolmarSpider>
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
-
-        if(coolmarSpider.isInvisible())
-        {
-            GlStateManager.depthMask(false);
-        }
-        else
-        {
-            GlStateManager.depthMask(true);
-        }
+        GlStateManager.depthMask(false);
 
         int i = 61680;
         int j = i % 65536;

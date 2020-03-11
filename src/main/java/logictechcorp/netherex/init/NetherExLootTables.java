@@ -44,12 +44,6 @@ public class NetherExLootTables
     public static final ResourceLocation EMBER = LootTableList.register(NetherEx.getResource("entity/ember"));
     public static final ResourceLocation NETHERMITE = LootTableList.register(NetherEx.getResource("entity/nethermite"));
     public static final ResourceLocation SPINOUT = LootTableList.register(NetherEx.getResource("entity/spinout"));
-    public static final ResourceLocation KIND_LOST_SOUL = LootTableList.register(NetherEx.getResource("entity/lost_soul/kind_lost_soul"));
-    public static final ResourceLocation TIMID_LOST_SOUL = LootTableList.register(NetherEx.getResource("entity/lost_soul/timid_lost_soul"));
-    public static final ResourceLocation NEUTRAL_LOST_SOUL = LootTableList.register(NetherEx.getResource("entity/lost_soul/neutral_lost_soul"));
-    public static final ResourceLocation MEAN_LOST_SOUL = LootTableList.register(NetherEx.getResource("entity/lost_soul/mean_lost_soul"));
-    public static final ResourceLocation ANGRY_LOST_SOUL = LootTableList.register(NetherEx.getResource("entity/lost_soul/angry_lost_soul"));
-    public static final ResourceLocation RIPPER = LootTableList.register(NetherEx.getResource("entity/ripper"));
     public static final ResourceLocation SPORE_CREEPER = LootTableList.register(NetherEx.getResource("entity/spore_creeper"));
     public static final ResourceLocation SPORE = LootTableList.register(NetherEx.getResource("entity/spore"));
     public static final ResourceLocation GHASTLING = LootTableList.register(NetherEx.getResource("entity/ghast/ghastling"));

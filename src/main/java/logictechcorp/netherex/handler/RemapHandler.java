@@ -161,7 +161,7 @@ public class RemapHandler
             .put("nex:armor_boots_hide_salamander", "netherex:salamander_hide_boots")
 
             //Unreleased items
-            .put(NetherEx.MOD_ID + ":ripper_claw", "minecraft:air")
+            .put("netherex:ripper_claw", "minecraft:air")
 
             //Biomes
             .put("nex:hell", "minecraft:hell")
@@ -187,6 +187,10 @@ public class RemapHandler
             .put("nex:bone_spider", "netherex:coolmar_spider")
             .put("nex:monster_brute", "netherex:brute")
             .put("nex:boss_ghast_queen", "netherex:ghast_queen")
+
+            //Unreleased entities
+            .put("netherex:lost_soul", "minecraft:pig")
+            .put("netherex:ripper", "minecraft:pig")
 
             //SoundEvents
             .put("nex:ambient_pigtificate", "netherex:pigtificate_ambient")
@@ -237,7 +241,7 @@ public class RemapHandler
 
             if(registry.containsKey(replacementMapping) && entry != null)
             {
-                if(!entry.getRegistryName().toString().equals("minecraft:air"))
+                if(!entry.getRegistryName().toString().equals("minecraft:air") && !entry.getRegistryName().toString().equals("minecraft:pig"))
                 {
                     missingMapping.remap(entry);
                     NetherEx.LOGGER.info("Remapped {} {} to {}.", registry.getRegistrySuperType().getSimpleName(), missingMapping.key, replacementMapping);

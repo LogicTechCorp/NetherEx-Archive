@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "hanging=true": { "model": "netherex:hanging_spoul_fruit" },
-        "hanging=false": { "model": "netherex:standing_spoul_fruit" }
-    }
-}

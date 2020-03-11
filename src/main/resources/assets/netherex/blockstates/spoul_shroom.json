@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "part=single": { "model": "netherex:spoul_shroom" },
-        "part=double_top": { "model": "netherex:double_spoul_shroom_top" },
-        "part=double_bottom": { "model": "netherex:double_spoul_shroom_bottom" }
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "netherex:blocks/possessed_soul_sand_stage_6"
-    }
-}
