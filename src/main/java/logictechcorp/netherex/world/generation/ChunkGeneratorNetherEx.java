@@ -59,11 +59,13 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
     private NoiseGeneratorOctaves netherrackNoiseGen;
     private NoiseGeneratorOctaves scaleNoiseGen;
     private NoiseGeneratorOctaves depthNoiseGen;
+    private NoiseGeneratorPerlin terrainNoiseGen;
 
     private double[] heightmap;
     private double[] netherrackNoise = new double[256];
     private double[] soulSandNoise = new double[256];
     private double[] gravelNoise = new double[256];
+    private double[] terrainNoise = new double[256];
     private double[] noiseLevels;
     private double[] lowerNoiseData;
     private double[] upperNoiseData;
@@ -87,6 +89,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.netherrackNoiseGen = new NoiseGeneratorOctaves(this.random, 4);
         this.scaleNoiseGen = new NoiseGeneratorOctaves(this.random, 10);
         this.depthNoiseGen = new NoiseGeneratorOctaves(this.random, 16);
+        this.terrainNoiseGen = new NoiseGeneratorPerlin(this.random, 4);
 
         InitNoiseGensEvent.ContextHell ctx = new InitNoiseGensEvent.ContextHell(this.lowerNoiseGen, this.upperNoiseGen, this.noiseLevelsGen, this.soulSandGravelNoiseGen, this.netherrackNoiseGen, this.scaleNoiseGen, this.depthNoiseGen);
         ctx = TerrainGen.getModdedNoiseGenerators(this.world, this.random, ctx);
@@ -202,7 +205,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
                 IBlockState subSurfaceState = Blocks.NETHERRACK.getDefaultState();
                 IBlockState liquidState = Blocks.LAVA.getDefaultState();
 
-                if(biomeData != null)
+                if(biomeData != BiomeData.EMPTY)
                 {
                     surfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK);
                     subSurfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK);
@@ -213,7 +216,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
                 for(int posY = 127; posY >= 0; posY--)
                 {
-                    if (posY < 127 - this.random.nextInt(5) && posY > this.random.nextInt(5))
+                    if(posY < 127 - this.random.nextInt(5) && posY > this.random.nextInt(5))
                     {
                         IBlockState checkState = primer.getBlockState(posX, posY, posZ);
 
@@ -356,8 +359,29 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
         this.buildSurfaces(chunkX, chunkZ, primer);
 
-        BlockPos blockPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.world.getBiome(blockPos.add(16, 0, 16)));
+        BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.world.getBiome(pos.add(16, 0, 16)));
+
+        if(biomeData != BiomeData.EMPTY)
+        {
+            Biome biome = biomeData.getBiome();
+
+            if(biome.getRegistryName().getNamespace().equals("biomesoplenty"))
+            {
+                if(ForgeEventFactory.onReplaceBiomeBlocks(this, chunkX, chunkZ, primer, world))
+                {
+                    this.terrainNoise = this.terrainNoiseGen.getRegion(this.terrainNoise, (chunkX * 16), (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
+
+                    for(int x = 0; x < 16; x++)
+                    {
+                        for(int z = 0; z < 16; z++)
+                        {
+                            biome.genTerrainBlocks(this.world, this.random, primer, (chunkX * 16) + x, (chunkZ * 16) + z, this.terrainNoise[x + z * 16]);
+                        }
+                    }
+                }
+            }
+        }
 
         this.netherCaves.generate(this.world, chunkX, chunkZ, primer);
 
@@ -398,7 +422,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         LibExEventFactory.onPreDecorateBiome(this.world, this.random, chunkPos);
         LibExEventFactory.onDecorateBiome(this.world, this.random, chunkPos, blockPos, DecorateBiomeEvent.Decorate.EventType.CUSTOM);
 
-        if(biomeData != null && biomeData.useDefaultBiomeDecorations())
+        if(biomeData != BiomeData.EMPTY && biomeData.useDefaultBiomeDecorations())
         {
             biomeData.getBiome().decorate(this.world, this.random, blockPos);
         }
@@ -435,7 +459,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome);
         List<Biome.SpawnListEntry> spawns = new ArrayList<>(biome.getSpawnableList(creatureType));
 
-        if(biomeData != null)
+        if(biomeData != BiomeData.EMPTY)
         {
             spawns.addAll(biomeData.getEntitySpawns(creatureType));
         }
@@ -473,7 +497,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
         if(this.generateStructures)
         {
-            if(biomeData != null && biomeData.getBiome() == Biomes.HELL)
+            if(biomeData != BiomeData.EMPTY && biomeData.getBiome() == Biomes.HELL)
             {
                 this.netherFortress.generate(this.world, chunkX, chunkZ, null);
             }

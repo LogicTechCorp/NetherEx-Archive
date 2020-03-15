@@ -24,7 +24,6 @@ import logictechcorp.netherex.entity.ai.*;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateProfession;
 import logictechcorp.netherex.village.PigtificateVillage;
-import logictechcorp.netherex.village.PigtificateVillageManager;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

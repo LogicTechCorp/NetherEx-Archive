@@ -84,7 +84,7 @@ public class BiomeTraitGenerationHandler
     {
         BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(world.getBiome(pos.add(16, 0, 16)));
 
-        if(biomeData != null)
+        if(biomeData != BiomeData.EMPTY)
         {
             for(BiomeTrait trait : biomeData.getBiomeTraits(generationStage))
             {

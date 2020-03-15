@@ -20,7 +20,6 @@ package logictechcorp.netherex.entity.ai;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
 import logictechcorp.netherex.village.PigtificateVillage;
-import logictechcorp.netherex.village.PigtificateVillageManager;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;

@@ -24,7 +24,10 @@ import logictechcorp.libraryex.world.generation.trait.BiomeTraitRegistry;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.handler.ConfigHandler;
-import logictechcorp.netherex.world.biome.*;
+import logictechcorp.netherex.world.biome.BiomeArcticAbyss;
+import logictechcorp.netherex.world.biome.BiomeFungiForest;
+import logictechcorp.netherex.world.biome.BiomeRuthlessSands;
+import logictechcorp.netherex.world.biome.BiomeTorridWasteland;
 import logictechcorp.netherex.world.biome.data.BiomeDataBOP;
 import logictechcorp.netherex.world.biome.data.BiomeDataHell;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
@@ -103,7 +106,7 @@ public class NetherExBiomes
                 })
         );
 
-        if(NetherEx.BIOMES_O_PLENTY_LOADED && ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
+        if(ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
         {
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, false));
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, false));

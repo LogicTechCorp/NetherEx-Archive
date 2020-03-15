@@ -19,22 +19,14 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.client.gui.GuiBreakingChanges;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.world.storage.ISaveFormat;
-import net.minecraft.world.storage.WorldSummary;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
-
-import java.util.Comparator;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Side.CLIENT)
 public class GuiScreenHandler

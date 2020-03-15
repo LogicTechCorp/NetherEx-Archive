@@ -21,7 +21,6 @@ import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.village.PigtificateVillage;
 import logictechcorp.netherex.village.PigtificateVillageFenceGateInfo;
-import logictechcorp.netherex.village.PigtificateVillageManager;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;

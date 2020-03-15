@@ -125,7 +125,7 @@ public class GenLayerNetherSubBiome extends GenLayer
         {
             BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome);
 
-            if(biomeData != null)
+            if(biomeData != BiomeData.EMPTY)
             {
                 List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>();
 

@@ -23,7 +23,6 @@ import logictechcorp.netherex.entity.ai.EntityAIGoldGolemLookAtPigtificate;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.village.PigtificateVillage;
-import logictechcorp.netherex.village.PigtificateVillageManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

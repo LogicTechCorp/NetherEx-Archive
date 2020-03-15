@@ -41,7 +41,7 @@ public abstract class BlockDynamicNetherBiome extends BlockDynamic
         Biome biome = world.getBiome(pos);
         BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome);
 
-        if(biomeData != null)
+        if(biomeData != BiomeData.EMPTY)
         {
             return biomeData.getBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK);
         }
