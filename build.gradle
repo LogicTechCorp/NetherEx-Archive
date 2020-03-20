@@ -21,15 +21,9 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        }
-        resources {
-            srcDir 'src/main/resources'
-            srcDir 'src/generated/resources'
-        }
-        compileClasspath += sourceSets.main.compileClasspath
+    main.resources {
+        srcDirs += 'src/main/generated_resources'
+        exclude '.cache'
     }
 }
 
@@ -41,7 +35,7 @@ minecraft {
             workingDirectory project.file('run')
 
             mods {
-                netherex {
+                NetherEx {
                     source sourceSets.main
                 }
             }
@@ -51,7 +45,7 @@ minecraft {
             workingDirectory project.file('run')
 
             mods {
-                netherex {
+                NetherEx {
                     source sourceSets.main
                 }
             }
@@ -61,11 +55,11 @@ minecraft {
             workingDirectory project.file('run')
 
             mods {
-                netherex {
+                NetherEx {
                     source sourceSets.main
                 }
             }
-            args '--mod', 'netherex', '--all', '--output', file('src/generated/resources'), '--input', file('src/main/resources')
+            args '--mod', 'netherex', '--all', '--output', file('src/main/generated_resources/'), '--input', file('src/main/resources')
         }
     }
 }

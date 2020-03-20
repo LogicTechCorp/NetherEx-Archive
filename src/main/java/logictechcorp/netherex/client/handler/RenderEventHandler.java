@@ -34,13 +34,11 @@ import net.minecraft.item.BowItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@SuppressWarnings("all")
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Dist.CLIENT)
 public class RenderEventHandler
 {
@@ -81,15 +79,9 @@ public class RenderEventHandler
     }
 
     @SubscribeEvent
-    public static void onRenderHand(RenderHandEvent event)
-    {
-    }
-
-    @SubscribeEvent
     public static void onRenderSpecificHand(RenderSpecificHandEvent event)
     {
         PlayerEntity player = MINECRAFT.player;
-        float partialTicks = event.getPartialTicks();
 
         if(player.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
         {
@@ -104,7 +96,6 @@ public class RenderEventHandler
         double posX = event.getX();
         double posY = event.getY();
         double posZ = event.getZ();
-        float partialTicks = event.getPartialRenderTick();
 
         if(entity.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
         {
