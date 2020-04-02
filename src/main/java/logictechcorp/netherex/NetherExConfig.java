@@ -206,7 +206,7 @@ public class NetherExConfig
     {
         //Biome pack settings
         public final ForgeConfigSpec.BooleanValue biomePackUseDefaultBiomePack;
-        public final ForgeConfigSpec.BooleanValue biomePackUseLegacyBiomePack;
+        public final ForgeConfigSpec.BooleanValue biomePackUseNetherExBiomePack;
         public final ForgeConfigSpec.BooleanValue biomePackUseBOPBiomePack;
 
         NetherConfig(ForgeConfigSpec.Builder builder)
@@ -221,9 +221,9 @@ public class NetherExConfig
             this.biomePackUseDefaultBiomePack = builder
                     .comment("Use the default biome pack.")
                     .define("useDefaultBiomePack", true);
-            this.biomePackUseLegacyBiomePack = builder
-                    .comment("Use the legacy biome pack.")
-                    .define("useLegacyBiomePack", true);
+            this.biomePackUseNetherExBiomePack = builder
+                    .comment("Use the NetherEx biome pack.")
+                    .define("useNetherExBiomePack", true);
             this.biomePackUseBOPBiomePack = builder
                     .comment("Use the Biomes O' Plenty biome pack.")
                     .define("useBOPBiomePack", true);

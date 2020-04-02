@@ -46,15 +46,15 @@ public class NetherExBiomes
 
         if(NetherExConfig.NETHER.biomePackUseDefaultBiomePack.get())
         {
-            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "nether_biome_pack"));
+            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "default_nether_biome_pack"));
         }
 
-        if(NetherExConfig.NETHER.biomePackUseLegacyBiomePack.get())
+        if(NetherExConfig.NETHER.biomePackUseNetherExBiomePack.get())
         {
-            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "legacy_nether_biome_pack"));
+            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "netherex_nether_biome_pack"));
         }
 
-        if(NetherExConfig.NETHER.biomePackUseBOPBiomePack.get())
+        if(ModList.get().isLoaded("biomesoplenty") && NetherExConfig.NETHER.biomePackUseBOPBiomePack.get())
         {
             resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "bop_nether_biome_pack"));
         }
