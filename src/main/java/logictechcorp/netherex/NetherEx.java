@@ -21,7 +21,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import logictechcorp.libraryex.world.biome.BiomeDataManager;
 import logictechcorp.netherex.block.NetherExBlocks;
 import logictechcorp.netherex.command.NetherExCommand;
-import logictechcorp.netherex.entity.NetherExEntities;
+import logictechcorp.netherex.entity.NetherExEntityTypes;
 import logictechcorp.netherex.item.NetherExItems;
 import logictechcorp.netherex.particle.NetherExParticles;
 import logictechcorp.netherex.potion.NetherExEffects;
@@ -87,7 +87,7 @@ public class NetherEx
         NetherExBlocks.BLOCKS.register(modEventBus);
         NetherExItems.ITEMS.register(modEventBus);
         NetherExBiomes.BIOMES.register(modEventBus);
-        NetherExEntities.ENTITIES.register(modEventBus);
+        NetherExEntityTypes.ENTITY_TYPES.register(modEventBus);
         NetherExChunkGenerators.CHUNK_GENERATOR_OVERRIDES.register(modEventBus);
         NetherExSurfaceBuilders.SURFACE_BUILDERS.register(modEventBus);
         NetherExCarvers.CARVER_OVERRIDES.register(modEventBus);
@@ -124,7 +124,7 @@ public class NetherEx
             e.printStackTrace();
         }
 
-        NetherExEntities.registerSpawnPlacements();
+        NetherExEntityTypes.registerSpawnPlacements();
     }
 
     private void onServerAboutToStart(FMLServerAboutToStartEvent event)

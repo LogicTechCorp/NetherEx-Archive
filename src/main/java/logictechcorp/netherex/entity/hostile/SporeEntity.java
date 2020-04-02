@@ -19,7 +19,7 @@ package logictechcorp.netherex.entity.hostile;
 
 import com.google.common.collect.Lists;
 import logictechcorp.netherex.NetherExConfig;
-import logictechcorp.netherex.entity.NetherExEntities;
+import logictechcorp.netherex.entity.NetherExEntityTypes;
 import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -98,7 +98,7 @@ public class SporeEntity extends MonsterEntity
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {
-                        SporeCreeperEntity creeper = new SporeCreeperEntity(NetherExEntities.SPORE_CREEPER.get(), this.world);
+                        SporeCreeperEntity creeper = new SporeCreeperEntity(NetherExEntityTypes.SPORE_CREEPER.get(), this.world);
                         creeper.setPosition(this.posX, this.posY, this.posZ);
                         this.world.addEntity(creeper);
                     }

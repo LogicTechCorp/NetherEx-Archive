@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.hostile;
 
-import logictechcorp.netherex.entity.NetherExEntities;
+import logictechcorp.netherex.entity.NetherExEntityTypes;
 import logictechcorp.netherex.entity.ai.goal.SporeCreeperSwellGoal;
 import logictechcorp.netherex.particle.NetherExParticles;
 import logictechcorp.netherex.potion.NetherExEffects;
@@ -408,7 +408,7 @@ public class SporeCreeperEntity extends MonsterEntity
                                 double d14 = getBlockDensity(vec3d, entity);
                                 double d10 = (1.0D - d12) * d14;
 
-                                if(entity.getType() != NetherExEntities.SPORE.get() && entity.getType() != NetherExEntities.SPORE_CREEPER.get())
+                                if(entity.getType() != NetherExEntityTypes.SPORE.get() && entity.getType() != NetherExEntityTypes.SPORE_CREEPER.get())
                                 {
                                     entity.attackEntityFrom(DamageSource.causeExplosionDamage(this), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
                                 }
@@ -499,7 +499,7 @@ public class SporeCreeperEntity extends MonsterEntity
             {
                 if(this.world.getBlockState(affectedPos).isAir(this.world, affectedPos) && this.world.getBlockState(affectedPos.down()).isOpaqueCube(this.world, affectedPos.down()) && this.world.rand.nextInt(3) == 0)
                 {
-                    SporeEntity spore = new SporeEntity(NetherExEntities.SPORE.get(), this.world);
+                    SporeEntity spore = new SporeEntity(NetherExEntityTypes.SPORE.get(), this.world);
                     spore.setPosition((double) affectedPos.getX() + 0.5D, affectedPos.getY(), (double) affectedPos.getZ() + 0.5D);
                     this.world.addEntity(spore);
                 }

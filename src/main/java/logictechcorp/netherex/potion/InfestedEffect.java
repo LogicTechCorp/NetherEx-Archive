@@ -18,7 +18,7 @@
 package logictechcorp.netherex.potion;
 
 import logictechcorp.netherex.NetherExConfig;
-import logictechcorp.netherex.entity.NetherExEntities;
+import logictechcorp.netherex.entity.NetherExEntityTypes;
 import logictechcorp.netherex.entity.hostile.SporeEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -52,7 +52,7 @@ public class InfestedEffect extends Effect
 
                 if(!world.isRemote && world.isAirBlock(newPos) && !world.isAirBlock(newPos.down()))
                 {
-                    SporeEntity spore = new SporeEntity(NetherExEntities.SPORE.get(), world);
+                    SporeEntity spore = new SporeEntity(NetherExEntityTypes.SPORE.get(), world);
                     spore.setLocationAndAngles(newPos.getX(), newPos.getY(), newPos.getZ(), entity.rotationYaw, entity.rotationPitch);
                     world.addEntity(spore);
                 }

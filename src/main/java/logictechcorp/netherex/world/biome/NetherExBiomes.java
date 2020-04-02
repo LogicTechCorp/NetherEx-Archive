@@ -30,14 +30,18 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.function.Supplier;
+
 public class NetherExBiomes
 {
     public static final DeferredRegister<Biome> BIOMES = new DeferredRegister<>(ForgeRegistries.BIOMES, NetherEx.MOD_ID);
 
-    public static final RegistryObject<Biome> RUTHLESS_SANDS = BIOMES.register("ruthless_sands", BasicNetherBiome::new);
-    public static final RegistryObject<Biome> FUNGI_FOREST = BIOMES.register("fungi_forest", BasicNetherBiome::new);
-    public static final RegistryObject<Biome> TORRID_WASTELAND = BIOMES.register("torrid_wasteland", BasicNetherBiome::new);
-    public static final RegistryObject<Biome> ARCTIC_ABYSS = BIOMES.register("arctic_abyss", BasicNetherBiome::new);
+    // @formatter:off
+    public static final RegistryObject<Biome> RUTHLESS_SANDS   = registerBiome("ruthless_sands", BasicNetherBiome::new);
+    public static final RegistryObject<Biome> FUNGI_FOREST     = registerBiome("fungi_forest", BasicNetherBiome::new);
+    public static final RegistryObject<Biome> TORRID_WASTELAND = registerBiome("torrid_wasteland", BasicNetherBiome::new);
+    public static final RegistryObject<Biome> ARCTIC_ABYSS     = registerBiome("arctic_abyss", BasicNetherBiome::new);
+    // @formatter:on
 
     public static void registerBiomePacks(MinecraftServer server)
     {
@@ -58,5 +62,10 @@ public class NetherExBiomes
         {
             resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "bop_nether_biome_pack"));
         }
+    }
+
+    private static <B extends Biome> RegistryObject<B> registerBiome(String name, Supplier<B> supplier)
+    {
+        return BIOMES.register(name, supplier);
     }
 }
