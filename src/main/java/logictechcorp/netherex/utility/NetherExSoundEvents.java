@@ -20,28 +20,48 @@ package logictechcorp.netherex.utility;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.function.Supplier;
+
 public class NetherExSoundEvents
 {
-    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = new DeferredRegister<>(ForgeRegistries.SOUND_EVENTS, NetherEx.MOD_ID);
+    private static final DeferredRegister<SoundEvent> SOUND_EVENTS = new DeferredRegister<>(ForgeRegistries.SOUND_EVENTS, NetherEx.MOD_ID);
 
-    public static final RegistryObject<SoundEvent> ENTITY_MOGUS_AMBIENT = SOUND_EVENTS.register("entity_mogus_ambient", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.mogus.ambient")));
-    public static final RegistryObject<SoundEvent> ENTITY_MOGUS_HURT = SOUND_EVENTS.register("entity_mogus_hurt", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.mogus.hurt")));
-    public static final RegistryObject<SoundEvent> ENTITY_MOGUS_DEATH = SOUND_EVENTS.register("entity_mogus_death", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.mogus.death")));
-    public static final RegistryObject<SoundEvent> ENTITY_SALAMANDER_AMBIENT = SOUND_EVENTS.register("entity_salamander_ambient", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.salamander.ambient")));
-    public static final RegistryObject<SoundEvent> ENTITY_SALAMANDER_HURT = SOUND_EVENTS.register("entity_salamander_hurt", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.salamander.hurt")));
-    public static final RegistryObject<SoundEvent> ENTITY_SALAMANDER_DEATH = SOUND_EVENTS.register("entity_salamander_death", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.salamander.death")));
-    public static final RegistryObject<SoundEvent> ENTITY_WIGHT_AMBIENT = SOUND_EVENTS.register("entity_wight_ambient", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.wight.ambient")));
-    public static final RegistryObject<SoundEvent> ENTITY_WIGHT_HURT = SOUND_EVENTS.register("entity_wight_hurt", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.wight.hurt")));
-    public static final RegistryObject<SoundEvent> ENTITY_WIGHT_DEATH = SOUND_EVENTS.register("entity_wight_death", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.wight.death")));
-    public static final RegistryObject<SoundEvent> ENTITY_SPINOUT_AMBIENT = SOUND_EVENTS.register("entity_spinout_ambient", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.spinout.ambient")));
-    public static final RegistryObject<SoundEvent> ENTITY_SPINOUT_HURT = SOUND_EVENTS.register("entity_spinout_hurt", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.spinout.hurt")));
-    public static final RegistryObject<SoundEvent> ENTITY_SPINOUT_DEATH = SOUND_EVENTS.register("entity_spinout_death", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.spinout.death")));
-    public static final RegistryObject<SoundEvent> ENTITY_SPORE_HURT = SOUND_EVENTS.register("entity_spore_hurt", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.spore.hurt")));
-    public static final RegistryObject<SoundEvent> ENTITY_SPORE_DEATH = SOUND_EVENTS.register("entity_spore_death", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.spore.death")));
-    public static final RegistryObject<SoundEvent> ENTITY_SPORE_WARN = SOUND_EVENTS.register("entity_spore_warn", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.spore.warn")));
-    public static final RegistryObject<SoundEvent> ENTITY_SPORE_EXPLODE = SOUND_EVENTS.register("entity_spore_explode", () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, "entity.spore.explode")));
+    // @formatter:off
+    public static final RegistryObject<SoundEvent> ENTITY_MOGUS_AMBIENT      = registerSound("entity_mogus_ambient");
+    public static final RegistryObject<SoundEvent> ENTITY_MOGUS_HURT         = registerSound("entity_mogus_hurt");
+    public static final RegistryObject<SoundEvent> ENTITY_MOGUS_DEATH        = registerSound("entity_mogus_death");
+    public static final RegistryObject<SoundEvent> ENTITY_SALAMANDER_AMBIENT = registerSound("entity_salamander_ambient");
+    public static final RegistryObject<SoundEvent> ENTITY_SALAMANDER_HURT    = registerSound("entity_salamander_hurt");
+    public static final RegistryObject<SoundEvent> ENTITY_SALAMANDER_DEATH   = registerSound("entity_salamander_death");
+    public static final RegistryObject<SoundEvent> ENTITY_WIGHT_AMBIENT      = registerSound("entity_wight_ambient");
+    public static final RegistryObject<SoundEvent> ENTITY_WIGHT_HURT         = registerSound("entity_wight_hurt");
+    public static final RegistryObject<SoundEvent> ENTITY_WIGHT_DEATH        = registerSound("entity_wight_death");
+    public static final RegistryObject<SoundEvent> ENTITY_SPINOUT_AMBIENT    = registerSound("entity_spinout_ambient");
+    public static final RegistryObject<SoundEvent> ENTITY_SPINOUT_HURT       = registerSound("entity_spinout_hurt");
+    public static final RegistryObject<SoundEvent> ENTITY_SPINOUT_DEATH      = registerSound("entity_spinout_death");
+    public static final RegistryObject<SoundEvent> ENTITY_SPORE_HURT         = registerSound("entity_spore_hurt");
+    public static final RegistryObject<SoundEvent> ENTITY_SPORE_DEATH        = registerSound("entity_spore_death");
+    public static final RegistryObject<SoundEvent> ENTITY_SPORE_WARN         = registerSound("entity_spore_warn");
+    public static final RegistryObject<SoundEvent> ENTITY_SPORE_EXPLODE      = registerSound("entity_spore_explode");
+    // @formatter:on
+
+    public static void register(IEventBus modEventBus)
+    {
+        SOUND_EVENTS.register(modEventBus);
+    }
+
+    private static <SE extends SoundEvent> RegistryObject<SE> registerSound(String name, Supplier<SE> supplier)
+    {
+        return SOUND_EVENTS.register(name, supplier);
+    }
+
+    private static RegistryObject<SoundEvent> registerSound(String name)
+    {
+        return registerSound(name, () -> new SoundEvent(new ResourceLocation(NetherEx.MOD_ID, name.replace("_", "."))));
+    }
 }

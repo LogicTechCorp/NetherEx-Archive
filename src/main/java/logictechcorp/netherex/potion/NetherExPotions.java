@@ -20,16 +20,30 @@ package logictechcorp.netherex.potion;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@SuppressWarnings("all")
+import java.util.function.Supplier;
+
 public class NetherExPotions
 {
-    public static final DeferredRegister<Potion> POTIONS = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, NetherEx.MOD_ID);
+    private static final DeferredRegister<Potion> POTIONS = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, NetherEx.MOD_ID);
 
-    public static final RegistryObject<Potion> DISPERSAL = POTIONS.register("dispersal", () -> new Potion(new EffectInstance(NetherExEffects.INFESTED.get(), 600)));
-    public static final RegistryObject<Potion> FREEZING = POTIONS.register("freezing", () -> new Potion(new EffectInstance(NetherExEffects.FROZEN.get(), 600)));
-    public static final RegistryObject<Potion> FRIGID_HEALTH = POTIONS.register("frigid_health", () -> new Potion(new EffectInstance(NetherExEffects.FROSTBITTEN.get(), 600)));
+    // @formatter:off
+    public static final RegistryObject<Potion> DISPERSAL     = registerPotion("dispersal", () -> new Potion(new EffectInstance(NetherExEffects.INFESTED.get(), 600)));
+    public static final RegistryObject<Potion> FREEZING      = registerPotion("freezing", () -> new Potion(new EffectInstance(NetherExEffects.FROZEN.get(), 600)));
+    public static final RegistryObject<Potion> FRIGID_HEALTH = registerPotion("frigid_health", () -> new Potion(new EffectInstance(NetherExEffects.FROSTBITTEN.get(), 600)));
+    // @formatter:on
+
+    public static void register(IEventBus modEventBus)
+    {
+        POTIONS.register(modEventBus);
+    }
+
+    private static <P extends Potion> RegistryObject<P> registerPotion(String name, Supplier<P> supplier)
+    {
+        return POTIONS.register(name, supplier);
+    }
 }

@@ -19,13 +19,19 @@ package logictechcorp.netherex.world.generation.carver;
 
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetherExCarvers
 {
-    public static final DeferredRegister<WorldCarver<?>> CARVER_OVERRIDES = new DeferredRegister<>(ForgeRegistries.WORLD_CARVERS, "minecraft");
+    private static final DeferredRegister<WorldCarver<?>> CARVER_OVERRIDES = new DeferredRegister<>(ForgeRegistries.WORLD_CARVERS, "minecraft");
 
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> NETHER_CAVE = CARVER_OVERRIDES.register("hell_cave", () -> new NetherCaveCarverOverride(ProbabilityConfig::deserialize));
+
+    public static void registerOverrides(IEventBus modEventBus)
+    {
+        CARVER_OVERRIDES.register(modEventBus);
+    }
 }

@@ -21,22 +21,39 @@ import logictechcorp.netherex.NetherEx;
 import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.function.Supplier;
+
 public class NetherExFeatures
 {
-    public static final DeferredRegister<Feature<?>> FEATURES = new DeferredRegister<>(ForgeRegistries.FEATURES, NetherEx.MOD_ID);
-    public static final DeferredRegister<Feature<?>> FEATURE_OVERRIDES = new DeferredRegister<>(ForgeRegistries.FEATURES, "minecraft");
+    private static final DeferredRegister<Feature<?>> FEATURES = new DeferredRegister<>(ForgeRegistries.FEATURES, NetherEx.MOD_ID);
+    private static final DeferredRegister<Feature<?>> FEATURE_OVERRIDES = new DeferredRegister<>(ForgeRegistries.FEATURES, "minecraft");
 
-    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> BROWN_ELDER_MUSHROOM = FEATURES.register("brown_elder_mushroom", () -> new BrownElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
-    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> RED_ELDER_MUSHROOM = FEATURES.register("red_elder_mushroom", () -> new RedElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
-    public static final RegistryObject<Feature<NoFeatureConfig>> ENOKI_MUSHROOM = FEATURES.register("enoki_mushroom", () -> new EnokiMushroomFeature(NoFeatureConfig::deserialize));
+    // @formatter:off
+    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> BROWN_ELDER_MUSHROOM = registerFeature("brown_elder_mushroom", () -> new BrownElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> RED_ELDER_MUSHROOM   = registerFeature("red_elder_mushroom", () -> new RedElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> ENOKI_MUSHROOM                = registerFeature("enoki_mushroom", () -> new EnokiMushroomFeature(NoFeatureConfig::deserialize));
+    // @formatter:off
 
-    static
+    public static void register(IEventBus modEventBus)
+    {
+        FEATURES.register(modEventBus);
+    }
+
+    public static void registerOverrides(IEventBus modEventBus)
     {
         FEATURE_OVERRIDES.register("glowstone_blob", () -> new GlowstoneBlobFeatureOverride(NoFeatureConfig::deserialize));
         FEATURE_OVERRIDES.register("nether_spring", () -> new NetherSpringOverride(NetherSpringOverride::deserialize));
+        FEATURE_OVERRIDES.register(modEventBus);
     }
+
+    private static <F extends Feature<?>> RegistryObject<F> registerFeature(String name, Supplier<F> supplier)
+    {
+        return FEATURES.register(name, supplier);
+    }
+
 }

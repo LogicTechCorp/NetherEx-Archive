@@ -20,13 +20,28 @@ package logictechcorp.netherex.world.generation.placement;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.function.Supplier;
+
 public class NetherExPlacements
 {
-    public static final DeferredRegister<Placement<?>> PLACEMENTS = new DeferredRegister<>(ForgeRegistries.DECORATORS, NetherEx.MOD_ID);
+    private static final DeferredRegister<Placement<?>> PLACEMENTS = new DeferredRegister<>(ForgeRegistries.DECORATORS, NetherEx.MOD_ID);
 
-    public static final RegistryObject<Placement<NoPlacementConfig>> ENOKI_MUSHROOM = PLACEMENTS.register("enoki_mushroom", () -> new EnokiMushroomPlacement(NoPlacementConfig::deserialize));
+    // @formatter:off
+    public static final RegistryObject<Placement<NoPlacementConfig>> ENOKI_MUSHROOM = registerPlacement("enoki_mushroom", () -> new EnokiMushroomPlacement(NoPlacementConfig::deserialize));
+    // @formatter:off
+
+    public static void register(IEventBus modEventBus)
+    {
+        PLACEMENTS.register(modEventBus);
+    }
+
+    private static <P extends Placement<?>> RegistryObject<P> registerPlacement(String name, Supplier<P> supplier)
+    {
+        return PLACEMENTS.register(name, supplier);
+    }
 }

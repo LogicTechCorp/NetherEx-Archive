@@ -19,13 +19,19 @@ package logictechcorp.netherex.world.generation.surfacebuilder;
 
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetherExSurfaceBuilders
 {
-    public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = new DeferredRegister<>(ForgeRegistries.SURFACE_BUILDERS, NetherEx.MOD_ID);
+    private static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = new DeferredRegister<>(ForgeRegistries.SURFACE_BUILDERS, NetherEx.MOD_ID);
 
     public static final RegistryObject<SurfaceBuilder<NetherSurfaceBuilderWrapper.Config>> NETHER_SURFACE_BUILDER_WRAPPER = SURFACE_BUILDERS.register("nether_surface_builder_wrapper", () -> new NetherSurfaceBuilderWrapper(NetherSurfaceBuilderWrapper.Config::deserialize));
+
+    public static void register(IEventBus modEventBus)
+    {
+        SURFACE_BUILDERS.register(modEventBus);
+    }
 }

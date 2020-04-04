@@ -84,20 +84,20 @@ public class NetherEx
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onCommonSetup);
-        NetherExBlocks.BLOCKS.register(modEventBus);
-        NetherExItems.ITEMS.register(modEventBus);
-        NetherExBiomes.BIOMES.register(modEventBus);
-        NetherExEntityTypes.ENTITY_TYPES.register(modEventBus);
-        NetherExChunkGenerators.CHUNK_GENERATOR_OVERRIDES.register(modEventBus);
-        NetherExSurfaceBuilders.SURFACE_BUILDERS.register(modEventBus);
-        NetherExCarvers.CARVER_OVERRIDES.register(modEventBus);
-        NetherExFeatures.FEATURES.register(modEventBus);
-        NetherExFeatures.FEATURE_OVERRIDES.register(modEventBus);
-        NetherExPlacements.PLACEMENTS.register(modEventBus);
-        NetherExParticles.PARTICLE_TYPES.register(modEventBus);
-        NetherExEffects.EFFECTS.register(modEventBus);
-        NetherExPotions.POTIONS.register(modEventBus);
-        NetherExSoundEvents.SOUND_EVENTS.register(modEventBus);
+        NetherExBlocks.register(modEventBus);
+        NetherExItems.register(modEventBus);
+        NetherExBiomes.register(modEventBus);
+        NetherExEntityTypes.register(modEventBus);
+        NetherExChunkGenerators.registerOverrides(modEventBus);
+        NetherExSurfaceBuilders.register(modEventBus);
+        NetherExCarvers.registerOverrides(modEventBus);
+        NetherExFeatures.register(modEventBus);
+        NetherExFeatures.registerOverrides(modEventBus);
+        NetherExPlacements.register(modEventBus);
+        NetherExParticles.register(modEventBus);
+        NetherExEffects.register(modEventBus);
+        NetherExPotions.register(modEventBus);
+        NetherExSoundEvents.register(modEventBus);
 
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
         forgeEventBus.addListener(this::onServerAboutToStart);

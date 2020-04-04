@@ -25,7 +25,6 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -35,15 +34,14 @@ public class ColorHandler
     public static void onItemColor(ColorHandlerEvent.Item event)
     {
         ItemColors colors = event.getItemColors();
-
-        for(RegistryObject<Item> object : NetherExItems.ITEMS.getEntries())
+        NetherExItems.getItems().forEach(registryObject ->
         {
-            Item item = object.get();
+            Item item = registryObject.get();
 
             if(item instanceof SpawnEggItem)
             {
                 colors.register((color, index) -> ((SpawnEggItem) item).getColor(index), item);
             }
-        }
+        });
     }
 }

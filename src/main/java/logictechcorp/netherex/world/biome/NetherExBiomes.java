@@ -24,6 +24,7 @@ import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
@@ -34,7 +35,7 @@ import java.util.function.Supplier;
 
 public class NetherExBiomes
 {
-    public static final DeferredRegister<Biome> BIOMES = new DeferredRegister<>(ForgeRegistries.BIOMES, NetherEx.MOD_ID);
+    private static final DeferredRegister<Biome> BIOMES = new DeferredRegister<>(ForgeRegistries.BIOMES, NetherEx.MOD_ID);
 
     // @formatter:off
     public static final RegistryObject<Biome> RUTHLESS_SANDS   = registerBiome("ruthless_sands", BasicNetherBiome::new);
@@ -42,6 +43,11 @@ public class NetherExBiomes
     public static final RegistryObject<Biome> TORRID_WASTELAND = registerBiome("torrid_wasteland", BasicNetherBiome::new);
     public static final RegistryObject<Biome> ARCTIC_ABYSS     = registerBiome("arctic_abyss", BasicNetherBiome::new);
     // @formatter:on
+
+    public static void register(IEventBus modEventBus)
+    {
+        BIOMES.register(modEventBus);
+    }
 
     public static void registerBiomePacks(MinecraftServer server)
     {

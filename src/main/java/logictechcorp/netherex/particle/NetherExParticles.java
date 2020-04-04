@@ -20,14 +20,34 @@ package logictechcorp.netherex.particle;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.function.Supplier;
+
 public class NetherExParticles
 {
-    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, NetherEx.MOD_ID);
+    private static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, NetherEx.MOD_ID);
 
-    public static final RegistryObject<BasicParticleType> SPORE_CREEPER_EXPLOSION = PARTICLE_TYPES.register("spore_creeper_explosion", () -> new BasicParticleType(true));
-    public static final RegistryObject<BasicParticleType> SPORE_CREEPER_EXPLOSION_EMITTER = PARTICLE_TYPES.register("spore_creeper_explosion_emitter", () -> new BasicParticleType(true));
+    // @formatter:off
+    public static final RegistryObject<BasicParticleType> SPORE_CREEPER_EXPLOSION         = registerParticle("spore_creeper_explosion", true);
+    public static final RegistryObject<BasicParticleType> SPORE_CREEPER_EXPLOSION_EMITTER = registerParticle("spore_creeper_explosion_emitter", true);
+    // @formatter:on
+
+    public static void register(IEventBus modEventBus)
+    {
+        PARTICLE_TYPES.register(modEventBus);
+    }
+
+    private static <PT extends ParticleType<?>> RegistryObject<PT> registerParticle(String name, Supplier<PT> supplier)
+    {
+        return PARTICLE_TYPES.register(name, supplier);
+    }
+
+    private static RegistryObject<BasicParticleType> registerParticle(String name, boolean alwaysVisible)
+    {
+        return registerParticle(name, () -> new BasicParticleType(alwaysVisible));
+    }
 }

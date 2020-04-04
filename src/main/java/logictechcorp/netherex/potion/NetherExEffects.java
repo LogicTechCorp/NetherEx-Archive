@@ -23,19 +23,33 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.awt.*;
+import java.util.function.Supplier;
 
 public class NetherExEffects
 {
-    public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, NetherEx.MOD_ID);
+    private static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, NetherEx.MOD_ID);
 
-    public static final RegistryObject<Effect> INFESTED = EFFECTS.register("infested", InfestedEffect::new);
-    public static final RegistryObject<Effect> FROZEN = EFFECTS.register("frozen", () -> new FrozenEffect().addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "C1372E45-9DB2-4E2E-BA2C-E3C5F6977891", -1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
-    public static final RegistryObject<Effect> FROSTBITTEN = EFFECTS.register("frostbitten", () -> new ModEffect(EffectType.HARMFUL, new Color(19, 226, 255).getRGB()));
-    public static final RegistryObject<Effect> FIRE_BURNING = EFFECTS.register("fire_burning", FireBurningEffect::new);
-    public static final RegistryObject<Effect> SOUL_SUCKED = EFFECTS.register("soul_sucked", SoulSuckedEffect::new);
+    // @formatter:off
+    public static final RegistryObject<Effect> INFESTED     = registerEffect("infested", InfestedEffect::new);
+    public static final RegistryObject<Effect> FROZEN       = registerEffect("frozen", () -> new FrozenEffect().addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "C1372E45-9DB2-4E2E-BA2C-E3C5F6977891", -1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<Effect> FROSTBITTEN  = registerEffect("frostbitten", () -> new ModEffect(EffectType.HARMFUL, new Color(19, 226, 255).getRGB()));
+    public static final RegistryObject<Effect> FIRE_BURNING = registerEffect("fire_burning", FireBurningEffect::new);
+    public static final RegistryObject<Effect> SOUL_SUCKED  = registerEffect("soul_sucked", SoulSuckedEffect::new);
+    // @formatter:on
+
+    public static void register(IEventBus modEventBus)
+    {
+        EFFECTS.register(modEventBus);
+    }
+
+    private static <E extends Effect> RegistryObject<E> registerEffect(String name, Supplier<E> supplier)
+    {
+        return EFFECTS.register(name, supplier);
+    }
 }

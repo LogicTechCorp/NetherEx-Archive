@@ -20,13 +20,19 @@ package logictechcorp.netherex.world.generation;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.NetherChunkGenerator;
 import net.minecraft.world.gen.NetherGenSettings;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetherExChunkGenerators
 {
-    public static final DeferredRegister<ChunkGeneratorType<?, ?>> CHUNK_GENERATOR_OVERRIDES = new DeferredRegister<>(ForgeRegistries.CHUNK_GENERATOR_TYPES, "minecraft");
+    private static final DeferredRegister<ChunkGeneratorType<?, ?>> CHUNK_GENERATOR_OVERRIDES = new DeferredRegister<>(ForgeRegistries.CHUNK_GENERATOR_TYPES, "minecraft");
 
     public static final RegistryObject<ChunkGeneratorType<NetherGenSettings, NetherChunkGenerator>> CAVES = CHUNK_GENERATOR_OVERRIDES.register("caves", () -> new CaveChunkGeneratorTypeOverride(CaveChunkGenerator::new, true, NetherGenSettings::new));
+
+    public static void registerOverrides(IEventBus modEventBus)
+    {
+        CHUNK_GENERATOR_OVERRIDES.register(modEventBus);
+    }
 }

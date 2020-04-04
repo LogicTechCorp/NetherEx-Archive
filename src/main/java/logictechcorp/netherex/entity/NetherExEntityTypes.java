@@ -26,13 +26,14 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetherExEntityTypes
 {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.ENTITIES, NetherEx.MOD_ID);
+    private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.ENTITIES, NetherEx.MOD_ID);
 
     // @formatter:off
     public static final RegistryObject<EntityType<MogusEntity>> MOGUS                  = registerEntityType("mogus", EntityType.Builder.create(MogusEntity::new, EntityClassification.MONSTER).size(0.35F, 0.55F).immuneToFire());
@@ -43,6 +44,11 @@ public class NetherExEntityTypes
     public static final RegistryObject<EntityType<WightEntity>> WIGHT                  = registerEntityType("wight", EntityType.Builder.create(WightEntity::new, EntityClassification.MONSTER).size(0.55F, 1.5F).immuneToFire());
     public static final RegistryObject<EntityType<CoolmarSpiderEntity>> COOLMAR_SPIDER = registerEntityType("coolmar_spider", EntityType.Builder.create(CoolmarSpiderEntity::new, EntityClassification.MONSTER).size(1.5F, 1.0F).immuneToFire());
     // @formatter:on
+
+    public static void register(IEventBus modEventBus)
+    {
+        ENTITY_TYPES.register(modEventBus);
+    }
 
     public static void registerSpawnPlacements()
     {

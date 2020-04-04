@@ -22,15 +22,18 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.NetherExEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.function.Supplier;
 
 public class NetherExItems
 {
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, NetherEx.MOD_ID);
+    private static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, NetherEx.MOD_ID);
 
     // @formatter:off
     public static final RegistryObject<Item> GLOOMY_NETHER_BRICK      = registerItem("gloomy_nether_brick", NetherExItemProperties.GLOOMY_NETHER_BRICK);
@@ -55,6 +58,16 @@ public class NetherExItems
     public static final RegistryObject<Item> ENOKI_MUSHROOM           = registerItem("enoki_mushroom", NetherExItemProperties.ENOKI_MUSHROOM);
     public static final RegistryObject<Item> DULL_MIRROR              = registerItem("dull_mirror", NetherExItemProperties.DULL_MIRROR);
     // @formatter:on
+
+    public static void register(IEventBus modEventBus)
+    {
+        ITEMS.register(modEventBus);
+    }
+
+    public static Collection<RegistryObject<Item>> getItems()
+    {
+        return Collections.unmodifiableCollection(ITEMS.getEntries());
+    }
 
     private static <I extends Item> RegistryObject<I> registerItem(String name, Supplier<I> supplier)
     {

@@ -19,12 +19,12 @@ package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.*;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.item.NetherExItems;
 import logictechcorp.netherex.world.generation.feature.NetherExFeatures;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,7 +33,8 @@ import java.util.function.Supplier;
 
 public class NetherExBlocks
 {
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, NetherEx.MOD_ID);
+    private static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, NetherEx.MOD_ID);
+    private static final DeferredRegister<Item> ITEM_BLOCKS = new DeferredRegister<>(ForgeRegistries.ITEMS, NetherEx.MOD_ID);
 
     // @formatter:off
     public static final RegistryObject<Block> GLOOMY_NETHERRACK              = registerBlockWithBasicItem("gloomy_netherrack", () -> new FireSustainingBlock(NetherExBlockProperties.GLOOMY_NETHERRACK));
@@ -111,6 +112,12 @@ public class NetherExBlocks
     public static final RegistryObject<Block> SOUL_GLASS_PANE                = registerBlockWithBasicItem("soul_glass_pane", () -> new SoulGlassPaneBlock(NetherExBlockProperties.SOUL_GLASS_PANE));
     // @formatter:on
 
+    public static void register(IEventBus modEventBus)
+    {
+        BLOCKS.register(modEventBus);
+        ITEM_BLOCKS.register(modEventBus);
+    }
+
     private static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<B> supplier)
     {
         return BLOCKS.register(name, supplier);
@@ -119,7 +126,7 @@ public class NetherExBlocks
     private static RegistryObject<Block> registerBlockWithBasicItem(String name, Block.Properties properties, ItemGroup group)
     {
         RegistryObject<Block> registryObject = registerBlock(name, () -> new Block(properties));
-        NetherExItems.ITEMS.register(name, () -> new BlockItem(registryObject.get(), new Item.Properties().group(group)));
+        ITEM_BLOCKS.register(name, () -> new BlockItem(registryObject.get(), new Item.Properties().group(group)));
         return registryObject;
     }
 
@@ -131,7 +138,7 @@ public class NetherExBlocks
     private static <B extends Block> RegistryObject<B> registerBlockWithBasicItem(String name, Supplier<B> supplier, ItemGroup group)
     {
         RegistryObject<B> registryObject = registerBlock(name, supplier);
-        NetherExItems.ITEMS.register(name, () -> new BlockItem(registryObject.get(), new Item.Properties().group(group)));
+        ITEM_BLOCKS.register(name, () -> new BlockItem(registryObject.get(), new Item.Properties().group(group)));
         return registryObject;
     }
 
