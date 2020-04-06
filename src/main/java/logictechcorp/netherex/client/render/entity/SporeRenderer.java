@@ -36,7 +36,7 @@ public class SporeRenderer extends MobRenderer<SporeEntity, SporeModel>
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SporeEntity spore)
+    public ResourceLocation getEntityTexture(SporeEntity spore)
     {
         return TEXTURE;
     }

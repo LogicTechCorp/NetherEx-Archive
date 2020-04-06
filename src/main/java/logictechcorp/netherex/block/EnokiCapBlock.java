@@ -24,13 +24,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 
 import java.util.Random;
@@ -46,7 +46,7 @@ public class EnokiCapBlock extends Block
     }
 
     @Override
-    public void tick(BlockState state, World world, BlockPos pos, Random random)
+    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
         if(!state.isValidPosition(world, pos))
         {
@@ -229,12 +229,6 @@ public class EnokiCapBlock extends Block
         {
             return true;
         }
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
     }
 
     public static void generatePlant(IWorld world, BlockPos pos, Random random, int maximumHeight)

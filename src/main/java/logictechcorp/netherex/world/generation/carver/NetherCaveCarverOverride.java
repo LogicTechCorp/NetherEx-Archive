@@ -27,6 +27,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.carver.NetherCaveWorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
@@ -44,7 +45,7 @@ public class NetherCaveCarverOverride extends NetherCaveWorldCarver
     }
 
     @Override
-    protected boolean carveBlock(IChunk chunk, BitSet carvingMask, Random random, BlockPos.MutableBlockPos mutablePos, BlockPos.MutableBlockPos mutablePosUp, BlockPos.MutableBlockPos mutablePosDown, int minY, int minX, int minZ, int posX, int posZ, int p_222703_12_, int posY, int p_222703_14_, AtomicBoolean isDefaultTopBlock)
+    protected boolean func_225556_a_(IChunk chunk, Function<BlockPos, Biome> posBiomeFunction, BitSet carvingMask, Random random, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosUp, BlockPos.Mutable mutablePosDown, int minY, int minX, int minZ, int posX, int posZ, int p_222703_12_, int posY, int p_222703_14_, AtomicBoolean isDefaultTopBlock)
     {
         int bitIndex = p_222703_12_ | p_222703_14_ << 4 | posY << 8;
 
@@ -65,7 +66,7 @@ public class NetherCaveCarverOverride extends NetherCaveWorldCarver
                 if(posY <= 31)
                 {
                     state = LAVA.getBlockState();
-                    BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(chunk.getBiome(mutablePos));
+                    BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(posBiomeFunction.apply(mutablePos));
 
                     if(biomeData != BiomeData.EMPTY)
                     {

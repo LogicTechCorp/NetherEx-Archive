@@ -17,25 +17,27 @@
 
 package logictechcorp.netherex.client.handler;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.potion.NetherExEffects;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.model.Material;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -79,121 +81,121 @@ public class RenderEventHandler
     }
 
     @SubscribeEvent
-    public static void onRenderSpecificHand(RenderSpecificHandEvent event)
+    public static void onRenderSpecificHand(RenderHandEvent event)
     {
         PlayerEntity player = MINECRAFT.player;
+        MatrixStack matrixStack = event.getMatrixStack();
 
-        if(player.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
+        if(player != null && player.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
         {
-            renderFirstPersonBlueFire();
+            renderFirstPersonBlueFire(matrixStack);
         }
     }
 
     @SubscribeEvent
-    public static void onRenderLivingPost(RenderLivingEvent.Post event)
+    public static void onRenderLivingPost(RenderLivingEvent.Post<?, ?> event)
     {
+        MatrixStack matrixStack = event.getMatrixStack();
+        IRenderTypeBuffer renderTypeBuffer = event.getBuffers();
         LivingEntity entity = event.getEntity();
-        double posX = event.getX();
-        double posY = event.getY();
-        double posZ = event.getZ();
 
         if(entity.isPotionActive(NetherExEffects.FIRE_BURNING.get()))
         {
-            renderThirdPersonBlueFire(entity, posX, posY, posZ);
+            renderThirdPersonBlueFire(matrixStack, renderTypeBuffer, entity);
         }
     }
 
-    private static void renderFirstPersonBlueFire()
+    public static final Material BLUE_FIRE_LAYER_O = new Material(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(NetherEx.MOD_ID, "block/blue_fire_layer_0"));
+    public static final Material BLUE_FIRE_LAYER_1 = new Material(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(NetherEx.MOD_ID, "block/blue_fire_layer_1"));
+
+    private static void renderThirdPersonBlueFire(MatrixStack matrixStack, IRenderTypeBuffer buffer, Entity entity)
     {
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder builder = tessellator.getBuffer();
-        GlStateManager.disableAlphaTest();
-        GlStateManager.disableLighting();
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.9F);
-        GlStateManager.depthFunc(519);
-        GlStateManager.depthMask(false);
-        GlStateManager.enableBlend();
-        GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        TextureAtlasSprite blueFireLayerOSprite = BLUE_FIRE_LAYER_O.getSprite();
+        TextureAtlasSprite blueFireLayer1Sprite = BLUE_FIRE_LAYER_1.getSprite();
+        matrixStack.push();
+        float f = entity.getWidth() * 1.4F;
+        matrixStack.scale(f, f, f);
+        float f1 = 0.5F;
+        float f3 = entity.getHeight() / f;
+        float f4 = 0.0F;
+        matrixStack.rotate(Vector3f.YP.rotationDegrees(-MINECRAFT.getRenderManager().info.getYaw()));
+        matrixStack.translate(0.0D, 0.0D, (-0.3F + (float) ((int) f3) * 0.02F));
+        float f5 = 0.0F;
+        int i = 0;
+        IVertexBuilder builder = buffer.getBuffer(Atlases.getCutoutBlockType());
 
-        for(int stage = 0; stage < 2; stage++)
+        for(MatrixStack.Entry matrixEntry = matrixStack.getLast(); f3 > 0.0F; i++)
         {
-            GlStateManager.pushMatrix();
-            TextureAtlasSprite sprite = MINECRAFT.getTextureMap().getSprite(new ResourceLocation(NetherEx.MOD_ID, "block/blue_fire_layer_1"));
-            MINECRAFT.getTextureManager().bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
-            float minU = sprite.getMinU();
-            float maxU = sprite.getMaxU();
-            float minV = sprite.getMinV();
-            float maxV = sprite.getMaxV();
-            GlStateManager.translatef((float) (-(stage * 2 - 1)) * 0.24F, -0.3F, 0.0F);
-            GlStateManager.rotatef((float) (stage * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
-            builder.begin(7, DefaultVertexFormats.POSITION_TEX);
-            builder.pos(-0.5D, -0.5D, -0.5D).tex(maxU, maxV).endVertex();
-            builder.pos(0.5D, -0.5D, -0.5D).tex(minU, maxV).endVertex();
-            builder.pos(0.5D, 0.5D, -0.5D).tex(minU, minV).endVertex();
-            builder.pos(-0.5D, 0.5D, -0.5D).tex(maxU, minV).endVertex();
-            tessellator.draw();
-            GlStateManager.popMatrix();
-        }
-
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GlStateManager.disableBlend();
-        GlStateManager.depthMask(true);
-        GlStateManager.depthFunc(515);
-        GlStateManager.enableLighting();
-        GlStateManager.enableAlphaTest();
-    }
-
-    private static void renderThirdPersonBlueFire(Entity entity, double posX, double posY, double posZ)
-    {
-        GlStateManager.disableLighting();
-        AtlasTexture textureMap = MINECRAFT.getTextureMap();
-        TextureAtlasSprite blueFireLayer1 = textureMap.getSprite(new ResourceLocation(NetherEx.MOD_ID, "block/blue_fire_layer_0"));
-        TextureAtlasSprite blueFireLayer2 = textureMap.getSprite(new ResourceLocation(NetherEx.MOD_ID, "block/blue_fire_layer_1"));
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef((float) posX, (float) posY, (float) posZ);
-        float scale = entity.getSize(Pose.STANDING).width * 1.4F;
-        GlStateManager.scalef(scale, scale, scale);
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder builder = tessellator.getBuffer();
-        float renderX = 0.5F;
-        float height = entity.getSize(Pose.STANDING).height / scale;
-        float renderY = (float) (entity.posY - entity.getBoundingBox().minY);
-        GlStateManager.rotatef(-MINECRAFT.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
-        GlStateManager.translatef(0.0F, 0.0F, -0.3F + (float) ((int) height) * 0.02F);
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        float renderZ = 0.0F;
-        int stage = 0;
-        builder.begin(7, DefaultVertexFormats.POSITION_TEX);
-
-        while(height > 0.0F)
-        {
-            TextureAtlasSprite sprite = stage % 2 == 0 ? blueFireLayer1 : blueFireLayer2;
-            MINECRAFT.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
+            TextureAtlasSprite sprite = i % 2 == 0 ? blueFireLayerOSprite : blueFireLayer1Sprite;
             float minU = sprite.getMinU();
             float minV = sprite.getMinV();
             float maxU = sprite.getMaxU();
             float maxV = sprite.getMaxV();
 
-            if(stage / 2 % 2 == 0)
+            if(i / 2 % 2 == 0)
             {
-                float tempU = maxU;
+                float f10 = maxU;
                 maxU = minU;
-                minU = tempU;
+                minU = f10;
             }
 
-            builder.pos((renderX - 0.0F), (0.0F - renderY), renderZ).tex(maxU, maxV).endVertex();
-            builder.pos((-renderX - 0.0F), (0.0F - renderY), renderZ).tex(minU, maxV).endVertex();
-            builder.pos((-renderX - 0.0F), (1.4F - renderY), renderZ).tex(minU, minV).endVertex();
-            builder.pos((renderX - 0.0F), (1.4F - renderY), renderZ).tex(maxU, minV).endVertex();
-            height -= 0.45F;
-            renderY -= 0.45F;
-            renderX *= 0.9F;
-            renderZ += 0.03F;
-            stage++;
+            fireVertex(matrixEntry, builder, f1 - 0.0F, 0.0F - f4, f5, maxU, maxV);
+            fireVertex(matrixEntry, builder, -f1 - 0.0F, 0.0F - f4, f5, minU, maxV);
+            fireVertex(matrixEntry, builder, -f1 - 0.0F, 1.4F - f4, f5, minU, minV);
+            fireVertex(matrixEntry, builder, f1 - 0.0F, 1.4F - f4, f5, maxU, minV);
+            f3 -= 0.45F;
+            f4 -= 0.45F;
+            f1 *= 0.9F;
+            f5 += 0.03F;
         }
 
-        tessellator.draw();
-        GlStateManager.popMatrix();
-        GlStateManager.enableLighting();
+        matrixStack.pop();
+    }
+
+    private static void fireVertex(MatrixStack.Entry matrixEntry, IVertexBuilder builder, float x, float y, float z, float texU, float texV)
+    {
+        builder.pos(matrixEntry.getMatrix(), x, y, z).color(255, 255, 255, 255).tex(texU, texV).overlay(0, 10).lightmap(240).normal(matrixEntry.getNormal(), 0.0F, 1.0F, 0.0F).endVertex();
+    }
+
+    private static void renderFirstPersonBlueFire(MatrixStack matrixStack)
+    {
+        BufferBuilder builder = Tessellator.getInstance().getBuffer();
+        RenderSystem.depthFunc(519);
+        RenderSystem.depthMask(false);
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        TextureAtlasSprite sprite = BLUE_FIRE_LAYER_1.getSprite();
+        MINECRAFT.getTextureManager().bindTexture(sprite.getAtlasTexture().getTextureLocation());
+        float f = sprite.getMinU();
+        float f1 = sprite.getMaxU();
+        float f2 = (f + f1) / 2.0F;
+        float f3 = sprite.getMinV();
+        float f4 = sprite.getMaxV();
+        float f5 = (f3 + f4) / 2.0F;
+        float f6 = sprite.getUvShrinkRatio();
+        float f7 = MathHelper.lerp(f6, f, f2);
+        float f8 = MathHelper.lerp(f6, f1, f2);
+        float f9 = MathHelper.lerp(f6, f3, f5);
+        float f10 = MathHelper.lerp(f6, f4, f5);
+
+        for(int i = 0; i < 2; i++)
+        {
+            matrixStack.push();
+            matrixStack.translate(((float) (-(i * 2 - 1)) * 0.24F), -0.3F, 0.0D);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees((float) (i * 2 - 1) * 10.0F));
+            Matrix4f matrix4f = matrixStack.getLast().getMatrix();
+            builder.begin(7, DefaultVertexFormats.POSITION_COLOR_TEX);
+            builder.pos(matrix4f, -0.5F, -0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).tex(f8, f10).endVertex();
+            builder.pos(matrix4f, 0.5F, -0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).tex(f7, f10).endVertex();
+            builder.pos(matrix4f, 0.5F, 0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).tex(f7, f9).endVertex();
+            builder.pos(matrix4f, -0.5F, 0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).tex(f8, f9).endVertex();
+            builder.finishDrawing();
+            WorldVertexBufferUploader.draw(builder);
+            matrixStack.pop();
+        }
+
+        RenderSystem.disableBlend();
+        RenderSystem.depthMask(true);
+        RenderSystem.depthFunc(515);
     }
 }

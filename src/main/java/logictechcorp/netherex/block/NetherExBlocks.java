@@ -17,9 +17,11 @@
 
 package logictechcorp.netherex.block;
 
-import logictechcorp.libraryex.block.*;
+import logictechcorp.libraryex.block.ExperienceDroppingBlock;
+import logictechcorp.libraryex.block.FireSustainingBlock;
+import logictechcorp.libraryex.block.ModBreakableBlock;
+import logictechcorp.libraryex.block.PathBlock;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.world.generation.feature.NetherExFeatures;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -95,13 +97,13 @@ public class NetherExBlocks
     public static final RegistryObject<Block> BASALT_PILLAR_FENCE            = registerBlockWithBasicItem("basalt_pillar_fence", () -> new FenceBlock(NetherExBlockProperties.BASALT_PILLAR_FENCE));
     public static final RegistryObject<Block> BASALT_PILLAR_FENCE_GATE       = registerBlockWithBasicItem("basalt_pillar_fence_gate", () -> new FenceGateBlock(NetherExBlockProperties.BASALT_PILLAR_FENCE_GATE));
     public static final RegistryObject<Block> HYPHAE                         = registerBlockWithBasicItem("hyphae", HyphaeBlock::new);
-    public static final RegistryObject<Block> FROSTBURN_ICE                  = registerBlockWithBasicItem("frostburn_ice", () -> new UnmeltableIceBlock(NetherExBlockProperties.FROSTBURN_ICE));
+    public static final RegistryObject<Block> FROSTBURN_ICE                  = registerBlockWithBasicItem("frostburn_ice", () -> new ModBreakableBlock(NetherExBlockProperties.FROSTBURN_ICE));
     public static final RegistryObject<Block> QUARTZ_ORE                     = registerBlockWithBasicItem("quartz_ore", QuartzOreBlock::new);
     public static final RegistryObject<Block> RIME_ORE                       = registerBlockWithBasicItem("rime_ore", () -> new ExperienceDroppingBlock(2, 6, NetherExBlockProperties.RIME_ORE));
     public static final RegistryObject<Block> RIME_BLOCK                     = registerBlockWithBasicItem("rime_block", () -> new RimeBlock(NetherExBlockProperties.RIME_BLOCK));
     public static final RegistryObject<Block> THORNSTALK                     = registerBlockWithBasicItem("thornstalk", ThornstalkBlock::new);
-    public static final RegistryObject<Block> BROWN_ELDER_MUSHROOM           = registerBlockWithBasicItem("brown_elder_mushroom", () -> new ModMushroomBlock(NetherExFeatures.BROWN_ELDER_MUSHROOM, NetherExBlockProperties.BROWN_ELDER_MUSHROOM));
-    public static final RegistryObject<Block> RED_ELDER_MUSHROOM             = registerBlockWithBasicItem("red_elder_mushroom", () -> new ModMushroomBlock(NetherExFeatures.RED_ELDER_MUSHROOM, NetherExBlockProperties.RED_ELDER_MUSHROOM));
+    public static final RegistryObject<Block> BROWN_ELDER_MUSHROOM           = registerBlockWithBasicItem("brown_elder_mushroom", () -> new ElderMushroomBlock(NetherExBlockProperties.BROWN_ELDER_MUSHROOM));
+    public static final RegistryObject<Block> RED_ELDER_MUSHROOM             = registerBlockWithBasicItem("red_elder_mushroom", () -> new ElderMushroomBlock(NetherExBlockProperties.RED_ELDER_MUSHROOM));
     public static final RegistryObject<Block> BROWN_ELDER_MUSHROOM_CAP       = registerBlockWithBasicItem("brown_elder_mushroom_cap", () -> new HugeMushroomBlock(NetherExBlockProperties.BROWN_ELDER_MUSHROOM_CAP));
     public static final RegistryObject<Block> RED_ELDER_MUSHROOM_CAP         = registerBlockWithBasicItem("red_elder_mushroom_cap", () -> new HugeMushroomBlock(NetherExBlockProperties.RED_ELDER_MUSHROOM_CAP));
     public static final RegistryObject<Block> ELDER_MUSHROOM_STEM            = registerBlockWithBasicItem("elder_mushroom_stem", () -> new HugeMushroomBlock(NetherExBlockProperties.ELDER_MUSHROOM_STEM));

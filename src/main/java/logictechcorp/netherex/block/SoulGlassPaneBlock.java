@@ -19,7 +19,6 @@ package logictechcorp.netherex.block;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PaneBlock;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -36,11 +35,5 @@ public class SoulGlassPaneBlock extends PaneBlock
     public VoxelShape getRenderShape(BlockState state, IBlockReader world, BlockPos pos)
     {
         return VoxelShapes.fullCube();
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
     }
 }

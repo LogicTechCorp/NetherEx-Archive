@@ -43,9 +43,8 @@ public class CaveChunkGeneratorTypeOverride extends ChunkGeneratorType<NetherGen
         {
             if(!(biomeProvider instanceof NetherBiomeProvider))
             {
-                OverworldBiomeProviderSettings biomeProviderSettings = new OverworldBiomeProviderSettings();
+                OverworldBiomeProviderSettings biomeProviderSettings = new OverworldBiomeProviderSettings(world.getWorldInfo());
                 biomeProviderSettings.setGeneratorSettings(new OverworldGenSettings());
-                biomeProviderSettings.setWorldInfo(world.getWorldInfo());
                 biomeProvider = new NetherBiomeProvider(biomeProviderSettings);
             }
 

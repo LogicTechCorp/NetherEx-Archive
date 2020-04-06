@@ -36,7 +36,7 @@ public class WightRenderer extends MobRenderer<WightEntity, WightModel>
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(WightEntity entity)
+    public ResourceLocation getEntityTexture(WightEntity entity)
     {
         return TEXTURE;
     }

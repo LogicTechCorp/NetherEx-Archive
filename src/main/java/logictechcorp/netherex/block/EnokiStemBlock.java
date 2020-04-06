@@ -23,13 +23,12 @@ import net.minecraft.block.SixWayBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -42,7 +41,7 @@ public class EnokiStemBlock extends SixWayBlock
     }
 
     @Override
-    public void tick(BlockState state, World world, BlockPos pos, Random random)
+    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
         if(!state.isValidPosition(world, pos))
         {
@@ -124,11 +123,5 @@ public class EnokiStemBlock extends SixWayBlock
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
         return this.makeConnections(context.getWorld(), context.getPos());
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
     }
 }

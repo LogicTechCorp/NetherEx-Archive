@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.client.render.entity;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.hostile.SporeCreeperEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -38,37 +38,27 @@ public class SporeCreeperRenderer extends MobRenderer<SporeCreeperEntity, SporeC
     }
 
     @Override
-    protected void preRenderCallback(SporeCreeperEntity creeper, float partialTickTime)
+    protected void preRenderCallback(SporeCreeperEntity sporeCreeper, MatrixStack matrixStack, float partialTickTime)
     {
-        float flashIntensity = creeper.getFlashIntensity(partialTickTime);
-        float f1 = 1.0F + MathHelper.sin(flashIntensity * 100.0F) * flashIntensity * 0.01F;
+        float flashIntensity = sporeCreeper.getFlashIntensity(partialTickTime);
+        float adjustedIntensity = 1.0F + MathHelper.sin(flashIntensity * 100.0F) * flashIntensity * 0.01F;
         flashIntensity = MathHelper.clamp(flashIntensity, 0.0F, 1.0F);
         flashIntensity = flashIntensity * flashIntensity;
         flashIntensity = flashIntensity * flashIntensity;
-        float f2 = (1.0F + flashIntensity * 0.4F) * f1;
-        float f3 = (1.0F + flashIntensity * 0.1F) / f1;
-        GlStateManager.scalef(f2, f3, f2);
+        float xzScale = (1.0F + flashIntensity * 0.4F) * adjustedIntensity;
+        float yScale = (1.0F + flashIntensity * 0.1F) / adjustedIntensity;
+        matrixStack.scale(xzScale, yScale, xzScale);
     }
 
     @Override
-    protected int getColorMultiplier(SporeCreeperEntity creeper, float lightBrightness, float partialTickTime)
+    protected float getOverlayProgress(SporeCreeperEntity sporeCreeper, float partialTicks)
     {
-        float flashIntensity = creeper.getFlashIntensity(partialTickTime);
-
-        if((int) (flashIntensity * 10.0F) % 2 == 0)
-        {
-            return 0;
-        }
-        else
-        {
-            int i = (int) (flashIntensity * 0.2F * 255.0F);
-            i = MathHelper.clamp(i, 0, 255);
-            return i << 24 | 822083583;
-        }
+        float flashIntensity = sporeCreeper.getFlashIntensity(partialTicks);
+        return (int) (flashIntensity * 10.0F) % 2 == 0 ? 0.0F : MathHelper.clamp(flashIntensity, 0.5F, 1.0F);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SporeCreeperEntity spore)
+    public ResourceLocation getEntityTexture(SporeCreeperEntity spore)
     {
         return TEXTURE;
     }

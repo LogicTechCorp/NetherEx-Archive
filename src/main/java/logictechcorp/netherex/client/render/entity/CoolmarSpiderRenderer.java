@@ -44,7 +44,7 @@ public class CoolmarSpiderRenderer extends MobRenderer<CoolmarSpiderEntity, Cool
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(CoolmarSpiderEntity coolmarSpider)
+    public ResourceLocation getEntityTexture(CoolmarSpiderEntity coolmarSpider)
     {
         return TEXTURE;
     }

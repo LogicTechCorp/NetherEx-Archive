@@ -17,6 +17,8 @@
 
 package logictechcorp.netherex.entity.hostile;
 
+import com.mojang.datafixers.util.Pair;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import logictechcorp.netherex.entity.NetherExEntityTypes;
 import logictechcorp.netherex.entity.ai.goal.SporeCreeperSwellGoal;
 import logictechcorp.netherex.particle.NetherExParticles;
@@ -24,9 +26,11 @@ import logictechcorp.netherex.potion.NetherExEffects;
 import logictechcorp.netherex.utility.NetherExSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.ProtectionEnchantment;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombiePigmanEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,7 +41,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -45,7 +48,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.*;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootParameters;
@@ -183,15 +189,17 @@ public class SporeCreeperEntity extends MonsterEntity
     }
 
     @Override
-    public void fall(float distance, float damageMultiplier)
+    public boolean onLivingFall(float distance, float damageMultiplier)
     {
-        super.fall(distance, damageMultiplier);
+        boolean fall = super.onLivingFall(distance, damageMultiplier);
         this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
 
         if(this.timeSinceIgnited > this.fuseTime - 5)
         {
             this.timeSinceIgnited = this.fuseTime - 5;
         }
+
+        return fall;
     }
 
     @Override
@@ -229,7 +237,7 @@ public class SporeCreeperEntity extends MonsterEntity
 
         if(stack.getItem() == Items.FLINT_AND_STEEL)
         {
-            this.world.playSound(player, this.posX, this.posY, this.posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
+            this.world.playSound(player, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
             player.swingArm(hand);
 
             if(!this.world.isRemote)
@@ -245,12 +253,16 @@ public class SporeCreeperEntity extends MonsterEntity
 
     private void explode()
     {
-        this.dead = true;
-        Explosion explosion = new SporeExplosion(this.world, this, this.posX, this.posY, this.posZ, (float) this.explosionRadius, this.world.getGameRules().getBoolean(GameRules.MOB_GRIEFING));
-        explosion.doExplosionA();
-        explosion.doExplosionB(true);
-        this.remove();
-        this.spawnLingeringCloud();
+        if(!this.world.isRemote)
+        {
+            Explosion.Mode explosionMode = ForgeEventFactory.getMobGriefingEvent(this.world, this) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
+            this.dead = true;
+            Explosion explosion = new SporeExplosion(this.world, this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) this.explosionRadius, false, explosionMode);
+            explosion.doExplosionA();
+            explosion.doExplosionB(true);
+            this.remove();
+            this.spawnLingeringCloud();
+        }
     }
 
     private void spawnLingeringCloud()
@@ -259,7 +271,7 @@ public class SporeCreeperEntity extends MonsterEntity
 
         if(!effects.isEmpty())
         {
-            AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(this.world, this.posX, this.posY, this.posZ);
+            AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ());
             cloud.setRadius(2.5F);
             cloud.setRadiusOnUse(-0.5F);
             cloud.setWaitTime(10);
@@ -288,29 +300,28 @@ public class SporeCreeperEntity extends MonsterEntity
     public class SporeExplosion extends Explosion
     {
         private final World world;
-
         private final Entity exploder;
-
         private final double explosionX;
         private final double explosionY;
         private final double explosionZ;
-
         private final float explosionSize;
-
+        private final boolean spawnFlames;
+        private final Explosion.Mode explosionMode;
         private final List<BlockPos> affectedBlockPositions;
         private final Map<PlayerEntity, Vec3d> playerKnockbackMap;
         private final Vec3d position;
 
-        public SporeExplosion(World world, Entity entity, double x, double y, double z, float size, boolean flaming)
+        public SporeExplosion(World world, Entity exploder, double explosionX, double explosionY, double explosionZ, float explosionSize, boolean spawnFlames, Explosion.Mode explosionMode)
         {
-            super(world, entity, x, y, z, size, flaming, Mode.DESTROY);
-
+            super(world, exploder, explosionX, explosionY, explosionZ, explosionSize, spawnFlames, explosionMode);
             this.world = world;
-            this.exploder = entity;
-            this.explosionX = x;
-            this.explosionY = y;
-            this.explosionZ = z;
-            this.explosionSize = size;
+            this.exploder = exploder;
+            this.explosionX = explosionX;
+            this.explosionY = explosionY;
+            this.explosionZ = explosionZ;
+            this.explosionSize = explosionSize;
+            this.spawnFlames = spawnFlames;
+            this.explosionMode = explosionMode;
             this.affectedBlockPositions = new ArrayList<>();
             this.playerKnockbackMap = new HashMap<>();
             this.position = new Vec3d(this.explosionX, this.explosionY, this.explosionZ);
@@ -395,9 +406,9 @@ public class SporeCreeperEntity extends MonsterEntity
 
                         if(d12 <= 1.0D)
                         {
-                            double d5 = entity.posX - this.explosionX;
-                            double d7 = entity.posY + (double) entity.getEyeHeight() - this.explosionY;
-                            double d9 = entity.posZ - this.explosionZ;
+                            double d5 = entity.getPosX() - this.explosionX;
+                            double d7 = entity.getPosY() + (double) entity.getEyeHeight() - this.explosionY;
+                            double d9 = entity.getPosZ() - this.explosionZ;
                             double d13 = MathHelper.sqrt(d5 * d5 + d7 * d7 + d9 * d9);
 
                             if(d13 != 0.0D)
@@ -445,53 +456,70 @@ public class SporeCreeperEntity extends MonsterEntity
         @Override
         public void doExplosionB(boolean spawnParticles)
         {
-            this.world.playSound(null, this.explosionX, this.explosionY, this.explosionZ, NetherExSoundEvents.ENTITY_SPORE_EXPLODE.get(), SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
-
-            if(!(this.explosionSize < 2.0F))
+            if(this.world.isRemote)
             {
-                this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION_EMITTER.get(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
-            }
-            else
-            {
-                this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION.get(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
+                this.world.playSound(this.explosionX, this.explosionY, this.explosionZ, NetherExSoundEvents.ENTITY_SPORE_EXPLODE.get(), SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
             }
 
-            for(BlockPos affectedPos : this.affectedBlockPositions)
-            {
-                BlockState blockState = this.world.getBlockState(affectedPos);
+            boolean hasMode = this.explosionMode != Explosion.Mode.NONE;
 
-                if(spawnParticles)
+            if(spawnParticles)
+            {
+                if(!(this.explosionSize < 2.0F) && hasMode)
                 {
-                    double d0 = ((float) affectedPos.getX() + this.world.rand.nextFloat());
-                    double d1 = ((float) affectedPos.getY() + this.world.rand.nextFloat());
-                    double d2 = ((float) affectedPos.getZ() + this.world.rand.nextFloat());
-                    double d3 = d0 - this.explosionX;
-                    double d4 = d1 - this.explosionY;
-                    double d5 = d2 - this.explosionZ;
-                    double d6 = MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5);
-                    d3 = d3 / d6;
-                    d4 = d4 / d6;
-                    d5 = d5 / d6;
-                    double d7 = 0.5D / (d6 / (double) this.explosionSize + 0.1D);
-                    d7 = d7 * (double) (this.world.rand.nextFloat() * this.world.rand.nextFloat() + 0.3F);
-                    d3 = d3 * d7;
-                    d4 = d4 * d7;
-                    d5 = d5 * d7;
-                    this.world.addParticle(ParticleTypes.POOF, (d0 + this.explosionX) / 2.0D, (d1 + this.explosionY) / 2.0D, (d2 + this.explosionZ) / 2.0D, d3, d4, d5);
-                    this.world.addParticle(ParticleTypes.SMOKE, d0, d1, d2, d3, d4, d5);
+                    this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION_EMITTER.get(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
+                }
+                else
+                {
+                    this.world.addParticle(NetherExParticles.SPORE_CREEPER_EXPLOSION.get(), this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
+                }
+            }
+
+            if(hasMode)
+            {
+                ObjectArrayList<Pair<ItemStack, BlockPos>> stackPositions = new ObjectArrayList<>();
+                Collections.shuffle(this.affectedBlockPositions, this.world.rand);
+
+                for(BlockPos affectedPos : this.affectedBlockPositions)
+                {
+                    BlockState state = this.world.getBlockState(affectedPos);
+
+                    if(!state.isAir(this.world, affectedPos))
+                    {
+                        BlockPos immutablePos = affectedPos.toImmutable();
+                        this.world.getProfiler().startSection("explosion_blocks");
+
+                        if(state.canDropFromExplosion(this.world, affectedPos, this) && this.world instanceof ServerWorld)
+                        {
+                            TileEntity tileEntity = state.hasTileEntity() ? this.world.getTileEntity(affectedPos) : null;
+                            LootContext.Builder lootBuilder = (new LootContext.Builder((ServerWorld) this.world)).withRandom(this.world.rand).withParameter(LootParameters.POSITION, affectedPos).withParameter(LootParameters.TOOL, ItemStack.EMPTY).withNullableParameter(LootParameters.BLOCK_ENTITY, tileEntity).withNullableParameter(LootParameters.THIS_ENTITY, this.exploder);
+                            if(this.explosionMode == Explosion.Mode.DESTROY)
+                            {
+                                lootBuilder.withParameter(LootParameters.EXPLOSION_RADIUS, this.explosionSize);
+                            }
+
+                            state.getDrops(lootBuilder).forEach((stack) -> this.createSpawnedStackPositions(stackPositions, stack, immutablePos));
+                        }
+
+                        state.onBlockExploded(this.world, affectedPos, this);
+                        this.world.getProfiler().endSection();
+                    }
                 }
 
-                if(!blockState.isAir(this.world, affectedPos))
+                for(Pair<ItemStack, BlockPos> pair : stackPositions)
                 {
-                    if(this.world instanceof ServerWorld && blockState.canDropFromExplosion(this.world, affectedPos, this))
-                    {
-                        TileEntity tileEntity = blockState.hasTileEntity() ? this.world.getTileEntity(affectedPos) : null;
-                        LootContext.Builder lootBuilder = new LootContext.Builder((ServerWorld) this.world).withRandom(this.world.rand).withParameter(LootParameters.POSITION, affectedPos).withParameter(LootParameters.TOOL, ItemStack.EMPTY).withNullableParameter(LootParameters.BLOCK_ENTITY, tileEntity);
-                        lootBuilder.withParameter(LootParameters.EXPLOSION_RADIUS, this.explosionSize);
-                        Block.spawnDrops(blockState, lootBuilder);
-                    }
+                    Block.spawnAsEntity(this.world, pair.getSecond(), pair.getFirst());
+                }
+            }
 
-                    blockState.onBlockExploded(this.world, affectedPos, this);
+            if(this.spawnFlames)
+            {
+                for(BlockPos affectedPos : this.affectedBlockPositions)
+                {
+                    if(this.world.rand.nextInt(3) == 0 && this.world.getBlockState(affectedPos).isAir(this.world, affectedPos) && this.world.getBlockState(affectedPos.down()).isOpaqueCube(this.world, affectedPos.down()))
+                    {
+                        this.world.setBlockState(affectedPos, Blocks.FIRE.getDefaultState());
+                    }
                 }
             }
 
@@ -507,6 +535,35 @@ public class SporeCreeperEntity extends MonsterEntity
         }
 
         @Override
+        public void clearAffectedBlockPositions()
+        {
+            this.affectedBlockPositions.clear();
+        }
+
+        private void createSpawnedStackPositions(ObjectArrayList<Pair<ItemStack, BlockPos>> stackPositions, ItemStack originalStack, BlockPos originalPos)
+        {
+
+            for(int i = 0; i < stackPositions.size(); i++)
+            {
+                Pair<ItemStack, BlockPos> pair = stackPositions.get(i);
+                ItemStack stack = pair.getFirst();
+
+                if(ItemEntity.func_226532_a_(stack, originalStack))
+                {
+                    ItemStack adjustedStack = ItemEntity.func_226533_a_(stack, originalStack, 16);
+                    stackPositions.set(i, Pair.of(adjustedStack, pair.getSecond()));
+
+                    if(originalStack.isEmpty())
+                    {
+                        return;
+                    }
+                }
+            }
+
+            stackPositions.add(Pair.of(originalStack, originalPos));
+        }
+
+        @Override
         public Map<PlayerEntity, Vec3d> getPlayerKnockbackMap()
         {
             return this.playerKnockbackMap;
@@ -516,12 +573,6 @@ public class SporeCreeperEntity extends MonsterEntity
         public LivingEntity getExplosivePlacedBy()
         {
             return this.exploder == null ? null : (this.exploder instanceof LivingEntity ? (LivingEntity) this.exploder : null);
-        }
-
-        @Override
-        public void clearAffectedBlockPositions()
-        {
-            this.affectedBlockPositions.clear();
         }
 
         @Override

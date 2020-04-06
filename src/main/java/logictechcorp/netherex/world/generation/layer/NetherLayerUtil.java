@@ -26,31 +26,27 @@ import net.minecraft.world.gen.area.IAreaFactory;
 import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.layer.*;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.LongFunction;
 
 public class NetherLayerUtil
 {
-    public static Layer[] createLayers(long seed, WorldType worldType, OverworldGenSettings generatorSettings)
+    public static Layer createLayers(long seed, WorldType worldType, OverworldGenSettings generatorSettings)
     {
-        List<IAreaFactory<LazyArea>> areas = createAreas(worldType, generatorSettings, (seedModifier) -> new LazyAreaLayerContext(25, seed, seedModifier));
-        return new Layer[]{new Layer(areas.get(0)), new Layer(areas.get(1)), new Layer(areas.get(2))};
+        IAreaFactory<LazyArea> areaFactory = createAreas(worldType, generatorSettings, (seedModifier) -> new LazyAreaLayerContext(25, seed, seedModifier));
+        return new Layer(areaFactory);
     }
 
-    private static <T extends IArea, C extends IExtendedNoiseRandom<T>> List<IAreaFactory<T>> createAreas(WorldType worldType, OverworldGenSettings generatorSettings, LongFunction<C> contextFactory)
+    private static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> createAreas(WorldType worldType, OverworldGenSettings generatorSettings, LongFunction<C> contextFactory)
     {
         IAreaFactory<T> baseAreaFactory = IslandLayer.INSTANCE.apply(contextFactory.apply(1L));
         IAreaFactory<T> biomeAreaFactory = NetherBiomeLayer.INSTANCE.apply(contextFactory.apply(200L), baseAreaFactory);
         IAreaFactory<T> subBiomeAreaFactory = StartRiverLayer.INSTANCE.apply(contextFactory.apply(200L), biomeAreaFactory);
-        IAreaFactory<T> zoomedAreaFactory;
 
         biomeAreaFactory = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, biomeAreaFactory, 2, contextFactory);
         subBiomeAreaFactory = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, subBiomeAreaFactory, 2, contextFactory);
         baseAreaFactory = NetherSubBiomeLayer.INSTANCE.apply(contextFactory.apply(1000L), biomeAreaFactory, subBiomeAreaFactory);
         baseAreaFactory = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, baseAreaFactory, LayerUtil.getModdedBiomeSize(worldType, generatorSettings.getBiomeSize()), contextFactory);
         baseAreaFactory = SmoothLayer.INSTANCE.apply(contextFactory.apply(1000L), baseAreaFactory);
-        zoomedAreaFactory = VoroniZoomLayer.INSTANCE.apply(contextFactory.apply(10L), baseAreaFactory);
-        return Arrays.asList(baseAreaFactory, zoomedAreaFactory, baseAreaFactory);
+        return baseAreaFactory;
     }
 }

@@ -75,7 +75,7 @@ public class PlayerHandler
 
                         if(mirrorCount > 1)
                         {
-                            ItemEntity item = new ItemEntity(world, player.posX, player.posY + 0.5F, player.posZ, stack);
+                            ItemEntity item = new ItemEntity(world, player.getPosX(), player.getPosY() + 0.5F, player.getPosZ(), stack);
                             item.setPickupDelay(50);
                             world.addEntity(item);
                             inventory.setInventorySlotContents(i, ItemStack.EMPTY);
@@ -130,7 +130,7 @@ public class PlayerHandler
                     if(spawnDimension != null)
                     {
                         player.setSpawnDimenion(spawnDimension);
-                        player.setSpawnPoint(spawnPoint, true, spawnDimension);
+                        player.setSpawnPoint(spawnPoint, true, false, spawnDimension);
                     }
                 }
             }
@@ -209,7 +209,7 @@ public class PlayerHandler
                         if(spawnDimension != null)
                         {
                             newPlayer.setSpawnDimenion(spawnDimension);
-                            newPlayer.setSpawnPoint(spawnPoint, true, spawnDimension);
+                            newPlayer.setSpawnPoint(spawnPoint, true, false, spawnDimension);
                         }
                     }
                 }

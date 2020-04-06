@@ -17,23 +17,20 @@
 
 package logictechcorp.netherex.client.render.entity.layers;
 
-import com.mojang.blaze3d.platform.GLX;
-import com.mojang.blaze3d.platform.GlStateManager;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.client.render.entity.CoolmarSpiderModel;
 import logictechcorp.netherex.client.render.entity.CoolmarSpiderRenderer;
 import logictechcorp.netherex.entity.hostile.CoolmarSpiderEntity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class CoolmarSpiderLayer extends LayerRenderer<CoolmarSpiderEntity, CoolmarSpiderModel>
+public class CoolmarSpiderLayer extends AbstractEyesLayer<CoolmarSpiderEntity, CoolmarSpiderModel>
 {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(NetherEx.MOD_ID, "textures/entity/coolmar_spider/coolmar_spider_layer.png");
+    private static final RenderType RENDER_TYPE = RenderType.getEyes(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/coolmar_spider/coolmar_spider_layer.png"));
 
     public CoolmarSpiderLayer(CoolmarSpiderRenderer renderer)
     {
@@ -41,37 +38,8 @@ public class CoolmarSpiderLayer extends LayerRenderer<CoolmarSpiderEntity, Coolm
     }
 
     @Override
-    public void render(CoolmarSpiderEntity coolmarSpider, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public RenderType getRenderType()
     {
-        this.bindTexture(TEXTURE);
-        GlStateManager.enableBlend();
-        GlStateManager.disableAlphaTest();
-        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
-
-        GlStateManager.depthMask(false);
-
-        int i = 61680;
-        int j = i % 65536;
-        int k = i / 65536;
-        GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float) j, (float) k);
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GameRenderer gamerenderer = Minecraft.getInstance().gameRenderer;
-        gamerenderer.setupFogColor(true);
-        this.getEntityModel().render(coolmarSpider, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        gamerenderer.setupFogColor(false);
-        i = coolmarSpider.getBrightnessForRender();
-        j = i % 65536;
-        k = i / 65536;
-        GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float) j, (float) k);
-        this.func_215334_a(coolmarSpider);
-        GlStateManager.depthMask(true);
-        GlStateManager.disableBlend();
-        GlStateManager.enableAlphaTest();
-    }
-
-    @Override
-    public boolean shouldCombineTextures()
-    {
-        return false;
+        return RENDER_TYPE;
     }
 }

@@ -18,26 +18,19 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.libraryex.block.MimicBlock;
+import logictechcorp.netherex.tileentity.QuartzOreTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorldReader;
 
-public class QuartzOreBlock extends MimicBlock
+public class QuartzOreBlock extends MimicBlock<QuartzOreTileEntity>
 {
     public QuartzOreBlock()
     {
-        super(Properties.from(Blocks.NETHER_QUARTZ_ORE), MimicType.UNDERLAY);
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
+        super(Properties.from(Blocks.NETHER_QUARTZ_ORE), MimicType.UNDERLAY, QuartzOreTileEntity.class);
     }
 
     @Override
@@ -47,9 +40,9 @@ public class QuartzOreBlock extends MimicBlock
     }
 
     @Override
-    public BlockState getMimickedState(BlockState state, IEnviromentBlockReader world, BlockPos pos)
+    public BlockState getMimickedState(BlockState state, IWorldReader reader, BlockPos pos)
     {
-        return world.getBiome(pos).getSurfaceBuilder().config.getUnder();
+        return reader.getBiome(pos).getSurfaceBuilder().config.getUnder();
     }
 
     @Override

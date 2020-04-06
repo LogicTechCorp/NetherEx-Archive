@@ -89,7 +89,7 @@ public class DullMirrorItem extends Item
                     if(bedDimension != null)
                     {
                         player.setSpawnDimenion(bedDimension);
-                        player.setSpawnPoint(NBTUtil.readBlockPos(compound.getCompound("BedPoint")), true, bedDimension);
+                        player.setSpawnPoint(NBTUtil.readBlockPos(compound.getCompound("BedPoint")), true, false, bedDimension);
                         compound.putBoolean("RemovedSpawn", true);
                     }
                 }
@@ -104,7 +104,7 @@ public class DullMirrorItem extends Item
 
         if(!world.isRemote)
         {
-            if(stack.getDamage() < stack.getMaxDamage() && player.isSneaking())
+            if(stack.getDamage() < stack.getMaxDamage() && player.isShiftKeyDown())
             {
                 DimensionType spawnDimension = world.getDimension().getType();
                 BlockPos spawnPoint = player.getPosition();
@@ -125,7 +125,7 @@ public class DullMirrorItem extends Item
                     compound.putString("SpawnDimension", spawnDimension.getRegistryName().toString());
                     compound.put("SpawnPoint", NBTUtil.writeBlockPos(spawnPoint));
                     player.setSpawnDimenion(spawnDimension);
-                    player.setSpawnPoint(spawnPoint, true, spawnDimension);
+                    player.setSpawnPoint(spawnPoint, true, false, spawnDimension);
                     player.sendMessage(new TranslationTextComponent("tooltip.netherex.dull_mirror.spawn_point_set", spawnPoint.getX() + " " + spawnPoint.getY() + " " + spawnPoint.getZ()));
                     world.playSound((double) spawnPoint.getX() + 0.5D, (double) spawnPoint.getY() + 0.5D, (double) spawnPoint.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.4F + 0.8F, false);
                 }
@@ -138,7 +138,7 @@ public class DullMirrorItem extends Item
                         compound.remove("SpawnDimension");
                         compound.remove("SpawnPoint");
                         player.setSpawnDimenion(bedDimension);
-                        player.setSpawnPoint(NBTUtil.readBlockPos(compound.getCompound("BedPoint")), true, bedDimension);
+                        player.setSpawnPoint(NBTUtil.readBlockPos(compound.getCompound("BedPoint")), true, false, bedDimension);
                         player.sendMessage(new TranslationTextComponent("tooltip.netherex.dull_mirror.spawn_point_removed", spawnPoint.getX() + " " + spawnPoint.getY() + " " + spawnPoint.getZ()));
                         world.playSound((double) spawnPoint.getX() + 0.5D, (double) spawnPoint.getY() + 0.5D, (double) spawnPoint.getZ() + 0.5D, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.4F + 0.8F, false);
                     }

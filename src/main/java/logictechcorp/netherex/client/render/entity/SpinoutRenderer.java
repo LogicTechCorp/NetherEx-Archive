@@ -36,7 +36,7 @@ public class SpinoutRenderer extends MobRenderer<SpinoutEntity, SpinoutModel>
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SpinoutEntity entity)
+    public ResourceLocation getEntityTexture(SpinoutEntity entity)
     {
         return TEXTURE;
     }

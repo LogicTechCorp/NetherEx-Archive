@@ -99,7 +99,7 @@ public class SporeEntity extends MonsterEntity
                     for(int i = 0; i < creeperSpawns; i++)
                     {
                         SporeCreeperEntity creeper = new SporeCreeperEntity(NetherExEntityTypes.SPORE_CREEPER.get(), this.world);
-                        creeper.setPosition(this.posX, this.posY, this.posZ);
+                        creeper.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
                         this.world.addEntity(creeper);
                     }
                 }

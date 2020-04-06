@@ -17,9 +17,11 @@
 
 package logictechcorp.netherex.client.render.entity;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import logictechcorp.netherex.entity.neutral.SalamanderEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -27,54 +29,54 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class SalamanderModel extends EntityModel<SalamanderEntity>
 {
-    private RendererModel head;
-    private RendererModel upperBody;
-    private RendererModel frontRightLeg;
-    private RendererModel frontLeftLeg;
-    private RendererModel backRightLeg;
-    private RendererModel backLeftLeg;
-    private RendererModel jaw;
-    private RendererModel teeth;
-    private RendererModel lowerBody;
-    private RendererModel tail;
+    private ModelRenderer head;
+    private ModelRenderer upperBody;
+    private ModelRenderer frontRightLeg;
+    private ModelRenderer frontLeftLeg;
+    private ModelRenderer backRightLeg;
+    private ModelRenderer backLeftLeg;
+    private ModelRenderer jaw;
+    private ModelRenderer teeth;
+    private ModelRenderer lowerBody;
+    private ModelRenderer tail;
 
     public SalamanderModel()
     {
         this.textureWidth = 64;
         this.textureHeight = 64;
-        this.frontLeftLeg = new RendererModel(this, 50, 54);
+        this.frontLeftLeg = new ModelRenderer(this, 50, 54);
         this.frontLeftLeg.mirror = true;
         this.frontLeftLeg.setRotationPoint(5.0F, 19.0F, -6.5F);
         this.frontLeftLeg.addBox(0.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
-        this.backLeftLeg = new RendererModel(this, 50, 54);
+        this.backLeftLeg = new ModelRenderer(this, 50, 54);
         this.backLeftLeg.mirror = true;
         this.backLeftLeg.setRotationPoint(4.0F, 19.0F, 6.5F);
         this.backLeftLeg.addBox(0.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
-        this.teeth = new RendererModel(this, 30, 0);
+        this.teeth = new ModelRenderer(this, 30, 0);
         this.teeth.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.teeth.addBox(-3.5F, -1.0F, -9.0F, 7, 1, 9, 0.0F);
-        this.upperBody = new RendererModel(this, 0, 25);
+        this.upperBody = new ModelRenderer(this, 0, 25);
         this.upperBody.setRotationPoint(0.0F, 19.0F, -10.5F);
         this.upperBody.addBox(-5.0F, -3.0F, 0.0F, 10, 6, 12, 0.0F);
-        this.head = new RendererModel(this, 0, 0);
+        this.head = new ModelRenderer(this, 0, 0);
         this.head.setRotationPoint(0.0F, 20.0F, -10.5F);
         this.head.addBox(-3.0F, -4.0F, -8.5F, 6, 4, 9, 0.0F);
         this.setRotateAngle(this.head, -0.061086523819801536F, 0.0F, 0.0F);
-        this.jaw = new RendererModel(this, 0, 13);
+        this.jaw = new ModelRenderer(this, 0, 13);
         this.jaw.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.jaw.addBox(-3.5F, 0.0F, -9.0F, 7, 3, 9, 0.0F);
         this.setRotateAngle(this.jaw, 0.17453292519943295F, 0.0F, 0.0F);
-        this.lowerBody = new RendererModel(this, 0, 43);
+        this.lowerBody = new ModelRenderer(this, 0, 43);
         this.lowerBody.setRotationPoint(0.0F, 0.0F, 10.0F);
         this.lowerBody.addBox(-4.0F, -2.5F, 0.0F, 8, 5, 10, 0.0F);
-        this.tail = new RendererModel(this, 36, 10);
+        this.tail = new ModelRenderer(this, 36, 10);
         this.tail.setRotationPoint(0.0F, 0.0F, 10.0F);
         this.tail.addBox(-2.5F, -1.5F, -1.0F, 5, 3, 9, 0.0F);
         this.setRotateAngle(this.tail, -0.17453292519943295F, 0.0F, 0.0F);
-        this.frontRightLeg = new RendererModel(this, 50, 54);
+        this.frontRightLeg = new ModelRenderer(this, 50, 54);
         this.frontRightLeg.setRotationPoint(-5.0F, 19.0F, -6.5F);
         this.frontRightLeg.addBox(-3.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
-        this.backRightLeg = new RendererModel(this, 50, 54);
+        this.backRightLeg = new ModelRenderer(this, 50, 54);
         this.backRightLeg.setRotationPoint(-4.0F, 19.0F, 6.5F);
         this.backRightLeg.addBox(-3.0F, -1.0F, -2.0F, 3, 6, 4, 0.0F);
         this.jaw.addChild(this.teeth);
@@ -84,19 +86,18 @@ public class SalamanderModel extends EntityModel<SalamanderEntity>
     }
 
     @Override
-    public void render(SalamanderEntity salamander, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
+    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha)
     {
-        this.setRotationAngles(salamander, limbSwing, limbSwingAmount, ageInTicks, rotationYaw, rotationPitch, scale);
-        this.frontRightLeg.render(scale);
-        this.frontLeftLeg.render(scale);
-        this.head.render(scale);
-        this.upperBody.render(scale);
-        this.backRightLeg.render(scale);
-        this.backLeftLeg.render(scale);
+        this.frontRightLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.frontLeftLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.upperBody.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.backRightLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.backLeftLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
     @Override
-    public void setRotationAngles(SalamanderEntity salamander, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scaleFactor)
+    public void setRotationAngles(SalamanderEntity salamander, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch)
     {
         this.head.rotateAngleX = rotationPitch * 0.017453292F;
         this.head.rotateAngleY = rotationYaw * 0.017453292F;
@@ -106,7 +107,7 @@ public class SalamanderModel extends EntityModel<SalamanderEntity>
         this.backLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
-    private void setRotateAngle(RendererModel modelRenderer, float x, float y, float z)
+    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
     {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

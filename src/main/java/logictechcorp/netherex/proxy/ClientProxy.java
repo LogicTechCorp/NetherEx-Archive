@@ -17,15 +17,16 @@
 
 package logictechcorp.netherex.proxy;
 
+import logictechcorp.netherex.block.NetherExBlocks;
 import logictechcorp.netherex.client.particle.SporeCreeperExplosionEmitterParticle;
 import logictechcorp.netherex.client.particle.SporeCreeperExplosionParticle;
 import logictechcorp.netherex.client.render.entity.*;
-import logictechcorp.netherex.entity.hostile.*;
-import logictechcorp.netherex.entity.neutral.MogusEntity;
-import logictechcorp.netherex.entity.neutral.SalamanderEntity;
+import logictechcorp.netherex.entity.NetherExEntityTypes;
 import logictechcorp.netherex.particle.NetherExParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -39,18 +40,29 @@ public class ClientProxy
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::onRegisterParticleFactory);
-
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
     {
-        RenderingRegistry.registerEntityRenderingHandler(MogusEntity.class, MogusRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SalamanderEntity.class, SalamanderRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SpinoutEntity.class, SpinoutRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SporeEntity.class, SporeRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SporeCreeperEntity.class, SporeCreeperRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(WightEntity.class, WightRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(CoolmarSpiderEntity.class, CoolmarSpiderRenderer::new);
+        RenderType cutoutMipped = RenderType.getCutoutMipped();
+        RenderType cutout = RenderType.getCutout();
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.QUARTZ_ORE.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.THORNSTALK.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.BLUE_FIRE.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.ENOKI_MUSHROOM_CAP.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.ENOKI_MUSHROOM_STEM.get(), cutout);
+        RenderType translucent = RenderType.getTranslucent();
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.FROSTBURN_ICE.get(), translucent);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.SOUL_GLASS.get(), translucent);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.SOUL_GLASS_PANE.get(), translucent);
+
+        RenderingRegistry.registerEntityRenderingHandler(NetherExEntityTypes.MOGUS.get(), MogusRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(NetherExEntityTypes.SALAMANDER.get(), SalamanderRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(NetherExEntityTypes.SPINOUT.get(), SpinoutRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(NetherExEntityTypes.SPORE.get(), SporeRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(NetherExEntityTypes.SPORE_CREEPER.get(), SporeCreeperRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(NetherExEntityTypes.WIGHT.get(), WightRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(NetherExEntityTypes.COOLMAR_SPIDER.get(), CoolmarSpiderRenderer::new);
     }
 
     private void onRegisterParticleFactory(ParticleFactoryRegisterEvent event)

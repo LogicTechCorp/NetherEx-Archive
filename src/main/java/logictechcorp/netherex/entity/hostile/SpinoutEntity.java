@@ -141,7 +141,7 @@ public class SpinoutEntity extends MonsterEntity
     {
         if(!this.isSilent() || sound != NetherExSoundEvents.ENTITY_SPINOUT_AMBIENT.get())
         {
-            this.world.playSound(null, this.posX, this.posY, this.posZ, sound, this.getSoundCategory(), volume, pitch);
+            this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), sound, this.getSoundCategory(), volume, pitch);
         }
     }
 

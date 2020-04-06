@@ -33,7 +33,7 @@ public class SalamanderRenderer extends MobRenderer<SalamanderEntity, Salamander
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SalamanderEntity salamander)
+    public ResourceLocation getEntityTexture(SalamanderEntity salamander)
     {
         return salamander.getVariant().getTexture();
     }

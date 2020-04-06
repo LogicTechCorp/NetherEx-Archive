@@ -18,7 +18,6 @@
 package logictechcorp.netherex.world.generation.feature;
 
 import logictechcorp.netherex.NetherEx;
-import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,9 +33,7 @@ public class NetherExFeatures
     private static final DeferredRegister<Feature<?>> FEATURE_OVERRIDES = new DeferredRegister<>(ForgeRegistries.FEATURES, "minecraft");
 
     // @formatter:off
-    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> BROWN_ELDER_MUSHROOM = registerFeature("brown_elder_mushroom", () -> new BrownElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
-    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> RED_ELDER_MUSHROOM   = registerFeature("red_elder_mushroom", () -> new RedElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
-    public static final RegistryObject<Feature<NoFeatureConfig>> ENOKI_MUSHROOM                = registerFeature("enoki_mushroom", () -> new EnokiMushroomFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> ENOKI_MUSHROOM = registerFeature("enoki_mushroom", () -> new EnokiMushroomFeature(NoFeatureConfig::deserialize));
     // @formatter:off
 
     public static void register(IEventBus modEventBus)
@@ -47,7 +44,6 @@ public class NetherExFeatures
     public static void registerOverrides(IEventBus modEventBus)
     {
         FEATURE_OVERRIDES.register("glowstone_blob", () -> new GlowstoneBlobFeatureOverride(NoFeatureConfig::deserialize));
-        FEATURE_OVERRIDES.register("nether_spring", () -> new NetherSpringOverride(NetherSpringOverride::deserialize));
         FEATURE_OVERRIDES.register(modEventBus);
     }
 

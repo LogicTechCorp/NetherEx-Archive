@@ -28,6 +28,7 @@ import logictechcorp.netherex.potion.NetherExEffects;
 import logictechcorp.netherex.potion.NetherExPotions;
 import logictechcorp.netherex.proxy.ClientProxy;
 import logictechcorp.netherex.proxy.ServerProxy;
+import logictechcorp.netherex.tileentity.NetherExTileEntityTypes;
 import logictechcorp.netherex.utility.NetherExSoundEvents;
 import logictechcorp.netherex.world.biome.NetherBiomeDataManager;
 import logictechcorp.netherex.world.biome.NetherExBiomes;
@@ -86,6 +87,7 @@ public class NetherEx
         modEventBus.addListener(this::onCommonSetup);
         NetherExBlocks.register(modEventBus);
         NetherExItems.register(modEventBus);
+        NetherExTileEntityTypes.register(modEventBus);
         NetherExBiomes.register(modEventBus);
         NetherExEntityTypes.register(modEventBus);
         NetherExChunkGenerators.registerOverrides(modEventBus);

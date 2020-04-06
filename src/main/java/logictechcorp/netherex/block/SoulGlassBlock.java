@@ -26,7 +26,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -65,7 +64,7 @@ public class SoulGlassBlock extends GlassBlock
                 shootDirection = Direction.byIndex(playerData.getInt(SHOOT_DIRECTION_KEY));
             }
 
-            if(player.isSneaking())
+            if(player.isShiftKeyDown())
             {
                 if(!sinking)
                 {
@@ -121,7 +120,7 @@ public class SoulGlassBlock extends GlassBlock
                     else if(blockUpOne == this)
                     {
                         player.addPotionEffect(new EffectInstance(NetherExEffects.SOUL_SUCKED.get(), 5, 3, false, false));
-                        player.posY = player.prevPosY;
+                        player.setPosition(player.getPosX(), player.prevPosY, player.getPosZ());
                     }
 
                     player.setMotion(player.getMotion().mul(1.0D, 0.25D, 1.0D));
@@ -219,12 +218,6 @@ public class SoulGlassBlock extends GlassBlock
     }
 
     @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
-
-    @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context)
     {
         Entity entity = context.getEntity();
@@ -233,7 +226,7 @@ public class SoulGlassBlock extends GlassBlock
         {
             PlayerEntity player = (PlayerEntity) entity;
 
-            if(player.isSneaking() || player.isPotionActive(NetherExEffects.SOUL_SUCKED.get()))
+            if(player.isShiftKeyDown() || player.isPotionActive(NetherExEffects.SOUL_SUCKED.get()))
             {
                 return VoxelShapes.empty();
             }

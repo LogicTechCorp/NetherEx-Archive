@@ -33,7 +33,7 @@ public class MogusRenderer extends MobRenderer<MogusEntity, MogusModel>
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(MogusEntity mogus)
+    public ResourceLocation getEntityTexture(MogusEntity mogus)
     {
         return mogus.getVariant().getTexture();
     }

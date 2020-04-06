@@ -54,7 +54,7 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
             int posX = chunkX & 15;
             int posZ = chunkZ & 15;
 
-            BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
+            BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
             boolean wasLastBlockNonSolid = false;
 
@@ -101,7 +101,7 @@ public class NetherSurfaceBuilderWrapper extends SurfaceBuilder<NetherSurfaceBui
     {
         if(this.seed != seed || this.noiseGenerator == null)
         {
-            this.noiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4);
+            this.noiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 3, 0);
         }
 
         this.seed = seed;

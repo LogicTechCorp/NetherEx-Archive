@@ -25,6 +25,7 @@ import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.GenerationStage;
@@ -44,13 +45,13 @@ public class CaveChunkGenerator extends NetherChunkGenerator
     }
 
     @Override
-    public void carve(IChunk chunk, GenerationStage.Carving stage)
+    public void func_225550_a_(BiomeManager biomeManager, IChunk chunk, GenerationStage.Carving stage)
     {
-        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.getBiome(chunk));
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.getBiome(biomeManager, chunk.getPos().asBlockPos()));
 
         if(biomeData != BiomeData.EMPTY)
         {
-            biomeData.carve(stage, chunk, this.seed, this.getSeaLevel());
+            biomeData.carve(biomeManager, chunk, stage, this.seed, this.getSeaLevel());
         }
     }
 
@@ -62,7 +63,7 @@ public class CaveChunkGenerator extends NetherChunkGenerator
         int posX = chunkX * 16;
         int posZ = chunkZ * 16;
         BlockPos pos = new BlockPos(posX, 0, posZ);
-        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.getBiome(region, pos.add(8, 8, 8)));
+        BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.getBiome(region.getBiomeManager(), pos.add(8, 8, 8)));
         SharedSeedRandom random = new SharedSeedRandom();
         long decorationSeed = random.setDecorationSeed(region.getSeed(), posX, posZ);
 
