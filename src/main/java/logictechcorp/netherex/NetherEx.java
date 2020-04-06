@@ -21,6 +21,7 @@ import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.proxy.IProxy;
 import logictechcorp.libraryex.world.biome.data.BiomeDataManager;
+import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateVillageManager;
@@ -50,7 +51,7 @@ public class NetherEx implements IModData
 {
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.1.1";
+    public static final String VERSION = "2.1.2";
     public static final String DEPENDENCIES = "required-after:libraryex@[1.1.1,);";
 
     public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
@@ -105,6 +106,12 @@ public class NetherEx implements IModData
         NetherExDataFixers.registerFixes();
         NetherExPigtificates.registerPigtificateCareers();
         NetherExBiomes.registerBiomes();
+
+        if(ConfigHandler.dimensionConfig.nether.overrideNether)
+        {
+            NetherExBiomes.registerBiomeData();
+        }
+
         NetherExRecipes.registerRecipes();
         NetherExOreDictionary.registerOres();
         NetherExCriteria.registerCriteria();
@@ -115,7 +122,11 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        BIOME_DATA_MANAGER.setup();
+        if(ConfigHandler.dimensionConfig.nether.overrideNether)
+        {
+            BIOME_DATA_MANAGER.setup();
+        }
+
         PIGTIFICATE_VILLAGE_MANAGER.setup();
         proxy.postInit();
     }
@@ -123,7 +134,10 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
-        NetherExOverrides.overrideNether();
+        if(ConfigHandler.dimensionConfig.nether.overrideNether)
+        {
+            NetherExOverrides.overrideNether();
+        }
     }
 
     @Override

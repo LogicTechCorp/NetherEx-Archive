@@ -74,7 +74,10 @@ public class NetherExBiomes
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, COLD, WET, MUSHROOM);
         BiomeDictionary.addTypes(TORRID_WASTELAND, NETHER, HOT, DRY, WASTELAND);
         BiomeDictionary.addTypes(ARCTIC_ABYSS, NETHER, COLD, WET);
+    }
 
+    public static void registerBiomeData()
+    {
         BiomeTraitRegistry.INSTANCE.registerBiomeTrait(NetherEx.getResource("thornstalk"), new BiomeTraitThornstalk.Builder(), BiomeTraitThornstalk.class);
         BiomeTraitRegistry.INSTANCE.registerBiomeTrait(NetherEx.getResource("enoki"), new BiomeTraitEnoki.Builder(), BiomeTraitEnoki.class);
 

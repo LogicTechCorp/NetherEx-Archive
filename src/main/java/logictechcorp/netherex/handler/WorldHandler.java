@@ -38,9 +38,13 @@ public class WorldHandler
         {
             if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
             {
-                NetherEx.BIOME_DATA_MANAGER.createBiomeDataConfigs(event);
+                if(ConfigHandler.dimensionConfig.nether.overrideNether)
+                {
+                    NetherEx.BIOME_DATA_MANAGER.createBiomeDataConfigs(event);
+                    NetherEx.BIOME_DATA_MANAGER.readBiomeDataConfigs(event);
+                }
+
                 NetherEx.PIGTIFICATE_VILLAGE_MANAGER.createPigtificateTradeConfigs(event);
-                NetherEx.BIOME_DATA_MANAGER.readBiomeDataConfigs(event);
                 NetherEx.PIGTIFICATE_VILLAGE_MANAGER.readPigtificateTradeConfigs(event);
             }
 

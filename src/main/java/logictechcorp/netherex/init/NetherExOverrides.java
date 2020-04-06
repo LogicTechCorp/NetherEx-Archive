@@ -35,12 +35,9 @@ public class NetherExOverrides
 
     public static void overrideNether()
     {
-        if(ConfigHandler.dimensionConfig.nether.overrideNether)
-        {
-            DimensionManager.unregisterDimension(-1);
-            DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNetherEx.class, false);
-            DimensionManager.registerDimension(-1, nether);
-            NetherEx.LOGGER.info("The Nether has been overridden.");
-        }
+        DimensionManager.unregisterDimension(-1);
+        DimensionType nether = DimensionType.register("Nether", "_nether", -1, WorldProviderNetherEx.class, false);
+        DimensionManager.registerDimension(-1, nether);
+        NetherEx.LOGGER.info("The Nether has been overridden.");
     }
 }
