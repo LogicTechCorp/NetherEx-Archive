@@ -47,15 +47,24 @@
     "features": [
         {
             "feature": {
-                "name": "libraryex:scatter",
+                "name": "minecraft:random_patch",
                 "config": {
-                    "scatter_state": {
-                        "Name": "netherex:blue_fire"
+                    "state_provider": {
+                        "type": "minecraft:simple_state_provider",
+                        "state": {
+                            "Name": "netherex:blue_fire"
+                        }
                     },
-                    "target_state": {
-                        "Name": "netherex:frostburn_ice"
+                    "block_placer": {
+                        "type": "minecraft:simple_block_placer"
                     },
-                    "target_area": "on_ground"
+                    "whitelist": [
+                        {
+                            "Name": "netherex:frostburn_ice"
+                        }
+                    ],
+                    "tries": 64,
+                    "project": 0
                 }
             },
             "decorator": {
@@ -99,14 +108,12 @@
         },
         {
             "feature": {
-                "name": "libraryex:ore",
+                "name": "minecraft:ore",
                 "config": {
-                    "ore_state": {
+                    "state": {
                         "Name": "netherex:quartz_ore"
                     },
-                    "target_state": {
-                        "Name": "netherex:icy_netherrack"
-                    },
+                    "target": "netherrack_tag",
                     "size": 14
                 }
             },
@@ -123,14 +130,12 @@
         },
         {
             "feature": {
-                "name": "libraryex:ore",
+                "name": "minecraft:ore",
                 "config": {
-                    "ore_state": {
+                    "state": {
                         "Name": "netherex:rime_ore"
                     },
-                    "target_state": {
-                        "Name": "netherex:icy_netherrack"
-                    },
+                    "target": "netherrack_tag",
                     "size": 14
                 }
             },

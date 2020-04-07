@@ -84,14 +84,12 @@
         },
         {
             "feature": {
-                "name": "libraryex:ore",
+                "name": "minecraft:ore",
                 "config": {
-                    "ore_state": {
+                    "state": {
                         "Name": "netherex:quartz_ore"
                     },
-                    "target_state": {
-                        "Name": "netherex:lively_netherrack"
-                    },
+                    "target": "netherrack_tag",
                     "size": 14
                 }
             },
@@ -112,24 +110,136 @@
                 "config": {
                     "features": [
                         {
-                            "name": "netherex:brown_elder_mushroom",
+                            "name": "netherex:huge_brown_elder_mushroom",
                             "config": {
-                                "planted": false
+                                "cap_provider": {
+                                    "type": "minecraft:simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:brown_elder_mushroom_cap",
+                                        "Properties": {
+                                            "up": "true",
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "stem_provider": {
+                                    "type": "simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:elder_mushroom_stem",
+                                        "Properties": {
+                                            "up": "false",
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "foliage_radius": 3
                             },
-                            "chance": 0.4
+                            "chance": 0.2
                         },
                         {
-                            "name": "netherex:red_elder_mushroom",
+                            "name": "netherex:huge_brown_elder_mushroom",
                             "config": {
-                                "planted": false
+                                "cap_provider": {
+                                    "type": "minecraft:simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:brown_elder_mushroom_cap",
+                                        "Properties": {
+                                            "up": "true",
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "stem_provider": {
+                                    "type": "simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:elder_mushroom_stem",
+                                        "Properties": {
+                                            "up": "false",
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "foliage_radius": 2
                             },
-                            "chance": 0.6
+                            "chance": 0.2
+                        },
+                        {
+                            "name": "netherex:huge_red_elder_mushroom",
+                            "config": {
+                                "cap_provider": {
+                                    "type": "minecraft:simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:red_elder_mushroom_cap",
+                                        "Properties": {
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "stem_provider": {
+                                    "type": "simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:elder_mushroom_stem",
+                                        "Properties": {
+                                            "up": "false",
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "foliage_radius": 2
+                            },
+                            "chance": 0.3
+                        },
+                        {
+                            "name": "netherex:huge_red_elder_mushroom",
+                            "config": {
+                                "cap_provider": {
+                                    "type": "minecraft:simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:red_elder_mushroom_cap",
+                                        "Properties": {
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "stem_provider": {
+                                    "type": "simple_state_provider",
+                                    "state": {
+                                        "Name": "netherex:elder_mushroom_stem",
+                                        "Properties": {
+                                            "up": "false",
+                                            "down": "false"
+                                        }
+                                    }
+                                },
+                                "foliage_radius": 3
+                            },
+                            "chance": 0.3
                         }
                     ],
                     "default": {
-                        "name": "netherex:brown_elder_mushroom",
+                        "name": "netherex:huge_brown_elder_mushroom",
                         "config": {
-                            "planted": false
+                            "cap_provider": {
+                                "type": "minecraft:simple_state_provider",
+                                "state": {
+                                    "Name": "netherex:brown_elder_mushroom_cap",
+                                    "Properties": {
+                                        "up": "true",
+                                        "down": "false"
+                                    }
+                                }
+                            },
+                            "stem_provider": {
+                                "type": "simple_state_provider",
+                                "state": {
+                                    "Name": "netherex:elder_mushroom_stem",
+                                    "Properties": {
+                                        "up": "false",
+                                        "down": "false"
+                                    }
+                                }
+                            },
+                            "foliage_radius": 3
                         }
                     }
                 }

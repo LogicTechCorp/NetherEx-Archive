@@ -18,6 +18,7 @@
 package logictechcorp.netherex.block;
 
 import logictechcorp.netherex.world.generation.feature.NetherExFeatureConfigs;
+import logictechcorp.netherex.world.generation.feature.NetherExFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,7 +29,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 
@@ -50,7 +50,7 @@ public class ElderMushroomBlock extends MushroomBlock
 
         if(this == NetherExBlocks.BROWN_ELDER_MUSHROOM.get())
         {
-            feature = Feature.HUGE_BROWN_MUSHROOM.withConfiguration(NetherExFeatureConfigs.HUGE_BROWN_ELDER_MUSHROOM);
+            feature = NetherExFeatures.HUGE_BROWN_ELDER_MUSHROOM.get().withConfiguration(NetherExFeatureConfigs.HUGE_BROWN_ELDER_MUSHROOM);
         }
         else
         {
@@ -60,7 +60,7 @@ public class ElderMushroomBlock extends MushroomBlock
                 return false;
             }
 
-            feature = Feature.HUGE_RED_MUSHROOM.withConfiguration(NetherExFeatureConfigs.HUGE_RED_ELDER_MUSHROOM);
+            feature = NetherExFeatures.HUGE_RED_ELDER_MUSHROOM.get().withConfiguration(NetherExFeatureConfigs.HUGE_RED_ELDER_MUSHROOM);
         }
 
         if(feature.place(world, world.getChunkProvider().getChunkGenerator(), random, pos))

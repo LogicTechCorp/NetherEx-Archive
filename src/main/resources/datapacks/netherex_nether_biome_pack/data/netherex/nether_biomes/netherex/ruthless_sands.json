@@ -78,14 +78,12 @@
         },
         {
             "feature": {
-                "name": "libraryex:ore",
+                "name": "minecraft:ore",
                 "config": {
-                    "ore_state": {
+                    "state": {
                         "Name": "netherex:quartz_ore"
                     },
-                    "target_state": {
-                        "Name": "netherex:gloomy_netherrack"
-                    },
+                    "target": "netherrack_tag",
                     "size": 14
                 }
             },

@@ -17,9 +17,13 @@
 
 package logictechcorp.netherex.world.generation.feature;
 
+import logictechcorp.libraryex.block.pattern.BlockTagMatcher;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.data.NetherExTags;
+import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -33,11 +37,14 @@ public class NetherExFeatures
     private static final DeferredRegister<Feature<?>> FEATURE_OVERRIDES = new DeferredRegister<>(ForgeRegistries.FEATURES, "minecraft");
 
     // @formatter:off
-    public static final RegistryObject<Feature<NoFeatureConfig>> ENOKI_MUSHROOM = registerFeature("enoki_mushroom", () -> new EnokiMushroomFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> HUGE_BROWN_ELDER_MUSHROOM = registerFeature("huge_brown_elder_mushroom", () -> new HugeBrownElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<BigMushroomFeatureConfig>> HUGE_RED_ELDER_MUSHROOM   = registerFeature("huge_red_elder_mushroom", () -> new HugeRedElderMushroomFeature(BigMushroomFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> ENOKI_MUSHROOM                     = registerFeature("enoki_mushroom", () -> new EnokiMushroomFeature(NoFeatureConfig::deserialize));
     // @formatter:off
 
     public static void register(IEventBus modEventBus)
     {
+        OreFeatureConfig.FillerBlockType.create("NETHERRACK_TAG", "netherrack_tag", new BlockTagMatcher(NetherExTags.Blocks.NETHERRACK));
         FEATURES.register(modEventBus);
     }
 

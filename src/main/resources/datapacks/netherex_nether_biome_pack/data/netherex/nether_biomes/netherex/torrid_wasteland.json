@@ -47,9 +47,17 @@
     "features": [
         {
             "feature": {
-                "name": "minecraft:nether_spring",
+                "name": "minecraft:spring_feature",
                 "config": {
-                    "inside_rock": false
+                    "state": {
+                        "Name": "minecraft:lava"
+                    },
+                    "requires_block_below": 0,
+                    "rock_count": 4,
+                    "hole_count": 1,
+                    "valid_blocks": [
+                        "netherex:fiery_netherrack"
+                    ]
                 }
             },
             "decorator": {
@@ -65,15 +73,24 @@
         },
         {
             "feature": {
-                "name": "libraryex:scatter",
+                "name": "minecraft:random_patch",
                 "config": {
-                    "scatter_state": {
-                        "Name": "minecraft:fire"
+                    "state_provider": {
+                        "type": "minecraft:simple_state_provider",
+                        "state": {
+                            "Name": "minecraft:fire"
+                        }
                     },
-                    "target_state": {
-                        "Name": "netherex:fiery_netherrack"
+                    "block_placer": {
+                        "type": "minecraft:simple_block_placer"
                     },
-                    "target_area": "on_ground"
+                    "whitelist": [
+                        {
+                            "Name": "netherex:fiery_netherrack"
+                        }
+                    ],
+                    "tries": 64,
+                    "project": 0
                 }
             },
             "decorator": {
@@ -117,14 +134,12 @@
         },
         {
             "feature": {
-                "name": "libraryex:ore",
+                "name": "minecraft:ore",
                 "config": {
-                    "ore_state": {
+                    "state": {
                         "Name": "netherex:quartz_ore"
                     },
-                    "target_state": {
-                        "Name": "netherex:fiery_netherrack"
-                    },
+                    "target": "netherrack_tag",
                     "size": 14
                 }
             },
@@ -164,9 +179,17 @@
         },
         {
             "feature": {
-                "name": "minecraft:nether_spring",
+                "name": "minecraft:spring_feature",
                 "config": {
-                    "inside_rock": true
+                    "state": {
+                        "Name": "minecraft:lava"
+                    },
+                    "requires_block_below": 0,
+                    "rock_count": 5,
+                    "hole_count": 0,
+                    "valid_blocks": [
+                        "netherex:fiery_netherrack"
+                    ]
                 }
             },
             "decorator": {
@@ -174,7 +197,7 @@
                 "config": {
                     "count": 24,
                     "bottom_offset": 10,
-                    "top_offset": 10,
+                    "top_offset": 20,
                     "maximum": 128
                 }
             },

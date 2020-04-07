@@ -84,7 +84,7 @@ public class NetherExBlockProperties
     public static final Block.Properties BASALT_PILLAR_WALL             = createProperties(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F);
     public static final Block.Properties BASALT_PILLAR_FENCE            = createProperties(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F);
     public static final Block.Properties BASALT_PILLAR_FENCE_GATE       = createProperties(Material.ROCK, DyeColor.BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(1.5F, 10.0F);
-    public static final Block.Properties FROSTBURN_ICE                  = createProperties(Material.ICE, DyeColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 1.0F);
+    public static final Block.Properties FROSTBURN_ICE                  = createProperties(Material.ICE, DyeColor.LIGHT_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(0.5F, 1.0F).notSolid();
     public static final Block.Properties RIME_ORE                       = createProperties(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0F);
     public static final Block.Properties RIME_BLOCK                     = createProperties(Material.ROCK, DyeColor.LIGHT_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(0).hardnessAndResistance(5.0F, 10.0F).lightValue(13);
     public static final Block.Properties BROWN_ELDER_MUSHROOM           = createProperties(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.PLANT).lightValue(1);
@@ -95,8 +95,8 @@ public class NetherExBlockProperties
     public static final Block.Properties ENOKI_MUSHROOM_CAP             = createProperties(Material.PLANTS, MaterialColor.PURPLE).tickRandomly().hardnessAndResistance(0.4F).sound(SoundType.WOOD);
     public static final Block.Properties ENOKI_MUSHROOM_STEM            = createProperties(Material.PLANTS, MaterialColor.PURPLE).hardnessAndResistance(0.4F).sound(SoundType.WOOD);
     public static final Block.Properties BLUE_FIRE                      = createProperties(Material.FIRE, MaterialColor.LIGHT_BLUE).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0.0F).lightValue(15).sound(SoundType.CLOTH).noDrops();
-    public static final Block.Properties SOUL_GLASS                     = createProperties(Material.GLASS, DyeColor.BROWN).hardnessAndResistance(0.3F).sound(SoundType.GLASS);
-    public static final Block.Properties SOUL_GLASS_PANE                = createProperties(Material.GLASS).hardnessAndResistance(0.3F).sound(SoundType.GLASS);
+    public static final Block.Properties SOUL_GLASS                     = createProperties(Material.GLASS, DyeColor.BROWN).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid();
+    public static final Block.Properties SOUL_GLASS_PANE                = createProperties(Material.GLASS).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid();
     // @formatter:on
 
     private static Block.Properties createProperties(Material material)

@@ -64,7 +64,7 @@ public class NetherExBiomes
             resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "netherex_nether_biome_pack"));
         }
 
-        if(ModList.get().isLoaded("biomesoplenty") && NetherExConfig.NETHER.biomePackUseBOPBiomePack.get())
+        if(NetherExConfig.NETHER.biomePackUseBOPBiomePack.get())
         {
             resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "bop_nether_biome_pack"));
         }

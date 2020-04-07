@@ -27,6 +27,6 @@ public class NetherBiomeProvider extends OverworldBiomeProvider
     public NetherBiomeProvider(OverworldBiomeProviderSettings biomeProviderSettings)
     {
         super(biomeProviderSettings);
-        ObfuscationReflectionHelper.setPrivateValue(OverworldBiomeProvider.class, this, NetherLayerUtil.createLayers(biomeProviderSettings.getSeed(), biomeProviderSettings.getWorldType(), biomeProviderSettings.getGeneratorSettings()), "genBiomes");
+        ObfuscationReflectionHelper.setPrivateValue(OverworldBiomeProvider.class, this, NetherLayerUtil.createLayers(biomeProviderSettings.getSeed(), biomeProviderSettings.getWorldType(), biomeProviderSettings.getGeneratorSettings()), "field_201543_c");
     }
 }
