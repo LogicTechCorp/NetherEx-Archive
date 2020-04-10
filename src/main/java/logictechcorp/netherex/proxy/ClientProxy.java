@@ -39,7 +39,6 @@ public class ClientProxy
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::onRegisterParticleFactory);
-
     }
 
     private void onClientSetup(FMLClientSetupEvent event)

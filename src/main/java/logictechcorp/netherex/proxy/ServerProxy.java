@@ -19,7 +19,4 @@ package logictechcorp.netherex.proxy;
 
 public class ServerProxy
 {
-    public ServerProxy()
-    {
-    }
 }
