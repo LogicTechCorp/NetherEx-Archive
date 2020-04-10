@@ -197,17 +197,18 @@ public class BlockBlueFire extends BlockMod
                 world.setBlockToAir(pos);
             }
 
-            boolean sideSolid = world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP);
+            BlockPos downPos = pos.down();
+            boolean isFireSource = world.getBlockState(downPos).getBlock().isFireSource(world, pos.down(), EnumFacing.UP);
 
             int age = state.getValue(AGE);
 
-            if(!sideSolid && world.isRaining() && this.canDie(world, pos) && random.nextFloat() < 0.2F + (float) age * 0.03F)
+            if(!isFireSource && world.isRaining() && this.isBeingRainedOn(world, pos) && age > 0 && random.nextFloat() < 0.2F + (float) age * 0.03F)
             {
                 world.setBlockToAir(pos);
             }
             else
             {
-                if(age < 15)
+                if(age > 0 && age < 15)
                 {
                     state = state.withProperty(AGE, age + random.nextInt(3) / 2);
                     world.setBlockState(pos, state, 4);
@@ -215,11 +216,11 @@ public class BlockBlueFire extends BlockMod
 
                 world.scheduleUpdate(pos, this, this.tickRate(world) + random.nextInt(10));
 
-                if(!sideSolid)
+                if(!isFireSource)
                 {
                     if(!this.canNeighborCatchFire(world, pos))
                     {
-                        if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) || age > 3)
+                        if(!world.getBlockState(downPos).isSideSolid(world, downPos, EnumFacing.UP) || age > 3)
                         {
                             world.setBlockToAir(pos);
                         }
@@ -227,7 +228,7 @@ public class BlockBlueFire extends BlockMod
                         return;
                     }
 
-                    if(!this.canCatchFire(world, pos.down(), EnumFacing.UP) && age == 15 && random.nextInt(4) == 0)
+                    if(!this.canCatchFire(world, downPos, EnumFacing.UP) && age == 15 && random.nextInt(4) == 0)
                     {
                         world.setBlockToAir(pos);
                         return;
@@ -235,19 +236,19 @@ public class BlockBlueFire extends BlockMod
                 }
 
                 boolean highHumidity = world.isBlockinHighHumidity(pos);
-                int j = 0;
+                int humidityChance = 0;
 
                 if(highHumidity)
                 {
-                    j = -50;
+                    humidityChance = -50;
                 }
 
-                this.tryCatchFire(world, pos, pos.east(), 300 + j, random, age, EnumFacing.WEST);
-                this.tryCatchFire(world, pos, pos.west(), 300 + j, random, age, EnumFacing.EAST);
-                this.tryCatchFire(world, pos, pos.down(), 250 + j, random, age, EnumFacing.UP);
-                this.tryCatchFire(world, pos, pos.up(), 250 + j, random, age, EnumFacing.DOWN);
-                this.tryCatchFire(world, pos, pos.north(), 300 + j, random, age, EnumFacing.SOUTH);
-                this.tryCatchFire(world, pos, pos.south(), 300 + j, random, age, EnumFacing.NORTH);
+                this.tryCatchFire(world, pos, 300 + humidityChance, random, age, EnumFacing.WEST);
+                this.tryCatchFire(world, pos, 300 + humidityChance, random, age, EnumFacing.EAST);
+                this.tryCatchFire(world, pos, 250 + humidityChance, random, age, EnumFacing.UP);
+                this.tryCatchFire(world, pos, 250 + humidityChance, random, age, EnumFacing.DOWN);
+                this.tryCatchFire(world, pos, 300 + humidityChance, random, age, EnumFacing.SOUTH);
+                this.tryCatchFire(world, pos, 300 + humidityChance, random, age, EnumFacing.NORTH);
 
                 for(int posX = -1; posX <= 1; posX++)
                 {
@@ -276,16 +277,16 @@ public class BlockBlueFire extends BlockMod
                                         fireHumidityChance /= 2;
                                     }
 
-                                    if(fireHumidityChance > 0 && random.nextInt(fireHeightChance) <= fireHumidityChance && (!world.isRaining() || !this.canDie(world, blockPos)))
+                                    if(fireHumidityChance > 0 && random.nextInt(fireHeightChance) <= fireHumidityChance && (!world.isRaining() || !this.isBeingRainedOn(world, blockPos)))
                                     {
-                                        int stage = age + random.nextInt(5) / 4;
+                                        int newAge = age + 1;
 
-                                        if(stage > 15)
+                                        if(newAge > 15)
                                         {
-                                            stage = 15;
+                                            newAge = 15;
                                         }
 
-                                        world.setBlockState(blockPos, state.withProperty(AGE, stage), 3);
+                                        world.setBlockState(blockPos, state.withProperty(AGE, newAge), 3);
                                     }
                                 }
                             }
@@ -429,39 +430,42 @@ public class BlockBlueFire extends BlockMod
         }
     }
 
-    private void tryCatchFire(World world, BlockPos firePos, BlockPos blockPos, int chance, Random random, int age, EnumFacing face)
+    private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face)
     {
-        int flammability = world.getBlockState(blockPos).getBlock().getFlammability(world, blockPos, face);
+        BlockPos targetPos = pos.offset(face.getOpposite());
+        int flammability = world.getBlockState(targetPos).getBlock().getFlammability(world, targetPos, face);
 
         if(random.nextInt(chance) < flammability)
         {
-            IBlockState state = world.getBlockState(blockPos);
+            IBlockState state = world.getBlockState(targetPos);
 
-            if(random.nextInt(age + 10) < 5 && !world.isRainingAt(blockPos))
+            if(random.nextInt(age + 10) < 5)
             {
-                int stage = age + random.nextInt(5) / 4;
+                int newAge = age + 1;
 
-                if(stage > 15)
+                if(newAge > 15)
                 {
-                    stage = 15;
+                    newAge = 15;
                 }
 
-                world.setBlockState(blockPos, this.getDefaultState().withProperty(AGE, stage), 3);
+                world.setBlockState(targetPos, this.getDefaultState().withProperty(AGE, newAge), 3);
             }
             else
             {
-                world.setBlockToAir(blockPos);
-                world.setBlockToAir(firePos);
+                if(age > 0)
+                {
+                    world.setBlockToAir(pos);
+                }
             }
 
             if(state.getBlock() == Blocks.TNT)
             {
-                Blocks.TNT.onPlayerDestroy(world, blockPos, state.withProperty(BlockTNT.EXPLODE, true));
+                Blocks.TNT.onPlayerDestroy(world, targetPos, state.withProperty(BlockTNT.EXPLODE, true));
             }
         }
     }
 
-    private boolean canDie(World world, BlockPos pos)
+    private boolean isBeingRainedOn(World world, BlockPos pos)
     {
         return world.isRainingAt(pos) || world.isRainingAt(pos.west()) || world.isRainingAt(pos.east()) || world.isRainingAt(pos.north()) || world.isRainingAt(pos.south());
     }
