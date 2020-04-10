@@ -48,6 +48,10 @@ public class ClientProxy
         RenderType cutout = RenderType.getCutout();
         RenderTypeLookup.setRenderLayer(NetherExBlocks.QUARTZ_ORE.get(), cutout);
         RenderTypeLookup.setRenderLayer(NetherExBlocks.THORNSTALK.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.BROWN_ELDER_MUSHROOM.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.RED_ELDER_MUSHROOM.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.ENOKI_MUSHROOM_CAP.get(), cutout);
+        RenderTypeLookup.setRenderLayer(NetherExBlocks.ENOKI_MUSHROOM_STEM.get(), cutout);
         RenderTypeLookup.setRenderLayer(NetherExBlocks.BLUE_FIRE.get(), cutout);
         RenderTypeLookup.setRenderLayer(NetherExBlocks.ENOKI_MUSHROOM_CAP.get(), cutout);
         RenderTypeLookup.setRenderLayer(NetherExBlocks.ENOKI_MUSHROOM_STEM.get(), cutout);
