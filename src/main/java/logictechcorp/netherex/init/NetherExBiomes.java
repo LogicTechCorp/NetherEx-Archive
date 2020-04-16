@@ -35,11 +35,14 @@ import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.libraries.ModList;
 
 import java.util.Collections;
 
@@ -68,7 +71,7 @@ public class NetherExBiomes
         }
     }
 
-    public static void registerBiomes()
+    public static void registerBiomeTypes()
     {
         BiomeDictionary.addTypes(RUTHLESS_SANDS, NETHER, HOT, DRY, SANDY);
         BiomeDictionary.addTypes(FUNGI_FOREST, NETHER, COLD, WET, MUSHROOM);
@@ -109,7 +112,7 @@ public class NetherExBiomes
                 })
         );
 
-        if(ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility)
+        if(ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility && Loader.isModLoaded("biomesoplenty"))
         {
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, false));
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, false));

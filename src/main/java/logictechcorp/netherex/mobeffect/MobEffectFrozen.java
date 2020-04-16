@@ -56,39 +56,17 @@ public class MobEffectFrozen extends MobEffectMod
     @Override
     public void performEffect(EntityLivingBase entity, int amplifier)
     {
-        World world = entity.getEntityWorld();
-
-        if(this.canFreeze(entity))
+        if(canFreeze(entity))
         {
             Random random = entity.getRNG();
-            boolean frozen = entity.isPotionActive(this);
 
-            if(!frozen)
+            if(entity instanceof EntityPlayer)
             {
-                Biome biome = world.getBiome(entity.getPosition());
-
-                if(random.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0 && biome == NetherExBiomes.ARCTIC_ABYSS)
-                {
-                    if(entity instanceof EntityPlayer)
-                    {
-                        entity.addPotionEffect(new PotionEffect(this, 100, 0));
-                    }
-                    else
-                    {
-                        entity.addPotionEffect(new PotionEffect(this, 300, 0));
-                    }
-                }
+                entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
             }
-            else
+            if(random.nextInt(ConfigHandler.mobEffectConfig.freeze.thawRarity) == 0)
             {
-                if(entity instanceof EntityPlayer)
-                {
-                    entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
-                }
-                if(random.nextInt(ConfigHandler.mobEffectConfig.freeze.thawRarity) == 0)
-                {
-                    entity.removePotionEffect(this);
-                }
+                entity.removePotionEffect(this);
             }
         }
     }
@@ -115,7 +93,7 @@ public class MobEffectFrozen extends MobEffectMod
         return true;
     }
 
-    public boolean canFreeze(EntityLivingBase entity)
+    public static boolean canFreeze(EntityLivingBase entity)
     {
         World world = entity.getEntityWorld();
         Biome biome = world.getBiome(entity.getPosition());

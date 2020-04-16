@@ -214,8 +214,8 @@ public class EntityObsidianBoat extends EntityBoat
         this.boatPitch = x;
         this.lerpY = y;
         this.lerpZ = z;
-        this.boatYaw = (double) yaw;
-        this.lerpXRot = (double) pitch;
+        this.boatYaw = yaw;
+        this.lerpXRot = pitch;
         this.lerpSteps = 10;
     }
 
@@ -375,7 +375,7 @@ public class EntityObsidianBoat extends EntityBoat
     @SideOnly(Side.CLIENT)
     public float getRowingTime(int side, float limbSwing)
     {
-        return this.getPaddleState(side) ? (float) MathHelper.clampedLerp((double) this.paddlePositions[side] - 0.39269909262657166D, (double) this.paddlePositions[side], (double) limbSwing) : 0.0F;
+        return this.getPaddleState(side) ? (float) MathHelper.clampedLerp((double) this.paddlePositions[side] - 0.39269909262657166D, this.paddlePositions[side], limbSwing) : 0.0F;
     }
 
     private Status getBoatStatus()
@@ -551,7 +551,7 @@ public class EntityObsidianBoat extends EntityBoat
                         if(state.getMaterial() == Material.LAVA)
                         {
                             float liquidHeight = BlockLiquid.getLiquidHeight(state, this.world, mutableBlockPos);
-                            this.lavaLevel = Math.max((double) liquidHeight, this.lavaLevel);
+                            this.lavaLevel = Math.max(liquidHeight, this.lavaLevel);
                             flag |= entityBoundingBox.minY < (double) liquidHeight;
                         }
                     }
@@ -656,8 +656,8 @@ public class EntityObsidianBoat extends EntityBoat
                 }
             }
 
-            this.motionX *= (double) momentum;
-            this.motionZ *= (double) momentum;
+            this.motionX *= momentum;
+            this.motionZ *= momentum;
             this.deltaRotation *= momentum;
             this.motionY += gravity;
 
@@ -702,8 +702,8 @@ public class EntityObsidianBoat extends EntityBoat
                 speed -= 0.005F;
             }
 
-            this.motionX += (double) (MathHelper.sin(-this.rotationYaw * 0.017453292F) * speed);
-            this.motionZ += (double) (MathHelper.cos(this.rotationYaw * 0.017453292F) * speed);
+            this.motionX += (MathHelper.sin(-this.rotationYaw * 0.017453292F) * speed);
+            this.motionZ += (MathHelper.cos(this.rotationYaw * 0.017453292F) * speed);
             this.setPaddleState(this.rightInputDown && !this.leftInputDown || this.forwardInputDown, this.leftInputDown && !this.rightInputDown || this.forwardInputDown);
         }
     }
@@ -735,7 +735,7 @@ public class EntityObsidianBoat extends EntityBoat
                 }
             }
 
-            Vec3d pos = (new Vec3d((double) x, 0.0D, 0.0D)).rotateYaw(-this.rotationYaw * 0.017453292F - ((float) Math.PI / 2F));
+            Vec3d pos = (new Vec3d(x, 0.0D, 0.0D)).rotateYaw(-this.rotationYaw * 0.017453292F - ((float) Math.PI / 2F));
             passenger.setPosition(this.posX + pos.x, this.posY + (double) height, this.posZ + pos.z);
             passenger.rotationYaw += this.deltaRotation;
             passenger.setRotationYawHead(passenger.getRotationYawHead() + this.deltaRotation);
@@ -746,6 +746,11 @@ public class EntityObsidianBoat extends EntityBoat
                 int rotation = passenger.getEntityId() % 2 == 0 ? 90 : 270;
                 passenger.setRenderYawOffset(((EntityAnimal) passenger).renderYawOffset + (float) rotation);
                 passenger.setRotationYawHead(passenger.getRotationYawHead() + (float) rotation);
+            }
+
+            if(this.isInsideOfMaterial(Material.WATER))
+            {
+                passenger.dismountRidingEntity();
             }
         }
     }
@@ -789,7 +794,7 @@ public class EntityObsidianBoat extends EntityBoat
         }
         else
         {
-            if(!this.world.isRemote && this.outOfControlCounter < 60.0F)
+            if(!this.world.isRemote && this.outOfControlCounter < 60.0F && !this.isInsideOfMaterial(Material.WATER))
             {
                 player.startRiding(this);
             }

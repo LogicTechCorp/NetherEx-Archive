@@ -197,6 +197,7 @@ public class NetherExRecipes
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(Blocks.RED_NETHER_BRICK, 1), NetherExBlocks.RED_NETHER_BRICK_WALL),
                     RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.RED_NETHER_BRICK_STAIRS, 8), Blocks.RED_NETHER_BRICK),
                     RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(Blocks.RED_NETHER_BRICK, 3), NetherExBlocks.RED_NETHER_BRICK_STAIRS),
+                    RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.NETHER_BRICK_FENCE_GATE, 6), new ItemStack(Blocks.STONE_SLAB, 1, 6), Blocks.NETHER_BRICK),
                     RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.RED_NETHER_BRICK_FENCE, 6), Blocks.RED_NETHER_BRICK, NetherExBlocks.RED_NETHER_BRICK_SLAB),
                     RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.RED_NETHER_BRICK_FENCE_GATE, 6), NetherExBlocks.RED_NETHER_BRICK_SLAB, Blocks.RED_NETHER_BRICK),
                     RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.QUARTZ_WALL, 6), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0)),

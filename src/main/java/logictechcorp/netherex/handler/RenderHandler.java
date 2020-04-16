@@ -32,8 +32,10 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -74,10 +76,23 @@ public class RenderHandler
         }
     }
 
+    @SubscribeEvent
+    public static void onRenderHand(RenderSpecificHandEvent event)
+    {
+        EntityPlayer player = MINECRAFT.player;
+
+        if(player.isPotionActive(NetherExMobEffects.FIRE_BURNING))
+        {
+            renderBlueFireInFirstPerson();
+        }
+    }
+
     private static void renderBlueFireInFirstPerson()
     {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder builder = tessellator.getBuffer();
+        GlStateManager.disableAlpha();
+        GlStateManager.disableLighting();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.9F);
         GlStateManager.depthFunc(519);
         GlStateManager.depthMask(false);
@@ -96,10 +111,10 @@ public class RenderHandler
             GlStateManager.translate((float) (-(i * 2 - 1)) * 0.24F, -0.3F, 0.0F);
             GlStateManager.rotate((float) (i * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
             builder.begin(7, DefaultVertexFormats.POSITION_TEX);
-            builder.pos(-0.5D, -0.5D, -0.5D).tex((double) maxU, (double) maxV).endVertex();
-            builder.pos(0.5D, -0.5D, -0.5D).tex((double) minU, (double) maxV).endVertex();
-            builder.pos(0.5D, 0.5D, -0.5D).tex((double) minU, (double) minV).endVertex();
-            builder.pos(-0.5D, 0.5D, -0.5D).tex((double) maxU, (double) minV).endVertex();
+            builder.pos(-0.5D, -0.5D, -0.5D).tex(maxU, maxV).endVertex();
+            builder.pos(0.5D, -0.5D, -0.5D).tex(minU, maxV).endVertex();
+            builder.pos(0.5D, 0.5D, -0.5D).tex(minU, minV).endVertex();
+            builder.pos(-0.5D, 0.5D, -0.5D).tex(maxU, minV).endVertex();
             tessellator.draw();
             GlStateManager.popMatrix();
         }
@@ -108,6 +123,8 @@ public class RenderHandler
         GlStateManager.disableBlend();
         GlStateManager.depthMask(true);
         GlStateManager.depthFunc(515);
+        GlStateManager.enableLighting();
+        GlStateManager.enableAlpha();
     }
 
     public static void renderEntityOnBlueFire(Entity entity, double posX, double posY, double posZ)

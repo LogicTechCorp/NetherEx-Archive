@@ -23,6 +23,7 @@ import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.init.NetherExItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -43,6 +44,13 @@ public class ItemObsidianBoat extends ItemMod
     public ItemObsidianBoat()
     {
         super(NetherEx.getResource("obsidian_boat"), NetherExItems.getDefaultItemProperties().copy().maxStackSize(1));
+    }
+
+    @Override
+    public boolean onEntityItemUpdate(EntityItem entityItem)
+    {
+        entityItem.setEntityInvulnerable(true);
+        return super.onEntityItemUpdate(entityItem);
     }
 
     @Override

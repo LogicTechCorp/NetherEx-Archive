@@ -252,15 +252,6 @@ entity.netherex:ghast_queen.name=Ghast Queen
 # Fluids
 fluid.netherex:blood.name=Ichor
 
-# Generators
-generator.netherex:netherex=NetherEx
-
-# Guis
-gui.netherex:select_world.reset=Reset
-gui.netherex:select_world.reset_nether=Reset Nether
-gui.netherex:select_world.reset_nether_question=Are you sure you want to reset the Nether for %s?
-gui.netherex:select_world.reset_nether_warning=The Nether for %s will be reset back to how it was when %s was first created!
-
 # Items
 item.netherex:fiery_netherbrick.name=Fiery Nether Brick
 item.netherex:icy_netherbrick.name=Icy Nether Brick

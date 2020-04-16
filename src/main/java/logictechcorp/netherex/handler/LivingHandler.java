@@ -21,8 +21,10 @@ import logictechcorp.libraryex.utility.ArmorHelper;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
+import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExMaterials;
 import logictechcorp.netherex.init.NetherExMobEffects;
+import logictechcorp.netherex.mobeffect.MobEffectFrozen;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,6 +38,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
@@ -56,7 +59,25 @@ public class LivingHandler
         EntityLivingBase entity = event.getEntityLiving();
         Random random = world.rand;
 
-        NetherExMobEffects.FROZEN.performEffect(entity, 0);
+        Biome biome = world.getBiome(pos);
+
+        if(MobEffectFrozen.canFreeze(entity))
+        {
+            if(!entity.isPotionActive(NetherExMobEffects.FROZEN))
+            {
+                if(biome == NetherExBiomes.ARCTIC_ABYSS && random.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0)
+                {
+                    if(entity instanceof EntityPlayer)
+                    {
+                        entity.addPotionEffect(new PotionEffect(NetherExMobEffects.FROZEN, 100, 0));
+                    }
+                    else
+                    {
+                        entity.addPotionEffect(new PotionEffect(NetherExMobEffects.FROZEN, 300, 0));
+                    }
+                }
+            }
+        }
 
         if(entity instanceof EntityPigZombie)
         {
@@ -155,7 +176,7 @@ public class LivingHandler
         EntityLivingBase entity = (EntityLivingBase) event.getEntity();
         DamageSource source = event.getSource();
 
-        if(source.isFireDamage())
+        if(source.isFireDamage() && source.getTrueSource() == null)
         {
             if(!entity.isImmuneToFire() && entity.isRiding() && entity.getRidingEntity() instanceof EntityObsidianBoat)
             {
