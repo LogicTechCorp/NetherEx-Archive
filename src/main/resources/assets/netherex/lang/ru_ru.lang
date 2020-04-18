@@ -5,6 +5,16 @@ language.code=ru_ru
 
 #Config
 config.netherex=NetherEx Конфиг
+
+config.netherex:internal=Внутренние настройки
+config.netherex:internal.tooltip=Настройки, которые используются внутри мода
+config.netherex:internal.doNotChange=Не менять
+config.netherex:internal.doNotChange.tooltip=Настройки, которые не должны быть изменены игроками
+config.netherex:internal.doNotChange.warnBreakingChanges=Предупреждение о критических изменениях
+config.netherex:internal.doNotChange.warnBreakingChanges.tooltip=Отображаются ли изменения, которые ломают игру
+config.netherex:internal.doNotChange.configVersion=Версия конфига
+config.netherex:internal.doNotChange.configVersion.tooltip=Номер версии конфига
+
 config.netherex:client=Настройки клиента
 config.netherex:client.tooltip=Настройки, которые затрагивают Клиент
 config.netherex:client.visual=Визуальные настройки
@@ -190,7 +200,14 @@ config.netherex:biome.arcticAbyss.mobFreezeRarity.tooltip=Как часто мо
 itemGroup.netherex=NetherEx
 
 # Effects
-potion.effect.netherex:freeze=Заморозка
+mob_effect.netherex:frozen=Заморозка
+mob_effect.netherex:frostbitten=Обморожение
+mob_effect.netherex:infested=Паразиты
+mob_effect.netherex:crying=Плач
+mob_effect.netherex:fire_buring=Горение огня
+mob_effect.netherex:soul_sucked=Высасывание души
+
+# Potions
 potion.effect.netherex:normalFreeze=Зелье заморозка
 splash_potion.effect.netherex:normalFreeze=Взрывное зелье Заморозка
 lingering_potion.effect.netherex:normalFreeze=Оседающее зелье Заморозка
@@ -432,3 +449,10 @@ tile.netherex:fieryNetherBrickFenceGate.name=Горячая адская кир�
 tile.netherex:icyNetherBrickFenceGate.name=Холодная адская кирпичная калитка
 tile.netherex:livelyNetherBrickFenceGate.name=Активная адская кирпичная калитка
 tile.netherex:gloomyNetherBrickFenceGate.name=Мрачная адская кирпичная калитка
+
+# Tooltips
+tooltip.netherex:dull_mirror.spawn_dimension=§aТочка измерения: %s
+tooltip.netherex:dull_mirror.spawn_point=§9Точка возрождения: %s
+tooltip.netherex:dull_mirror.spawn_point_set=§9Точка возрождения установлена на: %s
+tooltip.netherex:dull_mirror.spawn_point_removed=§cТочка возрождения удалена
+tooltip.netherex:dull_mirror.death_point=§cТочка смерти: %s
