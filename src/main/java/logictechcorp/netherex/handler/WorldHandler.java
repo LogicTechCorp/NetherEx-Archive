@@ -18,9 +18,13 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.init.NetherExMobEffects;
 import logictechcorp.netherex.village.PigtificateVillageData;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -84,6 +88,23 @@ public class WorldHandler
             {
                 NetherEx.BIOME_DATA_MANAGER.cleanup(event);
                 NetherEx.PIGTIFICATE_VILLAGE_MANAGER.cleanup(event);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntitySpawn(EntityJoinWorldEvent event)
+    {
+        World world = event.getWorld();
+        Entity entity = event.getEntity();
+
+        if(entity instanceof EntityAreaEffectCloud)
+        {
+            EntityAreaEffectCloud areaEffectCloud = (EntityAreaEffectCloud) entity;
+            areaEffectCloud.effects.removeIf(effect -> effect.getPotion() == NetherExMobEffects.FIRE_BURNING);
+
+            if(areaEffectCloud.effects.isEmpty()){
+                world.removeEntity(entity);
             }
         }
     }

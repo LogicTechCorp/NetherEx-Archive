@@ -112,7 +112,7 @@ public class NetherExBiomes
                 })
         );
 
-        if(ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility && Loader.isModLoaded("biomesoplenty"))
+        if(ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility && NetherEx.BIOMES_O_PLENTY_LOADED)
         {
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, false));
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, false));
