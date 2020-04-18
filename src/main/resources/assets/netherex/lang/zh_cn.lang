@@ -1,4 +1,4 @@
-# Lang File Settings#波哥汉化
+# Lang File Settings
 language.name=Chinese Simplified
 language.region=China
 language.code=zh_CN
@@ -229,13 +229,6 @@ entity.netherex:wight.name=阴魂
 entity.netherex:ember.name=余烬
 entity.netherex:nethermite.name=地狱螨
 entity.netherex:spinout.name=回旋石英刃
-entity.netherex:lost_soul.name=迷失灵魂
-entity.netherex:kind_lost_soul.name=善良的迷失灵魂
-entity.netherex:timid_lost_soul.name=胆怯的迷失灵魂
-entity.netherex:neutral_lost_soul.name=中立的迷失灵魂
-entity.netherex:mean_lost_soul.name=意味着失去灵魂
-entity.netherex:angry_lost_soul.name=愤怒的迷失灵魂
-entity.netherex:ripper.name=Ripper
 entity.netherex:spore_creeper.name=孢子苦力怕
 entity.netherex:spore.name=孢子
 entity.netherex:spore_one.name=一阶孢子
@@ -270,7 +263,6 @@ item.netherex:rime_crystal.name=下界霜晶
 item.netherex:rime_and_steel.name=霜晶打火石
 item.netherex:spore.name=孢子
 item.netherex:coolmar_spider_fang.name=霜冻之牙
-item.netherex:ripper_claw.name=Ripper Claw
 item.netherex:ghast_queen_tear.name=恶魂女王之泪
 item.netherex:obsidian_boat.name=黑曜石船
 item.netherex:ghast_meat_raw.name=生恶魂肉
@@ -354,8 +346,6 @@ tile.netherex:basalt.name=玄武岩
 tile.netherex:smooth_basalt.name=平滑玄武岩
 tile.netherex:basalt_brick.name= 玄武岩砖
 tile.netherex:basalt_pillar.name=玄武岩柱
-tile.netherex:crying_obsidian.name=哭泣的黑曜石
-tile.netherex:glowing_obsidian.name=发光的黑曜石
 tile.netherex:gloomy_nether_brick.name=灰暗地狱砖
 tile.netherex:lively_nether_brick.name=鲜活地狱砖
 tile.netherex:fiery_nether_brick.name=火焰地狱砖
