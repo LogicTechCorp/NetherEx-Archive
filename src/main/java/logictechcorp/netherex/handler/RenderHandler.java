@@ -32,7 +32,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
@@ -53,7 +52,7 @@ public class RenderHandler
 
         if(type == RenderBlockOverlayEvent.OverlayType.FIRE)
         {
-            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorHelper.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
+            if(player.isRiding() && player.getRidingEntity() instanceof EntityObsidianBoat || ArmorHelper.isWearingFullArmorSet(player, NetherExMaterials.ORANGE_SALAMANDER_HIDE))
             {
                 event.setCanceled(true);
             }

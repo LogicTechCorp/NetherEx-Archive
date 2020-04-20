@@ -189,7 +189,7 @@ public class LivingHandler
 
             if(source.isFireDamage())
             {
-                if(ArmorHelper.isWearingFullArmorSet(player, NetherExMaterials.SALAMANDER_HIDE))
+                if(ArmorHelper.isWearingFullArmorSet(player, NetherExMaterials.ORANGE_SALAMANDER_HIDE))
                 {
                     event.setCanceled(true);
                 }

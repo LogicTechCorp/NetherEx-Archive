@@ -435,4 +435,4 @@ tooltip.netherex:dull_mirror.spawn_dimension=§aТочка измерения: %
 tooltip.netherex:dull_mirror.spawn_point=§9Точка возрождения: %s
 tooltip.netherex:dull_mirror.spawn_point_set=§9Точка возрождения установлена на: %s
 tooltip.netherex:dull_mirror.spawn_point_removed=§cТочка возрождения удалена
-tooltip.netherex:dull_mirror.death_point=§cТочка смерти: %sconfig.netherex:block.blueFire=Настройки синего огонька
+tooltip.netherex:dull_mirror.death_point=§cТочка смерти: %s
