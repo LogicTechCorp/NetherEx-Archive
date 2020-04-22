@@ -1,0 +1,437 @@
+# Lang File Settings
+language.name=Español
+language.region=España
+language.code=es_es
+
+# Config
+config.netherex=NetherEx Configuración
+
+config.netherex:internal=Configuraciones internas
+config.netherex:internal.tooltip=Configuraciones que se usan internamente
+config.netherex:internal.doNotChange=No cambiar
+config.netherex:internal.doNotChange.tooltip=Configuraciones que los jugadores no deberían cambiar
+config.netherex:internal.doNotChange.warnBreakingChanges=Advertir cambios de última hora
+config.netherex:internal.doNotChange.warnBreakingChanges.tooltip=Si se muestran o no los cambios importantes
+config.netherex:internal.doNotChange.configVersion=Versión de configuración
+config.netherex:internal.doNotChange.configVersion.tooltip=El número de versión de configuración
+
+config.netherex:client=Configuraciones del cliente
+config.netherex:client.tooltip=Configuraciones que solo afectan al cliente
+config.netherex:client.visual=Ajustes visuales
+config.netherex:client.visual.tooltip=Configuración que solo afecta a las imágenes del cliente
+config.netherex:client.visual.disableNetherFog=Desactivar la niebla del Nether
+config.netherex:client.visual.disableNetherFog.tooltip=Si se renderiza la niebla rinde en el Nether
+
+config.netherex:compatibility=Configuraciones de compatibilidad
+config.netherex:compatibility.tooltip=Configuraciones que solo afectan a la compatibilidad del mod
+
+config.netherex:compatibility.biomesOPlenty=Configuración de compatibilidad de Biomes O 'Plenty
+config.netherex:compatibility.biomesOPlenty.tooltip=Configuraciones que solo afectan la compatibilidad de Biomes O 'Plenty
+config.netherex:compatibility.biomesOPlenty.enableCompatibility=Habilitar la compatibilidad de Biomes O 'Plenty
+config.netherex:compatibility.biomesOPlenty.enableCompatibility.tooltip=Si está habilitada la compatibilidad Biomes O 'Plenty
+
+config.netherex:dimension=Configuraciones de dimensión
+config.netherex:dimension.tooltip=Configuraciones que solo afectan a dimensiones
+
+config.netherex:dimension.nether=Configuración de dimensión del Nether
+config.netherex:dimension.nether.tooltip=Configuraciones que solo afectan la dimensión del Nether
+config.netherex:dimension.nether.overrideNether=Invalidar Nether
+config.netherex:dimension.nether.overrideNether.tooltip=Si NetherEx anula o no el Nether
+config.netherex:dimension.nether.generateSoulSand=Generar arena de almas
+config.netherex:dimension.nether.generateSoulSand.tooltip=Si las plataformas de arena de almas se generan en el Nether
+config.netherex:dimension.nether.generateGravel=Generar grava
+config.netherex:dimension.nether.generateGravel.tooltip=Si las plataformas de grava se generan en el Nether
+config.netherex:dimension.nether.isLavaInfinite=Si es la lava infinita
+config.netherex:dimension.nether.isLavaInfinite.tooltip=Si es la lava infinita en el Nether
+
+config.netherex:block=Configuraciones de bloque
+config.netherex:block.tooltip=Configuraciones que solo afectan a los bloques
+
+config.netherex:block.blueFire=Configuración de fuego azul
+config.netherex:block.blueFire.tooltip=Configuraciones que solo afectan a los bloques de fuego azul
+config.netherex:block.blueFire.minEntityTicksAlight=Mín Entidades Tics Ardiendo
+config.netherex:block.blueFire.minEntityTicksAlight.tooltip=La cantidad mínima de tics que el fuego azul puede hacer arder a las entidades
+config.netherex:block.blueFire.maxEntityTicksAlight=Máx Entidades Tics Ardiendo
+config.netherex:block.blueFire.maxEntityTicksAlight.tooltip=La cantidad máxima de tics que el fuego azul puede hacer arder a las entidades
+
+config.netherex:block.netherPortal=Configuración del portal del Nether
+config.netherex:block.netherPortal.tooltip=Configuraciones que solo afectan a los bloques del portal del Nether
+config.netherex:block.netherPortal.pigmanSpawnRarity=Rareza de Pigman
+config.netherex:block.netherPortal.pigmanSpawnRarity.tooltip=Cómo es de raro que los Pigman se generen de los bloques del portal del Nether
+
+config.netherex:block.magma=Configuraciones de magma
+config.netherex:block.magma.tooltip=Configuraciones que solo afectan al magma
+config.netherex:block.magma.turnIntoLavaWhenBroken=Se convierte en lava cuando se rompe
+config.netherex:block.magma.turnIntoLavaWhenBroken.tooltip=Si el magma se convierte en lava cuando se rompe
+config.netherex:block.rime=Configuración del bloque de escarcha
+config.netherex:block.rime.tooltip=Configuraciones que solo afectan al bloque de escarcha
+config.netherex:block.rime.canFreezeWater=Puede congelar el agua
+config.netherex:block.rime.canFreezeWater.tooltip=Si puede un bloque de escarcha congelar el agua
+config.netherex:block.rime.canFreezeLava=Puede congelar la lava
+config.netherex:block.rime.canFreezeLava.tooltip=Si puede un bloque de escarcha congelar la lava
+config.netherex:block.rime.canFreezeMobs=Puede congelar a las criaturas
+config.netherex:block.rime.canFreezeMobs.tooltip=Si puede un bloque de escarcha congelar a las criaturas
+
+config.netherex:block.thornstalk=Configuración del tallo de espina
+config.netherex:block.thornstalk.tooltip=Ajustes que solo afectan al tallo de espina
+config.netherex:block.thornstalk.canDestroyItems=Puede destruir objetos
+config.netherex:block.thornstalk.canDestroyItems.tooltip=Si puede el tallo de espina destruir objetos
+config.netherex:block.thornstalk.mobBlacklist=Blacklist de criaturas
+config.netherex:block.thornstalk.mobBlacklist.tooltip=Criaturas a las que el tallo de espina no puede herir
+
+config.netherex:block.hyphae=Configuración de las hifas
+config.netherex:block.hyphae.tooltip=Configuraciones que solo afectan a las hifas
+config.netherex:block.hyphae.shouldSpread=Pueden propagarse las hifas
+config.netherex:block.hyphae.shouldSpread.tooltip=Pueden propagarse las hifas por la netherrack viviente
+
+config.netherex:mobEffect=Configuración de efecto de criaturas
+config.netherex:mobEffect.tooltip=Configuraciones que solo afectan a los efectos de criaturas
+config.netherex:mobEffect.freeze=Configuración de efecto de congelación
+config.netherex:mobEffect.freeze.tooltip=Configuraciones que solo afectan el efecto de congelación
+config.netherex:mobEffect.freeze.thawRarity=Rareza de descongelación
+config.netherex:mobEffect.freeze.thawRarity.tooltip=Cómo es de raro que una criatura se descongele cuando está bajo el efecto de congelación
+config.netherex:mobEffect.freeze.mobBlacklist=Blacklist de criaturas
+config.netherex:mobEffect.freeze.mobBlacklist.tooltip=Criaturas que no se congelarán
+
+config.netherex:mobEffect.spore=Configuración del efecto de esporas
+config.netherex:mobEffect.spore.tooltip=Configuraciones que solo afectan el efecto de espora
+config.netherex:mobEffect.spore.sporeSpawnRarity=Rareza de generación de esporas
+config.netherex:mobEffect.spore.sporeSpawnRarity.tooltip=Cómo de raro es que una Espora se genere a partir de una entidad con el efecto de espora
+config.netherex:mobEffect.spore.mobBlacklist=Blacklist de criaturas
+config.netherex:mobEffect.spore.mobBlacklist.tooltip=Criaturas que no generarán Esporas
+
+config.netherex:mobEffect.lost=Configuración de efecto de pérdida
+config.netherex:mobEffect.lost.tooltip=Configuraciones que solo afectan al efecto de pérdida
+config.netherex:mobEffect.lost.ghastlingSpawnRarity=Rareza de generación de Ghastling
+config.netherex:mobEffect.lost.ghastlingSpawnRarity.tooltip=Cómo de raro es que un Ghastling aparezca de una entidad con el efecto de pérdida
+
+config.netherex:entity=Configuraciones de entidad
+config.netherex:entity.tooltip=Configuraciones que solo afectan a las entidades
+
+config.netherex:entity.ember=Configuración de Ascua
+config.netherex:entity.ember.tooltip=Configuraciones que solo afectan al Ascua
+config.netherex:entity.ember.setPlayerOnFireRarity=Rareza de jugador ardiendo
+config.netherex:entity.ember.setPlayerOnFireRarity.tooltip=Cómo de raro es para un Ascua prender fuego a un jugador
+
+config.netherex:entity.nethermite=Configuración de Nethermite
+config.netherex:entity.nethermite.tooltip=Configuraciones que solo afectan al Nethermite
+config.netherex:entity.nethermite.spawnRarity=Rareza de generación
+config.netherex:entity.nethermite.spawnRarity.tooltip=Cómo es de raro que un Nethermite se generea partir de un mineral en el Nether
+config.netherex:entity.nethermite.blockWhitelist=Whitelist de bloques
+config.netherex:entity.nethermite.blockWhitelist.tooltip=Bloques en los que se generarán los Nethermites
+
+config.netherex:entity.spinout=Configuración de Spinout
+config.netherex:entity.spinout.tooltip=Configuraciones que solo afectan al Spinout
+config.netherex:entity.spinout.spinTime=Tiempo de giro
+config.netherex:entity.spinout.spinTime.tooltip=Cuánto tiempo gira el Spinout
+config.netherex:entity.spinout.spinCooldown=Descanso de giro
+config.netherex:entity.spinout.spinCooldown.tooltip=Cuánto tiempo permanece detenido el Spinout entre giros
+
+config.netherex:entity.sporeCreeper=Configuración de Creeper de esporas
+config.netherex:entity.sporeCreeper.tooltip=Configuraciones que solo afectan al Creeper de esporas
+config.netherex:entity.sporeCreeper.sporeSpawnRarity=Rareza de generación de esporas
+config.netherex:entity.sporeCreeper.sporeSpawnRarity.tooltip=Cómo de raro es generar una Espora al morir
+
+config.netherex:entity.spore=Configuraciones de Espora
+config.netherex:entity.spore.tooltip=Configuraciones que solo afectan a Esporas
+config.netherex:entity.spore.growthTime=Tiempo de crecimiento
+config.netherex:entity.spore.growthTime.tooltip=Cuánto tiempo tarda una Espora en crecer
+config.netherex:entity.spore.creeperSpawnAmount=Cantidad de generación de Creeper
+config.netherex:entity.spore.creeperSpawnAmount.tooltip=Cuántos Creepers de esporas generan una espora
+
+config.netherex:entity.brute=Configuraciones de Bruto
+config.netherex:entity.brute.tooltip=Configuraciones que solo afectan al Bruto
+config.netherex:entity.brute.chargeCooldown=Descanso de carga
+config.netherex:entity.brute.chargeCooldown.tooltip=Cuánto tiempo dura el descanso después de cargar contra los jugadores
+
+config.netherex:entity.ghastQueen=Configuración de la Reina Ghast
+config.netherex:entity.ghastQueen.tooltip=Configuraciones que solo afectan a la Reina Ghast
+config.netherex:entity.ghastQueen.ghastlingSpawnCooldown=Tiempo de generación de Ghastling
+config.netherex:entity.ghastQueen.ghastlingSpawnCooldown.tooltip=Cuánto tiempo dura la espera después de generar Ghastlings
+config.netherex:entity.ghastQueen.ghastlingSpawnAmount=Cantidad de generación de Ghastlings
+config.netherex:entity.ghastQueen.ghastlingSpawnAmount.tooltip=Cuántos Ghastlings aparecen cuando la Reina Ghast es atacada
+
+config.netherex:biome=Configuraciones de bioma
+config.netherex:biome.tooltip=Configuraciones que solo afectan a los biomas
+
+config.netherex:biome.arcticAbyss=Configuración del bioma del Abismo Artico
+config.netherex:biome.arcticAbyss.tooltip=Configuraciones que solo afectan el bioma del Abismo Ártico
+config.netherex:biome.arcticAbyss.canPlayersFreeze=Los jugadores pueden congelarse
+config.netherex:biome.arcticAbyss.canPlayersFreeze.tooltip=Si los jugadores pueden congelarse o no en el bioma del Abismo Ártico
+config.netherex:biome.arcticAbyss.mobFreezeRarity=Rareza de congelación de las criaturas
+config.netherex:biome.arcticAbyss.mobFreezeRarity.tooltip=Cómo de raro es que una criatura se congele en el bioma del Abismo Ártico
+
+# Messages
+information.netherex:breaking_changes.1=NetherEx ha cambiado la identificación del mod de "nex" a "netherex".
+information.netherex:breaking_changes.2=NetherEx también ha aplanado todos sus elementos y bloques.
+information.netherex:breaking_changes.3=Como resultado, se sobrescribirán las configuraciones anteriores de bioma/comercio.
+information.netherex:breaking_changes.4=Si se realizaron cambios en las configuraciones anteriores, deben volver a aplicarse.
+information.netherex:breaking_changes.5=Si no modificó las configuraciones anteriores de bioma/comercio, este mensaje puede ignorarse.
+
+# Creative Tabs
+itemGroup.netherex=NetherEx
+
+# Effects
+mob_effect.netherex:frozen=Helado
+mob_effect.netherex:frostbitten=Congelamiento
+mob_effect.netherex:infested=Infestado
+mob_effect.netherex:crying=Llorando
+mob_effect.netherex:fire_buring=Fuego ardiente
+mob_effect.netherex:soul_sucked=Alma succionada
+
+# Potions
+potion.effect.netherex:freezing=Poción de congelación
+splash_potion.effect.netherex:freezing=Poción arrojadiza de congelación
+lingering_potion.effect.netherex:freezing=Poción persistente de congelación
+tipped_arrow.effect.netherex:freezing=Flecha de congelación
+
+potion.effect.netherex:frigid_health=Poción de salud gélida
+splash_potion.effect.netherex:frigid_health=Poción arrojadiza de salud gélida
+lingering_potion.effect.netherex:frigid_health=Poción persistente de salud gélida
+tipped_arrow.effect.netherex:frigid_health=Flecha de salud gélida
+
+potion.effect.netherex:dispersal=Poción de dispersión
+splash_potion.effect.netherex:dispersal=Poción arrojadiza de dispersión
+lingering_potion.effect.netherex:dispersal=Poción persistente de dispersión
+tipped_arrow.effect.netherex:dispersal=Flecha de dispersión
+
+potion.effect.netherex:sorrow=Poción de lamento
+splash_potion.effect.netherex:sorrow=Poción arrojadiza de lamento
+lingering_potion.effect.netherex:sorrow=Poción persistente de lamento
+tipped_arrow.effect.netherex:sorrow=Flecha de lamento
+
+# Entities (Mobs)
+entity.netherex:ghast_queen_fireball.name=Bola de fuego de la Reina Ghast
+entity.netherex:ghastling_fireball.name=Bola de fuego de Ghastling
+entity.netherex:blue_fireball.name=Bola de fuego azul
+entity.netherex:obsidian_boat.name=Bote de obsidiana
+entity.netherex:pigtificate_leader.name=Líder pigtificado
+entity.netherex:pigtificate_leader_chief.name=Jefe pigtificado
+entity.netherex:pigtificate.name=Pigtificado
+entity.netherex:pigtificate_nincompoop.name=Incompetente pigtificado
+entity.netherex:pigtificate_hunter.name=Cazador pigtificado
+entity.netherex:pigtificate_gatherer.name=Recolector pigtificado
+entity.netherex:pigtificate_scavenger.name=Carroñero pigtificado
+entity.netherex:pigtificate_armorsmith.name=Armero pigtificado
+entity.netherex:pigtificate_toolsmith.name=Herrero pigtificado
+entity.netherex:pigtificate_enchanter.name=Encantador pigtificado
+entity.netherex:pigtificate_brewer.name=Cervecero pigtificado
+entity.netherex:gold_golem.name=Gólem de oro
+entity.netherex:mogus.name=Mogus
+entity.netherex:brown_mogus.name=Mogus marrón
+entity.netherex:red_mogus.name=Mogus rojo
+entity.netherex:white_mogus.name=Mogus blanco
+entity.netherex:salamander.name=Salamandra
+entity.netherex:orange_salamander.name=Salamandra naranja
+entity.netherex:black_salamander.name=Salamandra negra
+entity.netherex:wight.name=Wight
+entity.netherex:ember.name=Ascua
+entity.netherex:nethermite.name=Nethermite
+entity.netherex:spinout.name=Spinout
+entity.netherex:spore_creeper.name=Creeper de espora
+entity.netherex:spore.name=Espora
+entity.netherex:spore_one.name=Espora fase uno
+entity.netherex:spore_two.name=Espora fase dos
+entity.netherex:spore_three.name=Espora fase tres
+entity.netherex:spore_four.name=Espora fase cuatro
+entity.netherex:spore_five.name=Espora fase cinco
+entity.netherex:ghastling.name=Ghastling
+entity.netherex:coolmar_spider.name=Araña coolmar
+entity.netherex:brute.name=Bruto
+entity.netherex:frost.name=Escarcha
+entity.netherex:ghast_queen.name=Reina Ghast
+
+# Fluids
+fluid.netherex:blood.name=Icor
+
+# Items
+item.netherex:fiery_netherbrick.name=Infradrillo ardiente
+item.netherex:icy_netherbrick.name=Infradrillo helado
+item.netherex:lively_netherbrick.name=Infradrillo viviente
+item.netherex:gloomy_netherbrick.name=Infradrillo sombrío
+item.netherex:wither_bone.name=Hueso de wither
+item.netherex:wither_dust.name=Polvo de wither
+item.netherex:frost_rod.name=Vara de escarcha
+item.netherex:frost_powder.name=Polvo de escarcha
+item.netherex:blazed_wither_bone.name=Hueso de wither brillante
+item.netherex:frosted_wither_bone.name=Hueso de wither helado
+item.netherex:orange_salamander_hide.name=Piel de salamandra naranja
+item.netherex:black_salamander_hide.name=Piel de salamandra negra
+item.netherex:amethyst_crystal.name=Cristal de amatista del Nether
+item.netherex:rime_crystal.name=Cristal de escarcha del Nether
+item.netherex:rime_and_steel.name=Mechero de escarcha
+item.netherex:spore.name=Espora
+item.netherex:coolmar_spider_fang.name=Colmillo de escarcha
+item.netherex:ghast_queen_tear.name=Lágrimas de Reina Ghast
+item.netherex:obsidian_boat.name=Bote de obsidiana
+item.netherex:ghast_meat_raw.name=Carne cruda de ghast
+item.netherex:ghast_meat_cooked.name=Carne cocida de ghast
+item.netherex:congealed_magma_cream.name=Crema de magma congelada
+item.netherex:enoki_mushroom.name=Hongo enoki
+item.netherex:dull_mirror.name=Espejo opaco
+item.netherex:withered_amedian_sword.name=Espada amediana de wither
+item.netherex:withered_amedian_pickaxe.name=Pico amediano de wither
+item.netherex:withered_amedian_shovel.name=Pala amediana de wither
+item.netherex:withered_amedian_axe.name=Hacha amediana de wither
+item.netherex:withered_amedian_hoe.name=Azada amediana de wither
+item.netherex:withered_amedian_hammer.name=Martillo amediano de wither
+item.netherex:blazed_amedian_sword.name=Espada amediana ardiente
+item.netherex:blazed_amedian_pickaxe.name=Pico amediano ardiente
+item.netherex:blazed_amedian_shovel.name=Pala amediana ardiente
+item.netherex:blazed_amedian_axe.name=Hacha amediana ardiente
+item.netherex:blazed_amedian_hoe.name=Azada amediana ardiente
+item.netherex:blazed_amedian_hammer.name=Martillo amediano ardiente
+item.netherex:frosted_amedian_sword.name=Espada amediana helada
+item.netherex:frosted_amedian_pickaxe.name=Pico amediano helado
+item.netherex:frosted_amedian_shovel.name=Pala amediana helada
+item.netherex:frosted_amedian_axe.name=Hacha amediana helada
+item.netherex:frosted_amedian_hoe.name=Azada amediana helada
+item.netherex:frosted_amedian_hammer.name=Martillo amediano helado
+item.netherex:wither_bone_helmet.name=Casco de huesos de wither
+item.netherex:wither_bone_chestplate.name=Peto de huesos de wither
+item.netherex:wither_bone_leggings.name=Grebas de huesos de wither
+item.netherex:wither_bone_boots.name=Botas de huesos de wither
+item.netherex:orange_salamander_hide_helmet.name=Casco de piel de salamandra naranja
+item.netherex:orange_salamander_hide_chestplate.name=Chaqueta de piel de salamandra naranja
+item.netherex:orange_salamander_hide_leggings.name=Pantalones de piel de salamandra naranja
+item.netherex:orange_salamander_hide_boots.name=Botas de piel de salamandra naranja
+item.netherex:black_salamander_hide_helmet.name=Casco de piel de salamandra negra
+item.netherex:black_salamander_hide_chestplate.name=Chaqueta de piel de salamandra negra
+item.netherex:black_salamander_hide_leggings.name=Pantalones de piel de salamandra negra
+item.netherex:black_salamander_hide_boots.name=Botas de piel de salamandra negra
+
+# Subtitles
+subtitle.netherex:sound.pigtificate_ambient=El pigtificado bufa
+subtitle.netherex:sound.pigtificate_hurt=El pigtificado chilla herido
+subtitle.netherex:sound.pigtificate_death=El pigtificado chilla hasta la muerte
+subtitle.netherex:sound.mogus_ambient=El mogus conversa
+subtitle.netherex:sound.mogus_hurt=El mogus se contrae de dolor
+subtitle.netherex:sound.mogus_death=El mogus muere
+subtitle.netherex:sound.salamander_ambient=La salamandra gruñe
+subtitle.netherex:sound.salamander_hurt=La salamandra ruge
+subtitle.netherex:sound.salamander_death=La salamandra muere
+subtitle.netherex:sound.wight_ambient=El wight susurra
+subtitle.netherex:sound.wight_hurt=El wight gime
+subtitle.netherex:sound.wight_death=El wight muere
+subtitle.netherex:sound.ember_hurt=El ascua va desapareciendo
+subtitle.netherex:sound.ember_death=El ascua se extingue
+subtitle.netherex:sound.nethermite_ambient=El nethermite castañea
+subtitle.netherex:sound.nethermite_hurt=El nethermite grita
+subtitle.netherex:sound.nethermite_death=El nethermite muere
+subtitle.netherex:sound.spinout_ambient=El spinout gira
+subtitle.netherex:sound.spinout_hurt=El spinout está herido
+subtitle.netherex:sound.spinout_death=El spinout muere
+subtitle.netherex:sound.ghastling_ambient=El ghastling gime
+subtitle.netherex:sound.ghastling_hurt=El ghastling grita
+subtitle.netherex:sound.ghastling_death=El ghastling muere
+subtitle.netherex:sound.ghastling_warn=El ghastling advierte
+subtitle.netherex:sound.ghastling_shoot=El ghastling dispara
+subtitle.netherex:sound.spore_hurt=La espora está herida
+subtitle.netherex:sound.spore_death=La espora muere
+subtitle.netherex:sound.spore_warn=La espora crepita
+subtitle.netherex:sound.spore_explode=La espora explota
+subtitle.netherex:sound.ghast_queen_ambient=La Reina Ghast gime
+subtitle.netherex:sound.ghast_queen_hurt=La Reina Ghast grita
+subtitle.netherex:sound.ghast_queen_death=La Reina Ghast muere
+subtitle.netherex:sound.ghast_queen_shoot=La Reina Ghast lanza una bola de fuego
+subtitle.netherex:sound.ghast_queen_summon=La Reina Ghast invoca
+
+# Tiles (Blocks)
+tile.netherex:gloomy_netherrack.name=Netherrack sombría
+tile.netherex:lively_netherrack.name=Netherrack viviente
+tile.netherex:fiery_netherrack.name=Netherrack ardiente
+tile.netherex:icy_netherrack.name=Netherrack helada
+tile.netherex:basalt.name=Basalto
+tile.netherex:smooth_basalt.name=Basalto liso
+tile.netherex:basalt_brick.name=Ladrillos de basalto
+tile.netherex:basalt_pillar.name=Pilar de basalto
+tile.netherex:gloomy_nether_brick.name=Infradrillos sombríos
+tile.netherex:lively_nether_brick.name=Infradrillos vivientes
+tile.netherex:fiery_nether_brick.name=Infradrillos ardientes
+tile.netherex:icy_nether_brick.name=Infradrillos helados
+tile.netherex:netherrack_path.name=Camino de netherrack
+tile.netherex:gloomy_netherrack_path.name=Camino de netherrack sombría
+tile.netherex:lively_netherrack_path.name=Camino de netherrack viviente
+tile.netherex:fiery_netherrack_path.name=Camino de netherrack ardiente
+tile.netherex:icy_netherrack_path.name=Camino de netherrack helada
+tile.netherex:hyphae.name=Hifa
+tile.netherex:soul_glass.name=Cristal de almas
+tile.netherex:soul_glass_pane.name=Panel de cristal de almas
+tile.netherex:amethyst_block.name=Bloque de amatista del Nether
+tile.netherex:rime_block.name=Bloque de escarcha del Nether
+tile.netherex:frostburn_ice.name=Hielo de escarha ardiente
+tile.netherex:bone_sliver.name=Astilla de hueso
+tile.netherex:bone_chunk.name=Trozo de hueso
+tile.netherex:worn_iron.name=Bloque de hierro desgastado
+tile.netherex:blue_fire.name=Fuego azul
+tile.netherex:nether_portal.name=Bloque de portal del Nether
+tile.netherex:urn_of_sorrow.name=Urna de lamento
+tile.netherex:quartz_ore.name=Mineral de cuarzo del Nether
+tile.netherex:amethyst_ore.name=Mineral de amatista del Nether
+tile.netherex:rime_ore.name=Mineral de escarcha del Nether
+tile.netherex:thornstalk.name=Tallo de espina
+tile.netherex:brown_elder_mushroom.name=Champiñón marrón viejo
+tile.netherex:red_elder_mushroom.name=Champiñón rojo viejo
+tile.netherex:brown_elder_mushroom_cap.name=Cabeza de champiñón marrón viejo
+tile.netherex:red_elder_mushroom_cap.name=Cabeza de champiñón rojo viejo
+tile.netherex:enoki_mushroom_cap.name=Cabeza de hongo enoki
+tile.netherex:elder_mushroom_stem.name=Tallo de hongo champiñón viejo
+tile.netherex:enoki_mushroom_stem.name=Tallo de hongo enoki
+tile.netherex:ichor.name=Icor
+tile.netherex:red_nether_brick_slab.name=Losa de infradrillos rojos
+tile.netherex:fiery_nether_brick_slab.name=Losa de infradrillos ardientes
+tile.netherex:icy_nether_brick_slab.name=Losa de infradrillos helados
+tile.netherex:lively_nether_brick_slab.name=Losa de infradrillos vivientes
+tile.netherex:gloomy_nether_brick_slab.name=Losa de infradrillos sombríos
+tile.netherex:basalt_slab.name=Losa de basalto
+tile.netherex:smooth_basalt_slab.name=Losa de basalto liso
+tile.netherex:basalt_brick_slab.name=Losa de ladrillos de basalto
+tile.netherex:basalt_pillar_slab.name=Losa de pilar de basalto
+tile.netherex:red_nether_brick_stairs.name=Escaleras de infradrillos rojos
+tile.netherex:fiery_nether_brick_stairs.name=Escaleras de infradrillos ardientes
+tile.netherex:icy_nether_brick_stairs.name=Escaleras de infradrillos helados
+tile.netherex:lively_nether_brick_stairs.name=Escaleras de infradrillos vivientes
+tile.netherex:gloomy_nether_brick_stairs.name=Escaleras de infradrillos sombríos
+tile.netherex:basalt_stairs.name=Escaleras de basalto
+tile.netherex:smooth_basalt_stairs.name=Escaleras de basalto liso
+tile.netherex:basalt_brick_stairs.name=Escaleras de ladrillos de basalto
+tile.netherex:basalt_pillar_stairs.name=Escaleras de pilar de basalto
+tile.netherex:quartz_wall.name=Muro de cuarzo
+tile.netherex:nether_brick_wall.name=Muro de infradrillos
+tile.netherex:red_nether_brick_wall.name=Muro de infradrillos rojos
+tile.netherex:gloomy_nether_brick_wall.name=Muro de infradrillos sombríos
+tile.netherex:lively_nether_brick_wall.name=Muro de infradrillos vivientes
+tile.netherex:fiery_nether_brick_wall.name=Muro de infradrillos ardientes
+tile.netherex:icy_nether_brick_wall.name=Muro de infradrillos helados
+tile.netherex:basalt_wall.name=Muro de basalto
+tile.netherex:smooth_basalt_wall.name=Muro de basalto liso
+tile.netherex:basalt_brick_wall.name=Muro de ladrillos basalto
+tile.netherex:basalt_pillar_wall.name=Muro de pilar de basalto
+tile.netherex:quartz_fence.name=Valla de cuarzo
+tile.netherex:red_nether_brick_fence.name=Valla de infradrillos rojos
+tile.netherex:gloomy_nether_brick_fence.name=Valla de infradrillos sombríos
+tile.netherex:lively_nether_brick_fence.name=Valla de infradrillos vivientes
+tile.netherex:fiery_nether_brick_fence.name=Valla de infradrillos ardiente
+tile.netherex:icy_nether_brick_fence.name=Valla de infradrillos helados
+tile.netherex:basalt_fence.name=Valla de basalto
+tile.netherex:smooth_basalt_fence.name=Valla de basalto liso
+tile.netherex:basalt_brick_fence.name=Valla de ladrillos de basalto
+tile.netherex:basalt_pillar_fence.name=Valla de pilar de basalto
+tile.netherex:quartz_fence_gate.name=Puerta de valla de cuarzo
+tile.netherex:nether_brick_fence_gate.name=Puerta de valla de infradrillos
+tile.netherex:red_nether_brick_fence_gate.name=Puerta de valla de infradrillos rojos
+tile.netherex:gloomy_nether_brick_fence_gate.name=Puerta de valla de infradrillos sombríos
+tile.netherex:lively_nether_brick_fence_gate.name=Puerta de valla de infradrillos vivientes
+tile.netherex:fiery_nether_brick_fence_gate.name=Puerta de valla de infradrillos ardientes
+tile.netherex:icy_nether_brick_fence_gate.name=Puerta de valla de infradrilloshelados
+tile.netherex:basalt_fence_gate.name=Puerta de valla de basalto
+tile.netherex:smooth_basalt_fence_gate.name=Puerta de valla de basalto liso
+tile.netherex:basalt_brick_fence_gate.name=Puerta de valla de ladrillos de basalto
+tile.netherex:basalt_pillar_fence_gate.name=Puerta de valla de pilar de basalto
+
+# Tooltips
+tooltip.netherex:dull_mirror.spawn_dimension=§aGenerar dimensión: %s
+tooltip.netherex:dull_mirror.spawn_point=§9Punto de generación: %s
+tooltip.netherex:dull_mirror.spawn_point_set=§9Punto de generación establecido en: %s
+tooltip.netherex:dull_mirror.spawn_point_removed=§cPunto de generación eliminado
+tooltip.netherex:dull_mirror.death_point=§cPunto de muerte: %s

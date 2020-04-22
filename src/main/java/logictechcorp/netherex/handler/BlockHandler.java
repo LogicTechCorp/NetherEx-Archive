@@ -29,6 +29,7 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -44,18 +45,21 @@ public class BlockHandler
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.PlaceEvent event)
     {
-        World world = event.getWorld();
         BlockPos pos = event.getPos();
         IBlockState state = event.getState();
         EntityPlayer player = event.getPlayer();
+        EnumHand hand = event.getHand();
 
-        NBTTagCompound compound = player.getHeldItem(event.getHand()).getTagCompound();
-
-        if(state.getBlock() == Blocks.BEDROCK && compound != null && compound.getBoolean("AboveNether"))
+        if(hand != null)
         {
-            if(player.dimension != DimensionType.NETHER.getId() || pos.getY() < 120)
+            NBTTagCompound compound = player.getHeldItem(hand).getTagCompound();
+
+            if(state.getBlock() == Blocks.BEDROCK && compound != null && compound.getBoolean("AboveNether"))
             {
-                event.setCanceled(true);
+                if(player.dimension != DimensionType.NETHER.getId() || pos.getY() < 120)
+                {
+                    event.setCanceled(true);
+                }
             }
         }
     }
