@@ -58,7 +58,7 @@ public class EntityAIGoldGolemDefendVillage extends EntityAITarget
             }
             else if(this.taskOwner.getRNG().nextInt(20) == 0)
             {
-                this.villageAggressor = village.getNearestTargetPlayer(this.golem);
+                this.villageAggressor = village.getNearestTargetPlayer(this.golem.getEntityWorld(), this.golem);
                 return this.isSuitableTarget(this.villageAggressor, false);
             }
             else

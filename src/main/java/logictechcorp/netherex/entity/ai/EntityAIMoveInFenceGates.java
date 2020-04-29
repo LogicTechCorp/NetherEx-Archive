@@ -67,7 +67,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
                 }
                 else
                 {
-                    this.fenceGate = village.getFenceGateInfo(pos);
+                    this.fenceGate = village.getFenceGateInfo(this.creature.getEntityWorld(), pos);
                     return this.fenceGate != null;
                 }
             }

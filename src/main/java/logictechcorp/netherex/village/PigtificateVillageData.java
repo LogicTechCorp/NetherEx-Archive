@@ -33,7 +33,6 @@ import java.util.List;
 
 public class PigtificateVillageData extends WorldSavedData
 {
-    private WeakReference<World> world;
     private final List<BlockPos> pigtificatePositions = new ArrayList<>();
     private final List<PigtificateVillageFenceGateInfo> newFenceGates = new ArrayList<>();
     private final List<PigtificateVillage> villages = new ArrayList<>();
@@ -47,25 +46,9 @@ public class PigtificateVillageData extends WorldSavedData
     public PigtificateVillageData(World world)
     {
         super(getDataId(world));
-        this.world = new WeakReference<>(world);
         this.markDirty();
     }
-
-    public void setWorld(World world)
-    {
-        if(this.world != null && this.world.get() == world)
-        {
-            return;
-        }
-
-        this.world = new WeakReference<>(world);
-
-        for(PigtificateVillage village : this.villages)
-        {
-            village.setWorld(world);
-        }
-    }
-
+    
     public void addPigtificate(BlockPos pos)
     {
         if(this.pigtificatePositions.size() <= 64)
@@ -77,17 +60,17 @@ public class PigtificateVillageData extends WorldSavedData
         }
     }
 
-    public void tick()
+    public void tick(World world)
     {
         this.tickCounter++;
 
         for(PigtificateVillage village : this.villages)
         {
-            village.tick(this.tickCounter);
+            village.tick(world, this.tickCounter);
         }
 
         this.removeAnnihilatedVillages();
-        this.dropOldestVillagerPosition();
+        this.dropOldestVillagerPosition(world);
         this.updateVillages();
 
         if(this.tickCounter % 400 == 0)
@@ -141,11 +124,11 @@ public class PigtificateVillageData extends WorldSavedData
         return village;
     }
 
-    private void dropOldestVillagerPosition()
+    private void dropOldestVillagerPosition(World world)
     {
         if(!this.pigtificatePositions.isEmpty())
         {
-            this.addFenceGatesAround(this.pigtificatePositions.remove(0));
+            this.addFenceGatesAround(world, this.pigtificatePositions.remove(0));
         }
     }
 
@@ -157,7 +140,7 @@ public class PigtificateVillageData extends WorldSavedData
 
             if(village == null)
             {
-                village = new PigtificateVillage(this.world.get());
+                village = new PigtificateVillage();
                 this.villages.add(village);
                 this.markDirty();
             }
@@ -168,7 +151,7 @@ public class PigtificateVillageData extends WorldSavedData
         this.newFenceGates.clear();
     }
 
-    private void addFenceGatesAround(BlockPos central)
+    private void addFenceGatesAround(World world, BlockPos central)
     {
         for(int x = -16; x < 16; x++)
         {
@@ -177,7 +160,7 @@ public class PigtificateVillageData extends WorldSavedData
                 for(int z = -16; z < 16; z++)
                 {
                     BlockPos blockpos = central.add(x, y, z);
-                    EnumFacing inside = this.getInside(blockpos);
+                    EnumFacing inside = this.getInside(world, blockpos);
 
                     if(inside != null)
                     {
@@ -238,19 +221,15 @@ public class PigtificateVillageData extends WorldSavedData
         return false;
     }
 
-    private EnumFacing getInside(BlockPos fenceGatePos)
+    private EnumFacing getInside(World world, BlockPos fenceGatePos)
     {
-        World world = this.world.get();
+        IBlockState fenceGateState = world.getBlockState(fenceGatePos);
 
-        if(world != null)
+        if(fenceGateState.getBlock() instanceof BlockFenceGate)
         {
-            IBlockState fenceGateState = world.getBlockState(fenceGatePos);
-
-            if(fenceGateState.getBlock() instanceof BlockFenceGate)
-            {
-                return fenceGateState.getValue(BlockFenceGate.FACING);
-            }
+            return fenceGateState.getValue(BlockFenceGate.FACING);
         }
+
         return null;
     }
 

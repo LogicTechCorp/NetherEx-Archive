@@ -83,68 +83,76 @@ public class PigtificateVillageManager
 
     public void readPigtificateTradeConfigs(WorldEvent.Load event)
     {
-        Path path = new File(WorldHelper.getSaveDirectory(event.getWorld()), "/config/" + NetherEx.MOD_ID + "/pigtificate_trades").toPath();
-        NetherEx.LOGGER.info("Reading Pigtificate trade configs.");
+        Path path = Paths.get(WorldHelper.getSaveDirectory(event.getWorld()), "config", NetherEx.MOD_ID, "pigtificate_trades");
 
-        try
+        if(Files.isReadable(path))
         {
-            Files.createDirectories(path);
-            Iterator<Path> pathIter = Files.walk(path).iterator();
+            NetherEx.LOGGER.info("Reading Pigtificate trade configs.");
 
-            while(pathIter.hasNext())
+            try
             {
-                Path configPath = pathIter.next();
-                File configFile = configPath.toFile();
+                Files.createDirectories(path);
+                Iterator<Path> pathIter = Files.walk(path).iterator();
 
-                if(FileHelper.getFileExtension(configFile).equals("json"))
+                while(pathIter.hasNext())
                 {
-                    String fileText = FileUtils.readFileToString(configFile, Charset.defaultCharset()).trim();
+                    Path configPath = pathIter.next();
+                    File configFile = configPath.toFile();
 
-                    if(fileText.isEmpty() || !fileText.startsWith("{") || !fileText.endsWith("}"))
+                    if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        String filePath = configFile.getPath();
-                        String fileBackupPath = filePath + "_backup";
-                        Files.move(configFile.toPath(), Paths.get(fileBackupPath));
-                        NetherEx.LOGGER.warn("The trade config at {} was invalid and was backed up as {}.", filePath, fileBackupPath);
-                        continue;
-                    }
+                        String fileText = FileUtils.readFileToString(configFile, Charset.defaultCharset()).trim();
 
-                    FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
-                    config.load();
-
-                    PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
-
-                    if(profession != null)
-                    {
-                        PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
-
-                        if(career != null)
+                        if(fileText.isEmpty() || !fileText.startsWith("{") || !fileText.endsWith("}"))
                         {
-                            List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
+                            String filePath = configFile.getPath();
+                            String fileBackupPath = filePath + "_backup";
+                            Files.move(configFile.toPath(), Paths.get(fileBackupPath));
+                            NetherEx.LOGGER.warn("The trade config at {} was invalid and was backed up as {}.", filePath, fileBackupPath);
+                            continue;
+                        }
 
-                            if(tradeConfigs.size() > 0)
+                        FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
+                        config.load();
+
+                        PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
+
+                        if(profession != null)
+                        {
+                            PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
+
+                            if(career != null)
                             {
-                                for(Config tradeConfig : tradeConfigs)
+                                List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
+
+                                if(tradeConfigs.size() > 0)
                                 {
-                                    career.addTrade(new Trade(tradeConfig));
+                                    for(Config tradeConfig : tradeConfigs)
+                                    {
+                                        career.addTrade(new Trade(tradeConfig));
+                                    }
                                 }
                             }
                         }
+
+                        config.save();
+                        config.close();
+
                     }
-
-                    config.save();
-                    config.close();
-
-                }
-                else if(!configFile.isDirectory() && !FileHelper.getFileExtension(configFile).equals("json_backup"))
-                {
-                    NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
+                    else if(!configFile.isDirectory() && !FileHelper.getFileExtension(configFile).equals("json_backup"))
+                    {
+                        NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
+                    }
                 }
             }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
-        catch(IOException e)
+        else
         {
-            e.printStackTrace();
+            NetherEx.LOGGER.warn("Unable to read Pigtificate trade configs. The default configs will be used.");
         }
     }
 
@@ -207,7 +215,6 @@ public class PigtificateVillageManager
 
         if(data != null)
         {
-            data.setWorld(world);
             pigtificateVillageData.put(dimensionId, data);
         }
 

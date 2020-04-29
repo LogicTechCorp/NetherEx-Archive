@@ -250,70 +250,73 @@ public class EntityFrost extends EntityMob
         @Override
         public void updateTask()
         {
-            World world = this.frost.getEntityWorld();
-            EntityLivingBase attackTarget = this.frost.getAttackTarget();
-            double distanceSq = this.frost.getDistanceSq(attackTarget);
-            this.attackTime--;
-
-            if(distanceSq < 4.0D)
+            if(this.shouldExecute())
             {
-                if(this.attackTime <= 0)
+                World world = this.frost.getEntityWorld();
+                EntityLivingBase attackTarget = this.frost.getAttackTarget();
+                double distanceSq = this.frost.getDistanceSq(attackTarget);
+                this.attackTime--;
+
+                if(distanceSq < 4.0D)
                 {
-                    this.attackTime = 20;
-                    this.frost.attackEntityAsMob(attackTarget);
+                    if(this.attackTime <= 0)
+                    {
+                        this.attackTime = 20;
+                        this.frost.attackEntityAsMob(attackTarget);
+                    }
+
+                    this.frost.getMoveHelper().setMoveTo(attackTarget.posX, attackTarget.posY, attackTarget.posZ, 1.0D);
                 }
-
-                this.frost.getMoveHelper().setMoveTo(attackTarget.posX, attackTarget.posY, attackTarget.posZ, 1.0D);
-            }
-            else if(distanceSq < this.getFollowDistance() * this.getFollowDistance())
-            {
-                double posX = attackTarget.posX - this.frost.posX;
-                double posY = attackTarget.getEntityBoundingBox().minY + (double) (attackTarget.height / 2.0F) - (this.frost.posY + (double) (this.frost.height / 2.0F));
-                double posZ = attackTarget.posZ - this.frost.posZ;
-
-                if(this.attackTime <= 0)
+                else if(distanceSq < this.getFollowDistance() * this.getFollowDistance())
                 {
-                    this.attackStep++;
+                    double posX = attackTarget.posX - this.frost.posX;
+                    double posY = attackTarget.getEntityBoundingBox().minY + (double) (attackTarget.height / 2.0F) - (this.frost.posY + (double) (this.frost.height / 2.0F));
+                    double posZ = attackTarget.posZ - this.frost.posZ;
 
-                    if(this.attackStep == 1)
+                    if(this.attackTime <= 0)
                     {
-                        this.attackTime = 60;
-                        this.frost.setOnFire(true);
-                    }
-                    else if(this.attackStep <= 4)
-                    {
-                        this.attackTime = 6;
-                    }
-                    else
-                    {
-                        this.attackTime = 100;
-                        this.attackStep = 0;
-                        this.frost.setOnFire(false);
-                    }
+                        this.attackStep++;
 
-                    if(this.attackStep > 1)
-                    {
-                        float distanceSq2 = MathHelper.sqrt(MathHelper.sqrt(distanceSq)) * 0.5F;
-                        this.frost.world.playEvent(null, 1018, new BlockPos((int) this.frost.posX, (int) this.frost.posY, (int) this.frost.posZ), 0);
-
-                        for(int i = 0; i < 1; i++)
+                        if(this.attackStep == 1)
                         {
-                            EntityBlueFireball blueFireball = new EntityBlueFireball(world, this.frost, posX + this.frost.getRNG().nextGaussian() * (double) distanceSq2, posY, posZ + this.frost.getRNG().nextGaussian() * (double) distanceSq2);
-                            blueFireball.posY = this.frost.posY + (double) (this.frost.height / 2.0F) + 0.5D;
-                            world.spawnEntity(blueFireball);
+                            this.attackTime = 60;
+                            this.frost.setOnFire(true);
+                        }
+                        else if(this.attackStep <= 4)
+                        {
+                            this.attackTime = 6;
+                        }
+                        else
+                        {
+                            this.attackTime = 100;
+                            this.attackStep = 0;
+                            this.frost.setOnFire(false);
+                        }
+
+                        if(this.attackStep > 1)
+                        {
+                            float distanceSq2 = MathHelper.sqrt(MathHelper.sqrt(distanceSq)) * 0.5F;
+                            this.frost.world.playEvent(null, 1018, new BlockPos((int) this.frost.posX, (int) this.frost.posY, (int) this.frost.posZ), 0);
+
+                            for(int i = 0; i < 1; i++)
+                            {
+                                EntityBlueFireball blueFireball = new EntityBlueFireball(world, this.frost, posX + this.frost.getRNG().nextGaussian() * (double) distanceSq2, posY, posZ + this.frost.getRNG().nextGaussian() * (double) distanceSq2);
+                                blueFireball.posY = this.frost.posY + (double) (this.frost.height / 2.0F) + 0.5D;
+                                world.spawnEntity(blueFireball);
+                            }
                         }
                     }
+
+                    this.frost.getLookHelper().setLookPositionWithEntity(attackTarget, 10.0F, 10.0F);
+                }
+                else
+                {
+                    this.frost.getNavigator().clearPath();
+                    this.frost.getMoveHelper().setMoveTo(attackTarget.posX, attackTarget.posY, attackTarget.posZ, 1.0D);
                 }
 
-                this.frost.getLookHelper().setLookPositionWithEntity(attackTarget, 10.0F, 10.0F);
+                super.updateTask();
             }
-            else
-            {
-                this.frost.getNavigator().clearPath();
-                this.frost.getMoveHelper().setMoveTo(attackTarget.posX, attackTarget.posY, attackTarget.posZ, 1.0D);
-            }
-
-            super.updateTask();
         }
 
         private double getFollowDistance()

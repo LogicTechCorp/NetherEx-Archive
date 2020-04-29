@@ -52,7 +52,7 @@ public class NetherEx implements IModData
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
     public static final String VERSION = "2.1.5";
-    public static final String DEPENDENCIES = "required-after:libraryex@[1.1.1,);";
+    public static final String DEPENDENCIES = "required-after:libraryex@[1.1.3,);";
 
     public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
 
