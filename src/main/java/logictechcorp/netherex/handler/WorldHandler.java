@@ -43,7 +43,7 @@ public class WorldHandler
                 AreaEffectCloudEntity areaEffectCloudEntity = (AreaEffectCloudEntity) entity;
                 areaEffectCloudEntity.effects.removeIf(effect -> effect.getPotion() == NetherExEffects.FIRE_BURNING.get());
 
-                if(areaEffectCloudEntity.effects.isEmpty())
+                if(!world.isRemote() && areaEffectCloudEntity.effects.isEmpty())
                 {
                     ((ServerWorld)world).removeEntity(entity);
                 }
