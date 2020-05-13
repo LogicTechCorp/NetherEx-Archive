@@ -34,6 +34,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.pathfinding.PathNodeType;
@@ -79,7 +80,7 @@ public class BlockBlueFire extends BlockMod
     {
         if(random.nextInt(24) == 0)
         {
-            world.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+            world.playSound(((float) pos.getX() + 0.5F), ((float) pos.getY() + 0.5F), ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
         }
 
         if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !this.canCatchFire(world, pos.down(), EnumFacing.UP))
@@ -328,23 +329,31 @@ public class BlockBlueFire extends BlockMod
     @Override
     public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if(entity instanceof EntityItem)
+        if(!world.isRemote)
         {
-            entity.setDead();
-        }
-        else if(entity instanceof EntityLivingBase)
-        {
-            if(!entity.isImmuneToFire())
+            if(entity instanceof EntityItem)
             {
-                if(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight > ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight)
+                entity.setDead();
+            }
+            else if(entity instanceof EntityLivingBase)
+            {
+                if(!entity.isImmuneToFire())
                 {
-                    int temp = ConfigHandler.blockConfig.blueFire.minEntityTicksAlight;
-                    ConfigHandler.blockConfig.blueFire.minEntityTicksAlight = ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight;
-                    ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
-                }
+                    if(entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.isCreativeMode)
+                    {
+                        return;
+                    }
 
-                int ticks = RandomHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
-                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FIRE_BURNING, ticks));
+                    if(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight > ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight)
+                    {
+                        int temp = ConfigHandler.blockConfig.blueFire.minEntityTicksAlight;
+                        ConfigHandler.blockConfig.blueFire.minEntityTicksAlight = ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight;
+                        ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
+                    }
+
+                    int ticks = RandomHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
+                    ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FIRE_BURNING, ticks));
+                }
             }
         }
     }
