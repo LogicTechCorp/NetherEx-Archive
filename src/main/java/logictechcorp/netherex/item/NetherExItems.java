@@ -28,7 +28,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.function.Supplier;
 
 public class NetherExItems
@@ -66,7 +65,7 @@ public class NetherExItems
 
     public static Collection<RegistryObject<Item>> getItems()
     {
-        return Collections.unmodifiableCollection(ITEMS.getEntries());
+        return ITEMS.getEntries();
     }
 
     private static <I extends Item> RegistryObject<I> registerItem(String name, Supplier<I> supplier)
