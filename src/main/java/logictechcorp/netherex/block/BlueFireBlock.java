@@ -24,6 +24,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,16 +39,24 @@ public class BlueFireBlock extends EternalFireBlock
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity)
     {
-        if(entity instanceof ItemEntity)
+        if(!world.isRemote())
         {
-            entity.remove();
-        }
-        else if(entity instanceof LivingEntity)
-        {
-            if(!entity.isImmuneToFire())
+            if(entity instanceof ItemEntity)
             {
-                int ticks = RandomHelper.getNumberInRange(1, 70, world.rand);
-                ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FIRE_BURNING.get(), ticks));
+                entity.remove();
+            }
+            else if(entity instanceof LivingEntity)
+            {
+                if(!entity.isImmuneToFire())
+                {
+                    if(entity instanceof PlayerEntity && ((PlayerEntity) entity).abilities.isCreativeMode)
+                    {
+                        return;
+                    }
+
+                    int ticks = RandomHelper.getNumberInRange(1, 70, world.rand);
+                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(NetherExEffects.FIRE_BURNING.get(), ticks));
+                }
             }
         }
     }
