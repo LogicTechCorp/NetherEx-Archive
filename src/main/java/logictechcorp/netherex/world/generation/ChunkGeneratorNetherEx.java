@@ -205,7 +205,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
                 IBlockState subSurfaceState = Blocks.NETHERRACK.getDefaultState();
                 IBlockState liquidState = Blocks.LAVA.getDefaultState();
 
-                if(biomeData != BiomeData.EMPTY)
+                if(biomeData != BiomeData.EMPTY && !biomeData.getBiome().getRegistryName().getNamespace().equals("biomesoplenty"))
                 {
                     surfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK);
                     subSurfaceState = biomeData.getBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK);
@@ -387,7 +387,7 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
 
         if(this.generateStructures)
         {
-            if(biomeData != null && biomeData.getBiome() == Biomes.HELL)
+            if(biomeData != BiomeData.EMPTY && biomeData.getBiome() == Biomes.HELL)
             {
                 this.netherFortress.generate(this.world, chunkX, chunkZ, primer);
             }
