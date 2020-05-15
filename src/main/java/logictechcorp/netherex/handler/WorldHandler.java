@@ -45,7 +45,7 @@ public class WorldHandler
 
                 if(!world.isRemote() && areaEffectCloudEntity.effects.isEmpty())
                 {
-                    ((ServerWorld)world).removeEntity(entity);
+                    entity.remove();
                 }
             }
         }
