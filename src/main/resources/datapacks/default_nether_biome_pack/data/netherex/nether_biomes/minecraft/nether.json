@@ -4,6 +4,7 @@
     "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,
+    "use_default_structures": true,
     "is_sub_biome": false,
     "blocks": {
         "surface": {
@@ -21,6 +22,8 @@
     "carvers": [
     ],
     "features": [
+    ],
+    "structures": [
     ],
     "sub_biomes": [
     ]

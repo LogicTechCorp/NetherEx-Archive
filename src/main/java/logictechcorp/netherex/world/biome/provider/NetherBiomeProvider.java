@@ -17,10 +17,17 @@
 
 package logictechcorp.netherex.world.biome.provider;
 
+import logictechcorp.libraryex.world.biome.BiomeData;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.generation.layer.NetherLayerUtil;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.provider.OverworldBiomeProvider;
 import net.minecraft.world.biome.provider.OverworldBiomeProviderSettings;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+
+import java.util.Set;
 
 public class NetherBiomeProvider extends OverworldBiomeProvider
 {
@@ -28,5 +35,29 @@ public class NetherBiomeProvider extends OverworldBiomeProvider
     {
         super(biomeProviderSettings);
         ObfuscationReflectionHelper.setPrivateValue(OverworldBiomeProvider.class, this, NetherLayerUtil.createLayers(biomeProviderSettings.getSeed(), biomeProviderSettings.getWorldType(), biomeProviderSettings.getGeneratorSettings()), "field_201543_c");
+    }
+
+    @Override
+    public boolean hasStructure(Structure<?> structureIn)
+    {
+        return this.hasStructureCache.computeIfAbsent(structureIn, structure -> {
+            for(BiomeData data : NetherEx.BIOME_DATA_MANAGER.getBiomeData().values()) {
+                if (data.hasStructure(structure)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+    }
+
+    @Override
+    public Set<BlockState> getSurfaceBlocks()
+    {
+        if(this.topBlocksCache.isEmpty())
+        {
+            this.topBlocksCache.add(Blocks.NETHERRACK.getDefaultState());
+        }
+
+        return this.topBlocksCache;
     }
 }

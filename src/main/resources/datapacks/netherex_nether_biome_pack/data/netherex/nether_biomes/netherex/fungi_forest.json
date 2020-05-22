@@ -4,6 +4,7 @@
     "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,
+    "use_default_structures": true,
     "is_sub_biome": false,
     "blocks": {
         "surface": {
@@ -267,6 +268,19 @@
                 }
             },
             "stage": "vegetal_decoration"
+        }
+    ],
+    "structures": [
+        {
+            "structure": {
+                "name": "minecraft:nether_bridge",
+                "config": { }
+            },
+            "decorator": {
+                "name": "minecraft:nope",
+                "config": { }
+            },
+            "stage": "underground_decoration"
         }
     ],
     "sub_biomes": [
