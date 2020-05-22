@@ -14,6 +14,6 @@ description="A mod that adds new content to the Nether."
 [[dependencies.netherex]]
 modId="libraryex"
 mandatory=true
-versionRange="[2.0.3,)"
+versionRange="[2.1.0,)"
 ordering="BEFORE"
 side="BOTH"
