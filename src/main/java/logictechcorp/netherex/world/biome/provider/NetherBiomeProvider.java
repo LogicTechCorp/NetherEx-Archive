@@ -18,6 +18,8 @@
 package logictechcorp.netherex.world.biome.provider;
 
 import com.google.common.collect.Sets;
+import logictechcorp.libraryex.world.biome.BiomeData;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.generation.layer.NetherLayerUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -114,9 +116,16 @@ public class NetherBiomeProvider extends BiomeProvider
     }
 
     @Override
-    public boolean hasStructure(Structure<?> structure)
+    public boolean hasStructure(Structure<?> structureIn)
     {
-        return true;
+        return this.hasStructureCache.computeIfAbsent(structureIn, structure -> {
+            for(BiomeData data : NetherEx.BIOME_DATA_MANAGER.getBiomeData().values()) {
+                if (data.hasStructure(structure)) {
+                    return true;
+                }
+            }
+            return false;
+        });
     }
 
     @Override

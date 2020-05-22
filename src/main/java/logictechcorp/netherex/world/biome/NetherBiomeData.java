@@ -26,9 +26,9 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class NetherBiomeData extends BiomeData
 {
-    public NetherBiomeData(Biome biome, int generationWeight, boolean useDefaultEntities, boolean useDefaultCarvers, boolean useDefaultFeatures, boolean isSubBiome)
+    public NetherBiomeData(Biome biome, int generationWeight, boolean useDefaultEntities, boolean useDefaultCarvers, boolean useDefaultFeatures, boolean useDefaultStructures, boolean isSubBiome)
     {
-        super(biome, generationWeight, useDefaultEntities, useDefaultCarvers, useDefaultFeatures, isSubBiome);
+        super(biome, generationWeight, useDefaultEntities, useDefaultCarvers, useDefaultFeatures, useDefaultStructures, isSubBiome);
     }
 
     @Override

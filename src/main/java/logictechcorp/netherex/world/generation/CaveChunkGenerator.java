@@ -1,6 +1,6 @@
 /*
  * NetherEx
- * Copyright (c) 2016-2019 by LogicTechCorp
+ * Copyright (c) 2016-2020 by LogicTechCorp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,20 +21,27 @@ import logictechcorp.libraryex.world.biome.BiomeData;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.network.DebugPacketSender;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.NetherChunkGenerator;
-import net.minecraft.world.gen.NetherGenSettings;
-import net.minecraft.world.gen.WorldGenRegion;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructureStart;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class CaveChunkGenerator extends NetherChunkGenerator
 {
@@ -73,6 +80,18 @@ public class CaveChunkGenerator extends NetherChunkGenerator
                 biomeData.decorate(stage, this, region, decorationSeed, random, pos);
             }
         }
+    }
+
+    @Override
+    public boolean hasStructure(Biome biome, Structure<? extends IFeatureConfig> structure)
+    {
+        return NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome).hasStructure(structure);
+    }
+
+    @Override
+    public <C extends IFeatureConfig> C getStructureConfig(Biome biome, Structure<C> structure)
+    {
+        return NetherEx.BIOME_DATA_MANAGER.getBiomeData(biome).getStructureConfig(structure);
     }
 
     @Override
