@@ -95,18 +95,12 @@ public class WorldHandler
     @SubscribeEvent
     public static void onEntitySpawn(EntityJoinWorldEvent event)
     {
-        World world = event.getWorld();
         Entity entity = event.getEntity();
 
         if(entity instanceof EntityAreaEffectCloud)
         {
             EntityAreaEffectCloud areaEffectCloud = (EntityAreaEffectCloud) entity;
             areaEffectCloud.effects.removeIf(effect -> effect.getPotion() == NetherExMobEffects.FIRE_BURNING);
-
-            if(!world.isRemote && areaEffectCloud.effects.isEmpty())
-            {
-                world.removeEntity(entity);
-            }
         }
     }
 }

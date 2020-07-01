@@ -22,6 +22,7 @@ import logictechcorp.netherex.init.NetherExLootTables;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntryTable;
 import net.minecraft.world.storage.loot.LootPool;
+import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -35,15 +36,23 @@ public class LootHandler
     public static void onLoot(LootTableLoadEvent event)
     {
         ResourceLocation name = event.getName();
-        LootPool mainPool = event.getTable().getPool("main");
+        LootTable lootTable = event.getTable();
 
-        if(name.equals(LootTableList.ENTITIES_GHAST))
+        if(lootTable != null)
         {
-            mainPool.addEntry(new LootEntryTable(NetherExLootTables.GHAST, 1, 0, new LootCondition[0], NetherEx.MOD_ID + ":ghast_meat_loot_pool"));
-        }
-        else if(name.equals(LootTableList.ENTITIES_WITHER_SKELETON))
-        {
-            mainPool.addEntry(new LootEntryTable(NetherExLootTables.WITHER_SKELETON, 1, 0, new LootCondition[0], NetherEx.MOD_ID + ":wither_bone_loot_pool"));
+            LootPool mainPool = lootTable.getPool("main");
+
+            if(mainPool != null)
+            {
+                if(name.equals(LootTableList.ENTITIES_GHAST))
+                {
+                    mainPool.addEntry(new LootEntryTable(NetherExLootTables.GHAST, 1, 0, new LootCondition[0], NetherEx.MOD_ID + ":ghast_meat_loot_pool"));
+                }
+                else if(name.equals(LootTableList.ENTITIES_WITHER_SKELETON))
+                {
+                    mainPool.addEntry(new LootEntryTable(NetherExLootTables.WITHER_SKELETON, 1, 0, new LootCondition[0], NetherEx.MOD_ID + ":wither_bone_loot_pool"));
+                }
+            }
         }
     }
 }

@@ -30,6 +30,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreIngredient;
 
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class NetherExRecipes
@@ -107,41 +108,6 @@ public class NetherExRecipes
                     RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.ICY_NETHER_BRICK_FENCE, 6), NetherExBlocks.ICY_NETHER_BRICK, NetherExBlocks.ICY_NETHER_BRICK_SLAB),
                     RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.ICY_NETHER_BRICK_FENCE_GATE, 6), NetherExBlocks.ICY_NETHER_BRICK_SLAB, NetherExBlocks.ICY_NETHER_BRICK),
 
-                    //Soul Sandstone Recipes
-                    //RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 4), Blocks.SOUL_SAND),
-                    //RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.SOUL_SANDSTONE),
-                    //RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 1), NetherExBlocks.SOUL_SANDSTONE_SLAB),
-                    //RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE_WALL, 6), NetherExBlocks.SOUL_SANDSTONE),
-                    //RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 1), NetherExBlocks.SOUL_SANDSTONE_WALL),
-                    //RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.SOUL_SANDSTONE),
-                    //RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_SANDSTONE, 3), NetherExBlocks.SOUL_SANDSTONE_STAIRS),
-
-                    //Cut Soul Sandstone Recipes
-                    //RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 4), NetherExBlocks.SOUL_SANDSTONE),
-                    //RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.CUT_SOUL_SANDSTONE),
-                    //RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 1), NetherExBlocks.CUT_SOUL_SANDSTONE_SLAB),
-                    //RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE_WALL, 6), NetherExBlocks.CUT_SOUL_SANDSTONE),
-                    //RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 1), NetherExBlocks.CUT_SOUL_SANDSTONE_WALL),
-                    //RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.CUT_SOUL_SANDSTONE),
-                    //RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CUT_SOUL_SANDSTONE, 3), NetherExBlocks.CUT_SOUL_SANDSTONE_STAIRS),
-
-                    //Chiseled Soul Sandstone Recipes
-                    //RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 2), NetherExBlocks.SOUL_SANDSTONE_SLAB),
-                    //RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.CHISELED_SOUL_SANDSTONE),
-                    //RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 1), NetherExBlocks.CHISELED_SOUL_SANDSTONE_SLAB),
-                    //RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE_WALL, 6), NetherExBlocks.CHISELED_SOUL_SANDSTONE),
-                    //RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 1), NetherExBlocks.CHISELED_SOUL_SANDSTONE_WALL),
-                    //RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.CHISELED_SOUL_SANDSTONE),
-                    //RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.CHISELED_SOUL_SANDSTONE, 3), NetherExBlocks.CHISELED_SOUL_SANDSTONE_STAIRS),
-
-                    //Smooth Soul Sandstone Recipes
-                    //RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_SLAB, 6), NetherExBlocks.SMOOTH_SOUL_SANDSTONE),
-                    //RecipeHelper.add1x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE, 1), NetherExBlocks.SMOOTH_SOUL_SANDSTONE_SLAB),
-                    //RecipeHelper.add3x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_WALL, 6), NetherExBlocks.SMOOTH_SOUL_SANDSTONE),
-                    //RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE, 1), NetherExBlocks.SMOOTH_SOUL_SANDSTONE_WALL),
-                    //RecipeHelper.addStairRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS, 8), NetherExBlocks.SMOOTH_SOUL_SANDSTONE),
-                    //RecipeHelper.add2x2Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SMOOTH_SOUL_SANDSTONE, 3), NetherExBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS),
-
                     //Basalt recipes
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.BASALT, 4), NetherExBlocks.SMOOTH_BASALT),
                     RecipeHelper.add3x1Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.BASALT_SLAB, 6), NetherExBlocks.BASALT),
@@ -206,30 +172,30 @@ public class NetherExRecipes
                     RecipeHelper.addFenceRecipe(NetherEx.instance, new ItemStack(NetherExBlocks.QUARTZ_FENCE_GATE, 6), new ItemStack(Blocks.STONE_SLAB, 1, 7), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0)),
 
                     //Tool recipes
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_SWORD, 1), " # ", " * ", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_PICKAXE, 1), "#*#", " @ ", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_SHOVEL, 1), " @ ", " * ", " # ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_AXE, 1), " * ", "*@#", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_HOE, 1), "#* ", " @ ", " @ ", '#', NetherExBlocks.AMETHYST_BLOCK, '*', Blocks.OBSIDIAN, '@', NetherExItems.WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_HAMMER, 1), "#*#", "#@#", " @ ", '#', NetherExBlocks.AMETHYST_BLOCK, '*', Blocks.OBSIDIAN, '@', NetherExItems.WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_SWORD, 1), " # ", " * ", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.BLAZED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_PICKAXE, 1), "#*#", " @ ", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.BLAZED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_SHOVEL, 1), " @ ", " * ", " # ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.BLAZED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_AXE, 1), " * ", "*@#", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.BLAZED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_HOE, 1), "#* ", " @ ", " @ ", '#', NetherExBlocks.AMETHYST_BLOCK, '*', Blocks.OBSIDIAN, '@', NetherExItems.BLAZED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_HAMMER, 1), "#*#", "#@#", " @ ", '#', NetherExBlocks.AMETHYST_BLOCK, '*', Blocks.OBSIDIAN, '@', NetherExItems.BLAZED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_SWORD, 1), " # ", " * ", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.FROSTED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_PICKAXE, 1), "#*#", " @ ", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.FROSTED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_SHOVEL, 1), " @ ", " * ", " # ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.FROSTED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_AXE, 1), " * ", "*@#", " @ ", '#', Blocks.OBSIDIAN, '*', NetherExBlocks.AMETHYST_BLOCK, '@', NetherExItems.FROSTED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_HOE, 1), "#* ", " @ ", " @ ", '#', NetherExBlocks.AMETHYST_BLOCK, '*', Blocks.OBSIDIAN, '@', NetherExItems.FROSTED_WITHER_BONE),
-                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_HAMMER, 1), "#*#", "#@#", " @ ", '#', NetherExBlocks.AMETHYST_BLOCK, '*', Blocks.OBSIDIAN, '@', NetherExItems.FROSTED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_SWORD, 1), " # ", " * ", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', "boneWithered"),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_PICKAXE, 1), "#*#", " @ ", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', "boneWithered"),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_SHOVEL, 1), " @ ", " * ", " # ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', "boneWithered"),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_AXE, 1), " * ", "*@#", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', "boneWithered"),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_HOE, 1), "#* ", " @ ", " @ ", '#', "blockAmethyst", '*', Blocks.OBSIDIAN, '@', "boneWithered"),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHERED_AMEDIAN_HAMMER, 1), "#*#", "#@#", " @ ", '#', "blockAmethyst", '*', Blocks.OBSIDIAN, '@', "boneWithered"),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_SWORD, 1), " # ", " * ", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.BLAZED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_PICKAXE, 1), "#*#", " @ ", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.BLAZED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_SHOVEL, 1), " @ ", " * ", " # ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.BLAZED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_AXE, 1), " * ", "*@#", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.BLAZED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_HOE, 1), "#* ", " @ ", " @ ", '#', "blockAmethyst", '*', Blocks.OBSIDIAN, '@', NetherExItems.BLAZED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_AMEDIAN_HAMMER, 1), "#*#", "#@#", " @ ", '#', "blockAmethyst", '*', Blocks.OBSIDIAN, '@', NetherExItems.BLAZED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_SWORD, 1), " # ", " * ", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.FROSTED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_PICKAXE, 1), "#*#", " @ ", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.FROSTED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_SHOVEL, 1), " @ ", " * ", " # ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.FROSTED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_AXE, 1), " * ", "*@#", " @ ", '#', Blocks.OBSIDIAN, '*', "blockAmethyst", '@', NetherExItems.FROSTED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_HOE, 1), "#* ", " @ ", " @ ", '#', "blockAmethyst", '*', Blocks.OBSIDIAN, '@', NetherExItems.FROSTED_WITHER_BONE),
+                    RecipeHelper.addShapedRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_AMEDIAN_HAMMER, 1), "#*#", "#@#", " @ ", '#', "blockAmethyst", '*', Blocks.OBSIDIAN, '@', NetherExItems.FROSTED_WITHER_BONE),
 
                     //Armor recipes
-                    RecipeHelper.addHelmetRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_HELMET, 1), NetherExItems.WITHER_BONE),
-                    RecipeHelper.addChestplateRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_CHESTPLATE, 1), NetherExItems.WITHER_BONE),
-                    RecipeHelper.addLeggingsRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_LEGGINGS, 1), NetherExItems.WITHER_BONE),
-                    RecipeHelper.addBootsRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_BOOTS, 1), NetherExItems.WITHER_BONE),
+                    RecipeHelper.addHelmetRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_HELMET, 1), "boneWithered"),
+                    RecipeHelper.addChestplateRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_CHESTPLATE, 1), "boneWithered"),
+                    RecipeHelper.addLeggingsRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_LEGGINGS, 1), "boneWithered"),
+                    RecipeHelper.addBootsRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE_BOOTS, 1), "boneWithered"),
                     RecipeHelper.addHelmetRecipe(NetherEx.instance, new ItemStack(NetherExItems.ORANGE_SALAMANDER_HIDE_HELMET, 1), NetherExItems.ORANGE_SALAMANDER_HIDE),
                     RecipeHelper.addChestplateRecipe(NetherEx.instance, new ItemStack(NetherExItems.ORANGE_SALAMANDER_HIDE_CHESTPLATE, 1), NetherExItems.ORANGE_SALAMANDER_HIDE),
                     RecipeHelper.addLeggingsRecipe(NetherEx.instance, new ItemStack(NetherExItems.ORANGE_SALAMANDER_HIDE_LEGGINGS, 1), NetherExItems.ORANGE_SALAMANDER_HIDE),
@@ -248,20 +214,20 @@ public class NetherExRecipes
                     RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.SOUL_GLASS, 3), NetherExBlocks.SOUL_GLASS_PANE),
                     RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.RIME_BLOCK, 1), NetherExItems.RIME_CRYSTAL),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.RIME_CRYSTAL, 9), NetherExBlocks.RIME_BLOCK),
-                    RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.AMETHYST_BLOCK, 1), NetherExItems.AMETHYST_CRYSTAL),
-                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.AMETHYST_CRYSTAL, 9), NetherExBlocks.AMETHYST_BLOCK),
+                    RecipeHelper.add3x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.AMETHYST_BLOCK, 1), "gemAmethyst"),
+                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.AMETHYST_CRYSTAL, 9), "blockAmethyst"),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(Items.DYE, 6, EnumDyeColor.WHITE.getDyeDamage()), NetherExBlocks.BONE_SLIVER),
                     RecipeHelper.add2x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.BONE_SLIVER, 1), new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage())),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(Items.DYE, 3, EnumDyeColor.WHITE.getDyeDamage()), NetherExBlocks.BONE_CHUNK),
                     RecipeHelper.add1x3Recipe(NetherEx.instance, new ItemStack(NetherExBlocks.BONE_CHUNK, 1), new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage())),
-                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_DUST, 3), NetherExItems.WITHER_BONE),
+                    RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_DUST, 3), "boneWithered"),
                     RecipeHelper.add1x3Recipe(NetherEx.instance, new ItemStack(NetherExItems.WITHER_BONE, 1), NetherExItems.WITHER_DUST),
                     RecipeHelper.addBoatRecipe(NetherEx.instance, new ItemStack(NetherExItems.OBSIDIAN_BOAT, 1), new ItemStack(Blocks.OBSIDIAN, 1)),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.RIME_AND_STEEL, 1), Items.FLINT_AND_STEEL, NetherExItems.RIME_CRYSTAL),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.RIME_AND_STEEL, 1), Items.IRON_INGOT, Items.FLINT, NetherExItems.RIME_CRYSTAL),
                     RecipeHelper.addShapelessRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROST_POWDER, 3), NetherExItems.FROST_ROD),
-                    RecipeHelper.addFilledCrossRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_WITHER_BONE, 3), Items.BLAZE_POWDER, NetherExItems.WITHER_BONE),
-                    RecipeHelper.addFilledCrossRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_WITHER_BONE, 3), NetherExItems.FROST_ROD, NetherExItems.WITHER_BONE)
+                    RecipeHelper.addFilledCrossRecipe(NetherEx.instance, new ItemStack(NetherExItems.BLAZED_WITHER_BONE, 1), Items.BLAZE_POWDER, "boneWithered"),
+                    RecipeHelper.addFilledCrossRecipe(NetherEx.instance, new ItemStack(NetherExItems.FROSTED_WITHER_BONE, 1), NetherExItems.FROST_POWDER, "boneWithered")
             );
         }
     }
