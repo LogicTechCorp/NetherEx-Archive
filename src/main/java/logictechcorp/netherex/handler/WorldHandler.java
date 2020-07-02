@@ -22,7 +22,6 @@ import logictechcorp.netherex.potion.NetherExEffects;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -42,11 +41,6 @@ public class WorldHandler
             {
                 AreaEffectCloudEntity areaEffectCloudEntity = (AreaEffectCloudEntity) entity;
                 areaEffectCloudEntity.effects.removeIf(effect -> effect.getPotion() == NetherExEffects.FIRE_BURNING.get());
-
-                if(!world.isRemote() && areaEffectCloudEntity.effects.isEmpty())
-                {
-                    entity.remove();
-                }
             }
         }
     }
