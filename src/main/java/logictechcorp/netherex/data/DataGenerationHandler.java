@@ -109,6 +109,7 @@ public class DataGenerationHandler
         ModRecipeProvider provider = new ModRecipeProvider(NetherEx.MOD_ID, generator);
 
         //Gloomy Netherbrick recipes
+        provider.addFurnaceRecipe(NetherExItems.GLOOMY_NETHER_BRICK.get()).ingredient(NetherExBlocks.GLOOMY_NETHERRACK.get()).experience(0.1F).cookTime(200).build("gloomy_nether_brick");
         provider.addShapedRecipe(NetherExBlocks.GLOOMY_NETHER_BRICKS.get(), 4).pattern("##").pattern("##").key('#', NetherExItems.GLOOMY_NETHER_BRICK.get()).build("gloomy_nether_bricks");
         provider.addShapedRecipe(NetherExBlocks.GLOOMY_NETHER_BRICK_SLAB.get(), 6).pattern("###").key('#', NetherExBlocks.GLOOMY_NETHER_BRICKS.get()).build("gloomy_nether_brick_slab");
         provider.addShapedRecipe(NetherExBlocks.GLOOMY_NETHER_BRICK_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExBlocks.GLOOMY_NETHER_BRICKS.get()).build("gloomy_nether_brick_stairs");
@@ -120,6 +121,7 @@ public class DataGenerationHandler
         provider.addStonecutterRecipe(NetherExBlocks.GLOOMY_NETHER_BRICK_WALL.get(), 1).ingredient(NetherExBlocks.GLOOMY_NETHER_BRICKS.get()).build("gloomy_nether_brick_wall_from_gloomy_nether_brick_stonecutting");
 
         //Lively Netherbrick recipes
+        provider.addFurnaceRecipe(NetherExItems.LIVELY_NETHER_BRICK.get()).ingredient(NetherExBlocks.LIVELY_NETHERRACK.get()).experience(0.1F).cookTime(200).build("lively_nether_brick");
         provider.addShapedRecipe(NetherExBlocks.LIVELY_NETHER_BRICKS.get(), 4).pattern("##").pattern("##").key('#', NetherExItems.LIVELY_NETHER_BRICK.get()).build("lively_nether_bricks");
         provider.addShapedRecipe(NetherExBlocks.LIVELY_NETHER_BRICK_SLAB.get(), 6).pattern("###").key('#', NetherExBlocks.LIVELY_NETHER_BRICKS.get()).build("lively_nether_brick_slab");
         provider.addShapedRecipe(NetherExBlocks.LIVELY_NETHER_BRICK_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExBlocks.LIVELY_NETHER_BRICKS.get()).build("lively_nether_brick_stairs");
@@ -131,6 +133,7 @@ public class DataGenerationHandler
         provider.addStonecutterRecipe(NetherExBlocks.LIVELY_NETHER_BRICK_WALL.get(), 1).ingredient(NetherExBlocks.LIVELY_NETHER_BRICKS.get()).build("lively_nether_brick_wall_from_lively_nether_brick_stonecutting");
 
         //Fiery Netherbrick recipes
+        provider.addFurnaceRecipe(NetherExItems.FIERY_NETHER_BRICK.get()).ingredient(NetherExBlocks.FIERY_NETHERRACK.get()).experience(0.1F).cookTime(200).build("fiery_nether_brick");
         provider.addShapedRecipe(NetherExBlocks.FIERY_NETHER_BRICKS.get(), 4).pattern("##").pattern("##").key('#', NetherExItems.FIERY_NETHER_BRICK.get()).build("fiery_nether_bricks");
         provider.addShapedRecipe(NetherExBlocks.FIERY_NETHER_BRICK_SLAB.get(), 6).pattern("###").key('#', NetherExBlocks.FIERY_NETHER_BRICKS.get()).build("fiery_nether_brick_slab");
         provider.addShapedRecipe(NetherExBlocks.FIERY_NETHER_BRICK_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExBlocks.FIERY_NETHER_BRICKS.get()).build("fiery_nether_brick_stairs");
@@ -142,6 +145,7 @@ public class DataGenerationHandler
         provider.addStonecutterRecipe(NetherExBlocks.FIERY_NETHER_BRICK_WALL.get(), 1).ingredient(NetherExBlocks.FIERY_NETHER_BRICKS.get()).build("fiery_nether_brick_wall_from_fiery_nether_brick_stonecutting");
 
         //Icy Netherbrick recipes
+        provider.addFurnaceRecipe(NetherExItems.ICY_NETHER_BRICK.get()).ingredient(NetherExBlocks.ICY_NETHERRACK.get()).experience(0.1F).cookTime(200).build("icy_nether_brick");
         provider.addShapedRecipe(NetherExBlocks.ICY_NETHER_BRICKS.get(), 4).pattern("##").pattern("##").key('#', NetherExItems.ICY_NETHER_BRICK.get()).build("icy_nether_bricks");
         provider.addShapedRecipe(NetherExBlocks.ICY_NETHER_BRICK_SLAB.get(), 6).pattern("###").key('#', NetherExBlocks.ICY_NETHER_BRICKS.get()).build("icy_nether_brick_slab");
         provider.addShapedRecipe(NetherExBlocks.ICY_NETHER_BRICK_STAIRS.get(), 4).pattern("#  ").pattern("## ").pattern("###").key('#', NetherExBlocks.ICY_NETHER_BRICKS.get()).build("icy_nether_brick_stairs");
