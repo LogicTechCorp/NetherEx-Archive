@@ -1,6 +1,6 @@
 {
     "biome": "netherex:fungi_forest",
-    "generation_weight": 4,
+    "generation_weight": 5,
     "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,

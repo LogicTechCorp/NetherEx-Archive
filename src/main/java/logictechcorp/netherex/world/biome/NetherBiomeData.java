@@ -17,7 +17,10 @@
 
 package logictechcorp.netherex.world.biome;
 
+import org.apache.logging.log4j.Level;
+
 import logictechcorp.libraryex.world.biome.BiomeData;
+import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.world.generation.surfacebuilder.NetherExSurfaceBuilders;
 import logictechcorp.netherex.world.generation.surfacebuilder.NetherSurfaceBuilderWrapper;
 import net.minecraft.world.biome.Biome;
@@ -40,6 +43,10 @@ public class NetherBiomeData extends BiomeData
     @Override
     public void resetBiome()
     {
-        ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, ((NetherSurfaceBuilderWrapper.Config) this.biome.getSurfaceBuilder().config).getOriginalBuilder(), "field_201875_ar");
+    	try {
+    		ObfuscationReflectionHelper.setPrivateValue(Biome.class, this.biome, ((NetherSurfaceBuilderWrapper.Config) this.biome.getSurfaceBuilder().config).getOriginalBuilder(), "field_201875_ar");
+    	}catch (ClassCastException e) {
+    		NetherEx.LOGGER.log(Level.ERROR, "Expected Error: Faulty biome configuration causes ClassCastException upon stopping server. This is normal.");
+    	}
     }
 }

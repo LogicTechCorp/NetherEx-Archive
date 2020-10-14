@@ -1,6 +1,6 @@
 {
-    "biome": "biomesoplenty:glowstone_grotto",
-    "generation_weight": 5,
+    "biome": "extendednether:warped_forest",
+    "generation_weight": 8,
     "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,
@@ -8,7 +8,7 @@
     "is_sub_biome": false,
     "blocks": {
         "surface": {
-            "Name": "minecraft:netherrack"
+            "Name": "extendednether:warped_nylium"
         },
         "subsurface": {
             "Name": "minecraft:netherrack"

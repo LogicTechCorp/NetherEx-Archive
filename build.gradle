@@ -72,7 +72,7 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compile project(':LibraryEx')
+    compile files('libs/LibraryEx.jar')
 }
 
 jar {

@@ -19,10 +19,12 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.utility.NBTHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.block.NetherExBlocks;
 import logictechcorp.netherex.item.NetherExItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,11 +39,13 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -51,6 +55,14 @@ import java.util.Iterator;
 @Mod.EventBusSubscriber(modid = NetherEx.MOD_ID)
 public class PlayerHandler
 {
+	
+	@SubscribeEvent
+	public static void onPlayerJoin(PlayerLoggedInEvent event) {
+		if(NetherExConfig.NETHER.declareOnLogIn.get()) {
+			event.getPlayer().sendMessage(new StringTextComponent(I18n.format("oddbirds.declaration")));
+		}
+	}
+	
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event)
     {

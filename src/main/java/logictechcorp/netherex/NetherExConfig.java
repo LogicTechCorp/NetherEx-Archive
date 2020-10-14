@@ -208,6 +208,9 @@ public class NetherExConfig
         public final ForgeConfigSpec.BooleanValue biomePackUseDefaultBiomePack;
         public final ForgeConfigSpec.BooleanValue biomePackUseNetherExBiomePack;
         public final ForgeConfigSpec.BooleanValue biomePackUseBOPBiomePack;
+        public final ForgeConfigSpec.BooleanValue biomePackUseENBBiomePack;
+        public final ForgeConfigSpec.BooleanValue biomePackUseBYGBiomePack;
+        public final ForgeConfigSpec.BooleanValue declareOnLogIn;
 
         NetherConfig(ForgeConfigSpec.Builder builder)
         {
@@ -227,6 +230,15 @@ public class NetherExConfig
             this.biomePackUseBOPBiomePack = builder
                     .comment("Use the Biomes O' Plenty biome pack.")
                     .define("useBOPBiomePack", true);
+            this.biomePackUseENBBiomePack = builder
+                    .comment("Use the Extended Nether Backport biome pack.")
+                    .define("useENBBiomePack", true);
+            this.biomePackUseBYGBiomePack = builder
+                    .comment("Use Oh the Biomes You'll Go biome pack.")
+                    .define("useBYGBiomePack", true);
+            this.declareOnLogIn = builder
+                    .comment("Prints a declaration in chat when a player logs in.")
+                    .define("declareOnLogIn", true);
             builder.pop();
 
             //End nether config
