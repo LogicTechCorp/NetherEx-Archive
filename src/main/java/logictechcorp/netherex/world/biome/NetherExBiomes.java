@@ -20,6 +20,7 @@ package logictechcorp.netherex.world.biome;
 import logictechcorp.libraryex.resource.BuiltinDataPack;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.NetherExConfig;
+import net.minecraft.resources.FolderPackFinder;
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackList;
 import net.minecraft.server.MinecraftServer;
@@ -27,10 +28,13 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.function.Supplier;
 
 public class NetherExBiomes
@@ -53,6 +57,12 @@ public class NetherExBiomes
     {
         ResourcePackList<ResourcePackInfo> resourcePacks = server.getResourcePacks();
         ModFile modFile = ModList.get().getModFileById(NetherEx.MOD_ID).getFile();
+
+        if(NetherExConfig.NETHER.biomePackUseGlobalBiomePacks.get())
+        {
+            Path globalBiomePacksPath = FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve(Paths.get("netherex", "biome_packs")), "netherex biome packs");
+            resourcePacks.addPackFinder(new FolderPackFinder(globalBiomePacksPath.toFile()));
+        }
 
         if(NetherExConfig.NETHER.biomePackUseDefaultBiomePack.get())
         {

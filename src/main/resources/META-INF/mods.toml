@@ -1,19 +1,19 @@
-modLoader="javafml"
-loaderVersion="[28.2,)"
-issueTrackerURL="https://github.com/LogicTechCorp/NetherEx/issues"
+modLoader = "javafml"
+loaderVersion = "[28.2,)"
+issueTrackerURL = "https://github.com/LogicTechCorp/NetherEx/issues"
 
 [[mods]]
-modId="netherex"
-version="${file.jarVersion}"
-displayName="NetherEx"
-displayURL="https://minecraft.curseforge.com/projects/netherex"
-logoFile="assets/netherex/textures/logo.png"
-authors="LogicTechCorp, Eleazzaar, Nazenn, Vlakk, AnarchCassius, LapisWhovian, misterslime, MCvinnyq, Cameron, Endergy"
-description="A mod that adds new content to the Nether."
+modId = "netherex"
+version = "${file.jarVersion}"
+displayName = "NetherEx"
+displayURL = "https://minecraft.curseforge.com/projects/netherex"
+logoFile = "logo.png"
+authors = "LogicTechCorp, Eleazzaar, Nazenn, Vlakk, AnarchCassius, LapisWhovian, misterslime, MCvinnyq, Cameron, Endergy"
+description = "A mod that adds new content to the Nether."
 
 [[dependencies.netherex]]
-modId="libraryex"
-mandatory=true
-versionRange="[2.1.0,)"
-ordering="BEFORE"
-side="BOTH"
+modId = "libraryex"
+mandatory = true
+versionRange = "[2.1.0,)"
+ordering = "BEFORE"
+side = "BOTH"
