@@ -56,13 +56,6 @@ import java.util.Iterator;
 public class PlayerHandler
 {
 	
-	@SubscribeEvent
-	public static void onPlayerJoin(PlayerLoggedInEvent event) {
-		if(NetherExConfig.NETHER.declareOnLogIn.get()) {
-			event.getPlayer().sendMessage(new StringTextComponent(I18n.format("oddbirds.declaration")));
-		}
-	}
-	
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event)
     {
