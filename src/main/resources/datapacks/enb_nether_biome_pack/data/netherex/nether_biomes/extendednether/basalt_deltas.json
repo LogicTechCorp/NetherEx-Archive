@@ -1,6 +1,6 @@
 {
-    "biome": "biomesoplenty:glowstone_grotto",
-    "generation_weight": 5,
+    "biome": "extendednether:basalt_deltas",
+    "generation_weight": 6,
     "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,
@@ -8,10 +8,10 @@
     "is_sub_biome": false,
     "blocks": {
         "surface": {
-            "Name": "minecraft:netherrack"
+            "Name": "extendednether:blackstone"
         },
         "subsurface": {
-            "Name": "minecraft:netherrack"
+            "Name": "extendednether:basalt"
         },
         "liquid": {
             "Name": "minecraft:lava"

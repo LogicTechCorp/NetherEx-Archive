@@ -68,6 +68,16 @@ public class NetherExBiomes
         {
             resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "bop_nether_biome_pack"));
         }
+        
+        if(NetherExConfig.NETHER.biomePackUseENBBiomePack.get())
+        {
+            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "enb_nether_biome_pack"));
+        }
+        
+        if(NetherExConfig.NETHER.biomePackUseBYGBiomePack.get())
+        {
+            resourcePacks.addPackFinder(new BuiltinDataPack(modFile, "byg_nether_biome_pack"));
+        }
     }
 
     private static <B extends Biome> RegistryObject<B> registerBiome(String name, Supplier<B> supplier)

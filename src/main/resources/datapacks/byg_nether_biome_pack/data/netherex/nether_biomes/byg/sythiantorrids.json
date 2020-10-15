@@ -1,5 +1,5 @@
 {
-    "biome": "biomesoplenty:glowstone_grotto",
+    "biome": "byg:sythiantorrids",
     "generation_weight": 5,
     "use_default_entities": true,
     "use_default_carvers": true,
@@ -8,7 +8,7 @@
     "is_sub_biome": false,
     "blocks": {
         "surface": {
-            "Name": "minecraft:netherrack"
+            "Name": "byg:sythian_nylium"
         },
         "subsurface": {
             "Name": "minecraft:netherrack"

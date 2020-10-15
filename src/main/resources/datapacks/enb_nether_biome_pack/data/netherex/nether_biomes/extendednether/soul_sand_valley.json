@@ -1,5 +1,5 @@
 {
-    "biome": "biomesoplenty:glowstone_grotto",
+    "biome": "extendednether:soul_sand_valley",
     "generation_weight": 5,
     "use_default_entities": true,
     "use_default_carvers": true,
@@ -8,10 +8,10 @@
     "is_sub_biome": false,
     "blocks": {
         "surface": {
-            "Name": "minecraft:netherrack"
+            "Name": "minecraft:soul_sand"
         },
         "subsurface": {
-            "Name": "minecraft:netherrack"
+            "Name": "minecraft:soul_sand"
         },
         "liquid": {
             "Name": "minecraft:lava"
