@@ -110,7 +110,7 @@ public class MogusEntity extends MonsterEntity
         else
         {
             String type = this.getVariant() == Variant.BROWN ? "brown" : this.getVariant() == Variant.RED ? "red" : "white";
-            return new TranslationTextComponent("entity." + NetherEx.MOD_ID + "." + type + "_mogus.name");
+            return new TranslationTextComponent("entity." + NetherEx.MOD_ID + "." + type + "_mogus");
         }
     }
 
@@ -155,9 +155,9 @@ public class MogusEntity extends MonsterEntity
 
     public enum Variant
     {
-        BROWN(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/brown_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/brown_mogus.json")),
-        RED(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/red_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/red_mogus.json")),
-        WHITE(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/white_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/white_mogus.json"));
+        BROWN(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/brown_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/brown_mogus")),
+        RED(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/red_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/red_mogus")),
+        WHITE(new ResourceLocation(NetherEx.MOD_ID, "textures/entity/mogus/white_mogus.png"), new ResourceLocation(NetherEx.MOD_ID, "entities/mogus/white_mogus"));
 
         ResourceLocation texture;
         ResourceLocation lootTable;

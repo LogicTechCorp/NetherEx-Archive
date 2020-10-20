@@ -1,6 +1,6 @@
 {
     "biome": "biomesoplenty:glowstone_grotto",
-    "generation_weight": 5,
+    "generation_weight": 3,
     "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,

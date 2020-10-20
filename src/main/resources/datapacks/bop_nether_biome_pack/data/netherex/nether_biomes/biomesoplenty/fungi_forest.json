@@ -1,6 +1,6 @@
 {
     "biome": "biomesoplenty:fungi_forest",
-    "generation_weight": 5,
+    "generation_weight": 7,
     "use_default_entities": true,
     "use_default_carvers": true,
     "use_default_features": true,

@@ -124,8 +124,14 @@ public class SalamanderEntity extends MonsterEntity
         else
         {
             String type = this.getVariant() == Variant.ORANGE ? "orange" : "black";
-            return new TranslationTextComponent("entity." + NetherEx.MOD_ID + ":" + type + "_salamander.name");
+            return new TranslationTextComponent("entity." + NetherEx.MOD_ID + ":" + type + "_salamander");
         }
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return this.getVariant().getLootTable();
     }
 
     @Override

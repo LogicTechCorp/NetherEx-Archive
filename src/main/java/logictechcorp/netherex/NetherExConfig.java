@@ -23,8 +23,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -61,13 +59,8 @@ public class NetherExConfig
 
     static void registerConfigs()
     {
-        try
-        {
-            Files.createDirectory(Paths.get(FMLPaths.CONFIGDIR.get().toAbsolutePath().toString(), "netherex"));
-        }
-        catch(IOException ignored)
-        {
-        }
+        FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve("netherex"), "netherex config");
+        FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve(Paths.get("netherex", "biome_packs")), "netherex biome packs");
 
         ModLoadingContext loadingContext = ModLoadingContext.get();
         loadingContext.registerConfig(ModConfig.Type.COMMON, BLOCK_SPEC, "netherex/block-config.toml");
@@ -205,6 +198,7 @@ public class NetherExConfig
     public static class NetherConfig
     {
         //Biome pack settings
+        public final ForgeConfigSpec.BooleanValue biomePackUseGlobalBiomePacks;
         public final ForgeConfigSpec.BooleanValue biomePackUseDefaultBiomePack;
         public final ForgeConfigSpec.BooleanValue biomePackUseNetherExBiomePack;
         public final ForgeConfigSpec.BooleanValue biomePackUseBOPBiomePack;
@@ -220,6 +214,9 @@ public class NetherExConfig
             //Start biome pack config
             builder.comment("Biome pack configuration settings")
                     .push("biome_packs");
+            this.biomePackUseGlobalBiomePacks = builder
+                    .comment("Use global biome packs.")
+                    .define("useGlobalBiomePacks", true);
             this.biomePackUseDefaultBiomePack = builder
                     .comment("Use the default biome pack.")
                     .define("useDefaultBiomePack", true);
