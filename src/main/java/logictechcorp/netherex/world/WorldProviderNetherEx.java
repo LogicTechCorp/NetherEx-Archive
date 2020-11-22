@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.world;
 
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.world.biome.design.BiomeProviderNetherEx;
 import logictechcorp.netherex.world.generation.ChunkGeneratorNetherEx;
 import net.minecraft.world.WorldProviderHell;
@@ -38,7 +38,7 @@ public class WorldProviderNetherEx extends WorldProviderHell
     @SideOnly(Side.CLIENT)
     public boolean doesXZShowFog(int x, int z)
     {
-        return !ConfigHandler.clientConfig.visual.disableNetherFog;
+        return !NetherExConfig.client.visual.disableNetherFog;
     }
 
     @Override

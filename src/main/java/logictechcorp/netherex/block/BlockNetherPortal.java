@@ -21,7 +21,7 @@ import logictechcorp.libraryex.block.BlockModPortal;
 import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.libraryex.utility.BlockHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.TeleporterNetherEx;
 import net.minecraft.block.Block;
@@ -56,9 +56,9 @@ public class BlockNetherPortal extends BlockModPortal
     {
         super.updateTick(world, pos, state, random);
 
-        if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity > 0)
+        if(world.provider.isSurfaceWorld() && world.getGameRules().getBoolean("doMobSpawning") && NetherExConfig.block.netherPortal.pigmanSpawnRarity > 0)
         {
-            if(random.nextInt(ConfigHandler.blockConfig.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getId())
+            if(random.nextInt(NetherExConfig.block.netherPortal.pigmanSpawnRarity) < world.getDifficulty().getId())
             {
                 int posY = pos.getY();
                 BlockPos blockPos;

@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.monster;
 
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExSoundEvents;
 import net.minecraft.entity.Entity;
@@ -176,7 +176,7 @@ public class EntityEmber extends EntityMob
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        if(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity > 0 && this.rand.nextInt(ConfigHandler.entityConfig.ember.setPlayerOnFireRarity) == 0)
+        if(NetherExConfig.entity.ember.setPlayerOnFireRarity > 0 && this.rand.nextInt(NetherExConfig.entity.ember.setPlayerOnFireRarity) == 0)
         {
             entity.setFire(4);
         }

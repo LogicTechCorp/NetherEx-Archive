@@ -21,7 +21,7 @@ import logictechcorp.libraryex.block.BlockMod;
 import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.libraryex.utility.RandomHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
@@ -344,14 +344,14 @@ public class BlockBlueFire extends BlockMod
                         return;
                     }
 
-                    if(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight > ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight)
+                    if(NetherExConfig.block.blueFire.minEntityTicksAlight > NetherExConfig.block.blueFire.maxEntityTicksAlight)
                     {
-                        int temp = ConfigHandler.blockConfig.blueFire.minEntityTicksAlight;
-                        ConfigHandler.blockConfig.blueFire.minEntityTicksAlight = ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight;
-                        ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight = temp;
+                        int temp = NetherExConfig.block.blueFire.minEntityTicksAlight;
+                        NetherExConfig.block.blueFire.minEntityTicksAlight = NetherExConfig.block.blueFire.maxEntityTicksAlight;
+                        NetherExConfig.block.blueFire.maxEntityTicksAlight = temp;
                     }
 
-                    int ticks = RandomHelper.getNumberInRange(ConfigHandler.blockConfig.blueFire.minEntityTicksAlight, ConfigHandler.blockConfig.blueFire.maxEntityTicksAlight, world.rand);
+                    int ticks = RandomHelper.getNumberInRange(NetherExConfig.block.blueFire.minEntityTicksAlight, NetherExConfig.block.blueFire.maxEntityTicksAlight, world.rand);
                     ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(NetherExMobEffects.FIRE_BURNING, ticks));
                 }
             }

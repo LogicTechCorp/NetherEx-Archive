@@ -21,13 +21,12 @@ import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExBiomes;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -64,7 +63,7 @@ public class MobEffectFrozen extends MobEffectMod
             {
                 entity.setPosition(entity.prevPosX, entity.posY, entity.prevPosZ);
             }
-            if(random.nextInt(ConfigHandler.mobEffectConfig.freeze.thawRarity) == 0)
+            if(random.nextInt(NetherExConfig.mobEffect.freeze.thawRarity) == 0)
             {
                 entity.removePotionEffect(this);
             }
@@ -100,10 +99,10 @@ public class MobEffectFrozen extends MobEffectMod
 
         if(entity instanceof EntityPlayer && !((EntityPlayer) entity).isCreative())
         {
-            return biome != NetherExBiomes.ARCTIC_ABYSS || ConfigHandler.biomeConfig.arcticAbyss.canPlayersFreeze;
+            return biome != NetherExBiomes.ARCTIC_ABYSS || NetherExConfig.biome.arcticAbyss.canPlayersFreeze;
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);
-        return entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.mobEffectConfig.freeze.mobBlacklist, entityRegistryName);
+        return entityRegistryName != null && !CollectionHelper.contains(NetherExConfig.mobEffect.freeze.mobBlacklist, entityRegistryName);
     }
 }

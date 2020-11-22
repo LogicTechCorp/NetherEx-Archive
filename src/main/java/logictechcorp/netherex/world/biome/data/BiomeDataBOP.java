@@ -20,6 +20,10 @@ package logictechcorp.netherex.world.biome.data;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.netherex.NetherEx;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.ChunkPrimer;
+
+import java.util.Random;
 
 public class BiomeDataBOP extends BiomeData
 {
@@ -29,8 +33,14 @@ public class BiomeDataBOP extends BiomeData
     }
 
     @Override
+    public void generateTerrain(World world, Random random, ChunkPrimer primer, int chunkX, int chunkZ, double noise)
+    {
+        this.biome.genTerrainBlocks(world, random, primer, chunkX, chunkZ, noise);
+    }
+
+    @Override
     public boolean isEnabled()
     {
-        return super.isEnabled() && NetherEx.BIOMES_O_PLENTY_LOADED;
+        return NetherEx.BIOMES_O_PLENTY_LOADED && super.isEnabled();
     }
 }

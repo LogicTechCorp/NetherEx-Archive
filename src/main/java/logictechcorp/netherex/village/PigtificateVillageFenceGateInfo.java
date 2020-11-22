@@ -49,7 +49,7 @@ public class PigtificateVillageFenceGateInfo
 
     public int getDistanceSquared(int x, int y, int z)
     {
-        return (int) this.pos.distanceSq((double) x, (double) y, (double) z);
+        return (int) this.pos.distanceSq(x, y, z);
     }
 
     public int getDistanceToFenceGateSq(BlockPos pos)

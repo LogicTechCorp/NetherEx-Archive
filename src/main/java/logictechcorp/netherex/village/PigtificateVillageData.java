@@ -26,7 +26,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -48,7 +47,7 @@ public class PigtificateVillageData extends WorldSavedData
         super(getDataId(world));
         this.markDirty();
     }
-    
+
     public void addPigtificate(BlockPos pos)
     {
         if(this.pigtificatePositions.size() <= 64)

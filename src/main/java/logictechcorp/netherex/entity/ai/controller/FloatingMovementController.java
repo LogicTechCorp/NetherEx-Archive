@@ -24,7 +24,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class FloatingMovementController extends EntityMoveHelper
 {
-    private boolean stickNearGround;
+    private final boolean stickNearGround;
 
     public FloatingMovementController(EntityLiving livingEntity, boolean stickNearGround)
     {
@@ -62,7 +62,7 @@ public class FloatingMovementController extends EntityMoveHelper
             float speed = (float) (this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
             this.entity.setAIMoveSpeed(speed);
 
-            double distanceXZ = (double) MathHelper.sqrt(distanceX * distanceX + distanceZ * distanceZ);
+            double distanceXZ = MathHelper.sqrt(distanceX * distanceX + distanceZ * distanceZ);
             float pitchAngle = (float) (-(MathHelper.atan2(distanceY, distanceXZ) * (180D / Math.PI)));
             this.entity.rotationPitch = this.limitAngle(this.entity.rotationPitch, pitchAngle, 10.0F);
             this.entity.setMoveVertical(distanceY > 0.0D ? speed : -speed);

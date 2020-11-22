@@ -24,7 +24,7 @@ import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExMobEffects;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -75,20 +75,20 @@ public class BlockRime extends BlockMod
     {
         IBlockState state = world.getBlockState(pos);
 
-        if(state == Blocks.WATER.getDefaultState() && ConfigHandler.blockConfig.rime.canFreezeWater)
+        if(state == Blocks.WATER.getDefaultState() && NetherExConfig.block.rime.canFreezeWater)
         {
             world.setBlockState(pos, Blocks.ICE.getDefaultState(), 3);
         }
-        else if(state == Blocks.LAVA.getDefaultState() && ConfigHandler.blockConfig.rime.canFreezeLava)
+        else if(state == Blocks.LAVA.getDefaultState() && NetherExConfig.block.rime.canFreezeLava)
         {
             world.setBlockState(pos, Blocks.MAGMA.getDefaultState(), 3);
         }
 
         for(EntityLivingBase entity : entities)
         {
-            boolean canFreeze = !(entity instanceof EntityPlayer) && !CollectionHelper.contains(ConfigHandler.mobEffectConfig.freeze.mobBlacklist, EntityHelper.getEntityLocation(entity));
+            boolean canFreeze = !(entity instanceof EntityPlayer) && !CollectionHelper.contains(NetherExConfig.mobEffect.freeze.mobBlacklist, EntityHelper.getEntityLocation(entity));
 
-            if(canFreeze && ConfigHandler.blockConfig.rime.canFreezeMobs)
+            if(canFreeze && NetherExConfig.block.rime.canFreezeMobs)
             {
                 entity.addPotionEffect(new PotionEffect(NetherExMobEffects.FROZEN, 300, 0));
             }

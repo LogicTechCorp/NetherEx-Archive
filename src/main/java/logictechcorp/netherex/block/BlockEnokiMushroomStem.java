@@ -113,7 +113,7 @@ public class BlockEnokiMushroomStem extends BlockMod
         float maxY = state.getValue(UP) ? 1.0F : 0.8125F;
         float maxZ = state.getValue(SOUTH) ? 1.0F : 0.8125F;
 
-        return new AxisAlignedBB((double) minX, (double) minY, (double) minZ, (double) maxX, (double) maxY, (double) maxZ);
+        return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
     }
 
     @Override

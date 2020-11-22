@@ -242,7 +242,7 @@ entity.netherex:frost.name=Escarcha
 entity.netherex:ghast_queen.name=Reina Ghast
 
 # Fluids
-fluid.netherex:blood.name=Icor
+fluid.netherex:ichor.name=Icor
 
 # Items
 item.netherex:fiery_netherbrick.name=Infradrillo ardiente

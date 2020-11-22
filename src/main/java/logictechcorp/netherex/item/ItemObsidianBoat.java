@@ -87,7 +87,7 @@ public class ItemObsidianBoat extends ItemMod
             {
                 if(entity.canBeCollidedWith())
                 {
-                    AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().grow((double) entity.getCollisionBorderSize());
+                    AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().grow(entity.getCollisionBorderSize());
 
                     if(axisalignedbb.contains(pos))
                     {

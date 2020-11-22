@@ -44,9 +44,9 @@ public class ParticleSporeExplosionLarge extends Particle
     private final TextureManager theRenderEngine;
     private final float size;
 
-    protected ParticleSporeExplosionLarge(TextureManager renderEngine, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double speed)
+    protected ParticleSporeExplosionLarge(TextureManager renderEngine, World world, double posX, double posY, double posZ, double speed)
     {
-        super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
+        super(world, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
         this.theRenderEngine = renderEngine;
         this.lifeTime = 6 + this.rand.nextInt(4);
         float f = this.rand.nextFloat() * 0.6F + 0.4F;
@@ -57,7 +57,7 @@ public class ParticleSporeExplosionLarge extends Particle
     }
 
     @Override
-    public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
         int i = (int) (((float) this.life + partialTicks) * 15.0F / (float) this.lifeTime);
 
@@ -76,17 +76,17 @@ public class ParticleSporeExplosionLarge extends Particle
             GlStateManager.disableLighting();
             RenderHelper.disableStandardItemLighting();
             buffer.begin(7, VERTEX_FORMAT);
-            buffer.pos((double) (f5 - rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 - rotationYZ * f4 - rotationXZ * f4)).tex((double) f1, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
-            buffer.pos((double) (f5 - rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 - rotationYZ * f4 + rotationXZ * f4)).tex((double) f1, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
-            buffer.pos((double) (f5 + rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 + rotationYZ * f4 + rotationXZ * f4)).tex((double) f, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
-            buffer.pos((double) (f5 + rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 + rotationYZ * f4 - rotationXZ * f4)).tex((double) f, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((f5 - rotationX * f4 - rotationXY * f4), (f6 - rotationZ * f4), (f7 - rotationYZ * f4 - rotationXZ * f4)).tex(f1, f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((f5 - rotationX * f4 + rotationXY * f4), (f6 + rotationZ * f4), (f7 - rotationYZ * f4 + rotationXZ * f4)).tex(f1, f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((f5 + rotationX * f4 + rotationXY * f4), (f6 + rotationZ * f4), (f7 + rotationYZ * f4 + rotationXZ * f4)).tex(f, f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
+            buffer.pos((f5 + rotationX * f4 - rotationXY * f4), (f6 - rotationZ * f4), (f7 + rotationYZ * f4 - rotationXZ * f4)).tex(f, f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(0, 240).normal(0.0F, 1.0F, 0.0F).endVertex();
             Tessellator.getInstance().draw();
             GlStateManager.enableLighting();
         }
     }
 
     @Override
-    public int getBrightnessForRender(float p_189214_1_)
+    public int getBrightnessForRender(float partialTick)
     {
         return 61680;
     }
@@ -115,9 +115,9 @@ public class ParticleSporeExplosionLarge extends Particle
     public static class Factory implements IParticleFactory
     {
         @Override
-        public Particle createParticle(int particleID, World world, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
+        public Particle createParticle(int particleId, World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, int... parameters)
         {
-            return new ParticleSporeExplosionLarge(Minecraft.getMinecraft().getTextureManager(), world, xCoordIn, yCoordIn, zCoordIn, xSpeedIn);
+            return new ParticleSporeExplosionLarge(Minecraft.getMinecraft().getTextureManager(), world, posX, posY, posZ, speedX);
         }
     }
 }

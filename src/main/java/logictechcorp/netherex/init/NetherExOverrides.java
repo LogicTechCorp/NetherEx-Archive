@@ -18,7 +18,6 @@
 package logictechcorp.netherex.init;
 
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.world.WorldProviderNetherEx;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;

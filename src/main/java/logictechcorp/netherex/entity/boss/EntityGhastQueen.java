@@ -17,12 +17,12 @@
 
 package logictechcorp.netherex.entity.boss;
 
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.block.BlockUrnOfSorrow;
 import logictechcorp.netherex.entity.ai.EntityAIChangeFlyDirection;
 import logictechcorp.netherex.entity.ai.EntityAIFlyRandomly;
 import logictechcorp.netherex.entity.ai.EntityAIGhastQueenFireballAttack;
 import logictechcorp.netherex.entity.monster.EntityGhastling;
-import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExSoundEvents;
@@ -42,10 +42,9 @@ import net.minecraft.world.World;
 
 public class EntityGhastQueen extends EntityGhast
 {
+    private final boolean[] stageStarted;
     private int cooldown;
     private int stage;
-
-    private boolean[] stageStarted = new boolean[5];
     private boolean spawnGhastlings;
 
     private BlockPos urnPos;
@@ -58,6 +57,7 @@ public class EntityGhastQueen extends EntityGhast
     {
         super(world);
         this.experienceValue = 100;
+        this.stageStarted = new boolean[5];
         this.setSize(9.5F, 9.5F);
     }
 
@@ -122,7 +122,7 @@ public class EntityGhastQueen extends EntityGhast
 
                 if(!this.world.isRemote && this.spawnGhastlings)
                 {
-                    for(int i = 0; i < ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnAmount; i++)
+                    for(int i = 0; i < NetherExConfig.entity.ghastQueen.ghastlingSpawnAmount; i++)
                     {
                         EntityGhastling ghastling = new EntityGhastling(this.world);
                         ghastling.setPosition(this.posX, this.posY - 1, this.posZ);
@@ -130,7 +130,7 @@ public class EntityGhastQueen extends EntityGhast
                     }
 
                     this.stageStarted[this.stage] = true;
-                    this.cooldown = ConfigHandler.entityConfig.ghastQueen.ghastlingSpawnCooldown * 20;
+                    this.cooldown = NetherExConfig.entity.ghastQueen.ghastlingSpawnCooldown * 20;
                     this.stage += 1;
                     this.spawnGhastlings = false;
                 }

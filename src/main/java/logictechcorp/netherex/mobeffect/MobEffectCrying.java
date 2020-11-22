@@ -19,8 +19,8 @@ package logictechcorp.netherex.mobeffect;
 
 import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.entity.monster.EntityGhastling;
-import logictechcorp.netherex.handler.ConfigHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -39,7 +39,7 @@ public class MobEffectCrying extends MobEffectMod
     {
         World world = entity.getEntityWorld();
 
-        if(this.canSpawnGhastling(entity) && world.rand.nextInt(ConfigHandler.mobEffectConfig.lost.ghastlingSpawnRarity) == 0)
+        if(this.canSpawnGhastling(entity) && world.rand.nextInt(NetherExConfig.mobEffect.lost.ghastlingSpawnRarity) == 0)
         {
             BlockPos newPos = entity.getPosition().add(0, 5, 0).offset(entity.getHorizontalFacing().getOpposite(), 5);
 

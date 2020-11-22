@@ -17,15 +17,15 @@
 
 package logictechcorp.netherex.fluid;
 
-import logictechcorp.libraryex.fluid.FluidLibEx;
+import logictechcorp.libraryex.fluid.FluidMod;
 import logictechcorp.netherex.NetherEx;
 import net.minecraftforge.fluids.FluidStack;
 
-public class FluidIchor extends FluidLibEx
+public class FluidIchor extends FluidMod
 {
     public FluidIchor()
     {
-        super(NetherEx.instance, "blood", "ichor");
+        super(NetherEx.instance, "ichor", "ichor");
         this.setViscosity(3500);
     }
 

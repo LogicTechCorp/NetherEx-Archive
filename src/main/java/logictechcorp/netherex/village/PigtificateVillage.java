@@ -33,7 +33,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-import java.lang.ref.WeakReference;
 import java.util.*;
 
 public class PigtificateVillage

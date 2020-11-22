@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.monster;
 
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExLootTables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -100,7 +100,7 @@ public class EntityBrute extends EntityMob
                 {
                     this.addedOffset = false;
                     this.charging = false;
-                    this.chargeCooldown = ConfigHandler.entityConfig.brute.chargeCooldown * 20;
+                    this.chargeCooldown = NetherExConfig.entity.brute.chargeCooldown * 20;
                 }
             }
         }

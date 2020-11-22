@@ -164,10 +164,10 @@ public class RenderHandler
                 minU = tempU;
             }
 
-            builder.pos((double) (renderX - 0.0F), (double) (0.0F - renderY), (double) renderZ).tex((double) maxU, (double) maxV).endVertex();
-            builder.pos((double) (-renderX - 0.0F), (double) (0.0F - renderY), (double) renderZ).tex((double) minU, (double) maxV).endVertex();
-            builder.pos((double) (-renderX - 0.0F), (double) (1.4F - renderY), (double) renderZ).tex((double) minU, (double) minV).endVertex();
-            builder.pos((double) (renderX - 0.0F), (double) (1.4F - renderY), (double) renderZ).tex((double) maxU, (double) minV).endVertex();
+            builder.pos((renderX - 0.0F), (0.0F - renderY), renderZ).tex(maxU, maxV).endVertex();
+            builder.pos((-renderX - 0.0F), (0.0F - renderY), renderZ).tex(minU, maxV).endVertex();
+            builder.pos((-renderX - 0.0F), (1.4F - renderY), renderZ).tex(minU, minV).endVertex();
+            builder.pos((renderX - 0.0F), (1.4F - renderY), renderZ).tex(maxU, minV).endVertex();
             height -= 0.45F;
             renderY -= 0.45F;
             renderX *= 0.9F;

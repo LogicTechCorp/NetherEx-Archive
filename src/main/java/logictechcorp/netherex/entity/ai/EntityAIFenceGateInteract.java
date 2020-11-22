@@ -65,7 +65,7 @@ public abstract class EntityAIFenceGateInteract extends EntityAIBase
                     PathPoint point = path.getPathPointFromIndex(i);
                     this.fenceGatePos = new BlockPos(point.x, point.y, point.z);
 
-                    if(this.entity.getDistanceSq((double) this.fenceGatePos.getX(), this.entity.posY, (double) this.fenceGatePos.getZ()) <= 2.25D)
+                    if(this.entity.getDistanceSq(this.fenceGatePos.getX(), this.entity.posY, this.fenceGatePos.getZ()) <= 2.25D)
                     {
                         this.fenceGate = this.getFenceGate(this.fenceGatePos);
 

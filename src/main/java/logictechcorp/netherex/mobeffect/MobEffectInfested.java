@@ -21,8 +21,8 @@ import logictechcorp.libraryex.potion.MobEffectMod;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.entity.monster.EntitySpore;
-import logictechcorp.netherex.handler.ConfigHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
@@ -43,7 +43,7 @@ public class MobEffectInfested extends MobEffectMod
         World world = entity.getEntityWorld();
         BlockPos pos = entity.getPosition();
 
-        if(this.canSpreadSpores(entity) && world.rand.nextInt(ConfigHandler.mobEffectConfig.spore.sporeSpawnRarity) == 0)
+        if(this.canSpreadSpores(entity) && world.rand.nextInt(NetherExConfig.mobEffect.spore.sporeSpawnRarity) == 0)
         {
             if(world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(1, 1, 1)).size() < 3)
             {
@@ -73,6 +73,6 @@ public class MobEffectInfested extends MobEffectMod
         }
 
         String entityRegistryName = EntityHelper.getEntityLocation(entity);
-        return (entityRegistryName != null && !CollectionHelper.contains(ConfigHandler.mobEffectConfig.spore.mobBlacklist, entityRegistryName));
+        return (entityRegistryName != null && !CollectionHelper.contains(NetherExConfig.mobEffect.spore.mobBlacklist, entityRegistryName));
     }
 }

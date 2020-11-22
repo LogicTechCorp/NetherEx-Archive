@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 public class EntityAIUseFenceGate extends EntityAIFenceGateInteract
 {
-    private boolean closeAfterUse;
+    private final boolean closeAfterUse;
     private int closeCounter;
 
     public EntityAIUseFenceGate(EntityLiving entity, boolean closeAfterUse)

@@ -18,6 +18,7 @@
 package logictechcorp.netherex.handler;
 
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.client.gui.GuiBreakingChanges;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -36,10 +37,10 @@ public class GuiScreenHandler
     {
         GuiScreen gui = event.getGui();
 
-        if(ConfigHandler.internalConfig.doNotChange.warnBreakingChanges && gui instanceof GuiMainMenu)
+        if(NetherExConfig.internal.doNotChange.warnBreakingChanges && gui instanceof GuiMainMenu)
         {
             event.setGui(new GuiBreakingChanges((GuiMainMenu) gui));
-            ConfigHandler.internalConfig.doNotChange.warnBreakingChanges = false;
+            NetherExConfig.internal.doNotChange.warnBreakingChanges = false;
             MinecraftForge.EVENT_BUS.post(new ConfigChangedEvent.OnConfigChangedEvent(NetherEx.MOD_ID, NetherEx.NAME, false, false));
         }
     }

@@ -243,7 +243,7 @@ entity.netherex:frost.name=Заморозок
 entity.netherex:ghast_queen.name=Королева гастов
 
 #Fluids
-fluid.netherex:blood.name=Ихор
+fluid.netherex:ichor.name=Ихор
 
 # Items
 item.netherex:fiery_netherbrick.name=Горячий кирпич из Нижнего мира

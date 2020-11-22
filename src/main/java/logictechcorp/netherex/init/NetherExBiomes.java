@@ -23,7 +23,7 @@ import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitRegistry;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitStructure;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.world.biome.BiomeArcticAbyss;
 import logictechcorp.netherex.world.biome.BiomeFungiForest;
 import logictechcorp.netherex.world.biome.BiomeRuthlessSands;
@@ -35,14 +35,11 @@ import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.libraries.ModList;
 
 import java.util.Collections;
 
@@ -112,7 +109,7 @@ public class NetherExBiomes
                 })
         );
 
-        if(ConfigHandler.compatibilityConfig.biomesOPlenty.enableCompatibility && NetherEx.BIOMES_O_PLENTY_LOADED)
+        if(NetherEx.BIOMES_O_PLENTY_LOADED && NetherExConfig.compatibility.biomesOPlenty.enableCompatibility)
         {
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:corrupted_sands"), 8, true, false));
             NetherEx.BIOME_DATA_MANAGER.registerBiomeData(new BiomeDataBOP(new ResourceLocation("biomesoplenty:fungi_forest"), 4, true, false));

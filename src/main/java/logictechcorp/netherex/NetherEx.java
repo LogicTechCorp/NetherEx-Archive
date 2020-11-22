@@ -21,10 +21,10 @@ import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.proxy.IProxy;
 import logictechcorp.libraryex.world.biome.data.BiomeDataManager;
-import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.handler.IMCHandler;
 import logictechcorp.netherex.init.*;
 import logictechcorp.netherex.village.PigtificateVillageManager;
+import logictechcorp.netherex.world.biome.data.BiomeDataManagerNetherEx;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -51,8 +51,8 @@ public class NetherEx implements IModData
 {
     public static final String MOD_ID = "netherex";
     public static final String NAME = "NetherEx";
-    public static final String VERSION = "2.1.8";
-    public static final String DEPENDENCIES = "required-after:libraryex@[1.1.3,);";
+    public static final String VERSION = "2.2.0";
+    public static final String DEPENDENCIES = "required-after:libraryex@[1.2.0,);";
 
     public static final boolean BIOMES_O_PLENTY_LOADED = Loader.isModLoaded("biomesoplenty");
 
@@ -71,9 +71,9 @@ public class NetherEx implements IModData
             return new ItemStack(Blocks.NETHERRACK);
         }
     };
-    public static final BiomeDataManager BIOME_DATA_MANAGER = new BiomeDataManager(MOD_ID, NAME);
+    public static final BiomeDataManager BIOME_DATA_MANAGER = new BiomeDataManagerNetherEx(NAME);
     public static final PigtificateVillageManager PIGTIFICATE_VILLAGE_MANAGER = new PigtificateVillageManager();
-    public static final Logger LOGGER = LogManager.getLogger("NetherEx");
+    public static final Logger LOGGER = LogManager.getLogger(NAME);
 
     static
     {
@@ -104,10 +104,11 @@ public class NetherEx implements IModData
     public void onFMLInitialization(FMLInitializationEvent event)
     {
         NetherExDataFixers.registerFixes();
+        NetherExMaterials.registerRepairItems();
         NetherExPigtificates.registerPigtificateCareers();
         NetherExBiomes.registerBiomeTypes();
 
-        if(ConfigHandler.dimensionConfig.nether.overrideNether)
+        if(NetherExConfig.dimension.nether.overrideNether)
         {
             NetherExBiomes.registerBiomeData();
         }
@@ -122,7 +123,7 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        if(ConfigHandler.dimensionConfig.nether.overrideNether)
+        if(NetherExConfig.dimension.nether.overrideNether)
         {
             BIOME_DATA_MANAGER.setup();
         }
@@ -134,7 +135,7 @@ public class NetherEx implements IModData
     @Mod.EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event)
     {
-        if(ConfigHandler.dimensionConfig.nether.overrideNether)
+        if(NetherExConfig.dimension.nether.overrideNether)
         {
             NetherExOverrides.overrideNether();
         }

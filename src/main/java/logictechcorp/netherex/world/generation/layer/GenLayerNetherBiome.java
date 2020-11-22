@@ -55,7 +55,7 @@ public class GenLayerNetherBiome extends GenLayer
 
     private Biome getRandomBiome()
     {
-        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>(NetherEx.BIOME_DATA_MANAGER.getWorldSpecificBiomeEntries().values());
+        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>(NetherEx.BIOME_DATA_MANAGER.getCurrentBiomeEntries().values());
         int biomeWeights = WeightedRandom.getTotalWeight(biomeEntries);
         return biomeWeights <= 0 ? Biomes.HELL : WeightedRandom.getRandomItem(biomeEntries, this.nextInt(biomeWeights)).biome;
     }

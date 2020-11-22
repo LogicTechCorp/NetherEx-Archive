@@ -30,8 +30,8 @@ import net.minecraft.world.World;
 
 public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
 {
-    private int interactionDelay;
     private final EntityPigtificate pigtificate;
+    private int interactionDelay;
 
     public EntityAIPigtificateInteract(EntityPigtificate pigtificate)
     {
@@ -95,9 +95,9 @@ public class EntityAIPigtificateInteract extends EntityAIWatchClosest2
                         EntityItem item = new EntityItem(world, this.pigtificate.posX, height, this.pigtificate.posZ, stack);
                         float yaw = this.pigtificate.rotationYawHead;
                         float pitch = this.pigtificate.rotationPitch;
-                        item.motionX = (double) (-MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F);
-                        item.motionZ = (double) (MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F);
-                        item.motionY = (double) (-MathHelper.sin(pitch * 0.017453292F) * 0.3F + 0.1F);
+                        item.motionX = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F;
+                        item.motionZ = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * 0.3F;
+                        item.motionY = -MathHelper.sin(pitch * 0.017453292F) * 0.3F + 0.1F;
                         item.setDefaultPickupDelay();
                         world.spawnEntity(item);
                         break;

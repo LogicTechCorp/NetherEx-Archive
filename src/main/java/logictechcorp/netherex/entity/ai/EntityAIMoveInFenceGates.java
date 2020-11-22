@@ -95,7 +95,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
 
         if(this.creature.getDistanceSq(pos) > 256.0D)
         {
-            Vec3d randomPos = RandomPositionGenerator.findRandomTargetBlockTowards(this.creature, 14, 3, new Vec3d((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D));
+            Vec3d randomPos = RandomPositionGenerator.findRandomTargetBlockTowards(this.creature, 14, 3, new Vec3d((double) posX + 0.5D, posY, (double) posZ + 0.5D));
 
             if(randomPos != null)
             {
@@ -104,7 +104,7 @@ public class EntityAIMoveInFenceGates extends EntityAIBase
         }
         else
         {
-            this.creature.getNavigator().tryMoveToXYZ((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D, 1.0D);
+            this.creature.getNavigator().tryMoveToXYZ((double) posX + 0.5D, posY, (double) posZ + 0.5D, 1.0D);
         }
     }
 

@@ -20,6 +20,7 @@ package logictechcorp.netherex.handler;
 import logictechcorp.libraryex.item.ItemModHammer;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.entity.monster.EntityNethermite;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -77,7 +78,7 @@ public class BlockHandler
 
             if(state.getBlock() == Blocks.MAGMA)
             {
-                if(ConfigHandler.blockConfig.magma.turnIntoLavaWhenBroken)
+                if(NetherExConfig.block.magma.turnIntoLavaWhenBroken)
                 {
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0)
                     {
@@ -89,12 +90,12 @@ public class BlockHandler
             }
             if(player.dimension == DimensionType.NETHER.getId())
             {
-                boolean canSpawnNethermites = CollectionHelper.contains(ConfigHandler.entityConfig.nethermite.blockWhitelist, state.getBlock().getRegistryName().toString());
+                boolean canSpawnNethermites = CollectionHelper.contains(NetherExConfig.entity.nethermite.blockWhitelist, state.getBlock().getRegistryName().toString());
 
-                if(ConfigHandler.entityConfig.nethermite.spawnRarity > 0 && canSpawnNethermites && world.rand.nextInt(ConfigHandler.entityConfig.nethermite.spawnRarity) == 0)
+                if(NetherExConfig.entity.nethermite.spawnRarity > 0 && canSpawnNethermites && world.rand.nextInt(NetherExConfig.entity.nethermite.spawnRarity) == 0)
                 {
                     EntityNethermite nethermite = new EntityNethermite(world);
-                    nethermite.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
+                    nethermite.setPosition((double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D);
                     world.spawnEntity(nethermite);
                 }
             }
@@ -131,7 +132,7 @@ public class BlockHandler
         {
             if(state.getBlock() == Blocks.LAVA || state.getBlock() == Blocks.FLOWING_LAVA)
             {
-                event.setResult(ConfigHandler.dimensionConfig.nether.isLavaInfinite ? Event.Result.ALLOW : Event.Result.DEFAULT);
+                event.setResult(NetherExConfig.dimension.nether.isLavaInfinite ? Event.Result.ALLOW : Event.Result.DEFAULT);
             }
         }
     }

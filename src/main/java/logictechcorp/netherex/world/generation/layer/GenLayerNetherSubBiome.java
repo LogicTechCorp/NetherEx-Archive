@@ -24,7 +24,7 @@ import java.util.List;
 
 public class GenLayerNetherSubBiome extends GenLayer
 {
-    private GenLayer subBiomeLayer;
+    private final GenLayer subBiomeLayer;
 
     public GenLayerNetherSubBiome(long seed, GenLayer biomeLayer, GenLayer subBiomeLayer)
     {

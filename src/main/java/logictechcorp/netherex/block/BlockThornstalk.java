@@ -22,7 +22,7 @@ import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.libraryex.utility.CollectionHelper;
 import logictechcorp.libraryex.utility.EntityHelper;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -97,11 +97,11 @@ public class BlockThornstalk extends BlockMod
         {
             entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }
-        else if(entity instanceof EntityLivingBase && !CollectionHelper.contains(ConfigHandler.blockConfig.thornstalk.mobBlacklist, EntityHelper.getEntityLocation((EntityLivingBase) entity)))
+        else if(entity instanceof EntityLivingBase && !CollectionHelper.contains(NetherExConfig.block.thornstalk.mobBlacklist, EntityHelper.getEntityLocation((EntityLivingBase) entity)))
         {
             entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }
-        else if(entity instanceof EntityItem && ConfigHandler.blockConfig.thornstalk.canDestroyItems)
+        else if(entity instanceof EntityItem && NetherExConfig.block.thornstalk.canDestroyItems)
         {
             entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         }

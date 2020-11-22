@@ -17,7 +17,7 @@
 
 package logictechcorp.netherex.entity.monster;
 
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExSoundEvents;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -115,11 +115,11 @@ public class EntitySpinout extends EntityMob
                 this.setSilent(false);
             }
         }
-        if(this.spinCounter >= ConfigHandler.entityConfig.spinout.spinTime * 20)
+        if(this.spinCounter >= NetherExConfig.entity.spinout.spinTime * 20)
         {
             this.spinCounter = 0;
             this.spinning = false;
-            this.spinCooldown = ConfigHandler.entityConfig.spinout.spinCooldown * 20;
+            this.spinCooldown = NetherExConfig.entity.spinout.spinCooldown * 20;
         }
         if(this.spinCooldown > 0)
         {

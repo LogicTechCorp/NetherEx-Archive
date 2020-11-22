@@ -26,9 +26,17 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class NetherExMaterials
 {
-    public static final Item.ToolMaterial AMEDIAN = EnumHelper.addToolMaterial(NetherEx.MOD_ID + ":amedian", 4, 2250, 10.0F, 1.0F, 12).setRepairItem(new ItemStack(NetherExItems.AMETHYST_CRYSTAL));
+    public static final Item.ToolMaterial AMEDIAN = EnumHelper.addToolMaterial(NetherEx.MOD_ID + ":amedian", 4, 2250, 10.0F, 1.0F, 12);
 
-    public static final ItemArmor.ArmorMaterial WITHER_BONE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":wither_bone", NetherEx.MOD_ID + ":wither_bone_armor", 8, new int[]{2, 3, 4, 2}, 16, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.5F).setRepairItem(new ItemStack(NetherExItems.WITHER_BONE));
+    public static final ItemArmor.ArmorMaterial WITHER_BONE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":wither_bone", NetherEx.MOD_ID + ":wither_bone_armor", 8, new int[]{2, 3, 4, 2}, 16, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.5F);
     public static final ItemArmor.ArmorMaterial ORANGE_SALAMANDER_HIDE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":orange_salamander_hide", NetherEx.MOD_ID + ":orange_salamander_hide_armor", 10, new int[]{2, 4, 5, 2}, 21, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F);
     public static final ItemArmor.ArmorMaterial BLACK_SALAMANDER_HIDE = EnumHelper.addArmorMaterial(NetherEx.MOD_ID + ":black_salamander_hide", NetherEx.MOD_ID + ":black_salamander_hide_armor", 10, new int[]{2, 4, 5, 2}, 21, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F);
+
+    public static void registerRepairItems()
+    {
+        AMEDIAN.setRepairItem(new ItemStack(NetherExItems.AMETHYST_CRYSTAL));
+        WITHER_BONE.setRepairItem(new ItemStack(NetherExItems.WITHER_BONE));
+        ORANGE_SALAMANDER_HIDE.setRepairItem(new ItemStack(NetherExItems.ORANGE_SALAMANDER_HIDE));
+        BLACK_SALAMANDER_HIDE.setRepairItem(new ItemStack(NetherExItems.BLACK_SALAMANDER_HIDE));
+    }
 }

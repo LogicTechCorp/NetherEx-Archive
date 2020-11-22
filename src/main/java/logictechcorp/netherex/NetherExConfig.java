@@ -15,9 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package logictechcorp.netherex.handler;
+package logictechcorp.netherex;
 
-import logictechcorp.netherex.NetherEx;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -26,41 +25,41 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config.LangKey("config." + NetherEx.MOD_ID + ":title")
 @Config(modid = NetherEx.MOD_ID, name = NetherEx.MOD_ID + "/" + NetherEx.MOD_ID, category = "global")
-public class ConfigHandler
+public class NetherExConfig
 {
     @Config.Name("internal")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":internal")
-    public static InternalConfig internalConfig = new InternalConfig();
+    public static Internal internal = new Internal();
 
     @Config.Name("client")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":client")
-    public static ClientConfig clientConfig = new ClientConfig();
+    public static Client client = new Client();
 
     @Config.Name("compatibility")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility")
-    public static CompatibilityConfig compatibilityConfig = new CompatibilityConfig();
+    public static Compatibility compatibility = new Compatibility();
 
     @Config.Name("dimension")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension")
-    public static DimensionConfig dimensionConfig = new DimensionConfig();
+    public static Dimension dimension = new Dimension();
 
     @Config.Name("block")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":block")
-    public static BlockConfig blockConfig = new BlockConfig();
+    public static Block block = new Block();
 
     @Config.Name("mob_effect")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect")
-    public static MobEffectConfig mobEffectConfig = new MobEffectConfig();
+    public static MobEffect mobEffect = new MobEffect();
 
     @Config.Name("entity")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":entity")
-    public static EntityConfig entityConfig = new EntityConfig();
+    public static Entity entity = new Entity();
 
     @Config.Name("biome")
     @Config.LangKey("config." + NetherEx.MOD_ID + ":biome")
-    public static BiomeConfig biomeConfig = new BiomeConfig();
+    public static Biome biome = new Biome();
 
-    public static class InternalConfig
+    public static class Internal
     {
         @Config.Name("do_not_change")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.doNotChange")
@@ -69,7 +68,7 @@ public class ConfigHandler
         public class DoNotChange
         {
             @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.doNotChange.warnBreakingChanges")
-            public boolean warnBreakingChanges = true;
+            public boolean warnBreakingChanges = false;
 
             @Config.RangeInt(min = 1, max = 1)
             @Config.LangKey("config." + NetherEx.MOD_ID + ":internal.doNotChange.configVersion")
@@ -77,7 +76,7 @@ public class ConfigHandler
         }
     }
 
-    public static class ClientConfig
+    public static class Client
     {
         @Config.Name("visual")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":client.visual")
@@ -90,7 +89,7 @@ public class ConfigHandler
         }
     }
 
-    public static class CompatibilityConfig
+    public static class Compatibility
     {
         @Config.Name("biomesoplenty")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":compatibility.biomesOPlenty")
@@ -103,7 +102,7 @@ public class ConfigHandler
         }
     }
 
-    public static class DimensionConfig
+    public static class Dimension
     {
         @Config.Name("nether")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":dimension.nether")
@@ -126,7 +125,7 @@ public class ConfigHandler
         }
     }
 
-    public static class BlockConfig
+    public static class Block
     {
         @Config.Name("blue_fire")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":block.blueFire")
@@ -212,7 +211,7 @@ public class ConfigHandler
         }
     }
 
-    public static class MobEffectConfig
+    public static class MobEffect
     {
         @Config.Name("freeze")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":mobEffect.freeze")
@@ -273,8 +272,12 @@ public class ConfigHandler
         }
     }
 
-    public static class EntityConfig
+    public static class Entity
     {
+        @Config.Name("pigtificate")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.pigtificate")
+        public Pigtificate pigtificate = new Pigtificate();
+
         @Config.Name("ember")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ember")
         public Ember ember = new Ember();
@@ -302,6 +305,17 @@ public class ConfigHandler
         @Config.Name("ghast_queen")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.ghastQueen")
         public GhastQueen ghastQueen = new GhastQueen();
+
+        public class Pigtificate
+        {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.pigtificate.useGlobalTradeConfigs")
+            @Config.Comment({"Use global trade configs"})
+            public boolean useGlobalTradeConfigs = false;
+
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":entity.pigtificate.usePerWorldTradeConfigs")
+            @Config.Comment({"Use per world trade configs"})
+            public boolean usePerWorldTradeConfigs = true;
+        }
 
         public class Ember
         {
@@ -416,11 +430,26 @@ public class ConfigHandler
         }
     }
 
-    public static class BiomeConfig
+    public static class Biome
     {
+        @Config.Name("general")
+        @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.general")
+        public General general = new General();
+
         @Config.Name("arctic_abyss")
         @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.arcticAbyss")
         public ArcticAbyss arcticAbyss = new ArcticAbyss();
+
+        public class General
+        {
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.general.useGlobalBiomeConfigs")
+            @Config.Comment({"Use global biome configs"})
+            public boolean useGlobalBiomeConfigs = false;
+
+            @Config.LangKey("config." + NetherEx.MOD_ID + ":biome.general.usePerWorldBiomeConfigs")
+            @Config.Comment({"Use per world biome configs"})
+            public boolean usePerWorldBiomeConfigs = true;
+        }
 
         public class ArcticAbyss
         {

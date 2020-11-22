@@ -111,7 +111,7 @@ public class TeleporterNetherEx extends Teleporter
             }
 
             double teleportPosX = (double) portalPos.getX() + 0.5D;
-            double teleportPosY = (double) portalPos.getY();
+            double teleportPosY = portalPos.getY();
             double teleportPosZ = (double) portalPos.getZ() + 0.5D;
             EnumFacing teleportFacing;
 

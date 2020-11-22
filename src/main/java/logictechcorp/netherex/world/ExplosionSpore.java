@@ -18,9 +18,9 @@
 package logictechcorp.netherex.world;
 
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
-import logictechcorp.netherex.handler.ConfigHandler;
 import logictechcorp.netherex.init.NetherExMobEffects;
 import logictechcorp.netherex.init.NetherExParticleTypes;
 import logictechcorp.netherex.init.NetherExSoundEvents;
@@ -99,9 +99,9 @@ public class ExplosionSpore extends Explosion
                     {
                         if(x == 0 || x == 15 || y == 0 || y == 15 || z == 0 || z == 15)
                         {
-                            double posX = (double) ((float) x / 15.0F * 2.0F - 1.0F);
-                            double posY = (double) ((float) y / 15.0F * 2.0F - 1.0F);
-                            double posZ = (double) ((float) z / 15.0F * 2.0F - 1.0F);
+                            double posX = ((float) x / 15.0F * 2.0F - 1.0F);
+                            double posY = ((float) y / 15.0F * 2.0F - 1.0F);
+                            double posZ = ((float) z / 15.0F * 2.0F - 1.0F);
                             double d3 = Math.sqrt(posX * posX + posY * posY + posZ * posZ);
                             posX = posX / d3;
                             posY = posY / d3;
@@ -144,7 +144,7 @@ public class ExplosionSpore extends Explosion
             int maxY = MathHelper.floor(this.explosionY + (double) f3 + 1.0D);
             int minZ = MathHelper.floor(this.explosionZ - (double) f3 - 1.0D);
             int maxZ = MathHelper.floor(this.explosionZ + (double) f3 + 1.0D);
-            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB((double) minX, (double) minY, (double) minZ, (double) maxX, (double) maxY, (double) maxZ));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ));
             ForgeEventFactory.onExplosionDetonate(this.world, this, list, f3);
             Vec3d vec3d = new Vec3d(this.explosionX, this.explosionY, this.explosionZ);
 
@@ -159,14 +159,14 @@ public class ExplosionSpore extends Explosion
                         double d5 = entity.posX - this.explosionX;
                         double d7 = entity.posY + (double) entity.getEyeHeight() - this.explosionY;
                         double d9 = entity.posZ - this.explosionZ;
-                        double d13 = (double) MathHelper.sqrt(d5 * d5 + d7 * d7 + d9 * d9);
+                        double d13 = MathHelper.sqrt(d5 * d5 + d7 * d7 + d9 * d9);
 
                         if(d13 != 0.0D)
                         {
                             d5 = d5 / d13;
                             d7 = d7 / d13;
                             d9 = d9 / d13;
-                            double d14 = (double) this.world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
+                            double d14 = this.world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
                             double d10 = (1.0D - d12) * d14;
 
                             if(!(entity instanceof EntitySporeCreeper) && !(entity instanceof EntitySpore))
@@ -244,10 +244,10 @@ public class ExplosionSpore extends Explosion
             {
                 for(BlockPos pos : this.affectedBlockPositions)
                 {
-                    if(this.world.getBlockState(pos).getMaterial() == Material.AIR && this.world.getBlockState(pos.down()).isFullBlock() && this.explosionRNG.nextInt(ConfigHandler.entityConfig.sporeCreeper.sporeSpawnRarity) == 0)
+                    if(this.world.getBlockState(pos).getMaterial() == Material.AIR && this.world.getBlockState(pos.down()).isFullBlock() && this.explosionRNG.nextInt(NetherExConfig.entity.sporeCreeper.sporeSpawnRarity) == 0)
                     {
                         EntitySpore spore = new EntitySpore(this.world, 0);
-                        spore.setPosition((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D);
+                        spore.setPosition((double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D);
                         this.world.spawnEntity(spore);
                     }
                 }

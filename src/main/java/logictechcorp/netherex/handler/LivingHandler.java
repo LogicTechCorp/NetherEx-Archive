@@ -19,6 +19,7 @@ package logictechcorp.netherex.handler;
 
 import logictechcorp.libraryex.utility.ArmorHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.entity.item.EntityObsidianBoat;
 import logictechcorp.netherex.entity.passive.EntityPigtificate;
 import logictechcorp.netherex.init.NetherExBiomes;
@@ -65,7 +66,7 @@ public class LivingHandler
         {
             if(!entity.isPotionActive(NetherExMobEffects.FROZEN))
             {
-                if(biome == NetherExBiomes.ARCTIC_ABYSS && random.nextInt(ConfigHandler.biomeConfig.arcticAbyss.mobFreezeRarity) == 0)
+                if(biome == NetherExBiomes.ARCTIC_ABYSS && random.nextInt(NetherExConfig.biome.arcticAbyss.mobFreezeRarity) == 0)
                 {
                     if(entity instanceof EntityPlayer)
                     {

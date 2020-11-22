@@ -25,7 +25,7 @@ import net.minecraft.entity.ai.EntityAITarget;
 
 public class EntityAIGoldGolemDefendVillage extends EntityAITarget
 {
-    private EntityGoldGolem golem;
+    private final EntityGoldGolem golem;
     private EntityLivingBase villageAggressor;
 
     public EntityAIGoldGolemDefendVillage(EntityGoldGolem golem)

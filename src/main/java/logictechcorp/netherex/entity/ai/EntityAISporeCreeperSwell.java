@@ -23,7 +23,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAISporeCreeperSwell extends EntityAIBase
 {
-    private EntitySporeCreeper creeper;
+    private final EntitySporeCreeper creeper;
     private EntityLivingBase target;
 
     public EntityAISporeCreeperSwell(EntitySporeCreeper creeper)

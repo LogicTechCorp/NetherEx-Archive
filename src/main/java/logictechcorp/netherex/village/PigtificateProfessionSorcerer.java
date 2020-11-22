@@ -53,13 +53,13 @@ public class PigtificateProfessionSorcerer extends PigtificateProfession
             this.addTrade(new Trade(new TradeStack(Items.BOOK, 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 5, 10), TradeStack.EMPTY, 2, 8, 1));
             this.addTrade(new Trade(new TradeStack(Items.GLOWSTONE_DUST, 3, 6), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 1, 1), TradeStack.EMPTY, 4, 8, 1));
             this.addTrade(new Trade(new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 1, 2), new TradeStack(Items.BLAZE_ROD, 4, 8), TradeStack.EMPTY, 1, 4, 1));
-            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(1), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 4, 16), TradeStack.EMPTY, 1, 2, 1));
-            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(3), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 8, 32), TradeStack.EMPTY, 1, 4, 2));
-            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(3), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 8, 32), TradeStack.EMPTY, 1, 4, 2));
+            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(6), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 4, 16), TradeStack.EMPTY, 1, 2, 1));
+            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(8), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 8, 32), TradeStack.EMPTY, 1, 4, 2));
+            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(8), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 8, 32), TradeStack.EMPTY, 1, 4, 2));
             this.addTrade(new Trade(new TradeStack(Items.EXPERIENCE_BOTTLE, 1, 4), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 6, 16), TradeStack.EMPTY, 1, 2, 3));
-            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(5), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 12, 48), TradeStack.EMPTY, 1, 6, 3));
-            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(5), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 12, 48), TradeStack.EMPTY, 1, 6, 3));
-            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(5), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 12, 48), TradeStack.EMPTY, 1, 6, 3));
+            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(10), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 12, 48), TradeStack.EMPTY, 1, 6, 3));
+            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(10), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 12, 48), TradeStack.EMPTY, 1, 6, 3));
+            this.addTrade(new Trade(new TradeStack(ItemHelper.getRandomlyEnchantedBook(10), 1, 1), new TradeStack(NetherExItems.AMETHYST_CRYSTAL, 12, 48), TradeStack.EMPTY, 1, 6, 3));
         }
     }
 

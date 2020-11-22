@@ -22,6 +22,7 @@ import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.libraryex.world.generation.GenerationStage;
 import logictechcorp.libraryex.world.generation.trait.BiomeTrait;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -84,7 +85,7 @@ public class BiomeTraitGenerationHandler
     {
         BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(world.getBiome(pos.add(16, 0, 16)));
 
-        if(ConfigHandler.dimensionConfig.nether.overrideNether && biomeData != BiomeData.EMPTY)
+        if(NetherExConfig.dimension.nether.overrideNether && biomeData != BiomeData.EMPTY)
         {
             for(BiomeTrait trait : biomeData.getBiomeTraits(generationStage))
             {

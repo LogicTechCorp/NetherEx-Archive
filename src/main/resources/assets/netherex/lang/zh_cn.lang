@@ -243,7 +243,7 @@ entity.netherex:frost.name=冻结
 entity.netherex:ghast_queen.name=恶魂女王
 
 # Fluids
-fluid.netherex:blood.name=不朽之血
+fluid.netherex:ichor.name=不朽之血
 
 # Items
 item.netherex:fiery_netherbrick.name=火焰地狱砖

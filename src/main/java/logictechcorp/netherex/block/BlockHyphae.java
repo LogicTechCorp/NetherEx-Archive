@@ -22,7 +22,7 @@ import logictechcorp.libraryex.block.HarvestLevel;
 import logictechcorp.libraryex.block.HarvestTool;
 import logictechcorp.libraryex.block.property.BlockProperties;
 import logictechcorp.netherex.NetherEx;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -52,7 +52,7 @@ public class BlockHyphae extends BlockMod
     {
         super(NetherEx.getResource("hyphae"), new BlockProperties(Material.ROCK, MapColor.GRAY).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.WOOD).hardness(0.5F).resistance(2.0F));
 
-        if(ConfigHandler.blockConfig.hyphae.shouldSpread)
+        if(NetherExConfig.block.hyphae.shouldSpread)
         {
             this.setTickRandomly(true);
         }
@@ -64,14 +64,14 @@ public class BlockHyphae extends BlockMod
     {
         if(random.nextInt(10) == 0)
         {
-            world.spawnParticle(EnumParticleTypes.TOWN_AURA, (double) ((float) pos.getX() + random.nextFloat()), (double) ((float) pos.getY() + 1.1F), (double) ((float) pos.getZ() + random.nextFloat()), 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.TOWN_AURA, ((float) pos.getX() + random.nextFloat()), ((float) pos.getY() + 1.1F), ((float) pos.getZ() + random.nextFloat()), 0.0D, 0.0D, 0.0D);
         }
     }
 
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
-        if(!world.isRemote && ConfigHandler.blockConfig.hyphae.shouldSpread)
+        if(!world.isRemote && NetherExConfig.block.hyphae.shouldSpread)
         {
             if(world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2)
             {

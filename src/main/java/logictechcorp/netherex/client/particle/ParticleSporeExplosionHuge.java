@@ -32,13 +32,13 @@ public class ParticleSporeExplosionHuge extends Particle
 {
     private int timeSinceStart;
 
-    public ParticleSporeExplosionHuge(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn)
+    public ParticleSporeExplosionHuge(World world, double posX, double posY, double posZ)
     {
-        super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
+        super(world, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
     }
 
     @Override
-    public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
+    public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
     {
     }
 
@@ -52,7 +52,7 @@ public class ParticleSporeExplosionHuge extends Particle
             double d0 = this.posX + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
             double d1 = this.posY + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
             double d2 = this.posZ + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
-            NetherEx.proxy.spawnParticle(NetherExParticleTypes.SPORE_EXPLOSION_LARGE.getId(), d0, d1, d2, (double) ((float) this.timeSinceStart / (float) maximumTime), 0.0D, 0.0D);
+            NetherEx.proxy.spawnParticle(NetherExParticleTypes.SPORE_EXPLOSION_LARGE.getId(), d0, d1, d2, ((float) this.timeSinceStart / (float) maximumTime), 0.0D, 0.0D);
         }
 
         this.timeSinceStart++;
@@ -73,9 +73,9 @@ public class ParticleSporeExplosionHuge extends Particle
     public static class Factory implements IParticleFactory
     {
         @Override
-        public Particle createParticle(int particleID, World world, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
+        public Particle createParticle(int particleId, World world, double posX, double posY, double posZ, double speedX, double speedY, double speedZ, int... parameters)
         {
-            return new ParticleSporeExplosionHuge(world, xCoordIn, yCoordIn, zCoordIn);
+            return new ParticleSporeExplosionHuge(world, posX, posY, posZ);
         }
     }
 }

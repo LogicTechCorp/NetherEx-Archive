@@ -20,14 +20,18 @@ package logictechcorp.netherex.village;
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.json.JsonFormat;
+import logictechcorp.libraryex.LibraryEx;
 import logictechcorp.libraryex.trade.Trade;
 import logictechcorp.libraryex.utility.FileHelper;
 import logictechcorp.libraryex.utility.WorldHelper;
 import logictechcorp.netherex.NetherEx;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExRegistries;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -42,11 +46,13 @@ import java.util.stream.Collectors;
 public class PigtificateVillageManager
 {
     private final Map<PigtificateProfession.Career, List<Trade>> defaultTrades;
+    private final Map<PigtificateProfession.Career, List<Trade>> currentTrades;
     private final Map<Integer, PigtificateVillageData> pigtificateVillageData;
 
     public PigtificateVillageManager()
     {
         this.defaultTrades = new HashMap<>();
+        this.currentTrades = new HashMap<>();
         this.pigtificateVillageData = new HashMap<>();
     }
 
@@ -54,45 +60,118 @@ public class PigtificateVillageManager
     {
         NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection()
                 .forEach(profession -> profession.getCareers()
-                        .forEach(career -> this.defaultTrades.put(career, new ArrayList<>(career.getTrades()))));
+                        .forEach(career ->
+                        {
+                            List<Trade> trades = career.getTrades();
+                            this.defaultTrades.put(career, trades);
+                            trades.forEach(career::removeTrade);
+                        }));
+
+        if(NetherExConfig.entity.pigtificate.useGlobalTradeConfigs)
+        {
+            Path globalTradeConfigDirectoryPath = LibraryEx.CONFIG_DIRECTORY.toPath().resolve(NetherEx.MOD_ID).resolve("pigtificate_trades");
+            this.createPigtificateTradeConfigs(globalTradeConfigDirectoryPath);
+        }
     }
 
-    public void loadVillageData(WorldEvent.Load event)
+    public void onWorldLoad(WorldEvent.Load event)
     {
         World world = event.getWorld();
 
+        if(!world.isRemote)
+        {
+            if(world.provider.getDimension() == DimensionType.OVERWORLD.getId())
+            {
+                if(NetherExConfig.entity.pigtificate.useGlobalTradeConfigs)
+                {
+                    Path globalTradeConfigDirectoryPath = LibraryEx.CONFIG_DIRECTORY.toPath().resolve(NetherEx.MOD_ID).resolve("pigtificate_trades");
+                    this.readPigtificateTradeConfigs(globalTradeConfigDirectoryPath);
+                }
+
+                if(NetherExConfig.entity.pigtificate.usePerWorldTradeConfigs)
+                {
+                    Path perWorldTradeConfigDirectoryPath = Paths.get(WorldHelper.getSaveDirectory(event.getWorld()), "config", NetherEx.MOD_ID, "pigtificate_trades");
+                    this.createPigtificateTradeConfigs(perWorldTradeConfigDirectoryPath);
+                    this.readPigtificateTradeConfigs(perWorldTradeConfigDirectoryPath);
+                }
+
+                for(Map.Entry<PigtificateProfession.Career, List<Trade>> entry : this.currentTrades.entrySet())
+                {
+                    PigtificateProfession.Career career = entry.getKey();
+                    List<Trade> trades = entry.getValue();
+                    trades.forEach(career::addTrade);
+                }
+            }
+
+            this.loadVillageData(world);
+        }
+    }
+
+    public void onWorldTick(TickEvent.WorldTickEvent event)
+    {
+        World world = event.world;
+
+        if(event.phase == TickEvent.Phase.END)
+        {
+            if(!world.isRemote)
+            {
+                PigtificateVillageData data = this.getVillageData(world, false);
+
+                if(data != null)
+                {
+                    data.tick(world);
+                }
+            }
+        }
+    }
+
+    public void onWorldUnload(WorldEvent.Unload event)
+    {
+        World world = event.getWorld();
+
+        if(!world.isRemote)
+        {
+            int dimension = world.provider.getDimension();
+            this.unloadVillageData(dimension);
+
+            if(dimension == DimensionType.OVERWORLD.getId())
+            {
+                NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection()
+                        .forEach(profession -> profession.getCareers()
+                                .forEach(career ->
+                                {
+                                    List<Trade> trades = career.getTrades();
+                                    trades.forEach(career::removeTrade);
+                                }));
+
+                this.pigtificateVillageData.clear();
+            }
+        }
+    }
+
+    public void loadVillageData(World world)
+    {
         if(!this.hasData(world))
         {
             this.getVillageData(world, false);
         }
     }
 
-    public void unloadVillageData(WorldEvent.Unload event)
+    public void unloadVillageData(int dimensionId)
     {
-        this.pigtificateVillageData.remove(event.getWorld().provider.getDimension());
+        this.pigtificateVillageData.remove(dimensionId);
     }
 
-    public void cleanup(WorldEvent.Unload event)
+    public void readPigtificateTradeConfigs(Path tradeConfigDirectoryPath)
     {
-        NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValuesCollection()
-                .forEach(profession -> profession.getCareers()
-                        .forEach(career -> career.getTrades().forEach(career::removeTrade)));
-
-        this.pigtificateVillageData.clear();
-    }
-
-    public void readPigtificateTradeConfigs(WorldEvent.Load event)
-    {
-        Path path = Paths.get(WorldHelper.getSaveDirectory(event.getWorld()), "config", NetherEx.MOD_ID, "pigtificate_trades");
-
-        if(Files.isReadable(path))
+        if(Files.isReadable(tradeConfigDirectoryPath))
         {
             NetherEx.LOGGER.info("Reading Pigtificate trade configs.");
 
             try
             {
-                Files.createDirectories(path);
-                Iterator<Path> pathIter = Files.walk(path).iterator();
+                Files.createDirectories(tradeConfigDirectoryPath);
+                Iterator<Path> pathIter = Files.walk(tradeConfigDirectoryPath).iterator();
 
                 while(pathIter.hasNext())
                 {
@@ -108,7 +187,7 @@ public class PigtificateVillageManager
                             String filePath = configFile.getPath();
                             String fileBackupPath = filePath + "_backup";
                             Files.move(configFile.toPath(), Paths.get(fileBackupPath));
-                            NetherEx.LOGGER.warn("The trade config at {} was invalid and was backed up as {}.", filePath, fileBackupPath);
+                            NetherEx.LOGGER.warn("The trade config at {} was invalid and was backed up to {}.", filePath, fileBackupPath);
                             continue;
                         }
 
@@ -129,7 +208,12 @@ public class PigtificateVillageManager
                                 {
                                     for(Config tradeConfig : tradeConfigs)
                                     {
-                                        career.addTrade(new Trade(tradeConfig));
+                                        if(!this.currentTrades.containsKey(career))
+                                        {
+                                            this.currentTrades.put(career, new ArrayList<>());
+                                        }
+
+                                        this.currentTrades.get(career).add(new Trade(tradeConfig));
                                     }
                                 }
                             }
@@ -141,7 +225,7 @@ public class PigtificateVillageManager
                     }
                     else if(!configFile.isDirectory() && !FileHelper.getFileExtension(configFile).equals("json_backup"))
                     {
-                        NetherEx.LOGGER.warn("Skipping file located at {}, as it is not a json file.", configPath.toString());
+                        NetherEx.LOGGER.warn("Skipping file located at {}, since it is not a json file.", configPath.toString());
                     }
                 }
             }
@@ -152,27 +236,28 @@ public class PigtificateVillageManager
         }
         else
         {
-            NetherEx.LOGGER.warn("Unable to read Pigtificate trade configs. The default configs will be used.");
+            NetherEx.LOGGER.warn("Unable to read Pigtificate trade configs.");
         }
     }
 
-    public void createPigtificateTradeConfigs(WorldEvent.Load event)
+    public void createPigtificateTradeConfigs(Path tradeConfigDirectoryPath)
     {
+        NetherEx.LOGGER.info("Creating Pigtificate trade configs.");
+
         try
         {
-            NetherEx.LOGGER.info("Creating Pigtificate trade configs.");
-
             for(Map.Entry<PigtificateProfession.Career, List<Trade>> entry : this.defaultTrades.entrySet())
             {
                 PigtificateProfession.Career career = entry.getKey();
                 List<Trade> trades = entry.getValue();
 
-                File configFile = new File(WorldHelper.getSaveDirectory(event.getWorld()), "/config/" + NetherEx.MOD_ID + "/pigtificate_trades/" + career.getName().toString().replace(":", "/") + ".json");
+                ResourceLocation pigtificateCareerName = career.getName();
+                File configFile = new File(tradeConfigDirectoryPath.toFile(), pigtificateCareerName.toString().replace(":", "/") + ".json");
 
                 if(!configFile.exists())
                 {
                     Files.createDirectories(configFile.getParentFile().toPath());
-                    FileConfig tradeConfig = FileConfig.of(configFile);
+                    FileConfig tradeConfig = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
                     tradeConfig.set("profession", career.getProfession().getName().toString());
                     tradeConfig.set("career", career.getName().toString());
                     tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
@@ -189,7 +274,17 @@ public class PigtificateVillageManager
 
     public boolean hasData(World world)
     {
-        return pigtificateVillageData.containsKey(world.provider.getDimension());
+        return this.pigtificateVillageData.containsKey(world.provider.getDimension());
+    }
+
+    public Map<PigtificateProfession.Career, List<Trade>> getDefaultTrades()
+    {
+        return Collections.unmodifiableMap(this.defaultTrades);
+    }
+
+    public Map<PigtificateProfession.Career, List<Trade>> getCurrentTrades()
+    {
+        return Collections.unmodifiableMap(this.currentTrades);
     }
 
     public PigtificateVillageData getVillageData(World world, boolean createData)
@@ -199,7 +294,7 @@ public class PigtificateVillageManager
 
         if(this.hasData(world))
         {
-            data = pigtificateVillageData.get(dimensionId);
+            data = this.pigtificateVillageData.get(dimensionId);
         }
         else
         {
@@ -215,7 +310,7 @@ public class PigtificateVillageManager
 
         if(data != null)
         {
-            pigtificateVillageData.put(dimensionId, data);
+            this.pigtificateVillageData.put(dimensionId, data);
         }
 
         return data;

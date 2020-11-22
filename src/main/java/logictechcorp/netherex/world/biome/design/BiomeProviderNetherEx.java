@@ -77,7 +77,7 @@ public class BiomeProviderNetherEx extends BiomeProvider
     {
         GenLayer baseLayer = new GenLayerIsland(1L);
         GenLayer biomeLayer = new GenLayerNetherBiome(200L, baseLayer);
-        GenLayer subBiomeLayer = new GenLayerRiverInit(100L, biomeLayer);
+        GenLayer subBiomeLayer = new GenLayerRiverInit(200L, biomeLayer);
         biomeLayer = GenLayerZoom.magnify(1000L, biomeLayer, 2);
         subBiomeLayer = GenLayerZoom.magnify(1000L, subBiomeLayer, 2);
         baseLayer = new GenLayerNetherSubBiome(1000L, biomeLayer, subBiomeLayer);

@@ -18,7 +18,7 @@
 package logictechcorp.netherex.entity.monster;
 
 import com.google.common.collect.Lists;
-import logictechcorp.netherex.handler.ConfigHandler;
+import logictechcorp.netherex.NetherExConfig;
 import logictechcorp.netherex.init.NetherExItems;
 import logictechcorp.netherex.init.NetherExLootTables;
 import logictechcorp.netherex.init.NetherExSoundEvents;
@@ -92,7 +92,7 @@ public class EntitySpore extends EntityMob
         {
             this.setCounter(this.getCounter() + 1);
 
-            if(this.getCounter() >= (ConfigHandler.entityConfig.spore.growthTime / (this.getStage() + 1)) * 20)
+            if(this.getCounter() >= (NetherExConfig.entity.spore.growthTime / (this.getStage() + 1)) * 20)
             {
                 this.setCounter(0);
                 this.setStage(this.getStage() + 1);
@@ -107,7 +107,7 @@ public class EntitySpore extends EntityMob
                 if(!this.world.isRemote)
                 {
 
-                    int creeperSpawns = this.rand.nextInt(ConfigHandler.entityConfig.spore.creeperSpawnAmount) + 1;
+                    int creeperSpawns = this.rand.nextInt(NetherExConfig.entity.spore.creeperSpawnAmount) + 1;
 
                     for(int i = 0; i < creeperSpawns; i++)
                     {
