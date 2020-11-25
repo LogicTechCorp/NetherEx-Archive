@@ -298,9 +298,9 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
     @Override
     public EntityAgeable createChild(EntityAgeable ageable)
     {
-        EntityPigtificate profession = new EntityPigtificate(this.world);
-        profession.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(profession)), null);
-        return profession;
+        EntityPigtificate pigtificate = new EntityPigtificate(this.world);
+        pigtificate.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(pigtificate)), null);
+        return pigtificate;
     }
 
     @Override

@@ -123,6 +123,7 @@ public class LivingHandler
                 {
                     EntityPigtificate pigtificate = new EntityPigtificate(world);
                     pigtificate.copyLocationAndAnglesFrom(zombiePigman);
+                    pigtificate.onInitialSpawn(world.getDifficultyForLocation(pigtificate.getPosition()), null);
                     pigtificate.setLookingForHome();
 
                     if(zombiePigman.isChild())
