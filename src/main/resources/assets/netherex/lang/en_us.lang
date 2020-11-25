@@ -111,8 +111,8 @@ config.netherex:entity.tooltip=Settings that only affect Entities
 
 config.netherex:entity.pigtificate=Pigtificate Settings
 config.netherex:entity.pigtificate.tooltip=Settings that only affect the Pigtificates
-config.netherex:entity.pigtificate.useGlobaTradeConfigs=Use Global Trade Configs
-config.netherex:entity.pigtificate.useGlobaTradeConfigs.tooltip=Use global trade configs
+config.netherex:entity.pigtificate.useGlobalTradeConfigs=Use Global Trade Configs
+config.netherex:entity.pigtificate.useGlobalTradeConfigs.tooltip=Use global trade configs
 config.netherex:entity.pigtificate.usePerWorldTradeConfigs=Use Per World Trade Configs
 config.netherex:entity.pigtificate.usePerWorldTradeConfigs.tooltip=Use per world trade configs
 
