@@ -20,6 +20,7 @@ package logictechcorp.netherex.world.biome;
 import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.world.biome.BiomeMod;
 import logictechcorp.libraryex.world.biome.data.BiomeData;
+import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.biome.design.BiomeDecoratorNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -27,13 +28,12 @@ import net.minecraft.world.biome.BiomeDecorator;
 
 public abstract class BiomeNetherEx extends BiomeMod<BiomeData>
 {
-    protected static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
     protected static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
-    protected static final IBlockState GLOWSTONE = Blocks.GLOWSTONE.getDefaultState();
     protected static final IBlockState FIRE = Blocks.FIRE.getDefaultState();
     protected static final IBlockState LAVA = Blocks.LAVA.getDefaultState();
     protected static final IBlockState FLOWING_LAVA = Blocks.FLOWING_LAVA.getDefaultState();
     protected static final IBlockState MAGMA = Blocks.MAGMA.getDefaultState();
+    protected static final IBlockState QUARTZ_ORE = NetherExBlocks.QUARTZ_ORE.getDefaultState();
 
     public BiomeNetherEx(IModData data, BiomeProperties properties, String name)
     {

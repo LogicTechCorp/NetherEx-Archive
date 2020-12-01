@@ -27,12 +27,9 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
-import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
 import java.util.Collections;
@@ -55,8 +52,8 @@ public class BiomeFungiForest extends BiomeNetherEx
     @Override
     public BiomeData getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(NetherExBiomes.FUNGI_FOREST, 4, true, false);
-        biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, NetherExBlocks.HYPHAE.getDefaultState());
+        BiomeData biomeData = new BiomeData(this, 4, true, false);
+        biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, HYPHAE);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, LIVELY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitCluster.create(trait ->
@@ -65,16 +62,14 @@ public class BiomeFungiForest extends BiomeNetherEx
             trait.randomizeGenerationAttempts(true);
             trait.minimumGenerationHeight(4);
             trait.maximumGenerationHeight(124);
-            trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
-            trait.direction(EnumFacing.DOWN);
+            trait.blockToAttachTo(LIVELY_NETHERRACK);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitCluster.create(trait ->
         {
             trait.generationAttempts(10);
             trait.minimumGenerationHeight(1);
             trait.maximumGenerationHeight(128);
-            trait.blockToAttachTo(Blocks.NETHERRACK.getDefaultState());
-            trait.direction(EnumFacing.DOWN);
+            trait.blockToAttachTo(LIVELY_NETHERRACK);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitBigMushroom.create(trait ->
         {
@@ -107,8 +102,8 @@ public class BiomeFungiForest extends BiomeNetherEx
             trait.generationAttempts(16);
             trait.minimumGenerationHeight(10);
             trait.maximumGenerationHeight(108);
-            trait.blockToSpawn(NetherExBlocks.QUARTZ_ORE.getDefaultState());
-            trait.blockToReplace(Blocks.NETHERRACK.getDefaultState());
+            trait.blockToSpawn(QUARTZ_ORE);
+            trait.blockToReplace(LIVELY_NETHERRACK);
             trait.veinSize(14);
         }));
         biomeData.addBiomeTrait(GenerationStage.STRUCTURE, BiomeTraitStructure.create(trait ->

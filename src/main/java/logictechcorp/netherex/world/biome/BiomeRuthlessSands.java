@@ -24,7 +24,6 @@ import logictechcorp.libraryex.world.generation.trait.BiomeTraitFluid;
 import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpinout;
-import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
 import net.minecraft.block.state.IBlockState;
@@ -49,7 +48,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     @Override
     public BiomeData getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(NetherExBiomes.RUTHLESS_SANDS, 8, true, false);
+        BiomeData biomeData = new BiomeData(this, 8, true, false);
         biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, SOUL_SAND);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, GLOOMY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);
@@ -97,7 +96,7 @@ public class BiomeRuthlessSands extends BiomeNetherEx
             trait.generationAttempts(16);
             trait.minimumGenerationHeight(10);
             trait.maximumGenerationHeight(108);
-            trait.blockToSpawn(NetherExBlocks.QUARTZ_ORE.getDefaultState());
+            trait.blockToSpawn(QUARTZ_ORE);
             trait.blockToReplace(GLOOMY_NETHERRACK);
             trait.veinSize(14);
         }));

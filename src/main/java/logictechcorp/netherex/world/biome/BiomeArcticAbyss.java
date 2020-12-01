@@ -28,10 +28,8 @@ import logictechcorp.netherex.entity.monster.EntityBrute;
 import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
 import logictechcorp.netherex.entity.monster.EntityFrost;
 import logictechcorp.netherex.entity.monster.EntityWight;
-import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeArcticAbyss extends BiomeNetherEx
@@ -53,7 +51,7 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     @Override
     public BiomeData getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(NetherExBiomes.ARCTIC_ABYSS, 2, true, false);
+        BiomeData biomeData = new BiomeData(this, 2, true, false);
         biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, FROSTBURN_ICE);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, ICY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, MAGMA);
@@ -74,7 +72,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             trait.maximumGenerationHeight(124);
             trait.blockToSpawn(NetherExBlocks.BLUE_FIRE.getDefaultState());
             trait.blockToTarget(FROSTBURN_ICE);
-            trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitCluster.create(trait ->
         {
@@ -83,7 +80,6 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             trait.minimumGenerationHeight(4);
             trait.maximumGenerationHeight(124);
             trait.blockToAttachTo(ICY_NETHERRACK);
-            trait.direction(EnumFacing.DOWN);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitCluster.create(trait ->
         {
@@ -91,14 +87,13 @@ public class BiomeArcticAbyss extends BiomeNetherEx
             trait.minimumGenerationHeight(1);
             trait.maximumGenerationHeight(128);
             trait.blockToAttachTo(ICY_NETHERRACK);
-            trait.direction(EnumFacing.DOWN);
         }));
         biomeData.addBiomeTrait(GenerationStage.ORE, BiomeTraitOre.create(trait ->
         {
             trait.generationAttempts(16);
             trait.minimumGenerationHeight(10);
             trait.maximumGenerationHeight(108);
-            trait.blockToSpawn(NetherExBlocks.QUARTZ_ORE.getDefaultState());
+            trait.blockToSpawn(QUARTZ_ORE);
             trait.blockToReplace(ICY_NETHERRACK);
             trait.veinSize(14);
         }));

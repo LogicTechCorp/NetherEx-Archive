@@ -23,12 +23,9 @@ import logictechcorp.libraryex.world.generation.trait.*;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
-import logictechcorp.netherex.init.NetherExBiomes;
 import logictechcorp.netherex.init.NetherExBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeTorridWasteland extends BiomeNetherEx
@@ -48,7 +45,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     @Override
     public BiomeData getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(NetherExBiomes.TORRID_WASTELAND, 6, true, false);
+        BiomeData biomeData = new BiomeData(this, 6, true, false);
         biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, FIERY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, FIERY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);
@@ -57,7 +54,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.generationAttempts(8);
             trait.minimumGenerationHeight(10);
             trait.maximumGenerationHeight(108);
-            trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
+            trait.blockToSpawn(FLOWING_LAVA);
             trait.blockToSurround(FIERY_NETHERRACK);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitFluid.create(trait ->
@@ -65,9 +62,8 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.generationAttempts(16);
             trait.minimumGenerationHeight(4);
             trait.maximumGenerationHeight(124);
-            trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
+            trait.blockToSpawn(FLOWING_LAVA);
             trait.blockToTarget(FIERY_NETHERRACK);
-            trait.generateFalling(false);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitScatter.create(trait ->
         {
@@ -75,9 +71,8 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.randomizeGenerationAttempts(true);
             trait.minimumGenerationHeight(4);
             trait.maximumGenerationHeight(124);
-            trait.blockToSpawn(Blocks.FIRE.getDefaultState());
+            trait.blockToSpawn(FIRE);
             trait.blockToTarget(FIERY_NETHERRACK);
-            trait.placement(BiomeTraitScatter.Placement.ON_GROUND);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitCluster.create(trait ->
         {
@@ -86,7 +81,6 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.minimumGenerationHeight(4);
             trait.maximumGenerationHeight(124);
             trait.blockToAttachTo(FIERY_NETHERRACK);
-            trait.direction(EnumFacing.DOWN);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitCluster.create(trait ->
         {
@@ -94,14 +88,13 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.minimumGenerationHeight(1);
             trait.maximumGenerationHeight(128);
             trait.blockToAttachTo(FIERY_NETHERRACK);
-            trait.direction(EnumFacing.DOWN);
         }));
         biomeData.addBiomeTrait(GenerationStage.DECORATION, BiomeTraitFluid.create(trait ->
         {
             trait.generationAttempts(32);
             trait.minimumGenerationHeight(10);
             trait.maximumGenerationHeight(118);
-            trait.blockToSpawn(Blocks.FLOWING_LAVA.getDefaultState());
+            trait.blockToSpawn(FLOWING_LAVA);
             trait.blockToTarget(FIERY_NETHERRACK);
             trait.generateFalling(true);
         }));
@@ -110,7 +103,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.generationAttempts(16);
             trait.minimumGenerationHeight(10);
             trait.maximumGenerationHeight(108);
-            trait.blockToSpawn(NetherExBlocks.QUARTZ_ORE.getDefaultState());
+            trait.blockToSpawn(QUARTZ_ORE);
             trait.blockToReplace(FIERY_NETHERRACK);
             trait.veinSize(14);
         }));
@@ -128,7 +121,7 @@ public class BiomeTorridWasteland extends BiomeNetherEx
             trait.generationAttempts(8);
             trait.minimumGenerationHeight(10);
             trait.maximumGenerationHeight(108);
-            trait.blockToSpawn(Blocks.MAGMA.getDefaultState());
+            trait.blockToSpawn(MAGMA);
             trait.blockToReplace(FIERY_NETHERRACK);
             trait.veinSize(32);
         }));
