@@ -25,6 +25,7 @@ import logictechcorp.libraryex.world.generation.trait.BiomeTraitOre;
 import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntitySpinout;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitThornstalk;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -46,9 +47,9 @@ public class BiomeRuthlessSands extends BiomeNetherEx
     }
 
     @Override
-    public BiomeData getBiomeData()
+    public BiomeDataNetherEx getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(this, 8, true, false);
+        BiomeDataNetherEx biomeData = new BiomeDataNetherEx(this, 8, true, false);
         biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, SOUL_SAND);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, GLOOMY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);

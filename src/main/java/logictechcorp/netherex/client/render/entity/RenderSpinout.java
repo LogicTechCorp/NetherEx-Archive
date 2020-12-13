@@ -31,7 +31,7 @@ public class RenderSpinout extends RenderLiving<EntitySpinout>
 {
     public RenderSpinout(RenderManager manager)
     {
-        super(manager, new ModelSpinout(), 0.3F);
+        super(manager, new ModelSpinout(), 0.5F);
     }
 
     @Override

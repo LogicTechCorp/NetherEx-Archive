@@ -24,6 +24,7 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.entity.monster.EntityEmber;
 import logictechcorp.netherex.entity.neutral.EntitySalamander;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.world.biome.Biome;
@@ -43,9 +44,9 @@ public class BiomeTorridWasteland extends BiomeNetherEx
     }
 
     @Override
-    public BiomeData getBiomeData()
+    public BiomeDataNetherEx getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(this, 6, true, false);
+        BiomeDataNetherEx biomeData = new BiomeDataNetherEx(this, 6, true, false);
         biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, FIERY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, FIERY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);

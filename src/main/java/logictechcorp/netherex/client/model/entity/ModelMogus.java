@@ -27,13 +27,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelMogus extends ModelBase
 {
-    private ModelRenderer cap;
-    private ModelRenderer topCap;
-    private ModelRenderer body;
-    private ModelRenderer rightLeg;
-    private ModelRenderer leftLeg;
-    private ModelRenderer rightArm;
-    private ModelRenderer leftArm;
+    private final ModelRenderer cap;
+    private final ModelRenderer topCap;
+    private final ModelRenderer body;
+    private final ModelRenderer rightLeg;
+    private final ModelRenderer leftLeg;
+    private final ModelRenderer rightArm;
+    private final ModelRenderer leftArm;
 
     public ModelMogus()
     {

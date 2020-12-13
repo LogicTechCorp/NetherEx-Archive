@@ -33,7 +33,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderObsidianBoat extends Render<EntityObsidianBoat>
 {
-    private ModelBase modelBoat = new ModelBoat();
+    private final ModelBase modelBoat = new ModelBoat();
 
     public RenderObsidianBoat(RenderManager renderManagerIn)
     {

@@ -26,11 +26,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelEmber extends ModelBase
 {
-    private ModelRenderer base;
-    private ModelRenderer body;
-    private ModelRenderer headBottom;
-    private ModelRenderer headMiddle;
-    private ModelRenderer headTop;
+    private final ModelRenderer base;
+    private final ModelRenderer body;
+    private final ModelRenderer headBottom;
+    private final ModelRenderer headMiddle;
+    private final ModelRenderer headTop;
 
     public ModelEmber()
     {

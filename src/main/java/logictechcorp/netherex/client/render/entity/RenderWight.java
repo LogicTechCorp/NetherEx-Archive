@@ -31,7 +31,7 @@ public class RenderWight extends RenderLiving<EntityWight>
 {
     public RenderWight(RenderManager manager)
     {
-        super(manager, new ModelWight(), 0.5F);
+        super(manager, new ModelWight(), 0.4F);
     }
 
     @Override

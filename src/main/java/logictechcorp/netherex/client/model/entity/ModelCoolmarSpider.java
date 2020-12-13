@@ -19,6 +19,7 @@ package logictechcorp.netherex.client.model.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -95,6 +96,8 @@ public class ModelCoolmarSpider extends ModelBase
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float rotationYaw, float rotationPitch, float scale)
     {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0.0F, 0.0F, -0.2F);
         this.abdomen.render(scale);
         this.rightLeg3.render(scale);
         this.leftLeg2.render(scale);
@@ -106,6 +109,7 @@ public class ModelCoolmarSpider extends ModelBase
         this.rightLeg2.render(scale);
         this.head.render(scale);
         this.leftLeg4.render(scale);
+        GlStateManager.popMatrix();
     }
 
     @Override

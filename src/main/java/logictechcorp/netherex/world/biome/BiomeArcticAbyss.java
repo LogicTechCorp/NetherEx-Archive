@@ -29,6 +29,7 @@ import logictechcorp.netherex.entity.monster.EntityCoolmarSpider;
 import logictechcorp.netherex.entity.monster.EntityFrost;
 import logictechcorp.netherex.entity.monster.EntityWight;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.biome.Biome;
 
@@ -49,9 +50,9 @@ public class BiomeArcticAbyss extends BiomeNetherEx
     }
 
     @Override
-    public BiomeData getBiomeData()
+    public BiomeDataNetherEx getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(this, 2, true, false);
+        BiomeDataNetherEx biomeData = new BiomeDataNetherEx(this, 2, true, false);
         biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, FROSTBURN_ICE);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, ICY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, MAGMA);

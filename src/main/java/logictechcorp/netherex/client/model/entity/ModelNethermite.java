@@ -27,16 +27,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelNethermite extends ModelBase
 {
-    private ModelRenderer head;
-    private ModelRenderer frontBody;
-    private ModelRenderer middleBody;
-    private ModelRenderer backBody;
-    private ModelRenderer tail;
-    private ModelRenderer headSpine;
-    private ModelRenderer frontBodySpine;
-    private ModelRenderer middleBodySpine;
-    private ModelRenderer backBodySpine;
-    private ModelRenderer tailSpine;
+    private final ModelRenderer head;
+    private final ModelRenderer frontBody;
+    private final ModelRenderer middleBody;
+    private final ModelRenderer backBody;
+    private final ModelRenderer tail;
+    private final ModelRenderer headSpine;
+    private final ModelRenderer frontBodySpine;
+    private final ModelRenderer middleBodySpine;
+    private final ModelRenderer backBodySpine;
+    private final ModelRenderer tailSpine;
 
     public ModelNethermite()
     {

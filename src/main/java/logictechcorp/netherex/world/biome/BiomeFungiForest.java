@@ -28,6 +28,7 @@ import logictechcorp.netherex.entity.monster.EntitySpore;
 import logictechcorp.netherex.entity.monster.EntitySporeCreeper;
 import logictechcorp.netherex.entity.neutral.EntityMogus;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import logictechcorp.netherex.world.generation.trait.BiomeTraitEnoki;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.biome.Biome;
@@ -50,9 +51,9 @@ public class BiomeFungiForest extends BiomeNetherEx
     }
 
     @Override
-    public BiomeData getBiomeData()
+    public BiomeDataNetherEx getBiomeData()
     {
-        BiomeData biomeData = new BiomeData(this, 4, true, false);
+        BiomeDataNetherEx biomeData = new BiomeDataNetherEx(this, 4, true, false);
         biomeData.addBiomeBlock(BiomeData.BlockType.SURFACE_BLOCK, HYPHAE);
         biomeData.addBiomeBlock(BiomeData.BlockType.SUBSURFACE_BLOCK, LIVELY_NETHERRACK);
         biomeData.addBiomeBlock(BiomeData.BlockType.LIQUID_BLOCK, LAVA);

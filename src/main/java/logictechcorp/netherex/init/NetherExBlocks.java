@@ -27,11 +27,18 @@ import logictechcorp.netherex.NetherEx;
 import logictechcorp.netherex.block.*;
 import logictechcorp.netherex.item.ItemBlockElderMushroom;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Bootstrap;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -61,7 +68,7 @@ public class NetherExBlocks
     public static final BlockFrostburnIce FROSTBURN_ICE = InjectionHelper.nullValue();
     public static final BlockSoulGlass SOUL_GLASS = InjectionHelper.nullValue();
     public static final BlockSoulGlassPane SOUL_GLASS_PANE = InjectionHelper.nullValue();
-    public static final BlockMod AMETHYST_BLOCK = InjectionHelper.nullValue();
+    public static final BlockAmethyst AMETHYST_BLOCK = InjectionHelper.nullValue();
     public static final BlockRime RIME_BLOCK = InjectionHelper.nullValue();
     public static final BlockBoneSliver BONE_SLIVER = InjectionHelper.nullValue();
     public static final BlockBoneChunk BONE_CHUNK = InjectionHelper.nullValue();
@@ -162,7 +169,7 @@ public class NetherExBlocks
                     new BlockFrostburnIce(),
                     new BlockSoulGlass(),
                     new BlockSoulGlassPane(),
-                    new BlockMod(NetherEx.getResource("amethyst_block"), new BlockProperties(Material.IRON, MapColor.PURPLE).harvestLevel(HarvestTool.PICKAXE, HarvestLevel.IRON).hardness(5.0F).resistance(10.0F)),
+                    new BlockAmethyst(),
                     new BlockRime(),
                     new BlockBoneSliver(),
                     new BlockBoneChunk(),
@@ -330,6 +337,41 @@ public class NetherExBlocks
                     new ItemBlockMod(ICY_NETHER_BRICK_FENCE_GATE, DEFAULT_ITEM_BLOCK_PROPERTIES)
             );
         }
+    }
+
+    public static void addDispenserBehaviors()
+    {
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Item.getItemFromBlock(AMETHYST_BLOCK), new Bootstrap.BehaviorDispenseOptional()
+        {
+            @Override
+            protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
+            {
+                World world = source.getWorld();
+                BlockPos pos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
+                this.successful = true;
+
+                if(world.isAirBlock(pos) && AMETHYST_BLOCK.canDispenserPlace(world, pos))
+                {
+                    if(!world.isRemote)
+                    {
+                        world.setBlockState(pos, AMETHYST_BLOCK.getDefaultState(), 3);
+                    }
+
+                    stack.shrink(1);
+                }
+                else
+                {
+                    ItemStack armorStack = ItemArmor.dispenseArmor(source, stack);
+
+                    if(armorStack.isEmpty())
+                    {
+                        this.successful = false;
+                    }
+                }
+
+                return stack;
+            }
+        });
     }
 
     public static ItemProperties getDefaultItemBlockProperties()

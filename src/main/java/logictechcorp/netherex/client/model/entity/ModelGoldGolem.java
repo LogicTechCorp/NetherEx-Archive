@@ -28,15 +28,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelGoldGolem extends ModelBase
 {
-    private ModelRenderer head;
-    private ModelRenderer rightLeg;
-    private ModelRenderer rightArm;
-    private ModelRenderer leftArm;
-    private ModelRenderer waist;
-    private ModelRenderer leftLeg;
-    private ModelRenderer body;
-    private ModelRenderer snout;
-    private ModelRenderer loinCloth;
+    private final ModelRenderer head;
+    private final ModelRenderer rightLeg;
+    private final ModelRenderer rightArm;
+    private final ModelRenderer leftArm;
+    private final ModelRenderer waist;
+    private final ModelRenderer leftLeg;
+    private final ModelRenderer body;
+    private final ModelRenderer snout;
+    private final ModelRenderer loinCloth;
 
     public ModelGoldGolem()
     {

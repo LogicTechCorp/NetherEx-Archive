@@ -31,7 +31,7 @@ public class RenderSpore extends RenderLiving<EntitySpore>
 {
     public RenderSpore(RenderManager manager)
     {
-        super(manager, new ModelSpore(), 0.3F);
+        super(manager, new ModelSpore(), 0.5F);
     }
 
     @Override

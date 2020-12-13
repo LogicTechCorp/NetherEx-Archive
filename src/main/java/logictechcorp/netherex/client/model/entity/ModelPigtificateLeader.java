@@ -26,20 +26,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelPigtificateLeader extends ModelBase
 {
-    private ModelRenderer stomach;
-    private ModelRenderer rightArm;
-    private ModelRenderer leftArm;
-    private ModelRenderer rightLeg;
-    private ModelRenderer leftLeg;
-    private ModelRenderer torso;
-    private ModelRenderer gem;
-    private ModelRenderer jaw;
-    private ModelRenderer head;
-    private ModelRenderer earringsTeeth;
-    private ModelRenderer snout;
-    private ModelRenderer rightHorn;
-    private ModelRenderer leftHorn;
-    private ModelRenderer crown;
+    private final ModelRenderer stomach;
+    private final ModelRenderer rightArm;
+    private final ModelRenderer leftArm;
+    private final ModelRenderer rightLeg;
+    private final ModelRenderer leftLeg;
+    private final ModelRenderer torso;
+    private final ModelRenderer gem;
+    private final ModelRenderer jaw;
+    private final ModelRenderer head;
+    private final ModelRenderer earringsTeeth;
+    private final ModelRenderer snout;
+    private final ModelRenderer rightHorn;
+    private final ModelRenderer leftHorn;
+    private final ModelRenderer crown;
 
     public ModelPigtificateLeader()
     {

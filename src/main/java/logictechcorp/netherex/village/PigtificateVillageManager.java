@@ -164,13 +164,12 @@ public class PigtificateVillageManager
 
     public void readPigtificateTradeConfigs(Path tradeConfigDirectoryPath)
     {
-        if(Files.isReadable(tradeConfigDirectoryPath))
+        if(Files.exists(tradeConfigDirectoryPath))
         {
             NetherEx.LOGGER.info("Reading Pigtificate trade configs.");
 
             try
             {
-                Files.createDirectories(tradeConfigDirectoryPath);
                 Iterator<Path> pathIter = Files.walk(tradeConfigDirectoryPath).iterator();
 
                 while(pathIter.hasNext())
@@ -180,52 +179,56 @@ public class PigtificateVillageManager
 
                     if(FileHelper.getFileExtension(configFile).equals("json"))
                     {
-                        String fileText = FileUtils.readFileToString(configFile, Charset.defaultCharset()).trim();
-
-                        if(fileText.isEmpty() || !fileText.startsWith("{") || !fileText.endsWith("}"))
+                        if(Files.isReadable(configPath))
                         {
-                            String filePath = configFile.getPath();
-                            String fileBackupPath = filePath + "_backup";
-                            Files.move(configFile.toPath(), Paths.get(fileBackupPath));
-                            NetherEx.LOGGER.warn("The trade config at {} was invalid and was backed up to {}.", filePath, fileBackupPath);
-                            continue;
-                        }
+                            String fileText = FileUtils.readFileToString(configFile, Charset.defaultCharset()).trim();
 
-                        FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
-                        config.load();
-
-                        PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
-
-                        if(profession != null)
-                        {
-                            PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
-
-                            if(career != null)
+                            if(fileText.startsWith("{") && fileText.endsWith("}"))
                             {
-                                List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
+                                FileConfig config = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
+                                config.load();
 
-                                if(tradeConfigs.size() > 0)
+                                PigtificateProfession profession = NetherExRegistries.PIGTIFICATE_PROFESSIONS.getValue(new ResourceLocation(config.get("profession")));
+
+                                if(profession != null)
                                 {
-                                    for(Config tradeConfig : tradeConfigs)
-                                    {
-                                        if(!this.currentTrades.containsKey(career))
-                                        {
-                                            this.currentTrades.put(career, new ArrayList<>());
-                                        }
+                                    PigtificateProfession.Career career = profession.getCareer(new ResourceLocation(config.get("career")));
 
-                                        this.currentTrades.get(career).add(new Trade(tradeConfig));
+                                    if(career != null)
+                                    {
+                                        List<Config> tradeConfigs = config.getOrElse("trades", new ArrayList<>());
+
+                                        if(tradeConfigs.size() > 0)
+                                        {
+                                            for(Config tradeConfig : tradeConfigs)
+                                            {
+                                                if(!this.currentTrades.containsKey(career))
+                                                {
+                                                    this.currentTrades.put(career, new ArrayList<>());
+                                                }
+
+                                                this.currentTrades.get(career).add(new Trade(tradeConfig));
+                                            }
+                                        }
                                     }
                                 }
+
+                                config.save();
+                                config.close();
+                            }
+                            else
+                            {
+                                NetherEx.LOGGER.warn("Skipping Pigtificate trade config at {}. Its contents are invalid.", configPath);
                             }
                         }
-
-                        config.save();
-                        config.close();
-
+                        else
+                        {
+                            NetherEx.LOGGER.warn("Skipping Pigtificate trade config at {}. It is unreadable.", configPath);
+                        }
                     }
-                    else if(!configFile.isDirectory() && !FileHelper.getFileExtension(configFile).equals("json_backup"))
+                    else if(!configFile.isDirectory())
                     {
-                        NetherEx.LOGGER.warn("Skipping file located at {}, since it is not a json file.", configPath.toString());
+                        NetherEx.LOGGER.warn("Skipping Pigtificate trade config at {}. It is not a json file.", configPath);
                     }
                 }
             }
@@ -234,41 +237,36 @@ public class PigtificateVillageManager
                 e.printStackTrace();
             }
         }
-        else
-        {
-            NetherEx.LOGGER.warn("Unable to read Pigtificate trade configs.");
-        }
     }
 
     public void createPigtificateTradeConfigs(Path tradeConfigDirectoryPath)
     {
-        NetherEx.LOGGER.info("Creating Pigtificate trade configs.");
-
-        try
+        if(Files.notExists(tradeConfigDirectoryPath))
         {
-            for(Map.Entry<PigtificateProfession.Career, List<Trade>> entry : this.defaultTrades.entrySet())
+            NetherEx.LOGGER.info("Creating Pigtificate trade configs.");
+
+            try
             {
-                PigtificateProfession.Career career = entry.getKey();
-                List<Trade> trades = entry.getValue();
-
-                ResourceLocation pigtificateCareerName = career.getName();
-                File configFile = new File(tradeConfigDirectoryPath.toFile(), pigtificateCareerName.toString().replace(":", "/") + ".json");
-
-                if(!configFile.exists())
+                for(Map.Entry<PigtificateProfession.Career, List<Trade>> entry : this.defaultTrades.entrySet())
                 {
+                    PigtificateProfession.Career career = entry.getKey();
+                    List<Trade> trades = entry.getValue();
+
+                    String careerName = career.getName().toString();
+                    File configFile = new File(tradeConfigDirectoryPath.toFile(), careerName.replace(":", "/") + ".json");
                     Files.createDirectories(configFile.getParentFile().toPath());
                     FileConfig tradeConfig = FileConfig.builder(configFile, JsonFormat.fancyInstance()).preserveInsertionOrder().build();
                     tradeConfig.set("profession", career.getProfession().getName().toString());
-                    tradeConfig.set("career", career.getName().toString());
+                    tradeConfig.set("career", careerName);
                     tradeConfig.add("trades", trades.stream().map(Trade::getAsConfig).collect(Collectors.toList()));
                     tradeConfig.save();
                     tradeConfig.close();
                 }
             }
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 

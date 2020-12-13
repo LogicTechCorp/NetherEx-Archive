@@ -27,14 +27,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelWight extends ModelBase
 {
-    private ModelRenderer head;
-    private ModelRenderer hood;
-    private ModelRenderer upperBody;
-    private ModelRenderer lowerBody;
-    private ModelRenderer rightArm;
-    private ModelRenderer leftArm;
-    private ModelRenderer rightLeg;
-    private ModelRenderer leftLeg;
+    private final ModelRenderer head;
+    private final ModelRenderer hood;
+    private final ModelRenderer upperBody;
+    private final ModelRenderer lowerBody;
+    private final ModelRenderer rightArm;
+    private final ModelRenderer leftArm;
+    private final ModelRenderer rightLeg;
+    private final ModelRenderer leftLeg;
 
     public ModelWight()
     {

@@ -27,13 +27,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelSpinout extends ModelBase
 {
-    private ModelRenderer head;
-    private ModelRenderer upperBody;
-    private ModelRenderer middleBody;
-    private ModelRenderer lowerBody;
-    private ModelRenderer upperSpinner;
-    private ModelRenderer middleSpinner;
-    private ModelRenderer lowerSpinner;
+    private final ModelRenderer head;
+    private final ModelRenderer upperBody;
+    private final ModelRenderer middleBody;
+    private final ModelRenderer lowerBody;
+    private final ModelRenderer upperSpinner;
+    private final ModelRenderer middleSpinner;
+    private final ModelRenderer lowerSpinner;
 
     public ModelSpinout()
     {

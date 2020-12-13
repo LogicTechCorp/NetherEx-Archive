@@ -31,7 +31,7 @@ public class RenderBrute extends RenderLiving<EntityBrute>
 {
     public RenderBrute(RenderManager manager)
     {
-        super(manager, new ModelBrute(), 0.5F);
+        super(manager, new ModelBrute(), 0.85F);
     }
 
     @Override

@@ -27,12 +27,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelSpore extends ModelBase
 {
-    private ModelRenderer stageOne;
-    private ModelRenderer stageTwo;
-    private ModelRenderer stageThreeInner;
-    private ModelRenderer stageThreeOuter;
-    private ModelRenderer stageFour;
-    private ModelRenderer stageFive;
+    private final ModelRenderer stageOne;
+    private final ModelRenderer stageTwo;
+    private final ModelRenderer stageThreeInner;
+    private final ModelRenderer stageThreeOuter;
+    private final ModelRenderer stageFour;
+    private final ModelRenderer stageFive;
 
     public ModelSpore()
     {

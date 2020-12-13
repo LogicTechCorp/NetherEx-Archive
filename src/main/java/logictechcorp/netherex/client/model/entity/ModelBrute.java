@@ -27,24 +27,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelBrute extends ModelBase
 {
-    private ModelRenderer head;
-    private ModelRenderer nose;
-    private ModelRenderer lip;
-    private ModelRenderer teeth;
-    private ModelRenderer upperBody;
-    private ModelRenderer stomach;
-    private ModelRenderer upperScale;
-    private ModelRenderer middleScale;
-    private ModelRenderer lowerScale;
-    private ModelRenderer rightFrontChain;
-    private ModelRenderer rightBackChain;
-    private ModelRenderer leftFrontChain;
-    private ModelRenderer leftBackChain;
-    private ModelRenderer rightArm;
-    private ModelRenderer leftArm;
-    private ModelRenderer lowerBody;
-    private ModelRenderer rightLeg;
-    private ModelRenderer leftLeg;
+    private final ModelRenderer head;
+    private final ModelRenderer nose;
+    private final ModelRenderer lip;
+    private final ModelRenderer teeth;
+    private final ModelRenderer upperBody;
+    private final ModelRenderer stomach;
+    private final ModelRenderer upperScale;
+    private final ModelRenderer middleScale;
+    private final ModelRenderer lowerScale;
+    private final ModelRenderer rightFrontChain;
+    private final ModelRenderer rightBackChain;
+    private final ModelRenderer leftFrontChain;
+    private final ModelRenderer leftBackChain;
+    private final ModelRenderer rightArm;
+    private final ModelRenderer leftArm;
+    private final ModelRenderer lowerBody;
+    private final ModelRenderer rightLeg;
+    private final ModelRenderer leftLeg;
 
     public ModelBrute()
     {

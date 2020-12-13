@@ -33,7 +33,7 @@ public class RenderSporeCreeper extends RenderLiving<EntitySporeCreeper>
 {
     public RenderSporeCreeper(RenderManager manager)
     {
-        super(manager, new ModelSporeCreeper(), 0.3F);
+        super(manager, new ModelSporeCreeper(), 0.5F);
     }
 
     @Override

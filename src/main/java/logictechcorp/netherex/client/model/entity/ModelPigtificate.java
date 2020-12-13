@@ -29,15 +29,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelPigtificate extends ModelBiped
 {
-    private ModelRenderer headWear;
-    private ModelRenderer head;
-    private ModelRenderer nose;
-    private ModelRenderer upperBody;
-    private ModelRenderer lowerBody;
-    private ModelRenderer rightArm;
-    private ModelRenderer leftArm;
-    private ModelRenderer rightLeg;
-    private ModelRenderer leftLeg;
+    private final ModelRenderer headWear;
+    private final ModelRenderer head;
+    private final ModelRenderer nose;
+    private final ModelRenderer upperBody;
+    private final ModelRenderer lowerBody;
+    private final ModelRenderer rightArm;
+    private final ModelRenderer leftArm;
+    private final ModelRenderer rightLeg;
+    private final ModelRenderer leftLeg;
 
     public ModelPigtificate()
     {

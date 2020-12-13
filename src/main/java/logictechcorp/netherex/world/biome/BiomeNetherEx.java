@@ -19,14 +19,14 @@ package logictechcorp.netherex.world.biome;
 
 import logictechcorp.libraryex.IModData;
 import logictechcorp.libraryex.world.biome.BiomeMod;
-import logictechcorp.libraryex.world.biome.data.BiomeData;
 import logictechcorp.netherex.init.NetherExBlocks;
+import logictechcorp.netherex.world.biome.data.BiomeDataNetherEx;
 import logictechcorp.netherex.world.biome.design.BiomeDecoratorNetherEx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeDecorator;
 
-public abstract class BiomeNetherEx extends BiomeMod<BiomeData>
+public abstract class BiomeNetherEx extends BiomeMod<BiomeDataNetherEx>
 {
     protected static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
     protected static final IBlockState FIRE = Blocks.FIRE.getDefaultState();
@@ -47,5 +47,5 @@ public abstract class BiomeNetherEx extends BiomeMod<BiomeData>
     }
 
     @Override
-    public abstract BiomeData getBiomeData();
+    public abstract BiomeDataNetherEx getBiomeData();
 }

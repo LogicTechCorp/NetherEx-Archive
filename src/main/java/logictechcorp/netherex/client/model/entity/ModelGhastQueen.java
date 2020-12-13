@@ -28,15 +28,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelGhastQueen extends ModelBase
 {
-    private ModelRenderer backRightTentacle;
-    private ModelRenderer back;
-    private ModelRenderer body;
-    private ModelRenderer frontLeftTentacle;
-    private ModelRenderer middleRightTentacle;
-    private ModelRenderer face;
-    private ModelRenderer middleLeftTentacle;
-    private ModelRenderer frontRightTentacle;
-    private ModelRenderer backLeftTentacle;
+    private final ModelRenderer backRightTentacle;
+    private final ModelRenderer back;
+    private final ModelRenderer body;
+    private final ModelRenderer frontLeftTentacle;
+    private final ModelRenderer middleRightTentacle;
+    private final ModelRenderer face;
+    private final ModelRenderer middleLeftTentacle;
+    private final ModelRenderer frontRightTentacle;
+    private final ModelRenderer backLeftTentacle;
 
     public ModelGhastQueen()
     {

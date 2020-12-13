@@ -100,6 +100,6 @@ public class BiomeDataManagerNetherEx extends BiomeDataManager
             return new BiomeDataBOP(biomeRegistryName, generationWeight, useDefaultDecorations, isSubBiome);
         }
 
-        return super.createBiomeData(biomeRegistryName, generationWeight, useDefaultDecorations, isSubBiome);
+        return new BiomeDataNetherEx(biomeRegistryName, generationWeight, useDefaultDecorations, isSubBiome);
     }
 }

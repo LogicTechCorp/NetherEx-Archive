@@ -27,12 +27,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelSporeCreeper extends ModelBase
 {
-    private ModelRenderer head;
-    private ModelRenderer body;
-    private ModelRenderer frontRightLeg;
-    private ModelRenderer frontLeftLeg;
-    private ModelRenderer backRightLeg;
-    private ModelRenderer backLeftLeg;
+    private final ModelRenderer head;
+    private final ModelRenderer body;
+    private final ModelRenderer frontRightLeg;
+    private final ModelRenderer frontLeftLeg;
+    private final ModelRenderer backRightLeg;
+    private final ModelRenderer backLeftLeg;
 
     public ModelSporeCreeper()
     {

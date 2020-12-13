@@ -32,7 +32,7 @@ public class RenderCoolmarSpider extends RenderLiving<EntityCoolmarSpider>
 {
     public RenderCoolmarSpider(RenderManager manager)
     {
-        super(manager, new ModelCoolmarSpider(), 0.5F);
+        super(manager, new ModelCoolmarSpider(), 0.85F);
         this.addLayer(new LayerCoolmarSpider(this));
     }
 

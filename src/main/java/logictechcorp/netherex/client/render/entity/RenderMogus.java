@@ -30,7 +30,7 @@ public class RenderMogus extends RenderLiving<EntityMogus>
 {
     public RenderMogus(RenderManager manager)
     {
-        super(manager, new ModelMogus(), 0.3F);
+        super(manager, new ModelMogus(), 0.15F);
     }
 
     @Override

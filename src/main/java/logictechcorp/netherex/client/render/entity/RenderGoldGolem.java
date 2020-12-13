@@ -31,7 +31,7 @@ public class RenderGoldGolem extends RenderLiving<EntityGoldGolem>
 {
     public RenderGoldGolem(RenderManager manager)
     {
-        super(manager, new ModelGoldGolem(), 0.3F);
+        super(manager, new ModelGoldGolem(), 0.5F);
     }
 
     @Override

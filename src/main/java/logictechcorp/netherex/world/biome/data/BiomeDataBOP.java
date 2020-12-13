@@ -33,9 +33,9 @@ public class BiomeDataBOP extends BiomeData
     }
 
     @Override
-    public void generateTerrain(World world, Random random, ChunkPrimer primer, int chunkX, int chunkZ, double noise)
+    public void generateTerrain(World world, Random random, ChunkPrimer primer, int posX, int posZ, double noise)
     {
-        this.biome.genTerrainBlocks(world, random, primer, chunkX, chunkZ, noise);
+        super.generateTerrain(world, random, primer, posZ, posX, noise);
     }
 
     @Override

@@ -192,16 +192,24 @@ public class ChunkGeneratorNetherEx extends ChunkGeneratorHell
         this.gravelNoise = this.soulSandGravelNoiseGen.generateNoiseOctaves(this.gravelNoise, chunkX * 16, 109, chunkZ * 16, 16, 1, 16, 0.03125D, 1.0D, 0.03125D);
         this.netherrackNoise = this.netherrackNoiseGen.generateNoiseOctaves(this.netherrackNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 
-        for(int posX = 0; posX < 16; posX++)
+        for(int posZ = 0; posZ < 16; posZ++)
         {
-            for(int posZ = 0; posZ < 16; posZ++)
+            for(int posX = 0; posX < 16; posX++)
             {
-                BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.biomes[posZ + (posX * 16)]);
+                for(int posY = 127; posY >= 0; posY--)
+                {
+                    if(posY >= (127 - this.random.nextInt(5)) || posY <= this.random.nextInt(5))
+                    {
+                        primer.setBlockState(posZ, posY, posX, Blocks.BEDROCK.getDefaultState());
+                    }
+                }
+
+                BiomeData biomeData = NetherEx.BIOME_DATA_MANAGER.getBiomeData(this.biomes[posX + (posZ * 16)]);
 
                 if(biomeData != BiomeData.EMPTY)
                 {
                     this.terrainNoise = this.terrainNoiseGen.getRegion(this.terrainNoise, (chunkX * 16), (chunkZ * 16), 16, 16, 0.03125D * 2.0D, 0.03125D * 2.0D, 1.0D);
-                    biomeData.generateTerrain(this.world, this.random, primer, (chunkX * 16) + posX, (chunkZ * 16) + posZ, this.terrainNoise[posZ + posX * 16]);
+                    biomeData.generateTerrain(this.world, this.random, primer, (chunkX * 16) + posX, (chunkZ * 16) + posZ, this.terrainNoise[posX + (posZ * 16)]);
                 }
             }
         }
