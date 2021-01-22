@@ -62,18 +62,19 @@ public class BiomeDataManagerNetherEx extends BiomeDataManager
 
                     if(NetherEx.BIOMES_O_PLENTY_LOADED)
                     {
-                        String worldName = world.getWorldType().getName();
+                        int worldTypeId = world.getWorldType().getId();
 
-                        if(!worldName.equals("BIOMESOP") && !worldName.equals("OTG"))
+                        if(worldTypeId < 6 || worldTypeId == 8)
                         {
                             List<Biome> biomes = new ArrayList<>();
-                            this.getCurrentBiomeData().forEach((resourceLocation, biomeData) ->
+                            this.currentBiomeData.forEach((resourceLocation, biomeData) ->
                             {
                                 if(resourceLocation.getNamespace().equals("biomesoplenty"))
                                 {
                                     biomes.add(biomeData.getBiome());
                                 }
                             });
+
                             biomes.forEach(this::unregisterBiomeData);
                         }
                     }
