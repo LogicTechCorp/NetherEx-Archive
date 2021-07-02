@@ -41,6 +41,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
+import java.util.Locale;
+
 public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
 {
     public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
@@ -166,7 +168,7 @@ public class BlockUrnOfSorrow extends BlockTileEntity<TileEntityUrnOfSorrow>
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.ENGLISH);
         }
 
         public static EnumType fromMeta(int meta)

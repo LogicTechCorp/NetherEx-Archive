@@ -35,6 +35,8 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Locale;
+
 public class BlockElderMushroomStem extends BlockModBigMushroom
 {
     public static final PropertyEnum<EnumType> AXIS = PropertyEnum.create("axis", EnumType.class);
@@ -78,7 +80,7 @@ public class BlockElderMushroomStem extends BlockModBigMushroom
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.ENGLISH);
         }
 
         public static EnumType fromMeta(int meta)

@@ -47,6 +47,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
 import java.util.Random;
 
 public class BlockThornstalk extends BlockMod
@@ -207,7 +208,7 @@ public class BlockThornstalk extends BlockMod
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.ENGLISH);
         }
 
         public static EnumPart fromMeta(int meta)

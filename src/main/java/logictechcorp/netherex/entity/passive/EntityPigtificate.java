@@ -59,10 +59,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class EntityPigtificate extends EntityAgeable implements ITrader
 {
@@ -665,7 +662,7 @@ public class EntityPigtificate extends EntityAgeable implements ITrader
         }
         else
         {
-            return I18n.translateToLocal("entity." + this.getProfession().getName().getNamespace() + ":pigtificate_" + this.getCareer().getName().getPath().toLowerCase() + ".name");
+            return I18n.translateToLocal("entity." + this.getProfession().getName().getNamespace() + ":pigtificate_" + this.getCareer().getName().getPath().toLowerCase(Locale.ENGLISH) + ".name");
         }
     }
 
